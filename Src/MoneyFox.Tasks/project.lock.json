@@ -32,7 +32,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -444,12 +455,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -471,7 +482,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -2067,7 +2078,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -2429,12 +2451,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -2456,7 +2478,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -3963,7 +3985,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -4322,12 +4355,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -4349,7 +4382,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -5817,7 +5850,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -6184,12 +6228,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -6211,7 +6255,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -7721,7 +7765,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -8080,12 +8135,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -8107,7 +8162,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -9575,7 +9630,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -9942,12 +10008,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -9969,7 +10035,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -11479,7 +11545,18 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.UWP/4.0.0": {
+      "HockeySDK.Core/4.1.0-build65440": {
+        "compile": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
+        }
+      },
+      "HockeySDK.UWP/4.1.0-build65440": {
+        "dependencies": {
+          "HockeySDK.Core": "4.1.0-build65440"
+        },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
         },
@@ -11838,12 +11915,12 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/14332.0.0": {
+      "NotificationsExtensions.Win10/14332.0.1": {
         "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
+          "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -11865,7 +11942,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.0": {
+      "PropertyChanged.Fody/1.51.1": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -13404,17 +13481,30 @@
         "build/portable-net+sl+win+wpa+wp/Fody.targets"
       ]
     },
-    "HockeySDK.UWP/4.0.0": {
-      "sha512": "8073pxsE36oroVBg8RAUyxd8RSngh3A5n/5Tux+9WPU6vnrQZcroM1rE/E9oa3FpMO0MdZpAqepcIy54fzkbjA==",
+    "HockeySDK.Core/4.1.0-build65440": {
+      "sha512": "m4UVsPGnEisokz6JOIa9SMW5rJy8JiMmMnTZGW/EvIkzZ8hsgkROd672yJTP6g+wATyfH0G5zavbceWHtJH1/A==",
       "type": "package",
       "files": [
-        "HockeySDK.UWP.4.0.0.nupkg.sha512",
+        "HockeySDK.Core.4.1.0-build65440.nupkg.sha512",
+        "HockeySDK.Core.nuspec",
+        "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll",
+        "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll.CodeAnalysisLog.xml",
+        "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll.lastcodeanalysissucceeded",
+        "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.XML"
+      ]
+    },
+    "HockeySDK.UWP/4.1.0-build65440": {
+      "sha512": "adz0d2myeTxW9vYYQ+RFbof+gKoc1bOzqz2ptY7+qJqTTg/MbWDouOdhbqdplMBST4zRh2iPKYHxD53A0AQXRw==",
+      "type": "package",
+      "files": [
+        "HockeySDK.UWP.4.1.0-build65440.nupkg.sha512",
         "HockeySDK.UWP.nuspec",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.dll",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.dll.CodeAnalysisLog.xml",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.dll.lastcodeanalysissucceeded",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.pri",
-        "lib/uap10.0/Microsoft.HockeyApp.Kit/Properties/Microsoft.HockeyApp.Kit.rd.xml"
+        "lib/uap10.0/Microsoft.HockeyApp.Kit/Properties/Microsoft.HockeyApp.Kit.rd.xml",
+        "tools/Init.ps1"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -13987,7 +14077,7 @@
       ]
     },
     "Microsoft.OneDriveSDK/1.1.47": {
-      "sha512": "qwSDJGoTt9CkUE7sFXpYr7n9wSHHXFoR9OpV9VuTKLEfR4AdeBwKLcupFDZH7nefjezuUmDURfcgIIM7e/LdjQ==",
+      "sha512": "D/AUi1DaB7i1Xul2RphgE701Duh9m0rEngSXWIHp4mLyU1WQkHLCyOcdXsXc51vgEn7kDNInMqxfKCAL+qcKZQ==",
       "type": "package",
       "files": [
         "Microsoft.OneDriveSDK.1.1.47.nupkg.sha512",
@@ -14438,23 +14528,30 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/14332.0.0": {
-      "sha512": "CF/mvG1M5UZrZFEIgnrdzxhgy8qUL7Tt2dlg+DIy7P2in9Xo+4HINnh6s7JO/uFQ6fHKVnrTxIRQVYp91Jq9Dg==",
+    "NotificationsExtensions.Win10/14332.0.1": {
+      "sha512": "8m2YWUun8+CkdTiUhLHV/BRx/in4T0bPETHwiWOU/ijQq7bracDZW+rN37CRZ9AtcQJp0wbFVE8eb8DtCuWvpw==",
       "type": "package",
       "files": [
-        "NotificationsExtensions.Win10.14332.0.0.nupkg.sha512",
+        "NotificationsExtensions.Win10.14332.0.1.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
+        "build/Windows/NotificationsExtensions.Win10.targets",
+        "build/native/NotificationsExtensions.Win10.targets",
+        "lib/Windows/NotificationsExtensions.pdb",
+        "lib/Windows/NotificationsExtensions.pri",
+        "lib/Windows/NotificationsExtensions.winmd",
+        "lib/Windows/NotificationsExtensions.winmd.xml",
+        "lib/Windows/NotificationsExtensions.xml",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/native/NotificationsExtensions.pdb",
+        "lib/native/NotificationsExtensions.pri",
+        "lib/native/NotificationsExtensions.winmd",
+        "lib/native/NotificationsExtensions.winmd.xml",
+        "lib/native/NotificationsExtensions.xml",
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
-        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
-        "lib/uap10.0/NotificationsExtensions.pdb",
-        "lib/uap10.0/NotificationsExtensions.pri",
-        "lib/uap10.0/NotificationsExtensions.winmd",
-        "lib/uap10.0/NotificationsExtensions.winmd.xml",
-        "lib/uap10.0/NotificationsExtensions.xml"
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb"
       ]
     },
     "OxyPlot.Core/2015.1.1033-alpha": {
@@ -14504,15 +14601,15 @@
         "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf"
       ]
     },
-    "PropertyChanged.Fody/1.51.0": {
-      "sha512": "4uO0gtL1SyTXUE+ixL1Pn6ss07B60FzW5EyLqNyi+OLyBMB5ebv8I3L8D8GP3U9VtwvJD7N7ZC0DZULN+bVBpw==",
+    "PropertyChanged.Fody/1.51.1": {
+      "sha512": "on3x3H+Wo7iDCksMAiFFsI1goKTihdVtJZxIxY8sSlnQm33CeA/6WEyOuO1Y3LaJQySLuFaHAXPYJhc4aN+V3Q==",
       "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
-        "PropertyChanged.Fody.1.51.0.nupkg.sha512",
+        "PropertyChanged.Fody.1.51.1.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
@@ -17428,7 +17525,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "HockeySDK.UWP >= 4.0.0",
+      "HockeySDK.UWP >= 4.1.0-build65440",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MvvmCross.Plugin.SQLitePCL >= 4.1.6",
       "SQLite.Net-PCL >= 3.1.1",
