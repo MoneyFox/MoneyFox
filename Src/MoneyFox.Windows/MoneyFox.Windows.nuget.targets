@@ -5,5 +5,6 @@
   </PropertyGroup>
   <ImportGroup>
     <Import Project="$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets" Condition="Exists('$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets')" />
+    <Import Project="$(NuGetPackageRoot)\NotificationsExtensions.Win10\14332.0.1\build\Windows\NotificationsExtensions.Win10.targets" Condition="Exists('$(NuGetPackageRoot)\NotificationsExtensions.Win10\14332.0.1\build\Windows\NotificationsExtensions.Win10.targets')" />
   </ImportGroup>
 </Project>
