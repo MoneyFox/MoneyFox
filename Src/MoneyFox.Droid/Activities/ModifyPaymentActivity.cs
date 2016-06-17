@@ -9,6 +9,7 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -17,15 +18,12 @@ namespace MoneyFox.Droid.Activities
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class ModifyPaymentActivity : MvxAppCompatActivity<ModifyPaymentViewModel>,
-        DatePickerDialog.IOnDateSetListener
-    {
+        DatePickerDialog.IOnDateSetListener {
         /// <summary>
         ///     Used to determine which button called the date picker
         /// </summary>
         private Button callerButton;
-
         private Button categoryButton;
-
         private EditText editTextAmount;
         private Button enddateButton;
         private Button paymentDateButton;

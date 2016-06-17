@@ -2,6 +2,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Droid.Dialogs
 {
@@ -23,5 +24,11 @@ namespace MoneyFox.Droid.Dialogs
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
             => new DatePickerDialog(context, listener, date.Year, date.Month - 1, date.Day);
+
+        public override void OnDismiss(IDialogInterface dialog) {
+            (Context as IDialogCloseListener)?.HandleDialogClose();
+
+            base.OnDismiss(dialog);
+        }
     }
 }

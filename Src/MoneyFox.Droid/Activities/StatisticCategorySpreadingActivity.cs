@@ -4,9 +4,9 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Dialogs;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using OxyPlot.Xamarin.Android;
 
@@ -16,7 +16,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticCategorySpreadingActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>, IDateRangeDialogCloseListener
+    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>, IDialogCloseListener
     {
         private PlotView plotModel;
 

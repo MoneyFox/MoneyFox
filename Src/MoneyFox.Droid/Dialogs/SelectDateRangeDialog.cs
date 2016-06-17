@@ -8,6 +8,7 @@ using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Droid.Dialogs
 {
@@ -95,7 +96,7 @@ namespace MoneyFox.Droid.Dialogs
 
         public override void OnDismiss(IDialogInterface dialog)
         {
-            (Context as IDateRangeDialogCloseListener)?.HandleDialogClose();
+            (Context as IDialogCloseListener)?.HandleDialogClose();
 
             base.OnDismiss(dialog);
         }

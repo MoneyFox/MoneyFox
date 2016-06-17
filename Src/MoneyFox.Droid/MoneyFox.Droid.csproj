@@ -271,7 +271,6 @@
   <ItemGroup>
     <Compile Include="Activities\Caching\FragmentCacheConfigurationCustomFragmentInfo.cs" />
     <Compile Include="Activities\Caching\MainActivityFragmentCacheInfoFactory.cs" />
-    <Compile Include="Activities\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
