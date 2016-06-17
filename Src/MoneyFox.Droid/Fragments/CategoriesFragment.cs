@@ -24,8 +24,7 @@ namespace MoneyFox.Droid.Fragments
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
 
-            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category);
-            button.Click += (s, e) =>
+            view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
                 var dialog = new ModifyCategoryDialog
                 {

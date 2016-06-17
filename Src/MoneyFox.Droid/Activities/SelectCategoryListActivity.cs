@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Droid.Fragments;
@@ -29,6 +30,14 @@ namespace MoneyFox.Droid.Activities
 
             var list = FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
+
+            FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) => {
+                var dialog = new ModifyCategoryDialog {
+                    ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                };
+
+                dialog.Show(FragmentManager, Strings.AddCategoryTitle);
+            };
 
             Title = Strings.ChooseCategorieTitle;
         }
