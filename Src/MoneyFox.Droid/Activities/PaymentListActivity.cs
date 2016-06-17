@@ -13,7 +13,6 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MoneyFox.Droid.Activities
 {

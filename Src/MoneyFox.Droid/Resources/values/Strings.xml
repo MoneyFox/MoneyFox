@@ -43,6 +43,7 @@
     If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.
   </string>
   <string name="text_translation_info">Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</string>
+  <string name="textview_done">Done</string>
 
   <!--buttons-->
   <string name="button_date">Date</string>

@@ -16,10 +16,9 @@ namespace MoneyFox.Droid.Dialogs
         private readonly Context context;
         private readonly SelectDateRangeDialogViewModel viewModel;
         private Button callerButton;
-        private Button doneButton;
         private Button selectEndDateButton;
-
         private Button selectStartDateButton;
+        private TextView doneTextView;
 
         public SelectDateRangeDialog(Context context)
         {
@@ -60,8 +59,8 @@ namespace MoneyFox.Droid.Dialogs
             selectEndDateButton.Click += SelectEndDate;
 
             // Handle dismiss button click
-            doneButton = view.FindViewById<Button>(Resource.Id.button_done);
-            doneButton.Click += DoneButtonClick;
+            doneTextView = view.FindViewById<TextView>(Resource.Id.textview_done);
+            doneTextView.Click += DoneButtonClick;
 
             AssignDateToButtons();
 

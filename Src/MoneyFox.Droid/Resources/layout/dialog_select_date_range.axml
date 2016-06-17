@@ -23,9 +23,14 @@
         android:layout_height="1dp"
         android:layout_marginBottom="5dp"
         android:background="@color/med_gray" />
-    <Button
-        android:id="@+id/button_done"
+    <TextView
+        android:id="@+id/textview_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/button_done" />
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginRight="12dp"
+        android:text="@string/textview_done"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="5dp" />
 </LinearLayout>

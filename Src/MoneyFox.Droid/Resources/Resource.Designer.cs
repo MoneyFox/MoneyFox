@@ -3911,9 +3911,6 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0600b0
 			public const int button_attachment = 2131099824;
 			
-			// aapt resource value: 0x7f06008a
-			public const int button_done = 2131099786;
-			
 			// aapt resource value: 0x7f060089
 			public const int button_end_date = 2131099785;
 			
@@ -4420,6 +4417,9 @@ namespace MoneyFox.Droid
 			
 			// aapt resource value: 0x7f06008f
 			public const int text_website = 2131099791;
+			
+			// aapt resource value: 0x7f06008a
+			public const int textview_done = 2131099786;
 			
 			// aapt resource value: 0x7f0600c9
 			public const int time = 2131099849;
@@ -4956,29 +4956,29 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080017
 			public const int bottom_sheet_behavior = 2131230743;
 			
-			// aapt resource value: 0x7f080084
-			public const int button_category = 2131230852;
-			
-			// aapt resource value: 0x7f080088
-			public const int button_create_backup = 2131230856;
-			
-			// aapt resource value: 0x7f080083
-			public const int button_date = 2131230851;
+			// aapt resource value: 0x7f080085
+			public const int button_category = 2131230853;
 			
 			// aapt resource value: 0x7f080089
-			public const int button_done = 2131230857;
+			public const int button_create_backup = 2131230857;
+			
+			// aapt resource value: 0x7f080084
+			public const int button_date = 2131230852;
 			
 			// aapt resource value: 0x7f08008a
-			public const int button_login = 2131230858;
+			public const int button_done = 2131230858;
 			
-			// aapt resource value: 0x7f080085
-			public const int button_rate = 2131230853;
-			
-			// aapt resource value: 0x7f080087
-			public const int button_restore_backup = 2131230855;
+			// aapt resource value: 0x7f08008b
+			public const int button_login = 2131230859;
 			
 			// aapt resource value: 0x7f080086
-			public const int button_save_category = 2131230854;
+			public const int button_rate = 2131230854;
+			
+			// aapt resource value: 0x7f080088
+			public const int button_restore_backup = 2131230856;
+			
+			// aapt resource value: 0x7f080087
+			public const int button_save_category = 2131230855;
 			
 			// aapt resource value: 0x7f080080
 			public const int categories_placeholder = 2131230848;
@@ -4986,11 +4986,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080018
 			public const int character_counter_pattern = 2131230744;
 			
-			// aapt resource value: 0x7f080099
-			public const int drawer_close = 2131230873;
+			// aapt resource value: 0x7f08009a
+			public const int drawer_close = 2131230874;
 			
-			// aapt resource value: 0x7f080098
-			public const int drawer_open = 2131230872;
+			// aapt resource value: 0x7f080099
+			public const int drawer_open = 2131230873;
 			
 			// aapt resource value: 0x7f08001b
 			public const int fab_scroll_shrink_grow_autohide_behavior = 2131230747;
@@ -5247,23 +5247,23 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080063
 			public const int hockeyapp_update_version_details_label = 2131230819;
 			
+			// aapt resource value: 0x7f080090
+			public const int label_autobackup = 2131230864;
+			
 			// aapt resource value: 0x7f08008f
-			public const int label_autobackup = 2131230863;
-			
-			// aapt resource value: 0x7f08008e
-			public const int label_backup_date = 2131230862;
-			
-			// aapt resource value: 0x7f08008b
-			public const int label_cleared = 2131230859;
-			
-			// aapt resource value: 0x7f08008d
-			public const int label_password_activated = 2131230861;
+			public const int label_backup_date = 2131230863;
 			
 			// aapt resource value: 0x7f08008c
-			public const int label_slogan = 2131230860;
+			public const int label_cleared = 2131230860;
 			
-			// aapt resource value: 0x7f080090
-			public const int label_welcome = 2131230864;
+			// aapt resource value: 0x7f08008e
+			public const int label_password_activated = 2131230862;
+			
+			// aapt resource value: 0x7f08008d
+			public const int label_slogan = 2131230861;
+			
+			// aapt resource value: 0x7f080091
+			public const int label_welcome = 2131230865;
 			
 			// aapt resource value: 0x7f08007f
 			public const int payments_placeholder = 2131230847;
@@ -5277,8 +5277,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080081
 			public const int text_auto_backup_explanation = 2131230849;
 			
-			// aapt resource value: 0x7f080097
-			public const int text_endless = 2131230871;
+			// aapt resource value: 0x7f080098
+			public const int text_endless = 2131230872;
 			
 			// aapt resource value: 0x7f080082
 			public const int text_translation_info = 2131230850;
@@ -5286,29 +5286,32 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f08007a
 			public const int textview_contact = 2131230842;
 			
+			// aapt resource value: 0x7f080083
+			public const int textview_done = 2131230851;
+			
 			// aapt resource value: 0x7f08007b
 			public const int textview_opensource = 2131230843;
 			
 			// aapt resource value: 0x7f080079
 			public const int textview_version = 2131230841;
 			
-			// aapt resource value: 0x7f080096
-			public const int title_about = 2131230870;
-			
-			// aapt resource value: 0x7f080091
-			public const int title_accounts = 2131230865;
-			
-			// aapt resource value: 0x7f080094
-			public const int title_backup = 2131230868;
-			
-			// aapt resource value: 0x7f080093
-			public const int title_categories = 2131230867;
-			
-			// aapt resource value: 0x7f080095
-			public const int title_settings = 2131230869;
+			// aapt resource value: 0x7f080097
+			public const int title_about = 2131230871;
 			
 			// aapt resource value: 0x7f080092
-			public const int title_statistics = 2131230866;
+			public const int title_accounts = 2131230866;
+			
+			// aapt resource value: 0x7f080095
+			public const int title_backup = 2131230869;
+			
+			// aapt resource value: 0x7f080094
+			public const int title_categories = 2131230868;
+			
+			// aapt resource value: 0x7f080096
+			public const int title_settings = 2131230870;
+			
+			// aapt resource value: 0x7f080093
+			public const int title_statistics = 2131230867;
 			
 			// aapt resource value: 0x7f080000
 			public const int v7_preference_off = 2131230720;
