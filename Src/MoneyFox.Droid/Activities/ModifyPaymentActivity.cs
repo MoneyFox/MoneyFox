@@ -4,12 +4,11 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyFox.Droid.Dialogs;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Droid.Fragments;
 
 namespace MoneyFox.Droid.Activities
 {
