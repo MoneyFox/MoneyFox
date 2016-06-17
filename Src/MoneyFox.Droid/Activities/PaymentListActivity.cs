@@ -1,11 +1,18 @@
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Fragments;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
+using System.Collections.Generic;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -15,6 +22,13 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class PaymentListActivity : MvxAppCompatActivity<PaymentListViewModel>
     {
+        private readonly List<string> itemForCreationList = new List<string>
+        {
+            Strings.AddIncomeLabel,
+            Strings.AddExpenseLabel,
+            Strings.AddTransferLabel
+        };
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,8 +38,28 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
+            FindViewById<FloatingActionButton>(Resource.Id.fab_create_payment).Click += (s, e) => {
+                var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
+                builder.SetTitle(Strings.ChooseLabel);
+                builder.SetItems(itemForCreationList.ToArray(), OnSelectItemForCreation);
+                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
+                builder.Show();
+            };
+
             LoadBalancePanel();
             Title = ViewModel.Title;
+        }
+
+        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args) {
+            var selected = itemForCreationList[args.Which];
+
+            if (selected == Strings.AddIncomeLabel) {
+                ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
+            } else if (selected == Strings.AddExpenseLabel) {
+                ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
+            } else if (selected == Strings.AddTransferLabel) {
+                ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
+            }
         }
 
         private void LoadBalancePanel()

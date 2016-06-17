@@ -1,14 +1,17 @@
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
-using MoneyFox.Droid.Fragments;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using MoneyFox.Droid.Dialogs;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -16,8 +19,8 @@ namespace MoneyFox.Droid.Activities
         Name = "moneymanager.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
-    {
+
+    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>, IDialogCloseListener {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -29,6 +32,14 @@ namespace MoneyFox.Droid.Activities
 
             var list = FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
+
+            FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) => {
+                var dialog = new ModifyCategoryDialog {
+                    ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                };
+
+                dialog.Show(FragmentManager, Strings.AddCategoryTitle);
+            };
 
             Title = Strings.ChooseCategorieTitle;
         }
@@ -109,6 +120,15 @@ namespace MoneyFox.Droid.Activities
             };
 
             dialog.Show(FragmentManager, "dialog");
+        }
+
+        public void HandleDialogClose() {
+            // Make an empty search to refresh the list and groups
+            var selectCategoryListViewModel = ViewModel as SelectCategoryListViewModel;
+            if (selectCategoryListViewModel != null) {
+                selectCategoryListViewModel.SearchText = string.Empty;
+                selectCategoryListViewModel.Search();
+            }
         }
     }
 }

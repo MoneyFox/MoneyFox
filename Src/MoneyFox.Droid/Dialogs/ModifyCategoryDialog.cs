@@ -1,12 +1,14 @@
 using System;
+using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.FullFragging.Fragments;
+using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyFox.Droid.Dialogs
 {
     public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
     {
@@ -27,6 +29,11 @@ namespace MoneyFox.Droid.Fragments
         private void Dismiss(object sender, EventArgs e)
         {
             Dismiss();
+        }
+
+        public override void OnDismiss(IDialogInterface dialog) {
+            (Context as IDialogCloseListener)?.HandleDialogClose();
+            base.OnDismiss(dialog);
         }
 
         public override void OnResume()

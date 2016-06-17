@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:id="@+id/main_frame"
     android:fitsSystemWindows="true"
-    android:background="?android:windowBackground">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fitsSystemWindows="true"
+      android:background="?android:windowBackground">
     <include
         layout="@layout/toolbar_actionbar" />
     <MvxListView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:choiceMode="singleChoice"
         local:MvxItemTemplate="@layout/listitem_category_summary"
         local:MvxBind="ItemsSource CategorySummary" />
-</LinearLayout>
+  </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

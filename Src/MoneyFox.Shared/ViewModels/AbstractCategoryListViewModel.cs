@@ -72,11 +72,11 @@ namespace MoneyFox.Shared.ViewModels
                 Categories = new ObservableCollection<Category>
                     (CategoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
-                        .ToList());
+                        .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.Data);
+                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }

@@ -3,6 +3,7 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Droid.Dialogs;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
@@ -24,8 +25,7 @@ namespace MoneyFox.Droid.Fragments
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
 
-            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category);
-            button.Click += (s, e) =>
+            view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
                 var dialog = new ModifyCategoryDialog
                 {
