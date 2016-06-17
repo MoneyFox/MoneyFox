@@ -3,6 +3,7 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
+using Npadrutt.MvxPlugins.AppInformation;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -62,7 +63,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the Version of App
         /// </summary>
-        public string Version => appInformation.Version;
+        public string Version => appInformation.GetVersion();
 
         /// <summary>
         ///     Returns the apply solutions webite url from the
