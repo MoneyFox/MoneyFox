@@ -482,7 +482,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -2478,7 +2478,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -4382,7 +4382,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -6255,7 +6255,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -8162,7 +8162,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -10035,7 +10035,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -11942,7 +11942,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.1": {
+      "PropertyChanged.Fody/1.51.2": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -14601,15 +14601,15 @@
         "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf"
       ]
     },
-    "PropertyChanged.Fody/1.51.1": {
-      "sha512": "on3x3H+Wo7iDCksMAiFFsI1goKTihdVtJZxIxY8sSlnQm33CeA/6WEyOuO1Y3LaJQySLuFaHAXPYJhc4aN+V3Q==",
+    "PropertyChanged.Fody/1.51.2": {
+      "sha512": "UXixIGvJjN2csv0MQPwWKpxw/XuPRwHyUdYid9VFQYo33I7i1RQojZqcT7pik0Hvy+P6EqzhlsO9eH1xGDPyLQ==",
       "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
-        "PropertyChanged.Fody.1.51.1.nupkg.sha512",
+        "PropertyChanged.Fody.1.51.2.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
