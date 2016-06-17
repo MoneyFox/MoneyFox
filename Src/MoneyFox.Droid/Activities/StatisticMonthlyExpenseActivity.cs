@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Dialogs;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
@@ -15,7 +16,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticMonthlyExpenseActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticMonthlyExpenseActivity : MvxAppCompatActivity<StatisticMonthlyExpensesViewModel>, IDateRangeDialogCloseListener
+    public class StatisticMonthlyExpenseActivity : MvxAppCompatActivity<StatisticMonthlyExpensesViewModel>, IDialogCloseListener
     {
         private PlotView plotModel;
 
@@ -59,7 +60,7 @@ namespace MoneyFox.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add:
-                    var dialog = new SelectDateRangeDialog(this);
+                    var dialog = new SelectDateRangeDialog();
                     dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
                     return true;
 

@@ -19,7 +19,7 @@ namespace MoneyFox.Droid.Fragments
     [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        private readonly List<string> itemList = new List<string>
+        private readonly List<string> itemsForCreationList = new List<string>
         {
             Strings.AddAccountLabel,
             Strings.AddIncomeLabel,
@@ -44,7 +44,7 @@ namespace MoneyFox.Droid.Fragments
             {
                 var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
                 builder.SetTitle(Strings.ChooseLabel);
-                builder.SetItems(itemList.ToArray(), OnSelectItemForCreation);
+                builder.SetItems(itemsForCreationList.ToArray(), OnSelectItemForCreation);
                 builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
                 builder.Show();
             };
@@ -54,7 +54,7 @@ namespace MoneyFox.Droid.Fragments
 
         public void OnSelectItemForCreation(object sender, DialogClickEventArgs args)
         {
-            var selected = itemList[args.Which];
+            var selected = itemsForCreationList[args.Which];
             var mainview = Mvx.Resolve<MainViewModel>();
 
             if (selected == Strings.AddAccountLabel)
