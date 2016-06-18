@@ -80,9 +80,8 @@ namespace MoneyFox.Droid.Fragments
 
         private void ShowEditCategoryDialog(Category selectedCategory)
         {
-            var dialog = new ModifyCategoryDialog(selectedCategory);
-
-            dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
+            new ModifyCategoryDialog(selectedCategory)
+                .Show(Activity.FragmentManager, Strings.AddCategoryTitle);
         }
     }
 }
