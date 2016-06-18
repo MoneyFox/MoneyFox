@@ -1,5 +1,4 @@
 using System;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
@@ -9,6 +8,8 @@ using MoneyFox.Shared.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.FullFragging.Fragments;
 using MoneyFox.Droid.Fragments;
+using MvvmCross.Platform;
+using Android.App;
 
 namespace MoneyFox.Droid.Dialogs
 {
@@ -18,6 +19,12 @@ namespace MoneyFox.Droid.Dialogs
         private Button selectEndDateButton;
         private Button selectStartDateButton;
         private TextView doneTextView;
+
+        public SelectDateRangeDialog()
+        {
+            // TODO: let Mvx Resolve that
+            ViewModel = Mvx.Resolve<SelectDateRangeDialogViewModel>();
+        }
 
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
         {
@@ -34,29 +41,28 @@ namespace MoneyFox.Droid.Dialogs
             AssignDateToButtons();
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
-            // Android 3.x+ still wants to show title: disable
-            Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
+            EnsureBindingContextSet(savedInstanceState);
 
-            // Create our view
-            var view = inflater.Inflate(Resource.Layout.dialog_select_date_range, container, true);
+            var dialog = new Dialog(Activity);
+            dialog.SetContentView(Resource.Layout.dialog_select_date_range);
 
             // Handle select start date button click
-            selectStartDateButton = view.FindViewById<Button>(Resource.Id.button_start_date);
+            selectStartDateButton = dialog.FindViewById<Button>(Resource.Id.button_start_date);
             selectStartDateButton.Click += SelectStartDate;
 
             // Handle select end date button click
-            selectEndDateButton = view.FindViewById<Button>(Resource.Id.button_end_date);
+            selectEndDateButton = dialog.FindViewById<Button>(Resource.Id.button_end_date);
             selectEndDateButton.Click += SelectEndDate;
 
-            // Handle dismiss button click
-            doneTextView = view.FindViewById<TextView>(Resource.Id.textview_done);
+            // Handle done button click
+            doneTextView = dialog.FindViewById<TextView>(Resource.Id.textview_done);
             doneTextView.Click += DoneButtonClick;
 
             AssignDateToButtons();
 
-            return view;
+            return dialog;
         }
 
         private void SelectEndDate(object sender, EventArgs e)

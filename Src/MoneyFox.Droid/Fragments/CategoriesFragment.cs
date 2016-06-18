@@ -1,11 +1,16 @@
-﻿using Android.OS;
+﻿using System.Windows.Input;
+using Android.App;
+using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Droid.Dialogs;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Binding.Droid.Views;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Platform;
 
@@ -17,6 +22,8 @@ namespace MoneyFox.Droid.Fragments
     {
         protected override int FragmentId => Resource.Layout.fragment_category_list;
         protected override string Title => Strings.CategoriesLabel;
+
+        private MvxListView categoryList;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -35,9 +42,13 @@ namespace MoneyFox.Droid.Fragments
                 dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
             };
 
+            categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
+            categoryList.ItemClick = EditCategoryCommand;
+
             return view;
         }
-
+        public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(ShowEditCategoryDialog);
+        
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
             if (v.Id == Resource.Id.category_list)
@@ -46,6 +57,31 @@ namespace MoneyFox.Droid.Fragments
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
             }
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo)item.MenuInfo).Position];
+
+            switch (item.ItemId)
+            {
+                case 0:
+                    ShowEditCategoryDialog(selected);
+                    return true;
+
+                case 1:
+                    ViewModel.DeleteCategoryCommand.Execute(selected);
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        private void ShowEditCategoryDialog(Category selectedCategory)
+        {
+            new ModifyCategoryDialog(selectedCategory)
+                .Show(Activity.FragmentManager, Strings.AddCategoryTitle);
         }
     }
 }
