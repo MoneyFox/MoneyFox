@@ -3923,9 +3923,6 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0600b6
 			public const int button_refresh = 2131099830;
 			
-			// aapt resource value: 0x7f060088
-			public const int button_save_category = 2131099784;
-			
 			// aapt resource value: 0x7f0600b1
 			public const int button_send = 2131099825;
 			
@@ -4411,6 +4408,9 @@ namespace MoneyFox.Droid
 			
 			// aapt resource value: 0x7f06008d
 			public const int text_version_label = 2131099789;
+			
+			// aapt resource value: 0x7f060088
+			public const int text_view_save_category = 2131099784;
 			
 			// aapt resource value: 0x7f06006f
 			public const int text_view_welcome = 2131099759;

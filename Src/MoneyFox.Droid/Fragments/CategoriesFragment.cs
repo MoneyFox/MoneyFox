@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -79,10 +80,7 @@ namespace MoneyFox.Droid.Fragments
 
         private void ShowEditCategoryDialog(Category selectedCategory)
         {
-            var dialog = new ModifyCategoryDialog(selectedCategory)
-            {
-                ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
-            };
+            var dialog = new ModifyCategoryDialog(selectedCategory);
 
             dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
         }

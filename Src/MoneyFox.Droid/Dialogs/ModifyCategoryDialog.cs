@@ -1,20 +1,25 @@
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.FullFragging.Fragments;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Model;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Dialogs
 {
     public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
     {
+
         public ModifyCategoryDialog(Category category = null)
         {
+            ViewModel = Mvx.Resolve<CategoryDialogViewModel>();
+
             if (category != null)
             {
                 ViewModel.IsEdit = true;
@@ -26,12 +31,13 @@ namespace MoneyFox.Droid.Dialogs
         {
             ViewModel.LoadedCommand.Execute();
 
+            Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
+
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.dialog_modify_category, container, true);
 
             // Handle dismiss button click
-            var button = view.FindViewById<Button>(Resource.Id.button_save_category);
-            button.Click += Dismiss;
+            view.FindViewById<TextView>(Resource.Id.text_view_save_category).Click += Dismiss;
 
             return view;
         }
