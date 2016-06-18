@@ -16,8 +16,8 @@ using MvvmCross.Droid.Platform;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
-using Npadrutt.MvxPlugins.AppInformation.Droid;
-using Npadrutt.MvxPlugins.AppInformation;
+using MvvmCross.Platform.Plugins;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Droid
 {
@@ -37,19 +37,18 @@ namespace MoneyFox.Droid
             typeof(ViewPager).Assembly
         };
 
-        //TODO: Check if needed? 
-        //public override void LoadPlugins(IMvxPluginManager pluginManager)
-        //{
-        //    base.LoadPlugins(pluginManager);
-        //    pluginManager.EnsurePluginLoaded<PluginLoader>();
-        //}
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+            pluginManager.EnsurePluginLoaded<PluginLoader>();
+        }
 
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
 
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IAppInformation, DroidAppInformation>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();

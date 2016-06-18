@@ -7,7 +7,6 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
-using Npadrutt.MvxPlugins.AppInformation;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -67,7 +66,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = new Mock<IAppInformation>();
-            appinfos.Setup(x => x.GetVersion()).Returns("42");
+            appinfos.Setup(x => x.Version).Returns("42");
 
             new AboutViewModel(appinfos.Object,
                 new Mock<IMvxComposeEmailTask>().Object,
