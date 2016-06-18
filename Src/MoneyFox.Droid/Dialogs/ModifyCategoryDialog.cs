@@ -7,11 +7,21 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.FullFragging.Fragments;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Droid.Dialogs
 {
     public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
     {
+        public ModifyCategoryDialog(Category category = null)
+        {
+            if (category != null)
+            {
+                ViewModel.IsEdit = true;
+                ViewModel.Selected = category;
+            }
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             ViewModel.LoadedCommand.Execute();
