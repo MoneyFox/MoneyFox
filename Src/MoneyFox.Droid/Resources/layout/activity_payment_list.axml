@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        style="@android:style/Widget.Button"
         android:text="@string/payments_placeholder"
         local:MvxBind="Visible IsPaymentsEmtpy" />
 

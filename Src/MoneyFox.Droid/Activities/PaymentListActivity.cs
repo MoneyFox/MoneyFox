@@ -3,8 +3,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Resources;
@@ -14,6 +14,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using System.Collections.Generic;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -51,9 +52,38 @@ namespace MoneyFox.Droid.Activities
 
             PaymentExpandable = FindViewById<MvxExpandableListView>(Resource.Id.expandable_payment_list);
             PaymentExpandable.ExpandGroup(0);
+            RegisterForContextMenu(PaymentExpandable);
 
             LoadBalancePanel();
             Title = ViewModel.Title;
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
+            if (v.Id == Resource.Id.expandable_payment_list) {
+                menu.SetHeaderTitle(Strings.SelectOperationLabel);
+                menu.Add(Strings.EditLabel);
+                menu.Add(Strings.DeleteLabel);
+            }
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item) {
+            var selected = ViewModel.RelatedPayments[ExpandableListView
+                .GetPackedPositionChild(((
+                    ExpandableListView.ExpandableListContextMenuInfo)item.MenuInfo)
+                .PackedPosition)];
+
+            switch (item.ItemId) {
+                case 0:
+                    ViewModel.EditCommand.Execute(selected);
+                    return true;
+
+                case 1:
+                    ViewModel.DeletePaymentCommand.Execute(selected);
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         public void OnSelectItemForCreation(object sender, DialogClickEventArgs args) {
