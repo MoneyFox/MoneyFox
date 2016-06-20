@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/accountList"
+            android:fastScrollEnabled="true"
             android:listSelector="@drawable/list_item_selector"
             local:MvxItemTemplate="@layout/listitem_payment"
             local:MvxBind="ItemsSource RelatedPayments;ItemClick EditCommand" />
