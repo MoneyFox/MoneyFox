@@ -59,14 +59,11 @@
     <EnableLLVM>False</EnableLLVM>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
-    <AndroidLinkSkip />
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidSupportedAbis>armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidStoreUncompressedFileExtensions />
-    <MandroidI18n />
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>True</EnableProguard>
+    <EnableProguard>False</EnableProguard>
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
@@ -412,6 +409,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_login.axml">
       <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\header_payment_list.axml">
+      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>

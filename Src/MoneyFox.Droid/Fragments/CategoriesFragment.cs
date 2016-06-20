@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
@@ -23,14 +21,13 @@ namespace MoneyFox.Droid.Fragments
         protected override int FragmentId => Resource.Layout.fragment_category_list;
         protected override string Title => Strings.CategoriesLabel;
 
-        private MvxListView categoryList;
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var list = view.FindViewById<ListView>(Resource.Id.category_list);
-            RegisterForContextMenu(list);
+            var categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
+            categoryList.ItemClick = EditCategoryCommand;
+            RegisterForContextMenu(categoryList);
 
             view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
@@ -41,9 +38,6 @@ namespace MoneyFox.Droid.Fragments
 
                 dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
             };
-
-            categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
-            categoryList.ItemClick = EditCategoryCommand;
 
             return view;
         }
