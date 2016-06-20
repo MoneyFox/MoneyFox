@@ -17,16 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@android:color/transparent" />
-        <MvxListView
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/accountList"
-            android:fastScrollEnabled="true"
-            android:listSelector="@drawable/list_item_selector"
+            android:background="@android:color/transparent"/>
+      <Mvx.MvxExpandableListView
+            android:id="@+id/expandable_payment_list"           
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"        
+            local:MvxGroupItemTemplate="@layout/header_payment_list"
             local:MvxItemTemplate="@layout/listitem_payment"
-            local:MvxBind="ItemsSource RelatedPayments;ItemClick EditCommand" />
+            local:MvxBind="ItemsSource Source;ItemClick EditCommand" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"

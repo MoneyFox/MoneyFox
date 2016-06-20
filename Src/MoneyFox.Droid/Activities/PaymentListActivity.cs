@@ -9,6 +9,7 @@ using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
@@ -29,6 +30,8 @@ namespace MoneyFox.Droid.Activities
             Strings.AddTransferLabel
         };
 
+        private MvxExpandableListView PaymentExpandable;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -45,6 +48,9 @@ namespace MoneyFox.Droid.Activities
                 builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
                 builder.Show();
             };
+
+            PaymentExpandable = FindViewById<MvxExpandableListView>(Resource.Id.expandable_payment_list);
+            PaymentExpandable.ExpandGroup(0);
 
             LoadBalancePanel();
             Title = ViewModel.Title;
