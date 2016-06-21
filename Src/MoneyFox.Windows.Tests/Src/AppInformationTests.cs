@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Windows;
+using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 
 namespace MoneyFox.Windows.Tests
 {
@@ -9,7 +9,7 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void GetVersion_VersionInAppManifest_CorrectVersion()
         {
-            Assert.AreEqual("1.0.0.0", new AppInformation().Version);
+            Assert.AreEqual("1.0.0.0", new WindowsAppInformation().GetVersion());
         }
     }
 }

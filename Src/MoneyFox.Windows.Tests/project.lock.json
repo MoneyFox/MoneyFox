@@ -463,6 +463,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -482,7 +508,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -2459,6 +2485,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -2478,7 +2530,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -4363,6 +4415,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -4382,7 +4460,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -6236,6 +6314,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -6255,7 +6359,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -8143,6 +8247,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -8162,7 +8292,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -10016,6 +10146,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -10035,7 +10191,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -11923,6 +12079,32 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -11942,7 +12124,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.51.2": {
+      "PropertyChanged.Fody/1.51.3": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -14533,6 +14715,40 @@
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb"
       ]
     },
+    "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+      "sha512": "28Aymi/HG7qnEA8Zj7haGutQkD0QYcF8Fq6EUMB4/iXQAYxED6jIAPlEST8J7zOuXwvX2jqMMv0XVdsWeZT4eg==",
+      "type": "package",
+      "files": [
+        "Npadrutt.MvxPlugins.AppInformation.1.0.6.nupkg.sha512",
+        "Npadrutt.MvxPlugins.AppInformation.nuspec",
+        "content/MonoAndroid/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "content/netcore451/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "content/portable-net45+sl4+wp7+win8/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.AppInformation.Droid.dll",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.AppInformation.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.pri",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll",
+        "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.AppInformation.dll"
+      ]
+    },
+    "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+      "sha512": "byU9CfSt6QFHivJUYbI+Xy+lXaynlg8AXzvtFKsMZER29O1EFX+d7ADPw8CwQa/mbdvxFAGWyiNNaAvibBoZbw==",
+      "type": "package",
+      "files": [
+        "Npadrutt.MvxPlugins.StoreOperations.1.0.2.nupkg.sha512",
+        "Npadrutt.MvxPlugins.StoreOperations.nuspec",
+        "content/MonoAndroid/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "content/netcore451/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "content/portable-net45+sl4+wp7+win8/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.StoreOperations.Droid.dll",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.StoreOperations.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.pri",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll",
+        "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.StoreOperations.dll"
+      ]
+    },
     "OxyPlot.Core/2015.1.1033-alpha": {
       "sha512": "To4qVNaOBb+xHUYp7SCJYZQZzB5vlowymNNAmKx/PCXg8plm4osRMLBYwYOCH18uy3hpA/D4bOy5M+I20g9HYQ==",
       "type": "package",
@@ -14580,15 +14796,15 @@
         "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf"
       ]
     },
-    "PropertyChanged.Fody/1.51.2": {
-      "sha512": "UXixIGvJjN2csv0MQPwWKpxw/XuPRwHyUdYid9VFQYo33I7i1RQojZqcT7pik0Hvy+P6EqzhlsO9eH1xGDPyLQ==",
+    "PropertyChanged.Fody/1.51.3": {
+      "sha512": "cjITfxajbGzLUqkS9cvNgrSAmK3S8vTuu4a58tv6hHFUub79nJwUs7aNhzdu6R8WxJuHKyl06lBQMFIjkQ/1+Q==",
       "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
-        "PropertyChanged.Fody.1.51.2.nupkg.sha512",
+        "PropertyChanged.Fody.1.51.3.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
@@ -17334,7 +17550,9 @@
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MvvmCross.Plugin.File >= 4.2.0",
-      "MvvmCross.Plugin.SQLitePCL >= 4.2.0"
+      "MvvmCross.Plugin.SQLitePCL >= 4.2.0",
+      "Npadrutt.MvxPlugins.AppInformation >= 1.0.6",
+      "Npadrutt.MvxPlugins.StoreOperations >= 1.0.2"
     ],
     "UAP,Version=v10.0": []
   }

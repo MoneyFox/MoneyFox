@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
@@ -7,6 +6,8 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
+using Npadrutt.MvxPlugins.AppInformation;
+using Npadrutt.MvxPlugins.StoreOperations;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -36,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 composeMailSetup.Object,
                 new Mock<IMvxWebBrowserTask>().Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .SendMailCommand.Execute();
 
             commandCalled.ShouldBeTrue();
@@ -48,7 +49,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .SupportMail.ShouldBe(Constants.Constants.SUPPORT_MAIL);
         }
 
@@ -58,7 +59,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .Website.ShouldBe(Constants.Constants.WEBSITE_URL);
         }
 
@@ -66,12 +67,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = new Mock<IAppInformation>();
-            appinfos.Setup(x => x.Version).Returns("42");
+            appinfos.Setup(x => x.GetVersion()).Returns("42");
 
             new AboutViewModel(appinfos.Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .Version.ShouldBe("42");
         }
 
@@ -87,7 +88,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 webbrowserTaskSetup.Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .GoToWebsiteCommand.Execute();
 
             commandCalled.ShouldBeTrue();
@@ -106,7 +107,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 webbrowserTaskSetup.Object,
-                new Mock<IStoreFeatures>().Object)
+                new Mock<IStoreOperations>().Object)
                 .GoToRepositoryCommand.Execute();
 
             commandCalled.ShouldBeTrue();
@@ -117,7 +118,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var commandCalled = false;
 
-            var storeFeaturesSetup = new Mock<IStoreFeatures>();
+            var storeFeaturesSetup = new Mock<IStoreOperations>();
             storeFeaturesSetup.Setup(x => x.RateApp()).Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,
