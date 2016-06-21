@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Messages;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -10,8 +11,8 @@ namespace MoneyFox.Shared.ViewModels
     {
         public SelectDateRangeDialogViewModel()
         {
-            StartDate = DateTime.Today.Date.AddDays(-1);
-            EndDate = DateTime.Today;
+            StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            EndDate = DateTime.Today.GetLastDayOfMonth();
         }
 
         /// <summary>

@@ -41,8 +41,13 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.5\lib\portable-net45+win+wpa81+wp80\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\net45\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\net45\Cheesebaron.MvxPlugins.Settings.Wpf.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.5.9.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.9\lib\net45\Moq.dll</HintPath>
@@ -117,6 +122,7 @@
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />

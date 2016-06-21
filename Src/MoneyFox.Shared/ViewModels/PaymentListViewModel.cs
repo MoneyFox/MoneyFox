@@ -75,7 +75,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountRepository.Selected.Name;
+        public string Title => accountRepository.Selected?.Name;
 
         private void LoadPayments()
         {

@@ -2,16 +2,17 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
+    [ImplementPropertyChanged]
     public class CategoryDialogViewModel : BaseViewModel
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
-        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
-            CategoryListViewModel categoryListViewModel)
+        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
