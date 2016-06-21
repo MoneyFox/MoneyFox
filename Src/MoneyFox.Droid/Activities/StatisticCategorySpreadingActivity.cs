@@ -10,18 +10,20 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using OxyPlot.Xamarin.Android;
 
-namespace MoneyFox.Droid.Activities
-{
+namespace MoneyFox.Droid.Activities {
     [Activity(Label = "ModifyAccountActivity",
         Name = "moneyfox.droid.activities.StatisticCategorySpreadingActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>, IDialogCloseListener
-    {
+    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>,
+        IDialogCloseListener {
         private PlotView plotModel;
 
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
+        public void HandleDialogClose() {
+            plotModel.Model = ViewModel.SpreadingModel;
+        }
+
+        protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_category_spreading);
@@ -33,16 +35,14 @@ namespace MoneyFox.Droid.Activities
             Title = Strings.CategorySpreadingLabel;
         }
 
-        protected override void OnStart()
-        {
+        protected override void OnStart() {
             OnResume();
 
             ViewModel.LoadCommand.Execute();
             plotModel.Model = ViewModel.SpreadingModel;
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
+        public override bool OnCreateOptionsMenu(IMenu menu) {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -51,10 +51,8 @@ namespace MoneyFox.Droid.Activities
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
         /// <param name="item">The menu item that was selected.</param>
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
+        public override bool OnOptionsItemSelected(IMenuItem item) {
+            switch (item.ItemId) {
                 case Android.Resource.Id.Home:
                     Finish();
                     return true;
@@ -67,11 +65,6 @@ namespace MoneyFox.Droid.Activities
                 default:
                     return false;
             }
-        }
-
-        public void HandleDialogClose()
-        {
-            plotModel.Model = ViewModel.SpreadingModel;
         }
     }
 }

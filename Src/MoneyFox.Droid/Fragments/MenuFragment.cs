@@ -10,17 +10,14 @@ using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
 
-namespace MoneyFox.Droid.Fragments
-{
+namespace MoneyFox.Droid.Fragments {
     [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
     [Register("moneyfox.droid.fragments.MenuFragment")]
-    public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
-    {
+    public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener {
         private NavigationView navigationView;
         private IMenuItem previousMenuItem;
 
-        public bool OnNavigationItemSelected(IMenuItem item)
-        {
+        public bool OnNavigationItemSelected(IMenuItem item) {
             item.SetCheckable(true);
             item.SetChecked(true);
             previousMenuItem?.SetChecked(false);
@@ -31,8 +28,7 @@ namespace MoneyFox.Droid.Fragments
             return true;
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(Resource.Layout.fragment_navigation, null);
@@ -44,13 +40,11 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        private async void Navigate(int itemId)
-        {
+        private async void Navigate(int itemId) {
             ((MainActivity) Activity).DrawerLayout.CloseDrawers();
             await Task.Delay(TimeSpan.FromMilliseconds(250));
 
-            switch (itemId)
-            {
+            switch (itemId) {
                 case Resource.Id.nav_accounts:
                     ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
                     break;

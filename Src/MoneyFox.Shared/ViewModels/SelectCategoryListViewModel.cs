@@ -4,19 +4,16 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class SelectCategoryListViewModel : AbstractCategoryListViewModel
-    {
+    public class SelectCategoryListViewModel : AbstractCategoryListViewModel {
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            IDialogService dialogService) : base(categoryRepository, dialogService)
-        {
+            IDialogService dialogService) : base(categoryRepository, dialogService) {
         }
 
         /// <summary>
@@ -29,14 +26,12 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        private void Done(Category category)
-        {
+        private void Done(Category category) {
             MessageHub.Publish(new CategorySelectedMessage(this, category));
             Close(this);
         }
 
-        private void Cancel()
-        {
+        private void Cancel() {
             Close(this);
         }
     }

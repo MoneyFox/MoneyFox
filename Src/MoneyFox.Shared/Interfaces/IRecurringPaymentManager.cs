@@ -1,7 +1,5 @@
-namespace MoneyFox.Shared.Interfaces
-{
-    public interface IRecurringPaymentManager
-    {
+namespace MoneyFox.Shared.Interfaces {
+    public interface IRecurringPaymentManager {
         void CheckRecurringPayments();
     }
 }

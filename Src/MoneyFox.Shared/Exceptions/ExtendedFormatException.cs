@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Globalization;
 
-namespace MoneyFox.Shared.Exceptions
-{
+namespace MoneyFox.Shared.Exceptions {
     /// <summary>
     ///     A custom format exception who contains more specific informations.
     /// </summary>
-    public class ExtendedFormatException : Exception
-    {
+    public class ExtendedFormatException : Exception {
         /// <summary>
         ///     Creates an Format Exception and will add additional information about your culture.
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         public ExtendedFormatException(string message) :
-            base(GetMessageWithRegionInfo(message, string.Empty))
-        {
+            base(GetMessageWithRegionInfo(message, string.Empty)) {
         }
 
         /// <summary>
@@ -23,8 +20,7 @@ namespace MoneyFox.Shared.Exceptions
         /// <param name="exception">Inner Exception of the backup exception.</param>
         /// <param name="textToParse">The text the system couldn't parse.</param>
         public ExtendedFormatException(Exception exception, string textToParse)
-            : base(GetMessageWithRegionInfo(exception.Message, textToParse), exception)
-        {
+            : base(GetMessageWithRegionInfo(exception.Message, textToParse), exception) {
         }
 
         private static string GetMessageWithRegionInfo(string message, string textToParse)

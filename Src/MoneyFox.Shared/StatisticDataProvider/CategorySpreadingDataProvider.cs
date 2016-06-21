@@ -4,16 +4,13 @@ using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.StatisticDataProvider
-{
-    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
-    {
+namespace MoneyFox.Shared.StatisticDataProvider {
+    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>> {
         private readonly IRepository<Category> categoryRepository;
         private readonly IPaymentRepository paymentRepository;
 
         public CategorySpreadingDataProvider(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
-        {
+            IRepository<Category> categoryRepository) {
             this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
         }
@@ -25,8 +22,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
-        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-        {
+        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate) {
             // Get all Payments inlcuding income.
             return GetSpreadingStatisticItems(paymentRepository.Data
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
@@ -34,16 +30,13 @@ namespace MoneyFox.Shared.StatisticDataProvider
                 .ToList());
         }
 
-        private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
-        {
+        private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments) {
             var tempStatisticList = (from payment in payments
-                group payment by new
-                {
+                group payment by new {
                     category = payment.Category != null ? payment.Category.Name : string.Empty
                 }
                 into temp
-                select new StatisticItem
-                {
+                select new StatisticItem {
                     Category = temp.Key.category,
                     // we subtract income payments here so that we have all expenses without presign
                     Value = temp.Sum(x => x.Type == (int) PaymentType.Income ? -x.Amount : x.Amount)
@@ -60,11 +53,9 @@ namespace MoneyFox.Shared.StatisticDataProvider
             return statisticList;
         }
 
-        private static void SetLabel(List<StatisticItem> statisticList)
-        {
+        private static void SetLabel(List<StatisticItem> statisticList) {
             var totAmount = statisticList.Sum(x => x.Value);
-            foreach (var statisticItem in statisticList)
-            {
+            foreach (var statisticItem in statisticList) {
                 statisticItem.Label = statisticItem.Category
                                       + ": "
                                       + statisticItem.Value.ToString("C")
@@ -74,24 +65,19 @@ namespace MoneyFox.Shared.StatisticDataProvider
             }
         }
 
-        private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList)
-        {
+        private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList) {
             var nullerList = tempStatisticList.Where(x => Math.Abs(x.Value) < 0.001).ToList();
-            foreach (var statisticItem in nullerList)
-            {
+            foreach (var statisticItem in nullerList) {
                 tempStatisticList.Remove(statisticItem);
             }
         }
 
-        private void SetLabel(StatisticItem item)
-        {
+        private void SetLabel(StatisticItem item) {
             item.Label = item.Category;
         }
 
-        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<Payment> payments)
-        {
-            foreach (var statisticItem in statisticList)
-            {
+        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<Payment> payments) {
+            foreach (var statisticItem in statisticList) {
                 statisticItem.Value -= payments
                     .Where(x => x.Type == (int) PaymentType.Income)
                     .Where(x => x.Category != null)
@@ -100,23 +86,19 @@ namespace MoneyFox.Shared.StatisticDataProvider
 
                 SetLabel(statisticItem);
 
-                if (statisticItem.Value <= 0)
-                {
+                if (statisticItem.Value <= 0) {
                     statisticItem.Value = 0;
                 }
             }
         }
 
         private void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
-            ICollection<StatisticItem> statisticList)
-        {
-            if (statisticList.Count < 6)
-            {
+            ICollection<StatisticItem> statisticList) {
+            if (statisticList.Count < 6) {
                 return;
             }
 
-            var othersItem = new StatisticItem
-            {
+            var othersItem = new StatisticItem {
                 Category = "Others",
                 Value = tempStatisticList
                     .Where(x => !statisticList.Contains(x))
@@ -125,8 +107,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
 
             othersItem.Label = othersItem.Category + ": " + othersItem.Value;
 
-            if (othersItem.Value > 0)
-            {
+            if (othersItem.Value > 0) {
                 statisticList.Add(othersItem);
             }
         }

@@ -2,15 +2,13 @@
 using System.Globalization;
 using System.Linq;
 
-namespace MoneyFox.Shared.Groups
-{
+namespace MoneyFox.Shared.Groups {
     /// <summary>
     ///     Can be used for a alphanumeric grouping. It will show the whole key as title.
     ///     This can be a single name or a whole word.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AlphaGroupListGroup<T> : List<T>
-    {
+    public class AlphaGroupListGroup<T> : List<T> {
         /// <summary>
         ///     The delegate that is used to get the key information.
         /// </summary>
@@ -22,8 +20,7 @@ namespace MoneyFox.Shared.Groups
         ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        public AlphaGroupListGroup(string key)
-        {
+        public AlphaGroupListGroup(string key) {
             Key = key;
         }
 
@@ -41,29 +38,23 @@ namespace MoneyFox.Shared.Groups
         /// <param name="sort">Will sort the data if true.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
-            GetKeyDelegate getKey, bool sort = true)
-        {
+            GetKeyDelegate getKey, bool sort = true) {
             var list = new List<AlphaGroupListGroup<T>>();
 
-            foreach (var item in items)
-            {
+            foreach (var item in items) {
                 var index = getKey(item);
 
-                if (list.All(a => a.Key != index))
-                {
+                if (list.All(a => a.Key != index)) {
                     list.Add(new AlphaGroupListGroup<T>(index));
                 }
 
-                if (!string.IsNullOrEmpty(index))
-                {
+                if (!string.IsNullOrEmpty(index)) {
                     list.Find(a => a.Key == index).Add(item);
                 }
             }
 
-            if (sort)
-            {
-                foreach (var group in list)
-                {
+            if (sort) {
+                foreach (var group in list) {
                     group.Sort((c0, c1) => ci.CompareInfo.Compare(getKey(c0), getKey(c1)));
                 }
             }

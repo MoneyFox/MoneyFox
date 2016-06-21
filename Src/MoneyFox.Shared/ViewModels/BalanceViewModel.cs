@@ -5,17 +5,14 @@ using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
-    {
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel {
         protected readonly IAccountRepository AccountRepository;
         protected readonly IPaymentRepository PaymentRepository;
 
         public BalanceViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository)
-        {
+            IPaymentRepository paymentRepository) {
             AccountRepository = accountRepository;
             PaymentRepository = paymentRepository;
         }
@@ -40,8 +37,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private void UpdateBalance()
-        {
+        private void UpdateBalance() {
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
         }
@@ -56,16 +52,13 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the end of the month.
         /// </summary>
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-        protected virtual double GetEndOfMonthValue()
-        {
+        protected virtual double GetEndOfMonthValue() {
             var balance = TotalBalance;
             var unclearedPayments = PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
 
-            foreach (var payment in unclearedPayments)
-            {
+            foreach (var payment in unclearedPayments) {
                 //Transfer can be ignored since they don't change the summary.
-                switch (payment.Type)
-                {
+                switch (payment.Type) {
                     case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;

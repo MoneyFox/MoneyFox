@@ -15,16 +15,13 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.Repositories
-{
+namespace MoneyFox.Shared.Tests.Repositories {
     [TestClass]
-    public class PaymentRepositoryTests : MvxIoCSupportingTest
-    {
+    public class PaymentRepositoryTests : MvxIoCSupportingTest {
         private DateTime localDateSetting;
 
         [TestInitialize]
-        public void Init()
-        {
+        public void Init() {
             Setup();
 
             // We setup the static setting classes here for the general usage in the app
@@ -39,8 +36,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
         [TestMethod]
         [ExpectedException(typeof(AccountMissingException))]
-        public void SaveWithouthAccount_NoAccount_InvalidDataException()
-        {
+        public void SaveWithouthAccount_NoAccount_InvalidDataException() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -53,8 +49,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Amount = 20
             };
 
@@ -62,8 +57,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_DifferentPaymentTypes_CorrectlySaved()
-        {
+        public void Save_DifferentPaymentTypes_CorrectlySaved() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -77,14 +71,12 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = account,
                 TargetAccount = null,
                 Amount = 20,
@@ -98,8 +90,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_TransferPayment_CorrectlySaved()
-        {
+        public void Save_TransferPayment_CorrectlySaved() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -113,20 +104,17 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var targetAccount = new Account
-            {
+            var targetAccount = new Account {
                 Id = 3,
                 Name = "targetAccount"
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = account,
                 ChargedAccountId = 2,
                 TargetAccount = targetAccount,
@@ -142,8 +130,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void PaymentRepository_Delete()
-        {
+        public void PaymentRepository_Delete() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -157,14 +144,12 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = account,
                 ChargedAccountId = 2,
                 Amount = 20
@@ -179,8 +164,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void PaymentRepository_AccessCache()
-        {
+        public void PaymentRepository_AccessCache() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -197,8 +181,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void AddItemToDataList_SaveAccount_IsAddedToData()
-        {
+        public void AddItemToDataList_SaveAccount_IsAddedToData() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -211,14 +194,12 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = account,
                 Amount = 20,
                 Type = (int) PaymentType.Transfer
@@ -229,8 +210,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void GetUnclearedPayments_PastDate_PastPayments()
-        {
+        public void GetUnclearedPayments_PastDate_PastPayments() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -243,16 +223,13 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            repository.Data = new ObservableCollection<Payment>(new List<Payment>
-            {
-                new Payment
-                {
+            repository.Data = new ObservableCollection<Payment>(new List<Payment> {
+                new Payment {
                     ChargedAccount = account,
                     Amount = 55,
                     Date = DateTime.Today.AddDays(-1),
@@ -270,8 +247,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [TestMethod]
-        public void GetUnclearedPayments_FutureDate_PastPayments()
-        {
+        public void GetUnclearedPayments_FutureDate_PastPayments() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -284,14 +260,12 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            repository.Save(new Payment
-            {
+            repository.Save(new Payment {
                 ChargedAccount = account,
                 Amount = 55,
                 Date = Utilities.GetEndOfMonth().AddDays(-1),
@@ -308,8 +282,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void GetUnclearedPayments_AccountNull()
-        {
+        public void GetUnclearedPayments_AccountNull() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -322,8 +295,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            repository.Data.Add(new Payment
-            {
+            repository.Data.Add(new Payment {
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
                 Note = "this is a note!!!",
@@ -336,14 +308,12 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Load_Payment_DataInitialized()
-        {
+        public void Load_Payment_DataInitialized() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>
-            {
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {
                 new Payment {Id = 10},
                 new Payment {Id = 15}
             });
@@ -364,8 +334,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void GetRelatedPayments_Account_CorrectAccounts()
-        {
+        public void GetRelatedPayments_Account_CorrectAccounts() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -384,8 +353,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             var account1 = new Account {Id = 1};
             var account3 = new Account {Id = 3};
 
-            repo.Data = new ObservableCollection<Payment>(new List<Payment>
-            {
+            repo.Data = new ObservableCollection<Payment>(new List<Payment> {
                 new Payment {Id = 2, ChargedAccount = account1, ChargedAccountId = account1.Id},
                 new Payment {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
@@ -397,8 +365,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
-        {
+        public void LoadRecurringList_NoParameters_ListWithRecurringTrans() {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -412,36 +379,31 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 accountRepositorySetup.Object,
                 categoryDataAccessSetup.Object,
-                new Mock<INotificationService>().Object)
-            {
-                Data = new ObservableCollection<Payment>(new List<Payment>
-                {
-                    new Payment
-                    {
-                        Id = 1,
-                        IsRecurring = true,
-                        RecurringPayment = new RecurringPayment {Id = 1, IsEndless = true},
-                        RecurringPaymentId = 1
-                    },
-                    new Payment {Id = 2, IsRecurring = false},
-                    new Payment
-                    {
-                        Id = 3,
-                        IsRecurring = true,
-                        RecurringPayment =
-                            new RecurringPayment {Id = 2, IsEndless = false, EndDate = DateTime.Today.AddDays(10)},
-                        RecurringPaymentId = 2
-                    },
-                    new Payment
-                    {
-                        Id = 4,
-                        IsRecurring = true,
-                        RecurringPayment =
-                            new RecurringPayment {Id = 3, IsEndless = false, EndDate = DateTime.Today.AddDays(-10)},
-                        RecurringPaymentId = 3
-                    }
-                })
-            };
+                new Mock<INotificationService>().Object) {
+                    Data = new ObservableCollection<Payment>(new List<Payment> {
+                        new Payment {
+                            Id = 1,
+                            IsRecurring = true,
+                            RecurringPayment = new RecurringPayment {Id = 1, IsEndless = true},
+                            RecurringPaymentId = 1
+                        },
+                        new Payment {Id = 2, IsRecurring = false},
+                        new Payment {
+                            Id = 3,
+                            IsRecurring = true,
+                            RecurringPayment =
+                                new RecurringPayment {Id = 2, IsEndless = false, EndDate = DateTime.Today.AddDays(10)},
+                            RecurringPaymentId = 2
+                        },
+                        new Payment {
+                            Id = 4,
+                            IsRecurring = true,
+                            RecurringPayment =
+                                new RecurringPayment {Id = 3, IsEndless = false, EndDate = DateTime.Today.AddDays(-10)},
+                            RecurringPaymentId = 3
+                        }
+                    })
+                };
 
             var result = repo.LoadRecurringList().ToList();
 
@@ -451,19 +413,16 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_IncomeCleared_DeletedAccountBalanceSet()
-        {
+        public void DeletePayment_IncomeCleared_DeletedAccountBalanceSet() {
             var deletedId = 0;
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account.Id,
                 ChargedAccount = account,
@@ -502,19 +461,16 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_IncomeNotCleared_DeletedAccountBalanceSet()
-        {
+        public void DeletePayment_IncomeNotCleared_DeletedAccountBalanceSet() {
             var deletedId = 0;
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account.Id,
                 ChargedAccount = account,
@@ -553,19 +509,16 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_ExpenseNotCleared_DeletedAccountBalanceSet()
-        {
+        public void DeletePayment_ExpenseNotCleared_DeletedAccountBalanceSet() {
             var deletedId = 0;
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account.Id,
                 ChargedAccount = account,
@@ -604,19 +557,16 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_ExpenseCleared_DeletedAccountBalanceSet()
-        {
+        public void DeletePayment_ExpenseCleared_DeletedAccountBalanceSet() {
             var deletedId = 0;
 
-            var account = new Account
-            {
+            var account = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account.Id,
                 ChargedAccount = account,
@@ -655,25 +605,21 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_TransferClearedIsTrue_Deleted()
-        {
+        public void DeletePayment_TransferClearedIsTrue_Deleted() {
             var deletedId = 0;
 
-            var account1 = new Account
-            {
+            var account1 = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
-            var account2 = new Account
-            {
+            var account2 = new Account {
                 Id = 4,
                 Name = "just an account",
                 CurrentBalance = 900
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account1.Id,
                 ChargedAccount = account1,
@@ -715,25 +661,21 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void DeletePayment_TransferClearedIsFalse_Deleted()
-        {
+        public void DeletePayment_TransferClearedIsFalse_Deleted() {
             var deletedId = 0;
 
-            var account1 = new Account
-            {
+            var account1 = new Account {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
-            var account2 = new Account
-            {
+            var account2 = new Account {
                 Id = 4,
                 Name = "just an account",
                 CurrentBalance = 900
             };
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 Id = 10,
                 ChargedAccountId = account1.Id,
                 ChargedAccount = account1,
@@ -775,8 +717,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp()
-        {
+        public void Save_UpdateTimeStamp() {
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(true);
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
@@ -792,8 +733,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_NotifyUserOfFailure()
-        {
+        public void Save_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
@@ -814,8 +754,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Delete_NotifyUserOfFailure()
-        {
+        public void Delete_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
@@ -841,8 +780,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
         [TestMethod]
         [ExpectedException(typeof(AccountMissingException))]
-        public void Save_NoChargedAccount()
-        {
+        public void Save_NoChargedAccount() {
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
 

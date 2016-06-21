@@ -1,48 +1,41 @@
 using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
 using Android.Widget;
+using MoneyFox.Droid.Fragments;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.FullFragging.Fragments;
-using MoneyFox.Droid.Fragments;
 using MvvmCross.Platform;
-using Android.App;
 
-namespace MoneyFox.Droid.Dialogs
-{
-    public class SelectDateRangeDialog : MvxDialogFragment<SelectDateRangeDialogViewModel>, DatePickerDialog.IOnDateSetListener
-    {
+namespace MoneyFox.Droid.Dialogs {
+    public class SelectDateRangeDialog : MvxDialogFragment<SelectDateRangeDialogViewModel>,
+        DatePickerDialog.IOnDateSetListener {
         private Button callerButton;
+        private TextView doneTextView;
         private Button selectEndDateButton;
         private Button selectStartDateButton;
-        private TextView doneTextView;
 
-        public SelectDateRangeDialog()
-        {
+        public SelectDateRangeDialog() {
             // TODO: let Mvx Resolve that
             ViewModel = Mvx.Resolve<SelectDateRangeDialogViewModel>();
         }
 
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
 
-            if (callerButton == selectStartDateButton)
-            {
+            if (callerButton == selectStartDateButton) {
                 ViewModel.StartDate = date;
             }
-            else if (callerButton == selectEndDateButton)
-            {
+            else if (callerButton == selectEndDateButton) {
                 ViewModel.EndDate = date;
             }
             AssignDateToButtons();
         }
 
-        public override Dialog OnCreateDialog(Bundle savedInstanceState)
-        {
+        public override Dialog OnCreateDialog(Bundle savedInstanceState) {
             EnsureBindingContextSet(savedInstanceState);
 
             var dialog = new Dialog(Activity);
@@ -65,34 +58,29 @@ namespace MoneyFox.Droid.Dialogs
             return dialog;
         }
 
-        private void SelectEndDate(object sender, EventArgs e)
-        {
+        private void SelectEndDate(object sender, EventArgs e) {
             callerButton = sender as Button;
             var dialog = new DatePickerDialogFragment(Context, DateTime.Now, this);
             dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
 
-        private void SelectStartDate(object sender, EventArgs e)
-        {
+        private void SelectStartDate(object sender, EventArgs e) {
             callerButton = sender as Button;
             var dialog = new DatePickerDialogFragment(Context, DateTime.Now, this);
             dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
 
-        private void DoneButtonClick(object sender, EventArgs e)
-        {
+        private void DoneButtonClick(object sender, EventArgs e) {
             ViewModel.DoneCommand.Execute();
             Dismiss();
         }
 
-        private void AssignDateToButtons()
-        {
+        private void AssignDateToButtons() {
             selectStartDateButton.Hint = ViewModel.StartDate.ToString("d");
             selectEndDateButton.Hint = ViewModel.EndDate.ToString("d");
         }
 
-        public override void OnDismiss(IDialogInterface dialog)
-        {
+        public override void OnDismiss(IDialogInterface dialog) {
             (Context as IDialogCloseListener)?.HandleDialogClose();
 
             base.OnDismiss(dialog);

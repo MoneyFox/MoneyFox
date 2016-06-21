@@ -3,16 +3,11 @@ using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels.DesignTime
-{
-    public class DesignTimeAccountListViewModel : IAccountListViewModel
-    {
-        public DesignTimeAccountListViewModel()
-        {
-            AllAccounts = new ObservableCollection<Account>
-            {
-                new Account
-                {
+namespace MoneyFox.Shared.ViewModels.DesignTime {
+    public class DesignTimeAccountListViewModel : IAccountListViewModel {
+        public DesignTimeAccountListViewModel() {
+            AllAccounts = new ObservableCollection<Account> {
+                new Account {
                     Name = "Sparkonto",
                     CurrentBalance = 1256.25,
                     Iban = "CH12 12356 FX12 5123"

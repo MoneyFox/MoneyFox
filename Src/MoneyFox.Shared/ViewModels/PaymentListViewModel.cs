@@ -9,11 +9,9 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
-    {
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
@@ -21,8 +19,7 @@ namespace MoneyFox.Shared.ViewModels
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
-            IDialogService dialogService, IPaymentManager paymentManager)
-        {
+            IDialogService dialogService, IPaymentManager paymentManager) {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.dialogService = dialogService;
@@ -77,8 +74,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public string Title => accountRepository.Selected?.Name;
 
-        private void LoadPayments()
-        {
+        private void LoadPayments() {
             EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
@@ -98,38 +94,31 @@ namespace MoneyFox.Shared.ViewModels
             EditCommand = new MvxCommand<Payment>(Edit);
         }
 
-        private void GoToAddPayment(string type)
-        {
+        private void GoToAddPayment(string type) {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }
 
-        private async void DeleteAccount()
-        {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
-            {
+        private async void DeleteAccount() {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
                 accountRepository.Delete(accountRepository.Selected);
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
         }
 
-        private void Edit(Payment payment)
-        {
+        private void Edit(Payment payment) {
             paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
-        private async void DeletePayment(Payment payment)
-        {
+        private async void DeletePayment(Payment payment) {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
-            {
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) {
                 return;
             }
 
-            if (await paymentManager.CheckForRecurringPayment(payment))
-            {
+            if (await paymentManager.CheckForRecurringPayment(payment)) {
                 paymentRepository.DeleteRecurring(payment);
             }
 

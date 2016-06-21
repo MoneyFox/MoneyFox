@@ -4,16 +4,13 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class CategoryDialogViewModel : BaseViewModel
-    {
+    public class CategoryDialogViewModel : BaseViewModel {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
-        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
-        {
+        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
         }
@@ -28,20 +25,16 @@ namespace MoneyFox.Shared.ViewModels
 
         public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
 
-        private void Loaded()
-        {
-            if (IsEdit)
-            {
+        private void Loaded() {
+            if (IsEdit) {
                 return;
             }
 
             Selected = new Category();
         }
 
-        private async void Done()
-        {
-            if (string.IsNullOrEmpty(Selected.Name))
-            {
+        private async void Done() {
+            if (string.IsNullOrEmpty(Selected.Name)) {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }

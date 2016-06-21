@@ -6,27 +6,22 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
-namespace MoneyFox.Windows.Tests.DataAccess
-{
+namespace MoneyFox.Windows.Tests.DataAccess {
     [TestClass]
-    public class RecurringPaymentDataAccessTests
-    {
+    public class RecurringPaymentDataAccessTests {
         private DatabaseManager connectionCreator;
 
         [TestInitialize]
-        public void Init()
-        {
+        public void Init() {
             connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
-        public void SaveToDatabase_NewRecurringPayment_CorrectId()
-        {
+        public void SaveToDatabase_NewRecurringPayment_CorrectId() {
             var amount = 789;
 
-            var payment = new RecurringPayment
-            {
+            var payment = new RecurringPayment {
                 Amount = amount
             };
 
@@ -37,8 +32,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         }
 
         [TestMethod]
-        public void SaveToDatabase_ExistingRecurringPayment_CorrectId()
-        {
+        public void SaveToDatabase_ExistingRecurringPayment_CorrectId() {
             var payment = new RecurringPayment();
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
@@ -56,15 +50,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
         }
 
         [TestMethod]
-        public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
-        {
-            var payment1 = new RecurringPayment
-            {
+        public void SaveToDatabase_MultipleRecurringPayment_AllSaved() {
+            var payment1 = new RecurringPayment {
                 Note = "MultiRecPayment1"
             };
 
-            var payment2 = new RecurringPayment
-            {
+            var payment2 = new RecurringPayment {
                 Note = "MultiRecPayment2"
             };
 
@@ -79,13 +70,11 @@ namespace MoneyFox.Windows.Tests.DataAccess
         }
 
         [TestMethod]
-        public void SaveToDatabase_CreateAndUpdateRecurringPayment_CorrectlyUpdated()
-        {
+        public void SaveToDatabase_CreateAndUpdateRecurringPayment_CorrectlyUpdated() {
             var firstAmount = 5555555;
             var secondAmount = 222222222;
 
-            var payment = new RecurringPayment
-            {
+            var payment = new RecurringPayment {
                 Amount = firstAmount
             };
 
@@ -103,10 +92,8 @@ namespace MoneyFox.Windows.Tests.DataAccess
         }
 
         [TestMethod]
-        public void DeleteFromDatabase_RecurringPaymentToDelete_CorrectlyDelete()
-        {
-            var payment = new RecurringPayment
-            {
+        public void DeleteFromDatabase_RecurringPaymentToDelete_CorrectlyDelete() {
+            var payment = new RecurringPayment {
                 Note = "paymentToDelete"
             };
 

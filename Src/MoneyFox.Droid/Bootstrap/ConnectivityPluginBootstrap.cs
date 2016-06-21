@@ -1,7 +1,8 @@
+using Cheesebaron.MvxPlugins.Connectivity;
 using MvvmCross.Platform.Plugins;
 
-namespace MoneyFox.Droid.Bootstrap
-{
+namespace MoneyFox.Droid.Bootstrap {
     public class ConnectivityPluginBootstrap
-        : MvxPluginBootstrapAction<Cheesebaron.MvxPlugins.Connectivity.PluginLoader> { }
+        : MvxPluginBootstrapAction<PluginLoader> {
+    }
 }

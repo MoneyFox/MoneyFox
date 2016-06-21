@@ -6,15 +6,12 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels
-{
-    public class RecurringPaymentListViewModel : BaseViewModel
-    {
+namespace MoneyFox.Shared.ViewModels {
+    public class RecurringPaymentListViewModel : BaseViewModel {
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
 
-        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
-        {
+        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService) {
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
 
@@ -43,13 +40,11 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand<Payment> DeleteCommand => new MvxCommand<Payment>(Delete);
 
-        private void Loaded()
-        {
+        private void Loaded() {
             EditCommand = null;
 
             AllPayments.Clear();
-            foreach (var payment in paymentRepository.LoadRecurringList())
-            {
+            foreach (var payment in paymentRepository.LoadRecurringList()) {
                 AllPayments.Add(payment);
             }
 
@@ -62,19 +57,16 @@ namespace MoneyFox.Shared.ViewModels
             EditCommand = new MvxCommand<Payment>(Edit);
         }
 
-        private void Edit(Payment payment)
-        {
+        private void Edit(Payment payment) {
             paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
-        private async void Delete(Payment payment)
-        {
+        private async void Delete(Payment payment) {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
-            {
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) {
                 return;
             }
 

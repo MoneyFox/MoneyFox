@@ -1,12 +1,9 @@
 ﻿using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels.DesignTime
-{
-    public class DesignTimeBalanceViewModel : IBalanceViewModel
-    {
-        public DesignTimeBalanceViewModel()
-        {
+namespace MoneyFox.Shared.ViewModels.DesignTime {
+    public class DesignTimeBalanceViewModel : IBalanceViewModel {
+        public DesignTimeBalanceViewModel() {
             TotalBalance = 12345;
             EndOfMonthBalance = 45677;
         }

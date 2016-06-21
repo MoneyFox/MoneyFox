@@ -3,21 +3,17 @@ using Windows.UI.Xaml;
 using MoneyFox.Shared.Helpers;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Windows.Views.UserControls
-{
-    public sealed partial class PageHeader
-    {
+namespace MoneyFox.Windows.Views.UserControls {
+    public sealed partial class PageHeader {
         // Using a DependencyProperty as the backing store for HeaderContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeaderContentProperty =
             DependencyProperty.Register("HeaderContent", typeof(UIElement), typeof(PageHeader),
                 new PropertyMetadata(DependencyProperty.UnsetValue));
 
-        public PageHeader()
-        {
+        public PageHeader() {
             InitializeComponent();
 
-            Loaded += (s, a) =>
-            {
+            Loaded += (s, a) => {
                 AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
                 TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
@@ -25,14 +21,12 @@ namespace MoneyFox.Windows.Views.UserControls
             GlobalProgressRing.DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
         }
 
-        public UIElement HeaderContent
-        {
+        public UIElement HeaderContent {
             get { return (UIElement) GetValue(HeaderContentProperty); }
             set { SetValue(HeaderContentProperty, value); }
         }
 
-        private void Current_TogglePaneButtonSizeChanged(AppShell sender, Rect e)
-        {
+        private void Current_TogglePaneButtonSizeChanged(AppShell sender, Rect e) {
             TitleBar.Margin = new Thickness(e.Right, 0, 0, 0);
         }
     }

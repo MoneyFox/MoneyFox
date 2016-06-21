@@ -2,10 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Interfaces
-{
-    public interface IRepository<T>
-    {
+namespace MoneyFox.Shared.Interfaces {
+    public interface IRepository<T> {
         /// <summary>
         ///     All payment loaded from the database
         /// </summary>
