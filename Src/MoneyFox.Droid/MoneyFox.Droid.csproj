@@ -208,6 +208,14 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Npadrutt.MvxPlugins.AppInformation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npadrutt.MvxPlugins.AppInformation.1.0.6\lib\MonoAndroid\Npadrutt.MvxPlugins.AppInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npadrutt.MvxPlugins.AppInformation.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npadrutt.MvxPlugins.AppInformation.1.0.6\lib\MonoAndroid\Npadrutt.MvxPlugins.AppInformation.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="OneDriveSdk, Version=1.1.47.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.47\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
       <Private>True</Private>
@@ -279,6 +287,7 @@
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
     <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
+    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
@@ -308,7 +317,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
-    <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\AndroidAuthenticationProvider.cs" />
     <Compile Include="Src\CustomPresenter.cs" />
     <Compile Include="Src\CustomServiceInfoProvider.cs" />

@@ -463,6 +463,19 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -2459,6 +2472,19 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -4363,6 +4389,19 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -6234,6 +6273,19 @@
         },
         "runtime": {
           "lib/Windows/NotificationsExtensions.winmd": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -8143,6 +8195,19 @@
           "lib/Windows/NotificationsExtensions.winmd": {}
         }
       },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -10014,6 +10079,19 @@
         },
         "runtime": {
           "lib/Windows/NotificationsExtensions.winmd": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -11921,6 +11999,19 @@
         },
         "runtime": {
           "lib/Windows/NotificationsExtensions.winmd": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -14551,6 +14642,23 @@
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
         "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb"
+      ]
+    },
+    "Npadrutt.MvxPlugins.AppInformation/1.0.6": {
+      "sha512": "28Aymi/HG7qnEA8Zj7haGutQkD0QYcF8Fq6EUMB4/iXQAYxED6jIAPlEST8J7zOuXwvX2jqMMv0XVdsWeZT4eg==",
+      "type": "package",
+      "files": [
+        "Npadrutt.MvxPlugins.AppInformation.1.0.6.nupkg.sha512",
+        "Npadrutt.MvxPlugins.AppInformation.nuspec",
+        "content/MonoAndroid/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "content/netcore451/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "content/portable-net45+sl4+wp7+win8/Bootstrap/AppInformationPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.AppInformation.Droid.dll",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.AppInformation.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.pri",
+        "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll",
+        "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.AppInformation.dll"
       ]
     },
     "OxyPlot.Core/2015.1.1033-alpha": {

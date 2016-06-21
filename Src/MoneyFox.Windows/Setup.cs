@@ -27,6 +27,8 @@ using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
+using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
+using Npadrutt.MvxPlugins.AppInformation;
 
 namespace MoneyFox.Windows
 {
@@ -50,13 +52,13 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<ISettings, WindowsCommonSettings>();
             Mvx.RegisterType<IConnectivity, Connectivity>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
+            Mvx.RegisterType<IAppInformation, WindowsAppInformation>();
         }
 
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();

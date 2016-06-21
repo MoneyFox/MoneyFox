@@ -45,6 +45,7 @@
     <Compile Include="AppStart.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
+    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="Constants\ServiceConstants.cs" />
@@ -72,7 +73,6 @@
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
-    <Compile Include="Interfaces\IAppInformation.cs" />
     <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\IBackgroundTaskService.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
@@ -222,6 +222,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npadrutt.MvxPlugins.AppInformation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npadrutt.MvxPlugins.AppInformation.1.0.6\lib\portable-net45+sl4+wp7+win8\Npadrutt.MvxPlugins.AppInformation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OneDriveSdk, Version=1.1.47.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
