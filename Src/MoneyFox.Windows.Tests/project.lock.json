@@ -476,7 +476,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -2498,7 +2498,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -4428,7 +4428,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -6327,7 +6327,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -8260,7 +8260,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -10159,7 +10159,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -12092,7 +12092,7 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
-      "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
         "dependencies": {
           "MvvmCross.Platform": "4.2.0"
         },
@@ -14732,11 +14732,11 @@
         "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.AppInformation.dll"
       ]
     },
-    "Npadrutt.MvxPlugins.StoreOperations/1.0.1": {
-      "sha512": "gbx5HwzxiCdZNy9/4BvNGrea4F5tky4XmPJO2SKHjREmuxn1TQhqLKlXHUtZrVSeI3SDfaaTPPKPgBlILHrF+w==",
+    "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+      "sha512": "byU9CfSt6QFHivJUYbI+Xy+lXaynlg8AXzvtFKsMZER29O1EFX+d7ADPw8CwQa/mbdvxFAGWyiNNaAvibBoZbw==",
       "type": "package",
       "files": [
-        "Npadrutt.MvxPlugins.StoreOperations.1.0.1.nupkg.sha512",
+        "Npadrutt.MvxPlugins.StoreOperations.1.0.2.nupkg.sha512",
         "Npadrutt.MvxPlugins.StoreOperations.nuspec",
         "content/MonoAndroid/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
         "content/netcore451/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
@@ -17552,7 +17552,7 @@
       "MvvmCross.Plugin.File >= 4.2.0",
       "MvvmCross.Plugin.SQLitePCL >= 4.2.0",
       "Npadrutt.MvxPlugins.AppInformation >= 1.0.6",
-      "Npadrutt.MvxPlugins.StoreOperations >= 1.0.1"
+      "Npadrutt.MvxPlugins.StoreOperations >= 1.0.2"
     ],
     "UAP,Version=v10.0": []
   }

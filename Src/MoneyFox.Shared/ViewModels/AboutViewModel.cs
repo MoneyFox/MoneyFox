@@ -3,7 +3,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using Npadrutt.MvxPlugins.AppInformation;
-using StoreOperations;
+using Npadrutt.MvxPlugins.StoreOperations;
 
 namespace MoneyFox.Shared.ViewModels
 {

@@ -229,7 +229,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Npadrutt.MvxPlugins.StoreOperations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.1\lib\portable-net45+sl4+wp7+win8\Npadrutt.MvxPlugins.StoreOperations.dll</HintPath>
+      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.2\lib\portable-net45+sl4+wp7+win8\Npadrutt.MvxPlugins.StoreOperations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OneDriveSdk, Version=1.1.47.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

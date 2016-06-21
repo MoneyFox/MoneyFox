@@ -476,6 +476,19 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -2485,6 +2498,19 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -4402,6 +4428,19 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -6286,6 +6325,19 @@
         "runtime": {
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -8208,6 +8260,19 @@
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
         }
       },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        }
+      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -10092,6 +10157,19 @@
         "runtime": {
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -12012,6 +12090,19 @@
         "runtime": {
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.dll": {},
           "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll": {}
+        }
+      },
+      "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.2.0"
+        },
+        "compile": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll": {},
+          "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll": {}
         }
       },
       "OxyPlot.Core/2015.1.1033-alpha": {
@@ -14659,6 +14750,23 @@
         "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.WindowsUWP.pri",
         "lib/netcore451/Npadrutt.MvxPlugins.AppInformation.dll",
         "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.AppInformation.dll"
+      ]
+    },
+    "Npadrutt.MvxPlugins.StoreOperations/1.0.2": {
+      "sha512": "byU9CfSt6QFHivJUYbI+Xy+lXaynlg8AXzvtFKsMZER29O1EFX+d7ADPw8CwQa/mbdvxFAGWyiNNaAvibBoZbw==",
+      "type": "package",
+      "files": [
+        "Npadrutt.MvxPlugins.StoreOperations.1.0.2.nupkg.sha512",
+        "Npadrutt.MvxPlugins.StoreOperations.nuspec",
+        "content/MonoAndroid/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "content/netcore451/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "content/portable-net45+sl4+wp7+win8/Bootstrap/StoreOperationsPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.StoreOperations.Droid.dll",
+        "lib/MonoAndroid/Npadrutt.MvxPlugins.StoreOperations.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.dll",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.WindowsUWP.pri",
+        "lib/netcore451/Npadrutt.MvxPlugins.StoreOperations.dll",
+        "lib/portable-net45+sl4+wp7+win8/Npadrutt.MvxPlugins.StoreOperations.dll"
       ]
     },
     "OxyPlot.Core/2015.1.1033-alpha": {

@@ -215,11 +215,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Npadrutt.MvxPlugins.StoreOperations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.1\lib\MonoAndroid\Npadrutt.MvxPlugins.StoreOperations.dll</HintPath>
+      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.2\lib\MonoAndroid\Npadrutt.MvxPlugins.StoreOperations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Npadrutt.MvxPlugins.StoreOperations.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.1\lib\MonoAndroid\Npadrutt.MvxPlugins.StoreOperations.Droid.dll</HintPath>
+      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.2\lib\MonoAndroid\Npadrutt.MvxPlugins.StoreOperations.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="OneDriveSdk, Version=1.1.47.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
