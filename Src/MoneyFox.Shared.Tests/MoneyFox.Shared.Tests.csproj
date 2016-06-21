@@ -93,6 +93,14 @@
       <HintPath>..\packages\MvvmCross.Core.4.2.0\lib\net45\MvvmCross.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Npadrutt.MvxPlugins.AppInformation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npadrutt.MvxPlugins.AppInformation.1.0.6\lib\portable-net45+sl4+wp7+win8\Npadrutt.MvxPlugins.AppInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npadrutt.MvxPlugins.StoreOperations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npadrutt.MvxPlugins.StoreOperations.1.0.2\lib\portable-net45+sl4+wp7+win8\Npadrutt.MvxPlugins.StoreOperations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -110,9 +118,11 @@
   <ItemGroup>
     <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Authentication\SessionTests.cs" />
+    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />

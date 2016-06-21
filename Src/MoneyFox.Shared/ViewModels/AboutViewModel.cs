@@ -1,8 +1,9 @@
-﻿using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
+﻿using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
+using Npadrutt.MvxPlugins.AppInformation;
+using Npadrutt.MvxPlugins.StoreOperations;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -10,7 +11,7 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
-        private readonly IStoreFeatures storeFeatures;
+        private readonly IStoreOperations storeFeatures;
         private readonly IMvxWebBrowserTask webBrowserTask;
 
         /// <summary>
@@ -19,16 +20,16 @@ namespace MoneyFox.Shared.ViewModels
         /// <param name="appInformation">Instance of a <see cref="IAppInformation" /> implementation.</param>
         /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask" /> implementation.</param>
         /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
-        /// <param name="storeFeatures">Instance of a <see cref="IStoreFeatures" /> implementation.</param>
+        /// <param name="storeOperations">Instance of a <see cref="IStoreFeatures" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
             IMvxComposeEmailTask composeEmailTask,
             IMvxWebBrowserTask webBrowserTask,
-            IStoreFeatures storeFeatures)
+            IStoreOperations storeOperations)
         {
             this.appInformation = appInformation;
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
-            this.storeFeatures = storeFeatures;
+            this.storeFeatures = storeOperations;
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the Version of App
         /// </summary>
-        public string Version => appInformation.Version;
+        public string Version => appInformation.GetVersion();
 
         /// <summary>
         ///     Returns the apply solutions webite url from the

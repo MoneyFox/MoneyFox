@@ -128,13 +128,11 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\OneDriveAuthenticator.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\Shortcuts\ExpenseTile.cs" />
     <Compile Include="Src\Shortcuts\IncomeTile.cs" />
     <Compile Include="Src\Shortcuts\Tile.cs" />
     <Compile Include="Src\Shortcuts\TransferTile.cs" />
-    <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />
