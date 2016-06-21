@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Windows", "MoneyFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Tasks", "MoneyFox.Tasks\MoneyFox.Tasks.csproj", "{55DD9633-DB49-4E60-8805-4DB14603B160}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plattforms", "Plattforms", "{609FE014-9C31-4E4C-9A1A-3E0F79F89938}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{609FE014-9C31-4E4C-9A1A-3E0F79F89938}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Shared", "MoneyFox.Shared\MoneyFox.Shared.csproj", "{3E0E36AF-65D9-4542-8551-31B76577AA4C}"
 EndProject
