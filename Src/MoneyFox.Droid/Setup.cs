@@ -48,7 +48,6 @@ namespace MoneyFox.Droid
             base.InitializeFirstChance();
 
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<ISpendingShortcut, ExpenseWidget>();

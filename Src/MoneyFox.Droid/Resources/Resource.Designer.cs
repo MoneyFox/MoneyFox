@@ -1653,6 +1653,8 @@ namespace MoneyFox.Droid
 			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
 			global::Npadrutt.MvxPlugins.AppInformation.Droid.Resource.String.ApplicationName = global::MoneyFox.Droid.Resource.String.ApplicationName;
 			global::Npadrutt.MvxPlugins.AppInformation.Droid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
+			global::Npadrutt.MvxPlugins.StoreOperations.Droid.Resource.String.ApplicationName = global::MoneyFox.Droid.Resource.String.ApplicationName;
+			global::Npadrutt.MvxPlugins.StoreOperations.Droid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyFox.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
 		}
