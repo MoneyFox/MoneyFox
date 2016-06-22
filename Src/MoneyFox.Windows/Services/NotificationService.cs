@@ -2,7 +2,7 @@
 using Windows.UI.Notifications;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyFox.Windows.Services
 {
     public class NotificationService : INotificationService
     {

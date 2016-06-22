@@ -5,7 +5,7 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Shared.Resources;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyFox.Windows.Shortcut
 {
     public class TransferTile : Tile, ITransferShortcut
     {

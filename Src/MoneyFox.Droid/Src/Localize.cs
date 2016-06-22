@@ -1,10 +1,9 @@
 using System.Globalization;
 using Java.Util;
-using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid
 {
-    public class Localize : ILocalize
+    public class Localize
     {
         public CultureInfo GetCurrentCultureInfo()
         {

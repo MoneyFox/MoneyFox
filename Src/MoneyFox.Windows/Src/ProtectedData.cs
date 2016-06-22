@@ -2,7 +2,7 @@
 using Windows.Security.Credentials;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     public class ProtectedData : IProtectedData
     {

@@ -6,7 +6,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using MvvmCross.Platform;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyFox.Windows.Shortcut
 {
     public abstract class Tile
     {

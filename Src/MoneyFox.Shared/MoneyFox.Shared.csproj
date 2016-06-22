@@ -81,7 +81,6 @@
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDefaultManager.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
-    <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />

@@ -8,9 +8,6 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Shortcuts;
-using MoneyManager.Windows;
-using MoneyManager.Windows.Services;
-using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -31,6 +28,7 @@ using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.AppInformation;
 using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
+using MoneyFox.Windows.Shortcut;
 
 namespace MoneyFox.Windows
 {

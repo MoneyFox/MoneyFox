@@ -8,7 +8,6 @@ using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using MoneyFox.Shared.Constants;
 
 namespace MoneyFox.Tasks
 {

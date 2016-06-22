@@ -16,7 +16,7 @@ using MoneyFox.Droid.Dialogs;
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity",
-        Name = "moneymanager.droid.activities.SelectCategoryListActivity",
+        Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
 
