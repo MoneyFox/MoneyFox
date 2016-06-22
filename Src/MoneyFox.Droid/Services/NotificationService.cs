@@ -7,7 +7,7 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid.Services
 {
     public class NotificationService : INotificationService
     {

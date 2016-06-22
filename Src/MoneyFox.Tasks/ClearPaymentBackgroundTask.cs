@@ -4,10 +4,10 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
-using MoneyManager.Windows.Services;
-using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using MoneyFox.Windows.Services;
+using MoneyFox.Windows.Shortcut;
 
 namespace MoneyFox.Tasks
 {

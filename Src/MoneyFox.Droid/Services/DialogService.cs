@@ -6,8 +6,7 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid
-{
+namespace MoneyFox.Droid.Services {
     public class DialogService : IDialogService
     {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;

@@ -48,7 +48,7 @@
     <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
     <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
+    <Compile Include="Constants\DatabaseConstants.cs" />
     <Compile Include="Constants\ServiceConstants.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
