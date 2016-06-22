@@ -8,8 +8,7 @@ namespace MoneyFox.Droid
     public class CustomPresenter : MvxFragmentsPresenter
     {
         public CustomPresenter(IEnumerable<Assembly> androidViewAssemblies) : base(androidViewAssemblies)
-        {
-        }
+        {}
 
         protected override void Show(Intent intent)
         {
