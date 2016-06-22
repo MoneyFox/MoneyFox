@@ -8,20 +8,16 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.Manager
-{
+namespace MoneyFox.Shared.Tests.Manager {
     [TestClass]
-    public class RepositoryManagerTests
-    {
+    public class RepositoryManagerTests {
         [TestMethod]
-        public void Constructor_NullValues_NoException()
-        {
+        public void Constructor_NullValues_NoException() {
             new RepositoryManager(null, null, null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
-        public void ReloadData_SelectedNotNull_SelectedSetToNull()
-        {
+        public void ReloadData_SelectedNotNull_SelectedSetToNull() {
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
@@ -48,8 +44,7 @@ namespace MoneyFox.Shared.Tests.Manager
         }
 
         [TestMethod]
-        public void ReloadData_CollectionNull_CollectionInstantiated()
-        {
+        public void ReloadData_CollectionNull_CollectionInstantiated() {
             var accountsLoaded = false;
             var paymentsLoaded = false;
             var categoryLoaded = false;
@@ -82,11 +77,9 @@ namespace MoneyFox.Shared.Tests.Manager
         }
 
         [TestMethod]
-        public void ReloadData_UnclearedPayment_Clear()
-        {
+        public void ReloadData_UnclearedPayment_Clear() {
             var account = new Account {Id = 1, CurrentBalance = 40};
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = account,
                 ChargedAccountId = 1,
                 IsCleared = false,

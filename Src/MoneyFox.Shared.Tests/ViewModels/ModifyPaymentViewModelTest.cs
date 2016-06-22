@@ -11,21 +11,17 @@ using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels
-{
+namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
-    public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
-    {
+    public class ModifyPaymentViewModelTest : MvxIoCSupportingTest {
         [TestInitialize]
-        public void Init()
-        {
+        public void Init() {
             ClearAll();
             Setup();
         }
 
         [TestMethod]
-        public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
-        {
+        public void Init_SpendingNotEditing_PropertiesSetupCorrectly() {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
@@ -59,19 +55,16 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Init_IncomeEditing_PropertiesSetupCorrectly()
-        {
+        public void Init_IncomeEditing_PropertiesSetupCorrectly() {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
             var testEndDate = new DateTime(2099, 1, 31);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment
-            {
+            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment {
                 Type = (int) PaymentType.Income,
                 IsRecurring = true,
-                RecurringPayment = new RecurringPayment
-                {
+                RecurringPayment = new RecurringPayment {
                     EndDate = testEndDate
                 }
             });

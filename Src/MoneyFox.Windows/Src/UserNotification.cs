@@ -6,26 +6,20 @@ using MvvmCross.Platform;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyFox.Windows
-{
-    public class TileUpdateService : ITileUpdateService
-    {
+namespace MoneyFox.Windows {
+    public class TileUpdateService : ITileUpdateService {
         /// <summary>
         ///     Sets the MainTile with new Information
         /// </summary>
         /// <param name="income">Income of these month</param>
         /// <param name="spending">Expense of these month</param>
         /// <param name="earnings">Earnings of these month </param>
-        public void UpdateMainTile(string income, string spending, string earnings)
-        {
+        public void UpdateMainTile(string income, string spending, string earnings) {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            if (Mvx.Resolve<SettingsShortcutsViewModel>().ShowInfoOnMainTile)
-            {
-                var content = new TileContent
-                {
-                    Visual = new TileVisual
-                    {
+            if (Mvx.Resolve<SettingsShortcutsViewModel>().ShowInfoOnMainTile) {
+                var content = new TileContent {
+                    Visual = new TileVisual {
                         TileMedium = GetBindingMediumContent(income, spending, earnings),
                         TileWide = GetBindingWideContent(income, spending, earnings),
                         TileLarge = GetBindingLargeContent(income, spending, earnings)
@@ -36,30 +30,23 @@ namespace MoneyFox.Windows
             }
         }
 
-        private static TileBinding GetBindingMediumContent(string income, string spending, string earnings)
-        {
-            var content = new TileBindingContentAdaptive
-            {
-                PeekImage = new TilePeekImage
-                {
+        private static TileBinding GetBindingMediumContent(string income, string spending, string earnings) {
+            var content = new TileBindingContentAdaptive {
+                PeekImage = new TilePeekImage {
                     Source = "Assets/Square150x150Logo.scale-400.png"
                 },
-                Children =
-                {
-                    new AdaptiveText
-                    {
+                Children = {
+                    new AdaptiveText {
                         Text = income,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle,
                         HintWrap = true
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = spending,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle,
                         HintWrap = true
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = earnings,
                         HintWrap = true,
                         HintStyle = AdaptiveTextStyle.Caption
@@ -67,36 +54,28 @@ namespace MoneyFox.Windows
                 }
             };
 
-            return new TileBinding
-            {
+            return new TileBinding {
                 Branding = TileBranding.NameAndLogo,
                 DisplayName = Strings.ApplicationTitle,
                 Content = content
             };
         }
 
-        private static TileBinding GetBindingWideContent(string income, string spending, string earnings)
-        {
-            var content = new TileBindingContentAdaptive
-            {
-                PeekImage = new TilePeekImage
-                {
+        private static TileBinding GetBindingWideContent(string income, string spending, string earnings) {
+            var content = new TileBindingContentAdaptive {
+                PeekImage = new TilePeekImage {
                     Source = "Assets/Wide310x150Logo.scale-400.png"
                 },
-                Children =
-                {
-                    new AdaptiveText
-                    {
+                Children = {
+                    new AdaptiveText {
                         Text = income,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = spending,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = earnings,
                         HintWrap = true,
                         HintStyle = AdaptiveTextStyle.Body
@@ -104,36 +83,28 @@ namespace MoneyFox.Windows
                 }
             };
 
-            return new TileBinding
-            {
+            return new TileBinding {
                 Branding = TileBranding.NameAndLogo,
                 DisplayName = Strings.ApplicationTitle,
                 Content = content
             };
         }
 
-        private static TileBinding GetBindingLargeContent(string income, string spending, string earnings)
-        {
-            var content = new TileBindingContentAdaptive
-            {
-                PeekImage = new TilePeekImage
-                {
+        private static TileBinding GetBindingLargeContent(string income, string spending, string earnings) {
+            var content = new TileBindingContentAdaptive {
+                PeekImage = new TilePeekImage {
                     Source = "Assets/Square310x310Logo.scale-400.png"
                 },
-                Children =
-                {
-                    new AdaptiveText
-                    {
+                Children = {
+                    new AdaptiveText {
                         Text = income,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = spending,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new AdaptiveText
-                    {
+                    new AdaptiveText {
                         Text = earnings,
                         HintWrap = true,
                         HintStyle = AdaptiveTextStyle.Body
@@ -141,8 +112,7 @@ namespace MoneyFox.Windows
                 }
             };
 
-            return new TileBinding
-            {
+            return new TileBinding {
                 Branding = TileBranding.NameAndLogo,
                 DisplayName = Strings.ApplicationTitle,
                 Content = content

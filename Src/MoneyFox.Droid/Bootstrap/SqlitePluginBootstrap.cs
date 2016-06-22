@@ -1,8 +1,8 @@
 using MvvmCross.Platform.Plugins;
+using MvvmCross.Plugins.Sqlite;
 
-namespace MoneyFox.Droid.Bootstrap
-{
+namespace MoneyFox.Droid.Bootstrap {
     public class SqlitePluginBootstrap
-        : MvxPluginBootstrapAction<MvvmCross.Plugins.Sqlite.PluginLoader>
-		{}
+        : MvxPluginBootstrapAction<PluginLoader> {
+    }
 }

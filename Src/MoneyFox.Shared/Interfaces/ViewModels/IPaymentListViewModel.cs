@@ -3,10 +3,8 @@ using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.Interfaces.ViewModels
-{
-    public interface IPaymentListViewModel
-    {
+namespace MoneyFox.Shared.Interfaces.ViewModels {
+    public interface IPaymentListViewModel {
         IBalanceViewModel BalanceViewModel { get; }
 
         MvxCommand LoadCommand { get; }

@@ -5,14 +5,11 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Shared.Resources;
 
-namespace MoneyFox.Windows.Shortcut
-{
-    public class TransferTile : Tile, ITransferShortcut
-    {
+namespace MoneyFox.Windows.Shortcuts {
+    public class TransferTile : Tile, ITransferShortcut {
         public bool IsShortcutExisting => TileExists(Constants.ADD_TRANSFER_TILE_ID);
 
-        public async Task CreateShortCut()
-        {
+        public async Task CreateShortCut() {
             await Create(new SecondaryTile(
                 Constants.ADD_TRANSFER_TILE_ID,
                 Strings.AddTransferLabel,
@@ -21,10 +18,8 @@ namespace MoneyFox.Windows.Shortcut
                 TileSize.Default));
         }
 
-        public async Task RemoveShortcut()
-        {
-            if (IsShortcutExisting)
-            {
+        public async Task RemoveShortcut() {
+            if (IsShortcutExisting) {
                 await Remove(new SecondaryTile(Constants.ADD_TRANSFER_TILE_ID));
             }
         }

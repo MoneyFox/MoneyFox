@@ -3,19 +3,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.Tests.Helper
-{
+namespace MoneyFox.Shared.Tests.Helper {
     [TestClass]
-    public class RecurringPaymentHelperTests
-    {
+    public class RecurringPaymentHelperTests {
         [TestMethod]
-        public void GetRecurringFromPayment_DailyEndlessIncome()
-        {
+        public void GetRecurringFromPayment_DailyEndlessIncome() {
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
                 Category = new Category {Id = 16},
@@ -42,13 +38,11 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void GetRecurringFromPayment_WeeklyEndlessExpense()
-        {
+        public void GetRecurringFromPayment_WeeklyEndlessExpense() {
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
                 Category = new Category {Id = 16},
@@ -75,13 +69,11 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void GetRecurringFromPayment_MonthlyEndlessTransfer()
-        {
+        public void GetRecurringFromPayment_MonthlyEndlessTransfer() {
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
                 Category = new Category {Id = 16},
@@ -108,13 +100,11 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void GetRecurringFromPayment_YearlyEndlessTransfer()
-        {
+        public void GetRecurringFromPayment_YearlyEndlessTransfer() {
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
-            {
+            var payment = new Payment {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
                 Category = new Category {Id = 16},
@@ -141,45 +131,38 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void GetTypeString_Expense_EnumString()
-        {
+        public void GetTypeString_Expense_EnumString() {
             PaymentTypeHelper.GetTypeString(0).ShouldBe("Expense");
         }
 
         [TestMethod]
-        public void GetTypeString_Income_EnumString()
-        {
+        public void GetTypeString_Income_EnumString() {
             PaymentTypeHelper.GetTypeString(1).ShouldBe("Income");
         }
 
         [TestMethod]
-        public void GetTypeString_Transfer_EnumString()
-        {
+        public void GetTypeString_Transfer_EnumString() {
             PaymentTypeHelper.GetTypeString(2).ShouldBe("Transfer");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void GetTypeString_InvalidType_Exception()
-        {
+        public void GetTypeString_InvalidType_Exception() {
             PaymentTypeHelper.GetTypeString(3);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void GetTypeString_NegativeType_Exception()
-        {
+        public void GetTypeString_NegativeType_Exception() {
             PaymentTypeHelper.GetTypeString(-1);
         }
 
         [TestMethod]
-        public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
-        {
+        public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans() {
             var account = new Account {Id = 2};
             var dayOfMonth = 26;
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, dayOfMonth),
@@ -197,12 +180,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_Daily_ValidatedRecurrence()
-        {
+        public void CheckIfRepeatable_Daily_ValidatedRecurrence() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Daily,
                 StartDate = new DateTime(2015, 08, 25),
@@ -217,12 +198,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_Biweekly_ValidatedRecurrence()
-        {
+        public void CheckIfRepeatable_Biweekly_ValidatedRecurrence() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Biweekly,
                 StartDate = new DateTime(2015, 08, 25),
@@ -237,12 +216,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_Weekly_ValidatedRecurrence()
-        {
+        public void CheckIfRepeatable_Weekly_ValidatedRecurrence() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
@@ -257,12 +234,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_Monthly_ValidatedRecurrence()
-        {
+        public void CheckIfRepeatable_Monthly_ValidatedRecurrence() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, 25),
@@ -277,12 +252,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_Yearly_ValidatedRecurrence()
-        {
+        public void CheckIfRepeatable_Yearly_ValidatedRecurrence() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Yearly,
                 StartDate = new DateTime(2015, 08, 25),
@@ -297,12 +270,10 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
-        {
+        public void CheckIfRepeatable_UnclearedPayment_ReturnFalse() {
             var account = new Account {Id = 2};
 
-            var recurringPayment = new RecurringPayment
-            {
+            var recurringPayment = new RecurringPayment {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),

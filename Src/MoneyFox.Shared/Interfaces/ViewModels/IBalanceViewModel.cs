@@ -1,9 +1,7 @@
 ﻿using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.Interfaces.ViewModels
-{
-    public interface IBalanceViewModel
-    {
+namespace MoneyFox.Shared.Interfaces.ViewModels {
+    public interface IBalanceViewModel {
         /// <summary>
         ///     Balance of either the selected account or all relevant accounts at the end of the month.
         /// </summary>

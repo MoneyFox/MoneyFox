@@ -1,7 +1,5 @@
-﻿namespace MoneyFox.Shared.Constants
-{
-    public class ServiceConstants
-    {
+﻿namespace MoneyFox.Shared.Constants {
+    public class ServiceConstants {
         public const string HOCKEY_APP_DROID_ID = "6ae4ef16925140c3b2a14b8ffeeba8fb";
 
         public const string HOCKEY_APP_WINDOWS_ID = "ac915a3736f5436ab85b5a5617838bc8";

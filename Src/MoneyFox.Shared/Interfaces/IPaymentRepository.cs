@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.Interfaces
-{
-    public interface IPaymentRepository : IRepository<Payment>
-    {
+namespace MoneyFox.Shared.Interfaces {
+    public interface IPaymentRepository : IRepository<Payment> {
         /// <summary>
         ///     Delete the specified payment.
         /// </summary>

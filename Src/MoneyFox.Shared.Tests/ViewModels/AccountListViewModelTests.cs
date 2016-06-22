@@ -7,21 +7,17 @@ using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels
-{
+namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
-    public class AccountListViewModelTests : MvxIoCSupportingTest
-    {
+    public class AccountListViewModelTests : MvxIoCSupportingTest {
         [TestInitialize]
-        public void Init()
-        {
+        public void Init() {
             MvxSingleton.ClearAllSingletons();
             Setup();
         }
 
         [TestMethod]
-        public void OpenOverviewCommand_Account_SelectedSet()
-        {
+        public void OpenOverviewCommand_Account_SelectedSet() {
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
@@ -40,8 +36,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void OpenOverviewCommand_NullAccount_DoNothing()
-        {
+        public void OpenOverviewCommand_NullAccount_DoNothing() {
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
@@ -60,8 +55,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
-        {
+        public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion() {
             var deleteCalled = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -87,8 +81,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
-        {
+        public void DeleteAccountCommand_UserReturnFalse_SkipDeletion() {
             var deleteCalled = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -114,8 +107,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void DeleteAccountCommand_AccountNull_DoNothing()
-        {
+        public void DeleteAccountCommand_AccountNull_DoNothing() {
             var deleteCalled = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();

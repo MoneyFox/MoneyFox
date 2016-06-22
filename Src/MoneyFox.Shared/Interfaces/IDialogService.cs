@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces
-{
-    public interface IDialogService
-    {
+namespace MoneyFox.Shared.Interfaces {
+    public interface IDialogService {
         /// <summary>
         ///     Shows a dialog with title and message. Contains only an OK button.
         /// </summary>

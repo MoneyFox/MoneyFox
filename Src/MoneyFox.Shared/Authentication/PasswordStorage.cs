@@ -1,18 +1,15 @@
 ﻿using System;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Shared.Authentication
-{
+namespace MoneyFox.Shared.Authentication {
     /// <summary>
     ///     Wrapper object for IMvxProtectedData to provide a nicer access.
     /// </summary>
-    public class PasswordStorage : IPasswordStorage
-    {
+    public class PasswordStorage : IPasswordStorage {
         private const string PASSWORD_KEY = "password";
         private readonly IProtectedData protectedData;
 
-        public PasswordStorage(IProtectedData protectedData)
-        {
+        public PasswordStorage(IProtectedData protectedData) {
             this.protectedData = protectedData;
         }
 
@@ -20,8 +17,7 @@ namespace MoneyFox.Shared.Authentication
         ///     Saves a password to the secure storage of the current platform
         /// </summary>
         /// <param name="password">Password to save.</param>
-        public void SavePassword(string password)
-        {
+        public void SavePassword(string password) {
             protectedData.Protect(PASSWORD_KEY, password);
         }
 
@@ -34,15 +30,12 @@ namespace MoneyFox.Shared.Authentication
         /// <summary>
         ///     Removes the password from the secure storage.
         /// </summary>
-        public void RemovePassword()
-        {
+        public void RemovePassword() {
             // If there where no element to remove it will throw a com exception who we handle.
-            try
-            {
+            try {
                 protectedData.Remove(PASSWORD_KEY);
             }
-            catch (Exception)
-            {
+            catch (Exception) {
             }
         }
 

@@ -1,7 +1,8 @@
 using MvvmCross.Platform.Plugins;
+using Npadrutt.MvxPlugins.AppInformation;
 
-namespace MoneyFox.Shared.Bootstrap
-{
+namespace MoneyFox.Shared.Bootstrap {
     public class AppInformationPluginBootstrap
-        : MvxPluginBootstrapAction<Npadrutt.MvxPlugins.AppInformation.PluginLoader> { }
+        : MvxPluginBootstrapAction<PluginLoader> {
+    }
 }
