@@ -18,11 +18,11 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
-using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 using Microsoft.HockeyApp;
+using MoneyFox.Windows.Shortcut;
 
 namespace MoneyFox.Windows
 {
