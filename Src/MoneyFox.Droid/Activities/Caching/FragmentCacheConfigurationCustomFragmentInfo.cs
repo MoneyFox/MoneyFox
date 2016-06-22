@@ -1,14 +1,11 @@
 using MvvmCross.Droid.Shared.Caching;
 
-namespace MoneyFox.Droid.Activities.Caching
-{
+namespace MoneyFox.Droid.Activities.Caching {
     internal class FragmentCacheConfigurationCustomFragmentInfo :
-        FragmentCacheConfiguration<MainActivityFragmentCacheInfoFactory.SerializableCustomFragmentInfo>
-    {
+        FragmentCacheConfiguration<MainActivityFragmentCacheInfoFactory.SerializableCustomFragmentInfo> {
         private readonly MainActivityFragmentCacheInfoFactory _mainActivityFragmentCacheInfoFactory;
 
-        public FragmentCacheConfigurationCustomFragmentInfo()
-        {
+        public FragmentCacheConfigurationCustomFragmentInfo() {
             _mainActivityFragmentCacheInfoFactory = new MainActivityFragmentCacheInfoFactory();
         }
 

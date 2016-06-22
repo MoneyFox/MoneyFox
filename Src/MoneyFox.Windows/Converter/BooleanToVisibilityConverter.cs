@@ -2,14 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyFox.Windows.Converter
-{
-    public class BooleanToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter != null && parameter.ToString() == "revert")
-            {
+namespace MoneyFox.Windows.Converter {
+    public class BooleanToVisibilityConverter : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, string language) {
+            if (parameter != null && parameter.ToString() == "revert") {
                 return (bool) value ? Visibility.Collapsed : Visibility.Visible;
             }
 

@@ -1,14 +1,10 @@
 ﻿using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.ViewModels;
 
-namespace MoneyFox.Windows
-{
-    public class TileHelper : BaseViewModel
-    {
-        public bool DoNavigation(string tileId)
-        {
-            switch (tileId)
-            {
+namespace MoneyFox.Windows {
+    public class TileHelper : BaseViewModel {
+        public bool DoNavigation(string tileId) {
+            switch (tileId) {
                 case Constants.ADD_INCOME_TILE_ID:
                     ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.INCOME_TILE_ID});
                     return true;

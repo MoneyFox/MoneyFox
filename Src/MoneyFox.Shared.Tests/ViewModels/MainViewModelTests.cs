@@ -7,12 +7,9 @@ using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels
-{
-    public class MainViewModelTests : MvxIoCSupportingTest
-    {
-        public void GoToAddPayment_Income_CorrectPreparation()
-        {
+namespace MoneyFox.Shared.Tests.ViewModels {
+    public class MainViewModelTests : MvxIoCSupportingTest {
+        public void GoToAddPayment_Income_CorrectPreparation() {
             Setup();
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
@@ -48,8 +45,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
         }
 
-        public void GoToAddPayment_Expense_CorrectPreparation()
-        {
+        public void GoToAddPayment_Expense_CorrectPreparation() {
             Setup();
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
@@ -85,8 +81,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
         }
 
-        public void GoToAddPayment_Transfer_CorrectPreparation()
-        {
+        public void GoToAddPayment_Transfer_CorrectPreparation() {
             Setup();
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());

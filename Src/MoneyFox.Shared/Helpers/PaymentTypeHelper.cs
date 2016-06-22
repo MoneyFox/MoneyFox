@@ -1,13 +1,11 @@
 ﻿using System;
 using MoneyFox.Shared.Resources;
 
-namespace MoneyFox.Shared.Helpers
-{
+namespace MoneyFox.Shared.Helpers {
     /// <summary>
     ///     A collection of helper methods for handling PaymentTypes
     /// </summary>
-    public class PaymentTypeHelper
-    {
+    public class PaymentTypeHelper {
         /// <summary>
         ///     Parse a string to PaymentType
         /// </summary>
@@ -31,10 +29,8 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="type">PaymentType for which the title is searched.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
-        public static string GetViewTitleForType(PaymentType type, bool isEditMode)
-        {
-            switch (type)
-            {
+        public static string GetViewTitleForType(PaymentType type, bool isEditMode) {
+            switch (type) {
                 case PaymentType.Expense:
                     return isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle;
 
@@ -54,10 +50,8 @@ namespace MoneyFox.Shared.Helpers
         /// </summary>
         /// <param name="type">The Payment type as int.</param>
         /// <returns>The string for the determined type.</returns>
-        public static string GetTypeString(int type)
-        {
-            switch (type)
-            {
+        public static string GetTypeString(int type) {
+            switch (type) {
                 case (int) PaymentType.Income:
                     return PaymentType.Income.ToString();
 

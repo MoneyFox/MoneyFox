@@ -6,11 +6,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public abstract class StatisticViewModel : BaseViewModel
-    {
+    public abstract class StatisticViewModel : BaseViewModel {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
@@ -19,8 +17,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     as a start and end date.
         /// </summary>
         protected StatisticViewModel()
-            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth())
-        {
+            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth()) {
         }
 
         /// <summary>
@@ -28,13 +25,11 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <param name="startDate">Start date to select data from.</param>
         /// <param name="endDate">End date to select date from.</param>
-        protected StatisticViewModel(DateTime startDate, DateTime endDate)
-        {
+        protected StatisticViewModel(DateTime startDate, DateTime endDate) {
             StartDate = startDate;
             EndDate = endDate;
 
-            token = MessageHub.Subscribe<DateSelectedMessage>(message =>
-            {
+            token = MessageHub.Subscribe<DateSelectedMessage>(message => {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
                 Load();

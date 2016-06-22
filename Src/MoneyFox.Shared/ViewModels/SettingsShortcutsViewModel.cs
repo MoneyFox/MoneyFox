@@ -4,13 +4,11 @@ using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class SettingsShortcutsViewModel : BaseViewModel
-    {
+    public class SettingsShortcutsViewModel : BaseViewModel {
         private readonly IIncomeShortcut incomeShortcut;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
@@ -19,18 +17,15 @@ namespace MoneyFox.Shared.ViewModels
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
         public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut)
-        {
+            ITransferShortcut transferShortcut) {
             this.spendingShortcut = spendingShortcut;
             this.incomeShortcut = incomeShortcut;
             this.transferShortcut = transferShortcut;
         }
 
-        public bool ShowInfoOnMainTile
-        {
+        public bool ShowInfoOnMainTile {
             get { return SettingsHelper.ShowCashFlowOnMainTile; }
-            set
-            {
+            set {
                 SettingsHelper.ShowCashFlowOnMainTile = value;
                 RaisePropertyChanged();
             }
@@ -81,38 +76,32 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand RemoveTransferShortcutCommand => new MvxCommand(RemoveTransferShortcut);
 
-        private async void CreateSpendingShortcut()
-        {
+        private async void CreateSpendingShortcut() {
             await spendingShortcut.CreateShortCut();
             RaisePropertyChanged(nameof(IsSpendingShortcutPinned));
         }
 
-        private async void CreateIncomeShortcut()
-        {
+        private async void CreateIncomeShortcut() {
             await incomeShortcut.CreateShortCut();
             RaisePropertyChanged(nameof(IsIncomeShortcutPinned));
         }
 
-        private async void CreateTransferShortcut()
-        {
+        private async void CreateTransferShortcut() {
             await transferShortcut.CreateShortCut();
             RaisePropertyChanged(nameof(IsTransferShortcutPinned));
         }
 
-        private async void RemoveSpendingShortcut()
-        {
+        private async void RemoveSpendingShortcut() {
             await spendingShortcut.RemoveShortcut();
             RaisePropertyChanged(nameof(IsSpendingShortcutPinned));
         }
 
-        private async void RemoveIncomeShortcut()
-        {
+        private async void RemoveIncomeShortcut() {
             await incomeShortcut.RemoveShortcut();
             RaisePropertyChanged(nameof(IsIncomeShortcutPinned));
         }
 
-        private async void RemoveTransferShortcut()
-        {
+        private async void RemoveTransferShortcut() {
             await transferShortcut.RemoveShortcut();
             RaisePropertyChanged(nameof(IsTransferShortcutPinned));
         }

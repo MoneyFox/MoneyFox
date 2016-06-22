@@ -1,10 +1,8 @@
 ﻿using PropertyChanged;
 
-namespace MoneyFox.Shared.Model
-{
+namespace MoneyFox.Shared.Model {
     [ImplementPropertyChanged]
-    public class StatisticItem
-    {
+    public class StatisticItem {
         /// <summary>
         ///     Value used to group the items
         /// </summary>

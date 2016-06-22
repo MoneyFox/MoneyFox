@@ -12,57 +12,47 @@ using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 
-namespace MoneyFox.Droid
-{
-    public class AndroidAuthenticationProvider : AuthenticationProvider
-    {
+namespace MoneyFox.Droid {
+    public class AndroidAuthenticationProvider : AuthenticationProvider {
         private const string ONEDRIVE_KEY = "OneDrive";
 
         private IDictionary<string, string> authenticationResponseValues;
 
-        public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
-        {
+        public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo) {
         }
 
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
-        protected override async Task<AccountSession> GetAuthenticationResultAsync()
-        {
+        protected override async Task<AccountSession> GetAuthenticationResultAsync() {
             var sessionFromCache = await GetSessionFromCache();
 
-            if (sessionFromCache != null)
-            {
+            if (sessionFromCache != null) {
                 return sessionFromCache;
             }
 
             await ShowWebView();
             return new AccountSession(authenticationResponseValues, ServiceInfo.AppId,
-                AccountType.MicrosoftAccount)
-            {
-                CanSignOut = true
-            };
+                AccountType.MicrosoftAccount) {
+                    CanSignOut = true
+                };
         }
 
         /// <summary>
         ///     Tries to get an account session from the cache or via the refresh token.
         /// </summary>
         /// <returns>AccountSession created via the refresh token.</returns>
-        private async Task<AccountSession> GetSessionFromCache()
-        {
+        private async Task<AccountSession> GetSessionFromCache() {
             var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
 
-            if (accounts.Any())
-            {
+            if (accounts.Any()) {
                 var accountValues = accounts.FirstOrDefault()?.Properties;
 
-                if (accountValues == null)
-                {
+                if (accountValues == null) {
                     return null;
                 }
 
                 string refreshToken;
-                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken))
-                {
+                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken)) {
                     return await RefreshAccessTokenAsync(refreshToken);
                 }
             }
@@ -70,13 +60,11 @@ namespace MoneyFox.Droid
         }
 
 
-        public override Task SignOutAsync()
-        {
+        public override Task SignOutAsync() {
             throw new NotImplementedException();
         }
 
-        private Task<bool> ShowWebView()
-        {
+        private Task<bool> ShowWebView() {
             var tcs = new TaskCompletionSource<bool>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
@@ -86,10 +74,8 @@ namespace MoneyFox.Droid
                 new Uri(ServiceConstants.RETURN_URL),
                 new Uri(ServiceConstants.TOKEN_URL));
 
-            auth.Completed += (sender, eventArgs) =>
-            {
-                if (eventArgs.IsAuthenticated)
-                {
+            auth.Completed += (sender, eventArgs) => {
+                if (eventArgs.IsAuthenticated) {
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
                     authenticationResponseValues = eventArgs.Account.Properties;
                     AccountStore.Create(Application.Context).Save(eventArgs.Account, ONEDRIVE_KEY);
@@ -105,8 +91,7 @@ namespace MoneyFox.Droid
             return tcs.Task;
         }
 
-        private string GetAuthorizeUrl()
-        {
+        private string GetAuthorizeUrl() {
             var requestUriStringBuilder = new StringBuilder();
             requestUriStringBuilder.Append(ServiceConstants.AUTHENTICATION_URL);
             requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName,

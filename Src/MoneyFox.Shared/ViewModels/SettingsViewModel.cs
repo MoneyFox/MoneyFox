@@ -1,6 +1,4 @@
-﻿namespace MoneyFox.Shared.ViewModels
-{
-    public class SettingsViewModel : BaseViewModel
-    {
+﻿namespace MoneyFox.Shared.ViewModels {
+    public class SettingsViewModel : BaseViewModel {
     }
 }

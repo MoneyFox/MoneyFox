@@ -4,22 +4,17 @@ using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.Tests.Mocks
-{
-    public class PaymentDataAccessMock : IDataAccess<Payment>
-    {
+namespace MoneyFox.Shared.Tests.Mocks {
+    public class PaymentDataAccessMock : IDataAccess<Payment> {
         public List<Payment> PaymentTestList = new List<Payment>();
 
-        public bool SaveItem(Payment itemToSave)
-        {
+        public bool SaveItem(Payment itemToSave) {
             PaymentTestList.Add(itemToSave);
             return true;
         }
 
-        public bool DeleteItem(Payment item)
-        {
-            if (PaymentTestList.Contains(item))
-            {
+        public bool DeleteItem(Payment item) {
+            if (PaymentTestList.Contains(item)) {
                 PaymentTestList.Remove(item);
             }
             return true;

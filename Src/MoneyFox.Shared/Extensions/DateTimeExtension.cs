@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace MoneyFox.Shared.Extensions
-{
-    public static class DateTimeExtension
-    {
+namespace MoneyFox.Shared.Extensions {
+    public static class DateTimeExtension {
         public static DateTime GetFirstDayOfMonth(this DateTime self)
             => new DateTime(self.Year, self.Month, 1);
 

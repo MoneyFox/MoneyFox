@@ -2,14 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyFox.Windows.Converter
-{
-    public class NoteVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null)
-            {
+namespace MoneyFox.Windows.Converter {
+    public class NoteVisibilityConverter : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, string language) {
+            if (value == null) {
                 return Visibility.Collapsed;
             }
 
@@ -18,8 +14,7 @@ namespace MoneyFox.Windows.Converter
                 : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
+        public object ConvertBack(object value, Type targetType, object parameter, string language) {
             throw new NotImplementedException();
         }
     }

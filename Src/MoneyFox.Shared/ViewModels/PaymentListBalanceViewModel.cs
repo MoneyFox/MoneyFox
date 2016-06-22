@@ -4,17 +4,14 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     /// <summary>
     ///     This ViewModel is for the usage in the paymentlist when a concret account is selected
     /// </summary>
-    public class PaymentListBalanceViewModel : BalanceViewModel
-    {
+    public class PaymentListBalanceViewModel : BalanceViewModel {
         public PaymentListBalanceViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository)
-            : base(accountRepository, paymentRepository)
-        {
+            : base(accountRepository, paymentRepository) {
         }
 
         /// <summary>
@@ -28,15 +25,12 @@ namespace MoneyFox.Shared.ViewModels
         ///     This includes all payments coming until the end of month.
         /// </summary>
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
-        protected override double GetEndOfMonthValue()
-        {
+        protected override double GetEndOfMonthValue() {
             var balance = TotalBalance;
             var unclearedPayments = LoadUnclreadPayments();
 
-            foreach (var payment in unclearedPayments)
-            {
-                switch (payment.Type)
-                {
+            foreach (var payment in unclearedPayments) {
+                switch (payment.Type) {
                     case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
@@ -54,14 +48,11 @@ namespace MoneyFox.Shared.ViewModels
             return balance;
         }
 
-        private double HandleTransferAmount(Payment payment, double balance)
-        {
-            if (AccountRepository.Selected == payment.ChargedAccount)
-            {
+        private double HandleTransferAmount(Payment payment, double balance) {
+            if (AccountRepository.Selected == payment.ChargedAccount) {
                 balance -= payment.Amount;
             }
-            else
-            {
+            else {
                 balance += payment.Amount;
             }
             return balance;

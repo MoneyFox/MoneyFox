@@ -6,15 +6,12 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class StatisticCashFlowViewModel : StatisticViewModel
-    {
+    public class StatisticCashFlowViewModel : StatisticViewModel {
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository)
-        {
+        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository) {
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
 
             CashFlowModel = GetCashFlowModel();
@@ -28,8 +25,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Loads the cashflow with the current start and end date.
         /// </summary>
-        protected override void Load()
-        {
+        protected override void Load() {
             CashFlowModel = null;
             CashFlowModel = GetCashFlowModel();
         }
@@ -37,15 +33,13 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
-        public PlotModel GetCashFlowModel()
-        {
+        public PlotModel GetCashFlowModel() {
             var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
 
             var model = new PlotModel();
 
             var columnSeries = new ColumnSeries();
-            var axe = new CategoryAxis
-            {
+            var axe = new CategoryAxis {
                 AxislineColor = OxyColors.Black,
                 TextColor = OxyColors.Black,
                 IsPanEnabled = false,
@@ -53,16 +47,14 @@ namespace MoneyFox.Shared.ViewModels
                 Angle = 45
             };
 
-            if (SettingsHelper.IsDarkThemeSelected)
-            {
+            if (SettingsHelper.IsDarkThemeSelected) {
                 axe.AxislineColor = OxyColors.White;
                 axe.AxislineColor = OxyColors.White;
 
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
             }
-            else
-            {
+            else {
                 axe.AxislineColor = OxyColors.Black;
                 axe.AxislineColor = OxyColors.Black;
 

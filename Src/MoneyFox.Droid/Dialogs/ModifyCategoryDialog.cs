@@ -1,34 +1,27 @@
 using System;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.FullFragging.Fragments;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.FullFragging.Fragments;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Droid.Dialogs
-{
-    public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
-    {
-
-        public ModifyCategoryDialog(Category category = null)
-        {
+namespace MoneyFox.Droid.Dialogs {
+    public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel> {
+        public ModifyCategoryDialog(Category category = null) {
             ViewModel = Mvx.Resolve<CategoryDialogViewModel>();
 
-            if (category != null)
-            {
+            if (category != null) {
                 ViewModel.IsEdit = true;
                 ViewModel.Selected = category;
             }
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             ViewModel.LoadedCommand.Execute();
 
             Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
@@ -42,8 +35,7 @@ namespace MoneyFox.Droid.Dialogs
             return view;
         }
 
-        private void Dismiss(object sender, EventArgs e)
-        {
+        private void Dismiss(object sender, EventArgs e) {
             Dismiss();
         }
 
@@ -52,8 +44,7 @@ namespace MoneyFox.Droid.Dialogs
             base.OnDismiss(dialog);
         }
 
-        public override void OnResume()
-        {
+        public override void OnResume() {
             // Auto size the dialog based on it's contents
             Dialog.Window.SetLayout(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
             base.OnResume();

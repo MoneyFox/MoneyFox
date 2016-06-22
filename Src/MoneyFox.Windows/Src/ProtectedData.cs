@@ -2,32 +2,25 @@
 using Windows.Security.Credentials;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyManager.Windows
-{
-    public class ProtectedData : IProtectedData
-    {
-        public void Protect(string key, string value)
-        {
+namespace MoneyManager.Windows {
+    public class ProtectedData : IProtectedData {
+        public void Protect(string key, string value) {
             var vault = new PasswordVault();
             vault.Add(new PasswordCredential(
                 Package.Current.Id.Name, key, value));
         }
 
-        public string Unprotect(string key)
-        {
-            try
-            {
+        public string Unprotect(string key) {
+            try {
                 var vault = new PasswordVault();
                 return vault.Retrieve(Package.Current.Id.Name, key).Password;
             }
-            catch
-            {
+            catch {
                 return null;
             }
         }
 
-        public void Remove(string key)
-        {
+        public void Remove(string key) {
             var vault = new PasswordVault();
             var passwordCredential = vault.Retrieve(Package.Current.Id.Name, key);
             vault.Remove(passwordCredential);
