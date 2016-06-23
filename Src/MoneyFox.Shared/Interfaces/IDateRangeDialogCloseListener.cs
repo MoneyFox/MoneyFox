@@ -1,7 +1,5 @@
-namespace MoneyFox.Foundation.Interfaces
-{
-    public interface IDialogCloseListener
-    {
+namespace MoneyFox.Foundation.Interfaces {
+    public interface IDialogCloseListener {
         void HandleDialogClose();
     }
 }

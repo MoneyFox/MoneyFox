@@ -9,20 +9,16 @@ using MvvmCross.Test.Core;
 using Npadrutt.MvxPlugins.AppInformation;
 using Npadrutt.MvxPlugins.StoreOperations;
 
-namespace MoneyFox.Shared.Tests.ViewModels
-{
+namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
-    public class AboutViewModelTests : MvxIoCSupportingTest
-    {
-        public AboutViewModelTests()
-        {
+    public class AboutViewModelTests : MvxIoCSupportingTest {
+        public AboutViewModelTests() {
             MvxSingleton.ClearAllSingletons();
             Setup();
         }
 
         [TestMethod]
-        public void SendMail_NoParams_CommandCalled()
-        {
+        public void SendMail_NoParams_CommandCalled() {
             var commandCalled = false;
 
             var composeMailSetup = new Mock<IMvxComposeEmailTask>();
@@ -44,8 +40,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void SupportMail_NoParams_ReturnCorrectMail()
-        {
+        public void SupportMail_NoParams_ReturnCorrectMail() {
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
@@ -54,8 +49,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Website_NoParams_ReturnCorrectMail()
-        {
+        public void Website_NoParams_ReturnCorrectMail() {
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
@@ -64,8 +58,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Version_NoParams_ReturnCorrectMail()
-        {
+        public void Version_NoParams_ReturnCorrectMail() {
             var appinfos = new Mock<IAppInformation>();
             appinfos.Setup(x => x.GetVersion()).Returns("42");
 
@@ -77,8 +70,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void GoToWebsite_NoParams_Called()
-        {
+        public void GoToWebsite_NoParams_Called() {
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
@@ -95,8 +87,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void GoToRepository_NoParams_CommandCalled()
-        {
+        public void GoToRepository_NoParams_CommandCalled() {
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
@@ -114,8 +105,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void RateApp_NoParams_CommandCalled()
-        {
+        public void RateApp_NoParams_CommandCalled() {
             var commandCalled = false;
 
             var storeFeaturesSetup = new Mock<IStoreOperations>();

@@ -4,16 +4,13 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels
-{
+namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
-    public class StatisticCategorySummaryViewModel : StatisticViewModel
-    {
+    public class StatisticCategorySummaryViewModel : StatisticViewModel {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
 
         public StatisticCategorySummaryViewModel(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
-        {
+            IRepository<Category> categoryRepository) {
             categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
         }
 
@@ -22,8 +19,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public ObservableCollection<StatisticItem> CategorySummary { get; set; }
 
-        protected override void Load()
-        {
+        protected override void Load() {
             CategorySummary = null;
             CategorySummary = GetCategorySummaryData();
         }

@@ -1,7 +1,5 @@
-﻿namespace MoneyFox.Shared.Interfaces
-{
-    public interface ITileUpdateService
-    {
+﻿namespace MoneyFox.Shared.Interfaces {
+    public interface ITileUpdateService {
         /// <summary>
         ///     Sets the MainTile with new Information
         /// </summary>

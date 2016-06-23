@@ -6,12 +6,9 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Windows.Views
-{
-    public sealed partial class ModifyAccountView
-    {
-        public ModifyAccountView()
-        {
+namespace MoneyFox.Windows.Views {
+    public sealed partial class ModifyAccountView {
+        public ModifyAccountView() {
             InitializeComponent();
             DataContext = Mvx.Resolve<ModifyAccountViewModel>();
 
@@ -19,27 +16,22 @@ namespace MoneyFox.Windows.Views
             // workaround since otherwise the keyboard would overlay some controls
             InputPane.GetForCurrentView().Showing +=
                 (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
-            InputPane.GetForCurrentView().Hiding += (s, args2) =>
-            {
-                if (BottomCommandBar.Visibility == Visibility.Collapsed)
-                {
+            InputPane.GetForCurrentView().Hiding += (s, args2) => {
+                if (BottomCommandBar.Visibility == Visibility.Collapsed) {
                     BottomCommandBar.Visibility = Visibility.Visible;
                 }
             };
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             var viewModel = (ModifyAccountViewModel) DataContext;
 
             var account = e.Parameter as Account;
-            if (account != null)
-            {
+            if (account != null) {
                 viewModel.IsEdit = true;
                 viewModel.SelectedAccount = account;
             }
-            else
-            {
+            else {
                 viewModel.IsEdit = false;
                 viewModel.SelectedAccount = new Account();
             }
@@ -48,13 +40,11 @@ namespace MoneyFox.Windows.Views
         }
 
 
-        private void TextBoxOnFocus(object sender, RoutedEventArgs e)
-        {
+        private void TextBoxOnFocus(object sender, RoutedEventArgs e) {
             TextBoxCurrentBalance.SelectAll();
         }
 
-        private void FormatTextBoxOnLostFocus(object sender, RoutedEventArgs e)
-        {
+        private void FormatTextBoxOnLostFocus(object sender, RoutedEventArgs e) {
             double amount;
             double.TryParse(TextBoxCurrentBalance.Text, out amount);
             TextBoxCurrentBalance.Text = Utilities.FormatLargeNumbers(amount);

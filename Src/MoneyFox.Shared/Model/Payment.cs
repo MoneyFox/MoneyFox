@@ -2,16 +2,14 @@
 using PropertyChanged;
 using SQLite.Net.Attributes;
 
-namespace MoneyFox.Shared.Model
-{
+namespace MoneyFox.Shared.Model {
     /// <summary>
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
     [Table("Payments")]
     [ImplementPropertyChanged]
-    public class Payment
-    {
+    public class Payment {
         private Category category;
 
         private Account chargedAccount;
@@ -84,13 +82,10 @@ namespace MoneyFox.Shared.Model
         ///     In case it's an income the account who will be credited.
         /// </summary>
         [Ignore]
-        public Account ChargedAccount
-        {
+        public Account ChargedAccount {
             get { return chargedAccount; }
-            set
-            {
-                if (chargedAccount != value)
-                {
+            set {
+                if (chargedAccount != value) {
                     chargedAccount = value;
                     ChargedAccountId = value?.Id ?? 0;
                 }
@@ -102,13 +97,10 @@ namespace MoneyFox.Shared.Model
         ///     Not used for the other payment types.
         /// </summary>
         [Ignore]
-        public Account TargetAccount
-        {
+        public Account TargetAccount {
             get { return targetAccount; }
-            set
-            {
-                if (targetAccount != value)
-                {
+            set {
+                if (targetAccount != value) {
                     targetAccount = value;
                     TargetAccountId = value?.Id ?? 0;
                 }
@@ -119,13 +111,10 @@ namespace MoneyFox.Shared.Model
         ///     The <see cref="Category" /> for this payment
         /// </summary>
         [Ignore]
-        public Category Category
-        {
+        public Category Category {
             get { return category; }
-            set
-            {
-                if (category != value)
-                {
+            set {
+                if (category != value) {
                     category = value;
                     CategoryId = value?.Id ?? 0;
                 }
@@ -136,13 +125,10 @@ namespace MoneyFox.Shared.Model
         ///     The <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
         [Ignore]
-        public RecurringPayment RecurringPayment
-        {
+        public RecurringPayment RecurringPayment {
             get { return recurringPayment; }
-            set
-            {
-                if (recurringPayment != value)
-                {
+            set {
+                if (recurringPayment != value) {
                     recurringPayment = value;
                     RecurringPaymentId = value?.Id ?? 0;
                 }

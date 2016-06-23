@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces
-{
-    public interface IBackupService
-    {
+namespace MoneyFox.Shared.Interfaces {
+    public interface IBackupService {
         bool IsLoggedIn { get; }
 
         /// <summary>

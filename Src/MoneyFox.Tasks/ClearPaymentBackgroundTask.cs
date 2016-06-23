@@ -1,23 +1,20 @@
 ﻿using Windows.ApplicationModel.Background;
 using Microsoft.HockeyApp;
 using MoneyFox.Shared;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
-using MoneyManager.Windows.Services;
-using MoneyManager.Windows.Shortcut;
+using MoneyFox.Windows.Services;
+using MoneyFox.Windows.Shortcuts;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using MoneyFox.Shared.Constants;
 
-namespace MoneyFox.Tasks
-{
-    public sealed class ClearPaymentBackgroundTask : IBackgroundTask
-    {
+namespace MoneyFox.Tasks {
+    public sealed class ClearPaymentBackgroundTask : IBackgroundTask {
         private readonly PaymentManager paymentManager;
 
-        public ClearPaymentBackgroundTask()
-        {
+        public ClearPaymentBackgroundTask() {
 #if !DEBUG
             HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif
@@ -41,8 +38,7 @@ namespace MoneyFox.Tasks
                 null);
         }
 
-        public void Run(IBackgroundTaskInstance taskInstance)
-        {
+        public void Run(IBackgroundTaskInstance taskInstance) {
             paymentManager.ClearPayments();
             Tile.UpdateMainTile();
         }

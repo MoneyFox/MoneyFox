@@ -8,13 +8,11 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
 
-namespace MoneyFox.Shared.Manager
-{
+namespace MoneyFox.Shared.Manager {
     /// <summary>
     ///     Manages the backup creation and restore process with different services.
     /// </summary>
-    public class BackupManager : IBackupManager
-    {
+    public class BackupManager : IBackupManager {
         private readonly IBackupService backupService;
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
@@ -25,8 +23,7 @@ namespace MoneyFox.Shared.Manager
         public BackupManager(IRepositoryManager repositoryManager,
             IBackupService backupService,
             IMvxFileStore fileStore,
-            IDatabaseManager databaseManager)
-        {
+            IDatabaseManager databaseManager) {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;
             this.fileStore = fileStore;
@@ -37,10 +34,8 @@ namespace MoneyFox.Shared.Manager
         ///     Gets the backup date from the backup service.
         /// </summary>
         /// <returns>Backupdate.</returns>
-        public async Task<DateTime> GetBackupDate()
-        {
-            if (await CheckIfUserIsLoggedIn())
-            {
+        public async Task<DateTime> GetBackupDate() {
+            if (await CheckIfUserIsLoggedIn()) {
                 var date = await backupService.GetBackupDate();
                 return date.ToLocalTime();
             }
@@ -51,8 +46,7 @@ namespace MoneyFox.Shared.Manager
         ///     Tries to log in the user to the backup service.
         /// </summary>
         /// <exception cref="OneDriveException">Thrown when any error in the OneDrive SDK Occurs</exception>
-        public async Task Login()
-        {
+        public async Task Login() {
             await backupService.Login();
         }
 
@@ -61,10 +55,8 @@ namespace MoneyFox.Shared.Manager
         ///     There is no further check if the files are valid backup files or not.
         /// </summary>
         /// <returns>Backups available or not.</returns>
-        public async Task<bool> IsBackupExisting()
-        {
-            if (await CheckIfUserIsLoggedIn())
-            {
+        public async Task<bool> IsBackupExisting() {
+            if (await CheckIfUserIsLoggedIn()) {
                 var files = await backupService.GetFileNames();
                 return files != null && files.Any();
             }
@@ -74,10 +66,8 @@ namespace MoneyFox.Shared.Manager
         /// <summary>
         ///     Creates a new backup date.
         /// </summary>
-        public async Task CreateNewBackup()
-        {
-            if (await CheckIfUserIsLoggedIn())
-            {
+        public async Task CreateNewBackup() {
+            if (await CheckIfUserIsLoggedIn()) {
                 await backupService.Upload();
             }
         }
@@ -87,15 +77,12 @@ namespace MoneyFox.Shared.Manager
         ///     If it was an old backup, it will delete the existing db an make an migration.
         ///     After the restore it will perform a reload of the data so that the cache works with the new data.
         /// </summary>
-        public async Task RestoreBackup()
-        {
-            if (await CheckIfUserIsLoggedIn())
-            {
+        public async Task RestoreBackup() {
+            if (await CheckIfUserIsLoggedIn()) {
                 var backupNames = GetBackupName(await backupService.GetFileNames());
                 await backupService.Restore(backupNames.Item1, backupNames.Item2);
 
-                if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
-                {
+                if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME)) {
                     fileStore.DeleteFile(DatabaseConstants.DB_NAME);
                 }
 
@@ -107,20 +94,16 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        private Tuple<string, string> GetBackupName(List<string> filenames)
-        {
-            if (filenames.Contains(DatabaseConstants.BACKUP_NAME))
-            {
+        private Tuple<string, string> GetBackupName(List<string> filenames) {
+            if (filenames.Contains(DatabaseConstants.BACKUP_NAME)) {
                 return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME);
             }
             oldBackupRestored = true;
             return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD);
         }
 
-        private async Task<bool> CheckIfUserIsLoggedIn()
-        {
-            if (backupService.IsLoggedIn)
-            {
+        private async Task<bool> CheckIfUserIsLoggedIn() {
+            if (backupService.IsLoggedIn) {
                 return true;
             }
 

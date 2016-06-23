@@ -5,21 +5,15 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Windows.Services
-{
-    public class BackgroundTaskService : IBackgroundTaskService
-    {
-        private Dictionary<string, string> Tasks => new Dictionary<string, string>
-        {
+namespace MoneyFox.Windows.Services {
+    public class BackgroundTaskService : IBackgroundTaskService {
+        private Dictionary<string, string> Tasks => new Dictionary<string, string> {
             {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
         };
 
-        public async Task RegisterTasksAsync()
-        {
-            foreach (var kvTask in Tasks)
-            {
-                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == kvTask.Key))
-                {
+        public async Task RegisterTasksAsync() {
+            foreach (var kvTask in Tasks) {
+                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == kvTask.Key)) {
                     break;
                 }
 
@@ -27,15 +21,12 @@ namespace MoneyFox.Windows.Services
             }
         }
 
-        private async Task RegisterTaskAsync(string taskName, string taskNamespace)
-        {
+        private async Task RegisterTaskAsync(string taskName, string taskNamespace) {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
             if (requestAccess == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity ||
-                requestAccess == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity)
-            {
-                var taskBuilder = new BackgroundTaskBuilder
-                {
+                requestAccess == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity) {
+                var taskBuilder = new BackgroundTaskBuilder {
                     Name = taskName,
                     TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
                 };

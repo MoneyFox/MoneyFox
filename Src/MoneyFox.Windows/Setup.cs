@@ -9,8 +9,6 @@ using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Shortcuts;
 using MoneyManager.Windows;
-using MoneyManager.Windows.Services;
-using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -26,23 +24,19 @@ using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
-using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
-using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.AppInformation;
+using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
+using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 
-namespace MoneyFox.Windows
-{
-    public class Setup : MvxWindowsSetup
-    {
+namespace MoneyFox.Windows {
+    public class Setup : MvxWindowsSetup {
         public Setup(Frame frame)
-            : base(frame)
-        {
+            : base(frame) {
         }
 
-        public override void LoadPlugins(IMvxPluginManager pluginManager)
-        {
+        public override void LoadPlugins(IMvxPluginManager pluginManager) {
             base.LoadPlugins(pluginManager);
             pluginManager.EnsurePluginLoaded<PluginLoader>();
 
@@ -58,8 +52,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IStoreOperations, MarketplaceOperations>();
         }
 
-        protected override void InitializeFirstChance()
-        {
+        protected override void InitializeFirstChance() {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();

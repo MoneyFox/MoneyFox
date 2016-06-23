@@ -3,14 +3,10 @@ using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.ViewModels.DesignTime
-{
-    public class DesignTimeCategoryListViewModel : ICategoryListViewModel
-    {
-        public DesignTimeCategoryListViewModel()
-        {
-            Categories = new ObservableCollection<Category>
-            {
+namespace MoneyFox.Shared.ViewModels.DesignTime {
+    public class DesignTimeCategoryListViewModel : ICategoryListViewModel {
+        public DesignTimeCategoryListViewModel() {
+            Categories = new ObservableCollection<Category> {
                 new Category {Name = "Design Time Category 1"}
             };
         }

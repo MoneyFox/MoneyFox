@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces.Shotcuts
-{
+namespace MoneyFox.Shared.Interfaces.Shotcuts {
     /// <summary>
     ///     Defines a interface to handling Shortcut
     /// </summary>
-    public interface IShortcut
-    {
+    public interface IShortcut {
         /// <summary>
         ///     Indicates if the shortcut exists
         /// </summary>

@@ -5,14 +5,11 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.ViewModels
-{
+namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
-    public class ModifyAccountViewModelTests
-    {
+    public class ModifyAccountViewModelTests {
         [TestMethod]
-        public void Title_EditAccount_CorrectTitle()
-        {
+        public void Title_EditAccount_CorrectTitle() {
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -25,8 +22,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Title_AddAccount_CorrectTitle()
-        {
+        public void Title_AddAccount_CorrectTitle() {
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IAccountRepository>();

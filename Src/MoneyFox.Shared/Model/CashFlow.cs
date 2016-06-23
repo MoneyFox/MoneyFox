@@ -1,10 +1,8 @@
-﻿namespace MoneyFox.Shared.Model
-{
+﻿namespace MoneyFox.Shared.Model {
     /// <summary>
     ///     Represents a cash flow object for usage in statistics
     /// </summary>
-    public class CashFlow
-    {
+    public class CashFlow {
         /// <summary>
         ///     The income of the cash flow object.
         /// </summary>
