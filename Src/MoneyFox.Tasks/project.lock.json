@@ -32,7 +32,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -40,9 +40,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -2104,7 +2104,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -2112,9 +2112,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -4037,7 +4037,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -4045,9 +4045,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -5928,7 +5928,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -5936,9 +5936,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -7869,7 +7869,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -7877,9 +7877,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -9760,7 +9760,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -9768,9 +9768,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -11701,7 +11701,7 @@
         }
       },
       "Fody/1.29.2": {},
-      "HockeySDK.Core/4.1.0-build65440": {
+      "HockeySDK.Core/4.1.1-build17552": {
         "compile": {
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         },
@@ -11709,9 +11709,9 @@
           "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll": {}
         }
       },
-      "HockeySDK.UWP/4.1.0-build65440": {
+      "HockeySDK.UWP/4.1.1-build17552": {
         "dependencies": {
-          "HockeySDK.Core": "4.1.0-build65440"
+          "HockeySDK.Core": "4.1.1-build17552"
         },
         "compile": {
           "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
@@ -13662,11 +13662,11 @@
         "build/portable-net+sl+win+wpa+wp/Fody.targets"
       ]
     },
-    "HockeySDK.Core/4.1.0-build65440": {
-      "sha512": "m4UVsPGnEisokz6JOIa9SMW5rJy8JiMmMnTZGW/EvIkzZ8hsgkROd672yJTP6g+wATyfH0G5zavbceWHtJH1/A==",
+    "HockeySDK.Core/4.1.1-build17552": {
+      "sha512": "dIF+EeOttILF00MQUh0BcrVgbbDaPzHZlQ8yXN5EhChaTsPT6i5xQG3XNgE8RP8nPM2IQX1uyFuJJc26TnYaiQ==",
       "type": "package",
       "files": [
-        "HockeySDK.Core.4.1.0-build65440.nupkg.sha512",
+        "HockeySDK.Core.4.1.1-build17552.nupkg.sha512",
         "HockeySDK.Core.nuspec",
         "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll",
         "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.Core45.dll.CodeAnalysisLog.xml",
@@ -13674,11 +13674,11 @@
         "lib/portable-net45+win8+wp8+wpa81+win81+uap10.0/Microsoft.HockeyApp.XML"
       ]
     },
-    "HockeySDK.UWP/4.1.0-build65440": {
-      "sha512": "adz0d2myeTxW9vYYQ+RFbof+gKoc1bOzqz2ptY7+qJqTTg/MbWDouOdhbqdplMBST4zRh2iPKYHxD53A0AQXRw==",
+    "HockeySDK.UWP/4.1.1-build17552": {
+      "sha512": "JRe4fHc5FEf+Z/CbkgCgMdF4NTnhqnqoHc+XogzeynywhAxUyWN/0FfS6X11vtbiGK3d785RkYpBACd1YFCMfw==",
       "type": "package",
       "files": [
-        "HockeySDK.UWP.4.1.0-build65440.nupkg.sha512",
+        "HockeySDK.UWP.4.1.1-build17552.nupkg.sha512",
         "HockeySDK.UWP.nuspec",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.dll",
         "lib/uap10.0/Microsoft.HockeyApp.Kit.dll.CodeAnalysisLog.xml",
@@ -14258,7 +14258,7 @@
       ]
     },
     "Microsoft.OneDriveSDK/1.1.47": {
-      "sha512": "D/AUi1DaB7i1Xul2RphgE701Duh9m0rEngSXWIHp4mLyU1WQkHLCyOcdXsXc51vgEn7kDNInMqxfKCAL+qcKZQ==",
+      "sha512": "qwSDJGoTt9CkUE7sFXpYr7n9wSHHXFoR9OpV9VuTKLEfR4AdeBwKLcupFDZH7nefjezuUmDURfcgIIM7e/LdjQ==",
       "type": "package",
       "files": [
         "Microsoft.OneDriveSDK.1.1.47.nupkg.sha512",
@@ -17740,7 +17740,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "HockeySDK.UWP >= 4.1.0-build65440",
+      "HockeySDK.UWP >= 4.1.1-build17552",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "MvvmCross.Plugin.SQLitePCL >= 4.2.0",
       "SQLite.Net-PCL >= 3.1.1",
