@@ -8,7 +8,6 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Shortcuts;
-using MoneyManager.Windows;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;

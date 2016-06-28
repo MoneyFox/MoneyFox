@@ -59,7 +59,6 @@ namespace MoneyFox.Droid {
             return null;
         }
 
-
         public override Task SignOutAsync() {
             throw new NotImplementedException();
         }

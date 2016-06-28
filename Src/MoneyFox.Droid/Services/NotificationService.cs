@@ -7,7 +7,8 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid.Src {
+namespace MoneyFox.Droid.Services {
+
     public class NotificationService : INotificationService {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 

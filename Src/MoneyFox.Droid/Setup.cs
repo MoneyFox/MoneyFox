@@ -5,11 +5,8 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using MoneyFox.Droid.Src;
-using MoneyFox.Droid.Widgets;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
@@ -18,6 +15,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Messenger;
+using MoneyFox.Droid.Services;
 
 namespace MoneyFox.Droid {
     public class Setup : MvxAndroidSetup {
@@ -45,9 +43,6 @@ namespace MoneyFox.Droid {
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
-            Mvx.RegisterType<ISpendingShortcut, ExpenseWidget>();
-            Mvx.RegisterType<IIncomeShortcut, IncomeWidget>();
-            Mvx.RegisterType<ITransferShortcut, TransferWidget>();
             Mvx.RegisterType<INotificationService, NotificationService>();
         }
 

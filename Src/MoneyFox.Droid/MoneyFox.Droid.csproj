@@ -326,18 +326,14 @@
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Src\AndroidAuthenticationProvider.cs" />
     <Compile Include="Src\CustomPresenter.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Src\CustomServiceInfoProvider.cs" />
-    <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Src\NotificationService.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
-    <Compile Include="Src\Widgets\ExpenseWidget.cs" />
-    <Compile Include="Src\Widgets\IncomeWidget.cs" />
-    <Compile Include="Src\Widgets\TransferWidget.cs" />
     <Compile Include="Fragments\CategoriesFragment.cs" />
   </ItemGroup>
   <ItemGroup>
