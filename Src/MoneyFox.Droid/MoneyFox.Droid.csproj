@@ -547,7 +547,7 @@
     <AndroidResource Include="Resources\drawable\ic_backup.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_info_outline.png" />
+    <AndroidResource Include="Resources\drawable\ic_info.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_label_outline.png" />
