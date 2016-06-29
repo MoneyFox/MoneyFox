@@ -18,13 +18,13 @@ namespace MoneyFox.Shared.Interfaces {
         ///     Will update an existing entry and add a non existing
         /// </summary>
         /// <param name="item">Item.</param>
-        void Save(T item);
+        bool Save(T item);
 
         /// <summary>
         ///     Delete the specified payment.
         /// </summary>
         /// <param name="paymentToDelete">Payment to delete.</param>
-        void Delete(T paymentToDelete);
+        bool Delete(T paymentToDelete);
 
         /// <summary>
         ///     Loads the data from the database and fills it to the data collection.

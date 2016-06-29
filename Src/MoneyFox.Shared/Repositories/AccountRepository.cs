@@ -49,34 +49,36 @@ namespace MoneyFox.Shared.Repositories {
         ///     Save a new account or update an existing one.
         /// </summary>
         /// <param name="account">accountToDelete to save</param>
-        public void Save(Account account) {
-            if (string.IsNullOrWhiteSpace(account.Name)) {
+        public bool Save(Account account)
+        {
+            if (string.IsNullOrWhiteSpace(account.Name))
+            {
                 account.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            if (account.Id == 0) {
+            if (account.Id == 0)
+            {
                 data.Add(account);
             }
-            if (dataAccess.SaveItem(account)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else {
+            if (!dataAccess.SaveItem(account))
+            {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+                return false;
             }
+            return true;
         }
 
         /// <summary>
         ///     Deletes the passed account and removes it from cache
         /// </summary>
         /// <param name="accountToDelete">accountToDelete to delete</param>
-        public void Delete(Account accountToDelete) {
+        public bool Delete(Account accountToDelete) {
             data.Remove(accountToDelete);
-            if (dataAccess.DeleteItem(accountToDelete)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else {
+            if (!dataAccess.DeleteItem(accountToDelete)) {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                return false;
             }
+            return true;
         }
 
         /// <summary>
@@ -94,9 +96,9 @@ namespace MoneyFox.Shared.Repositories {
         ///     Adds the payment amount from the selected account
         /// </summary>
         /// <param name="payment">Payment to add the account from.</param>
-        public void AddPaymentAmount(Payment payment) {
+        public bool AddPaymentAmount(Payment payment) {
             if (!payment.IsCleared) {
-                return;
+                return false;
             }
 
             PrehandleAddIfTransfer(payment);
@@ -111,14 +113,16 @@ namespace MoneyFox.Shared.Repositories {
             }
 
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
+            return true;
         }
 
         /// <summary>
         ///     Removes the payment Amount from the charged account of this payment
         /// </summary>
         /// <param name="payment">Payment to remove the account from.</param>
-        public void RemovePaymentAmount(Payment payment) {
-            RemovePaymentAmount(payment, payment.ChargedAccount);
+        public bool RemovePaymentAmount(Payment payment) {
+            bool succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
+            return succeded;
         }
 
         /// <summary>
@@ -126,9 +130,9 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         /// <param name="payment">Payment to remove.</param>
         /// <param name="account">Account to remove the amount from.</param>
-        public void RemovePaymentAmount(Payment payment, Account account) {
+        public bool RemovePaymentAmount(Payment payment, Account account) {
             if (!payment.IsCleared) {
-                return;
+                return false;
             }
 
             PrehandleRemoveIfTransfer(payment);
@@ -139,6 +143,7 @@ namespace MoneyFox.Shared.Repositories {
                     : x;
 
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(account));
+            return true;
         }
 
         private void PrehandleRemoveIfTransfer(Payment payment) {

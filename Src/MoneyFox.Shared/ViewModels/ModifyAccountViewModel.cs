@@ -5,6 +5,7 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using System;
 
 namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
@@ -86,12 +87,14 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         private void SaveAccount() {
-            accountRepository.Save(accountRepository.Selected);
+            if (accountRepository.Save(accountRepository.Selected))
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }
 
         private void DeleteAccount() {
-            accountRepository.Delete(accountRepository.Selected);
+            if (accountRepository.Delete(accountRepository.Selected))
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }
 

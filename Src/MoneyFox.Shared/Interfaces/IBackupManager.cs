@@ -26,11 +26,16 @@ namespace MoneyFox.Shared.Interfaces {
         /// <summary>
         ///     Creates a new backup.
         /// </summary>
-        Task CreateNewBackup();
+        Task<bool> CreateNewBackup();
 
         /// <summary>
         ///     Restores an existing backup.
         /// </summary>
         Task RestoreBackup();
+
+        /// <summary>
+        /// Enqueues a new backup task
+        /// </summary>
+        Task EnqueueBackupTask(int attempts);
     }
 }

@@ -34,7 +34,7 @@ namespace MoneyFox.Shared.Manager {
                 globalBusyIndicatorState.IsActive = true;
 
                 if (await backupManager.GetBackupDate() < SettingsHelper.LastDatabaseUpdate) {
-                    await backupManager.CreateNewBackup();
+                    await backupManager.EnqueueBackupTask(0);
                 }
             }
             catch (OneDriveException ex) {

@@ -2,6 +2,7 @@
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using System;
 
 namespace MoneyFox.Shared.Manager {
     public class RecurringPaymentManager : IRecurringPaymentManager {
@@ -26,8 +27,10 @@ namespace MoneyFox.Shared.Manager {
                 if (RecurringPaymentHelper.CheckIfRepeatable(payment.RecurringPayment, relatedPayment)) {
                     var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
 
-                    paymentRepository.Save(newPayment);
-                    accountRepository.AddPaymentAmount(newPayment);
+                    bool paymentSucceded = paymentRepository.Save(newPayment);
+                    bool accountSucceded = accountRepository.AddPaymentAmount(newPayment);
+                    if(paymentSucceded && accountSucceded)
+                        SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 }
             }
         }

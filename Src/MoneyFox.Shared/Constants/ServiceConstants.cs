@@ -27,5 +27,20 @@
         ///     Scopes for OneDrive access
         /// </summary>
         public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
+
+        /// <summary>
+        /// Maximum number of attempts to sync the database
+        /// </summary>
+        public static int SyncAttempts = 2;
+
+        /// <summary>
+        /// The amount of time to wait for the onedrive backup to be completed
+        /// </summary>
+        public static int BackupOperationTimeout = 10000;
+
+        /// <summary>
+        /// The amount of time to wait before retrying to sync
+        /// </summary>
+        public static int BackupRepeatDelay = 2000;
     }
 }

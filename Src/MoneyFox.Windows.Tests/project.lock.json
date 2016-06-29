@@ -13663,7 +13663,7 @@
       ]
     },
     "HockeySDK.Core/4.1.0-build65440": {
-      "sha512": "m4UVsPGnEisokz6JOIa9SMW5rJy8JiMmMnTZGW/EvIkzZ8hsgkROd672yJTP6g+wATyfH0G5zavbceWHtJH1/A==",
+      "sha512": "y2BOWCjQeUZXjT+6mHYgQ/eZhPvf4FoOjJP5R86EJ/crfN87aSkJ1DbPFY6vVY+0euv5subIVjdaQUMdROmvYA==",
       "type": "package",
       "files": [
         "HockeySDK.Core.4.1.0-build65440.nupkg.sha512",
@@ -13675,7 +13675,7 @@
       ]
     },
     "HockeySDK.UWP/4.1.0-build65440": {
-      "sha512": "adz0d2myeTxW9vYYQ+RFbof+gKoc1bOzqz2ptY7+qJqTTg/MbWDouOdhbqdplMBST4zRh2iPKYHxD53A0AQXRw==",
+      "sha512": "uqdsZoO47t55Z12Npq8RmoA/Rpdznpu/Xl1XUKT26qzwzlQnfhOixVVo3IinGiX19GPNHtqBZuGqieEOItPtLA==",
       "type": "package",
       "files": [
         "HockeySDK.UWP.4.1.0-build65440.nupkg.sha512",
@@ -14690,7 +14690,7 @@
       ]
     },
     "NotificationsExtensions.Win10/14332.0.1": {
-      "sha512": "8m2YWUun8+CkdTiUhLHV/BRx/in4T0bPETHwiWOU/ijQq7bracDZW+rN37CRZ9AtcQJp0wbFVE8eb8DtCuWvpw==",
+      "sha512": "lw7O9/Whadt1aO1qtVVQzbwCaW3KvdOG8F6u3XE5Rn5i5BWSJFetUAkMzlw5/JF8zQk+2DCi3WFHtZzHzxypqA==",
       "type": "package",
       "files": [
         "NotificationsExtensions.Win10.14332.0.1.nupkg.sha512",
