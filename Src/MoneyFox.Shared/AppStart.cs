@@ -14,20 +14,18 @@ namespace MoneyFox.Shared {
         ///     Execute code on start up.
         /// </summary>
         /// <param name="hint">parameter for the launch of the app.</param>
-        public void Start(object hint = null) {
-            Task.Run(() => HandleDataOnStartup());
-
+        public async void Start(object hint = null) {
             if (Mvx.Resolve<Session>().ValidateSession()) {
                 ShowViewModel<MainViewModel>();
             }
             else {
                 ShowViewModel<LoginViewModel>();
             }
+            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
+            HandleDataOnStartup();
         }
 
-        private async void HandleDataOnStartup() {
-            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
-
+        private void HandleDataOnStartup() {
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
         }

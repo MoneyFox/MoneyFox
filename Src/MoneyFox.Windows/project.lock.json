@@ -14261,7 +14261,7 @@
       ]
     },
     "Microsoft.OneDriveSDK/1.1.47": {
-      "sha512": "D/AUi1DaB7i1Xul2RphgE701Duh9m0rEngSXWIHp4mLyU1WQkHLCyOcdXsXc51vgEn7kDNInMqxfKCAL+qcKZQ==",
+      "sha512": "qwSDJGoTt9CkUE7sFXpYr7n9wSHHXFoR9OpV9VuTKLEfR4AdeBwKLcupFDZH7nefjezuUmDURfcgIIM7e/LdjQ==",
       "type": "package",
       "files": [
         "Microsoft.OneDriveSDK.1.1.47.nupkg.sha512",
