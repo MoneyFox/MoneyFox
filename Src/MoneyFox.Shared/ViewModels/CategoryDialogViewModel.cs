@@ -1,8 +1,10 @@
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using System;
 
 namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
@@ -39,7 +41,8 @@ namespace MoneyFox.Shared.ViewModels {
                 return;
             }
 
-            categoryRepository.Save(Selected);
+            if(categoryRepository.Save(Selected))
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
         }
     }
 }

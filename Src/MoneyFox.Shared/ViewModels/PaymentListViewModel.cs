@@ -8,6 +8,8 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using MoneyFox.Shared.Helpers;
+using System;
 
 namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
@@ -100,7 +102,8 @@ namespace MoneyFox.Shared.ViewModels {
 
         private async void DeleteAccount() {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
-                accountRepository.Delete(accountRepository.Selected);
+                if(accountRepository.Delete(accountRepository.Selected))
+                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
@@ -122,8 +125,10 @@ namespace MoneyFox.Shared.ViewModels {
                 paymentRepository.DeleteRecurring(payment);
             }
 
-            accountRepository.RemovePaymentAmount(payment);
-            paymentRepository.Delete(payment);
+            bool accountSucceded = accountRepository.RemovePaymentAmount(payment);
+            bool paymentSucceded = paymentRepository.Delete(payment);
+            if(accountSucceded && paymentSucceded)
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             LoadCommand.Execute();
         }
     }

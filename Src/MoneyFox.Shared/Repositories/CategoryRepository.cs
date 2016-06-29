@@ -47,7 +47,8 @@ namespace MoneyFox.Shared.Repositories {
         ///     Save a new category or update an existing one.
         /// </summary>
         /// <param name="category">accountToDelete to save</param>
-        public void Save(Category category) {
+        /// <returns>Whether the task has succeeded</returns>
+        public bool Save(Category category) {
             if (string.IsNullOrWhiteSpace(category.Name)) {
                 category.Name = Strings.NoNamePlaceholderLabel;
             }
@@ -57,26 +58,26 @@ namespace MoneyFox.Shared.Repositories {
 
                 data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
             }
-            if (dataAccess.SaveItem(category)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else {
+            if (!dataAccess.SaveItem(category)) {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+                return false;
             }
+            return true;
         }
+
 
         /// <summary>
         ///     Deletes the passed category and removes it from cache
         /// </summary>
         /// <param name="categoryToDelete">accountToDelete to delete</param>
-        public void Delete(Category categoryToDelete) {
+        /// <returns>Whether the task has succeeded</returns>
+        public bool Delete(Category categoryToDelete) {
             data.Remove(categoryToDelete);
-            if (dataAccess.DeleteItem(categoryToDelete)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else {
+            if (!dataAccess.DeleteItem(categoryToDelete)) {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                return false;
             }
+            return true;
         }
 
         /// <summary>

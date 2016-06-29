@@ -65,11 +65,13 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         public Payment Selected { get; set; }
 
+
         /// <summary>
         ///     Save a new payment or update an existin one.
         /// </summary>
         /// <param name="payment">item to save</param>
-        public void Save(Payment payment) {
+        /// <returns>whether the task has succeeded</returns>
+        public bool Save(Payment payment) {
             if (payment.ChargedAccountId == 0) {
                 throw new AccountMissingException("charged accout is missing");
             }
@@ -85,30 +87,34 @@ namespace MoneyFox.Shared.Repositories {
             if (payment.Id == 0) {
                 data.Add(payment);
             }
-            if (dataAccess.SaveItem(payment)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else {
+            if (!dataAccess.SaveItem(payment))
+            {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+                return false;
             }
+            return true;
         }
 
         /// <summary>
         ///     Deletes the passed payment and removes the item from cache
         /// </summary>
         /// <param name="paymentToDelete">Payment to delete.</param>
-        public void Delete(Payment paymentToDelete) {
+        /// <returns>Whether the task has succeeded</returns>
+        public bool Delete(Payment paymentToDelete) {
+            bool succeed = false;
             data.Remove(paymentToDelete);
             if (dataAccess.DeleteItem(paymentToDelete)) {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                succeed = true;
             }
             else {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                succeed = false;
             }
 
             // If this payment was the last one for the linked recurring payment
             // delete the db entry for the recurring payment.
             DeleteRecurringPaymentIfLastAssociated(paymentToDelete);
+            return succeed;
         }
 
         /// <summary>
@@ -197,19 +203,23 @@ namespace MoneyFox.Shared.Repositories {
                 .ToList();
         }
 
-        private void DeleteRecurringPaymentIfLastAssociated(Payment item) {
+
+        private bool DeleteRecurringPaymentIfLastAssociated(Payment item) {
+            bool succeed = true;
             if (Data.All(x => x.RecurringPaymentId != item.RecurringPaymentId)) {
                 var recurringList = recurringDataAccess.LoadList(x => x.Id == item.RecurringPaymentId).ToList();
 
                 foreach (var recTrans in recurringList) {
                     if (recurringDataAccess.DeleteItem(recTrans)) {
                         notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                        succeed = false;
                     }
                     else {
-                        SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                        succeed = true;
                     }
                 }
             }
+            return succeed;
         }
     }
 }

@@ -121,8 +121,10 @@ namespace MoneyFox.Shared.ViewModels {
             await PrepareRecurringPayment();
 
             // Save item or update the payment and add the amount to the account
-            paymentRepository.Save(SelectedPayment);
-            accountRepository.AddPaymentAmount(SelectedPayment);
+            bool paymentSucceded = paymentRepository.Save(SelectedPayment);
+            bool accountSucceded = accountRepository.AddPaymentAmount(SelectedPayment);
+            if (paymentSucceded && accountSucceded)
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
 
             Close(this);
         }
@@ -154,8 +156,10 @@ namespace MoneyFox.Shared.ViewModels {
                     paymentRepository.DeleteRecurring(SelectedPayment);
                 }
 
-                paymentRepository.Delete(paymentRepository.Selected);
-                accountRepository.RemovePaymentAmount(SelectedPayment);
+                bool paymentSucceded = paymentRepository.Delete(paymentRepository.Selected);
+                bool accountSucceded = accountRepository.RemovePaymentAmount(SelectedPayment);
+                if (paymentSucceded && accountSucceded)
+                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }

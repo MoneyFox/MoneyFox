@@ -6,6 +6,8 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using MoneyFox.Shared.Helpers;
+using System;
 
 namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
@@ -85,7 +87,8 @@ namespace MoneyFox.Shared.ViewModels {
             }
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
-                accountRepository.Delete(item);
+                if(accountRepository.Delete(item))
+                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
         }
