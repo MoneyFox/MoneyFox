@@ -522,12 +522,6 @@
     <AndroidResource Include="Resources\drawable-v21\ic_show_chart.xml" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="xamarin.auth">
-      <Visible>False</Visible>
-      <Version>1.2.3.1</Version>
-    </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values-de\strings.xml" />
   </ItemGroup>
   <ItemGroup>
