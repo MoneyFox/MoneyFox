@@ -1,7 +1,31 @@
 ﻿using MvvmCross.Core.ViewModels;
+using PropertyChanged;
+using MoneyFox.Shared.Interfaces;
+
 
 namespace MoneyFox.Shared.ViewModels {
+
+    [ImplementPropertyChanged]
     public class MainViewModel : BaseViewModel {
+
+        private readonly IAccountRepository accountRepository;
+
+        public MainViewModel(IAccountRepository accountRepository)
+        {
+            this.accountRepository = accountRepository;
+            accountNumber = accountRepository.Data.Count;
+        }
+
+        public MainViewModel()
+        {
+        }
+
+        private int accountNumber;
+        public bool IsVisible
+        {
+            get { return (accountNumber > 1); }
+        }
+            
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>
