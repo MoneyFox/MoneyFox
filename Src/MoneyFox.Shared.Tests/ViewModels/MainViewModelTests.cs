@@ -1,8 +1,7 @@
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Tests.Mocks;
 using MoneyFox.Shared.ViewModels;
 using Moq;
@@ -36,10 +35,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
         [TestMethod]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed() {           
-
-            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
-
-            mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
+            new MainViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
@@ -49,10 +46,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
         [TestMethod]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed() {
-
-            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
-
-            mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
+            new MainViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
@@ -62,15 +57,45 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
         [TestMethod]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed() {
-
-            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
-
-            mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
+            new MainViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
             MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ParameterValues["typeString"].ShouldBe("Transfer");
+        }
+
+        [TestMethod]
+        public void IsTransferAvailable_EmptyData_NotAvailable() {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account>());
+
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsTransferAvailable_OneAccountInData_NotAvailable() {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account> {
+                    new Account()
+                });
+
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsTransferAvailable_TwoAccountInData_Available() {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account> {
+                    new Account(),
+                    new Account()
+                });
+
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }
