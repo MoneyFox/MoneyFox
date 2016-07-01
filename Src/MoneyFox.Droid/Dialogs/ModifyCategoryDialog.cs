@@ -11,9 +11,9 @@ using MvvmCross.Droid.FullFragging.Fragments;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Dialogs {
-    public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel> {
+    public class ModifyCategoryDialog : MvxDialogFragment<ModifyCategoryDialogViewModel> {
         public ModifyCategoryDialog(Category category = null) {
-            ViewModel = Mvx.Resolve<CategoryDialogViewModel>();
+            ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>();
 
             if (category != null) {
                 ViewModel.IsEdit = true;

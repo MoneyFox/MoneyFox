@@ -9,17 +9,17 @@ namespace MoneyFox.Windows.Views.Dialogs {
         public ModifyCategoryDialog(Category category = null) {
             InitializeComponent();
 
-            DataContext = Mvx.Resolve<CategoryDialogViewModel>();
+            DataContext = Mvx.Resolve<ModifyCategoryDialogViewModel>();
 
             if (category != null) {
-                ((CategoryDialogViewModel) DataContext).IsEdit = true;
-                ((CategoryDialogViewModel) DataContext).Selected = category;
+                ((ModifyCategoryDialogViewModel) DataContext).IsEdit = true;
+                ((ModifyCategoryDialogViewModel) DataContext).Selected = category;
             }
         }
 
         private void TextBox_OnKeyDown(object sender, KeyRoutedEventArgs e) {
             if (e.Key == VirtualKey.Enter) {
-                ((CategoryDialogViewModel) DataContext).DoneCommand.Execute(null);
+                ((ModifyCategoryDialogViewModel) DataContext).DoneCommand.Execute(null);
                 Hide();
             }
         }
