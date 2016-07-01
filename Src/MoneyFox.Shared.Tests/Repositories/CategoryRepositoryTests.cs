@@ -34,7 +34,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
                 .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
-
             Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
             Mvx.RegisterType(() => settingsMockSetup.Object);
         }
@@ -132,18 +131,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
             categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
-        }
-
-        [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(true);
-
-            new CategoryRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object).Save(new Category());
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
 
         [TestMethod]

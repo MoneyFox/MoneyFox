@@ -129,19 +129,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(true);
-
-            new AccountRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object).Save(new Account());
-
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
-        }
-
-        [TestMethod]
         public void Save_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 
