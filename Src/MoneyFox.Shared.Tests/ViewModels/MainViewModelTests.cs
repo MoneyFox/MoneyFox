@@ -35,7 +35,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                     paymentManager,
                     defaultManager);
 
-            var mainViewModel = new MainViewModel();
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
@@ -71,7 +71,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                     paymentManager,
                     defaultManager);
 
-            var mainViewModel = new MainViewModel();
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
@@ -107,7 +107,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                     paymentManager,
                     defaultManager);
 
-            var mainViewModel = new MainViewModel();
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 

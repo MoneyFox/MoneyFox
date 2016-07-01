@@ -2,7 +2,6 @@
 using PropertyChanged;
 using MoneyFox.Shared.Interfaces;
 
-
 namespace MoneyFox.Shared.ViewModels {
 
     [ImplementPropertyChanged]
@@ -13,19 +12,13 @@ namespace MoneyFox.Shared.ViewModels {
         public MainViewModel(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            accountNumber = accountRepository.Data.Count;
         }
 
-        public MainViewModel()
-        {
-        }
+        /// <summary>
+        ///     Indicates if the transfer option is available or if it shall be hidden.
+        /// </summary>
+        public bool IsTransferAvailable => accountRepository.Data.Count > 1;
 
-        private int accountNumber;
-        public bool IsVisible
-        {
-            get { return (accountNumber > 1); }
-        }
-            
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>
