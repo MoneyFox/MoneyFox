@@ -218,3 +218,4 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *lock.json
+Src/MoneyFox.Droid/Resources/Resource.Designer.cs
