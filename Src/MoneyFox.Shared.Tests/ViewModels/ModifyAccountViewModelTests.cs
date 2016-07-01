@@ -24,22 +24,20 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
-            {IsEdit = true};
+            {
+                IsEdit = true,
+                SelectedAccount = new Account() { Id = 3, Name = accountname}
+            };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
         }
 
         [TestMethod]
         public void Title_AddAccount_CorrectTitle() {
-            var accountname = "Sparkonto";
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
-
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
