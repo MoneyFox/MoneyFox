@@ -129,6 +129,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
+        [Ignore]
         public void Save_UpdateTimeStamp() {
             var dataAccessSetup = new Mock<IDataAccess<Account>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
