@@ -136,6 +136,7 @@
     <Compile Include="Manager\RepositoryManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
+    <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Mocks\PaymentDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringPaymentDataAccessMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
