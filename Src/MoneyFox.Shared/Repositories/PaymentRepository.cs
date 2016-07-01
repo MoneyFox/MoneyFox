@@ -59,6 +59,11 @@ namespace MoneyFox.Shared.Repositories {
             }
         }
 
+        public Payment FindById(int id)
+        {
+            return data.FirstOrDefault(p => p.Id == id);
+        }
+
         /// <summary>
         ///     The currently selected Payment
         /// </summary>

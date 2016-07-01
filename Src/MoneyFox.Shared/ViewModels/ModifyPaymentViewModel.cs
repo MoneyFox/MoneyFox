@@ -54,7 +54,9 @@ namespace MoneyFox.Shared.ViewModels {
             if (IsEdit) {
                 PrepareEdit();
             }
-            else {
+            else
+            {
+                // TODO: Remove magic string and just pass in the enum - Seth Bartlett 7/1/2016 12:08PM
                 PrepareDefault(typeString);
             }
 

@@ -63,12 +63,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                 Name = "Test Account"
             };
             accountRepo.Object.Data.Add(account);
-            accountRepo.Object.Selected = newAccount;
 
             var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false
             };
+            viewmodel.SelectedAccount = newAccount;
 
             viewmodel.SaveCommand.Execute();
             Assert.AreEqual(1, accountRepo.Object.Data.Count);
@@ -90,12 +90,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                 Id = 1,
                 Name = "Test Account"
             };
-            accountRepo.Object.Selected = account;
 
             var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false
             };
+            viewmodel.SelectedAccount = account;
 
             viewmodel.SaveCommand.Execute();
             Assert.AreEqual(1, accountRepo.Object.Data.Count);

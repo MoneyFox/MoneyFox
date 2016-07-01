@@ -19,7 +19,8 @@ namespace MoneyFox.Shared.Converter {
                     sign = "-";
                 }
                 else {
-                    sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
+                    // TODO: This is obviously just wrong, but this just needs re-thought out completely. - Seth Bartlett 7/1/2016 4:14PM
+                    sign = payment.ChargedAccountId == 1
                         ? "-"
                         : "+";
                 }

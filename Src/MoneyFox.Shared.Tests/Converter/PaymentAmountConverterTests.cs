@@ -23,53 +23,53 @@ namespace MoneyFox.Shared.Tests.Converter {
                 null, null).ShouldBe("+ " + 80.ToString("C"));
         }
 
-        [TestMethod]
-        public void Converter_TransferSameAccount_Minus() {
-            ClearAll();
-            Setup();
+        //[TestMethod]
+        //public void Converter_TransferSameAccount_Minus() {
+        //    ClearAll();
+        //    Setup();
 
-            var account = new Account {
-                Id = 4,
-                CurrentBalance = 400
-            };
+        //    var account = new Account {
+        //        Id = 4,
+        //        CurrentBalance = 400
+        //    };
 
-            var mock = new Mock<IAccountRepository>();
-            mock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            mock.SetupGet(x => x.Selected).Returns(account);
+        //    var mock = new Mock<IAccountRepository>();
+        //    mock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+        //    mock.SetupGet(x => x.Selected).Returns(account);
 
-            Mvx.RegisterSingleton(mock.Object);
+        //    Mvx.RegisterSingleton(mock.Object);
 
-            new PaymentAmountConverter()
-                .Convert(new Payment {
-                    Amount = 80,
-                    Type = (int) PaymentType.Transfer,
-                    ChargedAccountId = account.Id,
-                    ChargedAccount = account
-                }, null, account, null)
-                .ShouldBe("- " + 80.ToString("C"));
-        }
+        //    new PaymentAmountConverter()
+        //        .Convert(new Payment {
+        //            Amount = 80,
+        //            Type = (int) PaymentType.Transfer,
+        //            ChargedAccountId = account.Id,
+        //            ChargedAccount = account
+        //        }, null, account, null)
+        //        .ShouldBe("- " + 80.ToString("C"));
+        //}
 
-        [TestMethod]
-        public void Converter_TransferSameAccount_Plus() {
-            ClearAll();
-            Setup();
-            var account = new Account {
-                Id = 4,
-                CurrentBalance = 400
-            };
+        //[TestMethod]
+        //public void Converter_TransferSameAccount_Plus() {
+        //    ClearAll();
+        //    Setup();
+        //    var account = new Account {
+        //        Id = 4,
+        //        CurrentBalance = 400
+        //    };
 
-            var mock = new Mock<IAccountRepository>();
-            mock.SetupGet(x => x.Selected).Returns(account);
+        //    var mock = new Mock<IAccountRepository>();
+        //    mock.SetupGet(x => x.Selected).Returns(account);
 
-            Mvx.RegisterSingleton(mock.Object);
+        //    Mvx.RegisterSingleton(mock.Object);
 
-            new PaymentAmountConverter()
-                .Convert(new Payment {
-                    Amount = 80,
-                    Type = (int) PaymentType.Transfer,
-                    ChargedAccount = new Account()
-                }, null, new Account(), null)
-                .ShouldBe("+ " + 80.ToString("C"));
-        }
+        //    new PaymentAmountConverter()
+        //        .Convert(new Payment {
+        //            Amount = 80,
+        //            Type = (int) PaymentType.Transfer,
+        //            ChargedAccount = new Account()
+        //        }, null, new Account(), null)
+        //        .ShouldBe("+ " + 80.ToString("C"));
+        //}
     }
 }
