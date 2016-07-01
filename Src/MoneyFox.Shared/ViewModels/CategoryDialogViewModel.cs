@@ -41,8 +41,9 @@ namespace MoneyFox.Shared.ViewModels {
                 return;
             }
 
-            if(categoryRepository.Save(Selected))
+            if (categoryRepository.Save(Selected)) {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            }
         }
     }
 }
