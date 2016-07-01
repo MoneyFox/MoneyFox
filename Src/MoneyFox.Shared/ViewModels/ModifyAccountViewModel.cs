@@ -11,9 +11,11 @@ namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
     public class ModifyAccountViewModel : BaseViewModel {
         private readonly IAccountRepository accountRepository;
+        private readonly IDialogService dialogService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository) {
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService) {
             this.accountRepository = accountRepository;
+            this.dialogService = dialogService;
         }
 
         /// <summary>
@@ -86,10 +88,20 @@ namespace MoneyFox.Shared.ViewModels {
                 : new Account();
         }
 
-        private void SaveAccount() {
+        private async void SaveAccount()
+        {
+            if (accountRepository.Data.Any(a => a.Name == SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
+                return;
+            }
             if (accountRepository.Save(accountRepository.Selected))
+            {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            Close(this);
+                Close(this);
+            }
+
+            
         }
 
         private void DeleteAccount() {
