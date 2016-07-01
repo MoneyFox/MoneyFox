@@ -422,6 +422,24 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An account with that name already exists..
+        /// </summary>
+        public static string DuplicateAccount {
+            get {
+                return ResourceManager.GetString("DuplicateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A category with that name already exists..
+        /// </summary>
+        public static string DuplicateCategory {
+            get {
+                return ResourceManager.GetString("DuplicateCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
         public static string EditAccountTitle {
