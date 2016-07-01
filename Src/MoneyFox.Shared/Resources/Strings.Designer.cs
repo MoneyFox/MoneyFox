@@ -665,6 +665,24 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You already have an entry with this name. Please think about another name for this entry..
+        /// </summary>
+        public static string NameAlreadyUsedMessage {
+            get {
+                return ResourceManager.GetString("NameAlreadyUsedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already used.
+        /// </summary>
+        public static string NameAlreadyUsedTitle {
+            get {
+                return ResourceManager.GetString("NameAlreadyUsedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please insert a name..
         /// </summary>
         public static string NameRequiredMessage {

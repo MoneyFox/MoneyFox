@@ -17,7 +17,7 @@
     <item name="windowActionBar">false</item>
     <item name="windowActionModeOverlay">false</item>
 
-    <item name="android:windowBackground">@color/white</item>
+    <item name="android:windowBackground">@color/light_gray</item>
     <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
 
     <item name="android:textCursorDrawable">@null</item>
@@ -33,6 +33,7 @@
 
   <style name="AppTheme.Menu" parent="AppTheme.Base">
     <item name="colorPrimary">@color/black</item>
+    <item name="android:windowBackground">@color/white</item>
   </style>
 
   <style name="AppTheme.Splash" parent="AppTheme.Base">

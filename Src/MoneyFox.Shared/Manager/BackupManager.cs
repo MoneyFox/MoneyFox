@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
-using System.Collections.Concurrent;
-using System.Threading;
-using System.Diagnostics;
 
 namespace MoneyFox.Shared.Manager {
     /// <summary>
@@ -17,12 +15,12 @@ namespace MoneyFox.Shared.Manager {
     /// </summary>
     public class BackupManager : IBackupManager {
         private readonly IBackupService backupService;
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly IRepositoryManager repositoryManager;
 
-        private SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-        private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private bool oldBackupRestored;
 
@@ -37,35 +35,26 @@ namespace MoneyFox.Shared.Manager {
         }
 
         /// <summary>
-        ///   Enqueue a backup operation, using a semaphore to block concurrent syncs.
-        ///   A sync can be attempted up to a number of times configured in ServiceConstants
+        ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
+        ///     A sync can be attempted up to a number of times configured in ServiceConstants
         /// </summary>
         /// <param name="attempts">How many times to try syncing</param>
-        public async Task EnqueueBackupTask(int attempts)
-        {          
-            if (attempts < Constants.ServiceConstants.SyncAttempts)
-            {
+        public async Task EnqueueBackupTask(int attempts) {
+            if (attempts < ServiceConstants.SyncAttempts) {
                 await semaphoreSlim.WaitAsync(ServiceConstants.BackupOperationTimeout, cancellationTokenSource.Token);
-                try
-                {
-                    if (await CreateNewBackup())
+                try {
+                    if (await CreateNewBackup()) {
                         semaphoreSlim.Release();
-                    else
+                    } else {
                         cancellationTokenSource.Cancel();
-                }
-                catch(OperationCanceledException)
-                {
+                    }
+                } catch (OperationCanceledException) {
                     await Task.Delay(ServiceConstants.BackupRepeatDelay);
                     await EnqueueBackupTask(attempts + 1);
                 }
             }
-            else
-            {
-                //TODO: Give the user feedback that the backup failed
-                //recommend returning a bool value
-            }
         }
-        
+
 
         /// <summary>
         ///     Gets the backup date from the backup service.
@@ -105,8 +94,7 @@ namespace MoneyFox.Shared.Manager {
         /// </summary>
         public async Task<bool> CreateNewBackup() {
             if (await CheckIfUserIsLoggedIn()) {
-                if(await backupService.Upload())
-                {
+                if (await backupService.Upload()) {
                     return true;
                 }
             }

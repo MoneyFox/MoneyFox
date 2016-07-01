@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
@@ -14,16 +15,16 @@ namespace MoneyFox.Windows.Views.UserControls {
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e) {

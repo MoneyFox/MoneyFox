@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Windows.Views.UserControls {
     public partial class PaymentListUserControl {
@@ -34,16 +35,16 @@ namespace MoneyFox.Windows.Views.UserControls {
 
         private void PaymentViewModelList_Holding(object sender, HoldingRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
     }
 }
