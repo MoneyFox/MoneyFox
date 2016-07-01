@@ -5,6 +5,7 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 using System;
+using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels {
     /// <summary>
@@ -58,6 +59,11 @@ namespace MoneyFox.Shared.ViewModels {
         private async void Done() {
             if (string.IsNullOrEmpty(Selected.Name)) {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            if (categoryRepository.Data.Any(x => x.Name == Selected.Name)) {
+                await dialogService.ShowMessage(Strings.NameAlreadyUsedTitle, Strings.NameAlreadyUsedMessage);
                 return;
             }
 
