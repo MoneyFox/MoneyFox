@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
@@ -14,16 +15,16 @@ namespace MoneyFox.Windows.Views.UserControls {
 
         private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void CategoryListHolding(object sender, HoldingRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement);
+            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private async void EditCategory(object sender, RoutedEventArgs e) {
