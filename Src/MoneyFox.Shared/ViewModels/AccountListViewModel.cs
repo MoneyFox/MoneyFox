@@ -14,11 +14,13 @@ namespace MoneyFox.Shared.ViewModels {
     public class AccountListViewModel : BaseViewModel {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
+        private readonly IPaymentRepository paymentRepository;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
             IDialogService dialogService) {
             this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
@@ -86,7 +88,17 @@ namespace MoneyFox.Shared.ViewModels {
                 return;
             }
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
+
+                if (null != paymentsToDelete)
+                {
+                    foreach (var payment in paymentsToDelete.ToList())
+                    {
+                        paymentRepository.Delete(payment);
+                    }
+                }
                 if(accountRepository.Delete(item))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
