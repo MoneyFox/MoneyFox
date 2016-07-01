@@ -358,7 +358,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Payment {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
 
-            var result = repo.GetRelatedPayments(account1).ToList();
+            var result = repo.GetRelatedPayments(account1.Id).ToList();
 
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(2, result.First().Id);

@@ -82,7 +82,7 @@ namespace MoneyFox.Shared.ViewModels {
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
-                .GetRelatedPayments(accountRepository.Selected)
+                .GetRelatedPayments(accountRepository.Selected.Id)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 

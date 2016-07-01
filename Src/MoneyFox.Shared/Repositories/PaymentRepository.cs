@@ -174,10 +174,10 @@ namespace MoneyFox.Shared.Repositories {
         /// <summary>
         ///     returns a list with payments who are related to this account
         /// </summary>
-        /// <param name="account">account to search the related</param>
+        /// <param name="accountId">account id to search the related</param>
         /// <returns>List of payments</returns>
-        public IEnumerable<Payment> GetRelatedPayments(Account account)
-            => Data.Where(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
+        public IEnumerable<Payment> GetRelatedPayments(int accountId)
+            => Data.Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
                 .OrderByDescending(x => x.Date)
                 .ToList();
 
