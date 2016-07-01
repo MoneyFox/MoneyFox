@@ -25,7 +25,6 @@ namespace MoneyFox.Shared.DataAccess {
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(Payment itemToSave) {
             using (var db = connectionCreator.GetConnection()) {
-                SaveRecurringPayment(itemToSave, db);
                 //Don't use insert or replace here, because it will always replace the first element
                 if (itemToSave.Id == 0) {
                     db.Insert(itemToSave);
@@ -33,19 +32,6 @@ namespace MoneyFox.Shared.DataAccess {
                 }
                 else {
                     db.Update(itemToSave);
-                }
-            }
-        }
-
-        private void SaveRecurringPayment(Payment payment, SQLiteConnection db) {
-            if (payment.IsRecurring) {
-                //Don't use insert or replace here, because it will always replace the first element
-                if (payment.RecurringPaymentId == 0) {
-                    db.Insert(payment.RecurringPayment);
-                    payment.RecurringPayment = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First();
-                }
-                else {
-                    db.Update(payment.RecurringPayment);
                 }
             }
         }

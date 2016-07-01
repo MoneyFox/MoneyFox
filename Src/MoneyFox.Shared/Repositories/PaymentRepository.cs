@@ -87,8 +87,9 @@ namespace MoneyFox.Shared.Repositories {
             if (payment.Id == 0) {
                 data.Add(payment);
             }
-            if (!dataAccess.SaveItem(payment))
-            {
+
+            if (!dataAccess.SaveItem(payment) 
+                || (payment.IsRecurring && !recurringDataAccess.SaveItem(payment.RecurringPayment))) {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
                 return false;
             }
@@ -105,8 +106,7 @@ namespace MoneyFox.Shared.Repositories {
             data.Remove(paymentToDelete);
             if (dataAccess.DeleteItem(paymentToDelete)) {
                 succeed = true;
-            }
-            else {
+            } else {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
                 succeed = false;
             }
