@@ -1,120 +1,76 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.Tests.Mocks;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Core.Platform;
+using MvvmCross.Core.Views;
+using MvvmCross.Platform.Core;
+using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.ViewModels {
+    [TestClass]
     public class MainViewModelTests : MvxIoCSupportingTest {
-        public void GoToAddPayment_Income_CorrectPreparation() {
+
+        [TestInitialize]
+        public void Init() {
             Setup();
-            // for navigation parsing
+        }
+
+        protected MockDispatcher MockDispatcher { get; private set; }
+
+        /// <summary>
+        ///     This is needed for the navigation to work in the test.
+        /// </summary>
+        protected override void AdditionalSetup() {
+            MockDispatcher = new MockDispatcher();
+            Ioc.RegisterSingleton<IMvxViewDispatcher>(MockDispatcher);
+            Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(MockDispatcher);
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+            Ioc.RegisterSingleton<IMvxMessenger>(new MvxMessengerHub());
+        }
 
-            var dbHelper = new Mock<IDatabaseManager>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper),
-                new Mock<INotificationService>().Object);
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
-                new RecurringPaymentDataAccess(dbHelper),
-                accountRepository,
-                new CategoryRepository(new CategoryDataAccess(dbHelper),
-                    new Mock<INotificationService>().Object),
-                new Mock<INotificationService>().Object);
-            var paymentManager = new PaymentManager(paymentRepository, accountRepository,
-                new Mock<IDialogService>().Object);
+        [TestMethod]
+        public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed() {           
 
-            var defaultManager = new DefaultManager(accountRepository);
-
-            var modifyPaymentViewModel =
-                new ModifyPaymentViewModel(paymentRepository,
-                    accountRepository,
-                    new Mock<IDialogService>().Object,
-                    paymentManager,
-                    defaultManager);
-
-            var mainViewModel = new MainViewModel();
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
-            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
-            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
-            modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
+            MockDispatcher.Requests.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
+            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ParameterValues["typeString"].ShouldBe("Income");
         }
 
-        public void GoToAddPayment_Expense_CorrectPreparation() {
-            Setup();
-            // for navigation parsing
-            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+        [TestMethod]
+        public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed() {
 
-            var dbHelper = new Mock<IDatabaseManager>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper),
-                new Mock<INotificationService>().Object);
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
-                new RecurringPaymentDataAccess(dbHelper),
-                accountRepository,
-                new CategoryRepository(new CategoryDataAccess(dbHelper),
-                    new Mock<INotificationService>().Object),
-                new Mock<INotificationService>().Object);
-            var paymentManager = new PaymentManager(paymentRepository, accountRepository,
-                new Mock<IDialogService>().Object);
-
-            var defaultManager = new DefaultManager(accountRepository);
-
-            var modifyPaymentViewModel =
-                new ModifyPaymentViewModel(paymentRepository,
-                    accountRepository,
-                    new Mock<IDialogService>().Object,
-                    paymentManager,
-                    defaultManager);
-
-            var mainViewModel = new MainViewModel();
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
-            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
-            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
-            modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
+            MockDispatcher.Requests.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
+            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ParameterValues["typeString"].ShouldBe("Expense");
         }
 
-        public void GoToAddPayment_Transfer_CorrectPreparation() {
-            Setup();
-            // for navigation parsing
-            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+        [TestMethod]
+        public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed() {
 
-            var dbHelper = new Mock<IDatabaseManager>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper),
-                new Mock<INotificationService>().Object);
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
-                new RecurringPaymentDataAccess(dbHelper),
-                accountRepository,
-                new CategoryRepository(new CategoryDataAccess(dbHelper),
-                    new Mock<INotificationService>().Object),
-                new Mock<INotificationService>().Object);
-            var paymentManager = new PaymentManager(paymentRepository, accountRepository,
-                new Mock<IDialogService>().Object);
+            var mainViewModel = new MainViewModel(new Mock<IAccountRepository>().Object);
 
-            var defaultManager = new DefaultManager(accountRepository);
+            mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
 
-            var modifyPaymentViewModel =
-                new ModifyPaymentViewModel(paymentRepository,
-                    accountRepository,
-                    new Mock<IDialogService>().Object,
-                    paymentManager,
-                    defaultManager);
-
-            var mainViewModel = new MainViewModel();
-
-            mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
-
-            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
-            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
-            modifyPaymentViewModel.IsTransfer.ShouldBeTrue();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Transfer);
+            MockDispatcher.Requests.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
+            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
+            MockDispatcher.Requests[0].ParameterValues["typeString"].ShouldBe("Transfer");
         }
     }
 }
