@@ -10,9 +10,6 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
-using System;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -117,9 +114,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
             var accountRepo = accountRepositorySetup.Object;
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object)
-            { IsEdit = false };
-            viewmodel.SelectedAccount = account;
+            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object) {
+                IsEdit = false,
+                SelectedAccount = account
+            };
 
             viewmodel.SaveCommand.Execute();
 
