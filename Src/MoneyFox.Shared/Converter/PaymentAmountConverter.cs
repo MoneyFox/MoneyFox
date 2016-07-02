@@ -4,6 +4,9 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Platform.Converters;
 
 namespace MoneyFox.Shared.Converter {
+    /// <summary>
+    ///     Adds a plus or a minus to the payment amont on the UI based on if it is a income or a expense
+    /// </summary>
     public class PaymentAmountConverter : IMvxValueConverter {
         private const string IGNORE_TRANSFER = "IgnoreTransfer";
 
