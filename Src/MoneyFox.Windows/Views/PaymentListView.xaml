@@ -28,7 +28,7 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:PaymentListUserControl />
+            <userControls:PaymentListUserControl/>
         </Grid>
 
         <CommandBar Grid.Row="2">

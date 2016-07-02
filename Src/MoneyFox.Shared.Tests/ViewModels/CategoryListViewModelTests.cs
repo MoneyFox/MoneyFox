@@ -18,7 +18,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
         [TestMethod]
         public void Ctor_Default() {
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Category> {
                 new Category {Name = string.Empty}
             });

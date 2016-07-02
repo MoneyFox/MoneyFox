@@ -24,21 +24,19 @@ namespace MoneyFox.Shared.Tests.Manager {
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
 
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;
             var paymentRepository = paymentRepoSetup.Object;
             var categoryRepo = categoryRepoSetup.Object;
 
-            accountRepo.Selected = new Account();
             paymentRepository.Selected = new Payment();
             categoryRepo.Selected = new Category();
 
             new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
 
-            Assert.IsNull(accountRepo.Selected);
             Assert.IsNull(paymentRepository.Selected);
             Assert.IsNull(categoryRepo.Selected);
         }
@@ -59,7 +57,7 @@ namespace MoneyFox.Shared.Tests.Manager {
             paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Callback(() => paymentsLoaded = true);
 
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupAllProperties();
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
@@ -94,7 +92,7 @@ namespace MoneyFox.Shared.Tests.Manager {
             paymentRepoSetup.Setup(x => x.GetUnclearedPayments())
                 .Returns(() => new List<Payment> {payment});
 
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;

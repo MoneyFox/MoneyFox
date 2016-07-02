@@ -31,7 +31,7 @@ namespace MoneyFox.Shared.Manager {
                 return;
             }
 
-            var paymentToDelete = paymentRepository.GetRelatedPayments(account);
+            var paymentToDelete = paymentRepository.GetRelatedPayments(account.Id);
 
             foreach (var payment in paymentToDelete) {
                 paymentRepository.Delete(payment);

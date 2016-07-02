@@ -14,9 +14,6 @@ namespace MoneyFox.Shared.Manager {
         }
 
         public Account GetDefaultAccount() {
-            if (accountRepository.Selected != null) {
-                return accountRepository.Selected;
-            }
 
             if (accountRepository.Data == null) {
                 accountRepository.Data = new ObservableCollection<Account>();

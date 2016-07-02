@@ -24,36 +24,6 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void OpenOverviewCommand_Account_SelectedSet() {
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var viewModel = new AccountListViewModel(accountRepository.Object,
-                paymentRepoSetup.Object,
-                new Mock<IDialogService>().Object);
-
-            viewModel.OpenOverviewCommand.Execute(new Account {Id = 42});
-
-            Assert.AreEqual(42, accountRepository.Object.Selected.Id);
-        }
-
-        [TestMethod]
-        public void OpenOverviewCommand_NullAccount_DoNothing() {
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var viewModel = new AccountListViewModel(accountRepository.Object,
-                paymentRepoSetup.Object,
-                new Mock<IDialogService>().Object);
-
-            viewModel.OpenOverviewCommand.Execute(null);
-
-            Assert.IsNull(accountRepository.Object.Selected);
-        }
-
-        [TestMethod]
         public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion() {
             var deleteCalled = false;
 

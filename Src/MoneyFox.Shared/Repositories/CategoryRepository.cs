@@ -10,7 +10,7 @@ using PropertyChanged;
 
 namespace MoneyFox.Shared.Repositories {
     [ImplementPropertyChanged]
-    public class CategoryRepository : IRepository<Category> {
+    public class CategoryRepository : ICategoryRepository {
         private readonly IDataAccess<Category> dataAccess;
         private readonly INotificationService notificationService;
 
@@ -39,6 +39,11 @@ namespace MoneyFox.Shared.Repositories {
                 }
                 data = value;
             }
+        }
+
+        public Category FindById(int id)
+        {
+            return data.FirstOrDefault(c => c.Id == id);
         }
 
         public Category Selected { get; set; }

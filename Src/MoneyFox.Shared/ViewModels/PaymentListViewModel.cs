@@ -18,6 +18,8 @@ namespace MoneyFox.Shared.ViewModels {
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
+        private IBalanceViewModel balanceViewModel;
+        private int accountId;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -27,13 +29,20 @@ namespace MoneyFox.Shared.ViewModels {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
 
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
+            
+        }
+
+        public void Init(int id)
+        {
+            accountId = id;
+            balanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository, AccountId);
         }
 
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
-        public IBalanceViewModel BalanceViewModel { get; }
+        public IBalanceViewModel BalanceViewModel => balanceViewModel;
 
+        public int AccountId => accountId;
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
@@ -74,7 +83,7 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountRepository.Selected?.Name;
+        public string Title => accountRepository.FindById(AccountId).Name;
 
         private void LoadPayments() {
             EditCommand = null;
@@ -82,9 +91,14 @@ namespace MoneyFox.Shared.ViewModels {
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
-                .GetRelatedPayments(accountRepository.Selected)
+                .GetRelatedPayments(AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
+
+            foreach (var payment in RelatedPayments)
+            {
+                payment.CurrentAccountId = accountId;
+            }
 
             Source = new ObservableCollection<DateListGroup<Payment>>(
                 DateListGroup<Payment>.CreateGroups(RelatedPayments,
@@ -96,13 +110,15 @@ namespace MoneyFox.Shared.ViewModels {
             EditCommand = new MvxCommand<Payment>(Edit);
         }
 
+        // TODO: Use the actual enum rather than magic strings - Seth Bartlett 7/1/2016 12:07PM
         private void GoToAddPayment(string type) {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }
 
+        // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
         private async void DeleteAccount() {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
-                if(accountRepository.Delete(accountRepository.Selected))
+                if(accountRepository.Delete(accountRepository.FindById(AccountId)))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
