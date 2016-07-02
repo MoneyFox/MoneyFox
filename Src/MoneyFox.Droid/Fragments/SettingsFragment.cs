@@ -21,13 +21,13 @@ namespace MoneyFox.Droid.Fragments {
 
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             if (viewPager != null) {
-                var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo> {
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof(SettingsGeneralFragment),
+                var fragments = new List<MvxCachingFragmentStatePagerAdapter.FragmentInfo> {
+                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof(SettingsGeneralFragment),
                         typeof(SettingsGeneralViewModel)),
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof(SettingsSecurityFragment),
+                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof(SettingsSecurityFragment),
                         typeof(SettingsSecurityViewModel))
                 };
-                viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
+                viewPager.Adapter = new MvxCachingFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);
             }
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.tabs);
