@@ -6,6 +6,7 @@
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:converter="using:MoneyFox.Windows.Converter"
                       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -31,6 +32,9 @@
         </Grid>
 
         <CommandBar Grid.Row="3">
+            <CommandBar.Resources>
+                <converter:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+            </CommandBar.Resources>
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddPaymentCommand}"
@@ -46,6 +50,7 @@
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Transfer"
                               Icon="Switch"
+                              Visibility="{Binding IsVisible, Converter ={StaticResource BoolToVis} }"
                               Label="add transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
