@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
 
 namespace MoneyFox.Shared.Converter {
