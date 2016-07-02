@@ -41,7 +41,7 @@ namespace MoneyFox.Droid.Activities {
 
             FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) => {
                 var dialog = new ModifyCategoryDialog {
-                    ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                    ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
                 };
 
                 dialog.Show(FragmentManager, Strings.AddCategoryTitle);
@@ -72,7 +72,7 @@ namespace MoneyFox.Droid.Activities {
 
                 case Resource.Id.action_add:
                     var dialog = new ModifyCategoryDialog {
-                        ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                        ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
                     };
 
                     dialog.Show(FragmentManager, "dialog");
@@ -109,7 +109,7 @@ namespace MoneyFox.Droid.Activities {
         }
 
         private void OpenEditCategoryDialog() {
-            var viewmodel = Mvx.Resolve<CategoryDialogViewModel>();
+            var viewmodel = Mvx.Resolve<ModifyCategoryDialogViewModel>();
             viewmodel.IsEdit = true;
             var dialog = new ModifyCategoryDialog {
                 ViewModel = viewmodel

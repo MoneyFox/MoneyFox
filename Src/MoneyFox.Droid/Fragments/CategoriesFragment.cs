@@ -29,7 +29,7 @@ namespace MoneyFox.Droid.Fragments {
 
             view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) => {
                 var dialog = new ModifyCategoryDialog {
-                    ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                    ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
                 };
 
                 dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);

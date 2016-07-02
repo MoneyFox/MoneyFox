@@ -717,22 +717,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(true);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-
-            new PaymentRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringPayment>>().Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRepository<Category>>().Object,
-                new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 2});
-
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
-        }
-
-        [TestMethod]
         public void Save_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 

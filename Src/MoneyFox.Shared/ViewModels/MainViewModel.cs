@@ -1,7 +1,24 @@
 ﻿using MvvmCross.Core.ViewModels;
+using PropertyChanged;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.ViewModels {
+
+    [ImplementPropertyChanged]
     public class MainViewModel : BaseViewModel {
+
+        private readonly IAccountRepository accountRepository;
+
+        public MainViewModel(IAccountRepository accountRepository)
+        {
+            this.accountRepository = accountRepository;
+        }
+
+        /// <summary>
+        ///     Indicates if the transfer option is available or if it shall be hidden.
+        /// </summary>
+        public bool IsTransferAvailable => accountRepository.Data.Count > 1;
+
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>

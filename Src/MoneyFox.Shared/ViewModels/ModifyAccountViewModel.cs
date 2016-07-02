@@ -89,7 +89,7 @@ namespace MoneyFox.Shared.ViewModels {
         {
             if (accountRepository.Data.Any(a => a.Name == SelectedAccount.Name))
             {
-                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccount);
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
             if (accountRepository.Save(SelectedAccount))

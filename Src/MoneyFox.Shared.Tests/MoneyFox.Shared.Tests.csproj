@@ -136,6 +136,7 @@
     <Compile Include="Manager\RepositoryManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
+    <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Mocks\PaymentDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringPaymentDataAccessMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="ViewModels\BalanceViewModelTests.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
+    <Compile Include="ViewModels\ModifyCategoryDialogViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>

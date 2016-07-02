@@ -427,11 +427,13 @@ Do you want to go the the store to rate?</value>
   <data name="GeneralTitle" xml:space="preserve">
     <value>General</value>
   </data>
-  <data name="DuplicateAccount" xml:space="preserve">
+  <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>An account with that name already exists.</value>
   </data>
-  <data name="DuplicateCategory" xml:space="preserve">
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>A category with that name already exists.</value>
   </data>
-  
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Name already used</value>
+  </data>
 </root>

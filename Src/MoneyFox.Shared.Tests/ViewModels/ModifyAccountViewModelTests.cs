@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -19,6 +18,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             MvxSingleton.ClearAllSingletons();
             Setup();
         }
+
         [TestMethod]
         public void Title_EditAccount_CorrectTitle() {
             var accountname = "Sparkonto";
