@@ -16,10 +16,11 @@ namespace MoneyFox.Tasks {
 
         public ClearPaymentBackgroundTask() {
 #if !DEBUG
-            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
+            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID,
+                new TelemetryConfiguration {EnableDiagnostics = true});
 #endif
 
-            HockeyClient.Current.TrackEvent("BackgroundTask");
+            HockeyClient.Current.TrackEvent("Ctror Background Task");
 
             var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
@@ -39,6 +40,8 @@ namespace MoneyFox.Tasks {
         }
 
         public void Run(IBackgroundTaskInstance taskInstance) {
+            HockeyClient.Current.TrackEvent("Run BackgroundTask");
+
             paymentManager.ClearPayments();
             Tile.UpdateMainTile();
         }
