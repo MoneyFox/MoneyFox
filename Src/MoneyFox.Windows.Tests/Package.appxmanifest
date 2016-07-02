@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="e1858f34-c9bd-41f1-a2fc-42665e997ded" Publisher="CN=nino" Version="1.0.0.0" />
+  <Identity Name="e1858f34-c9bd-41f1-a2fc-42665e997ded" Publisher="CN=Apply-Solutions" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="e1858f34-c9bd-41f1-a2fc-42665e997ded" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>MoneyFox.Windows.Tests</DisplayName>
