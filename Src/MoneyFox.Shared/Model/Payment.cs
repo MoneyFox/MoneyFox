@@ -147,5 +147,9 @@ namespace MoneyFox.Shared.Model {
         /// </summary>
         [Ignore]
         public bool IsTransfer => Type == (int) PaymentType.Transfer;
+
+        [Ignore]
+        public int CurrentAccountId { get; set; }
+    
     }
 }

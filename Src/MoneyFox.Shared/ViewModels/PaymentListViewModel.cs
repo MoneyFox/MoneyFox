@@ -95,6 +95,11 @@ namespace MoneyFox.Shared.ViewModels {
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
+            foreach (var payment in RelatedPayments)
+            {
+                payment.CurrentAccountId = accountId;
+            }
+
             Source = new ObservableCollection<DateListGroup<Payment>>(
                 DateListGroup<Payment>.CreateGroups(RelatedPayments,
                     CultureInfo.CurrentUICulture,
