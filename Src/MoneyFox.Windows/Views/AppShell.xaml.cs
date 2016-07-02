@@ -94,7 +94,7 @@ namespace MoneyFox.Windows.Views {
 
         public MenuViewModel ViewModel { get; set; }
 
-        public Frame MyAppFrame => Frame;
+        public Frame MyAppFrame => ContentFrame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
