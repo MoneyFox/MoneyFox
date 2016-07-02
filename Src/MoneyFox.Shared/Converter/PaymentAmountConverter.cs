@@ -19,7 +19,7 @@ namespace MoneyFox.Shared.Converter {
                     sign = "-";
                 }
                 else {
-                    sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
+                    sign = payment.ChargedAccountId == payment.CurrentAccountId
                         ? "-"
                         : "+";
                 }

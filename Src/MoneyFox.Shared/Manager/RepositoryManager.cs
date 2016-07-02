@@ -8,13 +8,13 @@ namespace MoneyFox.Shared.Manager {
     /// </summary>
     public class RepositoryManager : IRepositoryManager {
         private readonly IAccountRepository accountRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
 
         public RepositoryManager(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository,
+            ICategoryRepository categoryRepository,
             IPaymentManager paymentManager) {
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
@@ -29,7 +29,6 @@ namespace MoneyFox.Shared.Manager {
         public void ReloadData() {
             //Load Data
             accountRepository.Load();
-            accountRepository.Selected = null;
 
             paymentRepository.Load();
             paymentRepository.Selected = null;

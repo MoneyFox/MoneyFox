@@ -358,7 +358,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Payment {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
 
-            var result = repo.GetRelatedPayments(account1).ToList();
+            var result = repo.GetRelatedPayments(account1.Id).ToList();
 
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(2, result.First().Id);
@@ -773,6 +773,20 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<Category>>().Object,
                 new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 0});
+        }
+
+        [TestMethod]
+        public void PaymentRepository_FindById_ReturnsPayment()
+        {
+            var paymentRepository = new Mock<IPaymentRepository>();
+            var testPayment = new Payment() {Id = 100};
+            paymentRepository.SetupAllProperties();
+            paymentRepository.Setup(x => x.FindById(It.IsAny<int>()))
+                .Returns((int paymentId) => paymentRepository.Object.Data.FirstOrDefault(p => p.Id == paymentId));
+            paymentRepository.Object.Data = new ObservableCollection<Payment>();
+            paymentRepository.Object.Data.Add(testPayment);
+
+            Assert.AreEqual(testPayment, paymentRepository.Object.FindById(100));
         }
     }
 }

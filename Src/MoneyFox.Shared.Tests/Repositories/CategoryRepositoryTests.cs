@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -167,6 +168,20 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 notificationServiceSetup.Object).Delete(new Category());
 
             isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void CategoryRepository_FindById_ReturnsCategory()
+        {
+            var categoryRepository = new Mock<IRepository<Category>>();
+            var testCategory = new Category() {Id = 100, Name = "Test Category"};
+            categoryRepository.SetupAllProperties();
+            categoryRepository.Setup(x => x.FindById(It.IsAny<int>()))
+                .Returns((int categoryId) => categoryRepository.Object.Data.FirstOrDefault(c => c.Id == categoryId));
+            categoryRepository.Object.Data = new ObservableCollection<Category>();
+            categoryRepository.Object.Data.Add(testCategory);
+
+            Assert.AreEqual(testCategory, categoryRepository.Object.FindById(100));
         }
     }
 }

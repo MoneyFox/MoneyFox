@@ -39,22 +39,20 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         public void Title_EditAccount_CorrectTitle() {
             var accountname = "Sparkonto";
             var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
-            {IsEdit = true};
+            {
+                IsEdit = true,
+                SelectedAccount = new Account() { Id = 3, Name = accountname}
+            };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
         }
 
         [TestMethod]
         public void Title_AddAccount_CorrectTitle() {
-            var accountname = "Sparkonto";
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
-
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
@@ -63,6 +61,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         [TestMethod]
         public void Save_UpdateTimeStamp()
         {
+<<<<<<< HEAD
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -81,6 +80,58 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object)
             { IsEdit = false };
             viewmodel.SelectedAccount = new Account { Id = 2, Name = "Sparkonto2" };
+=======
+            var accountRepo = new Mock<IAccountRepository>();
+            accountRepo.SetupAllProperties();
+            accountRepo.Setup(c => c.Save(It.IsAny<Account>())).Callback((Account acc) =>
+            {
+                accountRepo.Object.Data.Add(acc);
+            });
+            accountRepo.Object.Data = new ObservableCollection<Account>();
+            var account = new Account()
+            {
+                Id = 1,
+                Name = "Test Account"
+            };
+            var newAccount = new Account()
+            {
+                Name = "Test Account"
+            };
+            accountRepo.Object.Data.Add(account);
+
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
+            {
+                IsEdit = false
+            };
+            viewmodel.SelectedAccount = newAccount;
+
+            viewmodel.SaveCommand.Execute();
+            Assert.AreEqual(1, accountRepo.Object.Data.Count);
+
+        }
+
+        [TestMethod]
+        public void SaveCommand_SavesAccount()
+        {
+            var accountRepo = new Mock<IAccountRepository>();
+            accountRepo.SetupAllProperties();
+            accountRepo.Setup(c => c.Save(It.IsAny<Account>())).Callback((Account acc) =>
+            {
+                accountRepo.Object.Data.Add(acc);
+            });
+            accountRepo.Object.Data = new ObservableCollection<Account>();
+            var account = new Account()
+            {
+                Id = 1,
+                Name = "Test Account"
+            };
+
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
+            {
+                IsEdit = false
+            };
+            viewmodel.SelectedAccount = account;
+>>>>>>> refs/remotes/MoneyFox/master
 
             viewmodel.SaveCommand.Execute();
 

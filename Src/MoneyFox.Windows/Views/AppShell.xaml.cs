@@ -94,8 +94,14 @@ namespace MoneyFox.Windows.Views {
 
         public MenuViewModel ViewModel { get; set; }
 
-        public Frame MyAppFrame => Frame;
+        /// <summary>
+        ///     Gives Access to the content frame where all the content is displayed within next to the side menu.
+        /// </summary>
+        public Frame MyAppFrame => ContentFrame;
 
+        /// <summary>
+        ///     ToggleButton to open and Close the menu (hamburger button)
+        /// </summary>
         public Rect TogglePaneButtonRect { get; private set; }
 
         /// <summary>

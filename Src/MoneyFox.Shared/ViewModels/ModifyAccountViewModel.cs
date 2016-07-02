@@ -63,10 +63,7 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     The currently selected account
         /// </summary>
-        public Account SelectedAccount {
-            get { return accountRepository.Selected; }
-            set { accountRepository.Selected = value; }
-        }
+        public Account SelectedAccount { get; set; }
 
         public void Init(bool isEdit) {
             IsEdit = isEdit;
@@ -95,7 +92,7 @@ namespace MoneyFox.Shared.ViewModels {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
-            if (accountRepository.Save(accountRepository.Selected))
+            if (accountRepository.Save(SelectedAccount))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
@@ -105,7 +102,7 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         private void DeleteAccount() {
-            if (accountRepository.Delete(accountRepository.Selected))
+            if (accountRepository.Delete(SelectedAccount))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }

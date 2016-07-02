@@ -40,7 +40,7 @@ namespace MoneyFox.Shared.Tests.Manager {
             paymentRepositorySetup.SetupAllProperties();
             paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
-            paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<Account>()))
+            paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<int>()))
                 .Returns(new List<Payment> {
                     payment
                 });
