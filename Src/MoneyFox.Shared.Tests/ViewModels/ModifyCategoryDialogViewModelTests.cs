@@ -2,13 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
@@ -44,8 +42,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
                 .Callback((string a, string b) => wasDialogServiceCalled = true);
 
             var vm = new ModifyCategoryDialogViewModel(new Mock<IRepository<Category>>().Object,
-                dialogSetup.Object);
-            vm.Selected = new Category();
+                dialogSetup.Object) {Selected = new Category()};
 
             // Execute
             vm.DoneCommand.Execute(new Category());
@@ -68,9 +65,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             var categoryToSave = new Category { Name = "test" };
 
             var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object,
-                new Mock<IDialogService>().Object);
-            vm.Selected = categoryToSave;
-            
+                new Mock<IDialogService>().Object) {Selected = categoryToSave};
+
             // Execute
             vm.DoneCommand.Execute();
 
@@ -93,14 +89,42 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             repositorySetup.SetupAllProperties();
 
             var repo = repositorySetup.Object;
-            repo.Data = new ObservableCollection<Category>();
-            repo.Data.Add(new Category { Name = categoryName });
+            repo.Data = new ObservableCollection<Category> {new Category {Name = categoryName}};
 
-            var categoryToSave = new Category { Name = "test" };
+            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object) {
+                Selected = new Category {Name = categoryName}
+            };
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object);
-            vm.Selected = new Category { Name = categoryName };
-            
+            // Execute
+            vm.DoneCommand.Execute();
+
+            // Assert
+            wasDialogServiceCalled.ShouldBeTrue();
+        }
+
+
+        [TestMethod]
+        public void DoneCommand_NameAlreadyTakenToUpper_ShowMessage() {
+            // Setup
+            const string categoryName1 = "Test name Category";
+            const string categoryName2 = "Test name CATegory";
+            var wasDialogServiceCalled = false;
+
+            var dialogSetup = new Mock<IDialogService>();
+            dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string a, string b) => wasDialogServiceCalled = true);
+
+            var repositorySetup = new Mock<IRepository<Category>>();
+            repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
+            repositorySetup.SetupAllProperties();
+
+            var repo = repositorySetup.Object;
+            repo.Data = new ObservableCollection<Category> { new Category { Name = categoryName1 } };
+
+            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object) {
+                Selected = new Category { Name = categoryName2 }
+            };
+
             // Execute
             vm.DoneCommand.Execute();
 
@@ -120,8 +144,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             categoryRepoMock.Setup(x => x.Save(category)).Returns(true);
 
             var vm = new ModifyCategoryDialogViewModel(categoryRepoMock.Object,
-    new Mock<IDialogService>().Object);
-            vm.Selected = category;
+                new Mock<IDialogService>().Object) {Selected = category};
             vm.DoneCommand.Execute();
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
