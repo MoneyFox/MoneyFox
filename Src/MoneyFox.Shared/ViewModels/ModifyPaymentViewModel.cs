@@ -19,6 +19,8 @@ namespace MoneyFox.Shared.ViewModels {
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
+        private ObservableCollection<Account> targetAccounts;
+        private ObservableCollection<Account> chargedAccounts;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -36,6 +38,9 @@ namespace MoneyFox.Shared.ViewModels {
             this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
+
+            targetAccounts = accountRepository.Data;
+            chargedAccounts = accountRepository.Data;
 
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
@@ -272,13 +277,22 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public Payment SelectedPayment {
             get { return paymentRepository.Selected; }
-            set { paymentRepository.Selected = value; }
+            set
+            {
+                var x = value;
+                paymentRepository.Selected = value;
+            }
         }
 
         /// <summary>
-        ///     Gives access to all accounts
+        ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
+        public ObservableCollection<Account> ChargedAccounts => chargedAccounts;
+
+        /// <summary>
+        ///     Gives access to all accounts for Target Dropdown list
+        /// </summary>
+        public ObservableCollection<Account> TargetAccounts => targetAccounts;
 
         /// <summary>
         ///     Returns the Title for the page

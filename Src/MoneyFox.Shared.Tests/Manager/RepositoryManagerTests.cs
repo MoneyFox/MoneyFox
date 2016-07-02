@@ -32,13 +32,11 @@ namespace MoneyFox.Shared.Tests.Manager {
             var categoryRepo = categoryRepoSetup.Object;
 
             paymentRepository.Selected = new Payment();
-            categoryRepo.Selected = new Category();
 
             new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsNull(paymentRepository.Selected);
-            Assert.IsNull(categoryRepo.Selected);
         }
 
         [TestMethod]

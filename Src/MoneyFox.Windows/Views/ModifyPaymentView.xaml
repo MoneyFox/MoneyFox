@@ -49,7 +49,7 @@
                               HorizontalAlignment="Stretch"
                               Header="{Binding AccountHeader}"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
-                              ItemsSource="{Binding AllAccounts,
+                              ItemsSource="{Binding ChargedAccounts,
                                                     Mode=TwoWay,
                                                     UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedPayment.ChargedAccount,
@@ -60,7 +60,7 @@
                               HorizontalAlignment="Stretch"
                               Header="target account"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
-                              ItemsSource="{Binding AllAccounts,
+                              ItemsSource="{Binding TargetAccounts,
                                                     Mode=TwoWay,
                                                     UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedPayment.TargetAccount,
