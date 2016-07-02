@@ -29,23 +29,6 @@ namespace MoneyFox.Droid.Fragments {
                 Activity.Title = Title;
             }
 
-            //TODO: I guess this can be removed?
-            toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (toolbar != null) {
-                ((MainActivity) Activity).SetSupportActionBar(toolbar);
-                ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
-                drawerToggle = new MvxActionBarDrawerToggle(
-                    Activity, // host Activity
-                    ((MainActivity) Activity).DrawerLayout, // DrawerLayout object
-                    toolbar, // nav drawer icon to replace 'Up' caret
-                    Resource.String.drawer_open, // "open drawer" description
-                    Resource.String.drawer_close // "close drawer" description
-                    );
-
-                ((MainActivity) Activity).DrawerLayout.AddDrawerListener(drawerToggle);
-            }
-
             return view;
         }
 
