@@ -7,6 +7,7 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using System;
 using System.Collections.ObjectModel;
@@ -37,11 +38,10 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         [TestMethod]
         public void Title_EditAccount_CorrectTitle() {
             var accountname = "Sparkonto";
-
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object)
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {IsEdit = true};
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
@@ -54,7 +54,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object)
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
@@ -65,18 +65,22 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         {
             var accountname = "Sparkonto";
 
-            var accountRepoMock = new Mock<IAccountRepository>();
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepositorySetup.SetupAllProperties();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account { Id = 2, Name = accountname });
+           
+
+            ObservableCollection<Account> accountData = new ObservableCollection<Account>();
+            accountData.Add(new Account { Id = 2, Name = accountname });
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(accountData);
             accountRepositorySetup.Setup(x => x.AddPaymentAmount(new Payment())).Returns(true);
+            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account { Id = 2, Name = "Sparkonto2" });
             accountRepositorySetup.Setup(x => x.Save(accountRepositorySetup.Object.Selected)).Returns(true);
 
             var accountRepo = accountRepositorySetup.Object;
-
-            var viewmodel = new ModifyAccountViewModel(accountRepo)
+            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object)
             { IsEdit = false };
+            viewmodel.SelectedAccount = new Account { Id = 2, Name = "Sparkonto2" };
 
             viewmodel.SaveCommand.Execute();
 
