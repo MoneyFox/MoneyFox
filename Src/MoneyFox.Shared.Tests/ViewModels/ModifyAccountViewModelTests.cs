@@ -1,20 +1,33 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
+using MvvmCross.Platform;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
     public class ModifyAccountViewModelTests : MvxIoCSupportingTest {
+        private DateTime localDateSetting;
+
         [TestInitialize]
         public void Init() {
             MvxSingleton.ClearAllSingletons();
             Setup();
+
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
+                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
+
+            Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
         }
 
         [TestMethod]
@@ -84,6 +97,28 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
             viewmodel.SaveCommand.Execute();
             Assert.AreEqual(1, accountRepo.Object.Data.Count);
+        }
+
+        [TestMethod]
+        public void Save_UpdateTimeStamp() {
+            var account = new Account {Id = 0, Name = "account"};
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupAllProperties();
+            accountRepositorySetup.Setup(x => x.AddPaymentAmount(new Payment())).Returns(true);
+            accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
+            accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
+            var accountRepo = accountRepositorySetup.Object;
+
+            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object) {
+                IsEdit = false,
+                SelectedAccount = account
+            };
+
+            viewmodel.SaveCommand.Execute();
+
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
     }
 }

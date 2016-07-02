@@ -35,7 +35,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
                 .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
-
             Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
             Mvx.RegisterType(() => settingsMockSetup.Object);
         }

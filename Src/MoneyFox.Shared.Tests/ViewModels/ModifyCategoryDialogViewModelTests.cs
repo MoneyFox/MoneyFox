@@ -1,10 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
+using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
@@ -12,9 +16,22 @@ namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
     public class ModifyCategoryDialogViewModelTests : MvxIoCSupportingTest {
 
+        private DateTime localDateSetting;
+
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
+            ClearAll();
             Setup();
+
+            // We setup the static setting classes here for the general usage in the app
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
+                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
+
+            Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
         }
 
         [TestMethod]
@@ -89,6 +106,26 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
             // Assert
             wasDialogServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void Save_UpdateTimeStamp()
+        {
+            Category category = new Category { Id = 1, Name = "categpry2" };
+            Mock<IRepository<Category>> categoryRepoMock = new Mock<IRepository<Category>>();
+            categoryRepoMock.SetupAllProperties();
+            ObservableCollection<Category> categories = new ObservableCollection<Category>();
+            categories.Add(new Category { Id = 0, Name = "category" });
+            categoryRepoMock.Setup(x => x.Data).Returns(categories);
+            categoryRepoMock.Setup(x => x.Save(category)).Returns(true);
+
+            var vm = new ModifyCategoryDialogViewModel(categoryRepoMock.Object,
+    new Mock<IDialogService>().Object);
+            vm.Selected = category;
+            vm.DoneCommand.Execute();
+
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
     }
 }
