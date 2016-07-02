@@ -10,8 +10,12 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
+using System;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using MvvmCross.Platform;
 
-namespace MoneyFox.Shared.Tests.ViewModels {
+namespace MoneyFox.Shared.Tests.ViewModels
+{
     [TestClass]
     public class ModifyAccountViewModelTests : MvxIoCSupportingTest {
         private DateTime localDateSetting;
@@ -31,24 +35,26 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void Title_EditAccount_CorrectTitle() {
+        public void Title_EditAccount_CorrectTitle()
+        {
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object) {
                 IsEdit = true,
-                SelectedAccount = new Account {Id = 3, Name = accountname}
+                SelectedAccount = new Account() { Id = 3, Name = accountname }
             };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
         }
 
         [TestMethod]
-        public void Title_AddAccount_CorrectTitle() {
-            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object,
-                new Mock<IDialogService>().Object)
-            {IsEdit = false};
+        public void Title_AddAccount_CorrectTitle()
+        {
+
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
+            { IsEdit = false };
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
         }
@@ -100,8 +106,9 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var account = new Account {Id = 0, Name = "account"};
+        public void Save_UpdateTimeStamp()
+        {
+            var account = new Account { Id = 0, Name = "account" };
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
@@ -110,10 +117,9 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
             var accountRepo = accountRepositorySetup.Object;
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object) {
-                IsEdit = false,
-                SelectedAccount = account
-            };
+            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object)
+            { IsEdit = false };
+            viewmodel.SelectedAccount = account;
 
             viewmodel.SaveCommand.Execute();
 
