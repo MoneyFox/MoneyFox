@@ -10,7 +10,6 @@ namespace MoneyFox.Windows.Views.UserControls {
     public partial class PaymentListUserControl {
         public PaymentListUserControl() {
             InitializeComponent();
-            DataContext = Mvx.Resolve<PaymentListViewModel>();
         }
 
         private void EditPaymentViewModel(object sender, RoutedEventArgs e) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -162,6 +163,20 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 notificationServiceSetup.Object).Delete(new Account());
 
             isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void AccountRepository_FindById_ReturnsAccount()
+        {
+            var accountRepository = new Mock<IAccountRepository>();
+            var testAccount = new Account() {Id = 100, Name = "Test Account"};
+            accountRepository.SetupAllProperties();
+            accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
+                .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
+            accountRepository.Object.Data = new ObservableCollection<Account>();
+            accountRepository.Object.Data.Add(testAccount);
+        
+            Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
         }
     }
 }

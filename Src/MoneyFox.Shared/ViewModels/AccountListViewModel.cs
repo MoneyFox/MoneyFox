@@ -79,8 +79,7 @@ namespace MoneyFox.Shared.ViewModels {
                 return;
             }
 
-            accountRepository.Selected = account;
-            ShowViewModel<PaymentListViewModel>();
+            ShowViewModel<PaymentListViewModel>(new { id = account.Id});
         }
 
         private async void Delete(Account item) {

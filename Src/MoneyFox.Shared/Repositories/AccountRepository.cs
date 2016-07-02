@@ -29,6 +29,11 @@ namespace MoneyFox.Shared.Repositories {
             Load();
         }
 
+        public Account FindById(int id)
+        {
+            return data.FirstOrDefault(a => a.Id == id);
+        }
+
         public Account Selected { get; set; }
 
         /// <summary>
