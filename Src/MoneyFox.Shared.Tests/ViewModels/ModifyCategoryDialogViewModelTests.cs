@@ -138,8 +138,9 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             Category category = new Category { Id = 1, Name = "categpry2" };
             Mock<IRepository<Category>> categoryRepoMock = new Mock<IRepository<Category>>();
             categoryRepoMock.SetupAllProperties();
-            ObservableCollection<Category> categories = new ObservableCollection<Category>();
-            categories.Add(new Category { Id = 0, Name = "category" });
+            ObservableCollection<Category> categories = new ObservableCollection<Category> {
+                new Category {Id = 0, Name = "category"}
+            };
             categoryRepoMock.Setup(x => x.Data).Returns(categories);
             categoryRepoMock.Setup(x => x.Save(category)).Returns(true);
 
