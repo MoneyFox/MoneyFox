@@ -82,6 +82,31 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
+        public void SaveCommand_Does_Not_Allow_Duplicate_Names2() {
+            var accountRepo = new Mock<IAccountRepository>();
+            accountRepo.SetupAllProperties();
+            accountRepo.Setup(c => c.Save(It.IsAny<Account>()))
+                .Callback((Account acc) => { accountRepo.Object.Data.Add(acc); });
+            accountRepo.Object.Data = new ObservableCollection<Account>();
+            var account = new Account {
+                Id = 1,
+                Name = "Test Account"
+            };
+            var newAccount = new Account {
+                Name = "TESt Account"
+            };
+            accountRepo.Object.Data.Add(account);
+
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object) {
+                IsEdit = false,
+                SelectedAccount = newAccount
+            };
+
+            viewmodel.SaveCommand.Execute();
+            Assert.AreEqual(1, accountRepo.Object.Data.Count);
+        }
+
+        [TestMethod]
         public void SaveCommand_SavesAccount() {
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.SetupAllProperties();
