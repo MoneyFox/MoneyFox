@@ -24,7 +24,7 @@
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>2BD393557073ED01CE890EA7BCA8FC74A2047C79</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>00A3F625264323EB36481E9246248A0BA0B11164</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>B4F9F14CBE461715B84280C7B72C27AF0C645E76</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
