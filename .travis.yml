@@ -1,4 +1,0 @@
-language: csharp
-solution: Src/MoneyFox.sln
-install:
-  - nuget restore Src/MoneyFox.sln
