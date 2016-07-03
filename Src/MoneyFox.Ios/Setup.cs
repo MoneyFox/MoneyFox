@@ -6,6 +6,7 @@ using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
+using MvvmCross.Platform.Plugins;
 using UIKit;
 
 namespace MoneyFox.Ios {
@@ -23,13 +24,14 @@ namespace MoneyFox.Ios {
             base.InitializeFirstChance();
 
             //Mvx.RegisterType<IDialogService, DialogService>();
-            //Mvx.RegisterType<ServiceInfoProvider, AndroidServiceInfoProvider>();
+            //Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             //Mvx.RegisterType<INotificationService, NotificationService>();
         }
 
         protected override IMvxApplication CreateApp() {
             Strings.Culture = new Localize().GetCurrentCultureInfo();
+
             return new App();
         }
 

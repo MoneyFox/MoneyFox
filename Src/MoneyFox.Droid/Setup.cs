@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
@@ -6,7 +5,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -43,7 +41,7 @@ namespace MoneyFox.Droid {
             base.InitializeFirstChance();
 
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<ServiceInfoProvider, AndroidServiceInfoProvider>();
+            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
         }
