@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -39,12 +40,22 @@ namespace MoneyFox.Droid.Fragments {
             button.Click += (s, e) => {
                 var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
                 builder.SetTitle(Strings.ChooseLabel);
-                builder.SetItems(itemsForCreationList.ToArray(), OnSelectItemForCreation);
-                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
+                builder.SetItems(GetItemArrayForCreationList(), OnSelectItemForCreation);
+                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog)?.Dismiss());
                 builder.Show();
             };
 
             return view;
+        }
+
+        private string[] GetItemArrayForCreationList() {
+            if (ViewModel.AllAccounts.Count > 1) {
+                return itemsForCreationList.ToArray();
+            }
+            var returnArray = new string[itemsForCreationList.Count - 1];
+            itemsForCreationList.CopyTo(0, returnArray, 0, itemsForCreationList.Count -1) ;
+
+            return returnArray;
         }
 
         public void OnSelectItemForCreation(object sender, DialogClickEventArgs args) {
