@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 
 namespace MoneyFox.Droid {
-    public class CustomServiceInfoProvider : ServiceInfoProvider {
+    public class AndroidServiceInfoProvider : ServiceInfoProvider {
         public override async Task<ServiceInfo> GetServiceInfo(
             AppConfig appConfig,
             CredentialCache credentialCache,

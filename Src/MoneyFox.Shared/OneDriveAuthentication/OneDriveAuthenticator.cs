@@ -5,13 +5,17 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Droid {
+namespace MoneyFox.Shared.OneDriveAuthentication {
+
     public class OneDriveAuthenticator : IOneDriveAuthenticator {
         private readonly IDialogService dialogService;
+        private readonly ServiceInfoProvider serviceInfoProvider;
+
         private IOneDriveClient oneDriveClient;
 
-        public OneDriveAuthenticator(IDialogService dialogService) {
+        public OneDriveAuthenticator(IDialogService dialogService, ServiceInfoProvider serviceInfoProvider) {
             this.dialogService = dialogService;
+            this.serviceInfoProvider = serviceInfoProvider;
         }
 
         public async Task<IOneDriveClient> LoginAsync() {
@@ -22,12 +26,12 @@ namespace MoneyFox.Droid {
                     ServiceConstants.Scopes,
                     ServiceConstants.MSA_CLIENT_SECRET,
                     null, null,
-                    new CustomServiceInfoProvider());
+                    serviceInfoProvider);
                 try {
                     await oneDriveClient.AuthenticateAsync();
                 }
                 catch (Exception ex) {
-                    Debug.Write(ex);
+                    Debug.WriteLine(ex);
                 }
             }
 
