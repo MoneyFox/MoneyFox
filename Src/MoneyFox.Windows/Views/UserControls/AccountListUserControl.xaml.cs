@@ -21,7 +21,7 @@ namespace MoneyFox.Windows.Views.UserControls
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -29,7 +29,7 @@ namespace MoneyFox.Windows.Views.UserControls
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
