@@ -1,15 +1,11 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using Android.App;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
+using UIKit;
 
-namespace MoneyFox.Droid.Services {
+namespace MoneyFox.Ios.Services {
     public class DialogService : IDialogService {
-        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
-
         /// <summary>
         ///     Shows a dialog with title and message. Contains only an OK button.
         /// </summary>
@@ -18,10 +14,8 @@ namespace MoneyFox.Droid.Services {
         public Task ShowMessage(string title, string message) {
             var tcs = new TaskCompletionSource<bool>();
 
-            var builder = new AlertDialog.Builder(CurrentActivity);
-            builder.SetTitle(title);
-            builder.SetMessage(message);
-            builder.Show();
+            var dialog = new UIAlertView(title, message, null, Strings.OkLabel, null);
+            dialog.Show();
 
             return tcs.Task;
         }
@@ -36,14 +30,14 @@ namespace MoneyFox.Droid.Services {
         /// <param name="negativeButtonText">Text for the no button.</param>
         /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
         /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction,
-            string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null) {
+        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+            string negativeButtonText = null, Action negativAction = null) {
+            
             var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer) {
                 positivAction();
-            }
-            else {
+            } else {
                 negativAction?.Invoke();
             }
         }
@@ -55,16 +49,15 @@ namespace MoneyFox.Droid.Services {
         /// <param name="message">Text for the dialog.</param>
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
-        public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
-            string negativeButtonText = null) {
+        public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null, string negativeButtonText = null) {
             var tcs = new TaskCompletionSource<bool>();
 
-            var builder = new AlertDialog.Builder(CurrentActivity);
-            builder.SetTitle(title);
-            builder.SetMessage(message);
-            builder.SetPositiveButton(Strings.YesLabel, (s, e) => tcs.SetResult(true));
-            builder.SetNegativeButton(Strings.NoLabel, (s, e) => tcs.SetResult(false));
-            builder.Show();
+            var dialog = new UIAlertView(title, message, null, Strings.CancelLabel, Strings.OkLabel, null);
+            dialog.Show();
+
+            var alert = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create(positiveButtonText ?? Strings.OkLabel, UIAlertActionStyle.Default, x => tcs.SetResult(true)));
+            alert.AddAction(UIAlertAction.Create(negativeButtonText ?? Strings.CancelLabel, UIAlertActionStyle.Default, x => tcs.SetResult(false)));
 
             return tcs.Task;
         }
