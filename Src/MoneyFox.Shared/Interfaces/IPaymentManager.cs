@@ -12,5 +12,11 @@ namespace MoneyFox.Shared.Interfaces
         void ClearPayments();
 
         void RemoveRecurringForPayments(RecurringPayment recurringPayment);
+
+        bool AddPaymentAmount(Payment payment);
+
+        bool RemovePaymentAmount(Payment payment);
+
+        bool RemovePaymentAmount(Payment payment, Account account);
     }
 }
