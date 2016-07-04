@@ -7,13 +7,16 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class ModifyAccountViewModel : BaseViewModel {
+    public class ModifyAccountViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService) {
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService)
+        {
             this.accountRepository = accountRepository;
             this.dialogService = dialogService;
         }
@@ -53,11 +56,14 @@ namespace MoneyFox.Shared.ViewModels {
         ///     This is used to prevent issues when converting the amount string to double
         ///     without the correct culture.
         /// </summary>
-        public string AmountString {
+        public string AmountString
+        {
             get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
-            set {
+            set
+            {
                 double amount;
-                if (double.TryParse(value, out amount)) {
+                if (double.TryParse(value, out amount))
+                {
                     SelectedAccount.CurrentBalance = amount;
                 }
             }
@@ -68,10 +74,12 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public Account SelectedAccount { get; set; }
 
-        public void Init(bool isEdit) {
+        public void Init(bool isEdit)
+        {
             IsEdit = isEdit;
 
-            if (!IsEdit) {
+            if (!IsEdit)
+            {
                 SelectedAccount = new Account();
             }
         }
@@ -81,34 +89,40 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
         /// <param name="selectedAccountId">if in edit mode, this is the selected account.</param>
-        public void Init(bool isEdit, int selectedAccountId) {
+        public void Init(bool isEdit, int selectedAccountId)
+        {
             IsEdit = isEdit;
             SelectedAccount = selectedAccountId != 0
                 ? accountRepository.Data.First(x => x.Id == selectedAccountId)
                 : new Account();
         }
 
-        private async void SaveAccount() {
+        private async void SaveAccount()
+        {
             if (
                 accountRepository.Data.Any(
-                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase))) {
+                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
+            {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            if (accountRepository.Save(SelectedAccount)) {
+            if (accountRepository.Save(SelectedAccount))
+            {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }
 
-        private void DeleteAccount() {
+        private void DeleteAccount()
+        {
             if (accountRepository.Delete(SelectedAccount))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }
 
-        private void Cancel() {
+        private void Cancel()
+        {
             //TODO: revert changes
             Close(this);
         }

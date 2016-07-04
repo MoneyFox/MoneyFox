@@ -6,17 +6,21 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.Authentication {
+namespace MoneyFox.Shared.Tests.Authentication
+{
     [TestClass]
-    public class SessionTests : MvxIoCSupportingTest {
+    public class SessionTests : MvxIoCSupportingTest
+    {
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             ClearAll();
             Setup();
         }
 
         [TestMethod]
-        public void ValidateSession_PasswordNotRequired_SessionValid() {
+        public void ValidateSession_PasswordNotRequired_SessionValid()
+        {
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(false);
@@ -27,7 +31,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid() {
+        public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
+        {
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
@@ -42,7 +47,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void ValidateSession_PasswordRequiredSession_SessionInvalid() {
+        public void ValidateSession_PasswordRequiredSession_SessionInvalid()
+        {
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(
                 x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
@@ -56,7 +62,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void ValidateSession_PasswordRequiredSession_SessionValid() {
+        public void ValidateSession_PasswordRequiredSession_SessionValid()
+        {
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(
                 x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
@@ -70,7 +77,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void AddSession_SessionTimestampAdded() {
+        public void AddSession_SessionTimestampAdded()
+        {
             var resultDateTime = DateTime.Today.AddDays(-10);
 
             var settingsSetup = new Mock<ISettings>();

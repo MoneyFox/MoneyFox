@@ -8,15 +8,18 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Droid.Activities {
+namespace MoneyFox.Droid.Activities
+{
     [Activity(Label = "Money Fox",
         Theme = "@style/AppTheme",
         NoHistory = true)]
-    public class LoginActivity : MvxAppCompatActivity<LoginViewModel> {
+    public class LoginActivity : MvxAppCompatActivity<LoginViewModel>
+    {
         private EditText editTextPassword;
         private Button loginButton;
 
-        protected override void OnCreate(Bundle bundle) {
+        protected override void OnCreate(Bundle bundle)
+        {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.activity_login);
@@ -27,8 +30,10 @@ namespace MoneyFox.Droid.Activities {
             loginButton.Click += Login;
         }
 
-        private void Login(object sender, EventArgs e) {
-            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(editTextPassword.Text)) {
+        private void Login(object sender, EventArgs e)
+        {
+            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(editTextPassword.Text))
+            {
                 Mvx.Resolve<IDialogService>().ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
                 return;
             }

@@ -2,15 +2,16 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.Repositories {
+namespace MoneyFox.Shared.Repositories
+{
     [ImplementPropertyChanged]
-    public class CategoryRepository : ICategoryRepository {
+    public class CategoryRepository : ICategoryRepository
+    {
         private readonly IDataAccess<Category> dataAccess;
         private readonly INotificationService notificationService;
 
@@ -20,7 +21,8 @@ namespace MoneyFox.Shared.Repositories {
         ///     Creates a CategoryRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess, INotificationService notificationService) {
+        public CategoryRepository(IDataAccess<Category> dataAccess, INotificationService notificationService)
+        {
             this.dataAccess = dataAccess;
             this.notificationService = notificationService;
 
@@ -31,10 +33,13 @@ namespace MoneyFox.Shared.Repositories {
         /// <summary>
         ///     Cached category data
         /// </summary>
-        public ObservableCollection<Category> Data {
+        public ObservableCollection<Category> Data
+        {
             get { return data; }
-            set {
-                if (Equals(data, value)) {
+            set
+            {
+                if (Equals(data, value))
+                {
                     return;
                 }
                 data = value;
@@ -51,17 +56,21 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         /// <param name="category">accountToDelete to save</param>
         /// <returns>Whether the task has succeeded</returns>
-        public bool Save(Category category) {
-            if (string.IsNullOrWhiteSpace(category.Name)) {
+        public bool Save(Category category)
+        {
+            if (string.IsNullOrWhiteSpace(category.Name))
+            {
                 category.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            if (category.Id == 0) {
+            if (category.Id == 0)
+            {
                 data.Add(category);
 
                 data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
             }
-            if (!dataAccess.SaveItem(category)) {
+            if (!dataAccess.SaveItem(category))
+            {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
                 return false;
             }
@@ -74,9 +83,11 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         /// <param name="categoryToDelete">accountToDelete to delete</param>
         /// <returns>Whether the task has succeeded</returns>
-        public bool Delete(Category categoryToDelete) {
+        public bool Delete(Category categoryToDelete)
+        {
             data.Remove(categoryToDelete);
-            if (!dataAccess.DeleteItem(categoryToDelete)) {
+            if (!dataAccess.DeleteItem(categoryToDelete))
+            {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
                 return false;
             }
@@ -86,9 +97,11 @@ namespace MoneyFox.Shared.Repositories {
         /// <summary>
         ///     Loads all categories from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Category, bool>> filter = null) {
+        public void Load(Expression<Func<Category, bool>> filter = null)
+        {
             Data.Clear();
-            foreach (var category in dataAccess.LoadList(filter)) {
+            foreach (var category in dataAccess.LoadList(filter))
+            {
                 Data.Add(category);
             }
         }
