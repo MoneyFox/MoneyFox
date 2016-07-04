@@ -95,10 +95,15 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="OneDriveAuth\OAuthView.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
+    <Compile Include="OneDriveAuth\IosServiceInfoProvider.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\NotificationService.cs" />
+    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
@@ -239,8 +244,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Json" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Auth, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Auth.1.3.0\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
