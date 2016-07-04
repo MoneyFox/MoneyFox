@@ -1,20 +1,23 @@
 ﻿using Windows.ApplicationModel.Background;
 using Microsoft.HockeyApp;
 using MoneyFox.Shared;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Shortcuts;
-using MoneyFox.Shared.Constants;
+using MvvmCross.Plugins.File.WindowsCommon;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
-namespace MoneyFox.Tasks {
-    public sealed class ClearPaymentBackgroundTask : IBackgroundTask {
+namespace MoneyFox.Tasks
+{
+    public sealed class ClearPaymentBackgroundTask : IBackgroundTask
+    {
         private readonly PaymentManager paymentManager;
 
-        public ClearPaymentBackgroundTask() {
+        public ClearPaymentBackgroundTask()
+        {
 #if !DEBUG
             HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID,
                 new TelemetryConfiguration {EnableDiagnostics = true});
@@ -39,7 +42,8 @@ namespace MoneyFox.Tasks {
                 null);
         }
 
-        public void Run(IBackgroundTaskInstance taskInstance) {
+        public void Run(IBackgroundTaskInstance taskInstance)
+        {
             HockeyClient.Current.TrackEvent("Run BackgroundTask");
 
             paymentManager.ClearPayments();

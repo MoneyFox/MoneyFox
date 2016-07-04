@@ -8,17 +8,21 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.Converter {
+namespace MoneyFox.Shared.Tests.Converter
+{
     [TestClass]
-    public class PaymentAmountConverterTests : MvxIoCSupportingTest {
+    public class PaymentAmountConverterTests : MvxIoCSupportingTest
+    {
         [TestMethod]
-        public void Converter_Payment_NegativeAmountSign() {
+        public void Converter_Payment_NegativeAmountSign()
+        {
             new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Expense}, null,
                 null, null).ShouldBe("- " + 80.ToString("C"));
         }
 
         [TestMethod]
-        public void Converter_Payment_PositiveAmountSign() {
+        public void Converter_Payment_PositiveAmountSign()
+        {
             new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Income}, null,
                 null, null).ShouldBe("+ " + 80.ToString("C"));
         }
@@ -44,7 +48,7 @@ namespace MoneyFox.Shared.Tests.Converter {
                 .Convert(new Payment
                 {
                     Amount = 80,
-                    Type = (int)PaymentType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     ChargedAccountId = account.Id,
                     ChargedAccount = account,
                     CurrentAccountId = account.Id
@@ -71,7 +75,7 @@ namespace MoneyFox.Shared.Tests.Converter {
                 .Convert(new Payment
                 {
                     Amount = 80,
-                    Type = (int)PaymentType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     ChargedAccount = new Account(),
                     CurrentAccountId = account.Id
                 }, null, new Account(), null)

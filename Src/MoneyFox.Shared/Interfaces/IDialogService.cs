@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces {
-    public interface IDialogService {
+namespace MoneyFox.Shared.Interfaces
+{
+    public interface IDialogService
+    {
         /// <summary>
         ///     Shows a dialog with title and message. Contains only an OK button.
         /// </summary>
@@ -31,5 +33,15 @@ namespace MoneyFox.Shared.Interfaces {
         /// <param name="negativeButtonText">Text for the no button.</param>
         Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null);
+
+        /// <summary>
+        ///     Shows a loading Dialog.
+        /// </summary>
+        void ShowLoadingDialog();
+
+        /// <summary>
+        ///     Hides the previously opened Loading Dialog.
+        /// </summary>
+        void HideLoadingDialog();
     }
 }

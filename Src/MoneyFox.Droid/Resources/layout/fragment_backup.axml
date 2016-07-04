@@ -75,11 +75,5 @@
                 android:gravity="left"
                 local:MvxBind="Text BackupLastModified" />
         </LinearLayout>
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            local:MvxBind="Visibility Visibility(IsLoading)" />
     </LinearLayout>
 </LinearLayout>

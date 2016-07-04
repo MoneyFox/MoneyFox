@@ -14,20 +14,25 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.Repositories {
+namespace MoneyFox.Shared.Tests.Repositories
+{
     [TestClass]
-    public class CategoryRepositoryTests : MvxIoCSupportingTest {
+    public class CategoryRepositoryTests : MvxIoCSupportingTest
+    {
         private DateTime localDateSetting;
 
-        public static IEnumerable NamePlaceholder {
-            get {
+        public static IEnumerable NamePlaceholder
+        {
+            get
+            {
                 yield return new object[] {"Ausgang", "Ausgang"};
                 yield return new object[] {"", Strings.NoNamePlaceholderLabel};
             }
         }
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             Setup();
 
             // We setup the static setting classes here for the general usage in the app
@@ -40,12 +45,14 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_EmptyString_CorrectNameAssigned() {
+        public void Save_EmptyString_CorrectNameAssigned()
+        {
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock,
                 new Mock<INotificationService>().Object);
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = ""
             };
 
@@ -56,13 +63,15 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_InputName_CorrectNameAssigned() {
+        public void Save_InputName_CorrectNameAssigned()
+        {
             const string name = "Ausgang";
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock,
                 new Mock<INotificationService>().Object);
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = name
             };
 
@@ -73,12 +82,14 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void CategoryRepository_Delete() {
+        public void CategoryRepository_Delete()
+        {
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock,
                 new Mock<INotificationService>().Object);
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = "Ausgang"
             };
 
@@ -93,20 +104,24 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void CategoryRepository_AccessCache() {
+        public void CategoryRepository_AccessCache()
+        {
             new CategoryRepository(new CategoryDataAccessMock(), new Mock<INotificationService>().Object)
                 .Data.ShouldNotBeNull();
         }
 
         [TestMethod]
-        public void CategoryRepository_AddMultipleToCache() {
+        public void CategoryRepository_AddMultipleToCache()
+        {
             var repository = new CategoryRepository(new CategoryDataAccessMock(),
                 new Mock<INotificationService>().Object);
-            var category = new Category {
+            var category = new Category
+            {
                 Name = "Ausgang"
             };
 
-            var secondCategory = new Category {
+            var secondCategory = new Category
+            {
                 Name = "Lebensmittel"
             };
 
@@ -119,9 +134,11 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Load_CategoryDataAccess_DataInitialized() {
+        public void Load_CategoryDataAccess_DataInitialized()
+        {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category> {
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>
+            {
                 new Category {Id = 10},
                 new Category {Id = 15}
             });
@@ -135,7 +152,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_NotifyUserOfFailure() {
+        public void Save_NotifyUserOfFailure()
+        {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -153,7 +171,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Delete_NotifyUserOfFailure() {
+        public void Delete_NotifyUserOfFailure()
+        {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -174,7 +193,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
         public void CategoryRepository_FindById_ReturnsCategory()
         {
             var categoryRepository = new Mock<IRepository<Category>>();
-            var testCategory = new Category() {Id = 100, Name = "Test Category"};
+            var testCategory = new Category {Id = 100, Name = "Test Category"};
             categoryRepository.SetupAllProperties();
             categoryRepository.Setup(x => x.FindById(It.IsAny<int>()))
                 .Returns((int categoryId) => categoryRepository.Object.Data.FirstOrDefault(c => c.Id == categoryId));

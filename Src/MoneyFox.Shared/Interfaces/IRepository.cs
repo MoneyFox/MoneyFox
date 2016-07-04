@@ -2,8 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Interfaces {
-    public interface IRepository<T> {
+namespace MoneyFox.Shared.Interfaces
+{
+    public interface IRepository<T>
+    {
         /// <summary>
         ///     All payment loaded from the database
         /// </summary>
@@ -14,7 +16,7 @@ namespace MoneyFox.Shared.Interfaces {
         /// </summary>
         /// <param name="id">Id of entity to find.</param>
         T FindById(int id);
-    
+
         /// <summary>
         ///     Will update an existing entry and add a non existing
         /// </summary>

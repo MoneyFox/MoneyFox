@@ -7,22 +7,27 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
-namespace MoneyFox.Windows.Tests.DataAccess {
+namespace MoneyFox.Windows.Tests.DataAccess
+{
     [TestClass]
-    public class PaymentDataAccessTests {
+    public class PaymentDataAccessTests
+    {
         private DatabaseManager connectionCreator;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
-        public void SaveToDatabase_NewPayment_CorrectId() {
+        public void SaveToDatabase_NewPayment_CorrectId()
+        {
             var amount = 789;
 
-            var payment = new Payment {
+            var payment = new Payment
+            {
                 Amount = amount
             };
 
@@ -33,7 +38,8 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_ExistingPayment_CorrectId() {
+        public void SaveToDatabase_ExistingPayment_CorrectId()
+        {
             var payment = new Payment();
 
             var dataAccess = new PaymentDataAccess(connectionCreator);
@@ -51,12 +57,15 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_MultipleRecurringPayment_AllSaved() {
-            var payment1 = new RecurringPayment {
+        public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
+        {
+            var payment1 = new RecurringPayment
+            {
                 Note = "MultiPayment1"
             };
 
-            var payment2 = new RecurringPayment {
+            var payment2 = new RecurringPayment
+            {
                 Note = "MultiPayment2"
             };
 
@@ -71,11 +80,13 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_CreateAndUpdatePayment_CorrectlyUpdated() {
+        public void SaveToDatabase_CreateAndUpdatePayment_CorrectlyUpdated()
+        {
             var firstAmount = 5555555;
             var secondAmount = 222222222;
 
-            var payment = new Payment {
+            var payment = new Payment
+            {
                 Amount = firstAmount
             };
 
@@ -93,8 +104,10 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void DeleteFromDatabase_PaymentToDelete_CorrectlyDelete() {
-            var payment = new Payment {
+        public void DeleteFromDatabase_PaymentToDelete_CorrectlyDelete()
+        {
+            var payment = new Payment
+            {
                 Note = "paymentToDelete"
             };
 

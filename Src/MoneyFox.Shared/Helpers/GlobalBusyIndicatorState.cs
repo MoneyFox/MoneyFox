@@ -1,8 +1,10 @@
 ﻿using PropertyChanged;
 
-namespace MoneyFox.Shared.Helpers {
+namespace MoneyFox.Shared.Helpers
+{
     [ImplementPropertyChanged]
-    public class GlobalBusyIndicatorState {
+    public class GlobalBusyIndicatorState
+    {
         public bool IsActive { get; set; } = false;
     }
 }

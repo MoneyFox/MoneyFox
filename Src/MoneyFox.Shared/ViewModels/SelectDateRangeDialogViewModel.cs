@@ -4,10 +4,13 @@ using MoneyFox.Shared.Messages;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class SelectDateRangeDialogViewModel : BaseViewModel {
-        public SelectDateRangeDialogViewModel() {
+    public class SelectDateRangeDialogViewModel : BaseViewModel
+    {
+        public SelectDateRangeDialogViewModel()
+        {
             StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             EndDate = DateTime.Today.GetLastDayOfMonth();
         }
@@ -27,7 +30,8 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public MvxCommand DoneCommand => new MvxCommand(Done);
 
-        private void Done() {
+        private void Done()
+        {
             MessageHub.Publish(new DateSelectedMessage(this, StartDate, EndDate));
         }
     }

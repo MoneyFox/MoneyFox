@@ -6,22 +6,27 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
-namespace MoneyFox.Windows.Tests.DataAccess {
+namespace MoneyFox.Windows.Tests.DataAccess
+{
     [TestClass]
-    public class CategoryDataAccessTests {
+    public class CategoryDataAccessTests
+    {
         private DatabaseManager _connectionCreator;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             _connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
-        public void SaveToDatabase_NewCategory_CorrectId() {
+        public void SaveToDatabase_NewCategory_CorrectId()
+        {
             var name = "TestCategory";
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = name
             };
 
@@ -32,7 +37,8 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_ExistingCategory_CorrectId() {
+        public void SaveToDatabase_ExistingCategory_CorrectId()
+        {
             var category = new Category();
 
             var dataAccess = new CategoryDataAccess(_connectionCreator);
@@ -50,12 +56,15 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_MultipleCategories_AllSaved() {
-            var category1 = new Category {
+        public void SaveToDatabase_MultipleCategories_AllSaved()
+        {
+            var category1 = new Category
+            {
                 Name = "Einkaufen"
             };
 
-            var category2 = new Category {
+            var category2 = new Category
+            {
                 Name = "Beer"
             };
 
@@ -70,11 +79,13 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_CreateAndUpdateCategory_CorrectlyUpdated() {
+        public void SaveToDatabase_CreateAndUpdateCategory_CorrectlyUpdated()
+        {
             var firstName = "old name";
             var secondName = "new name";
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = firstName
             };
 
@@ -92,8 +103,10 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void DeleteFromDatabase_CategoryToDelete_CorrectlyDelete() {
-            var category = new Category {
+        public void DeleteFromDatabase_CategoryToDelete_CorrectlyDelete()
+        {
+            var category = new Category
+            {
                 Name = "categoryToDelete"
             };
 

@@ -7,18 +7,21 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid.Services {
-
-    public class NotificationService : INotificationService {
+namespace MoneyFox.Droid.Services
+{
+    public class NotificationService : INotificationService
+    {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
-        public Task SendBasicNotification(string title, string message) {
+        public Task SendBasicNotification(string title, string message)
+        {
             var tcs = new TaskCompletionSource<bool>();
 
             var view = CurrentActivity.Window.DecorView.FindViewById(Android.Resource.Id.Content);
 
             // Will close keyboard if open to make the snackbar visible
-            if (view != null) {
+            if (view != null)
+            {
                 var imm = (InputMethodManager) CurrentActivity
                     .GetSystemService(Context.InputMethodService);
                 imm.HideSoftInputFromWindow(view.WindowToken, 0);
