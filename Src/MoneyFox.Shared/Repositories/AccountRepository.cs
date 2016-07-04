@@ -7,9 +7,11 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.Repositories {
+namespace MoneyFox.Shared.Repositories
+{
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository {
+    public class AccountRepository : IAccountRepository
+    {
         private readonly IDataAccess<Account> dataAccess;
 
         private ObservableCollection<Account> data;
@@ -31,10 +33,13 @@ namespace MoneyFox.Shared.Repositories {
         /// <summary>
         ///     Cached account data
         /// </summary>
-        public ObservableCollection<Account> Data {
+        public ObservableCollection<Account> Data
+        {
             get { return data; }
-            set {
-                if (Equals(data, value)) {
+            set
+            {
+                if (Equals(data, value))
+                {
                     return;
                 }
                 data = value;
@@ -64,7 +69,8 @@ namespace MoneyFox.Shared.Repositories {
         ///     Deletes the passed account and removes it from cache
         /// </summary>
         /// <param name="accountToDelete">accountToDelete to delete</param>
-        public bool Delete(Account accountToDelete) {
+        public bool Delete(Account accountToDelete)
+        {
             data.Remove(accountToDelete);
             return dataAccess.DeleteItem(accountToDelete);
         }
@@ -72,10 +78,12 @@ namespace MoneyFox.Shared.Repositories {
         /// <summary>
         ///     Loads all accounts from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Account, bool>> filter = null) {
+        public void Load(Expression<Func<Account, bool>> filter = null)
+        {
             Data.Clear();
 
-            foreach (var account in dataAccess.LoadList(filter)) {
+            foreach (var account in dataAccess.LoadList(filter))
+            {
                 Data.Add(account);
             }
         }
@@ -84,8 +92,10 @@ namespace MoneyFox.Shared.Repositories {
         ///     Adds the payment amount from the selected account
         /// </summary>
         /// <param name="payment">Payment to add the account from.</param>
-        public bool AddPaymentAmount(Payment payment) {
-            if (!payment.IsCleared) {
+        public bool AddPaymentAmount(Payment payment)
+        {
+            if (!payment.IsCleared)
+            {
                 return false;
             }
 
@@ -96,7 +106,8 @@ namespace MoneyFox.Shared.Repositories {
                     ? x
                     : -x;
 
-            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0) {
+            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
+            {
                 payment.ChargedAccount = data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
             }
 
@@ -108,8 +119,9 @@ namespace MoneyFox.Shared.Repositories {
         ///     Removes the payment Amount from the charged account of this payment
         /// </summary>
         /// <param name="payment">Payment to remove the account from.</param>
-        public bool RemovePaymentAmount(Payment payment) {
-            bool succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
+        public bool RemovePaymentAmount(Payment payment)
+        {
+            var succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
             return succeded;
         }
 
@@ -118,8 +130,10 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         /// <param name="payment">Payment to remove.</param>
         /// <param name="account">Account to remove the amount from.</param>
-        public bool RemovePaymentAmount(Payment payment, Account account) {
-            if (!payment.IsCleared) {
+        public bool RemovePaymentAmount(Payment payment, Account account)
+        {
+            if (!payment.IsCleared)
+            {
                 return false;
             }
 
@@ -134,8 +148,10 @@ namespace MoneyFox.Shared.Repositories {
             return true;
         }
 
-        private void PrehandleRemoveIfTransfer(Payment payment) {
-            if (payment.Type == (int) PaymentType.Transfer) {
+        private void PrehandleRemoveIfTransfer(Payment payment)
+        {
+            if (payment.Type == (int) PaymentType.Transfer)
+            {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
             }
@@ -143,9 +159,11 @@ namespace MoneyFox.Shared.Repositories {
 
         private void HandlePaymentAmount(Payment payment,
             Func<double, double> amountFunc,
-            Func<Payment, Account> getAccountFunc) {
+            Func<Payment, Account> getAccountFunc)
+        {
             var account = getAccountFunc(payment);
-            if (account == null) {
+            if (account == null)
+            {
                 return;
             }
 
@@ -153,20 +171,24 @@ namespace MoneyFox.Shared.Repositories {
             Save(account);
         }
 
-        private void PrehandleAddIfTransfer(Payment payment) {
-            if (payment.Type == (int) PaymentType.Transfer) {
+        private void PrehandleAddIfTransfer(Payment payment)
+        {
+            if (payment.Type == (int) PaymentType.Transfer)
+            {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private Func<Payment, Account> GetTargetAccountFunc() {
+        private Func<Payment, Account> GetTargetAccountFunc()
+        {
             Func<Payment, Account> targetAccountFunc =
                 trans => Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
-        private Func<Payment, Account> GetChargedAccountFunc(Account account) {
+        private Func<Payment, Account> GetChargedAccountFunc(Account account)
+        {
             Func<Payment, Account> accountFunc =
                 trans => Data.FirstOrDefault(x => x.Id == account.Id);
             return accountFunc;

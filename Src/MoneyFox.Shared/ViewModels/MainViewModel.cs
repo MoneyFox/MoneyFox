@@ -1,12 +1,12 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MoneyFox.Shared.Interfaces;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Shared.ViewModels {
-
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class MainViewModel : BaseViewModel {
-
+    public class MainViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
 
         public MainViewModel(IAccountRepository accountRepository)
@@ -39,24 +39,29 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
 
-        private void GoToAddPayment(string paymentType) {
+        private void GoToAddPayment(string paymentType)
+        {
             ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
         }
 
-        private void GoToAddAccount() {
+        private void GoToAddAccount()
+        {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = false});
         }
 
-        private void GoToAbout() {
+        private void GoToAbout()
+        {
             ShowViewModel<AboutViewModel>();
         }
 
-        private void GoToRecurringPaymentList() {
+        private void GoToRecurringPaymentList()
+        {
             ShowViewModel<RecurringPaymentListViewModel>();
         }
 
         //Only used in Android
-        public void ShowMenuAndFirstDetail() {
+        public void ShowMenuAndFirstDetail()
+        {
             ShowViewModel<MenuViewModel>();
             ShowViewModel<AccountListViewModel>();
         }

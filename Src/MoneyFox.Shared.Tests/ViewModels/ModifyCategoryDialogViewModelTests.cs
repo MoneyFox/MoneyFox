@@ -1,4 +1,7 @@
-﻿using Cheesebaron.MvxPlugins.Settings.Interfaces;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -6,14 +9,12 @@ using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Tests.ViewModels {
+namespace MoneyFox.Shared.Tests.ViewModels
+{
     [TestClass]
-    public class ModifyCategoryDialogViewModelTests : MvxIoCSupportingTest {
-
+    public class ModifyCategoryDialogViewModelTests : MvxIoCSupportingTest
+    {
         private DateTime localDateSetting;
 
         [TestInitialize]
@@ -33,7 +34,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void DoneCommand_NameEmpty_ShowMessage() {
+        public void DoneCommand_NameEmpty_ShowMessage()
+        {
             // Setup
             var wasDialogServiceCalled = false;
 
@@ -52,7 +54,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void DoneCommand_CategorySaved() {
+        public void DoneCommand_CategorySaved()
+        {
             // Setup
             Category passedCategory = null;
 
@@ -62,7 +65,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             repositorySetup.SetupGet(x => x.Data).
                 Returns(new ObservableCollection<Category>());
 
-            var categoryToSave = new Category { Name = "test" };
+            var categoryToSave = new Category {Name = "test"};
 
             var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object,
                 new Mock<IDialogService>().Object) {Selected = categoryToSave};
@@ -75,7 +78,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void DoneCommand_NameAlreadyTaken_ShowMessage() {
+        public void DoneCommand_NameAlreadyTaken_ShowMessage()
+        {
             // Setup
             const string categoryName = "Test name Category";
             var wasDialogServiceCalled = false;
@@ -91,7 +95,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             var repo = repositorySetup.Object;
             repo.Data = new ObservableCollection<Category> {new Category {Name = categoryName}};
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object) {
+            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
+            {
                 Selected = new Category {Name = categoryName}
             };
 
@@ -104,7 +109,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
 
         [TestMethod]
-        public void DoneCommand_NameAlreadyTakenToUpper_ShowMessage() {
+        public void DoneCommand_NameAlreadyTakenToUpper_ShowMessage()
+        {
             // Setup
             const string categoryName1 = "Test name Category";
             const string categoryName2 = "Test name CATegory";
@@ -119,10 +125,11 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             repositorySetup.SetupAllProperties();
 
             var repo = repositorySetup.Object;
-            repo.Data = new ObservableCollection<Category> { new Category { Name = categoryName1 } };
+            repo.Data = new ObservableCollection<Category> {new Category {Name = categoryName1}};
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object) {
-                Selected = new Category { Name = categoryName2 }
+            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
+            {
+                Selected = new Category {Name = categoryName2}
             };
 
             // Execute
@@ -135,10 +142,11 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         [TestMethod]
         public void Save_UpdateTimeStamp()
         {
-            Category category = new Category { Id = 1, Name = "categpry2" };
-            Mock<IRepository<Category>> categoryRepoMock = new Mock<IRepository<Category>>();
+            var category = new Category {Id = 1, Name = "categpry2"};
+            var categoryRepoMock = new Mock<IRepository<Category>>();
             categoryRepoMock.SetupAllProperties();
-            ObservableCollection<Category> categories = new ObservableCollection<Category> {
+            var categories = new ObservableCollection<Category>
+            {
                 new Category {Id = 0, Name = "category"}
             };
             categoryRepoMock.Setup(x => x.Data).Returns(categories);

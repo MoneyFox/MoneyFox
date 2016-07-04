@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Interfaces {
+namespace MoneyFox.Shared.Interfaces
+{
     /// <summary>
     ///     Defines the basic Input / Output Operations for the database
     /// </summary>
     /// <typeparam name="T">Entity Type</typeparam>
-    public interface IDataAccess<T> {
+    public interface IDataAccess<T>
+    {
         /// <summary>
         ///     Updates or Inserts an item on the database
         /// </summary>

@@ -11,21 +11,24 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels {
+namespace MoneyFox.Shared.Tests.ViewModels
+{
     [TestClass]
-    public class MainViewModelTests : MvxIoCSupportingTest {
+    public class MainViewModelTests : MvxIoCSupportingTest
+    {
+        protected MockDispatcher MockDispatcher { get; private set; }
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             Setup();
         }
-
-        protected MockDispatcher MockDispatcher { get; private set; }
 
         /// <summary>
         ///     This is needed for the navigation to work in the test.
         /// </summary>
-        protected override void AdditionalSetup() {
+        protected override void AdditionalSetup()
+        {
             MockDispatcher = new MockDispatcher();
             Ioc.RegisterSingleton<IMvxViewDispatcher>(MockDispatcher);
             Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(MockDispatcher);
@@ -34,7 +37,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed() {           
+        public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
+        {
             new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
@@ -45,7 +49,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed() {
+        public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
+        {
             new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
@@ -56,7 +61,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed() {
+        public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
+        {
             new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
 
@@ -67,7 +73,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void IsTransferAvailable_EmptyData_NotAvailable() {
+        public void IsTransferAvailable_EmptyData_NotAvailable()
+        {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
@@ -76,10 +83,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void IsTransferAvailable_OneAccountInData_NotAvailable() {
+        public void IsTransferAvailable_OneAccountInData_NotAvailable()
+        {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account> {
+                .Returns(new ObservableCollection<Account>
+                {
                     new Account()
                 });
 
@@ -87,10 +96,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void IsTransferAvailable_TwoAccountInData_Available() {
+        public void IsTransferAvailable_TwoAccountInData_Available()
+        {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account> {
+                .Returns(new ObservableCollection<Account>
+                {
                     new Account(),
                     new Account()
                 });

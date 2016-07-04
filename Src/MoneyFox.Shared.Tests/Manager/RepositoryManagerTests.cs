@@ -7,9 +7,11 @@ using MoneyFox.Shared.Model;
 using Moq;
 using MoneyFox.Shared.Repositories;
 
-namespace MoneyFox.Shared.Tests.Manager {
+namespace MoneyFox.Shared.Tests.Manager
+{
     [TestClass]
-    public class RepositoryManagerTests {
+    public class RepositoryManagerTests
+    {
         [TestMethod]
         public void Constructor_NullValues_NoException() {
             new RepositoryManager(null, null, null).ShouldNotBeNull();
@@ -22,7 +24,6 @@ namespace MoneyFox.Shared.Tests.Manager {
             dbManagerSetup.Setup(x => x.GetConnection());
 
             var unitOfWork = new UnitOfWork(dbManagerSetup.Object);
-
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
 
@@ -39,7 +40,8 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void ReloadData_CollectionNull_CollectionInstantiated() {
+        public void ReloadData_CollectionNull_CollectionInstantiated()
+        {
             var accountsLoaded = false;
             var paymentsLoaded = false;
             var categoryLoaded = false;
@@ -85,7 +87,6 @@ namespace MoneyFox.Shared.Tests.Manager {
         //        IsCleared = false,
         //        Date = DateTime.Today.AddDays(-3)
         //    };
-
         //    var accountRepoSetup = new Mock<IAccountRepository>();
         //    accountRepoSetup.SetupAllProperties();
 

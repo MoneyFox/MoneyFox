@@ -1,8 +1,10 @@
-﻿namespace MoneyFox.Shared.Constants {
+﻿namespace MoneyFox.Shared.Constants
+{
     /// <summary>
     ///     Contains constant values regarding the database
     /// </summary>
-    public class DatabaseConstants {
+    public class DatabaseConstants
+    {
         /// <summary>
         ///     Name of the sqlite database
         ///     DEPREDCATED: Use DB_NAME instead

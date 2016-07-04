@@ -1,10 +1,9 @@
-﻿using System.Resources;
+﻿using System.Reflection;
+using System.Resources;
+using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-
-using System.Reflection;
-using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("MoneyFox.Windows")]
 [assembly: AssemblyDescription("")]
@@ -30,4 +29,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en")]
-

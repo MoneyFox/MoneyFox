@@ -8,17 +8,21 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider {
+namespace MoneyFox.Shared.Tests.StatisticProvider
+{
     [TestClass]
-    public class CategorySummaryProviderTests {
+    public class CategorySummaryProviderTests
+    {
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void GetValues_NullDependency_NullReferenceException() {
+        public void GetValues_NullDependency_NullReferenceException()
+        {
             new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
         }
 
         [TestMethod]
-        public void GetValues_InitializedData_IgnoreTransfers() {
+        public void GetValues_InitializedData_IgnoreTransfers()
+        {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -27,13 +31,16 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
             categoryRepoSetup.SetupAllProperties();
 
             var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category> {
+            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            {
                 new Category {Id = 1, Name = "Ausgehen"}
             });
 
             var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {
-                new Payment {
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
@@ -41,7 +48,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data.First(),
                     CategoryId = 1
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
@@ -49,7 +57,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data.First(),
                     CategoryId = 1
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Transfer,
                     Date = DateTime.Today,
@@ -70,7 +79,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
         }
 
         [TestMethod]
-        public void GetValues_InitializedData_CalculateIncome() {
+        public void GetValues_InitializedData_CalculateIncome()
+        {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -79,15 +89,18 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
             categoryRepoSetup.SetupAllProperties();
 
             var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category> {
+            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
                 new Category {Id = 3, Name = "Foo"}
             });
 
             var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {
-                new Payment {
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
@@ -95,7 +108,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
@@ -103,7 +117,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
@@ -111,7 +126,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data[1],
                     CategoryId = 2
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
@@ -134,7 +150,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
         }
 
         [TestMethod]
-        public void GetValues_InitializedData_HandleDateCorrectly() {
+        public void GetValues_InitializedData_HandleDateCorrectly()
+        {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -143,15 +160,18 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
             categoryRepoSetup.SetupAllProperties();
 
             var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category> {
+            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
                 new Category {Id = 3, Name = "Bier"}
             });
 
             var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {
-                new Payment {
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(-5),
@@ -159,7 +179,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
@@ -167,7 +188,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
                     Category = categoryRepo.Data[1],
                     CategoryId = 2
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),

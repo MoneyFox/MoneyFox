@@ -10,19 +10,23 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using OxyPlot.Xamarin.Android;
 
-namespace MoneyFox.Droid.Activities {
+namespace MoneyFox.Droid.Activities
+{
     [Activity(Label = "ModifyAccountActivity",
         Name = "moneyfox.droid.activities.StatisticCashFlowActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDialogCloseListener {
+    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDialogCloseListener
+    {
         private PlotView plotModel;
 
-        public void HandleDialogClose() {
+        public void HandleDialogClose()
+        {
             plotModel.Model = ViewModel.CashFlowModel;
         }
 
-        protected override void OnCreate(Bundle savedInstanceState) {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_generic_graphical_statistic);
@@ -34,7 +38,8 @@ namespace MoneyFox.Droid.Activities {
             Title = Strings.CashflowLabel;
         }
 
-        protected override void OnStart() {
+        protected override void OnStart()
+        {
             OnResume();
 
             ViewModel.LoadCommand.Execute();
@@ -42,7 +47,8 @@ namespace MoneyFox.Droid.Activities {
             plotModel.Model = ViewModel.CashFlowModel;
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu) {
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -51,15 +57,17 @@ namespace MoneyFox.Droid.Activities {
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
         /// <param name="item">The menu item that was selected.</param>
-        public override bool OnOptionsItemSelected(IMenuItem item) {
-            switch (item.ItemId) {
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
                 case Android.Resource.Id.Home:
                     Finish();
                     return true;
 
                 case Resource.Id.action_add:
                     var dialog = new SelectDateRangeDialog();
-                    dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+                    dialog.Show(SupportFragmentManager.BeginTransaction(), Strings.SelectDateTitle);
                     return true;
 
                 default:

@@ -16,13 +16,16 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyFox.Droid.Activities {
+namespace MoneyFox.Droid.Activities
+{
     [Activity(Label = "PaymentListActivity",
         Name = "moneyfox.droid.activities.PaymentListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class PaymentListActivity : MvxAppCompatActivity<PaymentListViewModel> {
-        private readonly List<string> itemForCreationList = new List<string> {
+    public class PaymentListActivity : MvxAppCompatActivity<PaymentListViewModel>
+    {
+        private readonly List<string> itemForCreationList = new List<string>
+        {
             Strings.AddIncomeLabel,
             Strings.AddExpenseLabel,
             Strings.AddTransferLabel
@@ -30,7 +33,8 @@ namespace MoneyFox.Droid.Activities {
 
         private MvxExpandableListView PaymentExpandable;
 
-        protected override void OnCreate(Bundle savedInstanceState) {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_payment_list);
@@ -38,7 +42,8 @@ namespace MoneyFox.Droid.Activities {
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            FindViewById<FloatingActionButton>(Resource.Id.fab_create_payment).Click += (s, e) => {
+            FindViewById<FloatingActionButton>(Resource.Id.fab_create_payment).Click += (s, e) =>
+            {
                 var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
                 builder.SetTitle(Strings.ChooseLabel);
                 builder.SetItems(itemForCreationList.ToArray(), OnSelectItemForCreation);
@@ -54,21 +59,25 @@ namespace MoneyFox.Droid.Activities {
             Title = ViewModel.Title;
         }
 
-        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
-            if (v.Id == Resource.Id.expandable_payment_list) {
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            if (v.Id == Resource.Id.expandable_payment_list)
+            {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
             }
         }
 
-        public override bool OnContextItemSelected(IMenuItem item) {
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
             var selected = ViewModel.RelatedPayments[ExpandableListView
                 .GetPackedPositionChild(((
                     ExpandableListView.ExpandableListContextMenuInfo) item.MenuInfo)
                     .PackedPosition)];
 
-            switch (item.ItemId) {
+            switch (item.ItemId)
+            {
                 case 0:
                     ViewModel.EditCommand.Execute(selected);
                     return true;
@@ -82,22 +91,28 @@ namespace MoneyFox.Droid.Activities {
             }
         }
 
-        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args) {
+        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args)
+        {
             var selected = itemForCreationList[args.Which];
 
-            if (selected == Strings.AddIncomeLabel) {
+            if (selected == Strings.AddIncomeLabel)
+            {
                 ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
             }
-            else if (selected == Strings.AddExpenseLabel) {
+            else if (selected == Strings.AddExpenseLabel)
+            {
                 ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
             }
-            else if (selected == Strings.AddTransferLabel) {
+            else if (selected == Strings.AddTransferLabel)
+            {
                 ViewModel.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
             }
         }
 
-        private void LoadBalancePanel() {
-            var fragment = new BalanceFragment {
+        private void LoadBalancePanel()
+        {
+            var fragment = new BalanceFragment
+            {
                 ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
             };
 
@@ -106,7 +121,8 @@ namespace MoneyFox.Droid.Activities {
                 .Commit();
         }
 
-        protected override void OnResume() {
+        protected override void OnResume()
+        {
             base.OnResume();
 
             ViewModel.LoadCommand.Execute();
@@ -116,8 +132,10 @@ namespace MoneyFox.Droid.Activities {
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
         /// <param name="item">The menu item that was selected.</param>
-        public override bool OnOptionsItemSelected(IMenuItem item) {
-            switch (item.ItemId) {
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
                 case Android.Resource.Id.Home:
                     Finish();
                     return true;

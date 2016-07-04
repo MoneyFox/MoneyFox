@@ -436,4 +436,7 @@ Do you want to go the the store to rate?</value>
   <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Name already used</value>
   </data>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
 </root>

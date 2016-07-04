@@ -8,19 +8,23 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MoneyFox.Shared.Repositories;
 
-namespace MoneyFox.Shared {
-    public class App : MvxApplication {
+namespace MoneyFox.Shared
+{
+    public class App : MvxApplication
+    {
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
-        public override void Initialize() {
+        public override void Initialize()
+        {
             RegisterDependencies();
 
             // Start the app with the Main View Model.
             RegisterAppStart(new AppStart());
         }
 
-        private void RegisterDependencies() {
+        private void RegisterDependencies()
+        {
             Mvx.RegisterSingleton(() => new GlobalBusyIndicatorState());
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));

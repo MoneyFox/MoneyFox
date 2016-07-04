@@ -1,8 +1,10 @@
-﻿namespace MoneyFox.Shared.Model {
+﻿namespace MoneyFox.Shared.Model
+{
     /// <summary>
     ///     Represents a item for the selector to choose the statistic.
     /// </summary>
-    public class StatisticSelectorType {
+    public class StatisticSelectorType
+    {
         /// <summary>
         ///     Name of the statistic
         /// </summary>

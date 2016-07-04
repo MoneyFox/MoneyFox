@@ -3,11 +3,15 @@ using Windows.UI.Xaml.Data;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Resources;
 
-namespace MoneyFox.Windows.Converter {
-    public class PaymentHeaderConverter : IValueConverter {
-        public object Convert(object value, Type targetType, object parameter, string language) {
+namespace MoneyFox.Windows.Converter
+{
+    public class PaymentHeaderConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
             var pType = (PaymentType) value;
-            switch (pType) {
+            switch (pType)
+            {
                 default:
                 case PaymentType.Income:
                     return Strings.IncomeHeader;
@@ -18,7 +22,8 @@ namespace MoneyFox.Windows.Converter {
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) {
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
             throw new NotImplementedException();
         }
     }

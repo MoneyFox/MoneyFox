@@ -8,24 +8,30 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.Manager {
+namespace MoneyFox.Shared.Tests.Manager
+{
     [TestClass]
-    public class RecurringPaymentManagerTests {
+    public class RecurringPaymentManagerTests
+    {
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForDailyRecurring() {
+        public void CheckRecurringPayments_NewEntryForDailyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Amount = 99,
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     Date = DateTime.Now.AddDays(-3),
                     RecurringPaymentId = 3,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 3,
                         Recurrence = (int) PaymentRecurrence.Daily,
                         ChargedAccountId = 2,
@@ -35,14 +41,16 @@ namespace MoneyFox.Shared.Tests.Manager {
                     IsCleared = true,
                     IsRecurring = true
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-3),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
@@ -73,20 +81,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForWeeklyRecurring() {
+        public void CheckRecurringPayments_NewEntryForWeeklyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-7),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
@@ -119,20 +131,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForBiweeklyRecurring() {
+        public void CheckRecurringPayments_NewEntryForBiweeklyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-14),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Biweekly,
                         ChargedAccountId = 2,
@@ -165,20 +181,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForMonthlyRecurring() {
+        public void CheckRecurringPayments_NewEntryForMonthlyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddMonths(-1),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Monthly,
                         ChargedAccountId = 2,
@@ -211,20 +231,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForYearlyRecurring() {
+        public void CheckRecurringPayments_NewEntryForYearlyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddYears(-1),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Yearly,
                         ChargedAccountId = 2,
@@ -257,20 +281,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_NewEntryForDailyAndWeeklyRecurring() {
+        public void CheckRecurringPayments_NewEntryForDailyAndWeeklyRecurring()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Amount = 99,
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     Date = DateTime.Now.AddDays(-1),
                     RecurringPaymentId = 3,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 3,
                         Recurrence = (int) PaymentRecurrence.Daily,
                         ChargedAccountId = 2,
@@ -280,14 +308,16 @@ namespace MoneyFox.Shared.Tests.Manager {
                     IsCleared = true,
                     IsRecurring = true
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-7),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
@@ -326,20 +356,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_IgnorePaymentsNotReady() {
+        public void CheckRecurringPayments_IgnorePaymentsNotReady()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-3),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
@@ -366,20 +400,24 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void CheckRecurringPayments_IgnoreNotClearedPaymentsNotReady() {
+        public void CheckRecurringPayments_IgnoreNotClearedPaymentsNotReady()
+        {
             //Setup
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
-            var testList = new List<Payment> {
-                new Payment {
+            var testList = new List<Payment>
+            {
+                new Payment
+                {
                     Id = 2,
                     Amount = 105,
                     Date = DateTime.Now.AddDays(-8),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment {
+                    RecurringPayment = new RecurringPayment
+                    {
                         Id = 4,
                         Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
