@@ -1,16 +1,11 @@
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views;
 
 namespace MoneyFox.Ios.Views {
-    public partial class MainView : MvxViewController {
-        public MainView() : base("MainView", null) {
-        }
+    [MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
 
-        public override void DidReceiveMemoryWarning() {
-            base.DidReceiveMemoryWarning();
-
-            // Release any cached data, images, etc that aren't in use.
-        }
+    public partial class MainView : BaseViewController<MainViewModel> {
 
         public override void ViewDidLoad() {
             base.ViewDidLoad();

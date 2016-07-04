@@ -105,10 +105,12 @@
     <Compile Include="Src\NotificationService.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Views\BaseViewController.cs" />
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MenuView.cs" />
     <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,6 +145,14 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\Xamarin.iOS10\Cheesebaron.MvxPlugins.Settings.Touch.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.5.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JASidePanels, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.JASidePanels.4.2.0\lib\Xamarin.iOS10\JASidePanels.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Binding.4.2.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
@@ -157,6 +167,18 @@
     </Reference>
     <Reference Include="MvvmCross.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Core.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support, Version=1.0.6008.27600, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support.JASidePanels, Version=1.0.6008.27602, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.JASidePanels.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.JASidePanels.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.iOS.Support.XamarinSidebar, Version=1.0.6008.27603, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.XamarinSidebar.4.2.0\lib\Xamarin.iOS10\MvvmCross.iOS.Support.XamarinSidebar.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -247,6 +269,10 @@
     <Reference Include="System.Json" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Xamarin-Sidebar-Unified, Version=1.0.5954.17706, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.iOS.Support.XamarinSidebar.4.2.0\lib\Xamarin.iOS10\Xamarin-Sidebar-Unified.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Auth, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Auth.1.3.0\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
       <Private>True</Private>
