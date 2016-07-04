@@ -1,10 +1,14 @@
 ﻿using MoneyFox.Shared.Helpers;
 
-namespace MoneyFox.Shared.ViewModels {
-    public class SettingsGeneralViewModel : BaseViewModel {
-        public bool IsAutoBackupEnabled {
+namespace MoneyFox.Shared.ViewModels
+{
+    public class SettingsGeneralViewModel : BaseViewModel
+    {
+        public bool IsAutoBackupEnabled
+        {
             get { return SettingsHelper.IsBackupAutouploadEnabled; }
-            set {
+            set
+            {
                 SettingsHelper.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }

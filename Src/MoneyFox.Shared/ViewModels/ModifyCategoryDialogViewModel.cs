@@ -1,18 +1,20 @@
+using System;
+using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System;
-using System.Linq;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     /// <summary>
     ///     View Model for creating and editing Categories
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryDialogViewModel : BaseViewModel {
+    public class ModifyCategoryDialogViewModel : BaseViewModel
+    {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
@@ -21,7 +23,8 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         /// <param name="categoryRepository">Instance of the category repository to access the db.</param>
         /// <param name="dialogService">Dialogservice to interact with the user.</param>
-        public ModifyCategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
+        public ModifyCategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
+        {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
         }
@@ -44,30 +47,38 @@ namespace MoneyFox.Shared.ViewModels {
         public IMvxCommand DoneCommand => new MvxCommand(Done);
 
         /// <summary>
-        ///  Returns the Title depending on if the view is in edit mode or not.
+        ///     Returns the Title depending on if the view is in edit mode or not.
         /// </summary>
         public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
 
-        private void Loaded() {
-            if (IsEdit) {
+        private void Loaded()
+        {
+            if (IsEdit)
+            {
                 return;
             }
 
             Selected = new Category();
         }
 
-        private async void Done() {
-            if (string.IsNullOrEmpty(Selected.Name)) {
+        private async void Done()
+        {
+            if (string.IsNullOrEmpty(Selected.Name))
+            {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
-            if (categoryRepository.Data.Any(x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase))) {
+            if (
+                categoryRepository.Data.Any(
+                    x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase)))
+            {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            if (categoryRepository.Save(Selected)) {
+            if (categoryRepository.Save(Selected))
+            {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
         }

@@ -1,5 +1,7 @@
-﻿namespace MoneyFox.Shared.Constants {
-    public class ServiceConstants {
+﻿namespace MoneyFox.Shared.Constants
+{
+    public class ServiceConstants
+    {
         public const string HOCKEY_APP_DROID_ID = "6ae4ef16925140c3b2a14b8ffeeba8fb";
 
         public const string HOCKEY_APP_WINDOWS_ID = "ac915a3736f5436ab85b5a5617838bc8";
@@ -29,17 +31,17 @@
         public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
 
         /// <summary>
-        /// Maximum number of attempts to sync the database
+        ///     Maximum number of attempts to sync the database
         /// </summary>
         public static int SyncAttempts = 2;
 
         /// <summary>
-        /// The amount of time to wait for the onedrive backup to be completed
+        ///     The amount of time to wait for the onedrive backup to be completed
         /// </summary>
         public static int BackupOperationTimeout = 10000;
 
         /// <summary>
-        /// The amount of time to wait before retrying to sync
+        ///     The amount of time to wait before retrying to sync
         /// </summary>
         public static int BackupRepeatDelay = 2000;
     }

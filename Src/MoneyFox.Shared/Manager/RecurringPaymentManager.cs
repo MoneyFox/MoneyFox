@@ -1,16 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using System;
 
-namespace MoneyFox.Shared.Manager {
-    public class RecurringPaymentManager : IRecurringPaymentManager {
+namespace MoneyFox.Shared.Manager
+{
+    public class RecurringPaymentManager : IRecurringPaymentManager
+    {
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
 
         public RecurringPaymentManager(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository) {
+            IAccountRepository accountRepository)
+        {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
         }
@@ -18,24 +21,28 @@ namespace MoneyFox.Shared.Manager {
         /// <summary>
         ///     Checks if one of the recurring payment has to be repeated
         /// </summary>
-        public void CheckRecurringPayments() {
+        public void CheckRecurringPayments()
+        {
             var paymentList = paymentRepository.LoadRecurringList();
 
-            foreach (var payment in paymentList.Where(x => x.ChargedAccount != null)) {
+            foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
+            {
                 var relatedPayment = GetLastOccurence(payment);
 
-                if (RecurringPaymentHelper.CheckIfRepeatable(payment.RecurringPayment, relatedPayment)) {
+                if (RecurringPaymentHelper.CheckIfRepeatable(payment.RecurringPayment, relatedPayment))
+                {
                     var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
 
-                    bool paymentSucceded = paymentRepository.Save(newPayment);
-                    bool accountSucceded = accountRepository.AddPaymentAmount(newPayment);
-                    if(paymentSucceded && accountSucceded)
+                    var paymentSucceded = paymentRepository.Save(newPayment);
+                    var accountSucceded = accountRepository.AddPaymentAmount(newPayment);
+                    if (paymentSucceded && accountSucceded)
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 }
             }
         }
 
-        private Payment GetLastOccurence(Payment payment) {
+        private Payment GetLastOccurence(Payment payment)
+        {
             var transcationList = paymentRepository.Data
                 .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)

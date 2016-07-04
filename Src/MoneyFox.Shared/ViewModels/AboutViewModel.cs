@@ -5,8 +5,10 @@ using MvvmCross.Plugins.WebBrowser;
 using Npadrutt.MvxPlugins.AppInformation;
 using Npadrutt.MvxPlugins.StoreOperations;
 
-namespace MoneyFox.Shared.ViewModels {
-    public class AboutViewModel : BaseViewModel {
+namespace MoneyFox.Shared.ViewModels
+{
+    public class AboutViewModel : BaseViewModel
+    {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
         private readonly IStoreOperations storeFeatures;
@@ -22,7 +24,8 @@ namespace MoneyFox.Shared.ViewModels {
         public AboutViewModel(IAppInformation appInformation,
             IMvxComposeEmailTask composeEmailTask,
             IMvxWebBrowserTask webBrowserTask,
-            IStoreOperations storeOperations) {
+            IStoreOperations storeOperations)
+        {
             this.appInformation = appInformation;
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
@@ -74,11 +77,13 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public string SupportMail => Constants.Constants.SUPPORT_MAIL;
 
-        private void GoToWebsite() {
+        private void GoToWebsite()
+        {
             webBrowserTask.ShowWebPage(Constants.Constants.WEBSITE_URL);
         }
 
-        private void SendMail() {
+        private void SendMail()
+        {
             composeEmailTask.ComposeEmail(Constants.Constants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
@@ -86,15 +91,18 @@ namespace MoneyFox.Shared.ViewModels {
                 true);
         }
 
-        private void RateApp() {
+        private void RateApp()
+        {
             storeFeatures.RateApp();
         }
 
-        private void GoToRepository() {
+        private void GoToRepository()
+        {
             webBrowserTask.ShowWebPage(Constants.Constants.GIT_HUB_REPOSITORY_URL);
         }
 
-        private void GoToTranslationProject() {
+        private void GoToTranslationProject()
+        {
             webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);
         }
     }

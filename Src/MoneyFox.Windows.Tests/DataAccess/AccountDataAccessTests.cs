@@ -6,23 +6,28 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
-namespace MoneyFox.Windows.Tests.DataAccess {
+namespace MoneyFox.Windows.Tests.DataAccess
+{
     [TestClass]
-    public class AccountDataAccessTests {
+    public class AccountDataAccessTests
+    {
         private DatabaseManager connectionCreator;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
-        public void SaveToDatabase_NewAccount_CorrectId() {
+        public void SaveToDatabase_NewAccount_CorrectId()
+        {
             var name = "Sparkonto";
             var balance = 456468;
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = name,
                 CurrentBalance = balance
             };
@@ -35,10 +40,12 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_ExistingAccount_CorrectId() {
+        public void SaveToDatabase_ExistingAccount_CorrectId()
+        {
             var balance = 456468;
 
-            var account = new Account {
+            var account = new Account
+            {
                 CurrentBalance = balance
             };
 
@@ -58,13 +65,16 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_MultipleAccounts_AllSaved() {
-            var account1 = new Account {
+        public void SaveToDatabase_MultipleAccounts_AllSaved()
+        {
+            var account1 = new Account
+            {
                 Name = "Account1",
                 CurrentBalance = 1234
             };
 
-            var account2 = new Account {
+            var account2 = new Account
+            {
                 Name = "Account2",
                 CurrentBalance = 999
             };
@@ -86,11 +96,13 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void SaveToDatabase_CreateAndUpdateAccount_CorrectlyUpdated() {
+        public void SaveToDatabase_CreateAndUpdateAccount_CorrectlyUpdated()
+        {
             var firstName = "old name";
             var secondName = "new name";
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = firstName,
                 CurrentBalance = 1234
             };
@@ -109,8 +121,10 @@ namespace MoneyFox.Windows.Tests.DataAccess {
         }
 
         [TestMethod]
-        public void DeleteFromDatabase_AccountToDelete_CorrectlyDelete() {
-            var account = new Account {
+        public void DeleteFromDatabase_AccountToDelete_CorrectlyDelete()
+        {
+            var account = new Account
+            {
                 Name = "accountToDelete",
                 CurrentBalance = 1234
             };

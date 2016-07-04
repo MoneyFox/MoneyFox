@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces {
-    public interface INotificationService {
+namespace MoneyFox.Shared.Interfaces
+{
+    public interface INotificationService
+    {
         /// <summary>
         ///     Shows a basic toast notification with a title and a line of text.
         /// </summary>

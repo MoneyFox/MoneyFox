@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace MoneyFox.Shared.Interfaces {
+namespace MoneyFox.Shared.Interfaces
+{
     /// <summary>
     ///     Defines the interface for selecting statistic data.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IStatisticProvider<out T> {
+    public interface IStatisticProvider<out T>
+    {
         /// <summary>
         ///     Returns a list of values for the givem Timerange.
         /// </summary>

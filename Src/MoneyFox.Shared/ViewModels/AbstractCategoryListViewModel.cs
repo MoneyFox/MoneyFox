@@ -7,8 +7,10 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel {
+namespace MoneyFox.Shared.ViewModels
+{
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    {
         protected readonly ICategoryRepository CategoryRepository;
         protected readonly IDialogService DialogService;
 
@@ -20,7 +22,8 @@ namespace MoneyFox.Shared.ViewModels {
         /// <param name="categoryRepository">An instance of <see cref="ICategoryRepository" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
-            IDialogService dialogService) {
+            IDialogService dialogService)
+        {
             CategoryRepository = categoryRepository;
             DialogService = dialogService;
 
@@ -49,9 +52,11 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
         /// </summary>
-        public string SearchText {
+        public string SearchText
+        {
             get { return searchText; }
-            set {
+            set
+            {
                 searchText = value;
                 Search();
             }
@@ -60,14 +65,17 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public void Search() {
-            if (!string.IsNullOrEmpty(SearchText)) {
+        public void Search()
+        {
+            if (!string.IsNullOrEmpty(SearchText))
+            {
                 Categories = new ObservableCollection<Category>
                     (CategoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
-            else {
+            else
+            {
                 Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
             }
             Source = CreateGroup();
@@ -81,9 +89,12 @@ namespace MoneyFox.Shared.ViewModels {
                         ? "-"
                         : s.Name[0].ToString().ToUpper()));
 
-        private async void DeleteCategory(Category categoryToDelete) {
-            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)) {
-                if (Categories.Contains(categoryToDelete)) {
+        private async void DeleteCategory(Category categoryToDelete)
+        {
+            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            {
+                if (Categories.Contains(categoryToDelete))
+                {
                     Categories.Remove(categoryToDelete);
                 }
 

@@ -1,34 +1,31 @@
-using Android.App;
-using Android.Content.PM;
-using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Views;
-using Android.Widget;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyFox.Droid.Activities {
+namespace MoneyFox.Droid.Activities
+{
     [Activity(Label = "CategoryListActivity",
         Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>,
-        IDialogCloseListener {
-        public void HandleDialogClose() {
+        IDialogCloseListener
+    {
+        public void HandleDialogClose()
+        {
             // Make an empty search to refresh the list and groups
             var selectCategoryListViewModel = ViewModel;
-            if (selectCategoryListViewModel != null) {
+            if (selectCategoryListViewModel != null)
+            {
                 selectCategoryListViewModel.SearchText = string.Empty;
                 selectCategoryListViewModel.Search();
             }
         }
 
-        protected override void OnCreate(Bundle bundle) {
+        protected override void OnCreate(Bundle bundle)
+        {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.activity_select_category_list);
@@ -39,8 +36,10 @@ namespace MoneyFox.Droid.Activities {
             var list = FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
 
-            FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) => {
-                var dialog = new ModifyCategoryDialog {
+            FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
+            {
+                var dialog = new ModifyCategoryDialog
+                {
                     ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
                 };
 
@@ -55,7 +54,8 @@ namespace MoneyFox.Droid.Activities {
         /// </summary>
         /// <param name="menu">The options menu in which you place your items.</param>
         /// <returns>To be added.</returns>
-        public override bool OnCreateOptionsMenu(IMenu menu) {
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -64,14 +64,17 @@ namespace MoneyFox.Droid.Activities {
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
         /// <param name="item">The menu item that was selected.</param>
-        public override bool OnOptionsItemSelected(IMenuItem item) {
-            switch (item.ItemId) {
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
                 case Android.Resource.Id.Home:
                     Finish();
                     return true;
 
                 case Resource.Id.action_add:
-                    var dialog = new ModifyCategoryDialog {
+                    var dialog = new ModifyCategoryDialog
+                    {
                         ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
                     };
 
@@ -83,18 +86,22 @@ namespace MoneyFox.Droid.Activities {
             }
         }
 
-        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo) {
-            if (v.Id == Resource.Id.category_list) {
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            if (v.Id == Resource.Id.category_list)
+            {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
             }
         }
 
-        public override bool OnContextItemSelected(IMenuItem item) {
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
             var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
 
-            switch (item.ItemId) {
+            switch (item.ItemId)
+            {
                 case 0:
                     OpenEditCategoryDialog();
                     return true;
@@ -108,10 +115,12 @@ namespace MoneyFox.Droid.Activities {
             }
         }
 
-        private void OpenEditCategoryDialog() {
+        private void OpenEditCategoryDialog()
+        {
             var viewmodel = Mvx.Resolve<ModifyCategoryDialogViewModel>();
             viewmodel.IsEdit = true;
-            var dialog = new ModifyCategoryDialog {
+            var dialog = new ModifyCategoryDialog
+            {
                 ViewModel = viewmodel
             };
 
