@@ -7,6 +7,7 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Core;
 
 namespace MoneyFox.Windows.Views {
     public sealed partial class ModifyPaymentView {
@@ -54,9 +55,7 @@ namespace MoneyFox.Windows.Views {
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) {
             base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back) {
-                ResetPageCache();
-            }
+            ResetPageCache();
         }
 
         private void ResetPageCache() {

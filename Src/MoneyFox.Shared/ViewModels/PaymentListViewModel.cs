@@ -99,7 +99,7 @@ namespace MoneyFox.Shared.ViewModels {
             {
                 payment.CurrentAccountId = accountId;
             }
-
+            
             Source = new ObservableCollection<DateListGroup<Payment>>(
                 DateListGroup<Payment>.CreateGroups(RelatedPayments,
                     CultureInfo.CurrentUICulture,
@@ -116,6 +116,7 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
+        // This may actually exist from the buttons at the bottom right of the view, if so, this view should be separated out. - Seth Bartlett 7/1/2016 2:31AM
         private async void DeleteAccount() {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
                 if(accountRepository.Delete(accountRepository.FindById(AccountId)))
@@ -125,9 +126,8 @@ namespace MoneyFox.Shared.ViewModels {
             }
         }
 
-        private void Edit(Payment payment) {
-            //paymentRepository.Selected = payment;
-
+        private void Edit(Payment payment)
+        {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString(), paymentId = payment.Id});
         }
 
