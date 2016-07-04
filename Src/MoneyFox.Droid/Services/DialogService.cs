@@ -68,5 +68,13 @@ namespace MoneyFox.Droid {
 
             return tcs.Task;
         }
+
+        public void ShowLoadingDialog(string text) {
+
+        }
+
+        public void HideLoadingDialog() {
+
+        }
     }
 }

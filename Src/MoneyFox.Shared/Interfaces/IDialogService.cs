@@ -31,5 +31,9 @@ namespace MoneyFox.Shared.Interfaces {
         /// <param name="negativeButtonText">Text for the no button.</param>
         Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null);
+
+        void ShowLoadingDialog(string text);
+
+        void HideLoadingDialog();
     }
 }
