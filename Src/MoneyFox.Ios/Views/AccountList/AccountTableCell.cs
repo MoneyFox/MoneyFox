@@ -7,20 +7,15 @@ using UIKit;
 
 namespace MoneyFox.Ios.Views.AccountList
 {
-	public partial class AccountViewCell : MvxTableViewCell
+	public partial class AccountTableCell : MvxTableViewCell
 	{
-		public static readonly NSString Key = new NSString("AccountViewCell");
-		public static readonly UINib Nib;
+		public static readonly NSString Key = new NSString("AccountTableCell");
+		public static readonly UINib Nib = UINib.FromName("AccountTableCell", NSBundle.MainBundle);
 
-		static AccountViewCell()
-		{
-			Nib = UINib.FromName("AccountViewCell", NSBundle.MainBundle);
-		}
-
-		protected AccountViewCell(IntPtr handle) : base(handle)
+		protected AccountTableCell(IntPtr handle) : base(handle)
 		{
             this.DelayBind(() => {
-                var set = this.CreateBindingSet<AccountViewCell, Account>();
+                var set = this.CreateBindingSet<AccountTableCell, Account>();
                 set.Bind(LabelAccountName).To(a => a.Name);
                 set.Bind(LabelCurrentBalance).To(a => a.CurrentBalance).WithConversion("AmountFormat");
                 set.Bind(LabelIban).To(a => a.Iban);
