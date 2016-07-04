@@ -37,7 +37,7 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         /// <summary>
-        ///     Returns if the AllAccounts Collection is emtpy or not.
+        ///     Returns if the ChargedAccounts Collection is emtpy or not.
         /// </summary>
         public bool IsAllAccountsEmpty => !AllAccounts.Any();
 
