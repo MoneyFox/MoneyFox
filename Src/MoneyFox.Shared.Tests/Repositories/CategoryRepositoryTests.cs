@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,13 +18,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
     public class CategoryRepositoryTests : MvxIoCSupportingTest {
         private DateTime localDateSetting;
 
-        public static IEnumerable NamePlaceholder {
-            get {
-                yield return new object[] {"Ausgang", "Ausgang"};
-                yield return new object[] {"", Strings.NoNamePlaceholderLabel};
-            }
-        }
-
         [TestInitialize]
         public void Init() {
             Setup();
@@ -42,8 +34,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
         [TestMethod]
         public void Save_EmptyString_CorrectNameAssigned() {
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock,
-                new Mock<INotificationService>().Object);
+            var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category {
                 Name = ""
@@ -59,8 +50,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
         public void Save_InputName_CorrectNameAssigned() {
             const string name = "Ausgang";
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock,
-                new Mock<INotificationService>().Object);
+            var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category {
                 Name = name
@@ -75,8 +65,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
         [TestMethod]
         public void CategoryRepository_Delete() {
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock,
-                new Mock<INotificationService>().Object);
+            var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category {
                 Name = "Ausgang"
@@ -94,14 +83,12 @@ namespace MoneyFox.Shared.Tests.Repositories {
 
         [TestMethod]
         public void CategoryRepository_AccessCache() {
-            new CategoryRepository(new CategoryDataAccessMock(), new Mock<INotificationService>().Object)
-                .Data.ShouldNotBeNull();
+            new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
         }
 
         [TestMethod]
         public void CategoryRepository_AddMultipleToCache() {
-            var repository = new CategoryRepository(new CategoryDataAccessMock(),
-                new Mock<INotificationService>().Object);
+            var repository = new CategoryRepository(new CategoryDataAccessMock());
             var category = new Category {
                 Name = "Ausgang"
             };
@@ -126,48 +113,11 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Category {Id = 15}
             });
 
-            var categoryRepository = new CategoryRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
+            var categoryRepository = new CategoryRepository(dataAccessSetup.Object);
             categoryRepository.Load();
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
             categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
-        }
-
-        [TestMethod]
-        public void Save_NotifyUserOfFailure() {
-            var isNotificationServiceCalled = false;
-
-            var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
-
-            var notificationServiceSetup = new Mock<INotificationService>();
-            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string x, string y) => isNotificationServiceCalled = true);
-
-            new CategoryRepository(dataAccessSetup.Object,
-                notificationServiceSetup.Object).Save(new Category());
-
-            isNotificationServiceCalled.ShouldBeTrue();
-        }
-
-        [TestMethod]
-        public void Delete_NotifyUserOfFailure() {
-            var isNotificationServiceCalled = false;
-
-            var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Category>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
-
-            var notificationServiceSetup = new Mock<INotificationService>();
-            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string x, string y) => isNotificationServiceCalled = true);
-
-            new CategoryRepository(dataAccessSetup.Object,
-                notificationServiceSetup.Object).Delete(new Category());
-
-            isNotificationServiceCalled.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -182,6 +132,28 @@ namespace MoneyFox.Shared.Tests.Repositories {
             categoryRepository.Object.Data.Add(testCategory);
 
             Assert.AreEqual(testCategory, categoryRepository.Object.FindById(100));
+        }
+
+        [TestMethod]
+        public void Delete_Failure_ReturnFalse() {
+
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Category>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+
+            new CategoryRepository(dataAccessSetup.Object).Delete(new Category()).ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void Save_Failure_ReturnFalse() {
+
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+
+            new CategoryRepository(dataAccessSetup.Object).Save(new Category()).ShouldBeFalse();
         }
     }
 }

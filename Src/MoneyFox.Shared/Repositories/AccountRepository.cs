@@ -11,7 +11,6 @@ namespace MoneyFox.Shared.Repositories {
     [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository {
         private readonly IDataAccess<Account> dataAccess;
-        private readonly INotificationService notificationService;
 
         private ObservableCollection<Account> data;
 
@@ -20,21 +19,14 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
         /// <param name="notificationService">Service to notify user in case of errors.</param>
-        public AccountRepository(IDataAccess<Account> dataAccess,
-            INotificationService notificationService) {
+        public AccountRepository(IDataAccess<Account> dataAccess) {
             this.dataAccess = dataAccess;
-            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Account>();
             Load();
         }
 
-        public Account FindById(int id)
-        {
-            return data.FirstOrDefault(a => a.Id == id);
-        }
-
-        public Account Selected { get; set; }
+        public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
 
         /// <summary>
         ///     Cached account data
@@ -64,12 +56,8 @@ namespace MoneyFox.Shared.Repositories {
             {
                 data.Add(account);
             }
-            if (!dataAccess.SaveItem(account))
-            {
-                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
-                return false;
-            }
-            return true;
+
+            return dataAccess.SaveItem(account);
         }
 
         /// <summary>
@@ -78,11 +66,7 @@ namespace MoneyFox.Shared.Repositories {
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete) {
             data.Remove(accountToDelete);
-            if (!dataAccess.DeleteItem(accountToDelete)) {
-                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                return false;
-            }
-            return true;
+            return dataAccess.DeleteItem(accountToDelete);
         }
 
         /// <summary>

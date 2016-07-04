@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -12,7 +11,6 @@ namespace MoneyFox.Shared.Repositories {
     [ImplementPropertyChanged]
     public class CategoryRepository : ICategoryRepository {
         private readonly IDataAccess<Category> dataAccess;
-        private readonly INotificationService notificationService;
 
         private ObservableCollection<Category> data;
 
@@ -20,9 +18,8 @@ namespace MoneyFox.Shared.Repositories {
         ///     Creates a CategoryRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess, INotificationService notificationService) {
+        public CategoryRepository(IDataAccess<Category> dataAccess) {
             this.dataAccess = dataAccess;
-            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Category>();
             Load();
@@ -41,10 +38,7 @@ namespace MoneyFox.Shared.Repositories {
             }
         }
 
-        public Category FindById(int id)
-        {
-            return data.FirstOrDefault(c => c.Id == id);
-        }
+        public Category FindById(int id) => data.FirstOrDefault(c => c.Id == id);
 
         public Category Selected { get; set; }
 
@@ -63,11 +57,7 @@ namespace MoneyFox.Shared.Repositories {
 
                 data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
             }
-            if (!dataAccess.SaveItem(category)) {
-                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
-                return false;
-            }
-            return true;
+            return dataAccess.SaveItem(category);
         }
 
 
@@ -78,11 +68,7 @@ namespace MoneyFox.Shared.Repositories {
         /// <returns>Whether the task has succeeded</returns>
         public bool Delete(Category categoryToDelete) {
             data.Remove(categoryToDelete);
-            if (!dataAccess.DeleteItem(categoryToDelete)) {
-                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                return false;
-            }
-            return true;
+            return dataAccess.DeleteItem(categoryToDelete);
         }
 
         /// <summary>
@@ -90,6 +76,7 @@ namespace MoneyFox.Shared.Repositories {
         /// </summary>
         public void Load(Expression<Func<Category, bool>> filter = null) {
             Data.Clear();
+
             foreach (var category in dataAccess.LoadList(filter)) {
                 Data.Add(category);
             }
