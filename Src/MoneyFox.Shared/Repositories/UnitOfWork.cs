@@ -14,12 +14,16 @@ namespace MoneyFox.Shared.Repositories {
 
         private IAccountRepository accountRepository;
         private ICategoryRepository categoryRepository;
+        private IPaymentRepository paymentRepository;
 
         public IAccountRepository AccountRepository
             => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)));
 
         public ICategoryRepository CategoryRepository
          => categoryRepository ?? (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
+
+        //public IPaymentRepository PaymentRepository
+        // => paymentRepository ?? (paymentRepository = new PaymentRepository(new PaymentRepository(sqliteConnection)));
 
         private bool disposed = false;
 

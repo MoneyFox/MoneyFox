@@ -5,6 +5,7 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -14,19 +15,20 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly UnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
 
-        public AccountListViewModel(IAccountRepository accountRepository,
+        public AccountListViewModel(
+            UnitOfWork unitOfWork,
             IPaymentRepository paymentRepository,
             IDialogService dialogService)
         {
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
 
-            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
+            BalanceViewModel = new BalanceViewModel(unitOfWork.AccountRepository, paymentRepository);
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -36,8 +38,8 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public ObservableCollection<Account> AllAccounts
         {
-            get { return accountRepository.Data; }
-            set { accountRepository.Data = value; }
+            get { return unitOfWork.AccountRepository.Data; }
+            set { unitOfWork.AccountRepository.Data = value; }
         }
 
         /// <summary>
@@ -101,14 +103,11 @@ namespace MoneyFox.Shared.ViewModels
             {
                 var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
 
-                if (null != paymentsToDelete)
+                foreach (var payment in paymentsToDelete.ToList())
                 {
-                    foreach (var payment in paymentsToDelete.ToList())
-                    {
-                        paymentRepository.Delete(payment);
-                    }
+                    paymentRepository.Delete(payment);
                 }
-                if (accountRepository.Delete(item))
+                if (unitOfWork.AccountRepository.Delete(item))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();

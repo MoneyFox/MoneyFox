@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
@@ -33,13 +35,11 @@ namespace MoneyFox.Shared
             Mvx.RegisterType<IBackupManager, BackupManager>();
             Mvx.RegisterType<IAutobackupManager, AutoBackupManager>();
 
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsDynamic();
+            Mvx.RegisterType<IDataAccess<Payment>, PaymentDataAccess>();
+            Mvx.RegisterType<IDataAccess<RecurringPayment>, RecurringPaymentDataAccess>();
 
             CreatableTypes()
-                .EndingWith("DataAccess")
+                .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsDynamic();
 

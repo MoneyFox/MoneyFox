@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
@@ -40,7 +42,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(accountRepository.Object,
+            var viewModel = new AccountListViewModel(new UnitOfWork(new Mock<IDatabaseManager>().Object),
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -64,7 +66,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(false));
 
-            var viewModel = new AccountListViewModel(accountRepository.Object,
+            var unitOfWork = new UnitOfWork(new Mock<IDatabaseManager>().Object);
+
+            var viewModel = new AccountListViewModel(unitOfWork,
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -88,7 +92,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(accountRepository.Object,
+            var viewModel = new AccountListViewModel(new UnitOfWork(new Mock<IDatabaseManager>().Object),
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -139,7 +143,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(accountRepo,
+            var viewModel = new AccountListViewModel(new UnitOfWork(new Mock<IDatabaseManager>().Object),
                 paymentRepo,
                 dialogServiceSetup.Object
                 );
