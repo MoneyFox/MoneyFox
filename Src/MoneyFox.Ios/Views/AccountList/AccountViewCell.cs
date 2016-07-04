@@ -1,11 +1,11 @@
 ﻿using System;
-
 using Foundation;
+using MvvmCross.Binding.iOS.Views;
 using UIKit;
 
 namespace MoneyFox.Ios
 {
-	public partial class AccountViewCell : UITableViewCell
+	public partial class AccountViewCell : MvxTableViewCell
 	{
 		public static readonly NSString Key = new NSString("AccountViewCell");
 		public static readonly UINib Nib;
@@ -17,7 +17,7 @@ namespace MoneyFox.Ios
 
 		protected AccountViewCell(IntPtr handle) : base(handle)
 		{
-			// Note: this .ctor should not contain any initialization logic.
+
 		}
 	}
 }
