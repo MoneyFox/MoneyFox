@@ -32,11 +32,7 @@ namespace MoneyFox.Shared.ViewModels {
         ///     All existing accounts.
         /// </summary>
         public ObservableCollection<Account> AllAccounts {
-            get {
-                return new ObservableCollection<Account>() {
-                    new Account {Name = "FOOO", CurrentBalance = 5000, Iban = "abc"}
-                };
-            }
+            get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
 
