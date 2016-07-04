@@ -383,4 +383,7 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="DoneLabel.Label" xml:space="preserve">
     <value>Fertig</value>
   </data>
+  <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
+    <value>Aktueller Kontostand</value>
+  </data>
 </root>

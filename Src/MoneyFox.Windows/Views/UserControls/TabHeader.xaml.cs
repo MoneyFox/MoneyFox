@@ -1,7 +1,9 @@
 ﻿using Windows.UI.Xaml;
 
-namespace MoneyFox.Windows.Views.UserControls {
-    public sealed partial class TabHeader {
+namespace MoneyFox.Windows.Views.UserControls
+{
+    public sealed partial class TabHeader
+    {
         public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register("Glyph", typeof(string),
             typeof(TabHeader), null);
 
@@ -9,17 +11,20 @@ namespace MoneyFox.Windows.Views.UserControls {
             typeof(TabHeader), null);
 
 
-        public TabHeader() {
+        public TabHeader()
+        {
             InitializeComponent();
             DataContext = this;
         }
 
-        public string Glyph {
+        public string Glyph
+        {
             get { return GetValue(GlyphProperty) as string; }
             set { SetValue(GlyphProperty, value); }
         }
 
-        public string Label {
+        public string Label
+        {
             get { return GetValue(LabelProperty) as string; }
             set { SetValue(LabelProperty, value); }
         }

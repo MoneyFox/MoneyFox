@@ -7,35 +7,43 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider {
+namespace MoneyFox.Shared.Tests.StatisticProvider
+{
     [TestClass]
-    public class CashFlowProviderTests {
+    public class CashFlowProviderTests
+    {
         [TestMethod]
-        public void Constructor_Null_NotNullObject() {
+        public void Constructor_Null_NotNullObject()
+        {
             new CashFlowDataProvider(null).ShouldNotBeNull();
         }
 
         [TestMethod]
-        public void GetValues_SetupData_ListWithoutTransfer() {
+        public void GetValues_SetupData_ListWithoutTransfer()
+        {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
 
             var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {
-                new Payment {
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Transfer,
                     Date = DateTime.Today,
@@ -54,26 +62,31 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
         }
 
         [TestMethod]
-        public void GetValues_SetupData_CalculatedCorrectTimeRange() {
+        public void GetValues_SetupData_CalculatedCorrectTimeRange()
+        {
             //Setup
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.SetupAllProperties();
 
             var paymentRepository = paymentRepositorySetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {
-                new Payment {
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            {
+                new Payment
+                {
                     Id = 1,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
-                new Payment {
+                new Payment
+                {
                     Id = 3,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(-5),
@@ -93,7 +106,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider {
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void GetValues_NullDependency_NullReferenceException() {
+        public void GetValues_NullDependency_NullReferenceException()
+        {
             new CashFlowDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
         }
     }

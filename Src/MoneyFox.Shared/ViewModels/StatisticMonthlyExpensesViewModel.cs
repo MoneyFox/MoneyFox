@@ -8,14 +8,17 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class StatisticMonthlyExpensesViewModel : StatisticViewModel {
+    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
+    {
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
         public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository)
-            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth()) {
+            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
+        {
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
 
             MonthlyExpensesModel = GetModel();
@@ -29,38 +32,44 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Loads the expense history with the current start and end date.
         /// </summary>
-        protected override void Load() {
+        protected override void Load()
+        {
             MonthlyExpensesModel = null;
             MonthlyExpensesModel = GetModel();
         }
 
-        private PlotModel GetModel() {
+        private PlotModel GetModel()
+        {
             var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
 
             //TODO: refactor this into an helper class
             var model = new PlotModel();
 
             var columnSeries = new ColumnSeries();
-            var axe = new CategoryAxis {
+            var axe = new CategoryAxis
+            {
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
                 Angle = 45
             };
 
-            if (SettingsHelper.IsDarkThemeSelected) {
+            if (SettingsHelper.IsDarkThemeSelected)
+            {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
                 axe.AxislineColor = OxyColors.White;
                 axe.TextColor = OxyColors.White;
             }
-            else {
+            else
+            {
                 model.Background = OxyColors.White;
                 model.TextColor = OxyColors.Black;
                 axe.AxislineColor = OxyColors.Black;
                 axe.TextColor = OxyColors.Black;
             }
 
-            foreach (var statisticItem in monthlyExpenses) {
+            foreach (var statisticItem in monthlyExpenses)
+            {
                 columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = graphColor});
                 axe.Labels.Add(statisticItem.Label);
             }

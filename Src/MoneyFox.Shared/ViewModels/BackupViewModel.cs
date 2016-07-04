@@ -5,15 +5,18 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels {
-    public class BackupViewModel : BaseViewModel {
+namespace MoneyFox.Shared.ViewModels
+{
+    public class BackupViewModel : BaseViewModel
+    {
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
         private readonly IDialogService dialogService;
 
         public BackupViewModel(IBackupManager backupManager,
-            IDialogService dialogService, 
-            IConnectivity connectivity) {
+            IDialogService dialogService,
+            IConnectivity connectivity)
+        {
             this.backupManager = backupManager;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
@@ -48,39 +51,46 @@ namespace MoneyFox.Shared.ViewModels {
 
         public bool BackupAvailable { get; private set; }
 
-        private async void Loaded() {
-            if (connectivity.IsConnected) {
+        private async void Loaded()
+        {
+            if (connectivity.IsConnected)
+            {
                 IsCheckingBackupAvailability = true;
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
                 IsCheckingBackupAvailability = false;
             }
-            else {
+            else
+            {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
         }
 
-        private async void CreateBackup() {
-            if (!await ShowOverwriteBackupInfo()) {
+        private async void CreateBackup()
+        {
+            if (!await ShowOverwriteBackupInfo())
+            {
                 return;
             }
 
             dialogService.ShowLoadingDialog();
             await backupManager.CreateNewBackup();
             BackupLastModified = DateTime.Now;
-            await ShowCompletionNote();
             dialogService.HideLoadingDialog();
+            await ShowCompletionNote();
         }
 
-        private async void RestoreBackup() {
-            if (!await ShowOverwriteDataInfo()) {
+        private async void RestoreBackup()
+        {
+            if (!await ShowOverwriteDataInfo())
+            {
                 return;
             }
 
             dialogService.ShowLoadingDialog();
             await backupManager.RestoreBackup();
-            await ShowCompletionNote();
             dialogService.HideLoadingDialog();
+            await ShowCompletionNote();
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

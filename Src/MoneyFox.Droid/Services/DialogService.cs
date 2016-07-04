@@ -7,8 +7,10 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using AndroidHUD;
 
-namespace MoneyFox.Droid {
-    public class DialogService : IDialogService {
+namespace MoneyFox.Droid.Services
+{
+    public class DialogService : IDialogService
+    {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
         /// <summary>
@@ -16,7 +18,8 @@ namespace MoneyFox.Droid {
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
-        public Task ShowMessage(string title, string message) {
+        public Task ShowMessage(string title, string message)
+        {
             var tcs = new TaskCompletionSource<bool>();
 
             var builder = new AlertDialog.Builder(CurrentActivity);
@@ -38,13 +41,16 @@ namespace MoneyFox.Droid {
         /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
         /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
         public async Task ShowConfirmMessage(string title, string message, Action positivAction,
-            string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null) {
+            string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
+        {
             var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
-            if (isPositiveAnswer) {
+            if (isPositiveAnswer)
+            {
                 positivAction();
             }
-            else {
+            else
+            {
                 negativAction?.Invoke();
             }
         }
@@ -57,7 +63,8 @@ namespace MoneyFox.Droid {
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
         public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
-            string negativeButtonText = null) {
+            string negativeButtonText = null)
+        {
             var tcs = new TaskCompletionSource<bool>();
 
             var builder = new AlertDialog.Builder(CurrentActivity);

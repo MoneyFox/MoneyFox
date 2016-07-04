@@ -5,8 +5,10 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Views.Dialogs;
 
-namespace MoneyFox.Windows.Services {
-    public class DialogService : IDialogService {
+namespace MoneyFox.Windows.Services
+{
+    public class DialogService : IDialogService
+    {
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. If no message is passed the dialog will have a Yes and No
         ///     Button
@@ -19,13 +21,16 @@ namespace MoneyFox.Windows.Services {
         /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
         public async Task ShowConfirmMessage(string title, string message, Action positivAction,
             string positiveButtonText = null,
-            string negativeButtonText = null, Action negativAction = null) {
+            string negativeButtonText = null, Action negativAction = null)
+        {
             var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
-            if (isPositiveAnswer) {
+            if (isPositiveAnswer)
+            {
                 positivAction();
             }
-            else {
+            else
+            {
                 negativAction?.Invoke();
             }
         }
@@ -38,7 +43,8 @@ namespace MoneyFox.Windows.Services {
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
         public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
-            string negativeButtonText = null) {
+            string negativeButtonText = null)
+        {
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
             dialog.Commands.Add(new UICommand(negativeButtonText ?? Strings.NoLabel));
@@ -53,7 +59,8 @@ namespace MoneyFox.Windows.Services {
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
-        public async Task ShowMessage(string title, string message) {
+        public async Task ShowMessage(string title, string message)
+        {
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
 

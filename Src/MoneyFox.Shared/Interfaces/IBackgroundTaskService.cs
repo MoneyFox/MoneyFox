@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces {
-    public interface IBackgroundTaskService {
+namespace MoneyFox.Shared.Interfaces
+{
+    public interface IBackgroundTaskService
+    {
         /// <summary>
         ///     Will register a background task asynchronously
         /// </summary>

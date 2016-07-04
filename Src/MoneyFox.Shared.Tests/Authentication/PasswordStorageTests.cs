@@ -4,18 +4,22 @@ using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Interfaces;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.Authentication {
+namespace MoneyFox.Shared.Tests.Authentication
+{
     [TestClass]
-    public class PasswordStorageTests {
+    public class PasswordStorageTests
+    {
         [TestMethod]
-        public void SavePassword_String_SavedPassword() {
+        public void SavePassword_String_SavedPassword()
+        {
             const string input = "This is a password";
             var resultPassword = string.Empty;
             var resultKey = string.Empty;
 
             var mockSetup = new Mock<IProtectedData>();
             mockSetup.Setup(x => x.Protect(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string password) => {
+                .Callback((string key, string password) =>
+                {
                     resultKey = key;
                     resultPassword = password;
                 });
@@ -27,14 +31,16 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void SavePassword_SpecialCharacter_SavedPassword() {
+        public void SavePassword_SpecialCharacter_SavedPassword()
+        {
             const string input = "+\"*%&(()=";
             var resultPassword = string.Empty;
             var resultKey = string.Empty;
 
             var mockSetup = new Mock<IProtectedData>();
             mockSetup.Setup(x => x.Protect(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string password) => {
+                .Callback((string key, string password) =>
+                {
                     resultKey = key;
                     resultPassword = password;
                 });
@@ -46,7 +52,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void LoadPassword_ReturnSavedPassword() {
+        public void LoadPassword_ReturnSavedPassword()
+        {
             const string expectedPassword = "fooo";
             var mockSetup = new Mock<IProtectedData>();
             mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == "password"))).Returns(expectedPassword);
@@ -55,7 +62,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void RemovePassword_RemoveMethodWasCalled() {
+        public void RemovePassword_RemoveMethodWasCalled()
+        {
             var called = false;
             var mockSetup = new Mock<IProtectedData>();
             mockSetup.Setup(x => x.Remove(It.Is<string>(y => y == "password"))).Callback(() => called = true);
@@ -66,10 +74,12 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void RemovePassword_WrongKey_ExceptionCatched() {
+        public void RemovePassword_WrongKey_ExceptionCatched()
+        {
             var called = false;
             var mockSetup = new Mock<IProtectedData>();
-            mockSetup.Setup(x => x.Remove(It.IsAny<string>())).Callback(() => {
+            mockSetup.Setup(x => x.Remove(It.IsAny<string>())).Callback(() =>
+            {
                 called = true;
                 throw new COMException();
             });
@@ -80,7 +90,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void ValidatePassword_ValidPassword_CorrectlyValidated() {
+        public void ValidatePassword_ValidPassword_CorrectlyValidated()
+        {
             const string password = "password";
 
             var mockSetup = new Mock<IProtectedData>();
@@ -90,7 +101,8 @@ namespace MoneyFox.Shared.Tests.Authentication {
         }
 
         [TestMethod]
-        public void ValidatePassword_InvalidValidPassword_CorrectlyValidated() {
+        public void ValidatePassword_InvalidValidPassword_CorrectlyValidated()
+        {
             const string password = "password";
             const string passwordPassed = "abc";
 

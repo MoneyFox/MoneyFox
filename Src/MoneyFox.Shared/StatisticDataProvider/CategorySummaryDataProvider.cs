@@ -5,22 +5,28 @@ using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.StatisticDataProvider {
-    public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>> {
+namespace MoneyFox.Shared.StatisticDataProvider
+{
+    public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    {
         private readonly IRepository<Category> categoryRepository;
         private readonly IPaymentRepository paymentRepository;
 
         public CategorySummaryDataProvider(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository) {
+            IRepository<Category> categoryRepository)
+        {
             this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
         }
 
-        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate) {
+        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
+        {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in categoryRepository.Data) {
-                categories.Add(new StatisticItem {
+            foreach (var category in categoryRepository.Data)
+            {
+                categories.Add(new StatisticItem
+                {
                     Category = category.Name,
                     Value = paymentRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
