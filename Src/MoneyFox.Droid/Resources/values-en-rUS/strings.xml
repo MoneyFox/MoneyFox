@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<resources>
+
+  <!--hints-->
+  <string name="hint_iban">Account Number</string>
+
+</resources>
