@@ -16,16 +16,16 @@ namespace MoneyFox.Shared.Helpers {
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
 
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
-        private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
+        private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = true;
 
         private const string AUTOUPLOAD_BACKUP_KEYNAME = "AutoUploadBackup";
         private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
 
-        private const string SESSION_TIMESTAMP_DEFAULT = "";
         private const string SESSION_TIMESTAMP_KEY = "session_timestamp";
+        private const string SESSION_TIMESTAMP_DEFAULT = "";
 
-        private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
         private const string PASSWORD_REQUIRED_KEYNAME = "PasswordRequired";
+        private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
