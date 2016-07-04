@@ -563,4 +563,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_show_chart.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-en-rUS\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
 </Project>
