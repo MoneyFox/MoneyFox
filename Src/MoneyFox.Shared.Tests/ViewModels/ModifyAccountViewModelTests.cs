@@ -148,7 +148,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
-            accountRepositorySetup.Setup(x => x.AddPaymentAmount(new Payment())).Returns(true);
             accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
             var accountRepo = accountRepositorySetup.Object;

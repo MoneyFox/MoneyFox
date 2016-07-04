@@ -76,15 +76,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
-            var SelectedPayment = new Payment
+            var selectedPayment = new Payment
             {
                 ChargedAccountId = 3,
                 ChargedAccount = new Account {Id = 3, Name = "3"}
             };
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Selected).Returns(SelectedPayment);
-            paymentRepoSetup.Setup(x => x.Save(SelectedPayment)).Returns(true);
+            paymentRepoSetup.SetupGet(x => x.Selected).Returns(selectedPayment);
+            paymentRepoSetup.Setup(x => x.Save(selectedPayment)).Returns(true);
 
             var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -93,7 +93,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupAllProperties();
-            accountRepoMock.Setup(x => x.AddPaymentAmount(SelectedPayment)).Returns(true);
 
             var accountRepo = accountRepoMock.Object;
             accountRepo.Data = new ObservableCollection<Account> {new Account {Id = 3, Name = "3"}};
@@ -105,8 +104,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 accountRepo,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                defaultManager);
-            viewmodel.SelectedPayment = SelectedPayment;
+                defaultManager) {SelectedPayment = selectedPayment};
             viewmodel.SaveCommand.Execute();
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));

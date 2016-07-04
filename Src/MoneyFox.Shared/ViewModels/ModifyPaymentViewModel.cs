@@ -144,7 +144,7 @@ namespace MoneyFox.Shared.ViewModels
 
             // Save item or update the payment and add the amount to the account
             var paymentSucceded = paymentRepository.Save(SelectedPayment);
-            var accountSucceded = accountRepository.AddPaymentAmount(SelectedPayment);
+            var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
             if (paymentSucceded && accountSucceded)
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
 
@@ -155,7 +155,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
+                paymentManager.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
             }
         }
 
@@ -187,7 +187,7 @@ namespace MoneyFox.Shared.ViewModels
                 }
 
                 var paymentSucceded = paymentRepository.Delete(SelectedPayment);
-                var accountSucceded = accountRepository.RemovePaymentAmount(SelectedPayment);
+                var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);

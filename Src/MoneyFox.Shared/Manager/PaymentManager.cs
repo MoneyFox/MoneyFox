@@ -22,7 +22,8 @@ namespace MoneyFox.Shared.Manager
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
         /// <param name="dialogService">Instance of <see cref="IDialogService" /></param>
         public PaymentManager(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository, IDialogService dialogService)
+            IAccountRepository accountRepository, 
+            IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
             this.dialogService = dialogService;
@@ -76,7 +77,7 @@ namespace MoneyFox.Shared.Manager
                     payment.IsCleared = true;
                     paymentRepository.Save(payment);
 
-                    accountRepository.AddPaymentAmount(payment);
+                    AddPaymentAmount(payment);
                 }
                 catch (Exception ex)
                 {

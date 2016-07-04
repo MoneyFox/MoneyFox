@@ -149,7 +149,7 @@ namespace MoneyFox.Shared.ViewModels
                 paymentRepository.DeleteRecurring(payment);
             }
 
-            var accountSucceded = accountRepository.RemovePaymentAmount(payment);
+            var accountSucceded = paymentManager.RemovePaymentAmount(payment);
             var paymentSucceded = paymentRepository.Delete(payment);
             if (accountSucceded && paymentSucceded)
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
