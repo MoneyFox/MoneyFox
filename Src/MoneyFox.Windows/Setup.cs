@@ -32,8 +32,7 @@ using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 namespace MoneyFox.Windows {
     public class Setup : MvxWindowsSetup {
         public Setup(Frame frame)
-            : base(frame) {
-        }
+            : base(frame) { }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager) {
             base.LoadPlugins(pluginManager);
