@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -125,19 +124,21 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
 
             var paymentRepo = mockPaymentRepo.Object;
-            paymentRepo.Data = new ObservableCollection<Payment>();
-            paymentRepo.Data.Add(new Payment
+            paymentRepo.Data = new ObservableCollection<Payment>
             {
-                Id = 1,
-                Amount = 100,
-                ChargedAccountId = accountData.Id
-            });
-            paymentRepo.Data.Add(new Payment
-            {
-                Id = 2,
-                Amount = 200,
-                ChargedAccountId = accountData.Id
-            });
+                new Payment
+                {
+                    Id = 1,
+                    Amount = 100,
+                    ChargedAccountId = accountData.Id
+                },
+                new Payment
+                {
+                    Id = 2,
+                    Amount = 200,
+                    ChargedAccountId = accountData.Id
+                }
+            };
 
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
