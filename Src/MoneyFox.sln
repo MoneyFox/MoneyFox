@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Shared", "MoneyFox.Shared\MoneyFox.Shared.csproj", "{3E0E36AF-65D9-4542-8551-31B76577AA4C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F704D85F-2758-42A1-B87D-2C21EC782329}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{F704D85F-2758-42A1-B87D-2C21EC782329}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Shared.Tests", "MoneyFox.Shared.Tests\MoneyFox.Shared.Tests.csproj", "{311BC2CC-CB62-4E14-89A1-C8C2976B36D2}"
 EndProject

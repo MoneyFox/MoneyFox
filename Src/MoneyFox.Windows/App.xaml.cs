@@ -67,6 +67,7 @@ namespace MoneyFox.Windows {
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (shell == null) {
+                //TODO: check if this can be removed with the neutral language set.
                 // Create a AppShell to act as the navigation context and navigate to the first page
                 shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
