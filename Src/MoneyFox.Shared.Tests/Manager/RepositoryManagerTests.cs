@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
@@ -31,14 +29,13 @@ namespace MoneyFox.Shared.Tests.Manager {
             var paymentRepository = paymentRepoSetup.Object;
 
             paymentRepository.Selected = new Payment();
-            unitOfWork.CategoryRepository.Selected = new Category();
+
 
             new RepositoryManager(unitOfWork, paymentRepository,
                 new PaymentManager(paymentRepository, unitOfWork.AccountRepository, 
                 new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsNull(paymentRepository.Selected);
-            Assert.IsNull(unitOfWork.CategoryRepository.Selected);
         }
 
         [TestMethod]

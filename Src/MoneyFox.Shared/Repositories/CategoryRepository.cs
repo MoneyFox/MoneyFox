@@ -40,8 +40,6 @@ namespace MoneyFox.Shared.Repositories {
 
         public Category FindById(int id) => data.FirstOrDefault(c => c.Id == id);
 
-        public Category Selected { get; set; }
-
         /// <summary>
         ///     Save a new category or update an existing one.
         /// </summary>
