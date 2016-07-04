@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using PropertyChanged;
-using SQLite.Net;
 
 namespace MoneyFox.Shared.DataAccess {
     /// <summary>

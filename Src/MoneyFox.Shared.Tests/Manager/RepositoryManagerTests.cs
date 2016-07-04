@@ -7,38 +7,37 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Tests.Manager {
     [TestClass]
     public class RepositoryManagerTests {
         [TestMethod]
         public void Constructor_NullValues_NoException() {
-            new RepositoryManager(null, null, null, null).ShouldNotBeNull();
+            new RepositoryManager(null, null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
         public void ReloadData_SelectedNotNull_SelectedSetToNull() {
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
+
+            var dbManagerSetup = new Mock<IDatabaseManager>();
+            dbManagerSetup.Setup(x => x.GetConnection());
+
+            var unitOfWork = new UnitOfWork(dbManagerSetup.Object);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
 
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var accountRepo = accountRepoSetup.Object;
             var paymentRepository = paymentRepoSetup.Object;
-            var categoryRepo = categoryRepoSetup.Object;
 
             paymentRepository.Selected = new Payment();
-            categoryRepo.Selected = new Category();
+            unitOfWork.CategoryRepository.Selected = new Category();
 
-            new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
-                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
+            new RepositoryManager(unitOfWork, paymentRepository,
+                new PaymentManager(paymentRepository, unitOfWork.AccountRepository, new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsNull(paymentRepository.Selected);
-            Assert.IsNull(categoryRepo.Selected);
+            Assert.IsNull(unitOfWork.CategoryRepository.Selected);
         }
 
         [TestMethod]

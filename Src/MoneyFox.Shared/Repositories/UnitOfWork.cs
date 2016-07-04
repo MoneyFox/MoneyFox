@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
 using SQLite.Net;
 using System;
 
@@ -13,13 +12,13 @@ namespace MoneyFox.Shared.Repositories {
             sqliteConnection = dbManager.GetConnection();
         }
 
-        private IRepository<Account> accountRepository;
-        private IRepository<Category> categoryRepository;
+        private IAccountRepository accountRepository;
+        private ICategoryRepository categoryRepository;
 
-        public IRepository<Account> AccountRepository
+        public IAccountRepository AccountRepository
             => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)));
 
-        public IRepository<Category> Categoryepository
+        public ICategoryRepository CategoryRepository
          => categoryRepository ?? (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
 
         private bool disposed = false;

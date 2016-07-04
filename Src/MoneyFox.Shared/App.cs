@@ -6,6 +6,7 @@ using MoneyFox.Shared.Manager;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared {
     public class App : MvxApplication {
@@ -58,6 +59,8 @@ namespace MoneyFox.Shared {
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsDynamic();
+
+            Mvx.RegisterType(() => new UnitOfWork(Mvx.Resolve<IDatabaseManager>()));
         }
     }
 }
