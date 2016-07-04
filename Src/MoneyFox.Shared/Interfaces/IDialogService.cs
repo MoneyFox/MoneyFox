@@ -32,8 +32,14 @@ namespace MoneyFox.Shared.Interfaces {
         Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null);
 
-        void ShowLoadingDialog(string text);
+        /// <summary>
+        ///     Shows a loading Dialog.
+        /// </summary>
+        void ShowLoadingDialog();
 
+        /// <summary>
+        ///     Hides the previously opened Loading Dialog.
+        /// </summary>
         void HideLoadingDialog();
     }
 }

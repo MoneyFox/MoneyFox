@@ -61,11 +61,17 @@ namespace MoneyFox.Windows.Services {
         }
 
         private LoadingDialog loadingDialog;
-        public async void ShowLoadingDialog(string text) {
+        /// <summary>
+        ///     Shows a loading Dialog.
+        /// </summary>
+        public async void ShowLoadingDialog() {
             loadingDialog = new LoadingDialog();
             await loadingDialog.ShowAsync();
         }
 
+        /// <summary>
+        ///     Hides the previously opened Loading Dialog.
+        /// </summary>
         public void HideLoadingDialog(){
             loadingDialog.Hide();
         }

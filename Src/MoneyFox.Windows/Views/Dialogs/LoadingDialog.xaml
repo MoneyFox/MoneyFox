@@ -18,8 +18,8 @@
                           Height="100"
                           Background="Transparent"
                           IsActive="{Binding IsLoading}" />
-            <TextBlock x:Uid="IsLoading"
-                       Text="loading..."
+            <TextBlock x:Uid="Loading"
+                       Text="Loading..."
                        TextAlignment="Center" />
         </StackPanel>
     </Grid>

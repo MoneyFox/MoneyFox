@@ -70,6 +70,10 @@
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AndHUD, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AndHUD.1.2.0\lib\MonoAndroid\AndHUD.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Cheesebaron.MvxPlugins.Connectivity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.0.0.4\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.dll</HintPath>
       <Private>True</Private>

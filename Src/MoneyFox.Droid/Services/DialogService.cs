@@ -5,6 +5,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
+using AndroidHUD;
 
 namespace MoneyFox.Droid {
     public class DialogService : IDialogService {
@@ -69,12 +70,12 @@ namespace MoneyFox.Droid {
             return tcs.Task;
         }
 
-        public void ShowLoadingDialog(string text) {
-
+        public void ShowLoadingDialog() {
+            AndHUD.Shared.Show(CurrentActivity, Strings.LoadingLabel);
         }
 
         public void HideLoadingDialog() {
-
+            AndHUD.Shared.Dismiss(CurrentActivity);
         }
     }
 }
