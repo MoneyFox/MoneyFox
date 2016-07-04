@@ -10,8 +10,8 @@ using Foundation;
 
 namespace MoneyFox.Ios.Views.AccountList
 {
-    [Register ("AccountViewCell")]
-    partial class AccountViewCell
+    [Register ("AccountTableCell")]
+    partial class AccountTableCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
