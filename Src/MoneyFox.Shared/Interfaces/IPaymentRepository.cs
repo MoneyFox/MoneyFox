@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Interfaces {
-    public interface IPaymentRepository : IRepository<Payment> {
+    public interface IPaymentRepository : IRepository<Payment>, ISelectedProperty<Payment> {
         /// <summary>
         ///     Delete the specified payment.
         /// </summary>
@@ -26,9 +26,9 @@ namespace MoneyFox.Shared.Interfaces {
         /// <summary>
         ///     returns a list with payments who are related to this account.
         /// </summary>
-        /// <param name="account">account to search the related</param>
+        /// <param name="accountId">account id to search the related</param>
         /// <returns>List of payments.</returns>
-        IEnumerable<Payment> GetRelatedPayments(Account account);
+        IEnumerable<Payment> GetRelatedPayments(int accountId);
 
         /// <summary>
         ///     returns a list with payments who recure in a given timeframe

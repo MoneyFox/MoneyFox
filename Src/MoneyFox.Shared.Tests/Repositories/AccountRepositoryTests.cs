@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -129,19 +130,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(true);
-
-            new AccountRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object).Save(new Account());
-
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
-        }
-
-        [TestMethod]
         public void Save_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 
@@ -175,6 +163,20 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 notificationServiceSetup.Object).Delete(new Account());
 
             isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void AccountRepository_FindById_ReturnsAccount()
+        {
+            var accountRepository = new Mock<IAccountRepository>();
+            var testAccount = new Account() {Id = 100, Name = "Test Account"};
+            accountRepository.SetupAllProperties();
+            accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
+                .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
+            accountRepository.Object.Data = new ObservableCollection<Account>();
+            accountRepository.Object.Data.Add(testAccount);
+        
+            Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
         }
     }
 }

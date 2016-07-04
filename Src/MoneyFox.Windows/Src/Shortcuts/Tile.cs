@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
@@ -20,18 +21,14 @@ namespace MoneyFox.Windows.Shortcuts {
         }
 
         /// <summary>
-        ///     Will get the statistic manager and updates the main tile with the current cash flow.
+        ///     Get's the payment data from the Paymentrepository and refreshs the live tile with these information.
         /// </summary>
-        public static async void UpdateMainTile() {
-            var task = Task.Run(() => UpdateTile());
-            await task;
-        }
+        public static void UpdateMainTile() {
+            HockeyClient.Current.TrackEvent("Refresh Tile");
 
-        private static void UpdateTile() {
             var cashFlow =
-                new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>()).GetValues(
-                    DateTime.Today.GetFirstDayOfMonth(),
-                    DateTime.Today.GetLastDayOfMonth());
+                new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>())
+                    .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
             Mvx.Resolve<ITileUpdateService>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);

@@ -8,17 +8,21 @@ namespace MoneyFox.Shared.ViewModels {
     /// <summary>
     ///     This ViewModel is for the usage in the paymentlist when a concret account is selected
     /// </summary>
-    public class PaymentListBalanceViewModel : BalanceViewModel {
+    public class PaymentListBalanceViewModel : BalanceViewModel
+    {
+        private readonly int accountId;
         public PaymentListBalanceViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository)
-            : base(accountRepository, paymentRepository) {
+            IPaymentRepository paymentRepository, int accountId)
+            : base(accountRepository, paymentRepository)
+        {
+            this.accountId = accountId;
         }
 
         /// <summary>
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override double GetTotalBalance() => AccountRepository.Selected.CurrentBalance;
+        protected override double GetTotalBalance() => AccountRepository.FindById(accountId).CurrentBalance;
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
@@ -27,7 +31,7 @@ namespace MoneyFox.Shared.ViewModels {
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
         protected override double GetEndOfMonthValue() {
             var balance = TotalBalance;
-            var unclearedPayments = LoadUnclreadPayments();
+            var unclearedPayments = LoadUnclearedPayments();
 
             foreach (var payment in unclearedPayments) {
                 switch (payment.Type) {
@@ -49,7 +53,7 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         private double HandleTransferAmount(Payment payment, double balance) {
-            if (AccountRepository.Selected == payment.ChargedAccount) {
+            if (accountId == payment.ChargedAccountId) {
                 balance -= payment.Amount;
             }
             else {
@@ -58,10 +62,10 @@ namespace MoneyFox.Shared.ViewModels {
             return balance;
         }
 
-        private IEnumerable<Payment> LoadUnclreadPayments()
+        private IEnumerable<Payment> LoadUnclearedPayments()
             => PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth())
-                .Where(x => x.ChargedAccountId == AccountRepository.Selected.Id
-                            || x.TargetAccountId == AccountRepository.Selected.Id)
+                .Where(x => x.ChargedAccountId == accountId
+                            || x.TargetAccountId == accountId)
                 .ToList();
     }
 }

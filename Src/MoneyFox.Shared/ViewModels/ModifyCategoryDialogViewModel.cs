@@ -62,8 +62,8 @@ namespace MoneyFox.Shared.ViewModels {
                 return;
             }
 
-            if (categoryRepository.Data.Any(x => x.Name == Selected.Name)) {
-                await dialogService.ShowMessage(Strings.NameAlreadyUsedTitle, Strings.NameAlreadyUsedMessage);
+            if (categoryRepository.Data.Any(x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase))) {
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 

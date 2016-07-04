@@ -13,51 +13,21 @@ namespace MoneyFox.Shared.Tests.ViewModels {
     [TestClass]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
-        private Mock<IAccountRepository> AccountRepository;
+        private Mock<IAccountRepository> accountRepository;
 
         [TestInitialize]
         public void Init() {
             MvxSingleton.ClearAllSingletons();
-            AccountRepository = new Mock<IAccountRepository>();
-            AccountRepository.SetupAllProperties();
+            accountRepository = new Mock<IAccountRepository>();
+            accountRepository.SetupAllProperties();
             Setup();
-        }
-
-        [TestMethod]
-        public void OpenOverviewCommand_Account_SelectedSet() {
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var viewModel = new AccountListViewModel(AccountRepository.Object,
-                paymentRepoSetup.Object,
-                new Mock<IDialogService>().Object);
-
-            viewModel.OpenOverviewCommand.Execute(new Account {Id = 42});
-
-            Assert.AreEqual(42, AccountRepository.Object.Selected.Id);
-        }
-
-        [TestMethod]
-        public void OpenOverviewCommand_NullAccount_DoNothing() {
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var viewModel = new AccountListViewModel(AccountRepository.Object,
-                paymentRepoSetup.Object,
-                new Mock<IDialogService>().Object);
-
-            viewModel.OpenOverviewCommand.Execute(null);
-
-            Assert.IsNull(AccountRepository.Object.Selected);
         }
 
         [TestMethod]
         public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion() {
             var deleteCalled = false;
 
-            AccountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -67,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(AccountRepository.Object,
+            var viewModel = new AccountListViewModel(accountRepository.Object,
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -81,7 +51,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         public void DeleteAccountCommand_UserReturnFalse_SkipDeletion() {
             var deleteCalled = false;
 
-            AccountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -90,7 +60,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(false));
 
-            var viewModel = new AccountListViewModel(AccountRepository.Object,
+            var viewModel = new AccountListViewModel(accountRepository.Object,
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -104,7 +74,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         public void DeleteAccountCommand_AccountNull_DoNothing() {
             var deleteCalled = false;
 
-            AccountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
@@ -113,7 +83,7 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(AccountRepository.Object,
+            var viewModel = new AccountListViewModel(accountRepository.Object,
                 paymentRepoSetup.Object,
                 dialogServiceSetup.Object
                 );
@@ -128,8 +98,8 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         {
             var deleteCalled = false;
 
-            AccountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
-            var accountRepo = AccountRepository.Object;
+            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            var accountRepo = accountRepository.Object;
             accountRepo.Data = new ObservableCollection<Account>();
             var accountData = new Account()
             {

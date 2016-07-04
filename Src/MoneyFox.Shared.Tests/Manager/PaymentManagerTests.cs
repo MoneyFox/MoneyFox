@@ -12,6 +12,8 @@ using Moq;
 namespace MoneyFox.Shared.Tests.Manager {
     [TestClass]
     public class PaymentManagerTests {
+
+
         [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments() {
             var resultList = new List<int>();
@@ -33,11 +35,12 @@ namespace MoneyFox.Shared.Tests.Manager {
                 ChargedAccountId = account1.Id
             };
 
+
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.SetupAllProperties();
             paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
-            paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<Account>()))
+            paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<int>()))
                 .Returns(new List<Payment> {
                     payment
                 });
@@ -71,7 +74,7 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public async void CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput() {
+        public async Task CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput() {
             const bool userAnswer = true;
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(

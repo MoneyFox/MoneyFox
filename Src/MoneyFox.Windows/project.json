@@ -2,7 +2,7 @@
   "dependencies": {
     "Cheesebaron.MvxPlugins.Connectivity": "0.0.4",
     "Cheesebaron.MvxPlugins.Settings": "1.2.7",
-    "HockeySDK.UWP": "4.1.1-build17552",
+    "HockeySDK.UWP": "4.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.47",

@@ -358,7 +358,7 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Payment {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
 
-            var result = repo.GetRelatedPayments(account1).ToList();
+            var result = repo.GetRelatedPayments(account1.Id).ToList();
 
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(2, result.First().Id);
@@ -717,22 +717,6 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_UpdateTimeStamp() {
-            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(true);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-
-            new PaymentRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringPayment>>().Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRepository<Category>>().Object,
-                new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 2});
-
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
-        }
-
-        [TestMethod]
         public void Save_NotifyUserOfFailure() {
             var isNotificationServiceCalled = false;
 
@@ -789,6 +773,20 @@ namespace MoneyFox.Shared.Tests.Repositories {
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<Category>>().Object,
                 new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 0});
+        }
+
+        [TestMethod]
+        public void PaymentRepository_FindById_ReturnsPayment()
+        {
+            var paymentRepository = new Mock<IPaymentRepository>();
+            var testPayment = new Payment() {Id = 100};
+            paymentRepository.SetupAllProperties();
+            paymentRepository.Setup(x => x.FindById(It.IsAny<int>()))
+                .Returns((int paymentId) => paymentRepository.Object.Data.FirstOrDefault(p => p.Id == paymentId));
+            paymentRepository.Object.Data = new ObservableCollection<Payment>();
+            paymentRepository.Object.Data.Add(testPayment);
+
+            Assert.AreEqual(testPayment, paymentRepository.Object.FindById(100));
         }
     }
 }

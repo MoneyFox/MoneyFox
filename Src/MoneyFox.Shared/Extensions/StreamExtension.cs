@@ -3,6 +3,11 @@ using System.IO;
 
 namespace MoneyFox.Shared.Extensions {
     public static class StreamExtension {
+        /// <summary>
+        ///    Reads the bytes of a stream and returns them in an array.
+        /// </summary>
+        /// <param name="stream">Stream to read.</param>
+        /// <returns></returns>
         public static byte[] ReadToEnd(this Stream stream) {
             long originalPosition = 0;
 

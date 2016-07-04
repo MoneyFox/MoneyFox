@@ -12,7 +12,7 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
+        public SelectCategoryListViewModel(ICategoryRepository categoryRepository,
             IDialogService dialogService) : base(categoryRepository, dialogService) {
         }
 

@@ -1,19 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System;
 
 namespace MoneyFox.Shared.ViewModels {
     [ImplementPropertyChanged]
     public class ModifyAccountViewModel : BaseViewModel {
         private readonly IAccountRepository accountRepository;
+        private readonly IDialogService dialogService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository) {
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService) {
             this.accountRepository = accountRepository;
+            this.dialogService = dialogService;
         }
 
         /// <summary>
@@ -39,6 +41,9 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public bool IsEdit { get; set; }
 
+        /// <summary>
+        ///     Returns the Title based on if the view is in edit mode or not.
+        /// </summary>
         public string Title => IsEdit
             ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
             : Strings.AddAccountTitle;
@@ -61,10 +66,7 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     The currently selected account
         /// </summary>
-        public Account SelectedAccount {
-            get { return accountRepository.Selected; }
-            set { accountRepository.Selected = value; }
-        }
+        public Account SelectedAccount { get; set; }
 
         public void Init(bool isEdit) {
             IsEdit = isEdit;
@@ -86,14 +88,22 @@ namespace MoneyFox.Shared.ViewModels {
                 : new Account();
         }
 
-        private void SaveAccount() {
-            if (accountRepository.Save(accountRepository.Selected))
+        private async void SaveAccount() {
+            if (
+                accountRepository.Data.Any(
+                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase))) {
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
+                return;
+            }
+
+            if (accountRepository.Save(SelectedAccount)) {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            Close(this);
+                Close(this);
+            }
         }
 
         private void DeleteAccount() {
-            if (accountRepository.Delete(accountRepository.Selected))
+            if (accountRepository.Delete(SelectedAccount))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }
