@@ -14,7 +14,8 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IDialogService dialogService;
 
         public BackupViewModel(IBackupManager backupManager,
-            IDialogService dialogService, IConnectivity connectivity)
+            IDialogService dialogService,
+            IConnectivity connectivity)
         {
             this.backupManager = backupManager;
             this.dialogService = dialogService;
@@ -42,11 +43,6 @@ namespace MoneyFox.Shared.ViewModels
         ///     The Date when the backup was modified the last time.
         /// </summary>
         public DateTime BackupLastModified { get; private set; }
-
-        /// <summary>
-        ///     Indicator if something is in work who should block the UI
-        /// </summary>
-        public bool IsLoading { get; private set; }
 
         /// <summary>
         ///     Indicator that the app is checking if backups available.
@@ -77,11 +73,11 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            IsLoading = true;
+            dialogService.ShowLoadingDialog();
             await backupManager.CreateNewBackup();
             BackupLastModified = DateTime.Now;
+            dialogService.HideLoadingDialog();
             await ShowCompletionNote();
-            IsLoading = false;
         }
 
         private async void RestoreBackup()
@@ -91,10 +87,10 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            IsLoading = true;
+            dialogService.ShowLoadingDialog();
             await backupManager.RestoreBackup();
+            dialogService.HideLoadingDialog();
             await ShowCompletionNote();
-            IsLoading = false;
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

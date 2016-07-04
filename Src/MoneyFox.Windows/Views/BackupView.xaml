@@ -36,27 +36,6 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <Grid Grid.Row="0"
-              Grid.RowSpan="2"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              Background="Black"
-              Opacity="0.8"
-              Visibility="{Binding IsLoading,
-                                   Converter={StaticResource BooleanVisibilityConverter},
-                                   UpdateSourceTrigger=PropertyChanged,
-                                   Mode=TwoWay}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ProgressRing Width="100"
-                              Height="100"
-                              Background="Transparent"
-                              IsActive="{Binding IsLoading}" />
-                <TextBlock x:Uid="IsLoading"
-                           Text="loading..."
-                           TextAlignment="Center" />
-            </StackPanel>
-        </Grid>
-
         <StackPanel Grid.Row="1"
                     Margin="19,9.5,19,0"
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
