@@ -1,6 +1,12 @@
+using System;
+using Android.App;
+using Android.OS;
+using Android.Widget;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Activities
 {

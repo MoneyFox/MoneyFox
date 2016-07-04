@@ -1,6 +1,13 @@
+using System;
+using Android.App;
+using Android.Content.PM;
+using Android.OS;
+using Android.Views;
+using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities
@@ -85,7 +92,7 @@ namespace MoneyFox.Droid.Activities
         {
             callerButton = sender as Button;
             var dialog = new DatePickerDialogFragment(this, DateTime.Now, this);
-            dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+            dialog.Show(SupportFragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
 
         /// <summary>

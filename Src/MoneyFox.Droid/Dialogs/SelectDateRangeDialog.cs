@@ -1,7 +1,14 @@
+using System;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V4;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Dialogs
 {

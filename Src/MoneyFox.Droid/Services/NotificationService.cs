@@ -1,4 +1,11 @@
+using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
+using Android.Support.Design.Widget;
+using Android.Views.InputMethods;
 using MoneyFox.Shared.Interfaces;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 
 namespace MoneyFox.Droid.Services
 {

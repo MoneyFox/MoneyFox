@@ -4,6 +4,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Windows.Input;
+using Android.Views;
+using Android.Widget;
+using MvvmCross.Platform.IoC;
+
 namespace MoneyFox.Droid
 {
     /// <summary>

@@ -1,6 +1,16 @@
-﻿using MoneyFox.Droid.Activities.Caching;
+﻿using System;
+using Android.App;
+using Android.Content.PM;
+using Android.OS;
+using Android.Support.V4.View;
+using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
+using Android.Views;
+using MoneyFox.Droid.Activities.Caching;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Shared.Caching;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities

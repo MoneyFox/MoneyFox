@@ -1,7 +1,21 @@
+using System.Collections.Generic;
+using System.Reflection;
+using Android.Content;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
+using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
+using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Droid.Services;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Platform;
+using MvvmCross.Droid.Views;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
+using MvvmCross.Platform.Plugins;
 
 namespace MoneyFox.Droid
 {

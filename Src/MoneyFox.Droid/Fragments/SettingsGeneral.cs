@@ -1,3 +1,4 @@
+using Android.Runtime;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 

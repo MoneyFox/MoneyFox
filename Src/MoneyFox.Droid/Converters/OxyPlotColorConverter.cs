@@ -1,4 +1,9 @@
-﻿namespace MoneyFox.Droid.Converters
+﻿using System.Globalization;
+using MvvmCross.Platform.UI;
+using MvvmCross.Plugins.Color;
+using OxyPlot;
+
+namespace MoneyFox.Droid.Converters
 {
     /// <summary>
     ///     Converts the OxyColor to MvxColor for binding in Android.

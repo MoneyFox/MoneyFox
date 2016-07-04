@@ -1,7 +1,12 @@
+using System;
+using System.Threading.Tasks;
+using Android.App;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid
+namespace MoneyFox.Droid.Services
 {
     public class DialogService : IDialogService
     {

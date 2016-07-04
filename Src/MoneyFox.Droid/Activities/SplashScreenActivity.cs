@@ -1,3 +1,7 @@
+using Android.App;
+using Android.Content.PM;
+using MvvmCross.Droid.Views;
+
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "Money Fox",
