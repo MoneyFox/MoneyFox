@@ -48,10 +48,11 @@ namespace MoneyFox.Shared.Tests.ViewModels {
 
 
             //Execute and Assert
-            viewmodel.Init("Income", true);
+            viewmodel.Init("Income", 0, true);
             viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
+            Assert.AreEqual(0, 1); // Failing on purpose to know to fix
         }
 
         [TestMethod]
@@ -92,12 +93,14 @@ namespace MoneyFox.Shared.Tests.ViewModels {
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
 
-            viewmodel.Init("Income", true);
+            viewmodel.Init("Income", 0, true);
             viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
+
+            Assert.AreEqual(0, 1); // Failing on purpose to know and fix the test
         }
     }
 }

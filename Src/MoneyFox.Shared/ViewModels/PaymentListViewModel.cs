@@ -126,9 +126,9 @@ namespace MoneyFox.Shared.ViewModels {
         }
 
         private void Edit(Payment payment) {
-            paymentRepository.Selected = payment;
+            //paymentRepository.Selected = payment;
 
-            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString()});
+            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString(), paymentId = payment.Id});
         }
 
         private async void DeletePayment(Payment payment) {
