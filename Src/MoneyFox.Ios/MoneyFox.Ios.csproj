@@ -105,17 +105,19 @@
     <Compile Include="Src\NotificationService.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Views\BaseViewController.cs" />
-    <Compile Include="Views\MainView.cs" />
-    <Compile Include="Views\MainView.designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="Views\AccountList\AccountListView.cs" />
+    <Compile Include="Views\AccountList\AccountListView.designer.cs">
+      <DependentUpon>AccountListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MenuView.cs" />
     <None Include="app.config" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Views\MainView.xib" />
+    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />

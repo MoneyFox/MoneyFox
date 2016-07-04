@@ -16,13 +16,8 @@ using UIKit;
 namespace MoneyFox.Ios {
     public class Setup : MvxIosSetup {
 
-        public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window) 
-            : base(applicationDelegate, window) {
-        }
-
-        public Setup(IMvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter) 
-            : base(applicationDelegate, presenter) {
-        }
+        public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
+            : base(applicationDelegate, window) {}
 
         protected override void InitializeFirstChance() {
             base.InitializeFirstChance();

@@ -5,8 +5,8 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.SidePanels;
-using MvvmCross.iOS.Views;
 using Cirrious.FluentLayouts.Touch;
+using MvvmCross.iOS.Views;
 
 namespace MoneyFox.Ios.Views {
     [Register("MenuView")]

@@ -55,10 +55,10 @@ namespace MoneyFox.Shared.ViewModels {
             ShowViewModel<RecurringPaymentListViewModel>();
         }
 
-        //Only used in Android
+        //Used in Android and IOS.
         public void ShowMenuAndFirstDetail() {
-            ShowViewModel<MenuViewModel>();
             ShowViewModel<AccountListViewModel>();
+            ShowViewModel<MenuViewModel>();
         }
     }
 }
