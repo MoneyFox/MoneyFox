@@ -114,7 +114,6 @@
     <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="Main.storyboard" />
     <None Include="packages.config" />
     <InterfaceDefinition Include="Views\MainView.xib" />
   </ItemGroup>
