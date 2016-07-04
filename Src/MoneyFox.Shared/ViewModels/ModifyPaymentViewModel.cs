@@ -19,6 +19,10 @@ namespace MoneyFox.Shared.ViewModels {
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
+        private ObservableCollection<Account> targetAccounts;
+        private ObservableCollection<Account> chargedAccounts;
+        private Payment selectedPayment;
+        private int paymentId;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -37,6 +41,8 @@ namespace MoneyFox.Shared.ViewModels {
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
 
+            targetAccounts = accountRepository.Data;
+            chargedAccounts = accountRepository.Data;
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
@@ -45,7 +51,10 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         /// <param name="typeString">Type of the payment.</param>
         /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
-        public void Init(string typeString, bool isEdit = false) {
+        public void Init(string typeString, int paymentId, bool isEdit = false)
+        {
+            this.paymentId = paymentId;
+            selectedPayment = paymentRepository.FindById(PaymentId);
             IsEdit = isEdit;
             IsEndless = true;
 
@@ -62,6 +71,8 @@ namespace MoneyFox.Shared.ViewModels {
 
             AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
+
+        public int PaymentId => paymentId;
 
         private void PrepareEdit() {
             IsTransfer = SelectedPayment.IsTransfer;
@@ -158,7 +169,7 @@ namespace MoneyFox.Shared.ViewModels {
                     paymentRepository.DeleteRecurring(SelectedPayment);
                 }
 
-                bool paymentSucceded = paymentRepository.Delete(paymentRepository.Selected);
+                bool paymentSucceded = paymentRepository.Delete(SelectedPayment);
                 bool accountSucceded = accountRepository.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
@@ -270,15 +281,25 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     The selected payment
         /// </summary>
-        public Payment SelectedPayment {
-            get { return paymentRepository.Selected; }
-            set { paymentRepository.Selected = value; }
+        public Payment SelectedPayment
+        {
+            get { return selectedPayment; }
+            set
+            {
+                if (value == null) return;
+                selectedPayment = value;
+            }
         }
 
         /// <summary>
-        ///     Gives access to all accounts
+        ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
+        public ObservableCollection<Account> ChargedAccounts => chargedAccounts;
+
+        /// <summary>
+        ///     Gives access to all accounts for Target Dropdown list
+        /// </summary>
+        public ObservableCollection<Account> TargetAccounts => targetAccounts;
 
         /// <summary>
         ///     Returns the Title for the page

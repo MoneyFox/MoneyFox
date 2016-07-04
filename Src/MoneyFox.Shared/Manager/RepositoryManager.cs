@@ -34,7 +34,6 @@ namespace MoneyFox.Shared.Manager {
             paymentRepository.Selected = null;
 
             categoryRepository.Load();
-            categoryRepository.Selected = null;
 
             //check if there are payments to clear
             paymentManager.ClearPayments();

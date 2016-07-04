@@ -14,15 +14,7 @@ namespace MoneyFox.Shared.ViewModels {
             : base(categoryRepository, dialogService) {
         }
 
-        public Category SelectedCategory {
-            get { return CategoryRepository.Selected ?? new Category(); }
-            set {
-                if (value == null) {
-                    return;
-                }
-
-                CategoryRepository.Selected = value;
-            }
-        }
+        public Category SelectedCategory { get; set; }
+    
     }
 }
