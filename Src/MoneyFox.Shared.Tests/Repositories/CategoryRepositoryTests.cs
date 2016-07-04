@@ -91,14 +91,17 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void CategoryRepository_AccessCache() {
+        public void CategoryRepository_AccessCache()
+        {
             new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
         }
 
         [TestMethod]
-        public void CategoryRepository_AddMultipleToCache() {
+        public void CategoryRepository_AddMultipleToCache()
+        {
             var repository = new CategoryRepository(new CategoryDataAccessMock());
-            var category = new Category {
+            var category = new Category
+            {
                 Name = "Ausgang"
             };
 
@@ -136,7 +139,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void CategoryRepository_FindById_ReturnsCategory()
         {
             var categoryRepository = new Mock<IRepository<Category>>();
-            var testCategory = new Category() {Id = 100, Name = "Test Category"};
+            var testCategory = new Category {Id = 100, Name = "Test Category"};
             categoryRepository.SetupAllProperties();
             categoryRepository.Setup(x => x.FindById(It.IsAny<int>()))
                 .Returns((int categoryId) => categoryRepository.Object.Data.FirstOrDefault(c => c.Id == categoryId));
@@ -147,8 +150,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Delete_Failure_ReturnFalse() {
-
+        public void Delete_Failure_ReturnFalse()
+        {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Category>())).Returns(false);
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
@@ -158,8 +161,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_Failure_ReturnFalse() {
-
+        public void Save_Failure_ReturnFalse()
+        {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(false);
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());

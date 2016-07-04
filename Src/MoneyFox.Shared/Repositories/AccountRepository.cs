@@ -20,7 +20,6 @@ namespace MoneyFox.Shared.Repositories
         ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
-        /// <param name="notificationService">Service to notify user in case of errors.</param>
         public AccountRepository(IDataAccess<Account> dataAccess) {
             this.dataAccess = dataAccess;
 

@@ -10,13 +10,15 @@ using SQLite.Net;
 namespace MoneyFox.Windows.Tests.DataAccess
 {
     [TestClass]
-    public class CategoryDataAccessTests {
+    public class CategoryDataAccessTests
+    {
         private SQLiteConnection connection;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             connection = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore())
+                new MvxWindowsCommonFileStore())
                 .GetConnection();
         }
 

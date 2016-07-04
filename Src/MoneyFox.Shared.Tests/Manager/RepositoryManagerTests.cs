@@ -4,8 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
-using Moq;
 using MoneyFox.Shared.Repositories;
+using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -13,13 +13,14 @@ namespace MoneyFox.Shared.Tests.Manager
     public class RepositoryManagerTests
     {
         [TestMethod]
-        public void Constructor_NullValues_NoException() {
+        public void Constructor_NullValues_NoException()
+        {
             new RepositoryManager(null, null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
-        public void ReloadData_SelectedNotNull_SelectedSetToNull() {
-
+        public void ReloadData_SelectedNotNull_SelectedSetToNull()
+        {
             var dbManagerSetup = new Mock<IDatabaseManager>();
             dbManagerSetup.Setup(x => x.GetConnection());
 
@@ -33,8 +34,8 @@ namespace MoneyFox.Shared.Tests.Manager
 
 
             new RepositoryManager(unitOfWork, paymentRepository,
-                new PaymentManager(paymentRepository, unitOfWork.AccountRepository, 
-                new Mock<IDialogService>().Object)).ReloadData();
+                new PaymentManager(paymentRepository, unitOfWork.AccountRepository,
+                    new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsNull(paymentRepository.Selected);
         }
@@ -71,16 +72,17 @@ namespace MoneyFox.Shared.Tests.Manager
 
             new RepositoryManager(unitOfWork, paymentRepository,
                 new PaymentManager(paymentRepository, unitOfWork.AccountRepository,
-                new Mock<IDialogService>().Object)).ReloadData();
+                    new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsTrue(accountsLoaded);
             Assert.IsTrue(paymentsLoaded);
             Assert.IsTrue(categoryLoaded);
         }
 
-        //[TestMethod]
-        //public void ReloadData_UnclearedPayment_Clear() {
         //    var account = new Account {Id = 1, CurrentBalance = 40};
+        //public void ReloadData_UnclearedPayment_Clear() {
+
+        //[TestMethod]
         //    var payment = new Payment {
         //        ChargedAccount = account,
         //        ChargedAccountId = 1,
