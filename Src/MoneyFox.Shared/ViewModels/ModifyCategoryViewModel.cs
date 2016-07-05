@@ -16,7 +16,7 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
     [ImplementPropertyChanged]
-    class ModifyCategoryViewModel : BaseViewModel
+    public class ModifyCategoryViewModel : BaseViewModel
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
