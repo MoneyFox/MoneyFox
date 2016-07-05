@@ -20,6 +20,16 @@ namespace MoneyFox.Shared.ViewModels
         public bool IsTransferAvailable => accountRepository.Data.Count > 1;
 
         /// <summary>
+        ///     Indicates if the button to add new income should be enabled.
+        /// </summary>
+        public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
+
+        /// <summary>
+        /// Indicates if the button to add a new expense should be enabled.
+        /// </summary>
+        public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
+
+        /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>
         public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
