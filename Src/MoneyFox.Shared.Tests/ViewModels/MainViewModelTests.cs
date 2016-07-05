@@ -73,6 +73,52 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
+        public void IsAddIncomeEnabled_EmptyData_NotAvailable()
+        {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account>());
+
+            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsAddIncomeEnabled_OneAccountInData_Available()
+        {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account>()
+                {
+                    new Account()
+                });
+
+            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void IsAddExpenseEnabled_EmptyData_NotAvailable()
+        {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account>());
+
+            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsAddExpenseEnabled_OneAccountInData_Available()
+        {
+            var accountRepositoryMock = new Mock<IAccountRepository>();
+            accountRepositoryMock.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account>()
+                {
+                    new Account()
+                });
+
+            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
+        }
+
+        [TestMethod]
         public void IsTransferAvailable_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
