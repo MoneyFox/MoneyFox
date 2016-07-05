@@ -102,6 +102,7 @@
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
     <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
@@ -151,6 +152,9 @@
     </Compile>
     <Compile Include="Views\CategoryListView.xaml.cs">
       <DependentUpon>CategoryListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\ModifyCategoryDialog.cs">
       <DependentUpon>ModifyCategoryDialog.xaml</DependentUpon>
@@ -368,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Dialogs\LoadingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialogs\ModifyCategoryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -502,11 +510,4 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

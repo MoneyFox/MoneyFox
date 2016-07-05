@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Services
 {
@@ -64,6 +65,22 @@ namespace MoneyFox.Windows.Services
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
 
             await dialog.ShowAsync();
+        }
+
+        private LoadingDialog loadingDialog;
+        /// <summary>
+        ///     Shows a loading Dialog.
+        /// </summary>
+        public async void ShowLoadingDialog() {
+            loadingDialog = new LoadingDialog();
+            await loadingDialog.ShowAsync();
+        }
+
+        /// <summary>
+        ///     Hides the previously opened Loading Dialog.
+        /// </summary>
+        public void HideLoadingDialog(){
+            loadingDialog.Hide();
         }
     }
 }
