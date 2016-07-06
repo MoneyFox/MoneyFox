@@ -23,7 +23,8 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override double GetTotalBalance() => UnitOfWork.AccountRepository.FindById(accountId)?.CurrentBalance ?? 0;
+        protected override double GetTotalBalance()
+            => UnitOfWork.AccountRepository.FindById(accountId)?.CurrentBalance ?? 0;
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.

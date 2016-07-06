@@ -144,7 +144,8 @@ namespace MoneyFox.Shared.ViewModels
             // Save item or update the payment and add the amount to the account
             var paymentSucceded = paymentManager.SavePayment(SelectedPayment);
             var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
-            if (paymentSucceded && accountSucceded) {
+            if (paymentSucceded && accountSucceded)
+            {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
 

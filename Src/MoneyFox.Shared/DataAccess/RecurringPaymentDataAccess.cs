@@ -1,18 +1,20 @@
-﻿using MoneyFox.Shared.Model;
-using PropertyChanged;
-using SQLite.Net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Model;
+using PropertyChanged;
+using SQLite.Net;
 
-namespace MoneyFox.Shared.DataAccess {
-
+namespace MoneyFox.Shared.DataAccess
+{
     [ImplementPropertyChanged]
-    public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment> {
+    public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment>
+    {
         private readonly SQLiteConnection dbConnection;
 
-        public RecurringPaymentDataAccess(SQLiteConnection dbConnection) {
+        public RecurringPaymentDataAccess(SQLiteConnection dbConnection)
+        {
             this.dbConnection = dbConnection;
         }
 
@@ -20,12 +22,16 @@ namespace MoneyFox.Shared.DataAccess {
         ///     Saves an recurring payment to the database.
         /// </summary>
         /// <param name="itemToSave">Recurring Payment to save.</param>
-        protected override void SaveToDb(RecurringPayment itemToSave) {
+        protected override void SaveToDb(RecurringPayment itemToSave)
+        {
             //Don't use insert or replace here, because it will always replace the first element
-            if (itemToSave.Id == 0) {
+            if (itemToSave.Id == 0)
+            {
                 dbConnection.Insert(itemToSave);
                 itemToSave.Id = dbConnection.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
-            } else {
+            }
+            else
+            {
                 dbConnection.Update(itemToSave);
             }
         }
@@ -34,7 +40,8 @@ namespace MoneyFox.Shared.DataAccess {
         ///     Deletres an recurring payment from the database.
         /// </summary>
         /// <param name="payment">recurring payment to delete.</param>
-        protected override void DeleteFromDatabase(RecurringPayment payment) {
+        protected override void DeleteFromDatabase(RecurringPayment payment)
+        {
             dbConnection.Delete(payment);
         }
 
@@ -43,10 +50,12 @@ namespace MoneyFox.Shared.DataAccess {
         /// </summary>
         /// <param name="filter">Filter expression.</param>
         /// <returns>List of loaded recurring payments.</returns>
-        protected override List<RecurringPayment> GetListFromDb(Expression<Func<RecurringPayment, bool>> filter) {
+        protected override List<RecurringPayment> GetListFromDb(Expression<Func<RecurringPayment, bool>> filter)
+        {
             var listQuery = dbConnection.Table<RecurringPayment>();
 
-            if (filter != null) {
+            if (filter != null)
+            {
                 listQuery = listQuery.Where(filter);
             }
 

@@ -14,8 +14,9 @@ namespace MoneyFox.Shared.Repositories
     {
         private readonly IDataAccess<Payment> dataAccess;
         private ObservableCollection<Payment> data;
-        
-        public PaymentRepository(IDataAccess<Payment> dataAccess) {
+
+        public PaymentRepository(IDataAccess<Payment> dataAccess)
+        {
             this.dataAccess = dataAccess;
 
             Data = new ObservableCollection<Payment>();
@@ -87,7 +88,8 @@ namespace MoneyFox.Shared.Repositories
         {
             Data.Clear();
 
-            foreach (var payment in dataAccess.LoadList(filter)) {
+            foreach (var payment in dataAccess.LoadList(filter))
+            {
                 Data.Add(payment);
             }
         }

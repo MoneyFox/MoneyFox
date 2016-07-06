@@ -20,7 +20,8 @@ namespace MoneyFox.Shared.Repositories
         ///     Creates a CategoryRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess) {
+        public CategoryRepository(IDataAccess<Category> dataAccess)
+        {
             this.dataAccess = dataAccess;
 
             Data = new ObservableCollection<Category>();
@@ -85,7 +86,8 @@ namespace MoneyFox.Shared.Repositories
         {
             Data.Clear();
 
-            foreach (var category in dataAccess.LoadList(filter)) {
+            foreach (var category in dataAccess.LoadList(filter))
+            {
                 Data.Add(category);
             }
         }

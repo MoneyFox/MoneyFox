@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
-using MoneyFox.Shared.Repositories;
-using System.Collections.Generic;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.Manager
 
         private readonly IUnitOfWork unitOfWork;
 
-        public PaymentManager(IUnitOfWork unitOfWork,            
+        public PaymentManager(IUnitOfWork unitOfWork,
             IDialogService dialogService)
         {
             this.dialogService = dialogService;
@@ -25,44 +25,28 @@ namespace MoneyFox.Shared.Manager
             this.unitOfWork = unitOfWork;
         }
 
-        public bool SavePayment(Payment payment) {
-            if (!payment.IsRecurring && payment.RecurringPaymentId != 0) {
+        public bool SavePayment(Payment payment)
+        {
+            if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
+            {
                 unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
 
-            var WasSuccessful =  unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
-            if (WasSuccessful) {
+            var WasSuccessful = unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
+            if (WasSuccessful)
+            {
                 WasSuccessful = unitOfWork.PaymentRepository.Save(payment);
             }
             return WasSuccessful;
         }
 
-        public bool DeletePayment(Payment payment) {
-            unitOfWork.PaymentRepository.Delete(payment);
-
-            // If this payment was the last one for the linked recurring payment
-            // delete the db entry for the recurring payment.
-            var succeed = true;
-            if (unitOfWork.PaymentRepository.Data.All(x => x.RecurringPaymentId != payment.RecurringPaymentId)) {
-                var recurringList = unitOfWork.RecurringPaymentRepository
-                    .Data
-                    .Where(x => x.Id == payment.RecurringPaymentId)
-                    .ToList();
-
-                foreach (var recTrans in recurringList) {
-                    if (!unitOfWork.RecurringPaymentRepository.Delete(recTrans)) {
-                        succeed = false;
-                    }
-                }
-            }
-            return succeed;
-        }
-
-        public void RemoveRecurringForPayment(Payment paymentToChange) {
+        public void RemoveRecurringForPayment(Payment paymentToChange)
+        {
             var payments = unitOfWork.PaymentRepository.Data.Where(x => x.Id == paymentToChange.Id).ToList();
 
-            foreach (var payment in payments) {
+            foreach (var payment in payments)
+            {
                 payment.RecurringPayment = null;
                 payment.IsRecurring = false;
                 unitOfWork.PaymentRepository.Save(payment);
@@ -105,7 +89,8 @@ namespace MoneyFox.Shared.Manager
         ///     returns a list with payments who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring payments</returns>
-        public IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null) {
+        public IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null)
+        {
             var list = unitOfWork.PaymentRepository.Data
                 .Where(x => x.IsRecurring && x.RecurringPaymentId != 0)
                 .Where(x => (x.RecurringPayment.IsEndless ||
@@ -188,13 +173,14 @@ namespace MoneyFox.Shared.Manager
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? x
                     : -x;
 
             if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
             {
-                payment.ChargedAccount = unitOfWork.AccountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                payment.ChargedAccount =
+                    unitOfWork.AccountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
             }
 
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
@@ -226,7 +212,7 @@ namespace MoneyFox.Shared.Manager
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? -x
                     : x;
 
@@ -234,9 +220,34 @@ namespace MoneyFox.Shared.Manager
             return true;
         }
 
+        public bool DeletePayment(Payment payment)
+        {
+            unitOfWork.PaymentRepository.Delete(payment);
+
+            // If this payment was the last one for the linked recurring payment
+            // delete the db entry for the recurring payment.
+            var succeed = true;
+            if (unitOfWork.PaymentRepository.Data.All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
+            {
+                var recurringList = unitOfWork.RecurringPaymentRepository
+                    .Data
+                    .Where(x => x.Id == payment.RecurringPaymentId)
+                    .ToList();
+
+                foreach (var recTrans in recurringList)
+                {
+                    if (!unitOfWork.RecurringPaymentRepository.Delete(recTrans))
+                    {
+                        succeed = false;
+                    }
+                }
+            }
+            return succeed;
+        }
+
         private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -259,7 +270,7 @@ namespace MoneyFox.Shared.Manager
 
         private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

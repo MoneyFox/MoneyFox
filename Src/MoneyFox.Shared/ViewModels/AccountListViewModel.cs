@@ -15,8 +15,8 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
+        private readonly IUnitOfWork unitOfWork;
 
         public AccountListViewModel(
             IUnitOfWork unitOfWork,
@@ -111,7 +111,7 @@ namespace MoneyFox.Shared.ViewModels
 
             // refresh view when an account is deleted allowing buttons to update 
             // TODO probably a better solution
-            ShowViewModel <MainViewModel>();
+            ShowViewModel<MainViewModel>();
         }
 
         private void GoToAddAccount()

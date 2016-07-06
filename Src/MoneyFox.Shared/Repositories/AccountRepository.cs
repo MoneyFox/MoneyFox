@@ -20,7 +20,8 @@ namespace MoneyFox.Shared.Repositories
         ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IDataAccess<Account> dataAccess) {
+        public AccountRepository(IDataAccess<Account> dataAccess)
+        {
             this.dataAccess = dataAccess;
 
             Data = new ObservableCollection<Account>();

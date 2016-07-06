@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
@@ -226,113 +227,6 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(payment);
             Assert.IsTrue(repository.Data.Contains(payment));
-        }
-
-        [TestMethod]
-        public void GetUnclearedPayments_PastDate_PastPayments()
-        {
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
-
-            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
-            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
-
-            var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock(),
-                accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
-
-            var account = new Account
-            {
-                Id = 2,
-                Name = "TestAccount"
-            };
-
-            repository.Data = new ObservableCollection<Payment>(new List<Payment>
-            {
-                new Payment
-                {
-                    ChargedAccount = account,
-                    Amount = 55,
-                    Date = DateTime.Today.AddDays(-1),
-                    Note = "this is a note!!!",
-                    IsCleared = false
-                }
-            });
-
-            var payments = repository.GetUnclearedPayments();
-
-            Assert.AreEqual(1, payments.Count());
-        }
-
-        /// <summary>
-        ///     This Test may fail if the date overlaps with the month transition.
-        /// </summary>
-        [TestMethod]
-        public void GetUnclearedPayments_FutureDate_PastPayments()
-        {
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
-
-            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
-            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
-
-            var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock(),
-                accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
-
-            var account = new Account
-            {
-                Id = 2,
-                Name = "TestAccount"
-            };
-
-            repository.Save(new Payment
-            {
-                ChargedAccount = account,
-                Amount = 55,
-                Date = Utilities.GetEndOfMonth().AddDays(-1),
-                Note = "this is a note!!!",
-                IsCleared = false
-            }
-                );
-
-            var payments = repository.GetUnclearedPayments();
-            Assert.AreEqual(0, payments.Count());
-
-            payments = repository.GetUnclearedPayments(Utilities.GetEndOfMonth());
-            Assert.AreEqual(1, payments.Count());
-        }
-
-        [TestMethod]
-        public void GetUnclearedPayments_AccountNull()
-        {
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
-
-            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
-            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
-
-            var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock(),
-                accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
-
-            repository.Data.Add(new Payment
-            {
-                Amount = 55,
-                Date = DateTime.Today.AddDays(-1),
-                Note = "this is a note!!!",
-                IsCleared = false
-            }
-                );
-
-            var payments = repository.GetUnclearedPayments();
-            Assert.AreEqual(1, payments.Count());
         }
 
         [TestMethod]

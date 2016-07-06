@@ -7,9 +7,10 @@ namespace MoneyFox.Shared.Manager
     ///     This helper can be used to reinstantiate all Repositories, for example when you
     ///     download a new database backup and replace the current one.
     /// </summary>
-    public class RepositoryManager : IRepositoryManager {
-        private readonly IUnitOfWork unitOfWork;
+    public class RepositoryManager : IRepositoryManager
+    {
         private readonly IPaymentManager paymentManager;
+        private readonly IUnitOfWork unitOfWork;
 
         public RepositoryManager(IUnitOfWork unitOfWork,
             IPaymentManager paymentManager)

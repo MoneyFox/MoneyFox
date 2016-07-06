@@ -1,13 +1,13 @@
-﻿using MoneyFox.Shared.DataAccess;
+﻿using System;
+using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using SQLite.Net;
-using System;
 
-namespace MoneyFox.Shared.Repositories {
-
-    public interface IUnitOfWork: IDisposable {
+namespace MoneyFox.Shared.Repositories
+{
+    public interface IUnitOfWork : IDisposable
+    {
         IAccountRepository AccountRepository { get; }
 
         IPaymentRepository PaymentRepository { get; }
@@ -16,45 +16,58 @@ namespace MoneyFox.Shared.Repositories {
         ICategoryRepository CategoryRepository { get; }
     }
 
-    public class UnitOfWork : IUnitOfWork {
+    public class UnitOfWork : IUnitOfWork
+    {
         private readonly SQLiteConnection sqliteConnection;
-
-        public UnitOfWork(IDatabaseManager dbManager) {
-            sqliteConnection = dbManager.GetConnection();
-        }
 
         private IAccountRepository accountRepository;
         private ICategoryRepository categoryRepository;
+
+        private bool disposed;
         private IPaymentRepository paymentRepository;
         private IRepository<RecurringPayment> recurringPaymentRepository;
 
+        public UnitOfWork(IDatabaseManager dbManager)
+        {
+            sqliteConnection = dbManager.GetConnection();
+        }
+
         public IAccountRepository AccountRepository
-            => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)));
+            => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)))
+            ;
+
         public IPaymentRepository PaymentRepository
-         => paymentRepository ?? (paymentRepository = new PaymentRepository(new PaymentDataAccess(sqliteConnection)));
+            => paymentRepository ?? (paymentRepository = new PaymentRepository(new PaymentDataAccess(sqliteConnection)))
+            ;
 
 
         public IRepository<RecurringPayment> RecurringPaymentRepository
-        => recurringPaymentRepository 
-            ?? (recurringPaymentRepository = new RecurringPaymentRepository(new RecurringPaymentDataAccess(sqliteConnection)));
+            => recurringPaymentRepository
+               ??
+               (recurringPaymentRepository =
+                   new RecurringPaymentRepository(new RecurringPaymentDataAccess(sqliteConnection)));
 
         public ICategoryRepository CategoryRepository
-         => categoryRepository ?? (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
+            =>
+                categoryRepository ??
+                (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
 
-        private bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        protected virtual void Dispose(bool disposing) {
-            if (!disposed) {
-                if (disposing) {
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
                     sqliteConnection.Dispose();
                 }
             }
             disposed = true;
-        }
-
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

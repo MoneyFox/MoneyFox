@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MoneyFox.Shared.Model;
+﻿using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Interfaces
 {

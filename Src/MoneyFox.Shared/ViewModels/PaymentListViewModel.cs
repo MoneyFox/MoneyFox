@@ -7,19 +7,19 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
+        private readonly IUnitOfWork unitOfWork;
 
         public PaymentListViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService, IPaymentManager paymentManager)

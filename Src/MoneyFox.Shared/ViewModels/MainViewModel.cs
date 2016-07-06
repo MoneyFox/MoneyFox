@@ -25,7 +25,7 @@ namespace MoneyFox.Shared.ViewModels
         public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
 
         /// <summary>
-        /// Indicates if the button to add a new expense should be enabled.
+        ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
         public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
 

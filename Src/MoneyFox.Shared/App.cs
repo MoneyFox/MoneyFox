@@ -2,10 +2,10 @@
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared
 {

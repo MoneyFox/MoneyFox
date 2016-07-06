@@ -9,8 +9,8 @@ namespace MoneyFox.Shared.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IPaymentManager paymentManager;
+        private readonly IUnitOfWork unitOfWork;
 
         public RecurringPaymentManager(IUnitOfWork unitOfWork,
             IPaymentManager paymentManager)
@@ -24,7 +24,8 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public void CheckRecurringPayments()
         {
-            var paymentList = paymentManager.LoadRecurringPaymentList(); ;
+            var paymentList = paymentManager.LoadRecurringPaymentList();
+            ;
 
             foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
             {

@@ -2,7 +2,6 @@
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyFox.Windows.Views.UserControls
 {

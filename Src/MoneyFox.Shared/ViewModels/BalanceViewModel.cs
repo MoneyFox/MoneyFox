@@ -1,17 +1,19 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System.Linq;
 
-namespace MoneyFox.Shared.ViewModels {
-
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel {
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
+    {
         protected readonly IUnitOfWork UnitOfWork;
 
-        public BalanceViewModel(IUnitOfWork unitOfWork) {
+        public BalanceViewModel(IUnitOfWork unitOfWork)
+        {
             UnitOfWork = unitOfWork;
         }
 
@@ -35,7 +37,8 @@ namespace MoneyFox.Shared.ViewModels {
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private void UpdateBalance() {
+        private void UpdateBalance()
+        {
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
         }
@@ -50,20 +53,23 @@ namespace MoneyFox.Shared.ViewModels {
         ///     Calculates the sum of all accounts at the end of the month.
         /// </summary>
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-        protected virtual double GetEndOfMonthValue() {
+        protected virtual double GetEndOfMonthValue()
+        {
             var balance = TotalBalance;
             var unclearedPayments = UnitOfWork.PaymentRepository.Data
                 .Where(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth());
 
-            foreach (var payment in unclearedPayments) {
+            foreach (var payment in unclearedPayments)
+            {
                 //Transfer can be ignored since they don't change the summary.
-                switch (payment.Type) {
-                    case (int)PaymentType.Expense:
+                switch (payment.Type)
+                {
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case (int) PaymentType.Income:
                         balance += payment.Amount;
                         break;
                 }
