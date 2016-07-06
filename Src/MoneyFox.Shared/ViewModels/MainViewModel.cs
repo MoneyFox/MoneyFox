@@ -44,11 +44,6 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        /// <summary>
-        ///     Navigates to the recurring payment overview.
-        /// </summary>
-        public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
-
         private void GoToAddPayment(string paymentType)
         {
             ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
@@ -62,11 +57,6 @@ namespace MoneyFox.Shared.ViewModels
         private void GoToAbout()
         {
             ShowViewModel<AboutViewModel>();
-        }
-
-        private void GoToRecurringPaymentList()
-        {
-            ShowViewModel<RecurringPaymentListViewModel>();
         }
 
         //Only used in Android

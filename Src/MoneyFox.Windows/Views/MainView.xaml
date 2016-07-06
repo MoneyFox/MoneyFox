@@ -63,10 +63,6 @@
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
                               Label="Add Account" />
-                <AppBarButton x:Uid="RecurringPaymentList"
-                              Command="{Binding GoToRecurringPaymentListCommand}"
-                              Label="Recurring Payment Overview"
-                              Visibility="Collapsed" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

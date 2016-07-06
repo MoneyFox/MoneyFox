@@ -155,7 +155,6 @@
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
     <Compile Include="ViewModels\PersonalizationUserControlViewModel.cs" />
-    <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />

@@ -177,9 +177,6 @@
     <Compile Include="Views\PaymentListView.xaml.cs">
       <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RecurringPaymentListView.xaml.cs">
-      <DependentUpon>RecurringPaymentListView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SelectCategoryListView.xaml.cs">
       <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
@@ -401,10 +398,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PaymentListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\RecurringPaymentListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
