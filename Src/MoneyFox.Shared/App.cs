@@ -36,11 +36,6 @@ namespace MoneyFox.Shared
                 .RegisterAsDynamic();
 
             CreatableTypes()
-                .EndingWith("Repository")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-
-            CreatableTypes()
                 .EndingWith("Manager")
                 .AsInterfaces()
                 .RegisterAsDynamic();
