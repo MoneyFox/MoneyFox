@@ -27,7 +27,7 @@
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryLabel"
-                              Click="AddCategory"
+                              Command="{Binding CreateNewCategoryCommand}"
                               Icon="Add"
                               Label="New Category" />
             </CommandBar.PrimaryCommands>
