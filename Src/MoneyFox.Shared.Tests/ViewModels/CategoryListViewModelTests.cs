@@ -7,19 +7,24 @@ using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels {
+namespace MoneyFox.Shared.Tests.ViewModels
+{
     [TestClass]
-    public class CategoryListViewModelTests : MvxIoCSupportingTest {
+    public class CategoryListViewModelTests : MvxIoCSupportingTest
+    {
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             MvxSingleton.ClearAllSingletons();
             Setup();
         }
 
         [TestMethod]
-        public void Ctor_Default() {
+        public void Ctor_Default()
+        {
             var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Category> {
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Category>
+            {
                 new Category {Name = string.Empty}
             });
 

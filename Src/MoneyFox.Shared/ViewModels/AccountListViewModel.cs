@@ -1,24 +1,27 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Helpers;
-using System;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class AccountListViewModel : BaseViewModel {
+    public class AccountListViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService) {
+            IDialogService dialogService)
+        {
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
@@ -31,7 +34,8 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     All existing accounts.
         /// </summary>
-        public ObservableCollection<Account> AllAccounts {
+        public ObservableCollection<Account> AllAccounts
+        {
             get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
@@ -66,24 +70,30 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        private void EditAccount(Account account) {
+        private void EditAccount(Account account)
+        {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
         }
 
-        private void Loaded() {
+        private void Loaded()
+        {
             BalanceViewModel.UpdateBalanceCommand.Execute();
         }
 
-        private void GoToPaymentOverView(Account account) {
-            if (account == null) {
+        private void GoToPaymentOverView(Account account)
+        {
+            if (account == null)
+            {
                 return;
             }
 
-            ShowViewModel<PaymentListViewModel>(new { id = account.Id});
+            ShowViewModel<PaymentListViewModel>(new {id = account.Id});
         }
 
-        private async void Delete(Account item) {
-            if (item == null) {
+        private async void Delete(Account item)
+        {
+            if (item == null)
+            {
                 return;
             }
 
@@ -98,13 +108,18 @@ namespace MoneyFox.Shared.ViewModels {
                         paymentRepository.Delete(payment);
                     }
                 }
-                if(accountRepository.Delete(item))
+                if (accountRepository.Delete(item))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
+
+            // refresh view when an account is deleted allowing buttons to update 
+            // TODO probably a better solution
+            ShowViewModel <MainViewModel>();
         }
 
-        private void GoToAddAccount() {
+        private void GoToAddAccount()
+        {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = 0});
         }
     }

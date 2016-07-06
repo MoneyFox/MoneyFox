@@ -9,17 +9,21 @@ using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.ViewModels {
+namespace MoneyFox.Shared.Tests.ViewModels
+{
     [TestClass]
-    public class BalanceViewModelTests : MvxIoCSupportingTest {
+    public class BalanceViewModelTests : MvxIoCSupportingTest
+    {
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             MvxSingleton.ClearAllSingletons();
             Setup();
         }
 
         [TestMethod]
-        public void GetTotalBalance_Zero() {
+        public void GetTotalBalance_Zero()
+        {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>())).Returns(() => new List<Payment>());
 
@@ -33,10 +37,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GetTotalBalance_TwoExpense_SumOfPayments() {
+        public void GetTotalBalance_TwoExpense_SumOfPayments()
+        {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>()))
-                .Returns(() => new List<Payment> {
+                .Returns(() => new List<Payment>
+                {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
                     new Payment {Amount = 60, Type = (int) PaymentType.Expense}
                 });
@@ -51,10 +57,12 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GetTotalBalance_TwoPayments_SumOfPayments() {
+        public void GetTotalBalance_TwoPayments_SumOfPayments()
+        {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>()))
-                .Returns(() => new List<Payment> {
+                .Returns(() => new List<Payment>
+                {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
                     new Payment {Amount = 60, Type = (int) PaymentType.Income}
                 });
@@ -69,12 +77,14 @@ namespace MoneyFox.Shared.Tests.ViewModels {
         }
 
         [TestMethod]
-        public void GetTotalBalance_TwoAccounts_SumOfAccounts() {
+        public void GetTotalBalance_TwoAccounts_SumOfAccounts()
+        {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments()).Returns(() => new List<Payment>());
 
             var accountMockSetup = new Mock<IAccountRepository>();
-            accountMockSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Account> {
+            accountMockSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Account>
+            {
                 new Account {CurrentBalance = 500},
                 new Account {CurrentBalance = 200}
             });

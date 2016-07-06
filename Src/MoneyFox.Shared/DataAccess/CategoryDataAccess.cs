@@ -6,12 +6,15 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.DataAccess {
+namespace MoneyFox.Shared.DataAccess
+{
     [ImplementPropertyChanged]
-    public class CategoryDataAccess : AbstractDataAccess<Category> {
+    public class CategoryDataAccess : AbstractDataAccess<Category>
+    {
         private readonly IDatabaseManager connectionCreator;
 
-        public CategoryDataAccess(IDatabaseManager connectionCreator) {
+        public CategoryDataAccess(IDatabaseManager connectionCreator)
+        {
             this.connectionCreator = connectionCreator;
         }
 
@@ -19,14 +22,18 @@ namespace MoneyFox.Shared.DataAccess {
         ///     Saves an Category to database
         /// </summary>
         /// <param name="itemToSave">Category to save.</param>
-        protected override void SaveToDb(Category itemToSave) {
-            using (var db = connectionCreator.GetConnection()) {
+        protected override void SaveToDb(Category itemToSave)
+        {
+            using (var db = connectionCreator.GetConnection())
+            {
                 //Don't use insert or replace here, because it will always replace the first element
-                if (itemToSave.Id == 0) {
+                if (itemToSave.Id == 0)
+                {
                     db.Insert(itemToSave);
                     itemToSave.Id = db.Table<Category>().OrderByDescending(x => x.Id).First().Id;
                 }
-                else {
+                else
+                {
                     db.Update(itemToSave);
                 }
             }
@@ -36,8 +43,10 @@ namespace MoneyFox.Shared.DataAccess {
         ///     DeleteItem an item from the database
         /// </summary>
         /// <param name="payment">Category to delete.</param>
-        protected override void DeleteFromDatabase(Category payment) {
-            using (var db = connectionCreator.GetConnection()) {
+        protected override void DeleteFromDatabase(Category payment)
+        {
+            using (var db = connectionCreator.GetConnection())
+            {
                 db.Delete(payment);
             }
         }
@@ -47,11 +56,14 @@ namespace MoneyFox.Shared.DataAccess {
         /// </summary>
         /// <param name="filter">>Filter expression</param>
         /// <returns>Loaded categories.</returns>
-        protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter) {
-            using (var db = connectionCreator.GetConnection()) {
+        protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter)
+        {
+            using (var db = connectionCreator.GetConnection())
+            {
                 var listQuery = db.Table<Category>();
 
-                if (filter != null) {
+                if (filter != null)
+                {
                     listQuery = listQuery.Where(filter);
                 }
 

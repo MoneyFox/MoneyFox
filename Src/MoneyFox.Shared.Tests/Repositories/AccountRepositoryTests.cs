@@ -12,13 +12,16 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyFox.Shared.Tests.Repositories {
+namespace MoneyFox.Shared.Tests.Repositories
+{
     [TestClass]
-    public class AccountRepositoryTests : MvxIoCSupportingTest {
+    public class AccountRepositoryTests : MvxIoCSupportingTest
+    {
         private DateTime localDateSetting;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             Setup();
 
             // We setup the static setting classes here for the general usage in the app
@@ -32,7 +35,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_InputName_CorrectNameAssigned() {
+        public void Save_InputName_CorrectNameAssigned()
+        {
             var testList = new List<Account>();
             const string nameInput = "Sparkonto";
 
@@ -45,7 +49,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = nameInput,
                 CurrentBalance = 6034
             };
@@ -57,7 +62,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_EmptyName_CorrectDefault() {
+        public void Save_EmptyName_CorrectDefault()
+        {
             var testList = new List<Account>();
             const string nameInput = "";
 
@@ -70,7 +76,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
                 new Mock<INotificationService>().Object);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = nameInput,
                 CurrentBalance = 6034
             };
@@ -82,25 +89,29 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void AccessCache() {
+        public void AccessCache()
+        {
             Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock(),
                 new Mock<INotificationService>().Object).Data);
         }
 
         [TestMethod]
-        public void Delete_None_AccountDeleted() {
+        public void Delete_None_AccountDeleted()
+        {
             var testList = new List<Account>();
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "Sparkonto",
                 CurrentBalance = 6034
             };
 
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
+            {
                 account
             });
 
@@ -114,9 +125,11 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Load_AccountDataAccess_DataInitialized() {
+        public void Load_AccountDataAccess_DataInitialized()
+        {
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
+            {
                 new Account {Id = 10},
                 new Account {Id = 15}
             });
@@ -130,7 +143,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Save_NotifyUserOfFailure() {
+        public void Save_NotifyUserOfFailure()
+        {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Account>>();
@@ -148,7 +162,8 @@ namespace MoneyFox.Shared.Tests.Repositories {
         }
 
         [TestMethod]
-        public void Delete_NotifyUserOfFailure() {
+        public void Delete_NotifyUserOfFailure()
+        {
             var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Account>>();
@@ -169,13 +184,13 @@ namespace MoneyFox.Shared.Tests.Repositories {
         public void AccountRepository_FindById_ReturnsAccount()
         {
             var accountRepository = new Mock<IAccountRepository>();
-            var testAccount = new Account() {Id = 100, Name = "Test Account"};
+            var testAccount = new Account {Id = 100, Name = "Test Account"};
             accountRepository.SetupAllProperties();
             accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
                 .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
             accountRepository.Object.Data = new ObservableCollection<Account>();
             accountRepository.Object.Data.Add(testAccount);
-        
+
             Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
         }
     }

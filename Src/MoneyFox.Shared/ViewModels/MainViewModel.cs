@@ -1,12 +1,12 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MoneyFox.Shared.Interfaces;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Shared.ViewModels {
-
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class MainViewModel : BaseViewModel {
-
+    public class MainViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
 
         public MainViewModel(IAccountRepository accountRepository)
@@ -18,6 +18,16 @@ namespace MoneyFox.Shared.ViewModels {
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
         public bool IsTransferAvailable => accountRepository.Data.Count > 1;
+
+        /// <summary>
+        ///     Indicates if the button to add new income should be enabled.
+        /// </summary>
+        public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
+
+        /// <summary>
+        /// Indicates if the button to add a new expense should be enabled.
+        /// </summary>
+        public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
@@ -39,19 +49,23 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
 
-        private void GoToAddPayment(string paymentType) {
+        private void GoToAddPayment(string paymentType)
+        {
             ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
         }
 
-        private void GoToAddAccount() {
+        private void GoToAddAccount()
+        {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = false});
         }
 
-        private void GoToAbout() {
+        private void GoToAbout()
+        {
             ShowViewModel<AboutViewModel>();
         }
 
-        private void GoToRecurringPaymentList() {
+        private void GoToRecurringPaymentList()
+        {
             ShowViewModel<RecurringPaymentListViewModel>();
         }
 

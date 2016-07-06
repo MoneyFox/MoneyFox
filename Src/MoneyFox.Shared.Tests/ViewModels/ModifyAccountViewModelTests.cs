@@ -14,11 +14,13 @@ using MvvmCross.Test.Core;
 namespace MoneyFox.Shared.Tests.ViewModels
 {
     [TestClass]
-    public class ModifyAccountViewModelTests : MvxIoCSupportingTest {
+    public class ModifyAccountViewModelTests : MvxIoCSupportingTest
+    {
         private DateTime localDateSetting;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             MvxSingleton.ClearAllSingletons();
             Setup();
 
@@ -38,9 +40,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object) {
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
+            {
                 IsEdit = true,
-                SelectedAccount = new Account() { Id = 3, Name = accountname }
+                SelectedAccount = new Account {Id = 3, Name = accountname}
             };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
@@ -49,30 +52,34 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddAccount_CorrectTitle()
         {
-
-            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
-            { IsEdit = false };
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object,
+                new Mock<IDialogService>().Object)
+            {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
         }
 
         [TestMethod]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names() {
+        public void SaveCommand_Does_Not_Allow_Duplicate_Names()
+        {
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.SetupAllProperties();
             accountRepo.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepo.Object.Data.Add(acc); });
             accountRepo.Object.Data = new ObservableCollection<Account>();
-            var account = new Account {
+            var account = new Account
+            {
                 Id = 1,
                 Name = "Test Account"
             };
-            var newAccount = new Account {
+            var newAccount = new Account
+            {
                 Name = "Test Account"
             };
             accountRepo.Object.Data.Add(account);
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object) {
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
+            {
                 IsEdit = false,
                 SelectedAccount = newAccount
             };
@@ -82,22 +89,26 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names2() {
+        public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
+        {
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.SetupAllProperties();
             accountRepo.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepo.Object.Data.Add(acc); });
             accountRepo.Object.Data = new ObservableCollection<Account>();
-            var account = new Account {
+            var account = new Account
+            {
                 Id = 1,
                 Name = "Test Account"
             };
-            var newAccount = new Account {
+            var newAccount = new Account
+            {
                 Name = "TESt Account"
             };
             accountRepo.Object.Data.Add(account);
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object) {
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
+            {
                 IsEdit = false,
                 SelectedAccount = newAccount
             };
@@ -107,18 +118,21 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void SaveCommand_SavesAccount() {
+        public void SaveCommand_SavesAccount()
+        {
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.SetupAllProperties();
             accountRepo.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepo.Object.Data.Add(acc); });
             accountRepo.Object.Data = new ObservableCollection<Account>();
-            var account = new Account {
+            var account = new Account
+            {
                 Id = 1,
                 Name = "Test Account"
             };
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object) {
+            var viewmodel = new ModifyAccountViewModel(accountRepo.Object, new Mock<IDialogService>().Object)
+            {
                 IsEdit = false,
                 SelectedAccount = account
             };
@@ -130,7 +144,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Save_UpdateTimeStamp()
         {
-            var account = new Account { Id = 0, Name = "account" };
+            var account = new Account {Id = 0, Name = "account"};
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
@@ -139,7 +153,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
             var accountRepo = accountRepositorySetup.Object;
 
-            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object) {
+            var viewmodel = new ModifyAccountViewModel(accountRepo, new Mock<IDialogService>().Object)
+            {
                 IsEdit = false,
                 SelectedAccount = account
             };

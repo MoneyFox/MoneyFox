@@ -9,27 +9,31 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using Moq;
 
-namespace MoneyFox.Shared.Tests.Manager {
+namespace MoneyFox.Shared.Tests.Manager
+{
     [TestClass]
-    public class PaymentManagerTests {
-
-
+    public class PaymentManagerTests
+    {
         [TestMethod]
-        public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments() {
+        public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments()
+        {
             var resultList = new List<int>();
 
-            var account1 = new Account {
+            var account1 = new Account
+            {
                 Id = 3,
                 Name = "just an account",
                 CurrentBalance = 500
             };
-            var account2 = new Account {
+            var account2 = new Account
+            {
                 Id = 4,
                 Name = "just an account",
                 CurrentBalance = 900
             };
 
-            var payment = new Payment {
+            var payment = new Payment
+            {
                 Id = 1,
                 ChargedAccount = account1,
                 ChargedAccountId = account1.Id
@@ -41,7 +45,8 @@ namespace MoneyFox.Shared.Tests.Manager {
             paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
             paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<int>()))
-                .Returns(new List<Payment> {
+                .Returns(new List<Payment>
+                {
                     payment
                 });
 
@@ -56,7 +61,8 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing() {
+        public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing()
+        {
             new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object).DeleteAssociatedPaymentsFromDatabase(
@@ -64,7 +70,8 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse() {
+        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
+        {
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object)
@@ -74,7 +81,8 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public async Task CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput() {
+        public async Task CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput()
+        {
             const bool userAnswer = true;
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(
@@ -92,7 +100,8 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnUserInput() {
+        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnUserInput()
+        {
             const bool userAnswer = false;
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(
@@ -110,8 +119,10 @@ namespace MoneyFox.Shared.Tests.Manager {
         }
 
         [TestMethod]
-        public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged() {
-            var payment = new Payment {
+        public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
+        {
+            var payment = new Payment
+            {
                 Id = 2,
                 RecurringPaymentId = 3,
                 RecurringPayment = new RecurringPayment {Id = 3},

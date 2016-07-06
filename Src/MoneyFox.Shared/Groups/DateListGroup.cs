@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace MoneyFox.Shared.Groups {
-    public class DateListGroup<T> : List<T> {
+namespace MoneyFox.Shared.Groups
+{
+    public class DateListGroup<T> : List<T>
+    {
         /// <summary>
         ///     The delegate that is used to get the key information.
         /// </summary>
@@ -18,7 +20,8 @@ namespace MoneyFox.Shared.Groups {
         ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        public DateListGroup(string key) {
+        public DateListGroup(string key)
+        {
             Key = key;
         }
 
@@ -37,23 +40,29 @@ namespace MoneyFox.Shared.Groups {
         /// <param name="sort">Will sort the data if true.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort) {
+            GetSortKeyDelegate getSortKey, bool sort)
+        {
             var list = new List<DateListGroup<T>>();
 
-            foreach (var item in items) {
+            foreach (var item in items)
+            {
                 var index = getKey(item);
 
-                if (list.All(a => a.Key != index)) {
+                if (list.All(a => a.Key != index))
+                {
                     list.Add(new DateListGroup<T>(index));
                 }
 
-                if (!string.IsNullOrEmpty(index)) {
+                if (!string.IsNullOrEmpty(index))
+                {
                     list.Find(a => a.Key == index).Add(item);
                 }
             }
 
-            if (sort) {
-                foreach (var group in list) {
+            if (sort)
+            {
+                foreach (var group in list)
+                {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }
             }

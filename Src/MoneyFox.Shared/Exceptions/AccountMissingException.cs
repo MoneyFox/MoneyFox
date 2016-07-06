@@ -1,11 +1,14 @@
 ﻿using System;
 
-namespace MoneyFox.Shared.Exceptions {
-    public class AccountMissingException : Exception {
+namespace MoneyFox.Shared.Exceptions
+{
+    public class AccountMissingException : Exception
+    {
         /// <summary>
         ///     Creates an AccountMissingException Exception
         /// </summary>
-        public AccountMissingException() {
+        public AccountMissingException()
+        {
         }
 
         /// <summary>
@@ -13,7 +16,8 @@ namespace MoneyFox.Shared.Exceptions {
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         public AccountMissingException(string message)
-            : base(message) {
+            : base(message)
+        {
         }
 
         /// <summary>
@@ -22,7 +26,8 @@ namespace MoneyFox.Shared.Exceptions {
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
         public AccountMissingException(string message, Exception exception)
-            : base(message, exception) {
+            : base(message, exception)
+        {
         }
     }
 }

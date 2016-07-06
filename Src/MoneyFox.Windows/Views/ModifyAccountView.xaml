@@ -38,11 +38,11 @@
                          Text="{Binding SelectedAccount.Iban,
                                         Mode=TwoWay}" />
 
-                <TextBox x:Uid="AmountTextBox"
+                <TextBox x:Uid="CurrentBalanceTextBox"
                          x:Name="TextBoxCurrentBalance"
                          Margin="0,0,0,12"
                          GotFocus="TextBoxOnFocus"
-                         Header="Amount"
+                         Header="Current Balance"
                          InputScope="Number"
                          LostFocus="FormatTextBoxOnLostFocus"
                          Text="{Binding AmountString,

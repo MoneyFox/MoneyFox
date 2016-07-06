@@ -1,8 +1,10 @@
-﻿namespace MoneyFox.Shared.Constants {
+﻿namespace MoneyFox.Shared.Constants
+{
     /// <summary>
     ///     String Constants for usage in the app
     /// </summary>
-    public class Constants {
+    public class Constants
+    {
         /// <summary>
         ///     Url to the Apply Solutions website
         /// </summary>

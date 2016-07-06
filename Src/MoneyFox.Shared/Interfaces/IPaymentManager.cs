@@ -1,8 +1,10 @@
 using System.Threading.Tasks;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.Interfaces {
-    public interface IPaymentManager {
+namespace MoneyFox.Shared.Interfaces
+{
+    public interface IPaymentManager
+    {
         void DeleteAssociatedPaymentsFromDatabase(Account account);
 
         Task<bool> CheckForRecurringPayment(Payment payment);

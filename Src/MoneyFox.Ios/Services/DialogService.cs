@@ -61,5 +61,13 @@ namespace MoneyFox.Ios.Services {
 
             return tcs.Task;
         }
+
+        public void ShowLoadingDialog() {
+            throw new NotImplementedException();
+        }
+
+        public void HideLoadingDialog() {
+            throw new NotImplementedException();
+        }
     }
 }
