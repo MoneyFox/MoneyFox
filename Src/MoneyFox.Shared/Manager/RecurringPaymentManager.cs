@@ -9,10 +9,10 @@ namespace MoneyFox.Shared.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IPaymentManager paymentManager;
 
-        public RecurringPaymentManager(UnitOfWork unitOfWork,
+        public RecurringPaymentManager(IUnitOfWork unitOfWork,
             IPaymentManager paymentManager)
         {
             this.unitOfWork = unitOfWork;

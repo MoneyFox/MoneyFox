@@ -8,18 +8,13 @@ namespace MoneyFox.Shared.Manager
     ///     download a new database backup and replace the current one.
     /// </summary>
     public class RepositoryManager : IRepositoryManager {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
 
-        public RepositoryManager(UnitOfWork unitOfWork,
-            IPaymentRepository paymentRepository,
+        public RepositoryManager(IUnitOfWork unitOfWork,
             IPaymentManager paymentManager)
         {
-
             this.unitOfWork = unitOfWork;
-
-            this.paymentRepository = paymentRepository;
             this.paymentManager = paymentManager;
         }
 
@@ -32,8 +27,8 @@ namespace MoneyFox.Shared.Manager
             //Load Data
             unitOfWork.AccountRepository.Load();
 
-            paymentRepository.Load();
-            paymentRepository.Selected = null;
+            unitOfWork.PaymentRepository.Load();
+            unitOfWork.PaymentRepository.Selected = null;
 
             unitOfWork.CategoryRepository.Load();
 

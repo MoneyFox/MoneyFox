@@ -25,7 +25,7 @@ namespace MoneyFox.Tasks
 
             HockeyClient.Current.TrackEvent("Ctror Background Task");
 
-            UnitOfWork unitOfWork = new UnitOfWork(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+            var unitOfWork = new UnitOfWork(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore()));
 
             var notificationService = new NotificationService();

@@ -15,9 +15,9 @@ namespace MoneyFox.Shared.Manager
     {
         private readonly IDialogService dialogService;
 
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public PaymentManager(UnitOfWork unitOfWork,            
+        public PaymentManager(IUnitOfWork unitOfWork,            
             IDialogService dialogService)
         {
             this.dialogService = dialogService;

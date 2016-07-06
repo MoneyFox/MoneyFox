@@ -17,16 +17,13 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
 
-        public PaymentListViewModel(IPaymentRepository paymentRepository,
-            UnitOfWork unitOfWork,
+        public PaymentListViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService, IPaymentManager paymentManager)
         {
-            this.paymentRepository = paymentRepository;
             this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
@@ -83,7 +80,7 @@ namespace MoneyFox.Shared.ViewModels
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(unitOfWork.AccountRepository, paymentRepository, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(unitOfWork, AccountId);
         }
 
         private void LoadPayments()
@@ -92,7 +89,7 @@ namespace MoneyFox.Shared.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<Payment>(paymentRepository.Data
+            RelatedPayments = new ObservableCollection<Payment>(unitOfWork.PaymentRepository.Data
                 .Where(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
@@ -152,7 +149,7 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);
-            var paymentSucceded = paymentRepository.Delete(payment);
+            var paymentSucceded = unitOfWork.PaymentRepository.Delete(payment);
             if (accountSucceded && paymentSucceded)
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             LoadCommand.Execute();

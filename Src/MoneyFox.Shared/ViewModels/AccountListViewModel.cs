@@ -15,20 +15,17 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
-        private readonly IPaymentRepository paymentRepository;
 
         public AccountListViewModel(
-            UnitOfWork unitOfWork,
-            IPaymentRepository paymentRepository,
+            IUnitOfWork unitOfWork,
             IDialogService dialogService)
         {
             this.unitOfWork = unitOfWork;
-            this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
 
-            BalanceViewModel = new BalanceViewModel(unitOfWork.AccountRepository, paymentRepository);
+            BalanceViewModel = new BalanceViewModel(unitOfWork);
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -101,11 +98,11 @@ namespace MoneyFox.Shared.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = unitOfWork.PaymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
-                    paymentRepository.Delete(payment);
+                    unitOfWork.PaymentRepository.Delete(payment);
                 }
                 if (unitOfWork.AccountRepository.Delete(item))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;

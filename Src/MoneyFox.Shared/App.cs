@@ -1,10 +1,7 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Authentication;
-using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
@@ -31,12 +28,7 @@ namespace MoneyFox.Shared
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());
-
-            Mvx.RegisterType<IBackupManager, BackupManager>();
-            Mvx.RegisterType<IAutobackupManager, AutoBackupManager>();
-
-            Mvx.RegisterType<IDataAccess<Payment>, PaymentDataAccess>();
-            Mvx.RegisterType<IDataAccess<RecurringPayment>, RecurringPaymentDataAccess>();
+            Mvx.RegisterType(() => new UnitOfWork(Mvx.Resolve<IDatabaseManager>()));
 
             CreatableTypes()
                 .EndingWith("Service")
@@ -63,8 +55,6 @@ namespace MoneyFox.Shared
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsDynamic();
-
-            Mvx.RegisterType(() => new UnitOfWork(Mvx.Resolve<IDatabaseManager>()));
         }
     }
 }

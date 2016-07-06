@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -13,9 +13,8 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly int accountId;
 
-        public PaymentListBalanceViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository, int accountId)
-            : base(accountRepository, paymentRepository)
+        public PaymentListBalanceViewModel(IUnitOfWork unitOfWork, int accountId)
+            : base(unitOfWork)
         {
             this.accountId = accountId;
         }
@@ -24,7 +23,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override double GetTotalBalance() => AccountRepository.FindById(accountId)?.CurrentBalance ?? 0;
+        protected override double GetTotalBalance() => UnitOfWork.AccountRepository.FindById(accountId)?.CurrentBalance ?? 0;
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
@@ -71,7 +70,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private IEnumerable<Payment> LoadUnclearedPayments()
-            => PaymentRepository.Data
+            => UnitOfWork.PaymentRepository.Data
                 .Where(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
                 .Where(x => x.ChargedAccountId == accountId

@@ -11,11 +11,11 @@ namespace MoneyFox.Shared.ViewModels
 {
     public class RecurringPaymentListViewModel : BaseViewModel
     {
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
-        public RecurringPaymentListViewModel(UnitOfWork unitOfWork, IPaymentManager paymentManager, IDialogService dialogService)
+        public RecurringPaymentListViewModel(IUnitOfWork unitOfWork, IPaymentManager paymentManager, IDialogService dialogService)
         {
             this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
