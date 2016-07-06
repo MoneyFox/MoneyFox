@@ -111,6 +111,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
+            Close(this);
         }
 
         private void DeleteCategory()
