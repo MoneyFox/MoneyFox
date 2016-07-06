@@ -145,7 +145,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var categoryPrimary = new Category
             {
                 Id = 1,
-                Name = "Test Category"
+                Name = "Test Category",
+                Notes = "Test Note"
             };
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
@@ -161,7 +162,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCategory_UpdateTimeStamp()
         {
-            var category = new Category { Id = 0, Name = "category" };
+            var category = new Category { Id = 0, Name = "category", Notes = "" };
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
@@ -198,7 +199,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var categoryPrimary = new Category
             {
                 Id = 1,
-                Name = "Test Category"
+                Name = "Test Category",
+                Notes = "Notes about the test category"
             };
 
             categoryRepositorySetup.Object.Data.Add(categoryPrimary);

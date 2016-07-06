@@ -31,6 +31,13 @@
                          Header="Name"
                          Text="{Binding SelectedCategory.Name,
                                         Mode=TwoWay}" />
+                <TextBox x:Uid="Notes"
+                         Margin="0,0,0,12"
+                         VerticalAlignment="Top"
+                         Header="Notes"
+                         Text="{Binding SelectedCategory.Notes,
+                                        Mode=TwoWay}" />
+
             </StackPanel>
         </ScrollViewer>
         <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
