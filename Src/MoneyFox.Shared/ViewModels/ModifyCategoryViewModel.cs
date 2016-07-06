@@ -75,7 +75,7 @@ namespace MoneyFox.Shared.ViewModels
             if (!IsEdit)
             {
                 SelectedCategory = new Category();
-            } 
+            }
         }
 
         /// <summary>
@@ -99,8 +99,10 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            // allow updating category notes and ensure there are no duplicate categories
-            // TODO: not working maybe repository problem 
+            // temporary solution? I think selectedCategory wont be GC
+            // refresh category cache and save current category
+            categoryRepository.Load();
+
             Category categoryInRepositoryWithSameName = categoryRepository.Data.FirstOrDefault(
                 c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase));
 
@@ -118,17 +120,23 @@ namespace MoneyFox.Shared.ViewModels
                     {
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
 
-                        if(categoryRepository.Save(SelectedCategory))
+                        if (categoryRepository.Save(new Category
+                        {
+                            Name = SelectedCategory.Name,
+                            Notes = SelectedCategory.Notes
+                        }))
                         {
                             SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                            categoryRepository.Load();
                         }
                     }
                 }
-            } 
+            }
 
             if (categoryRepository.Save(SelectedCategory))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                categoryRepository.Load();
             }
             Close(this);
         }
