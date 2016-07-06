@@ -99,12 +99,31 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (
-                categoryRepository.Data.Any(
-                    c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
+            // allow updating category notes and ensure there are no duplicate categories
+            // TODO: not working maybe repository problem 
+            Category categoryInRepositoryWithSameName = categoryRepository.Data.FirstOrDefault(
+                c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase));
+
+            if (categoryInRepositoryWithSameName != null)
             {
-                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
-                return;
+                if (string.Equals(categoryInRepositoryWithSameName.Notes, SelectedCategory.Notes))
+                {
+                    await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
+                    return;
+                }
+                else
+                {
+                    // update entry with new note
+                    if (categoryRepository.Delete(categoryInRepositoryWithSameName))
+                    {
+                        SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+
+                        if(categoryRepository.Save(SelectedCategory))
+                        {
+                            SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                        }
+                    }
+                }
             } 
 
             if (categoryRepository.Save(SelectedCategory))
