@@ -143,10 +143,11 @@ namespace MoneyFox.Shared.ViewModels
             await PrepareRecurringPayment();
 
             // Save item or update the payment and add the amount to the account
-            var paymentSucceded = paymentRepository.Save(SelectedPayment);
+            var paymentSucceded = paymentManager.SavePayment(SelectedPayment);
             var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
-            if (paymentSucceded && accountSucceded)
+            if (paymentSucceded && accountSucceded) {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            }
 
             Close(this);
         }
@@ -183,7 +184,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
                 {
-                    paymentRepository.DeleteRecurring(SelectedPayment);
+                    paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }
 
                 var paymentSucceded = paymentRepository.Delete(SelectedPayment);

@@ -1,13 +1,21 @@
 using System.Threading.Tasks;
 using MoneyFox.Shared.Model;
+using System;
+using System.Collections.Generic;
 
 namespace MoneyFox.Shared.Interfaces
 {
     public interface IPaymentManager
     {
+        bool SavePayment(Payment payment);
+
         void DeleteAssociatedPaymentsFromDatabase(Account account);
 
+        void RemoveRecurringForPayment(Payment paymentToChange);
+
         Task<bool> CheckForRecurringPayment(Payment payment);
+
+        IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null);
 
         void ClearPayments();
 

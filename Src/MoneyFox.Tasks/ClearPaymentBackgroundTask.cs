@@ -25,24 +25,11 @@ namespace MoneyFox.Tasks
 
             HockeyClient.Current.TrackEvent("Ctror Background Task");
 
-            var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore());
-
-            var sqliteConnection = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore())
-                .GetConnection();
-
-            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection));
+            UnitOfWork unitOfWork = new UnitOfWork(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore()));
 
             var notificationService = new NotificationService();
-            paymentManager = new PaymentManager(
-                new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
-                    new RecurringPaymentDataAccess(sqliteConnectionCreator),
-                    accountRepository,
-                    new CategoryRepository(new CategoryDataAccess(sqliteConnection)),
-                    notificationService),
-                accountRepository,
-                null);
+            paymentManager = new PaymentManager(unitOfWork, null);
         }
 
         public void Run(IBackgroundTaskInstance taskInstance)

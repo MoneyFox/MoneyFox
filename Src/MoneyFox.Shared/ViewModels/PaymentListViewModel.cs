@@ -10,23 +10,24 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly UnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository,
+            UnitOfWork unitOfWork,
             IDialogService dialogService, IPaymentManager paymentManager)
         {
             this.paymentRepository = paymentRepository;
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
         }
@@ -77,12 +78,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountRepository.FindById(AccountId).Name;
+        public string Title => unitOfWork.AccountRepository.FindById(AccountId).Name;
 
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(unitOfWork.AccountRepository, paymentRepository, AccountId);
         }
 
         private void LoadPayments()
@@ -91,8 +92,8 @@ namespace MoneyFox.Shared.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<Payment>(paymentRepository
-                .GetRelatedPayments(AccountId)
+            RelatedPayments = new ObservableCollection<Payment>(paymentRepository.Data
+                .Where(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
@@ -123,7 +124,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                if (accountRepository.Delete(accountRepository.FindById(AccountId)))
+                if (unitOfWork.AccountRepository.Delete(unitOfWork.AccountRepository.FindById(AccountId)))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
@@ -146,7 +147,8 @@ namespace MoneyFox.Shared.ViewModels
 
             if (await paymentManager.CheckForRecurringPayment(payment))
             {
-                paymentRepository.DeleteRecurring(payment);
+                paymentManager.RemoveRecurringForPayment(payment);
+                unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
             }
 
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);

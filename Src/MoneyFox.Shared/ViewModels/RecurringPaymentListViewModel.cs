@@ -5,17 +5,20 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class RecurringPaymentListViewModel : BaseViewModel
     {
+        private readonly UnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentManager paymentManager;
 
-        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
+        public RecurringPaymentListViewModel(UnitOfWork unitOfWork, IPaymentManager paymentManager, IDialogService dialogService)
         {
-            this.paymentRepository = paymentRepository;
+            this.unitOfWork = unitOfWork;
+            this.paymentManager = paymentManager;
             this.dialogService = dialogService;
 
             AllPayments = new ObservableCollection<Payment>();
@@ -48,7 +51,7 @@ namespace MoneyFox.Shared.ViewModels
             EditCommand = null;
 
             AllPayments.Clear();
-            foreach (var payment in paymentRepository.LoadRecurringList())
+            foreach (var payment in paymentManager.LoadRecurringPaymentList())
             {
                 AllPayments.Add(payment);
             }
@@ -64,7 +67,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Edit(Payment payment)
         {
-            paymentRepository.Selected = payment;
+            unitOfWork.PaymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = payment.Type.ToString()});
@@ -78,7 +81,7 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            paymentRepository.Delete(payment);
+            unitOfWork.PaymentRepository.Delete(payment);
             LoadedCommand.Execute();
         }
     }

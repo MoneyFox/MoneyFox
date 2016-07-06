@@ -34,6 +34,7 @@ namespace MoneyFox.Shared.Repositories {
         public RecurringPayment FindById(int id) => data.FirstOrDefault(p => p.Id == id);
 
         public bool Delete(RecurringPayment paymentToDelete) {
+
             data.Remove(paymentToDelete);
             return dataAccess.DeleteItem(paymentToDelete);
         }

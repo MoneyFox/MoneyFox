@@ -71,7 +71,9 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private IEnumerable<Payment> LoadUnclearedPayments()
-            => PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth())
+            => PaymentRepository.Data
+                .Where(p => !p.IsCleared)
+                .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
                 .Where(x => x.ChargedAccountId == accountId
                             || x.TargetAccountId == accountId)
                 .ToList();

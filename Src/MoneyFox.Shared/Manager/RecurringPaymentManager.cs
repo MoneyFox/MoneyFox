@@ -3,18 +3,19 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly IPaymentRepository paymentRepository;
+        private readonly UnitOfWork unitOfWork;
         private readonly IPaymentManager paymentManager;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository,
+        public RecurringPaymentManager(UnitOfWork unitOfWork,
             IPaymentManager paymentManager)
         {
-            this.paymentRepository = paymentRepository;
+            this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
         }
 
@@ -23,7 +24,7 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public void CheckRecurringPayments()
         {
-            var paymentList = paymentRepository.LoadRecurringList();
+            var paymentList = paymentManager.LoadRecurringPaymentList(); ;
 
             foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
             {
@@ -33,7 +34,7 @@ namespace MoneyFox.Shared.Manager
                 {
                     var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
 
-                    var paymentSucceded = paymentRepository.Save(newPayment);
+                    var paymentSucceded = unitOfWork.PaymentRepository.Save(newPayment);
                     var accountSucceded = paymentManager.AddPaymentAmount(newPayment);
                     if (paymentSucceded && accountSucceded)
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
@@ -43,7 +44,7 @@ namespace MoneyFox.Shared.Manager
 
         private Payment GetLastOccurence(Payment payment)
         {
-            var transcationList = paymentRepository.Data
+            var transcationList = unitOfWork.PaymentRepository.Data
                 .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)
                 .ToList();

@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using SQLite.Net;
 using System;
 
@@ -15,6 +16,7 @@ namespace MoneyFox.Shared.Repositories {
         private IAccountRepository accountRepository;
         private ICategoryRepository categoryRepository;
         private IPaymentRepository paymentRepository;
+        private IRepository<RecurringPayment> recurringPaymentRepository;
 
         public IAccountRepository AccountRepository
             => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)));
@@ -22,8 +24,12 @@ namespace MoneyFox.Shared.Repositories {
         public ICategoryRepository CategoryRepository
          => categoryRepository ?? (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
 
-        //public IPaymentRepository PaymentRepository
-        // => paymentRepository ?? (paymentRepository = new PaymentRepository(new PaymentRepository(sqliteConnection)));
+        public IRepository<RecurringPayment> RecurringPaymentRepository
+        => recurringPaymentRepository 
+            ?? (recurringPaymentRepository = new RecurringPaymentRepository(new RecurringPaymentDataAccess(sqliteConnection)));
+
+        public IPaymentRepository PaymentRepository
+         => paymentRepository ?? (paymentRepository = new PaymentRepository(new PaymentDataAccess(sqliteConnection)));
 
         private bool disposed = false;
 
