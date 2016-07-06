@@ -17,30 +17,5 @@ namespace MoneyFox.Shared.ViewModels
             : base(categoryRepository, dialogService)
         {
         }
-
-        /// <summary>
-        ///     Category currently selected in the view.
-        /// </summary>
-        public Category SelectedCategory { get; set; }
-
-        /// <summary>
-        /// Edit the currently selected category
-        /// </summary>
-        public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
-
-        /// <summary>
-        /// Create and save a new category group
-        /// </summary>
-        public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
-
-        private void EditCategory(Category category)
-        {
-            ShowViewModel<ModifyCategoryViewModel>(new { isEdit = true, selectedCategoryId = category.Id });
-        }
-
-        private void CreateNewCategory(Category category)
-        {
-            ShowViewModel<ModifyCategoryViewModel>(new { isEdit = false, SelectedCategory = 0 });
-        }
     }
 }
