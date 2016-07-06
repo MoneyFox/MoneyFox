@@ -34,13 +34,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore] // Ignoring this for now, will fix when I wake up :) - Seth Bartlett 7/4/2016 05:02AM
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
         {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
+            paymentRepoSetup.Setup(p => p.FindById(It.IsAny<int>()))
+                .Returns(new Payment {ChargedAccountId = 3});
 
             var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -67,7 +67,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
-            Assert.AreEqual(0, 1); // Failing on purpose to know to fix
         }
 
 
@@ -112,7 +111,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore] // Ignoring this for now, will fix when I wake up :) - Seth Bartlett 7/4/2016 05:02AM
         public void Init_IncomeEditing_PropertiesSetupCorrectly()
         {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
@@ -120,7 +118,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testEndDate = new DateTime(2099, 1, 31);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment
+            paymentRepoSetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(new Payment
             {
                 Type = (int) PaymentType.Income,
                 IsRecurring = true,
@@ -150,17 +148,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager,
                 defaultManager);
 
+            viewmodel.Init("Income", 0, true);
+
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-
-            viewmodel.Init("Income", 0, true);
             viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
-
-            Assert.AreEqual(0, 1); // Failing on purpose to know and fix the test
         }
     }
 }

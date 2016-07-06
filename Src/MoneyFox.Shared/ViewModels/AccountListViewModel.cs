@@ -111,6 +111,10 @@ namespace MoneyFox.Shared.ViewModels
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
+
+            // refresh view when an account is deleted allowing buttons to update 
+            // TODO probably a better solution
+            ShowViewModel <MainViewModel>();
         }
 
         private void GoToAddAccount()
