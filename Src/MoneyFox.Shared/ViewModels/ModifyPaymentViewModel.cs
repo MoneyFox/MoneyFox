@@ -116,8 +116,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <param name="message">Message sent.</param>
         private void ReceiveMessage(CategorySelectedMessage message)
         {
-            if (SelectedPayment == null && message == null) return;
-
+            if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category = message.SelectedCategory;
         }
 
