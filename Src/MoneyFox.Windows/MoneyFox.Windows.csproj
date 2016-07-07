@@ -171,6 +171,9 @@
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ModifyCategoryView.xaml.cs">
+      <DependentUpon>ModifyCategoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModifyPaymentView.xaml.cs">
       <DependentUpon>ModifyPaymentView.xaml</DependentUpon>
     </Compile>
@@ -392,6 +395,10 @@
     <Page Include="Views\ModifyAccountView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModifyCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ModifyPaymentView.xaml">
       <Generator>MSBuild:Compile</Generator>

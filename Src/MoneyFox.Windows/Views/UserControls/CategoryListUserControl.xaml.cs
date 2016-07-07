@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Core.ViewModels;
 using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Views.UserControls
@@ -32,17 +33,16 @@ namespace MoneyFox.Windows.Views.UserControls
             flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
-        private async void EditCategory(object sender, RoutedEventArgs e)
+        private void EditCategory(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var category = element.DataContext as Category;
             if (category == null)
             {
                 return;
             }
 
-            var dialog = new ModifyCategoryDialog(category);
-            await dialog.ShowAsync();
+            ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
         }
 
         private void DeleteCategory(object sender, RoutedEventArgs e)

@@ -39,10 +39,10 @@ namespace MoneyFox.Shared.DataAccess
         /// <summary>
         ///     DeleteItem an item from the database
         /// </summary>
-        /// <param name="payment">Category to delete.</param>
-        protected override void DeleteFromDatabase(Category payment)
+        /// <param name="category">Category to delete.</param>
+        protected override void DeleteFromDatabase(Category category)
         {
-            dbConnection.Delete(payment);
+            dbConnection.Delete(category);
         }
 
         /// <summary>
