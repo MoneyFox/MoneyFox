@@ -1,7 +1,9 @@
 using MvvmCross.Platform.Plugins;
 
-namespace MoneyFox.Droid.Bootstrap {
+namespace MoneyFox.Droid.Bootstrap
+{
     public class AppInformationPluginBootstrap
-        : MvxPluginBootstrapAction<Npadrutt.MvxPlugins.AppInformation.PluginLoader> {
+        : MvxPluginBootstrapAction<Npadrutt.MvxPlugins.AppInformation.PluginLoader>
+    {
     }
 }

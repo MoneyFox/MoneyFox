@@ -4,13 +4,16 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class SettingsSecurityViewModel : BaseViewModel {
+    public class SettingsSecurityViewModel : BaseViewModel
+    {
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
 
-        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService) {
+        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
+        {
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
         }
@@ -18,9 +21,11 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Grants the GUI access to the password setting.
         /// </summary>
-        public bool IsPasswortActive {
+        public bool IsPasswortActive
+        {
             get { return SettingsHelper.PasswordRequired; }
-            set {
+            set
+            {
                 SettingsHelper.PasswordRequired = value;
                 RaisePropertyChanged();
             }
@@ -51,8 +56,10 @@ namespace MoneyFox.Shared.ViewModels {
         /// </summary>
         public MvxCommand UnloadCommand => new MvxCommand(RemovePassword);
 
-        private void SavePassword() {
-            if (Password != PasswordConfirmation) {
+        private void SavePassword()
+        {
+            if (Password != PasswordConfirmation)
+            {
                 dialogService.ShowMessage(Strings.PasswordConfirmationWrongTitle,
                     Strings.PasswordConfirmationWrongMessage);
                 return;
@@ -63,20 +70,25 @@ namespace MoneyFox.Shared.ViewModels {
             dialogService.ShowMessage(Strings.PasswordSavedTitle, Strings.PasswordSavedMessage);
         }
 
-        private void LoadData() {
-            if (IsPasswortActive) {
+        private void LoadData()
+        {
+            if (IsPasswortActive)
+            {
                 Password = passwordStorage.LoadPassword();
                 PasswordConfirmation = passwordStorage.LoadPassword();
             }
         }
 
-        private void RemovePassword() {
-            if (!IsPasswortActive) {
+        private void RemovePassword()
+        {
+            if (!IsPasswortActive)
+            {
                 passwordStorage.RemovePassword();
             }
 
             //  Deactivate option again if no password was entered
-            if (IsPasswortActive && string.IsNullOrEmpty(Password)) {
+            if (IsPasswortActive && string.IsNullOrEmpty(Password))
+            {
                 IsPasswortActive = false;
             }
         }

@@ -4,8 +4,10 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Shared.ViewModels {
-    public abstract class BaseViewModel : MvxViewModel {
+namespace MoneyFox.Shared.ViewModels
+{
+    public abstract class BaseViewModel : MvxViewModel
+    {
         public IMvxMessenger MessageHub => Mvx.Resolve<IMvxMessenger>();
 
         /// <summary>
@@ -27,8 +29,10 @@ namespace MoneyFox.Shared.ViewModels {
         protected void SetProperty<T>(
             ref T backingStore,
             T value,
-            Expression<Func<T>> property) {
-            if (Equals(backingStore, value)) {
+            Expression<Func<T>> property)
+        {
+            if (Equals(backingStore, value))
+            {
                 return;
             }
 

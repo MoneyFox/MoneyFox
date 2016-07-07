@@ -1,8 +1,10 @@
 ﻿using System;
 using MoneyFox.Shared.Model;
 
-namespace MoneyFox.Shared.Helpers {
-    public static class RecurringPaymentHelper {
+namespace MoneyFox.Shared.Helpers
+{
+    public static class RecurringPaymentHelper
+    {
         /// <summary>
         ///     Creates an recurring Payment based on the Financial payment.
         /// </summary>
@@ -15,7 +17,8 @@ namespace MoneyFox.Shared.Helpers {
             bool isEndless,
             int recurrence,
             DateTime enddate = new DateTime())
-            => new RecurringPayment {
+            => new RecurringPayment
+            {
                 Id = payment.RecurringPaymentId,
                 ChargedAccount = payment.ChargedAccount,
                 ChargedAccountId = payment.ChargedAccount.Id,
@@ -37,15 +40,18 @@ namespace MoneyFox.Shared.Helpers {
         /// </summary>
         /// <param name="recurringPayment">The recurring payment the new Payment shall be based on.</param>
         /// <returns>The new created payment</returns>
-        public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment) {
+        public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment)
+        {
             var date = DateTime.Today;
 
             //If the payment is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly) {
+            if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
+            {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
 
-            return new Payment {
+            return new Payment
+            {
                 ChargedAccount = recurringPayment.ChargedAccount,
                 ChargedAccountId = recurringPayment.ChargedAccountId,
                 TargetAccount = recurringPayment.TargetAccount,
@@ -68,12 +74,15 @@ namespace MoneyFox.Shared.Helpers {
         /// <param name="recurringPayment">Recurring payment to check.</param>
         /// <param name="relatedPayment">Payment to compare.</param>
         /// <returns>True or False if the payment have to be repeated.</returns>
-        public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment) {
-            if (!relatedPayment.IsCleared) {
+        public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment)
+        {
+            if (!relatedPayment.IsCleared)
+            {
                 return false;
             }
 
-            switch (recurringPayment.Recurrence) {
+            switch (recurringPayment.Recurrence)
+            {
                 case (int) PaymentRecurrence.Daily:
                     return DateTime.Today.Date != relatedPayment.Date.Date;
 

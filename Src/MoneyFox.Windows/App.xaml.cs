@@ -24,16 +24,19 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 
-namespace MoneyFox.Windows {
+namespace MoneyFox.Windows
+{
     /// <summary>
     ///     Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    public sealed partial class App {
+    public sealed partial class App
+    {
         /// <summary>
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public App() {
+        public App()
+        {
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
@@ -48,7 +51,8 @@ namespace MoneyFox.Windows {
         ///     the reason this is bound in code behind is that because viewmodels are loaded after the pages,
         ///     resulting to a nullreference exception if bound in xaml.
         /// </summary>
-        private void SetColor() {
+        private void SetColor()
+        {
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
             RequestedTheme = new WindowsCommonSettings().GetValue(SettingsHelper.DARK_THEME_SELECTED, false)
@@ -61,12 +65,15 @@ namespace MoneyFox.Windows {
         ///     will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e) {
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        {
             var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (shell == null) {
+            if (shell == null)
+            {
+                //TODO: check if this can be removed with the neutral language set.
                 // Create a AppShell to act as the navigation context and navigate to the first page
                 shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
@@ -77,7 +84,8 @@ namespace MoneyFox.Windows {
             Window.Current.Content = shell;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-            if (shell.MyAppFrame.Content == null) {
+            if (shell.MyAppFrame.Content == null)
+            {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
                 var setup = new Setup(shell.MyAppFrame);
@@ -98,7 +106,8 @@ namespace MoneyFox.Windows {
             OverrideTitleBarColor();
 
             //If Jump Lists are supported, adds them
-            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList")) {
+            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+            {
                 SetJumplist();
             }
 
@@ -108,7 +117,8 @@ namespace MoneyFox.Windows {
             Window.Current.Activate();
         }
 
-        private async void CallRateReminder() {
+        private async void CallRateReminder()
+        {
             RatePopup.RateButtonText = Strings.YesLabel;
             RatePopup.CancelButtonText = Strings.NotNowLabel;
             RatePopup.Title = Strings.RateReminderTitle;
@@ -117,7 +127,8 @@ namespace MoneyFox.Windows {
             await RatePopup.CheckRateReminderAsync();
         }
 
-        private void OverrideTitleBarColor() {
+        private void OverrideTitleBarColor()
+        {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
             // set up our brushes
@@ -126,9 +137,11 @@ namespace MoneyFox.Windows {
             var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
 
             // override colors!
-            if (bkgColor != null && appForegroundColor != null) {
+            if (bkgColor != null && appForegroundColor != null)
+            {
                 // If on a mobile device set the status bar
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) {
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
                     StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
                     StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
                     StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
@@ -142,7 +155,8 @@ namespace MoneyFox.Windows {
             }
         }
 
-        private async void SetJumplist() {
+        private async void SetJumplist()
+        {
             var jumpList = await JumpList.LoadCurrentAsync();
             jumpList.Items.Clear();
             jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
@@ -170,7 +184,8 @@ namespace MoneyFox.Windows {
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e) {
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
@@ -181,7 +196,8 @@ namespace MoneyFox.Windows {
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e) {
+        private void OnSuspending(object sender, SuspendingEventArgs e)
+        {
             var deferral = e.SuspendingOperation.GetDeferral();
             Tile.UpdateMainTile();
 

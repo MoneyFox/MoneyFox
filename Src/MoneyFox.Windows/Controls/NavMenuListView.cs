@@ -7,7 +7,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace MoneyFox.Windows.Controls {
+namespace MoneyFox.Windows.Controls
+{
     /// <summary>
     ///     A specialized ListView to represent the items in the navigation menu.
     /// </summary>
@@ -22,22 +23,27 @@ namespace MoneyFox.Windows.Controls {
     ///     the Ctrl + arrow key to move keyboard focus without triggering selection.  Users won't expect
     ///     this type of keyboarding model on the nav menu.
     /// </remarks>
-    public class NavMenuListView : ListView {
+    public class NavMenuListView : ListView
+    {
         private SplitView splitViewHost;
 
-        public NavMenuListView() {
+        public NavMenuListView()
+        {
             SelectionMode = ListViewSelectionMode.Single;
             IsItemClickEnabled = true;
             ItemClick += ItemClickedHandler;
 
             // Locate the hosting SplitView control
-            Loaded += (s, a) => {
+            Loaded += (s, a) =>
+            {
                 var parent = VisualTreeHelper.GetParent(this);
-                while (parent != null && !(parent is SplitView)) {
+                while (parent != null && !(parent is SplitView))
+                {
                     parent = VisualTreeHelper.GetParent(parent);
                 }
 
-                if (parent != null) {
+                if (parent != null)
+                {
                     splitViewHost = parent as SplitView;
 
                     splitViewHost.RegisterPropertyChangedCallback(SplitView.IsPaneOpenProperty,
@@ -49,12 +55,15 @@ namespace MoneyFox.Windows.Controls {
             };
         }
 
-        protected override void OnApplyTemplate() {
+        protected override void OnApplyTemplate()
+        {
             base.OnApplyTemplate();
 
             // Remove the entrance animation on the item containers.
-            for (var i = 0; i < ItemContainerTransitions.Count; i++) {
-                if (ItemContainerTransitions[i] is EntranceThemeTransition) {
+            for (var i = 0; i < ItemContainerTransitions.Count; i++)
+            {
+                if (ItemContainerTransitions[i] is EntranceThemeTransition)
+                {
                     ItemContainerTransitions.RemoveAt(i);
                 }
             }
@@ -65,27 +74,34 @@ namespace MoneyFox.Windows.Controls {
         ///     If the <paramref name="item" /> is null then everything is unselected.
         /// </summary>
         /// <param name="item"></param>
-        public void SetSelectedItem(ListViewItem item) {
-            if (Items == null) {
+        public void SetSelectedItem(ListViewItem item)
+        {
+            if (Items == null)
+            {
                 return;
             }
 
             var index = -1;
-            if (item != null) {
+            if (item != null)
+            {
                 index = IndexFromContainer(item);
             }
 
-            for (var i = 0; i < Items.Count; i++) {
+            for (var i = 0; i < Items.Count; i++)
+            {
                 var lvi = (ListViewItem) ContainerFromIndex(i);
 
-                if (lvi == null) {
+                if (lvi == null)
+                {
                     continue;
                 }
 
-                if (i != index) {
+                if (i != index)
+                {
                     lvi.IsSelected = false;
                 }
-                else if (i == index) {
+                else if (i == index)
+                {
                     lvi.IsSelected = true;
                 }
             }
@@ -101,10 +117,12 @@ namespace MoneyFox.Windows.Controls {
         ///     until a 'Space' or 'Enter' key is pressed.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnKeyDown(KeyRoutedEventArgs e) {
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
             var focusedItem = FocusManager.GetFocusedElement();
 
-            switch (e.Key) {
+            switch (e.Key)
+            {
                 case VirtualKey.Up:
                     TryMoveFocus(FocusNavigationDirection.Up);
                     e.Handled = true;
@@ -121,12 +139,14 @@ namespace MoneyFox.Windows.Controls {
 
                     // If we're on the header item then this will be null and we'll still get the default behavior.
                     var item = focusedItem as ListViewItem;
-                    if (item != null) {
+                    if (item != null)
+                    {
                         var currentItem = item;
                         var onlastitem = Items != null && IndexFromContainer(currentItem) == Items.Count - 1;
                         var onfirstitem = IndexFromContainer(currentItem) == 0;
 
-                        if (!shiftKeyDown) {
+                        if (!shiftKeyDown)
+                        {
                             TryMoveFocus(onlastitem ? FocusNavigationDirection.Next : FocusNavigationDirection.Down);
                         }
                         else // Shift + Tab
@@ -134,7 +154,8 @@ namespace MoneyFox.Windows.Controls {
                             TryMoveFocus(onfirstitem ? FocusNavigationDirection.Previous : FocusNavigationDirection.Up);
                         }
                     }
-                    else if (focusedItem is Control) {
+                    else if (focusedItem is Control)
+                    {
                         TryMoveFocus(!shiftKeyDown ? FocusNavigationDirection.Down : FocusNavigationDirection.Up);
                     }
 
@@ -158,29 +179,35 @@ namespace MoneyFox.Windows.Controls {
         ///     This method is a work-around until the bug in FocusManager.TryMoveFocus is fixed.
         /// </summary>
         /// <param name="direction"></param>
-        private void TryMoveFocus(FocusNavigationDirection direction) {
-            if (direction == FocusNavigationDirection.Next || direction == FocusNavigationDirection.Previous) {
+        private void TryMoveFocus(FocusNavigationDirection direction)
+        {
+            if (direction == FocusNavigationDirection.Next || direction == FocusNavigationDirection.Previous)
+            {
                 FocusManager.TryMoveFocus(direction);
             }
-            else {
+            else
+            {
                 var control = FocusManager.FindNextFocusableElement(direction) as Control;
                 control?.Focus(FocusState.Programmatic);
             }
         }
 
-        private void ItemClickedHandler(object sender, ItemClickEventArgs e) {
+        private void ItemClickedHandler(object sender, ItemClickEventArgs e)
+        {
             // Triggered when the item is selected using something other than a keyboard
             var item = ContainerFromItem(e.ClickedItem);
             InvokeItem(item);
         }
 
-        private void InvokeItem(object focusedItem) {
+        private void InvokeItem(object focusedItem)
+        {
             SetSelectedItem(focusedItem as ListViewItem);
             ItemInvoked?.Invoke(this, focusedItem as ListViewItem);
 
             if (splitViewHost.IsPaneOpen && (
                 splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay ||
-                splitViewHost.DisplayMode == SplitViewDisplayMode.Overlay)) {
+                splitViewHost.DisplayMode == SplitViewDisplayMode.Overlay))
+            {
                 splitViewHost.IsPaneOpen = false;
                 var item = focusedItem as ListViewItem;
                 item?.Focus(FocusState.Programmatic);
@@ -191,16 +218,21 @@ namespace MoneyFox.Windows.Controls {
         ///     Re-size the ListView's Panel when the SplitView is compact so the items
         ///     will fit within the visible space and correctly display a keyboard focus rect.
         /// </summary>
-        private void OnPaneToggled() {
-            if (splitViewHost.IsPaneOpen) {
-                if (ItemsPanelRoot != null) {
+        private void OnPaneToggled()
+        {
+            if (splitViewHost.IsPaneOpen)
+            {
+                if (ItemsPanelRoot != null)
+                {
                     ItemsPanelRoot.ClearValue(WidthProperty);
                     ItemsPanelRoot.ClearValue(HorizontalAlignmentProperty);
                 }
             }
             else if (splitViewHost.DisplayMode == SplitViewDisplayMode.CompactInline ||
-                     splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay) {
-                if (ItemsPanelRoot != null) {
+                     splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay)
+            {
+                if (ItemsPanelRoot != null)
+                {
                     ItemsPanelRoot.SetValue(WidthProperty, splitViewHost.CompactPaneLength);
                     ItemsPanelRoot.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Left);
                 }

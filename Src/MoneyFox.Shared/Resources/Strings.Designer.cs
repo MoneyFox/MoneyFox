@@ -422,6 +422,33 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An account with that name already exists..
+        /// </summary>
+        public static string DuplicateAccountMessage {
+            get {
+                return ResourceManager.GetString("DuplicateAccountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A category with that name already exists..
+        /// </summary>
+        public static string DuplicateCategoryMessage {
+            get {
+                return ResourceManager.GetString("DuplicateCategoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already used.
+        /// </summary>
+        public static string DuplicatedNameTitle {
+            get {
+                return ResourceManager.GetString("DuplicatedNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
         public static string EditAccountTitle {
@@ -620,6 +647,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string LoadingLabel {
+            get {
+                return ResourceManager.GetString("LoadingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We couldn&apos;t log you in. Please ensure you have an active internet connection..
         /// </summary>
         public static string LoginFailedMessage {
@@ -661,24 +697,6 @@ namespace MoneyFox.Shared.Resources {
         public static string MonthlyLabel {
             get {
                 return ResourceManager.GetString("MonthlyLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You already have an entry with this name. Please think about another name for this entry..
-        /// </summary>
-        public static string NameAlreadyUsedMessage {
-            get {
-                return ResourceManager.GetString("NameAlreadyUsedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name already used.
-        /// </summary>
-        public static string NameAlreadyUsedTitle {
-            get {
-                return ResourceManager.GetString("NameAlreadyUsedTitle", resourceCulture);
             }
         }
         

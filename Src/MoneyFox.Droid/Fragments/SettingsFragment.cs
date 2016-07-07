@@ -9,25 +9,32 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
 
-namespace MoneyFox.Droid.Fragments {
+namespace MoneyFox.Droid.Fragments
+{
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.SettingsFragment")]
-    public class SettingsFragment : BaseFragment<SettingsViewModel> {
+    public class SettingsFragment : BaseFragment<SettingsViewModel>
+    {
         protected override int FragmentId => Resource.Layout.fragment_settings;
         protected override string Title => Strings.SettingsLabel;
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
-            if (viewPager != null) {
-                var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo> {
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof(SettingsGeneralFragment),
+            if (viewPager != null)
+            {
+                var fragments = new List<MvxCachingFragmentStatePagerAdapter.FragmentInfo>
+                {
+                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.GeneralTitle,
+                        typeof(SettingsGeneralFragment),
                         typeof(SettingsGeneralViewModel)),
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof(SettingsSecurityFragment),
+                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.SecurityTitle,
+                        typeof(SettingsSecurityFragment),
                         typeof(SettingsSecurityViewModel))
                 };
-                viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
+                viewPager.Adapter = new MvxCachingFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);
             }
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.tabs);

@@ -9,10 +9,13 @@ using OxyPlot;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel {
-        private readonly OxyColor[] colors = {
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    {
+        private readonly OxyColor[] colors =
+        {
             OxyColor.Parse("#393939"), OxyColor.Parse("#4b4b4b"),
             OxyColor.Parse("#5d5d5d"), OxyColor.Parse("#a75538"),
             OxyColor.Parse("#c16342"), OxyColor.Parse("#cb7a5d"),
@@ -22,7 +25,8 @@ namespace MoneyFox.Shared.ViewModels {
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
         public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository) {
+            IRepository<Category> categoryRepository)
+        {
             speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
         }
 
@@ -33,7 +37,8 @@ namespace MoneyFox.Shared.ViewModels {
 
         public ObservableCollection<LegendItem> LegendList { get; set; }
 
-        protected override void Load() {
+        protected override void Load()
+        {
             SpreadingModel = null;
             LegendList = new ObservableCollection<LegendItem>();
             SpreadingModel = GetSpreadingModel();
@@ -42,31 +47,37 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        private PlotModel GetSpreadingModel() {
+        private PlotModel GetSpreadingModel()
+        {
             var items = speadingDataProvider.GetValues(StartDate, EndDate);
 
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
-            if (!statisticItems.Any()) {
+            if (!statisticItems.Any())
+            {
                 return new PlotModel();
             }
 
             var model = new PlotModel();
 
-            if (SettingsHelper.IsDarkThemeSelected) {
+            if (SettingsHelper.IsDarkThemeSelected)
+            {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
             }
-            else {
+            else
+            {
                 model.Background = OxyColors.White;
                 model.TextColor = OxyColors.Black;
             }
 
-            var pieSeries = new PieSeries {
+            var pieSeries = new PieSeries
+            {
                 InsideLabelFormat = ""
             };
 
             var colorIndex = 0;
-            foreach (var item in statisticItems) {
+            foreach (var item in statisticItems)
+            {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
                 LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label});
                 colorIndex ++;
@@ -77,7 +88,8 @@ namespace MoneyFox.Shared.ViewModels {
         }
     }
 
-    public class LegendItem {
+    public class LegendItem
+    {
         public OxyColor Color { get; set; }
         public string Text { get; set; }
     }

@@ -1,19 +1,21 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Helpers;
-using System;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel {
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
@@ -21,18 +23,19 @@ namespace MoneyFox.Shared.ViewModels {
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
-            IDialogService dialogService, IPaymentManager paymentManager) {
+            IDialogService dialogService, IPaymentManager paymentManager)
+        {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
-
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
 
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
-        public IBalanceViewModel BalanceViewModel { get; }
+        public int AccountId { get; private set; }
+
+        public IBalanceViewModel BalanceViewModel { get; private set; }
 
         /// <summary>
         ///     Loads the data for this view.
@@ -74,17 +77,29 @@ namespace MoneyFox.Shared.ViewModels {
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountRepository.Selected?.Name;
+        public string Title => accountRepository.FindById(AccountId).Name;
 
-        private void LoadPayments() {
+        public void Init(int id)
+        {
+            AccountId = id;
+            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository, AccountId);
+        }
+
+        private void LoadPayments()
+        {
             EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
-                .GetRelatedPayments(accountRepository.Selected)
+                .GetRelatedPayments(AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
+
+            foreach (var payment in RelatedPayments)
+            {
+                payment.CurrentAccountId = AccountId;
+            }
 
             Source = new ObservableCollection<DateListGroup<Payment>>(
                 DateListGroup<Payment>.CreateGroups(RelatedPayments,
@@ -96,38 +111,47 @@ namespace MoneyFox.Shared.ViewModels {
             EditCommand = new MvxCommand<Payment>(Edit);
         }
 
-        private void GoToAddPayment(string type) {
+        // TODO: Use the actual enum rather than magic strings - Seth Bartlett 7/1/2016 12:07PM
+        private void GoToAddPayment(string type)
+        {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }
 
-        private async void DeleteAccount() {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
-                if(accountRepository.Delete(accountRepository.Selected))
+        // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
+        // This may actually exist from the buttons at the bottom right of the view, if so, this view should be separated out. - Seth Bartlett 7/1/2016 2:31AM
+        private async void DeleteAccount()
+        {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                if (accountRepository.Delete(accountRepository.FindById(AccountId)))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
         }
 
-        private void Edit(Payment payment) {
-            paymentRepository.Selected = payment;
-
-            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString()});
+        private void Edit(Payment payment)
+        {
+            ShowViewModel<ModifyPaymentViewModel>(
+                new {isEdit = true, typeString = payment.Type.ToString(), paymentId = payment.Id});
         }
 
-        private async void DeletePayment(Payment payment) {
+        private async void DeletePayment(Payment payment)
+        {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) {
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
                 return;
             }
 
-            if (await paymentManager.CheckForRecurringPayment(payment)) {
+            if (await paymentManager.CheckForRecurringPayment(payment))
+            {
                 paymentRepository.DeleteRecurring(payment);
             }
 
-            bool accountSucceded = accountRepository.RemovePaymentAmount(payment);
-            bool paymentSucceded = paymentRepository.Delete(payment);
-            if(accountSucceded && paymentSucceded)
+            var accountSucceded = accountRepository.RemovePaymentAmount(payment);
+            var paymentSucceded = paymentRepository.Delete(payment);
+            if (accountSucceded && paymentSucceded)
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             LoadCommand.Execute();
         }

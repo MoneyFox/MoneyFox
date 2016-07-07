@@ -1,11 +1,14 @@
-﻿namespace MoneyFox.Shared {
-    public enum PaymentType {
+﻿namespace MoneyFox.Shared
+{
+    public enum PaymentType
+    {
         Expense,
         Income,
         Transfer
     }
 
-    public enum PaymentRecurrence {
+    public enum PaymentRecurrence
+    {
         Daily = 0,
         DailyWithoutWeekend = 1,
         Weekly = 2,
@@ -14,18 +17,21 @@
         Biweekly = 5
     }
 
-    public enum ListStatisticType {
+    public enum ListStatisticType
+    {
         CategorySpreading,
         CategorySummary
     }
 
-    public enum InvocationType {
+    public enum InvocationType
+    {
         Account,
         Payment,
         Setting
     }
 
-    public enum StatisticType {
+    public enum StatisticType
+    {
         Cashflow,
         CategorySpreading,
         CategorySummary,

@@ -2,8 +2,13 @@
 using System.Globalization;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Shared.Converter {
-    public class DateTimeFormatConverter : IMvxValueConverter {
+namespace MoneyFox.Shared.Converter
+{
+    /// <summary>
+    ///     Converts DateTime values to a nicer representation.
+    /// </summary>
+    public class DateTimeFormatConverter : IMvxValueConverter
+    {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             => ((DateTime) value).ToString("D");
 
