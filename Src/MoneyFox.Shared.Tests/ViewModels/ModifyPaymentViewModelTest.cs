@@ -56,7 +56,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager,
                 defaultManager);
 
-            viewmodel.Init("Income");
+            viewmodel.Init(PaymentType.Income);
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -87,7 +87,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
 
             //Execute and Assert
-            viewmodel.Init("Expense");
+            viewmodel.Init(PaymentType.Expense);
             viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
@@ -115,7 +115,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
 
             //Execute and Assert
-            viewmodel.Init("Transfer");
+            viewmodel.Init(PaymentType.Transfer);
             viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
@@ -278,6 +278,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 defaultManager);
 
             viewmodel.Init(12);
+
+            viewmodel.Init(PaymentType.Transfer);
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();

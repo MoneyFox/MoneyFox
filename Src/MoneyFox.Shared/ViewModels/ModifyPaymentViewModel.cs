@@ -50,17 +50,20 @@ namespace MoneyFox.Shared.ViewModels
         ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
         /// <param name="typeString">Type of the payment.</param>
-        public void Init(string typeString)
+        public void Init(PaymentType type)
         {
             IsEdit = false;
             IsEndless = true;
 
             amount = 0;
-
-            // TODO: Remove magic string and just pass in the enum - Seth Bartlett 7/1/2016 12:08PM
-            PrepareDefault(typeString);
-
+            PrepareDefault(type);
             AccountBeforeEdit = SelectedPayment.ChargedAccount;
+        }
+        private void PrepareDefault(PaymentType type) {
+            SetDefaultPayment(type);
+            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == PaymentType.Transfer;
+            EndDate = DateTime.Now;
         }
 
         /// <summary>
@@ -87,16 +90,6 @@ namespace MoneyFox.Shared.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-        }
-
-        private void PrepareDefault(string typeString)
-        {
-            var type = (PaymentType) Enum.Parse(typeof(PaymentType), typeString);
-
-            SetDefaultPayment(type);
-            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
-            IsTransfer = type == PaymentType.Transfer;
-            EndDate = DateTime.Now;
         }
 
         private void SetDefaultPayment(PaymentType paymentType)

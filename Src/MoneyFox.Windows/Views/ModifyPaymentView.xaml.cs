@@ -6,6 +6,7 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
+using System;
 
 namespace MoneyFox.Windows.Views
 {
@@ -38,12 +39,11 @@ namespace MoneyFox.Windows.Views
                 var payment = e.Parameter as Payment;
                 if (payment != null)
                 {
-                    //TODO Refactor this that on edit the Payment type isn't necessary since we don't need it here.
                     viewModel.Init(payment.Id);
                 }
                 else if (e.Parameter?.GetType() == typeof(PaymentType))
                 {
-                    viewModel.Init(e.Parameter.ToString());
+                    viewModel.Init((PaymentType) e.Parameter);
                 }
             }
 
