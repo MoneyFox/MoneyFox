@@ -61,8 +61,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
-            var paymentDataAccessMock = new PaymentDataAccessMock();
-            var repository = new PaymentRepository(paymentDataAccessMock);
+            var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -92,8 +91,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
-            var paymentDataAccessMock = new PaymentDataAccessMock();
-            var repository = new PaymentRepository(paymentDataAccessMock);
+            var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
             var account = new Account {
                 Id = 2,
@@ -122,8 +120,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
-            var paymentDataAccessMock = new PaymentDataAccessMock();
-            var repository = new PaymentRepository(paymentDataAccessMock);
+            var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
             var account = new Account {
                 Id = 2,
