@@ -6,16 +6,6 @@ using SQLite.Net;
 
 namespace MoneyFox.Shared.Repositories
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        IRepository<Account> AccountRepository { get; }
-
-        IPaymentRepository PaymentRepository { get; }
-        IRepository<RecurringPayment> RecurringPaymentRepository { get; }
-
-        IRepository<Category> CategoryRepository { get; }
-    }
-
     public class UnitOfWork : IUnitOfWork
     {
         private readonly SQLiteConnection sqliteConnection;

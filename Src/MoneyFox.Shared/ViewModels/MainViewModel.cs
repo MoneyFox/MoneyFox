@@ -2,6 +2,7 @@
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 using System;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.ViewModels
 {
