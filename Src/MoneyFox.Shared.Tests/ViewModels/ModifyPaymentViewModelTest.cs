@@ -144,16 +144,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
             unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
             unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
 
-            var paymentManager = new PaymentManager(unitOfWork.Object,
-                new Mock<IDialogService>().Object);
-
+            var dialogService = new Mock<IDialogService>().Object;
             var defaultManager = new DefaultManager(unitOfWork.Object);
 
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
-                new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager)
-            { SelectedPayment = selectedPayment};
+            var paymentManagerSetup = new Mock<IPaymentManager>();
+            paymentManagerSetup.Setup(x => x.SavePayment(It.IsAny<Payment>())).Returns(true);
+            paymentManagerSetup.Setup(x => x.AddPaymentAmount(It.IsAny<Payment>())).Returns(true);
+
+            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object, dialogService, paymentManagerSetup.Object, defaultManager)
+            {
+                SelectedPayment = selectedPayment
+            };
             viewmodel.SaveCommand.Execute();
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));

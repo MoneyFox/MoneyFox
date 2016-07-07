@@ -6,6 +6,7 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using Moq;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -26,17 +27,17 @@ namespace MoneyFox.Shared.Tests.Manager
             var categoryLoaded = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
+            accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
                 .Callback(() => accountsLoaded = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>());
             paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Callback(() => paymentsLoaded = true);
 
             var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupAllProperties();
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
