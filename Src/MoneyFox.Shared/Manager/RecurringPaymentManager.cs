@@ -25,7 +25,6 @@ namespace MoneyFox.Shared.Manager
         public void CheckRecurringPayments()
         {
             var paymentList = paymentManager.LoadRecurringPaymentList();
-            ;
 
             foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
             {

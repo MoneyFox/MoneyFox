@@ -58,6 +58,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Payment savedPayment = null;
 
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
@@ -88,6 +89,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Payment savedPayment = null;
 
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
@@ -117,6 +119,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Payment savedPayment = null;
 
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
             paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
                 .Callback((Payment p) => savedPayment = p);
 
