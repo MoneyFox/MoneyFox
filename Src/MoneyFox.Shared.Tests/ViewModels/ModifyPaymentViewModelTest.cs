@@ -131,6 +131,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>());
             paymentRepoSetup.SetupGet(x => x.Selected).Returns(selectedPayment);
             paymentRepoSetup.Setup(x => x.Save(selectedPayment)).Returns(true);
 
@@ -252,7 +253,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(new Payment {
-                Type = (int)PaymentType.Income,
+                Type = (int)PaymentType.Transfer,
                 IsRecurring = true,
                 RecurringPayment = new RecurringPayment {
                     EndDate = testEndDate
@@ -279,12 +280,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewmodel.Init(12);
 
-            viewmodel.Init(PaymentType.Transfer);
-
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
             viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
-            viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
+            viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();

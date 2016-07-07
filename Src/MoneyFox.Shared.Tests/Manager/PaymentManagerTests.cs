@@ -67,9 +67,15 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing()
         {
-            new PaymentManager(new Mock<IUnitOfWork>().Object,
-                new Mock<IDialogService>().Object).DeleteAssociatedPaymentsFromDatabase(
-                    new Account {Id = 3});
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupAllProperties();
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepositorySetup.Object);
+
+            new PaymentManager(unitOfWork.Object,
+                new Mock<IDialogService>().Object)
+                .DeleteAssociatedPaymentsFromDatabase(new Account {Id = 3});
         }
 
         [TestMethod]

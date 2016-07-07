@@ -19,27 +19,6 @@ namespace MoneyFox.Shared.Tests.Manager
         }
 
         [TestMethod]
-        public void ReloadData_SelectedNotNull_SelectedSetToNull()
-        {
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var paymentRepository = paymentRepoSetup.Object;
-
-            paymentRepository.Selected = new Payment();
-
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
-
-            new RepositoryManager(unitOfWork.Object,
-                new PaymentManager(unitOfWork.Object,new Mock<IDialogService>().Object))
-                .ReloadData();
-
-            Assert.IsNull(paymentRepository.Selected);
-        }
-
-        [TestMethod]
         public void ReloadData_CollectionNull_CollectionInstantiated()
         {
             var accountsLoaded = false;
@@ -64,6 +43,7 @@ namespace MoneyFox.Shared.Tests.Manager
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoSetup .Object);
             unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoSetup.Object);
 
             new RepositoryManager(unitOfWork.Object,
                 new PaymentManager(unitOfWork.Object,

@@ -42,7 +42,11 @@ namespace MoneyFox.Shared.Tests.Repositories
         [ExpectedException(typeof(AccountMissingException))]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
-            var repository = new PaymentRepository(new Mock<IDataAccess<Payment>>().Object);
+            var paymentDataAccess = new Mock<IDataAccess<Payment>>();
+            paymentDataAccess.Setup(x => x.LoadList(null))
+                .Returns(new List<Payment>());
+
+            var repository = new PaymentRepository(paymentDataAccess.Object);
 
             var payment = new Payment
             {
@@ -147,6 +151,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void PaymentRepository_Delete()
         {
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
             paymentDataAccessSetup.SetupAllProperties();
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
@@ -176,6 +181,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void PaymentRepository_AccessCache()
         {
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
             paymentDataAccessSetup.SetupAllProperties();
 
             var paymentRepo = new PaymentRepository(paymentDataAccessSetup.Object);
