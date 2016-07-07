@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
+            new CategorySummaryDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
         }
 
         [TestMethod]

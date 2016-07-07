@@ -37,10 +37,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var categoryName = "groceries";
 
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(new Mock<IRepository<Category>>().Object);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new Category { Id = 9, Name = categoryName }
@@ -52,10 +52,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddCategory_CorrectTitle()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(new Mock<IRepository<Category>>().Object);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false
             };
@@ -67,7 +67,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
             var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -85,7 +84,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
             categoryRepositorySetup.Object.Data.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepositorySetup.Object);
+
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categorySecondary
@@ -99,7 +101,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
             var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -117,7 +118,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
             categoryRepositorySetup.Object.Data.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepositorySetup.Object);
+
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categorySecondary
@@ -131,7 +135,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void SaveCommand_SavesCategory()
         {
             var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -145,7 +148,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 Notes = "Test Note"
             };
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepositorySetup.Object);
+
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categoryPrimary
@@ -165,9 +171,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
             categoryRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Category>());
-            var categoryRepo = categoryRepositorySetup.Object;
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepo, new Mock<IDialogService>().Object)
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepositorySetup.Object);
+
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = category
@@ -183,7 +191,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void DeleteCategory_DeletesCategory()
         {
             var categoryRepositorySetup = new Mock<IRepository<Category>>();
-            var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -201,7 +208,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             categoryRepositorySetup.Object.Data.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepositorySetup.Object);
+
+            var viewmodel = new ModifyCategoryViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = categoryPrimary
