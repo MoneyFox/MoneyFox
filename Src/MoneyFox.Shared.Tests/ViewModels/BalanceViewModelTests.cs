@@ -96,7 +96,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
             var accountMockSetup = new Mock<IAccountRepository>();
-
             accountMockSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Account>
             {
                 new Account {CurrentBalance = 500},
@@ -104,7 +103,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             });
 
             unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IAccountRepository>().Object);
+            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountMockSetup.Object);
 
             var vm = new BalanceViewModel(unitOfWorkSetup.Object);
 

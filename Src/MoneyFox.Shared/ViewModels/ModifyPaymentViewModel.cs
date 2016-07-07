@@ -21,7 +21,6 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -48,28 +47,30 @@ namespace MoneyFox.Shared.ViewModels
         public int PaymentId { get; private set; }
 
         /// <summary>
-        ///     Init the view. Is executed after the constructor call
+        ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
         /// <param name="typeString">Type of the payment.</param>
-        /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
-        public void Init(string typeString, int paymentId, bool isEdit = false)
+        public void Init(string typeString)
         {
-            PaymentId = paymentId;
-            selectedPayment = paymentRepository.FindById(PaymentId);
-            IsEdit = isEdit;
+            IsEdit = false;
             IsEndless = true;
 
             amount = 0;
 
-            if (IsEdit)
-            {
-                PrepareEdit();
-            }
-            else
-            {
-                // TODO: Remove magic string and just pass in the enum - Seth Bartlett 7/1/2016 12:08PM
-                PrepareDefault(typeString);
-            }
+            // TODO: Remove magic string and just pass in the enum - Seth Bartlett 7/1/2016 12:08PM
+            PrepareDefault(typeString);
+
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;
+        }
+
+        /// <summary>
+        ///     Init the view to edit an existing Payment. Is executed after the constructor call
+        /// </summary>
+        public void Init(int paymentId) {
+            IsEdit = true;
+            PaymentId = paymentId;
+            selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
+            PrepareEdit();
 
             AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
@@ -186,7 +187,7 @@ namespace MoneyFox.Shared.ViewModels
                     paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }
 
-                var paymentSucceded = paymentRepository.Delete(SelectedPayment);
+                var paymentSucceded = unitOfWork.PaymentRepository.Delete(SelectedPayment);
                 var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
