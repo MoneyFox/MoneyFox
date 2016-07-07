@@ -154,11 +154,14 @@
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyCategoryDialogViewModelTests.cs" />
+    <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">

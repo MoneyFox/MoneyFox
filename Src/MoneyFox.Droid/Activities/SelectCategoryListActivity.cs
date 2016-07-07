@@ -18,20 +18,9 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>,
-        IDialogCloseListener
+    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
+        
     {
-        public void HandleDialogClose()
-        {
-            // Make an empty search to refresh the list and groups
-            var selectCategoryListViewModel = ViewModel;
-            if (selectCategoryListViewModel != null)
-            {
-                selectCategoryListViewModel.SearchText = string.Empty;
-                selectCategoryListViewModel.Search();
-            }
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -46,15 +35,24 @@ namespace MoneyFox.Droid.Activities
 
             FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
-                var dialog = new ModifyCategoryDialog
-                {
-                    ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
-                };
-
-                dialog.Show(FragmentManager, Strings.AddCategoryTitle);
+                ViewModel.CreateNewCategoryCommand.Execute();
             };
 
             Title = Strings.ChooseCategorieTitle;
+        }
+
+        /// <summary>
+        ///     Refresh list of categories
+        /// </summary>
+        public void RefreshCategories()
+        {
+            // Make an empty search to refresh the list and groups
+            var selectCategoryListViewModel = ViewModel;
+            if (selectCategoryListViewModel != null)
+            {
+                selectCategoryListViewModel.SearchText = string.Empty;
+                selectCategoryListViewModel.Search();
+            }
         }
 
         /// <summary>
@@ -81,12 +79,8 @@ namespace MoneyFox.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add:
-                    var dialog = new ModifyCategoryDialog
-                    {
-                        ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
-                    };
-
-                    dialog.Show(FragmentManager, "dialog");
+                    ViewModel.CreateNewCategoryCommand.Execute();
+                    RefreshCategories();
                     return true;
 
                 default:
@@ -111,28 +105,18 @@ namespace MoneyFox.Droid.Activities
             switch (item.ItemId)
             {
                 case 0:
-                    OpenEditCategoryDialog();
+                    ViewModel.EditCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 case 1:
                     ViewModel.DeleteCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 default:
                     return false;
             }
-        }
-
-        private void OpenEditCategoryDialog()
-        {
-            var viewmodel = Mvx.Resolve<ModifyCategoryDialogViewModel>();
-            viewmodel.IsEdit = true;
-            var dialog = new ModifyCategoryDialog
-            {
-                ViewModel = viewmodel
-            };
-
-            dialog.Show(FragmentManager, "dialog");
         }
     }
 }
