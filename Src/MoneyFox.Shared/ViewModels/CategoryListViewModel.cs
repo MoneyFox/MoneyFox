@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -16,7 +17,5 @@ namespace MoneyFox.Shared.ViewModels
             : base(categoryRepository, dialogService)
         {
         }
-
-        public Category SelectedCategory { get; set; }
     }
 }
