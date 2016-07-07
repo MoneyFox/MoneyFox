@@ -13,7 +13,7 @@ namespace MoneyFox.Shared.Interfaces
 
         void RemoveRecurringForPayment(Payment paymentToChange);
 
-        Task<bool> CheckForRecurringPayment(Payment payment);
+        Task<bool> CheckRecurrenceOfPayment(Payment payment);
 
         IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null);
 

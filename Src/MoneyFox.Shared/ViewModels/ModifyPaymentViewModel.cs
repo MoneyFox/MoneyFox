@@ -161,7 +161,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async Task PrepareRecurringPayment()
         {
-            if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPayment))
+            if ((IsEdit && await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
                 || SelectedPayment.IsRecurring)
             {
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
@@ -181,7 +181,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
-                if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
+                if (await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
                 {
                     paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }

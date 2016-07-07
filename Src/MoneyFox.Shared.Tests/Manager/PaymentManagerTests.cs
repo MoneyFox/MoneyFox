@@ -77,7 +77,7 @@ namespace MoneyFox.Shared.Tests.Manager
         {
             var result = await new PaymentManager(new Mock<IUnitOfWork>().Object,
                 new Mock<IDialogService>().Object)
-                .CheckForRecurringPayment(new Payment {IsRecurring = false});
+                .CheckRecurrenceOfPayment(new Payment {IsRecurring = false});
 
             result.ShouldBeFalse();
         }
@@ -95,7 +95,7 @@ namespace MoneyFox.Shared.Tests.Manager
 
             var result = await new PaymentManager(new Mock<IUnitOfWork>().Object,
                 dialogService.Object)
-                .CheckForRecurringPayment(new Payment {IsRecurring = true});
+                .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
 
             Assert.AreEqual(userAnswer, result);
         }
@@ -113,7 +113,7 @@ namespace MoneyFox.Shared.Tests.Manager
 
             var result = await new PaymentManager(new Mock<IUnitOfWork>().Object,
                 dialogService.Object)
-                .CheckForRecurringPayment(new Payment {IsRecurring = true});
+                .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
 
             Assert.AreEqual(userAnswer, result);
         }

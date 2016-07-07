@@ -71,7 +71,7 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        public async Task<bool> CheckForRecurringPayment(Payment payment)
+        public async Task<bool> CheckRecurrenceOfPayment(Payment payment)
         {
             if (!payment.IsRecurring)
             {

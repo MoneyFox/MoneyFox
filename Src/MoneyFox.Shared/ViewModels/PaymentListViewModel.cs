@@ -142,7 +142,7 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (await paymentManager.CheckForRecurringPayment(payment))
+            if (await paymentManager.CheckRecurrenceOfPayment(payment))
             {
                 paymentManager.RemoveRecurringForPayment(payment);
                 unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
