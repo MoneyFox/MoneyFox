@@ -18,9 +18,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IDialogService dialogService;
         private readonly IUnitOfWork unitOfWork;
 
-        public AccountListViewModel(
-            IUnitOfWork unitOfWork,
-            IDialogService dialogService)
+        public AccountListViewModel(IUnitOfWork unitOfWork,IDialogService dialogService)
         {
             this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;

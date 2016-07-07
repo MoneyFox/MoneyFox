@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using PropertyChanged;
 
@@ -14,7 +15,7 @@ namespace MoneyFox.Shared.ViewModels
         public StatisticCategorySummaryViewModel(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
-            categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
+            categorySummaryDataDataProvider = new CategorySummaryDataProvider(IUnitOfWork unitOfWork);
         }
 
         /// <summary>

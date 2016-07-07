@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Series;
@@ -24,10 +24,9 @@ namespace MoneyFox.Shared.ViewModels
 
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
-        public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        public StatisticCategorySpreadingViewModel(IUnitOfWork unitOfWork)
         {
-            speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
+            speadingDataProvider = new CategorySpreadingDataProvider(unitOfWork);
         }
 
         /// <summary>
