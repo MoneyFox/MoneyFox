@@ -133,7 +133,7 @@ namespace MoneyFox.Shared.ViewModels
                 }
             }
 
-            if (categoryRepository.Save(SelectedCategory))
+            else if (categoryRepository.Save(SelectedCategory))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 categoryRepository.Load();

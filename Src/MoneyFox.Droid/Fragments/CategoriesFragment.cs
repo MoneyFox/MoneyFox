@@ -20,24 +20,17 @@ namespace MoneyFox.Droid.Fragments
     {
         protected override int FragmentId => Resource.Layout.fragment_category_list;
         protected override string Title => Strings.CategoriesLabel;
-        public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(ShowEditCategoryDialog);
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
-            categoryList.ItemClick = EditCategoryCommand;
             RegisterForContextMenu(categoryList);
 
             view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
-                var dialog = new ModifyCategoryDialog
-                {
-                    ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
-                };
-
-                dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
+                ViewModel.CreateNewCategoryCommand.Execute();
             };
 
             return view;
@@ -60,7 +53,7 @@ namespace MoneyFox.Droid.Fragments
             switch (item.ItemId)
             {
                 case 0:
-                    ShowEditCategoryDialog(selected);
+                    ViewModel.EditCategoryCommand.Execute(selected);
                     return true;
 
                 case 1:
@@ -70,12 +63,6 @@ namespace MoneyFox.Droid.Fragments
                 default:
                     return false;
             }
-        }
-
-        private void ShowEditCategoryDialog(Category selectedCategory)
-        {
-            new ModifyCategoryDialog(selectedCategory)
-                .Show(Activity.FragmentManager, Strings.AddCategoryTitle);
         }
     }
 }
