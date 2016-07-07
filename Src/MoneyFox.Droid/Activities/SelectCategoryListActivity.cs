@@ -18,20 +18,9 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>,
-        IDialogCloseListener
+    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
+        
     {
-        public void HandleDialogClose()
-        {
-            // Make an empty search to refresh the list and groups
-            var selectCategoryListViewModel = ViewModel;
-            if (selectCategoryListViewModel != null)
-            {
-                selectCategoryListViewModel.SearchText = string.Empty;
-                selectCategoryListViewModel.Search();
-            }
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -50,6 +39,20 @@ namespace MoneyFox.Droid.Activities
             };
 
             Title = Strings.ChooseCategorieTitle;
+        }
+
+        /// <summary>
+        ///     Refresh list of categories
+        /// </summary>
+        public void RefreshCategories()
+        {
+            // Make an empty search to refresh the list and groups
+            var selectCategoryListViewModel = ViewModel;
+            if (selectCategoryListViewModel != null)
+            {
+                selectCategoryListViewModel.SearchText = string.Empty;
+                selectCategoryListViewModel.Search();
+            }
         }
 
         /// <summary>
@@ -77,6 +80,7 @@ namespace MoneyFox.Droid.Activities
 
                 case Resource.Id.action_add:
                     ViewModel.CreateNewCategoryCommand.Execute();
+                    RefreshCategories();
                     return true;
 
                 default:
@@ -102,10 +106,12 @@ namespace MoneyFox.Droid.Activities
             {
                 case 0:
                     ViewModel.EditCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 case 1:
                     ViewModel.DeleteCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 default:
