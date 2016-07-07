@@ -26,7 +26,7 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentsLoaded = false;
             var categoryLoaded = false;
 
-            var accountRepoSetup = new Mock<IAccountRepository>();
+            var accountRepoSetup = new Mock<IRepository<Account>>();
             accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
                 .Callback(() => accountsLoaded = true);
@@ -36,7 +36,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Callback(() => paymentsLoaded = true);
 
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
+            var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);

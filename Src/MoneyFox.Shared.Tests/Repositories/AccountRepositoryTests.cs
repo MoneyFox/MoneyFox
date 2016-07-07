@@ -140,13 +140,12 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void AccountRepository_FindById_ReturnsAccount()
         {
-            var accountRepository = new Mock<IAccountRepository>();
+            var accountRepository = new Mock<IRepository<Account>>();
             var testAccount = new Account {Id = 100, Name = "Test Account"};
             accountRepository.SetupAllProperties();
             accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
                 .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
-            accountRepository.Object.Data = new ObservableCollection<Account>();
-            accountRepository.Object.Data.Add(testAccount);
+            accountRepository.Object.Data = new ObservableCollection<Account> {testAccount};
 
             Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
         }

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
-using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
@@ -21,8 +16,6 @@ namespace MoneyFox.Shared.Tests.Repositories
     [TestClass]
     public class PaymentRepositoryTests : MvxIoCSupportingTest
     {
-        private DateTime localDateSetting;
-
         [TestInitialize]
         public void Init()
         {
@@ -31,8 +24,6 @@ namespace MoneyFox.Shared.Tests.Repositories
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ISettings>();
             settingsMockSetup.SetupAllProperties();
-            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
-                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
 
             Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
             Mvx.RegisterType(() => settingsMockSetup.Object);

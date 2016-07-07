@@ -10,7 +10,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IRepository<Account>
     {
         private readonly IDataAccess<Account> dataAccess;
 

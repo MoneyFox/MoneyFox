@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
             unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IAccountRepository>().Object);
+            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
 
             var vm = new BalanceViewModel(unitOfWorkSetup.Object);
 
@@ -53,7 +53,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 });
 
             unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IAccountRepository>().Object);
+            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
 
             var vm = new BalanceViewModel(unitOfWorkSetup.Object);
 
@@ -77,7 +77,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 });
 
             unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IAccountRepository>().Object);
+            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
 
             var vm = new BalanceViewModel(unitOfWorkSetup.Object);
 
@@ -95,7 +95,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
-            var accountMockSetup = new Mock<IAccountRepository>();
+            var accountMockSetup = new Mock<IRepository<Account>>();
             accountMockSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Account>
             {
                 new Account {CurrentBalance = 500},

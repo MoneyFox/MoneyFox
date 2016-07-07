@@ -6,10 +6,6 @@ using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 using MoneyFox.Shared.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
@@ -41,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var categoryName = "groceries";
 
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
@@ -56,7 +52,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddCategory_CorrectTitle()
         {
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, dialogServiceSetup.Object)
@@ -70,7 +66,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
@@ -102,7 +98,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
@@ -134,7 +130,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_SavesCategory()
         {
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();
@@ -164,7 +160,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var category = new Category { Id = 0, Name = "category", Notes = "" };
 
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
@@ -186,7 +182,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void DeleteCategory_DeletesCategory()
         {
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
             var dialogServiceSetup = new Mock<IDialogService>();
 
             categoryRepositorySetup.SetupAllProperties();

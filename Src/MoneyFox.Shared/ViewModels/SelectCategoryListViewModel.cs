@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -12,10 +13,10 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
+        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public SelectCategoryListViewModel(ICategoryRepository categoryRepository,
-            IDialogService dialogService) : base(categoryRepository, dialogService)
+        public SelectCategoryListViewModel(IUnitOfWork unitOfWork,
+            IDialogService dialogService) : base(unitOfWork, dialogService)
         {
         }
 

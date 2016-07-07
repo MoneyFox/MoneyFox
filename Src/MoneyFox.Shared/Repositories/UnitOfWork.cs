@@ -8,20 +8,20 @@ namespace MoneyFox.Shared.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAccountRepository AccountRepository { get; }
+        IRepository<Account> AccountRepository { get; }
 
         IPaymentRepository PaymentRepository { get; }
         IRepository<RecurringPayment> RecurringPaymentRepository { get; }
 
-        ICategoryRepository CategoryRepository { get; }
+        IRepository<Category> CategoryRepository { get; }
     }
 
     public class UnitOfWork : IUnitOfWork
     {
         private readonly SQLiteConnection sqliteConnection;
 
-        private IAccountRepository accountRepository;
-        private ICategoryRepository categoryRepository;
+        private IRepository<Account> accountRepository;
+        private IRepository<Category> categoryRepository;
 
         private bool disposed;
         private IPaymentRepository paymentRepository;
@@ -32,7 +32,7 @@ namespace MoneyFox.Shared.Repositories
             sqliteConnection = dbManager.GetConnection();
         }
 
-        public IAccountRepository AccountRepository
+        public IRepository<Account> AccountRepository
             => accountRepository ?? (accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnection)))
             ;
 
@@ -47,7 +47,7 @@ namespace MoneyFox.Shared.Repositories
                (recurringPaymentRepository =
                    new RecurringPaymentRepository(new RecurringPaymentDataAccess(sqliteConnection)));
 
-        public ICategoryRepository CategoryRepository
+        public IRepository<Category> CategoryRepository
             =>
                 categoryRepository ??
                 (categoryRepository = new CategoryRepository(new CategoryDataAccess(sqliteConnection)));
