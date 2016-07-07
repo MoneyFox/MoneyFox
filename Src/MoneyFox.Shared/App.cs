@@ -28,7 +28,7 @@ namespace MoneyFox.Shared
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());
-            Mvx.RegisterType(() => new UnitOfWork(Mvx.Resolve<IDatabaseManager>()));
+            Mvx.RegisterType<IUnitOfWork, UnitOfWork>();
 
             CreatableTypes()
                 .EndingWith("Service")
