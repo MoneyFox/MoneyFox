@@ -7,6 +7,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -17,7 +18,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForDailyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -61,15 +62,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -84,7 +86,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForWeeklyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -110,15 +112,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
-
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -134,7 +137,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForBiweeklyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -160,15 +163,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -184,7 +188,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForMonthlyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -210,15 +214,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -234,7 +239,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForYearlyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -260,15 +265,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -284,7 +290,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_NewEntryForDailyAndWeeklyRecurring()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -329,15 +335,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(2);
@@ -359,7 +366,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_IgnorePaymentsNotReady()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -385,15 +392,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(0);
@@ -403,7 +411,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public void CheckRecurringPayments_IgnoreNotClearedPaymentsNotReady()
         {
             //Setup
-            var repoSetup = new Mock<IPaymentRepository>();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -428,15 +436,16 @@ namespace MoneyFox.Shared.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+            paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
-            repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Execution
-            new RecurringPaymentManager(repoSetup.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
+            new RecurringPaymentManager(unitOfWork.Object, new Mock<IPaymentManager>().Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(0);

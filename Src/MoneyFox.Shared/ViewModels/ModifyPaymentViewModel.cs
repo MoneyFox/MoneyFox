@@ -10,13 +10,14 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
@@ -29,20 +30,18 @@ namespace MoneyFox.Shared.ViewModels
         private double amount;
         private Payment selectedPayment;
 
-        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository,
+        public ModifyPaymentViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService,
             IPaymentManager paymentManager,
             IDefaultManager defaultManager)
         {
-            this.paymentRepository = paymentRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
-            this.accountRepository = accountRepository;
 
-            TargetAccounts = accountRepository.Data;
-            ChargedAccounts = accountRepository.Data;
+            TargetAccounts = unitOfWork.AccountRepository.Data;
+            ChargedAccounts = unitOfWork.AccountRepository.Data;
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 

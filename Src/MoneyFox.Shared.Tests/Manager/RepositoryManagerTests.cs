@@ -15,16 +15,12 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void Constructor_NullValues_NoException()
         {
-            new RepositoryManager(null, null, null).ShouldNotBeNull();
+            new RepositoryManager(null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
         public void ReloadData_SelectedNotNull_SelectedSetToNull()
         {
-            var dbManagerSetup = new Mock<IDatabaseManager>();
-            dbManagerSetup.Setup(x => x.GetConnection());
-
-            var unitOfWork = new UnitOfWork(dbManagerSetup.Object);
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
 
@@ -32,10 +28,13 @@ namespace MoneyFox.Shared.Tests.Manager
 
             paymentRepository.Selected = new Payment();
 
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
-            new RepositoryManager(unitOfWork, paymentRepository,
-                new PaymentManager(paymentRepository, unitOfWork.AccountRepository,
-                    new Mock<IDialogService>().Object)).ReloadData();
+
+            new RepositoryManager(unitOfWork.Object,
+                new PaymentManager(unitOfWork.Object,new Mock<IDialogService>().Object))
+                .ReloadData();
 
             Assert.IsNull(paymentRepository.Selected);
         }
@@ -46,11 +45,6 @@ namespace MoneyFox.Shared.Tests.Manager
             var accountsLoaded = false;
             var paymentsLoaded = false;
             var categoryLoaded = false;
-
-            var dbManagerSetup = new Mock<IDatabaseManager>();
-            dbManagerSetup.Setup(x => x.GetConnection());
-
-            var unitOfWork = new UnitOfWork(dbManagerSetup.Object);
 
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
@@ -67,49 +61,17 @@ namespace MoneyFox.Shared.Tests.Manager
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
-            var accountRepo = accountRepoSetup.Object;
-            var paymentRepository = paymentRepoSetup.Object;
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoSetup .Object);
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
-            new RepositoryManager(unitOfWork, paymentRepository,
-                new PaymentManager(paymentRepository, unitOfWork.AccountRepository,
+            new RepositoryManager(unitOfWork.Object,
+                new PaymentManager(unitOfWork.Object,
                     new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsTrue(accountsLoaded);
             Assert.IsTrue(paymentsLoaded);
             Assert.IsTrue(categoryLoaded);
         }
-
-        //    var account = new Account {Id = 1, CurrentBalance = 40};
-        //public void ReloadData_UnclearedPayment_Clear() {
-
-        //[TestMethod]
-        //    var payment = new Payment {
-        //        ChargedAccount = account,
-        //        ChargedAccountId = 1,
-        //        IsCleared = false,
-        //        Date = DateTime.Today.AddDays(-3)
-        //    };
-        //    var accountRepoSetup = new Mock<IAccountRepository>();
-        //    accountRepoSetup.SetupAllProperties();
-
-        //    var paymentRepoSetup = new Mock<IPaymentRepository>();
-        //    paymentRepoSetup.SetupAllProperties();
-        //    paymentRepoSetup.Setup(x => x.GetUnclearedPayments())
-        //        .Returns(() => new List<Payment> {payment});
-
-        //    var categoryRepoSetup = new Mock<ICategoryRepository>();
-        //    categoryRepoSetup.SetupAllProperties();
-
-        //    var accountRepo = accountRepoSetup.Object;
-        //    var paymentRepository = paymentRepoSetup.Object;
-
-        //    accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account});
-
-        //    new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
-        //        new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
-        //        .ReloadData();
-
-        //    Assert.IsTrue(payment.IsCleared);
-        //}
     }
 }
