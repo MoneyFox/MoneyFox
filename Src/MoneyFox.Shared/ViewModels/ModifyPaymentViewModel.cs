@@ -49,33 +49,33 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
-        /// <param name="typeString">Type of the payment.</param>
-        public void Init(PaymentType type)
+        /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
+        public void Init(PaymentType type, int paymentId = 0)
         {
-            IsEdit = false;
-            IsEndless = true;
+            if (paymentId == 0) 
+            {
+                IsEdit = false;
+                IsEndless = true;
 
-            amount = 0;
-            PrepareDefault(type);
-            AccountBeforeEdit = SelectedPayment.ChargedAccount;
+                amount = 0;
+                PrepareDefault(type);
+            } 
+            else 
+            {
+                IsEdit = true;
+                PaymentId = paymentId;
+                selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
+                PrepareEdit();
+
+            }
+
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;            
         }
         private void PrepareDefault(PaymentType type) {
             SetDefaultPayment(type);
             SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
-        }
-
-        /// <summary>
-        ///     Init the view to edit an existing Payment. Is executed after the constructor call
-        /// </summary>
-        public void Init(int paymentId) {
-            IsEdit = true;
-            PaymentId = paymentId;
-            selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
-            PrepareEdit();
-
-            AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
 
         private void PrepareEdit()

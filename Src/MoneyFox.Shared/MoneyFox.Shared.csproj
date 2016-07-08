@@ -112,6 +112,7 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\EditPaymentParam.cs" />
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\RecurringPayment.cs" />
     <Compile Include="Model\StatisticItem.cs" />

@@ -11,7 +11,6 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -195,7 +194,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager,
                 defaultManager);
 
-            viewmodel.Init(12);
+            viewmodel.Init(PaymentType.Income, 12);
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -237,7 +236,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager,
                 defaultManager);
 
-            viewmodel.Init(12);
+            viewmodel.Init(PaymentType.Income, 12);
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -279,7 +278,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager,
                 defaultManager);
 
-            viewmodel.Init(12);
+            viewmodel.Init(PaymentType.Income, 12);
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
