@@ -65,7 +65,10 @@ namespace MoneyFox.Windows.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            ResetPageCache();
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ResetPageCache();
+            }
         }
 
         private void ResetPageCache()
