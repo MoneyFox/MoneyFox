@@ -78,6 +78,10 @@ namespace MoneyFox.Shared.ViewModels
                 BackupLastModified = await backupManager.GetBackupDate();
 
                 dialogService.HideLoadingDialog();
+            } 
+            else 
+            {
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
         }
 
@@ -96,17 +100,12 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            if (connectivity.IsConnected)
-            {
-                IsCheckingBackupAvailability = true;
-                BackupAvailable = await backupManager.IsBackupExisting();
-                BackupLastModified = await backupManager.GetBackupDate();
-                IsCheckingBackupAvailability = false;
-            }
-            else
-            {
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
-            }
+            if(!IsLoggedIn || !connectivity.IsConnected) return;
+
+            IsCheckingBackupAvailability = true;
+            BackupAvailable = await backupManager.IsBackupExisting();
+            BackupLastModified = await backupManager.GetBackupDate();
+            IsCheckingBackupAvailability = false;
         }
 
         private async void CreateBackup()
