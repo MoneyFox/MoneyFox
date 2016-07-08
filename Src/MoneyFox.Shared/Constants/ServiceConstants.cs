@@ -44,5 +44,11 @@
         ///     The amount of time to wait before retrying to sync
         /// </summary>
         public static int BackupRepeatDelay = 2000;
+
+        /// <summary>
+        ///     Used to save an retrieve a OAUTH session for OneDrive in the key store.
+        /// </summary>
+        public const string KEY_STORE_TAG_ONEDRIVE = "OneDrive";
+
     }
 }

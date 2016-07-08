@@ -1,44 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 
-namespace MoneyFox.Droid
-{
-    public class AndroidAuthenticationProvider : AuthenticationProvider
+namespace MoneyFox.Droid.OneDriveAuth {
+
+    public class DroidAuthenticationProvider : AuthenticationProvider 
     {
-        private const string ONEDRIVE_KEY = "OneDrive";
 
-        private IDictionary<string, string> authenticationResponseValues;
-
-        public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
-        {
-        }
+        public DroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo) {}
 
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
-        protected override async Task<AccountSession> GetAuthenticationResultAsync()
+        protected override async Task<AccountSession> GetAuthenticationResultAsync() 
         {
             var sessionFromCache = await GetSessionFromCache();
 
-            if (sessionFromCache != null)
-            {
+            if (sessionFromCache != null) {
                 return sessionFromCache;
             }
 
-            await ShowWebView();
-            return new AccountSession(authenticationResponseValues, ServiceInfo.AppId,
-                AccountType.MicrosoftAccount)
-            {
+            return new AccountSession(await ShowWebView(), ServiceInfo.AppId,
+                AccountType.MicrosoftAccount) {
                 CanSignOut = true
             };
         }
@@ -47,21 +39,21 @@ namespace MoneyFox.Droid
         ///     Tries to get an account session from the cache or via the refresh token.
         /// </summary>
         /// <returns>AccountSession created via the refresh token.</returns>
-        private async Task<AccountSession> GetSessionFromCache()
+        private async Task<AccountSession> GetSessionFromCache() 
         {
-            var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
+            var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ServiceConstants.KEY_STORE_TAG_ONEDRIVE).ToList();
 
-            if (accounts.Any())
+            if (accounts.Any()) 
             {
                 var accountValues = accounts.FirstOrDefault()?.Properties;
 
-                if (accountValues == null)
+                if (accountValues == null) 
                 {
                     return null;
                 }
 
                 string refreshToken;
-                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken))
+                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken)) 
                 {
                     return await RefreshAccessTokenAsync(refreshToken);
                 }
@@ -74,9 +66,9 @@ namespace MoneyFox.Droid
             throw new NotImplementedException();
         }
 
-        private Task<bool> ShowWebView()
+        private Task<IDictionary<string, string>> ShowWebView() 
         {
-            var tcs = new TaskCompletionSource<bool>();
+            var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
                 ServiceConstants.MSA_CLIENT_SECRET,
@@ -85,14 +77,13 @@ namespace MoneyFox.Droid
                 new Uri(ServiceConstants.RETURN_URL),
                 new Uri(ServiceConstants.TOKEN_URL));
 
-            auth.Completed += (sender, eventArgs) =>
+            auth.Completed += (sender, eventArgs) => 
             {
-                if (eventArgs.IsAuthenticated)
+                if (eventArgs.IsAuthenticated) 
                 {
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
-                    authenticationResponseValues = eventArgs.Account.Properties;
-                    AccountStore.Create(Application.Context).Save(eventArgs.Account, ONEDRIVE_KEY);
-                    tcs.SetResult(true);
+                    AccountStore.Create(Application.Context).Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
+                    tcs.SetResult(eventArgs.Account.Properties);
                 }
             };
 
@@ -104,7 +95,7 @@ namespace MoneyFox.Droid
             return tcs.Task;
         }
 
-        private string GetAuthorizeUrl()
+        private string GetAuthorizeUrl() 
         {
             var requestUriStringBuilder = new StringBuilder();
             requestUriStringBuilder.Append(ServiceConstants.AUTHENTICATION_URL);
