@@ -28,6 +28,16 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
+        ///     Logs the user in.
+        /// </summary>
+        public MvxCommand LoginCommand => new MvxCommand(Login);
+
+        /// <summary>
+        ///     Logout the user.
+        /// </summary>
+        public MvxCommand LogoutCommand => new MvxCommand(Logout);
+
+        /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
@@ -49,7 +59,40 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsCheckingBackupAvailability { get; private set; }
 
+        /// <summary>
+        ///     Indicates if the Login or Logout button should be presented.
+        /// </summary>
+        public bool IsLoggedIn => backupManager.IsLoggedIn;
+
         public bool BackupAvailable { get; private set; }
+
+        public async void Login()
+        {
+            if (connectivity.IsConnected) 
+            {
+                dialogService.ShowLoadingDialog();
+
+                await backupManager.Login();
+
+                BackupAvailable = await backupManager.IsBackupExisting();
+                BackupLastModified = await backupManager.GetBackupDate();
+
+                dialogService.HideLoadingDialog();
+            }
+        }
+
+        public async void Logout() {
+            if (connectivity.IsConnected) {
+                dialogService.ShowLoadingDialog();
+
+                await backupManager.Logout();
+
+                BackupAvailable = false;
+                BackupLastModified = new DateTime();
+
+                dialogService.HideLoadingDialog();
+            }
+        }
 
         private async void Loaded()
         {

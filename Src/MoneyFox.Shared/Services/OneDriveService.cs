@@ -42,6 +42,13 @@ namespace MoneyFox.Shared.Services
         }
 
         /// <summary>
+        ///     Logout User.
+        /// </summary>
+        public async Task Logout() {
+            await oneDriveAuthenticator.LogoutAsync();
+        }
+
+        /// <summary>
         ///     Uploads a copy of the current database.
         /// </summary>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>

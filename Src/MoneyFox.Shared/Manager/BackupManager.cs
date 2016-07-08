@@ -38,6 +38,11 @@ namespace MoneyFox.Shared.Manager
         }
 
         /// <summary>
+        ///     Indicates if the user is authenticated.
+        /// </summary>
+        public bool IsLoggedIn => backupService.IsLoggedIn;
+
+        /// <summary>
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
         ///     A sync can be attempted up to a number of times configured in ServiceConstants
         /// </summary>
@@ -88,6 +93,12 @@ namespace MoneyFox.Shared.Manager
         public async Task Login()
         {
             await backupService.Login();
+        }
+
+
+        public async Task Logout()
+        {
+            await backupService.Logout();
         }
 
         /// <summary>

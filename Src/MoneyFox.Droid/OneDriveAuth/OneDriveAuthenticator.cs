@@ -66,5 +66,9 @@ namespace MoneyFox.Droid.OneDriveAuth
             }
             return oneDriveClient;
         }
+
+        public async Task LogoutAsync() {
+            await oneDriveClient.SignOutAsync();
+        }
     }
 }
