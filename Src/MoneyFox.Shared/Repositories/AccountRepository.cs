@@ -59,7 +59,7 @@ namespace MoneyFox.Shared.Repositories
 
             if (account.Id == 0)
             {
-                data.Add(account);
+                Data.Add(account);
             }
 
             return dataAccess.SaveItem(account);
@@ -71,7 +71,7 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete)
         {
-            data.Remove(accountToDelete);
+            Data.Remove(accountToDelete);
             return dataAccess.DeleteItem(accountToDelete);
         }
 
