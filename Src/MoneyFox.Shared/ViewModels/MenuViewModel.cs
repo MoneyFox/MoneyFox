@@ -1,4 +1,5 @@
 ﻿using System;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -15,5 +16,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             ShowViewModel(viewModel);
         }
+
+        public MvxCommand ShowAccountListCommand => new MvxCommand(() => ShowViewModelByType(typeof(AccountListViewModel)));
     }
 }

@@ -5,8 +5,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using Cheesebaron.MvxPlugins.Connectivity;
-using MoneyFox.Droid.Services;
+using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -16,6 +15,8 @@ using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
+using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Droid.Services;
 
 namespace MoneyFox.Droid
 {
