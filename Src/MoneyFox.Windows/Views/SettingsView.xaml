@@ -56,13 +56,5 @@
                 </PivotItem>
             </Pivot>
         </Grid>
-        <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddCategoryLabel"
-                              Click="AddCategory"
-                              Icon="Add"
-                              Label="New Category" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:MvxWindowsPage>
