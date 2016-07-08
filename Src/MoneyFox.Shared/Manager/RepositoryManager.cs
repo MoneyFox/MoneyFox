@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -8,19 +9,13 @@ namespace MoneyFox.Shared.Manager
     /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly ICategoryRepository categoryRepository;
         private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RepositoryManager(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository,
-            ICategoryRepository categoryRepository,
+        public RepositoryManager(IUnitOfWork unitOfWork,
             IPaymentManager paymentManager)
         {
-            this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
         }
 
@@ -31,12 +26,12 @@ namespace MoneyFox.Shared.Manager
         public void ReloadData()
         {
             //Load Data
-            accountRepository.Load();
+            unitOfWork.AccountRepository.Load();
 
-            paymentRepository.Load();
-            paymentRepository.Selected = null;
+            unitOfWork.PaymentRepository.Load();
+            unitOfWork.PaymentRepository.Selected = null;
 
-            categoryRepository.Load();
+            unitOfWork.CategoryRepository.Load();
 
             //check if there are payments to clear
             paymentManager.ClearPayments();

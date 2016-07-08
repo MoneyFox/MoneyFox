@@ -2,6 +2,7 @@
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -16,10 +17,10 @@ namespace MoneyFox.Shared.ViewModels
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
-        public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository)
+        public StatisticMonthlyExpensesViewModel(IUnitOfWork unitOfWork)
             : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
-            monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
+            monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(unitOfWork);
 
             MonthlyExpensesModel = GetModel();
         }
