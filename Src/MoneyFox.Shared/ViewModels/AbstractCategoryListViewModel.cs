@@ -59,6 +59,11 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
 
         /// <summary>
+        ///     Selects the clicked category and sends it to the message hub.
+        /// </summary>
+        public MvxCommand<Category> SelectCommand => new MvxCommand<Category>(Selected);
+
+        /// <summary>
         /// Create and save a new category group
         /// </summary>
         public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
@@ -74,6 +79,11 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         public bool IsCategoriesEmpty => !Categories.Any();
+
+        /// <summary>
+        ///     Handle the selection of a category in the list
+        /// </summary>
+        protected abstract void Selected(Category category); 
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.

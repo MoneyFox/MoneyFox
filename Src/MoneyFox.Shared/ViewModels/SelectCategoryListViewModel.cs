@@ -21,16 +21,15 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Selects the clicked category and sends it to the message hub.
-        /// </summary>
-        public MvxCommand<Category> DoneCommand => new MvxCommand<Category>(Done);
-
-        /// <summary>
         ///     Closes this activity without selecting something.
         /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        private void Done(Category category)
+
+        /// <summary>
+        ///     Post selected category to message hub
+        /// </summary>
+        protected override void Selected(Category category)
         {
             MessageHub.Publish(new CategorySelectedMessage(this, category));
             Close(this);
