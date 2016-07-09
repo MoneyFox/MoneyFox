@@ -104,8 +104,8 @@ namespace MoneyFox.Droid.Fragments
             if (v.Id == Resource.Id.account_list)
             {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
-                menu.Add(Strings.EditLabel);
-                menu.Add(Strings.DeleteLabel);
+                menu.Add(0, 0, 0, Strings.EditLabel);
+                menu.Add(0, 1, 1, Strings.DeleteLabel);
             }
         }
 
