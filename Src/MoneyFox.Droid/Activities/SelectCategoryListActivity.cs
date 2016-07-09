@@ -56,17 +56,6 @@ namespace MoneyFox.Droid.Activities
         }
 
         /// <summary>
-        ///     Initialize the contents of the Activity's standard options menu.
-        /// </summary>
-        /// <param name="menu">The options menu in which you place your items.</param>
-        /// <returns>To be added.</returns>
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_select, menu);
-            return base.OnCreateOptionsMenu(menu);
-        }
-
-        /// <summary>
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
         /// <param name="item">The menu item that was selected.</param>
