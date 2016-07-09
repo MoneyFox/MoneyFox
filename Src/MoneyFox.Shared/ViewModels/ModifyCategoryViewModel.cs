@@ -97,9 +97,18 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            unitOfWork.CategoryRepository.Save(SelectedCategory);
+            if (!IsEdit && unitOfWork.CategoryRepository.Data.Any(
+                    a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
+                return;
+            }
 
-            Close(this);
+            if (unitOfWork.CategoryRepository.Save(SelectedCategory))
+            {
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now; 
+                Close(this);
+            }
         }
 
         private void DeleteCategory()
