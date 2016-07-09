@@ -294,6 +294,7 @@
     <Compile Include="Activities\Caching\FragmentCacheConfigurationCustomFragmentInfo.cs" />
     <Compile Include="Activities\Caching\MainActivityFragmentCacheInfoFactory.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\ModifyCategoryActivity.cs" />
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
@@ -431,6 +432,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\header_payment_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_modify_category.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
