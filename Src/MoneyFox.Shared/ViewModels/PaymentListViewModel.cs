@@ -110,9 +110,9 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         // TODO: Use the actual enum rather than magic strings - Seth Bartlett 7/1/2016 12:07PM
-        private void GoToAddPayment(string type)
+        private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
+            ShowViewModel<ModifyPaymentViewModel>( new { type = (PaymentType)Enum.Parse(typeof(PaymentType), paymentType) });
         }
 
         // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
