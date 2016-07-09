@@ -27,28 +27,26 @@ namespace MoneyFox.Shared.Manager
 
         public bool SavePayment(Payment payment)
         {
+            if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
             {
-                if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
-                {
-                    unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
-                    payment.RecurringPaymentId = 0;
-                }
-
-
-                bool handledRecuringPayment;
-                if (payment.RecurringPayment == null)
-                {
-                    handledRecuringPayment = true;
-                }
-                else
-                {
-                    handledRecuringPayment = unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
-                }
-
-                var saveWasSuccessful = handledRecuringPayment ? unitOfWork.PaymentRepository.Save(payment) : false;
-
-                return saveWasSuccessful;
+                unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
+                payment.RecurringPaymentId = 0;
             }
+
+
+            bool handledRecuringPayment;
+            if (payment.RecurringPayment == null)
+            {
+                handledRecuringPayment = true;
+            }
+            else
+            {
+                handledRecuringPayment = unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
+            }
+
+            var saveWasSuccessful = handledRecuringPayment ? unitOfWork.PaymentRepository.Save(payment) : false;
+
+            return saveWasSuccessful;
         }
 
         public void RemoveRecurringForPayment(Payment paymentToChange)
