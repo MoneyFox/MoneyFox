@@ -48,7 +48,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {type = Enum.Parse(typeof(PaymentType), paymentType) });
+            ShowViewModel<ModifyPaymentViewModel>(new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType) });
         }
 
         private void GoToAddAccount()
