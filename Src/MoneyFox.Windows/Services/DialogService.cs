@@ -9,6 +9,8 @@ namespace MoneyFox.Windows.Services
 {
     public class DialogService : IDialogService
     {
+        private LoadingDialog loadingDialog;
+
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. If no message is passed the dialog will have a Yes and No
         ///     Button
@@ -67,11 +69,11 @@ namespace MoneyFox.Windows.Services
             await dialog.ShowAsync();
         }
 
-        private LoadingDialog loadingDialog;
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async void ShowLoadingDialog() {
+        public async void ShowLoadingDialog()
+        {
             loadingDialog = new LoadingDialog();
             await loadingDialog.ShowAsync();
         }
@@ -79,7 +81,8 @@ namespace MoneyFox.Windows.Services
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        public void HideLoadingDialog(){
+        public void HideLoadingDialog()
+        {
             loadingDialog.Hide();
         }
     }

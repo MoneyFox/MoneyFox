@@ -5,10 +5,8 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -18,16 +16,16 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class ModifyCategoryViewModel : BaseViewModel
     {
-        private readonly IRepository<Category> categoryRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
 
         /// <summary>
         ///     Create a new instance of the view model.
         /// </summary>
         /// <param name="categoryRepository">Instance of the category repository to access the db.</param>
-        public ModifyCategoryViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
+        public ModifyCategoryViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
         }
 
@@ -87,7 +85,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
-                ? categoryRepository.Data.First(x => x.Id == selectedCategoryId)
+                ? unitOfWork.CategoryRepository.Data.First(x => x.Id == selectedCategoryId)
                 : new Category();
         }
 
@@ -101,9 +99,9 @@ namespace MoneyFox.Shared.ViewModels
 
             // temporary solution? I think selectedCategory wont be GC
             // refresh category cache and save current category
-            categoryRepository.Load();
+            unitOfWork.CategoryRepository.Load();
 
-            Category categoryInRepositoryWithSameName = categoryRepository.Data.FirstOrDefault(
+            Category categoryInRepositoryWithSameName = unitOfWork.CategoryRepository.Data.FirstOrDefault(
                 c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase));
 
             if (categoryInRepositoryWithSameName != null)
@@ -116,34 +114,34 @@ namespace MoneyFox.Shared.ViewModels
                 else
                 {
                     // update entry with new note
-                    if (categoryRepository.Delete(categoryInRepositoryWithSameName))
+                    if (unitOfWork.CategoryRepository.Delete(categoryInRepositoryWithSameName))
                     {
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
 
-                        if (categoryRepository.Save(new Category
+                        if (unitOfWork.CategoryRepository.Save(new Category
                         {
                             Name = SelectedCategory.Name,
                             Notes = SelectedCategory.Notes
                         }))
                         {
                             SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                            categoryRepository.Load();
+                            unitOfWork.CategoryRepository.Load();
                         }
                     }
                 }
             }
 
-            else if (categoryRepository.Save(SelectedCategory))
+            else if (unitOfWork.CategoryRepository.Save(SelectedCategory))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                categoryRepository.Load();
+                unitOfWork.CategoryRepository.Load();
             }
             Close(this);
         }
 
         private void DeleteCategory()
         {
-            if (categoryRepository.Delete(SelectedCategory))
+            if (unitOfWork.CategoryRepository.Delete(SelectedCategory))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }

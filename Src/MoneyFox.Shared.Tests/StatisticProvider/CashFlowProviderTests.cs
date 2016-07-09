@@ -23,10 +23,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -49,10 +46,13 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today,
                     Amount = 40
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Excution
-            var result = new CashFlowDataProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -65,11 +65,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
             //Setup
-            var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.SetupAllProperties();
-
-            var paymentRepository = paymentRepositorySetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -92,10 +89,13 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
 
             //Excution
-            var result = new CashFlowDataProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion

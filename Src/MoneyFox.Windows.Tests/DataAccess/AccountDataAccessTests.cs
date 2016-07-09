@@ -5,19 +5,21 @@ using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using SQLite.Net;
 
 namespace MoneyFox.Windows.Tests.DataAccess
 {
     [TestClass]
     public class AccountDataAccessTests
     {
-        private DatabaseManager connectionCreator;
+        private SQLiteConnection connection;
 
         [TestInitialize]
         public void Init()
         {
-            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore());
+            connection = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore())
+                .GetConnection();
         }
 
         [TestMethod]
@@ -32,7 +34,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 CurrentBalance = balance
             };
 
-            new AccountDataAccess(connectionCreator).SaveItem(account);
+            new AccountDataAccess(connection).SaveItem(account);
 
             Assert.IsTrue(account.Id >= 1);
             Assert.AreEqual(name, account.Name);
@@ -49,7 +51,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 CurrentBalance = balance
             };
 
-            var dataAccess = new AccountDataAccess(connectionCreator);
+            var dataAccess = new AccountDataAccess(connection);
             dataAccess.SaveItem(account);
 
             Assert.IsNull(account.Name);
@@ -82,7 +84,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var account3 = new Account();
             var account4 = new Account();
 
-            var dataAccess = new AccountDataAccess(connectionCreator);
+            var dataAccess = new AccountDataAccess(connection);
             dataAccess.SaveItem(account1);
             dataAccess.SaveItem(account2);
             dataAccess.SaveItem(account3);
@@ -107,7 +109,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 CurrentBalance = 1234
             };
 
-            var dataAccess = new AccountDataAccess(connectionCreator);
+            var dataAccess = new AccountDataAccess(connection);
             dataAccess.SaveItem(account);
 
             Assert.AreEqual(firstName, dataAccess.LoadList().FirstOrDefault(x => x.Id == account.Id).Name);
@@ -129,7 +131,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 CurrentBalance = 1234
             };
 
-            var dataAccess = new AccountDataAccess(connectionCreator);
+            var dataAccess = new AccountDataAccess(connection);
             dataAccess.SaveItem(account);
 
             Assert.IsTrue(dataAccess.LoadList(x => x.Id == account.Id).Any());

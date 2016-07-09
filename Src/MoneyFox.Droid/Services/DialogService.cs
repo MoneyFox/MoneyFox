@@ -7,9 +7,8 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using AndroidHUD;
 
-namespace MoneyFox.Droid.Services
-{
-    public class DialogService : IDialogService
+namespace MoneyFox.Droid.Services {
+    public class DialogService : IDialogService 
     {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
@@ -77,11 +76,13 @@ namespace MoneyFox.Droid.Services
             return tcs.Task;
         }
 
-        public void ShowLoadingDialog() {
+        public void ShowLoadingDialog()
+        {
             AndHUD.Shared.Show(CurrentActivity, Strings.LoadingLabel);
         }
 
-        public void HideLoadingDialog() {
+        public void HideLoadingDialog() 
+        {
             AndHUD.Shared.Dismiss(CurrentActivity);
         }
     }

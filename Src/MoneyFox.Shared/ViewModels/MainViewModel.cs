@@ -1,33 +1,35 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using System;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class MainViewModel : BaseViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public MainViewModel(IAccountRepository accountRepository)
+        public MainViewModel(IUnitOfWork unitOfWork)
         {
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => accountRepository.Data.Count > 1;
+        public bool IsTransferAvailable => unitOfWork.AccountRepository.Data.Count > 1;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
+        public bool IsAddIncomeAvailable => unitOfWork.AccountRepository.Data.Count > 0;
 
         /// <summary>
-        /// Indicates if the button to add a new expense should be enabled.
+        ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
+        public bool IsAddExpenseAvailable => unitOfWork.AccountRepository.Data.Count > 0;
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
@@ -44,14 +46,9 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        /// <summary>
-        ///     Navigates to the recurring payment overview.
-        /// </summary>
-        public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
-
         private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
+            ShowViewModel<ModifyPaymentViewModel>(new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType) });
         }
 
         private void GoToAddAccount()
@@ -64,16 +61,10 @@ namespace MoneyFox.Shared.ViewModels
             ShowViewModel<AboutViewModel>();
         }
 
-        private void GoToRecurringPaymentList()
-        {
-            ShowViewModel<RecurringPaymentListViewModel>();
-        }
-
-        //Only used in Android
-        public void ShowMenuAndFirstDetail()
-        {
-            ShowViewModel<MenuViewModel>();
+        //Used in Android and IOS.
+        public void ShowMenuAndFirstDetail() {
             ShowViewModel<AccountListViewModel>();
+            ShowViewModel<MenuViewModel>();
         }
     }
 }

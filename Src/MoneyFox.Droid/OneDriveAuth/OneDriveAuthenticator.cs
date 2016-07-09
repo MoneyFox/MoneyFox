@@ -5,7 +5,7 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Droid
+namespace MoneyFox.Droid.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
@@ -27,8 +27,8 @@ namespace MoneyFox.Droid
                     ServiceConstants.Scopes,
                     ServiceConstants.MSA_CLIENT_SECRET,
                     null, null,
-                    new CustomServiceInfoProvider());
-                try
+                    new DroidServiceInfoProvider());
+                try 
                 {
                     await oneDriveClient.AuthenticateAsync();
                 }
