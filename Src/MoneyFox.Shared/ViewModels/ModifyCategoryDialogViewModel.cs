@@ -3,6 +3,7 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -15,17 +16,17 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class ModifyCategoryDialogViewModel : BaseViewModel
     {
-        private readonly IRepository<Category> categoryRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
 
         /// <summary>
         ///     Create new instance of the view model.
         /// </summary>
-        /// <param name="categoryRepository">Instance of the category repository to access the db.</param>
+        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork"/>.</param>
         /// <param name="dialogService">Dialogservice to interact with the user.</param>
-        public ModifyCategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
+        public ModifyCategoryDialogViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
         }
 
@@ -70,14 +71,14 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             if (
-                categoryRepository.Data.Any(
+                unitOfWork.CategoryRepository.Data.Any(
                     x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            if (categoryRepository.Save(Selected))
+            if (unitOfWork.CategoryRepository.Save(Selected))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }

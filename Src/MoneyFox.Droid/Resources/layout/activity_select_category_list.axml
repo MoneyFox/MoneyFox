@@ -30,13 +30,13 @@
             android:layout_height="match_parent"
             android:listSelector="@drawable/list_item_selector"
             local:MvxItemTemplate="@layout/listitem_category"
-            local:MvxBind="ItemsSource Categories; ItemClick DoneCommand" />
+            local:MvxBind="ItemsSource Categories; ItemClick SelectCommand" />
     </LinearLayout>
-  <android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab_create_category"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
-    android:layout_margin="@dimen/fab_margin"
-    android:src="@drawable/ic_add" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add" />
 </android.support.design.widget.CoordinatorLayout>

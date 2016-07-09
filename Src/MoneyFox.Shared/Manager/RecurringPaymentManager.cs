@@ -3,19 +3,20 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentManager paymentManager;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository)
+        public RecurringPaymentManager(IUnitOfWork unitOfWork,
+            IPaymentManager paymentManager)
         {
-            this.paymentRepository = paymentRepository;
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
+            this.paymentManager = paymentManager;
         }
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public void CheckRecurringPayments()
         {
-            var paymentList = paymentRepository.LoadRecurringList();
+            var paymentList = paymentManager.LoadRecurringPaymentList();
 
             foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
             {
@@ -33,8 +34,8 @@ namespace MoneyFox.Shared.Manager
                 {
                     var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
 
-                    var paymentSucceded = paymentRepository.Save(newPayment);
-                    var accountSucceded = accountRepository.AddPaymentAmount(newPayment);
+                    var paymentSucceded = unitOfWork.PaymentRepository.Save(newPayment);
+                    var accountSucceded = paymentManager.AddPaymentAmount(newPayment);
                     if (paymentSucceded && accountSucceded)
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 }
@@ -43,7 +44,7 @@ namespace MoneyFox.Shared.Manager
 
         private Payment GetLastOccurence(Payment payment)
         {
-            var transcationList = paymentRepository.Data
+            var transcationList = unitOfWork.PaymentRepository.Data
                 .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)
                 .ToList();

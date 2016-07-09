@@ -4,6 +4,7 @@ using System.Linq;
 using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 
@@ -11,7 +12,7 @@ namespace MoneyFox.Shared.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
-        protected readonly ICategoryRepository CategoryRepository;
+        protected readonly IUnitOfWork UnitOfWork;
         protected readonly IDialogService DialogService;
 
         private string searchText;
@@ -19,15 +20,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="ICategoryRepository" />.</param>
+        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
+        protected AbstractCategoryListViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService)
         {
-            CategoryRepository = categoryRepository;
+            UnitOfWork = unitOfWork;
             DialogService = dialogService;
 
-            Categories = CategoryRepository.Data;
+            Categories = UnitOfWork.CategoryRepository.Data;
 
             Source = CreateGroup();
         }
@@ -58,6 +59,11 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
 
         /// <summary>
+        ///     Selects the clicked category and sends it to the message hub.
+        /// </summary>
+        public MvxCommand<Category> SelectCommand => new MvxCommand<Category>(Selected);
+
+        /// <summary>
         /// Create and save a new category group
         /// </summary>
         public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
@@ -73,6 +79,11 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         public bool IsCategoriesEmpty => !Categories.Any();
+
+        /// <summary>
+        ///     Handle the selection of a category in the list
+        /// </summary>
+        protected abstract void Selected(Category category); 
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
@@ -95,13 +106,13 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (CategoryRepository.Data.Where(
+                    (UnitOfWork.CategoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
+                Categories = new ObservableCollection<Category>(UnitOfWork.CategoryRepository.Data.OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }
@@ -123,7 +134,7 @@ namespace MoneyFox.Shared.ViewModels
                     Categories.Remove(categoryToDelete);
                 }
 
-                CategoryRepository.Delete(categoryToDelete);
+                UnitOfWork.CategoryRepository.Delete(categoryToDelete);
             }
         }
     }

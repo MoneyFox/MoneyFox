@@ -4,20 +4,21 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public MonthlyExpensesDataProvider(IPaymentRepository paymentRepository)
+        public MonthlyExpensesDataProvider(IUnitOfWork unitOfWork)
         {
-            this.paymentRepository = paymentRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-            => paymentRepository.Data
+            => unitOfWork.PaymentRepository.Data
                 .Where(x => x.Type == (int) PaymentType.Expense)
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))

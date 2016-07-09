@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
@@ -30,7 +31,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Amount = amount
             };
 
-            new RecurringPaymentDataAccess(connectionCreator).SaveItem(payment);
+            new RecurringPaymentDataAccess(connectionCreator.GetConnection()).SaveItem(payment);
 
             Assert.IsTrue(payment.Id >= 1);
             Assert.AreEqual(amount, payment.Amount);
@@ -41,7 +42,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var payment = new RecurringPayment();
 
-            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator.GetConnection());
             dataAccess.SaveItem(payment);
 
             Assert.AreEqual(0, payment.Amount);
@@ -68,7 +69,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Note = "MultiRecPayment2"
             };
 
-            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator.GetConnection());
             dataAccess.SaveItem(payment1);
             dataAccess.SaveItem(payment2);
 
@@ -89,7 +90,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Amount = firstAmount
             };
 
-            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator.GetConnection());
             dataAccess.SaveItem(payment);
 
             Assert.AreEqual(firstAmount, dataAccess.LoadList().FirstOrDefault(x => x.Id == payment.Id).Amount);
@@ -98,7 +99,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             dataAccess.SaveItem(payment);
 
             var categories = dataAccess.LoadList();
-            Assert.IsFalse(categories.Any(x => x.Amount == firstAmount));
+            Assert.IsFalse(categories.Any(x => Math.Abs(x.Amount - firstAmount) < 0.1));
             Assert.AreEqual(secondAmount, categories.First(x => x.Id == payment.Id).Amount);
         }
 
@@ -110,7 +111,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Note = "paymentToDelete"
             };
 
-            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator.GetConnection());
             dataAccess.SaveItem(payment);
 
             Assert.IsTrue(dataAccess.LoadList(x => x.Id == payment.Id).Any());

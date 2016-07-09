@@ -10,10 +10,9 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IRepository<Account>
     {
         private readonly IDataAccess<Account> dataAccess;
-        private readonly INotificationService notificationService;
 
         private ObservableCollection<Account> data;
 
@@ -21,23 +20,15 @@ namespace MoneyFox.Shared.Repositories
         ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
-        /// <param name="notificationService">Service to notify user in case of errors.</param>
-        public AccountRepository(IDataAccess<Account> dataAccess,
-            INotificationService notificationService)
+        public AccountRepository(IDataAccess<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
-            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Account>();
             Load();
         }
 
-        public Account Selected { get; set; }
-
-        public Account FindById(int id)
-        {
-            return data.FirstOrDefault(a => a.Id == id);
-        }
+        public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
 
         /// <summary>
         ///     Cached account data
@@ -68,14 +59,10 @@ namespace MoneyFox.Shared.Repositories
 
             if (account.Id == 0)
             {
-                data.Add(account);
+                Data.Add(account);
             }
-            if (!dataAccess.SaveItem(account))
-            {
-                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
-                return false;
-            }
-            return true;
+
+            return dataAccess.SaveItem(account);
         }
 
         /// <summary>
@@ -84,13 +71,8 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete)
         {
-            data.Remove(accountToDelete);
-            if (!dataAccess.DeleteItem(accountToDelete))
-            {
-                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                return false;
-            }
-            return true;
+            Data.Remove(accountToDelete);
+            return dataAccess.DeleteItem(accountToDelete);
         }
 
         /// <summary>
@@ -104,112 +86,6 @@ namespace MoneyFox.Shared.Repositories
             {
                 Data.Add(account);
             }
-        }
-
-        /// <summary>
-        ///     Adds the payment amount from the selected account
-        /// </summary>
-        /// <param name="payment">Payment to add the account from.</param>
-        public bool AddPaymentAmount(Payment payment)
-        {
-            if (!payment.IsCleared)
-            {
-                return false;
-            }
-
-            PrehandleAddIfTransfer(payment);
-
-            Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
-                    ? x
-                    : -x;
-
-            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
-            {
-                payment.ChargedAccount = data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
-            }
-
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
-            return true;
-        }
-
-        /// <summary>
-        ///     Removes the payment Amount from the charged account of this payment
-        /// </summary>
-        /// <param name="payment">Payment to remove the account from.</param>
-        public bool RemovePaymentAmount(Payment payment)
-        {
-            var succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
-            return succeded;
-        }
-
-        /// <summary>
-        ///     Removes the payment Amount from the selected account
-        /// </summary>
-        /// <param name="payment">Payment to remove.</param>
-        /// <param name="account">Account to remove the amount from.</param>
-        public bool RemovePaymentAmount(Payment payment, Account account)
-        {
-            if (!payment.IsCleared)
-            {
-                return false;
-            }
-
-            PrehandleRemoveIfTransfer(payment);
-
-            Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
-                    ? -x
-                    : x;
-
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(account));
-            return true;
-        }
-
-        private void PrehandleRemoveIfTransfer(Payment payment)
-        {
-            if (payment.Type == (int) PaymentType.Transfer)
-            {
-                Func<double, double> amountFunc = x => -x;
-                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
-            }
-        }
-
-        private void HandlePaymentAmount(Payment payment,
-            Func<double, double> amountFunc,
-            Func<Payment, Account> getAccountFunc)
-        {
-            var account = getAccountFunc(payment);
-            if (account == null)
-            {
-                return;
-            }
-
-            account.CurrentBalance += amountFunc(payment.Amount);
-            Save(account);
-        }
-
-        private void PrehandleAddIfTransfer(Payment payment)
-        {
-            if (payment.Type == (int) PaymentType.Transfer)
-            {
-                Func<double, double> amountFunc = x => x;
-                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
-            }
-        }
-
-        private Func<Payment, Account> GetTargetAccountFunc()
-        {
-            Func<Payment, Account> targetAccountFunc =
-                trans => Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
-            return targetAccountFunc;
-        }
-
-        private Func<Payment, Account> GetChargedAccountFunc(Account account)
-        {
-            Func<Payment, Account> accountFunc =
-                trans => Data.FirstOrDefault(x => x.Id == account.Id);
-            return accountFunc;
         }
     }
 }
