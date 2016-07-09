@@ -97,45 +97,8 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            // temporary solution? I think selectedCategory wont be GC
-            // refresh category cache and save current category
-            unitOfWork.CategoryRepository.Load();
+            unitOfWork.CategoryRepository.Save(SelectedCategory);
 
-            Category categoryInRepositoryWithSameName = unitOfWork.CategoryRepository.Data.FirstOrDefault(
-                c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase));
-
-            if (categoryInRepositoryWithSameName != null)
-            {
-                if (string.Equals(categoryInRepositoryWithSameName.Notes, SelectedCategory.Notes))
-                {
-                    await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
-                    return;
-                }
-                else
-                {
-                    // update entry with new note
-                    if (unitOfWork.CategoryRepository.Delete(categoryInRepositoryWithSameName))
-                    {
-                        SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-
-                        if (unitOfWork.CategoryRepository.Save(new Category
-                        {
-                            Name = SelectedCategory.Name,
-                            Notes = SelectedCategory.Notes
-                        }))
-                        {
-                            SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                            unitOfWork.CategoryRepository.Load();
-                        }
-                    }
-                }
-            }
-
-            else if (unitOfWork.CategoryRepository.Save(SelectedCategory))
-            {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                unitOfWork.CategoryRepository.Load();
-            }
             Close(this);
         }
 
