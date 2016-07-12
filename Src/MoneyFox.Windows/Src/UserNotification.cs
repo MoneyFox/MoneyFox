@@ -31,6 +31,9 @@ namespace MoneyFox.Windows
                         TileLarge = GetBindingLargeContent(income, spending, earnings)
                     }
                 };
+
+                var temp = content.GetContent();
+
                 // Update Tile
                 TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
             }
@@ -42,7 +45,7 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = "Assets/Square150x150Logo.scale-400.png"
+                    Source = "Assets/Square150x150Logo.png"
                 },
                 Children =
                 {
@@ -81,7 +84,7 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = "Assets/Wide310x150Logo.scale-400.png"
+                    Source = "Assets/Wide310x150Logo.png"
                 },
                 Children =
                 {
@@ -118,7 +121,7 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = "Assets/Square310x310Logo.scale-400.png"
+                    Source = "Assets/Square310x310Logo.png"
                 },
                 Children =
                 {
