@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
@@ -68,25 +69,33 @@ namespace MoneyFox.Shared.ViewModels
 
         public async void Login()
         {
-            if (connectivity.IsConnected) 
+            if (!connectivity.IsConnected)
             {
-                dialogService.ShowLoadingDialog();
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            }
 
+            dialogService.ShowLoadingDialog();
+            try
+            {
                 await backupManager.Login();
 
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
-
-                dialogService.HideLoadingDialog();
-            } 
-            else 
+            }
+            catch (BackupException)
             {
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.AuthenticationFailedMessage);
+            }
+            finally
+            {
+                dialogService.HideLoadingDialog();
             }
         }
 
-        public async void Logout() {
-            if (connectivity.IsConnected) {
+        public async void Logout()
+        {
+            if (connectivity.IsConnected)
+            {
                 dialogService.ShowLoadingDialog();
 
                 await backupManager.Logout();
@@ -100,7 +109,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            if(!IsLoggedIn || !connectivity.IsConnected) return;
+            if (!IsLoggedIn || !connectivity.IsConnected) return;
 
             IsCheckingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
