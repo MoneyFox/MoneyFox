@@ -95,7 +95,6 @@ namespace MoneyFox.Shared.Manager
             await backupService.Login();
         }
 
-
         public async Task Logout()
         {
             await backupService.Logout();

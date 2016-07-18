@@ -78,6 +78,8 @@ namespace MoneyFox.Shared.ViewModels
             try
             {
                 await backupManager.Login();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsLoggedIn));
 
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
@@ -99,6 +101,8 @@ namespace MoneyFox.Shared.ViewModels
                 dialogService.ShowLoadingDialog();
 
                 await backupManager.Logout();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsLoggedIn));
 
                 BackupAvailable = false;
                 BackupLastModified = new DateTime();
