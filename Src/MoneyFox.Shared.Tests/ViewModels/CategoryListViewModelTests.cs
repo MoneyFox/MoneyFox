@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
@@ -22,13 +23,16 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Ctor_Default()
         {
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
+            var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Category>
             {
                 new Category {Name = string.Empty}
             });
 
-            var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IDialogService>().Object);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoSetup.Object);
+
+            var vm = new CategoryListViewModel(unitOfWork.Object, new Mock<IDialogService>().Object);
             vm.Source.ShouldNotBeNull();
         }
     }

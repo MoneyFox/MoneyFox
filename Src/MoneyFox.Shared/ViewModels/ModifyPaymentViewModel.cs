@@ -10,17 +10,17 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -29,50 +29,53 @@ namespace MoneyFox.Shared.ViewModels
         private double amount;
         private Payment selectedPayment;
 
-        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository,
+        public ModifyPaymentViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService,
             IPaymentManager paymentManager,
             IDefaultManager defaultManager)
         {
-            this.paymentRepository = paymentRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
-            this.accountRepository = accountRepository;
 
-            TargetAccounts = accountRepository.Data;
-            ChargedAccounts = accountRepository.Data;
+            TargetAccounts = unitOfWork.AccountRepository.Data;
+            ChargedAccounts = unitOfWork.AccountRepository.Data;
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
         public int PaymentId { get; private set; }
 
         /// <summary>
-        ///     Init the view. Is executed after the constructor call
+        ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
-        /// <param name="typeString">Type of the payment.</param>
-        /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
-        public void Init(string typeString, int paymentId, bool isEdit = false)
+        /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
+        public void Init(PaymentType type, int paymentId = 0)
         {
-            PaymentId = paymentId;
-            selectedPayment = paymentRepository.FindById(PaymentId);
-            IsEdit = isEdit;
-            IsEndless = true;
-
-            amount = 0;
-
-            if (IsEdit)
+            if (paymentId == 0) 
             {
+                IsEdit = false;
+                IsEndless = true;
+
+                amount = 0;
+                PrepareDefault(type);
+            } 
+            else 
+            {
+                IsEdit = true;
+                PaymentId = paymentId;
+                selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
                 PrepareEdit();
-            }
-            else
-            {
-                // TODO: Remove magic string and just pass in the enum - Seth Bartlett 7/1/2016 12:08PM
-                PrepareDefault(typeString);
+
             }
 
-            AccountBeforeEdit = SelectedPayment.ChargedAccount;
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;            
+        }
+        private void PrepareDefault(PaymentType type) {
+            SetDefaultPayment(type);
+            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == PaymentType.Transfer;
+            EndDate = DateTime.Now;
         }
 
         private void PrepareEdit()
@@ -87,16 +90,6 @@ namespace MoneyFox.Shared.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-        }
-
-        private void PrepareDefault(string typeString)
-        {
-            var type = (PaymentType) Enum.Parse(typeof(PaymentType), typeString);
-
-            SetDefaultPayment(type);
-            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
-            IsTransfer = type == PaymentType.Transfer;
-            EndDate = DateTime.Now;
         }
 
         private void SetDefaultPayment(PaymentType paymentType)
@@ -142,10 +135,12 @@ namespace MoneyFox.Shared.ViewModels
             await PrepareRecurringPayment();
 
             // Save item or update the payment and add the amount to the account
-            var paymentSucceded = paymentRepository.Save(SelectedPayment);
-            var accountSucceded = accountRepository.AddPaymentAmount(SelectedPayment);
+            var paymentSucceded = paymentManager.SavePayment(SelectedPayment);
+            var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
             if (paymentSucceded && accountSucceded)
+            {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            }
 
             Close(this);
         }
@@ -154,13 +149,13 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
+                paymentManager.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
             }
         }
 
         private async Task PrepareRecurringPayment()
         {
-            if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPayment))
+            if ((IsEdit && await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
                 || SelectedPayment.IsRecurring)
             {
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
@@ -180,13 +175,13 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
-                if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
+                if (await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
                 {
-                    paymentRepository.DeleteRecurring(SelectedPayment);
+                    paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }
 
-                var paymentSucceded = paymentRepository.Delete(SelectedPayment);
-                var accountSucceded = accountRepository.RemovePaymentAmount(SelectedPayment);
+                var paymentSucceded = unitOfWork.PaymentRepository.Delete(SelectedPayment);
+                var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);

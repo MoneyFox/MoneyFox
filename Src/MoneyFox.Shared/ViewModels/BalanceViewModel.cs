@@ -2,6 +2,7 @@
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -10,14 +11,11 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        protected readonly IAccountRepository AccountRepository;
-        protected readonly IPaymentRepository PaymentRepository;
+        protected readonly IUnitOfWork UnitOfWork;
 
-        public BalanceViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository)
+        public BalanceViewModel(IUnitOfWork unitOfWork)
         {
-            AccountRepository = accountRepository;
-            PaymentRepository = paymentRepository;
+            UnitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -50,7 +48,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance() => AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
+        protected virtual double GetTotalBalance() => UnitOfWork.AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -59,7 +57,9 @@ namespace MoneyFox.Shared.ViewModels
         protected virtual double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
+            var unclearedPayments = UnitOfWork.PaymentRepository.Data
+                .Where(p => !p.IsCleared)
+                .Where(p => p.Date.Date <= Utilities.GetEndOfMonth());
 
             foreach (var payment in unclearedPayments)
             {

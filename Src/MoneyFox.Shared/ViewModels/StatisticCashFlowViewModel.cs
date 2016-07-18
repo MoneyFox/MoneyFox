@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -13,9 +14,9 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository)
+        public StatisticCashFlowViewModel(IUnitOfWork unitOfWork)
         {
-            cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
+            cashFlowDataProvider = new CashFlowDataProvider(unitOfWork);
 
             CashFlowModel = GetCashFlowModel();
         }
