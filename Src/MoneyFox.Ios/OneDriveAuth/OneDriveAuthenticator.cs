@@ -50,5 +50,10 @@ namespace MoneyFox.Ios.OneDriveAuth {
             }
             return oneDriveClient;
         }
+
+        public async Task LogoutAsync()
+        {
+            await oneDriveClient.SignOutAsync();
+        }
     }
 }
