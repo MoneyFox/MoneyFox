@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -32,11 +31,13 @@ namespace MoneyFox.Shared.Manager
                 unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
-
-
+            
             bool handledRecuringPayment;
             handledRecuringPayment = payment.RecurringPayment == null || unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
-            payment.RecurringPaymentId = payment.RecurringPayment.Id;
+            if (payment.RecurringPayment != null)
+            {
+                payment.RecurringPaymentId = payment.RecurringPayment.Id;
+            }
 
             var saveWasSuccessful = handledRecuringPayment && unitOfWork.PaymentRepository.Save(payment);
 
