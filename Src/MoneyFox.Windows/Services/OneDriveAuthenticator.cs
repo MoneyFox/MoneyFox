@@ -52,5 +52,9 @@ namespace MoneyFox.Windows.Services
             }
             return oneDriveClient;
         }
+
+        public async Task LogoutAsync() {
+            await oneDriveClient.SignOutAsync();
+        }
     }
 }

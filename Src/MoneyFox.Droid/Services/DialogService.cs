@@ -19,6 +19,8 @@ namespace MoneyFox.Droid.Services {
         /// <param name="message">Text to display.</param>
         public Task ShowMessage(string title, string message)
         {
+            // We have to hide the loading dialog first, otherwise it get's stuck.
+            HideLoadingDialog();
             var tcs = new TaskCompletionSource<bool>();
 
             var builder = new AlertDialog.Builder(CurrentActivity);
@@ -64,6 +66,8 @@ namespace MoneyFox.Droid.Services {
         public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null)
         {
+            // We have to hide the loading dialog first, otherwise it get's stuck.
+            HideLoadingDialog();
             var tcs = new TaskCompletionSource<bool>();
 
             var builder = new AlertDialog.Builder(CurrentActivity);
@@ -76,11 +80,17 @@ namespace MoneyFox.Droid.Services {
             return tcs.Task;
         }
 
+        /// <summary>
+        ///     Shows a loading dialog on the whole display.
+        /// </summary>
         public void ShowLoadingDialog()
         {
             AndHUD.Shared.Show(CurrentActivity, Strings.LoadingLabel);
         }
 
+        /// <summary>
+        ///     Closes the Loading Dialog.
+        /// </summary>
         public void HideLoadingDialog() 
         {
             AndHUD.Shared.Dismiss(CurrentActivity);

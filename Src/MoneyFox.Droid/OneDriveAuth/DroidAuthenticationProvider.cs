@@ -61,9 +61,11 @@ namespace MoneyFox.Droid.OneDriveAuth {
             return null;
         }
 
-        public override Task SignOutAsync()
+        public override async Task SignOutAsync()
         {
-            throw new NotImplementedException();
+            var store = AccountStore.Create(Application.Context);
+            await store.DeleteAsync(store.FindAccountsForService(ServiceConstants.KEY_STORE_TAG_ONEDRIVE).FirstOrDefault(),
+                ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
         }
 
         private Task<IDictionary<string, string>> ShowWebView() 
@@ -85,6 +87,7 @@ namespace MoneyFox.Droid.OneDriveAuth {
                     AccountStore.Create(Application.Context).Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
                     tcs.SetResult(eventArgs.Account.Properties);
                 }
+                tcs.SetResult(null);
             };
 
             var intent = auth.GetUI(Application.Context);

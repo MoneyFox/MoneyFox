@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Android.Widget;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid.OneDriveAuth
@@ -37,7 +39,7 @@ namespace MoneyFox.Droid.OneDriveAuth
                     Debug.Write(ex);
                 }
             }
-
+            
             try
             {
                 if (!oneDriveClient.IsAuthenticated)
@@ -54,17 +56,16 @@ namespace MoneyFox.Droid.OneDriveAuth
                 {
                     if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
                     {
-                        await dialogService.ShowMessage(
-                            "Authentication failed",
-                            "Authentication failed");
+                        throw new BackupException("Authentication failed");
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
             }
             return oneDriveClient;
+        }
+
+        public async Task LogoutAsync() {
+            await oneDriveClient.SignOutAsync();
         }
     }
 }
