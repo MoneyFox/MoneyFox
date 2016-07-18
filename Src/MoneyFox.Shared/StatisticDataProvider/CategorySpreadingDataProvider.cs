@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IRepository<Category> categoryRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CategorySpreadingDataProvider(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        public CategorySpreadingDataProvider(IUnitOfWork unitOfWork)
         {
-            this.paymentRepository = paymentRepository;
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -28,7 +26,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             // Get all Payments inlcuding income.
-            return GetSpreadingStatisticItems(paymentRepository.Data
+            return GetSpreadingStatisticItems(unitOfWork.PaymentRepository.Data
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
                 .ToList());

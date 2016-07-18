@@ -17,27 +17,23 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CategorySpreadingDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
+            new CategorySpreadingDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
         }
 
         [TestMethod]
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
             var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 2, Name = "Ausgehen"}
-            });
+            }));
 
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            var categoryRepo = categoryRepoSetup.Object;
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -66,11 +62,15 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.Data.First(),
                     CategoryId = 1
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
 
             //Excution
             var result =
-                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -82,22 +82,19 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_CalculateIncome()
         {
             //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
                 new Category {Id = 3, Name = "Foo"}
-            });
+            }));
 
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            var categoryRepo = categoryRepoSetup.Object;
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -135,11 +132,15 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.Data[2],
                     CategoryId = 3
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
 
             //Excution
             var result =
-                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -152,22 +153,19 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
             var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupAllProperties();
 
-            var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
                 new Category {Id = 3, Name = "Bier"}
-            });
+            }));
 
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            var categoryRepo = categoryRepoSetup.Object;
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -196,11 +194,15 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.Data[2],
                     CategoryId = 3
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
 
             //Excution
             var result =
-                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -212,14 +214,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_AddOtherItem()
         {
             //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
             var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
@@ -229,10 +225,12 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 new Category {Id = 6, Name = "Limoncella"},
                 new Category {Id = 7, Name = "Spagetthi"},
                 new Category {Id = 8, Name = "Tomaten"}
-            });
+            }));
 
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
+            var categoryRepo = categoryRepoSetup.Object;
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -306,11 +304,15 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.Data[7],
                     CategoryId = 8
                 }
-            });
+            }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
 
             //Excution
             var result =
-                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

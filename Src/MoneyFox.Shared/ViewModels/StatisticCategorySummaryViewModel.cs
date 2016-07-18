@@ -11,10 +11,9 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
 
-        public StatisticCategorySummaryViewModel(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        public StatisticCategorySummaryViewModel(IUnitOfWork unitOfWork)
         {
-            categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
+            categorySummaryDataDataProvider = new CategorySummaryDataProvider(unitOfWork);
         }
 
         /// <summary>

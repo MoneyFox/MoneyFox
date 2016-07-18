@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using Moq;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -16,31 +16,7 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void Constructor_NullValues_NoException()
         {
-            new RepositoryManager(null, null, null, null).ShouldNotBeNull();
-        }
-
-        [TestMethod]
-        public void ReloadData_SelectedNotNull_SelectedSetToNull()
-        {
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var accountRepo = accountRepoSetup.Object;
-            var paymentRepository = paymentRepoSetup.Object;
-            var categoryRepo = categoryRepoSetup.Object;
-
-            paymentRepository.Selected = new Payment();
-
-            new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
-                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
-
-            Assert.IsNull(paymentRepository.Selected);
+            new RepositoryManager(null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -50,66 +26,33 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentsLoaded = false;
             var categoryLoaded = false;
 
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
+            var accountRepoSetup = new Mock<IRepository<Account>>();
+            accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
                 .Callback(() => accountsLoaded = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
+            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>());
             paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Callback(() => paymentsLoaded = true);
 
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupAllProperties();
+            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
-            var accountRepo = accountRepoSetup.Object;
-            var paymentRepository = paymentRepoSetup.Object;
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoSetup .Object);
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoSetup.Object);
 
-            new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
-                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
-                .ReloadData();
+            new RepositoryManager(unitOfWork.Object,
+                new PaymentManager(unitOfWork.Object,
+                    new Mock<IDialogService>().Object)).ReloadData();
 
             Assert.IsTrue(accountsLoaded);
             Assert.IsTrue(paymentsLoaded);
             Assert.IsTrue(categoryLoaded);
-        }
-
-        [TestMethod]
-        public void ReloadData_UnclearedPayment_Clear()
-        {
-            var account = new Account {Id = 1, CurrentBalance = 40};
-            var payment = new Payment
-            {
-                ChargedAccount = account,
-                ChargedAccountId = 1,
-                IsCleared = false,
-                Date = DateTime.Today.AddDays(-3)
-            };
-
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-            paymentRepoSetup.Setup(x => x.GetUnclearedPayments())
-                .Returns(() => new List<Payment> {payment});
-
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var accountRepo = accountRepoSetup.Object;
-            var paymentRepository = paymentRepoSetup.Object;
-
-            accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account});
-
-            new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
-                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
-                .ReloadData();
-
-            Assert.IsTrue(payment.IsCleared);
         }
     }
 }

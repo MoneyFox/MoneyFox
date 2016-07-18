@@ -32,7 +32,7 @@ namespace MoneyFox.Windows.Shortcuts
             HockeyClient.Current.TrackEvent("Refresh Tile");
 
             var cashFlow =
-                new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>())
+                new CashFlowDataProvider(Mvx.Resolve<IUnitOfWork>())
                     .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
             Mvx.Resolve<ITileUpdateService>()
