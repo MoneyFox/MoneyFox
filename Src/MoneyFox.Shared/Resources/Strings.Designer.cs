@@ -215,6 +215,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authentication failed.
+        /// </summary>
+        public static string AuthenticationFailedMessage {
+            get {
+                return ResourceManager.GetString("AuthenticationFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
         public static string BackupFailedMessage {
@@ -941,6 +950,15 @@ namespace MoneyFox.Shared.Resources {
         public static string ShortcutsTitle {
             get {
                 return ResourceManager.GetString("ShortcutsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong....
+        /// </summary>
+        public static string SomethingWentWrongTitle {
+            get {
+                return ResourceManager.GetString("SomethingWentWrongTitle", resourceCulture);
             }
         }
         

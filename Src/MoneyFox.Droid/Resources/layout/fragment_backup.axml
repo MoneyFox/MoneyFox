@@ -11,7 +11,22 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+      <Button
+            android:id="@+id/btn_login"
+            android:text="@string/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            local:MvxBind="Click LoginCommand; Visibility InvertedVisibility(IsLoggedIn)" />
+      <Button
+            android:id="@+id/btn_logout"
+            android:text="@string/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            local:MvxBind="Click LogoutCommand; Visibility Visibility(IsLoggedIn)" />
+
+      <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
@@ -23,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            local:MvxBind="Click BackupCommand" />
+            local:MvxBind="Click BackupCommand; Enabled IsLoggedIn" />
         <TextView
             android:text="@string/restore_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
