@@ -97,46 +97,18 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            // temporary solution? I think selectedCategory wont be GC
-            // refresh category cache and save current category
-            unitOfWork.CategoryRepository.Load();
-
-            Category categoryInRepositoryWithSameName = unitOfWork.CategoryRepository.Data.FirstOrDefault(
-                c => string.Equals(c.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase));
-
-            if (categoryInRepositoryWithSameName != null)
+            if (!IsEdit && unitOfWork.CategoryRepository.Data.Any(
+                    a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
-                if (string.Equals(categoryInRepositoryWithSameName.Notes, SelectedCategory.Notes))
-                {
-                    await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
-                    return;
-                }
-                else
-                {
-                    // update entry with new note
-                    if (unitOfWork.CategoryRepository.Delete(categoryInRepositoryWithSameName))
-                    {
-                        SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-
-                        if (unitOfWork.CategoryRepository.Save(new Category
-                        {
-                            Name = SelectedCategory.Name,
-                            Notes = SelectedCategory.Notes
-                        }))
-                        {
-                            SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                            unitOfWork.CategoryRepository.Load();
-                        }
-                    }
-                }
+                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
+                return;
             }
 
-            else if (unitOfWork.CategoryRepository.Save(SelectedCategory))
+            if (unitOfWork.CategoryRepository.Save(SelectedCategory))
             {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-                unitOfWork.CategoryRepository.Load();
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now; 
+                Close(this);
             }
-            Close(this);
         }
 
         private void DeleteCategory()

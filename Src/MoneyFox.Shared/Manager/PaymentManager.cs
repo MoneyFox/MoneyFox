@@ -35,16 +35,10 @@ namespace MoneyFox.Shared.Manager
 
 
             bool handledRecuringPayment;
-            if (payment.RecurringPayment == null)
-            {
-                handledRecuringPayment = true;
-            }
-            else
-            {
-                handledRecuringPayment = unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
-            }
+            handledRecuringPayment = payment.RecurringPayment == null || unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
+            payment.RecurringPaymentId = payment.RecurringPayment.Id;
 
-            var saveWasSuccessful = handledRecuringPayment ? unitOfWork.PaymentRepository.Save(payment) : false;
+            var saveWasSuccessful = handledRecuringPayment && unitOfWork.PaymentRepository.Save(payment);
 
             return saveWasSuccessful;
         }

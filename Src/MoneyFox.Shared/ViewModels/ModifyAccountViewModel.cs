@@ -100,7 +100,14 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void SaveAccount()
         {
-            if (unitOfWork.AccountRepository.Data.Any(
+
+            if (string.IsNullOrEmpty(SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            if (!IsEdit && unitOfWork.AccountRepository.Data.Any(
                     a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);

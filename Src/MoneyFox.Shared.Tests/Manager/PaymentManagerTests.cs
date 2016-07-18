@@ -8,7 +8,6 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using Moq;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -149,6 +148,64 @@ namespace MoneyFox.Shared.Tests.Manager
 
             payment.IsRecurring.ShouldBeFalse();
             payment.RecurringPaymentId.ShouldBe(0);
+        }
+
+        [TestMethod]
+        public void SavePayment_RecPayment_IdInPaymentSaved()
+        {
+            var payment = new Payment
+            {
+                Id = 2,
+                RecurringPaymentId = 3,
+                RecurringPayment = new RecurringPayment { Id = 3, Amount = 300},
+                IsRecurring = true
+            };
+
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment> { payment }));
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepositorySetup.Object);
+            unitOfWork.SetupGet(x => x.RecurringPaymentRepository).Returns(new Mock<IRepository<RecurringPayment>>().Object);
+
+            new PaymentManager(unitOfWork.Object,
+                new Mock<IDialogService>().Object).SavePayment(payment);
+
+            payment.IsRecurring.ShouldBeTrue();
+            payment.RecurringPaymentId.ShouldBe(3);
+        }
+
+        [TestMethod]
+        public void SavePayment_RecPayment_RecPaymentSaved()
+        {
+            var recPaymentToSave = new RecurringPayment {Id = 3, Amount = 300};
+
+            var payment = new Payment
+            {
+                Id = 2,
+                RecurringPaymentId = 3,
+                RecurringPayment = recPaymentToSave,
+                IsRecurring = true
+            };
+
+            var recPaymentSaved =  new RecurringPayment();
+
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment> { payment }));
+
+            var recPaymentRepositorySetup = new Mock<IRepository<RecurringPayment>>();
+            recPaymentRepositorySetup.Setup(x => x.Save(It.IsAny<RecurringPayment>()))
+                .Callback((RecurringPayment recPay) => recPaymentSaved = recPay);
+
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepositorySetup.Object);
+            unitOfWork.SetupGet(x => x.RecurringPaymentRepository).Returns(recPaymentRepositorySetup.Object);
+
+            new PaymentManager(unitOfWork.Object,
+                new Mock<IDialogService>().Object).SavePayment(payment);
+
+            payment.IsRecurring.ShouldBeTrue();
+            payment.RecurringPayment.ShouldBe(recPaymentSaved);
         }
     }
 }
