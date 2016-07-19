@@ -1,20 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Windows.Services
+namespace MoneyFox.Windows.Business
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private readonly IDialogService dialogService;
-
         private IOneDriveClient oneDriveClient;
-
-        public OneDriveAuthenticator(IDialogService dialogService)
-        {
-            this.dialogService = dialogService;
-        }
 
         public async Task<IOneDriveClient> LoginAsync()
         {
@@ -40,13 +34,7 @@ namespace MoneyFox.Windows.Services
                 {
                     if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
                     {
-                        await dialogService.ShowMessage(
-                            "Authentication failed",
-                            "Authentication failed");
-                    }
-                    else
-                    {
-                        throw;
+                        throw new BackupException("Authentication Failed");
                     }
                 }
             }

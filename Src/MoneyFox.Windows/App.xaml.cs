@@ -101,7 +101,7 @@ namespace MoneyFox.Windows
                 ? e.TileId
                 : e.Arguments);
 
-            await new BackgroundTaskService().RegisterTasksAsync();
+            await new BackgroundTaskService().RegisterTimeTriggeredTasksAsync();
 
             OverrideTitleBarColor();
 

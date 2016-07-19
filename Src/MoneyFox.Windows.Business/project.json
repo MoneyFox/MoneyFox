@@ -1,9 +1,10 @@
 ﻿{
-    "dependencies": {
-        "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
-        "NotificationsExtensions.Win10": "14332.0.2",
-        "OxyPlot.Windows": "2015.1.1033-alpha"
-    },
+  "dependencies": {
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+    "Microsoft.OneDriveSDK": "1.1.47",
+    "NotificationsExtensions.Win10": "14332.0.2",
+    "OxyPlot.Windows": "2015.1.1033-alpha"
+  },
   "frameworks": {
     "uap10.0": {}
   },

@@ -9,25 +9,30 @@ namespace MoneyFox.Windows.Services
 {
     public class BackgroundTaskService : IBackgroundTaskService
     {
-        private Dictionary<string, string> Tasks => new Dictionary<string, string>
+        private List<TimeTaskConfig> TimeTriggeredTasks => new List<TimeTaskConfig>
         {
-            {"ClearPaymentBackgroundTask", "MoneyFox.Windows.Tasks"},
+            // Task will be executed all 6 hours
+            // 360 = 6 * 60 Minutes
+            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360},
+            // Task will be executed all 2 hours
+            // 120 = 2 * 60 Minutes
+            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "SyncBackupTask", Interval = 120}
         };
 
-        public async Task RegisterTasksAsync()
+        public async Task RegisterTimeTriggeredTasksAsync()
         {
-            foreach (var kvTask in Tasks)
+            foreach (var timeTask in TimeTriggeredTasks)
             {
-                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == kvTask.Key))
+                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == timeTask.Taskname))
                 {
                     break;
                 }
 
-                await RegisterTaskAsync(kvTask.Key, kvTask.Value);
+                await RegisterTimeTaskAsync(timeTask);
             }
         }
 
-        private async Task RegisterTaskAsync(string taskName, string taskNamespace)
+        private async Task RegisterTimeTaskAsync(TimeTaskConfig timeTaskConfig)
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
@@ -38,14 +43,19 @@ namespace MoneyFox.Windows.Services
 
             var taskBuilder = new BackgroundTaskBuilder
             {
-                Name = taskName,
-                TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
+                Name = timeTaskConfig.Taskname,
+                TaskEntryPoint = string.Format("{0}.{1}", timeTaskConfig.Namespace, timeTaskConfig.Taskname)
             };
-            // Task will be executed all 6 hours
-            // 360 = 6 * 60 Minutes
-            taskBuilder.SetTrigger(new TimeTrigger(360, false));
+            taskBuilder.SetTrigger(new TimeTrigger(timeTaskConfig.Interval, false));
 
             taskBuilder.Register();
+        }
+
+        public struct TimeTaskConfig
+        {
+            public string Namespace { get; set; }
+            public string Taskname { get; set; }
+            public uint Interval { get; set; }
         }
     }
 }

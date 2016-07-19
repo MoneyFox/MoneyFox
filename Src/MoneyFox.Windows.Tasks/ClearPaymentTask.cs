@@ -12,7 +12,7 @@ using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyFox.Windows.Tasks
 {
-    public sealed class ClearPaymentBackgroundTask : IBackgroundTask
+    public sealed class ClearPaymentTask : IBackgroundTask
     {
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
 
