@@ -8,6 +8,6 @@ namespace MoneyFox.Shared.Interfaces
     public interface IAutobackupManager
     {
         Task RestoreBackupIfNewer();
-        void UploadBackupIfNewwer();
+        Task UploadBackupIfNewer();
     }
 }

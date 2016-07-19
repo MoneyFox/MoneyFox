@@ -1,4 +1,6 @@
-﻿using MoneyFox.Shared.ViewModels;
+﻿using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.ViewModels;
+using MoneyFox.Windows.Shortcuts;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
@@ -9,6 +11,11 @@ namespace MoneyFox.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<MainViewModel>();
+
+            //if (SettingsHelper.ShowCashFlowOnMainTile)
+            //{
+            //    Tile.UpdateMainTile();
+            //}
         }
     }
 }
