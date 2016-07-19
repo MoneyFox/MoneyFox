@@ -5,6 +5,7 @@ using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
+using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 

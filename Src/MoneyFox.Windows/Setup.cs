@@ -28,6 +28,7 @@ using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
+using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows
 {
@@ -59,7 +60,7 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
-            //Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
+            Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<ISpendingShortcut, ExpenseTile>();

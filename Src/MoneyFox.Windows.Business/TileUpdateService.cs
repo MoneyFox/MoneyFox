@@ -3,7 +3,7 @@ using MoneyFox.Shared.Resources;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyFox.Windows.Tasks
+namespace MoneyFox.Windows.Business
 {
     public sealed class TileUpdateService
     {
