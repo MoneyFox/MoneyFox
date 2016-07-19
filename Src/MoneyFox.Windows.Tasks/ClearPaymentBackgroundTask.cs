@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Manager;
@@ -13,14 +14,22 @@ namespace MoneyFox.Windows.Tasks
 {
     public sealed class ClearPaymentBackgroundTask : IBackgroundTask
     {
+        private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
+
         private UnitOfWork unitOfWork;
+
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             unitOfWork = new UnitOfWork(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore()));
 
             ClearPayments();
-            UpdateMainTile();
+
+            // We have to access the settings object here directly without the settings helper since this thread is executed independently.
+            if (new WindowsCommonSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
+            {
+                UpdateMainTile();
+            }
         }
 
         private void ClearPayments()

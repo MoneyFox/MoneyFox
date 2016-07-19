@@ -497,6 +497,10 @@
       <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
       <Name>MoneyFox.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
+      <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
+      <Name>MoneyFox.Windows.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
       <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
       <Name>MoneyFox.Windows.Tasks</Name>

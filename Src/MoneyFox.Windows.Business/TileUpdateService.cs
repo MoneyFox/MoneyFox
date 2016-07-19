@@ -1,11 +1,12 @@
 ﻿using Windows.UI.Notifications;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 
 namespace MoneyFox.Windows.Business
 {
-    public sealed class TileUpdateService
+    public sealed class TileUpdateService : ITileUpdateService
     {
         /// <summary>
         ///     Sets the MainTile with new Information
