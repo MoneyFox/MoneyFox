@@ -110,7 +110,6 @@
   <ItemGroup>
     <Compile Include="ClearPaymentTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncBackupTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">

@@ -13,10 +13,7 @@ namespace MoneyFox.Windows.Services
         {
             // Task will be executed all 6 hours
             // 360 = 6 * 60 Minutes
-            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360},
-            // Task will be executed all 2 hours
-            // 120 = 2 * 60 Minutes
-            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "SyncBackupTask", Interval = 120}
+            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360}
         };
 
         public async Task RegisterTimeTriggeredTasksAsync()
