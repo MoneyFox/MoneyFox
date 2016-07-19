@@ -11,7 +11,7 @@ namespace MoneyFox.Windows.Services
     {
         private Dictionary<string, string> Tasks => new Dictionary<string, string>
         {
-            {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
+            {"ClearPaymentBackgroundTask", "MoneyFox.Windows.Tasks"},
         };
 
         public async Task RegisterTasksAsync()
@@ -31,20 +31,21 @@ namespace MoneyFox.Windows.Services
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
-            if (requestAccess == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity ||
-                requestAccess == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity)
+            if (requestAccess == BackgroundAccessStatus.Denied)
             {
-                var taskBuilder = new BackgroundTaskBuilder
-                {
-                    Name = taskName,
-                    TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
-                };
-                // Task will be executed all 6 hours
-                // 360 = 6 * 60 Minutes
-                taskBuilder.SetTrigger(new TimeTrigger(360, false));
-
-                taskBuilder.Register();
+                return;
             }
+
+            var taskBuilder = new BackgroundTaskBuilder
+            {
+                Name = taskName,
+                TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
+            };
+            // Task will be executed all 6 hours
+            // 360 = 6 * 60 Minutes
+            taskBuilder.SetTrigger(new TimeTrigger(360, false));
+
+            taskBuilder.Register();
         }
     }
 }

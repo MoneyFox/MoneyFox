@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{55DD9633-DB49-4E60-8805-4DB14603B160}</ProjectGuid>
+    <ProjectGuid>{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyFox.Tasks</RootNamespace>
-    <AssemblyName>MoneyFox.Tasks</AssemblyName>
+    <RootNamespace>MoneyFox.Windows.Tasks</RootNamespace>
+    <AssemblyName>MoneyFox.Windows.Tasks</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -110,24 +110,6 @@
   <ItemGroup>
     <Compile Include="ClearPaymentBackgroundTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.13.0">
-      <Name>SQLite for Universal Windows Platform</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
-      <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
-      <Name>MoneyFox.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
-      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
-      <Name>MoneyFox.Windows</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
