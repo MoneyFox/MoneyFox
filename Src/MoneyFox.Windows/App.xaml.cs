@@ -199,7 +199,6 @@ namespace MoneyFox.Windows
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            Tile.UpdateMainTile();
 
             SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 

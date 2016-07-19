@@ -1,14 +1,11 @@
 ﻿using Windows.UI.Notifications;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MvvmCross.Platform;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyFox.Windows
+namespace MoneyFox.Windows.Tasks
 {
-    public class TileUpdateService : ITileUpdateService
+    public sealed class TileUpdateService
     {
         /// <summary>
         ///     Sets the MainTile with new Information
@@ -20,23 +17,18 @@ namespace MoneyFox.Windows
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            if (Mvx.Resolve<SettingsShortcutsViewModel>().ShowInfoOnMainTile)
+            var content = new TileContent
             {
-                var content = new TileContent
+                Visual = new TileVisual
                 {
-                    Visual = new TileVisual
-                    {
-                        TileMedium = GetBindingMediumContent(income, spending, earnings),
-                        TileWide = GetBindingWideContent(income, spending, earnings),
-                        TileLarge = GetBindingLargeContent(income, spending, earnings)
-                    }
-                };
+                    TileMedium = GetBindingMediumContent(income, spending, earnings),
+                    TileWide = GetBindingWideContent(income, spending, earnings),
+                    TileLarge = GetBindingLargeContent(income, spending, earnings)
+                } 
+            };
 
-                var temp = content.GetContent();
-
-                // Update Tile
-                TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
-            }
+            // Update Tile
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
         }
 
         private static TileBinding GetBindingMediumContent(string income, string spending, string earnings)

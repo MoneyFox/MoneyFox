@@ -59,7 +59,7 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
+            //Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<ISpendingShortcut, ExpenseTile>();

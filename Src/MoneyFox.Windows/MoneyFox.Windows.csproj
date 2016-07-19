@@ -137,7 +137,6 @@
     <Compile Include="Src\Shortcuts\TransferTile.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
-    <Compile Include="Src\UserNotification.cs" />
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
