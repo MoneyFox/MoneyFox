@@ -3,7 +3,6 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {

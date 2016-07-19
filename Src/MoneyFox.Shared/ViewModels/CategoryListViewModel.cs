@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels

@@ -3,7 +3,6 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -11,10 +10,10 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyAccountViewModel : BaseViewModel
+    public class ModifyAccountViewModel : BaseViewModel, IDisposable
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
+        private readonly IUnitOfWork unitOfWork;
 
         public ModifyAccountViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
@@ -75,6 +74,11 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public Account SelectedAccount { get; set; }
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         public void Init(bool isEdit)
         {
             IsEdit = isEdit;
@@ -100,7 +104,6 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void SaveAccount()
         {
-
             if (string.IsNullOrEmpty(SelectedAccount.Name))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
@@ -108,7 +111,7 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             if (!IsEdit && unitOfWork.AccountRepository.Data.Any(
-                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
+                a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
