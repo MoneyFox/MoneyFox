@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
@@ -100,7 +101,7 @@ namespace MoneyFox.Windows
                 ? e.TileId
                 : e.Arguments);
 
-            await new BackgroundTaskService().RegisterTasksAsync();
+            await new BackgroundTaskService().RegisterTimeTriggeredTasksAsync();
 
             OverrideTitleBarColor();
 
@@ -198,7 +199,6 @@ namespace MoneyFox.Windows
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            Tile.UpdateMainTile();
 
             SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 

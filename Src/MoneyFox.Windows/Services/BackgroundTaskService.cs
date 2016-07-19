@@ -9,42 +9,50 @@ namespace MoneyFox.Windows.Services
 {
     public class BackgroundTaskService : IBackgroundTaskService
     {
-        private Dictionary<string, string> Tasks => new Dictionary<string, string>
+        private List<TimeTaskConfig> TimeTriggeredTasks => new List<TimeTaskConfig>
         {
-            {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
+            // Task will be executed all 6 hours
+            // 360 = 6 * 60 Minutes
+            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360}
         };
 
-        public async Task RegisterTasksAsync()
+        public async Task RegisterTimeTriggeredTasksAsync()
         {
-            foreach (var kvTask in Tasks)
+            foreach (var timeTask in TimeTriggeredTasks)
             {
-                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == kvTask.Key))
+                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == timeTask.Taskname))
                 {
                     break;
                 }
 
-                await RegisterTaskAsync(kvTask.Key, kvTask.Value);
+                await RegisterTimeTaskAsync(timeTask);
             }
         }
 
-        private async Task RegisterTaskAsync(string taskName, string taskNamespace)
+        private async Task RegisterTimeTaskAsync(TimeTaskConfig timeTaskConfig)
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
-            if (requestAccess == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity ||
-                requestAccess == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity)
+            if (requestAccess == BackgroundAccessStatus.Denied)
             {
-                var taskBuilder = new BackgroundTaskBuilder
-                {
-                    Name = taskName,
-                    TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
-                };
-                // Task will be executed all 6 hours
-                // 360 = 6 * 60 Minutes
-                taskBuilder.SetTrigger(new TimeTrigger(360, false));
-
-                taskBuilder.Register();
+                return;
             }
+
+            var taskBuilder = new BackgroundTaskBuilder
+            {
+                Name = timeTaskConfig.Taskname,
+                TaskEntryPoint = string.Format("{0}.{1}", timeTaskConfig.Namespace, timeTaskConfig.Taskname)
+            };
+            taskBuilder.SetTrigger(new TimeTrigger(timeTaskConfig.Interval, false));
+
+            taskBuilder.Register();
+        }
+
+        public struct TimeTaskConfig
+        {
+            public string Namespace { get; set; }
+            public string Taskname { get; set; }
+            public uint Interval { get; set; }
         }
     }
 }
