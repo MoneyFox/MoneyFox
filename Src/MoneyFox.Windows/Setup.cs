@@ -28,6 +28,7 @@ using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
+using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows
 {
