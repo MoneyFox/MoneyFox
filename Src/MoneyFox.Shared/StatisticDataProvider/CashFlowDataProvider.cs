@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class CashFlowDataProvider : IStatisticProvider<CashFlow>
+    public class CashFlowDataProvider : IStatisticProvider<CashFlow>, IDisposable
     {
         private readonly IUnitOfWork unitOfWork;
 
         public CashFlowDataProvider(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         /// <summary>
