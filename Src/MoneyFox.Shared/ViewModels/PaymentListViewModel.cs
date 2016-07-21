@@ -7,7 +7,6 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -15,7 +14,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel, IDisposable
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
@@ -32,6 +31,11 @@ namespace MoneyFox.Shared.ViewModels
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
         public int AccountId { get; private set; }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         public IBalanceViewModel BalanceViewModel { get; private set; }
 
@@ -112,7 +116,8 @@ namespace MoneyFox.Shared.ViewModels
         // TODO: Use the actual enum rather than magic strings - Seth Bartlett 7/1/2016 12:07PM
         private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>( new { type = (PaymentType)Enum.Parse(typeof(PaymentType), paymentType) });
+            ShowViewModel<ModifyPaymentViewModel>(
+                new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType)});
         }
 
         // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
@@ -130,7 +135,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Edit(Payment payment)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new { paymentId = payment.Id});
+            ShowViewModel<ModifyPaymentViewModel>(new {paymentId = payment.Id});
         }
 
         private async void DeletePayment(Payment payment)

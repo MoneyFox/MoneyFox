@@ -10,20 +10,19 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyPaymentViewModel : BaseViewModel
+    public class ModifyPaymentViewModel : BaseViewModel, IDisposable
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
+        private readonly IUnitOfWork unitOfWork;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
@@ -46,32 +45,38 @@ namespace MoneyFox.Shared.ViewModels
 
         public int PaymentId { get; private set; }
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         /// <summary>
         ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
         /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
         public void Init(PaymentType type, int paymentId = 0)
         {
-            if (paymentId == 0) 
+            if (paymentId == 0)
             {
                 IsEdit = false;
                 IsEndless = true;
 
                 amount = 0;
                 PrepareDefault(type);
-            } 
-            else 
+            }
+            else
             {
                 IsEdit = true;
                 PaymentId = paymentId;
                 selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
                 PrepareEdit();
-
             }
 
-            AccountBeforeEdit = SelectedPayment.ChargedAccount;            
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
-        private void PrepareDefault(PaymentType type) {
+
+        private void PrepareDefault(PaymentType type)
+        {
             SetDefaultPayment(type);
             SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;

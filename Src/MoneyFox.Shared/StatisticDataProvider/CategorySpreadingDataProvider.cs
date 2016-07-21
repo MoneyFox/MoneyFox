@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>, IDisposable
     {
         private readonly IUnitOfWork unitOfWork;
 
         public CategorySpreadingDataProvider(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         /// <summary>
