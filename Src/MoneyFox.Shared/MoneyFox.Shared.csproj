@@ -123,7 +123,6 @@
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\RecurringPaymentRepository.cs" />
-    <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
