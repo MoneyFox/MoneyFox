@@ -14,41 +14,37 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyPaymentViewModel : BaseViewModel, IDisposable
+    public class ModifyPaymentViewModel : BaseViewModel
     {
+        private readonly IRepository<Payment> paymentRepository;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
-        private readonly IUnitOfWork unitOfWork;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
         private Payment selectedPayment;
 
-        public ModifyPaymentViewModel(IUnitOfWork unitOfWork,
+        public ModifyPaymentViewModel(IRepository<Payment> paymentRepository,
+            IRepository<Account> accountRepository,
             IDialogService dialogService,
             IPaymentManager paymentManager,
             IDefaultManager defaultManager)
         {
-            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
+            this.paymentRepository = paymentRepository;
 
-            TargetAccounts = unitOfWork.AccountRepository.Data;
-            ChargedAccounts = unitOfWork.AccountRepository.Data;
+            TargetAccounts = accountRepository.Data;
+            ChargedAccounts = accountRepository.Data;
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
         public int PaymentId { get; private set; }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         /// <summary>
         ///     Init the view for a new Payment. Is executed after the constructor call.
@@ -68,7 +64,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 IsEdit = true;
                 PaymentId = paymentId;
-                selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
+                selectedPayment = paymentRepository.FindById(PaymentId);
                 PrepareEdit();
             }
 
@@ -185,7 +181,7 @@ namespace MoneyFox.Shared.ViewModels
                     paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }
 
-                var paymentSucceded = unitOfWork.PaymentRepository.Delete(SelectedPayment);
+                var paymentSucceded = paymentRepository.Delete(SelectedPayment);
                 var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;

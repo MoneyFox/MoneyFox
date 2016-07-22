@@ -12,17 +12,21 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AccountListViewModel : BaseViewModel, IDisposable
-    {
+    public class AccountListViewModel : BaseViewModel {
+        private readonly IRepository<Account> accountRepository;
+        private readonly IRepository<Payment> paymentRepository;
+
         private readonly IDialogService dialogService;
-        private readonly IUnitOfWork unitOfWork;
 
-        public AccountListViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
+        public AccountListViewModel(IRepository<Account> accountRepository,
+            IRepository<Payment> paymentRepository,
+            IDialogService dialogService)
         {
-            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
 
-            BalanceViewModel = new BalanceViewModel(unitOfWork);
+            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -32,8 +36,8 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public ObservableCollection<Account> AllAccounts
         {
-            get { return unitOfWork.AccountRepository.Data; }
-            set { unitOfWork.AccountRepository.Data = value; }
+            get { return accountRepository.Data; }
+            set { accountRepository.Data = value; }
         }
 
         /// <summary>
@@ -66,11 +70,6 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
-
         private void EditAccount(Account account)
         {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
@@ -100,13 +99,13 @@ namespace MoneyFox.Shared.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = unitOfWork.PaymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
-                    unitOfWork.PaymentRepository.Delete(payment);
+                    paymentRepository.Delete(payment);
                 }
-                if (unitOfWork.AccountRepository.Delete(item))
+                if (accountRepository.Delete(item))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
