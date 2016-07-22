@@ -34,9 +34,10 @@ namespace MoneyFox.Shared.Manager
                 recurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
-            
+
             bool handledRecuringPayment;
             handledRecuringPayment = payment.RecurringPayment == null || recurringPaymentRepository.Save(payment.RecurringPayment);
+
             if (payment.RecurringPayment != null)
             {
                 payment.RecurringPaymentId = payment.RecurringPayment.Id;

@@ -3,7 +3,6 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
@@ -14,15 +13,15 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryDialogViewModel : BaseViewModel
+    public class ModifyCategoryDialogViewModel : BaseViewModel, IDisposable
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
+        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Create new instance of the view model.
         /// </summary>
-        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork"/>.</param>
+        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork" />.</param>
         /// <param name="dialogService">Dialogservice to interact with the user.</param>
         public ModifyCategoryDialogViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
@@ -51,6 +50,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Returns the Title depending on if the view is in edit mode or not.
         /// </summary>
         public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         private void Loaded()
         {

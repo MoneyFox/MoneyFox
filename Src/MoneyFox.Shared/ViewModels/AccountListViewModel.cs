@@ -12,12 +12,12 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AccountListViewModel : BaseViewModel
+    public class AccountListViewModel : BaseViewModel, IDisposable
     {
         private readonly IDialogService dialogService;
         private readonly IUnitOfWork unitOfWork;
 
-        public AccountListViewModel(IUnitOfWork unitOfWork,IDialogService dialogService)
+        public AccountListViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
             this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
@@ -65,6 +65,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         private void EditAccount(Account account)
         {

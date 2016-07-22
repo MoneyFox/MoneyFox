@@ -3,11 +3,10 @@ using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Manager
 {
-    public class RecurringPaymentManager : IRecurringPaymentManager
+    public class RecurringPaymentManager : IRecurringPaymentManager, IDisposable
     {
         private readonly IPaymentManager paymentManager;
         private readonly IUnitOfWork unitOfWork;
@@ -17,6 +16,11 @@ namespace MoneyFox.Shared.Manager
         {
             this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         /// <summary>

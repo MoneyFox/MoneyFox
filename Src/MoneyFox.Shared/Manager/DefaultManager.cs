@@ -1,14 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Manager
 {
     //TODO: Refactor to helper class
-    public class DefaultManager : IDefaultManager
+    public class DefaultManager : IDefaultManager, IDisposable
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -30,6 +30,11 @@ namespace MoneyFox.Shared.Manager
             }
 
             return unitOfWork.AccountRepository.Data.FirstOrDefault();
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
     }
 }
