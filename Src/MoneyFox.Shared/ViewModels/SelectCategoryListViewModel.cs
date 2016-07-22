@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 

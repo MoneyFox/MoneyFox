@@ -1,15 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
-using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel, IDisposable
     {
         protected readonly IUnitOfWork UnitOfWork;
 
@@ -33,6 +33,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     itself and show different data.
         /// </summary>
         public MvxCommand UpdateBalanceCommand => new MvxCommand(UpdateBalance);
+
+        public void Dispose()
+        {
+            UnitOfWork.Dispose();
+        }
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust

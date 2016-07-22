@@ -1,5 +1,5 @@
-﻿using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Repositories;
+﻿using System;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -7,7 +7,7 @@ namespace MoneyFox.Shared.Manager
     ///     This helper can be used to reinstantiate all Repositories, for example when you
     ///     download a new database backup and replace the current one.
     /// </summary>
-    public class RepositoryManager : IRepositoryManager
+    public class RepositoryManager : IRepositoryManager, IDisposable
     {
         private readonly IPaymentManager paymentManager;
         private readonly IUnitOfWork unitOfWork;
@@ -17,6 +17,11 @@ namespace MoneyFox.Shared.Manager
         {
             this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         /// <summary>

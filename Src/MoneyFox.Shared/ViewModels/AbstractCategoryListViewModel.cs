@@ -1,19 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel, IDisposable
     {
-        protected readonly IUnitOfWork UnitOfWork;
         protected readonly IDialogService DialogService;
+        protected readonly IUnitOfWork UnitOfWork;
 
         private string searchText;
 
@@ -54,7 +54,7 @@ namespace MoneyFox.Shared.ViewModels
         public Category SelectedCategory { get; set; }
 
         /// <summary>
-        /// Edit the currently selected category
+        ///     Edit the currently selected category
         /// </summary>
         public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
 
@@ -64,26 +64,11 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand<Category> SelectCommand => new MvxCommand<Category>(Selected);
 
         /// <summary>
-        /// Create and save a new category group
+        ///     Create and save a new category group
         /// </summary>
         public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
 
-        private void EditCategory(Category category)
-        {
-            ShowViewModel<ModifyCategoryViewModel>(new { isEdit = true, selectedCategoryId = category.Id });
-        }
-
-        private void CreateNewCategory(Category category)
-        {
-            ShowViewModel<ModifyCategoryViewModel>(new { isEdit = false, SelectedCategory = 0 });
-        }
-
         public bool IsCategoriesEmpty => !Categories.Any();
-
-        /// <summary>
-        ///     Handle the selection of a category in the list
-        /// </summary>
-        protected abstract void Selected(Category category); 
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
@@ -97,6 +82,26 @@ namespace MoneyFox.Shared.ViewModels
                 Search();
             }
         }
+
+        public void Dispose()
+        {
+            UnitOfWork.Dispose();
+        }
+
+        private void EditCategory(Category category)
+        {
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
+        }
+
+        private void CreateNewCategory(Category category)
+        {
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
+        }
+
+        /// <summary>
+        ///     Handle the selection of a category in the list
+        /// </summary>
+        protected abstract void Selected(Category category);
 
         /// <summary>
         ///     Performs a search with the text in the searchtext property

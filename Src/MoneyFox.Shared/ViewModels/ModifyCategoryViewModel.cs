@@ -1,12 +1,11 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using System;
+using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System;
-using System.Linq;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -14,10 +13,10 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryViewModel : BaseViewModel
+    public class ModifyCategoryViewModel : BaseViewModel, IDisposable
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IDialogService dialogService;
+        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Create a new instance of the view model.
@@ -30,8 +29,8 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        /// Saves changes to a category if in edit mode <see cref="IsEdit"/>  or creates
-        /// a new category.
+        ///     Saves changes to a category if in edit mode <see cref="IsEdit" />  or creates
+        ///     a new category.
         /// </summary>
         public MvxCommand SaveCommand => new MvxCommand(SaveCategory);
 
@@ -62,6 +61,11 @@ namespace MoneyFox.Shared.ViewModels
             ? string.Format(Strings.EditCategoryTitle, SelectedCategory.Name)
             : Strings.AddCategoryTitle;
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         /// <summary>
         ///     Initialize the ViewModel
         /// </summary>
@@ -77,7 +81,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Initialize the ViewModel 
+        ///     Initialize the ViewModel
         /// </summary>
         /// <param name="isEdit">Indicates if a category is being edited or created</param>
         /// <param name="selectedCategoryId">If we are editing a category this is its Id</param>
@@ -98,7 +102,7 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             if (!IsEdit && unitOfWork.CategoryRepository.Data.Any(
-                    a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
+                a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
@@ -106,7 +110,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (unitOfWork.CategoryRepository.Save(SelectedCategory))
             {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now; 
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }

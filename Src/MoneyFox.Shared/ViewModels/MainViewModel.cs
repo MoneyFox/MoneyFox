@@ -1,13 +1,12 @@
-﻿using MoneyFox.Shared.Repositories;
+﻿using System;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System;
-using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel, IDisposable
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -46,9 +45,15 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType) });
+            ShowViewModel<ModifyPaymentViewModel>(
+                new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType)});
         }
 
         private void GoToAddAccount()
@@ -62,7 +67,8 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         //Used in Android and IOS.
-        public void ShowMenuAndFirstDetail() {
+        public void ShowMenuAndFirstDetail()
+        {
             ShowViewModel<AccountListViewModel>();
             ShowViewModel<MenuViewModel>();
         }

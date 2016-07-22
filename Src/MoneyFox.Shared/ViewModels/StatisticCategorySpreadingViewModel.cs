@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Series;
@@ -13,7 +13,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IDisposable
     {
         private readonly OxyColor[] colors =
         {
@@ -25,8 +25,12 @@ namespace MoneyFox.Shared.ViewModels
 
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
+        private readonly IUnitOfWork unitOfWork;
+
         public StatisticCategorySpreadingViewModel(IUnitOfWork unitOfWork)
         {
+            this.unitOfWork = unitOfWork;
+
             speadingDataProvider = new CategorySpreadingDataProvider(unitOfWork);
         }
 
@@ -36,6 +40,11 @@ namespace MoneyFox.Shared.ViewModels
         public PlotModel SpreadingModel { get; set; }
 
         public ObservableCollection<LegendItem> LegendList { get; set; }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         protected override void Load()
         {

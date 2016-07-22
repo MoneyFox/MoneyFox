@@ -2,7 +2,6 @@
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -12,14 +11,17 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
+    public class StatisticMonthlyExpensesViewModel : StatisticViewModel, IDisposable
     {
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
+        private readonly IUnitOfWork unitOfWork;
 
         public StatisticMonthlyExpensesViewModel(IUnitOfWork unitOfWork)
             : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
+            this.unitOfWork = unitOfWork;
+
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(unitOfWork);
 
             MonthlyExpensesModel = GetModel();
@@ -29,6 +31,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Contains the PlotModel for the Chart
         /// </summary>
         public PlotModel MonthlyExpensesModel { get; set; }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         /// <summary>
         ///     Loads the expense history with the current start and end date.

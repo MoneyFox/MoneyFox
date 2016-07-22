@@ -4,17 +4,21 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>, IDisposable
     {
         private readonly IUnitOfWork unitOfWork;
 
         public MonthlyExpensesDataProvider(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)

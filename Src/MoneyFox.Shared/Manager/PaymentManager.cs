@@ -10,7 +10,7 @@ using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Shared.Manager
 {
-    public class PaymentManager : IPaymentManager
+    public class PaymentManager : IPaymentManager, IDisposable
     {
         private readonly IDialogService dialogService;
 
@@ -24,6 +24,11 @@ namespace MoneyFox.Shared.Manager
             this.unitOfWork = unitOfWork;
         }
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         public bool SavePayment(Payment payment)
         {
             if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
@@ -31,9 +36,10 @@ namespace MoneyFox.Shared.Manager
                 unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
-            
+
             bool handledRecuringPayment;
-            handledRecuringPayment = payment.RecurringPayment == null || unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
+            handledRecuringPayment = payment.RecurringPayment == null ||
+                                     unitOfWork.RecurringPaymentRepository.Save(payment.RecurringPayment);
             if (payment.RecurringPayment != null)
             {
                 payment.RecurringPaymentId = payment.RecurringPayment.Id;
