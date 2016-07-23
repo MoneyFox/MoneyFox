@@ -46,6 +46,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="12,0,12,0">
                     <ComboBox Margin="0,7,0,0"
+                              Name="ComboBoxA"
                               HorizontalAlignment="Stretch"
                               Header="{Binding AccountHeader}"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
@@ -56,6 +57,7 @@
                                                      Mode=TwoWay,
                                                      UpdateSourceTrigger=PropertyChanged}" />
                     <ComboBox x:Uid="TargetAccountTextBox"
+                              Name="ComboBoxB"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
                               Header="target account"
