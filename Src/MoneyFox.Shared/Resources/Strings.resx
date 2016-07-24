@@ -439,4 +439,10 @@ Do you want to go the the store to rate?</value>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="AuthenticationFailedMessage" xml:space="preserve">
+    <value>Authentication failed</value>
+  </data>
+  <data name="SomethingWentWrongTitle" xml:space="preserve">
+    <value>Something went wrong...</value>
+  </data>
 </root>

@@ -43,7 +43,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback((string a, string b) => wasDialogServiceCalled = true);
 
-            var vm = new ModifyCategoryDialogViewModel(new Mock<IRepository<Category>>().Object,
+            var vm = new ModifyCategoryDialogViewModel(new Mock<IUnitOfWork>().Object,
                 dialogSetup.Object) {Selected = new Category()};
 
             // Execute
@@ -65,9 +65,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
             repositorySetup.SetupGet(x => x.Data).
                 Returns(new ObservableCollection<Category>());
 
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(repositorySetup.Object);
+
             var categoryToSave = new Category {Name = "test"};
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object,
+            var vm = new ModifyCategoryDialogViewModel(unitOfWork.Object,
                 new Mock<IDialogService>().Object) {Selected = categoryToSave};
 
             // Execute
@@ -90,12 +93,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var repositorySetup = new Mock<IRepository<Category>>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
-            repositorySetup.SetupAllProperties();
+            repositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category> { new Category { Name = categoryName } });
 
-            var repo = repositorySetup.Object;
-            repo.Data = new ObservableCollection<Category> {new Category {Name = categoryName}};
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(repositorySetup.Object);
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
+            var vm = new ModifyCategoryDialogViewModel(unitOfWork.Object, dialogSetup.Object)
             {
                 Selected = new Category {Name = categoryName}
             };
@@ -122,12 +125,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var repositorySetup = new Mock<IRepository<Category>>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
-            repositorySetup.SetupAllProperties();
+            repositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category> { new Category { Name = categoryName1 } });
 
-            var repo = repositorySetup.Object;
-            repo.Data = new ObservableCollection<Category> {new Category {Name = categoryName1}};
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(repositorySetup.Object);
 
-            var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
+            var vm = new ModifyCategoryDialogViewModel(unitOfWork.Object, dialogSetup.Object)
             {
                 Selected = new Category {Name = categoryName2}
             };
@@ -144,15 +147,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var category = new Category {Id = 1, Name = "categpry2"};
             var categoryRepoMock = new Mock<IRepository<Category>>();
-            categoryRepoMock.SetupAllProperties();
             var categories = new ObservableCollection<Category>
             {
                 new Category {Id = 0, Name = "category"}
             };
-            categoryRepoMock.Setup(x => x.Data).Returns(categories);
+            categoryRepoMock.SetupGet(x => x.Data).Returns(categories);
             categoryRepoMock.Setup(x => x.Save(category)).Returns(true);
 
-            var vm = new ModifyCategoryDialogViewModel(categoryRepoMock.Object,
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoMock.Object);
+
+            var vm = new ModifyCategoryDialogViewModel(unitOfWork.Object,
                 new Mock<IDialogService>().Object) {Selected = category};
             vm.DoneCommand.Execute();
 

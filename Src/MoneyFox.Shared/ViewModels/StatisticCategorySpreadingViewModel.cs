@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
@@ -12,7 +13,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IDisposable
     {
         private readonly OxyColor[] colors =
         {
@@ -24,10 +25,13 @@ namespace MoneyFox.Shared.ViewModels
 
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
-        public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        private readonly IUnitOfWork unitOfWork;
+
+        public StatisticCategorySpreadingViewModel(IUnitOfWork unitOfWork)
         {
-            speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
+            this.unitOfWork = unitOfWork;
+
+            speadingDataProvider = new CategorySpreadingDataProvider(unitOfWork);
         }
 
         /// <summary>
@@ -36,6 +40,11 @@ namespace MoneyFox.Shared.ViewModels
         public PlotModel SpreadingModel { get; set; }
 
         public ObservableCollection<LegendItem> LegendList { get; set; }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
 
         protected override void Load()
         {

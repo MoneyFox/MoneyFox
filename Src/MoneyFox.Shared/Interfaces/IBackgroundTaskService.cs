@@ -8,6 +8,6 @@ namespace MoneyFox.Shared.Interfaces
         ///     Will register a background task asynchronously
         /// </summary>
         /// <returns>Task for the waiter.</returns>
-        Task RegisterTasksAsync();
+        Task RegisterTimeTriggeredTasksAsync();
     }
 }

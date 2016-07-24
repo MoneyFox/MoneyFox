@@ -367,7 +367,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>Du kannst zwischen dem dunklen und dem hellen Theme wechseln. Damit die Änderungen übernommen werden, musst du das App neustarten.</value>
   </data>
-  <data name="IsLoading.Text" xml:space="preserve">
+  <data name="Loading.Text" xml:space="preserve">
     <value>Wird geladen...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
@@ -385,5 +385,11 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
     <value>Aktueller Kontostand</value>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="Iban.Header" xml:space="preserve">
+    <value>IBAN</value>
   </data>
 </root>

@@ -46,8 +46,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -73,8 +72,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -91,8 +89,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void AccessCache()
         {
-            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock(),
-                new Mock<INotificationService>().Object).Data);
+            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
         }
 
         [TestMethod]
@@ -115,8 +112,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 account
             });
 
-            var repository = new AccountRepository(accountDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
+            var repository = new AccountRepository(accountDataAccessSetup.Object);
 
             repository.Delete(account);
 
@@ -134,8 +130,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Account {Id = 15}
             });
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
-                new Mock<INotificationService>().Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
             accountRepository.Load();
 
             Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
@@ -143,55 +138,36 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void Save_NotifyUserOfFailure()
-        {
-            var isNotificationServiceCalled = false;
-
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
-
-            var notificationServiceSetup = new Mock<INotificationService>();
-            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string x, string y) => isNotificationServiceCalled = true);
-
-            new AccountRepository(dataAccessSetup.Object,
-                notificationServiceSetup.Object).Save(new Account());
-
-            isNotificationServiceCalled.ShouldBeTrue();
-        }
-
-        [TestMethod]
-        public void Delete_NotifyUserOfFailure()
-        {
-            var isNotificationServiceCalled = false;
-
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
-
-            var notificationServiceSetup = new Mock<INotificationService>();
-            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string x, string y) => isNotificationServiceCalled = true);
-
-            new AccountRepository(dataAccessSetup.Object,
-                notificationServiceSetup.Object).Delete(new Account());
-
-            isNotificationServiceCalled.ShouldBeTrue();
-        }
-
-        [TestMethod]
         public void AccountRepository_FindById_ReturnsAccount()
         {
-            var accountRepository = new Mock<IAccountRepository>();
+            var accountRepository = new Mock<IRepository<Account>>();
             var testAccount = new Account {Id = 100, Name = "Test Account"};
             accountRepository.SetupAllProperties();
             accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
                 .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
-            accountRepository.Object.Data = new ObservableCollection<Account>();
-            accountRepository.Object.Data.Add(testAccount);
+            accountRepository.Object.Data = new ObservableCollection<Account> {testAccount};
 
             Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
+        }
+
+        [TestMethod]
+        public void Delete_Failure_ReturnFalse()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Account>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            new AccountRepository(dataAccessSetup.Object).Delete(new Account()).ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void Save_Failure_ReturnFalse()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Account>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            new AccountRepository(dataAccessSetup.Object).Save(new Account()).ShouldBeFalse();
         }
     }
 }

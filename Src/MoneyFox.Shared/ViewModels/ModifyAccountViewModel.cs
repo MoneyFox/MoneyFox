@@ -10,14 +10,14 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyAccountViewModel : BaseViewModel
+    public class ModifyAccountViewModel : BaseViewModel, IDisposable
     {
-        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService)
+        public ModifyAccountViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
         {
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
         }
 
@@ -74,6 +74,11 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public Account SelectedAccount { get; set; }
 
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
+        }
+
         public void Init(bool isEdit)
         {
             IsEdit = isEdit;
@@ -93,21 +98,26 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedAccount = selectedAccountId != 0
-                ? accountRepository.Data.First(x => x.Id == selectedAccountId)
+                ? unitOfWork.AccountRepository.Data.First(x => x.Id == selectedAccountId)
                 : new Account();
         }
 
         private async void SaveAccount()
         {
-            if (
-                accountRepository.Data.Any(
-                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
+            if (string.IsNullOrEmpty(SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            if (!IsEdit && unitOfWork.AccountRepository.Data.Any(
+                a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            if (accountRepository.Save(SelectedAccount))
+            if (unitOfWork.AccountRepository.Save(SelectedAccount))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
@@ -116,7 +126,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void DeleteAccount()
         {
-            if (accountRepository.Delete(SelectedAccount))
+            if (unitOfWork.AccountRepository.Delete(SelectedAccount))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }

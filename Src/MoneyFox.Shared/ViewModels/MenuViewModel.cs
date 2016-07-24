@@ -1,4 +1,5 @@
 ﻿using System;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -7,6 +8,9 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     public class MenuViewModel : BaseViewModel
     {
+        public MvxCommand ShowAccountListCommand
+            => new MvxCommand(() => ShowViewModelByType(typeof(AccountListViewModel)));
+
         /// <summary>
         ///     Do a navigation based on the passed ViewModel type.
         /// </summary>

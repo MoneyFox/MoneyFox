@@ -101,7 +101,7 @@ namespace MoneyFox.Windows
                 ? e.TileId
                 : e.Arguments);
 
-            await new BackgroundTaskService().RegisterTasksAsync();
+            await new BackgroundTaskService().RegisterTimeTriggeredTasksAsync();
 
             OverrideTitleBarColor();
 
@@ -199,7 +199,6 @@ namespace MoneyFox.Windows
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            Tile.UpdateMainTile();
 
             SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 

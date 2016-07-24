@@ -7,28 +7,30 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>, IDisposable
     {
-        private readonly IRepository<Category> categoryRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CategorySummaryDataProvider(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        public CategorySummaryDataProvider(IUnitOfWork unitOfWork)
         {
-            this.paymentRepository = paymentRepository;
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in categoryRepository.Data)
+            foreach (var category in unitOfWork.CategoryRepository.Data)
             {
                 categories.Add(new StatisticItem
                 {
                     Category = category.Name,
-                    Value = paymentRepository.Data
+                    Value = unitOfWork.PaymentRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) PaymentType.Transfer)

@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.Manager
         /// <summary>
         ///     Creates a new backup from OneDrive when the last modification is newer then the last OneDrive backup.
         /// </summary>
-        public async void UploadBackupIfNewwer()
+        public async Task UploadBackupIfNewer()
         {
             try
             {
@@ -65,8 +65,7 @@ namespace MoneyFox.Shared.Manager
                     return;
                 }
 
-                var backupDate = await backupManager.GetBackupDate();
-                if (backupDate > SettingsHelper.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() > SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.RestoreBackup();
                 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
@@ -7,28 +8,33 @@ using MoneyFox.Shared.Model;
 namespace MoneyFox.Shared.Manager
 {
     //TODO: Refactor to helper class
-    public class DefaultManager : IDefaultManager
+    public class DefaultManager : IDefaultManager, IDisposable
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public DefaultManager(IAccountRepository accountRepository)
+        public DefaultManager(IUnitOfWork unitOfWork)
         {
-            this.accountRepository = accountRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public Account GetDefaultAccount()
         {
-            if (accountRepository.Data == null)
+            if (unitOfWork.AccountRepository.Data == null)
             {
-                accountRepository.Data = new ObservableCollection<Account>();
+                unitOfWork.AccountRepository.Data = new ObservableCollection<Account>();
             }
 
-            if (accountRepository.Data.Any() && SettingsHelper.DefaultAccount != -1)
+            if (unitOfWork.AccountRepository.Data.Any() && SettingsHelper.DefaultAccount != -1)
             {
-                return accountRepository.Data.FirstOrDefault(x => x.Id == SettingsHelper.DefaultAccount);
+                return unitOfWork.AccountRepository.Data.FirstOrDefault(x => x.Id == SettingsHelper.DefaultAccount);
             }
 
-            return accountRepository.Data.FirstOrDefault();
+            return unitOfWork.AccountRepository.Data.FirstOrDefault();
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
     }
 }

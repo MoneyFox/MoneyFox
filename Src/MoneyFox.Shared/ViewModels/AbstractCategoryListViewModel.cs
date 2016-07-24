@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
@@ -9,25 +10,25 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel, IDisposable
     {
-        protected readonly ICategoryRepository CategoryRepository;
         protected readonly IDialogService DialogService;
+        protected readonly IUnitOfWork UnitOfWork;
 
         private string searchText;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="ICategoryRepository" />.</param>
+        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
+        protected AbstractCategoryListViewModel(IUnitOfWork unitOfWork,
             IDialogService dialogService)
         {
-            CategoryRepository = categoryRepository;
+            UnitOfWork = unitOfWork;
             DialogService = dialogService;
 
-            Categories = CategoryRepository.Data;
+            Categories = UnitOfWork.CategoryRepository.Data;
 
             Source = CreateGroup();
         }
@@ -47,6 +48,26 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public ObservableCollection<AlphaGroupListGroup<Category>> Source { get; set; }
 
+        /// <summary>
+        ///     Category currently selected in the view.
+        /// </summary>
+        public Category SelectedCategory { get; set; }
+
+        /// <summary>
+        ///     Edit the currently selected category
+        /// </summary>
+        public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
+
+        /// <summary>
+        ///     Selects the clicked category and sends it to the message hub.
+        /// </summary>
+        public MvxCommand<Category> SelectCommand => new MvxCommand<Category>(Selected);
+
+        /// <summary>
+        ///     Create and save a new category group
+        /// </summary>
+        public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
+
         public bool IsCategoriesEmpty => !Categories.Any();
 
         /// <summary>
@@ -62,6 +83,26 @@ namespace MoneyFox.Shared.ViewModels
             }
         }
 
+        public void Dispose()
+        {
+            UnitOfWork.Dispose();
+        }
+
+        private void EditCategory(Category category)
+        {
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
+        }
+
+        private void CreateNewCategory(Category category)
+        {
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
+        }
+
+        /// <summary>
+        ///     Handle the selection of a category in the list
+        /// </summary>
+        protected abstract void Selected(Category category);
+
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
@@ -70,13 +111,13 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (CategoryRepository.Data.Where(
+                    (UnitOfWork.CategoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
+                Categories = new ObservableCollection<Category>(UnitOfWork.CategoryRepository.Data.OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }
@@ -98,7 +139,7 @@ namespace MoneyFox.Shared.ViewModels
                     Categories.Remove(categoryToDelete);
                 }
 
-                CategoryRepository.Delete(categoryToDelete);
+                UnitOfWork.CategoryRepository.Delete(categoryToDelete);
             }
         }
     }

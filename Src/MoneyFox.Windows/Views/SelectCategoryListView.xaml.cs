@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Views.Dialogs;
 using MvvmCross.Platform;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Windows.Views
 {
@@ -16,24 +17,12 @@ namespace MoneyFox.Windows.Views
             DataContext = Mvx.Resolve<SelectCategoryListViewModel>();
         }
 
-        private async void AddCategory(object sender, RoutedEventArgs e)
-        {
-            await new ModifyCategoryDialog().ShowAsync();
-
-            // Make an empty search to refresh the list and groups
-            var selectCategoryListViewModel = DataContext as SelectCategoryListViewModel;
-            if (selectCategoryListViewModel != null)
-            {
-                selectCategoryListViewModel.SearchText = string.Empty;
-                selectCategoryListViewModel.Search();
-            }
-        }
-
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
-                ((SelectCategoryListViewModel) DataContext).DoneCommand.Execute(null);
+                SelectCategoryListViewModel viewModel = (SelectCategoryListViewModel) DataContext;
+                viewModel.SelectCommand.Execute(viewModel.SelectedCategory);
             }
 
             base.OnKeyDown(e);

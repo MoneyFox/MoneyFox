@@ -427,4 +427,22 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="GeneralTitle" xml:space="preserve">
     <value>Allgemein</value>
   </data>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>Ein Konto mit diesem Namen existiert bereits.</value>
+  </data>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>Eine Kategorie mit diesem Namen existiert bereits.</value>
+  </data>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Name wird bereits verwendet</value>
+  </data>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="AuthenticationFailedMessage" xml:space="preserve">
+    <value>Authentifizierung fehlgeschlagen</value>
+  </data>
+  <data name="SomethingWentWrongTitle" xml:space="preserve">
+    <value>Etwas ist schiefgegangen...</value>
+  </data>
 </root>

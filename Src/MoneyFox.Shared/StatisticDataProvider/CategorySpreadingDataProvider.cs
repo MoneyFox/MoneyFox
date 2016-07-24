@@ -6,16 +6,18 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>, IDisposable
     {
-        private readonly IRepository<Category> categoryRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public CategorySpreadingDataProvider(IPaymentRepository paymentRepository,
-            IRepository<Category> categoryRepository)
+        public CategorySpreadingDataProvider(IUnitOfWork unitOfWork)
         {
-            this.paymentRepository = paymentRepository;
-            this.categoryRepository = categoryRepository;
+            this.unitOfWork = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            unitOfWork.Dispose();
         }
 
         /// <summary>
@@ -28,7 +30,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             // Get all Payments inlcuding income.
-            return GetSpreadingStatisticItems(paymentRepository.Data
+            return GetSpreadingStatisticItems(unitOfWork.PaymentRepository.Data
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
                 .ToList());

@@ -18,20 +18,9 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>,
-        IDialogCloseListener
+    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
+        
     {
-        public void HandleDialogClose()
-        {
-            // Make an empty search to refresh the list and groups
-            var selectCategoryListViewModel = ViewModel;
-            if (selectCategoryListViewModel != null)
-            {
-                selectCategoryListViewModel.SearchText = string.Empty;
-                selectCategoryListViewModel.Search();
-            }
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -46,26 +35,24 @@ namespace MoneyFox.Droid.Activities
 
             FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
-                var dialog = new ModifyCategoryDialog
-                {
-                    ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
-                };
-
-                dialog.Show(FragmentManager, Strings.AddCategoryTitle);
+                ViewModel.CreateNewCategoryCommand.Execute();
             };
 
             Title = Strings.ChooseCategorieTitle;
         }
 
         /// <summary>
-        ///     Initialize the contents of the Activity's standard options menu.
+        ///     Refresh list of categories
         /// </summary>
-        /// <param name="menu">The options menu in which you place your items.</param>
-        /// <returns>To be added.</returns>
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        public void RefreshCategories()
         {
-            MenuInflater.Inflate(Resource.Menu.menu_select, menu);
-            return base.OnCreateOptionsMenu(menu);
+            // Make an empty search to refresh the list and groups
+            var selectCategoryListViewModel = ViewModel;
+            if (selectCategoryListViewModel != null)
+            {
+                selectCategoryListViewModel.SearchText = string.Empty;
+                selectCategoryListViewModel.Search();
+            }
         }
 
         /// <summary>
@@ -81,12 +68,8 @@ namespace MoneyFox.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add:
-                    var dialog = new ModifyCategoryDialog
-                    {
-                        ViewModel = Mvx.Resolve<ModifyCategoryDialogViewModel>()
-                    };
-
-                    dialog.Show(FragmentManager, "dialog");
+                    ViewModel.CreateNewCategoryCommand.Execute();
+                    RefreshCategories();
                     return true;
 
                 default:
@@ -99,8 +82,8 @@ namespace MoneyFox.Droid.Activities
             if (v.Id == Resource.Id.category_list)
             {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
-                menu.Add(Strings.EditLabel);
-                menu.Add(Strings.DeleteLabel);
+                menu.Add(0, 0, 0, Strings.EditLabel);
+                menu.Add(0, 1, 1, Strings.DeleteLabel);
             }
         }
 
@@ -111,28 +94,18 @@ namespace MoneyFox.Droid.Activities
             switch (item.ItemId)
             {
                 case 0:
-                    OpenEditCategoryDialog();
+                    ViewModel.EditCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 case 1:
                     ViewModel.DeleteCategoryCommand.Execute(selected);
+                    RefreshCategories();
                     return true;
 
                 default:
                     return false;
             }
-        }
-
-        private void OpenEditCategoryDialog()
-        {
-            var viewmodel = Mvx.Resolve<ModifyCategoryDialogViewModel>();
-            viewmodel.IsEdit = true;
-            var dialog = new ModifyCategoryDialog
-            {
-                ViewModel = viewmodel
-            };
-
-            dialog.Show(FragmentManager, "dialog");
         }
     }
 }

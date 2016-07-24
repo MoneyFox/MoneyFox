@@ -91,7 +91,7 @@
                                                  IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"
+                            <core:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneWay}"
                                                       InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>

@@ -41,32 +41,25 @@
                               CommandParameter="Income"
                               Icon="Add"
                               Label="add income"
-                              Visibility="{Binding IsAddIncomeAvailable,
-                                                   Converter={StaticResource BoolToVis}}" />
+                              IsEnabled="{Binding IsAddIncomeAvailable}" />
                 <AppBarButton x:Uid="AddExpenseLabel"
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Expense"
                               Icon="Remove"
                               Label="add spending"
-                              Visibility="{Binding IsAddExpenseAvailable,
-                                                   Converter={StaticResource BoolToVis}}" />
+                              IsEnabled="{Binding IsAddExpenseAvailable}" />
                 <AppBarButton x:Uid="AddTransferLabel"
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Transfer"
                               Icon="Switch"
                               Label="add transfer"
-                              Visibility="{Binding IsTransferAvailable,
-                                                   Converter={StaticResource BoolToVis}}" />
+                              IsEnabled="{Binding IsTransferAvailable}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="AddAccountLabel"
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
                               Label="Add Account" />
-                <AppBarButton x:Uid="RecurringPaymentList"
-                              Command="{Binding GoToRecurringPaymentListCommand}"
-                              Label="Recurring Payment Overview"
-                              Visibility="Collapsed" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

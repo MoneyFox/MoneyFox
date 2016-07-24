@@ -12,24 +12,23 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
+        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public SelectCategoryListViewModel(ICategoryRepository categoryRepository,
-            IDialogService dialogService) : base(categoryRepository, dialogService)
+        public SelectCategoryListViewModel(IUnitOfWork unitOfWork,
+            IDialogService dialogService) : base(unitOfWork, dialogService)
         {
         }
-
-        /// <summary>
-        ///     Selects the clicked category and sends it to the message hub.
-        /// </summary>
-        public MvxCommand<Category> DoneCommand => new MvxCommand<Category>(Done);
 
         /// <summary>
         ///     Closes this activity without selecting something.
         /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        private void Done(Category category)
+
+        /// <summary>
+        ///     Post selected category to message hub
+        /// </summary>
+        protected override void Selected(Category category)
         {
             MessageHub.Publish(new CategorySelectedMessage(this, category));
             Close(this);
