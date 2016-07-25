@@ -24,14 +24,14 @@ namespace MoneyFox.Windows.Tasks
 
         public void Run(IBackgroundTaskInstance taskInstance) {
 
-            var connection = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore()).GetConnection();
+            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
 
-            paymentRepository = new PaymentRepository(new PaymentDataAccess(connection));
+            paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
 
             paymentManager = new PaymentManager(paymentRepository,
-                new AccountRepository(new AccountDataAccess(connection)),
-                new RecurringPaymentRepository(new RecurringPaymentDataAccess(connection)),
+                new AccountRepository(new AccountDataAccess(dbManager)),
+                new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
                 null);
 
             ClearPayments();

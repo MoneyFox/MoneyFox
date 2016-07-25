@@ -2,24 +2,23 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using SQLite.Net;
 
 namespace MoneyFox.Windows.Tests.DataAccess
 {
     [TestClass]
     public class CategoryDataAccessTests
     {
-        private SQLiteConnection connection;
+        private IDatabaseManager dbManager;
 
         [TestInitialize]
         public void Init()
         {
-            connection = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore())
-                .GetConnection();
+            dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
@@ -32,7 +31,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Name = name
             };
 
-            new CategoryDataAccess(connection).SaveItem(category);
+            new CategoryDataAccess(dbManager).SaveItem(category);
 
             Assert.IsTrue(category.Id >= 1);
             Assert.AreEqual(name, category.Name);
@@ -43,7 +42,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var category = new Category();
 
-            var dataAccess = new CategoryDataAccess(connection);
+            var dataAccess = new CategoryDataAccess(dbManager);
             dataAccess.SaveItem(category);
 
             Assert.IsNull(category.Name);
@@ -70,7 +69,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Name = "Beer"
             };
 
-            var dataAccess = new CategoryDataAccess(connection);
+            var dataAccess = new CategoryDataAccess(dbManager);
             dataAccess.SaveItem(category1);
             dataAccess.SaveItem(category2);
 
@@ -91,7 +90,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Name = firstName
             };
 
-            var dataAccess = new CategoryDataAccess(connection);
+            var dataAccess = new CategoryDataAccess(dbManager);
             dataAccess.SaveItem(category);
 
             Assert.AreEqual(firstName, dataAccess.LoadList().FirstOrDefault(x => x.Id == category.Id).Name);
@@ -112,7 +111,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Name = "categoryToDelete"
             };
 
-            var dataAccess = new CategoryDataAccess(connection);
+            var dataAccess = new CategoryDataAccess(dbManager);
             dataAccess.SaveItem(category);
 
             Assert.IsTrue(dataAccess.LoadList(x => x.Id == category.Id).Any());
