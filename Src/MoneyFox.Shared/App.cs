@@ -30,8 +30,18 @@ namespace MoneyFox.Shared
             Mvx.RegisterType(() => Mvx.Resolve<IDatabaseManager>().GetConnection());
 
             CreatableTypes()
+                .EndingWith("DataAccess")
+                .AsInterfaces()
+                .RegisterAsDynamic();
+
+            CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()
+                .RegisterAsDynamic();
+
+            CreatableTypes()
+                .EndingWith("DataDataProvider")
+                .AsTypes()
                 .RegisterAsDynamic();
 
             CreatableTypes()

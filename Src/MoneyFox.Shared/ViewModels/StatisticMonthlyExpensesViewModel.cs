@@ -11,19 +11,15 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticMonthlyExpensesViewModel : StatisticViewModel, IDisposable
+    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
-        private readonly IUnitOfWork unitOfWork;
 
-        public StatisticMonthlyExpensesViewModel(IUnitOfWork unitOfWork)
+        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider)
             : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
-            this.unitOfWork = unitOfWork;
-
-            monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(unitOfWork);
-
+            this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
             MonthlyExpensesModel = GetModel();
         }
 
@@ -31,11 +27,6 @@ namespace MoneyFox.Shared.ViewModels
         ///     Contains the PlotModel for the Chart
         /// </summary>
         public PlotModel MonthlyExpensesModel { get; set; }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         /// <summary>
         ///     Loads the expense history with the current start and end date.
