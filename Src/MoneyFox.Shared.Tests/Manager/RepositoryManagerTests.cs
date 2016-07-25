@@ -41,11 +41,6 @@ namespace MoneyFox.Shared.Tests.Manager
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoSetup .Object);
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoSetup.Object);
-
             new RepositoryManager(new PaymentManager(paymentRepoSetup.Object, accountRepoSetup.Object,
                     new Mock<IRepository<RecurringPayment>>().Object, 
                     new Mock<IDialogService>().Object),

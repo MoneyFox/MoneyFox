@@ -72,9 +72,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
-
             var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IRepository<RecurringPayment>>().Object,

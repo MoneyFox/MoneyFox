@@ -53,9 +53,6 @@ namespace MoneyFox.Shared.Tests.Manager
             var repo = paymentRepositorySetup.Object;
             repo.Data = new ObservableCollection<Payment>();
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepositorySetup.Object);
-
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
@@ -71,9 +68,6 @@ namespace MoneyFox.Shared.Tests.Manager
         {
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.SetupAllProperties();
-
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepositorySetup.Object);
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IRepository<Account>>().Object,
