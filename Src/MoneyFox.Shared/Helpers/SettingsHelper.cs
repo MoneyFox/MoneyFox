@@ -29,15 +29,18 @@ namespace MoneyFox.Shared.Helpers
         private const string PASSWORD_REQUIRED_KEYNAME = "PasswordRequired";
         private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
 
+        private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
+        private const bool BACKUP_LOGGEDIN_KEYDEFAULT = false;
+
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
         /// <summary>
         ///     Constant for the Theme Setting
         ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
         /// </summary>
-        public const string DARK_THEME_SELECTED = "dark_theme_selected";
-
+        public const string DARK_THEME_SELECTED_KEYNAME = "dark_theme_selected";
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
+
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
         private static ISettings Settings => Mvx.Resolve<ISettings>();
@@ -94,8 +97,14 @@ namespace MoneyFox.Shared.Helpers
 
         public static bool IsDarkThemeSelected
         {
-            get { return Settings.GetValue(DARK_THEME_SELECTED, DARK_THEME_SELECTED_KEYDEFAULT); }
-            set { Settings.AddOrUpdateValue(DARK_THEME_SELECTED, value); }
+            get { return Settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT); }
+            set { Settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value); }
+        }
+
+        public static bool IsLoggedInToBackupService
+        {
+            get { return Settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT); }
+            set { Settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
         }
 
         #endregion Properties
