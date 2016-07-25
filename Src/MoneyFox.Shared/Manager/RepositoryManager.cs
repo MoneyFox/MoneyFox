@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -7,21 +8,23 @@ namespace MoneyFox.Shared.Manager
     ///     This helper can be used to reinstantiate all Repositories, for example when you
     ///     download a new database backup and replace the current one.
     /// </summary>
-    public class RepositoryManager : IRepositoryManager, IDisposable
+    public class RepositoryManager : IRepositoryManager
     {
+        private readonly IRepository<Account> accountRepository;
+        private readonly IPaymentRepository paymentRepository;
+        private readonly IRepository<Category> categoryRepository;
+
         private readonly IPaymentManager paymentManager;
-        private readonly IUnitOfWork unitOfWork;
 
-        public RepositoryManager(IUnitOfWork unitOfWork,
-            IPaymentManager paymentManager)
+        public RepositoryManager(IPaymentManager paymentManager, 
+            IRepository<Account> accountRepository,
+            IPaymentRepository paymentRepository, 
+            IRepository<Category> categoryRepository)
         {
-            this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
-        }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         /// <summary>
@@ -31,12 +34,12 @@ namespace MoneyFox.Shared.Manager
         public void ReloadData()
         {
             //Load Data
-            unitOfWork.AccountRepository.Load();
+            accountRepository.Load();
 
-            unitOfWork.PaymentRepository.Load();
-            unitOfWork.PaymentRepository.Selected = null;
+            paymentRepository.Load();
+            paymentRepository.Selected = null;
 
-            unitOfWork.CategoryRepository.Load();
+            categoryRepository.Load();
 
             //check if there are payments to clear
             paymentManager.ClearPayments();
