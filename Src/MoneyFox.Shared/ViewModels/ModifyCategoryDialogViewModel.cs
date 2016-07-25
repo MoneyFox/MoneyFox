@@ -13,20 +13,19 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryDialogViewModel : BaseViewModel, IDisposable
+    public class ModifyCategoryDialogViewModel : BaseViewModel
     {
+        private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
-        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Create new instance of the view model.
         /// </summary>
-        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork" />.</param>
+        /// <param name="categoryRepository">Instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">Dialogservice to interact with the user.</param>
-        public ModifyCategoryDialogViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
-        {
-            this.unitOfWork = unitOfWork;
+        public ModifyCategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
             this.dialogService = dialogService;
+            this.categoryRepository = categoryRepository;
         }
 
         public Category Selected { get; set; }
@@ -51,11 +50,6 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
 
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
-
         private void Loaded()
         {
             if (IsEdit)
@@ -75,14 +69,14 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             if (
-                unitOfWork.CategoryRepository.Data.Any(
+                categoryRepository.Data.Any(
                     x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            if (unitOfWork.CategoryRepository.Save(Selected))
+            if (categoryRepository.Save(Selected))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }

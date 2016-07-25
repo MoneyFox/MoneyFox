@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using PropertyChanged;
-using SQLite.Net;
 
 namespace MoneyFox.Shared.DataAccess
 {
@@ -14,11 +14,11 @@ namespace MoneyFox.Shared.DataAccess
     [ImplementPropertyChanged]
     public class PaymentDataAccess : AbstractDataAccess<Payment>
     {
-        private readonly SQLiteConnection dbConnection;
+        private readonly IDatabaseManager dbManager;
 
-        public PaymentDataAccess(SQLiteConnection dbConnection)
+        public PaymentDataAccess(IDatabaseManager dbManager)
         {
-            this.dbConnection = dbConnection;
+            this.dbManager = dbManager;
         }
 
         /// <summary>
@@ -27,15 +27,18 @@ namespace MoneyFox.Shared.DataAccess
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(Payment itemToSave)
         {
-            //Don't use insert or replace here, because it will always replace the first element
-            if (itemToSave.Id == 0)
+            using (var dbConnection = dbManager.GetConnection())
             {
-                dbConnection.Insert(itemToSave);
-                itemToSave.Id = dbConnection.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
-            }
-            else
-            {
-                dbConnection.Update(itemToSave);
+                //Don't use insert or replace here, because it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    dbConnection.Insert(itemToSave);
+                    itemToSave.Id = dbConnection.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
+                }
+                else
+                {
+                    dbConnection.Update(itemToSave);
+                }
             }
         }
 
@@ -45,7 +48,10 @@ namespace MoneyFox.Shared.DataAccess
         /// <param name="payment">Item to Delete.</param>
         protected override void DeleteFromDatabase(Payment payment)
         {
-            dbConnection.Delete(payment);
+            using (var dbConnection = dbManager.GetConnection())
+            {
+                dbConnection.Delete(payment);
+            }
         }
 
         /// <summary>
@@ -55,34 +61,37 @@ namespace MoneyFox.Shared.DataAccess
         /// <returns>List of loaded payments.</returns>
         protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
-            var listQuery = dbConnection.Table<Payment>();
-
-            if (filter != null)
+            using (var dbConnection = dbManager.GetConnection())
             {
-                listQuery = listQuery.Where(filter);
-            }
+                var listQuery = dbConnection.Table<Payment>();
 
-            var payments = listQuery.ToList();
-            var accounts = dbConnection.Table<Account>().ToList();
-
-            var recurringTransactionsQuery = dbConnection.Table<RecurringPayment>();
-            var categoriesQuery = dbConnection.Table<Category>();
-
-            foreach (var payment in payments)
-            {
-                payment.ChargedAccount = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
-                payment.TargetAccount = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
-
-                payment.Category = categoriesQuery.FirstOrDefault(x => x.Id == payment.CategoryId);
-
-                if (payment.IsRecurring)
+                if (filter != null)
                 {
-                    payment.RecurringPayment =
-                        recurringTransactionsQuery.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
+                    listQuery = listQuery.Where(filter);
                 }
-            }
 
-            return payments;
+                var payments = listQuery.ToList();
+                var accounts = dbConnection.Table<Account>().ToList();
+
+                var recurringTransactionsQuery = dbConnection.Table<RecurringPayment>();
+                var categoriesQuery = dbConnection.Table<Category>();
+
+                foreach (var payment in payments)
+                {
+                    payment.ChargedAccount = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    payment.TargetAccount = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
+
+                    payment.Category = categoriesQuery.FirstOrDefault(x => x.Id == payment.CategoryId);
+
+                    if (payment.IsRecurring)
+                    {
+                        payment.RecurringPayment =
+                            recurringTransactionsQuery.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
+                    }
+                }
+
+                return payments;
+            }
         }
     }
 }

@@ -23,15 +23,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GetTotalBalance_Zero()
         {
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
-
-            var vm = new BalanceViewModel(unitOfWorkSetup.Object);
+            var vm = new BalanceViewModel(new Mock<IRepository<Account>>().Object, paymentMockSetup.Object);
 
             vm.UpdateBalanceCommand.Execute();
 
@@ -42,8 +37,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GetTotalBalance_TwoExpense_SumOfPayments()
         {
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.Data)
                 .Returns(() => new ObservableCollection<Payment>
@@ -52,10 +45,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Payment {Amount = 60, Type = (int) PaymentType.Expense}
                 });
 
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
-
-            var vm = new BalanceViewModel(unitOfWorkSetup.Object);
+            var vm = new BalanceViewModel(new Mock<IRepository<Account>>().Object, paymentMockSetup.Object);
 
             vm.UpdateBalanceCommand.Execute();
 
@@ -66,8 +56,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.Data)
                 .Returns(() => new ObservableCollection<Payment>
@@ -76,10 +64,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Payment {Amount = 60, Type = (int) PaymentType.Income}
                 });
 
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
-
-            var vm = new BalanceViewModel(unitOfWorkSetup.Object);
+            var vm = new BalanceViewModel(new Mock<IRepository<Account>>().Object, paymentMockSetup.Object);
 
             vm.UpdateBalanceCommand.Execute();
 
@@ -90,8 +75,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
@@ -102,10 +85,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Account {CurrentBalance = 200}
             });
 
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentMockSetup.Object);
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountMockSetup.Object);
-
-            var vm = new BalanceViewModel(unitOfWorkSetup.Object);
+            var vm = new BalanceViewModel(accountMockSetup.Object, paymentMockSetup.Object);
 
             vm.UpdateBalanceCommand.Execute();
 

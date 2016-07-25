@@ -7,22 +7,17 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>, IDisposable
+    public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository<Payment> paymentRepository;
 
-        public MonthlyExpensesDataProvider(IUnitOfWork unitOfWork)
+        public MonthlyExpensesDataProvider(IRepository<Payment> paymentRepository)
         {
-            this.unitOfWork = unitOfWork;
-        }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
+            this.paymentRepository = paymentRepository;
         }
 
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-            => unitOfWork.PaymentRepository.Data
+            => paymentRepository.Data
                 .Where(x => x.Type == (int) PaymentType.Expense)
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))

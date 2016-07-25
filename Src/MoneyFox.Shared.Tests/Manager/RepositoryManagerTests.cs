@@ -16,7 +16,7 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void Constructor_NullValues_NoException()
         {
-            new RepositoryManager(null, null).ShouldNotBeNull();
+            new RepositoryManager(null, null, null, null).ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -41,14 +41,11 @@ namespace MoneyFox.Shared.Tests.Manager
             categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoSetup .Object);
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepoSetup.Object);
-
-            new RepositoryManager(unitOfWork.Object,
-                new PaymentManager(unitOfWork.Object,
-                    new Mock<IDialogService>().Object)).ReloadData();
+            new RepositoryManager(new PaymentManager(paymentRepoSetup.Object, accountRepoSetup.Object,
+                    new Mock<IRepository<RecurringPayment>>().Object, 
+                    new Mock<IDialogService>().Object),
+                    accountRepoSetup.Object, paymentRepoSetup.Object, categoryRepoSetup.Object)
+                    .ReloadData();
 
             Assert.IsTrue(accountsLoaded);
             Assert.IsTrue(paymentsLoaded);

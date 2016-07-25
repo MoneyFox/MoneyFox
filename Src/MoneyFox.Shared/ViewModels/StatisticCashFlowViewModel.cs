@@ -1,6 +1,6 @@
-﻿using System;
-using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -10,16 +10,16 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticCashFlowViewModel : StatisticViewModel, IDisposable
+    public class StatisticCashFlowViewModel : StatisticViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository<Payment> paymentRepository;
 
-        public StatisticCashFlowViewModel(IUnitOfWork unitOfWork)
+        public StatisticCashFlowViewModel(IRepository<Payment> paymentRepository)
         {
-            this.unitOfWork = unitOfWork;
+            this.paymentRepository = paymentRepository;
 
-            cashFlowDataProvider = new CashFlowDataProvider(unitOfWork);
+            cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
             CashFlowModel = GetCashFlowModel();
         }
 
@@ -27,11 +27,6 @@ namespace MoneyFox.Shared.ViewModels
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
         public PlotModel CashFlowModel { get; set; }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         /// <summary>
         ///     Loads the cashflow with the current start and end date.

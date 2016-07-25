@@ -42,15 +42,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
-
-            var paymentManager = new PaymentManager(unitOfWork.Object,
+            var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object, 
+                accountRepoMock.Object,
+                new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);
@@ -72,18 +72,18 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
+            var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
+                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IDialogService>().Object);
 
-            var paymentManager = new PaymentManager(unitOfWork.Object, new Mock<IDialogService>().Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
-
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);
-
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Expense);
@@ -100,18 +100,18 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
+            var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
+                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IDialogService>().Object);
 
-            var paymentManager = new PaymentManager(unitOfWork.Object, new Mock<IDialogService>().Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
-
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);
-
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
@@ -139,18 +139,18 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3, Name = "3" } });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
-
             var dialogService = new Mock<IDialogService>().Object;
-            var defaultManager = new DefaultManager(unitOfWork.Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.SavePayment(It.IsAny<Payment>())).Returns(true);
             paymentManagerSetup.Setup(x => x.AddPaymentAmount(It.IsAny<Payment>())).Returns(true);
 
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object, dialogService, paymentManagerSetup.Object, defaultManager)
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                dialogService, 
+                paymentManagerSetup.Object,
+                defaultManager)
             {
                 SelectedPayment = selectedPayment
             };
@@ -180,16 +180,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
-
-            var paymentManager = new PaymentManager(unitOfWork.Object,
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);
@@ -222,16 +221,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
+                            accountRepoMock.Object,
+                            new Mock<IRepository<RecurringPayment>>().Object,
+                            new Mock<IDialogService>().Object);
 
-            var paymentManager = new PaymentManager(unitOfWork.Object,
-                new Mock<IDialogService>().Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
-
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);
@@ -264,16 +262,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepoMock.Object);
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
+                            accountRepoMock.Object,
+                            new Mock<IRepository<RecurringPayment>>().Object,
+                            new Mock<IDialogService>().Object);
 
-            var paymentManager = new PaymentManager(unitOfWork.Object,
-                new Mock<IDialogService>().Object);
+            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
-            var defaultManager = new DefaultManager(unitOfWork.Object);
-
-            var viewmodel = new ModifyPaymentViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 defaultManager);

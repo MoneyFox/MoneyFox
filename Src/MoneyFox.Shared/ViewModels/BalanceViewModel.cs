@@ -1,21 +1,22 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel, IDisposable
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        protected readonly IUnitOfWork UnitOfWork;
+        private readonly IRepository<Account> accountRepository;
+        private readonly IRepository<Payment> paymentRepository;
 
-        public BalanceViewModel(IUnitOfWork unitOfWork)
-        {
-            UnitOfWork = unitOfWork;
+        public BalanceViewModel(IRepository<Account> accountRepository, IRepository<Payment> paymentRepository) {
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
         }
 
         /// <summary>
@@ -34,11 +35,6 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand UpdateBalanceCommand => new MvxCommand(UpdateBalance);
 
-        public void Dispose()
-        {
-            UnitOfWork.Dispose();
-        }
-
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
@@ -53,7 +49,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance() => UnitOfWork.AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
+        protected virtual double GetTotalBalance() => accountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -62,7 +58,7 @@ namespace MoneyFox.Shared.ViewModels
         protected virtual double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = UnitOfWork.PaymentRepository.Data
+            var unclearedPayments = paymentRepository.Data
                 .Where(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth());
 

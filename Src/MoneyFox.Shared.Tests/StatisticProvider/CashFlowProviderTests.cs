@@ -48,11 +48,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
             //Excution
-            var result = new CashFlowDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -91,11 +88,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
             //Excution
-            var result = new CashFlowDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion

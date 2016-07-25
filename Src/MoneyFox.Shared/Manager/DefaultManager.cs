@@ -8,33 +8,28 @@ using MoneyFox.Shared.Model;
 namespace MoneyFox.Shared.Manager
 {
     //TODO: Refactor to helper class
-    public class DefaultManager : IDefaultManager, IDisposable
+    public class DefaultManager : IDefaultManager
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository<Account> accountRepository;
 
-        public DefaultManager(IUnitOfWork unitOfWork)
+        public DefaultManager(IRepository<Account> accountRepository)
         {
-            this.unitOfWork = unitOfWork;
+            this.accountRepository = accountRepository;
         }
 
         public Account GetDefaultAccount()
         {
-            if (unitOfWork.AccountRepository.Data == null)
+            if (accountRepository.Data == null)
             {
-                unitOfWork.AccountRepository.Data = new ObservableCollection<Account>();
+                accountRepository.Data = new ObservableCollection<Account>();
             }
 
-            if (unitOfWork.AccountRepository.Data.Any() && SettingsHelper.DefaultAccount != -1)
+            if (accountRepository.Data.Any() && SettingsHelper.DefaultAccount != -1)
             {
-                return unitOfWork.AccountRepository.Data.FirstOrDefault(x => x.Id == SettingsHelper.DefaultAccount);
+                return accountRepository.Data.FirstOrDefault(x => x.Id == SettingsHelper.DefaultAccount);
             }
 
-            return unitOfWork.AccountRepository.Data.FirstOrDefault();
-        }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
+            return accountRepository.Data.FirstOrDefault();
         }
     }
 }

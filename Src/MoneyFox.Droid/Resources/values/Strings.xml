@@ -48,6 +48,7 @@ Ausserdem wird bei jedem Start der Applikation  geprüft ob eine neuere Sicherun
   <string name="button_create_backup">Sicherung erstellen</string>
   <string name="button_done">Fertig</string>
   <string name="button_login">Anmelden</string>
+  <string name="button_logout">Abmelden</string>
   <!--labels-->
   <string name="label_cleared">Verrechnet: </string>
   <string name="label_slogan">Budgetnig einfach gemacht.</string>

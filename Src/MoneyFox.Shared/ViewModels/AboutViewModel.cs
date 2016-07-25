@@ -20,7 +20,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <param name="appInformation">Instance of a <see cref="IAppInformation" /> implementation.</param>
         /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask" /> implementation.</param>
         /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
-        /// <param name="storeOperations">Instance of a <see cref="IStoreFeatures" /> implementation.</param>
+        /// <param name="storeOperations">Instance of a <see cref="IStoreOperations" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
             IMvxComposeEmailTask composeEmailTask,
             IMvxWebBrowserTask webBrowserTask,

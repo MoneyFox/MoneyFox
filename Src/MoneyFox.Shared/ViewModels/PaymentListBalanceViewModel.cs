@@ -11,11 +11,16 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
+        private readonly IRepository<Account> accountRepository;
+        private readonly IRepository<Payment> paymentRepository;
+
         private readonly int accountId;
 
-        public PaymentListBalanceViewModel(IUnitOfWork unitOfWork, int accountId)
-            : base(unitOfWork)
+        public PaymentListBalanceViewModel(IRepository<Account> accountRepository, IRepository<Payment> paymentRepository, int accountId)
+            : base(accountRepository, paymentRepository)
         {
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
             this.accountId = accountId;
         }
 
@@ -24,7 +29,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override double GetTotalBalance()
-            => UnitOfWork.AccountRepository.FindById(accountId)?.CurrentBalance ?? 0;
+            => accountRepository.FindById(accountId)?.CurrentBalance ?? 0;
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
@@ -71,7 +76,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private IEnumerable<Payment> LoadUnclearedPayments()
-            => UnitOfWork.PaymentRepository.Data
+            => paymentRepository.Data
                 .Where(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
                 .Where(x => x.ChargedAccountId == accountId

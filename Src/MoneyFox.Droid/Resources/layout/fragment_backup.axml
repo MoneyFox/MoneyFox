@@ -11,22 +11,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-      <Button
+        <Button
             android:id="@+id/btn_login"
             android:text="@string/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             local:MvxBind="Click LoginCommand; Visibility InvertedVisibility(IsLoggedIn)" />
-      <Button
+        <Button
             android:id="@+id/btn_logout"
-            android:text="@string/button_login"
+            android:text="@string/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             local:MvxBind="Click LogoutCommand; Visibility Visibility(IsLoggedIn)" />
-
-      <TextView
+        <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"

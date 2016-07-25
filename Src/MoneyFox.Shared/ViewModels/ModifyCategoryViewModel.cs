@@ -13,18 +13,12 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryViewModel : BaseViewModel, IDisposable
-    {
+    public class ModifyCategoryViewModel : BaseViewModel {
+        private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
-        private readonly IUnitOfWork unitOfWork;
 
-        /// <summary>
-        ///     Create a new instance of the view model.
-        /// </summary>
-        /// <param name="categoryRepository">Instance of the category repository to access the db.</param>
-        public ModifyCategoryViewModel(IUnitOfWork unitOfWork, IDialogService dialogService)
-        {
-            this.unitOfWork = unitOfWork;
+        public ModifyCategoryViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
+            this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
         }
 
@@ -61,11 +55,6 @@ namespace MoneyFox.Shared.ViewModels
             ? string.Format(Strings.EditCategoryTitle, SelectedCategory.Name)
             : Strings.AddCategoryTitle;
 
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
-
         /// <summary>
         ///     Initialize the ViewModel
         /// </summary>
@@ -89,7 +78,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
-                ? unitOfWork.CategoryRepository.Data.First(x => x.Id == selectedCategoryId)
+                ? categoryRepository.Data.First(x => x.Id == selectedCategoryId)
                 : new Category();
         }
 
@@ -101,14 +90,14 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && unitOfWork.CategoryRepository.Data.Any(
+            if (!IsEdit && categoryRepository.Data.Any(
                 a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            if (unitOfWork.CategoryRepository.Save(SelectedCategory))
+            if (categoryRepository.Save(SelectedCategory))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
@@ -117,7 +106,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void DeleteCategory()
         {
-            if (unitOfWork.CategoryRepository.Delete(SelectedCategory))
+            if (categoryRepository.Delete(SelectedCategory))
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             Close(this);
         }
