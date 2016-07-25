@@ -14,28 +14,30 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel, IDisposable
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
+        private readonly IRepository<Account> accountRepository;
+        private readonly IRepository<Payment> paymentRepository;
+        private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
-        private readonly IUnitOfWork unitOfWork;
 
-        public PaymentListViewModel(IUnitOfWork unitOfWork,
-            IDialogService dialogService, IPaymentManager paymentManager)
+        public PaymentListViewModel(IRepository<Account> accountRepository,
+            IRepository<Payment> paymentRepository, 
+            IRepository<RecurringPayment> recurringPaymentRepository,
+            IDialogService dialogService, 
+            IPaymentManager paymentManager)
         {
-            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
+            this.recurringPaymentRepository = recurringPaymentRepository;
         }
 
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
         public int AccountId { get; private set; }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         public IBalanceViewModel BalanceViewModel { get; private set; }
 
@@ -79,12 +81,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => unitOfWork.AccountRepository.FindById(AccountId).Name;
+        public string Title => accountRepository.FindById(AccountId).Name;
 
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(unitOfWork, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository, AccountId);
         }
 
         private void LoadPayments()
@@ -93,7 +95,7 @@ namespace MoneyFox.Shared.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<Payment>(unitOfWork.PaymentRepository.Data
+            RelatedPayments = new ObservableCollection<Payment>(paymentRepository.Data
                 .Where(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
@@ -126,7 +128,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                if (unitOfWork.AccountRepository.Delete(unitOfWork.AccountRepository.FindById(AccountId)))
+                if (accountRepository.Delete(accountRepository.FindById(AccountId)))
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
@@ -149,11 +151,11 @@ namespace MoneyFox.Shared.ViewModels
             if (await paymentManager.CheckRecurrenceOfPayment(payment))
             {
                 paymentManager.RemoveRecurringForPayment(payment);
-                unitOfWork.RecurringPaymentRepository.Delete(payment.RecurringPayment);
+                recurringPaymentRepository.Delete(payment.RecurringPayment);
             }
 
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);
-            var paymentSucceded = unitOfWork.PaymentRepository.Delete(payment);
+            var paymentSucceded = paymentRepository.Delete(payment);
             if (accountSucceded && paymentSucceded)
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             LoadCommand.Execute();
