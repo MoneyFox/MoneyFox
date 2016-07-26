@@ -78,7 +78,6 @@
     <Compile Include="Interfaces\IBackupService.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
-    <Compile Include="Interfaces\IDefaultManager.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
@@ -102,7 +101,7 @@
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\BackupManager.cs" />
-    <Compile Include="Manager\DefaultManager.cs" />
+    <Compile Include="Helpers\DefaultHelper.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />

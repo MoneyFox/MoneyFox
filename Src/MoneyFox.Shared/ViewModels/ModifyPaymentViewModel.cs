@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -17,7 +19,6 @@ namespace MoneyFox.Shared.ViewModels
     public class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IRepository<Payment> paymentRepository;
-        private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
@@ -31,12 +32,10 @@ namespace MoneyFox.Shared.ViewModels
         public ModifyPaymentViewModel(IRepository<Payment> paymentRepository,
             IRepository<Account> accountRepository,
             IDialogService dialogService,
-            IPaymentManager paymentManager,
-            IDefaultManager defaultManager)
+            IPaymentManager paymentManager)
         {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
-            this.defaultManager = defaultManager;
             this.paymentRepository = paymentRepository;
 
             TargetAccounts = accountRepository.Data;
@@ -50,6 +49,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
         /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
+        /// <param name="paymentId">The id of the payment to edit.</param>
         public void Init(PaymentType type, int paymentId = 0)
         {
             if (paymentId == 0)
@@ -74,7 +74,6 @@ namespace MoneyFox.Shared.ViewModels
         private void PrepareDefault(PaymentType type)
         {
             SetDefaultPayment(type);
-            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
@@ -100,7 +99,8 @@ namespace MoneyFox.Shared.ViewModels
                 Type = (int) paymentType,
                 Date = DateTime.Now,
                 // Assign empty category to reset the GUI
-                Category = new Category()
+                Category = new Category(),
+                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
             };
         }
 

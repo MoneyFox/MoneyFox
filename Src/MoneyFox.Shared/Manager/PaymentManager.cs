@@ -13,11 +13,11 @@ namespace MoneyFox.Shared.Manager
     public class PaymentManager : IPaymentManager
     {
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
 
-        public PaymentManager(IRepository<Payment> paymentRepository, 
+        public PaymentManager(IPaymentRepository paymentRepository, 
             IRepository<Account> accountRepository,
             IRepository<RecurringPayment> recurringPaymentRepository,
             IDialogService dialogService) {
