@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Cheesebaron.MvxPlugins.Settings": "1.2.7",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "MvvmCross.Plugin.File": "4.2.2",
     "MvvmCross.Plugin.SQLitePCL": "4.2.2",
     "OxyPlot.Windows": "2015.1.1033-alpha"

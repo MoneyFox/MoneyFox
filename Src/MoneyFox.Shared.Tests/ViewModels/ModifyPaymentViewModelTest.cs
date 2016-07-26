@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
@@ -47,13 +48,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             viewmodel.Init(PaymentType.Income);
 
@@ -77,13 +75,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Expense);
@@ -105,13 +100,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
@@ -140,7 +132,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3, Name = "3" } });
 
             var dialogService = new Mock<IDialogService>().Object;
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.SavePayment(It.IsAny<Payment>())).Returns(true);
@@ -149,8 +140,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 dialogService, 
-                paymentManagerSetup.Object,
-                defaultManager)
+                paymentManagerSetup.Object)
             {
                 SelectedPayment = selectedPayment
             };
@@ -185,13 +175,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -226,13 +213,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                             new Mock<IRepository<RecurringPayment>>().Object,
                             new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -267,13 +251,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                             new Mock<IRepository<RecurringPayment>>().Object,
                             new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepoMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager,
-                defaultManager);
+                paymentManager);
 
             viewmodel.Init(PaymentType.Income, 12);
 

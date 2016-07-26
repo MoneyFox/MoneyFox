@@ -79,7 +79,7 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
         {
-            var result = await new PaymentManager(new Mock<IRepository<Payment>>().Object,
+            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object)
@@ -99,7 +99,7 @@ namespace MoneyFox.Shared.Tests.Manager
                     It.Is<string>(y => y == Strings.RecurringLabel),
                     It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
 
-            var result = await new PaymentManager(new Mock<IRepository<Payment>>().Object,
+            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 dialogService.Object)
@@ -119,7 +119,7 @@ namespace MoneyFox.Shared.Tests.Manager
                     It.Is<string>(y => y == Strings.RecurringLabel),
                     It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
 
-            var result = await new PaymentManager(new Mock<IRepository<Payment>>().Object,
+            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 dialogService.Object)

@@ -20,7 +20,7 @@ namespace MoneyFox.Windows.Tasks
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
 
         private IPaymentManager paymentManager;
-        private IRepository<Payment> paymentRepository;
+        private IPaymentRepository paymentRepository;
 
         public void Run(IBackgroundTaskInstance taskInstance) {
 

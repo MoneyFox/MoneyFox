@@ -38,7 +38,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
             new MainViewModel(new Mock<IRepository<Account>>().Object)
@@ -51,7 +50,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
             new MainViewModel(new Mock<IRepository<Account>>().Object)
@@ -64,7 +62,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
             new MainViewModel(new Mock<IRepository<Account>>().Object)

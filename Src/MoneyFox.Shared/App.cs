@@ -31,12 +31,12 @@ namespace MoneyFox.Shared
             CreatableTypes()
                 .EndingWith("DataAccess")
                 .AsInterfaces()
-                .RegisterAsDynamic();
+                .RegisterAsLazySingleton();
 
             CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()
-                .RegisterAsDynamic();
+                .RegisterAsLazySingleton();
 
             CreatableTypes()
                 .EndingWith("DataDataProvider")
