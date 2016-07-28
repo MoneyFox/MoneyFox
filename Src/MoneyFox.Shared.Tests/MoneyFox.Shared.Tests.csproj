@@ -160,6 +160,7 @@
     <Compile Include="ViewModels\ModifyCategoryDialogViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
+    <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

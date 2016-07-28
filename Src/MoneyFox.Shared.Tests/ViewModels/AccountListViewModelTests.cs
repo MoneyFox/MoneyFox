@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
@@ -138,6 +137,47 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewModel.DeleteAccountCommand.Execute(accountData);
             deleteCalled.ShouldBeTrue();
             Assert.AreEqual(null, paymentRepo.Data.FirstOrDefault(p => p.Id == 1));
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_AccountsEmpty_True()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_OneAccount_False()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {new Account()});
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_TwoAccount_False()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+                new Account(),
+                new Account()
+            });
+
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void AllAccounts_AccountsAvailable_MatchesRepository()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+                new Account(),
+                new Account()
+            });
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
+        }
+        [TestMethod]
+        public void AllAccounts_NoAccountsAvailable_MatchesRepository()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
         }
     }
 }
