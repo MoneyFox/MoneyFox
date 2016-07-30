@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -29,6 +30,51 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepository.SetupAllProperties();
             paymentRepository.SetupAllProperties();
             Setup();
+        }
+
+        [TestMethod]
+        public void Init_PassAccountId_AccountIdSet()
+        {
+            var vm = new PaymentListViewModel(accountRepository.Object,
+                paymentRepository.Object,
+                recPaymentRepository.Object,
+                paymentManager.Object, 
+                null);
+
+            vm.Init(42);
+            vm.AccountId.ShouldBe(42);
+        }
+
+        [TestMethod]
+        public void Init_NullPassAccountId_AccountIdSet()
+        {
+            var vm = new PaymentListViewModel(accountRepository.Object,
+                paymentRepository.Object,
+                recPaymentRepository.Object,
+                paymentManager.Object, 
+                null);
+
+            vm.Init(0);
+            vm.AccountId.ShouldBe(0);
+        }
+
+        [TestMethod]
+        public void Title_IdPassed_CorrectlySet()
+        {
+            const int id = 42;
+            const string accountName = "testAccount";
+
+            accountRepository.SetupGet(x => x.Data)
+                .Returns(new ObservableCollection<Account> {new Account {Id = id, Name = accountName}});
+
+            var vm = new PaymentListViewModel(accountRepository.Object,
+                paymentRepository.Object,
+                recPaymentRepository.Object,
+                paymentManager.Object, 
+                null);
+
+            vm.Init(0);
+            vm.Title.ShouldBe(accountName);
         }
     }
 }
