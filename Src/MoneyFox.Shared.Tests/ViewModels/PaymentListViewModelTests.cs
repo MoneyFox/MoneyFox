@@ -30,30 +30,5 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentRepository.SetupAllProperties();
             Setup();
         }
-
-        [TestMethod]
-        public void RelatedPayments_PaymentsAvailable_MatchesRepository()
-        {
-            paymentRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment> {
-                new Payment(),
-                new Payment()
-            });
-            new PaymentListViewModel(accountRepository.Object,
-                paymentRepository.Object,
-                recPaymentRepository.Object, 
-                paymentManager.Object,
-                null).RelatedPayments.Count.ShouldBe(paymentRepository.Object.Data.Count);
-        }
-
-        [TestMethod]
-        public void RelatedPayments_NoPaymentsAvailable_MatchesRepository()
-        {
-            paymentRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>());
-            new PaymentListViewModel(accountRepository.Object,
-                paymentRepository.Object,
-                recPaymentRepository.Object,
-                paymentManager.Object,
-                null).RelatedPayments.Count.ShouldBe(paymentRepository.Object.Data.Count);
-        }
     }
 }
