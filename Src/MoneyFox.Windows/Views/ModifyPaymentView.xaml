@@ -65,6 +65,7 @@
                     </ComboBox>
 
                     <ComboBox x:Uid="TargetAccountTextBox"
+                              Name="ComboBoxB"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
                               Header="target account"
