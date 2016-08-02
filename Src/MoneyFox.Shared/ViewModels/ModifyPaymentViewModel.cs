@@ -43,16 +43,10 @@ namespace MoneyFox.Shared.ViewModels
             tempCollection = new ObservableCollection<Account>(accountRepository.Data);
             TargetAccounts = new ObservableCollection<Account>(accountRepository.Data);
             ChargedAccounts = new ObservableCollection<Account>(TargetAccounts);
-           // TempTargetAccounts = new ObservableCollection<Account>(TargetAccounts);
-            //TempChargedAccounts = new ObservableCollection<Account>(ChargedAccounts);
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
-        //public ObservableCollection<Account> TempTargetAccounts;
-        //public ObservableCollection<Account> TempChargedAccounts;
-        
-
-
+  
 
         public int PaymentId { get; private set; }
 
@@ -241,9 +235,10 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         #region Commands
-
+        /// <summary>
+        ///     Updates the TargetAccount and ChargedAccount Comboboxes' dropdown lists.
+        /// </summary>
         public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
-
 
         /// <summary>
         ///     Saves the payment or updates the existing depending on the IsEdit Flag.
