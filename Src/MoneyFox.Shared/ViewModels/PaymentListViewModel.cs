@@ -25,14 +25,14 @@ namespace MoneyFox.Shared.ViewModels
         public PaymentListViewModel(IRepository<Account> accountRepository,
             IRepository<Payment> paymentRepository, 
             IRepository<RecurringPayment> recurringPaymentRepository,
-            IDialogService dialogService, 
-            IPaymentManager paymentManager)
+            IPaymentManager paymentManager,
+            IDialogService dialogService)
         {
-            this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
             this.recurringPaymentRepository = recurringPaymentRepository;
+            this.dialogService = dialogService;
         }
 
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
