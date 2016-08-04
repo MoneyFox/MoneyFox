@@ -6,21 +6,15 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Manager
 {
-    public class RecurringPaymentManager : IRecurringPaymentManager, IDisposable
+    public class RecurringPaymentManager : IRecurringPaymentManager
     {
         private readonly IPaymentManager paymentManager;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRepository<Payment> paymentRepository;
 
-        public RecurringPaymentManager(IUnitOfWork unitOfWork,
-            IPaymentManager paymentManager)
+        public RecurringPaymentManager(IPaymentManager paymentManager, IRepository<Payment> paymentRepository)
         {
-            this.unitOfWork = unitOfWork;
             this.paymentManager = paymentManager;
-        }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
+            this.paymentRepository = paymentRepository;
         }
 
         /// <summary>
@@ -38,7 +32,7 @@ namespace MoneyFox.Shared.Manager
                 {
                     var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
 
-                    var paymentSucceded = unitOfWork.PaymentRepository.Save(newPayment);
+                    var paymentSucceded = paymentRepository.Save(newPayment);
                     var accountSucceded = paymentManager.AddPaymentAmount(newPayment);
                     if (paymentSucceded && accountSucceded)
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
@@ -48,7 +42,7 @@ namespace MoneyFox.Shared.Manager
 
         private Payment GetLastOccurence(Payment payment)
         {
-            var transcationList = unitOfWork.PaymentRepository.Data
+            var transcationList = paymentRepository.Data
                 .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)
                 .ToList();

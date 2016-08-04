@@ -12,10 +12,10 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
-        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
+        /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public SelectCategoryListViewModel(IUnitOfWork unitOfWork,
-            IDialogService dialogService) : base(unitOfWork, dialogService)
+        public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
+            IDialogService dialogService) : base(categoryRepository, dialogService)
         {
         }
 

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
@@ -31,22 +30,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var deleteCalled = false;
 
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupAllProperties();
             paymentRepoSetup.Object.Data = new ObservableCollection<Payment>();
 
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountRepository.Object);
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(unitOfWorkSetup.Object, dialogServiceSetup.Object);
+            var viewModel = new AccountListViewModel(accountRepository.Object, paymentRepoSetup.Object, dialogServiceSetup.Object);
 
             viewModel.DeleteAccountCommand.Execute(new Account {Id = 3});
 
@@ -57,9 +51,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
         {
             var deleteCalled = false;
-
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
@@ -69,10 +60,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(false));
 
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountRepository.Object);
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
-            var viewModel = new AccountListViewModel(unitOfWorkSetup.Object,
+            var viewModel = new AccountListViewModel(accountRepository.Object, paymentRepoSetup.Object,
                 dialogServiceSetup.Object);
 
             viewModel.DeleteAccountCommand.Execute(new Account {Id = 3});
@@ -85,8 +73,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var deleteCalled = false;
 
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
-
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
@@ -96,10 +82,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountRepository.Object);
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-
-            var viewModel = new AccountListViewModel(unitOfWorkSetup.Object, dialogServiceSetup.Object);
+            var viewModel = new AccountListViewModel(accountRepository.Object, paymentRepoSetup.Object, dialogServiceSetup.Object);
 
             viewModel.DeleteAccountCommand.Execute(null);
 
@@ -110,8 +93,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void DeleteAccountCommand_CascadeDeletePayments()
         {
             var deleteCalled = false;
-
-            var unitOfWorkSetup = new Mock<IUnitOfWork>();
 
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
             var accountRepo = accountRepository.Object;
@@ -151,14 +132,52 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            unitOfWorkSetup.SetupGet(x => x.AccountRepository).Returns(accountRepository.Object);
-            unitOfWorkSetup.SetupGet(x => x.PaymentRepository).Returns(paymentRepo);
-
-            var viewModel = new AccountListViewModel(unitOfWorkSetup.Object, dialogServiceSetup.Object);
+            var viewModel = new AccountListViewModel(accountRepository.Object, paymentRepo, dialogServiceSetup.Object);
 
             viewModel.DeleteAccountCommand.Execute(accountData);
             deleteCalled.ShouldBeTrue();
             Assert.AreEqual(null, paymentRepo.Data.FirstOrDefault(p => p.Id == 1));
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_AccountsEmpty_True()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_OneAccount_False()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {new Account()});
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void IsAllAccountsEmpty_TwoAccount_False()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+                new Account(),
+                new Account()
+            });
+
+            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void AllAccounts_AccountsAvailable_MatchesRepository()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+                new Account(),
+                new Account()
+            });
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
+        }
+        [TestMethod]
+        public void AllAccounts_NoAccountsAvailable_MatchesRepository()
+        {
+            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
         }
     }
 }

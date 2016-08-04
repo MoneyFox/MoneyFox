@@ -55,7 +55,7 @@ namespace MoneyFox.Windows
         {
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
-            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsHelper.DARK_THEME_SELECTED, false)
+            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsHelper.DARK_THEME_SELECTED_KEYNAME, false)
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light;
         }

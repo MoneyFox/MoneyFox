@@ -64,13 +64,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -134,13 +130,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -196,13 +188,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -306,13 +294,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySpreadingDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

@@ -102,6 +102,7 @@
     <Compile Include="DataAccess\CategoryDataAccessTests.cs" />
     <Compile Include="DataAccess\PaymentDataAccessTests.cs" />
     <Compile Include="DataAccess\RecurringPaymentDataAccessTests.cs" />
+    <Compile Include="MvxPlugins\MvxFileStoreTests.cs" />
     <Compile Include="SqliteConnectionCreatorTests.cs" />
     <Compile Include="Src\AppInformationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

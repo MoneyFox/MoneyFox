@@ -2,7 +2,6 @@
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Repositories;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
@@ -28,7 +27,21 @@ namespace MoneyFox.Shared
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());
-            Mvx.RegisterType<IUnitOfWork, UnitOfWork>();
+
+            CreatableTypes()
+                .EndingWith("DataAccess")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("Repository")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("DataDataProvider")
+                .AsTypes()
+                .RegisterAsDynamic();
 
             CreatableTypes()
                 .EndingWith("Service")

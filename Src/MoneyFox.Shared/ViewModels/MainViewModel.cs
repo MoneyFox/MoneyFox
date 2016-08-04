@@ -1,34 +1,33 @@
 ﻿using System;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class MainViewModel : BaseViewModel, IDisposable
-    {
-        private readonly IUnitOfWork unitOfWork;
+    public class MainViewModel : BaseViewModel {
+        private readonly IRepository<Account> accountRepository;
 
-        public MainViewModel(IUnitOfWork unitOfWork)
-        {
-            this.unitOfWork = unitOfWork;
+        public MainViewModel(IRepository<Account> accountRepository) {
+            this.accountRepository = accountRepository;
         }
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => unitOfWork.AccountRepository.Data.Count > 1;
+        public bool IsTransferAvailable => accountRepository.Data.Count > 1;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => unitOfWork.AccountRepository.Data.Count > 0;
+        public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => unitOfWork.AccountRepository.Data.Count > 0;
+        public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
@@ -44,11 +43,6 @@ namespace MoneyFox.Shared.ViewModels
         ///     Prepare everything and navigate to the add account view
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         private void GoToAddPayment(string paymentType)
         {

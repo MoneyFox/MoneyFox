@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -14,46 +16,40 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyPaymentViewModel : BaseViewModel, IDisposable
+    public class ModifyPaymentViewModel : BaseViewModel
     {
-        private readonly IDefaultManager defaultManager;
+        private readonly IRepository<Payment> paymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
-        private readonly IUnitOfWork unitOfWork;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
         private Payment selectedPayment;
 
-        public ModifyPaymentViewModel(IUnitOfWork unitOfWork,
+        public ModifyPaymentViewModel(IRepository<Payment> paymentRepository,
+            IRepository<Account> accountRepository,
             IDialogService dialogService,
-            IPaymentManager paymentManager,
-            IDefaultManager defaultManager)
+            IPaymentManager paymentManager)
         {
-            this.unitOfWork = unitOfWork;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
-            this.defaultManager = defaultManager;
+            this.paymentRepository = paymentRepository;
 
-            TargetAccounts = unitOfWork.AccountRepository.Data;
-            ChargedAccounts = unitOfWork.AccountRepository.Data;
+            TargetAccounts = accountRepository.Data;
+            ChargedAccounts = accountRepository.Data;
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
         public int PaymentId { get; private set; }
 
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
-
         /// <summary>
         ///     Init the view for a new Payment. Is executed after the constructor call.
         /// </summary>
         /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
+        /// <param name="paymentId">The id of the payment to edit.</param>
         public void Init(PaymentType type, int paymentId = 0)
         {
             if (paymentId == 0)
@@ -68,7 +64,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 IsEdit = true;
                 PaymentId = paymentId;
-                selectedPayment = unitOfWork.PaymentRepository.FindById(PaymentId);
+                selectedPayment = paymentRepository.FindById(PaymentId);
                 PrepareEdit();
             }
 
@@ -78,7 +74,6 @@ namespace MoneyFox.Shared.ViewModels
         private void PrepareDefault(PaymentType type)
         {
             SetDefaultPayment(type);
-            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
@@ -104,7 +99,8 @@ namespace MoneyFox.Shared.ViewModels
                 Type = (int) paymentType,
                 Date = DateTime.Now,
                 // Assign empty category to reset the GUI
-                Category = new Category()
+                Category = new Category(),
+                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
             };
         }
 
@@ -185,7 +181,7 @@ namespace MoneyFox.Shared.ViewModels
                     paymentManager.RemoveRecurringForPayment(SelectedPayment);
                 }
 
-                var paymentSucceded = unitOfWork.PaymentRepository.Delete(SelectedPayment);
+                var paymentSucceded = paymentRepository.Delete(SelectedPayment);
                 var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
                     SettingsHelper.LastDatabaseUpdate = DateTime.Now;

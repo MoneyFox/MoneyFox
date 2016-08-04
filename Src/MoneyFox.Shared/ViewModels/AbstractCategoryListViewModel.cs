@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
@@ -10,25 +9,24 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel, IDisposable
-    {
+    public abstract class AbstractCategoryListViewModel : BaseViewModel {
+        protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;
-        protected readonly IUnitOfWork UnitOfWork;
 
         private string searchText;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="unitOfWork">An instance of <see cref="IUnitOfWork" />.</param>
+        /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(IUnitOfWork unitOfWork,
+        protected AbstractCategoryListViewModel(IRepository<Category> categoryRepository,
             IDialogService dialogService)
         {
-            UnitOfWork = unitOfWork;
             DialogService = dialogService;
+            CategoryRepository = categoryRepository;
 
-            Categories = UnitOfWork.CategoryRepository.Data;
+            Categories = CategoryRepository.Data;
 
             Source = CreateGroup();
         }
@@ -83,11 +81,6 @@ namespace MoneyFox.Shared.ViewModels
             }
         }
 
-        public void Dispose()
-        {
-            UnitOfWork.Dispose();
-        }
-
         private void EditCategory(Category category)
         {
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
@@ -111,13 +104,13 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (UnitOfWork.CategoryRepository.Data.Where(
+                    (CategoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(UnitOfWork.CategoryRepository.Data.OrderBy(x => x.Name));
+                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }
@@ -139,7 +132,7 @@ namespace MoneyFox.Shared.ViewModels
                     Categories.Remove(categoryToDelete);
                 }
 
-                UnitOfWork.CategoryRepository.Delete(categoryToDelete);
+                CategoryRepository.Delete(categoryToDelete);
             }
         }
     }

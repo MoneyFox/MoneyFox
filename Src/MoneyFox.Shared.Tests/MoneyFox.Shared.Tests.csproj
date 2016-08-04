@@ -49,8 +49,8 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\net45\Cheesebaron.MvxPlugins.Settings.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.5.13.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.13\lib\net45\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.5.16.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.5.16\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -160,6 +160,7 @@
     <Compile Include="ViewModels\ModifyCategoryDialogViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
+    <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

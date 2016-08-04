@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CategorySummaryDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
+            new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
         }
 
         [TestMethod]
@@ -65,13 +65,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySummaryDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepoSetup.Object, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -134,13 +130,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySummaryDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepoSetup.Object, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -197,13 +189,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 }
             }));
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.PaymentRepository).Returns(paymentRepoSetup.Object);
-            unitOfWork.SetupGet(x => x.CategoryRepository).Returns(categoryRepo);
-
             //Excution
             var result =
-                new CategorySummaryDataProvider(unitOfWork.Object).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepoSetup.Object, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

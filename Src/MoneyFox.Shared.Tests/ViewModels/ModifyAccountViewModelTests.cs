@@ -39,12 +39,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountname = "Sparkonto";
 
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
-
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositorySetup.Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IRepository<Account>>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedAccount = new Account {Id = 3, Name = accountname}
@@ -56,10 +51,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddAccount_CorrectTitle()
         {
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(new Mock<IRepository<Account>>().Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object,
+            var viewmodel = new ModifyAccountViewModel(new Mock<IRepository<Account>>().Object,
                 new Mock<IDialogService>().Object)
             {IsEdit = false};
 
@@ -84,11 +76,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 Name = "Test Account"
             };
             accountRepositorySetup.Object.Data.Add(account);
-
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositorySetup.Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
+            
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = newAccount
@@ -117,10 +106,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
             accountRepositorySetup.Object.Data.Add(account);
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositorySetup.Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = newAccount
@@ -144,10 +130,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 Name = "Test Account"
             };
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositorySetup.Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = account
@@ -166,10 +149,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositorySetup.Object);
-
-            var viewmodel = new ModifyAccountViewModel(unitOfWork.Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = account

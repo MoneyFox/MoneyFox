@@ -13,7 +13,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IDisposable
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private readonly OxyColor[] colors =
         {
@@ -23,15 +23,11 @@ namespace MoneyFox.Shared.ViewModels
             OxyColor.Parse("#d49078")
         };
 
-        private readonly CategorySpreadingDataProvider speadingDataProvider;
+        private readonly CategorySpreadingDataProvider spreadingDataProvider;
 
-        private readonly IUnitOfWork unitOfWork;
-
-        public StatisticCategorySpreadingViewModel(IUnitOfWork unitOfWork)
+        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider)
         {
-            this.unitOfWork = unitOfWork;
-
-            speadingDataProvider = new CategorySpreadingDataProvider(unitOfWork);
+            this.spreadingDataProvider = spreadingDataProvider;
         }
 
         /// <summary>
@@ -40,11 +36,6 @@ namespace MoneyFox.Shared.ViewModels
         public PlotModel SpreadingModel { get; set; }
 
         public ObservableCollection<LegendItem> LegendList { get; set; }
-
-        public void Dispose()
-        {
-            unitOfWork.Dispose();
-        }
 
         protected override void Load()
         {
@@ -58,7 +49,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         private PlotModel GetSpreadingModel()
         {
-            var items = speadingDataProvider.GetValues(StartDate, EndDate);
+            var items = spreadingDataProvider.GetValues(StartDate, EndDate);
 
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())

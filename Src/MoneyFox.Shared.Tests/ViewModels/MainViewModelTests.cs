@@ -38,10 +38,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IUnitOfWork>().Object)
+            new MainViewModel(new Mock<IRepository<Account>>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -51,10 +50,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IUnitOfWork>().Object)
+            new MainViewModel(new Mock<IRepository<Account>>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -64,10 +62,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IUnitOfWork>().Object)
+            new MainViewModel(new Mock<IRepository<Account>>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -83,10 +80,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsAddIncomeAvailable.ShouldBeFalse();
+            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -99,10 +93,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Account()
                 });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsAddIncomeAvailable.ShouldBeTrue();
+            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -112,10 +103,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsAddExpenseAvailable.ShouldBeFalse();
+            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -128,10 +116,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Account()
                 });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsAddExpenseAvailable.ShouldBeTrue();
+            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -141,10 +126,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsTransferAvailable.ShouldBeFalse();
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -157,10 +139,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Account()
                 });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsTransferAvailable.ShouldBeFalse();
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -174,10 +153,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new Account()
                 });
 
-            var unitOfWork = new Mock<IUnitOfWork>();
-            unitOfWork.SetupGet(x => x.AccountRepository).Returns(accountRepositoryMock.Object);
-
-            new MainViewModel(unitOfWork.Object).IsTransferAvailable.ShouldBeTrue();
+            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }
