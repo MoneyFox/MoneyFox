@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -27,16 +28,25 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Cached accountToDelete data
         /// </summary>
-        public ObservableCollection<Payment> Data
-        {
-            get { return data; }
-            set
-            {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+        public ObservableCollection<Payment> Data { get; set; }
+
+        public IEnumerable<Payment> GetList(Expression<Func<Payment, bool>> filter = null) {
+            if (data == null) {
+                Load();
+            }
+
+            if (filter != null) {
+                return data.Where(filter.Compile());
+            }
+
+            return data;
+        }
+
+        private void Load() {
+            Data = new ObservableCollection<Payment>();
+
+            foreach (var account in dataAccess.LoadList()) {
+                Data.Add(account);
             }
         }
 

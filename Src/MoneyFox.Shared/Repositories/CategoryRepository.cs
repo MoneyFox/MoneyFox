@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,7 +15,7 @@ namespace MoneyFox.Shared.Repositories
     {
         private readonly IDataAccess<Category> dataAccess;
 
-        private ObservableCollection<Category> data;
+        private List<Category> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
@@ -31,16 +32,25 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Cached category data
         /// </summary>
-        public ObservableCollection<Category> Data
-        {
-            get { return data; }
-            set
-            {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+        public ObservableCollection<Category> Data { get; set; }
+
+        public IEnumerable<Category> GetList(Expression<Func<Category, bool>> filter = null) {
+            if (data == null) {
+                Load();
+            }
+
+            if (filter != null) {
+                return data.Where(filter.Compile());
+            }
+
+            return data;
+        }
+
+        private void Load() {
+            Data = new ObservableCollection<Category>();
+
+            foreach (var account in dataAccess.LoadList()) {
+                Data.Add(account);
             }
         }
 
@@ -62,7 +72,7 @@ namespace MoneyFox.Shared.Repositories
             {
                 data.Add(category);
 
-                data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
+                data = new List<Category>(data.OrderBy(x => x.Name));
             }
             return dataAccess.SaveItem(category);
         }

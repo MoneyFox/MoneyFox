@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,16 +21,25 @@ namespace MoneyFox.Shared.Repositories
             Load();
         }
 
-        public ObservableCollection<RecurringPayment> Data
-        {
-            get { return data; }
-            set
-            {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+        public ObservableCollection<RecurringPayment> Data { get; set; }
+
+        public IEnumerable<RecurringPayment> GetList(Expression<Func<RecurringPayment, bool>> filter = null) {
+            if (data == null) {
+                Load();
+            }
+
+            if (filter != null) {
+                return data.Where(filter.Compile());
+            }
+
+            return data;
+        }
+
+        private void Load() {
+            Data = new ObservableCollection<RecurringPayment>();
+
+            foreach (var account in dataAccess.LoadList()) {
+                Data.Add(account);
             }
         }
 

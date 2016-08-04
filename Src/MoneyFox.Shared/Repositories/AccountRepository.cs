@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,7 +15,7 @@ namespace MoneyFox.Shared.Repositories
     {
         private readonly IDataAccess<Account> dataAccess;
 
-        private ObservableCollection<Account> data;
+        private List<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
@@ -28,23 +29,32 @@ namespace MoneyFox.Shared.Repositories
             Load();
         }
 
+        public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null) {
+            if (data == null) {
+                Load();
+            }
+
+            if (filter != null) {
+                return data.Where(filter.Compile());
+            }
+
+            return data;
+        }
+
+        private void Load() {
+            Data = new ObservableCollection<Account>();
+
+            foreach (var account in dataAccess.LoadList()) {
+                Data.Add(account);
+            }
+        }
+
         public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
 
         /// <summary>
         ///     Cached account data
         /// </summary>
-        public ObservableCollection<Account> Data
-        {
-            get { return data; }
-            set
-            {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
-            }
-        }
+        public ObservableCollection<Account> Data { get; set; }
 
         /// <summary>
         ///     Save a new account or update an existing one.
@@ -60,6 +70,7 @@ namespace MoneyFox.Shared.Repositories
             if (account.Id == 0)
             {
                 Data.Add(account);
+                data = new List<Account>(data.OrderBy(x => x.Name));
             }
 
             return dataAccess.SaveItem(account);
