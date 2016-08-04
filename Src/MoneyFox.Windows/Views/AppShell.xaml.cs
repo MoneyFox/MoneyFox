@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
@@ -188,7 +189,7 @@ namespace MoneyFox.Windows.Views {
                 TogglePaneButtonRect = new Rect();
             }
 
-            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsPaneOpen) {
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsPaneOpen && !SettingsHelper.IsDarkThemeSelected) {
                 TogglePaneButton.Foreground =
                     (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
             }
