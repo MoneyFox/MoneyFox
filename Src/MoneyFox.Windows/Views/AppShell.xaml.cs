@@ -9,47 +9,41 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
 
-namespace MoneyFox.Windows.Views
-{
+namespace MoneyFox.Windows.Views {
     /// <summary>
     ///     The "chrome" layer of the app that provides top-level navigation with
     ///     proper keyboarding navigation.
     /// </summary>
-    public sealed partial class AppShell
-    {
+    public sealed partial class AppShell {
         public static AppShell Current;
 
         private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
+            new[] {
+                new NavMenuItem {
                     Symbol = Symbol.Tag,
                     Label = Strings.CategoriesLabel,
                     DestViewModel = typeof(CategoryListViewModel),
                     DestPage = typeof(CategoryListView)
                 },
-                new NavMenuItem
-                {
+                new NavMenuItem {
                     Symbol = Symbol.SyncFolder,
                     Label = Strings.BackupLabel,
                     DestViewModel = typeof(BackupViewModel),
                     DestPage = typeof(BackupView)
                 },
-                new NavMenuItem
-                {
+                new NavMenuItem {
                     Symbol = Symbol.Setting,
                     Label = Strings.SettingsLabel,
                     DestViewModel = typeof(SettingsViewModel),
                     DestPage = typeof(SettingsView)
                 },
-                new NavMenuItem
-                {
+                new NavMenuItem {
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
                     DestViewModel = typeof(AboutViewModel),
@@ -60,17 +54,14 @@ namespace MoneyFox.Windows.Views
         // Declare the top level nav items
 
         private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
+            new[] {
+                new NavMenuItem {
                     Symbol = Symbol.Library,
                     Label = Strings.AccountsLabel,
                     DestViewModel = typeof(MainViewModel),
                     DestPage = typeof(MainView)
                 },
-                new NavMenuItem
-                {
+                new NavMenuItem {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
                     DestViewModel = typeof(StatisticSelectorViewModel),
@@ -83,12 +74,10 @@ namespace MoneyFox.Windows.Views
         ///     adds callbacks for Back requests and changes in the SplitView's DisplayMode, and
         ///     provide the nav menu list with the data to display.
         /// </summary>
-        public AppShell()
-        {
+        public AppShell() {
             InitializeComponent();
 
-            Loaded += (sender, args) =>
-            {
+            Loaded += (sender, args) => {
                 Current = this;
 
                 TogglePaneButton.Focus(FocusState.Programmatic);
@@ -121,11 +110,9 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AppShell_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
+        private void AppShell_KeyDown(object sender, KeyRoutedEventArgs e) {
             var direction = FocusNavigationDirection.None;
-            switch (e.Key)
-            {
+            switch (e.Key) {
                 case VirtualKey.Left:
                 case VirtualKey.GamepadDPadLeft:
                 case VirtualKey.GamepadLeftThumbstickLeft:
@@ -159,11 +146,9 @@ namespace MoneyFox.Windows.Views
                     break;
             }
 
-            if (direction != FocusNavigationDirection.None)
-            {
+            if (direction != FocusNavigationDirection.None) {
                 var control = FocusManager.FindNextFocusableElement(direction) as Control;
-                if (control != null)
-                {
+                if (control != null) {
                     control.Focus(FocusState.Programmatic);
                     e.Handled = true;
                 }
@@ -182,8 +167,7 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TogglePaneButton_Checked(object sender, RoutedEventArgs e)
-        {
+        private void TogglePaneButton_Checked(object sender, RoutedEventArgs e) {
             CheckTogglePaneButtonSizeChanged();
         }
 
@@ -191,24 +175,29 @@ namespace MoneyFox.Windows.Views
         ///     Check for the conditions where the navigation pane does not occupy the space under the floating
         ///     hamburger button and trigger the event.
         /// </summary>
-        private void CheckTogglePaneButtonSizeChanged()
-        {
+        private void CheckTogglePaneButtonSizeChanged() {
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Inline ||
                 RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay ||
-                RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay)
-            {
+                RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay) {
                 var transform = TogglePaneButton.TransformToVisual(this);
                 var rect =
                     transform.TransformBounds(new Rect(0, 0, TogglePaneButton.ActualWidth, TogglePaneButton.ActualHeight));
                 TogglePaneButtonRect = rect;
             }
-            else
-            {
+            else {
                 TogglePaneButtonRect = new Rect();
             }
 
-            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
-            {
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsPaneOpen) {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
+            }
+            else {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
+            }
+
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay) {
                 RootSplitView.IsPaneOpen = false;
             }
 
@@ -222,97 +211,78 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void NavMenuItemContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
-        {
-            if (!args.InRecycleQueue && args.Item is NavMenuItem)
-            {
+        private void NavMenuItemContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args) {
+            if (!args.InRecycleQueue && args.Item is NavMenuItem) {
                 args.ItemContainer.SetValue(AutomationProperties.NameProperty, ((NavMenuItem) args.Item).Label);
             }
-            else
-            {
+            else {
                 args.ItemContainer.ClearValue(AutomationProperties.NameProperty);
             }
         }
 
-        public void SetLoginView()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
+        public void SetLoginView() {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons")) {
                 TogglePaneButton.Visibility = Visibility.Collapsed;
             }
-            else
-            {
+            else {
                 TogglePaneButton.Visibility = Visibility.Collapsed;
                 RootSplitView.OpenPaneLength = 0;
             }
         }
 
-        public void SetLoggedInView()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
+        public void SetLoggedInView() {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons")) {
                 TogglePaneButton.Visibility = Visibility.Visible;
             }
-            else
-            {
+            else {
                 TogglePaneButton.Visibility = Visibility.Visible;
                 RootSplitView.OpenPaneLength = 256;
             }
         }
 
-        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
+        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e) {
             var temp = false;
             var properties = e.GetCurrentPoint(this).Properties;
-            if (properties.IsXButton1Pressed)
-            {
+            if (properties.IsXButton1Pressed) {
                 BackRequested(ref temp);
             }
-            else if (properties.IsXButton2Pressed)
-            {
+            else if (properties.IsXButton2Pressed) {
                 ForwardRequested(ref temp);
             }
         }
 
         #region BackRequested Handlers
 
-        private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
-        {
+        private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e) {
             var handled = e.Handled;
             BackRequested(ref handled);
             e.Handled = handled;
         }
 
-        private void BackRequested(ref bool handled)
-        {
+        private void BackRequested(ref bool handled) {
             // Get a hold of the current Frame so that we can inspect the app back stack.
 
-            if (MyAppFrame == null)
-            {
+            if (MyAppFrame == null) {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (MyAppFrame.CanGoBack && !handled)
-            {
+            if (MyAppFrame.CanGoBack && !handled) {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
                 MyAppFrame.GoBack();
             }
         }
 
-        private void ForwardRequested(ref bool handled)
-        {
+        private void ForwardRequested(ref bool handled) {
             // Get a hold of the current Frame so that we can inspect the app back stack.
 
-            if (MyAppFrame == null)
-            {
+            if (MyAppFrame == null) {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (MyAppFrame.CanGoForward && !handled)
-            {
+            if (MyAppFrame.CanGoForward && !handled) {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
                 MyAppFrame.GoForward();
@@ -328,23 +298,19 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="listViewItem"></param>
-        private void NavMenuList_ItemInvoked(object sender, ListViewItem listViewItem)
-        {
+        private void NavMenuList_ItemInvoked(object sender, ListViewItem listViewItem) {
             var item = (NavMenuItem) ((NavMenuListView) sender).ItemFromContainer(listViewItem);
 
             if (item?.DestPage != null &&
-                item.DestPage != MyAppFrame.CurrentSourcePageType)
-            {
+                item.DestPage != MyAppFrame.CurrentSourcePageType) {
                 ViewModel.ShowViewModelByType(item.DestViewModel);
             }
 
             //reset the bottom or top section depending on which section the user clicked
-            if (sender.Equals(NavMenuListTop))
-            {
+            if (sender.Equals(NavMenuListTop)) {
                 NavMenuListBottom.SetSelectedItem(null);
             }
-            else
-            {
+            else {
                 NavMenuListTop.SetSelectedItem(null);
             }
         }
@@ -355,51 +321,42 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnNavigatingToPage(object sender, NavigatingCancelEventArgs e)
-        {
-            if (e.NavigationMode == NavigationMode.Back)
-            {
+        private void OnNavigatingToPage(object sender, NavigatingCancelEventArgs e) {
+            if (e.NavigationMode == NavigationMode.Back) {
                 var item =
                     (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p)
                         .SingleOrDefault();
-                if (item == null && MyAppFrame.BackStackDepth > 0)
-                {
+                if (item == null && MyAppFrame.BackStackDepth > 0) {
                     // In cases where a page drills into sub-pages then we'll highlight the most recent
                     // navigation menu item that appears in the BackStack
-                    foreach (var entry in MyAppFrame.BackStack.Reverse())
-                    {
+                    foreach (var entry in MyAppFrame.BackStack.Reverse()) {
                         item =
                             (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p)
                                 .SingleOrDefault();
-                        if (item != null)
-                        {
+                        if (item != null) {
                             break;
                         }
                     }
                 }
 
                 var container = (ListViewItem) NavMenuListTop.ContainerFromItem(item);
-                if (container == null)
-                {
+                if (container == null) {
                     container = (ListViewItem) NavMenuListBottom.ContainerFromItem(item);
                     // While updating the selection state of the item prevent it from taking keyboard focus.  If a
                     // user is invoking the back button via the keyboard causing the selected nav menu item to change
                     // then focus will remain on the back button.
                     //this is for the bottom section
-                    if (container != null)
-                    {
+                    if (container != null) {
                         container.IsTabStop = false;
                     }
                     NavMenuListBottom.SetSelectedItem(container);
-                    if (container != null)
-                    {
+                    if (container != null) {
                         container.IsTabStop = true;
                     }
                     //reset the top section
                     NavMenuListTop.SetSelectedItem(null);
                 }
-                else
-                {
+                else {
                     // and this is for the top section
                     container.IsTabStop = false;
                     NavMenuListTop.SetSelectedItem(container);
@@ -410,12 +367,10 @@ namespace MoneyFox.Windows.Views
             }
         }
 
-        private void OnNavigatedToPage(object sender, NavigationEventArgs e)
-        {
+        private void OnNavigatedToPage(object sender, NavigationEventArgs e) {
             // After a successful navigation set keyboard focus to the loaded page
             var page = e.Content as Page;
-            if (page != null)
-            {
+            if (page != null) {
                 var control = page;
                 control.Loaded += Page_Loaded;
 
@@ -428,8 +383,7 @@ namespace MoneyFox.Windows.Views
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void Page_Loaded(object sender, RoutedEventArgs e) {
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
@@ -441,8 +395,7 @@ namespace MoneyFox.Windows.Views
     /// <summary>
     ///     Data to represent an item in the nav menu.
     /// </summary>
-    public class NavMenuItem
-    {
+    public class NavMenuItem {
         public string Label { get; set; }
 
         public Symbol Symbol { get; set; }
