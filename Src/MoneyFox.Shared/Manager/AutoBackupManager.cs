@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
@@ -48,6 +49,10 @@ namespace MoneyFox.Shared.Manager
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
+            catch (BackupException ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
+            }
             globalBusyIndicatorState.IsActive = false;
         }
 
@@ -71,6 +76,10 @@ namespace MoneyFox.Shared.Manager
                 }
             }
             catch (OneDriveException ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
+            }
+            catch (BackupException ex)
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
