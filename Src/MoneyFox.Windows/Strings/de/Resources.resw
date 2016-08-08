@@ -343,9 +343,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Letzte Sicherung wurde erstellt am:</value>
   </data>
-  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
-    <value>Backup manuell hoch- und herunterladen</value>
-  </data>
   <data name="GeneralHeader.Label" xml:space="preserve">
     <value>Allgemein</value>
   </data>
@@ -391,5 +388,11 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="Iban.Header" xml:space="preserve">
     <value>IBAN</value>
+  </data>
+  <data name="AutoBackupSetting.OffContent" xml:space="preserve">
+    <value>Manuell Sichern</value>
+  </data>
+  <data name="AutoBackupSetting.OnContent" xml:space="preserve">
+    <value>Automatisch Sichern</value>
   </data>
 </root>
