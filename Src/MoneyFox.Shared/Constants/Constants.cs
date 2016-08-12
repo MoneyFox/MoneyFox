@@ -26,6 +26,16 @@
         public const string TRANSLATION_PROJECT_URL = "https://crowdin.com/project/money-fox";
 
         /// <summary>
+        ///     Url to the Twitter Account of the icon.
+        /// </summary>
+        public const string ICONDESIGNER_TWITTER_URL = "https://twitter.com/vandert9";
+
+        /// <summary>
+        ///     Url to the Twitter Account of the icon.
+        /// </summary>
+        public const string GITHUB_CONTRIBUTION_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
+
+        /// <summary>
         ///     ID string for income shortcuts
         /// </summary>
         public const string INCOME_TILE_ID = "Income";

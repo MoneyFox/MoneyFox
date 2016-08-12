@@ -58,6 +58,9 @@
   <string name="label_backup_date">Last Backup created at:</string>
   <string name="label_autobackup">Automatically upload and download backups</string>
   <string name="label_welcome">Welcome!</string>
+  <string name="label_icon_contribution">The app icon was created by:</string>
+  <string name="label_general_contribution">To see all contributions head over to GitHub:</string>
+
   <!---titles-->
   <string name="title_accounts">Accounts</string>
   <string name="title_statistics">Statistics</string>
