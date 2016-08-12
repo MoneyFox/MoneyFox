@@ -395,4 +395,10 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
     <value>Automatisch Sichern</value>
   </data>
+  <data name="DesignerContribution.Text" xml:space="preserve">
+    <value>Das Appicon wurde erstellt von:</value>
+  </data>
+  <data name="GeneralContribution.Text" xml:space="preserve">
+    <value>Um alle Beiträge zu sehen wechsle zu GitHub:</value>
+  </data>
 </root>

@@ -14,7 +14,7 @@
   <!--hints-->
   <string name="hint_account_name">Account Name</string>
   <string name="hint_category_name">Category Name</string>
-  <string name="hint_iban">Account Number</string>
+  <string name="hint_iban">IBAN</string>
   <string name="hint_current_balance">Current Balance</string>
   <string name="hint_note">Note</string>
   <string name="hint_amount">Amount</string>
