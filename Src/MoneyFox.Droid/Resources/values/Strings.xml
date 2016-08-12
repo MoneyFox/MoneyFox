@@ -56,6 +56,8 @@ Ausserdem wird bei jedem Start der Applikation  geprüft ob eine neuere Sicherun
   <string name="label_backup_date">Letzte Sicherung wurde erstellt am:</string>
   <string name="label_autobackup">Sicherungen automatisch hoch- und runterladen</string>
   <string name="label_welcome">Willkommen!</string>
+  <string name="label_icon_contribution">The app icon was created by:</string>
+  <string name="label_general_contribution">To see all contributions head over to GitHub:</string>
   <!---titles-->
   <string name="title_accounts">Konten</string>
   <string name="title_statistics">Statistiken</string>
