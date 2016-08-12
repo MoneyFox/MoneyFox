@@ -53,7 +53,15 @@
                                                     UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedPayment.ChargedAccount,
                                                      Mode=TwoWay,
-                                                     UpdateSourceTrigger=PropertyChanged}" />
+                                                     UpdateSourceTrigger=PropertyChanged}">
+
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="SelectionChanged">
+                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </ComboBox>
+
                     <ComboBox x:Uid="TargetAccountTextBox"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
@@ -66,7 +74,14 @@
                                                      Mode=TwoWay,
                                                      UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer,
-                                                   Converter={StaticResource BooleanVisibilityConverter}}" />
+                                                   Converter={StaticResource BooleanVisibilityConverter}}">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="SelectionChanged">
+                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </ComboBox>
+                    
                     <TextBox x:Uid="AmountTextBox"
                              x:Name="TextBoxAmount"
                              Margin="0,7,0,0"
