@@ -147,6 +147,44 @@
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
 
+                <TextBlock x:Uid="DesignerContribution"
+                           Margin="0,12,0,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Top"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="Translation Note"
+                           TextWrapping="Wrap" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="Toledo Vanderson"
+                           TextWrapping="Wrap">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding GoToDesignerTwitterAccount, Mode=OneWay}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </TextBlock>
+
+                <TextBlock x:Uid="GeneralContribution"
+                           Margin="0,12,0,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Top"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="Translation Note"
+                           TextWrapping="Wrap" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="GitHub Contributions"
+                           TextWrapping="Wrap">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding GoToContributionPageCommand, Mode=OneWay}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </TextBlock>
+
                 <TextBlock x:Uid="PrivacyInfo"
                            Margin="0,12,0,0"
                            HorizontalAlignment="Left"
