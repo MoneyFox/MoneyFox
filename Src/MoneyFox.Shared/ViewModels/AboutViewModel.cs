@@ -61,6 +61,16 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand GoToTranslationProjectCommand => new MvxCommand(GoToTranslationProject);
 
         /// <summary>
+        ///     Opens the webbrowser and loads the project on crowdin.
+        /// </summary>
+        public MvxCommand GoToDesignerTwitterAccountCommand => new MvxCommand(GoToDesignerTwitterAccount);        
+        
+        /// <summary>
+        ///     Opens the webbrowser loads the contribution page on Github.
+        /// </summary>
+        public MvxCommand GoToContributionPageCommand => new MvxCommand(GoToContributionPage);
+
+        /// <summary>
         ///     Returns the Version of App
         /// </summary>
         public string Version => appInformation.GetVersion();
@@ -104,6 +114,14 @@ namespace MoneyFox.Shared.ViewModels
         private void GoToTranslationProject()
         {
             webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);
+        }
+        
+        private void GoToDesignerTwitterAccount() {
+            webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
+        }
+
+        private void GoToContributionPage() {
+            webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
         }
     }
 }

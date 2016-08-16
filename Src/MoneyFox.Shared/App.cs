@@ -39,7 +39,7 @@ namespace MoneyFox.Shared
                 .RegisterAsLazySingleton();
 
             CreatableTypes()
-                .EndingWith("DataDataProvider")
+                .EndingWith("DataProvider")
                 .AsTypes()
                 .RegisterAsDynamic();
 
