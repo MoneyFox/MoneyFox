@@ -49,8 +49,6 @@ namespace MoneyFox.Shared.ViewModels
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
-                AxislineColor = OxyColors.Black,
-                TextColor = OxyColors.Black,
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
                 Angle = 45
@@ -59,7 +57,7 @@ namespace MoneyFox.Shared.ViewModels
             if (SettingsHelper.IsDarkThemeSelected)
             {
                 axe.AxislineColor = OxyColors.White;
-                axe.AxislineColor = OxyColors.White;
+                axe.TextColor = OxyColors.White;
 
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
