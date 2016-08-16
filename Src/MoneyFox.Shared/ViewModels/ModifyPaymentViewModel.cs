@@ -83,9 +83,9 @@ namespace MoneyFox.Shared.ViewModels
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
-            Recurrence = SelectedPayment.IsRecurring
-                ? SelectedPayment.RecurringPayment.Recurrence
-                : 0;
+            RecurrenceString = SelectedPayment.IsRecurring
+                ? RecurrenceList[SelectedPayment.RecurringPayment.Recurrence] 
+                : "";
             EndDate = SelectedPayment.IsRecurring
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
@@ -162,7 +162,7 @@ namespace MoneyFox.Shared.ViewModels
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
                     GetRecurringFromPayment(SelectedPayment,
                         IsEndless,
-                        Recurrence,
+                        GetEnumIntFromString,
                         EndDate);
             }
         }
@@ -210,6 +210,8 @@ namespace MoneyFox.Shared.ViewModels
         {
             Close(this);
         }
+
+        private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
         #region Commands
 
@@ -265,7 +267,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public int Recurrence { get; set; }
+        public string RecurrenceString { get; set; }
 
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
