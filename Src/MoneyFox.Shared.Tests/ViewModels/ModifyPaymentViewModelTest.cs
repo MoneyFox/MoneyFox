@@ -266,5 +266,41 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
         }
+        [TestMethod]
+        public void SelectedItemChangedCommand_UpdatesCorrectely()
+        {
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
+                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IDialogService>().Object);
+
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManager);
+
+            viewmodel.Init(PaymentType.Income);
+
+            Account Test1 = new Account();//target account
+            Account Test2 = new Account();//charge account
+            viewmodel.TargetAccounts.Add(Test1);
+            viewmodel.ChargedAccounts.Add(Test1);
+            viewmodel.TargetAccounts.Add(Test2);
+            viewmodel.ChargedAccounts.Add(Test2);
+
+            viewmodel.SelectedPayment.TargetAccount = Test1;
+            viewmodel.SelectedPayment.ChargedAccount = Test2;
+
+            viewmodel.SelectedItemChangedCommand.Execute();
+
+            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.ChargedAccount).ShouldBeTrue();
+            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.TargetAccount).ShouldBeTrue();
+            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.TargetAccount).ShouldBeFalse();
+            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.ChargedAccount).ShouldBeFalse();
+        }
     }
 }

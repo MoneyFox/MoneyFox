@@ -38,8 +38,8 @@ namespace MoneyFox.Shared.ViewModels
             this.paymentManager = paymentManager;
             this.paymentRepository = paymentRepository;
 
-            TargetAccounts = accountRepository.Data;
-            ChargedAccounts = accountRepository.Data;
+            TargetAccounts = new ObservableCollection<Account>(accountRepository.Data);
+            ChargedAccounts = new ObservableCollection<Account>(TargetAccounts);
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
@@ -213,7 +213,33 @@ namespace MoneyFox.Shared.ViewModels
 
         private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
+        private void UpdateOtherComboBox()
+        {
+           ObservableCollection<Account> tempCollection = new ObservableCollection<Account>(ChargedAccounts);
+            foreach (Account i in TargetAccounts)
+            {
+                if (!tempCollection.Contains(i))
+                    tempCollection.Add(i);
+            }
+            foreach (Account i in tempCollection)
+            {
+                if (!TargetAccounts.Contains(i))//fills targetaccounts
+                   TargetAccounts.Add(i);
+                
+                if (!ChargedAccounts.Contains(i))//fills chargedaccounts
+                   ChargedAccounts.Add(i);
+            }
+            ChargedAccounts.Remove(selectedPayment.TargetAccount);
+            TargetAccounts.Remove(selectedPayment.ChargedAccount);
+        }
+
+
         #region Commands
+
+        /// <summary>
+        ///     Updates the TargetAccount and ChargedAccount Comboboxes' dropdown lists.
+        /// </summary>
+        public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
 
         /// <summary>
         ///     Saves the payment or updates the existing depending on the IsEdit Flag.
@@ -316,12 +342,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> ChargedAccounts { get; }
+        public ObservableCollection<Account> ChargedAccounts { get; set;}
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<Account> TargetAccounts { get; }
+        public ObservableCollection<Account> TargetAccounts { get; set;}
 
         /// <summary>
         ///     Returns the Title for the page
