@@ -315,6 +315,7 @@ namespace MoneyFox.Shared.ViewModels
 
         /// <summary>
         ///     List with the different recurrence types.
+        ///     This has to have the same order as the enum
         /// </summary>
         public List<string> RecurrenceList => new List<string>
         {
