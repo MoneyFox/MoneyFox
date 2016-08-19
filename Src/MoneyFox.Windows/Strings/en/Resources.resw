@@ -396,4 +396,10 @@ Also if you launch the application there it will check if there are newer backup
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
     <value>Backup Automatically</value>
   </data>
+  <data name="DesignerContribution.Text" xml:space="preserve">
+    <value>The app icon was created by:</value>
+  </data>
+  <data name="GeneralContribution.Text" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
+  </data>
 </root>

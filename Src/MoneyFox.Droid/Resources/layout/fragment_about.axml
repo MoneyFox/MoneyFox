@@ -79,8 +79,8 @@
             android:gravity="center"
             local:MvxBind="Click GoToRepositoryCommand" />
         <TextView
-            android:id="@+id/text_open_source"
-            android:text="@string/textview_opensource"
+            android:id="@+id/text_translation_info"
+            android:text="@string/text_translation_info"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,5 +94,37 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             local:MvxBind="Click GoToTranslationProjectCommand" />
+        <TextView
+            android:id="@+id/text_icon_contribution_info"
+            android:text="@string/label_icon_contribution"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/text_icon_contribution"
+            android:text="\@Toledo Vanderson"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Click GoToDesignerTwitterAccountCommand" />
+        <TextView
+            android:id="@+id/text_general_contribution_info"
+            android:text="@string/label_general_contribution"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/text_general_contribution"
+            android:text="GitHub Contribution"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Click GoToContributionPageCommand" />
     </LinearLayout>
 </LinearLayout>
