@@ -10,7 +10,8 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository {
+    public class AccountRepository : IAccountRepository
+    {
         private readonly IDataAccess<Account> dataAccess;
 
         private List<Account> data;
@@ -22,23 +23,26 @@ namespace MoneyFox.Shared.Repositories
         public AccountRepository(IDataAccess<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
-
-            Load();
         }
 
-        public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null) {
-            if (data == null) {
+        public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null)
+        {
+            if (data == null)
+            {
                 data = dataAccess.LoadList();
             }
 
-            if (filter != null) {
-                return data.Where(filter.Compile());
-            }
-
-            return data;
+            return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
+        public Account FindById(int id)
+        {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+            return data.FirstOrDefault(a => a.Id == id);
+        }
 
         /// <summary>
         ///     Save a new account or update an existing one.
@@ -46,6 +50,11 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="account">accountToDelete to save</param>
         public bool Save(Account account)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             if (string.IsNullOrWhiteSpace(account.Name))
             {
                 account.Name = Strings.NoNamePlaceholderLabel;
@@ -66,6 +75,11 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             data.Remove(accountToDelete);
             return dataAccess.DeleteItem(accountToDelete);
         }
@@ -75,12 +89,7 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            data.Clear();
-
-            foreach (var account in dataAccess.LoadList(filter))
-            {
-                data.Add(account);
-            }
+            data = dataAccess.LoadList();
         }
     }
 }

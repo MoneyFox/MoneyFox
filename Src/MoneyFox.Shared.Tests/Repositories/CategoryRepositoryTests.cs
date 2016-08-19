@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -87,13 +86,13 @@ namespace MoneyFox.Shared.Tests.Repositories
             repository.Delete(category);
 
             categoryDataAccessMock.CategoryTestList.Any().ShouldBeFalse();
-            repository.Data.Any().ShouldBeFalse();
+            repository.GetList().Any().ShouldBeFalse();
         }
 
         [TestMethod]
         public void CategoryRepository_AccessCache()
         {
-            new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
+            new CategoryRepository(new CategoryDataAccessMock()).GetList().ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -113,9 +112,9 @@ namespace MoneyFox.Shared.Tests.Repositories
             repository.Save(category);
             repository.Save(secondCategory);
 
-            repository.Data.Count.ShouldBe(2);
-            repository.Data[0].ShouldBeSameAs(category);
-            repository.Data[1].ShouldBeSameAs(secondCategory);
+            repository.GetList().ToList().Count.ShouldBe(2);
+            repository.GetList().ToList()[0].ShouldBeSameAs(category);
+            repository.GetList().ToList()[1].ShouldBeSameAs(secondCategory);
         }
 
         [TestMethod]
@@ -131,8 +130,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var categoryRepository = new CategoryRepository(dataAccessSetup.Object);
             categoryRepository.Load();
 
-            categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
-            categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
+            categoryRepository.GetList(x => x.Id == 10).Any().ShouldBeTrue();
+            categoryRepository.GetList(x => x.Id == 15).Any().ShouldBeTrue();
         }
 
         [TestMethod]
