@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -95,17 +96,18 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var deleteCalled = false;
 
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
-            var accountRepo = accountRepository.Object;
-            accountRepo.Data = new ObservableCollection<Account>();
+
             var accountData = new Account
             {
                 CurrentBalance = 0,
                 Id = 300,
                 Name = "Test Account"
             };
-            accountRepo.Data.Add(accountData);
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> { accountData });
+
 
             var mockPaymentRepo = new Mock<IPaymentRepository>();
+
             mockPaymentRepo.SetupAllProperties();
             mockPaymentRepo.Setup(c => c.Delete(It.IsAny<Payment>()))
                 .Callback((Payment payment) => { mockPaymentRepo.Object.Data.Remove(payment); });
@@ -142,21 +144,21 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsAllAccountsEmpty_AccountsEmpty_True()
         {
-            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
             new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeTrue();
         }
 
         [TestMethod]
         public void IsAllAccountsEmpty_OneAccount_False()
         {
-            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {new Account()});
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
             new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]
         public void IsAllAccountsEmpty_TwoAccount_False()
         {
-            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> {
                 new Account(),
                 new Account()
             });
@@ -167,17 +169,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void AllAccounts_AccountsAvailable_MatchesRepository()
         {
-            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> {
                 new Account(),
                 new Account()
             });
-            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.GetList());
         }
         [TestMethod]
         public void AllAccounts_NoAccountsAvailable_MatchesRepository()
         {
-            accountRepository.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
-            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.Data);
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
+            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.GetList());
         }
     }
 }

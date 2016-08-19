@@ -209,17 +209,14 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void PaymentRepository_FindById_ReturnsPayment()
-        {
-            var paymentRepository = new Mock<IPaymentRepository>();
-            var testPayment = new Payment {Id = 100};
-            paymentRepository.SetupAllProperties();
-            paymentRepository.Setup(x => x.FindById(It.IsAny<int>()))
-                .Returns((int paymentId) => paymentRepository.Object.Data.FirstOrDefault(p => p.Id == paymentId));
-            paymentRepository.Object.Data = new ObservableCollection<Payment>();
-            paymentRepository.Object.Data.Add(testPayment);
+        public void FindById_ReturnsPayment() {
+            var dataAccessMock = new Mock<IDataAccess<RecurringPayment>>();
+            var testPayment = new RecurringPayment { Id = 100, Amount = 78 };
 
-            Assert.AreEqual(testPayment, paymentRepository.Object.FindById(100));
+            dataAccessMock.Setup(x => x.LoadList(null))
+                .Returns(new List<RecurringPayment> { testPayment });
+
+            Assert.AreEqual(testPayment, new RecurringPaymentRepository(dataAccessMock.Object).FindById(100));
         }
     }
 }

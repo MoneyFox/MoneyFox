@@ -78,7 +78,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
-                ? categoryRepository.Data.First(x => x.Id == selectedCategoryId)
+                ? categoryRepository.GetList(x => x.Id == selectedCategoryId).First()
                 : new Category();
         }
 
@@ -90,8 +90,8 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && categoryRepository.Data.Any(
-                a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
+            if (!IsEdit && categoryRepository.GetList(a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase))
+                .Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;

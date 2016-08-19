@@ -104,13 +104,13 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (CategoryRepository.Data.Where(
+                    (CategoryRepository.GetList(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
+                Categories = new ObservableCollection<Category>(CategoryRepository.GetList().OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }

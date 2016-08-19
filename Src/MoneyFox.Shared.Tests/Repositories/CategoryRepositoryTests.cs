@@ -136,20 +136,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void CategoryRepository_FindById_ReturnsCategory()
-        {
-            var categoryRepository = new Mock<ICategoryRepository>();
-            var testCategory = new Category {Id = 100, Name = "Test Category"};
-            categoryRepository.SetupAllProperties();
-            categoryRepository.Setup(x => x.FindById(It.IsAny<int>()))
-                .Returns((int categoryId) => categoryRepository.Object.Data.FirstOrDefault(c => c.Id == categoryId));
-            categoryRepository.Object.Data = new ObservableCollection<Category>();
-            categoryRepository.Object.Data.Add(testCategory);
-
-            Assert.AreEqual(testCategory, categoryRepository.Object.FindById(100));
-        }
-
-        [TestMethod]
         public void Delete_Failure_ReturnFalse()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -169,6 +155,17 @@ namespace MoneyFox.Shared.Tests.Repositories
 
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category()).ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void FindById_ReturnsCategory() {
+            var categoryDataAccessMock = new Mock<IDataAccess<Category>>();
+            var testCategory = new Category { Id = 100, Name = "Test Category" };
+
+            categoryDataAccessMock.Setup(x => x.LoadList(null))
+                .Returns(new List<Category> { testCategory });
+
+            Assert.AreEqual(testCategory, new CategoryRepository(categoryDataAccessMock.Object).FindById(100));
         }
     }
 }

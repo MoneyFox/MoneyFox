@@ -3,7 +3,7 @@ using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Interfaces
 {
-    public interface ICategoryRepository : IRepository<Category>, IData<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
         
     }

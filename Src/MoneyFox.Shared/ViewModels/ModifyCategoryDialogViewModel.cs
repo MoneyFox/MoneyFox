@@ -69,8 +69,7 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             if (
-                categoryRepository.Data.Any(
-                    x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase)))
+                categoryRepository.GetList(x => string.Equals(x.Name, Selected.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;

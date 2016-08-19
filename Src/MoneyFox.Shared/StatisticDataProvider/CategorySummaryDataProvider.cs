@@ -22,7 +22,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
         {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in categoryRepository.Data)
+            foreach (var category in categoryRepository.GetList())
             {
                 categories.Add(new StatisticItem
                 {

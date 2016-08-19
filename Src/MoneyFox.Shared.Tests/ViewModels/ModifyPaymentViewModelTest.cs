@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
@@ -41,11 +41,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
 
             var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object, 
                 accountRepoMock.Object,
-                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
@@ -67,12 +67,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
+            accountRepoMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account> { new Account { Id = 3 } });
 
             var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
-                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
@@ -92,12 +92,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
+            accountRepoMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account> { new Account { Id = 3 } });
 
             var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
-                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
@@ -128,8 +128,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account> { new Account { Id = 3, Name = "3" } });
+            accountRepoMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account> { new Account { Id = 3, Name = "3" } });
 
             var dialogService = new Mock<IDialogService>().Object;
 
@@ -168,11 +168,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
 
             var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 accountRepoMock.Object,
-                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
@@ -206,11 +206,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
 
             var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                             accountRepoMock.Object,
-                            new Mock<IRepository<RecurringPayment>>().Object,
+                            new Mock<IRecurringPaymentRepository>().Object,
                             new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
@@ -244,11 +244,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
 
             var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                             accountRepoMock.Object,
-                            new Mock<IRepository<RecurringPayment>>().Object,
+                            new Mock<IRecurringPaymentRepository>().Object,
                             new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
@@ -271,11 +271,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
 
             var paymentManager = new PaymentManager(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
-                new Mock<IRepository<RecurringPayment>>().Object,
+                new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,

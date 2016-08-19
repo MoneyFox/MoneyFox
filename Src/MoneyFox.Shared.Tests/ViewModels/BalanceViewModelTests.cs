@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
@@ -79,7 +79,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
 
             var accountMockSetup = new Mock<IAccountRepository>();
-            accountMockSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Account>
+            accountMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Account>
             {
                 new Account {CurrentBalance = 500},
                 new Account {CurrentBalance = 200}

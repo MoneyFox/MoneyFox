@@ -11,6 +11,7 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using MoneyFox.Shared.Repositories;
+using System.Collections.Generic;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -77,8 +78,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsAddIncomeEnabled_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>());
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
@@ -87,8 +88,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsAddIncomeEnabled_OneAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>()
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>()
                 {
                     new Account()
                 });
@@ -100,8 +101,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsAddExpenseEnabled_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>());
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
@@ -110,8 +111,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsAddExpenseEnabled_OneAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>()
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>()
                 {
                     new Account()
                 });
@@ -123,8 +124,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsTransferAvailable_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>());
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>());
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
@@ -133,8 +134,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsTransferAvailable_OneAccountInData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>
                 {
                     new Account()
                 });
@@ -146,8 +147,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsTransferAvailable_TwoAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Account>
+            accountRepositoryMock.Setup(x => x.GetList(null))
+                .Returns(new List<Account>
                 {
                     new Account(),
                     new Account()
