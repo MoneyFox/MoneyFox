@@ -34,8 +34,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-            paymentRepoSetup.Object.Data = new ObservableCollection<Payment>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
@@ -95,26 +93,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var deleteCalled = false;
 
-            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
-
-            var accountData = new Account
-            {
+            var accountData = new Account {
                 CurrentBalance = 0,
                 Id = 300,
                 Name = "Test Account"
             };
-            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> { accountData });
 
-
-            var mockPaymentRepo = new Mock<IPaymentRepository>();
-
-            mockPaymentRepo.SetupAllProperties();
-            mockPaymentRepo.Setup(c => c.Delete(It.IsAny<Payment>()))
-                .Callback((Payment payment) => { mockPaymentRepo.Object.Data.Remove(payment); });
-
-
-            var paymentRepo = mockPaymentRepo.Object;
-            paymentRepo.Data = new ObservableCollection<Payment>
+            var testList = new ObservableCollection<Payment>
             {
                 new Payment
                 {
@@ -130,15 +115,28 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             };
 
+            accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+
+
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> { accountData });
+
+            var mockPaymentRepo = new Mock<IPaymentRepository>();
+
+            mockPaymentRepo.Setup(c => c.Delete(It.IsAny<Payment>()))
+                .Callback((Payment payment) => { testList.Remove(payment); });
+
+            mockPaymentRepo.Setup(x => x.GetList(null)).Returns(testList);
+            
+
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new AccountListViewModel(accountRepository.Object, paymentRepo, dialogServiceSetup.Object);
+            var viewModel = new AccountListViewModel(accountRepository.Object, mockPaymentRepo.Object, dialogServiceSetup.Object);
 
             viewModel.DeleteAccountCommand.Execute(accountData);
             deleteCalled.ShouldBeTrue();
-            Assert.AreEqual(null, paymentRepo.Data.FirstOrDefault(p => p.Id == 1));
+            Assert.AreEqual(null, testList.FirstOrDefault(p => p.Id == 1));
         }
 
         [TestMethod]

@@ -143,7 +143,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         {
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
             paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.SetupAllProperties();
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
@@ -161,11 +160,11 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.AreSame(payment, repository.Data[0]);
+            Assert.AreSame(payment, repository.GetList().ToList()[0]);
 
             repository.Delete(payment);
 
-            Assert.IsFalse(repository.Data.Any());
+            Assert.IsFalse(repository.GetList().Any());
         }
 
         [TestMethod]
@@ -173,11 +172,10 @@ namespace MoneyFox.Shared.Tests.Repositories
         {
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
             paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.SetupAllProperties();
 
             var paymentRepo = new PaymentRepository(paymentDataAccessSetup.Object);
 
-            Assert.IsFalse(paymentRepo.Data.Any());
+            Assert.IsFalse(paymentRepo.GetList().Any());
         }
 
         [TestMethod]
@@ -193,8 +191,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var paymentRepository = new PaymentRepository(dataAccessSetup.Object);
             paymentRepository.Load();
 
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 10));
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 15));
+            paymentRepository.GetList(x => x.Id == 10).Any().ShouldBeTrue();
+            paymentRepository.GetList(x => x.Id == 15).Any().ShouldBeTrue();
         }
 
         [TestMethod]

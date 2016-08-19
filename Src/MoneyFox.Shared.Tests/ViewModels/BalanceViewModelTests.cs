@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -24,7 +23,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_Zero()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
+            paymentMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Payment>());
 
             var vm = new BalanceViewModel(new Mock<IAccountRepository>().Object, paymentMockSetup.Object);
 
@@ -38,8 +37,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoExpense_SumOfPayments()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.Data)
-                .Returns(() => new ObservableCollection<Payment>
+            paymentMockSetup.Setup(x => x.GetList(null))
+                .Returns(() => new List<Payment>
                 {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
                     new Payment {Amount = 60, Type = (int) PaymentType.Expense}
@@ -57,8 +56,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.Data)
-                .Returns(() => new ObservableCollection<Payment>
+            paymentMockSetup.Setup(x => x.GetList(null))
+                .Returns(() => new List<Payment>
                 {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
                     new Payment {Amount = 60, Type = (int) PaymentType.Income}
@@ -76,7 +75,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Payment>());
+            paymentMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Payment>());
 
             var accountMockSetup = new Mock<IAccountRepository>();
             accountMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Account>

@@ -122,7 +122,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>());
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>());
             paymentRepoSetup.SetupGet(x => x.Selected).Returns(selectedPayment);
             paymentRepoSetup.Setup(x => x.Save(selectedPayment)).Returns(true);
 

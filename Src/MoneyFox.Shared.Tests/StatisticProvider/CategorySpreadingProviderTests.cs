@@ -90,7 +90,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             var categoryRepo = categoryRepoSetup.Object;
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -128,7 +128,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.GetList().ToList()[2],
                     CategoryId = 3
                 }
-            }));
+            });
 
             //Excution
             var result =
@@ -157,7 +157,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             var categoryRepo = categoryRepoSetup.Object;
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -186,7 +186,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Category = categoryRepo.GetList().ToList()[2],
                     CategoryId = 3
                 }
-            }));
+            });
 
             //Excution
             var result =

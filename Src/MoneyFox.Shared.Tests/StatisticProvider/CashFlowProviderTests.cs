@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -46,7 +46,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today,
                     Amount = 40
                 }
-            }));
+            });
 
             //Excution
             var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
@@ -63,7 +63,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -86,7 +86,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }
-            }));
+            });
 
             //Excution
             var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),

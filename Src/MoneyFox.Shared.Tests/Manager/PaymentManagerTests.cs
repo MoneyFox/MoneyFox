@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -44,14 +43,13 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepositorySetup.SetupAllProperties();
             paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
-            paymentRepositorySetup.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Payment>
+            paymentRepositorySetup.Setup(x => x.GetList(null))
+                .Returns(new List<Payment>
                 {
                     payment
                 });
 
             var repo = paymentRepositorySetup.Object;
-            repo.Data = new ObservableCollection<Payment>();
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -140,12 +138,9 @@ namespace MoneyFox.Shared.Tests.Manager
             };
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.SetupAllProperties();
+            paymentRepositorySetup.Setup(x => x.GetList(null)).Returns(new List<Payment> {payment});
 
-            var paymentRepository = paymentRepositorySetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {payment});
-
-            new PaymentManager(paymentRepository,
+            new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object).RemoveRecurringForPayments(payment.RecurringPayment);
@@ -166,8 +161,8 @@ namespace MoneyFox.Shared.Tests.Manager
             };
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Payment>(new List<Payment> {payment}));
+            paymentRepositorySetup.Setup(x => x.GetList(null))
+                .Returns(new List<Payment> {payment});
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -194,8 +189,8 @@ namespace MoneyFox.Shared.Tests.Manager
             var recPaymentSaved = new RecurringPayment();
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.SetupGet(x => x.Data)
-                .Returns(new ObservableCollection<Payment>(new List<Payment> {payment}));
+            paymentRepositorySetup.Setup(x => x.GetList(null))
+                .Returns(new List<Payment> {payment});
 
             var recPaymentRepositorySetup = new Mock<IRecurringPaymentRepository>();
             recPaymentRepositorySetup.Setup(x => x.Save(It.IsAny<RecurringPayment>()))
