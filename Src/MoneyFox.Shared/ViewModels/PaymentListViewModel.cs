@@ -95,8 +95,8 @@ namespace MoneyFox.Shared.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<Payment>(paymentRepository.Data
-                .Where(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
+            RelatedPayments = new ObservableCollection<Payment>(paymentRepository
+                .GetList(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 

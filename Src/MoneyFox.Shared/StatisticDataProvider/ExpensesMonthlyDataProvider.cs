@@ -17,8 +17,8 @@ namespace MoneyFox.Shared.StatisticDataProvider
         }
 
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-            => paymentRepository.Data
-                .Where(x => x.Type == (int) PaymentType.Expense)
+            => paymentRepository
+                .GetList(x => x.Type == (int) PaymentType.Expense)
                 .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))
                 .Select(group => new StatisticItem

@@ -96,7 +96,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == item.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
