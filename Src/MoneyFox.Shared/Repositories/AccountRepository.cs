@@ -11,8 +11,7 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IRepository<Account>
-    {
+    public class AccountRepository : IAccountRepository {
         private readonly IDataAccess<Account> dataAccess;
 
         private List<Account> data;

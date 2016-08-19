@@ -8,8 +8,7 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Repositories
 {
-    public class RecurringPaymentRepository : IRepository<RecurringPayment>
-    {
+    public class RecurringPaymentRepository : IRecurringPaymentRepository {
         private readonly IDataAccess<RecurringPayment> dataAccess;
         private ObservableCollection<RecurringPayment> data;
 

@@ -6,10 +6,6 @@ using System.Linq.Expressions;
 namespace MoneyFox.Shared.Interfaces
 {
     public interface IRepository<T> {
-        /// <summary>
-        ///     All payment loaded from the database
-        /// </summary>
-        ObservableCollection<T> Data { get; set; }
 
         IEnumerable<T> GetList(Expression<Func<T, bool>> filter = null);
 
