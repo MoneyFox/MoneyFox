@@ -4,6 +4,7 @@ using Windows.UI.StartScreen;
 using Microsoft.HockeyApp;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using MvvmCross.Platform;
 

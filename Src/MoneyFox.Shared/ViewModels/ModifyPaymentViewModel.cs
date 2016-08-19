@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;

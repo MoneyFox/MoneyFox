@@ -5,6 +5,7 @@ using System.Linq;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Shared.Interfaces.Repositories
 {
     public interface IRepository<T> {
 
@@ -31,13 +30,5 @@ namespace MoneyFox.Shared.Interfaces
         ///     Loads the data from the database and fills it to the data collection.
         /// </summary>
         void Load(Expression<Func<T, bool>> filter = null);
-    }
-
-    public interface ISelectedProperty<T>
-    {
-        /// <summary>
-        ///     The selected Item
-        /// </summary>
-        T Selected { get; set; }
     }
 }

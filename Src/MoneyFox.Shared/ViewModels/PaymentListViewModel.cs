@@ -5,6 +5,7 @@ using System.Linq;
 using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;

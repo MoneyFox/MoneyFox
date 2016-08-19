@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;

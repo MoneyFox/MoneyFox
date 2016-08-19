@@ -11,6 +11,7 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Shared.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
