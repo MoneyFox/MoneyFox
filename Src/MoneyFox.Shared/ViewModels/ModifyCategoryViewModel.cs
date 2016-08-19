@@ -14,10 +14,10 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     [ImplementPropertyChanged]
     public class ModifyCategoryViewModel : BaseViewModel {
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
 
-        public ModifyCategoryViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
+        public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService) {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
         }

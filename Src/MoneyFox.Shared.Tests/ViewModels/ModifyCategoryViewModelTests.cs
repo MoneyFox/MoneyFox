@@ -37,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var categoryName = "groceries";
 
-            var viewmodel = new ModifyCategoryViewModel(new Mock<IRepository<Category>>().Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new Category { Id = 9, Name = categoryName }
@@ -49,7 +49,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddCategory_CorrectTitle()
         {
-            var viewmodel = new ModifyCategoryViewModel(new Mock<IRepository<Category>>().Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false
             };
@@ -60,7 +60,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -91,7 +91,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -122,7 +122,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_SavesCategory()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
@@ -151,7 +151,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var category = new Category { Id = 0, Name = "category", Notes = "" };
 
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
@@ -172,7 +172,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void DeleteCategory_DeletesCategory()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))

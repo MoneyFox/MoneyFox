@@ -42,8 +42,8 @@ namespace MoneyFox.Shared.Manager
 
         private Payment GetLastOccurence(Payment payment)
         {
-            var transcationList = paymentRepository.Data
-                .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
+            var transcationList = paymentRepository
+                .GetList(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)
                 .ToList();
 

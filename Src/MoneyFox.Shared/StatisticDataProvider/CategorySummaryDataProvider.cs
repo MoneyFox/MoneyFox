@@ -9,10 +9,10 @@ namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IRepository<Payment> paymentRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly IPaymentRepository paymentRepository;
+        private readonly ICategoryRepository categoryRepository;
 
-        public CategorySummaryDataProvider(IRepository<Payment> paymentRepository, IRepository<Category> categoryRepository)
+        public CategorySummaryDataProvider(IPaymentRepository paymentRepository, ICategoryRepository categoryRepository)
         {
             this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;

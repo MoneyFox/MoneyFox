@@ -38,8 +38,9 @@ namespace MoneyFox.Shared.ViewModels
             this.paymentManager = paymentManager;
             this.paymentRepository = paymentRepository;
 
-            TargetAccounts = new ObservableCollection<Account>(accountRepository.Data);
+            TargetAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             ChargedAccounts = new ObservableCollection<Account>(TargetAccounts);
+
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 

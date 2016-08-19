@@ -10,16 +10,16 @@ namespace MoneyFox.Shared.Manager
     /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
 
         private readonly IPaymentManager paymentManager;
 
         public RepositoryManager(IPaymentManager paymentManager, 
-            IRepository<Account> accountRepository,
+            IAccountRepository accountRepository,
             IPaymentRepository paymentRepository, 
-            IRepository<Category> categoryRepository)
+            ICategoryRepository categoryRepository)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;

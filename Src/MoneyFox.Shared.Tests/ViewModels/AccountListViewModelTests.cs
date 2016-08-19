@@ -14,13 +14,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
     [TestClass]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
-        private Mock<IRepository<Account>> accountRepository;
+        private Mock<IAccountRepository> accountRepository;
 
         [TestInitialize]
         public void Init()
         {
             MvxSingleton.ClearAllSingletons();
-            accountRepository = new Mock<IRepository<Account>>();
+            accountRepository = new Mock<IAccountRepository>();
             accountRepository.SetupAllProperties();
             Setup();
         }

@@ -11,12 +11,12 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
         private readonly int accountId;
 
-        public PaymentListBalanceViewModel(IRepository<Account> accountRepository, IRepository<Payment> paymentRepository, int accountId)
+        public PaymentListBalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository, int accountId)
             : base(accountRepository, paymentRepository)
         {
             this.accountRepository = accountRepository;

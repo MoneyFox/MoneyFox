@@ -138,7 +138,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void CategoryRepository_FindById_ReturnsCategory()
         {
-            var categoryRepository = new Mock<IRepository<Category>>();
+            var categoryRepository = new Mock<ICategoryRepository>();
             var testCategory = new Category {Id = 100, Name = "Test Category"};
             categoryRepository.SetupAllProperties();
             categoryRepository.Setup(x => x.FindById(It.IsAny<int>()))

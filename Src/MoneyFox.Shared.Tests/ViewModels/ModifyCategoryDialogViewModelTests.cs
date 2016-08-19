@@ -43,7 +43,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback((string a, string b) => wasDialogServiceCalled = true);
 
-            var vm = new ModifyCategoryDialogViewModel(new Mock<IRepository<Category>>().Object,
+            var vm = new ModifyCategoryDialogViewModel(new Mock<ICategoryRepository>().Object,
                 dialogSetup.Object) {Selected = new Category()};
 
             // Execute
@@ -59,7 +59,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             // Setup
             Category passedCategory = null;
 
-            var repositorySetup = new Mock<IRepository<Category>>();
+            var repositorySetup = new Mock<ICategoryRepository>();
             repositorySetup.Setup(x => x.Save(It.IsAny<Category>()))
                 .Callback((Category cat) => passedCategory = cat);
             repositorySetup.SetupGet(x => x.Data).
@@ -88,7 +88,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback((string a, string b) => wasDialogServiceCalled = true);
 
-            var repositorySetup = new Mock<IRepository<Category>>();
+            var repositorySetup = new Mock<ICategoryRepository>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
             repositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category> { new Category { Name = categoryName } });
 
@@ -117,7 +117,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback((string a, string b) => wasDialogServiceCalled = true);
 
-            var repositorySetup = new Mock<IRepository<Category>>();
+            var repositorySetup = new Mock<ICategoryRepository>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
             repositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category> { new Category { Name = categoryName1 } });
 
@@ -137,7 +137,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Save_UpdateTimeStamp()
         {
             var category = new Category {Id = 1, Name = "categpry2"};
-            var categoryRepoMock = new Mock<IRepository<Category>>();
+            var categoryRepoMock = new Mock<ICategoryRepository>();
             var categories = new ObservableCollection<Category>
             {
                 new Category {Id = 0, Name = "category"}

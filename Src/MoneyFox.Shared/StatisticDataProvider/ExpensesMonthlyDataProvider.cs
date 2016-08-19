@@ -9,9 +9,9 @@ namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public MonthlyExpensesDataProvider(IRepository<Payment> paymentRepository)
+        public MonthlyExpensesDataProvider(IPaymentRepository paymentRepository)
         {
             this.paymentRepository = paymentRepository;
         }

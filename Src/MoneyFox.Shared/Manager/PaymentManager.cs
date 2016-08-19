@@ -12,14 +12,14 @@ namespace MoneyFox.Shared.Manager
 {
     public class PaymentManager : IPaymentManager
     {
-        private readonly IRepository<RecurringPayment> recurringPaymentRepository;
+        private readonly IRecurringPaymentRepository recurringPaymentRepository;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
         public PaymentManager(IPaymentRepository paymentRepository, 
-            IRepository<Account> accountRepository,
-            IRepository<RecurringPayment> recurringPaymentRepository,
+            IAccountRepository accountRepository,
+            IRecurringPaymentRepository recurringPaymentRepository,
             IDialogService dialogService) {
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
@@ -128,7 +128,7 @@ namespace MoneyFox.Shared.Manager
                     if (payment.ChargedAccount == null)
                     {
                         payment.ChargedAccount =
-                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                            accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
 
                         Mvx.Trace(MvxTraceLevel.Error, "Charged account was missing while clearing payments.");
                     }
@@ -187,7 +187,7 @@ namespace MoneyFox.Shared.Manager
             if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
             {
                 payment.ChargedAccount =
-                    accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
             }
 
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
@@ -237,8 +237,7 @@ namespace MoneyFox.Shared.Manager
             if (paymentRepository.Data.All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
             {
                 var recurringList = recurringPaymentRepository
-                    .Data
-                    .Where(x => x.Id == payment.RecurringPaymentId)
+                    .GetList(x => x.Id == payment.RecurringPaymentId)
                     .ToList();
 
                 foreach (var recTrans in recurringList)
@@ -287,14 +286,14 @@ namespace MoneyFox.Shared.Manager
         private Func<Payment, Account> GetTargetAccountFunc()
         {
             Func<Payment, Account> targetAccountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+                trans => accountRepository.GetList(x => x.Id == trans.TargetAccountId).FirstOrDefault();
             return targetAccountFunc;
         }
 
         private Func<Payment, Account> GetChargedAccountFunc(Account account)
         {
             Func<Payment, Account> accountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == account.Id);
+                trans => accountRepository.GetList(x => x.Id == account.Id).FirstOrDefault();
             return accountFunc;
         }
     }

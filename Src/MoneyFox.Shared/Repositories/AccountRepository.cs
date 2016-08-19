@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
@@ -24,13 +23,12 @@ namespace MoneyFox.Shared.Repositories
         {
             this.dataAccess = dataAccess;
 
-            Data = new ObservableCollection<Account>();
             Load();
         }
 
         public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null) {
             if (data == null) {
-                Load();
+                data = dataAccess.LoadList();
             }
 
             if (filter != null) {
@@ -40,20 +38,7 @@ namespace MoneyFox.Shared.Repositories
             return data;
         }
 
-        private void Load() {
-            Data = new ObservableCollection<Account>();
-
-            foreach (var account in dataAccess.LoadList()) {
-                Data.Add(account);
-            }
-        }
-
         public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
-
-        /// <summary>
-        ///     Cached account data
-        /// </summary>
-        public ObservableCollection<Account> Data { get; set; }
 
         /// <summary>
         ///     Save a new account or update an existing one.
@@ -68,7 +53,7 @@ namespace MoneyFox.Shared.Repositories
 
             if (account.Id == 0)
             {
-                Data.Add(account);
+                data.Add(account);
                 data = new List<Account>(data.OrderBy(x => x.Name));
             }
 
@@ -81,7 +66,7 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete)
         {
-            Data.Remove(accountToDelete);
+            data.Remove(accountToDelete);
             return dataAccess.DeleteItem(accountToDelete);
         }
 
@@ -90,11 +75,11 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            Data.Clear();
+            data.Clear();
 
             foreach (var account in dataAccess.LoadList(filter))
             {
-                Data.Add(account);
+                data.Add(account);
             }
         }
     }

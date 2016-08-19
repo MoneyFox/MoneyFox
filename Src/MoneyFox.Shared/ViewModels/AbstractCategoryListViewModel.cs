@@ -10,7 +10,7 @@ using MvvmCross.Core.ViewModels;
 namespace MoneyFox.Shared.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel {
-        protected readonly IRepository<Category> CategoryRepository;
+        protected readonly ICategoryRepository CategoryRepository;
         protected readonly IDialogService DialogService;
 
         private string searchText;
@@ -20,13 +20,13 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(IRepository<Category> categoryRepository,
+        protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
             IDialogService dialogService)
         {
             DialogService = dialogService;
             CategoryRepository = categoryRepository;
 
-            Categories = CategoryRepository.Data;
+            Categories = new ObservableCollection<Category>(CategoryRepository.GetList());
 
             Source = CreateGroup();
         }

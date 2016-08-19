@@ -25,9 +25,9 @@ namespace MoneyFox.Shared.StatisticDataProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             // Get all Payments inlcuding income.
-            return GetSpreadingStatisticItems(paymentRepository.Data
-                .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
-                .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
+            return GetSpreadingStatisticItems(paymentRepository
+                .GetList(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date
+                              && (x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income))
                 .ToList());
         }
 

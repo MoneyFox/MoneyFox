@@ -26,9 +26,9 @@ namespace MoneyFox.Shared.StatisticDataProvider
         {
             var getPaymentListFunc =
                 new Func<List<Payment>>(() =>
-                    paymentRepository.Data
-                        .Where(x => x.Type != (int) PaymentType.Transfer)
-                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                    paymentRepository
+                        .GetList(x => x.Type != (int) PaymentType.Transfer
+                                      && x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .ToList());
 
             return GetCashFlowStatisticItems(getPaymentListFunc);

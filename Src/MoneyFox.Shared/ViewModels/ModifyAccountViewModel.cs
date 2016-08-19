@@ -92,7 +92,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedAccount = selectedAccountId != 0
-                ? accountRepository.Data.First(x => x.Id == selectedAccountId)
+                ? accountRepository.GetList(x => x.Id == selectedAccountId).First()
                 : new Account();
         }
 
@@ -104,8 +104,7 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && accountRepository.Data.Any(
-                a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)))
+            if (!IsEdit && accountRepository.GetList(a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;

@@ -13,7 +13,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
     [TestClass]
     public class PaymentListViewModelTests : MvxIoCSupportingTest
     {
-        private Mock<IRepository<Account>> accountRepository;
+        private Mock<IAccountRepository> accountRepository;
         private Mock<IPaymentRepository> paymentRepository;
         private Mock<IRepository<RecurringPayment>> recPaymentRepository;
         private Mock<IPaymentManager> paymentManager;
@@ -22,7 +22,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Init()
         {
             MvxSingleton.ClearAllSingletons();
-            accountRepository = new Mock<IRepository<Account>>();
+            accountRepository = new Mock<IAccountRepository>();
             paymentRepository = new Mock<IPaymentRepository>();
             recPaymentRepository = new Mock<IRepository<RecurringPayment>>();
             paymentManager = new Mock<IPaymentManager>();

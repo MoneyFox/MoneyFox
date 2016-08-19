@@ -39,7 +39,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 [TestMethod]
         public void Init_IncomeNotEditing_PropertiesSetupCorrectly()
         {
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -65,7 +65,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Init_ExpenseNotEditing_PropertiesSetupCorrectly()
         {
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
@@ -90,7 +90,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Init_TransferNotEditing_PropertiesSetupCorrectly() 
         {
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3 } });
@@ -126,7 +126,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentRepoSetup.SetupGet(x => x.Selected).Returns(selectedPayment);
             paymentRepoSetup.Setup(x => x.Save(selectedPayment)).Returns(true);
 
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account> { new Account { Id = 3, Name = "3" } });
@@ -166,7 +166,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -204,7 +204,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -242,7 +242,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
@@ -269,7 +269,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SelectedItemChangedCommand_UpdatesCorrectely()
         {
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 

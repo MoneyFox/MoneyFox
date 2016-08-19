@@ -54,7 +54,7 @@ namespace MoneyFox.Shared.Tests.Manager
             repo.Data = new ObservableCollection<Payment>();
 
             new PaymentManager(paymentRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object)
                 .DeleteAssociatedPaymentsFromDatabase(account1);
@@ -70,7 +70,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepositorySetup.SetupAllProperties();
 
             new PaymentManager(paymentRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object)
                 .DeleteAssociatedPaymentsFromDatabase(new Account {Id = 3});
@@ -80,7 +80,7 @@ namespace MoneyFox.Shared.Tests.Manager
         public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
         {
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object)
                 .CheckRecurrenceOfPayment(new Payment {IsRecurring = false});
@@ -100,7 +100,7 @@ namespace MoneyFox.Shared.Tests.Manager
                     It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
 
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 dialogService.Object)
                 .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
@@ -120,7 +120,7 @@ namespace MoneyFox.Shared.Tests.Manager
                     It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
 
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 dialogService.Object)
                 .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
@@ -146,7 +146,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {payment});
 
             new PaymentManager(paymentRepository,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object).RemoveRecurringForPayments(payment.RecurringPayment);
 
@@ -170,7 +170,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 .Returns(new ObservableCollection<Payment>(new List<Payment> {payment}));
 
             new PaymentManager(paymentRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<RecurringPayment>>().Object,
                 new Mock<IDialogService>().Object).SavePayment(payment);
 
@@ -202,7 +202,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 .Callback((RecurringPayment recPay) => recPaymentSaved = recPay);
 
             new PaymentManager(paymentRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 recPaymentRepositorySetup.Object,
                 new Mock<IDialogService>().Object).SavePayment(payment);
 

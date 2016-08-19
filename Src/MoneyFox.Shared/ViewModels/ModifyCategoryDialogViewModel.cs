@@ -15,7 +15,7 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class ModifyCategoryDialogViewModel : BaseViewModel
     {
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <param name="categoryRepository">Instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">Dialogservice to interact with the user.</param>
-        public ModifyCategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
+        public ModifyCategoryDialogViewModel(ICategoryRepository categoryRepository, IDialogService dialogService) {
             this.dialogService = dialogService;
             this.categoryRepository = categoryRepository;
         }

@@ -24,7 +24,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 2, Name = "Ausgehen"}
@@ -79,7 +79,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
 
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},
@@ -145,7 +145,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
 
             categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
@@ -202,7 +202,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_AddOtherItem()
         {
             //Setup
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},

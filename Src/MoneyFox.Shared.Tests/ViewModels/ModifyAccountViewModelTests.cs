@@ -39,7 +39,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountname = "Sparkonto";
 
-            var viewmodel = new ModifyAccountViewModel(new Mock<IRepository<Account>>().Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedAccount = new Account {Id = 3, Name = accountname}
@@ -51,7 +51,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddAccount_CorrectTitle()
         {
-            var viewmodel = new ModifyAccountViewModel(new Mock<IRepository<Account>>().Object,
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object)
             {IsEdit = false};
 
@@ -61,7 +61,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepositorySetup.Object.Data.Add(acc); });
@@ -90,7 +90,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepositorySetup.Object.Data.Add(acc); });
@@ -119,7 +119,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_SavesAccount()
         {
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountRepositorySetup.Object.Data.Add(acc); });
@@ -145,7 +145,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var account = new Account {Id = 0, Name = "account"};
 
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
             accountRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Account>());
 

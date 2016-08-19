@@ -16,14 +16,14 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
-        public PaymentListViewModel(IRepository<Account> accountRepository,
-            IRepository<Payment> paymentRepository, 
+        public PaymentListViewModel(IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository, 
             IRepository<RecurringPayment> recurringPaymentRepository,
             IPaymentManager paymentManager,
             IDialogService dialogService)

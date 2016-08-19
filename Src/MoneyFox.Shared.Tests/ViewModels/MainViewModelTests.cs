@@ -40,7 +40,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IRepository<Account>>().Object)
+            new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -52,7 +52,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IRepository<Account>>().Object)
+            new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -64,7 +64,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IRepository<Account>>().Object)
+            new MainViewModel(new Mock<IAccountRepository>().Object)
                 .GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -76,7 +76,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsAddIncomeEnabled_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
@@ -86,7 +86,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsAddIncomeEnabled_OneAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>()
                 {
@@ -99,7 +99,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsAddExpenseEnabled_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
@@ -109,7 +109,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsAddExpenseEnabled_OneAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>()
                 {
@@ -122,7 +122,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsTransferAvailable_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>());
 
@@ -132,7 +132,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsTransferAvailable_OneAccountInData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>
                 {
@@ -145,7 +145,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void IsTransferAvailable_TwoAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IRepository<Account>>();
+            var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.SetupGet(x => x.Data)
                 .Returns(new ObservableCollection<Account>
                 {
