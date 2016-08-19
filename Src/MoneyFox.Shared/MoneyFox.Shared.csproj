@@ -91,7 +91,6 @@
     <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
-    <Compile Include="Interfaces\Repositories\ISelectedProperty.cs" />
     <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
     <Compile Include="Interfaces\Shotcuts\IShortcut.cs" />
     <Compile Include="Interfaces\Shotcuts\ISpendingShortcut.cs" />

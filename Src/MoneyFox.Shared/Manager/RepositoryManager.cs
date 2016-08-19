@@ -38,7 +38,6 @@ namespace MoneyFox.Shared.Manager
             accountRepository.Load();
 
             paymentRepository.Load();
-            paymentRepository.Selected = null;
 
             categoryRepository.Load();
 

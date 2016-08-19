@@ -124,7 +124,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>());
-            paymentRepoSetup.SetupGet(x => x.Selected).Returns(selectedPayment);
+            paymentRepoSetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(selectedPayment);
             paymentRepoSetup.Setup(x => x.Save(selectedPayment)).Returns(true);
 
             var accountRepoMock = new Mock<IAccountRepository>();

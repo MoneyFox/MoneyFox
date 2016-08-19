@@ -47,12 +47,6 @@ namespace MoneyFox.Shared.Repositories
 
 
         /// <summary>
-        ///     The currently selected Payment
-        /// </summary>
-        public Payment Selected { get; set; }
-
-
-        /// <summary>
         ///     Save a new payment or update an existin one.
         /// </summary>
         /// <param name="payment">item to save</param>
