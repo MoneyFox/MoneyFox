@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
@@ -168,17 +170,24 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void AllAccounts_AccountsAvailable_MatchesRepository()
         {
+            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<Account, bool>>>())).Returns(new List<Account>());
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> {
                 new Account(),
                 new Account()
             });
-            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.GetList());
+            var vm = new AccountListViewModel(accountRepository.Object, null, null);
+            vm.LoadedCommand.Execute();
+            vm.AllAccounts.ToList().ShouldBe(accountRepository.Object.GetList());
         }
+
         [TestMethod]
         public void AllAccounts_NoAccountsAvailable_MatchesRepository()
         {
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
-            new AccountListViewModel(accountRepository.Object, null, null).AllAccounts.ShouldBe(accountRepository.Object.GetList());
+            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<Account, bool>>>())).Returns(new List<Account>());
+            var vm = new AccountListViewModel(accountRepository.Object, null, null);
+            vm.LoadedCommand.Execute();
+            vm.AllAccounts.ShouldBe(accountRepository.Object.GetList());
         }
     }
 }
