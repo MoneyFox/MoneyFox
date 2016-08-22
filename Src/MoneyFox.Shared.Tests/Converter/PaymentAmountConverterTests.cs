@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Converter;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using Moq;
 using MvvmCross.Platform;
@@ -39,7 +40,7 @@ namespace MoneyFox.Shared.Tests.Converter
                 CurrentBalance = 400
             };
 
-            var mock = new Mock<IRepository<Account>>();
+            var mock = new Mock<IAccountRepository>();
             mock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             Mvx.RegisterSingleton(mock.Object);
@@ -67,7 +68,7 @@ namespace MoneyFox.Shared.Tests.Converter
                 CurrentBalance = 400
             };
 
-            var mock = new Mock<IRepository<Account>>();
+            var mock = new Mock<IAccountRepository>();
 
             Mvx.RegisterSingleton(mock.Object);
 

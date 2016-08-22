@@ -83,10 +83,10 @@
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
-    <Compile Include="Interfaces\IPaymentRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPaymentRepository.cs" />
     <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
     <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
@@ -119,6 +119,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IAccountRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICategoryRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRecurringPaymentRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\RecurringPaymentRepository.cs" />
     <Compile Include="Resources\Strings.Designer.cs">

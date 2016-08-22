@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
@@ -23,7 +24,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -46,7 +47,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today,
                     Amount = 40
                 }
-            }));
+            });
 
             //Excution
             var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
@@ -61,9 +62,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [TestMethod]
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
-            //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(new List<Payment>
+            var paymentList = new List<Payment>
             {
                 new Payment
                 {
@@ -86,7 +85,12 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }
-            }));
+            };
+
+            //Setup
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
+                .Returns((Expression<Func<Payment, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
 
             //Excution
             var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),

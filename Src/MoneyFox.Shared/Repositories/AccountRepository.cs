@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using PropertyChanged;
@@ -10,11 +11,11 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IRepository<Account>
+    public class AccountRepository : IAccountRepository
     {
         private readonly IDataAccess<Account> dataAccess;
 
-        private ObservableCollection<Account> data;
+        private List<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
@@ -23,27 +24,25 @@ namespace MoneyFox.Shared.Repositories
         public AccountRepository(IDataAccess<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
-
-            Data = new ObservableCollection<Account>();
-            Load();
         }
 
-        public Account FindById(int id) => data.FirstOrDefault(a => a.Id == id);
-
-        /// <summary>
-        ///     Cached account data
-        /// </summary>
-        public ObservableCollection<Account> Data
+        public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null)
         {
-            get { return data; }
-            set
+            if (data == null)
             {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+                data = dataAccess.LoadList();
             }
+
+            return filter != null ? data.Where(filter.Compile()) : data;
+        }
+
+        public Account FindById(int id)
+        {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+            return data.FirstOrDefault(a => a.Id == id);
         }
 
         /// <summary>
@@ -52,6 +51,11 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="account">accountToDelete to save</param>
         public bool Save(Account account)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             if (string.IsNullOrWhiteSpace(account.Name))
             {
                 account.Name = Strings.NoNamePlaceholderLabel;
@@ -59,7 +63,8 @@ namespace MoneyFox.Shared.Repositories
 
             if (account.Id == 0)
             {
-                Data.Add(account);
+                data.Add(account);
+                data = new List<Account>(data.OrderBy(x => x.Name));
             }
 
             return dataAccess.SaveItem(account);
@@ -71,7 +76,12 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="accountToDelete">accountToDelete to delete</param>
         public bool Delete(Account accountToDelete)
         {
-            Data.Remove(accountToDelete);
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
+            data.Remove(accountToDelete);
             return dataAccess.DeleteItem(accountToDelete);
         }
 
@@ -80,12 +90,7 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            Data.Clear();
-
-            foreach (var account in dataAccess.LoadList(filter))
-            {
-                Data.Add(account);
-            }
+            data = dataAccess.LoadList();
         }
     }
 }

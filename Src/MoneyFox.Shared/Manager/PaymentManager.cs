@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
@@ -12,14 +13,14 @@ namespace MoneyFox.Shared.Manager
 {
     public class PaymentManager : IPaymentManager
     {
-        private readonly IRepository<RecurringPayment> recurringPaymentRepository;
+        private readonly IRecurringPaymentRepository recurringPaymentRepository;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
         public PaymentManager(IPaymentRepository paymentRepository, 
-            IRepository<Account> accountRepository,
-            IRepository<RecurringPayment> recurringPaymentRepository,
+            IAccountRepository accountRepository,
+            IRecurringPaymentRepository recurringPaymentRepository,
             IDialogService dialogService) {
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
@@ -50,7 +51,7 @@ namespace MoneyFox.Shared.Manager
 
         public void RemoveRecurringForPayment(Payment paymentToChange)
         {
-            var payments = paymentRepository.Data.Where(x => x.Id == paymentToChange.Id).ToList();
+            var payments = paymentRepository.GetList(x => x.Id == paymentToChange.Id).ToList();
 
             foreach (var payment in payments)
             {
@@ -62,13 +63,8 @@ namespace MoneyFox.Shared.Manager
 
         public void DeleteAssociatedPaymentsFromDatabase(Account account)
         {
-            if (paymentRepository.Data == null)
-            {
-                return;
-            }
-
-            var paymentToDelete = paymentRepository.Data
-                .Where(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
+            var paymentToDelete = paymentRepository
+                .GetList(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
                 .OrderByDescending(x => x.Date)
                 .ToList();
 
@@ -98,8 +94,8 @@ namespace MoneyFox.Shared.Manager
         /// <returns>list of recurring payments</returns>
         public IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null)
         {
-            var list = paymentRepository.Data
-                .Where(x => x.IsRecurring && x.RecurringPaymentId != 0)
+            var list = paymentRepository
+                .GetList(x => x.IsRecurring && x.RecurringPaymentId != 0)
                 .Where(x => (x.RecurringPayment.IsEndless ||
                              x.RecurringPayment.EndDate >= DateTime.Now.Date)
                             && (filter == null || filter.Invoke(x)))
@@ -117,9 +113,7 @@ namespace MoneyFox.Shared.Manager
         public void ClearPayments()
         {
             var payments = paymentRepository
-                .Data
-                .Where(p => !p.IsCleared)
-                .Where(p => p.Date.Date <= DateTime.Now.Date);
+                .GetList(p => !p.IsCleared && p.Date.Date <= DateTime.Now.Date);
 
             foreach (var payment in payments)
             {
@@ -128,7 +122,7 @@ namespace MoneyFox.Shared.Manager
                     if (payment.ChargedAccount == null)
                     {
                         payment.ChargedAccount =
-                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                            accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
 
                         Mvx.Trace(MvxTraceLevel.Error, "Charged account was missing while clearing payments.");
                     }
@@ -150,8 +144,7 @@ namespace MoneyFox.Shared.Manager
             try
             {
                 var relatedPayment = paymentRepository
-                    .Data
-                    .Where(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
+                    .GetList(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
 
                 foreach (var payment in relatedPayment)
                 {
@@ -187,7 +180,7 @@ namespace MoneyFox.Shared.Manager
             if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
             {
                 payment.ChargedAccount =
-                    accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
             }
 
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
@@ -234,11 +227,10 @@ namespace MoneyFox.Shared.Manager
             // If this payment was the last one for the linked recurring payment
             // delete the db entry for the recurring payment.
             var succeed = true;
-            if (paymentRepository.Data.All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
+            if (paymentRepository.GetList().All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
             {
                 var recurringList = recurringPaymentRepository
-                    .Data
-                    .Where(x => x.Id == payment.RecurringPaymentId)
+                    .GetList(x => x.Id == payment.RecurringPaymentId)
                     .ToList();
 
                 foreach (var recTrans in recurringList)
@@ -287,14 +279,14 @@ namespace MoneyFox.Shared.Manager
         private Func<Payment, Account> GetTargetAccountFunc()
         {
             Func<Payment, Account> targetAccountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+                trans => accountRepository.GetList(x => x.Id == trans.TargetAccountId).FirstOrDefault();
             return targetAccountFunc;
         }
 
         private Func<Payment, Account> GetChargedAccountFunc(Account account)
         {
             Func<Payment, Account> accountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == account.Id);
+                trans => accountRepository.GetList(x => x.Id == account.Id).FirstOrDefault();
             return accountFunc;
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.StatisticDataProvider
@@ -23,13 +24,10 @@ namespace MoneyFox.Shared.StatisticDataProvider
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-        {
-            // Get all Payments inlcuding income.
-            return GetSpreadingStatisticItems(paymentRepository.Data
-                .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
-                .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
+            => GetSpreadingStatisticItems(paymentRepository
+                .GetList(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date
+                              && (x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income))
                 .ToList());
-        }
 
         private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
         {
