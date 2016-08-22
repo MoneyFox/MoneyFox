@@ -51,7 +51,7 @@ Ausserdem wird bei jedem Start der Applikation  geprüft ob eine neuere Sicherun
   <string name="button_logout">Ausloggen</string>
   <!--labels-->
   <string name="label_cleared">Verrechnet: </string>
-  <string name="label_slogan">Budgetnig einfach gemacht.</string>
+  <string name="label_slogan">Budgeting einfach gemacht.</string>
   <string name="label_password_activated">Passwortschutz</string>
   <string name="label_backup_date">Letzte Sicherung wurde erstellt am:</string>
   <string name="label_autobackup">Sicherungen automatisch hoch- und runterladen</string>

@@ -8,6 +8,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform;
@@ -286,15 +287,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewmodel.Init(PaymentType.Income);
 
-            Account Test1 = new Account();//target account
-            Account Test2 = new Account();//charge account
-            viewmodel.TargetAccounts.Add(Test1);
-            viewmodel.ChargedAccounts.Add(Test1);
-            viewmodel.TargetAccounts.Add(Test2);
-            viewmodel.ChargedAccounts.Add(Test2);
+            Account test1 = new Account();//target account
+            Account test2 = new Account();//charge account
+            viewmodel.TargetAccounts.Add(test1);
+            viewmodel.ChargedAccounts.Add(test1);
+            viewmodel.TargetAccounts.Add(test2);
+            viewmodel.ChargedAccounts.Add(test2);
 
-            viewmodel.SelectedPayment.TargetAccount = Test1;
-            viewmodel.SelectedPayment.ChargedAccount = Test2;
+            viewmodel.SelectedPayment.TargetAccount = test1;
+            viewmodel.SelectedPayment.ChargedAccount = test2;
 
             viewmodel.SelectedItemChangedCommand.Execute();
 
@@ -303,5 +304,162 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.TargetAccount).ShouldBeFalse();
             viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.ChargedAccount).ShouldBeFalse();
         }
+
+        [TestMethod]
+        public void SaveCommand_RecurrenceStringDaily_RecurrenceSetCorrectly()
+        {
+            //setup
+            var testPayment = new Payment();
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+            paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object);
+
+            viewmodel.Init(PaymentType.Income);
+            viewmodel.SelectedPayment.ChargedAccount = new Account();
+            viewmodel.SelectedPayment.IsRecurring = true;
+            viewmodel.RecurrenceString = Strings.DailyLabel;
+
+            // execute
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            testPayment.RecurringPayment.ShouldNotBeNull();
+            testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Daily);
+        }
+
+        [TestMethod]
+        public void SaveCommand_RecurrenceStringWeekly_RecurrenceSetCorrectly() {
+            //setup
+            var testPayment = new Payment();
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+            paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object);
+
+            viewmodel.Init(PaymentType.Income);
+            viewmodel.SelectedPayment.ChargedAccount = new Account();
+            viewmodel.SelectedPayment.IsRecurring = true;
+            viewmodel.RecurrenceString = Strings.WeeklyLabel;
+
+            // execute
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            testPayment.RecurringPayment.ShouldNotBeNull();
+            testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Weekly);
+        }
+
+        [TestMethod]
+        public void SaveCommand_RecurrenceStringMonthly_RecurrenceSetCorrectly() {
+            //setup
+            var testPayment = new Payment();
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+            paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object);
+
+            viewmodel.Init(PaymentType.Income);
+            viewmodel.SelectedPayment.ChargedAccount = new Account();
+            viewmodel.SelectedPayment.IsRecurring = true;
+            viewmodel.RecurrenceString = Strings.MonthlyLabel;
+
+            // execute
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            testPayment.RecurringPayment.ShouldNotBeNull();
+            testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Monthly);
+        }
+
+        [TestMethod]
+        public void SaveCommand_RecurrenceStringYearly_RecurrenceSetCorrectly() {
+            //setup
+            var testPayment = new Payment();
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+            paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object);
+
+            viewmodel.Init(PaymentType.Income);
+            viewmodel.SelectedPayment.ChargedAccount = new Account();
+            viewmodel.SelectedPayment.IsRecurring = true;
+            viewmodel.RecurrenceString = Strings.YearlyLabel;
+
+            // execute
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            testPayment.RecurringPayment.ShouldNotBeNull();
+            testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Yearly);
+        }
+
+        [TestMethod]
+        public void SaveCommand_RecurrenceStringBiweekly_RecurrenceSetCorrectly() {
+            //setup
+            var testPayment = new Payment();
+
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IRepository<Account>>();
+            accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+            paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object);
+
+            viewmodel.Init(PaymentType.Income);
+            viewmodel.SelectedPayment.ChargedAccount = new Account();
+            viewmodel.SelectedPayment.IsRecurring = true;
+            viewmodel.RecurrenceString = Strings.BiweeklyLabel;
+
+            // execute
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            testPayment.RecurringPayment.ShouldNotBeNull();
+            testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Biweekly);
+        }
+
     }
 }

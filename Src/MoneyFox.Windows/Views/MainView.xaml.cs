@@ -11,11 +11,6 @@ namespace MoneyFox.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<MainViewModel>();
-
-            //if (SettingsHelper.ShowCashFlowOnMainTile)
-            //{
-            //    Tile.UpdateMainTile();
-            //}
         }
     }
 }

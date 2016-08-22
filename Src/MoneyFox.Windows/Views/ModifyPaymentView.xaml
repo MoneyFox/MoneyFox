@@ -142,9 +142,7 @@
                                   HorizontalAlignment="Stretch"
                                   Header="Reccurence"
                                   ItemsSource="{Binding RecurrenceList}"
-                                  SelectedIndex="{Binding Recurrence,
-                                                          Mode=TwoWay,
-                                                          UpdateSourceTrigger=PropertyChanged}" />
+                                  SelectedItem="{Binding RecurrenceString}" />
                         <CheckBox x:Uid="EndlessCheckBox"
                                   Margin="0,7,0,0"
                                   Content="Endless"
