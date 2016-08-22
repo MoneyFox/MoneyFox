@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -314,7 +313,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IRepository<Account>>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -345,7 +343,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IRepository<Account>>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -376,7 +373,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IRepository<Account>>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -407,7 +403,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IRepository<Account>>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -438,7 +433,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IRepository<Account>>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
-            accountRepoMock.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
