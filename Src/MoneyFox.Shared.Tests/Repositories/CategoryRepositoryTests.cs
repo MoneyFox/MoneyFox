@@ -7,7 +7,6 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
@@ -36,8 +35,14 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_EmptyString_CorrectNameAssigned()
         {
-            var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var categoryList = new List<Category>();
+
+            var categoryDataAccessMock = new Mock<IDataAccess<Category>>();
+            categoryDataAccessMock.Setup(x => x.SaveItem(It.IsAny<Category>()))
+                .Callback((Category cat) => categoryList.Add(cat));
+            categoryDataAccessMock.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            var repository = new CategoryRepository(categoryDataAccessMock.Object);
 
             var category = new Category
             {
@@ -46,16 +51,22 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(category);
 
-            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
-            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(Strings.NoNamePlaceholderLabel);
+            categoryList[0].ShouldBeSameAs(category);
+            categoryList[0].Name.ShouldBe(Strings.NoNamePlaceholderLabel);
         }
 
         [TestMethod]
         public void Save_InputName_CorrectNameAssigned()
         {
             const string name = "Ausgang";
-            var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var categoryList = new List<Category>();
+
+            var categoryDataAccessMock = new Mock<IDataAccess<Category>>();
+            categoryDataAccessMock.Setup(x => x.SaveItem(It.IsAny<Category>()))
+                .Callback((Category cat) => categoryList.Add(cat));
+            categoryDataAccessMock.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            var repository = new CategoryRepository(categoryDataAccessMock.Object);
 
             var category = new Category
             {
@@ -64,15 +75,23 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(category);
 
-            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
-            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(name);
+            categoryList[0].ShouldBe(category);
+            categoryList[0].Name.ShouldBe(name);
         }
 
         [TestMethod]
         public void CategoryRepository_Delete()
         {
-            var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var categoryList = new List<Category>();
+
+            var categoryDataAccessMock = new Mock<IDataAccess<Category>>();
+            categoryDataAccessMock.Setup(x => x.SaveItem(It.IsAny<Category>()))
+                .Callback((Category cat) => categoryList.Add(cat));
+            categoryDataAccessMock.Setup(x => x.DeleteItem(It.IsAny<Category>()))
+                .Callback((Category cat) => categoryList.Remove(cat));
+            categoryDataAccessMock.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            var repository = new CategoryRepository(categoryDataAccessMock.Object);
 
             var category = new Category
             {
@@ -81,24 +100,28 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(category);
 
-            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
+            categoryList[0].ShouldBeSameAs(category);
 
             repository.Delete(category);
 
-            categoryDataAccessMock.CategoryTestList.Any().ShouldBeFalse();
+            categoryList.Any().ShouldBeFalse();
             repository.GetList().Any().ShouldBeFalse();
         }
 
         [TestMethod]
         public void CategoryRepository_AccessCache()
         {
-            new CategoryRepository(new CategoryDataAccessMock()).GetList().ShouldNotBeNull();
+            new CategoryRepository(new Mock<IDataAccess<Category>>().Object).GetList().ShouldNotBeNull();
         }
 
         [TestMethod]
         public void CategoryRepository_AddMultipleToCache()
         {
-            var repository = new CategoryRepository(new CategoryDataAccessMock());
+            var categoryDataAccessMock = new Mock<IDataAccess<Category>>();
+            categoryDataAccessMock.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+
+            var repository = new CategoryRepository(categoryDataAccessMock.Object);
             var category = new Category
             {
                 Name = "Ausgang"
