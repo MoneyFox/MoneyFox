@@ -143,7 +143,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         {
             var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
             paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.SetupAllProperties();
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
@@ -161,23 +160,11 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.AreSame(payment, repository.Data[0]);
+            Assert.AreSame(payment, repository.GetList().ToList()[0]);
 
             repository.Delete(payment);
 
-            Assert.IsFalse(repository.Data.Any());
-        }
-
-        [TestMethod]
-        public void PaymentRepository_AccessCache()
-        {
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.SetupAllProperties();
-
-            var paymentRepo = new PaymentRepository(paymentDataAccessSetup.Object);
-
-            Assert.IsFalse(paymentRepo.Data.Any());
+            Assert.IsFalse(repository.GetList().Any());
         }
 
         [TestMethod]
@@ -193,8 +180,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var paymentRepository = new PaymentRepository(dataAccessSetup.Object);
             paymentRepository.Load();
 
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 10));
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 15));
+            paymentRepository.GetList(x => x.Id == 10).Any().ShouldBeTrue();
+            paymentRepository.GetList(x => x.Id == 15).Any().ShouldBeTrue();
         }
 
         [TestMethod]
@@ -209,17 +196,14 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void PaymentRepository_FindById_ReturnsPayment()
-        {
-            var paymentRepository = new Mock<IPaymentRepository>();
-            var testPayment = new Payment {Id = 100};
-            paymentRepository.SetupAllProperties();
-            paymentRepository.Setup(x => x.FindById(It.IsAny<int>()))
-                .Returns((int paymentId) => paymentRepository.Object.Data.FirstOrDefault(p => p.Id == paymentId));
-            paymentRepository.Object.Data = new ObservableCollection<Payment>();
-            paymentRepository.Object.Data.Add(testPayment);
+        public void FindById_ReturnsPayment() {
+            var dataAccessMock = new Mock<IDataAccess<RecurringPayment>>();
+            var testPayment = new RecurringPayment { Id = 100, Amount = 78 };
 
-            Assert.AreEqual(testPayment, paymentRepository.Object.FindById(100));
+            dataAccessMock.Setup(x => x.LoadList(null))
+                .Returns(new List<RecurringPayment> { testPayment });
+
+            Assert.AreEqual(testPayment, new RecurringPaymentRepository(dataAccessMock.Object).FindById(100));
         }
     }
 }

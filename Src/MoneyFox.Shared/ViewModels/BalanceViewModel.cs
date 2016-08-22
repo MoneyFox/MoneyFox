@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
@@ -11,10 +12,10 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public BalanceViewModel(IRepository<Account> accountRepository, IRepository<Payment> paymentRepository) {
+        public BalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository) {
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
         }
@@ -49,7 +50,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance() => accountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
+        protected virtual double GetTotalBalance() => accountRepository.GetList()?.Sum(x => x.CurrentBalance) ?? 0;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -58,9 +59,8 @@ namespace MoneyFox.Shared.ViewModels
         protected virtual double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = paymentRepository.Data
-                .Where(p => !p.IsCleared)
-                .Where(p => p.Date.Date <= Utilities.GetEndOfMonth());
+            var unclearedPayments = paymentRepository
+                .GetList(p => !p.IsCleared && p.Date.Date <= Utilities.GetEndOfMonth());
 
             foreach (var payment in unclearedPayments)
             {

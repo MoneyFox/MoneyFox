@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
+using MvvmCross.Binding.ExtensionMethods;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -17,17 +20,17 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => accountRepository.Data.Count > 1;
+        public bool IsTransferAvailable => accountRepository.GetList().Count() > 1;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => accountRepository.Data.Count > 0;
+        public bool IsAddIncomeAvailable => accountRepository.GetList().Any();
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => accountRepository.Data.Count > 0;
+        public bool IsAddExpenseAvailable => accountRepository.GetList().Any();
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view

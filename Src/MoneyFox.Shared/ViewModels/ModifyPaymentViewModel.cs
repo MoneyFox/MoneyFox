@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
@@ -38,8 +39,9 @@ namespace MoneyFox.Shared.ViewModels
             this.paymentManager = paymentManager;
             this.paymentRepository = paymentRepository;
 
-            TargetAccounts = new ObservableCollection<Account>(accountRepository.Data);
+            TargetAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             ChargedAccounts = new ObservableCollection<Account>(TargetAccounts);
+
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 

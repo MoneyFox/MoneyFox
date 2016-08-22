@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IRepository<Payment> paymentRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly IPaymentRepository paymentRepository;
+        private readonly ICategoryRepository categoryRepository;
 
-        public CategorySummaryDataProvider(IRepository<Payment> paymentRepository, IRepository<Category> categoryRepository)
+        public CategorySummaryDataProvider(IPaymentRepository paymentRepository, ICategoryRepository categoryRepository)
         {
             this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
@@ -22,12 +23,13 @@ namespace MoneyFox.Shared.StatisticDataProvider
         {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in categoryRepository.Data)
+            foreach (var category in categoryRepository.GetList())
             {
                 categories.Add(new StatisticItem
                 {
                     Category = category.Name,
-                    Value = paymentRepository.Data
+                    Value = paymentRepository
+                        .GetList()
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) PaymentType.Transfer)

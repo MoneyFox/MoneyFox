@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using PropertyChanged;
@@ -10,11 +11,11 @@ using PropertyChanged;
 namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
-    public class CategoryRepository : IRepository<Category>
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly IDataAccess<Category> dataAccess;
 
-        private ObservableCollection<Category> data;
+        private List<Category> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
@@ -23,28 +24,27 @@ namespace MoneyFox.Shared.Repositories
         public CategoryRepository(IDataAccess<Category> dataAccess)
         {
             this.dataAccess = dataAccess;
-
-            Data = new ObservableCollection<Category>();
-            Load();
         }
 
-        /// <summary>
-        ///     Cached category data
-        /// </summary>
-        public ObservableCollection<Category> Data
+        public IEnumerable<Category> GetList(Expression<Func<Category, bool>> filter = null)
         {
-            get { return data; }
-            set
+            if (data == null)
             {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+                data = dataAccess.LoadList();
             }
+
+            return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public Category FindById(int id) => data.FirstOrDefault(c => c.Id == id);
+        public Category FindById(int id)
+        {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
+            return data.FirstOrDefault(c => c.Id == id);
+        }
 
         /// <summary>
         ///     Save a new category or update an existing one.
@@ -53,6 +53,11 @@ namespace MoneyFox.Shared.Repositories
         /// <returns>Whether the task has succeeded</returns>
         public bool Save(Category category)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             if (string.IsNullOrWhiteSpace(category.Name))
             {
                 category.Name = Strings.NoNamePlaceholderLabel;
@@ -61,8 +66,7 @@ namespace MoneyFox.Shared.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
-
-                data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
+                data = new List<Category>(data.OrderBy(x => x.Name));
             }
             return dataAccess.SaveItem(category);
         }
@@ -75,6 +79,11 @@ namespace MoneyFox.Shared.Repositories
         /// <returns>Whether the task has succeeded</returns>
         public bool Delete(Category categoryToDelete)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             data.Remove(categoryToDelete);
             return dataAccess.DeleteItem(categoryToDelete);
         }
@@ -84,11 +93,9 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         public void Load(Expression<Func<Category, bool>> filter = null)
         {
-            Data.Clear();
-
-            foreach (var category in dataAccess.LoadList(filter))
+            if (data == null)
             {
-                Data.Add(category);
+                data = dataAccess.LoadList();
             }
         }
     }

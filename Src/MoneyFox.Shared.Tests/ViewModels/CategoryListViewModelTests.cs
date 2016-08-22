@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using Moq;
@@ -22,8 +24,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Ctor_Default()
         {
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupGet(x => x.Data).Returns(() => new ObservableCollection<Category>
+            var categoryRepoSetup = new Mock<ICategoryRepository>();
+            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(() => new List<Category>
             {
                 new Category {Name = string.Empty}
             });

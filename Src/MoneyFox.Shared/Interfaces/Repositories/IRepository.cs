@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Shared.Interfaces.Repositories
 {
-    public interface IRepository<T>
-    {
-        /// <summary>
-        ///     All payment loaded from the database
-        /// </summary>
-        ObservableCollection<T> Data { get; set; }
+    public interface IRepository<T> {
+
+        IEnumerable<T> GetList(Expression<Func<T, bool>> filter = null);
 
         /// <summary>
         ///     Finds an entity by its id
@@ -33,13 +30,5 @@ namespace MoneyFox.Shared.Interfaces
         ///     Loads the data from the database and fills it to the data collection.
         /// </summary>
         void Load(Expression<Func<T, bool>> filter = null);
-    }
-
-    public interface ISelectedProperty<T>
-    {
-        /// <summary>
-        ///     The selected Item
-        /// </summary>
-        T Selected { get; set; }
     }
 }
