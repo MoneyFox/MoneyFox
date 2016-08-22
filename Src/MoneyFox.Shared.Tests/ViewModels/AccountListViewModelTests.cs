@@ -146,14 +146,20 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void IsAllAccountsEmpty_AccountsEmpty_True()
         {
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
-            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeTrue();
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentRepository>().Object, null);
+            vm.LoadedCommand.Execute();
+            vm.IsAllAccountsEmpty.ShouldBeTrue();
         }
 
         [TestMethod]
         public void IsAllAccountsEmpty_OneAccount_False()
         {
-            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
-            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+            accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> {
+                new Account()
+            });
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentRepository>().Object, null);
+            vm.LoadedCommand.Execute();
+            vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -164,7 +170,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Account()
             });
 
-            new AccountListViewModel(accountRepository.Object,null,null).IsAllAccountsEmpty.ShouldBeFalse();
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentRepository>().Object, null);
+            vm.LoadedCommand.Execute();
+            vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]

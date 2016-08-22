@@ -21,51 +21,59 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
+            var payment1 = new Payment
+            {
+                Id = 1,
+                Amount = 99,
+                ChargedAccountId = 2,
+                ChargedAccount = new Account {Id = 2},
+                Date = DateTime.Now.AddDays(-3),
+                RecurringPaymentId = 3,
+                RecurringPayment = new RecurringPayment
+                {
+                    Id = 3,
+                    Recurrence = (int) PaymentRecurrence.Daily,
+                    ChargedAccountId = 2,
+                    ChargedAccount = new Account {Id = 2},
+                    Amount = 95
+                },
+                IsCleared = true,
+                IsRecurring = true
+            };
+
+            var payment2 = new Payment
+            {
+                Id = 2,
+                Amount = 105,
+                Date = DateTime.Now.AddDays(-3),
+                ChargedAccountId = 2,
+                ChargedAccount = new Account {Id = 2},
+                RecurringPaymentId = 4,
+                RecurringPayment = new RecurringPayment
+                {
+                    Id = 4,
+                    Recurrence = (int) PaymentRecurrence.Weekly,
+                    ChargedAccountId = 2,
+                    ChargedAccount = new Account {Id = 2},
+                    Amount = 105
+                },
+                IsRecurring = true
+            };
+
             var testList = new List<Payment>
             {
-                new Payment
-                {
-                    Id = 1,
-                    Amount = 99,
-                    ChargedAccountId = 2,
-                    ChargedAccount = new Account {Id = 2},
-                    Date = DateTime.Now.AddDays(-3),
-                    RecurringPaymentId = 3,
-                    RecurringPayment = new RecurringPayment
-                    {
-                        Id = 3,
-                        Recurrence = (int) PaymentRecurrence.Daily,
-                        ChargedAccountId = 2,
-                        ChargedAccount = new Account {Id = 2},
-                        Amount = 95
-                    },
-                    IsCleared = true,
-                    IsRecurring = true
-                },
-                new Payment
-                {
-                    Id = 2,
-                    Amount = 105,
-                    Date = DateTime.Now.AddDays(-3),
-                    ChargedAccountId = 2,
-                    ChargedAccount = new Account {Id = 2},
-                    RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment
-                    {
-                        Id = 4,
-                        Recurrence = (int) PaymentRecurrence.Weekly,
-                        ChargedAccountId = 2,
-                        ChargedAccount = new Account {Id = 2},
-                        Amount = 105
-                    },
-                    IsRecurring = true
-                }
+                payment1,
+                payment2
             };
 
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
             paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+
+            paymentRepoSetup.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
+                .Returns(new List<Payment> {payment1})
+                .Returns(new List<Payment> {payment2});
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -117,6 +125,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 .Callback((Payment payment) => resultList.Add(payment));
 
             paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -298,52 +307,59 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
+
+            var payment1 = new Payment
+            {
+                Id = 1,
+                Amount = 99,
+                ChargedAccountId = 2,
+                ChargedAccount = new Account {Id = 2},
+                Date = DateTime.Now.AddDays(-1),
+                RecurringPaymentId = 3,
+                RecurringPayment = new RecurringPayment
+                {
+                    Id = 3,
+                    Recurrence = (int) PaymentRecurrence.Daily,
+                    ChargedAccountId = 2,
+                    ChargedAccount = new Account {Id = 2},
+                    Amount = 95
+                },
+                IsCleared = true,
+                IsRecurring = true
+            };
+
+            var payment2 = new Payment
+            {
+                Id = 2,
+                Amount = 105,
+                Date = DateTime.Now.AddDays(-7),
+                ChargedAccountId = 2,
+                ChargedAccount = new Account {Id = 2},
+                RecurringPaymentId = 4,
+                RecurringPayment = new RecurringPayment
+                {
+                    Id = 4,
+                    Recurrence = (int) PaymentRecurrence.Weekly,
+                    ChargedAccountId = 2,
+                    ChargedAccount = new Account {Id = 2},
+                    Amount = 105
+                },
+                IsCleared = true,
+                IsRecurring = true
+            };
+
             var testList = new List<Payment>
             {
-                new Payment
-                {
-                    Id = 1,
-                    Amount = 99,
-                    ChargedAccountId = 2,
-                    ChargedAccount = new Account {Id = 2},
-                    Date = DateTime.Now.AddDays(-1),
-                    RecurringPaymentId = 3,
-                    RecurringPayment = new RecurringPayment
-                    {
-                        Id = 3,
-                        Recurrence = (int) PaymentRecurrence.Daily,
-                        ChargedAccountId = 2,
-                        ChargedAccount = new Account {Id = 2},
-                        Amount = 95
-                    },
-                    IsCleared = true,
-                    IsRecurring = true
-                },
-                new Payment
-                {
-                    Id = 2,
-                    Amount = 105,
-                    Date = DateTime.Now.AddDays(-7),
-                    ChargedAccountId = 2,
-                    ChargedAccount = new Account {Id = 2},
-                    RecurringPaymentId = 4,
-                    RecurringPayment = new RecurringPayment
-                    {
-                        Id = 4,
-                        Recurrence = (int) PaymentRecurrence.Weekly,
-                        ChargedAccountId = 2,
-                        ChargedAccount = new Account {Id = 2},
-                        Amount = 105
-                    },
-                    IsCleared = true,
-                    IsRecurring = true
-                }
+                payment1,
+                payment2
             };
 
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
+            paymentRepoSetup.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
+                .Returns(new List<Payment> {payment1})
+                .Returns(new List<Payment> {payment2});
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
