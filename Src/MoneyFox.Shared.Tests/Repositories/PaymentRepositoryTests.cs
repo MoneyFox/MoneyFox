@@ -168,17 +168,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void PaymentRepository_AccessCache()
-        {
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-
-            var paymentRepo = new PaymentRepository(paymentDataAccessSetup.Object);
-
-            Assert.IsFalse(paymentRepo.GetList().Any());
-        }
-
-        [TestMethod]
         public void Load_Payment_DataInitialized()
         {
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();

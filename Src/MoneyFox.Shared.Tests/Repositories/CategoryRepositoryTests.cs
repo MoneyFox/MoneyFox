@@ -109,12 +109,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void CategoryRepository_AccessCache()
-        {
-            new CategoryRepository(new Mock<IDataAccess<Category>>().Object).GetList().ShouldNotBeNull();
-        }
-
-        [TestMethod]
         public void CategoryRepository_AddMultipleToCache()
         {
             var categoryDataAccessMock = new Mock<IDataAccess<Category>>();

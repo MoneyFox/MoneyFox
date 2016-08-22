@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
@@ -167,7 +168,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -219,7 +220,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -271,7 +272,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -342,7 +343,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
@@ -400,7 +401,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             //Execution
             new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object).CheckRecurringPayments();
@@ -441,7 +442,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
                 .Callback((Payment payment) => resultList.Add(payment));
 
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(testList);
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             //Execution
             new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object).CheckRecurringPayments();
