@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
@@ -10,7 +11,7 @@ using MvvmCross.Core.ViewModels;
 namespace MoneyFox.Shared.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel {
-        protected readonly IRepository<Category> CategoryRepository;
+        protected readonly ICategoryRepository CategoryRepository;
         protected readonly IDialogService DialogService;
 
         private string searchText;
@@ -20,13 +21,13 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(IRepository<Category> categoryRepository,
+        protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
             IDialogService dialogService)
         {
             DialogService = dialogService;
             CategoryRepository = categoryRepository;
 
-            Categories = CategoryRepository.Data;
+            Categories = new ObservableCollection<Category>(CategoryRepository.GetList());
 
             Source = CreateGroup();
         }
@@ -104,13 +105,13 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (CategoryRepository.Data.Where(
+                    (CategoryRepository.GetList(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.Data.OrderBy(x => x.Name));
+                Categories = new ObservableCollection<Category>(CategoryRepository.GetList().OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }

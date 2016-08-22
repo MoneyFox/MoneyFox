@@ -2,6 +2,7 @@
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
@@ -14,10 +15,10 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     [ImplementPropertyChanged]
     public class ModifyCategoryViewModel : BaseViewModel {
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
 
-        public ModifyCategoryViewModel(IRepository<Category> categoryRepository, IDialogService dialogService) {
+        public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService) {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
         }
@@ -78,7 +79,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
-                ? categoryRepository.Data.First(x => x.Id == selectedCategoryId)
+                ? categoryRepository.GetList(x => x.Id == selectedCategoryId).First()
                 : new Category();
         }
 
@@ -90,8 +91,8 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && categoryRepository.Data.Any(
-                a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase)))
+            if (!IsEdit && categoryRepository.GetList(a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase))
+                .Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;

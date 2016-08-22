@@ -5,6 +5,7 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;

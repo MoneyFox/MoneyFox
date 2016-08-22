@@ -1,58 +1,67 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Repositories
 {
-    public class RecurringPaymentRepository : IRepository<RecurringPayment>
+    public class RecurringPaymentRepository : IRecurringPaymentRepository
     {
         private readonly IDataAccess<RecurringPayment> dataAccess;
-        private ObservableCollection<RecurringPayment> data;
+
+        private List<RecurringPayment> data;
 
         public RecurringPaymentRepository(IDataAccess<RecurringPayment> dataAccess)
         {
             this.dataAccess = dataAccess;
-
-            Data = new ObservableCollection<RecurringPayment>();
-            Load();
         }
 
-        public ObservableCollection<RecurringPayment> Data
+        public IEnumerable<RecurringPayment> GetList(Expression<Func<RecurringPayment, bool>> filter = null)
         {
-            get { return data; }
-            set
+            if (data == null)
             {
-                if (Equals(data, value))
-                {
-                    return;
-                }
-                data = value;
+                data = dataAccess.LoadList();
             }
+
+            return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public RecurringPayment FindById(int id) => data.FirstOrDefault(p => p.Id == id);
+        public RecurringPayment FindById(int id)
+        {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+            return data.FirstOrDefault(p => p.Id == id);
+        }
+
 
         public bool Delete(RecurringPayment paymentToDelete)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             data.Remove(paymentToDelete);
             return dataAccess.DeleteItem(paymentToDelete);
         }
 
         public void Load(Expression<Func<RecurringPayment, bool>> filter = null)
         {
-            Data.Clear();
-
-            foreach (var recPayment in dataAccess.LoadList(filter))
-            {
-                Data.Add(recPayment);
-            }
+            data = dataAccess.LoadList();
         }
 
         public bool Save(RecurringPayment payment)
         {
+            if (data == null)
+            {
+                data = dataAccess.LoadList();
+            }
+
             if (payment.Id == 0)
             {
                 data.Add(payment);

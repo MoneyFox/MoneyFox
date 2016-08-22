@@ -87,12 +87,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
-        public void AccessCache()
-        {
-            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
-        }
-
-        [TestMethod]
         public void Delete_None_AccountDeleted()
         {
             var testList = new List<Account>();
@@ -117,7 +111,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             repository.Delete(account);
 
             Assert.IsFalse(testList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            Assert.IsFalse(repository.GetList().Any());
         }
 
         [TestMethod]
@@ -133,21 +127,20 @@ namespace MoneyFox.Shared.Tests.Repositories
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
             accountRepository.Load();
 
-            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
-            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 15));
+            Assert.IsTrue(accountRepository.GetList(x => x.Id == 10).Any());
+            Assert.IsTrue(accountRepository.GetList(x => x.Id == 15).Any());
         }
 
         [TestMethod]
-        public void AccountRepository_FindById_ReturnsAccount()
+        public void FindById_ReturnsAccount()
         {
-            var accountRepository = new Mock<IRepository<Account>>();
+            var accountDataAccessMock = new Mock<IDataAccess<Account>>();
             var testAccount = new Account {Id = 100, Name = "Test Account"};
-            accountRepository.SetupAllProperties();
-            accountRepository.Setup(x => x.FindById(It.IsAny<int>()))
-                .Returns((int accountId) => accountRepository.Object.Data.FirstOrDefault(a => a.Id == accountId));
-            accountRepository.Object.Data = new ObservableCollection<Account> {testAccount};
 
-            Assert.AreEqual(testAccount, accountRepository.Object.FindById(100));
+            accountDataAccessMock.Setup(x => x.LoadList(null))
+                .Returns(new List<Account> {testAccount});
+
+            Assert.AreEqual(testAccount, new AccountRepository(accountDataAccessMock.Object).FindById(100));
         }
 
         [TestMethod]

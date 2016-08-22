@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using PropertyChanged;
 
@@ -12,7 +13,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public CategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
+        public CategoryListViewModel(ICategoryRepository categoryRepository, IDialogService dialogService)
             : base(categoryRepository, dialogService)
         {
         }

@@ -2,6 +2,7 @@
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.ViewModels
@@ -11,12 +12,12 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
         private readonly int accountId;
 
-        public PaymentListBalanceViewModel(IRepository<Account> accountRepository, IRepository<Payment> paymentRepository, int accountId)
+        public PaymentListBalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository, int accountId)
             : base(accountRepository, paymentRepository)
         {
             this.accountRepository = accountRepository;
@@ -76,8 +77,8 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private IEnumerable<Payment> LoadUnclearedPayments()
-            => paymentRepository.Data
-                .Where(p => !p.IsCleared)
+            => paymentRepository
+                .GetList(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
                 .Where(x => x.ChargedAccountId == accountId
                             || x.TargetAccountId == accountId)

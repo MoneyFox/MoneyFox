@@ -5,6 +5,7 @@ using System.Linq;
 using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -16,14 +17,14 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
-        public PaymentListViewModel(IRepository<Account> accountRepository,
-            IRepository<Payment> paymentRepository, 
+        public PaymentListViewModel(IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository, 
             IRepository<RecurringPayment> recurringPaymentRepository,
             IPaymentManager paymentManager,
             IDialogService dialogService)
@@ -95,8 +96,8 @@ namespace MoneyFox.Shared.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<Payment>(paymentRepository.Data
-                .Where(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
+            RelatedPayments = new ObservableCollection<Payment>(paymentRepository
+                .GetList(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 

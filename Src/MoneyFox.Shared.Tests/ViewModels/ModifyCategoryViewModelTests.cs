@@ -6,9 +6,13 @@ using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 using MoneyFox.Shared.ViewModels;
 using System;
+using System.Collections.Generic;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Linq.Expressions;
+using MoneyFox.Shared.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -37,7 +41,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var categoryName = "groceries";
 
-            var viewmodel = new ModifyCategoryViewModel(new Mock<IRepository<Category>>().Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new Category { Id = 9, Name = categoryName }
@@ -49,7 +53,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Title_AddCategory_CorrectTitle()
         {
-            var viewmodel = new ModifyCategoryViewModel(new Mock<IRepository<Category>>().Object, new Mock<IDialogService>().Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object)
             {
                 IsEdit = false
             };
@@ -60,12 +64,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryList = new List<Category>();
 
-            categoryRepositorySetup.SetupAllProperties();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+                .Returns(categoryList);
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryRepositorySetup.Object.Data.Add(cat); });
-            categoryRepositorySetup.Object.Data = new ObservableCollection<Category>();
+                .Callback((Category cat) => { categoryList.Add(cat); });
 
             var categoryPrimary = new Category
             {
@@ -76,7 +81,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             {
                 Name = "Test Category"
             };
-            categoryRepositorySetup.Object.Data.Add(categoryPrimary);
+            categoryList.Add(categoryPrimary);
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
@@ -85,18 +90,19 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, categoryRepositorySetup.Object.Data.Count);
+            categoryList.Count.ShouldBe(1);
         }
 
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryList = new List<Category>();
 
-            categoryRepositorySetup.SetupAllProperties();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+                .Returns(categoryList);
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryRepositorySetup.Object.Data.Add(cat); });
-            categoryRepositorySetup.Object.Data = new ObservableCollection<Category>();
+                .Callback((Category cat) => { categoryList.Add(cat); });
 
             var categoryPrimary = new Category
             {
@@ -107,7 +113,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             {
                 Name = "Test Category"
             };
-            categoryRepositorySetup.Object.Data.Add(categoryPrimary);
+            categoryList.Add(categoryPrimary);
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
@@ -116,18 +122,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, categoryRepositorySetup.Object.Data.Count);
+            categoryList.Count.ShouldBe(1);
         }
 
         [TestMethod]
         public void SaveCommand_SavesCategory()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryList = new List<Category>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
-            categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryRepositorySetup.Object.Data.Add(cat); });
-            categoryRepositorySetup.Object.Data = new ObservableCollection<Category>();
+                .Callback((Category cat) => { categoryList.Add(cat); });
 
             var categoryPrimary = new Category
             {
@@ -143,7 +148,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, categoryRepositorySetup.Object.Data.Count);
+            categoryList.Count.ShouldBe(1);
         }
 
         [TestMethod]
@@ -151,11 +156,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var category = new Category { Id = 0, Name = "category", Notes = "" };
 
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
-            categoryRepositorySetup.Setup(x => x.Data).Returns(() => new ObservableCollection<Category>());
+            categoryRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new ObservableCollection<Category>());
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
@@ -172,14 +177,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void DeleteCategory_DeletesCategory()
         {
-            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            var categoryList = new List<Category>();
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
-            categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryRepositorySetup.Object.Data.Add(cat); });
+                .Callback((Category cat) => { categoryList.Add(cat); });
             categoryRepositorySetup.Setup(c => c.Delete(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryRepositorySetup.Object.Data.Remove(cat); });
-            categoryRepositorySetup.Object.Data = new ObservableCollection<Category>();
+                .Callback((Category cat) => { categoryList.Remove(cat); });
 
             var categoryPrimary = new Category
             {
@@ -188,7 +192,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 Notes = "Notes about the test category"
             };
 
-            categoryRepositorySetup.Object.Data.Add(categoryPrimary);
+            categoryList.Add(categoryPrimary);
 
             var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
             {
@@ -197,7 +201,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             viewmodel.DeleteCommand.Execute();
-            Assert.AreEqual(0, categoryRepositorySetup.Object.Data.Count);
+            categoryList.Any().ShouldBeFalse();
         }
     }
 }

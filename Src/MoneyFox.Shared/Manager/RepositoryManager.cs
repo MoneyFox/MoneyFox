@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Manager
@@ -10,16 +11,16 @@ namespace MoneyFox.Shared.Manager
     /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<Category> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
 
         private readonly IPaymentManager paymentManager;
 
         public RepositoryManager(IPaymentManager paymentManager, 
-            IRepository<Account> accountRepository,
+            IAccountRepository accountRepository,
             IPaymentRepository paymentRepository, 
-            IRepository<Category> categoryRepository)
+            ICategoryRepository categoryRepository)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
@@ -37,7 +38,6 @@ namespace MoneyFox.Shared.Manager
             accountRepository.Load();
 
             paymentRepository.Load();
-            paymentRepository.Selected = null;
 
             categoryRepository.Load();
 

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -13,13 +14,13 @@ namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
         private readonly IDialogService dialogService;
 
-        public AccountListViewModel(IRepository<Account> accountRepository,
-            IRepository<Payment> paymentRepository,
+        public AccountListViewModel(IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository,
             IDialogService dialogService)
         {
             this.dialogService = dialogService;
@@ -34,11 +35,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     All existing accounts.
         /// </summary>
-        public ObservableCollection<Account> AllAccounts
-        {
-            get { return accountRepository.Data; }
-            set { accountRepository.Data = value; }
-        }
+        public ObservableCollection<Account> AllAccounts { get; set; }
 
         /// <summary>
         ///     Returns if the ChargedAccounts Collection is emtpy or not.
@@ -77,6 +74,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Loaded()
         {
+            AllAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             BalanceViewModel.UpdateBalanceCommand.Execute();
         }
 
@@ -99,7 +97,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.Data.Where(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == item.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
