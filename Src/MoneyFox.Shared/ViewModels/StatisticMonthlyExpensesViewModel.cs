@@ -56,6 +56,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
+
                 axe.AxislineColor = OxyColors.White;
                 axe.TextColor = OxyColors.White;
             }

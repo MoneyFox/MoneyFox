@@ -1,19 +1,21 @@
 ﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.PaymentListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:designTime="using:MoneyFox.Shared.ViewModels.DesignTime"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:model="using:MoneyFox.Shared.Model"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentViewModelListViewModel, IsDesignTimeCreatable=True}"
-             mc:Ignorable="d"
+             xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             x:Name="PaymentControl"
+             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+                                              IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             x:Name="PaymentControl">
+             mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -29,74 +31,65 @@
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
-        <DataTemplate x:Key="PaymentViewModelTemplate"
-                      x:DataType="model:Payment">
-            <StackPanel Margin="0,0,0,6"
+        <DataTemplate x:Key="PaymentViewModelTemplate" x:DataType="model:Payment">
+            <StackPanel MinWidth="100"
+                        Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
-                        MinWidth="100"
                         Holding="PaymentViewModelList_Holding"
                         RightTapped="PaymentViewModelList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
-                                        Text="Edit"
-                                        Click="EditPaymentViewModel" />
+                                        Click="EditPaymentViewModel"
+                                        Text="Edit" />
                         <MenuFlyoutItem x:Uid="Delete"
-                                        Text="Delete"
-                                        Click="DeletePaymentViewModel" />
+                                        Click="DeletePaymentViewModel"
+                                        Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch"
-                      Margin="0,0,0,3">
-                    <TextBlock
-                        Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock
-                        Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl }}"
-                        HorizontalAlignment="Right" />
+                <Grid Margin="0,0,0,3" HorizontalAlignment="Stretch">
+                    <TextBlock Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
+                    <TextBlock HorizontalAlignment="Right" Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
 
                 </Grid>
                 <Grid>
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                        <TextBlock Text="{x:Bind Category.Name}"
-                                   Margin="0,0,2,10"
-                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                        <TextBlock Text="/"
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <TextBlock Margin="0,0,2,10"
                                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                   Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}" />
-                        <TextBlock Text="{x:Bind Note}"
-                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                   Visibility="{x:Bind Note, Converter={StaticResource NoteVisibilityConverter}}"
+                                   Text="{x:Bind Category.Name}" />
+                        <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="/"
+                                   Visibility="{Binding Note,
+                                                        Converter={StaticResource NoteVisibilityConverter}}" />
+                        <TextBlock MaxWidth="150"
                                    Margin="2,0,0,0"
-                                   MaxWidth="150"
                                    MaxLines="1"
-                                   TextTrimming="CharacterEllipsis" />
+                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="{x:Bind Note}"
+                                   TextTrimming="CharacterEllipsis"
+                                   Visibility="{x:Bind Note, Converter={StaticResource NoteVisibilityConverter}}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                        <Grid HorizontalAlignment="Right"
-                              Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <SymbolIcon Width="30"
                                         Height="30"
-                                        Symbol="57660"
+                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        HorizontalAlignment="Center" />
+                                        Symbol="57660" />
                         </Grid>
-                        <Grid HorizontalAlignment="Right"
-                              Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/repeat.png"
-                                Width="30"
-                                Height="30" />
+                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Width="30"
+                                   Height="30"
+                                   DataContext="/Assets/{0}/repeat.png"
+                                   Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
+                                                    Converter={StaticResource ThemedImageConverter}}" />
                         </Grid>
-                        <Grid HorizontalAlignment="Right"
-                              Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/done.png"
-                                Width="30"
-                                Height="30" />
+                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Width="30"
+                                   Height="30"
+                                   DataContext="/Assets/{0}/done.png"
+                                   Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
+                                                    Converter={StaticResource ThemedImageConverter}}" />
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -104,26 +97,25 @@
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Background="Transparent"
-                    Padding="3">
-                <TextBlock Text="{Binding Key}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                           FontSize="18"
+            <Border Background="Transparent" Padding="3">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
+                           FontSize="18"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           Text="{Binding Key}" />
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="JumpTemplate">
             <Border Padding="5">
                 <Border HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Group.Key}"
-                               Width="150"
-                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               FontSize="18"
+                    <TextBlock Width="150"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               Text="{Binding Group.Key}" />
                 </Border>
             </Border>
         </DataTemplate>
@@ -139,55 +131,52 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls:BalanceUserControl Grid.Row="0"
-                                         DataContext="{Binding BalanceViewModel}" />
+        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
-                <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                <controls:AlternatingRowListView HorizontalAlignment="Stretch"
                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                 ItemTemplate="{StaticResource PaymentViewModelTemplate}"
-                                                 HorizontalAlignment="Stretch"
-                                                 ShowsScrollingPlaceholders="false"
                                                  IsItemClickEnabled="True"
-                                                 IsSynchronizedWithCurrentItem="False">
+                                                 IsSynchronizedWithCurrentItem="False"
+                                                 ItemTemplate="{StaticResource PaymentViewModelTemplate}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                                 ShowsScrollingPlaceholders="false">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
-                        <GroupStyle HidesIfEmpty="True"
-                                    HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
                     </ListView.GroupStyle>
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
-                          ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
-                          ItemTemplate="{StaticResource JumpTemplate}" />
+                          ItemTemplate="{StaticResource JumpTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Groups},
+                                                Path=CollectionGroups}" />
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
         <TextBlock x:Uid="PaymentsPlaceholder"
                    Grid.Row="1"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
                    Margin="6"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding IsPaymentsEmtpy, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding IsPaymentsEmtpy,
+                                        Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>
