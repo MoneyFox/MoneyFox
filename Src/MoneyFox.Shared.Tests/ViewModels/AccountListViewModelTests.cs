@@ -119,17 +119,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
 
             accountRepository.Setup(x => x.Delete(It.IsAny<Account>())).Callback(() => deleteCalled = true);
-
-
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> { accountData });
 
             var mockPaymentRepo = new Mock<IPaymentRepository>();
-
             mockPaymentRepo.Setup(c => c.Delete(It.IsAny<Payment>()))
                 .Callback((Payment payment) => { testList.Remove(payment); });
-
-            mockPaymentRepo.Setup(x => x.GetList(null)).Returns(testList);
-            
+            mockPaymentRepo.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
@@ -139,7 +134,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewModel.DeleteAccountCommand.Execute(accountData);
             deleteCalled.ShouldBeTrue();
-            Assert.AreEqual(null, testList.FirstOrDefault(p => p.Id == 1));
+            testList.Any().ShouldBeFalse();
         }
 
         [TestMethod]

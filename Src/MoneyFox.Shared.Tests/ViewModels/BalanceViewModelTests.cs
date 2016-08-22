@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
@@ -38,7 +40,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoExpense_SumOfPayments()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.GetList(null))
+            paymentMockSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Returns(() => new List<Payment>
                 {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
@@ -57,7 +59,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.GetList(null))
+            paymentMockSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Returns(() => new List<Payment>
                 {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},

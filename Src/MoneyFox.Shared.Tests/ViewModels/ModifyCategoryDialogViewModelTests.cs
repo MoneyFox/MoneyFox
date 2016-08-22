@@ -91,7 +91,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var repositorySetup = new Mock<ICategoryRepository>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
-            repositorySetup.Setup(x => x.GetList(null)).Returns(new List<Category> { new Category { Name = categoryName } });
+            repositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Category, bool>>>())).Returns(new List<Category> { new Category { Name = categoryName } });
 
             var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
             {
@@ -120,7 +120,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var repositorySetup = new Mock<ICategoryRepository>();
             repositorySetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()));
-            repositorySetup.Setup(x => x.GetList(null)).Returns(new List<Category> { new Category { Name = categoryName1 } });
+            repositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Category, bool>>>())).Returns(new List<Category> { new Category { Name = categoryName1 } });
 
             var vm = new ModifyCategoryDialogViewModel(repositorySetup.Object, dialogSetup.Object)
             {

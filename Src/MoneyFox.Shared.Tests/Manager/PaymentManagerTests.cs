@@ -46,7 +46,7 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentRepositorySetup.SetupAllProperties();
             paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
-            paymentRepositorySetup.Setup(x => x.GetList(null))
+            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
                 .Returns(new List<Payment>
                 {
                     payment

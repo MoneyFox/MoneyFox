@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
@@ -91,7 +92,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             var categoryRepo = categoryRepoSetup.Object;
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment>
             {
                 new Payment
                 {
@@ -150,7 +151,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
 
             var categoryRepoSetup = new Mock<ICategoryRepository>();
 
-            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Category>
+            categoryRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Category, bool>>>())).Returns(new List<Category>
             {
                 new Category {Id = 1, Name = "Einkaufen"},
                 new Category {Id = 2, Name = "Ausgehen"},
@@ -159,7 +160,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             var categoryRepo = categoryRepoSetup.Object;
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment>
             {
                 new Payment
                 {

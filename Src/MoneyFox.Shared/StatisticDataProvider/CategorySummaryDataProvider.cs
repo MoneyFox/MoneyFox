@@ -29,7 +29,8 @@ namespace MoneyFox.Shared.StatisticDataProvider
                 {
                     Category = category.Name,
                     Value = paymentRepository
-                        .GetList(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                        .GetList()
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) PaymentType.Transfer)
                         .Sum(x => x.Type == (int) PaymentType.Expense
