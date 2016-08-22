@@ -172,12 +172,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<Account, bool>>>())).Returns(new List<Account>());
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account> {
-                new Account(),
-                new Account()
+                new Account {Id = 22},
+                new Account{Id = 33},
             });
-            var vm = new AccountListViewModel(accountRepository.Object, null, null);
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentRepository>().Object, null);
+
             vm.LoadedCommand.Execute();
-            vm.AllAccounts.ToList().ShouldBe(accountRepository.Object.GetList());
+            vm.AllAccounts.Count.ShouldBe(2);
+            vm.AllAccounts[0].Id.ShouldBe(22);
+            vm.AllAccounts[1].Id.ShouldBe(33);
         }
 
         [TestMethod]
@@ -185,9 +188,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<Account>());
             accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<Account, bool>>>())).Returns(new List<Account>());
-            var vm = new AccountListViewModel(accountRepository.Object, null, null);
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentRepository>().Object, null);
             vm.LoadedCommand.Execute();
-            vm.AllAccounts.ShouldBe(accountRepository.Object.GetList());
+            vm.AllAccounts.Any().ShouldBeFalse();
         }
     }
 }

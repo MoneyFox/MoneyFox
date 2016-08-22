@@ -11,6 +11,7 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.Tests.ViewModels
@@ -66,7 +67,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var categoryList = new List<Category>();
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
-
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+                .Returns(categoryList);
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
                 .Callback((Category cat) => { categoryList.Add(cat); });
 
@@ -97,7 +99,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var categoryList = new List<Category>();
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
-
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+                .Returns(categoryList);
             categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
                 .Callback((Category cat) => { categoryList.Add(cat); });
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
@@ -67,7 +68,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var accountList = new List<Account>();
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
-
+            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Account, bool>>>()))
+                .Returns(accountList);
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountList.Add(acc); });
 
@@ -99,6 +101,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
 
+            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Account, bool>>>()))
+                .Returns(accountList);
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountList.Add(acc); });
             var account = new Account
@@ -128,7 +132,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var accountList = new List<Account>();
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
-
+            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Account, bool>>>()))
+                .Returns(accountList);
             accountRepositorySetup.Setup(c => c.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => { accountList.Add(acc); });
 

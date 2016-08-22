@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
@@ -139,7 +141,7 @@ namespace MoneyFox.Shared.Tests.Manager
             };
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.Setup(x => x.GetList(null)).Returns(new List<Payment> {payment});
+            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment> {payment});
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
