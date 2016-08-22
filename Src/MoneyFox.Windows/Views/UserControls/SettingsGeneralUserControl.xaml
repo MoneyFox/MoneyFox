@@ -18,8 +18,7 @@
                           VerticalAlignment="Center"
                           Header="Upload and download backup manually"
                           IsOn="{Binding IsAutoBackupEnabled,
-                                         Mode=TwoWay}"
-                          OnContent="yes" />
+                                         Mode=TwoWay}" />
         </StackPanel>
     </Grid>
 </UserControl>
