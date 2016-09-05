@@ -129,10 +129,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Strings.es-ES.Designer.cs">
+    <Compile Include="Resources\Strings.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.es-ES.resx</DependentUpon>
+      <DependentUpon>Strings.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\OneDriveService.cs" />
     <Compile Include="DatabaseManager.cs" />
@@ -266,9 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.de.resx" />
-    <EmbeddedResource Include="Resources\Strings.es-ES.resx">
+    <EmbeddedResource Include="Resources\Strings.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.es-ES.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.pt.resx" />
     <EmbeddedResource Include="Resources\Strings.resx">
