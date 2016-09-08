@@ -487,7 +487,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
     <SDKReference Include="SQLite.UWP.2015, Version=3.14.1">
-      <Name>SQLite for Universal Windows Platform %28SQLite.UWP.2015, Version=3.14.1%29</Name>
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
