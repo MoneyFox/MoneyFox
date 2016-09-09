@@ -19,8 +19,8 @@ namespace MoneyFox.Windows.Tests.Dependencies {
         [TestMethod]
         public void GetValues_HasValue_ReturnValue()
         {
-            string key = "Foo";
-            string value = "abcd";
+            var key = "Foo";
+            var value = "abcd";
 
             var settings = new WindowsCommonSettings();
             settings.AddOrUpdateValue(key, value);
