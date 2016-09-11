@@ -37,7 +37,7 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="{Binding Path=SelectedPayment.Type, Converter={StaticResource PaymentHeaderConverter}}" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="{Binding Path=Title}" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
