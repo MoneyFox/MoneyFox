@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -19,7 +18,7 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel
     {
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IPaymentRepository paymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
 
@@ -30,8 +29,8 @@ namespace MoneyFox.Shared.ViewModels
         private double amount;
         private Payment selectedPayment;
 
-        public ModifyPaymentViewModel(IRepository<Payment> paymentRepository,
-            IRepository<Account> accountRepository,
+        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
+            IAccountRepository accountRepository,
             IDialogService dialogService,
             IPaymentManager paymentManager)
         {
@@ -210,6 +209,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
+            SelectedPayment = paymentRepository.FindById(selectedPayment.Id);
             Close(this);
         }
 
