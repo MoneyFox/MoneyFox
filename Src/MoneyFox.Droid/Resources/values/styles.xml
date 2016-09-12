@@ -18,7 +18,6 @@
     <item name="windowActionModeOverlay">false</item>
 
     <item name="android:windowBackground">@color/light_gray</item>
-    <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
 
     <item name="android:textCursorDrawable">@null</item>
   </style>

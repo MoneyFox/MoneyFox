@@ -127,7 +127,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
-            //TODO: revert changes
+            SelectedAccount = accountRepository.FindById(SelectedAccount.Id);
             Close(this);
         }
     }

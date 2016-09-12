@@ -114,7 +114,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
-            // TODO: revert changes
+            SelectedCategory = categoryRepository.FindById(SelectedCategory.Id);
             Close(this);
         }
     }
