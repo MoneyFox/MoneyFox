@@ -64,11 +64,13 @@ namespace MoneyFox.Droid.Activities
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)
         {
-            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.main_frame) as MvxFragment;
+            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
             if (currentFrag != null
                 && currentFrag.FindAssociatedViewModelType(typeof(MainActivity)) != fragmentInfo.ViewModelType)
+            {
                 fragmentInfo.AddToBackStack = true;
+            }
 
             transaction.SetCustomAnimations(Resource.Animation.abc_fade_in,
                 Resource.Animation.abc_fade_out);
