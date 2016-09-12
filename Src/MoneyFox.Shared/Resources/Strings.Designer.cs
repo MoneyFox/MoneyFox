@@ -80,6 +80,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to version.
+        /// </summary>
+        public static string AboutViewModel_Version {
+            get {
+                return ResourceManager.GetString("AboutViewModel.Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully created.
         /// </summary>
         public static string AccountCreatedMessage {

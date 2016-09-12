@@ -445,4 +445,7 @@ Do you want to go the the store to rate?</value>
   <data name="SomethingWentWrongTitle" xml:space="preserve">
     <value>Something went wrong...</value>
   </data>
+  <data name="AboutViewModel.Version" xml:space="preserve">
+    <value>version</value>
+  </data>
 </root>
