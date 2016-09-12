@@ -203,5 +203,27 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.DeleteCommand.Execute();
             categoryList.Any().ShouldBeFalse();
         }
+
+        [TestMethod]
+        public void Cancel_SelectedCategoryReseted()
+        {
+            string name = "Cateory";
+            var baseCategory = new Category { Id = 5, Name = name };
+            var category = new Category { Id = 5, Name = name };
+
+            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            categoryRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(baseCategory);
+
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object)
+            {
+                IsEdit = true,
+                SelectedCategory = category
+            };
+
+            viewmodel.SelectedCategory.Name = "foooo";
+            viewmodel.CancelCommand.Execute();
+
+            viewmodel.SelectedCategory.Name.ShouldBe(name);
+        }
     }
 }

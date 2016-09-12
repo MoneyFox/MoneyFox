@@ -311,7 +311,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testPayment = new Payment();
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -341,7 +341,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testPayment = new Payment();
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -371,7 +371,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testPayment = new Payment();
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -401,7 +401,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testPayment = new Payment();
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -431,7 +431,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var testPayment = new Payment();
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>();
+            var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -455,5 +455,28 @@ namespace MoneyFox.Shared.Tests.ViewModels
             testPayment.RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Biweekly);
         }
 
+        [TestMethod]
+        public void Cancel_SelectedPaymentReseted()
+        {
+            double amount = 99;
+            var basePayment = new Payment { Id = 5, Amount = amount };
+            var payment = new Payment { Id = 5, Amount = amount };
+
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(basePayment);
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepositorySetup.Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IDialogService>().Object,
+                new Mock<IPaymentManager>().Object)
+            {
+                SelectedPayment = payment
+            };
+
+            viewmodel.SelectedPayment.Amount = 7777;
+            viewmodel.CancelCommand.Execute();
+
+            viewmodel.SelectedPayment.Amount.ShouldBe(amount);
+        }
     }
 }
