@@ -173,5 +173,27 @@ namespace MoneyFox.Shared.Tests.ViewModels
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
+
+        [TestMethod]
+        public void Cancel_SelectedAccountReseted()
+        {
+            string name = "Account";
+            var baseAccount = new Account { Id = 5, Name = name };
+            var account = new Account { Id = 5, Name = name };
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(baseAccount);
+
+            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object)
+            {
+                IsEdit = true,
+                SelectedAccount = account
+            };
+
+            viewmodel.SelectedAccount.Name = "foooo";
+            viewmodel.CancelCommand.Execute();
+
+            viewmodel.SelectedAccount.Name.ShouldBe(name);
+        }
     }
 }

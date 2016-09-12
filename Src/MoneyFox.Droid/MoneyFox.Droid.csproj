@@ -74,20 +74,20 @@
       <HintPath>..\packages\AndHUD.1.2.0\lib\MonoAndroid\AndHUD.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Connectivity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.0.0.4\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Connectivity, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Connectivity.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.0.0.4\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.Droid.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Connectivity.Droid, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.7\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HockeySDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -102,111 +102,107 @@
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.2\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Binding.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.2\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.2.2\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.2.3\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.4.2.2\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Droid.FullFragging, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.FullFragging.4.2.2\lib\MonoAndroid\MvvmCross.Droid.FullFragging.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Core.4.2.3\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Shared.4.2.2\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Droid.Shared.4.2.3\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid.Support.Design, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.Design.4.2.2\lib\MonoAndroid403\MvvmCross.Droid.Support.Design.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Droid.Support.Design.4.2.3\lib\MonoAndroid403\MvvmCross.Droid.Support.Design.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid.Support.V4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V4.4.2.2\lib\MonoAndroid403\MvvmCross.Droid.Support.V4.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Droid.Support.V4.4.2.3\lib\MonoAndroid403\MvvmCross.Droid.Support.V4.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid.Support.V7.AppCompat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V7.AppCompat.4.2.2\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.AppCompat.4.2.3\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Droid.Support.V7.Preference, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V7.Preference.4.2.2\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.Preference.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.Preference.4.2.3\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.Preference.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.4.2.2\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Binding.4.2.3\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.2.2\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.2.3\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.2.2\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.2.3\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Color, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Color.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Email.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Email.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Email.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Email.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.File.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.File.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.File.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.File.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.File.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.File.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.File.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Json, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Json.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Json.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Json.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Visibility, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Visibility.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.WebBrowser, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.WebBrowser.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.2.2\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -233,6 +229,38 @@
       <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.47\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OxyPlot, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2015.1.999-alpha\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot.Xamarin.Android, Version=2015.1.999.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Xamarin.Android.2015.1.999-alpha\lib\MonoAndroid\OxyPlot.Xamarin.Android.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLCrypto.2.0.147\lib\MonoAndroid23\PCLCrypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.BCrypt, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.BCrypt.0.3.90\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.BCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.Kernel32, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Kernel32.0.3.90\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Kernel32.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.NCrypt, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.NCrypt.0.3.90\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.NCrypt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PInvoke.Windows.Core, Version=0.3.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.Core.0.3.90\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite-net, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\sqlite-net-pcl.1.1.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
       <Private>True</Private>
@@ -245,17 +273,27 @@
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SQLitePCL.batteries, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCL.bundle_green.0.9.3\lib\MonoAndroid\SQLitePCL.batteries.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCL.raw, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCL.raw.0.9.3\lib\MonoAndroid\SQLitePCL.raw.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLitePCLPlugin_esqlite3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLitePCL.plugin.sqlite3.android.0.9.3\lib\MonoAndroid\SQLitePCLPlugin_esqlite3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Json" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="OxyPlot, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9">
-      <HintPath>..\packages\OxyPlot.Core.2015.1.999-alpha\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
-    </Reference>
-    <Reference Include="OxyPlot.Xamarin.Android, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\OxyPlot.Xamarin.Android.2015.1.999-alpha\lib\MonoAndroid\OxyPlot.Xamarin.Android.dll</HintPath>
+    <Reference Include="Validation, Version=2.3.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validation.2.3.7\lib\dotnet\Validation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
@@ -286,13 +324,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Auth, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Auth.1.3.0\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Auth.1.3.1.1\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\Caching\FragmentCacheConfigurationCustomFragmentInfo.cs" />
-    <Compile Include="Activities\Caching\MainActivityFragmentCacheInfoFactory.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\ModifyCategoryActivity.cs" />
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
@@ -469,9 +505,6 @@
     <AndroidResource Include="Resources\drawable\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_add.png" />
   </ItemGroup>
   <ItemGroup>
@@ -578,4 +611,14 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-ru\strings.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
+  <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets'))" />
+  </Target>
 </Project>
