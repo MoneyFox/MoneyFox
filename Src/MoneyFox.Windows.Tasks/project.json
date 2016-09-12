@@ -3,7 +3,7 @@
     "Cheesebaron.MvxPlugins.Settings": "2.0.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "MvvmCross.Plugin.File": "4.2.3",
-    "MvvmCross.Plugin.SQLitePCL": "4.3.3",
+    "MvvmCross.Plugin.SQLitePCL": "4.2.3",
     "OxyPlot.Windows": "2015.1.1033-alpha",
     "PCLCrypto": "2.0.147"
   },

@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ImportGroup>
     <Import Project="$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets" Condition="Exists('$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets')" />
-    <Import Project="$(NuGetPackageRoot)\SQLitePCL.native.sqlite3.v140\0.9.2\build\SQLitePCL.native.sqlite3.v140.targets" Condition="Exists('$(NuGetPackageRoot)\SQLitePCL.native.sqlite3.v140\0.9.2\build\SQLitePCL.native.sqlite3.v140.targets')" />
   </ImportGroup>
 </Project>
