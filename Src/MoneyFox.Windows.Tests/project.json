@@ -1,10 +1,12 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "MvvmCross.Plugin.File": "4.2.2",
-    "MvvmCross.Plugin.SQLitePCL": "4.2.2",
+    "MvvmCross.Plugin.File": "4.2.3",
+    "MvvmCross.Plugin.SQLitePCL": "4.2.3",
+    "Newtonsoft.Json": "9.0.1",
     "Npadrutt.MvxPlugins.AppInformation": "1.0.6",
-    "Npadrutt.MvxPlugins.StoreOperations": "1.0.2"
+    "Npadrutt.MvxPlugins.StoreOperations": "1.0.2",
+    "PCLCrypto": "2.0.147"
   },
   "frameworks": {
     "uap10.0": {}
