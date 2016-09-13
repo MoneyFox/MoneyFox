@@ -365,7 +365,6 @@
     <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
-    <Compile Include="Dialogs\ModifyCategoryDialog.cs" />
     <Compile Include="Fragments\SettingsGeneral.cs" />
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
