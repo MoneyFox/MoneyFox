@@ -54,16 +54,15 @@
                 android:id="@+id/category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/button_category"
                 local:MvxBind="Text SelectedPayment.Category.Name"
-                    local:MvxLang="Hint CategoryLabel" />
+                local:MvxLang="Hint CategoryLabel" />
             <Button
                 android:id="@+id/paymentdate"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 local:MvxBind="Text SelectedPayment.Date, Converter=DateTimeFormat"
-                    local:MvxLang="Hint DateLabel" />
+                local:MvxLang="Hint DateLabel" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -78,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 local:MvxBind="Checked SelectedPayment.IsRecurring" 
-                    local:MvxLang="Hint RecurringLabel"/>
+                local:MvxLang="Hint RecurringLabel"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -90,7 +89,6 @@
                     android:id="@+id/recurrence_spinner"
                     local:MvxBind="ItemsSource RecurrenceList;SelectedItem RecurrenceString" />
                 <CheckBox
-                    android:text="@string/text_endless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"

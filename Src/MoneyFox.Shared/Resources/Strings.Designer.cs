@@ -135,7 +135,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to version.
+        ///   Looks up a localized string similar to Version.
         /// </summary>
         public static string AboutViewModel_VersionLabel {
             get {
@@ -361,7 +361,7 @@ namespace MoneyFox.Shared.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
-        ///WARNING: Local changes you made meanwhile we be lost..
+        ///WARNING: Local changes you made meanwhile we be lost!.
         /// </summary>
         public static string BackupViewModel_RestoreBackupInformationLabel {
             get {

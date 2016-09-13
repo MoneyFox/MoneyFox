@@ -446,7 +446,7 @@ Do you want to go the the store to rate?</value>
     <value>Something went wrong...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>version</value>
+    <value>Version</value>
   </data>
   <data name="AboutViewModel.ContactLabel" xml:space="preserve">
     <value>Contact</value>
@@ -496,7 +496,7 @@ Tap to visit the Repository:</value>
   </data>
   <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
     <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile we be lost.</value>
+WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
     <value>Restore Backup</value>
