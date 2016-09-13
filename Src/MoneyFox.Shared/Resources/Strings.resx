@@ -606,7 +606,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="DrawerCloseClose" xml:space="preserve">
+  <data name="DrawerCloseLabel" xml:space="preserve">
     <value>Drawer Close</value>
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">

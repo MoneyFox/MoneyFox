@@ -588,9 +588,9 @@ namespace MoneyFox.Shared.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Drawer Close.
         /// </summary>
-        public static string DrawerCloseClose {
+        public static string DrawerCloseLabel {
             get {
-                return ResourceManager.GetString("DrawerCloseClose", resourceCulture);
+                return ResourceManager.GetString("DrawerCloseLabel", resourceCulture);
             }
         }
         
