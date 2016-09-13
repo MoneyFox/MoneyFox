@@ -1,5 +1,7 @@
 ﻿using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using Npadrutt.MvxPlugins.AppInformation;
@@ -69,6 +71,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
         public MvxCommand GoToContributionPageCommand => new MvxCommand(GoToContributionPage);
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Returns the Version of App

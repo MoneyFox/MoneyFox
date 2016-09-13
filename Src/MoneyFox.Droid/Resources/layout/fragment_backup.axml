@@ -13,47 +13,47 @@
         android:layout_height="match_parent">
         <Button
             android:id="@+id/btn_login"
-            android:text="@string/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            local:MvxBind="Click LoginCommand; Visibility InvertedVisibility(IsLoggedIn)" />
+            local:MvxBind="Click LoginCommand; Visibility InvertedVisibility(IsLoggedIn)"
+            local:MvxLang="Text LoginLabel"/>
         <Button
             android:id="@+id/btn_logout"
-            android:text="@string/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            local:MvxBind="Click LogoutCommand; Visibility Visibility(IsLoggedIn)" />
+            local:MvxBind="Click LogoutCommand; Visibility Visibility(IsLoggedIn)"
+            local:MvxLang="Text LogoutLabel"/>
         <TextView
-            android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left" />
+            android:gravity="left"
+            local:MvxLang="Text CreateBackupInformationLabel"/>
         <Button
             android:id="@+id/btn_backup"
-            android:text="@string/button_create_backup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            local:MvxBind="Click BackupCommand; Enabled IsLoggedIn" />
+            local:MvxBind="Click BackupCommand; Enabled IsLoggedIn"
+            local:MvxLang="Text CreateBackupLabel"/>
         <TextView
-            android:text="@string/restore_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left" />
+            android:gravity="left" 
+            local:MvxLang="Text RestoreBackupInformationLabel"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btn_restore"
-                android:text="@string/button_restore_backup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                local:MvxBind="Click RestoreCommand; Enabled BackupAvailable" />
+                local:MvxBind="Click RestoreCommand; Enabled BackupAvailable" 
+                local:MvxLang="Text RestoreBackupLabel"/>
             <ProgressBar
                 android:id="@+id/pb_check_backup"
                 android:layout_width="40dp"
@@ -76,11 +76,11 @@
             local:MvxBind="Visibility BackupDateVisibility(BackupLastModified)">
             <TextView
                 android:id="@+id/label_backup_date"
-                android:text="@string/label_backup_date"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left" />
+                android:gravity="left"
+                local:MvxLang="Text LastBackupDateLabel"/>
             <TextView
                 android:layout_marginRight="5dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"

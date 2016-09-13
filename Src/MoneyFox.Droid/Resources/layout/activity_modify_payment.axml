@@ -45,24 +45,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:hint="@string/hint_amount"
                     android:gravity="right"
                     android:selectAllOnFocus="true"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    local:MvxLang="Hint AmountLabel"/>
             </android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/button_category"
-                local:MvxBind="Text SelectedPayment.Category.Name" />
+                local:MvxBind="Text SelectedPayment.Category.Name"
+                local:MvxLang="Hint CategoryLabel" />
             <Button
                 android:id="@+id/paymentdate"
                 android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/button_date"
-                local:MvxBind="Text SelectedPayment.Date, Converter=DateTimeFormat" />
+                local:MvxBind="Text SelectedPayment.Date, Converter=DateTimeFormat"
+                local:MvxLang="Hint DateLabel" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -70,14 +70,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:hint="@string/hint_note"
-                    local:MvxBind="Text SelectedPayment.Note" />
+                    local:MvxBind="Text SelectedPayment.Note" 
+                    local:MvxLang="Hint NoteLabel"/>
             </android.support.design.widget.TextInputLayout>
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_recurring"
-                local:MvxBind="Checked SelectedPayment.IsRecurring" />
+                local:MvxBind="Checked SelectedPayment.IsRecurring" 
+                local:MvxLang="Hint RecurringLabel"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -89,19 +89,18 @@
                     android:id="@+id/recurrence_spinner"
                     local:MvxBind="ItemsSource RecurrenceList;SelectedItem RecurrenceString" />
                 <CheckBox
-                    android:text="@string/text_endless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_endless"
                     android:checked="true"
-                    local:MvxBind="Checked IsEndless" />
+                    local:MvxBind="Checked IsEndless"
+                    local:MvxLang="Hint EndlessLabel" />
                 <Button
                     android:id="@+id/enddate"
                     android:inputType="date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/button_date"
-                    local:MvxBind="Text EndDate, Converter=DateTimeFormat;Visibility InvertedVisibility(IsEndless)" />
+                    local:MvxBind="Text EndDate, Converter=DateTimeFormat;Visibility InvertedVisibility(IsEndless)"
+                    local:MvxLang="Hint DateLabel" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

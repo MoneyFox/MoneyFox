@@ -26,8 +26,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_account_name"
-                    local:MvxBind="Text SelectedAccount.Name" />
+                    local:MvxBind="Text SelectedAccount.Name"
+                    local:MvxLang="Hint AccountNameLabel" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_iban"
-                    local:MvxBind="Text SelectedAccount.Iban" />
+                    local:MvxBind="Text SelectedAccount.Iban"
+                    local:MvxLang="Hint IbanLabel"  />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -46,8 +46,8 @@
                     android:selectAllOnFocus="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_current_balance"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    local:MvxLang="Hint CurrentBalanceLabel"  />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -55,8 +55,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_note"
-                    local:MvxBind="Text SelectedAccount.Note" />
+                    local:MvxBind="Text SelectedAccount.Note"
+                    local:MvxLang="Hint NoteLabel"  />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </LinearLayout>

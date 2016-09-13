@@ -32,8 +32,8 @@
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_margin="6dp"
-        android:text="@string/accounts_placeholder"
-        local:MvxBind="Visible IsAllAccountsEmpty" />
+        local:MvxBind="Visible IsAllAccountsEmpty"
+        local:MvxLang="Text EmptyListPlaceholderLabel" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_item"
         android:layout_width="wrap_content"
