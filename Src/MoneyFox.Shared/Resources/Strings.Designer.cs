@@ -586,6 +586,24 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drawer Close.
+        /// </summary>
+        public static string DrawerCloseClose {
+            get {
+                return ResourceManager.GetString("DrawerCloseClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawer Open.
+        /// </summary>
+        public static string DrawerOpenLabel {
+            get {
+                return ResourceManager.GetString("DrawerOpenLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An account with that name already exists..
         /// </summary>
         public static string DuplicateAccountMessage {
@@ -883,11 +901,92 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string MenuViewModel_AboutLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AboutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string MenuViewModel_AccountsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AccountsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string MenuViewModel_AddLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AddLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string MenuViewModel_BackupLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string MenuViewModel_CategoriesLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.CategoriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MenuViewModel_DeleteLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.DeleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MenuViewModel_SaveLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.SaveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string MenuViewModel_SettingsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A way to make budgeting easy..
         /// </summary>
         public static string MenuViewModel_SloganLabel {
             get {
                 return ResourceManager.GetString("MenuViewModel.SloganLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string MenuViewModel_StatisticsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.StatisticsLabel", resourceCulture);
             }
         }
         

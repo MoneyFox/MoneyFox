@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/payments_placeholder"
         local:MvxBind="Visible IsPaymentsEmtpy"
         local:MvxLang="Text EmptyListPlaceholderLabel"/>
     <android.support.design.widget.FloatingActionButton

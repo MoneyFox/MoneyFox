@@ -579,4 +579,37 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="MenuViewModel.AddLabel" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="DrawerCloseClose" xml:space="preserve">
+    <value>Drawer Close</value>
+  </data>
+  <data name="DrawerOpenLabel" xml:space="preserve">
+    <value>Drawer Open</value>
+  </data>
 </root>

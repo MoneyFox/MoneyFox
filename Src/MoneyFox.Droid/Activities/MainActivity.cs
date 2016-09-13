@@ -52,8 +52,8 @@ namespace MoneyFox.Droid.Activities
                     this, // host Activity
                     DrawerLayout, // DrawerLayout object
                     toolbar, // nav drawer icon to replace 'Up' caret
-                    Resource.String.drawer_open, // "open drawer" description
-                    Resource.String.drawer_close // "close drawer" description
+                    Strings.DrawerOpenLabel, // "open drawer" description
+                    Strings.DrawerCloseClose // "close drawer" description
                     );
 
                 DrawerLayout.AddDrawerListener(drawerToggle);
