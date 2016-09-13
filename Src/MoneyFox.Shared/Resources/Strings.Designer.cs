@@ -80,11 +80,66 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string AboutViewModel_ContactLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.ContactLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To see all contributions head over to GitHub:.
+        /// </summary>
+        public static string AboutViewModel_ContributerLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.ContributerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The app icon was created by:.
+        /// </summary>
+        public static string AboutViewModel_IconDesignerLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.IconDesignerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
+        ///Tap to visit the Repository:.
+        /// </summary>
+        public static string AboutViewModel_InfoOpenSource {
+            get {
+                return ResourceManager.GetString("AboutViewModel.InfoOpenSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate us!.
+        /// </summary>
+        public static string AboutViewModel_RateLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.RateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:.
+        /// </summary>
+        public static string AboutViewModel_TranslationLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.TranslationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to version.
         /// </summary>
-        public static string AboutViewModel_Version {
+        public static string AboutViewModel_VersionLabel {
             get {
-                return ResourceManager.GetString("AboutViewModel.Version", resourceCulture);
+                return ResourceManager.GetString("AboutViewModel.VersionLabel", resourceCulture);
             }
         }
         
@@ -692,6 +747,33 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginViewModel_LoginLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.LoginLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string LoginViewModel_PasswordLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome!.
+        /// </summary>
+        public static string LoginViewModel_WelcomeLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mandatory field.
         /// </summary>
         public static string MandatoryFieldEmptyTitle {
@@ -706,6 +788,42 @@ namespace MoneyFox.Shared.Resources {
         public static string MenuTitle {
             get {
                 return ResourceManager.GetString("MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Name.
+        /// </summary>
+        public static string ModifyAccountViewModel_AccountNameLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.AccountNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Balance.
+        /// </summary>
+        public static string ModifyAccountViewModel_CurrentBalanceLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.CurrentBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iban.
+        /// </summary>
+        public static string ModifyAccountViewModel_IbanLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.IbanLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string ModifyAccountViewModel_NoteLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.NoteLabel", resourceCulture);
             }
         }
         

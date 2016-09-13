@@ -39,7 +39,6 @@
   <string name="text_auto_backup_explanation">
     If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.
   </string>
-  <string name="text_translation_info">Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</string>
   <string name="textview_done">Done</string>
   <!--buttons-->
   <string name="button_date">Date</string>
@@ -58,8 +57,6 @@
   <string name="label_backup_date">Last Backup created at:</string>
   <string name="label_autobackup">Automatically upload and download backups</string>
   <string name="label_welcome">Welcome!</string>
-  <string name="label_icon_contribution">The app icon was created by:</string>
-  <string name="label_general_contribution">To see all contributions head over to GitHub:</string>
 
   <!---titles-->
   <string name="title_accounts">Accounts</string>

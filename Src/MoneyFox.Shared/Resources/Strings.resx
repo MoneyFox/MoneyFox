@@ -445,7 +445,47 @@ Do you want to go the the store to rate?</value>
   <data name="SomethingWentWrongTitle" xml:space="preserve">
     <value>Something went wrong...</value>
   </data>
-  <data name="AboutViewModel.Version" xml:space="preserve">
+  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>version</value>
+  </data>
+  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
+  </data>
+  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
+    <value>The app icon was created by:</value>
+  </data>
+  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
+  </data>
+  <data name="AboutViewModel.RateLabel" xml:space="preserve">
+    <value>Rate us!</value>
+  </data>
+  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+  </data>
+  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
+    <value>Iban</value>
+  </data>
+  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
+    <value>Note</value>
   </data>
 </root>

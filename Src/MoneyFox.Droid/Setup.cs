@@ -17,6 +17,7 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Droid.Services;
+using MvvmCross.Binding.Parse.Binding.Lang;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 
