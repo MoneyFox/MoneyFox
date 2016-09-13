@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -17,6 +18,11 @@ namespace MoneyFox.Shared.ViewModels
             : base(categoryRepository, dialogService)
         {
         }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         protected override void Selected(Category category)
         {

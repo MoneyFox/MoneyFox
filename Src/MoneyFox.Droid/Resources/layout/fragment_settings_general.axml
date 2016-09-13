@@ -13,10 +13,12 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp" 
+        local:MvxLang="Hint AutobackupInformationLabel"/>
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/label_autobackup"
-        local:MvxBind="Checked IsAutoBackupEnabled, Mode=TwoWay" />
+        local:MvxBind="Checked IsAutoBackupEnabled, Mode=TwoWay" 
+        local:MvxLang="Hint AutobackupLabel"/>
 </LinearLayout>

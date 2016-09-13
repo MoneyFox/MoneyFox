@@ -425,9 +425,6 @@
     <AndroidResource Include="Resources\layout\activity_modify_account.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\dialog_modify_category.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_payment.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>

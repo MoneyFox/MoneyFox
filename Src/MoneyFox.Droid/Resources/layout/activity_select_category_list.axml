@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_search_text"
-                local:MvxBind="Text SearchText" />
+                local:MvxBind="Text SearchText"
+                local:MvxLang="Hint SearchStringLabel"/>
         </android.support.design.widget.TextInputLayout>
         <MvxListView
             android:id="@+id/category_list"
