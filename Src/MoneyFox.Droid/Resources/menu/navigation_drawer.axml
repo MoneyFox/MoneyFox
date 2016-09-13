@@ -1,32 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:local="http://schemas.android.com/apk/res-auto">
   <group android:id="@+id/nav_items">
     <item
       android:id="@+id/nav_accounts"
       android:icon="@drawable/ic_account_balance"
-      android:title="@string/title_accounts" />
+      local:MvxLang="Text AccountsLabel" />
     <item
       android:id="@+id/nav_statistics"
       android:icon="@drawable/ic_show_chart"
-      android:title="@string/title_statistics" />
+      local:MvxLang="Text StatisticsLabel" />
   </group>
   <group android:id="@+id/nav_footer">
     <item
       android:id="@+id/nav_categories"
       android:icon="@drawable/ic_label_outline"
-      android:title="@string/title_categories" />
+      local:MvxLang="Text CategoriesLabel" />
     <item
       android:id="@+id/nav_backup"
       android:icon="@drawable/ic_backup"
-      android:title="@string/title_backup" />
+      local:MvxLang="Text BackupLabel" />
     <item
       android:id="@+id/nav_settings"
       android:icon="@drawable/ic_settings"
-      android:title="@string/title_settings" />
+      local:MvxLang="Text BackupLabel" />
     <item
       android:id="@+id/nav_about"
       android:icon="@drawable/ic_info"
-      android:title="@string/title_about" />
+      local:MvxLang="Text AboutLabel" />
   </group>
 </menu>

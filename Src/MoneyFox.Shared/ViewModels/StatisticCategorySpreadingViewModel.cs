@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
@@ -35,6 +33,9 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public PlotModel SpreadingModel { get; set; }
 
+        /// <summary>
+        ///     A collection with the current items for the legend.
+        /// </summary>
         public ObservableCollection<LegendItem> LegendList { get; set; }
 
         protected override void Load()

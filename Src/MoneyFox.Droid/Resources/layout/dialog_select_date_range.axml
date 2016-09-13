@@ -9,15 +9,15 @@
         android:inputType="date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/button_date"
-        local:MvxBind="Text StartDate, Converter=DateTimeFormat" />
+        local:MvxBind="Text StartDate, Converter=DateTimeFormat"
+        local:MvxLang="Hint StartDateLabel" />
     <Button
         android:id="@+id/button_end_date"
         android:inputType="date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/button_date"
-        local:MvxBind="Text EndDate, Converter=DateTimeForma" />
+        local:MvxBind="Text EndDate, Converter=DateTimeFormat"
+        local:MvxLang="Hint EndDateLabel"/>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -30,7 +30,7 @@
         android:gravity="right"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_marginRight="12dp"
-        android:text="@string/textview_done"
         android:textColor="@color/colorAccent"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        local:MvxLang="Text DoneLabel"/>
 </LinearLayout>

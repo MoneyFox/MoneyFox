@@ -2,6 +2,6 @@
       xmlns:local="http://schemas.android.com/apk/res-auto">
   <item android:id="@+id/action_add"
         android:icon="@drawable/ic_av_timer"
-        android:title="@string/action_add"
-        local:showAsAction="always|withText" />
+        local:showAsAction="always|withText"
+        local:MvxLang="Title AddLabel"/>
 </menu>

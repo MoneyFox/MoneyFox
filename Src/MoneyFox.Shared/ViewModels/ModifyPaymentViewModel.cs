@@ -10,6 +10,7 @@ using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
@@ -43,6 +44,11 @@ namespace MoneyFox.Shared.ViewModels
 
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         public int PaymentId { get; private set; }
 

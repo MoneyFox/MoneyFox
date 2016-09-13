@@ -155,9 +155,6 @@
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\ModifyCategoryDialog.cs">
-      <DependentUpon>ModifyCategoryDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
@@ -375,10 +372,6 @@
     <Page Include="Views\Dialogs\LoadingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dialogs\ModifyCategoryDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
