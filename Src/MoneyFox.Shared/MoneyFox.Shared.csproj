@@ -104,6 +104,7 @@
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Helpers\DefaultHelper.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
+    <Compile Include="Manager\EndOfMonthManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />

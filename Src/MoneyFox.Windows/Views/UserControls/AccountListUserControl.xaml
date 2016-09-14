@@ -53,6 +53,9 @@
                 </Grid>
                 <TextBlock Text="{x:Bind Iban}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                <TextBlock Text="{x:Bind final}"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
