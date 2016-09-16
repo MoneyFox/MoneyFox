@@ -369,9 +369,14 @@
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="OneDriveAuth\DroidAuthenticationProvider.cs" />
+    <Compile Include="OneDriveAuth\DroidServiceInfoProvider.cs" />
+    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BackgroundTaskManager.cs" />
+    <Compile Include="Services\ClearPaymentService.cs" />
+    <Compile Include="Services\RecurringPaymentService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Src\CustomPresenter.cs" />

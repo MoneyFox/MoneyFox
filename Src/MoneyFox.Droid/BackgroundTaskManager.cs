@@ -1,7 +1,7 @@
 using System;
 using Android.App;
 using Android.Content;
-using MoneyFox.Droid.Business.Services;
+using MoneyFox.Droid.Services;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
