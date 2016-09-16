@@ -25,8 +25,11 @@ namespace MoneyFox.Shared
             {
                 ShowViewModel<LoginViewModel>();
             }
+
+            await Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
             await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
             HandleDataOnStartup();
+            new 
         }
 
         private void HandleDataOnStartup()

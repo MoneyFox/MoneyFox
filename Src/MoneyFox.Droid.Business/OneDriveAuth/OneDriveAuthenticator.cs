@@ -1,23 +1,16 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Android.Widget;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Droid.OneDriveAuth
+namespace MoneyFox.Droid.Business.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private readonly IDialogService dialogService;
         private IOneDriveClient oneDriveClient;
-
-        public OneDriveAuthenticator(IDialogService dialogService)
-        {
-            this.dialogService = dialogService;
-        }
 
         public async Task<IOneDriveClient> LoginAsync()
         {

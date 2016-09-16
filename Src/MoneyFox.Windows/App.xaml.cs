@@ -101,8 +101,6 @@ namespace MoneyFox.Windows
                 ? e.TileId
                 : e.Arguments);
 
-            await new BackgroundTaskService().RegisterTimeTriggeredTasksAsync();
-
             OverrideTitleBarColor();
 
             //If Jump Lists are supported, adds them

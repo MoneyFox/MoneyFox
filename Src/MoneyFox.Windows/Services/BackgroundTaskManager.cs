@@ -7,7 +7,7 @@ using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Windows.Services
 {
-    public class BackgroundTaskService : IBackgroundTaskService
+    public class BackgroundTaskManager : IBackgroundTaskManager
     {
         private List<TimeTaskConfig> TimeTriggeredTasks => new List<TimeTaskConfig>
         {
@@ -16,7 +16,7 @@ namespace MoneyFox.Windows.Services
             new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360}
         };
 
-        public async Task RegisterTimeTriggeredTasksAsync()
+        public async void StartBackgroundTask()
         {
             foreach (var timeTask in TimeTriggeredTasks)
             {

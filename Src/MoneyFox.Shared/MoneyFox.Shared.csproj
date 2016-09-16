@@ -75,7 +75,7 @@
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Interfaces\IAutobackupManager.cs" />
-    <Compile Include="Interfaces\IBackgroundTaskService.cs" />
+    <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />

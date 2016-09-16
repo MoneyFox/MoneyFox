@@ -7,7 +7,6 @@ using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using MoneyFox.Windows.Business;

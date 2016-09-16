@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 
-namespace MoneyFox.Droid.OneDriveAuth 
+namespace MoneyFox.Droid.Business.OneDriveAuth 
 {
     public class DroidServiceInfoProvider : ServiceInfoProvider 
     {

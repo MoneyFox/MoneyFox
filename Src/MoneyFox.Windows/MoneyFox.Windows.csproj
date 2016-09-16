@@ -126,7 +126,7 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Services\BackgroundTaskService.cs" />
+    <Compile Include="Services\BackgroundTaskManager.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
@@ -479,8 +479,8 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.14.1">
-      <Name>SQLite for Universal Windows Platform %28SQLite.UWP.2015, Version=3.14.1%29</Name>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.14.2">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>

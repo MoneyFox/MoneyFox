@@ -5,7 +5,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -16,6 +15,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Droid.Business.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MvvmCross.Binding.Parse.Binding.Lang;
 using MvvmCross.Localization;
@@ -54,6 +54,7 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
+            Mvx.RegisterType<IBackgroundTaskManager, TaskManager>();
         }
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
