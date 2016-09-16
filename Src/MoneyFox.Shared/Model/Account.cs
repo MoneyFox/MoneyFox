@@ -14,7 +14,7 @@ using MoneyFox.Shared.Constants;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using SQLite.Net.Async;
-
+using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Model
 {
@@ -22,34 +22,30 @@ namespace MoneyFox.Shared.Model
     [Table("Accounts")]
     public class Account
     {
-       public Account()
-        {
-            testy = new EndOfMonthManager(CurrentBalance, Id);
 
-        }
-
+        private IEndOfMonthManager manager = Mvx.Resolve<IEndOfMonthManager>();
 
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Iban { get; set; }
-        public double CurrentBalance { get; set; }
-            
-        public string Note { get; set; }
+        public double CurrentBalance {get; set;}
+        
 
-
-        public EndOfMonthManager testy;
-        public string final
-        {
+        private string _Hope;
+        public string Hope{
             get
             {
-                return final;
+
+                _Hope = manager.DetermineEnd(Id, CurrentBalance);
+                return _Hope;
             }
             set
             {
-                 final = testy.returnValue();
+                
+               _Hope = manager.DetermineEnd(Id, CurrentBalance);
             }
         }
-      
+                 
     }
 }
