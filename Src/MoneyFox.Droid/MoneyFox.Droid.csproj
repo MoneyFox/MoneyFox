@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
     <NuGetPackageImportStamp>
@@ -371,15 +371,13 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\TaskManager.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
-    <Compile Include="OneDriveAuth\DroidAuthenticationProvider.cs" />
     <Compile Include="Src\CustomPresenter.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
-    <Compile Include="OneDriveAuth\DroidServiceInfoProvider.cs" />
     <Compile Include="Src\Localize.cs" />
-    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
@@ -482,6 +480,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Droid.Business\MoneyFox.Droid.Business.csproj">
+      <Project>{7a77c6e1-00c3-4717-ac60-e1421505756e}</Project>
+      <Name>MoneyFox.Droid.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
       <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
       <Name>MoneyFox.Shared</Name>
