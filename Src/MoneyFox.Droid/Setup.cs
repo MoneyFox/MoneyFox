@@ -17,6 +17,9 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Droid.Services;
+using MvvmCross.Binding.Parse.Binding.Lang;
+using MvvmCross.Localization;
+using MvvmCross.Platform.Converters;
 
 namespace MoneyFox.Droid
 {
@@ -51,6 +54,11 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
+        }
+        protected override void FillValueConverters(IMvxValueConverterRegistry registry)
+        {
+            base.FillValueConverters(registry);
+            registry.AddOrOverwrite("Language", new MvxLanguageConverter());
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()

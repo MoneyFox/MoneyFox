@@ -2,6 +2,7 @@
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -30,6 +31,11 @@ namespace MoneyFox.Shared.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The password who the user set.

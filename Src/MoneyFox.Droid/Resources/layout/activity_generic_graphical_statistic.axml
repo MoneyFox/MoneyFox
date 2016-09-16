@@ -14,17 +14,17 @@
         <include
             layout="@layout/toolbar_actionbar" />
         <TextView
-            android:text="@string/restore_information"
+            android:id="@+id/text_view_graphical_statistic_title"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             local:MvxBind="Text Title" />
-        <oxyplot.xamarin.android.PlotView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:minHeight="60dp"
-            android:minWidth="40dp"
-            android:id="@+id/plotViewModel" />
+      <oxyplot.xamarin.android.PlotView
+          android:id="@+id/plotViewModel"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:minHeight="60dp"
+          android:minWidth="40dp" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

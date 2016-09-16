@@ -181,6 +181,10 @@
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.ResxLocalization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.ResxLocalization.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.ResxLocalization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.2.3\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.dll</HintPath>
       <Private>True</Private>
@@ -345,6 +349,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\ResxLocalizationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
@@ -360,7 +365,6 @@
     <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
-    <Compile Include="Dialogs\ModifyCategoryDialog.cs" />
     <Compile Include="Fragments\SettingsGeneral.cs" />
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
@@ -420,9 +424,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_account.axml">
       <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\dialog_modify_category.axml">
-      <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_payment.axml">
       <SubType>AndroidResource</SubType>
@@ -485,9 +486,6 @@
       <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
       <Name>MoneyFox.Shared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_delete.png" />
@@ -567,9 +565,6 @@
     <AndroidResource Include="Resources\drawable-v21\ic_show_chart.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-de\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
@@ -601,18 +596,10 @@
     <AndroidResource Include="Resources\drawable\ic_show_chart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-en-rUS\strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values-es\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values-ru\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

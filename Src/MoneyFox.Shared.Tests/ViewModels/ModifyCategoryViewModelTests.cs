@@ -225,5 +225,26 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewmodel.SelectedCategory.Name.ShouldBe(name);
         }
+
+        [TestMethod]
+        public void DoneCommand_NameEmpty_ShowMessage()
+        {
+            // Setup
+            var wasDialogServiceCalled = false;
+
+            var dialogSetup = new Mock<IDialogService>();
+            dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string a, string b) => wasDialogServiceCalled = true);
+
+            var vm = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object,
+                dialogSetup.Object)
+            { SelectedCategory = new Category() };
+
+            // Execute
+            vm.SaveCommand.Execute(new Category());
+
+            // Assert
+            wasDialogServiceCalled.ShouldBeTrue();
+        }
     }
 }
