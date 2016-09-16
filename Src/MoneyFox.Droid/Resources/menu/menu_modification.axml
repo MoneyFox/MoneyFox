@@ -6,6 +6,5 @@
         local:MvxLang="Title SaveLabel"/>
 
   <item android:id="@+id/action_delete"
-        android:showAsAction="collapseActionView" 
-        local:MvxLang="Title DeleteLabel"/>
+        android:showAsAction="collapseActionView"/>
 </menu>

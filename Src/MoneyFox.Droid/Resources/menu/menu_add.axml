@@ -3,6 +3,5 @@
   <item
     android:id="@+id/action_add"
     android:icon="@drawable/ic_add"
-    local:showAsAction="always"
-    local:MvxLang="Title AddLabel"/>
+    local:showAsAction="always"/>
 </menu>

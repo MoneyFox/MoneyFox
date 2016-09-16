@@ -9,6 +9,7 @@ using Android.Views;
 using HockeyApp.Android;
 using HockeyApp.Android.Metrics;
 using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V4;
