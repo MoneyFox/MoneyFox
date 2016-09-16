@@ -108,6 +108,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecurringPaymentTask.cs" />
     <Compile Include="ClearPaymentTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

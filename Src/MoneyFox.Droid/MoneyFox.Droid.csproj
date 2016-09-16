@@ -371,7 +371,7 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TaskManager.cs" />
+    <Compile Include="BackgroundTaskManager.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Src\CustomPresenter.cs" />

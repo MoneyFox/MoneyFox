@@ -54,7 +54,7 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
-            Mvx.RegisterType<IBackgroundTaskManager, TaskManager>();
+            Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
         }
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
