@@ -17,14 +17,61 @@ namespace MoneyFox.Shared.Manager
     public class EndOfMonthManager : IEndOfMonthManager
     {
         private readonly IPaymentRepository paymentRepository;
+        private readonly IAccountRepository accountRepository;
         
-        public EndOfMonthManager( IPaymentRepository paymentRepository)
+        public EndOfMonthManager( IPaymentRepository paymentRepository, IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;
+            this.accountRepository = accountRepository;
             
         }
+       
+
+        public void AssignToAccounts()
+        {
+            foreach(Account x in accountRepository.GetList())
+            {
+                DeterminEndThroughAccounts(x);
+            }
+        }
+
+
+        /*
+        DETERMINES STRING VALUE PER ACCOUNT 
+        */
+        public void DeterminEndThroughAccounts(Account argAccount)
+        {
+            double tempBalance = argAccount.CurrentBalance;
+            DateTime tempTime = DateTime.Now;
+
+            foreach (Payment x in paymentRepository.GetList())
+            {
+                if(x.TargetAccountId== argAccount.Id && x.Date.Month == tempTime.Date.Month)
+                {
+                    tempBalance += x.Amount;
+                }
+                else if(x.ChargedAccountId == argAccount.Id && x.TargetAccount==null && x.Date.Month == tempTime.Date.Month)
+                {
+                    tempBalance += x.Amount;
+                }   
+                else if(x.ChargedAccountId == argAccount.Id && x.TargetAccount!=null && x.Date.Month == tempTime.Date.Month)
+                {
+                    tempBalance -= x.Amount;
+                }             
+            }
+            if (tempBalance < 0)
+            {
+                argAccount.EndMonthWarning = "ACCOUNT WILL BE NEGATIVE AT END OF MONTH";
+            }
+            else
+            {
+                argAccount.EndMonthWarning = " ";
+            }
+        }
         
-        public string DetermineEnd(int accountID, double startBalance)
+        
+         
+      /*  public string DetermineEnd(int accountID, double startBalance)
         {
 
             double myTemp = startBalance;
@@ -46,12 +93,6 @@ namespace MoneyFox.Shared.Manager
             }
             return "GOOD";
 
-        }
-        
-
-        public string Hope()
-        {
-            return "HOPE";
-        }
+        }*/
     }
 }

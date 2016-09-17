@@ -23,29 +23,12 @@ namespace MoneyFox.Shared.Model
     public class Account
     {
 
-        private IEndOfMonthManager manager = Mvx.Resolve<IEndOfMonthManager>();
-
-        [PrimaryKey, AutoIncrement, Indexed]
+       [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Iban { get; set; }
         public double CurrentBalance {get; set;}
         
-
-        private string _Hope;
-        public string Hope{
-            get
-            {
-
-                _Hope = manager.DetermineEnd(Id, CurrentBalance);
-                return _Hope;
-            }
-            set
-            {
-                
-               _Hope = manager.DetermineEnd(Id, CurrentBalance);
-            }
-        }
-                 
+        public string EndMonthWarning { get; set;}
     }
 }

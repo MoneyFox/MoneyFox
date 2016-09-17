@@ -53,7 +53,7 @@
                 </Grid>
                 <TextBlock Text="{x:Bind Iban}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                <TextBlock Text="{x:Bind Hope}"
+                <TextBlock Text="{x:Bind EndMonthWarning}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
 
             </StackPanel>

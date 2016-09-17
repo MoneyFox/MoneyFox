@@ -5,15 +5,19 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
     public sealed partial class AccountListUserControl
     {
+       
         public AccountListUserControl()
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<AccountListViewModel>();
+         
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)

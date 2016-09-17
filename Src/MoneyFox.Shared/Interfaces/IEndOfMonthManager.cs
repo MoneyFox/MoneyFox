@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyFox.Shared.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace MoneyFox.Shared.Interfaces
 {
     public interface IEndOfMonthManager
     {
-        string Hope();
-        string DetermineEnd(int x, double y);
+        
+        void AssignToAccounts();
+
+        void DeterminEndThroughAccounts(Account argAccount);
     }
 }

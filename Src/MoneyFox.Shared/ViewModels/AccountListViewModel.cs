@@ -16,16 +16,18 @@ namespace MoneyFox.Shared.ViewModels
     public class AccountListViewModel : BaseViewModel {
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IEndOfMonthManager endOfMonthManager;
 
         private readonly IDialogService dialogService;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService)
+            IDialogService dialogService, IEndOfMonthManager endOfMonthManager)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
+            this.endOfMonthManager = endOfMonthManager;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
@@ -76,6 +78,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             AllAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             BalanceViewModel.UpdateBalanceCommand.Execute();
+            endOfMonthManager.AssignToAccounts();
         }
 
         private void GoToPaymentOverView(Account account)
