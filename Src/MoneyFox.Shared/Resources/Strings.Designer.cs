@@ -80,11 +80,84 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string AboutViewModel_ContactLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.ContactLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To see all contributions head over to GitHub:.
+        /// </summary>
+        public static string AboutViewModel_ContributerLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.ContributerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The app icon was created by:.
+        /// </summary>
+        public static string AboutViewModel_IconDesignerLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.IconDesignerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
+        ///Tap to visit the Repository:.
+        /// </summary>
+        public static string AboutViewModel_InfoOpenSource {
+            get {
+                return ResourceManager.GetString("AboutViewModel.InfoOpenSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate us!.
+        /// </summary>
+        public static string AboutViewModel_RateLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.RateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:.
+        /// </summary>
+        public static string AboutViewModel_TranslationLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.TranslationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string AboutViewModel_VersionLabel {
+            get {
+                return ResourceManager.GetString("AboutViewModel.VersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully created.
         /// </summary>
         public static string AccountCreatedMessage {
             get {
                 return ResourceManager.GetString("AccountCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no accounts. Add one by tapping on the plus button at the bottom..
+        /// </summary>
+        public static string AccountListViewModel_EmptyListPlaceholderLabel {
+            get {
+                return ResourceManager.GetString("AccountListViewModel.EmptyListPlaceholderLabel", resourceCulture);
             }
         }
         
@@ -242,6 +315,70 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
+        /// </summary>
+        public static string BackupViewModel_CreateBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.CreateBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Backup.
+        /// </summary>
+        public static string BackupViewModel_CreateBackupLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.CreateBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Backup created at:.
+        /// </summary>
+        public static string BackupViewModel_LastBackupDateLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.LastBackupDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string BackupViewModel_LoginLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.LoginLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string BackupViewModel_LogoutLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.LogoutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
+        ///WARNING: Local changes you made meanwhile we be lost!.
+        /// </summary>
+        public static string BackupViewModel_RestoreBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.RestoreBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Backup.
+        /// </summary>
+        public static string BackupViewModel_RestoreBackupLabel {
+            get {
+                return ResourceManager.GetString("BackupViewModel.RestoreBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biweekly.
         /// </summary>
         public static string BiweeklyLabel {
@@ -292,6 +429,24 @@ namespace MoneyFox.Shared.Resources {
         public static string CategorieSpreadingDescription {
             get {
                 return ResourceManager.GetString("CategorieSpreadingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no categories. Add one by tapping on the plus button at bottom..
+        /// </summary>
+        public static string CategoryListViewModel_EmptyListPlaceholderLabel {
+            get {
+                return ResourceManager.GetString("CategoryListViewModel.EmptyListPlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search String.
+        /// </summary>
+        public static string CategoryListViewModel_SearchStringLabel {
+            get {
+                return ResourceManager.GetString("CategoryListViewModel.SearchStringLabel", resourceCulture);
             }
         }
         
@@ -427,6 +582,24 @@ namespace MoneyFox.Shared.Resources {
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawer Close.
+        /// </summary>
+        public static string DrawerCloseLabel {
+            get {
+                return ResourceManager.GetString("DrawerCloseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawer Open.
+        /// </summary>
+        public static string DrawerOpenLabel {
+            get {
+                return ResourceManager.GetString("DrawerOpenLabel", resourceCulture);
             }
         }
         
@@ -683,6 +856,33 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginViewModel_LoginLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.LoginLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string LoginViewModel_PasswordLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome!.
+        /// </summary>
+        public static string LoginViewModel_WelcomeLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mandatory field.
         /// </summary>
         public static string MandatoryFieldEmptyTitle {
@@ -697,6 +897,204 @@ namespace MoneyFox.Shared.Resources {
         public static string MenuTitle {
             get {
                 return ResourceManager.GetString("MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string MenuViewModel_AboutLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AboutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string MenuViewModel_AccountsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AccountsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string MenuViewModel_AddLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.AddLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string MenuViewModel_BackupLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string MenuViewModel_CategoriesLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.CategoriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MenuViewModel_DeleteLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.DeleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string MenuViewModel_SaveLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.SaveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string MenuViewModel_SettingsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A way to make budgeting easy..
+        /// </summary>
+        public static string MenuViewModel_SloganLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.SloganLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string MenuViewModel_StatisticsLabel {
+            get {
+                return ResourceManager.GetString("MenuViewModel.StatisticsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Name.
+        /// </summary>
+        public static string ModifyAccountViewModel_AccountNameLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.AccountNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Balance.
+        /// </summary>
+        public static string ModifyAccountViewModel_CurrentBalanceLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.CurrentBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iban.
+        /// </summary>
+        public static string ModifyAccountViewModel_IbanLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.IbanLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string ModifyAccountViewModel_NoteLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.NoteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categroy Name.
+        /// </summary>
+        public static string ModifyCategoryViewModel_CategoryNameLabel {
+            get {
+                return ResourceManager.GetString("ModifyCategoryViewModel.CategoryNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string ModifyCategoryViewModel_NoteLabel {
+            get {
+                return ResourceManager.GetString("ModifyCategoryViewModel.NoteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string ModifyPaymentViewModel_AmountLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.AmountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string ModifyPaymentViewModel_CategoryLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.CategoryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string ModifyPaymentViewModel_DateLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.DateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Endless.
+        /// </summary>
+        public static string ModifyPaymentViewModel_EndlessLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.EndlessLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string ModifyPaymentViewModel_NoteLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.NoteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Recurring.
+        /// </summary>
+        public static string ModifyPaymentViewModel_RecurringLabel {
+            get {
+                return ResourceManager.GetString("ModifyPaymentViewModel.RecurringLabel", resourceCulture);
             }
         }
         
@@ -863,6 +1261,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no payments. Add one by tapping on the plus button at the bottom..
+        /// </summary>
+        public static string PaymentListViewModel_EmptyListPlaceholderLabel {
+            get {
+                return ResourceManager.GetString("PaymentListViewModel.EmptyListPlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We hope you like our app. Support us with a rating in the store.
         ///Do you want to go the the store to rate?.
         /// </summary>
@@ -918,6 +1325,42 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search String.
+        /// </summary>
+        public static string SelectCategoryListViewModel_SearchStringLabel {
+            get {
+                return ResourceManager.GetString("SelectCategoryListViewModel.SearchStringLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string SelectDateRangeDialogViewModel_DoneLabel {
+            get {
+                return ResourceManager.GetString("SelectDateRangeDialogViewModel.DoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        public static string SelectDateRangeDialogViewModel_EndDateLabel {
+            get {
+                return ResourceManager.GetString("SelectDateRangeDialogViewModel.EndDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string SelectDateRangeDialogViewModel_StartDateLabel {
+            get {
+                return ResourceManager.GetString("SelectDateRangeDialogViewModel.StartDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Date.
         /// </summary>
         public static string SelectDateTitle {
@@ -936,11 +1379,65 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so..
+        /// </summary>
+        public static string SettingsGeneralViewModel_AutobackupInformationLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.AutobackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically upload and download backups.
+        /// </summary>
+        public static string SettingsGeneralViewModel_AutobackupLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.AutobackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsLabel {
             get {
                 return ResourceManager.GetString("SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string SettingsSecurityViewModel_DoneLabel {
+            get {
+                return ResourceManager.GetString("SettingsSecurityViewModel.DoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password protection.
+        /// </summary>
+        public static string SettingsSecurityViewModel_PasswordActivatedLabel {
+            get {
+                return ResourceManager.GetString("SettingsSecurityViewModel.PasswordActivatedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Confirmation.
+        /// </summary>
+        public static string SettingsSecurityViewModel_PasswordConfirmationLabel {
+            get {
+                return ResourceManager.GetString("SettingsSecurityViewModel.PasswordConfirmationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string SettingsSecurityViewModel_PasswordLabel {
+            get {
+                return ResourceManager.GetString("SettingsSecurityViewModel.PasswordLabel", resourceCulture);
             }
         }
         

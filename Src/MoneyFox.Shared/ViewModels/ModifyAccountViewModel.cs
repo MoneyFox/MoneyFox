@@ -6,16 +6,17 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyAccountViewModel : BaseViewModel {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
-        public ModifyAccountViewModel(IRepository<Account> accountRepository, IDialogService dialogService)
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
@@ -37,6 +38,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Cancels the operation and will revert the changes
         /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     indicates if the account already exists and shall
@@ -127,7 +133,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
-            //TODO: revert changes
+            SelectedAccount = accountRepository.FindById(SelectedAccount.Id);
             Close(this);
         }
     }

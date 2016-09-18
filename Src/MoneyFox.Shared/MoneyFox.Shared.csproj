@@ -149,7 +149,6 @@
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ModifyCategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
@@ -234,6 +233,10 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.2.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.ResxLocalization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.ResxLocalization.4.2.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.ResxLocalization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

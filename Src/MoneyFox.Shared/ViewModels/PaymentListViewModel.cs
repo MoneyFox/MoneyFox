@@ -10,6 +10,7 @@ using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -41,6 +42,11 @@ namespace MoneyFox.Shared.ViewModels
         public int AccountId { get; private set; }
 
         public IBalanceViewModel BalanceViewModel { get; private set; }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Loads the data for this view.

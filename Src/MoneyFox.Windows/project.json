@@ -11,6 +11,7 @@
     "MvvmCross.Plugin.Email": "4.2.3",
     "MvvmCross.Plugin.File": "4.2.3",
     "MvvmCross.Plugin.Messenger": "4.2.3",
+    "MvvmCross.Plugin.ResxLocalization": "4.2.3",
     "MvvmCross.Plugin.SQLitePCL": "4.2.3",
     "MvvmCross.Plugin.Visibility": "4.2.3",
     "MvvmCross.Plugin.WebBrowser": "4.2.3",

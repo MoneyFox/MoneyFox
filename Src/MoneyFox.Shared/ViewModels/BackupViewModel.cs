@@ -6,6 +6,7 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -50,6 +51,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     All datamodels are then reloaded.
         /// </summary>
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.

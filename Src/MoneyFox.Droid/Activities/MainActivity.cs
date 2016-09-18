@@ -6,12 +6,9 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
-using HockeyApp.Android;
-using HockeyApp.Android.Metrics;
-using MoneyFox.Droid.Activities.Caching;
-using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
+using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
@@ -64,15 +61,20 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
-        // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
-        public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
-            => new FragmentCacheConfigurationCustomFragmentInfo();
-
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)
         {
+            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
+
+            if (currentFrag != null
+                && currentFrag.FindAssociatedViewModelType(typeof(MainActivity)) != fragmentInfo.ViewModelType)
+            {
+                fragmentInfo.AddToBackStack = true;
+            }
+
             transaction.SetCustomAnimations(Resource.Animation.abc_fade_in,
                 Resource.Animation.abc_fade_out);
+
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 

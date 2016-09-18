@@ -8,6 +8,7 @@ using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -68,6 +69,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         private void EditAccount(Account account)
         {

@@ -6,6 +6,7 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -38,6 +39,11 @@ namespace MoneyFox.Shared.ViewModels
         ///     Delete the selected category from the database
         /// </summary>
         public MvxCommand DeleteCommand => new MvxCommand(DeleteCategory);
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The currently selected category
@@ -114,7 +120,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
-            // TODO: revert changes
+            SelectedCategory = categoryRepository.FindById(SelectedCategory.Id);
             Close(this);
         }
     }

@@ -3,6 +3,7 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
@@ -25,6 +26,10 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Post selected category to message hub

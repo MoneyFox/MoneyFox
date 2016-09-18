@@ -26,8 +26,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_category_name"
-                    local:MvxBind="Text SelectedCategory.Name" />
+                    local:MvxBind="Text SelectedCategory.Name"
+                    local:MvxLang="Hint CategoryNameLabel"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_note"
-                    local:MvxBind="Text SelectedCategory.Notes" />
+                    local:MvxBind="Text SelectedCategory.Notes"
+                    local:MvxLang="Hint NoteLabel"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </LinearLayout>

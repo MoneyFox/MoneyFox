@@ -156,7 +156,6 @@
     <Compile Include="ViewModels\BalanceViewModelTests.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
-    <Compile Include="ViewModels\ModifyCategoryDialogViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
     <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
