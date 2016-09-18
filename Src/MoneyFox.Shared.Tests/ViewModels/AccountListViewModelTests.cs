@@ -12,6 +12,8 @@ using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
+using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.Manager;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

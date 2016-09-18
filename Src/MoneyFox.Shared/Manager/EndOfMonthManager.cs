@@ -69,30 +69,5 @@ namespace MoneyFox.Shared.Manager
             }
         }
         
-        
-         
-      /*  public string DetermineEnd(int accountID, double startBalance)
-        {
-
-            double myTemp = startBalance;
-            DateTime myTime = DateTime.Now;
-            foreach (Payment x in paymentRepository.GetList())
-            {
-                if(x.TargetAccountId == accountID)
-                {
-                    myTemp += x.Amount;
-                }
-                if (x.ChargedAccountId == accountID)
-                {
-                    myTemp -= x.Amount;
-                }
-            }
-            if (myTemp < 0)
-            {
-                return "BAD";
-            }
-            return "GOOD";
-
-        }*/
     }
 }
