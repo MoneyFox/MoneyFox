@@ -14,11 +14,11 @@ using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
-using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
+using MvvmCross.Plugins.Email;
 
 namespace MoneyFox.Droid
 {
