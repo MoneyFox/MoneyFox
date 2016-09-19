@@ -6,7 +6,7 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Droid.Business.OneDriveAuth
+namespace MoneyFox.Droid.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {

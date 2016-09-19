@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -11,8 +9,10 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
+using System;
+using System.Text;
 
-namespace MoneyFox.Droid.Business.OneDriveAuth {
+namespace MoneyFox.Droid.OneDriveAuth {
 
     public class DroidAuthenticationProvider : AuthenticationProvider 
     {
