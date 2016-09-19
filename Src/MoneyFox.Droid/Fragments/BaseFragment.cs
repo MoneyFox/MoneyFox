@@ -75,7 +75,7 @@ namespace MoneyFox.Droid.Fragments
 
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel
     {
-        public TViewModel ViewModel
+        public new TViewModel ViewModel
         {
             get { return (TViewModel) base.ViewModel; }
             set { base.ViewModel = value; }

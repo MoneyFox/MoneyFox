@@ -122,17 +122,6 @@
       <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MvvmCross.Plugins.File.WindowsCommon">
-      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.Plugin.File\4.2.2\lib\win81\MvvmCross.Plugins.File.WindowsCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Sqlite.WindowsUWP">
-      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.Plugin.SQLitePCL\4.2.2\lib\uap10.0\MvvmCross.Plugins.Sqlite.WindowsUWP.dll</HintPath>
-    </Reference>
-    <Reference Include="NotificationsExtensions.Win10">
-      <HintPath>..\..\..\..\..\.nuget\packages\NotificationsExtensions.Win10\14332.0.2\lib\uap10.0\NotificationsExtensions.Win10.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
