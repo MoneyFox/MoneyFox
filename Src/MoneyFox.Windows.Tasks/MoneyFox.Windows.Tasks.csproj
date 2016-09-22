@@ -11,7 +11,7 @@
     <AssemblyName>MoneyFox.Windows.Tasks</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -108,6 +108,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecurringPaymentTask.cs" />
     <Compile Include="ClearPaymentTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,17 +121,6 @@
       <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
       <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MvvmCross.Plugins.File.WindowsCommon">
-      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.Plugin.File\4.2.2\lib\win81\MvvmCross.Plugins.File.WindowsCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Sqlite.WindowsUWP">
-      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.Plugin.SQLitePCL\4.2.2\lib\uap10.0\MvvmCross.Plugins.Sqlite.WindowsUWP.dll</HintPath>
-    </Reference>
-    <Reference Include="NotificationsExtensions.Win10">
-      <HintPath>..\..\..\..\..\.nuget\packages\NotificationsExtensions.Win10\14332.0.2\lib\uap10.0\NotificationsExtensions.Win10.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
