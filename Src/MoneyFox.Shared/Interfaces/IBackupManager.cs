@@ -9,6 +9,11 @@ namespace MoneyFox.Shared.Interfaces
     public interface IBackupManager
     {
         /// <summary>
+        ///     Login user.
+        /// </summary>
+        Task Login();
+
+        /// <summary>
         ///     Checks if there are backups to restore.
         /// </summary>
         /// <returns>Backups available or not.</returns>

@@ -7,6 +7,11 @@ namespace MoneyFox.Shared.Interfaces
     public interface IBackupService
     {
         /// <summary>
+        ///     Login user.
+        /// </summary>
+        Task Login();
+
+        /// <summary>
         ///     Uploads a copy of the current database.
         /// </summary>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>

@@ -30,6 +30,11 @@ namespace MoneyFox.Shared.Services
 
         private Item BackupFolder { get; set; }
 
+        public async Task Login()
+        {
+            OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+        }
+
         /// <summary>
         ///     Uploads a copy of the current database.
         /// </summary>

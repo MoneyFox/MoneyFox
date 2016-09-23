@@ -36,6 +36,11 @@ namespace MoneyFox.Shared.Manager
             this.databaseManager = databaseManager;
         }
 
+        public async Task Login()
+        {
+            await backupService.Login();
+        }
+
         /// <summary>
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
         ///     A sync can be attempted up to a number of times configured in ServiceConstants

@@ -30,6 +30,11 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
+        ///     Makes the first login and sets the setting for the future navigations to this page.
+        /// </summary>
+        public MvxCommand LoginCommand => new MvxCommand(Login);
+
+        /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
@@ -56,22 +61,31 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsCheckingBackupAvailability { get; private set; }
 
+        /// <summary>
+        ///     Indicator that the user logged in to the backup service.
+        /// </summary>
+        public bool IsLoggedIn => SettingsHelper.IsLoggedInToBackupService;
+
+        /// <summary>
+        ///     Indicates if a backup is available for restore.
+        /// </summary>
         public bool BackupAvailable { get; private set; }
 
         private async void Loaded()
         {
-            if (!connectivity.IsConnected) return;
-
-            if (!SettingsHelper.IsLoggedInToBackupService)
-            {
-                BackupAvailable = true;
-                return;
-            }
+            if (!connectivity.IsConnected || !SettingsHelper.IsLoggedInToBackupService) return;
 
             IsCheckingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
             BackupLastModified = await backupManager.GetBackupDate();
             IsCheckingBackupAvailability = false;
+        }
+
+        private void Login()
+        {
+            backupManager.Login();
+            SettingsHelper.IsLoggedInToBackupService = true;
+            RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
         private async void CreateBackup()
@@ -84,7 +98,6 @@ namespace MoneyFox.Shared.ViewModels
             dialogService.ShowLoadingDialog();
             await backupManager.CreateNewBackup();
             BackupLastModified = DateTime.Now;
-            SettingsHelper.IsLoggedInToBackupService = true;
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }
@@ -98,7 +111,6 @@ namespace MoneyFox.Shared.ViewModels
 
             dialogService.ShowLoadingDialog();
             await backupManager.RestoreBackup();
-            SettingsHelper.IsLoggedInToBackupService = true;
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }
