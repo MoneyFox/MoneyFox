@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -57,16 +56,11 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsCheckingBackupAvailability { get; private set; }
 
-        /// <summary>
-        ///     Indicates if the Login or Logout button should be presented.
-        /// </summary>
-        public bool IsLoggedIn => SettingsHelper.IsLoggedInToBackupService;
-
         public bool BackupAvailable { get; private set; }
 
         private async void Loaded()
         {
-            if (!IsLoggedIn || !connectivity.IsConnected) return;
+            if (!SettingsHelper.IsLoggedInToBackupService || !connectivity.IsConnected) return;
 
             IsCheckingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
@@ -84,6 +78,7 @@ namespace MoneyFox.Shared.ViewModels
             dialogService.ShowLoadingDialog();
             await backupManager.CreateNewBackup();
             BackupLastModified = DateTime.Now;
+            SettingsHelper.IsLoggedInToBackupService = true;
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }
@@ -97,6 +92,7 @@ namespace MoneyFox.Shared.ViewModels
 
             dialogService.ShowLoadingDialog();
             await backupManager.RestoreBackup();
+            SettingsHelper.IsLoggedInToBackupService = true;
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }

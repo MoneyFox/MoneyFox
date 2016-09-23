@@ -10,9 +10,11 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
+using PropertyChanged;
 
 namespace MoneyFox.Shared.Services
 {
+    [ImplementPropertyChanged]
     public class OneDriveService : IBackupService
     {
         private readonly IMvxFileStore fileStore;
@@ -34,7 +36,11 @@ namespace MoneyFox.Shared.Services
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
         public async Task<bool> Upload()
         {
-            await oneDriveAuthenticator.LoginAsync();
+            if (OneDriveClient == null)
+            {
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
+
             await LoadBackupFolder();
 
             using (var dbstream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
@@ -60,7 +66,11 @@ namespace MoneyFox.Shared.Services
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
         public async Task Restore(string backupname, string dbName)
         {
-            await oneDriveAuthenticator.LoginAsync();
+            if (OneDriveClient == null)
+            {
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
+
             await LoadBackupFolder();
 
             var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
@@ -84,7 +94,11 @@ namespace MoneyFox.Shared.Services
         /// <returns>Date of the last backup.</returns>
         public async Task<DateTime> GetBackupDate()
         {
-            await oneDriveAuthenticator.LoginAsync();
+            if (OneDriveClient == null)
+            {
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
+
             await LoadBackupFolder();
 
             try

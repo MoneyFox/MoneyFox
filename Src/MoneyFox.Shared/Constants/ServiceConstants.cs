@@ -16,6 +16,11 @@
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
 
         /// <summary>
+        ///     Returns the base URL of the OneDrive Service
+        /// </summary>
+        public const string BASE_URL = "https://api.onedrive.com/v1.0";
+
+        /// <summary>
         ///     Authentication url for the OneDrive authentication
         /// </summary>
         public const string AUTHENTICATION_URL = "https://login.live.com/oauth20_authorize.srf";
