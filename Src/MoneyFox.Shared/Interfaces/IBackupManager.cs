@@ -8,18 +8,6 @@ namespace MoneyFox.Shared.Interfaces
     /// </summary>
     public interface IBackupManager
     {
-        bool IsLoggedIn { get; }
-
-        /// <summary>
-        ///     Login user.
-        /// </summary>
-        Task Login();
-
-        /// <summary>
-        ///     Logout user.
-        /// </summary>
-        Task Logout();
-
         /// <summary>
         ///     Checks if there are backups to restore.
         /// </summary>

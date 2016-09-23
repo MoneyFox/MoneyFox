@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
@@ -36,11 +35,6 @@ namespace MoneyFox.Shared.Manager
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
         }
-
-        /// <summary>
-        ///     Indicates if the user is authenticated.
-        /// </summary>
-        public bool IsLoggedIn => backupService.IsLoggedIn;
 
         /// <summary>
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
@@ -78,26 +72,8 @@ namespace MoneyFox.Shared.Manager
         /// <returns>Backupdate.</returns>
         public async Task<DateTime> GetBackupDate()
         {
-            if (await CheckIfUserIsLoggedIn())
-            {
-                var date = await backupService.GetBackupDate();
-                return date.ToLocalTime();
-            }
-            return DateTime.MinValue;
-        }
-
-        /// <summary>
-        ///     Tries to log in the user to the backup service.
-        /// </summary>
-        /// <exception cref="OneDriveException">Thrown when any error in the OneDrive SDK Occurs</exception>
-        public async Task Login()
-        {
-            await backupService.Login();
-        }
-
-        public async Task Logout()
-        {
-            await backupService.Logout();
+            var date = await backupService.GetBackupDate();
+            return date.ToLocalTime();
         }
 
         /// <summary>
@@ -107,12 +83,8 @@ namespace MoneyFox.Shared.Manager
         /// <returns>Backups available or not.</returns>
         public async Task<bool> IsBackupExisting()
         {
-            if (await CheckIfUserIsLoggedIn())
-            {
-                var files = await backupService.GetFileNames();
-                return files != null && files.Any();
-            }
-            return false;
+            var files = await backupService.GetFileNames();
+            return files != null && files.Any();
         }
 
         /// <summary>
@@ -120,14 +92,7 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public async Task<bool> CreateNewBackup()
         {
-            if (await CheckIfUserIsLoggedIn())
-            {
-                if (await backupService.Upload())
-                {
-                    return true;
-                }
-            }
-            return false;
+            return await backupService.Upload();
         }
 
         /// <summary>
@@ -137,22 +102,19 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public async Task RestoreBackup()
         {
-            if (await CheckIfUserIsLoggedIn())
+            var backupNames = GetBackupName(await backupService.GetFileNames());
+            await backupService.Restore(backupNames.Item1, backupNames.Item2);
+
+            if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
             {
-                var backupNames = GetBackupName(await backupService.GetFileNames());
-                await backupService.Restore(backupNames.Item1, backupNames.Item2);
-
-                if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
-                {
-                    fileStore.DeleteFile(DatabaseConstants.DB_NAME);
-                }
-
-                databaseManager.CreateDatabase();
-                databaseManager.MigrateDatabase();
-
-                repositoryManager.ReloadData();
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                fileStore.DeleteFile(DatabaseConstants.DB_NAME);
             }
+
+            databaseManager.CreateDatabase();
+            databaseManager.MigrateDatabase();
+
+            repositoryManager.ReloadData();
+            SettingsHelper.LastDatabaseUpdate = DateTime.Now;
         }
 
         private Tuple<string, string> GetBackupName(List<string> filenames)
@@ -163,17 +125,6 @@ namespace MoneyFox.Shared.Manager
             }
             oldBackupRestored = true;
             return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD);
-        }
-
-        private async Task<bool> CheckIfUserIsLoggedIn()
-        {
-            if (backupService.IsLoggedIn)
-            {
-                return true;
-            }
-
-            await backupService.Login();
-            return backupService.IsLoggedIn;
         }
     }
 }
