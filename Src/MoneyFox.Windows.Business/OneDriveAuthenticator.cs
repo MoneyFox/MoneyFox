@@ -10,15 +10,10 @@ namespace MoneyFox.Windows.Business
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private IOneDriveClient oneDriveClient;
-
         public async Task<IOneDriveClient>LoginAsync()
         {
             try
             {
-                if (oneDriveClient != null) return oneDriveClient;
-
-
                 var msaAuthenticationProvider = new MsaAuthenticationProvider(
                     ServiceConstants.MSA_CLIENT_ID,
                     ServiceConstants.RETURN_URL,
@@ -26,9 +21,7 @@ namespace MoneyFox.Windows.Business
                     new CredentialVault(ServiceConstants.MSA_CLIENT_ID));
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
-                oneDriveClient = new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
-
-                return oneDriveClient;
+                return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
             catch (Exception ex)
             {
