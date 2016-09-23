@@ -9,8 +9,6 @@ namespace MoneyFox.Droid.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private IOneDriveClient oneDriveClient;
-
         public async Task<IOneDriveClient> LoginAsync()
         {
             try

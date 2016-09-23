@@ -50,6 +50,8 @@
         /// </summary>
         public static int BackupRepeatDelay = 2000;
 
+        public const string ACCESS_TOKEN = "access_token";
+
         /// <summary>
         ///     Used to save an retrieve a OAUTH session for OneDrive in the key store.
         /// </summary>

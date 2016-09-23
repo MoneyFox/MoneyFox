@@ -9,6 +9,7 @@ using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.Graph;
 
@@ -61,20 +62,13 @@ namespace MoneyFox.Droid.OneDriveAuth {
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_SECRET,
                 string.Join(",", ServiceConstants.Scopes),
                 new Uri(GetAuthorizeUrl()),
-                new Uri(ServiceConstants.RETURN_URL),
-                new Uri(ServiceConstants.TOKEN_URL));
+                new Uri(ServiceConstants.RETURN_URL));
 
-            auth.Completed += (sender, eventArgs) => 
+            auth.Completed += (sender, eventArgs) =>
             {
-                if (eventArgs.IsAuthenticated) 
-                {
-                    AccountStore.Create(Application.Context).Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
-                    tcs.SetResult(eventArgs.Account.Properties);
-                }
-                tcs.SetResult(null);
+                tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null); 
             };
 
             var intent = auth.GetUI(Application.Context);
@@ -100,9 +94,22 @@ namespace MoneyFox.Droid.OneDriveAuth {
             return requestUriStringBuilder.ToString();
         }
 
+
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
-            await ShowWebView();
+            var protectedData = new ProtectedData();
+            var token = protectedData.Unprotect(ServiceConstants.ACCESS_TOKEN);
+            if (string.IsNullOrEmpty(token))
+            {
+                var result = await ShowWebView();
+                if (result != null)
+                {
+                    token = result[ServiceConstants.ACCESS_TOKEN];
+                    new ProtectedData().Protect(ServiceConstants.ACCESS_TOKEN, token);
+                }
+            }
+
+            request.Headers.Authorization = new AuthenticationHeaderValue("bearer", token);
         }
     }
 }
