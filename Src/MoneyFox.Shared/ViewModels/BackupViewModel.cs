@@ -59,7 +59,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicator that the app is checking if backups available.
         /// </summary>
-        public bool IsCheckingBackupAvailability { get; private set; }
+        public bool IsLoadingBackupAvailability { get; private set; }
 
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
@@ -73,12 +73,12 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            if (!connectivity.IsConnected || !SettingsHelper.IsLoggedInToBackupService) return;
+            if (!connectivity.IsConnected || !IsLoggedIn) return;
 
-            IsCheckingBackupAvailability = true;
+            IsLoadingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
             BackupLastModified = await backupManager.GetBackupDate();
-            IsCheckingBackupAvailability = false;
+            IsLoadingBackupAvailability = false;
         }
 
         private void Login()
@@ -86,6 +86,7 @@ namespace MoneyFox.Shared.ViewModels
             backupManager.Login();
             SettingsHelper.IsLoggedInToBackupService = true;
             RaisePropertyChanged(nameof(IsLoggedIn));
+            Loaded();
         }
 
         private async void CreateBackup()
