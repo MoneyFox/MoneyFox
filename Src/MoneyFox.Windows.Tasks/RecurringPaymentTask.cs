@@ -10,8 +10,8 @@ namespace MoneyFox.Windows.Tasks
 {
     public sealed class RecurringPaymentTask : IBackgroundTask
     {
-        public void Run(IBackgroundTaskInstance taskInstance) {
-
+        public void Run(IBackgroundTaskInstance taskInstance)
+        {
             var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore());
 

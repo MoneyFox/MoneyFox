@@ -27,7 +27,6 @@ namespace MoneyFox.Shared
             }
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
-            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
         }
     }
 }
