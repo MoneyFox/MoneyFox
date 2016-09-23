@@ -1,23 +1,38 @@
-﻿using MoneyFox.Shared.Manager;
-using Windows.ApplicationModel.Background;
+using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Services;
-using MoneyFox.Windows.Business;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using MvvmCross.Plugins.File.Droid;
+using MvvmCross.Plugins.Sqlite.Droid;
 
-namespace MoneyFox.Windows.Tasks
+namespace MoneyFox.Droid.Services
 {
-    public sealed class SyncBackupTask : IBackgroundTask
+    [Service]
+    public class SyncBackupService : Service
     {
-        public async void Run(IBackgroundTaskInstance taskInstance)
+        public override IBinder OnBind(Intent intent)
         {
-            var filestore = new MvxWindowsCommonFileStore();
+            return new Binder();
+        }
 
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),filestore);
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
+        {
+            Task.Run(() => SyncBackups());
+            return base.OnStartCommand(intent, flags, startId);
+        }
+
+        private async void SyncBackups()
+        {
+            var filestore = new MvxAndroidFileStore();
+            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(),
+                filestore);
 
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
