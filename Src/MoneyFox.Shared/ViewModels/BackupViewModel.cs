@@ -60,7 +60,13 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            if (!SettingsHelper.IsLoggedInToBackupService || !connectivity.IsConnected) return;
+            if (!connectivity.IsConnected) return;
+
+            if (!SettingsHelper.IsLoggedInToBackupService)
+            {
+                BackupAvailable = true;
+                return;
+            }
 
             IsCheckingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
