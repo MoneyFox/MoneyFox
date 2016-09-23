@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
@@ -14,51 +13,23 @@ namespace MoneyFox.Droid.OneDriveAuth
 
         public async Task<IOneDriveClient> LoginAsync()
         {
-            if (oneDriveClient == null)
-            {
-                oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
-                    ServiceConstants.MSA_CLIENT_ID,
-                    ServiceConstants.RETURN_URL,
-                    ServiceConstants.Scopes,
-                    ServiceConstants.MSA_CLIENT_SECRET,
-                    null, null,
-                    new DroidServiceInfoProvider());
-                try 
-                {
-                    await oneDriveClient.AuthenticateAsync();
-                }
-                catch (Exception ex)
-                {
-                    Debug.Write(ex);
-                }
-            }
-            
             try
             {
-                if (!oneDriveClient.IsAuthenticated)
-                {
-                    await oneDriveClient.AuthenticateAsync();
-                }
-
-                return oneDriveClient;
+                return new OneDriveClient(ServiceConstants.BASE_URL, new DroidAuthenticationProvider());
             }
-            catch (OneDriveException exception)
+            catch (Exception ex)
             {
                 // Swallow authentication cancelled exceptions
-                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                {
-                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                    {
-                        throw new BackupException("Authentication failed");
-                    }
-                    throw;
-                }
-            }
-            return oneDriveClient;
-        }
+                //if (!ex.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
+                //{
+                //    if (ex.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
+                //    {
+                //        throw new BackupException("Authentication Failed");
+                //    }
+                //}
 
-        public async Task LogoutAsync() {
-            await oneDriveClient.SignOutAsync();
+                throw new BackupException("Authentication Failed");
+            }
         }
     }
 }
