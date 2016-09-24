@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -18,21 +16,16 @@ namespace MoneyFox.Shared.Manager
         private readonly IBackupService backupService;
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
-        private readonly IMvxFileStore fileStore;
         private readonly IRepositoryManager repositoryManager;
 
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
-        private bool oldBackupRestored;
-
         public BackupManager(IRepositoryManager repositoryManager,
             IBackupService backupService,
-            IMvxFileStore fileStore,
             IDatabaseManager databaseManager)
         {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;
-            this.fileStore = fileStore;
             this.databaseManager = databaseManager;
         }
 
@@ -41,6 +34,7 @@ namespace MoneyFox.Shared.Manager
             await backupService.Login();
         }
 
+        // TODO: Check if this is needed anywhere
         /// <summary>
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
         ///     A sync can be attempted up to a number of times configured in ServiceConstants
@@ -107,29 +101,12 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public async Task RestoreBackup()
         {
-            var backupNames = GetBackupName(await backupService.GetFileNames());
-            await backupService.Restore(backupNames.Item1, backupNames.Item2);
-
-            if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
-            {
-                fileStore.DeleteFile(DatabaseConstants.DB_NAME);
-            }
+            await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME);
 
             databaseManager.CreateDatabase();
-            databaseManager.MigrateDatabase();
 
             repositoryManager.ReloadData();
             SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-        }
-
-        private Tuple<string, string> GetBackupName(List<string> filenames)
-        {
-            if (filenames.Contains(DatabaseConstants.BACKUP_NAME))
-            {
-                return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME);
-            }
-            oldBackupRestored = true;
-            return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD);
         }
     }
 }
