@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -31,14 +30,9 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     Logs the user in.
+        ///     Makes the first login and sets the setting for the future navigations to this page.
         /// </summary>
         public MvxCommand LoginCommand => new MvxCommand(Login);
-
-        /// <summary>
-        ///     Logout the user.
-        /// </summary>
-        public MvxCommand LogoutCommand => new MvxCommand(Logout);
 
         /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
@@ -65,69 +59,34 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicator that the app is checking if backups available.
         /// </summary>
-        public bool IsCheckingBackupAvailability { get; private set; }
+        public bool IsLoadingBackupAvailability { get; private set; }
 
         /// <summary>
-        ///     Indicates if the Login or Logout button should be presented.
+        ///     Indicator that the user logged in to the backup service.
         /// </summary>
         public bool IsLoggedIn => SettingsHelper.IsLoggedInToBackupService;
 
+        /// <summary>
+        ///     Indicates if a backup is available for restore.
+        /// </summary>
         public bool BackupAvailable { get; private set; }
-
-        public async void Login()
-        {
-            if (!connectivity.IsConnected)
-            {
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
-            }
-
-            dialogService.ShowLoadingDialog();
-            try
-            {
-                await backupManager.Login();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsLoggedIn));
-
-                BackupAvailable = await backupManager.IsBackupExisting();
-                BackupLastModified = await backupManager.GetBackupDate();
-                SettingsHelper.IsLoggedInToBackupService = true;
-            }
-            catch (BackupException)
-            {
-                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.AuthenticationFailedMessage);
-            }
-            finally
-            {
-                dialogService.HideLoadingDialog();
-            }
-        }
-
-        public async void Logout()
-        {
-            if (connectivity.IsConnected)
-            {
-                dialogService.ShowLoadingDialog();
-
-                await backupManager.Logout();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsLoggedIn));
-
-                BackupAvailable = false;
-                SettingsHelper.IsLoggedInToBackupService = false;
-                BackupLastModified = new DateTime();
-
-                dialogService.HideLoadingDialog();
-            }
-        }
 
         private async void Loaded()
         {
-            if (!IsLoggedIn || !connectivity.IsConnected) return;
+            if (!connectivity.IsConnected || !IsLoggedIn) return;
 
-            IsCheckingBackupAvailability = true;
+            IsLoadingBackupAvailability = true;
             BackupAvailable = await backupManager.IsBackupExisting();
             BackupLastModified = await backupManager.GetBackupDate();
-            IsCheckingBackupAvailability = false;
+            IsLoadingBackupAvailability = false;
+        }
+
+        private void Login()
+        {
+            backupManager.Login();
+            SettingsHelper.IsLoggedInToBackupService = true;
+            RaisePropertyChanged(nameof(IsLoggedIn));
+            Loaded();
         }
 
         private async void CreateBackup()

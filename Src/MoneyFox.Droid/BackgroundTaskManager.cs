@@ -16,6 +16,7 @@ namespace MoneyFox.Droid
         {
             StartClearingService();
             StartRecurringPaymentService();
+            StartSyncBackupService();
         }
 
         private void StartClearingService()
@@ -39,5 +40,14 @@ namespace MoneyFox.Droid
             alarmmanager.SetRepeating(AlarmType.RtcWakeup, DateTime.Today.AddHours(2).Millisecond, AlarmManager.IntervalDay, pendingIntent);
         }
 
+        private void StartSyncBackupService() {
+            var intent = new Intent(CurrentActivity, typeof(SyncBackupService));
+            var pendingIntent = PendingIntent.GetService(CurrentActivity, 0, intent, 0);
+
+            var alarmmanager = (AlarmManager)CurrentActivity.GetSystemService(Context.AlarmService);
+
+            // The task will be executed all 6 hours.
+            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10800000, 10800000, pendingIntent);
+        }
     }
 }
