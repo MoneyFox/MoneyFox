@@ -18,10 +18,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             ClearAll();
             Setup();
-
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.SetupAllProperties();
-            Mvx.RegisterType(() => settingsMockSetup.Object);
         }
 
         [TestMethod]
@@ -31,7 +27,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(false);
 
-            SettingsHelper.IsLoggedInToBackupService = true;
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
@@ -48,6 +46,62 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
             checkBackupCalled.ShouldBeFalse();
             getBackupDateCalled.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        public void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
+            // Setup
+            var connectivitySetup = new Mock<IConnectivity>();
+            connectivitySetup.Setup(x => x.IsConnected).Returns(true);
+
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(false);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
+
+            var checkBackupCalled = false;
+            var getBackupDateCalled = false;
+
+            var backupManagerSetup = new Mock<IBackupManager>();
+            backupManagerSetup.Setup(x => x.IsBackupExisting()).Callback(() => checkBackupCalled = true);
+            backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
+
+            //execute
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
+            vm.LoadedCommand.Execute();
+
+            //assert
+            vm.IsLoadingBackupAvailability.ShouldBeFalse();
+            checkBackupCalled.ShouldBeFalse();
+            getBackupDateCalled.ShouldBeFalse();
+        }
+
+        [TestMethod]
+        [Ignore]
+        public void Loaded_ConnectivityLoggedIn_MethodsCalled() {
+            // Setup
+            var connectivitySetup = new Mock<IConnectivity>();
+            connectivitySetup.Setup(x => x.IsConnected).Returns(true);
+
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
+
+            var checkBackupCalled = false;
+            var getBackupDateCalled = false;
+
+            var backupManagerSetup = new Mock<IBackupManager>();
+            backupManagerSetup.Setup(x => x.IsBackupExisting()).Callback(() => checkBackupCalled = true);
+            backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
+
+            //execute
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
+            vm.LoadedCommand.Execute();
+
+            //assert
+            vm.IsLoadingBackupAvailability.ShouldBeFalse();
+            checkBackupCalled.ShouldBeTrue();
+            getBackupDateCalled.ShouldBeTrue();
         }
     }
 }

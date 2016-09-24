@@ -14,24 +14,21 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void GetConnection_CorrectType()
         {
-            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore()).GetConnection(),
+            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory()).GetConnection(),
                 typeof(SQLiteConnection));
         }
 
         [TestMethod]
         public void GetAsyncConnection_CorrectType()
         {
-            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore()).GetAsyncConnection(),
+            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory()).GetAsyncConnection(),
                 typeof(SQLiteAsyncConnection));
         }
 
         [TestMethod]
         public void GetConnection_DbFileCreated()
         {
-            new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
-
+            new DatabaseManager(new WindowsSqliteConnectionFactory());
             Assert.IsTrue(new MvxWindowsCommonFileStore().Exists(DatabaseConstants.DB_NAME));
         }
     }

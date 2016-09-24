@@ -11,7 +11,6 @@ namespace MoneyFox.Shared.Helpers
     ///     NOTE: be sure that you have registered a dependency for <see cref="ISettings" /> and
     ///     <see cref="IAutobackupManager" />.
     /// </summary>
-    [ImplementPropertyChanged]
     public static class SettingsHelper
     {
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
