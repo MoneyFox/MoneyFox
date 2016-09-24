@@ -18,10 +18,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             ClearAll();
             Setup();
-
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.SetupAllProperties();
-            Mvx.RegisterType(() => settingsMockSetup.Object);
         }
 
         [TestMethod]
@@ -30,6 +26,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(false);
+
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
@@ -54,7 +54,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
-            SettingsHelper.IsLoggedInToBackupService = false;
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(false);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
@@ -74,12 +76,16 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Loaded_ConnectivityLoggedIn_NothingCalled() {
+        [Ignore]
+        public void Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
-            SettingsHelper.IsLoggedInToBackupService = true;
+            var settingsMockSetup = new Mock<ISettings>();
+            settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
+            Mvx.RegisterType(() => settingsMockSetup.Object);
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
