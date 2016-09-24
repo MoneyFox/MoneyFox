@@ -6,17 +6,10 @@ namespace MoneyFox.Shared.Interfaces
 {
     public interface IBackupService
     {
-        bool IsLoggedIn { get; }
-
         /// <summary>
-        ///     Shows a login prompt to the user.
+        ///     Login user.
         /// </summary>
         Task Login();
-
-        /// <summary>
-        ///     Logout user.
-        /// </summary>
-        Task Logout();
 
         /// <summary>
         ///     Uploads a copy of the current database.
