@@ -15,9 +15,7 @@ namespace MoneyFox.Windows.Tasks
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var filestore = new MvxWindowsCommonFileStore();
-
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),filestore);
+            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory());
 
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
@@ -30,7 +28,7 @@ namespace MoneyFox.Windows.Tasks
             var autoBackupManager = new AutoBackupManager(
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(filestore, new OneDriveAuthenticator()), filestore, dbManager),
+                    new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()), dbManager),
                 new GlobalBusyIndicatorState());
 
             await autoBackupManager.RestoreBackupIfNewer();
