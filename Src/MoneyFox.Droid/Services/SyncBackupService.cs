@@ -30,9 +30,7 @@ namespace MoneyFox.Droid.Services
 
         private async void SyncBackups()
         {
-            var filestore = new MvxAndroidFileStore();
-            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(),
-                filestore);
+            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory());
 
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
@@ -45,7 +43,7 @@ namespace MoneyFox.Droid.Services
             var autoBackupManager = new AutoBackupManager(
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(filestore, new OneDriveAuthenticator()), filestore, dbManager),
+                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), dbManager),
                 new GlobalBusyIndicatorState());
 
             await autoBackupManager.RestoreBackupIfNewer();
