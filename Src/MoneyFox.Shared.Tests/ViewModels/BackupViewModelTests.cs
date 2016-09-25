@@ -1,7 +1,8 @@
-﻿using Cheesebaron.MvxPlugins.Connectivity;
+﻿using System;
+using System.Threading.Tasks;
+using Cheesebaron.MvxPlugins.Connectivity;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.ViewModels;
 using Moq;
@@ -76,7 +77,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        [Ignore]
         public void Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
@@ -87,12 +87,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
             settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
             Mvx.RegisterType(() => settingsMockSetup.Object);
 
-            var checkBackupCalled = false;
-            var getBackupDateCalled = false;
+            var returnDate = DateTime.Today;
 
             var backupManagerSetup = new Mock<IBackupManager>();
-            backupManagerSetup.Setup(x => x.IsBackupExisting()).Callback(() => checkBackupCalled = true);
-            backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
+            backupManagerSetup.Setup(x => x.IsBackupExisting()).Returns(Task.FromResult(true));
+            backupManagerSetup.Setup(x => x.GetBackupDate()).Returns(Task.FromResult(returnDate));
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
@@ -100,8 +99,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
-            checkBackupCalled.ShouldBeTrue();
-            getBackupDateCalled.ShouldBeTrue();
+            vm.BackupAvailable.ShouldBeTrue();
+            vm.BackupLastModified.ShouldBe(returnDate);
         }
     }
 }
