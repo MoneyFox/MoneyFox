@@ -23,17 +23,8 @@ namespace MoneyFox.Windows.Business
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Swallow authentication cancelled exceptions
-                //if (!ex.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                //{
-                //    if (ex.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                //    {
-                //        throw new BackupException("Authentication Failed");
-                //    }
-                //}
-
                 throw new BackupException("Authentication Failed");
             }
         }

@@ -15,7 +15,7 @@ namespace MoneyFox.Shared
         ///     Execute code on start up.
         /// </summary>
         /// <param name="hint">parameter for the launch of the app.</param>
-        public async void Start(object hint = null)
+        public void Start(object hint = null)
         {
             if (Mvx.Resolve<Session>().ValidateSession())
             {

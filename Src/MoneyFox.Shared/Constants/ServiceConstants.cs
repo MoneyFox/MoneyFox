@@ -50,7 +50,35 @@
         /// </summary>
         public static int BackupRepeatDelay = 2000;
 
+        /// <summary>
+        ///     String constant for the access token.
+        /// </summary>
         public const string ACCESS_TOKEN = "access_token";
+
+        /// <summary>
+        ///     String constant for the redirect uri.
+        /// </summary>
+        public const string REDIRECT_URI = "redirect_uri";
+
+        /// <summary>
+        ///     String constant for the client id.
+        /// </summary>
+        public const string CLIENT_ID = "client_id";
+
+        /// <summary>
+        ///     String constant for the scope.
+        /// </summary>
+        public const string SCOPE = "scope";
+
+        /// <summary>
+        ///     String constant for the response type.
+        /// </summary>
+        public const string RESPONSE_TYPE = "response_type";
+
+        /// <summary>
+        ///     String constant for the code.
+        /// </summary>
+        public const string CODE = "code";
 
         /// <summary>
         ///     Used to save an retrieve a OAUTH session for OneDrive in the key store.

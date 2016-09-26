@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MvvmCross.iOS.Views;
 using Xamarin.Auth;
@@ -24,7 +23,6 @@ namespace MoneyFox.Ios.OneDriveAuth {
                 DismissViewController(true, null);
 
                 if (eventArgs.IsAuthenticated) {
-                    OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
                     AccountStore.Create().Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
                     tcs.SetResult(eventArgs.Account.Properties);
                 }
@@ -38,14 +36,13 @@ namespace MoneyFox.Ios.OneDriveAuth {
         private string GetAuthorizeUrl() {
             var requestUriStringBuilder = new StringBuilder();
             requestUriStringBuilder.Append(ServiceConstants.AUTHENTICATION_URL);
-            requestUriStringBuilder.AppendFormat("?{0}={1}", Microsoft.OneDrive.Sdk.Constants.Authentication.RedirectUriKeyName,
+            requestUriStringBuilder.AppendFormat("?{0}={1}", ServiceConstants.REDIRECT_URI,
                 ServiceConstants.RETURN_URL);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", Microsoft.OneDrive.Sdk.Constants.Authentication.ClientIdKeyName,
+            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.CLIENT_ID,
                 ServiceConstants.MSA_CLIENT_ID);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", Microsoft.OneDrive.Sdk.Constants.Authentication.ScopeKeyName,
+            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.SCOPE,
                 string.Join("%20", ServiceConstants.Scopes));
-            requestUriStringBuilder.AppendFormat("&{0}={1}", Microsoft.OneDrive.Sdk.Constants.Authentication.ResponseTypeKeyName,
-                Microsoft.OneDrive.Sdk.Constants.Authentication.CodeKeyName);
+            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.RESPONSE_TYPE, ServiceConstants.CODE);
 
             return requestUriStringBuilder.ToString();
         }

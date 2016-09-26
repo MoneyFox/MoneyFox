@@ -15,17 +15,8 @@ namespace MoneyFox.Droid.OneDriveAuth
             {
                 return new OneDriveClient(ServiceConstants.BASE_URL, new DroidAuthenticationProvider());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Swallow authentication cancelled exceptions
-                //if (!ex.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                //{
-                //    if (ex.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                //    {
-                //        throw new BackupException("Authentication Failed");
-                //    }
-                //}
-
                 throw new BackupException("Authentication Failed");
             }
         }
