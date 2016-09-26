@@ -100,11 +100,8 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
-    <Compile Include="OneDriveAuth\IosServiceInfoProvider.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\NotificationService.cs" />
-    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Views\AccountList\AccountListView.cs" />
     <Compile Include="Views\AccountList\AccountListView.designer.cs">
