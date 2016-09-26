@@ -6,28 +6,28 @@
     <item
       android:id="@+id/nav_accounts"
       android:icon="@drawable/ic_account_balance"
-      local:MvxLang="Text AccountsLabel" />
+      android:title="Accounts" />
     <item
       android:id="@+id/nav_statistics"
       android:icon="@drawable/ic_show_chart"
-      local:MvxLang="Text StatisticsLabel" />
+      android:title="Statistics" />
   </group>
   <group android:id="@+id/nav_footer">
     <item
       android:id="@+id/nav_categories"
       android:icon="@drawable/ic_label_outline"
-      local:MvxLang="Text CategoriesLabel" />
+      android:title="Categories" />
     <item
       android:id="@+id/nav_backup"
       android:icon="@drawable/ic_backup"
-      local:MvxLang="Text BackupLabel" />
+      android:title="Backup" />
     <item
       android:id="@+id/nav_settings"
       android:icon="@drawable/ic_settings"
-      local:MvxLang="Text BackupLabel" />
+      android:title="Settings"/>
     <item
       android:id="@+id/nav_about"
       android:icon="@drawable/ic_info"
-      local:MvxLang="Text AboutLabel" />
+      android:title="About"/>
   </group>
 </menu>

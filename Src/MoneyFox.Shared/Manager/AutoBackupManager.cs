@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
-using MoneyFox.Shared.Exceptions;
+﻿using System;
+using System.Threading.Tasks;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
@@ -45,11 +44,7 @@ namespace MoneyFox.Shared.Manager
                     await backupManager.EnqueueBackupTask(0);
                 }
             }
-            catch (OneDriveException ex)
-            {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
-            }
-            catch (BackupException ex)
+            catch (Exception ex)
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
@@ -75,11 +70,7 @@ namespace MoneyFox.Shared.Manager
                     await backupManager.RestoreBackup();
                 }
             }
-            catch (OneDriveException ex)
-            {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
-            }
-            catch (BackupException ex)
+            catch (Exception ex)
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }

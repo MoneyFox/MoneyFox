@@ -7,11 +7,9 @@ using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using MoneyFox.Windows.Business;
-using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyFox.Windows.Tasks
@@ -25,8 +23,7 @@ namespace MoneyFox.Windows.Tasks
 
         public void Run(IBackgroundTaskInstance taskInstance) {
 
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore());
+            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory());
 
             paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
 

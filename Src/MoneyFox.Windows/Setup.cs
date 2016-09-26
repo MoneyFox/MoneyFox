@@ -67,6 +67,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
             Mvx.RegisterType<ITransferShortcut, TransferTile>();
             Mvx.RegisterType<INotificationService, NotificationService>();
+            Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
         }
 
         protected override IMvxApplication CreateApp() => new Shared.App();

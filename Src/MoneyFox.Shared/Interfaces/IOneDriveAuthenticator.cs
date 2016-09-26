@@ -6,7 +6,5 @@ namespace MoneyFox.Shared.Interfaces
     public interface IOneDriveAuthenticator
     {
         Task<IOneDriveClient> LoginAsync();
-    
-        Task LogoutAsync();
     }
 }

@@ -10,9 +10,11 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
+using PropertyChanged;
 
 namespace MoneyFox.Shared.Services
 {
+    [ImplementPropertyChanged]
     public class OneDriveService : IBackupService
     {
         private readonly IMvxFileStore fileStore;
@@ -28,24 +30,9 @@ namespace MoneyFox.Shared.Services
 
         private Item BackupFolder { get; set; }
 
-        public bool IsLoggedIn => OneDriveClient?.IsAuthenticated ?? false;
-
-        /// <summary>
-        ///     Shows a login prompt to the user.
-        /// </summary>
         public async Task Login()
         {
-            if (!IsLoggedIn)
-            {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
-            }
-        }
-
-        /// <summary>
-        ///     Logout User.
-        /// </summary>
-        public async Task Logout() {
-            await oneDriveAuthenticator.LogoutAsync();
+            OneDriveClient = await oneDriveAuthenticator.LoginAsync();
         }
 
         /// <summary>
@@ -54,10 +41,12 @@ namespace MoneyFox.Shared.Services
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
         public async Task<bool> Upload()
         {
-            if (OneDriveClient.IsAuthenticated)
+            if (OneDriveClient == null)
             {
-                await GetBackupFolder();
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
+
+            await LoadBackupFolder();
 
             using (var dbstream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
             {
@@ -82,10 +71,12 @@ namespace MoneyFox.Shared.Services
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
         public async Task Restore(string backupname, string dbName)
         {
-            if (OneDriveClient.IsAuthenticated)
+            if (OneDriveClient == null)
             {
-                await GetBackupFolder();
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
+
+            await LoadBackupFolder();
 
             var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
             var existingBackup = children.FirstOrDefault(x => x.Name == backupname);
@@ -108,10 +99,12 @@ namespace MoneyFox.Shared.Services
         /// <returns>Date of the last backup.</returns>
         public async Task<DateTime> GetBackupDate()
         {
-            if (OneDriveClient.IsAuthenticated)
+            if (OneDriveClient == null)
             {
-                await GetBackupFolder();
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
+
+            await LoadBackupFolder();
 
             try
             {
@@ -138,14 +131,21 @@ namespace MoneyFox.Shared.Services
         /// <returns>A list with all filenames.</returns>
         public async Task<List<string>> GetFileNames()
         {
-            await GetBackupFolder();
+            if (OneDriveClient == null) 
+            {
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
+
+            await LoadBackupFolder();
 
             var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
             return children.Select(x => x.Name).ToList();
         }
 
-        private async Task GetBackupFolder()
+        private async Task LoadBackupFolder()
         {
+            if (BackupFolder != null) return;
+
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder =
                 children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);

@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Model;
-using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyFox.Windows.Tests.DataAccess
@@ -17,8 +16,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestInitialize]
         public void Init()
         {
-            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                new MvxWindowsCommonFileStore());
+            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory());
         }
 
         [TestMethod]
@@ -43,12 +41,15 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var payment = new Payment();
 
             var dataAccess = new PaymentDataAccess(connectionCreator);
+            dataAccess.SaveItem(payment);
             Assert.AreEqual(0, payment.Amount);
 
             var id = payment.Id;
 
             var amount = 789;
             payment.Amount = amount;
+
+            dataAccess.SaveItem(payment);
 
             Assert.AreEqual(id, payment.Id);
             Assert.AreEqual(amount, payment.Amount);

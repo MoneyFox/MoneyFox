@@ -25,14 +25,8 @@ namespace MoneyFox.Shared
             {
                 ShowViewModel<LoginViewModel>();
             }
-            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
-            HandleDataOnStartup();
-        }
 
-        private void HandleDataOnStartup()
-        {
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
-            Mvx.Resolve<IPaymentManager>().ClearPayments();
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
         }
     }
 }

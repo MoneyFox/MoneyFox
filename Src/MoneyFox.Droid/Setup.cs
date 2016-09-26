@@ -5,7 +5,6 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -15,11 +14,11 @@ using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
-using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
-using MvvmCross.Binding.Parse.Binding.Lang;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
+using MvvmCross.Plugins.Email;
 
 namespace MoneyFox.Droid
 {
@@ -54,6 +53,7 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
+            Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
         }
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
@@ -71,7 +71,6 @@ namespace MoneyFox.Droid
         protected override IMvxApplication CreateApp()
         {
             Strings.Culture = new Localize().GetCurrentCultureInfo();
-
             return new App();
         }
 
