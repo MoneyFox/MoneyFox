@@ -23,7 +23,7 @@ namespace MoneyFox.Ios {
             base.InitializeFirstChance();
 
             Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            //Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<INotificationService, NotificationService>();
 
