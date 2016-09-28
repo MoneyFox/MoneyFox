@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using Microsoft.OneDrive.Sdk.Authentication;
@@ -23,9 +24,10 @@ namespace MoneyFox.Windows.Business
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new BackupException("Authentication Failed");
+                Debug.WriteLine(ex);
+                throw new BackupException("Authentication Failed", ex);
             }
         }
     }
