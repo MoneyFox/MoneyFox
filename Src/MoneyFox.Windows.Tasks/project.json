@@ -5,8 +5,7 @@
     "MvvmCross.Plugin.File": "4.2.3",
     "MvvmCross.Plugin.SQLitePCL": "4.2.3",
     "NotificationsExtensions.Win10": "14332.0.2",
-    "OxyPlot.Windows": "2015.1.1033-alpha",
-    "PCLCrypto": "2.0.147"
+    "OxyPlot.Windows": "2015.1.1033-alpha"
   },
   "frameworks": {
     "uap10.0": {}
