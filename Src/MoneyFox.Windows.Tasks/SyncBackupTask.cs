@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Shared.Manager;
 using Windows.ApplicationModel.Background;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
@@ -29,7 +30,8 @@ namespace MoneyFox.Windows.Tasks
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
                     new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()), dbManager),
-                new GlobalBusyIndicatorState());
+                new GlobalBusyIndicatorState(),
+                new SettingsManager(new WindowsCommonSettings()));
 
             await autoBackupManager.RestoreBackupIfNewer();
             await autoBackupManager.UploadBackupIfNewer();

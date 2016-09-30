@@ -104,9 +104,11 @@
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Helpers\DefaultHelper.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
+    <Compile Include="Interfaces\ISettingsManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
+    <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Model\Account.cs" />

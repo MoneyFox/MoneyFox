@@ -2,7 +2,6 @@ using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.Helpers
 {

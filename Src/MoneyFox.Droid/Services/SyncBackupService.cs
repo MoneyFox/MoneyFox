@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
@@ -44,7 +45,8 @@ namespace MoneyFox.Droid.Services
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
                     new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), dbManager),
-                new GlobalBusyIndicatorState());
+                new GlobalBusyIndicatorState(),
+                new SettingsManager(new Settings()));
 
             await autoBackupManager.RestoreBackupIfNewer();
             await autoBackupManager.UploadBackupIfNewer();
