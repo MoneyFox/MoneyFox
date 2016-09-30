@@ -76,7 +76,7 @@
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               Background="Transparent"
-                              IsActive="{Binding IsCheckingBackupAvailability}" />
+                              IsActive="{Binding IsLoadingBackupAvailability}" />
             </Grid>
 
             <StackPanel Margin="0,15,0,7"
