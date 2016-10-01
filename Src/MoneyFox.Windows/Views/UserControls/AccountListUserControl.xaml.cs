@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 
 namespace MoneyFox.Windows.Views.UserControls
 {

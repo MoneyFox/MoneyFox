@@ -58,6 +58,12 @@ namespace MoneyFox.Shared
                 .RegisterAsDynamic();
 
             CreatableTypes()
+                .EndingWith("Manager")
+                .Where(x => x.Name.StartsWith("EndOfMonth"))
+                .AsTypes()
+                .RegisterAsDynamic();
+
+            CreatableTypes()
                 .EndingWith("ViewModel")
                 .Where(x => !x.Name.StartsWith("DesignTime"))
                 .AsInterfaces()
