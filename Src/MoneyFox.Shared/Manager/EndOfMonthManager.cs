@@ -35,10 +35,6 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-
-        /*
-        DETERMINES STRING VALUE PER ACCOUNT 
-        */
         public void DeterminEndThroughAccounts(Account argAccount)
         {
             double tempBalance = argAccount.CurrentBalance;
