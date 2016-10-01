@@ -12,10 +12,12 @@ namespace MoneyFox.Windows.Views.UserControls
 {
     public sealed partial class AccountListUserControl
     {
+       
         public AccountListUserControl()
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<AccountListViewModel>();
+         
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
@@ -36,7 +38,7 @@ namespace MoneyFox.Windows.Views.UserControls
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var account = element.DataContext as Account;
             if (account == null)
             {
@@ -49,7 +51,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
             //this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var account = element.DataContext as Account;
             if (account == null)
             {
