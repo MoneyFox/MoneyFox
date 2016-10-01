@@ -6,6 +6,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MoneyFox.Shared.Manager;
+using MvvmCross.Localization;
+using MvvmCross.Plugins.ResxLocalization;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared
 {
@@ -28,7 +31,8 @@ namespace MoneyFox.Shared
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());
-            
+            Mvx.RegisterSingleton<IMvxTextProvider>(new MvxResxTextProvider(Strings.ResourceManager));
+
             CreatableTypes()
                 .EndingWith("DataAccess")
                 .AsInterfaces()
