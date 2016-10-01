@@ -25,8 +25,8 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentDataAccess = new Mock<IDataAccess<Payment>>();
             paymentDataAccess.Setup(x => x.LoadList(null)).Returns(new List<Payment>
             {
-                new Payment {Id = 10, ChargedAccountId=1, Amount=-100,Date= DateTime.Now},
-                new Payment {Id = 15, ChargedAccountId=1, Amount=-100, Date= DateTime.Now}
+                new Payment {Id = 10, ChargedAccountId=1, Amount=100,Date= DateTime.Now},
+                new Payment {Id = 15, ChargedAccountId=1, Amount=100, Date= DateTime.Now}
             });
 
             var paymentrepository = new PaymentRepository(paymentDataAccess.Object);
@@ -43,7 +43,7 @@ namespace MoneyFox.Shared.Tests.Manager
             EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository, accountrepository);
 
             testManager.AssignToAccounts();
-            Assert.AreEqual(account1.EndMonthWarning, "ACCOUNT WILL BE NEGATIVE AT END OF MONTH");
+            Assert.AreEqual(account1.EndMonthWarning, "Negative at end of month");
         }
         [TestMethod]
         public void EndofMonthManager_AccountIsPositive()
@@ -56,8 +56,8 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentDataAccess = new Mock<IDataAccess<Payment>>();
             paymentDataAccess.Setup(x => x.LoadList(null)).Returns(new List<Payment>
             {
-                new Payment {Id = 10, ChargedAccountId=1, Amount=100,Date= DateTime.Now},
-                new Payment {Id = 15, ChargedAccountId=1, Amount=100, Date= DateTime.Now}
+                new Payment {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now},
+                new Payment {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now}
             });
 
             var paymentrepository = new PaymentRepository(paymentDataAccess.Object);
