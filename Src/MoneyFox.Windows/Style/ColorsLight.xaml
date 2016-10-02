@@ -14,4 +14,5 @@
 
     <Color x:Key="ListEvenColor">White</Color>
     <Color x:Key="ListOddColor">#FFF2F2F2</Color>
+    <Color x:Key="WarningColor">#FFFF4500</Color>
 </ResourceDictionary>
