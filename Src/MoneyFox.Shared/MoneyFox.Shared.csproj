@@ -80,6 +80,7 @@
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Interfaces\IEndOfMonthManager.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Helpers\DefaultHelper.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
+    <Compile Include="Manager\EndOfMonthManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />

@@ -53,6 +53,8 @@
                 </Grid>
                 <TextBlock Text="{x:Bind Iban}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                <TextBlock Text="{x:Bind EndMonthWarning}"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -66,9 +68,10 @@
         <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+            <controls:AlternatingRowListViewMainScreen ItemsSource="{Binding AllAccounts}"
                                              OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             WarningBackground="{StaticResource WarningBrush}"
                                              ItemTemplate="{StaticResource AccountTemplate}"
                                              HorizontalAlignment="Stretch"
                                              ShowsScrollingPlaceholders="False"
@@ -89,7 +92,7 @@
                                                   InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </controls:AlternatingRowListView>
+            </controls:AlternatingRowListViewMainScreen>
         </ScrollViewer>
 
         <TextBlock x:Uid="AccountsPlaceholder"
