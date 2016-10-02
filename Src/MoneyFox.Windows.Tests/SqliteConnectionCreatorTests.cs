@@ -3,8 +3,7 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.Constants;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using SQLite.Net;
-using SQLite.Net.Async;
+using SQLite;
 
 namespace MoneyFox.Windows.Tests
 {

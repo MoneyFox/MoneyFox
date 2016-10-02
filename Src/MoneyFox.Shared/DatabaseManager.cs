@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using MoneyFox.Shared.Constants;
+﻿using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
-using SQLite.Net;
-using SQLite.Net.Async;
 
 namespace MoneyFox.Shared
 {
@@ -57,7 +53,6 @@ namespace MoneyFox.Shared
         ///     Creates a new Database manager object
         /// </summary>
         /// <param name="connectionFactory">The connection factory who creates the connection for each plattform.</param>
-        /// <param name="fileStore">An FileStore abstraction to access the file system on each plattform.</param>
         public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory)
         {
             this.connectionFactory = connectionFactory;
@@ -69,7 +64,7 @@ namespace MoneyFox.Shared
         ///     Creates the config and establish and async connection to access the sqlite database synchronous.
         /// </summary>
         /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection()
+        public SQLite.SQLiteConnection GetConnection()
             => connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
 
         /// <summary>
@@ -93,7 +88,7 @@ namespace MoneyFox.Shared
         ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
         /// </summary>
         /// <returns>Established async connection.</returns>
-        public SQLiteAsyncConnection GetAsyncConnection()
+        public SQLite.SQLiteAsyncConnection GetAsyncConnection()
             => connectionFactory.GetAsyncConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
     }
 }
