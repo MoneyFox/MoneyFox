@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using MoneyFox.Shared.Constants;
+﻿using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using SQLite.Net;
 using SQLite.Net.Async;
