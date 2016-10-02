@@ -46,11 +46,11 @@ namespace MoneyFox.Shared.Manager
                 {
                     tempBalance += x.Amount;
                 }
-                else if (x.ChargedAccountId == argAccount.Id && x.TargetAccount == null)
+                else if (x.ChargedAccountId == argAccount.Id && x.TargetAccount == null && tempTime.Month == x.Date.Month)
                 {
                     tempBalance -= x.Amount;
                 }
-                else if (x.ChargedAccountId == argAccount.Id && x.TargetAccount != null)
+                else if (x.ChargedAccountId == argAccount.Id && x.TargetAccount != null && tempTime.Month == x.Date.Month)
                 {
                     tempBalance -= x.Amount;
                 }
