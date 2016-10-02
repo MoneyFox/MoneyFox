@@ -8,6 +8,8 @@
 
     <SolidColorBrush x:Key="ListViewBackgroundOddBrush" Color="{StaticResource ListOddColor}" />
 
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
+
     <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimary}" />
 
     <SolidColorBrush x:Key="AppForegroundSecondaryBrush" Color="{StaticResource AppForegroundColorSecondary}" />

@@ -82,6 +82,7 @@ namespace MoneyFox.Shared
             {
                 db.CreateTable<Account>();
                 db.CreateTable<Category>();
+                db.CreateTable<Payment>();
                 db.CreateCommand(RECURRING_PAYMENT_CREATE_SCRIPT).ExecuteNonQuery();
                 db.CreateCommand(PAYMENT_TABLE_CREATE_SCRIPT).ExecuteNonQuery();
             }
