@@ -14,5 +14,7 @@ namespace MoneyFox.Shared.Model
         public string Iban { get; set; }
         public double CurrentBalance { get; set; }
         public string Note { get; set; }
+
+        public string EndMonthWarning { get; set; }
     }
 }

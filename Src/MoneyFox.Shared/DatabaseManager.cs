@@ -1,7 +1,10 @@
-﻿using MoneyFox.Shared.Constants;
+using System.Collections.Generic;
+using System.Linq;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.Sqlite;
+using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Shared
 {
@@ -11,16 +14,20 @@ namespace MoneyFox.Shared
     public class DatabaseManager : IDatabaseManager
     {
         private readonly IMvxSqliteConnectionFactory connectionFactory;
+        private readonly IMvxFileStore fileStore;
 
         /// <summary>
         ///     Creates a new Database manager object
         /// </summary>
         /// <param name="connectionFactory">The connection factory who creates the connection for each plattform.</param>
-        public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory)
+        /// <param name="fileStore">An FileStore abstraction to access the file system on each plattform.</param>
+        public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory, IMvxFileStore fileStore)
         {
             this.connectionFactory = connectionFactory;
+            this.fileStore = fileStore;
 
             CreateDatabase();
+            MigrateDatabase();
         }
 
         /// <summary>
@@ -44,6 +51,55 @@ namespace MoneyFox.Shared
                 db.CreateTable<Category>();
                 db.CreateTable<Payment>();
                 db.CreateTable<RecurringPayment>();
+            }
+        }
+
+        public void MigrateDatabase()
+        {
+            if (fileStore.Exists(DatabaseConstants.DB_NAME_OLD))
+            {
+                using (
+                    var dbOld = connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME_OLD, false)))
+                {
+                    using (var db = GetConnection())
+                    {
+                        db.InsertAll(dbOld.Table<Account>());
+                        db.InsertAll(dbOld.Table<Category>());
+
+                        var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
+
+                        var accounts = db.Table<Account>().ToList();
+
+                        var paymentsToMigrate = new List<Payment>();
+                        foreach (var payment in dbOld.Table<Payment>().ToList())
+                        {
+                            if (accounts.Exists(x => x.Id == payment.ChargedAccountId))
+                            {
+                                paymentsToMigrate.Add(payment);
+                            }
+                        }
+
+                        foreach (var payment in paymentsToMigrate.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
+                        {
+                            payment.IsRecurring = false;
+                        }
+
+                        foreach (var recurringPayment in recPaymentList)
+                        {
+                            var recIdOld = recurringPayment.Id;
+                            db.Insert(recurringPayment);
+
+                            foreach (var payment in paymentsToMigrate.Where(x => x.RecurringPaymentId == recIdOld))
+                            {
+                                payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
+                            }
+                        }
+
+                        db.InsertAll(paymentsToMigrate);
+                    }
+                }
+
+                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
         }
 

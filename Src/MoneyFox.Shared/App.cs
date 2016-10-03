@@ -2,12 +2,13 @@
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
+using MoneyFox.Shared.Manager;
+using MvvmCross.Localization;
 using MvvmCross.Plugins.ResxLocalization;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared
 {
