@@ -9,18 +9,18 @@
         ///     Name of the sqlite database
         ///     DEPREDCATED: Use DB_NAME instead
         /// </summary>
-        public const string DB_NAME_OLD = "moneyfox.sqlite";
+        public const string DB_NAME_OLD = "moneyfox.db";
 
         /// <summary>
         ///     Name of the database backup
         ///     DEPREDCATED: Use BACKUP_NAME instead
         /// </summary>
-        public const string BACKUP_NAME_OLD = "backupmoneyfox.sqlite";
+        public const string BACKUP_NAME_OLD = "backupmoneyfox.db";
 
         /// <summary>
         ///     Name of the sqlite database
         /// </summary>
-        public const string DB_NAME = "moneyfox.db";
+        public const string DB_NAME = "moneyfox2.db";
 
         /// <summary>
         ///     Name of the Backup Folder
@@ -30,6 +30,6 @@
         /// <summary>
         ///     Name of the database backup
         /// </summary>
-        public const string BACKUP_NAME = "backupmoneyfox.db";
+        public const string BACKUP_NAME = "backupmoneyfox2.db";
     }
 }

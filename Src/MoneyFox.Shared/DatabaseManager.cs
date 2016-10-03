@@ -1,6 +1,9 @@
-﻿using MoneyFox.Shared.Constants;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using SQLite.Net;
 using SQLite.Net.Async;
@@ -103,10 +106,20 @@ namespace MoneyFox.Shared
                         db.InsertAll(dbOld.Table<Account>());
                         db.InsertAll(dbOld.Table<Category>());
 
-                        var paymentList = dbOld.Table<Payment>().ToList();
                         var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
 
-                        foreach (var payment in paymentList.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
+                        var accounts = db.Table<Account>().ToList();
+
+                        var paymentsToMigrate = new List<Payment>();
+                        foreach (var payment in dbOld.Table<Payment>().ToList())
+                        {
+                            if (accounts.Exists(x => x.Id == payment.ChargedAccountId))
+                            {
+                                paymentsToMigrate.Add(payment);
+                            }
+                        }
+
+                        foreach (var payment in paymentsToMigrate.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
                         {
                             payment.IsRecurring = false;
                         }
@@ -116,13 +129,13 @@ namespace MoneyFox.Shared
                             var recIdOld = recurringPayment.Id;
                             db.Insert(recurringPayment);
 
-                            foreach (var payment in paymentList.Where(x => x.RecurringPaymentId == recIdOld))
+                            foreach (var payment in paymentsToMigrate.Where(x => x.RecurringPaymentId == recIdOld))
                             {
                                 payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
                             }
                         }
 
-                        db.InsertAll(paymentList);
+                        db.InsertAll(paymentsToMigrate);
                     }
                 }
 

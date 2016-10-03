@@ -28,7 +28,7 @@ namespace MoneyFox.Droid.Services
 
         private void CheckRecurringPayments()
         {
-            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory());
+            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
 
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
 
