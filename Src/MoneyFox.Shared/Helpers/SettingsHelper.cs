@@ -90,7 +90,7 @@ namespace MoneyFox.Shared.Helpers
             set
             {
                 Settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value);
-                Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewer();
+                Mvx.Resolve<IBackupManager>().EnqueueBackupTask(0);
             }
         }
 
