@@ -43,7 +43,7 @@ namespace MoneyFox.Droid.Services
             var autoBackupManager = new AutoBackupManager(
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), dbManager),
+                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator(new DialogService())), dbManager),
                 new GlobalBusyIndicatorState());
 
             await autoBackupManager.RestoreBackupIfNewer();

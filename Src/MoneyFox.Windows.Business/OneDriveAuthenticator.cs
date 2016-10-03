@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using Microsoft.OneDrive.Sdk.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
@@ -10,23 +8,37 @@ namespace MoneyFox.Windows.Business
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        public async Task<IOneDriveClient>LoginAsync()
+        private IOneDriveClient oneDriveClient;
+
+        public async Task<IOneDriveClient> LoginAsync()
         {
             try
             {
-                var msaAuthenticationProvider = new MsaAuthenticationProvider(
-                    ServiceConstants.MSA_CLIENT_ID,
-                    ServiceConstants.RETURN_URL,
-                    ServiceConstants.Scopes,
-                    new CredentialVault(ServiceConstants.MSA_CLIENT_ID));
+                if (oneDriveClient == null)
+                {
+                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(ServiceConstants.Scopes);
+                    await oneDriveClient.AuthenticateAsync();
+                }
 
-                await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
-                return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
+                if (!oneDriveClient.IsAuthenticated)
+                {
+                    await oneDriveClient.AuthenticateAsync();
+                }
+
+                return oneDriveClient;
             }
-            catch (Exception)
+            catch (OneDriveException exception)
             {
-                throw new BackupException("Authentication Failed");
+                // Swallow authentication cancelled exceptions
+                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
+                {
+                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
+                    {
+                        throw new BackupException("Authentication Failed");
+                    }
+                }
             }
+            return oneDriveClient;
         }
     }
 }
