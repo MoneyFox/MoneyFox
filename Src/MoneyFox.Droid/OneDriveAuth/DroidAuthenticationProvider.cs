@@ -73,21 +73,23 @@ namespace MoneyFox.Droid.OneDriveAuth {
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_SECRET,
                 string.Join(",", ServiceConstants.Scopes),
                 new Uri(GetAuthorizeUrl()),
-                new Uri(ServiceConstants.RETURN_URL),
-                new Uri(ServiceConstants.TOKEN_URL));
+                new Uri(ServiceConstants.RETURN_URL));
 
             auth.Completed += (sender, eventArgs) => 
             {
-                if (eventArgs.IsAuthenticated) 
+                if (eventArgs.IsAuthenticated)
                 {
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
-                    AccountStore.Create(Application.Context).Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
+                    AccountStore.Create(Application.Context)
+                        .Save(eventArgs.Account, ServiceConstants.KEY_STORE_TAG_ONEDRIVE);
                     tcs.SetResult(eventArgs.Account.Properties);
                 }
-                tcs.SetResult(null);
+                else
+                {
+                    tcs.SetResult(null);
+                }
             };
 
             var intent = auth.GetUI(Application.Context);
