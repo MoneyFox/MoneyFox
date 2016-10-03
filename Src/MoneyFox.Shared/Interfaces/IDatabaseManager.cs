@@ -7,5 +7,7 @@ namespace MoneyFox.Shared.Interfaces
         void CreateDatabase();
 
         SQLiteConnection GetConnection();
+
+        void MigrateDatabase();
     }
 }
