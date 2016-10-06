@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -67,7 +68,7 @@ namespace MoneyFox.Droid.OneDriveAuth
             requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.CLIENT_ID,
                 ServiceConstants.MSA_CLIENT_ID);
             requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.SCOPE,
-                string.Join("%20", ServiceConstants.Scopes));
+                WebUtility.UrlEncode(string.Join(" ", ServiceConstants.Scopes)));
             requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.RESPONSE_TYPE, ServiceConstants.CODE);
 
             return requestUriStringBuilder.ToString();
