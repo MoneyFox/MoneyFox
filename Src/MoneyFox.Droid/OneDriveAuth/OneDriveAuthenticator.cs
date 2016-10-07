@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
@@ -9,16 +10,61 @@ namespace MoneyFox.Droid.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
+        private readonly IDialogService dialogService;
+        private IOneDriveClient oneDriveClient;
+
+        public OneDriveAuthenticator(IDialogService dialogService)
+        {
+            this.dialogService = dialogService;
+        }
+
         public async Task<IOneDriveClient> LoginAsync()
         {
+            if (oneDriveClient == null)
+            {
+                oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
+                    ServiceConstants.MSA_CLIENT_ID,
+                    ServiceConstants.RETURN_URL,
+                    ServiceConstants.Scopes,
+                    ServiceConstants.MSA_CLIENT_SECRET,
+                    null, null,
+                    new DroidServiceInfoProvider());
+                try 
+                {
+                    await oneDriveClient.AuthenticateAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.Write(ex);
+                }
+            }
+            
             try
             {
-                return new OneDriveClient(ServiceConstants.BASE_URL, new DroidAuthenticationProvider());
+                if (!oneDriveClient.IsAuthenticated)
+                {
+                    await oneDriveClient.AuthenticateAsync();
+                }
+
+                return oneDriveClient;
             }
-            catch (Exception)
+            catch (OneDriveException exception)
             {
-                throw new BackupException("Authentication Failed");
+                // Swallow authentication cancelled exceptions
+                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
+                {
+                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
+                    {
+                        throw new BackupException("Authentication failed");
+                    }
+                    throw;
+                }
             }
+            return oneDriveClient;
+        }
+
+        public async Task LogoutAsync() {
+            await oneDriveClient.SignOutAsync();
         }
     }
 }
