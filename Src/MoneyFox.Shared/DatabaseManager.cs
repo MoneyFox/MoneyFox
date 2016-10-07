@@ -55,7 +55,6 @@ namespace MoneyFox.Shared
         ///     Creates a new Database manager object
         /// </summary>
         /// <param name="connectionFactory">The connection factory who creates the connection for each plattform.</param>
-        /// <param name="fileStore">An FileStore abstraction to access the file system on each plattform.</param>
         public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory)
         {
             this.connectionFactory = connectionFactory;
