@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Microsoft.OneDrive.Sdk;
@@ -108,6 +115,7 @@ namespace MoneyFox.Droid.OneDriveAuth {
                 ServiceConstants.RETURN_URL);
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName,
                 ServiceConstants.MSA_CLIENT_ID);
+
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ScopeKeyName,
                 string.Join("%20", ServiceConstants.Scopes));
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ResponseTypeKeyName,

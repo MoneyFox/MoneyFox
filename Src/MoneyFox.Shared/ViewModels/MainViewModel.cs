@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Linq;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Model;
-using MvvmCross.Binding.ExtensionMethods;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -11,9 +8,9 @@ namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class MainViewModel : BaseViewModel {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
 
-        public MainViewModel(IRepository<Account> accountRepository) {
+        public MainViewModel(IAccountRepository accountRepository) {
             this.accountRepository = accountRepository;
         }
 

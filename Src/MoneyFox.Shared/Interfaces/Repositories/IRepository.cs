@@ -5,7 +5,11 @@ using System.Linq.Expressions;
 namespace MoneyFox.Shared.Interfaces.Repositories
 {
     public interface IRepository<T> {
-
+        /// <summary>
+        ///     Returns a List filtered by the passed expression.
+        /// </summary>
+        /// <param name="filter">filter expression.</param>
+        /// <returns>Ienumerable with the selected items.</returns>
         IEnumerable<T> GetList(Expression<Func<T, bool>> filter = null);
 
         /// <summary>

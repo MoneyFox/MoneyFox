@@ -31,7 +31,7 @@ namespace MoneyFox.Droid.Services
 
         private async void SyncBackups()
         {
-            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory());
+            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
 
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
