@@ -34,7 +34,6 @@ namespace MoneyFox.Shared.Manager
             await backupService.Login();
         }
 
-        // TODO: Check if this is needed anywhere
         /// <summary>
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
         ///     A sync can be attempted up to a number of times configured in ServiceConstants
