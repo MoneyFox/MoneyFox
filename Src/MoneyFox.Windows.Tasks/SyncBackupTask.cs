@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Shared.Manager;
 using Windows.ApplicationModel.Background;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
@@ -15,7 +16,7 @@ namespace MoneyFox.Windows.Tasks
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory());
+            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
 
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
@@ -25,11 +26,13 @@ namespace MoneyFox.Windows.Tasks
                 new AccountRepository(new AccountDataAccess(dbManager)),
                 new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
                 null);
+
             var autoBackupManager = new AutoBackupManager(
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()), dbManager),
-                new GlobalBusyIndicatorState());
+                    new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()), new MvxWindowsCommonFileStore(), dbManager),
+                new GlobalBusyIndicatorState(),
+                new SettingsManager(new WindowsCommonSettings()));
 
             await autoBackupManager.RestoreBackupIfNewer();
             await autoBackupManager.UploadBackupIfNewer();

@@ -14,15 +14,17 @@ namespace MoneyFox.Shared.Manager
     {
         private readonly IBackupManager backupManager;
         private readonly GlobalBusyIndicatorState globalBusyIndicatorState;
+        private readonly ISettingsManager settingsManager;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
-        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState)
+        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState, ISettingsManager settingsManager)
         {
             this.backupManager = backupManager;
             this.globalBusyIndicatorState = globalBusyIndicatorState;
+            this.settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -32,14 +34,14 @@ namespace MoneyFox.Shared.Manager
         {
             try
             {
-                if (!SettingsHelper.IsBackupAutouploadEnabled)
+                if (!settingsManager.IsBackupAutouploadEnabled)
                 {
                     return;
                 }
 
                 globalBusyIndicatorState.IsActive = true;
 
-                if (await backupManager.GetBackupDate() < SettingsHelper.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() < settingsManager.LastDatabaseUpdate)
                 {
                     await backupManager.EnqueueBackupTask(0);
                 }
@@ -59,13 +61,14 @@ namespace MoneyFox.Shared.Manager
             try
             {
                 globalBusyIndicatorState.IsActive = true;
-                if (!SettingsHelper.IsBackupAutouploadEnabled)
+                if (!settingsManager.IsBackupAutouploadEnabled)
                 {
                     globalBusyIndicatorState.IsActive = false;
                     return;
                 }
 
-                if (await backupManager.GetBackupDate() > SettingsHelper.LastDatabaseUpdate)
+                var date = await backupManager.GetBackupDate();
+                if (date > settingsManager.LastDatabaseUpdate)
                 {
                     await backupManager.RestoreBackup();
                 }

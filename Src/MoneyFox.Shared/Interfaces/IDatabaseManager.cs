@@ -1,4 +1,4 @@
-﻿using SQLite.Net;
+﻿using SQLite;
 
 namespace MoneyFox.Shared.Interfaces
 {
@@ -7,5 +7,7 @@ namespace MoneyFox.Shared.Interfaces
         void CreateDatabase();
 
         SQLiteConnection GetConnection();
+
+        void MigrateDatabase();
     }
 }

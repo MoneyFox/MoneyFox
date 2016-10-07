@@ -1,6 +1,6 @@
 ﻿using System;
 using PropertyChanged;
-using SQLite.Net.Attributes;
+using SQLite;
 
 namespace MoneyFox.Shared.Model
 {

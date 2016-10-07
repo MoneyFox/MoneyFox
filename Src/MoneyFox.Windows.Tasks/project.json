@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "Cheesebaron.MvxPlugins.Settings": "2.0.1",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "MvvmCross.Plugin.File": "4.2.3",
-    "MvvmCross.Plugin.SQLitePCL": "4.2.3",
+    "MvvmCross.Plugin.File": "4.3.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.3.4",
     "NotificationsExtensions.Win10": "14332.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha"
   },

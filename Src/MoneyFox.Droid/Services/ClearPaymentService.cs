@@ -6,6 +6,7 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
+using MvvmCross.Plugins.File.Droid;
 using MvvmCross.Plugins.Sqlite.Droid;
 
 namespace MoneyFox.Droid.Services
@@ -27,7 +28,7 @@ namespace MoneyFox.Droid.Services
 
         public void ClearPayments()
         {
-            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory());
+            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
 
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
 

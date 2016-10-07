@@ -18,7 +18,7 @@ using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
-using MvvmCross.Plugins.Email;
+using PluginLoader = MvvmCross.Plugins.Email.PluginLoader;
 
 namespace MoneyFox.Droid
 {
