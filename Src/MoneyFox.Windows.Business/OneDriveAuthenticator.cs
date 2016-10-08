@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
+using Microsoft.OneDrive.Sdk.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
@@ -8,37 +12,29 @@ namespace MoneyFox.Windows.Business
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private IOneDriveClient oneDriveClient;
-
         public async Task<IOneDriveClient> LoginAsync()
         {
             try
             {
-                if (oneDriveClient == null)
-                {
-                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(ServiceConstants.Scopes);
-                    await oneDriveClient.AuthenticateAsync();
-                }
+                var msaAuthenticationProvider = new MsaAuthenticationProvider(
+                    ServiceConstants.MSA_CLIENT_ID,
+                    ServiceConstants.RETURN_URL,
+                    ServiceConstants.Scopes,
+                    new CredentialVault(ServiceConstants.MSA_CLIENT_ID));
 
-                if (!oneDriveClient.IsAuthenticated)
-                {
-                    await oneDriveClient.AuthenticateAsync();
-                }
-
-                return oneDriveClient;
+                await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
+                return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
-            catch (OneDriveException exception)
+            catch (ServiceException serviceException)
             {
-                // Swallow authentication cancelled exceptions
-                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                {
-                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                    {
-                        throw new BackupException("Authentication Failed");
-                    }
-                }
+                Debug.WriteLine(serviceException);
+                throw new BackupException("Authentication Failed with Graph.ServiceException", serviceException);
             }
-            return oneDriveClient;
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw new BackupException("Authentication Failed", ex);
+            }
         }
     }
 }

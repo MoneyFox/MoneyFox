@@ -3,8 +3,9 @@ using System.Linq;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using MvvmCross.Plugins.Sqlite;
 using MvvmCross.Plugins.File;
+using MvvmCross.Plugins.Sqlite;
+using SQLite;
 
 namespace MoneyFox.Shared
 {
@@ -34,7 +35,7 @@ namespace MoneyFox.Shared
         ///     Creates the config and establish and async connection to access the sqlite database synchronous.
         /// </summary>
         /// <returns>Established SQLiteConnection.</returns>
-        public SQLite.SQLiteConnection GetConnection()
+        public SQLiteConnection GetConnection()
             => connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
 
         /// <summary>
