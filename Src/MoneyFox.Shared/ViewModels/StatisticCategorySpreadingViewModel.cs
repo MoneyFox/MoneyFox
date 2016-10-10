@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
@@ -13,6 +13,8 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
+        private readonly ISettingsManager settingsManager;
+
         private readonly OxyColor[] colors =
         {
             OxyColor.Parse("#393939"), OxyColor.Parse("#4b4b4b"),
@@ -23,9 +25,10 @@ namespace MoneyFox.Shared.ViewModels
 
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
 
-        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider)
+        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider, ISettingsManager settingsManager)
         {
             this.spreadingDataProvider = spreadingDataProvider;
+            this.settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -60,7 +63,7 @@ namespace MoneyFox.Shared.ViewModels
 
             var model = new PlotModel();
 
-            if (SettingsHelper.IsDarkThemeSelected)
+            if (settingsManager.IsDarkThemeSelected)
             {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;

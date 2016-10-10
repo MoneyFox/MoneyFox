@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
 
@@ -16,11 +15,12 @@ namespace MoneyFox.Shared.Manager
     public class BackupManager : IBackupManager
     {
         private readonly IBackupService backupService;
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly IRepositoryManager repositoryManager;
+        private readonly ISettingsManager settingsManager;
 
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private bool oldBackupRestored;
@@ -28,12 +28,13 @@ namespace MoneyFox.Shared.Manager
         public BackupManager(IRepositoryManager repositoryManager,
             IBackupService backupService,
             IMvxFileStore fileStore,
-            IDatabaseManager databaseManager)
+            IDatabaseManager databaseManager, ISettingsManager settingsManager)
         {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
+            this.settingsManager = settingsManager;
         }
 
         public async Task Login()
@@ -119,7 +120,7 @@ namespace MoneyFox.Shared.Manager
             databaseManager.MigrateDatabase();
 
             repositoryManager.ReloadData();
-            SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
 
         private Tuple<string, string> GetBackupName(List<string> filenames)

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
@@ -11,10 +11,13 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
+        private readonly ISettingsManager settingsManager;
+
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository)
+        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, ISettingsManager settingsManager)
         {
+            this.settingsManager = settingsManager;
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
             CashFlowModel = GetCashFlowModel();
         }
@@ -50,7 +53,7 @@ namespace MoneyFox.Shared.ViewModels
                 Angle = 45
             };
 
-            if (SettingsHelper.IsDarkThemeSelected)
+            if (settingsManager.IsDarkThemeSelected)
             {
                 axe.AxislineColor = OxyColors.White;
                 axe.TextColor = OxyColors.White;

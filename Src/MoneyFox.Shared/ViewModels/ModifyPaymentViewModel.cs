@@ -22,6 +22,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IPaymentRepository paymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
+        private readonly ISettingsManager settingsManager;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -33,10 +34,11 @@ namespace MoneyFox.Shared.ViewModels
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            IPaymentManager paymentManager)
+            IPaymentManager paymentManager, ISettingsManager settingsManager)
         {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
+            this.settingsManager = settingsManager;
             this.paymentRepository = paymentRepository;
 
             TargetAccounts = new ObservableCollection<Account>(accountRepository.GetList());
@@ -147,7 +149,7 @@ namespace MoneyFox.Shared.ViewModels
             var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
             if (paymentSucceded && accountSucceded)
             {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
 
             Close(this);
@@ -191,7 +193,7 @@ namespace MoneyFox.Shared.ViewModels
                 var paymentSucceded = paymentRepository.Delete(SelectedPayment);
                 var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
-                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                    settingsManager.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }

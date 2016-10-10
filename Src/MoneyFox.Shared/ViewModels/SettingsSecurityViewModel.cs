@@ -1,5 +1,4 @@
-﻿using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -12,11 +11,13 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
+        private readonly ISettingsManager settingsManager;
 
-        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
+        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService, ISettingsManager settingsManager)
         {
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
+            this.settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -24,10 +25,10 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsPasswortActive
         {
-            get { return SettingsHelper.PasswordRequired; }
+            get { return settingsManager.PasswordRequired; }
             set
             {
-                SettingsHelper.PasswordRequired = value;
+                settingsManager.PasswordRequired = value;
                 RaisePropertyChanged();
             }
         }
