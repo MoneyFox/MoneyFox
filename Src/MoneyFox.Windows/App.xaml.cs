@@ -15,6 +15,7 @@ using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using Microsoft.HockeyApp;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Services;
@@ -55,7 +56,7 @@ namespace MoneyFox.Windows
         {
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
-            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsHelper.DARK_THEME_SELECTED_KEYNAME, false)
+            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light;
         }
@@ -65,7 +66,7 @@ namespace MoneyFox.Windows
         ///     will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             var shell = Window.Current.Content as AppShell;
 
@@ -198,7 +199,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new WindowsCommonSettings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }

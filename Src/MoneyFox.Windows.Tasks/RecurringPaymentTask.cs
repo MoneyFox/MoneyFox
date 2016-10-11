@@ -1,4 +1,5 @@
 ﻿using Windows.ApplicationModel.Background;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
@@ -21,7 +22,7 @@ namespace MoneyFox.Windows.Tasks
                 new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
                 null);
 
-            new RecurringPaymentManager(paymentManager, paymentRepository).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManager, paymentRepository, new SettingsManager(new WindowsCommonSettings())).CheckRecurringPayments();
         }
     }
 }

@@ -28,7 +28,8 @@ namespace MoneyFox.Shared.Manager
         public BackupManager(IRepositoryManager repositoryManager,
             IBackupService backupService,
             IMvxFileStore fileStore,
-            IDatabaseManager databaseManager, ISettingsManager settingsManager)
+            IDatabaseManager databaseManager,
+            ISettingsManager settingsManager)
         {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;

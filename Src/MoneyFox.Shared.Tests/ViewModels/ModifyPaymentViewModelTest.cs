@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
@@ -19,25 +18,16 @@ namespace MoneyFox.Shared.Tests.ViewModels
     [TestClass]
     public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
-        private DateTime localDateSetting;
-
         [TestInitialize]
         public void Init()
         {
             ClearAll();
             Setup();
 
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.SetupAllProperties();
-            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
-                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
-            Mvx.RegisterType(() => settingsMockSetup.Object);
-            Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
-
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
         }
 
-                [TestMethod]
+        [TestMethod]
         public void Init_IncomeNotEditing_PropertiesSetupCorrectly()
         {
             var accountRepoMock = new Mock<IAccountRepository>();
@@ -48,11 +38,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
 
@@ -75,11 +67,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Expense);
@@ -91,6 +85,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void Init_TransferNotEditing_PropertiesSetupCorrectly() 
         {
+            var settingsManagerMock = new Mock<ISettingsManager>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.Setup(x => x.GetList(null))
@@ -104,7 +99,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
@@ -121,6 +117,12 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 ChargedAccountId = 3,
                 ChargedAccount = new Account {Id = 3, Name = "3"}
             };
+
+            var localDateSetting = DateTime.MinValue;
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
+                .Callback((DateTime x) => localDateSetting = x);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>());
@@ -141,7 +143,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 dialogService, 
-                paymentManagerSetup.Object)
+                paymentManagerSetup.Object,
+                settingsManagerMock.Object)
             {
                 SelectedPayment = selectedPayment
             };
@@ -167,6 +170,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
@@ -179,7 +183,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -205,6 +210,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
@@ -217,7 +223,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -243,6 +250,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 }
             });
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
@@ -255,7 +263,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -270,6 +279,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SelectedItemChangedCommand_UpdatesCorrectely()
         {
+            var settingsManagerMock = new Mock<ISettingsManager>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<Account>());
@@ -282,7 +292,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManager);
+                paymentManager,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
 
@@ -313,6 +324,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -320,7 +332,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManagerMock.Object);
+                paymentManagerMock.Object,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new Account();
@@ -342,6 +355,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IAccountRepository>();
+            var settingsManagerMock = new Mock<ISettingsManager>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
 
             var paymentManagerMock = new Mock<IPaymentManager>();
@@ -350,7 +364,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManagerMock.Object);
+                paymentManagerMock.Object,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new Account();
@@ -373,6 +388,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -380,7 +396,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManagerMock.Object);
+                paymentManagerMock.Object,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new Account();
@@ -403,6 +420,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -410,7 +428,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManagerMock.Object);
+                paymentManagerMock.Object,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new Account();
@@ -433,6 +452,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            var settingsManagerMock = new Mock<ISettingsManager>();
 
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<Payment>())).Callback((Payment payment) => testPayment = payment);
@@ -440,7 +460,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
-                paymentManagerMock.Object);
+                paymentManagerMock.Object,
+                settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new Account();
@@ -468,7 +489,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object,
-                new Mock<IPaymentManager>().Object)
+                new Mock<IPaymentManager>().Object,
+                new Mock<ISettingsManager>().Object)
             {
                 SelectedPayment = payment
             };

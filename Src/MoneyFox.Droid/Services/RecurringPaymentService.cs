@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
@@ -37,7 +38,7 @@ namespace MoneyFox.Droid.Services
                 new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
                 null);
 
-            new RecurringPaymentManager(paymentManager, paymentRepository).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManager, paymentRepository, new SettingsManager(new Settings())).CheckRecurringPayments();
         }
     }
 }

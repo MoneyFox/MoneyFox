@@ -2,6 +2,7 @@
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Interfaces;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
@@ -27,7 +28,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            Assert.IsTrue(new Session().ValidateSession());
+            Assert.IsTrue(new Session(new Mock<ISettingsManager>().Object).ValidateSession());
         }
 
         [TestMethod]
@@ -43,7 +44,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            Assert.IsFalse(new Session().ValidateSession());
+            Assert.IsFalse(new Session(new Mock<ISettingsManager>().Object).ValidateSession());
         }
 
         [TestMethod]
@@ -58,7 +59,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().ValidateSession().ShouldBeFalse();
+            new Session(new Mock<ISettingsManager>().Object).ValidateSession().ShouldBeFalse();
         }
 
         [TestMethod]
@@ -73,7 +74,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().ValidateSession().ShouldBeTrue();
+            new Session(new Mock<ISettingsManager>().Object).ValidateSession().ShouldBeTrue();
         }
 
         [TestMethod]
@@ -89,7 +90,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().AddSession();
+            new Session(new Mock<ISettingsManager>().Object).AddSession();
             Assert.AreEqual(DateTime.Today, resultDateTime.Date);
         }
     }
