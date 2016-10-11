@@ -79,8 +79,10 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -130,9 +132,11 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentManagerSetup = new Mock<IPaymentManager>();
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
-            
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -183,8 +187,10 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -235,8 +241,10 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -287,8 +295,10 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(1);
@@ -365,8 +375,10 @@ namespace MoneyFox.Shared.Tests.Manager
             paymentManagerSetup.Setup(x => x.LoadRecurringPaymentList(null))
                 .Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(paymentManagerSetup.Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(2);
@@ -419,8 +431,10 @@ namespace MoneyFox.Shared.Tests.Manager
 
             paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(0);
@@ -460,8 +474,10 @@ namespace MoneyFox.Shared.Tests.Manager
 
             paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(testList);
 
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
             //Execution
-            new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object).CheckRecurringPayments();
+            new RecurringPaymentManager(new Mock<IPaymentManager>().Object, paymentRepoSetup.Object, settingsManagerMock.Object).CheckRecurringPayments();
 
             //Assertion
             resultList.Count.ShouldBe(0);

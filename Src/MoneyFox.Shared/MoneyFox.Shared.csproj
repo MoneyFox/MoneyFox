@@ -72,7 +72,6 @@
     <Compile Include="Helpers\GlobalBusyIndicatorState.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
-    <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
