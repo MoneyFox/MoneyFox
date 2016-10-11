@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
@@ -15,13 +14,18 @@ namespace MoneyFox.Shared.ViewModels
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
     [ImplementPropertyChanged]
-    public class ModifyCategoryViewModel : BaseViewModel {
+    public class ModifyCategoryViewModel : BaseViewModel
+    {
         private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
+        private readonly ISettingsManager settingsManager;
 
-        public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService) {
+        public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService,
+            ISettingsManager settingsManager)
+        {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
+            this.settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -71,9 +75,7 @@ namespace MoneyFox.Shared.ViewModels
             IsEdit = isEdit;
 
             if (!IsEdit)
-            {
                 SelectedCategory = new Category();
-            }
         }
 
         /// <summary>
@@ -97,8 +99,10 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && categoryRepository.GetList(a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase))
-                .Any())
+            if (!IsEdit &&
+                categoryRepository.GetList(
+                        a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase))
+                    .Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
@@ -106,7 +110,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (categoryRepository.Save(SelectedCategory))
             {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }
@@ -114,7 +118,9 @@ namespace MoneyFox.Shared.ViewModels
         private void DeleteCategory()
         {
             if (categoryRepository.Delete(SelectedCategory))
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            {
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            }
             Close(this);
         }
 

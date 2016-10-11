@@ -36,6 +36,7 @@ namespace MoneyFox.Droid.Services
             var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
             var categoryRepository = new CategoryRepository(new CategoryDataAccess(dbManager));
+            var settings = new SettingsManager(new Settings());
 
             var paymentManager = new PaymentManager(paymentRepository,
                 new AccountRepository(new AccountDataAccess(dbManager)),
@@ -44,9 +45,8 @@ namespace MoneyFox.Droid.Services
             var autoBackupManager = new AutoBackupManager(
                 new BackupManager(
                     new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), new MvxAndroidFileStore(), dbManager),
-                new GlobalBusyIndicatorState(),
-                new SettingsManager(new Settings()));
+                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), new MvxAndroidFileStore(), dbManager, settings),
+                new GlobalBusyIndicatorState(),settings);
 
             await autoBackupManager.RestoreBackupIfNewer();
             await autoBackupManager.UploadBackupIfNewer();

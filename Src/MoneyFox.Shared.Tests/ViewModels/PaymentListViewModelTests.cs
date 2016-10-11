@@ -16,6 +16,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         private Mock<IPaymentRepository> paymentRepository;
         private Mock<IRepository<RecurringPayment>> recPaymentRepository;
         private Mock<IPaymentManager> paymentManager;
+        private Mock<ISettingsManager> settingsManager;
 
         [TestInitialize]
         public void Init()
@@ -25,6 +26,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentRepository = new Mock<IPaymentRepository>();
             recPaymentRepository = new Mock<IRepository<RecurringPayment>>();
             paymentManager = new Mock<IPaymentManager>();
+            settingsManager = new Mock<ISettingsManager>();
 
             accountRepository.SetupAllProperties();
             paymentRepository.SetupAllProperties();
@@ -38,7 +40,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentRepository.Object,
                 recPaymentRepository.Object,
                 paymentManager.Object, 
-                null);
+                null,
+                settingsManager.Object);
 
             vm.Init(42);
             vm.AccountId.ShouldBe(42);
@@ -51,7 +54,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentRepository.Object,
                 recPaymentRepository.Object,
                 paymentManager.Object, 
-                null);
+                null,
+                settingsManager.Object);
 
             vm.Init(0);
             vm.AccountId.ShouldBe(0);

@@ -12,13 +12,17 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyAccountViewModel : BaseViewModel {
+    public class ModifyAccountViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
+        private readonly ISettingsManager settingsManager;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService)
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
+            ISettingsManager settingsManager)
         {
             this.dialogService = dialogService;
+            this.settingsManager = settingsManager;
             this.accountRepository = accountRepository;
         }
 
@@ -69,9 +73,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 double amount;
                 if (double.TryParse(value, out amount))
-                {
                     SelectedAccount.CurrentBalance = amount;
-                }
             }
         }
 
@@ -85,9 +87,7 @@ namespace MoneyFox.Shared.ViewModels
             IsEdit = isEdit;
 
             if (!IsEdit)
-            {
                 SelectedAccount = new Account();
-            }
         }
 
         /// <summary>
@@ -111,7 +111,9 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (!IsEdit && accountRepository.GetList(a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
+            if (!IsEdit &&
+                accountRepository.GetList(
+                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
@@ -119,7 +121,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (accountRepository.Save(SelectedAccount))
             {
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
             }
         }
@@ -127,7 +129,9 @@ namespace MoneyFox.Shared.ViewModels
         private void DeleteAccount()
         {
             if (accountRepository.Delete(SelectedAccount))
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+            {
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            }
             Close(this);
         }
 

@@ -23,18 +23,20 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
+        private readonly ISettingsManager settingsManager;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository, 
             IRepository<RecurringPayment> recurringPaymentRepository,
             IPaymentManager paymentManager,
-            IDialogService dialogService)
+            IDialogService dialogService, ISettingsManager settingsManager)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
+            this.settingsManager = settingsManager;
         }
 
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
@@ -136,7 +138,7 @@ namespace MoneyFox.Shared.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 if (accountRepository.Delete(accountRepository.FindById(AccountId)))
-                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                    settingsManager.LastDatabaseUpdate = DateTime.Now;
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
@@ -164,7 +166,7 @@ namespace MoneyFox.Shared.ViewModels
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);
             var paymentSucceded = paymentRepository.Delete(payment);
             if (accountSucceded && paymentSucceded)
-                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
             LoadCommand.Execute();
         }
     }
