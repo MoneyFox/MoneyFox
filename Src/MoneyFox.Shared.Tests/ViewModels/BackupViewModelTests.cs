@@ -79,7 +79,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
             var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupAllProperties();
+            settingsManagerMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             var returnDate = DateTime.Today;
 
