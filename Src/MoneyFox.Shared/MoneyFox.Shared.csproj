@@ -137,6 +137,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\OneDriveService.cs" />
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
@@ -184,6 +189,10 @@
     <EmbeddedResource Include="Resources\Strings.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.pt.resx" />
     <EmbeddedResource Include="Resources\Strings.resx">
