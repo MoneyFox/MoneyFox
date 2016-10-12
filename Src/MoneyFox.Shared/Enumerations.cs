@@ -37,4 +37,11 @@
         CategorySummary,
         ExpenseHistory
     }
+
+    public enum TyleType
+    {
+        Income,
+        Expense,
+        Transfer
+    }
 }

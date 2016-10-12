@@ -9,15 +9,15 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class SettingsSecurityViewModel : BaseViewModel
     {
+        private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
-        private readonly ISettingsManager settingsManager;
 
-        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService, ISettingsManager settingsManager)
+        public SettingsSecurityViewModel(ISettingsManager settingsManager, IPasswordStorage passwordStorage, IDialogService dialogService)
         {
+            this.settingsManager = settingsManager;
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
-            this.settingsManager = settingsManager;
         }
 
         /// <summary>

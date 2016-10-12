@@ -131,12 +131,10 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\Shortcuts\ExpenseTile.cs" />
-    <Compile Include="Src\Shortcuts\IncomeTile.cs" />
     <Compile Include="Src\Shortcuts\Tile.cs" />
-    <Compile Include="Src\Shortcuts\TransferTile.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
+    <Compile Include="Src\TileManager.cs" />
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
