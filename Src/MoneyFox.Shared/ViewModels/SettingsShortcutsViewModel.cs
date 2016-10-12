@@ -12,9 +12,9 @@ namespace MoneyFox.Shared.ViewModels
     public class SettingsShortcutsViewModel : BaseViewModel
     {
         private readonly IIncomeShortcut incomeShortcut;
+        private readonly ISettingsManager settingsManager;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
-        private readonly ISettingsManager settingsManager;
 
         /// <summary>
         ///     Creates a SettingsShortcutsViewModel object

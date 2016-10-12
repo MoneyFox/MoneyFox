@@ -12,7 +12,8 @@ namespace MoneyFox.Shared.Model
 
         private Account targetAccount;
 
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
 
         public int ChargedAccountId { get; set; }

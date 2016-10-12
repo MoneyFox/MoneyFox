@@ -13,15 +13,16 @@ namespace MoneyFox.Shared.Manager
 {
     public class PaymentManager : IPaymentManager
     {
-        private readonly IRecurringPaymentRepository recurringPaymentRepository;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
+        private readonly IPaymentRepository paymentRepository;
+        private readonly IRecurringPaymentRepository recurringPaymentRepository;
 
-        public PaymentManager(IPaymentRepository paymentRepository, 
+        public PaymentManager(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IRecurringPaymentRepository recurringPaymentRepository,
-            IDialogService dialogService) {
+            IDialogService dialogService)
+        {
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
             this.paymentRepository = paymentRepository;
@@ -30,14 +31,15 @@ namespace MoneyFox.Shared.Manager
 
         public bool SavePayment(Payment payment)
         {
-            if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
+            if (!payment.IsRecurring && (payment.RecurringPaymentId != 0))
             {
                 recurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
 
             bool handledRecuringPayment;
-            handledRecuringPayment = payment.RecurringPayment == null || recurringPaymentRepository.Save(payment.RecurringPayment);
+            handledRecuringPayment = (payment.RecurringPayment == null) ||
+                                     recurringPaymentRepository.Save(payment.RecurringPayment);
 
             if (payment.RecurringPayment != null)
             {
@@ -64,7 +66,7 @@ namespace MoneyFox.Shared.Manager
         public void DeleteAssociatedPaymentsFromDatabase(Account account)
         {
             var paymentToDelete = paymentRepository
-                .GetList(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
+                .GetList(x => (x.ChargedAccountId == account.Id) || (x.TargetAccountId == account.Id))
                 .OrderByDescending(x => x.Date)
                 .ToList();
 
@@ -95,10 +97,10 @@ namespace MoneyFox.Shared.Manager
         public IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null)
         {
             var list = paymentRepository
-                .GetList(x => x.IsRecurring && x.RecurringPaymentId != 0)
+                .GetList(x => x.IsRecurring && (x.RecurringPaymentId != 0))
                 .Where(x => (x.RecurringPayment.IsEndless ||
-                             x.RecurringPayment.EndDate >= DateTime.Now.Date)
-                            && (filter == null || filter.Invoke(x)))
+                             (x.RecurringPayment.EndDate >= DateTime.Now.Date))
+                            && ((filter == null) || filter.Invoke(x)))
                 .ToList();
 
             return list
@@ -113,7 +115,7 @@ namespace MoneyFox.Shared.Manager
         public void ClearPayments()
         {
             var payments = paymentRepository
-                .GetList(p => !p.IsCleared && p.Date.Date <= DateTime.Now.Date);
+                .GetList(p => !p.IsCleared && (p.Date.Date <= DateTime.Now.Date));
 
             foreach (var payment in payments)
             {
@@ -144,7 +146,7 @@ namespace MoneyFox.Shared.Manager
             try
             {
                 var relatedPayment = paymentRepository
-                    .GetList(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
+                    .GetList(x => x.IsRecurring && (x.RecurringPaymentId == recurringPayment.Id));
 
                 foreach (var payment in relatedPayment)
                 {
@@ -177,7 +179,7 @@ namespace MoneyFox.Shared.Manager
                     ? x
                     : -x;
 
-            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
+            if ((payment.ChargedAccount == null) && (payment.ChargedAccountId != 0))
             {
                 payment.ChargedAccount =
                     accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();

@@ -4,6 +4,5 @@ namespace MoneyFox.Shared.Interfaces.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        
     }
 }

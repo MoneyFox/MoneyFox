@@ -11,9 +11,8 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
-        private readonly ISettingsManager settingsManager;
-
         private readonly CashFlowDataProvider cashFlowDataProvider;
+        private readonly ISettingsManager settingsManager;
 
         public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, ISettingsManager settingsManager)
         {

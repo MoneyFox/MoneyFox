@@ -75,7 +75,9 @@ namespace MoneyFox.Shared.ViewModels
             IsEdit = isEdit;
 
             if (!IsEdit)
+            {
                 SelectedCategory = new Category();
+            }
         }
 
         /// <summary>

@@ -12,12 +12,12 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
-        private readonly ISettingsManager settingsManager;
-
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
+        private readonly ISettingsManager settingsManager;
 
-        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider, ISettingsManager settingsManager)
+        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
+            ISettingsManager settingsManager)
             : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;

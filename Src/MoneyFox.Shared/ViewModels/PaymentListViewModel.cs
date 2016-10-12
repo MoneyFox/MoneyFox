@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Shared.Groups;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
@@ -19,14 +18,14 @@ namespace MoneyFox.Shared.ViewModels
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
+        private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository, 
+            IPaymentRepository paymentRepository,
             IRepository<RecurringPayment> recurringPaymentRepository,
             IPaymentManager paymentManager,
             IDialogService dialogService, ISettingsManager settingsManager)
@@ -39,16 +38,16 @@ namespace MoneyFox.Shared.ViewModels
             this.settingsManager = settingsManager;
         }
 
-        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
+        public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
 
         public int AccountId { get; private set; }
-
-        public IBalanceViewModel BalanceViewModel { get; private set; }
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
+
+        public IBalanceViewModel BalanceViewModel { get; private set; }
 
         /// <summary>
         ///     Loads the data for this view.
@@ -105,7 +104,7 @@ namespace MoneyFox.Shared.ViewModels
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
-                .GetList(x => x.ChargedAccountId == AccountId || x.TargetAccountId == AccountId)
+                .GetList(x => (x.ChargedAccountId == AccountId) || (x.TargetAccountId == AccountId))
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
@@ -138,7 +137,9 @@ namespace MoneyFox.Shared.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 if (accountRepository.Delete(accountRepository.FindById(AccountId)))
+                {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
+                }
                 BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
@@ -166,7 +167,9 @@ namespace MoneyFox.Shared.ViewModels
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);
             var paymentSucceded = paymentRepository.Delete(payment);
             if (accountSucceded && paymentSucceded)
+            {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+            }
             LoadCommand.Execute();
         }
     }

@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
-using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -15,7 +13,8 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
 
-        public BalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository) {
+        public BalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository)
+        {
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
         }
@@ -60,7 +59,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             var balance = TotalBalance;
             var unclearedPayments = paymentRepository
-                .GetList(p => !p.IsCleared && p.Date.Date <= Utilities.GetEndOfMonth());
+                .GetList(p => !p.IsCleared && (p.Date.Date <= Utilities.GetEndOfMonth()));
 
             foreach (var payment in unclearedPayments)
             {

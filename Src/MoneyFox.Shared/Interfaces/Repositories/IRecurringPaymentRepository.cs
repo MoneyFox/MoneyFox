@@ -4,6 +4,5 @@ namespace MoneyFox.Shared.Interfaces.Repositories
 {
     public interface IRecurringPaymentRepository : IRepository<RecurringPayment>
     {
-        
     }
 }

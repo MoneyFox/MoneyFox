@@ -7,10 +7,12 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class MainViewModel : BaseViewModel {
+    public class MainViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
 
-        public MainViewModel(IAccountRepository accountRepository) {
+        public MainViewModel(IAccountRepository accountRepository)
+        {
             this.accountRepository = accountRepository;
         }
 

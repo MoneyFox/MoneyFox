@@ -10,7 +10,7 @@ namespace MoneyFox.Shared.Helpers
     {
         /// <summary>
         ///     Returns the default account out of a list.
-        ///     Has a dependency to <see cref="ISettingsManager"/>
+        ///     Has a dependency to <see cref="ISettingsManager" />
         /// </summary>
         /// <param name="accounts">List of Accounts to filter.</param>
         /// <returns>The as default determined account.</returns>
@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.Helpers
                 accounts = new List<Account>();
             }
 
-            if (accounts.Any() && settingsManager.DefaultAccount != -1)
+            if (accounts.Any() && (settingsManager.DefaultAccount != -1))
             {
                 return accounts.FirstOrDefault(x => x.Id == settingsManager.DefaultAccount);
             }

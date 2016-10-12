@@ -13,7 +13,8 @@ namespace MoneyFox.Shared.Manager
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
 
-        public RecurringPaymentManager(IPaymentManager paymentManager, IPaymentRepository paymentRepository, ISettingsManager settingsManager)
+        public RecurringPaymentManager(IPaymentManager paymentManager, IPaymentRepository paymentRepository,
+            ISettingsManager settingsManager)
         {
             this.paymentManager = paymentManager;
             this.paymentRepository = paymentRepository;
@@ -38,7 +39,9 @@ namespace MoneyFox.Shared.Manager
                     var paymentSucceded = paymentRepository.Save(newPayment);
                     var accountSucceded = paymentManager.AddPaymentAmount(newPayment);
                     if (paymentSucceded && accountSucceded)
+                    {
                         settingsManager.LastDatabaseUpdate = DateTime.Now;
+                    }
                 }
             }
         }

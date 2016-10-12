@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using Npadrutt.MvxPlugins.AppInformation;
@@ -65,8 +64,8 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public MvxCommand GoToDesignerTwitterAccountCommand => new MvxCommand(GoToDesignerTwitterAccount);        
-        
+        public MvxCommand GoToDesignerTwitterAccountCommand => new MvxCommand(GoToDesignerTwitterAccount);
+
         /// <summary>
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
@@ -122,12 +121,14 @@ namespace MoneyFox.Shared.ViewModels
         {
             webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);
         }
-        
-        private void GoToDesignerTwitterAccount() {
+
+        private void GoToDesignerTwitterAccount()
+        {
             webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
         }
 
-        private void GoToContributionPage() {
+        private void GoToContributionPage()
+        {
             webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
         }
     }

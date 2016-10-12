@@ -20,7 +20,8 @@ namespace MoneyFox.Shared.Manager
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
-        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState, ISettingsManager settingsManager)
+        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState,
+            ISettingsManager settingsManager)
         {
             this.backupManager = backupManager;
             this.globalBusyIndicatorState = globalBusyIndicatorState;

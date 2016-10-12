@@ -10,7 +10,8 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel {
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    {
         protected readonly ICategoryRepository CategoryRepository;
         protected readonly IDialogService DialogService;
 
@@ -105,9 +106,9 @@ namespace MoneyFox.Shared.ViewModels
             if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
-                    (CategoryRepository.GetList(
-                        x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
-                        .OrderBy(x => x.Name));
+                (CategoryRepository.GetList(
+                        x => (x.Name != null) && x.Name.ToLower().Contains(searchText.ToLower()))
+                    .OrderBy(x => x.Name));
             }
             else
             {

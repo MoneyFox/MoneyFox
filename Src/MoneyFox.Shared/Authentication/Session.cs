@@ -1,22 +1,21 @@
 ﻿using System;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.Authentication
 {
     public class Session
     {
+        /// <summary>
+        ///     Amount of minutes after which the session shall expire.
+        /// </summary>
+        private const int SESSION_TIMEOUT = 10;
+
         private readonly ISettingsManager settingsManager;
 
         public Session(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
         }
-
-        /// <summary>
-        ///     Amount of minutes after which the session shall expire.
-        /// </summary>
-        private const int SESSION_TIMEOUT = 10;
 
         /// <summary>
         ///     Validates if a session is expired.

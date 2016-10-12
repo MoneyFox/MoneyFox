@@ -16,7 +16,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <typeparam name="TService">The type of the service.</typeparam>
         /// <returns>An instance of the service.</returns>
         public TService GetService<TService>() where TService : class
-            => Mvx.Resolve<TService>();
+        => Mvx.Resolve<TService>();
 
         /// <summary>
         ///     Checks if a property already matches a desired value.  Sets the property and
