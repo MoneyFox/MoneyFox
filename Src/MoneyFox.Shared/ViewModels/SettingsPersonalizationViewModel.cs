@@ -1,13 +1,12 @@
-﻿using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    public class PersonalizationUserControlViewModel : BaseViewModel
+    public class SettingsPersonalizationViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
 
-        public PersonalizationUserControlViewModel(ISettingsManager settingsManager)
+        public SettingsPersonalizationViewModel(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
         }

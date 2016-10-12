@@ -22,7 +22,7 @@
                                                 Glyph="&#xE774;"
                                                 Label="General" />
                     </PivotItem.Header>
-                    <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsGeneralUserControl DataContext="{Binding SettingsGeneralViewModel}" Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--  Tiles  -->
@@ -32,7 +32,7 @@
                                                 Glyph="&#xE8FC;"
                                                 Label="Tiles" />
                     </PivotItem.Header>
-                    <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsShortcutsUserControl DataContext="{Binding SettingsShortcutsViewModel}" Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--  Password Settings  -->
@@ -42,7 +42,7 @@
                                                 Glyph="&#xE8D7;"
                                                 Label="Password" />
                     </PivotItem.Header>
-                    <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsSecurityUserControl DataContext="{Binding SettingsSecurityViewModel}" Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--  Personalization Settings  -->
@@ -52,7 +52,7 @@
                                                 Glyph="&#xE2B1;"
                                                 Label="Theme" />
                     </PivotItem.Header>
-                    <userControls:SettingsPersonalizationUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsPersonalizationUserControl DataContext="{Binding SettingsPersonalizationViewModel}" Margin="-7,0,-7,0" />
                 </PivotItem>
             </Pivot>
         </Grid>
