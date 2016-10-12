@@ -5,7 +5,6 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
-using MoneyFox.Shared.Manager;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.ResxLocalization;
 using MoneyFox.Shared.Resources;
@@ -30,7 +29,6 @@ namespace MoneyFox.Shared
             Mvx.RegisterSingleton(() => new GlobalBusyIndicatorState());
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
-            Mvx.RegisterType(() => new Session());
             Mvx.RegisterSingleton<IMvxTextProvider>(new MvxResxTextProvider(Strings.ResourceManager));
 
             CreatableTypes()
@@ -68,6 +66,8 @@ namespace MoneyFox.Shared
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsDynamic();
+
+            Mvx.RegisterType(() => new Session(Mvx.Resolve<ISettingsManager>()));
         }
     }
 }

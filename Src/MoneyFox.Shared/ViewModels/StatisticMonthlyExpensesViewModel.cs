@@ -1,6 +1,5 @@
 ﻿using System;
 using MoneyFox.Shared.Extensions;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
@@ -13,13 +12,16 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
+        private readonly ISettingsManager settingsManager;
+
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
-        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider)
+        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider, ISettingsManager settingsManager)
             : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
+            this.settingsManager = settingsManager;
             MonthlyExpensesModel = GetModel();
         }
 
@@ -52,7 +54,7 @@ namespace MoneyFox.Shared.ViewModels
                 Angle = 45
             };
 
-            if (SettingsHelper.IsDarkThemeSelected)
+            if (settingsManager.IsDarkThemeSelected)
             {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;

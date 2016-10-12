@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
@@ -14,14 +13,17 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
         private readonly IDialogService dialogService;
+        private readonly ISettingsManager settingsManager;
 
         public BackupViewModel(IBackupManager backupManager,
             IDialogService dialogService,
-            IConnectivity connectivity)
+            IConnectivity connectivity,
+            ISettingsManager settingsManager)
         {
             this.backupManager = backupManager;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
+            this.settingsManager = settingsManager;
         }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
-        public bool IsLoggedIn => SettingsHelper.IsLoggedInToBackupService;
+        public bool IsLoggedIn => settingsManager.IsLoggedInToBackupService;
 
         /// <summary>
         ///     Indicates if a backup is available for restore.
@@ -84,7 +86,7 @@ namespace MoneyFox.Shared.ViewModels
         private void Login()
         {
             backupManager.Login();
-            SettingsHelper.IsLoggedInToBackupService = true;
+            settingsManager.IsLoggedInToBackupService = true;
             RaisePropertyChanged(nameof(IsLoggedIn));
             Loaded();
         }

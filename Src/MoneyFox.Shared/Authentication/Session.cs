@@ -1,10 +1,18 @@
 ﻿using System;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Shared.Authentication
 {
     public class Session
     {
+        private readonly ISettingsManager settingsManager;
+
+        public Session(ISettingsManager settingsManager)
+        {
+            this.settingsManager = settingsManager;
+        }
+
         /// <summary>
         ///     Amount of minutes after which the session shall expire.
         /// </summary>
@@ -15,23 +23,23 @@ namespace MoneyFox.Shared.Authentication
         /// </summary>
         public bool ValidateSession()
         {
-            if (!SettingsHelper.PasswordRequired)
+            if (!settingsManager.PasswordRequired)
             {
                 return true;
             }
 
-            return !string.IsNullOrEmpty(SettingsHelper.SessionTimestamp) && CheckIfSessionExpired();
+            return !string.IsNullOrEmpty(settingsManager.SessionTimestamp) && CheckIfSessionExpired();
         }
 
-        private static bool CheckIfSessionExpired()
-            => (DateTime.Now - Convert.ToDateTime(SettingsHelper.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
+        private bool CheckIfSessionExpired()
+            => (DateTime.Now - Convert.ToDateTime(settingsManager.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
 
         /// <summary>
         ///     Adds the current time as timestamp to the local settings.
         /// </summary>
         public void AddSession()
         {
-            SettingsHelper.SessionTimestamp = DateTime.Now.ToString();
+            settingsManager.SessionTimestamp = DateTime.Now.ToString();
         }
     }
 }

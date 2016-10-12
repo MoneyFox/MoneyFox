@@ -1,10 +1,18 @@
 ﻿using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class SettingsGeneralViewModel : BaseViewModel
     {
+        private readonly ISettingsManager settingsManager;
+
+        public SettingsGeneralViewModel(ISettingsManager settingsManager)
+        {
+            this.settingsManager = settingsManager;
+        }
+
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
@@ -12,10 +20,10 @@ namespace MoneyFox.Shared.ViewModels
 
         public bool IsAutoBackupEnabled
         {
-            get { return SettingsHelper.IsBackupAutouploadEnabled; }
+            get { return settingsManager.IsBackupAutouploadEnabled; }
             set
             {
-                SettingsHelper.IsBackupAutouploadEnabled = value;
+                settingsManager.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
         }

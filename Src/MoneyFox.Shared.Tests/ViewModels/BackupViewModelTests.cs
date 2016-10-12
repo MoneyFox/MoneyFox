@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.ViewModels;
 using Moq;
-using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.ViewModels
@@ -28,9 +26,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(false);
 
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
-            Mvx.RegisterType(() => settingsMockSetup.Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupAllProperties();
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
@@ -40,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
 
             //assert
@@ -55,9 +52,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(false);
-            Mvx.RegisterType(() => settingsMockSetup.Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupAllProperties();
 
             var checkBackupCalled = false;
             var getBackupDateCalled = false;
@@ -67,7 +63,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
 
             //assert
@@ -82,10 +78,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.SetupAllProperties();
-            settingsMockSetup.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<bool>(), false)).Returns(true);
-            Mvx.RegisterType(() => settingsMockSetup.Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             var returnDate = DateTime.Today;
 
@@ -94,7 +88,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Returns(Task.FromResult(returnDate));
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
 
             //assert

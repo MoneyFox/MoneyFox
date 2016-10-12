@@ -1,4 +1,4 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MvvmCross.Core.ViewModels;
 
@@ -14,24 +14,26 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IIncomeShortcut incomeShortcut;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
+        private readonly ISettingsManager settingsManager;
 
         /// <summary>
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
         public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut)
+            ITransferShortcut transferShortcut, ISettingsManager settingsManager)
         {
             this.spendingShortcut = spendingShortcut;
             this.incomeShortcut = incomeShortcut;
             this.transferShortcut = transferShortcut;
+            this.settingsManager = settingsManager;
         }
 
         public bool ShowInfoOnMainTile
         {
-            get { return SettingsHelper.ShowCashFlowOnMainTile; }
+            get { return settingsManager.ShowCashFlowOnMainTile; }
             set
             {
-                SettingsHelper.ShowCashFlowOnMainTile = value;
+                settingsManager.ShowCashFlowOnMainTile = value;
                 RaisePropertyChanged();
             }
         }

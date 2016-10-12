@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
@@ -18,17 +17,18 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
         private readonly IEndOfMonthManager endOfMonthManager;
-
         private readonly IDialogService dialogService;
+        private readonly ISettingsManager settingsManager;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService, IEndOfMonthManager endOfMonthManager)
+            IDialogService dialogService, IEndOfMonthManager endOfMonthManager, ISettingsManager settingsManager)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
             this.endOfMonthManager = endOfMonthManager;
+            this.settingsManager = settingsManager;
 
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
@@ -116,7 +116,7 @@ namespace MoneyFox.Shared.ViewModels
                     paymentRepository.Delete(payment);
                 }
                 if (accountRepository.Delete(item))
-                    SettingsHelper.LastDatabaseUpdate = DateTime.Now;
+                    settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
