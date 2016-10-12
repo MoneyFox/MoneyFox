@@ -6,23 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Microsoft.Graph;
 using MoneyFox.Shared.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
-using Microsoft.Graph;
 using Xamarin.Auth;
 
-namespace MoneyFox.Droid.OneDriveAuth {
-
-    public class DroidAuthenticationProvider : IAuthenticationProvider {
+namespace MoneyFox.Droid.OneDriveAuth
+{
+    public class DroidAuthenticationProvider : IAuthenticationProvider
+    {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
-        public async Task AuthenticateRequestAsync(HttpRequestMessage request) {
+        public async Task AuthenticateRequestAsync(HttpRequestMessage request)
+        {
             var protectedData = new ProtectedData();
             var token = protectedData.Unprotect(ServiceConstants.ACCESS_TOKEN);
-            if (string.IsNullOrEmpty(token)) {
+            if (string.IsNullOrEmpty(token))
+            {
                 var result = await ShowWebView();
-                if (result != null) {
+                if (result != null)
+                {
                     token = result[ServiceConstants.ACCESS_TOKEN];
                     new ProtectedData().Protect(ServiceConstants.ACCESS_TOKEN, token);
                 }
@@ -31,7 +35,8 @@ namespace MoneyFox.Droid.OneDriveAuth {
             request.Headers.Authorization = new AuthenticationHeaderValue("bearer", token);
         }
 
-        private Task<IDictionary<string, string>> ShowWebView() {
+        private Task<IDictionary<string, string>> ShowWebView()
+        {
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
@@ -40,7 +45,8 @@ namespace MoneyFox.Droid.OneDriveAuth {
                 new Uri(ServiceConstants.RETURN_URL));
 
             auth.Completed +=
-                (sender, eventArgs) => {
+                (sender, eventArgs) =>
+                {
                     tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
                 };
 
@@ -52,7 +58,8 @@ namespace MoneyFox.Droid.OneDriveAuth {
             return tcs.Task;
         }
 
-        private string GetAuthorizeUrl() {
+        private string GetAuthorizeUrl()
+        {
             var requestUriStringBuilder = new StringBuilder();
             requestUriStringBuilder.Append(ServiceConstants.AUTHENTICATION_URL);
             requestUriStringBuilder.AppendFormat("?{0}={1}", ServiceConstants.REDIRECT_URI,
