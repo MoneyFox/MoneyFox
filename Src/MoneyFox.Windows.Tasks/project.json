@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Cheesebaron.MvxPlugins.Settings": "1.2.7",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "MvvmCross.Plugin.File": "4.3.0",
     "MvvmCross.Plugin.SQLitePCL": "4.3.4",
