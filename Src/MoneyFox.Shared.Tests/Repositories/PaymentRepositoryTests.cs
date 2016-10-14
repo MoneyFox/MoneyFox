@@ -17,7 +17,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void Init()
         {
             Setup();
-
         }
 
         [TestMethod]
