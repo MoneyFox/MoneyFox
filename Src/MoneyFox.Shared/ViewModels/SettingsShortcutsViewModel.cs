@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Shotcuts;
 using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
@@ -11,21 +10,16 @@ namespace MoneyFox.Shared.ViewModels
     /// </summary>
     public class SettingsShortcutsViewModel : BaseViewModel
     {
-        private readonly IIncomeShortcut incomeShortcut;
         private readonly ISettingsManager settingsManager;
-        private readonly ISpendingShortcut spendingShortcut;
-        private readonly ITransferShortcut transferShortcut;
+        private readonly ITileManager tileManager;
 
         /// <summary>
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
-        public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut, ISettingsManager settingsManager)
+        public SettingsShortcutsViewModel(ISettingsManager settingsManager, ITileManager tileManager)
         {
-            this.spendingShortcut = spendingShortcut;
-            this.incomeShortcut = incomeShortcut;
-            this.transferShortcut = transferShortcut;
             this.settingsManager = settingsManager;
+            this.tileManager = tileManager;
         }
 
         public bool ShowInfoOnMainTile
@@ -56,17 +50,17 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicates if there exists a spending shortcut
         /// </summary>
-        public bool IsSpendingShortcutPinned => spendingShortcut.IsShortcutExisting;
+        public bool IsSpendingShortcutPinned => tileManager.Exists(TyleType.Expense);
 
         /// <summary>
         ///     Indicates if there is a income shortcut
         /// </summary>
-        public bool IsIncomeShortcutPinned => incomeShortcut.IsShortcutExisting;
+        public bool IsIncomeShortcutPinned => tileManager.Exists(TyleType.Income);
 
         /// <summary>
         ///     Indicates if there is a transfer shortcut
         /// </summary>
-        public bool IsTransferShortcutPinned => transferShortcut.IsShortcutExisting;
+        public bool IsTransferShortcutPinned => tileManager.Exists(TyleType.Transfer);
 
         /// <summary>
         ///     Removes the existing Expense Shortcut
@@ -83,39 +77,39 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand RemoveTransferShortcutCommand => new MvxCommand(RemoveTransferShortcut);
 
-        private async void CreateSpendingShortcut()
+        private void CreateSpendingShortcut()
         {
-            await spendingShortcut.CreateShortCut();
+            tileManager.CreateTile(TyleType.Expense);
             RaisePropertyChanged(nameof(IsSpendingShortcutPinned));
         }
 
-        private async void CreateIncomeShortcut()
+        private void CreateIncomeShortcut()
         {
-            await incomeShortcut.CreateShortCut();
+            tileManager.CreateTile(TyleType.Income);
             RaisePropertyChanged(nameof(IsIncomeShortcutPinned));
         }
 
-        private async void CreateTransferShortcut()
+        private void CreateTransferShortcut()
         {
-            await transferShortcut.CreateShortCut();
+            tileManager.CreateTile(TyleType.Transfer);
             RaisePropertyChanged(nameof(IsTransferShortcutPinned));
         }
 
-        private async void RemoveSpendingShortcut()
+        private void RemoveSpendingShortcut()
         {
-            await spendingShortcut.RemoveShortcut();
+            tileManager.RemoveTile(TyleType.Expense);
             RaisePropertyChanged(nameof(IsSpendingShortcutPinned));
         }
 
-        private async void RemoveIncomeShortcut()
+        private void RemoveIncomeShortcut()
         {
-            await incomeShortcut.RemoveShortcut();
+            tileManager.RemoveTile(TyleType.Income);
             RaisePropertyChanged(nameof(IsIncomeShortcutPinned));
         }
 
-        private async void RemoveTransferShortcut()
+        private void RemoveTransferShortcut()
         {
-            await transferShortcut.RemoveShortcut();
+            tileManager.RemoveTile(TyleType.Transfer);
             RaisePropertyChanged(nameof(IsTransferShortcutPinned));
         }
     }

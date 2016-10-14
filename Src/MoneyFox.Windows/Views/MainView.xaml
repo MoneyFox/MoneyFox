@@ -32,9 +32,7 @@
         </Grid>
 
         <CommandBar Grid.Row="3">
-            <CommandBar.Resources>
-                <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
-            </CommandBar.Resources>
+
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddPaymentCommand}"

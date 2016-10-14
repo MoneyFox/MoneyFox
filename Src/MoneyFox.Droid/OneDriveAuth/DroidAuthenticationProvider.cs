@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -49,6 +50,13 @@ namespace MoneyFox.Droid.OneDriveAuth
                 {
                     tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
                 };
+
+            Debug.Write("Request Parameter");
+            foreach (var authRequestParameter in auth.RequestParameters)
+            {
+                Debug.Write(authRequestParameter.Key);
+                Debug.WriteLine(authRequestParameter.Value);
+            }
 
             var intent = auth.GetUI(Application.Context);
             intent.SetFlags(ActivityFlags.NewTask);

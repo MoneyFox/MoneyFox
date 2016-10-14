@@ -5,9 +5,7 @@ using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Windows.Services;
-using MoneyFox.Windows.Shortcuts;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -63,11 +61,9 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
-            Mvx.RegisterType<ISpendingShortcut, ExpenseTile>();
-            Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
-            Mvx.RegisterType<ITransferShortcut, TransferTile>();
             Mvx.RegisterType<INotificationService, NotificationService>();
             Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
+            Mvx.RegisterType<ITileManager, TileManager>();
         }
 
         protected override IMvxApplication CreateApp() => new Shared.App();
