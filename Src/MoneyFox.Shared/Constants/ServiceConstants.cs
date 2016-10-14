@@ -34,6 +34,11 @@
         ///     String constant for the access token.
         /// </summary>
         public const string ACCESS_TOKEN = "access_token";
+        
+        /// <summary>
+        ///     String constant for the refresh token.
+        /// </summary>
+        public const string REFRESH_TOKEN = "refresh_token";
 
         /// <summary>
         ///     String constant for the redirect uri.
