@@ -6,11 +6,9 @@ using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.Repositories
 {
-    [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository
     {
         private readonly IDataAccess<Payment> dataAccess;

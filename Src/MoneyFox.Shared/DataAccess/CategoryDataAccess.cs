@@ -4,11 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.DataAccess
 {
-    [ImplementPropertyChanged]
     public class CategoryDataAccess : AbstractDataAccess<Category>
     {
         private readonly IDatabaseManager dbManager;

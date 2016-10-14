@@ -4,14 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.DataAccess
 {
     /// <summary>
     ///     Handles the access to the Payments table on the database
     /// </summary>
-    [ImplementPropertyChanged]
     public class PaymentDataAccess : AbstractDataAccess<Payment>
     {
         private readonly IDatabaseManager dbManager;

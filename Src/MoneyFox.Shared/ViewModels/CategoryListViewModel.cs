@@ -2,11 +2,9 @@
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class CategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>

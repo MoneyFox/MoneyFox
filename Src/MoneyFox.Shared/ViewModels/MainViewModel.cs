@@ -2,11 +2,9 @@
 using System.Linq;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MvvmCross.Core.ViewModels;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class MainViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;

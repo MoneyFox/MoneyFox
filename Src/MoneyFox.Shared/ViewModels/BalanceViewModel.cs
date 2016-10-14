@@ -3,15 +3,15 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
+        private double totalBalance;
+        private double endOfMonthBalance;
 
         public BalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository)
         {
@@ -22,12 +22,28 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Balance of all relevant accounts at the end of the month.
         /// </summary>
-        public double TotalBalance { get; set; }
+        public double TotalBalance
+        {
+            get { return totalBalance; }
+            set
+            {
+                totalBalance = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Current Balance of all accounts.
         /// </summary>
-        public double EndOfMonthBalance { get; set; }
+        public double EndOfMonthBalance
+        {
+            get { return endOfMonthBalance; }
+            set
+            {
+                endOfMonthBalance = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust

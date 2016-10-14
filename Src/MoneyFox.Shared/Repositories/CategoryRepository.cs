@@ -6,11 +6,9 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.Repositories
 {
-    [ImplementPropertyChanged]
     public class CategoryRepository : ICategoryRepository
     {
         private readonly IDataAccess<Category> dataAccess;
