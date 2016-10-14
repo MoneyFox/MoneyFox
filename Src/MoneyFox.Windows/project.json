@@ -1,11 +1,11 @@
 ﻿{
   "dependencies": {
     "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
-    "Cheesebaron.MvxPlugins.Settings": "1.2.7",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
     "HockeySDK.UWP": "4.1.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Microsoft.NETNative.Analyzer": "1.0.0",
-    "Microsoft.OneDriveSDK": "2.0.0",
+    "Microsoft.OneDriveSDK": "2.0.2",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
     "MvvmCross.Core": "4.3.0",
     "MvvmCross.Plugin.Email": "4.3.0",
@@ -20,7 +20,7 @@
     "Npadrutt.MvxPlugins.AppInformation": "1.0.6",
     "Npadrutt.MvxPlugins.StoreOperations": "1.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha",
-    "PropertyChanged.Fody": "1.51.3",
+    "PropertyChanged.Fody": "1.52.0",
     "UniversalRateReminder": "2.2.0"
   },
   "frameworks": {
