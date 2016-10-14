@@ -6,19 +6,19 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    [ImplementPropertyChanged]
     public class ModifyCategoryViewModel : BaseViewModel
     {
         private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        private Category selectedCategory;
+        private bool isEdit;
 
         public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService,
             ISettingsManager settingsManager)
@@ -52,12 +52,28 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     The currently selected category
         /// </summary>
-        public Category SelectedCategory { get; set; }
+        public Category SelectedCategory
+        {
+            get { return selectedCategory; }
+            set
+            {
+                selectedCategory = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the selected category shall be edited or a new one created.
         /// </summary>
-        public bool IsEdit { get; set; }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set
+            {
+                isEdit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns the Title based on whether a category is being created or edited

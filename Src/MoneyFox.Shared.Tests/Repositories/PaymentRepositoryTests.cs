@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using Moq;
-using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.Repositories
@@ -20,13 +17,6 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void Init()
         {
             Setup();
-
-            // We setup the static setting classes here for the general usage in the app
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.SetupAllProperties();
-
-            Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
-            Mvx.RegisterType(() => settingsMockSetup.Object);
         }
 
         [TestMethod]

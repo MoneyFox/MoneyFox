@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
+        private ObservableCollection<StatisticItem> categorySummary;
 
         public StatisticCategorySummaryViewModel(CategorySummaryDataProvider categorySummaryDataDataProvider)
         {
@@ -18,7 +17,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the Category Summary
         /// </summary>
-        public ObservableCollection<StatisticItem> CategorySummary { get; set; }
+        public ObservableCollection<StatisticItem> CategorySummary
+        {
+            get { return categorySummary; }
+            set
+            {
+                categorySummary = value;
+                RaisePropertyChanged();
+            }
+        }
 
         protected override void Load()
         {

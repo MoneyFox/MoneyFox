@@ -4,15 +4,15 @@ using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public abstract class StatisticViewModel : BaseViewModel
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
+        private DateTime startDate;
+        private DateTime endDate;
 
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
@@ -49,12 +49,28 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Startdate for a custom statistic
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set
+            {
+                startDate = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Enddate for a custom statistic
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
+            {
+                endDate = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns the title for the category view

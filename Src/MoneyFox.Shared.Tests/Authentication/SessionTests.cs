@@ -23,12 +23,6 @@ namespace MoneyFox.Shared.Tests.Authentication
         [TestMethod]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            var settingsSetup = new Mock<ISettings>();
-            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
-                .Returns(false);
-
-            Mvx.RegisterSingleton(settingsSetup.Object);
-
             Assert.IsTrue(new Session(new Mock<ISettingsManager>().Object).ValidateSession());
         }
 
@@ -38,12 +32,6 @@ namespace MoneyFox.Shared.Tests.Authentication
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
-
-            var roamingSettingsSetup = new Mock<ISettings>();
-            roamingSettingsSetup.Setup(x => x.GetValue(It.IsAny<string>(), false, true))
-                .Returns(true);
-
-            Mvx.RegisterSingleton(settingsSetup.Object);
 
             Assert.IsFalse(new Session(new SettingsManager(settingsSetup.Object)).ValidateSession());
         }
@@ -58,8 +46,6 @@ namespace MoneyFox.Shared.Tests.Authentication
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
-            Mvx.RegisterSingleton(settingsSetup.Object);
-
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeFalse();
         }
 
@@ -72,8 +58,6 @@ namespace MoneyFox.Shared.Tests.Authentication
                 .Returns(DateTime.Now.AddMinutes(-5).ToString);
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
-
-            Mvx.RegisterSingleton(settingsSetup.Object);
 
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeTrue();
         }
@@ -88,8 +72,6 @@ namespace MoneyFox.Shared.Tests.Authentication
                 .Callback((string key, string value, bool roam) => resultDateTime = Convert.ToDateTime(value));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
-
-            Mvx.RegisterSingleton(settingsSetup.Object);
 
             new Session(new SettingsManager(settingsSetup.Object)).AddSession();
             Assert.AreEqual(DateTime.Today, resultDateTime.Date);

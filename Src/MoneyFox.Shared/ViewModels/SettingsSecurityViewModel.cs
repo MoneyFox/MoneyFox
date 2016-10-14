@@ -2,16 +2,16 @@
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class SettingsSecurityViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
+        private string password;
+        private string passwordConfirmation;
 
         public SettingsSecurityViewModel(ISettingsManager settingsManager, IPasswordStorage passwordStorage, IDialogService dialogService)
         {
@@ -41,12 +41,28 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     The password who the user set.
         /// </summary>
-        public string Password { get; set; }
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     The password confirmation the user entered.
         /// </summary>
-        public string PasswordConfirmation { get; set; }
+        public string PasswordConfirmation
+        {
+            get { return passwordConfirmation; }
+            set
+            {
+                passwordConfirmation = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Save the password to the secure storage of the current platform
