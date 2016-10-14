@@ -85,6 +85,7 @@
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
+    <Compile Include="Interfaces\ITileManager.cs" />
     <Compile Include="Interfaces\Repositories\IPaymentRepository.cs" />
     <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
@@ -93,10 +94,6 @@
     <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
-    <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
-    <Compile Include="Interfaces\Shotcuts\IShortcut.cs" />
-    <Compile Include="Interfaces\Shotcuts\ISpendingShortcut.cs" />
-    <Compile Include="Interfaces\Shotcuts\ITransferShortcut.cs" />
     <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
@@ -168,7 +165,7 @@
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PersonalizationUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPersonalizationViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />

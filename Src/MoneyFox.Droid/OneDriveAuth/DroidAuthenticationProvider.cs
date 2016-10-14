@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -11,7 +10,6 @@ using MoneyFox.Shared.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
-using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared.Extensions;
 
 namespace MoneyFox.Droid.OneDriveAuth

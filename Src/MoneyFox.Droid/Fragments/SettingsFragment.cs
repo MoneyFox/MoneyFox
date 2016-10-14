@@ -29,10 +29,10 @@ namespace MoneyFox.Droid.Fragments
                 {
                     new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.GeneralTitle,
                         typeof(SettingsGeneralFragment),
-                        typeof(SettingsGeneralViewModel)),
+                        ViewModel.SettingsGeneralViewModel),
                     new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.SecurityTitle,
                         typeof(SettingsSecurityFragment),
-                        typeof(SettingsSecurityViewModel))
+                        ViewModel.SettingsSecurityViewModel)
                 };
                 viewPager.Adapter = new MvxCachingFragmentStatePagerAdapter(Activity, ChildFragmentManager, fragments);
             }
