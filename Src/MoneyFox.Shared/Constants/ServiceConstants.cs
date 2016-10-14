@@ -14,6 +14,7 @@
         ///     Return url for the OneDrive authentication
         /// </summary>
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
+        public const string REDIRECT_URL = "https://github.com/MoneyFox/MoneyFox";
 
         /// <summary>
         ///     Returns the base URL of the OneDrive Service

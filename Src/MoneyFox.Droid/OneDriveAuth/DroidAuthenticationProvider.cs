@@ -40,8 +40,10 @@ namespace MoneyFox.Droid.OneDriveAuth
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+                ServiceConstants.MSA_CLIENT_SECRET,
                 string.Join(",", ServiceConstants.Scopes),
                 new Uri(GetAuthorizeUrl()),
+                new Uri("https://login.live.com/oauth20_authorize.srf"),
                 new Uri(ServiceConstants.RETURN_URL));
 
             auth.Completed +=
