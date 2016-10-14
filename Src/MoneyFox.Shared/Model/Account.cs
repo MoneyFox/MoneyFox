@@ -1,22 +1,92 @@
-﻿using PropertyChanged;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using SQLite;
 
 namespace MoneyFox.Shared.Model
 {
-    [ImplementPropertyChanged]
     [Table("Accounts")]
-    public class Account
+    public class Account : INotifyPropertyChanged
     {
-        [PrimaryKey]
-        [AutoIncrement]
-        [Indexed]
-        public int Id { get; set; }
+        private int id;
+        private string name;
+        private string iban;
+        private double currentBalance;
+        private string note;
+        private string endMonthWarning;
 
-        public string Name { get; set; }
-        public string Iban { get; set; }
-        public double CurrentBalance { get; set; }
-        public string Note { get; set; }
+        [PrimaryKey, AutoIncrement, Indexed]
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                if (id == value) return;
+                id = value;
+                RaisePropertyChanged();
+            }
+        }
 
-        public string EndMonthWarning { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (name == value) return;
+                name = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string Iban
+        {
+            get { return iban; }
+            set
+            {
+                if (iban == value) return;
+                iban = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public double CurrentBalance
+        {
+            get { return currentBalance; }
+            set
+            {
+                if (Math.Abs(currentBalance - value) < 0.01) return;
+                currentBalance = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string Note
+        {
+            get { return note; }
+            set
+            {
+                if (note == value) return;
+                note = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string EndMonthWarning
+        {
+            get { return endMonthWarning; }
+            set
+            {
+                if (endMonthWarning == value) return;
+                endMonthWarning = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

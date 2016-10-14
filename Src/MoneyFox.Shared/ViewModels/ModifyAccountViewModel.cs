@@ -7,16 +7,16 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        private bool isEdit;
+        private Account selectedAccount;
 
         public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
             ISettingsManager settingsManager)
@@ -52,7 +52,15 @@ namespace MoneyFox.Shared.ViewModels
         ///     indicates if the account already exists and shall
         ///     be updated or new created
         /// </summary>
-        public bool IsEdit { get; set; }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set
+            {
+                isEdit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns the Title based on if the view is in edit mode or not.
@@ -76,13 +84,22 @@ namespace MoneyFox.Shared.ViewModels
                 {
                     SelectedAccount.CurrentBalance = amount;
                 }
+                RaisePropertyChanged();
             }
         }
 
         /// <summary>
         ///     The currently selected account
         /// </summary>
-        public Account SelectedAccount { get; set; }
+        public Account SelectedAccount
+        {
+            get { return selectedAccount; }
+            set
+            {
+                selectedAccount = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public void Init(bool isEdit)
         {

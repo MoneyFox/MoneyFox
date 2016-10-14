@@ -10,11 +10,9 @@ using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.Services
 {
-    [ImplementPropertyChanged]
     public class OneDriveService : IBackupService
     {
         private readonly IMvxFileStore fileStore;

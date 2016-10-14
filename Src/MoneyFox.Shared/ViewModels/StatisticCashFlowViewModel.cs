@@ -4,15 +4,14 @@ using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
         private readonly ISettingsManager settingsManager;
+        private PlotModel cashFlowModel;
 
         public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, ISettingsManager settingsManager)
         {
@@ -24,7 +23,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
-        public PlotModel CashFlowModel { get; set; }
+        public PlotModel CashFlowModel
+        {
+            get { return cashFlowModel; }
+            set
+            {
+                cashFlowModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Loads the cashflow with the current start and end date.

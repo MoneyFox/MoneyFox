@@ -12,11 +12,9 @@ using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;

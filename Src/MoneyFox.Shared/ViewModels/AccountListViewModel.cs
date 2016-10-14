@@ -8,11 +8,9 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
@@ -30,7 +28,6 @@ namespace MoneyFox.Shared.ViewModels
             this.paymentRepository = paymentRepository;
             this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
-
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }

@@ -5,16 +5,15 @@ using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
         private readonly ISettingsManager settingsManager;
+        private PlotModel monthlyExpensesModel;
 
         public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager)
@@ -28,7 +27,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Contains the PlotModel for the Chart
         /// </summary>
-        public PlotModel MonthlyExpensesModel { get; set; }
+        public PlotModel MonthlyExpensesModel
+        {
+            get { return monthlyExpensesModel; }
+            set
+            {
+                monthlyExpensesModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Loads the expense history with the current start and end date.

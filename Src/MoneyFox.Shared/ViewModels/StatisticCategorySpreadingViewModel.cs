@@ -6,11 +6,9 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Series;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private readonly OxyColor[] colors =
@@ -24,6 +22,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly ISettingsManager settingsManager;
 
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
+        private PlotModel spreadingModel;
 
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
             ISettingsManager settingsManager)
@@ -35,7 +34,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Contains the PlotModel for the CategorySpreading graph
         /// </summary>
-        public PlotModel SpreadingModel { get; set; }
+        public PlotModel SpreadingModel
+        {
+            get { return spreadingModel; }
+            set
+            {
+                spreadingModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     A collection with the current items for the legend.

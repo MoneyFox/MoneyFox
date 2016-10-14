@@ -4,11 +4,9 @@ using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using PropertyChanged;
 
 namespace MoneyFox.Shared.ViewModels
 {
-    [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>
