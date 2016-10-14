@@ -14,7 +14,7 @@ namespace MoneyFox.Windows.Business
             // Task will be executed all 6 hours
             // 360 = 6 * 60 Minutes
             new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "ClearPaymentTask", Interval = 360 },
-            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "RecurringPaymentTask", Interval = MinutesTilMidnight()},
+            new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "RecurringPaymentTask", Interval = 60}, //MinutesTilMidnight()},
             new TimeTaskConfig {Namespace = "MoneyFox.Windows.Tasks", Taskname = "SyncBackupTask", Interval = 180 }
         };
 
