@@ -31,8 +31,8 @@ namespace MoneyFox.Shared.Model
             get { return value; }
             set
             {
-                if (value == value) return;
-                value = value;
+                if (this.value == value) return;
+                this.value = value;
                 RaisePropertyChanged();
             }
         }
