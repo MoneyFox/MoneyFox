@@ -11,6 +11,8 @@ using MoneyFox.Shared.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
+using MoneyFox.Droid.OneDriveAuth;
+using MoneyFox.Shared.Extensions;
 
 namespace MoneyFox.Droid.OneDriveAuth
 {
@@ -18,61 +20,61 @@ namespace MoneyFox.Droid.OneDriveAuth
     {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
+        private OAuth2Authenticator authenticator;
+
+        /// <summary>
+        ///     Authenticates the user with the service and saves the refresh token.
+        /// </summary>
+        /// <param name="request">Http request message</param>
+        /// <returns></returns>
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
+            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+                ServiceConstants.MSA_CLIENT_SECRET,
+                string.Join(",", ServiceConstants.Scopes),
+                new Uri(ServiceConstants.AUTHENTICATION_URL),
+                new Uri(ServiceConstants.RETURN_URL),
+                new Uri(ServiceConstants.TOKEN_URL));
+
             var protectedData = new ProtectedData();
-            var token = protectedData.Unprotect(ServiceConstants.ACCESS_TOKEN);
-            if (string.IsNullOrEmpty(token))
+            var accessToken = string.Empty;
+            var refreshToken = protectedData.Unprotect(ServiceConstants.REFRESH_TOKEN);
+            if (string.IsNullOrEmpty(refreshToken))
             {
                 var result = await ShowWebView();
                 if (result != null)
                 {
-                    token = result[ServiceConstants.ACCESS_TOKEN];
-                    new ProtectedData().Protect(ServiceConstants.ACCESS_TOKEN, token);
+                    // pass access_token to the onedrive sdk
+                    accessToken = result[ServiceConstants.ACCESS_TOKEN];
+                    
+                    // add refresh token to the password vault to enable future silent login
+                    new ProtectedData().Protect(ServiceConstants.REFRESH_TOKEN, result[ServiceConstants.REFRESH_TOKEN]);
                 }
             }
+            else
+            {
+                accessToken = await authenticator.RequestRefreshTokenAsync(refreshToken);
+            }
 
-            request.Headers.Authorization = new AuthenticationHeaderValue("bearer", token);
+            request.Headers.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
         }
 
         private Task<IDictionary<string, string>> ShowWebView()
         {
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
-            var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_SECRET,
-                string.Join(",", ServiceConstants.Scopes),
-                new Uri(GetAuthorizeUrl()),
-                new Uri("https://login.live.com/oauth20_authorize.srf"),
-                new Uri(ServiceConstants.RETURN_URL));
-
-            auth.Completed +=
+            authenticator.Completed +=
                 (sender, eventArgs) =>
                 {
                     tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
                 };
 
-            var intent = auth.GetUI(Application.Context);
+            var intent = authenticator.GetUI(Application.Context);
             intent.SetFlags(ActivityFlags.NewTask);
 
             Application.Context.StartActivity(intent);
 
             return tcs.Task;
-        }
-
-        private string GetAuthorizeUrl()
-        {
-            var requestUriStringBuilder = new StringBuilder();
-            requestUriStringBuilder.Append(ServiceConstants.AUTHENTICATION_URL);
-            requestUriStringBuilder.AppendFormat("?{0}={1}", ServiceConstants.REDIRECT_URI,
-                ServiceConstants.RETURN_URL);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_ID);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.SCOPE,
-                string.Join("%20", ServiceConstants.Scopes));
-            requestUriStringBuilder.AppendFormat("&{0}={1}", ServiceConstants.RESPONSE_TYPE, ServiceConstants.CODE);
-
-            return requestUriStringBuilder.ToString();
         }
     }
 }

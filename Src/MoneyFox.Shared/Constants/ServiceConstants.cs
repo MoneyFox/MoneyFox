@@ -14,7 +14,6 @@
         ///     Return url for the OneDrive authentication
         /// </summary>
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
-        public const string REDIRECT_URL = "https://github.com/MoneyFox/MoneyFox";
 
         /// <summary>
         ///     Returns the base URL of the OneDrive Service
@@ -35,6 +34,11 @@
         ///     String constant for the access token.
         /// </summary>
         public const string ACCESS_TOKEN = "access_token";
+        
+        /// <summary>
+        ///     String constant for the refresh token.
+        /// </summary>
+        public const string REFRESH_TOKEN = "refresh_token";
 
         /// <summary>
         ///     String constant for the redirect uri.
