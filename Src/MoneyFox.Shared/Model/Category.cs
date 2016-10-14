@@ -7,7 +7,9 @@ namespace MoneyFox.Shared.Model
     [Table("Categories")]
     public class Category
     {
-        [PrimaryKey, AutoIncrement, Indexed]
+        [PrimaryKey]
+        [AutoIncrement]
+        [Indexed]
         public int Id { get; set; }
 
         /// <summary>

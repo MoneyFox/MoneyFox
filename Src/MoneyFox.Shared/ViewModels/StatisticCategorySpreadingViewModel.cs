@@ -13,8 +13,6 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private readonly ISettingsManager settingsManager;
-
         private readonly OxyColor[] colors =
         {
             OxyColor.Parse("#393939"), OxyColor.Parse("#4b4b4b"),
@@ -23,9 +21,12 @@ namespace MoneyFox.Shared.ViewModels
             OxyColor.Parse("#d49078")
         };
 
+        private readonly ISettingsManager settingsManager;
+
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
 
-        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider, ISettingsManager settingsManager)
+        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
+            ISettingsManager settingsManager)
         {
             this.spreadingDataProvider = spreadingDataProvider;
             this.settingsManager = settingsManager;
@@ -84,7 +85,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
                 LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label});
-                colorIndex ++;
+                colorIndex++;
             }
 
             model.Series.Add(pieSeries);

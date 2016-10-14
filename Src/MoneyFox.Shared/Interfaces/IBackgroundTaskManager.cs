@@ -2,6 +2,6 @@
 {
     public interface IBackgroundTaskManager
     {
-         void StartBackgroundTask();
+        void StartBackgroundTask();
     }
 }

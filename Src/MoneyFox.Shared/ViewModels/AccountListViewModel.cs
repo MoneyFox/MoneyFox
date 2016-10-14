@@ -13,11 +13,12 @@ using PropertyChanged;
 namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AccountListViewModel : BaseViewModel {
+    public class AccountListViewModel : BaseViewModel
+    {
         private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
-        private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IDialogService dialogService;
+        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
 
         public AccountListViewModel(IAccountRepository accountRepository,
@@ -32,7 +33,6 @@ namespace MoneyFox.Shared.ViewModels
 
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
-            
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -87,7 +87,6 @@ namespace MoneyFox.Shared.ViewModels
             AllAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             BalanceViewModel.UpdateBalanceCommand.Execute();
             endOfMonthManager.AssignToAccounts();
-
         }
 
         private void GoToPaymentOverView(Account account)
@@ -116,7 +115,9 @@ namespace MoneyFox.Shared.ViewModels
                     paymentRepository.Delete(payment);
                 }
                 if (accountRepository.Delete(item))
+                {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
+                }
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
 

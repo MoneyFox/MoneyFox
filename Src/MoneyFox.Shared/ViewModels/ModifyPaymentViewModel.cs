@@ -19,9 +19,9 @@ namespace MoneyFox.Shared.ViewModels
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
 
         //this token ensures that we will be notified when a message is sent.
@@ -53,6 +53,8 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         public int PaymentId { get; private set; }
+
+        private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
         /// <summary>
         ///     Init the view for a new Payment. Is executed after the constructor call.
@@ -93,7 +95,7 @@ namespace MoneyFox.Shared.ViewModels
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
             RecurrenceString = SelectedPayment.IsRecurring
-                ? RecurrenceList[SelectedPayment.RecurringPayment.Recurrence] 
+                ? RecurrenceList[SelectedPayment.RecurringPayment.Recurrence]
                 : "";
             EndDate = SelectedPayment.IsRecurring
                 ? SelectedPayment.RecurringPayment.EndDate
@@ -119,7 +121,10 @@ namespace MoneyFox.Shared.ViewModels
         /// <param name="message">Message sent.</param>
         private void ReceiveMessage(CategorySelectedMessage message)
         {
-            if (SelectedPayment == null || message == null) return;
+            if ((SelectedPayment == null) || (message == null))
+            {
+                return;
+            }
             SelectedPayment.Category = message.SelectedCategory;
         }
 
@@ -131,7 +136,7 @@ namespace MoneyFox.Shared.ViewModels
                 return;
             }
 
-            if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
+            if (SelectedPayment.IsRecurring && !IsEndless && (EndDate.Date <= DateTime.Today))
             {
                 ShowInvalidEndDateMessage();
                 return;
@@ -193,7 +198,9 @@ namespace MoneyFox.Shared.ViewModels
                 var paymentSucceded = paymentRepository.Delete(SelectedPayment);
                 var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
                 if (paymentSucceded && accountSucceded)
+                {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
+                }
                 Close(this);
             }
         }
@@ -221,28 +228,31 @@ namespace MoneyFox.Shared.ViewModels
             Close(this);
         }
 
-        private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
-
         private void UpdateOtherComboBox()
         {
-           ObservableCollection<Account> tempCollection = new ObservableCollection<Account>(ChargedAccounts);
-            foreach (Account i in TargetAccounts)
+            var tempCollection = new ObservableCollection<Account>(ChargedAccounts);
+            foreach (var i in TargetAccounts)
             {
                 if (!tempCollection.Contains(i))
+                {
                     tempCollection.Add(i);
+                }
             }
-            foreach (Account i in tempCollection)
+            foreach (var i in tempCollection)
             {
-                if (!TargetAccounts.Contains(i))//fills targetaccounts
-                   TargetAccounts.Add(i);
-                
-                if (!ChargedAccounts.Contains(i))//fills chargedaccounts
-                   ChargedAccounts.Add(i);
+                if (!TargetAccounts.Contains(i)) //fills targetaccounts
+                {
+                    TargetAccounts.Add(i);
+                }
+
+                if (!ChargedAccounts.Contains(i)) //fills chargedaccounts
+                {
+                    ChargedAccounts.Add(i);
+                }
             }
             ChargedAccounts.Remove(selectedPayment.TargetAccount);
             TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
-
 
         #region Commands
 
@@ -345,7 +355,10 @@ namespace MoneyFox.Shared.ViewModels
             get { return selectedPayment; }
             set
             {
-                if (value == null) return;
+                if (value == null)
+                {
+                    return;
+                }
                 selectedPayment = value;
             }
         }
@@ -353,12 +366,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> ChargedAccounts { get; set;}
+        public ObservableCollection<Account> ChargedAccounts { get; set; }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<Account> TargetAccounts { get; set;}
+        public ObservableCollection<Account> TargetAccounts { get; set; }
 
         /// <summary>
         ///     Returns the Title for the page
@@ -380,7 +393,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             get
             {
-                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue)
+                if (!IsEdit && (SelectedPayment.Date == DateTime.MinValue))
                 {
                     SelectedPayment.Date = DateTime.Now;
                 }

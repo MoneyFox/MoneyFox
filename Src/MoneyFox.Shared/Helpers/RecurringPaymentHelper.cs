@@ -14,9 +14,9 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="enddate">Enddate for the recurring payment if it's not endless.</param>
         /// <returns>The new created recurring payment</returns>
         public static RecurringPayment GetRecurringFromPayment(Payment payment,
-            bool isEndless,
-            int recurrence,
-            DateTime enddate = new DateTime())
+                bool isEndless,
+                int recurrence,
+                DateTime enddate = new DateTime())
             => new RecurringPayment
             {
                 Id = payment.RecurringPaymentId,
@@ -87,9 +87,9 @@ namespace MoneyFox.Shared.Helpers
                     return DateTime.Today.Date != relatedPayment.Date.Date;
 
                 case (int) PaymentRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != relatedPayment.Date.Date
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
+                    return (DateTime.Today.Date != relatedPayment.Date.Date)
+                           && (DateTime.Today.DayOfWeek != DayOfWeek.Saturday)
+                           && (DateTime.Today.DayOfWeek != DayOfWeek.Sunday);
 
                 case (int) PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relatedPayment.Date;
@@ -103,9 +103,9 @@ namespace MoneyFox.Shared.Helpers
                     return DateTime.Now.Month != relatedPayment.Date.Month;
 
                 case (int) PaymentRecurrence.Yearly:
-                    return (DateTime.Now.Year != relatedPayment.Date.Year
-                            && DateTime.Now.Month >= relatedPayment.Date.Month)
-                           || DateTime.Now.Year - relatedPayment.Date.Year > 1;
+                    return ((DateTime.Now.Year != relatedPayment.Date.Year)
+                            && (DateTime.Now.Month >= relatedPayment.Date.Month))
+                           || (DateTime.Now.Year - relatedPayment.Date.Year > 1);
 
                 default:
                     return false;

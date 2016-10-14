@@ -73,7 +73,9 @@ namespace MoneyFox.Shared.ViewModels
             {
                 double amount;
                 if (double.TryParse(value, out amount))
+                {
                     SelectedAccount.CurrentBalance = amount;
+                }
             }
         }
 
@@ -87,7 +89,9 @@ namespace MoneyFox.Shared.ViewModels
             IsEdit = isEdit;
 
             if (!IsEdit)
+            {
                 SelectedAccount = new Account();
+            }
         }
 
         /// <summary>

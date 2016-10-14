@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Microsoft.OneDriveSDK": "2.0.0",
-    "Microsoft.OneDriveSDK.Authentication": "1.0.5",
+    "Microsoft.OneDriveSDK": "2.0.2",
+    "Microsoft.OneDriveSDK.Authentication": "1.0.6",
     "NotificationsExtensions.Win10": "14332.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha"
   },

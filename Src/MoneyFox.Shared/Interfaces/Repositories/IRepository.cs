@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 
 namespace MoneyFox.Shared.Interfaces.Repositories
 {
-    public interface IRepository<T> {
+    public interface IRepository<T>
+    {
         /// <summary>
         ///     Returns a List filtered by the passed expression.
         /// </summary>

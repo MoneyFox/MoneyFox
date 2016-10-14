@@ -15,13 +15,13 @@ namespace MoneyFox.Shared.Manager
     public class BackupManager : IBackupManager
     {
         private readonly IBackupService backupService;
+
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly IRepositoryManager repositoryManager;
-        private readonly ISettingsManager settingsManager;
-
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly ISettingsManager settingsManager;
 
         private bool oldBackupRestored;
 
@@ -91,7 +91,7 @@ namespace MoneyFox.Shared.Manager
         public async Task<bool> IsBackupExisting()
         {
             var files = await backupService.GetFileNames();
-            return files != null && files.Any();
+            return (files != null) && files.Any();
         }
 
         /// <summary>

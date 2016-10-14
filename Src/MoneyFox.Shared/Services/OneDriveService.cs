@@ -131,7 +131,7 @@ namespace MoneyFox.Shared.Services
         /// <returns>A list with all filenames.</returns>
         public async Task<List<string>> GetFileNames()
         {
-            if (OneDriveClient == null) 
+            if (OneDriveClient == null)
             {
                 OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
@@ -144,7 +144,10 @@ namespace MoneyFox.Shared.Services
 
         private async Task LoadBackupFolder()
         {
-            if (BackupFolder != null) return;
+            if (BackupFolder != null)
+            {
+                return;
+            }
 
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder =

@@ -25,24 +25,24 @@ namespace MoneyFox.Shared.StatisticDataProvider
         /// <returns>Statistic value for the given time. </returns>
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
             => GetSpreadingStatisticItems(paymentRepository
-                .GetList(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date
-                              && (x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income))
+                .GetList(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date)
+                              && ((x.Type == (int) PaymentType.Expense) || (x.Type == (int) PaymentType.Income)))
                 .ToList());
 
         private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
         {
             var tempStatisticList = (from payment in payments
-                group payment by new
-                {
-                    category = payment.Category != null ? payment.Category.Name : string.Empty
-                }
-                into temp
-                select new StatisticItem
-                {
-                    Category = temp.Key.category,
-                    // we subtract income payments here so that we have all expenses without presign
-                    Value = temp.Sum(x => x.Type == (int) PaymentType.Income ? -x.Amount : x.Amount)
-                })
+                    group payment by new
+                    {
+                        category = payment.Category != null ? payment.Category.Name : string.Empty
+                    }
+                    into temp
+                    select new StatisticItem
+                    {
+                        Category = temp.Key.category,
+                        // we subtract income payments here so that we have all expenses without presign
+                        Value = temp.Sum(x => x.Type == (int) PaymentType.Income ? -x.Amount : x.Amount)
+                    })
                 .Where(x => x.Value > 0)
                 .OrderByDescending(x => x.Value)
                 .ToList();

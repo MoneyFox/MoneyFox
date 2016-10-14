@@ -80,7 +80,8 @@ namespace MoneyFox.Shared
                             }
                         }
 
-                        foreach (var payment in paymentsToMigrate.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
+                        foreach (
+                            var payment in paymentsToMigrate.Where(x => x.IsRecurring && (x.RecurringPaymentId == 0)))
                         {
                             payment.IsRecurring = false;
                         }
@@ -108,7 +109,7 @@ namespace MoneyFox.Shared
         ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
         /// </summary>
         /// <returns>Established async connection.</returns>
-        public SQLite.SQLiteAsyncConnection GetAsyncConnection()
+        public SQLiteAsyncConnection GetAsyncConnection()
             => connectionFactory.GetAsyncConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
     }
 }

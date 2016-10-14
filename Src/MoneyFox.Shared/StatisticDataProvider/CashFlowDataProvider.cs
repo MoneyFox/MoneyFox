@@ -8,11 +8,12 @@ using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {
-    public class CashFlowDataProvider : IStatisticProvider<CashFlow> {
-
+    public class CashFlowDataProvider : IStatisticProvider<CashFlow>
+    {
         private readonly IRepository<Payment> paymentRepository;
 
-        public CashFlowDataProvider(IRepository<Payment> paymentRepository) {
+        public CashFlowDataProvider(IRepository<Payment> paymentRepository)
+        {
             this.paymentRepository = paymentRepository;
         }
 
@@ -28,8 +29,8 @@ namespace MoneyFox.Shared.StatisticDataProvider
             var getPaymentListFunc =
                 new Func<List<Payment>>(() =>
                     paymentRepository
-                        .GetList(x => x.Type != (int) PaymentType.Transfer
-                                      && x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                        .GetList(x => (x.Type != (int) PaymentType.Transfer)
+                                      && (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
                         .ToList());
 
             return GetCashFlowStatisticItems(getPaymentListFunc);

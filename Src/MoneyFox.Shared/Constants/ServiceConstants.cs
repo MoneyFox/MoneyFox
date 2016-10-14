@@ -31,26 +31,6 @@
         public const string TOKEN_URL = "https://login.live.com/oauth20_token.srf";
 
         /// <summary>
-        ///     Scopes for OneDrive access
-        /// </summary>
-        public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin"};
-
-        /// <summary>
-        ///     Maximum number of attempts to sync the database
-        /// </summary>
-        public static int SyncAttempts = 2;
-
-        /// <summary>
-        ///     The amount of time to wait for the onedrive backup to be completed
-        /// </summary>
-        public static int BackupOperationTimeout = 10000;
-
-        /// <summary>
-        ///     The amount of time to wait before retrying to sync
-        /// </summary>
-        public static int BackupRepeatDelay = 2000;
-
-        /// <summary>
         ///     String constant for the access token.
         /// </summary>
         public const string ACCESS_TOKEN = "access_token";
@@ -85,5 +65,24 @@
         /// </summary>
         public const string KEY_STORE_TAG_ONEDRIVE = "OneDrive";
 
+        /// <summary>
+        ///     Scopes for OneDrive access
+        /// </summary>
+        public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin"};
+
+        /// <summary>
+        ///     Maximum number of attempts to sync the database
+        /// </summary>
+        public static int SyncAttempts = 2;
+
+        /// <summary>
+        ///     The amount of time to wait for the onedrive backup to be completed
+        /// </summary>
+        public static int BackupOperationTimeout = 10000;
+
+        /// <summary>
+        ///     The amount of time to wait before retrying to sync
+        /// </summary>
+        public static int BackupRepeatDelay = 2000;
     }
 }
