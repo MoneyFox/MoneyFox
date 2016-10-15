@@ -16,27 +16,38 @@ namespace MoneyFox.Windows.Tasks
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            var deferral = taskInstance.GetDeferral();
 
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
-            var categoryRepository = new CategoryRepository(new CategoryDataAccess(dbManager));
+            try
+            {
+                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWindowsCommonFileStore());
 
-            var settingsManager = new SettingsManager(new WindowsCommonSettings());
+                var accountRepository = new AccountRepository(new AccountDataAccess(dbManager));
+                var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
+                var categoryRepository = new CategoryRepository(new CategoryDataAccess(dbManager));
 
-            var paymentManager = new PaymentManager(paymentRepository,
-                new AccountRepository(new AccountDataAccess(dbManager)),
-                new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
-                null);
+                var settingsManager = new SettingsManager(new WindowsCommonSettings());
 
-            var autoBackupManager = new AutoBackupManager(
-                new BackupManager(
-                    new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
-                    new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()), new MvxWindowsCommonFileStore(), dbManager, settingsManager),
-                new GlobalBusyIndicatorState(), settingsManager);
+                var paymentManager = new PaymentManager(paymentRepository,
+                    new AccountRepository(new AccountDataAccess(dbManager)),
+                    new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
+                    null);
 
-            await autoBackupManager.RestoreBackupIfNewer();
-            await autoBackupManager.UploadBackupIfNewer();
+                var autoBackupManager = new AutoBackupManager(
+                    new BackupManager(
+                        new RepositoryManager(paymentManager, accountRepository, paymentRepository, categoryRepository),
+                        new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
+                        new MvxWindowsCommonFileStore(), dbManager, settingsManager),
+                    new GlobalBusyIndicatorState(), settingsManager);
+
+                await autoBackupManager.RestoreBackupIfNewer();
+                await autoBackupManager.UploadBackupIfNewer();
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
     }
 }

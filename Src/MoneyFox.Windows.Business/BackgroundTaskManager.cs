@@ -35,10 +35,7 @@ namespace MoneyFox.Windows.Business
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
-            if (requestAccess == BackgroundAccessStatus.DeniedByUser)
-            {
-                return;
-            }
+            if (requestAccess == BackgroundAccessStatus.DeniedByUser) return;
 
             var taskBuilder = new BackgroundTaskBuilder
             {

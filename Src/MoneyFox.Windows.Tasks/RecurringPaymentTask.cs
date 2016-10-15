@@ -13,16 +13,27 @@ namespace MoneyFox.Windows.Tasks
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            var deferral = taskInstance.GetDeferral();
 
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
+            try
+            {
+                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWindowsCommonFileStore());
 
-            var paymentManager = new PaymentManager(paymentRepository,
-                new AccountRepository(new AccountDataAccess(dbManager)),
-                new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
-                null);
+                var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
 
-            new RecurringPaymentManager(paymentManager, paymentRepository, new SettingsManager(new WindowsCommonSettings())).CheckRecurringPayments();
+                var paymentManager = new PaymentManager(paymentRepository,
+                    new AccountRepository(new AccountDataAccess(dbManager)),
+                    new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
+                    null);
+
+                new RecurringPaymentManager(paymentManager, paymentRepository,
+                    new SettingsManager(new WindowsCommonSettings())).CheckRecurringPayments();
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
     }
 }
