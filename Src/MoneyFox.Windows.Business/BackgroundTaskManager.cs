@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Windows.ApplicationModel.Background;
+using Windows.Storage;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Windows.Business
@@ -38,7 +39,13 @@ namespace MoneyFox.Windows.Business
                 // Task will be executed all 6 hours
                 // 360 = 6 * 60 Minutes
                 builder.SetTrigger(new TimeTrigger(360, false));
-                builder.Register();
+                var task = builder.Register();
+
+                task.Completed += (sender, args) =>
+                {
+                    var settings = ApplicationData.Current.LocalSettings;
+                    settings.Values["CLEAR_PAYMENT"] = "true";
+                };
             }
         }
 
@@ -55,7 +62,13 @@ namespace MoneyFox.Windows.Business
                 //  Task will be executed every day at midnight.
                 builder.SetTrigger(new TimeTrigger(60, false));
                 //builder.SetTrigger(new TimeTrigger(MinutesTilMidnight(), false));
-                builder.Register();
+                var task = builder.Register();
+
+                task.Completed += (sender, args) =>
+                {
+                    var settings = ApplicationData.Current.LocalSettings;
+                    settings.Values["RECURRING_PAYMENT"] = "true";
+                };
             }
         }
 
@@ -71,7 +84,13 @@ namespace MoneyFox.Windows.Business
                 // Task will be executed all 3 hours
                 // 180 = 3 * 60 Minutes
                 builder.SetTrigger(new TimeTrigger(180, false));
-                builder.Register();
+                var task = builder.Register();
+
+                task.Completed += (sender, args) =>
+                {
+                    var settings = ApplicationData.Current.LocalSettings;
+                    settings.Values["SYNC_BACKUP"] = "true";
+                };
             }
         }
 
