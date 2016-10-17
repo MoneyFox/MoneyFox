@@ -21,6 +21,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
+        private ObservableCollection<Payment> relatedPayments;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -77,7 +78,16 @@ namespace MoneyFox.Shared.ViewModels
         ///     This has to stay until the android list with headers is implemented.
         ///     Currently only used for Android
         /// </summary>
-        public ObservableCollection<Payment> RelatedPayments { get; set; }
+        public ObservableCollection<Payment> RelatedPayments
+        {
+            get { return relatedPayments; }
+            set
+            {
+                if (relatedPayments == value) return;
+                relatedPayments = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns groupped related payments
