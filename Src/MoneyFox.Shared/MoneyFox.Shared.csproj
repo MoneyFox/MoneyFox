@@ -76,13 +76,13 @@
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Interfaces\IEndOfMonthManager.cs" />
     <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
-    <Compile Include="Interfaces\IEndOfMonthManager.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />

@@ -21,6 +21,8 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
+        private readonly IEndOfMonthManager endOfMonthManager;
+
         private ObservableCollection<Payment> relatedPayments;
         private ObservableCollection<DateListGroup<Payment>> source;
 
@@ -28,7 +30,9 @@ namespace MoneyFox.Shared.ViewModels
             IPaymentRepository paymentRepository,
             IRepository<RecurringPayment> recurringPaymentRepository,
             IPaymentManager paymentManager,
-            IDialogService dialogService, ISettingsManager settingsManager)
+            IDialogService dialogService,
+            ISettingsManager settingsManager,
+            IEndOfMonthManager endOfMonthManager)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
@@ -36,6 +40,7 @@ namespace MoneyFox.Shared.ViewModels
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
+            this.endOfMonthManager = endOfMonthManager;
         }
 
         public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
@@ -112,7 +117,7 @@ namespace MoneyFox.Shared.ViewModels
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
         }
 
         private void LoadPayments()

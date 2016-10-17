@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
@@ -9,14 +10,15 @@ namespace MoneyFox.Shared.ViewModels
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IEndOfMonthManager endOfMonthManager;
+
         private double totalBalance;
         private double endOfMonthBalance;
 
-        public BalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository)
+        public BalanceViewModel(IAccountRepository accountRepository, IEndOfMonthManager endOfMonthManager)
         {
             this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
+            this.endOfMonthManager = endOfMonthManager;
         }
 
         /// <summary>
@@ -73,26 +75,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
         protected virtual double GetEndOfMonthValue()
         {
-            var balance = TotalBalance;
-            var unclearedPayments = paymentRepository
-                .GetList(p => !p.IsCleared && (p.Date.Date <= Utilities.GetEndOfMonth()));
-
-            foreach (var payment in unclearedPayments)
-            {
-                //Transfer can be ignored since they don't change the summary.
-                switch (payment.Type)
-                {
-                    case (int) PaymentType.Expense:
-                        balance -= payment.Amount;
-                        break;
-
-                    case (int) PaymentType.Income:
-                        balance += payment.Amount;
-                        break;
-                }
-            }
-
-            return balance;
+            return endOfMonthManager.GetTotalEndOfMonthBalance(accountRepository.GetList());
         }
     }
 }
