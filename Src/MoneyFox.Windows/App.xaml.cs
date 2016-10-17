@@ -106,7 +106,7 @@ namespace MoneyFox.Windows
 
             OverrideTitleBarColor();
 
-            //If Jump Lists are supported, adds them
+            //If Jump Lists are supported, adds them§a
             if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
             {
                 SetJumplist();
