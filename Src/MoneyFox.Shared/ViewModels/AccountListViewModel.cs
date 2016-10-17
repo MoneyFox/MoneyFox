@@ -18,6 +18,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
+        private ObservableCollection<Account> allAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -37,7 +38,18 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     All existing accounts.
         /// </summary>
-        public ObservableCollection<Account> AllAccounts { get; set; }
+        public ObservableCollection<Account> AllAccounts
+        {
+            get { return allAccounts; }
+            set
+            {
+                if(allAccounts == value) return;
+                allAccounts = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsAllAccountsEmpty));
+            }
+        }
 
         /// <summary>
         ///     Returns if the ChargedAccounts Collection is emtpy or not.

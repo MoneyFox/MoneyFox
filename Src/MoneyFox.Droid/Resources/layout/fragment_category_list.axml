@@ -16,7 +16,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="Text SearchText" 
+                local:MvxBind="Text SearchText"
                 local:MvxLang="Hint SearchStringLabel" />
         </android.support.design.widget.TextInputLayout>
         <MvxListView
@@ -36,7 +36,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_margin="6dp"
         local:MvxBind="Visible IsCategoriesEmpty"
-        local:MvxLang="Text EmptyListPlaceholderLabel"/>
+        local:MvxLang="Text EmptyListPlaceholderLabel" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
         android:layout_width="wrap_content"
