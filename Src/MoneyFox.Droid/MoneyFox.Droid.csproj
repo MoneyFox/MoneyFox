@@ -81,12 +81,12 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.2.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Connectivity.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HockeySDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -337,6 +337,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
+    <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
