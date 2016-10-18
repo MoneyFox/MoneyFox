@@ -46,7 +46,7 @@ namespace MoneyFox.Windows.Controls
                 listViewItem.Background = (index + 1) % 2 == 1
                     ? OddRowBackground
                     : EvenRowBackground;
-                if (accountItem.EndMonthWarning != " ")
+                if (accountItem.IsOverdrawn)
                 {
                     listViewItem.Background = WarningBackground;
                 }

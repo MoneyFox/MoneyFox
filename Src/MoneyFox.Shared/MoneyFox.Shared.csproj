@@ -56,6 +56,7 @@
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
+    <Compile Include="Converter\AccountWarningColorConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="DataAccess\AbstractDataAccess.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />
@@ -238,6 +239,10 @@
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Color, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.3.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Color.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

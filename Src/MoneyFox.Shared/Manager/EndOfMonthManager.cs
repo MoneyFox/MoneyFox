@@ -50,10 +50,12 @@ namespace MoneyFox.Shared.Manager
             if (tempBalance < 0)
             {
                 argAccount.EndMonthWarning = "Negative at end of month";
+                argAccount.IsOverdrawn = true;
             }
             else
             {
                 argAccount.EndMonthWarning = " ";
+                argAccount.IsOverdrawn = false;
             }
         }
     }

@@ -14,6 +14,7 @@ namespace MoneyFox.Shared.Model
         private double currentBalance;
         private string note;
         private string endMonthWarning;
+        private bool isOverdrawn;
 
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id
@@ -71,6 +72,7 @@ namespace MoneyFox.Shared.Model
             }
         }
 
+        [Ignore]
         public string EndMonthWarning
         {
             get { return endMonthWarning; }
@@ -78,6 +80,18 @@ namespace MoneyFox.Shared.Model
             {
                 if (endMonthWarning == value) return;
                 endMonthWarning = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        [Ignore]
+        public bool IsOverdrawn
+        {
+            get { return isOverdrawn; }
+            set
+            {
+                if (isOverdrawn == value) return;
+                isOverdrawn = value;
                 RaisePropertyChanged();
             }
         }
