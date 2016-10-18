@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using FontAwesome.UWP;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
@@ -27,39 +28,6 @@ namespace MoneyFox.Windows.Views
     {
         public static AppShell Current;
 
-        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Tag,
-                    Label = Strings.CategoriesLabel,
-                    DestViewModel = typeof(CategoryListViewModel),
-                    DestPage = typeof(CategoryListView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.SyncFolder,
-                    Label = Strings.BackupLabel,
-                    DestViewModel = typeof(BackupViewModel),
-                    DestPage = typeof(BackupView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Setting,
-                    Label = Strings.SettingsLabel,
-                    DestViewModel = typeof(SettingsViewModel),
-                    DestPage = typeof(SettingsView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Account,
-                    Label = Strings.AboutLabel,
-                    DestViewModel = typeof(AboutViewModel),
-                    DestPage = typeof(AboutView)
-                }
-            });
-
         // Declare the top level nav items
 
         private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
@@ -67,17 +35,50 @@ namespace MoneyFox.Windows.Views
             {
                 new NavMenuItem
                 {
-                    Symbol = Symbol.Library,
+                    Symbol = FontAwesomeIcon.University,
                     Label = Strings.AccountsLabel,
                     DestViewModel = typeof(MainViewModel),
                     DestPage = typeof(MainView)
                 },
                 new NavMenuItem
                 {
-                    Symbol = Symbol.View,
+                    Symbol = FontAwesomeIcon.BarChart,
                     Label = Strings.StatisticsLabel,
                     DestViewModel = typeof(StatisticSelectorViewModel),
                     DestPage = typeof(StatisticSelectorView)
+                }
+            });
+
+        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = FontAwesomeIcon.Tags,
+                    Label = Strings.CategoriesLabel,
+                    DestViewModel = typeof(CategoryListViewModel),
+                    DestPage = typeof(CategoryListView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = FontAwesomeIcon.CloudUpload,
+                    Label = Strings.BackupLabel,
+                    DestViewModel = typeof(BackupViewModel),
+                    DestPage = typeof(BackupView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = FontAwesomeIcon.Cog,
+                    Label = Strings.SettingsLabel,
+                    DestViewModel = typeof(SettingsViewModel),
+                    DestPage = typeof(SettingsView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = FontAwesomeIcon.InfoCircle,
+                    Label = Strings.AboutLabel,
+                    DestViewModel = typeof(AboutViewModel),
+                    DestPage = typeof(AboutView)
                 }
             });
 
@@ -460,9 +461,7 @@ namespace MoneyFox.Windows.Views
     {
         public string Label { get; set; }
 
-        public Symbol Symbol { get; set; }
-
-        public char SymbolAsChar => (char) Symbol;
+        public FontAwesomeIcon Symbol { get; set; }
 
         public Type DestViewModel { get; set; }
 

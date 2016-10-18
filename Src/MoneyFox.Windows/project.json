@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
+    "FontAwesome.UWP": "4.5.0.8",
     "Cheesebaron.MvxPlugins.Settings": "2.1.0",
     "HockeySDK.UWP": "4.1.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
