@@ -4,6 +4,7 @@
       xmlns:controls="using:MoneyFox.Windows.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uwp="using:FontAwesome.UWP"
       xmlns:views="using:MoneyFox.Windows.Views"
       x:Name="Root"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -32,13 +33,11 @@
                     value when the SplitView is 'Compact' while reducing the likelihood of showing
                     redundant information when the label is shown.
                 -->
-                <FontIcon x:Name="Glyph"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          FontSize="16"
-                          Foreground="White"
-                          Glyph="{x:Bind SymbolAsChar}"
-                          ToolTipService.ToolTip="{x:Bind Label}" />
+                <uwp:FontAwesome HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Foreground="White"
+                                 Icon="{x:Bind Symbol}"
+                                 ToolTipService.ToolTip="{x:Bind Label}" />
                 <TextBlock x:Name="Text"
                            Grid.Column="1"
                            Foreground="White"

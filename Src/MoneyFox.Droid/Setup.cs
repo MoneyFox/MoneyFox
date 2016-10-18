@@ -1,10 +1,6 @@
-using System.Collections.Generic;
-using System.Reflection;
 using Android.Content;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
-using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
+using Android.Widget;
+using MoneyFox.Droid.CustomBinding;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
@@ -16,6 +12,7 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
+using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 using PluginLoader = MvvmCross.Plugins.Email.PluginLoader;
@@ -29,15 +26,11 @@ namespace MoneyFox.Droid
         {
         }
 
-        protected override IEnumerable<Assembly> AndroidViewAssemblies
-            => new List<Assembly>(base.AndroidViewAssemblies)
-            {
-                typeof(NavigationView).Assembly,
-                typeof(FloatingActionButton).Assembly,
-                typeof(Toolbar).Assembly,
-                typeof(DrawerLayout).Assembly,
-                typeof(ViewPager).Assembly
-            };
+        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            base.FillTargetFactories(registry);
+            registry.RegisterFactory(new MvxCustomBindingFactory<LinearLayout>("WarningBackgroundShape", (view) => new WarningBackgroundShapeBinding(view)));
+        }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {

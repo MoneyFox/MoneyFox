@@ -8,6 +8,7 @@
   <color name="colorAccent">#314a9b</color>
 
   <color name="color_selected">#C7D2DC</color>
+  <color name="color_warning">#FFFF4500</color>
 
   <!-- White to Black -->
   <color name="white">#FFFFFF</color>
