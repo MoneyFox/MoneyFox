@@ -16,6 +16,9 @@ namespace MoneyFox.Shared.ViewModels
         protected readonly IDialogService DialogService;
 
         private string searchText;
+        private ObservableCollection<Category> categories;
+        private Category selectedCategory;
+        private ObservableCollection<AlphaGroupListGroup<Category>> source;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
@@ -34,24 +37,51 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Deletes the passed Category after show a confirmation dialog.
-        /// </summary>
-        public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
-
-        /// <summary>
         ///     Collection with all categories
         /// </summary>
-        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<Category> Categories
+        {
+            get { return categories; }
+            set
+            {
+                if(categories == value) return;
+                categories = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<Category>> Source { get; set; }
+        public ObservableCollection<AlphaGroupListGroup<Category>> Source
+        {
+            get { return source; }
+            set
+            {
+                if(source == value) return;
+                source = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Category currently selected in the view.
         /// </summary>
-        public Category SelectedCategory { get; set; }
+        public Category SelectedCategory
+        {
+            get { return selectedCategory; }
+            set
+            {
+                if(selectedCategory == value) return;
+                selectedCategory = value;
+                RaisePropertyChanged();
+            }
+        }
+        
+        /// <summary>
+        ///     Deletes the passed Category after show a confirmation dialog.
+        /// </summary>
+        public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
         /// <summary>
         ///     Edit the currently selected category
