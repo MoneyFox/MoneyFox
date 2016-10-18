@@ -22,7 +22,9 @@ namespace MoneyFox.Shared.ViewModels
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService, IEndOfMonthManager endOfMonthManager, ISettingsManager settingsManager)
+            IDialogService dialogService, 
+            IEndOfMonthManager endOfMonthManager,
+            ISettingsManager settingsManager)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
@@ -30,7 +32,7 @@ namespace MoneyFox.Shared.ViewModels
             this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
 
-            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
+            BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -95,7 +97,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             AllAccounts = new ObservableCollection<Account>(accountRepository.GetList());
             BalanceViewModel.UpdateBalanceCommand.Execute();
-            endOfMonthManager.AssignToAccounts();
+            endOfMonthManager.CheckEndOfMonthBalanceForAccounts(AllAccounts);
         }
 
         private void GoToPaymentOverView(Account account)

@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -13,14 +10,14 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly int accountId;
         private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IEndOfMonthManager endOfMonthManager;
 
-        public PaymentListBalanceViewModel(IAccountRepository accountRepository, IPaymentRepository paymentRepository,
+        public PaymentListBalanceViewModel(IAccountRepository accountRepository, IEndOfMonthManager endOfMonthManager,
             int accountId)
-            : base(accountRepository, paymentRepository)
+            : base(accountRepository, endOfMonthManager)
         {
             this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
+            this.endOfMonthManager = endOfMonthManager;
             this.accountId = accountId;
         }
 
@@ -38,49 +35,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
         protected override double GetEndOfMonthValue()
         {
-            var balance = TotalBalance;
-            var unclearedPayments = LoadUnclearedPayments();
-
-            foreach (var payment in unclearedPayments)
-            {
-                switch (payment.Type)
-                {
-                    case (int) PaymentType.Expense:
-                        balance -= payment.Amount;
-                        break;
-
-                    case (int) PaymentType.Income:
-                        balance += payment.Amount;
-                        break;
-
-                    case (int) PaymentType.Transfer:
-                        balance = HandleTransferAmount(payment, balance);
-                        break;
-                }
-            }
-
-            return balance;
+            return endOfMonthManager.GetEndOfMonthBalanceForAccount(accountRepository.FindById(accountId));
         }
-
-        private double HandleTransferAmount(Payment payment, double balance)
-        {
-            if (accountId == payment.ChargedAccountId)
-            {
-                balance -= payment.Amount;
-            }
-            else
-            {
-                balance += payment.Amount;
-            }
-            return balance;
-        }
-
-        private IEnumerable<Payment> LoadUnclearedPayments()
-            => paymentRepository
-                .GetList(p => !p.IsCleared)
-                .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
-                .Where(x => (x.ChargedAccountId == accountId)
-                            || (x.TargetAccountId == accountId))
-                .ToList();
     }
 }
