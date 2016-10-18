@@ -15,6 +15,10 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
 
+        private DateTime backupLastModified;
+        private bool isLoadingBackupAvailability;
+        private bool backupAvailable;
+
         public BackupViewModel(IBackupManager backupManager,
             IDialogService dialogService,
             IConnectivity connectivity,
@@ -56,12 +60,30 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     The Date when the backup was modified the last time.
         /// </summary>
-        public DateTime BackupLastModified { get; private set; }
+        public DateTime BackupLastModified
+        {
+            get { return backupLastModified; }
+            private set
+            {
+                if (backupLastModified == value) return;
+                backupLastModified = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicator that the app is checking if backups available.
         /// </summary>
-        public bool IsLoadingBackupAvailability { get; private set; }
+        public bool IsLoadingBackupAvailability
+        {
+            get { return isLoadingBackupAvailability; }
+            private set
+            {
+                if (isLoadingBackupAvailability == value) return;
+                isLoadingBackupAvailability = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
@@ -71,7 +93,16 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicates if a backup is available for restore.
         /// </summary>
-        public bool BackupAvailable { get; private set; }
+        public bool BackupAvailable
+        {
+            get { return backupAvailable; }
+            private set
+            {
+                if (backupAvailable == value) return;
+                backupAvailable = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         private async void Loaded()
         {
