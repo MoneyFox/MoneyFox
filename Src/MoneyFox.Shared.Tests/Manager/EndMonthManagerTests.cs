@@ -20,8 +20,7 @@ namespace MoneyFox.Shared.Tests.Manager
             Account account1 = new Account
             {
                 Id = 1,
-                CurrentBalance = 100,
-                EndMonthWarning = "Should Not Show"
+                CurrentBalance = 100
             };
 
             var paymentDataAccess = new Mock<IDataAccess<Payment>>();
@@ -43,7 +42,7 @@ namespace MoneyFox.Shared.Tests.Manager
             EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
 
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
-            Assert.AreEqual(account1.EndMonthWarning, "Negative at end of month");
+            account1.IsOverdrawn.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -53,7 +52,6 @@ namespace MoneyFox.Shared.Tests.Manager
             {
                 Id = 1,
                 CurrentBalance = -100,
-                EndMonthWarning = "Should Not Show"
             };
 
             var paymentDataAccess = new Mock<IDataAccess<Payment>>();
@@ -75,7 +73,7 @@ namespace MoneyFox.Shared.Tests.Manager
             EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
 
-            account1.EndMonthWarning.ShouldBe(" ");
+            account1.IsOverdrawn.ShouldBeFalse();
         }
 
         [TestMethod]
