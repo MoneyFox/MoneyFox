@@ -4,8 +4,10 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
+using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -66,7 +68,7 @@ namespace MoneyFox.Windows
         ///     will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             var shell = Window.Current.Content as AppShell;
 
@@ -104,7 +106,7 @@ namespace MoneyFox.Windows
 
             OverrideTitleBarColor();
 
-            //If Jump Lists are supported, adds them
+            //If Jump Lists are supported, adds them§a
             if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
             {
                 SetJumplist();
@@ -114,6 +116,25 @@ namespace MoneyFox.Windows
 
             // Ensure the current window is active
             Window.Current.Activate();
+
+            var settings = ApplicationData.Current.LocalSettings;
+            var clearPaymentResult = settings.Values["CLEAR_PAYMENT"].ToString();
+            if (!string.IsNullOrEmpty(clearPaymentResult) && clearPaymentResult == "true")
+            {
+                await new DialogService().ShowMessage("Task Executed", "Clear Payment");
+            }
+
+            var recPaymentResult = settings.Values["RECURRING_PAYMENT"].ToString();
+            if (!string.IsNullOrEmpty(recPaymentResult) && recPaymentResult == "true")
+            {
+                await new DialogService().ShowMessage("Task Executed", "RecPayment");
+            }
+
+            var syncBackupResult = settings.Values["SYNC_BACKUP"].ToString();
+            if (!string.IsNullOrEmpty(syncBackupResult) && syncBackupResult == "true")
+            {
+                await new DialogService().ShowMessage("Task Executed", "Sync Backup");
+            }
         }
 
         private async void CallRateReminder()

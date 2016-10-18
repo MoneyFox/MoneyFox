@@ -22,23 +22,33 @@ namespace MoneyFox.Windows.Tasks
         private IPaymentManager paymentManager;
         private IPaymentRepository paymentRepository;
 
-        public void Run(IBackgroundTaskInstance taskInstance) {
+        public void Run(IBackgroundTaskInstance taskInstance)
+        {
+            var deferral = taskInstance.GetDeferral();
 
-            var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
-
-            paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
-
-            paymentManager = new PaymentManager(paymentRepository,
-                new AccountRepository(new AccountDataAccess(dbManager)),
-                new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
-                null);
-
-            ClearPayments();
-
-            // We have to access the settings object here directly without the settings helper since this thread is executed independently.
-            if (new WindowsCommonSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
+            try
             {
-                UpdateMainTile();
+                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWindowsCommonFileStore());
+
+                paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
+
+                paymentManager = new PaymentManager(paymentRepository,
+                    new AccountRepository(new AccountDataAccess(dbManager)),
+                    new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
+                    null);
+
+                ClearPayments();
+
+                // We have to access the settings object here directly without the settings helper since this thread is executed independently.
+                if (new WindowsCommonSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
+                {
+                    UpdateMainTile();
+                }
+            }
+            finally
+            {
+                deferral.Complete();
             }
         }
 
@@ -53,7 +63,8 @@ namespace MoneyFox.Windows.Tasks
                 new CashFlowDataProvider(paymentRepository)
                     .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
-            new TileUpdateService().UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
+            new TileUpdateService().UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label,
+                cashFlow.Revenue.Label);
         }
     }
 }

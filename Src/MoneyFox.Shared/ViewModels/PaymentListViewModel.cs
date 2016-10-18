@@ -21,6 +21,8 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IPaymentRepository paymentRepository;
         private readonly IRepository<RecurringPayment> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
+        private ObservableCollection<Payment> relatedPayments;
+        private ObservableCollection<DateListGroup<Payment>> source;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -74,15 +76,33 @@ namespace MoneyFox.Shared.ViewModels
 
         /// <summary>
         ///     Returns all Payment who are assigned to this repository
-        ///     This has to stay until the android list with headers is implemented.
-        ///     Currently only used for Android
+        ///     Currently only used for Android to get the selected payment.
         /// </summary>
-        public ObservableCollection<Payment> RelatedPayments { get; set; }
+        public ObservableCollection<Payment> RelatedPayments
+        {
+            get { return relatedPayments; }
+            set
+            {
+                if (relatedPayments == value) return;
+                relatedPayments = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<Payment>> Source { get; set; }
+        public ObservableCollection<DateListGroup<Payment>> Source
+        {
+            get { return source; }
+            set
+            {
+                source = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
+            }
+        }
 
         /// <summary>
         ///     Returns the name of the account title for the current page

@@ -27,6 +27,7 @@ namespace MoneyFox.Shared
             }
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
+            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
         }
     }
 }

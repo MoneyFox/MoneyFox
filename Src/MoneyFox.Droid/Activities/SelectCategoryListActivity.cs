@@ -6,7 +6,8 @@ using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V4;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -14,7 +15,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxFragmentActivity<SelectCategoryListViewModel>
+    public class SelectCategoryListActivity : MvxAppCompatActivity<SelectCategoryListViewModel>
         
     {
         protected override void OnCreate(Bundle bundle)
@@ -22,9 +23,9 @@ namespace MoneyFox.Droid.Activities
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.activity_select_category_list);
-            
-            SetActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var list = FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
