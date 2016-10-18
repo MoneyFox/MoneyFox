@@ -1,11 +1,14 @@
-﻿using MoneyFox.Shared.Model;
+﻿using System.Collections.Generic;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Interfaces
 {
     public interface IEndOfMonthManager
     {
-        void AssignToAccounts();
+        void CheckEndOfMonthBalanceForAccounts(IEnumerable<Account> accounts);
 
-        void DeterminEndThroughAccounts(Account argAccount);
+        double GetTotalEndOfMonthBalance(IEnumerable<Account> accounts);
+
+        double GetEndOfMonthBalanceForAccount(Account account);
     }
 }
