@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
@@ -43,6 +45,7 @@ namespace MoneyFox.Shared.Tests.Manager
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
             Assert.AreEqual(account1.EndMonthWarning, "Negative at end of month");
         }
+
         [TestMethod]
         public void EndofMonthManager_AccountIsPositive()
         {
@@ -54,10 +57,10 @@ namespace MoneyFox.Shared.Tests.Manager
             };
 
             var paymentDataAccess = new Mock<IDataAccess<Payment>>();
-            paymentDataAccess.Setup(x => x.LoadList(null)).Returns(new List<Payment>
+            paymentDataAccess.Setup(x => x.LoadList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment>
             {
-                new Payment {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now},
-                new Payment {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now}
+                new Payment {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now, Type = (int) PaymentType.Income},
+                new Payment {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now, Type = (int) PaymentType.Income}
             });
 
             var paymentrepository = new PaymentRepository(paymentDataAccess.Object);
@@ -69,16 +72,25 @@ namespace MoneyFox.Shared.Tests.Manager
                 account1
             };
 
-            Shared.Manager.EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
-
+            EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
-            Assert.AreEqual(account1.EndMonthWarning, " ");
+
+            account1.EndMonthWarning.ShouldBe(" ");
         }
 
+        [TestMethod]
+        public void GetTotalEndOfMonthBalance_TwoAccounts_SumOfAccounts()
+        {
+            var paymentMockSetup = new Mock<IPaymentRepository>();
+            paymentMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Payment>());
 
+            var endOfMonthManager = new EndOfMonthManager(paymentMockSetup.Object);
 
-
-
-
+            endOfMonthManager.GetTotalEndOfMonthBalance(new List<Account>
+            {
+                new Account {CurrentBalance = 500},
+                new Account {CurrentBalance = 200}
+            }).ShouldBe(700);
+        }
     }
 }
