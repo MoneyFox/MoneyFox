@@ -35,7 +35,6 @@ namespace MoneyFox.Droid.Fragments
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
             LoadBalancePanel();
-            ViewModel.LoadedCommand.Execute();
 
             var list = view.FindViewById<ListView>(Resource.Id.account_list);
             RegisterForContextMenu(list);
@@ -51,6 +50,12 @@ namespace MoneyFox.Droid.Fragments
             };
 
             return view;
+        }
+
+        public override void OnStart()
+        {
+            ViewModel.LoadedCommand.Execute();
+            base.OnStart();
         }
 
         private string[] GetItemArrayForCreationList()
