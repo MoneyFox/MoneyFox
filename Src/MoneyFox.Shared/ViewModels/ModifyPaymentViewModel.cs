@@ -33,6 +33,7 @@ namespace MoneyFox.Shared.ViewModels
         private bool isEndless;
         private bool isTransfer;
         private bool isEdit;
+        private int paymentId;
 
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -55,7 +56,15 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        public int PaymentId { get; private set; }
+        public int PaymentId
+        {
+            get { return paymentId; }
+            private set
+            {
+                paymentId = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
@@ -104,6 +113,13 @@ namespace MoneyFox.Shared.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
+
+            // we have to set the account objects here again to ensure that they are identical to the
+            // objects in the account collections.
+            selectedPayment.ChargedAccount =
+                ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
+            selectedPayment.TargetAccount =
+                TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
         private void SetDefaultPayment(PaymentType paymentType)
@@ -412,12 +428,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> ChargedAccounts { get; set; }
+        public ObservableCollection<Account> ChargedAccounts { get; }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<Account> TargetAccounts { get; set; }
+        public ObservableCollection<Account> TargetAccounts { get; }
 
         /// <summary>
         ///     Returns the Title for the page
