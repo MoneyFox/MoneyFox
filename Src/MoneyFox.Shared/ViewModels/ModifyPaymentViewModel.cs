@@ -28,6 +28,12 @@ namespace MoneyFox.Shared.ViewModels
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
         private Payment selectedPayment;
+        private string recurrenceString;
+        private DateTime endDate;
+        private bool isEndless;
+        private bool isTransfer;
+        private bool isEdit;
+        private int paymentId;
 
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -50,7 +56,15 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        public int PaymentId { get; private set; }
+        public int PaymentId
+        {
+            get { return paymentId; }
+            private set
+            {
+                paymentId = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
@@ -99,6 +113,13 @@ namespace MoneyFox.Shared.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
+
+            // we have to set the account objects here again to ensure that they are identical to the
+            // objects in the account collections.
+            selectedPayment.ChargedAccount =
+                ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
+            selectedPayment.TargetAccount =
+                TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
         private void SetDefaultPayment(PaymentType paymentType)
@@ -291,27 +312,70 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicates if the view is in Edit mode.
         /// </summary>
-        public bool IsEdit { get; private set; }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            private set
+            {
+                if(isEdit == value) return;
+                isEdit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the payment is a transfer.
         /// </summary>
-        public bool IsTransfer { get; private set; }
+        public bool IsTransfer
+        {
+            get { return isTransfer; }
+            private set
+            {
+                if(isTransfer == value) return;
+                isTransfer = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the reminder is endless
         /// </summary>
-        public bool IsEndless { get; set; }
+        public bool IsEndless
+        {
+            get { return isEndless; }
+            set
+            {
+                if(isEndless == value) return;
+                isEndless = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     The Enddate for recurring payment
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
+            {
+                endDate = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public string RecurrenceString { get; set; }
+        public string RecurrenceString
+        {
+            get { return recurrenceString; }
+            set
+            {
+                recurrenceString = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
@@ -364,12 +428,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> ChargedAccounts { get; set; }
+        public ObservableCollection<Account> ChargedAccounts { get; }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<Account> TargetAccounts { get; set; }
+        public ObservableCollection<Account> TargetAccounts { get; }
 
         /// <summary>
         ///     Returns the Title for the page

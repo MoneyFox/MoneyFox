@@ -25,6 +25,9 @@ namespace MoneyFox.Shared.ViewModels
 
         private ObservableCollection<Payment> relatedPayments;
         private ObservableCollection<DateListGroup<Payment>> source;
+        private MvxCommand<Payment> editCommand;
+        private IBalanceViewModel balanceViewModel;
+        private int accountId;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -45,14 +48,30 @@ namespace MoneyFox.Shared.ViewModels
 
         public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
 
-        public int AccountId { get; private set; }
+        public int AccountId
+        {
+            get { return accountId; }
+            private set
+            {
+                accountId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        public IBalanceViewModel BalanceViewModel { get; private set; }
+        public IBalanceViewModel BalanceViewModel
+        {
+            get { return balanceViewModel; }
+            private set
+            {
+                balanceViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Loads the data for this view.
@@ -72,7 +91,15 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Edits the passed payment.
         /// </summary>
-        public MvxCommand<Payment> EditCommand { get; private set; }
+        public MvxCommand<Payment> EditCommand
+        {
+            get { return editCommand; }
+            private set
+            {
+                editCommand = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Deletes the passed payment.
