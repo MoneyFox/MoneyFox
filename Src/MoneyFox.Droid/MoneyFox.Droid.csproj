@@ -102,7 +102,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.OneDrive.Sdk, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OneDriveSDK.2.0.2\lib\portable-net45+netcore45+wpa81+win8\Microsoft.OneDrive.Sdk.dll</HintPath>
+      <HintPath>..\packages\Microsoft.OneDriveSDK.2.0.3\lib\portable-net45+netcore45+wpa81+win8\Microsoft.OneDrive.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
