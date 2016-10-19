@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Model;
 using Moq;
 using MoneyFox.Shared.Repositories;
-using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.Tests.Manager
 {

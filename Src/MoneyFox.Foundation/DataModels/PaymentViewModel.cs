@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MoneyFox.Foundation;
-using MoneyFox.Shared.ViewModels.Models;
 
-namespace MoneyFox.Shared.Model
+namespace MoneyFox.Foundation.DataModels
 {
     public class PaymentViewModel : INotifyPropertyChanged
     {

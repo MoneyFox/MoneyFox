@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Series;

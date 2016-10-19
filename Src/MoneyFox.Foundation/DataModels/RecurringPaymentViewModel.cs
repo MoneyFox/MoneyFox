@@ -1,7 +1,6 @@
 ﻿using System;
-using MoneyFox.Shared.ViewModels.Models;
 
-namespace MoneyFox.Shared.Model
+namespace MoneyFox.Foundation.DataModels
 {
     public class RecurringPaymentViewModel
     {

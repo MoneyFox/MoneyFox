@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;

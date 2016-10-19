@@ -1,7 +1,6 @@
 using System;
 using Android.Widget;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels.Models;
+using MoneyFox.Foundation.DataModels;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Droid.Target;
 

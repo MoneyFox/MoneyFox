@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MoneyFox.Shared.ViewModels.Models
+namespace MoneyFox.Foundation.DataModels
 {
     public class AccountViewModel : INotifyPropertyChanged
     {

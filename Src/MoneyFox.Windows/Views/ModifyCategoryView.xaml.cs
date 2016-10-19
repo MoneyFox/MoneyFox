@@ -1,5 +1,4 @@
-﻿using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
+﻿using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 using System;
 using System.Collections.Generic;
@@ -16,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Foundation.DataModels;
 
 
 namespace MoneyFox.Windows.Views

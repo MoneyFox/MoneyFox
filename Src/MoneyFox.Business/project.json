@@ -1,6 +1,8 @@
-{
+﻿{
   "supports": {},
-  "dependencies": {},
+  "dependencies": {
+    "Autofac": "4.1.1"
+  },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile7": {}
   }

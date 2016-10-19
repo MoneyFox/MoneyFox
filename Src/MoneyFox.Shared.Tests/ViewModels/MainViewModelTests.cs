@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Tests.Mocks;
 using MoneyFox.Shared.ViewModels;
 using Moq;
@@ -10,8 +9,9 @@ using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using System.Collections.Generic;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

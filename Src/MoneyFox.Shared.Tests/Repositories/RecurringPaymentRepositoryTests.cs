@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Foundation.DataModels;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using Moq;
 

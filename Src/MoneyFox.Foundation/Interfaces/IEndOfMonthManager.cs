@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels.Models;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     public interface IEndOfMonthManager
     {

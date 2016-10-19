@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 

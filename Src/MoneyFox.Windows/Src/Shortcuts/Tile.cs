@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.HockeyApp;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;

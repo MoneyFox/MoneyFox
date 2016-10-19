@@ -1,8 +1,7 @@
-﻿using MoneyFox.Shared.Model;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using MoneyFox.Shared.ViewModels.Models;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Controls
 {

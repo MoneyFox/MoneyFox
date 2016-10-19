@@ -1,4 +1,4 @@
-using MoneyFox.Shared.Model;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Shared.Interfaces.Repositories
 {

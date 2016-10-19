@@ -1,4 +1,6 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.ViewModels

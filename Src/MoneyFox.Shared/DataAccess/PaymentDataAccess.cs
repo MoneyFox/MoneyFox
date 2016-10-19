@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Foundation.DataModels;
 using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.DataAccess
 {

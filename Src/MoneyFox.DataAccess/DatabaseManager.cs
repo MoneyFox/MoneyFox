@@ -5,9 +5,10 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
-using SQLite;
+using SQLite.Net;
+using SQLite.Net.Async;
 
-namespace MoneyFox.Shared
+namespace MoneyFox.DataAccess
 {
     /// <summary>
     ///     Helps with create update and connecting to the database.

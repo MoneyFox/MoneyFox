@@ -38,6 +38,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessModule.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

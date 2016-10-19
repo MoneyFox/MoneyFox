@@ -1,4 +1,4 @@
-using MoneyFox.Shared.Model;
+using MoneyFox.Foundation.DataModels;
 using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Shared.Messages
