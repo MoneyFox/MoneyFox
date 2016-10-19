@@ -17,7 +17,7 @@
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:PaymentHeaderConverter x:Key="PaymentHeaderConverter" />
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <DataTemplate x:Key="ComboBoxTemplate" x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -56,7 +56,7 @@
                                                      UpdateSourceTrigger=PropertyChanged}">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="SelectionChanged">
-                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>
+                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </ComboBox>
@@ -76,10 +76,10 @@
                                                    Converter={StaticResource BooleanVisibilityConverter}}">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="SelectionChanged">
-                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"/>
+                                <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
-                        
+
                     </ComboBox>
                     <TextBox x:Uid="AmountTextBox"
                              x:Name="TextBoxAmount"
@@ -108,7 +108,9 @@
                                Margin="0,0,0,-2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Bottom"
-                               Source="/Assets/dark/close.png">
+                               DataContext="/Assets/{0}/close.png"
+                               Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
+                                                Converter={StaticResource ThemedImageConverter}}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
@@ -142,7 +144,9 @@
                                   HorizontalAlignment="Stretch"
                                   Header="Reccurence"
                                   ItemsSource="{Binding RecurrenceList}"
-                                  SelectedItem="{Binding RecurrenceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                  SelectedItem="{Binding RecurrenceString,
+                                                         Mode=TwoWay,
+                                                         UpdateSourceTrigger=PropertyChanged}" />
                         <CheckBox x:Uid="EndlessCheckBox"
                                   Margin="0,7,0,0"
                                   Content="Endless"
