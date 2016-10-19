@@ -28,6 +28,11 @@ namespace MoneyFox.Shared.ViewModels
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
         private Payment selectedPayment;
+        private string recurrenceString;
+        private DateTime endDate;
+        private bool isEndless;
+        private bool isTransfer;
+        private bool isEdit;
 
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -291,27 +296,70 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Indicates if the view is in Edit mode.
         /// </summary>
-        public bool IsEdit { get; private set; }
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            private set
+            {
+                if(isEdit == value) return;
+                isEdit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the payment is a transfer.
         /// </summary>
-        public bool IsTransfer { get; private set; }
+        public bool IsTransfer
+        {
+            get { return isTransfer; }
+            private set
+            {
+                if(isTransfer == value) return;
+                isTransfer = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the reminder is endless
         /// </summary>
-        public bool IsEndless { get; set; }
+        public bool IsEndless
+        {
+            get { return isEndless; }
+            set
+            {
+                if(isEndless == value) return;
+                isEndless = value; 
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     The Enddate for recurring payment
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
+            {
+                endDate = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public string RecurrenceString { get; set; }
+        public string RecurrenceString
+        {
+            get { return recurrenceString; }
+            set
+            {
+                recurrenceString = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
