@@ -325,10 +325,10 @@
     <value>添加</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>CategoryViewModel Summary</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>CategoryViewModel Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>原账户</value>
@@ -379,7 +379,7 @@
     <value>显示您所选的时间范围内的总开支，按月比较。</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Add AccountViewModel</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Cancel</value>

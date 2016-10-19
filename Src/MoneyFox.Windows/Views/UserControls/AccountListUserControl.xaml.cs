@@ -39,7 +39,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
-            var account = element.DataContext as Account;
+            var account = element.DataContext as AccountViewModel;
             if (account == null)
             {
                 return;
@@ -52,7 +52,7 @@ namespace MoneyFox.Windows.Views.UserControls
         {
             //this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
             var element = (FrameworkElement)sender;
-            var account = element.DataContext as Account;
+            var account = element.DataContext as AccountViewModel;
             if (account == null)
             {
                 return;

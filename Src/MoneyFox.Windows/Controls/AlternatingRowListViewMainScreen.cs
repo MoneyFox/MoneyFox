@@ -38,7 +38,7 @@ namespace MoneyFox.Windows.Controls
         {
             base.PrepareContainerForItemOverride(element, item);
             var listViewItem = element as ListViewItem;
-            var accountItem = item as Account;
+            var accountItem = item as AccountViewModel;
             if (listViewItem != null)
             {
                 var index = IndexFromContainer(element);

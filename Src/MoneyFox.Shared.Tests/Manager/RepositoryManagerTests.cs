@@ -27,18 +27,18 @@ namespace MoneyFox.Shared.Tests.Manager
             var categoryLoaded = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Account>());
-            accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
+            accountRepoSetup.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
+            accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
                 .Callback(() => accountsLoaded = true);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Payment>());
-            paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
+            paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<PaymentViewModel>());
+            paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<PaymentViewModel, bool>>>()))
                 .Callback(() => paymentsLoaded = true);
 
             var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(new List<Category>());
-            categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
+            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(new List<CategoryViewModel>());
+            categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<CategoryViewModel, bool>>>()))
                 .Callback(() => categoryLoaded = true);
 
             new RepositoryManager(new PaymentManager(paymentRepoSetup.Object, accountRepoSetup.Object,

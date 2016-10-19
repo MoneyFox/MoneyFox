@@ -18,10 +18,10 @@ namespace MoneyFox.Shared.Manager
 
         private int accountId = 0;
 
-        public double GetEndOfMonthBalanceForAccount(Account account)
+        public double GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel)
         {
-            accountId = account.Id;
-            var balance = account.CurrentBalance;
+            accountId = accountViewModel.Id;
+            var balance = accountViewModel.CurrentBalance;
             var unclearedPayments = LoadUnclearedPayments();
 
             foreach (var payment in unclearedPayments)
@@ -44,7 +44,7 @@ namespace MoneyFox.Shared.Manager
             return balance;
         }
 
-        private IEnumerable<Payment> LoadUnclearedPayments()
+        private IEnumerable<PaymentViewModel> LoadUnclearedPayments()
             => paymentRepository
                 .GetList(p => !p.IsCleared)
                 .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
@@ -52,7 +52,7 @@ namespace MoneyFox.Shared.Manager
                             || (x.TargetAccountId == accountId))
                 .ToList();
 
-        private double HandleTransferAmount(Payment payment, double balance)
+        private double HandleTransferAmount(PaymentViewModel payment, double balance)
         {
             if (accountId == payment.ChargedAccountId)
             {
@@ -65,7 +65,7 @@ namespace MoneyFox.Shared.Manager
             return balance;
         }
 
-        public void CheckEndOfMonthBalanceForAccounts(IEnumerable<Account> accounts)
+        public void CheckEndOfMonthBalanceForAccounts(IEnumerable<AccountViewModel> accounts)
         {
             foreach (var account in accounts)
             {
@@ -73,7 +73,7 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        public double GetTotalEndOfMonthBalance(IEnumerable<Account> accounts)
+        public double GetTotalEndOfMonthBalance(IEnumerable<AccountViewModel> accounts)
         {
             var balance = accounts.Sum(x => x.CurrentBalance);
             var unclearedPayments = paymentRepository

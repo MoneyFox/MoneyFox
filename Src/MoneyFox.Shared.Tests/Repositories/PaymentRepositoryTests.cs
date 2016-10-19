@@ -23,13 +23,13 @@ namespace MoneyFox.Shared.Tests.Repositories
         [ExpectedException(typeof(AccountMissingException))]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
-            var paymentDataAccess = new Mock<IDataAccess<Payment>>();
+            var paymentDataAccess = new Mock<IDataAccess<PaymentViewModel>>();
             paymentDataAccess.Setup(x => x.LoadList(null))
-                .Returns(new List<Payment>());
+                .Returns(new List<PaymentViewModel>());
 
             var repository = new PaymentRepository(paymentDataAccess.Object);
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Amount = 20
             };
@@ -40,25 +40,25 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_IncomeType_CorrectlySaved()
         {
-            Payment savedPayment = null;
+            PaymentViewModel savedPayment = null;
 
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
-                .Callback((Payment p) => savedPayment = p);
+            var paymentDataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>());
+            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<PaymentViewModel>()))
+                .Callback((PaymentViewModel p) => savedPayment = p);
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = account,
-                TargetAccount = null,
+                ChargedAccountViewModel = account,
+                TargetAccountViewModel = null,
                 Amount = 20,
                 Type = (int) PaymentType.Income
             };
@@ -71,23 +71,23 @@ namespace MoneyFox.Shared.Tests.Repositories
 
         [TestMethod]
         public void Save_ExpenseType_CorrectlySaved() {
-            Payment savedPayment = null;
+            PaymentViewModel savedPayment = null;
 
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
-                .Callback((Payment p) => savedPayment = p);
+            var paymentDataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>());
+            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<PaymentViewModel>()))
+                .Callback((PaymentViewModel p) => savedPayment = p);
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
-            var account = new Account {
+            var account = new AccountViewModel {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment {
-                ChargedAccount = account,
-                TargetAccount = null,
+            var payment = new PaymentViewModel {
+                ChargedAccountViewModel = account,
+                TargetAccountViewModel = null,
                 Amount = 20,
                 Type = (int)PaymentType.Expense
             };
@@ -101,23 +101,23 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_TransferType_CorrectlySaved()
         {
-            Payment savedPayment = null;
+            PaymentViewModel savedPayment = null;
 
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
-            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()))
-                .Callback((Payment p) => savedPayment = p);
+            var paymentDataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>());
+            paymentDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<PaymentViewModel>()))
+                .Callback((PaymentViewModel p) => savedPayment = p);
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
-            var account = new Account {
+            var account = new AccountViewModel {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment {
-                ChargedAccount = account,
-                TargetAccount = null,
+            var payment = new PaymentViewModel {
+                ChargedAccountViewModel = account,
+                TargetAccountViewModel = null,
                 Amount = 20,
                 Type = (int)PaymentType.Transfer
             };
@@ -131,20 +131,20 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void PaymentRepository_Delete()
         {
-            var paymentDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
+            var paymentDataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            paymentDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>());
 
             var repository = new PaymentRepository(paymentDataAccessSetup.Object);
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Id = 2,
                 Name = "TestAccount"
             };
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = account,
+                ChargedAccountViewModel = account,
                 ChargedAccountId = 2,
                 Amount = 20
             };
@@ -160,11 +160,11 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Load_Payment_DataInitialized()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>
+            var dataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>
             {
-                new Payment {Id = 10},
-                new Payment {Id = 15}
+                new PaymentViewModel {Id = 10},
+                new PaymentViewModel {Id = 15}
             });
 
             var paymentRepository = new PaymentRepository(dataAccessSetup.Object);
@@ -178,20 +178,20 @@ namespace MoneyFox.Shared.Tests.Repositories
         [ExpectedException(typeof(AccountMissingException))]
         public void Save_NoChargedAccount()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
+            var dataAccessSetup = new Mock<IDataAccess<PaymentViewModel>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>());
 
             new PaymentRepository(dataAccessSetup.Object)
-                .Save(new Payment {ChargedAccountId = 0});
+                .Save(new PaymentViewModel {ChargedAccountId = 0});
         }
 
         [TestMethod]
         public void FindById_ReturnsPayment() {
-            var dataAccessMock = new Mock<IDataAccess<RecurringPayment>>();
-            var testPayment = new RecurringPayment { Id = 100, Amount = 78 };
+            var dataAccessMock = new Mock<IDataAccess<RecurringPaymentViewModel>>();
+            var testPayment = new RecurringPaymentViewModel { Id = 100, Amount = 78 };
 
             dataAccessMock.Setup(x => x.LoadList(null))
-                .Returns(new List<RecurringPayment> { testPayment });
+                .Returns(new List<RecurringPaymentViewModel> { testPayment });
 
             Assert.AreEqual(testPayment, new RecurringPaymentRepository(dataAccessMock.Object).FindById(100));
         }

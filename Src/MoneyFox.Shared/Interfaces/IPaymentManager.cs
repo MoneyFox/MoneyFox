@@ -7,24 +7,24 @@ namespace MoneyFox.Shared.Interfaces
 {
     public interface IPaymentManager
     {
-        bool SavePayment(Payment payment);
+        bool SavePayment(PaymentViewModel payment);
 
-        void DeleteAssociatedPaymentsFromDatabase(Account account);
+        void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel);
 
-        void RemoveRecurringForPayment(Payment paymentToChange);
+        void RemoveRecurringForPayment(PaymentViewModel paymentToChange);
 
-        Task<bool> CheckRecurrenceOfPayment(Payment payment);
+        Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment);
 
-        IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null);
+        IEnumerable<PaymentViewModel> LoadRecurringPaymentList(Func<PaymentViewModel, bool> filter = null);
 
         void ClearPayments();
 
-        void RemoveRecurringForPayments(RecurringPayment recurringPayment);
+        void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment);
 
-        bool AddPaymentAmount(Payment payment);
+        bool AddPaymentAmount(PaymentViewModel payment);
 
-        bool RemovePaymentAmount(Payment payment);
+        bool RemovePaymentAmount(PaymentViewModel payment);
 
-        bool RemovePaymentAmount(Payment payment, Account account);
+        bool RemovePaymentAmount(PaymentViewModel payment, AccountViewModel accountViewModel);
     }
 }

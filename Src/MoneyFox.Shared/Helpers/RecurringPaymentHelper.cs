@@ -6,24 +6,24 @@ namespace MoneyFox.Shared.Helpers
     public static class RecurringPaymentHelper
     {
         /// <summary>
-        ///     Creates an recurring Payment based on the Financial payment.
+        ///     Creates an recurring PaymentViewModel based on the Financial PaymentViewModel.
         /// </summary>
-        /// <param name="payment">The financial payment the reuccuring shall be based on.</param>
+        /// <param name="payment">The financial PaymentViewModel the reuccuring shall be based on.</param>
         /// <param name="isEndless">If the recurrence is infinite or not.</param>
-        /// <param name="recurrence">How often the payment shall be repeated.</param>
-        /// <param name="enddate">Enddate for the recurring payment if it's not endless.</param>
-        /// <returns>The new created recurring payment</returns>
-        public static RecurringPayment GetRecurringFromPayment(Payment payment,
+        /// <param name="recurrence">How often the PaymentViewModel shall be repeated.</param>
+        /// <param name="enddate">Enddate for the recurring PaymentViewModel if it's not endless.</param>
+        /// <returns>The new created recurring PaymentViewModel</returns>
+        public static RecurringPaymentViewModel GetRecurringFromPayment(PaymentViewModel payment,
                 bool isEndless,
                 int recurrence,
                 DateTime enddate = new DateTime())
-            => new RecurringPayment
+            => new RecurringPaymentViewModel
             {
                 Id = payment.RecurringPaymentId,
-                ChargedAccount = payment.ChargedAccount,
-                ChargedAccountId = payment.ChargedAccount.Id,
-                TargetAccount = payment.TargetAccount,
-                TargetAccountId = payment.TargetAccount?.Id ?? 0,
+                ChargedAccountViewModel = payment.ChargedAccountViewModel,
+                ChargedAccountId = payment.ChargedAccountViewModel.Id,
+                TargetAccountViewModel = payment.TargetAccountViewModel,
+                TargetAccountId = payment.TargetAccountViewModel?.Id ?? 0,
                 StartDate = payment.Date,
                 EndDate = enddate,
                 IsEndless = isEndless,
@@ -36,25 +36,25 @@ namespace MoneyFox.Shared.Helpers
             };
 
         /// <summary>
-        ///     Creates an payment based on the recurring payment.
+        ///     Creates an PaymentViewModel based on the recurring PaymentViewModel.
         /// </summary>
-        /// <param name="recurringPayment">The recurring payment the new Payment shall be based on.</param>
-        /// <returns>The new created payment</returns>
-        public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment)
+        /// <param name="recurringPayment">The recurring PaymentViewModel the new PaymentViewModel shall be based on.</param>
+        /// <returns>The new created PaymentViewModel</returns>
+        public static PaymentViewModel GetPaymentFromRecurring(RecurringPaymentViewModel recurringPayment)
         {
             var date = DateTime.Today;
 
-            //If the payment is monthly we want it on the same day of month again.
+            //If the PaymentViewModel is monthly we want it on the same day of month again.
             if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
 
-            return new Payment
+            return new PaymentViewModel
             {
-                ChargedAccount = recurringPayment.ChargedAccount,
+                ChargedAccountViewModel = recurringPayment.ChargedAccountViewModel,
                 ChargedAccountId = recurringPayment.ChargedAccountId,
-                TargetAccount = recurringPayment.TargetAccount,
+                TargetAccountViewModel = recurringPayment.TargetAccountViewModel,
                 TargetAccountId = recurringPayment.TargetAccountId,
                 Date = date,
                 IsRecurring = true,
@@ -69,12 +69,12 @@ namespace MoneyFox.Shared.Helpers
         }
 
         /// <summary>
-        ///     Checks if the recurring payment is up for a repetition based on the passed Payment
+        ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
-        /// <param name="recurringPayment">Recurring payment to check.</param>
-        /// <param name="relatedPayment">Payment to compare.</param>
-        /// <returns>True or False if the payment have to be repeated.</returns>
-        public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment)
+        /// <param name="recurringPayment">Recurring PaymentViewModel to check.</param>
+        /// <param name="relatedPayment">PaymentViewModel to compare.</param>
+        /// <returns>True or False if the PaymentViewModel have to be repeated.</returns>
+        public static bool CheckIfRepeatable(RecurringPaymentViewModel recurringPayment, PaymentViewModel relatedPayment)
         {
             if (!relatedPayment.IsCleared)
             {

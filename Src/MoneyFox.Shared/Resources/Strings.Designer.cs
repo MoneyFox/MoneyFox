@@ -189,7 +189,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Account.
+        ///   Looks up a localized string similar to Add AccountViewModel.
         /// </summary>
         public static string AddAccountLabel {
             get {
@@ -198,7 +198,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Account.
+        ///   Looks up a localized string similar to Add AccountViewModel.
         /// </summary>
         public static string AddAccountTitle {
             get {
@@ -207,7 +207,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Category .
+        ///   Looks up a localized string similar to Add CategoryViewModel .
         /// </summary>
         public static string AddCategoryTitle {
             get {
@@ -451,7 +451,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category Spreading.
+        ///   Looks up a localized string similar to CategoryViewModel Spreading.
         /// </summary>
         public static string CategorySpreadingLabel {
             get {
@@ -469,7 +469,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category Summary.
+        ///   Looks up a localized string similar to CategoryViewModel Summary.
         /// </summary>
         public static string CategorySummaryLabel {
             get {
@@ -496,7 +496,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charged Account.
+        ///   Looks up a localized string similar to Charged AccountViewModel.
         /// </summary>
         public static string ChargedAccountLabel {
             get {
@@ -550,7 +550,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this category?.
+        ///   Looks up a localized string similar to Do you really want to delete this CategoryViewModel?.
         /// </summary>
         public static string DeleteCategoryConfirmationMessage {
             get {
@@ -613,7 +613,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A category with that name already exists..
+        ///   Looks up a localized string similar to A CategoryViewModel with that name already exists..
         /// </summary>
         public static string DuplicateCategoryMessage {
             get {
@@ -640,7 +640,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Category.
+        ///   Looks up a localized string similar to Edit CategoryViewModel.
         /// </summary>
         public static string EditCategoryTitle {
             get {
@@ -991,7 +991,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account Name.
+        ///   Looks up a localized string similar to AccountViewModel Name.
         /// </summary>
         public static string ModifyAccountViewModel_AccountNameLabel {
             get {
@@ -1054,7 +1054,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
+        ///   Looks up a localized string similar to CategoryViewModel.
         /// </summary>
         public static string ModifyPaymentViewModel_CategoryLabel {
             get {
@@ -1487,7 +1487,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Target Account.
+        ///   Looks up a localized string similar to Target AccountViewModel.
         /// </summary>
         public static string TargetAccountLabel {
             get {

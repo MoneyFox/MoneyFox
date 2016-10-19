@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.Manager
             this.accountRepository = accountRepository;
         }
 
-        public bool SavePayment(Payment payment)
+        public bool SavePayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring && (payment.RecurringPaymentId != 0))
             {
@@ -51,7 +51,7 @@ namespace MoneyFox.Shared.Manager
             return saveWasSuccessful;
         }
 
-        public void RemoveRecurringForPayment(Payment paymentToChange)
+        public void RemoveRecurringForPayment(PaymentViewModel paymentToChange)
         {
             var payments = paymentRepository.GetList(x => x.Id == paymentToChange.Id).ToList();
 
@@ -63,10 +63,10 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        public void DeleteAssociatedPaymentsFromDatabase(Account account)
+        public void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel)
         {
             var paymentToDelete = paymentRepository
-                .GetList(x => (x.ChargedAccountId == account.Id) || (x.TargetAccountId == account.Id))
+                .GetList(x => (x.ChargedAccountId == accountViewModel.Id) || (x.TargetAccountId == accountViewModel.Id))
                 .OrderByDescending(x => x.Date)
                 .ToList();
 
@@ -76,7 +76,7 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        public async Task<bool> CheckRecurrenceOfPayment(Payment payment)
+        public async Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring)
             {
@@ -94,7 +94,7 @@ namespace MoneyFox.Shared.Manager
         ///     returns a list with payments who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring payments</returns>
-        public IEnumerable<Payment> LoadRecurringPaymentList(Func<Payment, bool> filter = null)
+        public IEnumerable<PaymentViewModel> LoadRecurringPaymentList(Func<PaymentViewModel, bool> filter = null)
         {
             var list = paymentRepository
                 .GetList(x => x.IsRecurring && (x.RecurringPaymentId != 0))
@@ -121,12 +121,12 @@ namespace MoneyFox.Shared.Manager
             {
                 try
                 {
-                    if (payment.ChargedAccount == null)
+                    if (payment.ChargedAccountViewModel == null)
                     {
-                        payment.ChargedAccount =
+                        payment.ChargedAccountViewModel =
                             accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
 
-                        Mvx.Trace(MvxTraceLevel.Error, "Charged account was missing while clearing payments.");
+                        Mvx.Trace(MvxTraceLevel.Error, "Charged AccountViewModel was missing while clearing payments.");
                     }
 
                     payment.IsCleared = true;
@@ -141,7 +141,7 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        public void RemoveRecurringForPayments(RecurringPayment recurringPayment)
+        public void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment)
         {
             try
             {
@@ -162,10 +162,10 @@ namespace MoneyFox.Shared.Manager
         }
 
         /// <summary>
-        ///     Adds the payment amount from the selected account
+        ///     Adds the PaymentViewModel amount from the selected AccountViewModel
         /// </summary>
-        /// <param name="payment">Payment to add the account from.</param>
-        public bool AddPaymentAmount(Payment payment)
+        /// <param name="payment">PaymentViewModel to add the AccountViewModel from.</param>
+        public bool AddPaymentAmount(PaymentViewModel payment)
         {
             if (!payment.IsCleared)
             {
@@ -179,32 +179,32 @@ namespace MoneyFox.Shared.Manager
                     ? x
                     : -x;
 
-            if ((payment.ChargedAccount == null) && (payment.ChargedAccountId != 0))
+            if ((payment.ChargedAccountViewModel == null) && (payment.ChargedAccountId != 0))
             {
-                payment.ChargedAccount =
+                payment.ChargedAccountViewModel =
                     accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
             }
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccountViewModel));
             return true;
         }
 
         /// <summary>
-        ///     Removes the payment Amount from the charged account of this payment
+        ///     Removes the PaymentViewModel Amount from the charged AccountViewModel of this PaymentViewModel
         /// </summary>
-        /// <param name="payment">Payment to remove the account from.</param>
-        public bool RemovePaymentAmount(Payment payment)
+        /// <param name="payment">PaymentViewModel to remove the AccountViewModel from.</param>
+        public bool RemovePaymentAmount(PaymentViewModel payment)
         {
-            var succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
+            var succeded = RemovePaymentAmount(payment, payment.ChargedAccountViewModel);
             return succeded;
         }
 
         /// <summary>
-        ///     Removes the payment Amount from the selected account
+        ///     Removes the PaymentViewModel Amount from the selected AccountViewModel
         /// </summary>
-        /// <param name="payment">Payment to remove.</param>
-        /// <param name="account">Account to remove the amount from.</param>
-        public bool RemovePaymentAmount(Payment payment, Account account)
+        /// <param name="payment">PaymentViewModel to remove.</param>
+        /// <param name="accountViewModel to remove the amount from.</param>
+        public bool RemovePaymentAmount(PaymentViewModel payment, AccountViewModel accountViewModel)
         {
             if (!payment.IsCleared)
             {
@@ -218,16 +218,16 @@ namespace MoneyFox.Shared.Manager
                     ? -x
                     : x;
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(account));
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(accountViewModel));
             return true;
         }
 
-        public bool DeletePayment(Payment payment)
+        public bool DeletePayment(PaymentViewModel payment)
         {
             paymentRepository.Delete(payment);
 
-            // If this payment was the last one for the linked recurring payment
-            // delete the db entry for the recurring payment.
+            // If this PaymentViewModel was the last one for the linked recurring PaymentViewModel
+            // delete the db entry for the recurring PaymentViewModel.
             var succeed = true;
             if (paymentRepository.GetList().All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
             {
@@ -246,7 +246,7 @@ namespace MoneyFox.Shared.Manager
             return succeed;
         }
 
-        private void PrehandleRemoveIfTransfer(Payment payment)
+        private void PrehandleRemoveIfTransfer(PaymentViewModel payment)
         {
             if (payment.Type == (int) PaymentType.Transfer)
             {
@@ -255,9 +255,9 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        private void HandlePaymentAmount(Payment payment,
+        private void HandlePaymentAmount(PaymentViewModel payment,
             Func<double, double> amountFunc,
-            Func<Payment, Account> getAccountFunc)
+            Func<PaymentViewModel, AccountViewModel> getAccountFunc)
         {
             var account = getAccountFunc(payment);
             if (account == null)
@@ -269,7 +269,7 @@ namespace MoneyFox.Shared.Manager
             accountRepository.Save(account);
         }
 
-        private void PrehandleAddIfTransfer(Payment payment)
+        private void PrehandleAddIfTransfer(PaymentViewModel payment)
         {
             if (payment.Type == (int) PaymentType.Transfer)
             {
@@ -278,17 +278,17 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        private Func<Payment, Account> GetTargetAccountFunc()
+        private Func<PaymentViewModel, AccountViewModel> GetTargetAccountFunc()
         {
-            Func<Payment, Account> targetAccountFunc =
+            Func<PaymentViewModel, AccountViewModel> targetAccountFunc =
                 trans => accountRepository.GetList(x => x.Id == trans.TargetAccountId).FirstOrDefault();
             return targetAccountFunc;
         }
 
-        private Func<Payment, Account> GetChargedAccountFunc(Account account)
+        private Func<PaymentViewModel, AccountViewModel> GetChargedAccountFunc(AccountViewModel accountViewModel)
         {
-            Func<Payment, Account> accountFunc =
-                trans => accountRepository.GetList(x => x.Id == account.Id).FirstOrDefault();
+            Func<PaymentViewModel, AccountViewModel> accountFunc =
+                trans => accountRepository.GetList(x => x.Id == accountViewModel.Id).FirstOrDefault();
             return accountFunc;
         }
     }

@@ -48,10 +48,10 @@ namespace MoneyFox.Shared
         {
             using (var db = connectionFactory.GetConnection(DatabaseConstants.DB_NAME))
             {
-                db.CreateTable<Account>();
-                db.CreateTable<Category>();
-                db.CreateTable<Payment>();
-                db.CreateTable<RecurringPayment>();
+                db.CreateTable<AccountViewModel>();
+                db.CreateTable<CategoryViewModel>();
+                db.CreateTable<PaymentViewModel>();
+                db.CreateTable<RecurringPaymentViewModel>();
             }
         }
 
@@ -64,15 +64,15 @@ namespace MoneyFox.Shared
                 {
                     using (var db = GetConnection())
                     {
-                        db.InsertAll(dbOld.Table<Account>());
-                        db.InsertAll(dbOld.Table<Category>());
+                        db.InsertAll(dbOld.Table<AccountViewModel>());
+                        db.InsertAll(dbOld.Table<CategoryViewModel>());
 
-                        var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
+                        var recPaymentList = dbOld.Table<RecurringPaymentViewModel>().ToList();
 
-                        var accounts = db.Table<Account>().ToList();
+                        var accounts = db.Table<AccountViewModel>().ToList();
 
-                        var paymentsToMigrate = new List<Payment>();
-                        foreach (var payment in dbOld.Table<Payment>().ToList())
+                        var paymentsToMigrate = new List<PaymentViewModel>();
+                        foreach (var payment in dbOld.Table<PaymentViewModel>().ToList())
                         {
                             if (accounts.Exists(x => x.Id == payment.ChargedAccountId))
                             {
@@ -93,7 +93,7 @@ namespace MoneyFox.Shared
 
                             foreach (var payment in paymentsToMigrate.Where(x => x.RecurringPaymentId == recIdOld))
                             {
-                                payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
+                                payment.RecurringPaymentId = db.Table<RecurringPaymentViewModel>().LastOrDefault().Id;
                             }
                         }
 

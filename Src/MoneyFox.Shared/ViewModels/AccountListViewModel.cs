@@ -18,7 +18,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
-        private ObservableCollection<Account> allAccounts;
+        private ObservableCollection<AccountViewModel> allAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -40,7 +40,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     All existing accounts.
         /// </summary>
-        public ObservableCollection<Account> AllAccounts
+        public ObservableCollection<AccountViewModel> AllAccounts
         {
             get { return allAccounts; }
             set
@@ -59,24 +59,24 @@ namespace MoneyFox.Shared.ViewModels
         public bool IsAllAccountsEmpty => !AllAccounts?.Any() ?? true;
 
         /// <summary>
-        ///     Prepares the account list
+        ///     Prepares the AccountViewModel list
         /// </summary>
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     Open the payment overview for this account.
+        ///     Open the payment overview for this AccountViewModel.
         /// </summary>
-        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToPaymentOverView);
+        public MvxCommand<AccountViewModel> OpenOverviewCommand => new MvxCommand<AccountViewModel>(GoToPaymentOverView);
 
         /// <summary>
-        ///     Edit the selected account
+        ///     Edit the selected AccountViewModel
         /// </summary>
-        public MvxCommand<Account> EditAccountCommand => new MvxCommand<Account>(EditAccount);
+        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(EditAccount);
 
         /// <summary>
-        ///     Deletes the selected account
+        ///     Deletes the selected AccountViewModel
         /// </summary>
-        public MvxCommand<Account> DeleteAccountCommand => new MvxCommand<Account>(Delete);
+        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(Delete);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
@@ -88,29 +88,29 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        private void EditAccount(Account account)
+        private void EditAccount(AccountViewModel accountViewModel)
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = accountViewModel.Id});
         }
 
         private void Loaded()
         {
-            AllAccounts = new ObservableCollection<Account>(accountRepository.GetList());
+            AllAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
             BalanceViewModel.UpdateBalanceCommand.Execute();
             endOfMonthManager.CheckEndOfMonthBalanceForAccounts(AllAccounts);
         }
 
-        private void GoToPaymentOverView(Account account)
+        private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (account == null)
+            if (accountViewModel == null)
             {
                 return;
             }
 
-            ShowViewModel<PaymentListViewModel>(new {id = account.Id});
+            ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
-        private async void Delete(Account item)
+        private async void Delete(AccountViewModel item)
         {
             if (item == null)
             {
@@ -132,7 +132,7 @@ namespace MoneyFox.Shared.ViewModels
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            // refresh view when an account is deleted allowing buttons to update 
+            // refresh view when an AccountViewModel is deleted allowing buttons to update 
             // TODO probably a better solution
             ShowViewModel<MainViewModel>();
         }

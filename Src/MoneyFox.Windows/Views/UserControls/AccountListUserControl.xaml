@@ -27,7 +27,7 @@
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
+        <DataTemplate x:Key="AccountTemplate" x:DataType="model:AccountViewModel">
             <StackPanel Margin="0,0,0,12"
                         HorizontalAlignment="Stretch"
                         Background="Transparent"
@@ -90,7 +90,7 @@
             </controls:AlternatingRowListViewMainScreen>
         </ScrollViewer>
 
-        <TextBlock x:Uid="AccountsPlaceholder"
+        <TextBlock x:Uid="AccountViewModelsPlaceholder"
                    Grid.Row="1"
                    Margin="6"
                    HorizontalAlignment="Center"

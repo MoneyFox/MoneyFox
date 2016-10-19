@@ -112,11 +112,11 @@
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
-    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\AccountViewModel.cs" />
     <Compile Include="Model\CashFlow.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Payment.cs" />
-    <Compile Include="Model\RecurringPayment.cs" />
+    <Compile Include="Model\CategoryViewModel.cs" />
+    <Compile Include="Model\PaymentViewModel.cs" />
+    <Compile Include="Model\RecurringPaymentViewModel.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="Model\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

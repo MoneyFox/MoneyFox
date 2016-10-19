@@ -22,18 +22,18 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_InputName_CorrectNameAssigned()
         {
-            var testList = new List<Account>();
+            var testList = new List<AccountViewModel>();
             const string nameInput = "Sparkonto";
 
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
-                .Callback((Account acc) => testList.Add(acc));
+            var accountDataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<AccountViewModel>()))
+                .Callback((AccountViewModel acc) => testList.Add(acc));
 
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>());
 
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = nameInput,
                 CurrentBalance = 6034
@@ -48,18 +48,18 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_EmptyName_CorrectDefault()
         {
-            var testList = new List<Account>();
+            var testList = new List<AccountViewModel>();
             const string nameInput = "";
 
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
-                .Callback((Account acc) => testList.Add(acc));
+            var accountDataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<AccountViewModel>()))
+                .Callback((AccountViewModel acc) => testList.Add(acc));
 
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>());
 
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = nameInput,
                 CurrentBalance = 6034
@@ -74,19 +74,19 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Delete_None_AccountDeleted()
         {
-            var testList = new List<Account>();
+            var testList = new List<AccountViewModel>();
 
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
-                .Callback((Account acc) => testList.Add(acc));
+            var accountDataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<AccountViewModel>()))
+                .Callback((AccountViewModel acc) => testList.Add(acc));
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = "Sparkonto",
                 CurrentBalance = 6034
             };
 
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>
             {
                 account
             });
@@ -102,11 +102,11 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Load_AccountDataAccess_DataInitialized()
         {
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
+            var accountDataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>
             {
-                new Account {Id = 10},
-                new Account {Id = 15}
+                new AccountViewModel {Id = 10},
+                new AccountViewModel {Id = 15}
             });
 
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
@@ -119,11 +119,11 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void FindById_ReturnsAccount()
         {
-            var accountDataAccessMock = new Mock<IDataAccess<Account>>();
-            var testAccount = new Account {Id = 100, Name = "Test Account"};
+            var accountDataAccessMock = new Mock<IDataAccess<AccountViewModel>>();
+            var testAccount = new AccountViewModel {Id = 100, Name = "Test AccountViewModel"};
 
             accountDataAccessMock.Setup(x => x.LoadList(null))
-                .Returns(new List<Account> {testAccount});
+                .Returns(new List<AccountViewModel> {testAccount});
 
             Assert.AreEqual(testAccount, new AccountRepository(accountDataAccessMock.Object).FindById(100));
         }
@@ -131,21 +131,21 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Delete_Failure_ReturnFalse()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var dataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<AccountViewModel>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>());
 
-            new AccountRepository(dataAccessSetup.Object).Delete(new Account()).ShouldBeFalse();
+            new AccountRepository(dataAccessSetup.Object).Delete(new AccountViewModel()).ShouldBeFalse();
         }
 
         [TestMethod]
         public void Save_Failure_ReturnFalse()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Account>>();
-            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var dataAccessSetup = new Mock<IDataAccess<AccountViewModel>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<AccountViewModel>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<AccountViewModel>());
 
-            new AccountRepository(dataAccessSetup.Object).Save(new Account()).ShouldBeFalse();
+            new AccountRepository(dataAccessSetup.Object).Save(new AccountViewModel()).ShouldBeFalse();
         }
     }
 }

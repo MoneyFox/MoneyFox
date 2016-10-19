@@ -77,7 +77,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
@@ -87,9 +87,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>()
+                .Returns(new List<AccountViewModel>()
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
@@ -100,7 +100,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
@@ -110,9 +110,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>()
+                .Returns(new List<AccountViewModel>()
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
@@ -123,7 +123,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
@@ -133,9 +133,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>
+                .Returns(new List<AccountViewModel>
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
@@ -146,10 +146,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>
+                .Returns(new List<AccountViewModel>
                 {
-                    new Account(),
-                    new Account()
+                    new AccountViewModel(),
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();

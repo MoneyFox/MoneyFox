@@ -325,10 +325,10 @@
     <value>Adicionar</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>CategoryViewModel Summary</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>CategoryViewModel Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Conta carregada</value>
@@ -380,7 +380,7 @@ Você deseja ir à loja para avaliar?</value>
     <value>Mostra uma comparação mês a mês ao longo de suas despesas totais para o intervalo de tempo selecionado.</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Add AccountViewModel</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Cancel</value>

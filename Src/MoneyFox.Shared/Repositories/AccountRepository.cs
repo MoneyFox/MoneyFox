@@ -11,20 +11,20 @@ namespace MoneyFox.Shared.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly IDataAccess<Account> dataAccess;
+        private readonly IDataAccess<AccountViewModel> dataAccess;
 
-        private List<Account> data;
+        private List<AccountViewModel> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IDataAccess<Account> dataAccess)
+        /// <param name="dataAccess">Instanced AccountViewModel data Access</param>
+        public AccountRepository(IDataAccess<AccountViewModel> dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<Account> GetList(Expression<Func<Account, bool>> filter = null)
+        public IEnumerable<AccountViewModel> GetList(Expression<Func<AccountViewModel, bool>> filter = null)
         {
             if (data == null)
             {
@@ -34,7 +34,7 @@ namespace MoneyFox.Shared.Repositories
             return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public Account FindById(int id)
+        public AccountViewModel FindById(int id)
         {
             if (data == null)
             {
@@ -44,49 +44,49 @@ namespace MoneyFox.Shared.Repositories
         }
 
         /// <summary>
-        ///     Save a new account or update an existing one.
+        ///     Save a new AccountViewModel or update an existing one.
         /// </summary>
-        /// <param name="account">accountToDelete to save</param>
-        public bool Save(Account account)
+        /// <param name="accountViewModelaccountViewModelToDelete to save</param>
+        public bool Save(AccountViewModel accountViewModel)
         {
             if (data == null)
             {
                 data = dataAccess.LoadList();
             }
 
-            if (string.IsNullOrWhiteSpace(account.Name))
+            if (string.IsNullOrWhiteSpace(accountViewModel.Name))
             {
-                account.Name = Strings.NoNamePlaceholderLabel;
+                accountViewModel.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            if (account.Id == 0)
+            if (accountViewModel.Id == 0)
             {
-                data.Add(account);
-                data = new List<Account>(data.OrderBy(x => x.Name));
+                data.Add(accountViewModel);
+                data = new List<AccountViewModel>(data.OrderBy(x => x.Name));
             }
 
-            return dataAccess.SaveItem(account);
+            return dataAccess.SaveItem(accountViewModel);
         }
 
         /// <summary>
-        ///     Deletes the passed account and removes it from cache
+        ///     Deletes the passed AccountViewModel and removes it from cache
         /// </summary>
-        /// <param name="accountToDelete">accountToDelete to delete</param>
-        public bool Delete(Account accountToDelete)
+        /// <param name="accountViewModelToDeleteaccountViewModelToDelete to delete</param>
+        public bool Delete(AccountViewModel accountViewModelToDelete)
         {
             if (data == null)
             {
                 data = dataAccess.LoadList();
             }
 
-            data.Remove(accountToDelete);
-            return dataAccess.DeleteItem(accountToDelete);
+            data.Remove(accountViewModelToDelete);
+            return dataAccess.DeleteItem(accountViewModelToDelete);
         }
 
         /// <summary>
         ///     Loads all accounts from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Account, bool>> filter = null)
+        public void Load(Expression<Func<AccountViewModel, bool>> filter = null)
         {
             data = dataAccess.LoadList();
         }

@@ -9,9 +9,9 @@ namespace MoneyFox.Shared.ViewModels.DesignTime
     {
         public DesignTimeAccountListViewModel()
         {
-            AllAccounts = new ObservableCollection<Account>
+            AllAccounts = new ObservableCollection<AccountViewModel>
             {
-                new Account
+                new AccountViewModel
                 {
                     Name = "Sparkonto",
                     CurrentBalance = 1256.25,
@@ -22,8 +22,8 @@ namespace MoneyFox.Shared.ViewModels.DesignTime
             BalanceViewModel = new DesignTimeBalanceViewModel();
         }
 
-        public ObservableCollection<Account> AllAccounts { get; set; }
-        public Account SelectedAccount { get; set; }
+        public ObservableCollection<AccountViewModel> AllAccounts { get; set; }
+        public AccountViewModel SelectedAccountViewModel { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public MvxCommand LoadedCommand => new MvxCommand(() => { });
     }

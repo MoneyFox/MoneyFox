@@ -5,10 +5,10 @@ namespace MoneyFox.Shared.Interfaces
 {
     public interface IEndOfMonthManager
     {
-        void CheckEndOfMonthBalanceForAccounts(IEnumerable<Account> accounts);
+        void CheckEndOfMonthBalanceForAccounts(IEnumerable<AccountViewModel> accounts);
 
-        double GetTotalEndOfMonthBalance(IEnumerable<Account> accounts);
+        double GetTotalEndOfMonthBalance(IEnumerable<AccountViewModel> accounts);
 
-        double GetEndOfMonthBalanceForAccount(Account account);
+        double GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel);
     }
 }

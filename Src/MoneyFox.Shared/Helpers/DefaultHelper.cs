@@ -14,13 +14,13 @@ namespace MoneyFox.Shared.Helpers
         /// </summary>
         /// <param name="accounts">List of Accounts to filter.</param>
         /// <returns>The as default determined account.</returns>
-        public static Account GetDefaultAccount(List<Account> accounts)
+        public static AccountViewModel GetDefaultAccount(List<AccountViewModel> accounts)
         {
             var settingsManager = Mvx.Resolve<ISettingsManager>();
 
             if (accounts == null)
             {
-                accounts = new List<Account>();
+                accounts = new List<AccountViewModel>();
             }
 
             if (accounts.Any() && (settingsManager.DefaultAccount != -1))

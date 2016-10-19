@@ -7,7 +7,7 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.DataAccess
 {
-    public class AccountDataAccess : AbstractDataAccess<Account>
+    public class AccountDataAccess : AbstractDataAccess<AccountViewModel>
     {
         private readonly IDatabaseManager dbManager;
 
@@ -17,10 +17,10 @@ namespace MoneyFox.Shared.DataAccess
         }
 
         /// <summary>
-        ///     Saves a Account to the database.
+        ///     Saves a AccountViewModel to the database.
         /// </summary>
-        /// <param name="itemToSave">Account to save.</param>
-        protected override void SaveToDb(Account itemToSave)
+        /// <param name="itemToSave">AccountViewModel to save.</param>
+        protected override void SaveToDb(AccountViewModel itemToSave)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.DataAccess
                 if (itemToSave.Id == 0)
                 {
                     dbConnection.Insert(itemToSave);
-                    itemToSave.Id = dbConnection.Table<Account>().OrderByDescending(x => x.Id).First().Id;
+                    itemToSave.Id = dbConnection.Table<AccountViewModel>().OrderByDescending(x => x.Id).First().Id;
                 }
                 else
                 {
@@ -38,10 +38,10 @@ namespace MoneyFox.Shared.DataAccess
         }
 
         /// <summary>
-        ///     Deletes an Account from the database.
+        ///     Deletes an AccountViewModel from the database.
         /// </summary>
-        /// <param name="payment">Account to delete</param>
-        protected override void DeleteFromDatabase(Account payment)
+        /// <param name="payment">AccountViewModel to delete</param>
+        protected override void DeleteFromDatabase(AccountViewModel payment)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -54,11 +54,11 @@ namespace MoneyFox.Shared.DataAccess
         /// </summary>
         /// <param name="filter">filter expression</param>
         /// <returns>List of loaded accounts.</returns>
-        protected override List<Account> GetListFromDb(Expression<Func<Account, bool>> filter)
+        protected override List<AccountViewModel> GetListFromDb(Expression<Func<AccountViewModel, bool>> filter)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
-                var listQuery = dbConnection.Table<Account>();
+                var listQuery = dbConnection.Table<AccountViewModel>();
 
                 if (filter != null)
                 {

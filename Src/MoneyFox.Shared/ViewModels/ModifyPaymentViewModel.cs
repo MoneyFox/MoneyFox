@@ -25,9 +25,9 @@ namespace MoneyFox.Shared.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        // This has to be static in order to keep the value even if you leave the page to select a category.
+        // This has to be static in order to keep the value even if you leave the page to select a CategoryViewModel.
         private double amount;
-        private Payment selectedPayment;
+        private PaymentViewModel selectedPayment;
         private string recurrenceString;
         private DateTime endDate;
         private bool isEndless;
@@ -45,8 +45,8 @@ namespace MoneyFox.Shared.ViewModels
             this.settingsManager = settingsManager;
             this.paymentRepository = paymentRepository;
 
-            TargetAccounts = new ObservableCollection<Account>(accountRepository.GetList());
-            ChargedAccounts = new ObservableCollection<Account>(TargetAccounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
             token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
@@ -69,10 +69,10 @@ namespace MoneyFox.Shared.ViewModels
         private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
         /// <summary>
-        ///     Init the view for a new Payment. Is executed after the constructor call.
+        ///     Init the view for a new PaymentViewModel. Is executed after the constructor call.
         /// </summary>
-        /// <param name="type">Type of the payment. Is ignored when paymentId is passed.</param>
-        /// <param name="paymentId">The id of the payment to edit.</param>
+        /// <param name="type">Type of the PaymentViewModel. Is ignored when paymentId is passed.</param>
+        /// <param name="paymentId">The id of the PaymentViewModel to edit.</param>
         public void Init(PaymentType type, int paymentId = 0)
         {
             if (paymentId == 0)
@@ -91,7 +91,7 @@ namespace MoneyFox.Shared.ViewModels
                 PrepareEdit();
             }
 
-            AccountBeforeEdit = SelectedPayment.ChargedAccount;
+            AccountViewModelBeforeEdit = SelectedPayment.ChargedAccountViewModel;
         }
 
         private void PrepareDefault(PaymentType type)
@@ -114,23 +114,23 @@ namespace MoneyFox.Shared.ViewModels
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
 
-            // we have to set the account objects here again to ensure that they are identical to the
-            // objects in the account collections.
-            selectedPayment.ChargedAccount =
+            // we have to set the AccountViewModel objects here again to ensure that they are identical to the
+            // objects in the AccountViewModel collections.
+            selectedPayment.ChargedAccountViewModel =
                 ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
-            selectedPayment.TargetAccount =
+            selectedPayment.TargetAccountViewModel =
                 TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
         private void SetDefaultPayment(PaymentType paymentType)
         {
-            SelectedPayment = new Payment
+            SelectedPayment = new PaymentViewModel
             {
                 Type = (int) paymentType,
                 Date = DateTime.Now,
-                // Assign empty category to reset the GUI
-                Category = new Category(),
-                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
+                // Assign empty CategoryViewModel to reset the GUI
+                Category = new CategoryViewModel(),
+                ChargedAccountViewModel = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
             };
         }
 
@@ -149,7 +149,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Save()
         {
-            if (SelectedPayment.ChargedAccount == null)
+            if (SelectedPayment.ChargedAccountViewModel == null)
             {
                 ShowAccountRequiredMessage();
                 return;
@@ -165,10 +165,10 @@ namespace MoneyFox.Shared.ViewModels
             RemoveOldAmount();
             SelectedPayment.Amount = amount;
 
-            //Create a recurring payment based on the payment or update an existing
+            //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
             await PrepareRecurringPayment();
 
-            // Save item or update the payment and add the amount to the account
+            // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
             var paymentSucceded = paymentManager.SavePayment(SelectedPayment);
             var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
             if (paymentSucceded && accountSucceded)
@@ -183,7 +183,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (IsEdit)
             {
-                paymentManager.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
+                paymentManager.RemovePaymentAmount(SelectedPayment, AccountViewModelBeforeEdit);
             }
         }
 
@@ -249,7 +249,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void UpdateOtherComboBox()
         {
-            var tempCollection = new ObservableCollection<Account>(ChargedAccounts);
+            var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
             foreach (var i in TargetAccounts)
             {
                 if (!tempCollection.Contains(i))
@@ -269,19 +269,19 @@ namespace MoneyFox.Shared.ViewModels
                     ChargedAccounts.Add(i);
                 }
             }
-            ChargedAccounts.Remove(selectedPayment.TargetAccount);
-            TargetAccounts.Remove(selectedPayment.ChargedAccount);
+            ChargedAccounts.Remove(selectedPayment.TargetAccountViewModel);
+            TargetAccounts.Remove(selectedPayment.ChargedAccountViewModel);
         }
 
         #region Commands
 
         /// <summary>
-        ///     Updates the TargetAccount and ChargedAccount Comboboxes' dropdown lists.
+        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
         public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
 
         /// <summary>
-        ///     Saves the payment or updates the existing depending on the IsEdit Flag.
+        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand SaveCommand => new MvxCommand(Save);
 
@@ -291,7 +291,7 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
 
         /// <summary>
-        ///     Delets the payment or updates the existing depending on the IsEdit Flag.
+        ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
 
@@ -301,7 +301,7 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
         /// <summary>
-        ///     Resets the category of the currently selected payment
+        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
 
@@ -324,7 +324,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Indicates if the payment is a transfer.
+        ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         public bool IsTransfer
         {
@@ -352,7 +352,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     The Enddate for recurring payment
+        ///     The Enddate for recurring PaymentViewModel
         /// </summary>
         public DateTime EndDate
         {
@@ -410,9 +410,9 @@ namespace MoneyFox.Shared.ViewModels
         };
 
         /// <summary>
-        ///     The selected payment
+        ///     The selected PaymentViewModel
         /// </summary>
-        public Payment SelectedPayment
+        public PaymentViewModel SelectedPayment
         {
             get { return selectedPayment; }
             set
@@ -428,12 +428,12 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<Account> ChargedAccounts { get; }
+        public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<Account> TargetAccounts { get; }
+        public ObservableCollection<AccountViewModel> TargetAccounts { get; }
 
         /// <summary>
         ///     Returns the Title for the page
@@ -441,7 +441,7 @@ namespace MoneyFox.Shared.ViewModels
         public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
 
         /// <summary>
-        ///     Returns the Header for the account field
+        ///     Returns the Header for the AccountViewModel field
         /// </summary>
         public string AccountHeader
             => SelectedPayment?.Type == (int) PaymentType.Income
@@ -449,7 +449,7 @@ namespace MoneyFox.Shared.ViewModels
                 : Strings.ChargedAccountLabel;
 
         /// <summary>
-        ///     The payment date
+        ///     The PaymentViewModel date
         /// </summary>
         public DateTime Date
         {
@@ -464,7 +464,7 @@ namespace MoneyFox.Shared.ViewModels
             set { SelectedPayment.Date = value; }
         }
 
-        private Account AccountBeforeEdit { get; set; }
+        private AccountViewModel AccountViewModelBeforeEdit { get; set; }
 
         #endregion
     }

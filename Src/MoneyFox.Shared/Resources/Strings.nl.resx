@@ -136,13 +136,13 @@
     <value>Versie</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>AccountViewModels</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Voeg AccountViewModel toe</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Voeg AccountViewModel toe</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Voeg categorie toe</value>
@@ -241,7 +241,7 @@
     <value>Statistieken</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>Account naam</value>
+    <value>AccountViewModel naam</value>
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
     <value>Iban</value>

@@ -6,7 +6,7 @@ using SQLite;
 namespace MoneyFox.Shared.Model
 {
     [Table("Accounts")]
-    public class Account : INotifyPropertyChanged
+    public class AccountViewModel : INotifyPropertyChanged
     {
         private int id;
         private string name;

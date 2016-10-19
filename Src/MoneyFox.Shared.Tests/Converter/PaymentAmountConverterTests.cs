@@ -17,14 +17,14 @@ namespace MoneyFox.Shared.Tests.Converter
         [TestMethod]
         public void Converter_Payment_NegativeAmountSign()
         {
-            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Expense}, null,
+            new PaymentAmountConverter().Convert(new PaymentViewModel {Amount = 80, Type = (int) PaymentType.Expense}, null,
                 null, null).ShouldBe("- " + 80.ToString("C"));
         }
 
         [TestMethod]
         public void Converter_Payment_PositiveAmountSign()
         {
-            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Income}, null,
+            new PaymentAmountConverter().Convert(new PaymentViewModel {Amount = 80, Type = (int) PaymentType.Income}, null,
                 null, null).ShouldBe("+ " + 80.ToString("C"));
         }
 
@@ -34,24 +34,24 @@ namespace MoneyFox.Shared.Tests.Converter
             ClearAll();
             Setup();
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Id = 4,
                 CurrentBalance = 400
             };
 
             var mock = new Mock<IAccountRepository>();
-            mock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
+            mock.Setup(x => x.Load(It.IsAny<Expression<Func<AccountViewModel, bool>>>()));
 
             Mvx.RegisterSingleton(mock.Object);
 
             new PaymentAmountConverter()
-                .Convert(new Payment
+                .Convert(new PaymentViewModel
                 {
                     Amount = 80,
                     Type = (int) PaymentType.Transfer,
                     ChargedAccountId = account.Id,
-                    ChargedAccount = account,
+                    ChargedAccountViewModel = account,
                     CurrentAccountId = account.Id
                 }, null, account, null)
                 .ShouldBe("- " + 80.ToString("C"));
@@ -62,7 +62,7 @@ namespace MoneyFox.Shared.Tests.Converter
         {
             ClearAll();
             Setup();
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Id = 4,
                 CurrentBalance = 400
@@ -73,13 +73,13 @@ namespace MoneyFox.Shared.Tests.Converter
             Mvx.RegisterSingleton(mock.Object);
 
             new PaymentAmountConverter()
-                .Convert(new Payment
+                .Convert(new PaymentViewModel
                 {
                     Amount = 80,
                     Type = (int) PaymentType.Transfer,
-                    ChargedAccount = new Account(),
+                    ChargedAccountViewModel = new AccountViewModel(),
                     CurrentAccountId = account.Id
-                }, null, new Account(), null)
+                }, null, new AccountViewModel(), null)
                 .ShouldBe("+ " + 80.ToString("C"));
         }
     }

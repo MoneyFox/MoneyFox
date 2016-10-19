@@ -22,13 +22,13 @@ namespace MoneyFox.Shared.Manager
         }
 
         /// <summary>
-        ///     Checks if one of the recurring payment has to be repeated
+        ///     Checks if one of the recurring PaymentViewModel has to be repeated
         /// </summary>
         public void CheckRecurringPayments()
         {
             var paymentList = paymentManager.LoadRecurringPaymentList();
 
-            foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
+            foreach (var payment in paymentList.Where(x => x.ChargedAccountViewModel != null))
             {
                 var relatedPayment = GetLastOccurence(payment);
 
@@ -46,7 +46,7 @@ namespace MoneyFox.Shared.Manager
             }
         }
 
-        private Payment GetLastOccurence(Payment payment)
+        private PaymentViewModel GetLastOccurence(PaymentViewModel payment)
         {
             var transcationList = paymentRepository
                 .GetList(x => x.RecurringPaymentId == payment.RecurringPaymentId)

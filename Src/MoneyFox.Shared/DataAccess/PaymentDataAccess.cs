@@ -10,7 +10,7 @@ namespace MoneyFox.Shared.DataAccess
     /// <summary>
     ///     Handles the access to the Payments table on the database
     /// </summary>
-    public class PaymentDataAccess : AbstractDataAccess<Payment>
+    public class PaymentDataAccess : AbstractDataAccess<PaymentViewModel>
     {
         private readonly IDatabaseManager dbManager;
 
@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.DataAccess
         ///     Saves a new item or updates an existing
         /// </summary>
         /// <param name="itemToSave">Item to SaveItem</param>
-        protected override void SaveToDb(Payment itemToSave)
+        protected override void SaveToDb(PaymentViewModel itemToSave)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -31,7 +31,7 @@ namespace MoneyFox.Shared.DataAccess
                 if (itemToSave.Id == 0)
                 {
                     dbConnection.Insert(itemToSave);
-                    itemToSave.Id = dbConnection.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
+                    itemToSave.Id = dbConnection.Table<PaymentViewModel>().OrderByDescending(x => x.Id).First().Id;
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace MoneyFox.Shared.DataAccess
         ///     Deletes an item from the database
         /// </summary>
         /// <param name="payment">Item to Delete.</param>
-        protected override void DeleteFromDatabase(Payment payment)
+        protected override void DeleteFromDatabase(PaymentViewModel payment)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -57,11 +57,11 @@ namespace MoneyFox.Shared.DataAccess
         /// </summary>
         /// <param name="filter">filter expression.</param>
         /// <returns>List of loaded payments.</returns>
-        protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
+        protected override List<PaymentViewModel> GetListFromDb(Expression<Func<PaymentViewModel, bool>> filter)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
-                var listQuery = dbConnection.Table<Payment>();
+                var listQuery = dbConnection.Table<PaymentViewModel>();
 
                 if (filter != null)
                 {
@@ -69,15 +69,15 @@ namespace MoneyFox.Shared.DataAccess
                 }
 
                 var payments = listQuery.ToList();
-                var accounts = dbConnection.Table<Account>().ToList();
+                var accounts = dbConnection.Table<AccountViewModel>().ToList();
 
-                var recurringTransactionsQuery = dbConnection.Table<RecurringPayment>();
-                var categoriesQuery = dbConnection.Table<Category>();
+                var recurringTransactionsQuery = dbConnection.Table<RecurringPaymentViewModel>();
+                var categoriesQuery = dbConnection.Table<CategoryViewModel>();
 
                 foreach (var payment in payments)
                 {
-                    payment.ChargedAccount = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
-                    payment.TargetAccount = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
+                    payment.ChargedAccountViewModel = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    payment.TargetAccountViewModel = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
 
                     payment.Category = categoriesQuery.FirstOrDefault(x => x.Id == payment.CategoryId);
 

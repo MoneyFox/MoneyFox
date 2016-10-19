@@ -16,7 +16,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private bool isEdit;
-        private Account selectedAccount;
+        private AccountViewModel selectedAccountViewModel;
 
         public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
             ISettingsManager settingsManager)
@@ -28,13 +28,13 @@ namespace MoneyFox.Shared.ViewModels
 
         /// <summary>
         ///     Saves all changes to the database
-        ///     or creates a new account depending on
+        ///     or creates a new AccountViewModel depending on
         ///     the <see cref="IsEdit" /> property
         /// </summary>
         public MvxCommand SaveCommand => new MvxCommand(SaveAccount);
 
         /// <summary>
-        ///     Deletes the selected account from the database
+        ///     Deletes the selected AccountViewModel from the database
         /// </summary>
         public MvxCommand DeleteCommand => new MvxCommand(DeleteAccount);
 
@@ -49,7 +49,7 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     indicates if the account already exists and shall
+        ///     indicates if the AccountViewModel already exists and shall
         ///     be updated or new created
         /// </summary>
         public bool IsEdit
@@ -66,7 +66,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Returns the Title based on if the view is in edit mode or not.
         /// </summary>
         public string Title => IsEdit
-            ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
+            ? string.Format(Strings.EditAccountTitle, SelectedAccountViewModel.Name)
             : Strings.AddAccountTitle;
 
         /// <summary>
@@ -76,27 +76,27 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
+            get { return Utilities.FormatLargeNumbers(SelectedAccountViewModel.CurrentBalance); }
             set
             {
                 double amount;
                 if (double.TryParse(value, out amount))
                 {
-                    SelectedAccount.CurrentBalance = amount;
+                    SelectedAccountViewModel.CurrentBalance = amount;
                 }
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     The currently selected account
+        ///     The currently selected AccountViewModel
         /// </summary>
-        public Account SelectedAccount
+        public AccountViewModel SelectedAccountViewModel
         {
-            get { return selectedAccount; }
+            get { return selectedAccountViewModel; }
             set
             {
-                selectedAccount = value;
+                selectedAccountViewModel = value;
                 RaisePropertyChanged();
             }
         }
@@ -107,7 +107,7 @@ namespace MoneyFox.Shared.ViewModels
 
             if (!IsEdit)
             {
-                SelectedAccount = new Account();
+                SelectedAccountViewModel = new AccountViewModel();
             }
         }
 
@@ -115,18 +115,18 @@ namespace MoneyFox.Shared.ViewModels
         ///     Initializes the ViewModel
         /// </summary>
         /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
-        /// <param name="selectedAccountId">if in edit mode, this is the selected account.</param>
+        /// <param name="selectedAccountId">if in edit mode, this is the selected AccountViewModel.</param>
         public void Init(bool isEdit, int selectedAccountId)
         {
             IsEdit = isEdit;
-            SelectedAccount = selectedAccountId != 0
+            SelectedAccountViewModel = selectedAccountId != 0
                 ? accountRepository.GetList(x => x.Id == selectedAccountId).First()
-                : new Account();
+                : new AccountViewModel();
         }
 
         private async void SaveAccount()
         {
-            if (string.IsNullOrEmpty(SelectedAccount.Name))
+            if (string.IsNullOrEmpty(SelectedAccountViewModel.Name))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
@@ -134,13 +134,13 @@ namespace MoneyFox.Shared.ViewModels
 
             if (!IsEdit &&
                 accountRepository.GetList(
-                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
+                    a => string.Equals(a.Name, SelectedAccountViewModel.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            if (accountRepository.Save(SelectedAccount))
+            if (accountRepository.Save(SelectedAccountViewModel))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
@@ -149,7 +149,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void DeleteAccount()
         {
-            if (accountRepository.Delete(SelectedAccount))
+            if (accountRepository.Delete(SelectedAccountViewModel))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
@@ -158,7 +158,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void Cancel()
         {
-            SelectedAccount = accountRepository.FindById(SelectedAccount.Id);
+            SelectedAccountViewModel = accountRepository.FindById(SelectedAccountViewModel.Id);
             Close(this);
         }
     }

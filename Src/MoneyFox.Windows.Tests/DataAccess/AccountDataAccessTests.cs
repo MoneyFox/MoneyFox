@@ -26,7 +26,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var name = "Sparkonto";
             var balance = 456468;
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = name,
                 CurrentBalance = balance
@@ -44,7 +44,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var balance = 456468;
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 CurrentBalance = balance
             };
@@ -67,20 +67,20 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void SaveToDatabase_MultipleAccounts_AllSaved()
         {
-            var account1 = new Account
+            var account1 = new AccountViewModel
             {
                 Name = "Account1",
                 CurrentBalance = 1234
             };
 
-            var account2 = new Account
+            var account2 = new AccountViewModel
             {
                 Name = "Account2",
                 CurrentBalance = 999
             };
 
-            var account3 = new Account();
-            var account4 = new Account();
+            var account3 = new AccountViewModel();
+            var account4 = new AccountViewModel();
 
             var dataAccess = new AccountDataAccess(dbManager);
             dataAccess.SaveItem(account1);
@@ -101,7 +101,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var firstName = "old name";
             var secondName = "new name";
 
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = firstName,
                 CurrentBalance = 1234
@@ -123,7 +123,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void DeleteFromDatabase_AccountToDelete_CorrectlyDelete()
         {
-            var account = new Account
+            var account = new AccountViewModel
             {
                 Name = "accountToDelete",
                 CurrentBalance = 1234

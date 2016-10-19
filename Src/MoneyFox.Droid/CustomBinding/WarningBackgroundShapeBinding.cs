@@ -22,11 +22,11 @@ namespace MoneyFox.Droid.CustomBinding
 
         public override void SetValue(object value)
         {
-            var input = (Account)value;
+            var input = (AccountViewModel)value;
             linearLayout.SetBackgroundResource(input.IsOverdrawn ? Resource.Color.color_warning : Resource.Color.white );
         }
 
-        public override Type TargetType => typeof(Account);
+        public override Type TargetType => typeof(AccountViewModel);
 
         public override MvxBindingMode DefaultMode => MvxBindingMode.OneTime;
     }
