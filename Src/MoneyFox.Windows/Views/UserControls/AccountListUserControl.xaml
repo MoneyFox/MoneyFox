@@ -10,6 +10,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:model="using:MoneyFox.Shared.Model"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:models="using:MoneyFox.Shared.ViewModels.Models"
              d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
@@ -27,7 +28,7 @@
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="model:AccountViewModel">
+        <DataTemplate x:Key="AccountTemplate" x:DataType="models:AccountViewModel">
             <StackPanel Margin="0,0,0,12"
                         HorizontalAlignment="Stretch"
                         Background="Transparent"

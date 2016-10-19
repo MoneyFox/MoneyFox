@@ -20,10 +20,10 @@ namespace MoneyFox.Shared.Helpers
             => new RecurringPaymentViewModel
             {
                 Id = payment.RecurringPaymentId,
-                ChargedAccountViewModel = payment.ChargedAccountViewModel,
-                ChargedAccountId = payment.ChargedAccountViewModel.Id,
-                TargetAccountViewModel = payment.TargetAccountViewModel,
-                TargetAccountId = payment.TargetAccountViewModel?.Id ?? 0,
+                ChargedAccount = payment.ChargedAccount,
+                ChargedAccountId = payment.ChargedAccount.Id,
+                TargetAccount = payment.TargetAccount,
+                TargetAccountId = payment.TargetAccount?.Id ?? 0,
                 StartDate = payment.Date,
                 EndDate = enddate,
                 IsEndless = isEndless,
@@ -52,9 +52,9 @@ namespace MoneyFox.Shared.Helpers
 
             return new PaymentViewModel
             {
-                ChargedAccountViewModel = recurringPayment.ChargedAccountViewModel,
+                ChargedAccount = recurringPayment.ChargedAccount,
                 ChargedAccountId = recurringPayment.ChargedAccountId,
-                TargetAccountViewModel = recurringPayment.TargetAccountViewModel,
+                TargetAccount = recurringPayment.TargetAccount,
                 TargetAccountId = recurringPayment.TargetAccountId,
                 Date = date,
                 IsRecurring = true,

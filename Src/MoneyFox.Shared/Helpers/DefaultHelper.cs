@@ -2,6 +2,7 @@
 using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Helpers

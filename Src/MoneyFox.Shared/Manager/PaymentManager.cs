@@ -6,6 +6,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 
@@ -121,9 +122,9 @@ namespace MoneyFox.Shared.Manager
             {
                 try
                 {
-                    if (payment.ChargedAccountViewModel == null)
+                    if (payment.ChargedAccount == null)
                     {
-                        payment.ChargedAccountViewModel =
+                        payment.ChargedAccount =
                             accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
 
                         Mvx.Trace(MvxTraceLevel.Error, "Charged AccountViewModel was missing while clearing payments.");
@@ -179,13 +180,13 @@ namespace MoneyFox.Shared.Manager
                     ? x
                     : -x;
 
-            if ((payment.ChargedAccountViewModel == null) && (payment.ChargedAccountId != 0))
+            if ((payment.ChargedAccount == null) && (payment.ChargedAccountId != 0))
             {
-                payment.ChargedAccountViewModel =
+                payment.ChargedAccount =
                     accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
             }
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccountViewModel));
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
             return true;
         }
 
@@ -195,7 +196,7 @@ namespace MoneyFox.Shared.Manager
         /// <param name="payment">PaymentViewModel to remove the AccountViewModel from.</param>
         public bool RemovePaymentAmount(PaymentViewModel payment)
         {
-            var succeded = RemovePaymentAmount(payment, payment.ChargedAccountViewModel);
+            var succeded = RemovePaymentAmount(payment, payment.ChargedAccount);
             return succeded;
         }
 

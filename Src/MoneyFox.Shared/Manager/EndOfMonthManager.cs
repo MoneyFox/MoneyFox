@@ -4,6 +4,7 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.Manager
 {

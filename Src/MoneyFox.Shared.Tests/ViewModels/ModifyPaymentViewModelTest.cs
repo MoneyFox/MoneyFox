@@ -8,6 +8,7 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
@@ -127,7 +128,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var selectedPayment = new PaymentViewModel
             {
                 ChargedAccountId = 3,
-                ChargedAccountViewModel = new AccountViewModel {Id = 3, Name = "3"}
+                ChargedAccount = new AccountViewModel {Id = 3, Name = "3"}
             };
 
             var localDateSetting = DateTime.MinValue;
@@ -333,15 +334,15 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.TargetAccounts.Add(test2);
             viewmodel.ChargedAccounts.Add(test2);
 
-            viewmodel.SelectedPayment.TargetAccountViewModel = test1;
-            viewmodel.SelectedPayment.ChargedAccountViewModel = test2;
+            viewmodel.SelectedPayment.TargetAccount = test1;
+            viewmodel.SelectedPayment.ChargedAccount = test2;
 
             viewmodel.SelectedItemChangedCommand.Execute();
 
-            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.ChargedAccountViewModel).ShouldBeTrue();
-            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.TargetAccountViewModel).ShouldBeTrue();
-            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.TargetAccountViewModel).ShouldBeFalse();
-            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.ChargedAccountViewModel).ShouldBeFalse();
+            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.ChargedAccount).ShouldBeTrue();
+            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.TargetAccount).ShouldBeTrue();
+            viewmodel.ChargedAccounts.Contains(viewmodel.SelectedPayment.TargetAccount).ShouldBeFalse();
+            viewmodel.TargetAccounts.Contains(viewmodel.SelectedPayment.ChargedAccount).ShouldBeFalse();
         }
 
         [TestMethod]
@@ -369,7 +370,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
-            viewmodel.SelectedPayment.ChargedAccountViewModel = new AccountViewModel();
+            viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.RecurrenceString = Strings.DailyLabel;
 
@@ -405,7 +406,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
-            viewmodel.SelectedPayment.ChargedAccountViewModel = new AccountViewModel();
+            viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.RecurrenceString = Strings.WeeklyLabel;
 
@@ -441,7 +442,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
-            viewmodel.SelectedPayment.ChargedAccountViewModel = new AccountViewModel();
+            viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.RecurrenceString = Strings.MonthlyLabel;
 
@@ -477,7 +478,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
-            viewmodel.SelectedPayment.ChargedAccountViewModel = new AccountViewModel();
+            viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.RecurrenceString = Strings.YearlyLabel;
 
@@ -513,7 +514,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 settingsManagerMock.Object);
 
             viewmodel.Init(PaymentType.Income);
-            viewmodel.SelectedPayment.ChargedAccountViewModel = new AccountViewModel();
+            viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.RecurrenceString = Strings.BiweeklyLabel;
 

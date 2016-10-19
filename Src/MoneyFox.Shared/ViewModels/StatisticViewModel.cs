@@ -73,7 +73,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Returns the title for the category view
+        ///     Returns the title for the CategoryViewModel view
         /// </summary>
         public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
                                " - " +

@@ -6,6 +6,7 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 

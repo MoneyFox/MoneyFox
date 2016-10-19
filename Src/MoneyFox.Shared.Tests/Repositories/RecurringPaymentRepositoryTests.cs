@@ -13,11 +13,11 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void FindById_ReturnsPayment()
         {
-            var dataAccessMock = new Mock<IDataAccess<RecurringPayment>>();
-            var testPayment = new RecurringPayment {Id = 100, Amount = 78};
+            var dataAccessMock = new Mock<IDataAccess<RecurringPaymentViewModel>>();
+            var testPayment = new RecurringPaymentViewModel {Id = 100, Amount = 78};
 
             dataAccessMock.Setup(x => x.LoadList(null))
-                .Returns(new List<RecurringPayment> {testPayment});
+                .Returns(new List<RecurringPaymentViewModel> {testPayment});
 
             Assert.AreEqual(testPayment, new RecurringPaymentRepository(dataAccessMock.Object).FindById(100));
         }

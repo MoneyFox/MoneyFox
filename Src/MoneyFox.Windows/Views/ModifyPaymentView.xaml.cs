@@ -35,7 +35,7 @@ namespace MoneyFox.Windows.Views
             {
                 var viewModel = (ModifyPaymentViewModel) DataContext;
 
-                var payment = e.Parameter as Payment;
+                var payment = e.Parameter as PaymentViewModel;
                 if (payment != null)
                 {
                     //  This payment type will be ignored. Has to be set though.

@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.Manager
         {
             var paymentList = paymentManager.LoadRecurringPaymentList();
 
-            foreach (var payment in paymentList.Where(x => x.ChargedAccountViewModel != null))
+            foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
             {
                 var relatedPayment = GetLastOccurence(payment);
 

@@ -9,9 +9,9 @@ namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
-        private readonly IRepository<Payment> paymentRepository;
+        private readonly IRepository<PaymentViewModel> paymentRepository;
 
-        public CategorySpreadingDataProvider(IRepository<Payment> paymentRepository)
+        public CategorySpreadingDataProvider(IRepository<PaymentViewModel> paymentRepository)
         {
             this.paymentRepository = paymentRepository;
         }
@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
                               && ((x.Type == (int) PaymentType.Expense) || (x.Type == (int) PaymentType.Income)))
                 .ToList());
 
-        private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
+        private List<StatisticItem> GetSpreadingStatisticItems(List<PaymentViewModel> payments)
         {
             var tempStatisticList = (from payment in payments
                     group payment by new
@@ -83,7 +83,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
             item.Label = item.Category;
         }
 
-        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<Payment> payments)
+        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<PaymentViewModel> payments)
         {
             foreach (var statisticItem in statisticList)
             {

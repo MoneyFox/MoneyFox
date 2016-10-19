@@ -10,16 +10,16 @@ namespace MoneyFox.Shared.Repositories
 {
     public class RecurringPaymentRepository : IRecurringPaymentRepository
     {
-        private readonly IDataAccess<RecurringPayment> dataAccess;
+        private readonly IDataAccess<RecurringPaymentViewModel> dataAccess;
 
-        private List<RecurringPayment> data;
+        private List<RecurringPaymentViewModel> data;
 
-        public RecurringPaymentRepository(IDataAccess<RecurringPayment> dataAccess)
+        public RecurringPaymentRepository(IDataAccess<RecurringPaymentViewModel> dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<RecurringPayment> GetList(Expression<Func<RecurringPayment, bool>> filter = null)
+        public IEnumerable<RecurringPaymentViewModel> GetList(Expression<Func<RecurringPaymentViewModel, bool>> filter = null)
         {
             if (data == null)
             {
@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.Repositories
             return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public RecurringPayment FindById(int id)
+        public RecurringPaymentViewModel FindById(int id)
         {
             if (data == null)
             {
@@ -39,7 +39,7 @@ namespace MoneyFox.Shared.Repositories
         }
 
 
-        public bool Delete(RecurringPayment paymentToDelete)
+        public bool Delete(RecurringPaymentViewModel paymentToDelete)
         {
             if (data == null)
             {
@@ -50,12 +50,12 @@ namespace MoneyFox.Shared.Repositories
             return dataAccess.DeleteItem(paymentToDelete);
         }
 
-        public void Load(Expression<Func<RecurringPayment, bool>> filter = null)
+        public void Load(Expression<Func<RecurringPaymentViewModel, bool>> filter = null)
         {
             data = dataAccess.LoadList();
         }
 
-        public bool Save(RecurringPayment payment)
+        public bool Save(RecurringPaymentViewModel payment)
         {
             if (data == null)
             {

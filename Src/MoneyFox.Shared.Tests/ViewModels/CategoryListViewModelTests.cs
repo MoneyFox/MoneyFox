@@ -24,9 +24,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Ctor_Default()
         {
             var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(() => new List<Category>
+            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(() => new List<CategoryViewModel>
             {
-                new Category {Name = string.Empty}
+                new CategoryViewModel {Name = string.Empty}
             });
 
             var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IDialogService>().Object);

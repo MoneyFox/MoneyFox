@@ -7,7 +7,7 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.DataAccess
 {
-    public class CategoryDataAccess : AbstractDataAccess<Category>
+    public class CategoryDataAccess : AbstractDataAccess<CategoryViewModel>
     {
         private readonly IDatabaseManager dbManager;
 
@@ -17,10 +17,10 @@ namespace MoneyFox.Shared.DataAccess
         }
 
         /// <summary>
-        ///     Saves an Category to database
+        ///     Saves an CategoryViewModel to database
         /// </summary>
-        /// <param name="itemToSave">Category to save.</param>
-        protected override void SaveToDb(Category itemToSave)
+        /// <param name="itemToSave">CategoryViewModel to save.</param>
+        protected override void SaveToDb(CategoryViewModel itemToSave)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.DataAccess
                 if (itemToSave.Id == 0)
                 {
                     dbConnection.Insert(itemToSave);
-                    itemToSave.Id = dbConnection.Table<Category>().OrderByDescending(x => x.Id).First().Id;
+                    itemToSave.Id = dbConnection.Table<CategoryViewModel>().OrderByDescending(x => x.Id).First().Id;
                 }
                 else
                 {
@@ -40,8 +40,8 @@ namespace MoneyFox.Shared.DataAccess
         /// <summary>
         ///     DeleteItem an item from the database
         /// </summary>
-        /// <param name="category">Category to delete.</param>
-        protected override void DeleteFromDatabase(Category category)
+        /// <param name="category">CategoryViewModel to delete.</param>
+        protected override void DeleteFromDatabase(CategoryViewModel category)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
@@ -54,11 +54,11 @@ namespace MoneyFox.Shared.DataAccess
         /// </summary>
         /// <param name="filter">>Filter expression</param>
         /// <returns>Loaded categories.</returns>
-        protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter)
+        protected override List<CategoryViewModel> GetListFromDb(Expression<Func<CategoryViewModel, bool>> filter)
         {
             using (var dbConnection = dbManager.GetConnection())
             {
-                var listQuery = dbConnection.Table<Category>();
+                var listQuery = dbConnection.Table<CategoryViewModel>();
 
                 if (filter != null)
                 {

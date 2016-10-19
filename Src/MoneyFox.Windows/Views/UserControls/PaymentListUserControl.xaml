@@ -31,7 +31,7 @@
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
-        <DataTemplate x:Key="PaymentViewModelTemplate" x:DataType="model:Payment">
+        <DataTemplate x:Key="PaymentViewModelTemplate" x:DataType="model:PaymentViewModel">
             <StackPanel MinWidth="100"
                         Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
@@ -168,7 +168,7 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <TextBlock x:Uid="PaymentsPlaceholder"
+        <TextBlock x:Uid="PaymentViewModelsPlaceholder"
                    Grid.Row="1"
                    Margin="6"
                    HorizontalAlignment="Center"

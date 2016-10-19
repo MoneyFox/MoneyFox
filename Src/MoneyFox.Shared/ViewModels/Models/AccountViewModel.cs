@@ -1,11 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using SQLite;
 
-namespace MoneyFox.Shared.Model
+namespace MoneyFox.Shared.ViewModels.Models
 {
-    [Table("Accounts")]
     public class AccountViewModel : INotifyPropertyChanged
     {
         private int id;
@@ -15,7 +13,6 @@ namespace MoneyFox.Shared.Model
         private string note;
         private bool isOverdrawn;
 
-        [PrimaryKey, AutoIncrement, Indexed]
         public int Id
         {
             get { return id; }
@@ -71,7 +68,6 @@ namespace MoneyFox.Shared.Model
             }
         }
 
-        [Ignore]
         public bool IsOverdrawn
         {
             get { return isOverdrawn; }

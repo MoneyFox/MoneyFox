@@ -6,6 +6,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;

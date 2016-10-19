@@ -22,9 +22,9 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        protected override void Selected(Category category)
+        protected override void Selected(CategoryViewModel category)
         {
-            //Do nothing later will redirect to category spending details
+            //Do nothing later will redirect to CategoryViewModel spending details
         }
     }
 }

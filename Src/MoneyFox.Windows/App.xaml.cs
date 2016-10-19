@@ -121,7 +121,7 @@ namespace MoneyFox.Windows
             var clearPaymentResult = settings.Values["CLEAR_PAYMENT"]?.ToString();
             if (!string.IsNullOrEmpty(clearPaymentResult) && clearPaymentResult == "true")
             {
-                await new DialogService().ShowMessage("Task Executed", "Clear Payment");
+                await new DialogService().ShowMessage("Task Executed", "Clear PaymentViewModel");
             }
 
             var recPaymentResult = settings.Values["RECURRING_PAYMENT"]?.ToString();

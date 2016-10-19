@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
-        private Category selectedCategory;
+        private CategoryViewModel selectedCategory;
         private bool isEdit;
 
         public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService,
@@ -29,8 +29,8 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Saves changes to a category if in edit mode <see cref="IsEdit" />  or creates
-        ///     a new category.
+        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
+        ///     a new CategoryViewModel.
         /// </summary>
         public MvxCommand SaveCommand => new MvxCommand(SaveCategory);
 
@@ -40,7 +40,7 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
         /// <summary>
-        ///     Delete the selected category from the database
+        ///     Delete the selected CategoryViewModel from the database
         /// </summary>
         public MvxCommand DeleteCommand => new MvxCommand(DeleteCategory);
 
@@ -50,9 +50,9 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     The currently selected category
+        ///     The currently selected CategoryViewModel
         /// </summary>
-        public Category SelectedCategory
+        public CategoryViewModel SelectedCategory
         {
             get { return selectedCategory; }
             set
@@ -63,7 +63,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Indicates if the selected category shall be edited or a new one created.
+        ///     Indicates if the selected CategoryViewModel shall be edited or a new one created.
         /// </summary>
         public bool IsEdit
         {
@@ -76,7 +76,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Returns the Title based on whether a category is being created or edited
+        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
         public string Title => IsEdit
             ? string.Format(Strings.EditCategoryTitle, SelectedCategory.Name)
@@ -85,28 +85,28 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Initialize the ViewModel
         /// </summary>
-        /// <param name="isEdit">Indicates if a category is being edited or created</param>
+        /// <param name="isEdit">Indicates if a CategoryViewModel is being edited or created</param>
         public void Init(bool isEdit)
         {
             IsEdit = isEdit;
 
             if (!IsEdit)
             {
-                SelectedCategory = new Category();
+                SelectedCategory = new CategoryViewModel();
             }
         }
 
         /// <summary>
         ///     Initialize the ViewModel
         /// </summary>
-        /// <param name="isEdit">Indicates if a category is being edited or created</param>
-        /// <param name="selectedCategoryId">If we are editing a category this is its Id</param>
+        /// <param name="isEdit">Indicates if a CategoryViewModel is being edited or created</param>
+        /// <param name="selectedCategoryId">If we are editing a CategoryViewModel this is its Id</param>
         public void Init(bool isEdit, int selectedCategoryId)
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
                 ? categoryRepository.GetList(x => x.Id == selectedCategoryId).First()
-                : new Category();
+                : new CategoryViewModel();
         }
 
         private async void SaveCategory()

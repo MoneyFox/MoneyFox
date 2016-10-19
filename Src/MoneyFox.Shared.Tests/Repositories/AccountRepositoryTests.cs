@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 using MvvmCross.Test.Core;
 

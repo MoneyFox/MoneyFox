@@ -14,7 +14,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
     {
         private Mock<IAccountRepository> accountRepository;
         private Mock<IPaymentRepository> paymentRepository;
-        private Mock<IRepository<RecurringPayment>> recPaymentRepository;
+        private Mock<IRepository<RecurringPaymentViewModel>> recPaymentRepository;
         private Mock<IPaymentManager> paymentManager;
         private Mock<ISettingsManager> settingsManager;
         private Mock<IEndOfMonthManager> endOfMonthManager;
@@ -25,7 +25,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             MvxSingleton.ClearAllSingletons();
             accountRepository = new Mock<IAccountRepository>();
             paymentRepository = new Mock<IPaymentRepository>();
-            recPaymentRepository = new Mock<IRepository<RecurringPayment>>();
+            recPaymentRepository = new Mock<IRepository<RecurringPaymentViewModel>>();
             paymentManager = new Mock<IPaymentManager>();
             settingsManager = new Mock<ISettingsManager>();
             endOfMonthManager = new Mock<IEndOfMonthManager>();

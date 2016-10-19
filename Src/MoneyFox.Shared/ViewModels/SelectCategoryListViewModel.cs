@@ -10,7 +10,7 @@ namespace MoneyFox.Shared.ViewModels
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>
-        ///     Creates an CategoryListViewModel for the usage of providing a category selection.
+        ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
@@ -30,9 +30,9 @@ namespace MoneyFox.Shared.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     Post selected category to message hub
+        ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void Selected(Category category)
+        protected override void Selected(CategoryViewModel category)
         {
             MessageHub.Publish(new CategorySelectedMessage(this, category));
             Close(this);

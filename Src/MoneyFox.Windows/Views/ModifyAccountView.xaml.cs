@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
+using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views

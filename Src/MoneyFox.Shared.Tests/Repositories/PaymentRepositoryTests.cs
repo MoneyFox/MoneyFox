@@ -5,6 +5,7 @@ using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 using MvvmCross.Test.Core;
 
@@ -57,8 +58,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var payment = new PaymentViewModel
             {
-                ChargedAccountViewModel = account,
-                TargetAccountViewModel = null,
+                ChargedAccount = account,
+                TargetAccount = null,
                 Amount = 20,
                 Type = (int) PaymentType.Income
             };
@@ -86,8 +87,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             var payment = new PaymentViewModel {
-                ChargedAccountViewModel = account,
-                TargetAccountViewModel = null,
+                ChargedAccount = account,
+                TargetAccount = null,
                 Amount = 20,
                 Type = (int)PaymentType.Expense
             };
@@ -116,8 +117,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             var payment = new PaymentViewModel {
-                ChargedAccountViewModel = account,
-                TargetAccountViewModel = null,
+                ChargedAccount = account,
+                TargetAccount = null,
                 Amount = 20,
                 Type = (int)PaymentType.Transfer
             };
@@ -144,7 +145,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var payment = new PaymentViewModel
             {
-                ChargedAccountViewModel = account,
+                ChargedAccount = account,
                 ChargedAccountId = 2,
                 Amount = 20
             };

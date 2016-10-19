@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.Interfaces.Repositories
         /// <summary>
         ///     Delete the specified payment.
         /// </summary>
-        /// <param name="paymentToDelete">Payment to delete.</param>
+        /// <param name="paymentToDelete">PaymentViewModel to delete.</param>
         bool Delete(T paymentToDelete);
 
         /// <summary>

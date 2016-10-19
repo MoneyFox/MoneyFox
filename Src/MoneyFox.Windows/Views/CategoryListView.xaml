@@ -26,10 +26,10 @@
 
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddCategoryLabel"
+                <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Command="{Binding CreateNewCategoryCommand}"
                               Icon="Add"
-                              Label="New Category" />
+                              Label="New CategoryViewModel" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>

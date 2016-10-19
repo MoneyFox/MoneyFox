@@ -1,0 +1,8 @@
+﻿{
+  "dependencies": {
+    "MvvmCross.Plugin.SQLitePCL": "1.1.2"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.6,Profile=Profile44": {}
+  }
+}

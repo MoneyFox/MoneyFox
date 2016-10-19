@@ -5,8 +5,8 @@ namespace MoneyFox.Shared.Interfaces.ViewModels
 {
     public interface ICategoryListViewModel
     {
-        ObservableCollection<Category> Categories { get; set; }
-        Category SelectedCategory { get; set; }
+        ObservableCollection<CategoryViewModel> Categories { get; set; }
+        CategoryViewModel SelectedCategory { get; set; }
         string SearchText { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void EditCategory(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
-            var category = element.DataContext as Category;
+            var category = element.DataContext as CategoryViewModel;
             if (category == null)
             {
                 return;
@@ -48,7 +48,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void DeleteCategory(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var category = element.DataContext as Category;
+            var category = element.DataContext as CategoryViewModel;
             if (category == null)
             {
                 return;

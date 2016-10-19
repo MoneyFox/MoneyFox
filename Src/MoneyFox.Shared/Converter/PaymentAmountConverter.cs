@@ -14,7 +14,7 @@ namespace MoneyFox.Shared.Converter
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var payment = (Payment) value;
+            var payment = (PaymentViewModel) value;
             var param = parameter as string;
             string sign;
 

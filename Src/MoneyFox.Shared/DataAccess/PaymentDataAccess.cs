@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.DataAccess
 {
@@ -76,8 +77,8 @@ namespace MoneyFox.Shared.DataAccess
 
                 foreach (var payment in payments)
                 {
-                    payment.ChargedAccountViewModel = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
-                    payment.TargetAccountViewModel = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
+                    payment.ChargedAccount = accounts.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    payment.TargetAccount = accounts.FirstOrDefault(x => x.Id == payment.TargetAccountId);
 
                     payment.Category = categoriesQuery.FirstOrDefault(x => x.Id == payment.CategoryId);
 

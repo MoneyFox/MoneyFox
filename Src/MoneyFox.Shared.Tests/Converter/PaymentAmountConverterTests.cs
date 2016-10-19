@@ -5,6 +5,7 @@ using MoneyFox.Shared.Converter;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
@@ -51,7 +52,7 @@ namespace MoneyFox.Shared.Tests.Converter
                     Amount = 80,
                     Type = (int) PaymentType.Transfer,
                     ChargedAccountId = account.Id,
-                    ChargedAccountViewModel = account,
+                    ChargedAccount = account,
                     CurrentAccountId = account.Id
                 }, null, account, null)
                 .ShouldBe("- " + 80.ToString("C"));
@@ -77,7 +78,7 @@ namespace MoneyFox.Shared.Tests.Converter
                 {
                     Amount = 80,
                     Type = (int) PaymentType.Transfer,
-                    ChargedAccountViewModel = new AccountViewModel(),
+                    ChargedAccount = new AccountViewModel(),
                     CurrentAccountId = account.Id
                 }, null, new AccountViewModel(), null)
                 .ShouldBe("+ " + 80.ToString("C"));

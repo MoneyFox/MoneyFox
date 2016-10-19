@@ -9,6 +9,7 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -91,7 +92,7 @@ namespace MoneyFox.Shared.ViewModels
                 PrepareEdit();
             }
 
-            AccountViewModelBeforeEdit = SelectedPayment.ChargedAccountViewModel;
+            AccountViewModelBeforeEdit = SelectedPayment.ChargedAccount;
         }
 
         private void PrepareDefault(PaymentType type)
@@ -116,9 +117,9 @@ namespace MoneyFox.Shared.ViewModels
 
             // we have to set the AccountViewModel objects here again to ensure that they are identical to the
             // objects in the AccountViewModel collections.
-            selectedPayment.ChargedAccountViewModel =
+            selectedPayment.ChargedAccount =
                 ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
-            selectedPayment.TargetAccountViewModel =
+            selectedPayment.TargetAccount =
                 TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
@@ -130,7 +131,7 @@ namespace MoneyFox.Shared.ViewModels
                 Date = DateTime.Now,
                 // Assign empty CategoryViewModel to reset the GUI
                 Category = new CategoryViewModel(),
-                ChargedAccountViewModel = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
+                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
             };
         }
 
@@ -149,7 +150,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Save()
         {
-            if (SelectedPayment.ChargedAccountViewModel == null)
+            if (SelectedPayment.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
@@ -269,8 +270,8 @@ namespace MoneyFox.Shared.ViewModels
                     ChargedAccounts.Add(i);
                 }
             }
-            ChargedAccounts.Remove(selectedPayment.TargetAccountViewModel);
-            TargetAccounts.Remove(selectedPayment.ChargedAccountViewModel);
+            ChargedAccounts.Remove(selectedPayment.TargetAccount);
+            TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
 
         #region Commands

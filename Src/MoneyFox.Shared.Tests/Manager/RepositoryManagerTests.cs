@@ -6,6 +6,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager

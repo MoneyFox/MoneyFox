@@ -1,17 +1,14 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using SQLite;
 
 namespace MoneyFox.Shared.Model
 {
-    [Table("Categories")]
-    public class Category : INotifyPropertyChanged
+    public class CategoryViewModel : INotifyPropertyChanged
     {
         private int id;
         private string name;
         private string notes;
 
-        [PrimaryKey, AutoIncrement, Indexed]
         public int Id
         {
             get { return id; }
@@ -36,7 +33,7 @@ namespace MoneyFox.Shared.Model
 
 
         /// <summary>
-        ///     Additional details about the category
+        ///     Additional details about the CategoryViewModel
         /// </summary>
         public string Notes
         {

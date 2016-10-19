@@ -10,6 +10,7 @@ using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using System.Collections.Generic;
 using MoneyFox.Shared.Interfaces.Repositories;
+using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

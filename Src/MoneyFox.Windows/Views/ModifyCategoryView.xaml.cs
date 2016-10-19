@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 namespace MoneyFox.Windows.Views
 {
     /// <summary>
-    /// Modify or create a category
+    /// Modify or create a CategoryViewModel
     /// </summary>
     public sealed partial class ModifyCategoryView
     {
@@ -47,7 +47,7 @@ namespace MoneyFox.Windows.Views
         {
             var viewModel = (ModifyCategoryViewModel) DataContext;
 
-            var category = e.Parameter as Category;
+            var category = e.Parameter as CategoryViewModel;
             if (category != null)
             {
                 viewModel.IsEdit = true;
@@ -56,7 +56,7 @@ namespace MoneyFox.Windows.Views
             else
             {
                 viewModel.IsEdit = false;
-                viewModel.SelectedCategory = new Category();
+                viewModel.SelectedCategory = new CategoryViewModel();
             }
 
             base.OnNavigatedTo(e);

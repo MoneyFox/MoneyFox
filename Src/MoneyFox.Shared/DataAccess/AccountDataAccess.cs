@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.DataAccess
 {

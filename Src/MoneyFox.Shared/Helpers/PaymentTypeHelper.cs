@@ -52,7 +52,7 @@ namespace MoneyFox.Shared.Helpers
         /// <summary>
         ///     Determines the string for PaymentType based on the passed int.
         /// </summary>
-        /// <param name="type">The Payment type as int.</param>
+        /// <param name="type">The PaymentViewModel type as int.</param>
         /// <returns>The string for the determined type.</returns>
         public static string GetTypeString(int type)
         {

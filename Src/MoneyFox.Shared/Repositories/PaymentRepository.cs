@@ -11,15 +11,15 @@ namespace MoneyFox.Shared.Repositories
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private readonly IDataAccess<Payment> dataAccess;
-        private List<Payment> data;
+        private readonly IDataAccess<PaymentViewModel> dataAccess;
+        private List<PaymentViewModel> data;
 
-        public PaymentRepository(IDataAccess<Payment> dataAccess)
+        public PaymentRepository(IDataAccess<PaymentViewModel> dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<Payment> GetList(Expression<Func<Payment, bool>> filter = null)
+        public IEnumerable<PaymentViewModel> GetList(Expression<Func<PaymentViewModel, bool>> filter = null)
         {
             if (data == null)
             {
@@ -34,7 +34,7 @@ namespace MoneyFox.Shared.Repositories
             return data;
         }
 
-        public Payment FindById(int id)
+        public PaymentViewModel FindById(int id)
         {
             if (data == null)
             {
@@ -45,11 +45,11 @@ namespace MoneyFox.Shared.Repositories
 
 
         /// <summary>
-        ///     Save a new payment or update an existin one.
+        ///     Save a new PaymentViewModel or update an existin one.
         /// </summary>
         /// <param name="payment">item to save</param>
         /// <returns>whether the task has succeeded</returns>
-        public bool Save(Payment payment)
+        public bool Save(PaymentViewModel payment)
         {
             if (data == null)
             {
@@ -72,11 +72,11 @@ namespace MoneyFox.Shared.Repositories
         }
 
         /// <summary>
-        ///     Deletes the passed payment and removes the item from cache
+        ///     Deletes the passed PaymentViewModel and removes the item from cache
         /// </summary>
-        /// <param name="paymentToDelete">Payment to delete.</param>
+        /// <param name="paymentToDelete">PaymentViewModel to delete.</param>
         /// <returns>Whether the task has succeeded</returns>
-        public bool Delete(Payment paymentToDelete)
+        public bool Delete(PaymentViewModel paymentToDelete)
         {
             if (data == null)
             {
@@ -90,7 +90,7 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Loads all payments from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Payment, bool>> filter = null)
+        public void Load(Expression<Func<PaymentViewModel, bool>> filter = null)
         {
             data = dataAccess.LoadList();
         }

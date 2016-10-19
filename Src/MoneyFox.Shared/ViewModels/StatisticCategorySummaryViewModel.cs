@@ -15,7 +15,7 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Returns the Category Summary
+        ///     Returns the CategoryViewModel Summary
         /// </summary>
         public ObservableCollection<StatisticItem> CategorySummary
         {

@@ -11,20 +11,20 @@ namespace MoneyFox.Shared.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly IDataAccess<Category> dataAccess;
+        private readonly IDataAccess<CategoryViewModel> dataAccess;
 
-        private List<Category> data;
+        private List<CategoryViewModel> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess)
+        /// <param name="dataAccess">Instanced CategoryViewModel data Access</param>
+        public CategoryRepository(IDataAccess<CategoryViewModel> dataAccess)
         {
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<Category> GetList(Expression<Func<Category, bool>> filter = null)
+        public IEnumerable<CategoryViewModel> GetList(Expression<Func<CategoryViewModel, bool>> filter = null)
         {
             if (data == null)
             {
@@ -34,7 +34,7 @@ namespace MoneyFox.Shared.Repositories
             return filter != null ? data.Where(filter.Compile()) : data;
         }
 
-        public Category FindById(int id)
+        public CategoryViewModel FindById(int id)
         {
             if (data == null)
             {
@@ -45,11 +45,11 @@ namespace MoneyFox.Shared.Repositories
         }
 
         /// <summary>
-        ///     Save a new category or update an existing one.
+        ///     Save a new CategoryViewModel or update an existing one.
         /// </summary>
         /// <param name="category">accountToDelete to save</param>
         /// <returns>Whether the task has succeeded</returns>
-        public bool Save(Category category)
+        public bool Save(CategoryViewModel category)
         {
             if (data == null)
             {
@@ -64,18 +64,18 @@ namespace MoneyFox.Shared.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
-                data = new List<Category>(data.OrderBy(x => x.Name));
+                data = new List<CategoryViewModel>(data.OrderBy(x => x.Name));
             }
             return dataAccess.SaveItem(category);
         }
 
 
         /// <summary>
-        ///     Deletes the passed category and removes it from cache
+        ///     Deletes the passed CategoryViewModel and removes it from cache
         /// </summary>
         /// <param name="categoryToDelete">accountToDelete to delete</param>
         /// <returns>Whether the task has succeeded</returns>
-        public bool Delete(Category categoryToDelete)
+        public bool Delete(CategoryViewModel categoryToDelete)
         {
             if (data == null)
             {
@@ -89,7 +89,7 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Loads all categories from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Category, bool>> filter = null)
+        public void Load(Expression<Func<CategoryViewModel, bool>> filter = null)
         {
             if (data == null)
             {

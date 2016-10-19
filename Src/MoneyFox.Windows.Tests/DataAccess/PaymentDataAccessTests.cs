@@ -25,7 +25,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var amount = 789;
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Amount = amount
             };
@@ -39,7 +39,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void SaveToDatabase_ExistingPayment_CorrectId()
         {
-            var payment = new Payment();
+            var payment = new PaymentViewModel();
 
             var dataAccess = new PaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
@@ -59,12 +59,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
         {
-            var payment1 = new RecurringPayment
+            var payment1 = new RecurringPaymentViewModel
             {
                 Note = "MultiPayment1"
             };
 
-            var payment2 = new RecurringPayment
+            var payment2 = new RecurringPaymentViewModel
             {
                 Note = "MultiPayment2"
             };
@@ -85,7 +85,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var firstAmount = 5555555;
             var secondAmount = 222222222;
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Amount = firstAmount
             };
@@ -106,7 +106,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void DeleteFromDatabase_PaymentToDelete_CorrectlyDelete()
         {
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Note = "paymentToDelete"
             };

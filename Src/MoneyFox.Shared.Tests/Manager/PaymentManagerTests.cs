@@ -9,6 +9,7 @@ using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels.Models;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager
@@ -37,7 +38,7 @@ namespace MoneyFox.Shared.Tests.Manager
             var payment = new PaymentViewModel
             {
                 Id = 1,
-                ChargedAccountViewModel = account1,
+                ChargedAccount = account1,
                 ChargedAccountId = account1.Id
             };
 

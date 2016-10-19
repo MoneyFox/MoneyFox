@@ -19,7 +19,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
-                      x:DataType="model:Category">
+                      x:DataType="model:CategoryViewModel">
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"

@@ -16,14 +16,14 @@ namespace MoneyFox.Shared.ViewModels
         protected readonly IDialogService DialogService;
 
         private string searchText;
-        private ObservableCollection<Category> categories;
-        private Category selectedCategory;
-        private ObservableCollection<AlphaGroupListGroup<Category>> source;
+        private ObservableCollection<CategoryViewModel> categories;
+        private CategoryViewModel selectedCategory;
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{Category}" />.</param>
+        /// <param name="categoryRepository">An instance of <see cref="IRepository{CategoryViewModel}" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
             IDialogService dialogService)
@@ -31,7 +31,7 @@ namespace MoneyFox.Shared.ViewModels
             DialogService = dialogService;
             CategoryRepository = categoryRepository;
 
-            Categories = new ObservableCollection<Category>(CategoryRepository.GetList());
+            Categories = new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList());
 
             Source = CreateGroup();
         }
@@ -39,7 +39,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Collection with all categories
         /// </summary>
-        public ObservableCollection<Category> Categories
+        public ObservableCollection<CategoryViewModel> Categories
         {
             get { return categories; }
             set
@@ -53,7 +53,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<Category>> Source
+        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> Source
         {
             get { return source; }
             set
@@ -65,9 +65,9 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     Category currently selected in the view.
+        ///     CategoryViewModel currently selected in the view.
         /// </summary>
-        public Category SelectedCategory
+        public CategoryViewModel SelectedCategory
         {
             get { return selectedCategory; }
             set
@@ -79,24 +79,24 @@ namespace MoneyFox.Shared.ViewModels
         }
         
         /// <summary>
-        ///     Deletes the passed Category after show a confirmation dialog.
+        ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
+        public MvxCommand<CategoryViewModel> DeleteCategoryCommand => new MvxCommand<CategoryViewModel>(DeleteCategory);
 
         /// <summary>
-        ///     Edit the currently selected category
+        ///     Edit the currently selected CategoryViewModel
         /// </summary>
-        public MvxCommand<Category> EditCategoryCommand => new MvxCommand<Category>(EditCategory);
+        public MvxCommand<CategoryViewModel> EditCategoryCommand => new MvxCommand<CategoryViewModel>(EditCategory);
 
         /// <summary>
-        ///     Selects the clicked category and sends it to the message hub.
+        ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxCommand<Category> SelectCommand => new MvxCommand<Category>(Selected);
+        public MvxCommand<CategoryViewModel> SelectCommand => new MvxCommand<CategoryViewModel>(Selected);
 
         /// <summary>
-        ///     Create and save a new category group
+        ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxCommand<Category> CreateNewCategoryCommand => new MvxCommand<Category>(CreateNewCategory);
+        public MvxCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxCommand<CategoryViewModel>(CreateNewCategory);
 
         public bool IsCategoriesEmpty => !Categories.Any();
 
@@ -113,20 +113,20 @@ namespace MoneyFox.Shared.ViewModels
             }
         }
 
-        private void EditCategory(Category category)
+        private void EditCategory(CategoryViewModel category)
         {
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
         }
 
-        private void CreateNewCategory(Category category)
+        private void CreateNewCategory(CategoryViewModel category)
         {
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
         }
 
         /// <summary>
-        ///     Handle the selection of a category in the list
+        ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract void Selected(Category category);
+        protected abstract void Selected(CategoryViewModel category);
 
         /// <summary>
         ///     Performs a search with the text in the searchtext property
@@ -135,27 +135,27 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
-                Categories = new ObservableCollection<Category>
+                Categories = new ObservableCollection<CategoryViewModel>
                 (CategoryRepository.GetList(
                         x => (x.Name != null) && x.Name.ToLower().Contains(searchText.ToLower()))
                     .OrderBy(x => x.Name));
             }
             else
             {
-                Categories = new ObservableCollection<Category>(CategoryRepository.GetList().OrderBy(x => x.Name));
+                Categories = new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList().OrderBy(x => x.Name));
             }
             Source = CreateGroup();
         }
 
-        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup() =>
-            new ObservableCollection<AlphaGroupListGroup<Category>>(
-                AlphaGroupListGroup<Category>.CreateGroups(Categories,
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
+            new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
+                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(Categories,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
                         : s.Name[0].ToString().ToUpper()));
 
-        private async void DeleteCategory(Category categoryToDelete)
+        private async void DeleteCategory(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {

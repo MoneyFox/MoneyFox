@@ -25,7 +25,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var name = "TestCategory";
 
-            var category = new Category
+            var category = new CategoryViewModel
             {
                 Name = name
             };
@@ -39,7 +39,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void SaveToDatabase_ExistingCategory_CorrectId()
         {
-            var category = new Category();
+            var category = new CategoryViewModel();
 
             var dataAccess = new CategoryDataAccess(dbManager);
             dataAccess.SaveItem(category);
@@ -58,12 +58,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void SaveToDatabase_MultipleCategories_AllSaved()
         {
-            var category1 = new Category
+            var category1 = new CategoryViewModel
             {
                 Name = "Einkaufen"
             };
 
-            var category2 = new Category
+            var category2 = new CategoryViewModel
             {
                 Name = "Beer"
             };
@@ -84,7 +84,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
             var firstName = "old name";
             var secondName = "new name";
 
-            var category = new Category
+            var category = new CategoryViewModel
             {
                 Name = firstName
             };
@@ -105,7 +105,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestMethod]
         public void DeleteFromDatabase_CategoryToDelete_CorrectlyDelete()
         {
-            var category = new Category
+            var category = new CategoryViewModel
             {
                 Name = "categoryToDelete"
             };

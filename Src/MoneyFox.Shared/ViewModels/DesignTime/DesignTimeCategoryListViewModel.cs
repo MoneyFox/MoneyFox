@@ -9,16 +9,16 @@ namespace MoneyFox.Shared.ViewModels.DesignTime
     {
         public DesignTimeCategoryListViewModel()
         {
-            Categories = new ObservableCollection<Category>
+            Categories = new ObservableCollection<CategoryViewModel>
             {
-                new Category {Name = "Design Time Category 1"}
+                new CategoryViewModel {Name = "Design Time CategoryViewModel 1"}
             };
         }
 
-        public ObservableCollection<AlphaGroupListGroup<Payment>> Source { get; set; }
+        public ObservableCollection<AlphaGroupListGroup<PaymentViewModel>> Source { get; set; }
 
-        public ObservableCollection<Category> Categories { get; set; }
-        public Category SelectedCategory { get; set; }
+        public ObservableCollection<CategoryViewModel> Categories { get; set; }
+        public CategoryViewModel SelectedCategory { get; set; }
         public string SearchText { get; set; }
     }
 }
