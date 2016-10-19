@@ -70,10 +70,6 @@ namespace MoneyFox.Shared.Manager
             foreach (var account in accounts)
             {
                 account.IsOverdrawn = GetEndOfMonthBalanceForAccount(account) < 0;
-
-                account.EndMonthWarning =account.IsOverdrawn 
-                    ? "Negative at end of month"
-                    : " ";
             }
         }
 

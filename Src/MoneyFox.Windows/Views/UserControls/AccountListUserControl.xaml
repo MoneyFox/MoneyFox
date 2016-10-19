@@ -1,19 +1,20 @@
 ﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.AccountListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:designTime="using:MoneyFox.Shared.ViewModels.DesignTime"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:model="using:MoneyFox.Shared.Model"
-             d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel, IsDesignTimeCreatable=True}"
-             mc:Ignorable="d"
+             xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel,
+                                              IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -27,34 +28,31 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
-            <StackPanel HorizontalAlignment="Stretch"
-                        Holding="AccountList_Holding"
-                        RightTapped="AccountList_RightTapped"
+            <StackPanel Margin="0,0,0,12"
+                        HorizontalAlignment="Stretch"
                         Background="Transparent"
-                        Margin="0,0,0,12">
+                        Holding="AccountList_Holding"
+                        RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
-                                        Text="Edit"
-                                        Click="Edit_OnClick" />
+                                        Click="Edit_OnClick"
+                                        Text="Edit" />
                         <MenuFlyoutItem x:Uid="Delete"
-                                        Text="Delete"
-                                        Click="Delete_OnClick" />
+                                        Click="Delete_OnClick"
+                                        Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">
-                    <TextBlock Text="{x:Bind Name}"
-                               TextTrimming="CharacterEllipsis"
-                               Style="{StaticResource CustomSubtitleTextBlockStyle}" />
-                    <TextBlock TextAlignment="Right"
+                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind Name}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock HorizontalAlignment="Right"
                                Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                               HorizontalAlignment="Right" />
+                               TextAlignment="Right" />
                 </Grid>
-                <TextBlock Text="{x:Bind Iban}"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                <TextBlock Text="{x:Bind EndMonthWarning}"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -68,28 +66,25 @@
         <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <controls:AlternatingRowListViewMainScreen ItemsSource="{Binding AllAccounts}"
-                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             WarningBackground="{StaticResource WarningBrush}"
-                                             ItemTemplate="{StaticResource AccountTemplate}"
-                                             HorizontalAlignment="Stretch"
-                                             ShowsScrollingPlaceholders="False"
-                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
+                                                       EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                                       EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                       ItemTemplate="{StaticResource AccountTemplate}"
+                                                       ItemsSource="{Binding AllAccounts}"
+                                                       OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                       ShowsScrollingPlaceholders="False"
+                                                       WarningBackground="{StaticResource WarningBrush}">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
 
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
-                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </controls:AlternatingRowListViewMainScreen>
@@ -97,12 +92,13 @@
 
         <TextBlock x:Uid="AccountsPlaceholder"
                    Grid.Row="1"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
                    Margin="6"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding IsAllAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding IsAllAccountsEmpty,
+                                        Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

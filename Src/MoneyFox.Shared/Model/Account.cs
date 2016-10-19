@@ -13,7 +13,6 @@ namespace MoneyFox.Shared.Model
         private string iban;
         private double currentBalance;
         private string note;
-        private string endMonthWarning;
         private bool isOverdrawn;
 
         [PrimaryKey, AutoIncrement, Indexed]
@@ -68,18 +67,6 @@ namespace MoneyFox.Shared.Model
             {
                 if (note == value) return;
                 note = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        [Ignore]
-        public string EndMonthWarning
-        {
-            get { return endMonthWarning; }
-            set
-            {
-                if (endMonthWarning == value) return;
-                endMonthWarning = value;
                 RaisePropertyChanged();
             }
         }
