@@ -5,8 +5,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Constants;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
-using SQLite.Net;
-using SQLite.Net.Async;
+using SQLite;
 
 namespace MoneyFox.DataAccess
 {

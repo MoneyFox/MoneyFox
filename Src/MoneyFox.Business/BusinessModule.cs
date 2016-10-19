@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MoneyFox.DataAccess;
 
 namespace MoneyFox.Business
 {

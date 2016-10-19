@@ -6,7 +6,7 @@ using Microsoft.OneDrive.Sdk;
 using Microsoft.OneDrive.Sdk.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
 {

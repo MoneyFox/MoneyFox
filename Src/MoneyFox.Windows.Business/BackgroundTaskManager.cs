@@ -2,7 +2,7 @@
 using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.Storage;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
 {

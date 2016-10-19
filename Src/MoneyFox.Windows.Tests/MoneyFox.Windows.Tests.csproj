@@ -127,6 +127,10 @@
     <Content Include="Properties\UnitTestApp.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
       <Project>{3e0e36af-65d9-4542-8551-31b76577aa4c}</Project>
       <Name>MoneyFox.Shared</Name>

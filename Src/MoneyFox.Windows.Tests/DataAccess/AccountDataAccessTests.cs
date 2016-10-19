@@ -2,11 +2,10 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels.Models;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Tests.DataAccess
 {
