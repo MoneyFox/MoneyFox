@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Foundation.DataModels;
 
-namespace MoneyFox.Shared.Interfaces.ViewModels
+namespace MoneyFox.Foundation.Interfaces.ViewModels
 {
     public interface ICategoryListViewModel
     {

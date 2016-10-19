@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 

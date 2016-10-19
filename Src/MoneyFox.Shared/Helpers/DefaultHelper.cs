@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Helpers

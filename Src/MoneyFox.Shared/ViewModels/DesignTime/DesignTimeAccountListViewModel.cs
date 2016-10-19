@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Foundation.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels.DesignTime

@@ -1,6 +1,6 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Shared.Manager
 {

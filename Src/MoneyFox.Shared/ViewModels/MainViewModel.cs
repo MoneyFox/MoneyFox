@@ -2,7 +2,6 @@
 using System.Linq;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces.Repositories;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels

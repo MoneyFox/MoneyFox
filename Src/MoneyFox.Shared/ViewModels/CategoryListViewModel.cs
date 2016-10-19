@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Shared.ViewModels

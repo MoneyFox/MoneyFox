@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     public interface INotificationService
     {

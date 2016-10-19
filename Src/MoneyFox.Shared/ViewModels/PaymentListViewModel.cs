@@ -2,14 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using MoneyFox.Business.Groups;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 

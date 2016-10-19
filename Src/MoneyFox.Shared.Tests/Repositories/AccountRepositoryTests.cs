@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Repositories;
 using Moq;
 using MvvmCross.Test.Core;

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Shared.ViewModels

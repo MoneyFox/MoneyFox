@@ -1,5 +1,5 @@
-﻿using MoneyFox.Shared.Authentication;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;

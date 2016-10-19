@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Foundation.Interfaces
 {

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared.Repositories

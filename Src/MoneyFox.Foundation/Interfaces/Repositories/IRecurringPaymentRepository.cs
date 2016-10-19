@@ -1,6 +1,6 @@
 using MoneyFox.Foundation.DataModels;
 
-namespace MoneyFox.Shared.Interfaces.Repositories
+namespace MoneyFox.Foundation.Interfaces.Repositories
 {
     public interface IRecurringPaymentRepository : IRepository<RecurringPaymentViewModel>
     {

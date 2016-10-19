@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     /// <summary>
     ///     Defines the interface for a BackupManager who handles the different functions of a backup.

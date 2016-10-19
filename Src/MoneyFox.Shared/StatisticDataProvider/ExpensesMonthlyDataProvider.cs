@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.StatisticDataProvider
 {

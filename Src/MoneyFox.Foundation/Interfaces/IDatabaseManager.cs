@@ -1,6 +1,6 @@
-﻿using SQLite;
+﻿using SQLite.Net;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     public interface IDatabaseManager
     {

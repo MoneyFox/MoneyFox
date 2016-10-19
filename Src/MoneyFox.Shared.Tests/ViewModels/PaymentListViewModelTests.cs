@@ -2,8 +2,6 @@
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Views.Dialogs;
 

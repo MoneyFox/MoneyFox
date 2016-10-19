@@ -1,6 +1,4 @@
-﻿using MoneyFox.Foundation;
-
-namespace MoneyFox.Shared.Interfaces
+﻿namespace MoneyFox.Foundation.Interfaces
 {
     public interface ITileManager
     {

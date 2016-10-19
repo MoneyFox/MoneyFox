@@ -1,6 +1,6 @@
 ﻿using System;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Shared.Extensions;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;

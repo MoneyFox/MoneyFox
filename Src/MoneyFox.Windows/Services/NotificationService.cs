@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Notifications;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Services
 {

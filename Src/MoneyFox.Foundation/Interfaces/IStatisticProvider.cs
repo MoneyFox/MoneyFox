@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Shared.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     /// <summary>
     ///     Defines the interface for selecting statistic data.
