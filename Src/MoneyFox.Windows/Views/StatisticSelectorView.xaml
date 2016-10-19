@@ -6,10 +6,10 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:model="using:MoneyFox.Shared.Model"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:models="using:MoneyFox.Foundation.Models"
                       d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
@@ -17,7 +17,7 @@
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="model:StatisticSelectorType">
+        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
             <StackPanel Margin="0,2,0,4"
                         HorizontalAlignment="Stretch"
                         Background="Transparent">

@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Foundation;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;

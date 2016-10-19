@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace MoneyFox.Shared.Groups
+namespace MoneyFox.Business.Groups
 {
     /// <summary>
     ///     Can be used for a alphanumeric grouping. It will show the whole key as title.

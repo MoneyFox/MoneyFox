@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels.Models;

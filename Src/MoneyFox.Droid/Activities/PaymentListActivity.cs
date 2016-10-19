@@ -15,6 +15,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Droid.Activities
 {

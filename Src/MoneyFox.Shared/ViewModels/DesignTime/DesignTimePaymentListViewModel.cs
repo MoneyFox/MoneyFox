@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Shared.Groups;
+using MoneyFox.Business.Groups;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;

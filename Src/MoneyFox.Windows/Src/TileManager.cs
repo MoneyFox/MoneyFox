@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.UI.StartScreen;
-using MoneyFox.Shared;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;

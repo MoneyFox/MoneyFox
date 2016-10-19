@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Shared.Model;
+using MoneyFox.Foundation.Models;
 using MoneyFox.Shared.StatisticDataProvider;
 
 namespace MoneyFox.Shared.ViewModels

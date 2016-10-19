@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.ViewModels.Models;
 
 namespace MoneyFox.Shared.Model

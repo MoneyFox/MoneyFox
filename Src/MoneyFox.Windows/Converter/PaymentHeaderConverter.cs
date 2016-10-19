@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using MoneyFox.Shared;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Windows.Converter

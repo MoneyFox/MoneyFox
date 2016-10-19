@@ -48,8 +48,6 @@
     <Compile Include="AppStart.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
-    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\DatabaseConstants.cs" />
     <Compile Include="Constants\ServiceConstants.cs" />
@@ -63,15 +61,12 @@
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
     <Compile Include="DataAccess\RecurringPaymentDataAccess.cs" />
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
-    <Compile Include="Groups\AlphaGroupListGroup.cs" />
-    <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Helpers\GlobalBusyIndicatorState.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
@@ -113,12 +108,9 @@
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="ViewModels\Models\AccountViewModel.cs" />
-    <Compile Include="Model\CashFlow.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Models\PaymentViewModel.cs" />
     <Compile Include="ViewModels\Models\RecurringPaymentViewModel.cs" />
-    <Compile Include="Model\StatisticItem.cs" />
-    <Compile Include="Model\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -327,6 +319,16 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

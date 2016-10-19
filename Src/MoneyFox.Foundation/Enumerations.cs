@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Shared
+﻿namespace MoneyFox.Foundation
 {
     public enum PaymentType
     {

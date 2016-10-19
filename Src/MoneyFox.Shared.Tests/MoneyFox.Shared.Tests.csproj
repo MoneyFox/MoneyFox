@@ -165,6 +165,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
       <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
       <Name>MoneyFox.Shared</Name>

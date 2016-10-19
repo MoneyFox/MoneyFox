@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Foundation;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MoneyFox.Shared.Model
+namespace MoneyFox.Foundation.Models
 {
     public class StatisticItem : INotifyPropertyChanged
     {

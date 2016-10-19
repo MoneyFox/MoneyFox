@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Helpers

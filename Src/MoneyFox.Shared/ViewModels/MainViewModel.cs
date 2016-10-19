@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MoneyFox.Foundation;
 using MoneyFox.Shared.Interfaces.Repositories;
 using MvvmCross.Core.ViewModels;
 
