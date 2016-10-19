@@ -45,12 +45,12 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Connectivity.2.1.0\lib\dotnet\Cheesebaron.MvxPlugins.Connectivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\net45\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\net45\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings.Wpf, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.0.1\lib\net45\Cheesebaron.MvxPlugins.Settings.Wpf.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Wpf, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\net45\Cheesebaron.MvxPlugins.Settings.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.5.23.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
