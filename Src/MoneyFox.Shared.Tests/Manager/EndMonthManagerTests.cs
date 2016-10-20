@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Manager;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
-using MoneyFox.Shared.Repositories;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
@@ -23,16 +23,8 @@ namespace MoneyFox.Shared.Tests.Manager
                 Id = 1,
                 CurrentBalance = 100
             };
-
-            var paymentDataAccess = new Mock<IDataAccess<PaymentViewModel>>();
-            paymentDataAccess.Setup(x => x.LoadList(null)).Returns(new List<PaymentViewModel>
-            {
-                new PaymentViewModel {Id = 10, ChargedAccountId=1, Amount=100,Date= DateTime.Now},
-                new PaymentViewModel {Id = 15, ChargedAccountId=1, Amount=100, Date= DateTime.Now}
-            });
-
-            var paymentrepository = new PaymentRepository(paymentDataAccess.Object);
-            paymentrepository.Load();
+            
+            var paymentrepository = new PaymentRepository(new Mock<IDatabaseManager>().Object);
 
             var accounts = new List<AccountViewModel>
             {
@@ -55,15 +47,12 @@ namespace MoneyFox.Shared.Tests.Manager
                 CurrentBalance = -100,
             };
 
-            var paymentDataAccess = new Mock<IDataAccess<PaymentViewModel>>();
-            paymentDataAccess.Setup(x => x.LoadList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
             {
                 new PaymentViewModel {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now, Type = (int) PaymentType.Income},
                 new PaymentViewModel {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now, Type = (int) PaymentType.Income}
             });
-
-            var paymentrepository = new PaymentRepository(paymentDataAccess.Object);
-            paymentrepository.Load();
 
             var accounts = new List<AccountViewModel>
             {
@@ -71,7 +60,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 account1
             };
 
-            EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
+            EndOfMonthManager testManager = new EndOfMonthManager(paymentRepoSetup.Object);
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
 
             account1.IsOverdrawn.ShouldBeFalse();

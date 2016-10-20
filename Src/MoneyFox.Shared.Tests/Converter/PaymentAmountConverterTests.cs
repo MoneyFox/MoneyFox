@@ -40,10 +40,7 @@ namespace MoneyFox.Shared.Tests.Converter
                 CurrentBalance = 400
             };
 
-            var mock = new Mock<IAccountRepository>();
-            mock.Setup(x => x.Load(It.IsAny<Expression<Func<AccountViewModel, bool>>>()));
-
-            Mvx.RegisterSingleton(mock.Object);
+            Mvx.RegisterSingleton(new Mock<IAccountRepository>().Object);
 
             new PaymentAmountConverter()
                 .Convert(new PaymentViewModel

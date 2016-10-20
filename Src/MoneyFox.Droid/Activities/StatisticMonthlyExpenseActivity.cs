@@ -3,10 +3,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using OxyPlot.Xamarin.Android;
 
