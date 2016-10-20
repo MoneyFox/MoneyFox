@@ -348,6 +348,7 @@
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
+    <Compile Include="DroidModule.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
     <Compile Include="Fragments\BackupFragment.cs" />

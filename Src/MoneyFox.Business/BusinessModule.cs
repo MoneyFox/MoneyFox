@@ -5,7 +5,6 @@ using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Localization;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.ResxLocalization;
 
 namespace MoneyFox.Business
@@ -16,10 +15,9 @@ namespace MoneyFox.Business
         {
             builder.RegisterModule<DataAccessModule>();
 
-            Mvx.RegisterSingleton(() => new GlobalBusyIndicatorState());
-            Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
-            Mvx.RegisterSingleton<IMvxTextProvider>(new MvxResxTextProvider(Strings.ResourceManager));
-
+            builder.RegisterType<GlobalBusyIndicatorState>();
+            builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
+            builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
@@ -27,10 +25,43 @@ namespace MoneyFox.Business
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("DataProvider"))
+                .AsSelf()
+                .SingleInstance();
+
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Manager"))
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .Where(x => !x.Name.StartsWith("DesignTime"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterType<Session>();
         }
     }
 }
