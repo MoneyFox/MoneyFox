@@ -4,7 +4,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Shared.Converter
+namespace MoneyFox.Business.Converter
 {
     /// <summary>
     ///     Adds a plus or a minus to the payment amont on the UI based on if it is a income or a expense

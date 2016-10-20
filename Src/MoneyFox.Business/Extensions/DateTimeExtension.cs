@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Shared.Extensions
+namespace MoneyFox.Business.Extensions
 {
     public static class DateTimeExtension
     {

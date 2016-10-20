@@ -43,22 +43,12 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
-    <Compile Include="Converter\AmountFormatConverter.cs" />
-    <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
-    <Compile Include="Converter\DateTimeFormatConverter.cs" />
-    <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="DataAccess\AbstractDataAccess.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
     <Compile Include="DataAccess\RecurringPaymentDataAccess.cs" />
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="Exceptions\AccountMissingException.cs" />
-    <Compile Include="Exceptions\BackupException.cs" />
-    <Compile Include="Exceptions\ExtendedFormatException.cs" />
-    <Compile Include="Extensions\DateTimeExtension.cs" />
-    <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
-    <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Manager\EndOfMonthManager.cs" />

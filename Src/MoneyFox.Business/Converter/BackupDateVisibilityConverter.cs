@@ -3,7 +3,7 @@ using System.Globalization;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Visibility;
 
-namespace MoneyFox.Shared.Converter
+namespace MoneyFox.Business.Converter
 {
     /// <summary>
     ///     Hides the backupdate if it wasn't retrieved so far and shows it again if it is.

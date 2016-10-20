@@ -41,6 +41,13 @@
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="BusinessModule.cs" />
+    <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
+    <Compile Include="Converter\DateTimeFormatConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
+    <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="Helpers\DefaultHelper.cs" />
     <Compile Include="Helpers\GlobalBusyIndicatorState.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
@@ -57,11 +64,6 @@
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MvvmCross.Plugins.ResxLocalization">
-      <HintPath>..\packages\MvvmCross.Plugin.ResxLocalization.4.3.0\lib\MonoAndroid\MvvmCross.Plugins.ResxLocalization.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

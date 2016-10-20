@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Microsoft.Graph;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
-using MoneyFox.Shared.Extensions;
 
 namespace MoneyFox.Droid.OneDriveAuth
 {

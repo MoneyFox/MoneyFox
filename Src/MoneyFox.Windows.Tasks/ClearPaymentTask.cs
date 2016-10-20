@@ -1,12 +1,11 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.StatisticDataProvider;

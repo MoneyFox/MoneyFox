@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Exceptions;
 
 namespace MoneyFox.Droid.OneDriveAuth
 {

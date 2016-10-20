@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.Converter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Converter;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;

@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyFox.Shared.Extensions;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Shared.Messages;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;

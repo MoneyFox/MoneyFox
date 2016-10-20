@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.HockeyApp;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.StatisticDataProvider;
 using MvvmCross.Platform;
 

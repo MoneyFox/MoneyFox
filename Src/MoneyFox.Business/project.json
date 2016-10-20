@@ -2,7 +2,9 @@
   "supports": {},
   "dependencies": {
     "Autofac": "4.1.1",
-    "MvvmCross.Plugin.ResxLocalization": "4.3.0"
+    "MvvmCross.Plugin.ResxLocalization": "4.3.0",
+    "MvvmCross.Plugin.Visibility": "4.3.0",
+    "Xamarin.Auth": "1.3.0"
   },
   "frameworks": {
     ".NETPortable,Version=v4.6,Profile=Profile44": {}

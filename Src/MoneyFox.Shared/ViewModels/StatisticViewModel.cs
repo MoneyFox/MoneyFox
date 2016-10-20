@@ -1,6 +1,6 @@
 using System;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Messages;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
