@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;

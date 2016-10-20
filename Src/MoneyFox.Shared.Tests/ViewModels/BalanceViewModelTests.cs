@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;

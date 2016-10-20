@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.Manager;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager

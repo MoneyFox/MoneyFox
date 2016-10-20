@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Manager;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager

@@ -4,9 +4,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 

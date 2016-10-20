@@ -2,8 +2,15 @@
   "supports": {},
   "dependencies": {
     "Autofac": "4.1.1",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
+    "MvvmCross.Plugin.Email": "4.3.0",
     "MvvmCross.Plugin.ResxLocalization": "4.3.0",
     "MvvmCross.Plugin.Visibility": "4.3.0",
+    "MvvmCross.Plugin.WebBrowser": "4.3.0",
+    "Npadrutt.MvxPlugins.AppInformation": "1.0.6",
+    "Npadrutt.MvxPlugins.StoreOperations": "1.0.2",
+    "OxyPlot.Core": "2015.1.999-alpha",
     "Xamarin.Auth": "1.3.0"
   },
   "frameworks": {

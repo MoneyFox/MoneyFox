@@ -4,12 +4,12 @@ using Android.Content;
 using Android.OS;
 using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Business.Helpers;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
-using MoneyFox.Shared.Services;
 using MvvmCross.Plugins.File.Droid;
 using MvvmCross.Plugins.Sqlite.Droid;
 

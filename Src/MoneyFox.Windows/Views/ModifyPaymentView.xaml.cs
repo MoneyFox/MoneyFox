@@ -3,9 +3,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Business.Helpers;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyFox.Windows.Views
 {

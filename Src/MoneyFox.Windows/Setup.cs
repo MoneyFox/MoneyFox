@@ -7,7 +7,6 @@ using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared;
 using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -80,7 +79,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<ITileManager, TileManager>();
         }
 
-        protected override IMvxApplication CreateApp() => new Shared.App();
+        protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
 
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }

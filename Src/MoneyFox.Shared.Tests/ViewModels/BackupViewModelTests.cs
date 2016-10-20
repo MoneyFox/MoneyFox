@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Test.Core;
 

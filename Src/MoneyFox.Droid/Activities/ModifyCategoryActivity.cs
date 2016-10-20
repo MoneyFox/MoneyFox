@@ -2,8 +2,8 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Content.PM;
+using MoneyFox.Business.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MoneyFox.Shared.ViewModels;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities

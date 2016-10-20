@@ -1,8 +1,8 @@
 ﻿using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;

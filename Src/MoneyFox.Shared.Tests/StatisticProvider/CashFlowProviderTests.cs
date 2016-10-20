@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.StatisticProvider

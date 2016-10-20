@@ -3,8 +3,8 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Shared.Attributes;
 

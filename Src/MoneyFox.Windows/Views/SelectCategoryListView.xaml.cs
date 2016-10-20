@@ -1,9 +1,6 @@
-﻿using System;
-using Windows.System;
-using Windows.UI.Xaml;
+﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyFox.Shared.ViewModels;
-using MoneyFox.Windows.Views.Dialogs;
+using MoneyFox.Business.ViewModels;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views

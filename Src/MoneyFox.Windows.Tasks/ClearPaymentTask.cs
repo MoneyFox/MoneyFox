@@ -2,13 +2,13 @@
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Business.Extensions;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
-using MoneyFox.Shared.StatisticDataProvider;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;

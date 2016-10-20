@@ -1,0 +1,46 @@
+﻿using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
+
+namespace MoneyFox.Business.Manager
+{
+    /// <summary>
+    ///     This helper can be used to reinstantiate all Repositories, for example when you
+    ///     download a new database backup and replace the current one.
+    /// </summary>
+    public class RepositoryManager : IRepositoryManager
+    {
+        private readonly IAccountRepository accountRepository;
+        private readonly ICategoryRepository categoryRepository;
+
+        private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
+
+        public RepositoryManager(IPaymentManager paymentManager,
+            IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository,
+            ICategoryRepository categoryRepository)
+        {
+            this.paymentManager = paymentManager;
+            this.accountRepository = accountRepository;
+            this.paymentRepository = paymentRepository;
+            this.categoryRepository = categoryRepository;
+        }
+
+        /// <summary>
+        ///     This will reload all Data for the repositories and set the Selected Property to null.
+        ///     After this it checks if there are payments to cleare and if so will clear them.
+        /// </summary>
+        public void ReloadData()
+        {
+            //Load Data
+            accountRepository.Load();
+
+            paymentRepository.Load();
+
+            categoryRepository.Load();
+
+            //check if there are payments to clear
+            paymentManager.ClearPayments();
+        }
+    }
+}

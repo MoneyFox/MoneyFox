@@ -1,14 +1,14 @@
-﻿using MoneyFox.Shared.Manager;
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.DataAccess;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Repositories;
-using MoneyFox.Shared.Services;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MoneyFox.Business.Helpers;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.Services;
 
 namespace MoneyFox.Windows.Tasks
 {

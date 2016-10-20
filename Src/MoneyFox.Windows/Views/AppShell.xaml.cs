@@ -13,9 +13,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using FontAwesome.UWP;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
 
 namespace MoneyFox.Windows.Views

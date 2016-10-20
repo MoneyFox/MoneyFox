@@ -1,4 +1,4 @@
-﻿using MoneyFox.Shared.ViewModels;
+﻿using MoneyFox.Business.ViewModels;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.Dialogs
