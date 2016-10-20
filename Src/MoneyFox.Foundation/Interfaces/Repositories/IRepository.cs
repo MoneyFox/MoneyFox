@@ -30,10 +30,5 @@ namespace MoneyFox.Foundation.Interfaces.Repositories
         /// </summary>
         /// <param name="paymentToDelete">PaymentViewModel to delete.</param>
         bool Delete(T paymentToDelete);
-
-        /// <summary>
-        ///     Loads the data from the database and fills it to the data collection.
-        /// </summary>
-        void Load(Expression<Func<T, bool>> filter = null);
     }
 }

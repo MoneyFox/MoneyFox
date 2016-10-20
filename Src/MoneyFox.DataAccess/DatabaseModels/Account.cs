@@ -1,6 +1,6 @@
 ﻿using SQLite.Net.Attributes;
 
-namespace MoneyFox.DataAccess.Models
+namespace MoneyFox.DataAccess.DatabaseModels
 {
     [Table("Accounts")]
     internal class Account

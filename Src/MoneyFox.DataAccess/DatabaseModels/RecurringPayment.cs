@@ -1,13 +1,13 @@
 ﻿using System;
 using SQLite.Net.Attributes;
 
-namespace MoneyFox.DataAccess.Models
+namespace MoneyFox.DataAccess.DatabaseModels
 {
     [Table("RecurringPayments")]
     internal class RecurringPayment
     {
         [PrimaryKey, AutoIncrement, Indexed]
-        private int Id { get; set; }
+        public int Id { get; set; }
 
         public int ChargedAccountId { get; set; }
 

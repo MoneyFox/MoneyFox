@@ -5,10 +5,9 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Repositories;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
@@ -31,11 +30,11 @@ namespace MoneyFox.Windows.Tasks
                 var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWindowsCommonFileStore());
 
-                paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
+                paymentRepository = new PaymentRepository(dbManager);
 
                 paymentManager = new PaymentManager(paymentRepository,
-                    new AccountRepository(new AccountDataAccess(dbManager)),
-                    new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
+                    new AccountRepository(dbManager),
+                    new RecurringPaymentRepository(dbManager),
                     null);
 
                 ClearPayments();

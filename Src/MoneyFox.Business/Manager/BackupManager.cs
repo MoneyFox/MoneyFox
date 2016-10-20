@@ -19,19 +19,16 @@ namespace MoneyFox.Business.Manager
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
-        private readonly IRepositoryManager repositoryManager;
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly ISettingsManager settingsManager;
 
         private bool oldBackupRestored;
 
-        public BackupManager(IRepositoryManager repositoryManager,
-            IBackupService backupService,
+        public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
             IDatabaseManager databaseManager,
             ISettingsManager settingsManager)
         {
-            this.repositoryManager = repositoryManager;
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
@@ -120,7 +117,6 @@ namespace MoneyFox.Business.Manager
             databaseManager.CreateDatabase();
             databaseManager.MigrateDatabase();
 
-            repositoryManager.ReloadData();
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
 

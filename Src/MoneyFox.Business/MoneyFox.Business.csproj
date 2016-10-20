@@ -61,7 +61,6 @@
     <Compile Include="Manager\EndOfMonthManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
-    <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OneDriveService.cs" />
