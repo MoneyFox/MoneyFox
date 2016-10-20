@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -30,18 +31,13 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                var query = db.Table<Account>();
-                //var query = db.Table<Account>().AsQueryable().ProjectTo<AccountViewModel>();
+                var query = db.Table<Account>().AsQueryable().ProjectTo<AccountViewModel>();
 
                 if (filter != null)
                 {
-                    Expression<Func<Account, AccountViewModel>> mapper =
-                        Mapper.Configuration.ExpressionBuilder.CreateMapExpression<Account, AccountViewModel>();
-                    Expression<Func<Account, bool>> mappedSelector = filter.Compose(mapper);
-
-                    query = query.Where(mappedSelector);
+                    query = query.Where(filter);
                 }
-                return Mapper.Map<List<AccountViewModel>>(query);
+                return query.ToList();
             }
         }
 

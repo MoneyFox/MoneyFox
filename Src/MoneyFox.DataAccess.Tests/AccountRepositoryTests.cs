@@ -89,7 +89,7 @@ namespace MoneyFox.DataAccess.Tests
             {
                 accountRepo.Save(testAccount);
 
-                accountRepo.GetList(x => x.Id == testAccount.Id).First().ShouldBe(testAccount);
+                accountRepo.GetList(x => x.Id == testAccount.Id).First().Id.ShouldBe(testAccount.Id);
                 accountRepo.GetList(x => x.Id == 99).FirstOrDefault().ShouldBeNull();
             } finally
             {
