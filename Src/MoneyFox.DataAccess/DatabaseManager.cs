@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -48,10 +49,10 @@ namespace MoneyFox.DataAccess
         {
             using (var db = connectionFactory.GetConnection(DatabaseConstants.DB_NAME))
             {
-                db.CreateTable<AccountViewModel>();
-                db.CreateTable<CategoryViewModel>();
-                db.CreateTable<PaymentViewModel>();
-                db.CreateTable<RecurringPaymentViewModel>();
+                db.CreateTable<Account>();
+                db.CreateTable<Category>();
+                db.CreateTable<Payment>();
+                db.CreateTable<RecurringPayment>();
             }
         }
 

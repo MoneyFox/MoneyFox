@@ -1,0 +1,12 @@
+﻿{
+  "dependencies": {
+    "MvvmCross.Plugin.File": "4.3.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.3.4"
+  },
+  "frameworks": {
+    ".NETFramework,Version=v4.5.2": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

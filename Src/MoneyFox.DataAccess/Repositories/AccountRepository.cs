@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.InteropServices.ComTypes;
 using AutoMapper;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
@@ -28,7 +30,18 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                return Mapper.Map<List<AccountViewModel>>(db.Table<Account>());
+                var query = db.Table<Account>();
+                //var query = db.Table<Account>().AsQueryable().ProjectTo<AccountViewModel>();
+
+                if (filter != null)
+                {
+                    Expression<Func<Account, AccountViewModel>> mapper =
+                        Mapper.Configuration.ExpressionBuilder.CreateMapExpression<Account, AccountViewModel>();
+                    Expression<Func<Account, bool>> mappedSelector = filter.Compose(mapper);
+
+                    query = query.Where(mappedSelector);
+                }
+                return Mapper.Map<List<AccountViewModel>>(query);
             }
         }
 
@@ -57,7 +70,7 @@ namespace MoneyFox.DataAccess.Repositories
                 if (account.Id == 0)
                 {
                     var rows = db.Insert(account);
-                    account.Id = db.Table<Account>().OrderByDescending(x => x.Id).First().Id;
+                    accountVmToSave.Id = db.Table<Account>().OrderByDescending(x => x.Id).First().Id;
                     return rows == 1;
                 }
                 return db.Update(account) == 1;
