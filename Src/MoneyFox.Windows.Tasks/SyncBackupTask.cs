@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Shared.Manager;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
-using MoneyFox.Shared;
+using MoneyFox.DataAccess;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Repositories;

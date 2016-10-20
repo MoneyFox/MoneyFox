@@ -7,7 +7,6 @@ using Windows.Globalization;
 using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -15,8 +14,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using Microsoft.HockeyApp;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
@@ -26,6 +23,7 @@ using MoneyFox.Windows.Views;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.Windows
 {

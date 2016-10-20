@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Constants;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using SQLite;

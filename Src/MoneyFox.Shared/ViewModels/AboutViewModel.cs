@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Resources;
+﻿using MoneyFox.Foundation.Constants;
+using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Email;
@@ -85,22 +86,22 @@ namespace MoneyFox.Shared.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     ressource file
         /// </summary>
-        public string Website => Constants.Constants.WEBSITE_URL;
+        public string Website => Constants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     ressource file
         /// </summary>
-        public string SupportMail => Constants.Constants.SUPPORT_MAIL;
+        public string SupportMail => Constants.SUPPORT_MAIL;
 
         private void GoToWebsite()
         {
-            webBrowserTask.ShowWebPage(Constants.Constants.WEBSITE_URL);
+            webBrowserTask.ShowWebPage(Constants.WEBSITE_URL);
         }
 
         private void SendMail()
         {
-            composeEmailTask.ComposeEmail(Constants.Constants.SUPPORT_MAIL,
+            composeEmailTask.ComposeEmail(Constants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty,
@@ -114,22 +115,22 @@ namespace MoneyFox.Shared.ViewModels
 
         private void GoToRepository()
         {
-            webBrowserTask.ShowWebPage(Constants.Constants.GIT_HUB_REPOSITORY_URL);
+            webBrowserTask.ShowWebPage(Constants.GIT_HUB_REPOSITORY_URL);
         }
 
         private void GoToTranslationProject()
         {
-            webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);
+            webBrowserTask.ShowWebPage(Constants.TRANSLATION_PROJECT_URL);
         }
 
         private void GoToDesignerTwitterAccount()
         {
-            webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
+            webBrowserTask.ShowWebPage(Constants.ICONDESIGNER_TWITTER_URL);
         }
 
         private void GoToContributionPage()
         {
-            webBrowserTask.ShowWebPage(Constants.Constants.ICONDESIGNER_TWITTER_URL);
+            webBrowserTask.ShowWebPage(Constants.ICONDESIGNER_TWITTER_URL);
         }
     }
 }

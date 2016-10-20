@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
 using Microsoft.OneDrive.Sdk.Authentication;
-using MoneyFox.Shared.Constants;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 

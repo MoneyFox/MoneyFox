@@ -1,8 +1,8 @@
 ﻿using System;
 using Windows.UI.StartScreen;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Windows

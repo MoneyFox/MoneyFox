@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Shared.Constants
+﻿namespace MoneyFox.Foundation.Constants
 {
     public class ServiceConstants
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using MoneyFox.Shared.Constants;
+using MoneyFox.Foundation.Constants;
 using Xamarin.Auth;
 
 namespace MoneyFox.Shared.Extensions

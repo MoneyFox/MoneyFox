@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
 using Microsoft.HockeyApp;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;

@@ -27,7 +27,6 @@ namespace MoneyFox.Shared
         private void RegisterDependencies()
         {
             Mvx.RegisterSingleton(() => new GlobalBusyIndicatorState());
-            Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterSingleton<IMvxTextProvider>(new MvxResxTextProvider(Strings.ResourceManager));
 

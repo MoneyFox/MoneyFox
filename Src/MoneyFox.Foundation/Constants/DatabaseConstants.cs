@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Shared.Constants
+﻿namespace MoneyFox.Foundation.Constants
 {
     /// <summary>
     ///     Contains constant values regarding the database

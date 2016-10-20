@@ -48,9 +48,6 @@
     <Compile Include="AppStart.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
-    <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Constants\DatabaseConstants.cs" />
-    <Compile Include="Constants\ServiceConstants.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
@@ -102,7 +99,6 @@
       <DependentUpon>Strings.nl.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\OneDriveService.cs" />
-    <Compile Include="DatabaseManager.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />

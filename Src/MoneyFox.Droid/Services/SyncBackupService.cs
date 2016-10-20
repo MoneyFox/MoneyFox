@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Cheesebaron.MvxPlugins.Settings.Droid;
+using MoneyFox.DataAccess;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;

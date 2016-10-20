@@ -1,4 +1,4 @@
-﻿using MoneyFox.Shared.Constants;
+﻿using MoneyFox.Foundation.Constants;
 using MoneyFox.Shared.ViewModels;
 
 namespace MoneyFox.Windows

@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Constants;
 using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Shared.Manager
