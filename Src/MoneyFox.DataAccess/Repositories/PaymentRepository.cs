@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Exceptions;
@@ -28,7 +29,13 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                return Mapper.Map<List<PaymentViewModel>>(db.Table<Payment>());
+                var query = db.Table<Payment>().AsQueryable().ProjectTo<PaymentViewModel>();
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+                return query.ToList();
             }
         }
 
@@ -39,8 +46,7 @@ namespace MoneyFox.DataAccess.Repositories
                 return Mapper.Map<PaymentViewModel>(db.Table<Payment>().FirstOrDefault(x => x.Id == id));
             }
         }
-
-
+        
         /// <summary>
         ///     Save a new PaymentViewModel or update an existin one.
         /// </summary>
@@ -62,7 +68,7 @@ namespace MoneyFox.DataAccess.Repositories
                 if (payment.Id == 0)
                 {
                     var rows = db.Insert(payment);
-                    payment.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
+                    paymentToSave.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
                     return rows == 1;
                 }
                 return db.Update(payment) == 1;

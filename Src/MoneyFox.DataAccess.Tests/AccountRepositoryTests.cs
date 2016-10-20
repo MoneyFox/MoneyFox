@@ -8,6 +8,8 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.DataModels;
 using MvvmCross.Plugins.File.Wpf;
 using MvvmCross.Plugins.Sqlite.Wpf;
+using Ploeh.AutoFixture;
+using XunitShouldExtension;
 
 namespace MoneyFox.DataAccess.Tests
 {
@@ -42,7 +44,8 @@ namespace MoneyFox.DataAccess.Tests
             var accountRepo =
                 new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWpfFileStore(FILE_ROOT)));
-            var testAccount = new AccountViewModel { Name = "Fooo" };
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
 
             try
             {
@@ -55,12 +58,39 @@ namespace MoneyFox.DataAccess.Tests
         }
 
         [TestMethod]
+        public void Save_ExistingEntryUpdated()
+        {
+            var accountRepo =
+                new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
+
+            try
+            {
+                accountRepo.Save(testAccount);
+                accountRepo.FindById(testAccount.Id).ShouldNotBeNull();
+
+                const string updatedName = "FOOOOOOOOOO";
+                testAccount.Name = updatedName;
+
+                accountRepo.Save(testAccount);
+                accountRepo.FindById(testAccount.Id).Name.ShouldBe(updatedName);
+            }
+            finally
+            {
+                accountRepo.Delete(testAccount);
+            }
+        }
+
+        [TestMethod]
         public void GetList_WithoutFilter()
         {
             var accountRepo =
                 new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWpfFileStore(FILE_ROOT)));
-            var testAccount = new AccountViewModel {Name = "Fooo"};
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
 
             try
             {
@@ -83,7 +113,8 @@ namespace MoneyFox.DataAccess.Tests
             var accountRepo =
                 new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWpfFileStore(FILE_ROOT)));
-            var testAccount = new AccountViewModel { Name = "Fooo" };
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
 
             try
             {
@@ -95,6 +126,42 @@ namespace MoneyFox.DataAccess.Tests
             {
                 accountRepo.Delete(testAccount);
             }
+        }
+
+        [TestMethod]
+        public void Delete_AccountDeleted()
+        {
+            var accountRepo =
+                new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
+
+            accountRepo.Save(testAccount);
+            accountRepo.FindById(testAccount.Id).ShouldNotBeNull();
+
+            accountRepo.Delete(testAccount);
+            accountRepo.FindById(testAccount.Id).ShouldBeNull();
+        }
+        
+        [TestMethod]
+        public void FindById_AccountDeleted()
+        {
+            var accountRepo =
+                new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var testAccount = new Fixture().Create<AccountViewModel>();
+            testAccount.Id = 0;
+
+            accountRepo.Save(testAccount);
+            var selected = accountRepo.FindById(testAccount.Id);
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<AccountViewModel>();
+
+            accountRepo.Delete(testAccount);
+            accountRepo.FindById(testAccount.Id).ShouldBeNull();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -27,7 +28,13 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                return Mapper.Map<List<RecurringPaymentViewModel>>(db.Table<Account>());
+                var query = db.Table<RecurringPayment>().AsQueryable().ProjectTo<RecurringPaymentViewModel>();
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+                return query.ToList();
             }
         }
 
@@ -51,7 +58,7 @@ namespace MoneyFox.DataAccess.Repositories
                 if (recurringPayment.Id == 0)
                 {
                     var rows = db.Insert(recurringPayment);
-                    recurringPayment.Id = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
+                    paymentVmToSave.Id = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
 
                     return rows == 1;
                 }

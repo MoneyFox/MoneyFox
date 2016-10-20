@@ -50,11 +50,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PaymentRepositoryTests.cs" />
+    <Compile Include="RecurringPaymentRepositoryTests.cs" />
+    <Compile Include="CategoryRepositoryTests.cs" />
     <Compile Include="AccountRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShouldExtension.cs" />
+    <Compile Include="QueryableExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>

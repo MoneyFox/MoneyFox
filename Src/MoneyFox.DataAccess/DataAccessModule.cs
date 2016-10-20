@@ -13,6 +13,15 @@ namespace MoneyFox.DataAccess
             {
                 cfg.CreateMap<Account, AccountViewModel>();
                 cfg.CreateMap<AccountViewModel, Account>();
+
+                cfg.CreateMap<Payment, PaymentViewModel>();
+                cfg.CreateMap<PaymentViewModel, Payment>();
+
+                cfg.CreateMap<Category, CategoryViewModel>();
+                cfg.CreateMap<CategoryViewModel, Category>();
+
+                cfg.CreateMap<RecurringPayment, RecurringPaymentViewModel>();
+                cfg.CreateMap<RecurringPaymentViewModel, RecurringPayment>();
             });
 
             builder.RegisterAssemblyTypes(ThisAssembly)
