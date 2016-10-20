@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
 
@@ -24,15 +22,20 @@ namespace MoneyFox.Shared.Tests.Manager
                 CurrentBalance = 100
             };
             
-            var paymentrepository = new PaymentRepository(new Mock<IDatabaseManager>().Object);
-
             var accounts = new List<AccountViewModel>
             {
                 new AccountViewModel {Id=2, CurrentBalance=100}, 
                 account1
             };
 
-            EndOfMonthManager testManager = new EndOfMonthManager(paymentrepository);
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
+            {
+                new PaymentViewModel {Id = 10, ChargedAccountId=1, Amount=100,Date= DateTime.Now},
+                new PaymentViewModel {Id = 15, ChargedAccountId=1, Amount=100, Date= DateTime.Now}
+            });
+
+            var testManager = new EndOfMonthManager(paymentRepoSetup.Object);
 
             testManager.CheckEndOfMonthBalanceForAccounts(accounts);
             account1.IsOverdrawn.ShouldBeTrue();
