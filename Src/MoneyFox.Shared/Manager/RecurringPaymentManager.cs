@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Helpers;
 
 namespace MoneyFox.Shared.Manager
 {

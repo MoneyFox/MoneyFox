@@ -1,8 +1,8 @@
 ﻿using System;
 using MoneyFox.Foundation;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 
-namespace MoneyFox.Shared.Helpers
+namespace MoneyFox.Business.Helpers
 {
     /// <summary>
     ///     A collection of helper methods for handling PaymentTypes

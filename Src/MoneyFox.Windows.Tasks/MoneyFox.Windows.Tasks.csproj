@@ -114,6 +114,10 @@
     <Compile Include="SyncBackupTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
       <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
       <Name>MoneyFox.DataAccess</Name>

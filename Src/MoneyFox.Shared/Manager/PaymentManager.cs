@@ -6,7 +6,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 

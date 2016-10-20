@@ -1,8 +1,8 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 

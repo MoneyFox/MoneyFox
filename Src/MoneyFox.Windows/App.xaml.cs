@@ -13,17 +13,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
-using Microsoft.HockeyApp;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Services;
-using MoneyFox.Windows.Shortcuts;
 using MoneyFox.Windows.Views;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows
 {

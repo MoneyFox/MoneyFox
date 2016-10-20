@@ -2,7 +2,7 @@
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 
-namespace MoneyFox.Shared.Helpers
+namespace MoneyFox.Business.Helpers
 {
     public static class RecurringPaymentHelper
     {

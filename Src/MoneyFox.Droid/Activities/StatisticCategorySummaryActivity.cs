@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Dialogs;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 

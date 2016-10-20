@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Foundation.Constants;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Email;

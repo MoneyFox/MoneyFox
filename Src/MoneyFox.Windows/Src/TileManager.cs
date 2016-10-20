@@ -3,7 +3,7 @@ using Windows.UI.StartScreen;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows
 {

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Shared.Repositories
 {
@@ -46,7 +46,7 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Save a new AccountViewModel or update an existing one.
         /// </summary>
-        /// <param name="accountViewModelaccountViewModelToDelete to save</param>
+        /// <param name="accountViewModel to save</param>
         public bool Save(AccountViewModel accountViewModel)
         {
             if (data == null)
@@ -71,7 +71,7 @@ namespace MoneyFox.Shared.Repositories
         /// <summary>
         ///     Deletes the passed AccountViewModel and removes it from cache
         /// </summary>
-        /// <param name="accountViewModelToDeleteaccountViewModelToDelete to delete</param>
+        /// <param name="accountViewModelToDelete to delete</param>
         public bool Delete(AccountViewModel accountViewModelToDelete)
         {
             if (data == null)

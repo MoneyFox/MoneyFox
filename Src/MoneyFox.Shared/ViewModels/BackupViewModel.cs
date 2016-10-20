@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 

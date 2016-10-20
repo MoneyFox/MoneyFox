@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using MoneyFox.Foundation.Models;
 
-namespace MoneyFox.Shared.Helpers
+namespace MoneyFox.Business.Helpers
 {
     public class Utilities
     {

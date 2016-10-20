@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Shared.Repositories
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;

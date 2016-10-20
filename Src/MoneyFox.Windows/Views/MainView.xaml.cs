@@ -1,6 +1,4 @@
-﻿using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.ViewModels;
-using MoneyFox.Windows.Shortcuts;
+﻿using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views

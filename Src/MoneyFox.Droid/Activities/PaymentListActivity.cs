@@ -7,8 +7,6 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Droid.Fragments;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
@@ -16,6 +14,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Droid.Activities
 {

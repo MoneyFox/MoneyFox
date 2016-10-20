@@ -1,5 +1,5 @@
 ﻿
-namespace MoneyFox.Shared.Helpers
+namespace MoneyFox.Business.Helpers
 {
     public class GlobalBusyIndicatorState
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.Shared.Authentication
+namespace MoneyFox.Business.Authentication
 {
     /// <summary>
     ///     Wrapper object for IMvxProtectedData to provide a nicer access.

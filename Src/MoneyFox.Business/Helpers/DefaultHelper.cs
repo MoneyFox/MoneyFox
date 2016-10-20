@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MvvmCross.Platform;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
 
-namespace MoneyFox.Shared.Helpers
+namespace MoneyFox.Business.Helpers
 {
     public class DefaultHelper
     {

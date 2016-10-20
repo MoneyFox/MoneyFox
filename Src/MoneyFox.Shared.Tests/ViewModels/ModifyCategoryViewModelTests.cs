@@ -4,13 +4,13 @@ using MvvmCross.Test.Core;
 using MoneyFox.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
-using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

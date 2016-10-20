@@ -1,7 +1,8 @@
-{
+﻿{
   "supports": {},
   "dependencies": {
-    "Autofac": "4.1.1"
+    "Autofac": "4.1.1",
+    "MvvmCross.Plugin.ResxLocalization": "4.3.0"
   },
   "frameworks": {
     ".NETPortable,Version=v4.6,Profile=Profile44": {}

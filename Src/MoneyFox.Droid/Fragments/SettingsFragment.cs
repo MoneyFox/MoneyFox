@@ -4,7 +4,7 @@ using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Views;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Helpers;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 

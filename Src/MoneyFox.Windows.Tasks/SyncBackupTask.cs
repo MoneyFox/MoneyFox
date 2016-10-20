@@ -3,12 +3,12 @@ using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.DataAccess;
 using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Services;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using MoneyFox.Business.Helpers;
 
 namespace MoneyFox.Windows.Tasks
 {

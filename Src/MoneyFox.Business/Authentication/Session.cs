@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.Shared.Authentication
+namespace MoneyFox.Business.Authentication
 {
     public class Session
     {

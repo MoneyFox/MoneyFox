@@ -1,6 +1,6 @@
 ﻿using Windows.Foundation;
 using Windows.UI.Xaml;
-using MoneyFox.Shared.Helpers;
+using MoneyFox.Business.Helpers;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls

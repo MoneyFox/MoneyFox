@@ -13,8 +13,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using FontAwesome.UWP;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
 

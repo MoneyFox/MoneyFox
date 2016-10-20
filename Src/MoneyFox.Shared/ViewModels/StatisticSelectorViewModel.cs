@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels

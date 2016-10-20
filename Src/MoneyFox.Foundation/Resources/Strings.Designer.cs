@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MoneyFox.Shared.Resources {
+namespace MoneyFox.Foundation.Resources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace MoneyFox.Shared.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Shared.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Foundation.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -153,7 +153,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no accounts. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no AccountViewModels. Add one by tapping on the plus button at the bottom..
         /// </summary>
         public static string AccountListViewModel_EmptyListPlaceholderLabel {
             get {
@@ -171,7 +171,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select an account..
+        ///   Looks up a localized string similar to Please select an AccountViewModel..
         /// </summary>
         public static string AccountRequiredMessage {
             get {
@@ -180,7 +180,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accounts.
+        ///   Looks up a localized string similar to AccountViewModels.
         /// </summary>
         public static string AccountsLabel {
             get {
@@ -315,7 +315,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
+        ///   Looks up a localized string similar to Your data will be saved to your OneDrive AccountViewModel. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string BackupViewModel_CreateBackupInformationLabel {
             get {
@@ -460,7 +460,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary of the categories with a payment..
+        ///   Looks up a localized string similar to Summary of the categories with a PaymentViewModel..
         /// </summary>
         public static string CategorySummaryDescription {
             get {
@@ -478,7 +478,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This payment is recurring. Do you want to update the future payments aswell or just this occurence?.
+        ///   Looks up a localized string similar to This PaymentViewModel is recurring. Do you want to update the future PaymentViewModels aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
@@ -541,7 +541,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this account?.
+        ///   Looks up a localized string similar to Do you really want to delete this AccountViewModel?.
         /// </summary>
         public static string DeleteAccountConfirmationMessage {
             get {
@@ -568,7 +568,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this payment?.
+        ///   Looks up a localized string similar to Do you really want to delete this PaymentViewModel?.
         /// </summary>
         public static string DeletePaymentConfirmationMessage {
             get {
@@ -604,7 +604,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An account with that name already exists..
+        ///   Looks up a localized string similar to An AccountViewModel with that name already exists..
         /// </summary>
         public static string DuplicateAccountMessage {
             get {
@@ -802,7 +802,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The enddate of a recurring payment has to be in the future. Please check your input..
+        ///   Looks up a localized string similar to The enddate of a recurring PaymentViewModel has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {
             get {
@@ -910,7 +910,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Accounts.
+        ///   Looks up a localized string similar to AccountViewModels.
         /// </summary>
         public static string MenuViewModel_AccountsLabel {
             get {
@@ -1261,7 +1261,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no payments. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no PaymentViewModels. Add one by tapping on the plus button at the bottom..
         /// </summary>
         public static string PaymentListViewModel_EmptyListPlaceholderLabel {
             get {

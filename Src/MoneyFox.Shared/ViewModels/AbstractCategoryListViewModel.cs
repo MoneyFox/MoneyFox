@@ -5,7 +5,7 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels

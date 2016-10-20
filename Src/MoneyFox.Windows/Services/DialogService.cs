@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Services

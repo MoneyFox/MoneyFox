@@ -3,7 +3,7 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;

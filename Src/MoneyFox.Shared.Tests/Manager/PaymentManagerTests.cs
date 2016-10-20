@@ -7,8 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Resources;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager

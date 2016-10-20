@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
-using MoneyFox.Shared.Helpers;
 
 namespace MoneyFox.Shared.Tests.Helper
 {
