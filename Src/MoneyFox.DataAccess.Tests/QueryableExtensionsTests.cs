@@ -23,6 +23,8 @@ namespace MoneyFox.DataAccess.Tests
         public void ProjectTo_ModelToModel()
         {
             var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
             var account = fixture.Create<Account>();
 
             var accountViewModel = new List<Account> {account}
