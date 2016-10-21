@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Business.Manager;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Resources;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager
@@ -21,20 +21,20 @@ namespace MoneyFox.Shared.Tests.Manager
         {
             var resultList = new List<int>();
 
-            var account1 = new Account
+            var account1 = new AccountViewModel
             {
                 Id = 3,
-                Name = "just an account",
+                Name = "just an AccountViewModel",
                 CurrentBalance = 500
             };
-            var account2 = new Account
+            var account2 = new AccountViewModel
             {
                 Id = 4,
-                Name = "just an account",
+                Name = "just an AccountViewModel",
                 CurrentBalance = 900
             };
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Id = 1,
                 ChargedAccount = account1,
@@ -44,10 +44,10 @@ namespace MoneyFox.Shared.Tests.Manager
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.SetupAllProperties();
-            paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
-                .Callback((Payment trans) => resultList.Add(trans.Id));
-            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
-                .Returns(new List<Payment>
+            paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<PaymentViewModel>()))
+                .Callback((PaymentViewModel trans) => resultList.Add(trans.Id));
+            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>()))
+                .Returns(new List<PaymentViewModel>
                 {
                     payment
                 });
@@ -74,7 +74,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object)
-                .DeleteAssociatedPaymentsFromDatabase(new Account {Id = 3});
+                .DeleteAssociatedPaymentsFromDatabase(new AccountViewModel {Id = 3});
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 new Mock<IDialogService>().Object)
-                .CheckRecurrenceOfPayment(new Payment {IsRecurring = false});
+                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = false});
 
             result.ShouldBeFalse();
         }
@@ -104,7 +104,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 dialogService.Object)
-                .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
+                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = true});
 
             Assert.AreEqual(userAnswer, result);
         }
@@ -124,7 +124,7 @@ namespace MoneyFox.Shared.Tests.Manager
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRecurringPaymentRepository>().Object,
                 dialogService.Object)
-                .CheckRecurrenceOfPayment(new Payment {IsRecurring = true});
+                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = true});
 
             Assert.AreEqual(userAnswer, result);
         }
@@ -132,16 +132,16 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
         {
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Id = 2,
                 RecurringPaymentId = 3,
-                RecurringPayment = new RecurringPayment {Id = 3},
+                RecurringPayment = new RecurringPaymentViewModel {Id = 3},
                 IsRecurring = true
             };
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment> {payment});
+            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel> {payment});
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -155,17 +155,17 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void SavePayment_RecPayment_IdInPaymentSaved()
         {
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Id = 2,
                 RecurringPaymentId = 3,
-                RecurringPayment = new RecurringPayment {Id = 3, Amount = 300},
+                RecurringPayment = new RecurringPaymentViewModel {Id = 3, Amount = 300},
                 IsRecurring = true
             };
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.Setup(x => x.GetList(null))
-                .Returns(new List<Payment> {payment});
+                .Returns(new List<PaymentViewModel> {payment});
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
@@ -179,9 +179,9 @@ namespace MoneyFox.Shared.Tests.Manager
         [TestMethod]
         public void SavePayment_RecPayment_RecPaymentSaved()
         {
-            var recPaymentToSave = new RecurringPayment {Id = 3, Amount = 300};
+            var recPaymentToSave = new RecurringPaymentViewModel {Id = 3, Amount = 300};
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
                 Id = 2,
                 RecurringPaymentId = 3,
@@ -189,15 +189,15 @@ namespace MoneyFox.Shared.Tests.Manager
                 IsRecurring = true
             };
 
-            var recPaymentSaved = new RecurringPayment();
+            var recPaymentSaved = new RecurringPaymentViewModel();
 
             var paymentRepositorySetup = new Mock<IPaymentRepository>();
             paymentRepositorySetup.Setup(x => x.GetList(null))
-                .Returns(new List<Payment> {payment});
+                .Returns(new List<PaymentViewModel> {payment});
 
             var recPaymentRepositorySetup = new Mock<IRecurringPaymentRepository>();
-            recPaymentRepositorySetup.Setup(x => x.Save(It.IsAny<RecurringPayment>()))
-                .Callback((RecurringPayment recPay) => recPaymentSaved = recPay);
+            recPaymentRepositorySetup.Setup(x => x.Save(It.IsAny<RecurringPaymentViewModel>()))
+                .Callback((RecurringPaymentViewModel recPay) => recPaymentSaved = recPay);
 
             new PaymentManager(paymentRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,

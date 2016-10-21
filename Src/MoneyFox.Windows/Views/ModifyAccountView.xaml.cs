@@ -1,9 +1,9 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
@@ -32,16 +32,16 @@ namespace MoneyFox.Windows.Views
         {
             var viewModel = (ModifyAccountViewModel) DataContext;
 
-            var account = e.Parameter as Account;
+            var account = e.Parameter as AccountViewModel;
             if (account != null)
             {
                 viewModel.IsEdit = true;
-                viewModel.SelectedAccount = account;
+                viewModel.SelectedAccountViewModel = account;
             }
             else
             {
                 viewModel.IsEdit = false;
-                viewModel.SelectedAccount = new Account();
+                viewModel.SelectedAccountViewModel = new AccountViewModel();
             }
 
             base.OnNavigatedTo(e);

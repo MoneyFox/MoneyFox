@@ -7,25 +7,21 @@ using Windows.Globalization;
 using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
-using Microsoft.HockeyApp;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Windows.Services;
-using MoneyFox.Windows.Shortcuts;
 using MoneyFox.Windows.Views;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows
 {
@@ -121,7 +117,7 @@ namespace MoneyFox.Windows
             var clearPaymentResult = settings.Values["CLEAR_PAYMENT"]?.ToString();
             if (!string.IsNullOrEmpty(clearPaymentResult) && clearPaymentResult == "true")
             {
-                await new DialogService().ShowMessage("Task Executed", "Clear Payment");
+                await new DialogService().ShowMessage("Task Executed", "Clear PaymentViewModel");
             }
 
             var recPaymentResult = settings.Values["RECURRING_PAYMENT"]?.ToString();

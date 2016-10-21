@@ -3,10 +3,9 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Cheesebaron.MvxPlugins.Settings.Droid;
-using MoneyFox.Shared;
-using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.Manager;
-using MoneyFox.Shared.Repositories;
+using MoneyFox.Business.Manager;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Repositories;
 using MvvmCross.Plugins.File.Droid;
 using MvvmCross.Plugins.Sqlite.Droid;
 
@@ -31,11 +30,11 @@ namespace MoneyFox.Droid.Services
         {
             var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
 
-            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbManager));
+            var paymentRepository = new PaymentRepository(dbManager);
 
             var paymentManager = new PaymentManager(paymentRepository,
-                new AccountRepository(new AccountDataAccess(dbManager)),
-                new RecurringPaymentRepository(new RecurringPaymentDataAccess(dbManager)),
+                new AccountRepository(dbManager),
+                new RecurringPaymentRepository(dbManager),
                 null);
 
             new RecurringPaymentManager(paymentManager, paymentRepository, new SettingsManager(new Settings())).CheckRecurringPayments();

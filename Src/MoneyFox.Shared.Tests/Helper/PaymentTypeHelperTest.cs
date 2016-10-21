@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Shared.Tests.Helper
 {

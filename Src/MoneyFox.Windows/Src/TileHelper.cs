@@ -1,5 +1,5 @@
-﻿using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.ViewModels;
+﻿using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.Windows
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Authentication;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Manager;
+using MoneyFox.Business.Authentication;
+using MoneyFox.Business.Manager;
+using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Test.Core;
 

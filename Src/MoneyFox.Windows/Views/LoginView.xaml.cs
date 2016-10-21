@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views

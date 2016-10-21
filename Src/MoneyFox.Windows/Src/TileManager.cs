@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.StartScreen;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows
 {

@@ -1,6 +1,6 @@
 using Android.Runtime;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Droid.Fragments
 {

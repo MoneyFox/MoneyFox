@@ -1,20 +1,20 @@
 using Android.Content;
 using Android.Widget;
+using Autofac;
+using Autofac.Extras.MvvmCross;
+using MoneyFox.Business;
 using MoneyFox.Droid.CustomBinding;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
-using MoneyFox.Droid.OneDriveAuth;
-using MoneyFox.Droid.Services;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
+using MvvmCross.Platform.IoC;
 using PluginLoader = MvvmCross.Plugins.Email.PluginLoader;
 
 namespace MoneyFox.Droid
@@ -38,16 +38,16 @@ namespace MoneyFox.Droid
             pluginManager.EnsurePluginLoaded<PluginLoader>();
         }
 
-        protected override void InitializeFirstChance()
+        protected override IMvxIoCProvider CreateIocProvider()
         {
-            base.InitializeFirstChance();
+            var cb = new ContainerBuilder();
 
-            Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
-            Mvx.RegisterType<IProtectedData, ProtectedData>();
-            Mvx.RegisterType<INotificationService, NotificationService>();
-            Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
+            cb.RegisterModule<BusinessModule>();
+            cb.RegisterModule<DroidModule>();
+
+            return new AutofacMvxIocProvider(cb.Build());
         }
+
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
             base.FillValueConverters(registry);

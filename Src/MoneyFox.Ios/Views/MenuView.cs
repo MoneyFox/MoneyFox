@@ -1,11 +1,11 @@
 using CoreGraphics;
 using UIKit;
 using Foundation;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Support.SidePanels;
 using Cirrious.FluentLayouts.Touch;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.iOS.Views;
 
 namespace MoneyFox.Ios.Views {

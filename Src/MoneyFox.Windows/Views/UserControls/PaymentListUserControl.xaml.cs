@@ -2,8 +2,8 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void EditPaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as Payment;
+            var payment = element.DataContext as PaymentViewModel;
             if (payment == null)
             {
                 return;
@@ -30,7 +30,7 @@ namespace MoneyFox.Windows.Views.UserControls
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as Payment;
+            var payment = element.DataContext as PaymentViewModel;
             if (payment == null)
             {
                 return;

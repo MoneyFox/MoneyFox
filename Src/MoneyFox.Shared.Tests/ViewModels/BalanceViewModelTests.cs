@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
@@ -26,8 +24,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_Zero()
         {
             var endOfMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            endOfMonthManagerSetup.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>())).Returns(() => 0);
-            endOfMonthManagerSetup.Setup(x => x.GetTotalEndOfMonthBalance(It.IsAny<IEnumerable<Account>>())).Returns(() => 0);
+            endOfMonthManagerSetup.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>())).Returns(() => 0);
+            endOfMonthManagerSetup.Setup(x => x.GetTotalEndOfMonthBalance(It.IsAny<IEnumerable<AccountViewModel>>())).Returns(() => 0);
 
             var vm = new BalanceViewModel(new Mock<IAccountRepository>().Object, endOfMonthManagerSetup.Object);
 
@@ -50,10 +48,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             var accountMockSetup = new Mock<IAccountRepository>();
-            accountMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<Account>
+            accountMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<AccountViewModel>
             {
-                new Account {CurrentBalance = 500},
-                new Account {CurrentBalance = 200}
+                new AccountViewModel {CurrentBalance = 500},
+                new AccountViewModel {CurrentBalance = 200}
             });
 
             var vm = new BalanceViewModel(accountMockSetup.Object, new Mock<IEndOfMonthManager>().Object);

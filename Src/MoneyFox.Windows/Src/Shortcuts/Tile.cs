@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
 using Microsoft.HockeyApp;
-using MoneyFox.Shared.Extensions;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.StatisticDataProvider;
+using MoneyFox.Business.Extensions;
+using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Shortcuts

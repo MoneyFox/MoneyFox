@@ -1,7 +1,7 @@
-﻿using MoneyFox.Shared.Model;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Controls
 {
@@ -38,7 +38,7 @@ namespace MoneyFox.Windows.Controls
         {
             base.PrepareContainerForItemOverride(element, item);
             var listViewItem = element as ListViewItem;
-            var accountItem = item as Account;
+            var accountItem = item as AccountViewModel;
             if (listViewItem != null)
             {
                 var index = IndexFromContainer(element);

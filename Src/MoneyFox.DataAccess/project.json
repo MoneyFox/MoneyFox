@@ -1,0 +1,12 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Autofac": "4.1.1",
+    "AutoMapper": "5.1.1",
+    "MvvmCross.Plugin.File": "4.3.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.3.4"
+  },
+  "frameworks": {
+    ".NETPortable,Version=v4.6,Profile=Profile44": {}
+  }
+}

@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Model;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Shared.Tests.Helper
 {
@@ -14,11 +15,11 @@ namespace MoneyFox.Shared.Tests.Helper
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = new Account {Id = 3},
-                TargetAccount = new Account {Id = 8},
-                Category = new Category {Id = 16},
+                ChargedAccount = new AccountViewModel {Id = 3},
+                TargetAccount = new AccountViewModel {Id = 8},
+                Category = new CategoryViewModel {Id = 16},
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
@@ -47,11 +48,11 @@ namespace MoneyFox.Shared.Tests.Helper
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = new Account {Id = 3},
-                TargetAccount = new Account {Id = 8},
-                Category = new Category {Id = 16},
+                ChargedAccount = new AccountViewModel {Id = 3},
+                TargetAccount = new AccountViewModel {Id = 8},
+                Category = new CategoryViewModel {Id = 16},
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
@@ -80,11 +81,11 @@ namespace MoneyFox.Shared.Tests.Helper
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = new Account {Id = 3},
-                TargetAccount = new Account {Id = 8},
-                Category = new Category {Id = 16},
+                ChargedAccount = new AccountViewModel {Id = 3},
+                TargetAccount = new AccountViewModel {Id = 8},
+                Category = new CategoryViewModel {Id = 16},
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
@@ -113,11 +114,11 @@ namespace MoneyFox.Shared.Tests.Helper
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new Payment
+            var payment = new PaymentViewModel
             {
-                ChargedAccount = new Account {Id = 3},
-                TargetAccount = new Account {Id = 8},
-                Category = new Category {Id = 16},
+                ChargedAccount = new AccountViewModel {Id = 3},
+                TargetAccount = new AccountViewModel {Id = 8},
+                Category = new CategoryViewModel {Id = 16},
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
@@ -175,10 +176,10 @@ namespace MoneyFox.Shared.Tests.Helper
         [TestMethod]
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
             var dayOfMonth = 26;
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Monthly,
@@ -199,9 +200,9 @@ namespace MoneyFox.Shared.Tests.Helper
         [TestMethod]
         public void CheckIfRepeatable_Daily_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Daily,
@@ -212,16 +213,16 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-1), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.AddDays(-1), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_Biweekly_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Biweekly,
@@ -232,16 +233,16 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-15), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.AddDays(-15), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_Weekly_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Weekly,
@@ -252,16 +253,16 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-7), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.AddDays(-7), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_Monthly_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Monthly,
@@ -272,16 +273,16 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-35), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.AddDays(-35), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_Yearly_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Yearly,
@@ -292,16 +293,16 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-380), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.AddDays(-380), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
         {
-            var account = new Account {Id = 2};
+            var account = new AccountViewModel {Id = 2};
 
-            var recurringPayment = new RecurringPayment
+            var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
                 Recurrence = (int) PaymentRecurrence.Weekly,
@@ -312,7 +313,7 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
+                new PaymentViewModel {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
         }
     }
 }

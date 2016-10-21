@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Authentication;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Business.Authentication;
+using MoneyFox.Foundation.Interfaces;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Authentication

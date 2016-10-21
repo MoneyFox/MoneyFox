@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
 using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views;
 

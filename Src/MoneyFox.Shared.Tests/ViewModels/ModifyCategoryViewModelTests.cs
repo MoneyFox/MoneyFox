@@ -1,16 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces;
 using Moq;
 using MvvmCross.Test.Core;
-using MoneyFox.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.Resources;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.Shared.Interfaces.Repositories;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -33,7 +33,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = true,
-                SelectedCategory = new Category { Id = 9, Name = categoryName }
+                SelectedCategory = new CategoryViewModel { Id = 9, Name = categoryName }
             };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditCategoryTitle, categoryName));
@@ -54,24 +54,24 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
-            var categoryList = new List<Category>();
+            var categoryList = new List<CategoryViewModel>();
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
-            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>()))
                 .Returns(categoryList);
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryList.Add(cat); });
+            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
+                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var categoryPrimary = new Category
+            var categoryPrimary = new CategoryViewModel
             {
                 Id = 1,
-                Name = "Test Category"
+                Name = "Test CategoryViewModel"
             };
-            var categorySecondary = new Category
+            var categorySecondary = new CategoryViewModel
             {
-                Name = "Test Category"
+                Name = "Test CategoryViewModel"
             };
             categoryList.Add(categoryPrimary);
 
@@ -88,24 +88,24 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
-            var categoryList = new List<Category>();
+            var categoryList = new List<CategoryViewModel>();
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
-            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<Category, bool>>>()))
+            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>()))
                 .Returns(categoryList);
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryList.Add(cat); });
+            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
+                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var categoryPrimary = new Category
+            var categoryPrimary = new CategoryViewModel
             {
                 Id = 1,
                 Name = "TeSt CATEGory"
             };
-            var categorySecondary = new Category
+            var categorySecondary = new CategoryViewModel
             {
-                Name = "Test Category"
+                Name = "Test CategoryViewModel"
             };
             categoryList.Add(categoryPrimary);
 
@@ -122,18 +122,18 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCommand_SavesCategory()
         {
-            var categoryList = new List<Category>();
+            var categoryList = new List<CategoryViewModel>();
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryList.Add(cat); });
+            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
+                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var categoryPrimary = new Category
+            var categoryPrimary = new CategoryViewModel
             {
                 Id = 1,
-                Name = "Test Category",
+                Name = "Test CategoryViewModel",
                 Notes = "Test Note"
             };
 
@@ -150,13 +150,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void SaveCategory_UpdateTimeStamp()
         {
-            var category = new Category { Id = 0, Name = "category", Notes = "" };
+            var category = new CategoryViewModel { Id = 0, Name = "CategoryViewModel", Notes = "" };
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
             categoryRepositorySetup.SetupAllProperties();
             categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
-            categoryRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new ObservableCollection<Category>());
+            categoryRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new ObservableCollection<CategoryViewModel>());
 
             var localDateSetting = DateTime.MinValue;
 
@@ -178,21 +178,21 @@ namespace MoneyFox.Shared.Tests.ViewModels
         [TestMethod]
         public void DeleteCategory_DeletesCategory()
         {
-            var categoryList = new List<Category>();
+            var categoryList = new List<CategoryViewModel>();
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
 
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryList.Add(cat); });
-            categoryRepositorySetup.Setup(c => c.Delete(It.IsAny<Category>()))
-                .Callback((Category cat) => { categoryList.Remove(cat); });
+            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
+                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
+            categoryRepositorySetup.Setup(c => c.Delete(It.IsAny<CategoryViewModel>()))
+                .Callback((CategoryViewModel cat) => { categoryList.Remove(cat); });
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var categoryPrimary = new Category
+            var categoryPrimary = new CategoryViewModel
             {
                 Id = 1,
-                Name = "Test Category",
-                Notes = "Notes about the test category"
+                Name = "Test CategoryViewModel",
+                Notes = "Notes about the test CategoryViewModel"
             };
 
             categoryList.Add(categoryPrimary);
@@ -211,8 +211,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Cancel_SelectedCategoryReseted()
         {
             string name = "Cateory";
-            var baseCategory = new Category { Id = 5, Name = name };
-            var category = new Category { Id = 5, Name = name };
+            var baseCategory = new CategoryViewModel { Id = 5, Name = name };
+            var category = new CategoryViewModel { Id = 5, Name = name };
 
             var categoryRepositorySetup = new Mock<ICategoryRepository>();
             categoryRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(baseCategory);
@@ -246,10 +246,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var vm = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object,
                 dialogSetup.Object,
                 settingsManagerMock.Object)
-            { SelectedCategory = new Category() };
+            { SelectedCategory = new CategoryViewModel() };
 
             // Execute
-            vm.SaveCommand.Execute(new Category());
+            vm.SaveCommand.Execute(new CategoryViewModel());
 
             // Assert
             wasDialogServiceCalled.ShouldBeTrue();

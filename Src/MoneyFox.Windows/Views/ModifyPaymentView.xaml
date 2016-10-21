@@ -6,9 +6,9 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:model="using:MoneyFox.Shared.Model"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Enabled"
                       mc:Ignorable="d">
@@ -18,7 +18,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <DataTemplate x:Key="ComboBoxTemplate" x:DataType="model:Account">
+        <DataTemplate x:Key="ComboBoxTemplate" x:DataType="dataModels:AccountViewModel">
             <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />
@@ -61,10 +61,10 @@
                         </interactivity:Interaction.Behaviors>
                     </ComboBox>
 
-                    <ComboBox x:Uid="TargetAccountTextBox"
+                    <ComboBox x:Uid="targetAccountViewModelTextBox"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
-                              Header="target account"
+                              Header="target AccountViewModel"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding TargetAccounts,
                                                     Mode=TwoWay,
@@ -93,8 +93,8 @@
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextAlignment="Right" />
                     <Grid Margin="0,7,0,0">
-                        <TextBox x:Uid="CategoryTextBox"
-                                 Header="category"
+                        <TextBox x:Uid="CategoryViewModelTextBox"
+                                 Header="CategoryViewModel"
                                  IsReadOnly="True"
                                  Text="{Binding SelectedPayment.Category.Name,
                                                 UpdateSourceTrigger=PropertyChanged}">

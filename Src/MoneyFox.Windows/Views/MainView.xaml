@@ -19,9 +19,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountTitle"
+                <TextBlock x:Uid="AccountViewModelTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Accounts" />
+                           Text="AccountViewModels" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -54,10 +54,10 @@
                               IsEnabled="{Binding IsTransferAvailable}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddAccountLabel"
+                <AppBarButton x:Uid="AddAccountViewModelLabel"
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
-                              Label="Add Account" />
+                              Label="Add AccountViewModel" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

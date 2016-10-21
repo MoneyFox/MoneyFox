@@ -2,10 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Views
 {
@@ -35,7 +35,7 @@ namespace MoneyFox.Windows.Views
             {
                 var viewModel = (ModifyPaymentViewModel) DataContext;
 
-                var payment = e.Parameter as Payment;
+                var payment = e.Parameter as PaymentViewModel;
                 if (payment != null)
                 {
                     //  This payment type will be ignored. Has to be set though.

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
+using System;
 using System.Threading.Tasks;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
 using UIKit;
 
 namespace MoneyFox.Ios.Services {
