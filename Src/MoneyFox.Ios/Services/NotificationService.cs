@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Ios.Services {
     public class NotificationService : INotificationService {

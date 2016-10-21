@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
 using Microsoft.OneDrive.Sdk.Authentication;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
 {

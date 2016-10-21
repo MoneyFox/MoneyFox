@@ -1,7 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Tests.Mocks;
-using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Core.Views;
@@ -9,7 +7,10 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using System.Collections.Generic;
-using MoneyFox.Shared.Interfaces.Repositories;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -77,7 +78,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
@@ -87,9 +88,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>()
+                .Returns(new List<AccountViewModel>()
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
@@ -100,7 +101,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
@@ -110,9 +111,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>()
+                .Returns(new List<AccountViewModel>()
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
@@ -123,7 +124,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>());
+                .Returns(new List<AccountViewModel>());
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
@@ -133,9 +134,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>
+                .Returns(new List<AccountViewModel>
                 {
-                    new Account()
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
@@ -146,10 +147,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<Account>
+                .Returns(new List<AccountViewModel>
                 {
-                    new Account(),
-                    new Account()
+                    new AccountViewModel(),
+                    new AccountViewModel()
                 });
 
             new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();

@@ -334,7 +334,7 @@
     <value>Data de Início</value>
   </data>
   <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring Payment Overview</value>
+    <value>Recurring PaymentViewModel Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Selecionar estatística</value>
@@ -361,7 +361,7 @@
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>There are no PaymentViewModels. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>You can change between dark and light theme. To apply this changes please restart the application.</value>

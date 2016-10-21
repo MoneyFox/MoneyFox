@@ -225,6 +225,7 @@
     <Compile Include="Views\UserControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
@@ -488,9 +489,13 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
-      <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
-      <Name>MoneyFox.Shared</Name>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
       <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>

@@ -1,5 +1,7 @@
 ﻿{
   "dependencies": {
+    "Autofac": "4.1.1",
+    "Autofac.Extras.MvvmCross": "4.0.0",
     "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
     "Cheesebaron.MvxPlugins.Settings": "2.1.0",
     "FontAwesome.UWP": "4.5.0.8",

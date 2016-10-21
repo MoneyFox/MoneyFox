@@ -1,10 +1,12 @@
 using Windows.UI.Xaml.Controls;
+using Autofac;
+using Autofac.Extras.MvvmCross;
 using Cheesebaron.MvxPlugins.Connectivity;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsCommon;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Business;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -26,6 +28,7 @@ using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 using MoneyFox.Windows.Business;
+using MvvmCross.Platform.IoC;
 using MvvmCross.Plugins.Email.WindowsUWP;
 
 namespace MoneyFox.Windows
@@ -54,6 +57,16 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IStoreOperations, MarketplaceOperations>();
         }
 
+        protected override IMvxIoCProvider CreateIocProvider()
+        {
+            var cb = new ContainerBuilder();
+
+            cb.RegisterModule<BusinessModule>();
+            cb.RegisterModule<WindowsModule>();
+
+            return new AutofacMvxIocProvider(cb.Build());
+        }
+
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
@@ -66,7 +79,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<ITileManager, TileManager>();
         }
 
-        protected override IMvxApplication CreateApp() => new Shared.App();
+        protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
 
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }

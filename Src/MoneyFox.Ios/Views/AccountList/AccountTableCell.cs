@@ -1,9 +1,9 @@
 ﻿using System;
 using Foundation;
-using MoneyFox.Shared.Model;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
+using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Ios.Views.AccountList
 {
@@ -15,7 +15,7 @@ namespace MoneyFox.Ios.Views.AccountList
 		protected AccountTableCell(IntPtr handle) : base(handle)
 		{
             this.DelayBind(() => {
-                var set = this.CreateBindingSet<AccountTableCell, Account>();
+                var set = this.CreateBindingSet<AccountTableCell, AccountViewModel>();
                 set.Bind(LabelAccountName).To(a => a.Name);
                 set.Bind(LabelCurrentBalance).To(a => a.CurrentBalance).WithConversion("AmountFormat");
                 set.Bind(LabelIban).To(a => a.Iban);

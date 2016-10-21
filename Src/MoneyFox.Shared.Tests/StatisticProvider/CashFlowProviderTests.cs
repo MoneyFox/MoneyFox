@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Interfaces.Repositories;
-using MoneyFox.Shared.Model;
-using MoneyFox.Shared.StatisticDataProvider;
+using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.StatisticProvider
@@ -24,23 +25,23 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         {
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>())).Returns(new List<Payment>
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
             {
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 1,
                     Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50
                 },
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 3,
                     Type = (int) PaymentType.Transfer,
@@ -62,23 +63,23 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [TestMethod]
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
-            var paymentList = new List<Payment>
+            var paymentList = new List<PaymentViewModel>
             {
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 1,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 2,
                     Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
-                new Payment
+                new PaymentViewModel
                 {
                     Id = 3,
                     Type = (int) PaymentType.Expense,
@@ -89,8 +90,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
 
             //Setup
             var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<Payment, bool>>>()))
-                .Returns((Expression<Func<Payment, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
+            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>()))
+                .Returns((Expression<Func<PaymentViewModel, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
 
             //Excution
             var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),

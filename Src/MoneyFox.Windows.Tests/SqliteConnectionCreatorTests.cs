@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyFox.Shared;
-using MoneyFox.Shared.Constants;
+using MoneyFox.DataAccess;
+using MoneyFox.Foundation.Constants;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLite;

@@ -1,6 +1,6 @@
 ﻿using Windows.ApplicationModel;
 using Windows.Security.Credentials;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows
 {

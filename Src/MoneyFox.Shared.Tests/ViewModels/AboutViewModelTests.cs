@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
@@ -26,7 +27,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var commandCalled = false;
 
             var composeMailSetup = new Mock<IMvxComposeEmailTask>();
-            composeMailSetup.Setup(x => x.ComposeEmail(It.Is<string>(s => s == Constants.Constants.SUPPORT_MAIL),
+            composeMailSetup.Setup(x => x.ComposeEmail(It.Is<string>(s => s == Constants.SUPPORT_MAIL),
                 It.IsAny<string>(),
                 It.Is<string>(s => s == Strings.FeedbackSubject),
                 It.IsAny<string>(),
@@ -50,7 +51,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreOperations>().Object)
-                .SupportMail.ShouldBe(Constants.Constants.SUPPORT_MAIL);
+                .SupportMail.ShouldBe(Constants.SUPPORT_MAIL);
         }
 
         [TestMethod]
@@ -60,7 +61,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreOperations>().Object)
-                .Website.ShouldBe(Constants.Constants.WEBSITE_URL);
+                .Website.ShouldBe(Constants.WEBSITE_URL);
         }
 
         [TestMethod]
@@ -82,7 +83,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Constants.Constants.WEBSITE_URL)))
+            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Constants.WEBSITE_URL)))
                 .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -101,7 +102,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
             webbrowserTaskSetup.Setup(
-                x => x.ShowWebPage(It.Is<string>(s => s == Constants.Constants.GIT_HUB_REPOSITORY_URL)))
+                x => x.ShowWebPage(It.Is<string>(s => s == Constants.GIT_HUB_REPOSITORY_URL)))
                 .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,

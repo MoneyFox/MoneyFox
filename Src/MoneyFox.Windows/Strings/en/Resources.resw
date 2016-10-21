@@ -121,19 +121,19 @@
     <value>About</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Accounts</value>
+    <value>AccountViewModels</value>
   </data>
   <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Add AccountViewModel</value>
   </data>
   <data name="AddAccountText.Text" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Add AccountViewModel</value>
   </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Add AccountViewModel</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>New Category</value>
+    <value>New CategoryViewModel</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>Add Income</value>
@@ -145,7 +145,7 @@
     <value>Add Transfer</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
+    <value>Your data will be saved to your OneDrive AccountViewModel. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
     <value>Download the previous uploaded database backup and replace your local data with it. 
@@ -161,7 +161,7 @@ WARNING: Local changes you made meanwhile we be lost.</value>
     <value>Categories</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>CategoryViewModel Summary</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Contact:</value>
@@ -170,7 +170,7 @@ WARNING: Local changes you made meanwhile we be lost.</value>
     <value>Delete</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Delete AccountViewModel</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
     <value>Developer</value>
@@ -192,7 +192,7 @@ Tap to visit the Repository:</value>
     <value>Security</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Select CategoryViewModel</value>
   </data>
   <data name="SetDate.Label" xml:space="preserve">
     <value>Set Date</value>
@@ -252,7 +252,7 @@ Tap to visit the Repository:</value>
     <value>Cancel</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Add CategoryViewModel</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
     <value>Create Backup</value>
@@ -294,7 +294,7 @@ Tap to visit the Repository:</value>
     <value>Amount</value>
   </data>
   <data name="CategoryTextBox.Header" xml:space="preserve">
-    <value>Category</value>
+    <value>CategoryViewModel</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
     <value>Date</value>
@@ -312,7 +312,7 @@ Tap to visit the Repository:</value>
     <value>Repeat</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Target AccountViewModel</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
     <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
@@ -336,7 +336,7 @@ Tap to visit the Repository:</value>
     <value>Start Date</value>
   </data>
   <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring Payment Overview</value>
+    <value>Recurring PaymentViewModel Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Select Statistic</value>
@@ -354,13 +354,13 @@ Tap to visit the Repository:</value>
     <value>Monthly Expenses</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>There are no AccountViewModels. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>There are no PaymentViewModels. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>You can change between dark and light theme. To apply this changes please restart the application.</value>

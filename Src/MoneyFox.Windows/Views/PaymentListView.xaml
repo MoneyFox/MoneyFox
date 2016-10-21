@@ -50,10 +50,10 @@
                               Label="add transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="DeleteAccountLabel"
+                <AppBarButton x:Uid="DeleteAccountViewModelLabel"
                               Command="{Binding DeleteAccountCommand}"
                               Icon="Add"
-                              Label="Delete Account" />
+                              Label="Delete AccountViewModel" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

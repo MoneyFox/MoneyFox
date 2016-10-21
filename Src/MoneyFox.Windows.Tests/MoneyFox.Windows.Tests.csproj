@@ -98,10 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BooleanToVisibilityConverterTests.cs" />
-    <Compile Include="DataAccess\AccountDataAccessTests.cs" />
-    <Compile Include="DataAccess\CategoryDataAccessTests.cs" />
-    <Compile Include="DataAccess\PaymentDataAccessTests.cs" />
-    <Compile Include="DataAccess\RecurringPaymentDataAccessTests.cs" />
     <Compile Include="Dependencies\WindowsCommonSettingsTests.cs" />
     <Compile Include="MvxPlugins\MvxFileStoreTests.cs" />
     <Compile Include="SqliteConnectionCreatorTests.cs" />
@@ -127,9 +123,17 @@
     <Content Include="Properties\UnitTestApp.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
-      <Project>{3e0e36af-65d9-4542-8551-31b76577aa4c}</Project>
-      <Name>MoneyFox.Shared</Name>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
+      <Name>MoneyFox.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
       <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>

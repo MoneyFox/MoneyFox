@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Interfaces;
 using Security;
 
 namespace MoneyFox.Ios {

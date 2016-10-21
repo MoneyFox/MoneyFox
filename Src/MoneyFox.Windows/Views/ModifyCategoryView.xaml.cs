@@ -1,27 +1,15 @@
-﻿using MoneyFox.Shared.Model;
-using MoneyFox.Shared.ViewModels;
-using MvvmCross.Platform;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using MvvmCross.Platform;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
 
 
 namespace MoneyFox.Windows.Views
 {
     /// <summary>
-    /// Modify or create a category
+    /// Modify or create a CategoryViewModel
     /// </summary>
     public sealed partial class ModifyCategoryView
     {
@@ -47,7 +35,7 @@ namespace MoneyFox.Windows.Views
         {
             var viewModel = (ModifyCategoryViewModel) DataContext;
 
-            var category = e.Parameter as Category;
+            var category = e.Parameter as CategoryViewModel;
             if (category != null)
             {
                 viewModel.IsEdit = true;
@@ -56,7 +44,7 @@ namespace MoneyFox.Windows.Views
             else
             {
                 viewModel.IsEdit = false;
-                viewModel.SelectedCategory = new Category();
+                viewModel.SelectedCategory = new CategoryViewModel();
             }
 
             base.OnNavigatedTo(e);
