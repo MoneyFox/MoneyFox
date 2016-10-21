@@ -56,7 +56,7 @@ namespace MoneyFox.DataAccess.Repositories
                 }
             }
         }
-        
+
         /// <summary>
         ///     Save a new PaymentViewModel or update an existin one.
         /// </summary>
@@ -64,7 +64,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <returns>whether the task has succeeded</returns>
         public bool Save(PaymentViewModel paymentToSave)
         {
-            if (paymentToSave.ChargedAccountId == 0)
+            if (paymentToSave.ChargedAccount == null)
             {
                 throw new AccountMissingException("charged accout is missing");
             }
@@ -77,9 +77,32 @@ namespace MoneyFox.DataAccess.Repositories
 
                 if (payment.Id == 0)
                 {
-                    db.InsertWithChildren(payment, true);
+                    if (payment.IsRecurring)
+                    {
+                        db.Insert(payment.RecurringPayment);
+                        payment.RecurringPaymentId =
+                            db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
+                    }
+
+                    db.Insert(payment);
                     paymentToSave.Id = payment.Id;
-                    paymentToSave.Category.Id = payment.Category.Id;
+
+                    if (paymentToSave.Category != null)
+                    {
+                        paymentToSave.Category.Id = payment.CategoryId ?? 0;
+                    }
+                    if (paymentToSave.ChargedAccount != null)
+                    {
+                        paymentToSave.ChargedAccount.Id = payment.ChargedAccount.Id;
+                    }
+                    if (paymentToSave.TargetAccount != null)
+                    {
+                        paymentToSave.TargetAccount.Id = payment.TargetAccount.Id;
+                    }
+                    if (paymentToSave.RecurringPayment != null)
+                    {
+                        paymentToSave.RecurringPayment.Id = payment.RecurringPaymentId;
+                    }
                     return true;
                 }
                 db.UpdateWithChildren(payment);

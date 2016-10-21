@@ -13,7 +13,7 @@ namespace MoneyFox.DataAccess.DatabaseModels
         public string Name { get; set; }
         public string Notes { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
         public List<Payment> Payments { get; set; }
     }
 }
