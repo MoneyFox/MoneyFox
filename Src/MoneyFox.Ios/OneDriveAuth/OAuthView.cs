@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using MoneyFox.Shared.Constants;
+using MoneyFox.Foundation.Constants;
 using MvvmCross.iOS.Views;
 using Xamarin.Auth;
 
