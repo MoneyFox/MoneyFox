@@ -1,5 +1,6 @@
 ﻿using System;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.DatabaseModels
 {
@@ -15,6 +16,8 @@ namespace MoneyFox.DataAccess.DatabaseModels
 
         public int ChargedAccountId { get; set; }
         public int TargetAccountId { get; set; }
+
+        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
         public DateTime Date { get; set; }
         public double Amount { get; set; }
@@ -24,5 +27,8 @@ namespace MoneyFox.DataAccess.DatabaseModels
         public bool IsRecurring { get; set; }
         public int RecurringPaymentId { get; set; }
         public int CurrentAccountId { get; set; }
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public Category Category { get; set; }
     }
 }

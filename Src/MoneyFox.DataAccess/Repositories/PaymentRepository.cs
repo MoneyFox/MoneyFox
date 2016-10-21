@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -9,6 +10,7 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using SQLiteNetExtensions.Extensions;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -43,7 +45,15 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                return Mapper.Map<PaymentViewModel>(db.Table<Payment>().FirstOrDefault(x => x.Id == id));
+                try
+                {
+                    return Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Debug.WriteLine(ex);
+                    return null;
+                }
             }
         }
         
@@ -67,12 +77,13 @@ namespace MoneyFox.DataAccess.Repositories
 
                 if (payment.Id == 0)
                 {
-                    var rows = db.Insert(payment);
-                    paymentToSave.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
-                    return rows == 1;
+                    db.InsertWithChildren(payment, true);
+                    paymentToSave.Id = payment.Id;
+                    paymentToSave.Category.Id = payment.Category.Id;
+                    return true;
                 }
-                return db.Update(payment) == 1;
-
+                db.UpdateWithChildren(payment);
+                return true;
             }
         }
 

@@ -166,5 +166,140 @@ namespace MoneyFox.DataAccess.Tests
             paymentRepository.Delete(testPayment);
             paymentRepository.FindById(testPayment.Id).ShouldBeNull();
         }
+
+
+        [TestMethod]
+        public void Save_WithChildren()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.Category.Id = 0;
+
+            paymentRepository.Save(testPayment);
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<PaymentViewModel>();
+
+            selected.Category.ShouldNotBeNull();
+            selected.Category.Id.ShouldBe(selected.CategoryId.Value);
+            selected.Category.Id.ShouldBe(testPayment.Category.Id);
+
+            paymentRepository.Delete(testPayment);
+            paymentRepository.FindById(testPayment.Id).ShouldBeNull();
+        }
+
+        [TestMethod]
+        public void Save_WithChildren_IdSet()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.Category.Id = 0;
+            testPayment.TargetAccount.Id = 0;
+            testPayment.ChargedAccount.Id = 0;
+
+            paymentRepository.Save(testPayment);
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<PaymentViewModel>();
+
+            selected.Category.ShouldNotBeNull();
+            selected.Category.ShouldBeInstanceOf<CategoryViewModel>();
+
+            selected.Category.Id.ShouldBeGreaterThan(0);
+        }
+        
+        [TestMethod]
+        public void SaveAndUpdate_WithChildren_NoDuplicates()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var categoryRepository =
+                new CategoryRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var fixture = new Fixture();
+
+            var category = fixture.Create<CategoryViewModel>();
+
+            categoryRepository.Save(category);
+            category.Id.ShouldBeGreaterThan(0);
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.Category = category;
+
+            paymentRepository.Save(testPayment);
+            paymentRepository.Save(testPayment);
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            categoryRepository.GetList(x => x.Name == category.Name).Count().ShouldBe(1);
+        }
+
+        [TestMethod]
+        public void Save_WithChildren_FkSet()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var categoryRepository =
+                new CategoryRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var fixture = new Fixture();
+
+            var category = fixture.Create<CategoryViewModel>();
+
+            categoryRepository.Save(category);
+            category.Id.ShouldBeGreaterThan(0);
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.Category = category;
+
+            paymentRepository.Save(testPayment);
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            categoryRepository.GetList(x => x.Name == category.Name).Count().ShouldBe(1);
+        }
+
+        [TestMethod]
+        public void Delete_WithChildren_PaymentDeleted()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var categoryRepository =
+                new CategoryRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.Category.Id = 0;
+
+            paymentRepository.Save(testPayment);
+            var payment = paymentRepository.FindById(testPayment.Id);
+
+            payment.ShouldNotBeNull();
+            payment.Category.ShouldNotBeNull();
+
+            paymentRepository.Delete(testPayment);
+            paymentRepository.FindById(testPayment.Id).ShouldBeNull();
+
+            categoryRepository.FindById(testPayment.Category.Id).ShouldNotBeNull();
+        }
     }
 }

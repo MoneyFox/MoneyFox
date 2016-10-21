@@ -1,4 +1,6 @@
-﻿using SQLite;
+﻿using System.Collections.Generic;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.DatabaseModels
 {
@@ -10,5 +12,8 @@ namespace MoneyFox.DataAccess.DatabaseModels
 
         public string Name { get; set; }
         public string Notes { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Payment> Payments { get; set; }
     }
 }

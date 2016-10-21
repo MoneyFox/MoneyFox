@@ -4,7 +4,8 @@
     "Autofac": "4.1.1",
     "AutoMapper": "5.1.1",
     "MvvmCross.Plugin.File": "4.3.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.3.4"
+    "MvvmCross.Plugin.SQLitePCL": "4.3.4",
+    "SQLiteNetExtensions": "2.0.0-alpha2"
   },
   "frameworks": {
     ".NETPortable,Version=v4.6,Profile=Profile44": {}
