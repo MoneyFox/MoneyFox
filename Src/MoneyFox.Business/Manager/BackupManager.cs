@@ -45,7 +45,7 @@ namespace MoneyFox.Business.Manager
         ///     A sync can be attempted up to a number of times configured in ServiceConstants
         /// </summary>
         /// <param name="attempts">How many times to try syncing</param>
-        public async Task EnqueueBackupTask(int attempts)
+        public async Task EnqueueBackupTask(int attempts = 5)
         {
             if (attempts < ServiceConstants.SyncAttempts)
             {

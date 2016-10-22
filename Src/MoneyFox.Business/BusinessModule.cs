@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Helpers;
+using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -47,8 +49,13 @@ namespace MoneyFox.Business
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Manager"))
+                .Where(x => x.Name != "SettingsManager")
                 .AsImplementedInterfaces()
                 .SingleInstance();
+
+            builder.RegisterType<SettingsManager>()
+                .UsingConstructor(typeof(ISettings))
+                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))

@@ -31,7 +31,7 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                var query = db.Table<Payment>().AsQueryable().ProjectTo<PaymentViewModel>();
+                var query = db.GetAllWithChildren<Payment>().AsQueryable().ProjectTo<PaymentViewModel>();
 
                 if (filter != null)
                 {

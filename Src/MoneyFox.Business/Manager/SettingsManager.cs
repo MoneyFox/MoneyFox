@@ -35,10 +35,17 @@ namespace MoneyFox.Business.Manager
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
 
         private readonly ISettings settings;
+        private readonly IBackupManager backupManager;
 
         public SettingsManager(ISettings settings)
         {
             this.settings = settings;
+        }
+
+        public SettingsManager(ISettings settings, IBackupManager backupManager)
+        {
+            this.settings = settings;
+            this.backupManager = backupManager;
         }
 
         #region Properties
@@ -84,7 +91,11 @@ namespace MoneyFox.Business.Manager
         public DateTime LastDatabaseUpdate
         {
             get { return settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DateTime.MinValue); }
-            set { settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
+            set
+            {
+                settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value);
+                backupManager.EnqueueBackupTask();
+            }
         }
 
         public bool IsDarkThemeSelected
