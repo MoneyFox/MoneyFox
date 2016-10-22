@@ -585,5 +585,33 @@ namespace MoneyFox.DataAccess.Tests
             selected.ShouldNotBeNull();
             selected.ShouldBeInstanceOf<PaymentViewModel>();
         }
+
+        [TestMethod]
+        public void GetList_WithChildren()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var categoryRepository =
+                new CategoryRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var fixture = new Fixture();
+
+            var category = fixture.Create<CategoryViewModel>();
+            category.Id = 0;
+            categoryRepository.Save(category);
+
+            var payment = fixture.Create<PaymentViewModel>();
+            payment.Id = 0;
+            payment.Category = category;
+
+            paymentRepository.Save(payment);
+
+            var selected = paymentRepository.GetList(x => x.Id == payment.Id).First();
+            selected.ShouldNotBeNull();
+            selected.Category.ShouldNotBeNull();
+        }
     }
 }
