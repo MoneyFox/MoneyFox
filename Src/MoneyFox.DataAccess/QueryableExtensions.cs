@@ -21,18 +21,18 @@ namespace MoneyFox.DataAccess
         private static readonly Dictionary<string, Expression> ExpressionCache =
             new Dictionary<string, Expression>();
 
-        private readonly IQueryable<TSource> _source;
+        private readonly IQueryable<TSource> source;
 
         public ProjectionExpression(IQueryable<TSource> source)
         {
-            _source = source;
+            this.source = source;
         }
 
         public IQueryable<TDest> To<TDest>()
         {
             var queryExpression = GetCachedExpression<TDest>() ?? BuildExpression<TDest>();
 
-            return _source.Select(queryExpression);
+            return source.Select(queryExpression);
         }
 
         private static Expression<Func<TSource, TDest>> GetCachedExpression<TDest>()
@@ -69,7 +69,8 @@ namespace MoneyFox.DataAccess
         private static MemberAssignment BuildBinding(Expression parameterExpression, MemberInfo destinationProperty,
             IEnumerable<PropertyInfo> sourceProperties)
         {
-            var sourceProperty = sourceProperties.FirstOrDefault(src => src.Name == destinationProperty.Name);
+            var propertyInfos = sourceProperties as IList<PropertyInfo> ?? sourceProperties.ToList();
+            var sourceProperty = propertyInfos.FirstOrDefault(src => src.Name == destinationProperty.Name);
 
             if (sourceProperty != null)
             {
@@ -80,20 +81,17 @@ namespace MoneyFox.DataAccess
 
             if (propertyNames.Length == 2)
             {
-                sourceProperty = sourceProperties.FirstOrDefault(src => src.Name == propertyNames[0]);
+                sourceProperty = propertyInfos.FirstOrDefault(src => src.Name == propertyNames[0]);
 
-                if (sourceProperty != null)
+                var sourceChildProperty =
+                    sourceProperty?.PropertyType.GetProperties()
+                        .FirstOrDefault(src => src.Name == propertyNames[1]);
+
+                if (sourceChildProperty != null)
                 {
-                    var sourceChildProperty =
-                        sourceProperty.PropertyType.GetProperties()
-                            .FirstOrDefault(src => src.Name == propertyNames[1]);
-
-                    if (sourceChildProperty != null)
-                    {
-                        return Expression.Bind(destinationProperty,
-                            Expression.Property(Expression.Property(parameterExpression, sourceProperty),
-                                sourceChildProperty));
-                    }
+                    return Expression.Bind(destinationProperty,
+                        Expression.Property(Expression.Property(parameterExpression, sourceProperty),
+                            sourceChildProperty));
                 }
             }
 

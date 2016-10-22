@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -9,6 +10,7 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using SQLiteNetExtensions.Extensions;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -43,10 +45,18 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                return Mapper.Map<PaymentViewModel>(db.Table<Payment>().FirstOrDefault(x => x.Id == id));
+                try
+                {
+                    return Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Debug.WriteLine(ex);
+                    return null;
+                }
             }
         }
-        
+
         /// <summary>
         ///     Save a new PaymentViewModel or update an existin one.
         /// </summary>
@@ -54,7 +64,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <returns>whether the task has succeeded</returns>
         public bool Save(PaymentViewModel paymentToSave)
         {
-            if (paymentToSave.ChargedAccountId == 0)
+            if (paymentToSave.ChargedAccount == null)
             {
                 throw new AccountMissingException("charged accout is missing");
             }
@@ -67,12 +77,36 @@ namespace MoneyFox.DataAccess.Repositories
 
                 if (payment.Id == 0)
                 {
-                    var rows = db.Insert(payment);
-                    paymentToSave.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
-                    return rows == 1;
-                }
-                return db.Update(payment) == 1;
+                    if (payment.IsRecurring)
+                    {
+                        db.Insert(payment.RecurringPayment);
+                        payment.RecurringPaymentId =
+                            db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
+                    }
 
+                    db.Insert(payment);
+                    paymentToSave.Id = payment.Id;
+
+                    if (paymentToSave.Category != null)
+                    {
+                        paymentToSave.Category.Id = payment.CategoryId ?? 0;
+                    }
+                    if (paymentToSave.ChargedAccount != null)
+                    {
+                        paymentToSave.ChargedAccount.Id = payment.ChargedAccount.Id;
+                    }
+                    if (paymentToSave.TargetAccount != null)
+                    {
+                        paymentToSave.TargetAccount.Id = payment.TargetAccount.Id;
+                    }
+                    if (paymentToSave.RecurringPayment != null)
+                    {
+                        paymentToSave.RecurringPayment.Id = payment.RecurringPaymentId;
+                    }
+                    return true;
+                }
+                db.UpdateWithChildren(payment);
+                return true;
             }
         }
 
