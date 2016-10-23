@@ -4,6 +4,7 @@ using System.Linq;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
+using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Series;
 
@@ -25,7 +26,8 @@ namespace MoneyFox.Business.ViewModels
         private PlotModel spreadingModel;
 
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager,
+            IMvxMessenger messenger) : base(messenger)
         {
             this.spreadingDataProvider = spreadingDataProvider;
             this.settingsManager = settingsManager;

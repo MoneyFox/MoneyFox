@@ -9,6 +9,8 @@ namespace MoneyFox.Business.ViewModels
 {
     public abstract class StatisticViewModel : BaseViewModel
     {
+        private readonly IMvxMessenger messenger;
+
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
         private DateTime startDate;
@@ -18,8 +20,8 @@ namespace MoneyFox.Business.ViewModels
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
         /// </summary>
-        protected StatisticViewModel()
-            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth())
+        protected StatisticViewModel(IMvxMessenger messenger)
+            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), messenger)
         {
         }
 
@@ -28,12 +30,13 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         /// <param name="startDate">Start date to select data from.</param>
         /// <param name="endDate">End date to select date from.</param>
-        protected StatisticViewModel(DateTime startDate, DateTime endDate)
+        protected StatisticViewModel(DateTime startDate, DateTime endDate, IMvxMessenger messenger)
         {
             StartDate = startDate;
             EndDate = endDate;
+            this.messenger = messenger;
 
-            token = MessageHub.Subscribe<DateSelectedMessage>(message =>
+            token = messenger.Subscribe<DateSelectedMessage>(message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;

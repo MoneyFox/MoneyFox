@@ -29,15 +29,15 @@ namespace MoneyFox.Business.Manager
             {
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case PaymentType.Income:
                         balance += payment.Amount;
                         break;
 
-                    case (int)PaymentType.Transfer:
+                    case PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance);
                         break;
                 }
@@ -85,11 +85,11 @@ namespace MoneyFox.Business.Manager
                 //Transfer can be ignored since they don't change the summary.
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case PaymentType.Income:
                         balance += payment.Amount;
                         break;
                 }

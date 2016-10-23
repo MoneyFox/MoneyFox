@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.Tests.Helper
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
-                Type = (int) PaymentType.Income,
+                Type = PaymentType.Income,
                 IsRecurring = true
             };
 
@@ -37,8 +37,8 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Income);
-            recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Daily);
+            recurring.Type.ShouldBe(PaymentType.Income);
+            recurring.Recurrence.ShouldBe(PaymentRecurrence.Daily);
             recurring.Note.ShouldBe(payment.Note);
         }
 
@@ -61,7 +61,7 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
-                (int) PaymentRecurrence.Weekly, enddate);
+                PaymentRecurrence.Weekly, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
             recurring.TargetAccount.Id.ShouldBe(8);
@@ -70,8 +70,8 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Expense);
-            recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Weekly);
+            recurring.Type.ShouldBe(PaymentType.Expense);
+            recurring.Recurrence.ShouldBe(PaymentRecurrence.Weekly);
             recurring.Note.ShouldBe(payment.Note);
         }
 
@@ -89,12 +89,12 @@ namespace MoneyFox.Shared.Tests.Helper
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
-                Type = (int) PaymentType.Transfer,
+                Type = PaymentType.Transfer,
                 IsRecurring = true
             };
 
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
-                (int) PaymentRecurrence.Monthly, enddate);
+                PaymentRecurrence.Monthly, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
             recurring.TargetAccount.Id.ShouldBe(8);
@@ -103,8 +103,8 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Transfer);
-            recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Monthly);
+            recurring.Type.ShouldBe(PaymentType.Transfer);
+            recurring.Recurrence.ShouldBe(PaymentRecurrence.Monthly);
             recurring.Note.ShouldBe(payment.Note);
         }
 
@@ -127,7 +127,7 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, false,
-                (int) PaymentRecurrence.Yearly, enddate);
+                PaymentRecurrence.Yearly, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
             recurring.TargetAccount.Id.ShouldBe(8);
@@ -136,8 +136,8 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(false);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Expense);
-            recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Yearly);
+            recurring.Type.ShouldBe(PaymentType.Expense);
+            recurring.Recurrence.ShouldBe(PaymentRecurrence.Yearly);
             recurring.Note.ShouldBe(payment.Note);
         }
 
@@ -182,7 +182,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Monthly,
+                Recurrence = PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, dayOfMonth),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -225,7 +225,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Biweekly,
+                Recurrence = PaymentRecurrence.Biweekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -245,7 +245,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Weekly,
+                Recurrence = PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -265,7 +265,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Monthly,
+                Recurrence = PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -285,7 +285,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Yearly,
+                Recurrence = PaymentRecurrence.Yearly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -305,7 +305,7 @@ namespace MoneyFox.Shared.Tests.Helper
             var recurringPayment = new RecurringPaymentViewModel
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Weekly,
+                Recurrence = PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
