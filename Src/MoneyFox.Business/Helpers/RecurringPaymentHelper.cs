@@ -16,7 +16,7 @@ namespace MoneyFox.Business.Helpers
         /// <returns>The new created recurring PaymentViewModel</returns>
         public static RecurringPaymentViewModel GetRecurringFromPayment(PaymentViewModel payment,
                 bool isEndless,
-                int recurrence,
+                PaymentRecurrence recurrence,
                 DateTime enddate = new DateTime())
             => new RecurringPaymentViewModel
             {
@@ -46,7 +46,7 @@ namespace MoneyFox.Business.Helpers
             var date = DateTime.Today;
 
             //If the PaymentViewModel is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
+            if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
@@ -84,26 +84,26 @@ namespace MoneyFox.Business.Helpers
 
             switch (recurringPayment.Recurrence)
             {
-                case (int) PaymentRecurrence.Daily:
+                case PaymentRecurrence.Daily:
                     return DateTime.Today.Date != relatedPayment.Date.Date;
 
-                case (int) PaymentRecurrence.DailyWithoutWeekend:
+                case PaymentRecurrence.DailyWithoutWeekend:
                     return (DateTime.Today.Date != relatedPayment.Date.Date)
                            && (DateTime.Today.DayOfWeek != DayOfWeek.Saturday)
                            && (DateTime.Today.DayOfWeek != DayOfWeek.Sunday);
 
-                case (int) PaymentRecurrence.Weekly:
+                case PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relatedPayment.Date;
                     return daysWeekly.Days >= 7;
 
-                case (int) PaymentRecurrence.Biweekly:
+                case PaymentRecurrence.Biweekly:
                     var daysBiweekly = DateTime.Now - relatedPayment.Date;
                     return daysBiweekly.Days >= 14;
 
-                case (int) PaymentRecurrence.Monthly:
+                case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != relatedPayment.Date.Month;
 
-                case (int) PaymentRecurrence.Yearly:
+                case PaymentRecurrence.Yearly:
                     return ((DateTime.Now.Year != relatedPayment.Date.Year)
                             && (DateTime.Now.Month >= relatedPayment.Date.Month))
                            || (DateTime.Now.Year - relatedPayment.Date.Year > 1);

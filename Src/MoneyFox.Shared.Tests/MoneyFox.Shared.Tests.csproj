@@ -122,15 +122,6 @@
   <ItemGroup>
     <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Authentication\SessionTests.cs" />
-    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
-    <Compile Include="Converter\AmountFormatConverterTests.cs" />
-    <Compile Include="Converter\DateFormatConverterTests.cs" />
-    <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Helper\PaymentTypeHelperTest.cs" />
     <Compile Include="Helper\RecurringPaymentHelperTests.cs" />
@@ -152,7 +143,6 @@
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
-    <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
     <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -506,6 +506,9 @@
     <AndroidResource Include="Resources\layout\activity_modify_category.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\comboboxitem_recurrence.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

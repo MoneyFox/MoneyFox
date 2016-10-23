@@ -24,10 +24,13 @@ namespace MoneyFox.DataAccess
 
                 cfg.CreateMap<RecurringPayment, RecurringPaymentViewModel>()
                     .ForMember(dest => dest.Type,
-                        opt => opt.MapFrom(src => (PaymentType) Enum.ToObject(typeof(PaymentType), src.Type)));
+                        opt => opt.MapFrom(src => (PaymentType) Enum.ToObject(typeof(PaymentType), src.Type)))
+                    .ForMember(dest => dest.Recurrence,
+                        opt => opt.MapFrom(src => (PaymentRecurrence) Enum.ToObject(typeof(PaymentRecurrence), src.Recurrence)));
 
                 cfg.CreateMap<RecurringPaymentViewModel, RecurringPayment>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => (int) src.Type));
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => (int) src.Type))
+                    .ForMember(dest => dest.Recurrence, opt => opt.MapFrom(src => (int) src.Recurrence));
 
                 cfg.CreateMap<Category, CategoryViewModel>();
                 cfg.CreateMap<CategoryViewModel, Category>();

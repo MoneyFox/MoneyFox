@@ -47,6 +47,7 @@
     <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
+    <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />

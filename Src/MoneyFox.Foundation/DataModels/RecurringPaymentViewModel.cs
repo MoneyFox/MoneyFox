@@ -23,7 +23,7 @@ namespace MoneyFox.Foundation.DataModels
         public bool IsEndless { get; set; }
         public double Amount { get; set; }
         public PaymentType Type { get; set; }
-        public int Recurrence { get; set; }
+        public PaymentRecurrence Recurrence { get; set; }
         public string Note { get; set; }
 
         /// <summary>
