@@ -204,7 +204,7 @@ namespace MoneyFox.Business.Manager
         ///     Removes the PaymentViewModel Amount from the selected AccountViewModel
         /// </summary>
         /// <param name="payment">PaymentViewModel to remove.</param>
-        /// <param name="accountViewModel to remove the amount from.</param>
+        /// <param name="accountViewModel">AccountViewModel to remove the amount from.</param>
         public bool RemovePaymentAmount(PaymentViewModel payment, AccountViewModel accountViewModel)
         {
             if (!payment.IsCleared)

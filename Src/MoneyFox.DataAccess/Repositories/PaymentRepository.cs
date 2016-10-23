@@ -27,18 +27,24 @@ namespace MoneyFox.DataAccess.Repositories
             this.dbManager = dbManager;
         }
 
+        private List<PaymentViewModel> DataCache { get; set; } = new List<PaymentViewModel>();
+
         public IEnumerable<PaymentViewModel> GetList(Expression<Func<PaymentViewModel, bool>> filter = null)
         {
-            using (var db = dbManager.GetConnection())
+            if (!DataCache.Any())
             {
-                var query = db.GetAllWithChildren<Payment>().AsQueryable().ProjectTo<PaymentViewModel>();
-
-                if (filter != null)
+                using (var db = dbManager.GetConnection())
                 {
-                    query = query.Where(filter);
+                    DataCache = db.GetAllWithChildren<Payment>()
+                        .AsQueryable()
+                        .ProjectTo<PaymentViewModel>()
+                        .ToList();
                 }
-                return query.ToList();
             }
+
+            return filter != null
+                ? DataCache.Where(filter.Compile()).ToList()
+                : DataCache.ToList();
         }
 
         public PaymentViewModel FindById(int id)
@@ -47,7 +53,9 @@ namespace MoneyFox.DataAccess.Repositories
             {
                 try
                 {
-                    return Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
+                    return DataCache.Any() 
+                        ? DataCache.Find(x => x.Id == id)
+                        : Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -87,26 +95,32 @@ namespace MoneyFox.DataAccess.Repositories
                     db.Insert(payment);
                     paymentToSave.Id = payment.Id;
 
-                    if (paymentToSave.Category != null)
-                    {
-                        paymentToSave.Category.Id = payment.CategoryId ?? 0;
-                    }
-                    if (paymentToSave.ChargedAccount != null)
-                    {
-                        paymentToSave.ChargedAccount.Id = payment.ChargedAccount.Id;
-                    }
-                    if (paymentToSave.TargetAccount != null)
-                    {
-                        paymentToSave.TargetAccount.Id = payment.TargetAccount.Id;
-                    }
-                    if (paymentToSave.RecurringPayment != null)
-                    {
-                        paymentToSave.RecurringPayment.Id = payment.RecurringPaymentId;
-                    }
+                    SetIds(paymentToSave, payment);
+                    DataCache.Add(paymentToSave);
                     return true;
                 }
                 db.UpdateWithChildren(payment);
                 return true;
+            }
+        }
+
+        private static void SetIds(PaymentViewModel paymentToSave, Payment payment)
+        {
+            if (paymentToSave.Category != null)
+            {
+                paymentToSave.Category.Id = payment.CategoryId ?? 0;
+            }
+            if (paymentToSave.ChargedAccount != null)
+            {
+                paymentToSave.ChargedAccount.Id = payment.ChargedAccount.Id;
+            }
+            if (paymentToSave.TargetAccount != null)
+            {
+                paymentToSave.TargetAccount.Id = payment.TargetAccount.Id;
+            }
+            if (paymentToSave.RecurringPayment != null)
+            {
+                paymentToSave.RecurringPayment.Id = payment.RecurringPaymentId;
             }
         }
 
@@ -119,6 +133,8 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
+                DataCache.Remove(paymentToDelete);
+
                 var itemToDelete = db.Table<Payment>().Single(x => x.Id == paymentToDelete.Id);
                 return db.Delete(itemToDelete) == 1;
             }
