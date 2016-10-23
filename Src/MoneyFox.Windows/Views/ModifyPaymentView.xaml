@@ -4,11 +4,11 @@
                       xmlns:converter="using:MoneyFox.Windows.Converter"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
-                      xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Enabled"
                       mc:Ignorable="d">
@@ -18,12 +18,18 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <DataTemplate x:Key="ComboBoxTemplate" x:DataType="dataModels:AccountViewModel">
-            <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
+        <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="dataModels:AccountViewModel">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />
                 <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountConverter}}" />
                 <TextBlock Text=")" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ComboBoxRecurrenceTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Converter={StaticResource RecurrenceTypeConverter}}" />
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -47,7 +53,7 @@
                     <ComboBox Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
                               Header="{Binding AccountHeader}"
-                              ItemTemplate="{StaticResource ComboBoxTemplate}"
+                              ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
                               ItemsSource="{Binding ChargedAccounts,
                                                     Mode=TwoWay,
                                                     UpdateSourceTrigger=PropertyChanged}"
@@ -65,7 +71,7 @@
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
                               Header="target AccountViewModel"
-                              ItemTemplate="{StaticResource ComboBoxTemplate}"
+                              ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
                               ItemsSource="{Binding TargetAccounts,
                                                     Mode=TwoWay,
                                                     UpdateSourceTrigger=PropertyChanged}"
@@ -143,8 +149,9 @@
                                   Margin="0,7,0,0"
                                   HorizontalAlignment="Stretch"
                                   Header="Reccurence"
+                                  ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
                                   ItemsSource="{Binding RecurrenceList}"
-                                  SelectedItem="{Binding RecurrenceString,
+                                  SelectedItem="{Binding Recurrence,
                                                          Mode=TwoWay,
                                                          UpdateSourceTrigger=PropertyChanged}" />
                         <CheckBox x:Uid="EndlessCheckBox"

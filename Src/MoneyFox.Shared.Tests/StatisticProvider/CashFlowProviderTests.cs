@@ -30,21 +30,21 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 new PaymentViewModel
                 {
                     Id = 1,
-                    Type = (int) PaymentType.Income,
+                    Type = PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60
                 },
                 new PaymentViewModel
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Expense,
+                    Type = PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50
                 },
                 new PaymentViewModel
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Transfer,
+                    Type = PaymentType.Transfer,
                     Date = DateTime.Today,
                     Amount = 40
                 }

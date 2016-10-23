@@ -22,6 +22,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
+        private readonly IMvxMessenger messenger;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -29,7 +30,7 @@ namespace MoneyFox.Business.ViewModels
         // This has to be static in order to keep the value even if you leave the page to select a CategoryViewModel.
         private double amount;
         private PaymentViewModel selectedPayment;
-        private string recurrenceString;
+        private PaymentRecurrence recurrence;
         private DateTime endDate;
         private bool isEndless;
         private bool isTransfer;
@@ -39,17 +40,20 @@ namespace MoneyFox.Business.ViewModels
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            IPaymentManager paymentManager, ISettingsManager settingsManager)
+            IPaymentManager paymentManager, 
+            ISettingsManager settingsManager, 
+            IMvxMessenger messenger)
         {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
+            this.messenger = messenger;
             this.paymentRepository = paymentRepository;
 
             TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
             ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
-            token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
+            token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
         /// <summary>
@@ -66,8 +70,6 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private int GetEnumIntFromString => RecurrenceList.IndexOf(RecurrenceString);
 
         /// <summary>
         ///     Init the view for a new PaymentViewModel. Is executed after the constructor call.
@@ -107,9 +109,9 @@ namespace MoneyFox.Business.ViewModels
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
-            RecurrenceString = SelectedPayment.IsRecurring
-                ? RecurrenceList[SelectedPayment.RecurringPayment.Recurrence]
-                : "";
+            Recurrence = SelectedPayment.IsRecurring 
+                ? SelectedPayment.RecurringPayment.Recurrence
+                : PaymentRecurrence.Daily;
             EndDate = SelectedPayment.IsRecurring
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
@@ -127,11 +129,11 @@ namespace MoneyFox.Business.ViewModels
         {
             SelectedPayment = new PaymentViewModel
             {
-                Type = (int) paymentType,
+                Type = paymentType,
                 Date = DateTime.Now,
                 // Assign empty CategoryViewModel to reset the GUI
                 Category = new CategoryViewModel(),
-                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
+                ChargedAccount = ChargedAccounts.FirstOrDefault()
             };
         }
 
@@ -196,7 +198,7 @@ namespace MoneyFox.Business.ViewModels
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
                     GetRecurringFromPayment(SelectedPayment,
                         IsEndless,
-                        GetEnumIntFromString,
+                        Recurrence,
                         EndDate);
             }
         }
@@ -368,12 +370,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public string RecurrenceString
+        public PaymentRecurrence Recurrence
         {
-            get { return recurrenceString; }
+            get { return recurrence; }
             set
             {
-                recurrenceString = value;
+                recurrence = value;
                 RaisePropertyChanged();
             }
         }
@@ -400,14 +402,14 @@ namespace MoneyFox.Business.ViewModels
         ///     List with the different recurrence types.
         ///     This has to have the same order as the enum
         /// </summary>
-        public List<string> RecurrenceList => new List<string>
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
-            Strings.DailyLabel,
-            Strings.DailyWithoutWeekendLabel,
-            Strings.WeeklyLabel,
-            Strings.MonthlyLabel,
-            Strings.YearlyLabel,
-            Strings.BiweeklyLabel
+            PaymentRecurrence.Daily,
+            PaymentRecurrence.DailyWithoutWeekend,
+            PaymentRecurrence.Weekly,
+            PaymentRecurrence.Biweekly,
+            PaymentRecurrence.Monthly,
+            PaymentRecurrence.Yearly
         };
 
         /// <summary>
@@ -445,7 +447,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Returns the Header for the AccountViewModel field
         /// </summary>
         public string AccountHeader
-            => SelectedPayment?.Type == (int) PaymentType.Income
+            => SelectedPayment?.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 

@@ -19,7 +19,7 @@ namespace MoneyFox.Business.Converter
             var param = parameter as string;
             string sign;
 
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == PaymentType.Transfer)
             {
                 if (param == IGNORE_TRANSFER)
                 {

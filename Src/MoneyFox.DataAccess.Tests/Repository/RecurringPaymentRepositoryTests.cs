@@ -11,7 +11,7 @@ using MvvmCross.Plugins.Sqlite.Wpf;
 using Ploeh.AutoFixture;
 using XunitShouldExtension;
 
-namespace MoneyFox.DataAccess.Tests
+namespace MoneyFox.DataAccess.Tests.Repository
 {
     [TestClass]
     public class RecurringPaymentRepositoryTests
