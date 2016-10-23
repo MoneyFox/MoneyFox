@@ -2,6 +2,7 @@
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -16,8 +17,9 @@ namespace MoneyFox.Business.ViewModels
         private PlotModel monthlyExpensesModel;
 
         public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
-            ISettingsManager settingsManager)
-            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
+            ISettingsManager settingsManager,
+            IMvxMessenger messenger)
+            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth(), messenger)
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
             this.settingsManager = settingsManager;

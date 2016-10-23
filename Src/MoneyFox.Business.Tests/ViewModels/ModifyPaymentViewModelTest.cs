@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
@@ -10,22 +9,13 @@ using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
 using Xunit;
 using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
-    public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
+    public class ModifyPaymentViewModelTest
     {
-        public ModifyPaymentViewModelTest()
-        {
-            ClearAll();
-            Setup();
-
-            Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
-        }
-
         [Theory]
         [InlineData(PaymentType.Income)]
         [InlineData(PaymentType.Expense)]
@@ -48,7 +38,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             viewmodel.Init(type);
 
@@ -80,7 +71,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
@@ -124,7 +116,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 dialogService, 
                 paymentManagerSetup.Object,
-                settingsManagerMock.Object)
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object)
             {
                 SelectedPayment = selectedPayment
             };
@@ -169,7 +162,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             viewmodel.Init(type, 12);
 
@@ -212,7 +206,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -245,7 +240,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManager,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             viewmodel.Init(PaymentType.Income);
 
@@ -294,7 +290,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
                 paymentManagerMock.Object,
-                settingsManagerMock.Object);
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
@@ -323,7 +320,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object,
                 new Mock<IPaymentManager>().Object,
-                new Mock<ISettingsManager>().Object)
+                new Mock<ISettingsManager>().Object,
+                new Mock<IMvxMessenger>().Object)
             {
                 SelectedPayment = payment
             };

@@ -2,14 +2,11 @@
 using System.Linq.Expressions;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel
     {
-        public IMvxMessenger MessageHub => Mvx.Resolve<IMvxMessenger>();
-
         /// <summary>
         ///     Gets the service.
         /// </summary>

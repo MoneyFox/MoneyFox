@@ -3,16 +3,20 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Messages;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class SelectDateRangeDialogViewModel : BaseViewModel
     {
+        private readonly IMvxMessenger messenger;
+
         private DateTime startDate;
         private DateTime endDate;
 
-        public SelectDateRangeDialogViewModel()
+        public SelectDateRangeDialogViewModel(IMvxMessenger messenger)
         {
+            this.messenger = messenger;
             StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             EndDate = DateTime.Today.GetLastDayOfMonth();
         }
@@ -55,7 +59,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void Done()
         {
-            MessageHub.Publish(new DateSelectedMessage(this, StartDate, EndDate));
+            messenger.Publish(new DateSelectedMessage(this, StartDate, EndDate));
         }
     }
 }

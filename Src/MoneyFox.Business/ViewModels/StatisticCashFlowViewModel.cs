@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -13,7 +14,10 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private PlotModel cashFlowModel;
 
-        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, ISettingsManager settingsManager)
+        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, 
+            ISettingsManager settingsManager,
+            IMvxMessenger messenger) 
+            : base(messenger)
         {
             this.settingsManager = settingsManager;
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);

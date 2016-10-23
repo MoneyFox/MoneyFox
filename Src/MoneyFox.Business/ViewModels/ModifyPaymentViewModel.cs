@@ -22,6 +22,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
+        private readonly IMvxMessenger messenger;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -39,17 +40,20 @@ namespace MoneyFox.Business.ViewModels
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            IPaymentManager paymentManager, ISettingsManager settingsManager)
+            IPaymentManager paymentManager, 
+            ISettingsManager settingsManager, 
+            IMvxMessenger messenger)
         {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
+            this.messenger = messenger;
             this.paymentRepository = paymentRepository;
 
             TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
             ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
-            token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
+            token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
         /// <summary>
@@ -129,7 +133,7 @@ namespace MoneyFox.Business.ViewModels
                 Date = DateTime.Now,
                 // Assign empty CategoryViewModel to reset the GUI
                 Category = new CategoryViewModel(),
-                ChargedAccount = DefaultHelper.GetDefaultAccount(ChargedAccounts.ToList())
+                ChargedAccount = ChargedAccounts.FirstOrDefault()
             };
         }
 
