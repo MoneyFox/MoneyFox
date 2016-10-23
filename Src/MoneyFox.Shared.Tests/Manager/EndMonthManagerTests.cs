@@ -53,8 +53,8 @@ namespace MoneyFox.Shared.Tests.Manager
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
             {
-                new PaymentViewModel {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now, Type = (int) PaymentType.Income},
-                new PaymentViewModel {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now, Type = (int) PaymentType.Income}
+                new PaymentViewModel {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now, Type = PaymentType.Income},
+                new PaymentViewModel {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now, Type = PaymentType.Income}
             });
 
             var accounts = new List<AccountViewModel>

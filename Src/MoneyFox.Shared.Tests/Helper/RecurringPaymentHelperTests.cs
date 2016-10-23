@@ -23,7 +23,7 @@ namespace MoneyFox.Shared.Tests.Helper
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
-                Type = (int) PaymentType.Income,
+                Type = PaymentType.Income,
                 IsRecurring = true
             };
 
@@ -37,7 +37,7 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Income);
+            recurring.Type.ShouldBe(PaymentType.Income);
             recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Daily);
             recurring.Note.ShouldBe(payment.Note);
         }
@@ -70,7 +70,7 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Expense);
+            recurring.Type.ShouldBe(PaymentType.Expense);
             recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Weekly);
             recurring.Note.ShouldBe(payment.Note);
         }
@@ -89,7 +89,7 @@ namespace MoneyFox.Shared.Tests.Helper
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
-                Type = (int) PaymentType.Transfer,
+                Type = PaymentType.Transfer,
                 IsRecurring = true
             };
 
@@ -103,7 +103,7 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Transfer);
+            recurring.Type.ShouldBe(PaymentType.Transfer);
             recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Monthly);
             recurring.Note.ShouldBe(payment.Note);
         }
@@ -136,7 +136,7 @@ namespace MoneyFox.Shared.Tests.Helper
             recurring.IsEndless.ShouldBe(false);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe((int) PaymentType.Expense);
+            recurring.Type.ShouldBe(PaymentType.Expense);
             recurring.Recurrence.ShouldBe((int) PaymentRecurrence.Yearly);
             recurring.Note.ShouldBe(payment.Note);
         }

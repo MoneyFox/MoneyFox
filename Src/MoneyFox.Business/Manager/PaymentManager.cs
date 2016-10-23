@@ -176,7 +176,7 @@ namespace MoneyFox.Business.Manager
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == PaymentType.Income
                     ? x
                     : -x;
 
@@ -215,7 +215,7 @@ namespace MoneyFox.Business.Manager
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == PaymentType.Income
                     ? -x
                     : x;
 
@@ -249,7 +249,7 @@ namespace MoneyFox.Business.Manager
 
         private void PrehandleRemoveIfTransfer(PaymentViewModel payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -272,7 +272,7 @@ namespace MoneyFox.Business.Manager
 
         private void PrehandleAddIfTransfer(PaymentViewModel payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

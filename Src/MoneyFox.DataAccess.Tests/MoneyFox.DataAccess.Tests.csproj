@@ -50,10 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="PaymentRepositoryTests.cs" />
-    <Compile Include="RecurringPaymentRepositoryTests.cs" />
-    <Compile Include="CategoryRepositoryTests.cs" />
-    <Compile Include="AccountRepositoryTests.cs" />
+    <Compile Include="DatabaseModels\RecurringPaymentTests.cs" />
+    <Compile Include="Repository\PaymentRepositoryTests.cs" />
+    <Compile Include="DatabaseModels\PaymentTests.cs" />
+    <Compile Include="Repository\RecurringPaymentRepositoryTests.cs" />
+    <Compile Include="Repository\CategoryRepositoryTests.cs" />
+    <Compile Include="Repository\AccountRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryableExtensionsTests.cs" />
   </ItemGroup>

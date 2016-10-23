@@ -21,7 +21,7 @@ namespace MoneyFox.Foundation.DataModels
         private DateTime date;
         private double amount;
         private bool isCleared;
-        private int type;
+        private PaymentType type;
         private string note;
         private bool isRecurring;
         private int recurringPaymentId;
@@ -126,9 +126,9 @@ namespace MoneyFox.Foundation.DataModels
         }
 
         /// <summary>
-        ///     Type of the payment. This is the int of the Enum <see cref="PaymentType" />.
+        ///     Type of the payment <see cref="PaymentType" />.
         /// </summary>
-        public int Type
+        public PaymentType Type
         {
             get { return type; }
             set
@@ -260,7 +260,7 @@ namespace MoneyFox.Foundation.DataModels
         /// <summary>
         ///     This is a shortcut to access if the payment is a transfer or not.
         /// </summary>
-        public bool IsTransfer => Type == (int) PaymentType.Transfer;
+        public bool IsTransfer => Type == PaymentType.Transfer;
 
         public int CurrentAccountId
         {

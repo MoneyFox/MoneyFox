@@ -54,7 +54,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Income);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
@@ -84,7 +84,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Expense);
-            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
@@ -114,7 +114,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
-            viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
@@ -172,7 +172,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(new PaymentViewModel
             {
-                Type = (int) PaymentType.Income,
+                Type = PaymentType.Income,
                 IsRecurring = true,
                 RecurringPayment = new RecurringPaymentViewModel
                 {
@@ -203,7 +203,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Income);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
@@ -246,7 +246,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Expense);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
@@ -259,7 +259,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(new PaymentViewModel {
-                Type = (int)PaymentType.Transfer,
+                Type = PaymentType.Transfer,
                 IsRecurring = true,
                 RecurringPayment = new RecurringPaymentViewModel {
                     EndDate = testEndDate
@@ -289,7 +289,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);

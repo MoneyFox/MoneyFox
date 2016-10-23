@@ -28,7 +28,7 @@ namespace MoneyFox.Business.StatisticDataProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
             => GetSpreadingStatisticItems(paymentRepository
                 .GetList(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date)
-                              && ((x.Type == (int) PaymentType.Expense) || (x.Type == (int) PaymentType.Income)))
+                              && ((x.Type == (int) PaymentType.Expense) || (x.Type == PaymentType.Income)))
                 .ToList());
 
         private List<StatisticItem> GetSpreadingStatisticItems(List<PaymentViewModel> payments)
@@ -43,7 +43,7 @@ namespace MoneyFox.Business.StatisticDataProvider
                     {
                         Category = temp.Key.category,
                         // we subtract income payments here so that we have all expenses without presign
-                        Value = temp.Sum(x => x.Type == (int) PaymentType.Income ? -x.Amount : x.Amount)
+                        Value = temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount)
                     })
                 .Where(x => x.Value > 0)
                 .OrderByDescending(x => x.Value)
@@ -68,39 +68,6 @@ namespace MoneyFox.Business.StatisticDataProvider
                                       + " ("
                                       + Math.Round(statisticItem.Value/totAmount*100, 2)
                                       + "%)";
-            }
-        }
-
-        private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList)
-        {
-            var nullerList = tempStatisticList.Where(x => Math.Abs(x.Value) < 0.001).ToList();
-            foreach (var statisticItem in nullerList)
-            {
-                tempStatisticList.Remove(statisticItem);
-            }
-        }
-
-        private void SetLabel(StatisticItem item)
-        {
-            item.Label = item.Category;
-        }
-
-        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<PaymentViewModel> payments)
-        {
-            foreach (var statisticItem in statisticList)
-            {
-                statisticItem.Value -= payments
-                    .Where(x => x.Type == (int) PaymentType.Income)
-                    .Where(x => x.Category != null)
-                    .Where(x => x.Category.Name == statisticItem.Category)
-                    .Sum(x => x.Amount);
-
-                SetLabel(statisticItem);
-
-                if (statisticItem.Value <= 0)
-                {
-                    statisticItem.Value = 0;
-                }
             }
         }
 

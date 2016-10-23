@@ -31,7 +31,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             var getPaymentListFunc =
                 new Func<List<PaymentViewModel>>(() =>
                     paymentRepository
-                        .GetList(x => (x.Type != (int) PaymentType.Transfer)
+                        .GetList(x => (x.Type != PaymentType.Transfer)
                                       && (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
                         .ToList());
 
@@ -46,7 +46,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             var income = new StatisticItem
             {
                 Category = Strings.RevenueLabel,
-                Value = payments.Where(x => x.Type == (int) PaymentType.Income).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount)
             };
             income.Label = income.Category + ": " +
                            Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
@@ -54,7 +54,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             var spent = new StatisticItem
             {
                 Category = Strings.ExpenseLabel,
-                Value = payments.Where(x => x.Type == (int) PaymentType.Expense).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " +
                           Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
