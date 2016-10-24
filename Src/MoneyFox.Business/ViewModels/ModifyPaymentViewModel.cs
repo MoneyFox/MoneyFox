@@ -250,7 +250,6 @@ namespace MoneyFox.Business.ViewModels
 
         private void Cancel()
         {
-            SelectedPayment = paymentRepository.FindById(selectedPayment.Id);
             Close(this);
         }
 
