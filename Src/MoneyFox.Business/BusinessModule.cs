@@ -54,7 +54,7 @@ namespace MoneyFox.Business
                 .SingleInstance();
 
             builder.RegisterType<SettingsManager>()
-                .UsingConstructor(typeof(ISettings))
+                .UsingConstructor(typeof(ISettings), typeof(IBackupManager))
                 .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
