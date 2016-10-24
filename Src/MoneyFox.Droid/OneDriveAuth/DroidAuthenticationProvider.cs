@@ -74,5 +74,18 @@ namespace MoneyFox.Droid.OneDriveAuth
 
             return tcs.Task;
         }
+
+        /// <summary>
+        ///     Removes the saved refresh token from the cache.
+        /// </summary>
+        public void Logout()
+        {
+            new ProtectedData().Remove(ServiceConstants.REFRESH_TOKEN);
+
+            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+                string.Empty,
+                new Uri(ServiceConstants.LOGOUT_URL),
+                new Uri(ServiceConstants.RETURN_URL));
+        }
     }
 }

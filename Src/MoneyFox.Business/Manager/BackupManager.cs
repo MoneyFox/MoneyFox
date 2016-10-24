@@ -35,9 +35,20 @@ namespace MoneyFox.Business.Manager
             this.settingsManager = settingsManager;
         }
 
+        /// <summary>
+        ///     Login User.
+        /// </summary>
         public async Task Login()
         {
             await backupService.Login();
+        }
+
+        /// <summary>
+        ///     Logout User.
+        /// </summary>
+        public async Task Logout()
+        {
+            await backupService.Logout();
         }
 
         /// <summary>

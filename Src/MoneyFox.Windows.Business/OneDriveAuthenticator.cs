@@ -12,6 +12,9 @@ namespace MoneyFox.Windows.Business
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
+        /// <summary>
+        ///     Perform an async Login Request
+        /// </summary>
         public async Task<IOneDriveClient> LoginAsync()
         {
             try
@@ -35,6 +38,19 @@ namespace MoneyFox.Windows.Business
                 Debug.WriteLine(ex);
                 throw new BackupException("Authentication Failed", ex);
             }
+        }
+
+        /// <summary>
+        ///     Perform an async Logout Request
+        /// </summary>
+        public async Task LogoutAsync()
+        {
+            await new MsaAuthenticationProvider(
+                    ServiceConstants.MSA_CLIENT_ID,
+                    ServiceConstants.RETURN_URL,
+                    ServiceConstants.Scopes,
+                    new CredentialVault(ServiceConstants.MSA_CLIENT_ID))
+                .SignOutAsync();
         }
     }
 }
