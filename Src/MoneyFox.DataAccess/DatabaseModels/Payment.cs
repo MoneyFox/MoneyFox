@@ -36,10 +36,10 @@ namespace MoneyFox.DataAccess.DatabaseModels
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public Category Category { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
+        [ManyToOne(nameof(ChargedAccountId), CascadeOperations = CascadeOperation.CascadeRead)]
         public Account ChargedAccount { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
+        [ManyToOne(nameof(TargetAccountId), CascadeOperations = CascadeOperation.CascadeRead)]
         public Account TargetAccount { get; set; }
 
         [OneToOne(CascadeOperations = CascadeOperation.All)]

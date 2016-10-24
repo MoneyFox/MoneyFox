@@ -17,15 +17,19 @@ namespace MoneyFox.Business.ViewModels
         private readonly ICategoryRepository categoryRepository;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        private readonly IBackupManager backupManager;
+
         private CategoryViewModel selectedCategory;
         private bool isEdit;
 
         public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager, 
+            IBackupManager backupManager)
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
+            this.backupManager = backupManager;
         }
 
         /// <summary>
@@ -129,6 +133,11 @@ namespace MoneyFox.Business.ViewModels
             if (categoryRepository.Save(SelectedCategory))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
+
                 Close(this);
             }
         }

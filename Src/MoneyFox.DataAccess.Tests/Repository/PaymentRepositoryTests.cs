@@ -462,7 +462,6 @@ namespace MoneyFox.DataAccess.Tests.Repository
         }
 
         [TestMethod]
-        [Ignore]
         public void Save_WithRecurringPayment()
         {
             var paymentRepository =
@@ -471,6 +470,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
 
             var testPayment = new Fixture().Create<PaymentViewModel>();
             testPayment.Id = 0;
+            testPayment.RecurringPaymentId = 0;
             testPayment.RecurringPayment.Id = 0;
             testPayment.IsRecurring = true;
 

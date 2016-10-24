@@ -88,8 +88,8 @@ namespace MoneyFox.DataAccess.Repositories
                     if (payment.IsRecurring)
                     {
                         db.Insert(payment.RecurringPayment);
-                        payment.RecurringPaymentId =
-                            db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
+                        payment.RecurringPayment =
+                            db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First();
                     }
 
                     db.Insert(payment);
