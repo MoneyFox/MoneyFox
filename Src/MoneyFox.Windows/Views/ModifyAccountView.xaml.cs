@@ -36,12 +36,12 @@ namespace MoneyFox.Windows.Views
             if (account != null)
             {
                 viewModel.IsEdit = true;
-                viewModel.SelectedAccountViewModel = account;
+                viewModel.SelectedAccount = account;
             }
             else
             {
                 viewModel.IsEdit = false;
-                viewModel.SelectedAccountViewModel = new AccountViewModel();
+                viewModel.SelectedAccount = new AccountViewModel();
             }
 
             base.OnNavigatedTo(e);

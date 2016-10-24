@@ -34,7 +34,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = true,
-                SelectedAccountViewModel = new AccountViewModel {Id = 3, Name = accountname}
+                SelectedAccount = new AccountViewModel {Id = 3, Name = accountname}
             };
 
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
@@ -78,7 +78,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = false,
-                SelectedAccountViewModel = newAccount
+                SelectedAccount = newAccount
             };
 
             viewmodel.SaveCommand.Execute();
@@ -112,7 +112,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = false,
-                SelectedAccountViewModel = newAccount
+                SelectedAccount = newAccount
             };
 
             viewmodel.SaveCommand.Execute();
@@ -141,7 +141,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = false,
-                SelectedAccountViewModel = account
+                SelectedAccount = account
             };
 
             viewmodel.SaveCommand.Execute();
@@ -165,7 +165,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = false,
-                SelectedAccountViewModel = account
+                SelectedAccount = account
             };
 
             viewmodel.SaveCommand.Execute();
@@ -189,13 +189,13 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
             {
                 IsEdit = true,
-                SelectedAccountViewModel = account
+                SelectedAccount = account
             };
 
-            viewmodel.SelectedAccountViewModel.Name = "foooo";
+            viewmodel.SelectedAccount.Name = "foooo";
             viewmodel.CancelCommand.Execute();
 
-            viewmodel.SelectedAccountViewModel.Name.ShouldBe(name);
+            viewmodel.SelectedAccount.Name.ShouldBe(name);
         }
     }
 }

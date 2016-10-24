@@ -36,7 +36,6 @@ namespace MoneyFox.Business
                 .AsSelf()
                 .SingleInstance();
 
-
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service"))
                 .AsImplementedInterfaces()
@@ -49,13 +48,8 @@ namespace MoneyFox.Business
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Manager"))
-                .Where(x => x.Name != "SettingsManager")
                 .AsImplementedInterfaces()
                 .SingleInstance();
-
-            builder.RegisterType<SettingsManager>()
-                .UsingConstructor(typeof(ISettings))
-                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
