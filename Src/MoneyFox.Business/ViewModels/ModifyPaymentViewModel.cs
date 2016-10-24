@@ -22,7 +22,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
-        private readonly IMvxMessenger messenger;
+        private readonly IBackupManager backupManager;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -42,12 +42,12 @@ namespace MoneyFox.Business.ViewModels
             IDialogService dialogService,
             IPaymentManager paymentManager, 
             ISettingsManager settingsManager, 
-            IMvxMessenger messenger)
+            IMvxMessenger messenger, IBackupManager backupManager)
         {
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
-            this.messenger = messenger;
+            this.backupManager = backupManager;
             this.paymentRepository = paymentRepository;
 
             TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
@@ -177,6 +177,10 @@ namespace MoneyFox.Business.ViewModels
             if (paymentSucceded && accountSucceded)
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
             }
 
             Close(this);

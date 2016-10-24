@@ -15,14 +15,18 @@ namespace MoneyFox.Business.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        private readonly IBackupManager backupManager;
+
         private bool isEdit;
         private AccountViewModel selectedAccount;
 
         public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager,
+            IBackupManager backupManager)
         {
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
+            this.backupManager = backupManager;
             this.accountRepository = accountRepository;
         }
 
@@ -143,6 +147,9 @@ namespace MoneyFox.Business.ViewModels
             if (accountRepository.Save(SelectedAccount))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
                 Close(this);
             }
         }

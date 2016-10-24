@@ -30,7 +30,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var categoryName = "groceries";
 
             var settingsManagerMock = new Mock<ISettingsManager>();
-            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, 
+                new Mock<IDialogService>().Object,
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new CategoryViewModel { Id = 9, Name = categoryName }
@@ -43,7 +46,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void Title_AddCategory_CorrectTitle()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
-            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, 
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = false
             };
@@ -75,7 +81,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
             categoryList.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object,
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categorySecondary
@@ -109,7 +118,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             };
             categoryList.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categorySecondary
@@ -137,7 +149,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 Notes = "Test Note"
             };
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = categoryPrimary
@@ -163,7 +178,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>()).Callback((DateTime x) => localDateSetting = x);
             
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = category
@@ -197,7 +215,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             categoryList.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = categoryPrimary
@@ -219,7 +240,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, new Mock<IDialogService>().Object, settingsManagerMock.Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object,
+                new Mock<IDialogService>().Object, 
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = category
@@ -245,7 +269,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var vm = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object,
                 dialogSetup.Object,
-                settingsManagerMock.Object)
+                settingsManagerMock.Object,
+                new Mock<IBackupManager>().Object)
             { SelectedCategory = new CategoryViewModel() };
 
             // Execute

@@ -39,7 +39,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             viewmodel.Init(type);
 
@@ -72,7 +73,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             //Execute and Assert
             viewmodel.Init(PaymentType.Transfer);
@@ -117,7 +119,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 dialogService, 
                 paymentManagerSetup.Object,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object)
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object)
             {
                 SelectedPayment = selectedPayment
             };
@@ -163,7 +166,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             viewmodel.Init(type, 12);
 
@@ -207,7 +211,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             viewmodel.Init(PaymentType.Income, 12);
 
@@ -241,7 +246,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManager,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             viewmodel.Init(PaymentType.Income);
 
@@ -291,7 +297,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 paymentManagerMock.Object,
                 settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object);
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object);
 
             viewmodel.Init(PaymentType.Income);
             viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel();
@@ -321,7 +328,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object,
                 new Mock<IPaymentManager>().Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IMvxMessenger>().Object)
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object)
             {
                 SelectedPayment = payment
             };
