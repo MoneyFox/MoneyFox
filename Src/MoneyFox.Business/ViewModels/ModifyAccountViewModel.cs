@@ -16,7 +16,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private bool isEdit;
-        private AccountViewModel selectedAccountViewModel;
+        private AccountViewModel selectedAccount;
 
         public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
             ISettingsManager settingsManager)
@@ -66,7 +66,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Returns the Title based on if the view is in edit mode or not.
         /// </summary>
         public string Title => IsEdit
-            ? string.Format(Strings.EditAccountTitle, SelectedAccountViewModel.Name)
+            ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
             : Strings.AddAccountTitle;
 
         /// <summary>
@@ -76,13 +76,13 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(SelectedAccountViewModel.CurrentBalance); }
+            get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
             set
             {
                 double amount;
                 if (double.TryParse(value, out amount))
                 {
-                    SelectedAccountViewModel.CurrentBalance = amount;
+                    SelectedAccount.CurrentBalance = amount;
                 }
                 RaisePropertyChanged();
             }
@@ -91,12 +91,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     The currently selected AccountViewModel
         /// </summary>
-        public AccountViewModel SelectedAccountViewModel
+        public AccountViewModel SelectedAccount
         {
-            get { return selectedAccountViewModel; }
+            get { return selectedAccount; }
             set
             {
-                selectedAccountViewModel = value;
+                selectedAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -107,7 +107,7 @@ namespace MoneyFox.Business.ViewModels
 
             if (!IsEdit)
             {
-                SelectedAccountViewModel = new AccountViewModel();
+                SelectedAccount = new AccountViewModel();
             }
         }
 
@@ -119,14 +119,14 @@ namespace MoneyFox.Business.ViewModels
         public void Init(bool isEdit, int selectedAccountId)
         {
             IsEdit = isEdit;
-            SelectedAccountViewModel = selectedAccountId != 0
+            SelectedAccount = selectedAccountId != 0
                 ? accountRepository.GetList(x => x.Id == selectedAccountId).First()
                 : new AccountViewModel();
         }
 
         private async void SaveAccount()
         {
-            if (string.IsNullOrEmpty(SelectedAccountViewModel.Name))
+            if (string.IsNullOrEmpty(SelectedAccount.Name))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
@@ -134,13 +134,13 @@ namespace MoneyFox.Business.ViewModels
 
             if (!IsEdit &&
                 accountRepository.GetList(
-                    a => string.Equals(a.Name, SelectedAccountViewModel.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
+                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            if (accountRepository.Save(SelectedAccountViewModel))
+            if (accountRepository.Save(SelectedAccount))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
                 Close(this);
@@ -149,7 +149,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void DeleteAccount()
         {
-            if (accountRepository.Delete(SelectedAccountViewModel))
+            if (accountRepository.Delete(SelectedAccount))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
@@ -158,7 +158,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void Cancel()
         {
-            SelectedAccountViewModel = accountRepository.FindById(SelectedAccountViewModel.Id);
+            SelectedAccount = accountRepository.FindById(SelectedAccount.Id);
             Close(this);
         }
     }
