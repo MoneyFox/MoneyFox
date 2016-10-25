@@ -189,32 +189,5 @@ namespace MoneyFox.Shared.Tests.ViewModels
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
-
-        [TestMethod]
-        public void Cancel_SelectedAccountReseted()
-        {
-            string name = "AccountViewModel";
-            var baseAccount = new AccountViewModel { Id = 5, Name = name };
-            var account = new AccountViewModel { Id = 5, Name = name };
-
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(baseAccount);
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object,
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = true,
-                SelectedAccount = account
-            };
-
-            viewmodel.SelectedAccount.Name = "foooo";
-            viewmodel.CancelCommand.Execute();
-
-            viewmodel.SelectedAccount.Name.ShouldBe(name);
-        }
     }
 }

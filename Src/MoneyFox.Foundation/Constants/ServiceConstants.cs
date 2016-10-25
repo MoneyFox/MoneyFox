@@ -26,6 +26,11 @@
         public const string AUTHENTICATION_URL = "https://login.live.com/oauth20_authorize.srf";
 
         /// <summary>
+        ///     Logout url for the OneDrive authentication
+        /// </summary>
+        public const string LOGOUT_URL = "https://login.live.com/oauth20_logout.srf";
+
+        /// <summary>
         ///     The Token URL is used to retrieve a access token in the code flow oauth
         /// </summary>
         public const string TOKEN_URL = "https://login.live.com/oauth20_token.srf";

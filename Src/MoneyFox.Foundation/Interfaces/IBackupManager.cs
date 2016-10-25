@@ -11,7 +11,12 @@ namespace MoneyFox.Foundation.Interfaces
         /// <summary>
         ///     Login user.
         /// </summary>
-        Task Login();
+        Task Login();        
+        
+        /// <summary>
+        ///     Logout user.
+        /// </summary>
+        Task Logout();
 
         /// <summary>
         ///     Checks if there are backups to restore.

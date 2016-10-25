@@ -12,6 +12,11 @@ namespace MoneyFox.Foundation.Interfaces
         Task Login();
 
         /// <summary>
+        ///     Logout user.
+        /// </summary>
+        Task Logout();
+
+        /// <summary>
         ///     Uploads a copy of the current database.
         /// </summary>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>

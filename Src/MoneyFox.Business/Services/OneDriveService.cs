@@ -28,9 +28,20 @@ namespace MoneyFox.Business.Services
 
         private Item BackupFolder { get; set; }
 
+        /// <summary>
+        ///     Login User to OneDrive.
+        /// </summary>
         public async Task Login()
         {
             OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+        }
+
+        /// <summary>
+        ///     Logout User from OneDrive.
+        /// </summary>
+        public async Task Logout()
+        {
+            await oneDriveAuthenticator.LogoutAsync();
         }
 
         /// <summary>

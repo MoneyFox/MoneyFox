@@ -165,7 +165,6 @@ namespace MoneyFox.Business.ViewModels
 
         private void Cancel()
         {
-            SelectedAccount = accountRepository.FindById(SelectedAccount.Id);
             Close(this);
         }
     }
