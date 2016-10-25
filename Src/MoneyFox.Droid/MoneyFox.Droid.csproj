@@ -398,6 +398,7 @@
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Manager\TileManager.cs" />
     <Compile Include="OneDriveAuth\DroidAuthenticationProvider.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

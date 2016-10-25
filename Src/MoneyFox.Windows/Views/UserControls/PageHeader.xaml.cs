@@ -1,7 +1,5 @@
 ﻿using Windows.Foundation;
 using Windows.UI.Xaml;
-using MoneyFox.Business.Helpers;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -21,8 +19,6 @@ namespace MoneyFox.Windows.Views.UserControls
                 AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
                 TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
-
-            GlobalProgressRing.DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
         }
 
         public UIElement HeaderContent

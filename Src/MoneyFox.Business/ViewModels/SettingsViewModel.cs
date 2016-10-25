@@ -4,7 +4,10 @@ namespace MoneyFox.Business.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-        public SettingsViewModel(ISettingsManager settingsManager, IPasswordStorage passwordStorage, ITileManager tileManager, IDialogService dialogService)
+        public SettingsViewModel(ISettingsManager settingsManager,
+            IPasswordStorage passwordStorage,
+            ITileManager tileManager,
+            IDialogService dialogService)
         {
             SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager);
             SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);

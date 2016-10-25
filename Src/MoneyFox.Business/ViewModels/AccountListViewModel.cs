@@ -110,27 +110,32 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
-        private async void Delete(AccountViewModel item)
+        private async void Delete(AccountViewModel accountToDelete)
         {
-            if (item == null)
+            if (accountToDelete == null)
             {
                 return;
             }
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == accountToDelete.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
                     paymentRepository.Delete(payment);
                 }
-                if (accountRepository.Delete(item))
+                if (accountRepository.Delete(accountToDelete))
                 {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
                 }
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
+
+            if (AllAccounts.Contains(accountToDelete))
+            {
+                AllAccounts.Remove(accountToDelete);
+            }
 
             // refresh view when an AccountViewModel is deleted allowing buttons to update 
             // TODO probably a better solution

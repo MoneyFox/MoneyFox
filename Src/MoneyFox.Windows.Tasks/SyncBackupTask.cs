@@ -26,8 +26,8 @@ namespace MoneyFox.Windows.Tasks
                 var autoBackupManager = new AutoBackupManager(
                     new BackupManager(
                         new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(), dbManager, settingsManager),
-                    new GlobalBusyIndicatorState(), settingsManager);
+                        new MvxWindowsCommonFileStore(), dbManager, settingsManager)
+                    ,settingsManager);
 
                 await autoBackupManager.RestoreBackupIfNewer();
                 await autoBackupManager.UploadBackupIfNewer();
