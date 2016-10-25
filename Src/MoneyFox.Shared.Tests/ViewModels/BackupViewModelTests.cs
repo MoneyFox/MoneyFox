@@ -105,7 +105,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var isLoggedIn = false;
             var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupSet(x => x.IsLoggedInToBackupService = It.IsAny<bool>()).Callback(() => isLoggedIn = true);
+            settingsManagerMock.SetupSet(x => x.IsLoggedInToBackupService = It.IsAny<bool>()).Callback((bool val) => isLoggedIn = val);
 
             var logoutCommandCalled = false;
 
@@ -114,11 +114,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
-            vm.LoadedCommand.Execute();
+            vm.LogoutCommand.Execute();
 
             //assert
-            isLoggedIn.ShouldBeFalse();
             logoutCommandCalled.ShouldBeTrue();
+            isLoggedIn.ShouldBeFalse();
         }
     }
 }
