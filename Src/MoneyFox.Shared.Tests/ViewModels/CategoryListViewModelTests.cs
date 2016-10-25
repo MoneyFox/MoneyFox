@@ -21,7 +21,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void Ctor_Default()
+        public void Loaded_PropertiesSet()
         {
             var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.Setup(x => x.GetList(null)).Returns(() => new List<CategoryViewModel>
@@ -30,6 +30,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             });
 
             var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IDialogService>().Object);
+            vm.LoadedCommand.Execute();
+
             vm.Source.ShouldNotBeNull();
         }
     }
