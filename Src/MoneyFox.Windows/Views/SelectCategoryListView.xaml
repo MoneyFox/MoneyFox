@@ -5,8 +5,16 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,6 +45,5 @@
                               Label="add" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-
     </Grid>
 </views:MvxWindowsPage>

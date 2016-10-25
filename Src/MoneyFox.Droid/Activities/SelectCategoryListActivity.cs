@@ -18,6 +18,12 @@ namespace MoneyFox.Droid.Activities
     public class SelectCategoryListActivity : MvxAppCompatActivity<SelectCategoryListViewModel>
         
     {
+        protected override void OnStart()
+        {
+            ViewModel.LoadedCommand.Execute();
+            base.OnStart();
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

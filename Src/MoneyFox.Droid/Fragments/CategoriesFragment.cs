@@ -42,6 +42,12 @@ namespace MoneyFox.Droid.Fragments
             }
         }
 
+        public override void OnStart()
+        {
+            ViewModel.LoadedCommand.Execute();
+            base.OnStart();
+        }
+
         public override bool OnContextItemSelected(IMenuItem item)
         {
             var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
