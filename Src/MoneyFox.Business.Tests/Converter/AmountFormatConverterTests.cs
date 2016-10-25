@@ -19,5 +19,12 @@ namespace MoneyFox.Business.Tests.Converter
             var amount = 30;
             new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
         }
+
+        [Fact]
+        public void Convert_NegativeFloatAmount_ValidString()
+        {
+            var amount = -88.23;
+            new AmountFormatConverter().Convert(amount, null, null, System.Globalization.CultureInfo.CurrentCulture).ShouldBe("-$88.23");
+        }
     }
 }

@@ -52,7 +52,6 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
-    <Compile Include="Helpers\GlobalBusyIndicatorState.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
