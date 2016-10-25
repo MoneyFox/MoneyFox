@@ -5,7 +5,15 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>

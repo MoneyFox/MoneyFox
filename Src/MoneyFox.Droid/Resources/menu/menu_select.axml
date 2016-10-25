@@ -1,6 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:local="http://schemas.android.com/apk/res-auto">
-  <item android:id="@+id/action_add"
+  <item android:id="@+id/action_select"
         android:icon="@drawable/ic_av_timer"
+        android:title="@string/menu_select"
         local:showAsAction="always|withText"/>
 </menu>

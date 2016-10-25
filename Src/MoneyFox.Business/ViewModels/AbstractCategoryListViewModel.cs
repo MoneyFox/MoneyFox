@@ -30,11 +30,15 @@ namespace MoneyFox.Business.ViewModels
         {
             DialogService = dialogService;
             CategoryRepository = categoryRepository;
-
-            Categories = new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList());
-
-            Source = CreateGroup();
         }
+
+        /// <summary>
+        ///     Handle the selection of a CategoryViewModel in the list
+        /// </summary>
+        protected abstract void Selected(CategoryViewModel category);
+
+        #region Properties
+
 
         /// <summary>
         ///     Collection with all categories
@@ -44,9 +48,11 @@ namespace MoneyFox.Business.ViewModels
             get { return categories; }
             set
             {
-                if(categories == value) return;
+                if (categories == value) return;
                 categories = value;
                 RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsCategoriesEmpty));
             }
         }
 
@@ -58,7 +64,7 @@ namespace MoneyFox.Business.ViewModels
             get { return source; }
             set
             {
-                if(source == value) return;
+                if (source == value) return;
                 source = value;
                 RaisePropertyChanged();
             }
@@ -72,12 +78,33 @@ namespace MoneyFox.Business.ViewModels
             get { return selectedCategory; }
             set
             {
-                if(selectedCategory == value) return;
+                if (selectedCategory == value) return;
                 selectedCategory = value;
                 RaisePropertyChanged();
             }
         }
-        
+
+        public bool IsCategoriesEmpty => !Categories?.Any() ?? true;
+
+        /// <summary>
+        ///     Text to search for. Will perform the search when the text changes.
+        /// </summary>
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+                Search();
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
@@ -96,21 +123,34 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxCommand<CategoryViewModel>(CreateNewCategory);
+        public MvxCommand<CategoryViewModel> CreateNewCategoryCommand
+            => new MvxCommand<CategoryViewModel>(CreateNewCategory);
 
-        public bool IsCategoriesEmpty => !Categories.Any();
+        #endregion
 
         /// <summary>
-        ///     Text to search for. Will perform the search when the text changes.
+        ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public string SearchText
+        public void Search()
         {
-            get { return searchText; }
-            set
+            if (!string.IsNullOrEmpty(SearchText))
             {
-                searchText = value;
-                Search();
+                Categories = new ObservableCollection<CategoryViewModel>
+                    (CategoryRepository.GetList(
+                        x => (x.Name != null) && x.Name.ToLower().Contains(searchText.ToLower()))
+                        .OrderBy(x => x.Name));
+            } else
+            {
+                Categories =
+                    new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList().OrderBy(x => x.Name));
             }
+            Source = CreateGroup();
+        }
+
+        private void Loaded()
+        {
+            SearchText = string.Empty;
+            Search();
         }
 
         private void EditCategory(CategoryViewModel category)
@@ -121,30 +161,6 @@ namespace MoneyFox.Business.ViewModels
         private void CreateNewCategory(CategoryViewModel category)
         {
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
-        }
-
-        /// <summary>
-        ///     Handle the selection of a CategoryViewModel in the list
-        /// </summary>
-        protected abstract void Selected(CategoryViewModel category);
-
-        /// <summary>
-        ///     Performs a search with the text in the searchtext property
-        /// </summary>
-        public void Search()
-        {
-            if (!string.IsNullOrEmpty(SearchText))
-            {
-                Categories = new ObservableCollection<CategoryViewModel>
-                (CategoryRepository.GetList(
-                        x => (x.Name != null) && x.Name.ToLower().Contains(searchText.ToLower()))
-                    .OrderBy(x => x.Name));
-            }
-            else
-            {
-                Categories = new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList().OrderBy(x => x.Name));
-            }
-            Source = CreateGroup();
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
@@ -165,6 +181,7 @@ namespace MoneyFox.Business.ViewModels
                 }
 
                 CategoryRepository.Delete(categoryToDelete);
+                Search();
             }
         }
     }

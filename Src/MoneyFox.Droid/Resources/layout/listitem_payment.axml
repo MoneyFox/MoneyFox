@@ -43,18 +43,18 @@
             android:layout_weight="0.9"
             local:MvxBind="Text Category.Name" />
         <ImageView
-            android:src="@drawable/ic_done_black"
-            android:layout_gravity="right"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_weight="0.05"
-            local:MvxBind="Visible IsCleared" />
-        <ImageView
             android:src="@drawable/ic_recurring"
             android:layout_gravity="right"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_weight="0.05"
             local:MvxBind="Visible IsRecurring" />
+      <ImageView
+            android:src="@drawable/ic_done_black"
+            android:layout_gravity="right"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_weight="0.05"
+            local:MvxBind="Visible IsCleared" />
     </LinearLayout>
 </LinearLayout>

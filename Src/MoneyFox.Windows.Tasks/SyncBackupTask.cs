@@ -4,9 +4,9 @@ using MoneyFox.DataAccess;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
+using MoneyFox.DataAccess.Repositories;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -26,8 +26,9 @@ namespace MoneyFox.Windows.Tasks
                 var autoBackupManager = new AutoBackupManager(
                     new BackupManager(
                         new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(), dbManager, settingsManager),
-                    new GlobalBusyIndicatorState(), settingsManager);
+                        new MvxWindowsCommonFileStore(), dbManager, settingsManager,
+                        new PaymentRepository(dbManager))
+                    ,settingsManager);
 
                 await autoBackupManager.RestoreBackupIfNewer();
                 await autoBackupManager.UploadBackupIfNewer();

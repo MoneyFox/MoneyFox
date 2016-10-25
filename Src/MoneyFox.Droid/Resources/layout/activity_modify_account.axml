@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text SelectedAccount.Iban"
-                    local:MvxLang="Hint IbanLabel"  />
+                    local:MvxLang="Hint IbanLabel" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    local:MvxLang="Hint CurrentBalanceLabel"  />
+                    local:MvxLang="Hint CurrentBalanceLabel" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text SelectedAccount.Note"
-                    local:MvxLang="Hint NoteLabel"  />
+                    local:MvxLang="Hint NoteLabel" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </LinearLayout>

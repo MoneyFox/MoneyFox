@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
     <NuGetPackageImportStamp>
@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -101,6 +101,10 @@
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FloatingActionButton-Xamarin, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FAB.XamarinAndroid.1.6.4.0\lib\MonoAndroid50\FloatingActionButton-Xamarin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HockeySDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HockeySDK.Xamarin.4.1.0\lib\MonoAndroid403\HockeySDK.dll</HintPath>
       <Private>True</Private>
@@ -110,12 +114,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Graph.Core, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Graph.Core.1.1.1\lib\portable45-net45+win8+wpa81\Microsoft.Graph.Core.dll</HintPath>
+    <Reference Include="Microsoft.Graph.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Graph.Core.1.2.1\lib\MonoAndroid10\Microsoft.Graph.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.OneDrive.Sdk, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OneDriveSDK.2.0.3\lib\portable-net45+netcore45+wpa81+win8\Microsoft.OneDrive.Sdk.dll</HintPath>
+      <HintPath>..\packages\Microsoft.OneDriveSDK.2.0.4\lib\portable-net45+netcore45+wpa81+win8\Microsoft.OneDrive.Sdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android" />
@@ -383,6 +387,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
+    <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="DroidModule.cs" />
@@ -398,6 +403,7 @@
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Manager\TileManager.cs" />
     <Compile Include="OneDriveAuth\DroidAuthenticationProvider.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -436,7 +442,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_splash_screen.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
-    <AndroidResource Include="Resources\layout\fragment_account_list.axml" />
+    <AndroidResource Include="Resources\layout\fragment_account_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_account.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -642,7 +650,9 @@
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

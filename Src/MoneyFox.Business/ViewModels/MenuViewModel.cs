@@ -8,6 +8,7 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class MenuViewModel : BaseViewModel
     {
+        // used for IOS Binding
         public MvxCommand ShowAccountListCommand
             => new MvxCommand(() => ShowViewModelByType(typeof(AccountListViewModel)));
 

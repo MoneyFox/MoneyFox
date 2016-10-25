@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -13,18 +12,16 @@ namespace MoneyFox.Business.Manager
     public class AutoBackupManager : IAutobackupManager
     {
         private readonly IBackupManager backupManager;
-        private readonly GlobalBusyIndicatorState globalBusyIndicatorState;
         private readonly ISettingsManager settingsManager;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
-        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState,
-            ISettingsManager settingsManager)
+        /// <param name="settingsManager">Settings manager to access the settings.</param>
+        public AutoBackupManager(IBackupManager backupManager, ISettingsManager settingsManager)
         {
             this.backupManager = backupManager;
-            this.globalBusyIndicatorState = globalBusyIndicatorState;
             this.settingsManager = settingsManager;
         }
 
@@ -40,7 +37,6 @@ namespace MoneyFox.Business.Manager
                     return;
                 }
 
-                globalBusyIndicatorState.IsActive = true;
 
                 if (await backupManager.GetBackupDate() < settingsManager.LastDatabaseUpdate)
                 {
@@ -51,7 +47,6 @@ namespace MoneyFox.Business.Manager
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
-            globalBusyIndicatorState.IsActive = false;
         }
 
         /// <summary>
@@ -61,12 +56,7 @@ namespace MoneyFox.Business.Manager
         {
             try
             {
-                globalBusyIndicatorState.IsActive = true;
-                if (!settingsManager.IsBackupAutouploadEnabled)
-                {
-                    globalBusyIndicatorState.IsActive = false;
-                    return;
-                }
+                if (!settingsManager.IsBackupAutouploadEnabled) return;
 
                 var date = await backupManager.GetBackupDate();
                 if (date > settingsManager.LastDatabaseUpdate)
@@ -78,7 +68,6 @@ namespace MoneyFox.Business.Manager
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
-            globalBusyIndicatorState.IsActive = false;
         }
     }
 }

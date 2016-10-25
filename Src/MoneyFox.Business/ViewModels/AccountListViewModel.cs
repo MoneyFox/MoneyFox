@@ -11,13 +11,14 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class AccountListViewModel : BaseViewModel
+    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
+
         private ObservableCollection<AccountViewModel> allAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
@@ -33,9 +34,19 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
         }
 
+        #region Properties
+
         public IBalanceViewModel BalanceViewModel { get; }
+
+        public IViewActionViewModel ViewActionViewModel { get; }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     All existing accounts.
@@ -57,6 +68,10 @@ namespace MoneyFox.Business.ViewModels
         ///     Returns if the ChargedAccounts Collection is emtpy or not.
         /// </summary>
         public bool IsAllAccountsEmpty => !AllAccounts?.Any() ?? true;
+
+        #endregion
+
+        #region Commands
 
         /// <summary>
         ///     Prepares the AccountViewModel list
@@ -83,11 +98,8 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
-
+        #endregion
+        
         private void EditAccount(AccountViewModel accountViewModel)
         {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = accountViewModel.Id});
@@ -110,36 +122,37 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
-        private async void Delete(AccountViewModel item)
+        private async void Delete(AccountViewModel accountToDelete)
         {
-            if (item == null)
+            if (accountToDelete == null)
             {
                 return;
             }
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == item.Id);
+                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == accountToDelete.Id);
 
                 foreach (var payment in paymentsToDelete.ToList())
                 {
                     paymentRepository.Delete(payment);
                 }
-                if (accountRepository.Delete(item))
+                if (accountRepository.Delete(accountToDelete))
                 {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
                 }
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            // refresh view when an AccountViewModel is deleted allowing buttons to update 
-            // TODO probably a better solution
-            ShowViewModel<MainViewModel>();
+            if (AllAccounts.Contains(accountToDelete))
+            {
+                AllAccounts.Remove(accountToDelete);
+            }
         }
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = 0});
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = false, selectedAccountId = 0});
         }
     }
 }

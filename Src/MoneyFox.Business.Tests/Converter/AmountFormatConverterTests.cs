@@ -6,17 +6,11 @@ namespace MoneyFox.Business.Tests.Converter
 {
     public class AmountFormatConverterTests
     {
-        [Fact]
-        public void Convert_FloatAmount_ValidString()
+        [Theory]
+        [InlineData(123.45)]
+        [InlineData(30)]
+        public void Convert_FloatAmount_ValidString(double amount)
         {
-            var amount = 123.45;
-            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
-        }
-
-        [Fact]
-        public void ConvertBack_Input_EqualsInput()
-        {
-            var amount = 30;
             new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
         }
     }

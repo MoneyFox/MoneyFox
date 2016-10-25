@@ -1,11 +1,12 @@
 ﻿{
-  "dependencies": {
-    "Moq": "4.5.23",
-    "MvvmCross.Tests": "4.3.0",
-    "xunit": "2.1.0",
-    "xunit.runner.visualstudio": "2.1.0",
-    "Xunit.Should.Extension": "1.0.4"
-  },
+    "dependencies": {
+        "AutoFixture": "3.50.2",
+        "Moq": "4.5.23",
+        "MvvmCross.Tests": "4.3.0",
+        "xunit": "2.1.0",
+        "xunit.runner.visualstudio": "2.1.0",
+        "Xunit.Should.Extension": "1.0.4"
+    },
   "frameworks": {
     ".NETFramework,Version=v4.5.2": {}
   },

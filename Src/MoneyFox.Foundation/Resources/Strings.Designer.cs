@@ -153,7 +153,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no AccountViewModels. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no Accounts. Add one by tapping on the plus button at the bottom..
         /// </summary>
         public static string AccountListViewModel_EmptyListPlaceholderLabel {
             get {
@@ -171,7 +171,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select an AccountViewModel..
+        ///   Looks up a localized string similar to Please select an Account..
         /// </summary>
         public static string AccountRequiredMessage {
             get {
@@ -180,7 +180,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AccountViewModels.
+        ///   Looks up a localized string similar to Accounts.
         /// </summary>
         public static string AccountsLabel {
             get {
@@ -189,7 +189,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add AccountViewModel.
+        ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountLabel {
             get {
@@ -198,7 +198,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add AccountViewModel.
+        ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountTitle {
             get {
@@ -207,7 +207,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add CategoryViewModel .
+        ///   Looks up a localized string similar to Add Category.
         /// </summary>
         public static string AddCategoryTitle {
             get {
@@ -315,7 +315,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your data will be saved to your OneDrive AccountViewModel. You’ll find them in a new folder called “MoneyFoxBackupManager”..
+        ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string BackupViewModel_CreateBackupInformationLabel {
             get {
@@ -451,7 +451,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CategoryViewModel Spreading.
+        ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
         public static string CategorySpreadingLabel {
             get {
@@ -460,7 +460,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary of the categories with a PaymentViewModel..
+        ///   Looks up a localized string similar to Summary of the categories with a Payment..
         /// </summary>
         public static string CategorySummaryDescription {
             get {
@@ -469,7 +469,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CategoryViewModel Summary.
+        ///   Looks up a localized string similar to Category Summary.
         /// </summary>
         public static string CategorySummaryLabel {
             get {
@@ -478,7 +478,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This PaymentViewModel is recurring. Do you want to update the future PaymentViewModels aswell or just this occurence?.
+        ///   Looks up a localized string similar to This Payment is recurring. Do you want to update the future Payments aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
@@ -496,7 +496,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charged AccountViewModel.
+        ///   Looks up a localized string similar to Charged Account.
         /// </summary>
         public static string ChargedAccountLabel {
             get {
@@ -541,7 +541,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this AccountViewModel?.
+        ///   Looks up a localized string similar to Do you really want to delete this Account?.
         /// </summary>
         public static string DeleteAccountConfirmationMessage {
             get {
@@ -550,7 +550,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this CategoryViewModel?.
+        ///   Looks up a localized string similar to Do you really want to delete this Category?.
         /// </summary>
         public static string DeleteCategoryConfirmationMessage {
             get {
@@ -568,7 +568,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this PaymentViewModel?.
+        ///   Looks up a localized string similar to Do you really want to delete this Payment?.
         /// </summary>
         public static string DeletePaymentConfirmationMessage {
             get {
@@ -604,7 +604,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An AccountViewModel with that name already exists..
+        ///   Looks up a localized string similar to An Account with that name already exists..
         /// </summary>
         public static string DuplicateAccountMessage {
             get {
@@ -613,7 +613,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A CategoryViewModel with that name already exists..
+        ///   Looks up a localized string similar to A Category with that name already exists..
         /// </summary>
         public static string DuplicateCategoryMessage {
             get {
@@ -640,7 +640,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit CategoryViewModel.
+        ///   Looks up a localized string similar to Edit Category.
         /// </summary>
         public static string EditCategoryTitle {
             get {
@@ -802,7 +802,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The enddate of a recurring PaymentViewModel has to be in the future. Please check your input..
+        ///   Looks up a localized string similar to The enddate of a recurring Payment has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {
             get {
@@ -910,7 +910,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AccountViewModels.
+        ///   Looks up a localized string similar to Accounts.
         /// </summary>
         public static string MenuViewModel_AccountsLabel {
             get {
@@ -991,7 +991,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AccountViewModel Name.
+        ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string ModifyAccountViewModel_AccountNameLabel {
             get {
@@ -1054,7 +1054,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CategoryViewModel.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string ModifyPaymentViewModel_CategoryLabel {
             get {
@@ -1261,7 +1261,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no PaymentViewModels. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button at the bottom..
         /// </summary>
         public static string PaymentListViewModel_EmptyListPlaceholderLabel {
             get {
@@ -1487,7 +1487,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Target AccountViewModel.
+        ///   Looks up a localized string similar to Target Account.
         /// </summary>
         public static string TargetAccountLabel {
             get {

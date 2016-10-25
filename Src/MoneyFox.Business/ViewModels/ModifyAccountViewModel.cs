@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.DataModels;
@@ -18,6 +19,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
 
         private bool isEdit;
+        private double amount;
         private AccountViewModel selectedAccount;
 
         public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
@@ -80,14 +82,18 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
+            get { return Utilities.FormatLargeNumbers(amount); }
             set
             {
-                double amount;
-                if (double.TryParse(value, out amount))
+                // we replace the separator char to ensure that it works in all regions
+                var amountstring = value.Replace(',', '.');
+
+                double convertedValue;
+                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
                 {
-                    SelectedAccount.CurrentBalance = amount;
+                    amount = convertedValue;
                 }
+
                 RaisePropertyChanged();
             }
         }
@@ -111,7 +117,12 @@ namespace MoneyFox.Business.ViewModels
 
             if (!IsEdit)
             {
+                amount = 0;
                 SelectedAccount = new AccountViewModel();
+            }
+            else
+            {
+                amount = SelectedAccount.CurrentBalance;
             }
         }
 
@@ -136,6 +147,8 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
+            SelectedAccount.CurrentBalance = amount;
+
             if (!IsEdit &&
                 accountRepository.GetList(
                     a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
@@ -159,6 +172,10 @@ namespace MoneyFox.Business.ViewModels
             if (accountRepository.Delete(SelectedAccount))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
+
             }
             Close(this);
         }

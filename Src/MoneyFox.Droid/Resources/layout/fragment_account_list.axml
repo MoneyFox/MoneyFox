@@ -34,11 +34,47 @@
         android:layout_margin="6dp"
         local:MvxBind="Visible IsAllAccountsEmpty"
         local:MvxLang="Text EmptyListPlaceholderLabel" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_create_item"
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu_add_element"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add" />
+        android:layout_margin="@dimen/fab_margin">
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            local:fab_colorNormal="@color/colorPrimaryDark"
+            local:fab_size="mini"
+            local:fab_label="@string/fab_add_account"
+            local:MvxBind="Click ViewActionViewModel.GoToAddAccountCommand" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            local:fab_colorNormal="@color/colorPrimaryDark"
+            local:fab_size="mini"
+            local:fab_label="@string/fab_add_income"
+            local:MvxBind="Click GoToAddIncomeCommand" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            local:fab_colorNormal="@color/colorPrimaryDark"
+            local:fab_size="mini"
+            local:fab_label="@string/fab_add_expense"
+            local:MvxBind="Click ViewActionViewModel.GoToAddExpenseCommand" />
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            local:fab_colorNormal="@color/colorPrimaryDark"
+            local:fab_size="mini"
+            local:fab_label="@string/fab_add_transfer"
+            local:MvxBind="Click ViewActionViewModel.GoToAddTransferCommand" />
+    </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>
