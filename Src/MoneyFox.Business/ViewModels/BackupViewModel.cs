@@ -40,6 +40,8 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public MvxCommand LoginCommand => new MvxCommand(Login);
 
+        public MvxCommand LogoutCommand => new MvxCommand(Logout);
+
         /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
@@ -123,6 +125,13 @@ namespace MoneyFox.Business.ViewModels
             settingsManager.IsLoggedInToBackupService = true;
             RaisePropertyChanged(nameof(IsLoggedIn));
             Loaded();
+        }
+
+        private void Logout()
+        {
+            backupManager.Logout();
+            settingsManager.IsLoggedInToBackupService = false;
+            RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
         private async void CreateBackup()

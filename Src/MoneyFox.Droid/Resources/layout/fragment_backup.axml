@@ -18,6 +18,13 @@
             android:layout_marginTop="7dp"
             local:MvxBind="Click LoginCommand; Visibility InvertedVisibility(IsLoggedIn)"
             local:MvxLang="Text LoginLabel"/>
+      <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            local:MvxBind="Click LogoutCommand; Visibility Visibility(IsLoggedIn)"
+            local:MvxLang="Text LogoutLabel"/>
         <TextView
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"

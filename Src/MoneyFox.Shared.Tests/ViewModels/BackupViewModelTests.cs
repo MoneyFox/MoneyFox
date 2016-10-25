@@ -96,5 +96,29 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.BackupAvailable.ShouldBeTrue();
             vm.BackupLastModified.ShouldBe(returnDate);
         }
+
+        [TestMethod]
+        public void Logout_PropertiesSet()
+        {
+            // Setup
+            var connectivitySetup = new Mock<IConnectivity>();
+
+            var isLoggedIn = false;
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupSet(x => x.IsLoggedInToBackupService = It.IsAny<bool>()).Callback((bool val) => isLoggedIn = val);
+
+            var logoutCommandCalled = false;
+
+            var backupManagerSetup = new Mock<IBackupManager>();
+            backupManagerSetup.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true);
+
+            //execute
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
+            vm.LogoutCommand.Execute();
+
+            //assert
+            logoutCommandCalled.ShouldBeTrue();
+            isLoggedIn.ShouldBeFalse();
+        }
     }
 }

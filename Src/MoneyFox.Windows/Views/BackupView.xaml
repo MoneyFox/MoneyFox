@@ -45,6 +45,11 @@
                     Visibility="{Binding IsLoggedIn,
                                          Converter={StaticResource BooleanVisibilityConverter},
                                          ConverterParameter=revert}" />
+            <Button x:Uid="Logout"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding LogoutCommand}"
+                    Visibility="{Binding IsLoggedIn,
+                                         Converter={StaticResource BooleanVisibilityConverter}}" />
             <TextBlock x:Uid="BackupInformation"
                        Margin="-5,12,0,7"
                        Text="BackupInformation"
