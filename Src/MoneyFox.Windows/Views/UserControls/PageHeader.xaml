@@ -24,14 +24,5 @@
                               VerticalAlignment="{x:Bind VerticalContentAlignment}"
                               Content="{x:Bind HeaderContent}" />
         </Grid>
-        <ProgressRing x:Name="GlobalProgressRing"
-                      Grid.Column="1"
-                      Width="20"
-                      Height="20"
-                      Margin="15"
-                      Background="Transparent"
-                      IsActive="{Binding IsActive,
-                                         Mode=OneWay,
-                                         FallbackValue=false}" />
     </Grid>
 </UserControl>

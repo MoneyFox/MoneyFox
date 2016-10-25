@@ -1,8 +1,5 @@
 ﻿using Autofac;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Business.Authentication;
-using MoneyFox.Business.Helpers;
-using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -17,7 +14,6 @@ namespace MoneyFox.Business
         {
             builder.RegisterModule<DataAccessModule>();
 
-            builder.RegisterType<GlobalBusyIndicatorState>();
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
             builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
 
