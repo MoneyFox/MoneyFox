@@ -31,7 +31,7 @@ namespace MoneyFox.Droid.Activities
             Strings.AddTransferLabel
         };
 
-        private MvxExpandableListView PaymentExpandable;
+        private MvxExpandableListView paymentExpandable;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -51,9 +51,12 @@ namespace MoneyFox.Droid.Activities
                 builder.Show();
             };
 
-            PaymentExpandable = FindViewById<MvxExpandableListView>(Resource.Id.expandable_payment_list);
-            PaymentExpandable.ExpandGroup(0);
-            RegisterForContextMenu(PaymentExpandable);
+            paymentExpandable = FindViewById<MvxExpandableListView>(Resource.Id.expandable_payment_list);
+            if (paymentExpandable.Count > 0)
+            {
+                paymentExpandable.ExpandGroup(0);
+            }
+            RegisterForContextMenu(paymentExpandable);
 
             LoadBalancePanel();
             Title = ViewModel.Title;

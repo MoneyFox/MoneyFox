@@ -21,6 +21,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
 
@@ -49,9 +50,7 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
             this.paymentRepository = paymentRepository;
-
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
+            this.accountRepository = accountRepository;
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
@@ -78,6 +77,9 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="paymentId">The id of the PaymentViewModel to edit.</param>
         public void Init(PaymentType type, int paymentId = 0)
         {
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
+
             if (paymentId == 0)
             {
                 IsEdit = false;
@@ -434,12 +436,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
+        public ObservableCollection<AccountViewModel> ChargedAccounts { get; private set; }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts { get; }
+        public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
 
         /// <summary>
         ///     Returns the Title for the page
