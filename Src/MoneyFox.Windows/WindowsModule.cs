@@ -5,7 +5,7 @@ using MoneyFox.Windows.Services;
 
 namespace MoneyFox.Windows
 {
-    class WindowsModule : Module
+    public class WindowsModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
