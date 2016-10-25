@@ -312,32 +312,5 @@ namespace MoneyFox.Business.Tests.ViewModels
             testPayment.RecurringPayment.ShouldNotBeNull();
             testPayment.RecurringPayment.Recurrence.ShouldBe(recurrence);
         }
-
-        [Fact]
-        public void Cancel_SelectedPaymentReseted()
-        {
-            double amount = 99;
-            var basePayment = new PaymentViewModel { Id = 5, Amount = amount };
-            var payment = new PaymentViewModel { Id = 5, Amount = amount };
-
-            var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(basePayment);
-
-            var viewmodel = new ModifyPaymentViewModel(paymentRepositorySetup.Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IDialogService>().Object,
-                new Mock<IPaymentManager>().Object,
-                new Mock<ISettingsManager>().Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object)
-            {
-                SelectedPayment = payment
-            };
-
-            viewmodel.SelectedPayment.Amount = 7777;
-            viewmodel.CancelCommand.Execute();
-
-            viewmodel.SelectedPayment.Amount.ShouldBe(amount);
-        }
     }
 }
