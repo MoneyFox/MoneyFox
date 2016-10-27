@@ -334,9 +334,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Übersicht Zahlungsaufträge</value>
-  </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Statistik auswählen</value>
   </data>
@@ -400,5 +397,8 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Um alle Beiträge zu sehen wechsle zu GitHub:</value>
+  </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Backup manuell hoch- und herunterladen</value>
   </data>
 </root>
