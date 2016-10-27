@@ -108,9 +108,14 @@ namespace MoneyFox.Business.ViewModels
 
         private async void Loaded()
         {
-            if (!connectivity.IsConnected || !IsLoggedIn)
+            if (!IsLoggedIn)
             {
                 return;
+            }
+
+            if (!connectivity.IsConnected)
+            {
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
 
             IsLoadingBackupAvailability = true;
@@ -119,9 +124,14 @@ namespace MoneyFox.Business.ViewModels
             IsLoadingBackupAvailability = false;
         }
 
-        private void Login()
+        private async void Login()
         {
-            backupManager.Login();
+            if (!connectivity.IsConnected)
+            {
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            }
+
+            await backupManager.Login();
             settingsManager.IsLoggedInToBackupService = true;
             RaisePropertyChanged(nameof(IsLoggedIn));
             Loaded();
