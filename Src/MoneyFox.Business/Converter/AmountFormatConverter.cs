@@ -9,7 +9,13 @@ namespace MoneyFox.Business.Converter
     /// </summary>
     public class AmountFormatConverter : IMvxValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => $"{value:C2}";
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double currencyValue = (double)value;
+            NumberFormatInfo number = culture.NumberFormat;
+            number.CurrencyNegativePattern = 1;                     // formats negative values to have the "-" symbol in front of its culture
+            return currencyValue.ToString("C", number);
+        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value;
     }
