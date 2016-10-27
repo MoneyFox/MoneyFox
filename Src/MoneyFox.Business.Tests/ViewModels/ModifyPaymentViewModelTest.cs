@@ -353,8 +353,10 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedPayment = testPayment,
             };
 
+            // Execute
             viewmodel.AmountString = amount;
 
+            // Assert
             viewmodel.AmountString.ShouldBe(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
         }
     }

@@ -61,6 +61,7 @@
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
