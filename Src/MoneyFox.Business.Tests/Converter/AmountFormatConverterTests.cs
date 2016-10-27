@@ -6,11 +6,12 @@ namespace MoneyFox.Business.Tests.Converter
 {
     public class AmountFormatConverterTests
     {
+
         [Fact]
-        public void Convert_FloatAmount_ValidString()
+        public void Convert_FloatAmmount_ValidString()
         {
             var amount = 123.45;
-            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
+            new AmountFormatConverter().Convert(amount, null, null, System.Globalization.CultureInfo.CurrentCulture).ShouldBe(amount.ToString("C"));
         }
 
         [Fact]
