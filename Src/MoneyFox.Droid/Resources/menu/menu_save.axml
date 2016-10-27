@@ -2,5 +2,6 @@
       xmlns:local="http://schemas.android.com/apk/res-auto">
   <item android:id="@+id/action_save"
         android:icon="@drawable/ic_save"
+        android:title="@string/menu_save"
         local:showAsAction="always" />
 </menu>

@@ -136,7 +136,7 @@
     <value>Adicionar renda</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Adicionar despesa</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Adicionar transferência</value>
@@ -169,7 +169,7 @@
     <value>Você realmente quer deletar esta conta?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Você realmente quer apagar esta categoria?</value>
+    <value>Você realmente quer deletar esta categoria?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Apagar</value>
@@ -295,13 +295,13 @@
     <value>Adicionar renda</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Adicionar despesa</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Adicionar transferência</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>Editar {0}</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>A senha e a confirmação da senha não correspondem. Por favor, verifique sua entrada.</value>
@@ -325,10 +325,10 @@
     <value>Adicionar</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>CategoryViewModel Summary</value>
+    <value>Resumo de categoria</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>CategoryViewModel Spreading</value>
+    <value>Propagação da categoria</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Conta carregada</value>
@@ -374,57 +374,240 @@ Você deseja ir à loja para avaliar?</value>
     <value>Resumo das categorias com um pagamento.</value>
   </data>
   <data name="ExpenseHistoryLabel" xml:space="preserve">
-    <value>Expense History</value>
+    <value>Histórico de despesas</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>Mostra uma comparação mês a mês ao longo de suas despesas totais para o intervalo de tempo selecionado.</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add AccountViewModel</value>
+    <value>Adicionar Conta</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
-    <value>Choose</value>
+    <value>Escolha</value>
   </data>
   <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully created</value>
+    <value>'{0}' foi criado com êxito</value>
   </data>
   <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully modified</value>
+    <value>'{0}' foi modificado com sucesso</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Adicionar despesa</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>Adicionar a renda</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>Adicionar transferência</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>An error occured while saving the item.</value>
+    <value>Ocorreu um erro ao salvar o item.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
-    <value>An error occured while saving the item.</value>
+    <value>Ocorreu um erro ao salvar o item.</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Error on delete</value>
+    <value>Erro ao deletar</value>
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
-    <value>Error on save</value>
+    <value>Erro ao salvar</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Choose Categorie</value>
+    <value>Escolha a categoria</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Você não está conectado à internet. Por favor, verifique sua conexão e tente novamente.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>Sem conexão com a Internet</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
-    <value>General</value>
+    <value>Geral</value>
+  </data>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>Uma conta com esse nome já existe.</value>
+  </data>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>Uma categoria com esse nome já existe.</value>
+  </data>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Nome já usado</value>
+  </data>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
+  <data name="AuthenticationFailedMessage" xml:space="preserve">
+    <value>Falha na autenticação</value>
+  </data>
+  <data name="SomethingWentWrongTitle" xml:space="preserve">
+    <value>Algo deu errado...</value>
+  </data>
+  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
+    <value>Contato</value>
+  </data>
+  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
+    <value>Para ver todas as contribuições vá ao GitHub:</value>
+  </data>
+  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
+    <value>O ícone do aplicativo foi criado por:</value>
+  </data>
+  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
+    <value>Este é um projeto open-source – e nós adoraríamos trabalhar com você! Sinta-se livre para contribuir. Fique à vontade para visitar o repositório:</value>
+  </data>
+  <data name="AboutViewModel.RateLabel" xml:space="preserve">
+    <value>Classifique-nos!</value>
+  </data>
+  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
+    <value>Há algo não devidamente traduzido ou não completamente traduzido? Ajude-nos! Vá ao Crowdin e ajude a melhorar o Money Fox:</value>
+  </data>
+  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
+    <value>Bem-vindo(a)!</value>
+  </data>
+  <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>Não há nenhuma conta. Clique no botão "mais" na parte inferior.</value>
+  </data>
+  <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
+    <value>Seus dados serão salvos em sua conta OneDrive. Você vai encontrá-los em uma nova pasta chamada "MoneyFoxBackupManager".</value>
+  </data>
+  <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
+    <value>Criar backup</value>
+  </data>
+  <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
+    <value>Último backup criado em:</value>
+  </data>
+  <data name="BackupViewModel.LoginLabel" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
+    <value>Baixe o backup de banco de dados inserido anterior e substitua seus dados locais com ele. Aviso: Alterações locais feitas enquanto isso estaremos perdidos.</value>
+  </data>
+  <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
+    <value>Recuperar backup</value>
+  </data>
+  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
+    <value>Nome da conta</value>
+  </data>
+  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
+    <value>Balanço atual</value>
+  </data>
+  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
+    <value>Iban</value>
+  </data>
+  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
+    <value>Nome da categoria</value>
+  </data>
+  <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
+    <value>Montante</value>
+  </data>
+  <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
+    <value>Não tem fim</value>
+  </data>
+  <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
+    <value>É recorrente</value>
+  </data>
+  <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>Não há pagamentos. Clique no botão "mais" na parte inferior.</value>
+  </data>
+  <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
+    <value>Sequência de pesquisa</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
+    <value>Concluir</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
+    <value>Data Final</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
+    <value>Data de Início</value>
+  </data>
+  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>A categoria não existe. Clique sobre o "mais" abaixo.</value>
+  </data>
+  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
+    <value>Sequência de pesquisa</value>
+  </data>
+  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
+    <value>Uma maneira de fazer orçamento fácil.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
+    <value>Se você ativar essa configuração após todas as mudanças no banco de dados, um backup é realizado no OneDrive. Se você iniciar a aplicação, ela também checará se existe novos backups e restaurá-los.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
+    <value>Fazer upload e download dos backups automaticamente</value>
+  </data>
+  <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
+    <value>Concluir</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
+    <value>Proteção de senha</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
+    <value>Confirmação de senha</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="MenuViewModel.AddLabel" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
+    <value>Contas</value>
+  </data>
+  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
+    <value>Cópia de segurança</value>
+  </data>
+  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
+    <value>Categorias</value>
+  </data>
+  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
+    <value>Estatísticas</value>
+  </data>
+  <data name="DrawerCloseLabel" xml:space="preserve">
+    <value>Drawer Close</value>
+  </data>
+  <data name="DrawerOpenLabel" xml:space="preserve">
+    <value>Drawer Open</value>
   </data>
 </root>

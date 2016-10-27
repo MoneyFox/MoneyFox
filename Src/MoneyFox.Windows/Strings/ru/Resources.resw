@@ -334,9 +334,6 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Дата начала</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Обзор периодических платежей</value>
-  </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Выбрать статистику</value>
   </data>
@@ -399,5 +396,8 @@
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Чтобы увидеть все взносы посетите нас в GitHub:</value>
+  </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
   </data>
 </root>

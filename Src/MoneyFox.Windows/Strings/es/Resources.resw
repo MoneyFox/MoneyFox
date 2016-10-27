@@ -142,7 +142,7 @@
     <value>Añadir gastos</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Agregar transferencia</value>
+    <value>Añadir transferencia</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
     <value>Sus datos se guardarán en tu cuenta de OneDrive. Usted los encontrará en una nueva carpeta llamada "MoneyFoxBackupManager".</value>
@@ -160,7 +160,7 @@
     <value>Categorías</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Resumen de la categoría</value>
+    <value>Resumen por categoría</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Contacto:</value>
@@ -202,7 +202,7 @@
     <value>Configuración</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Que se separa</value>
+    <value>Separar</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
     <value>Tiles</value>
@@ -333,9 +333,6 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Fecha de inicio</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Resumen de pago recurrente</value>
-  </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Seleccionar estadística</value>
   </data>
@@ -355,10 +352,10 @@
     <value>No hay ninguna cuenta. Agregar una pulsando en los tres puntos en la parte inferior.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>Hay no hay categorías. Agregue uno pulsando sobre el símbolo de plus en la parte inferior.</value>
+    <value>No hay categorías. Agregue una pulsando sobre el símbolo de mas en la parte inferior.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>No hay ningún pago. Agregar una pulsando en uno de los tres símbolos en la parte inferior.</value>
+    <value>No hay ningún pago. Agregar uno pulsando en uno de los tres símbolos en la parte inferior.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>Usted puede cambiar entre el tema oscuro y el claro. Para aplicar estos cambios reinicie la aplicación.</value>
@@ -370,7 +367,7 @@
     <value>Si activa esta opción después de cada cambio en la base de datos se hace una copia de seguridad en OneDrive. También si ejecutas la aplicación que compruebe si hay nuevas copias de seguridad y restaurar si es así.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>¿Hay algo mal traducido o no traducido del todo? ¡Ayúdanos! Dirígete a crowdin y ayuda a mejorar el Money Fox:</value>
+    <value>¿Hay algo mal traducido o no traducido del todo? ¡Ayúdanos! Dirígete a crowdin y ayuda a mejorar Money Fox:</value>
   </data>
   <data name="CancelLabel.Label" xml:space="preserve">
     <value>Cancelar</value>
@@ -379,7 +376,7 @@
     <value>Hecho</value>
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
-    <value>Saldo actual</value>
+    <value>Saldo</value>
   </data>
   <data name="Logout.Content" xml:space="preserve">
     <value>Cerrar sesión</value>
@@ -388,15 +385,18 @@
     <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Copia de seguridad manualmente</value>
+    <value>Copia de seguridad manual</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
-    <value>Copia de seguridad automáticamente</value>
+    <value>Copia de seguridad automática</value>
   </data>
   <data name="DesignerContribution.Text" xml:space="preserve">
     <value>El icono de la aplicación fue creado por:</value>
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Para ver todas los contribuciones diríjase a GitHub:</value>
+  </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
   </data>
 </root>

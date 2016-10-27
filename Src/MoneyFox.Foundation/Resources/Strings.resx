@@ -124,13 +124,13 @@
     <value>About</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an AccountViewModel.</value>
+    <value>Please select an Account.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>AccountViewModels</value>
+    <value>Accounts</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add AccountViewModel</value>
+    <value>Add Account</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>Add Income</value>
@@ -154,7 +154,7 @@
     <value>Cashflow</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>This PaymentViewModel is recurring. Do you want to update the future PaymentViewModels aswell or just this occurence?</value>
+    <value>This Payment is recurring. Do you want to update the future Payments aswell or just this occurence?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>
@@ -166,10 +166,10 @@
     <value>Daily without weekend</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this AccountViewModel?</value>
+    <value>Do you really want to delete this Account?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this CategoryViewModel?</value>
+    <value>Do you really want to delete this Category?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Delete</value>
@@ -184,7 +184,7 @@
     <value>Delete?</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this PaymentViewModel?</value>
+    <value>Do you really want to delete this Payment?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Edit</value>
@@ -325,19 +325,19 @@
     <value>Add</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>CategoryViewModel Summary</value>
+    <value>Category Summary</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>CategoryViewModel Spreading</value>
+    <value>Category Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged AccountViewModel</value>
+    <value>Charged Account</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target AccountViewModel</value>
+    <value>Target Account</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring PaymentViewModel has to be in the future. Please check your input.</value>
+    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid End Date</value>
@@ -356,10 +356,10 @@ Do you want to go the the store to rate?</value>
     <value>Biweekly</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add CategoryViewModel </value>
+    <value>Add Category</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit CategoryViewModel</value>
+    <value>Edit Category</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
     <value>Categories</value>
@@ -371,7 +371,7 @@ Do you want to go the the store to rate?</value>
     <value>Spreading of the expenses to the categories.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a PaymentViewModel.</value>
+    <value>Summary of the categories with a Payment.</value>
   </data>
   <data name="ExpenseHistoryLabel" xml:space="preserve">
     <value>Expense History</value>
@@ -380,7 +380,7 @@ Do you want to go the the store to rate?</value>
     <value>Shows a month by month comparison over your total expenses for the selected time range.</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add AccountViewModel</value>
+    <value>Add Account</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Cancel</value>
@@ -428,10 +428,10 @@ Do you want to go the the store to rate?</value>
     <value>General</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An AccountViewModel with that name already exists.</value>
+    <value>An Account with that name already exists.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A CategoryViewModel with that name already exists.</value>
+    <value>A Category with that name already exists.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
     <value>Name already used</value>
@@ -477,10 +477,10 @@ Tap to visit the Repository:</value>
     <value>Welcome!</value>
   </data>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no AccountViewModels. Add one by tapping on the plus button at the bottom.</value>
+    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive AccountViewModel. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
   </data>
   <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
@@ -502,7 +502,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>Restore Backup</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>AccountViewModel Name</value>
+    <value>Account Name</value>
   </data>
   <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
     <value>Current Balance</value>
@@ -523,7 +523,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>Amount</value>
   </data>
   <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
-    <value>CategoryViewModel</value>
+    <value>Category</value>
   </data>
   <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
     <value>Date</value>
@@ -538,7 +538,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>Is Recurring</value>
   </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no PaymentViewModels. Add one by tapping on the plus button at the bottom.</value>
+    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Search String</value>
@@ -592,7 +592,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>About</value>
   </data>
   <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>AccountViewModels</value>
+    <value>Accounts</value>
   </data>
   <data name="MenuViewModel.BackupLabel" xml:space="preserve">
     <value>Backup</value>

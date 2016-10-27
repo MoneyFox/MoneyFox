@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
@@ -7,8 +9,8 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
-using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
+using Ploeh.AutoFixture;
 using Xunit;
 using XunitShouldExtension;
 
@@ -31,8 +33,6 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
-
-            Mvx.RegisterType(() => settingsManagerMock.Object);
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
@@ -66,8 +66,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
 
-            Mvx.RegisterType(() => settingsManagerMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentRepository>().Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
@@ -97,7 +95,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
                 .Callback((DateTime x) => localDateSetting = x);
-            Mvx.RegisterType(() => settingsManagerMock.Object);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.Setup(x => x.GetList(null)).Returns(new List<PaymentViewModel>());
@@ -159,8 +156,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
 
-            Mvx.RegisterType(() => settingsManagerMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
@@ -204,8 +199,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
 
-            Mvx.RegisterType(() => settingsManagerMock.Object);
-
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepoMock.Object,
                 new Mock<IDialogService>().Object,
@@ -230,8 +223,6 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
-
-            Mvx.RegisterType(() => settingsManagerMock.Object);
 
             var accountRepoMock = new Mock<IAccountRepository>();
             accountRepoMock.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
@@ -287,8 +278,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupAllProperties();
 
-            Mvx.RegisterType(() => settingsManagerMock.Object);
-
             var paymentManagerMock = new Mock<IPaymentManager>();
             paymentManagerMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>())).Callback((PaymentViewModel payment) => testPayment = payment);
 
@@ -311,6 +300,64 @@ namespace MoneyFox.Business.Tests.ViewModels
             //Assert
             testPayment.RecurringPayment.ShouldNotBeNull();
             testPayment.RecurringPayment.Recurrence.ShouldBe(recurrence);
+        }
+
+        [Theory]
+        [InlineData("35", 35, "de-CH")]
+        [InlineData("35.5", 35.5, "de-CH")]
+        [InlineData("35.50", 35.5, "de-CH")]
+        [InlineData("35", 35, "de-DE")]
+        [InlineData("35,5", 35.5, "de-DE")]
+        [InlineData("35,50", 35.5, "de-DE")]
+        [InlineData("35.5", 35.5, "de-DE")]
+        [InlineData("35.50", 35.5, "de-DE")]
+        [InlineData("35", 35, "en-GB")]
+        [InlineData("35,5", 35.5, "en-GB")]
+        [InlineData("35,50", 35.5, "en-GB")]
+        [InlineData("35.5", 35.5, "en-GB")]
+        [InlineData("35.50", 35.5, "en-GB")]
+        [InlineData("35", 35, "en-US")]
+        [InlineData("35,5", 35.5, "en-US")]
+        [InlineData("35,50", 35.5, "en-US")]
+        [InlineData("35.5", 35.5, "en-US")]
+        [InlineData("35.50", 35.5, "en-US")]
+        [InlineData("35", 35, "it-IT")]
+        [InlineData("35,5", 35.5, "it-IT")]
+        [InlineData("35,50", 35.5, "it-IT")]
+        [InlineData("35.5", 35.5, "it-IT")]
+        [InlineData("35.50", 35.5, "it-IT")]
+        public void AmountString_CorrectConvertedAmount(string amount, double convertedAmount, string culture)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
+
+            // Setup
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            var accountRepoMock = new Mock<IAccountRepository>();
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupAllProperties();
+
+            var paymentManagerMock = new Mock<IPaymentManager>();
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Amount = 0;
+
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
+                accountRepoMock.Object,
+                new Mock<IDialogService>().Object,
+                paymentManagerMock.Object,
+                settingsManagerMock.Object,
+                new Mock<IMvxMessenger>().Object,
+                new Mock<IBackupManager>().Object)
+            {
+                SelectedPayment = testPayment,
+            };
+
+            // Execute
+            viewmodel.AmountString = amount;
+
+            // Assert
+            viewmodel.AmountString.ShouldBe(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
         }
     }
 }
