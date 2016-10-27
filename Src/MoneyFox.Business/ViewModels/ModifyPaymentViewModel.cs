@@ -170,10 +170,11 @@ namespace MoneyFox.Business.ViewModels
             get { return Utilities.FormatLargeNumbers(amount); }
             set
             {
+                // we replace the separator char to ensure that it works in all regions
                 var amountstring = value.Replace(',', '.');
 
                 double convertedValue;
-                if (double.TryParse(value, out convertedValue))
+                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
                 {
                     amount = convertedValue;
                 }
