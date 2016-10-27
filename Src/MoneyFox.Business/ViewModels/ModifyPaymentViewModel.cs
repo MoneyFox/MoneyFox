@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
@@ -55,6 +56,203 @@ namespace MoneyFox.Business.ViewModels
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
+        #region Commands
+
+        /// <summary>
+        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
+        /// </summary>
+        public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
+
+        /// <summary>
+        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+
+        /// <summary>
+        ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        /// <summary>
+        ///     Cancels the operations.
+        /// </summary>
+        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        /// <summary>
+        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
+        /// </summary>
+        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        ///     Indicates if the view is in Edit mode.
+        /// </summary>
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            private set
+            {
+                if (isEdit == value) return;
+                isEdit = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Indicates if the PaymentViewModel is a transfer.
+        /// </summary>
+        public bool IsTransfer
+        {
+            get { return isTransfer; }
+            private set
+            {
+                if (isTransfer == value) return;
+                isTransfer = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Indicates if the reminder is endless
+        /// </summary>
+        public bool IsEndless
+        {
+            get { return isEndless; }
+            set
+            {
+                if (isEndless == value) return;
+                isEndless = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     The Enddate for recurring PaymentViewModel
+        /// </summary>
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
+            {
+                endDate = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     The selected recurrence
+        /// </summary>
+        public PaymentRecurrence Recurrence
+        {
+            get { return recurrence; }
+            set
+            {
+                recurrence = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get { return Utilities.FormatLargeNumbers(amount); }
+            set
+            {
+                // we replace the separator char to ensure that it works in all regions
+                var amountstring = value.Replace(',', '.');
+
+                double convertedValue;
+                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                {
+                    amount = convertedValue;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        ///     This has to have the same order as the enum
+        /// </summary>
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        {
+            PaymentRecurrence.Daily,
+            PaymentRecurrence.DailyWithoutWeekend,
+            PaymentRecurrence.Weekly,
+            PaymentRecurrence.Biweekly,
+            PaymentRecurrence.Monthly,
+            PaymentRecurrence.Yearly
+        };
+
+        /// <summary>
+        ///     The selected PaymentViewModel
+        /// </summary>
+        public PaymentViewModel SelectedPayment
+        {
+            get { return selectedPayment; }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+                selectedPayment = value;
+            }
+        }
+
+        /// <summary>
+        ///     Gives access to all accounts for Charged Dropdown list
+        /// </summary>
+        public ObservableCollection<AccountViewModel> ChargedAccounts { get; private set; }
+
+        /// <summary>
+        ///     Gives access to all accounts for Target Dropdown list
+        /// </summary>
+        public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
+
+        /// <summary>
+        ///     Returns the Title for the page
+        /// </summary>
+        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
+
+        /// <summary>
+        ///     Returns the Header for the AccountViewModel field
+        /// </summary>
+        public string AccountHeader
+            => SelectedPayment?.Type == PaymentType.Income
+                ? Strings.TargetAccountLabel
+                : Strings.ChargedAccountLabel;
+
+        /// <summary>
+        ///     The PaymentViewModel date
+        /// </summary>
+        public DateTime Date
+        {
+            get
+            {
+                if (!IsEdit && (SelectedPayment.Date == DateTime.MinValue))
+                {
+                    SelectedPayment.Date = DateTime.Now;
+                }
+                return SelectedPayment.Date;
+            }
+            set { SelectedPayment.Date = value; }
+        }
+
+        private AccountViewModel AccountViewModelBeforeEdit { get; set; }
+
+
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
@@ -69,6 +267,8 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        #endregion
 
         /// <summary>
         ///     Init the view for a new PaymentViewModel. Is executed after the constructor call.
@@ -280,200 +480,5 @@ namespace MoneyFox.Business.ViewModels
             ChargedAccounts.Remove(selectedPayment.TargetAccount);
             TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
-
-        #region Commands
-
-        /// <summary>
-        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
-        /// </summary>
-        public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
-
-        /// <summary>
-        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand SaveCommand => new MvxCommand(Save);
-
-        /// <summary>
-        ///     Opens to the SelectCategoryView
-        /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
-
-        /// <summary>
-        ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
-
-        /// <summary>
-        ///     Cancels the operations.
-        /// </summary>
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
-
-        /// <summary>
-        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
-        /// </summary>
-        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        ///     Indicates if the view is in Edit mode.
-        /// </summary>
-        public bool IsEdit
-        {
-            get { return isEdit; }
-            private set
-            {
-                if(isEdit == value) return;
-                isEdit = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Indicates if the PaymentViewModel is a transfer.
-        /// </summary>
-        public bool IsTransfer
-        {
-            get { return isTransfer; }
-            private set
-            {
-                if(isTransfer == value) return;
-                isTransfer = value; 
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Indicates if the reminder is endless
-        /// </summary>
-        public bool IsEndless
-        {
-            get { return isEndless; }
-            set
-            {
-                if(isEndless == value) return;
-                isEndless = value; 
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     The Enddate for recurring PaymentViewModel
-        /// </summary>
-        public DateTime EndDate
-        {
-            get { return endDate; }
-            set
-            {
-                endDate = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     The selected recurrence
-        /// </summary>
-        public PaymentRecurrence Recurrence
-        {
-            get { return recurrence; }
-            set
-            {
-                recurrence = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
-        /// </summary>
-        public string AmountString
-        {
-            get { return Utilities.FormatLargeNumbers(amount); }
-            set
-            {
-                double convertedValue;
-                if (double.TryParse(value, out convertedValue))
-                {
-                    amount = convertedValue;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     List with the different recurrence types.
-        ///     This has to have the same order as the enum
-        /// </summary>
-        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Yearly
-        };
-
-        /// <summary>
-        ///     The selected PaymentViewModel
-        /// </summary>
-        public PaymentViewModel SelectedPayment
-        {
-            get { return selectedPayment; }
-            set
-            {
-                if (value == null)
-                {
-                    return;
-                }
-                selectedPayment = value;
-            }
-        }
-
-        /// <summary>
-        ///     Gives access to all accounts for Charged Dropdown list
-        /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts { get; private set; }
-
-        /// <summary>
-        ///     Gives access to all accounts for Target Dropdown list
-        /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
-
-        /// <summary>
-        ///     Returns the Title for the page
-        /// </summary>
-        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
-
-        /// <summary>
-        ///     Returns the Header for the AccountViewModel field
-        /// </summary>
-        public string AccountHeader
-            => SelectedPayment?.Type == PaymentType.Income
-                ? Strings.TargetAccountLabel
-                : Strings.ChargedAccountLabel;
-
-        /// <summary>
-        ///     The PaymentViewModel date
-        /// </summary>
-        public DateTime Date
-        {
-            get
-            {
-                if (!IsEdit && (SelectedPayment.Date == DateTime.MinValue))
-                {
-                    SelectedPayment.Date = DateTime.Now;
-                }
-                return SelectedPayment.Date;
-            }
-            set { SelectedPayment.Date = value; }
-        }
-
-        private AccountViewModel AccountViewModelBeforeEdit { get; set; }
-
-        #endregion
     }
 }
