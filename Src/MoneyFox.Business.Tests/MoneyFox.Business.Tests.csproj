@@ -38,6 +38,9 @@
     <Reference Include="MvvmCross.Test.Core">
       <HintPath>..\packages\MvvmCross.Tests.4.3.0\lib\net45\MvvmCross.Test.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\..\..\..\..\.nuget\packages\AutoFixture\3.50.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
