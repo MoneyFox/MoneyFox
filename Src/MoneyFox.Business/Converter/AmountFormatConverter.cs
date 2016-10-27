@@ -12,9 +12,8 @@ namespace MoneyFox.Business.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double currencyValue = (double)value;
-            NumberFormatInfo number = culture.NumberFormat;
-            number.CurrencyNegativePattern = 1;                     // formats negative values to have the "-" symbol in front of its culture
-            return currencyValue.ToString("C", number);
+            culture.NumberFormat.CurrencyNegativePattern = 1;  // formats negative values to have the "-" symbol in front of its culture
+            return currencyValue.ToString("C");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value;
