@@ -2,4 +2,17 @@
 <resources>
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
+  
+  <!--menus-->
+  <string name="menu_add">Add</string>
+  <string name="menu_save">Save</string>
+  <string name="menu_delete">Delete</string>
+  <string name="menu_select">Select</string>
+  
+  <string name="menu_accounts">Accounts</string>
+  <string name="menu_statistics">Statistics</string>
+  <string name="menu_categories">Categories</string>
+  <string name="menu_backup">Backup</string>
+  <string name="menu_about">About</string>
+
 </resources>
