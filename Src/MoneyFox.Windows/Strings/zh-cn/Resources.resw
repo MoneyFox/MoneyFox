@@ -335,17 +335,11 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>开始日期</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring PaymentViewModel Overview</value>
-  </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>选择统计</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>最新的备份创建于：</value>
-  </data>
-  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
-    <value>手动上传、下载备份</value>
   </data>
   <data name="GeneralHeader.Label" xml:space="preserve">
     <value>通用</value>
@@ -363,12 +357,12 @@
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no PaymentViewModels. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
   </data>
-  <data name="IsLoading.Text" xml:space="preserve">
+  <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
@@ -377,5 +371,35 @@ Also if you launch the application there it will check if there are newer backup
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+  </data>
+  <data name="CancelLabel.Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DoneLabel.Label" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Iban.Header" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="AutoBackupSetting.OffContent" xml:space="preserve">
+    <value>Backup Manually</value>
+  </data>
+  <data name="AutoBackupSetting.OnContent" xml:space="preserve">
+    <value>Backup Automatically</value>
+  </data>
+  <data name="DesignerContribution.Text" xml:space="preserve">
+    <value>The app icon was created by:</value>
+  </data>
+  <data name="GeneralContribution.Text" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
+  </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
   </data>
 </root>

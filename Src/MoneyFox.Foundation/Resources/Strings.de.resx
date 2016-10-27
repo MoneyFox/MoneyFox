@@ -445,4 +445,172 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="SomethingWentWrongTitle" xml:space="preserve">
     <value>Etwas ist schiefgegangen...</value>
   </data>
+  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
+    <value>Um alle Beiträge zu sehen wechsle zu GitHub:</value>
+  </data>
+  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
+    <value>Das Programmlogo wurde erstellt von:</value>
+  </data>
+  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
+    <value>Dieses Programm ist Open Source. Wir würden uns freuen mit dir zusammenzuarbeiten!
+Klicke auf den Link um das Repository zu besuchen:</value>
+  </data>
+  <data name="AboutViewModel.RateLabel" xml:space="preserve">
+    <value>Bewerte uns!</value>
+  </data>
+  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
+    <value>Ist etwas nicht richtig oder nicht übersetzt überhaupt? Helfen Sie uns! Gehen Sie zu crowdin und Hilf uns den Money Fox zu verbessern:</value>
+  </data>
+  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
+    <value>Willkommen!</value>
+  </data>
+  <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>Du hast noch kein Konto erfasst. Erfasse eines über den Plus Knopf unten.</value>
+  </data>
+  <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
+    <value>Ihre Daten werden in Ihrem OneDrive Konto, in einem neuen Ordner "MoneyfoxBackupManager", gespeichert.</value>
+  </data>
+  <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
+    <value>Sicherung erstellen</value>
+  </data>
+  <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
+    <value>Letzte Sicherung wurde erstellt am:</value>
+  </data>
+  <data name="BackupViewModel.LoginLabel" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
+    <value>Ausloggen</value>
+  </data>
+  <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
+    <value>Wir laden die vorher erstellte Datenbanksicherung herunter und ersetzten deine lokalen Daten damit.
+ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
+  </data>
+  <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
+    <value>Sicherung wiederherstellen</value>
+  </data>
+  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
+    <value>Kontoname</value>
+  </data>
+  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
+    <value>Aktueller Kontostand</value>
+  </data>
+  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
+    <value>Iban</value>
+  </data>
+  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
+    <value>Notiz</value>
+  </data>
+  <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
+    <value>Kategoriename</value>
+  </data>
+  <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
+    <value>Notiz</value>
+  </data>
+  <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
+    <value>Betrag</value>
+  </data>
+  <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
+    <value>Ohne Ende</value>
+  </data>
+  <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
+    <value>Notiz</value>
+  </data>
+  <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
+    <value>Wiederholt sich</value>
+  </data>
+  <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>Du hast noch kein Konto erfasst. Erfasse eines über den Plus Knopf unten.</value>
+  </data>
+  <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
+    <value>Suchbegriff</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
+    <value>End Datum</value>
+  </data>
+  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
+    <value>Anfangsdatum</value>
+  </data>
+  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>Du hast noch keine Kategorien erfasst. Erfasse eine über den Plus Knopf unten.</value>
+  </data>
+  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
+    <value>Suchbegriff</value>
+  </data>
+  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
+    <value>Budgeting einfach gemacht.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
+    <value>Wenn diese Einstellung aktiv ist, wird nach jeder Änderung auf der Datenbank eine Sicherung auf OneDrive gespeichert.
+Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung vorhanden ist und diese zurückgeladen.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
+    <value>Sicherungen automatisch hoch- und runterladen</value>
+  </data>
+  <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
+    <value>Passwortschutz</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
+    <value>Passwortbestätigung</value>
+  </data>
+  <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="MenuViewModel.AddLabel" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
+    <value>Konten</value>
+  </data>
+  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
+    <value>Sicherung</value>
+  </data>
+  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
+    <value>Kategorien</value>
+  </data>
+  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
+    <value>Statistiken</value>
+  </data>
+  <data name="DrawerCloseLabel" xml:space="preserve">
+    <value>Seitenleiste schliessen</value>
+  </data>
+  <data name="DrawerOpenLabel" xml:space="preserve">
+    <value>Seitenleiste öffnen</value>
+  </data>
 </root>

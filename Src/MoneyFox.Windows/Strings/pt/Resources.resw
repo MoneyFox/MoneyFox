@@ -202,10 +202,10 @@
     <value>Preferências</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Se espalhando</value>
+    <value>Propagação</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
-    <value>Azulejos</value>
+    <value>Tiles</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
     <value>Total: </value>
@@ -235,13 +235,13 @@
     <value>Bem vindo!</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Criar renda telha</value>
+    <value>Criar tiles de renda</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Criar despesa telha</value>
+    <value>Criar tile de despesa</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Criar telha de transferência</value>
+    <value>Criar tile de transferência</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
     <value>Pronto</value>
@@ -256,13 +256,13 @@
     <value>Criar cópia de segurança</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Remover o rendimento da telha</value>
+    <value>Remover tile de renda</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remover a telha de despesa</value>
+    <value>Remover tile de despesa</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Remover a telha de transferência</value>
+    <value>Remover tile de transferência</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
     <value>Restaurar cópia de segurança</value>
@@ -333,17 +333,11 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Data de Início</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring PaymentViewModel Overview</value>
-  </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Selecionar estatística</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Último Backup foi criado em:</value>
-  </data>
-  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
-    <value>Carregar e descarregar o backup manualmente</value>
   </data>
   <data name="GeneralHeader.Label" xml:space="preserve">
     <value>Geral</value>
@@ -355,25 +349,54 @@
     <value>Despesas mensais</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>A conta não existe. Clique sobre os três pontos abaixo.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>A categoria não existe. Clique sobre o "mais" abaixo.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no PaymentViewModels. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>Não há nenhum pagamento. Clique sobre os três símbolos abaixo.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>Você pode altenar entre os temas claro e escuro. Para aplicar essas mudanças, por favor, reinicie a aplicação.</value>
   </data>
-  <data name="IsLoading.Text" xml:space="preserve">
-    <value>Loading...</value>
+  <data name="Loading.Text" xml:space="preserve">
+    <value>Carregando...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
-Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+    <value>Se você ativar essa configuração após todas as mudanças no banco de dados, um backup é realizado no OneDrive. Se você iniciar a aplicação, ela também checará se existe novos backups e restaurá-los.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Há algo não devidamente traduzido ou não em todo traduzido? Ajude-nos! Vá ao Crowdin e ajude a melhorar o Money Fox:</value>
+  </data>
+  <data name="CancelLabel.Label" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="DoneLabel.Label" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
+    <value>Balanço atual</value>
+  </data>
+  <data name="Logout.Content" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="Iban.Header" xml:space="preserve">
+    <value>IBAN</value>
+  </data>
+  <data name="AutoBackupSetting.OffContent" xml:space="preserve">
+    <value>Backup Manual</value>
+  </data>
+  <data name="AutoBackupSetting.OnContent" xml:space="preserve">
+    <value>Backup Automático</value>
+  </data>
+  <data name="DesignerContribution.Text" xml:space="preserve">
+    <value>O ícone do aplicativo foi criado por:</value>
+  </data>
+  <data name="GeneralContribution.Text" xml:space="preserve">
+    <value>Para ver todas as contribuições vá ao GitHub:</value>
+  </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
   </data>
 </root>
