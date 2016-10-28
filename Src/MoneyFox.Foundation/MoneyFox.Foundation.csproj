@@ -78,6 +78,7 @@
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IViewActionViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Models\CashFlow.cs" />

@@ -33,9 +33,19 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
+            ViewActionViewModel = new ViewActionViewModel();
         }
 
+        #region Properties
+
         public IBalanceViewModel BalanceViewModel { get; }
+
+        public IViewActionViewModel ViewActionViewModel { get; }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     All existing accounts.
@@ -57,6 +67,10 @@ namespace MoneyFox.Business.ViewModels
         ///     Returns if the ChargedAccounts Collection is emtpy or not.
         /// </summary>
         public bool IsAllAccountsEmpty => !AllAccounts?.Any() ?? true;
+
+        #endregion
+
+        #region Commands
 
         /// <summary>
         ///     Prepares the AccountViewModel list
@@ -83,11 +97,8 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
-
+        #endregion
+        
         private void EditAccount(AccountViewModel accountViewModel)
         {
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = accountViewModel.Id});
@@ -144,7 +155,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = 0});
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = false, selectedAccountId = 0});
         }
     }
 }

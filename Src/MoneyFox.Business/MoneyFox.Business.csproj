@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
+    <Compile Include="ViewModels\ViewActionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">

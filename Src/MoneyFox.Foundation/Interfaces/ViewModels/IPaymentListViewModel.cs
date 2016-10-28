@@ -11,8 +11,6 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
 
         MvxCommand LoadCommand { get; }
 
-        MvxCommand<string> GoToAddPaymentCommand { get; }
-
         MvxCommand DeleteAccountCommand { get; }
 
         MvxCommand<PaymentViewModel> EditCommand { get; }
