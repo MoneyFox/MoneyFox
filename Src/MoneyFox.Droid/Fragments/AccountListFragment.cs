@@ -39,15 +39,15 @@ namespace MoneyFox.Droid.Fragments
             var list = view.FindViewById<ListView>(Resource.Id.account_list);
             RegisterForContextMenu(list);
 
-            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_item);
-            button.Click += (s, e) =>
-            {
-                var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
-                builder.SetTitle(Strings.ChooseLabel);
-                builder.SetItems(GetItemArrayForCreationList(), OnSelectItemForCreation);
-                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog)?.Dismiss());
-                builder.Show();
-            };
+            //var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_item);
+            //button.Click += (s, e) =>
+            //{
+            //    var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
+            //    builder.SetTitle(Strings.ChooseLabel);
+            //    builder.SetItems(GetItemArrayForCreationList(), OnSelectItemForCreation);
+            //    builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog)?.Dismiss());
+            //    builder.Show();
+            //};
 
             return view;
         }

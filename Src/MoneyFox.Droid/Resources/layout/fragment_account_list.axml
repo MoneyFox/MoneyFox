@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"                                                 
     android:background="?android:windowBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,11 +35,44 @@
         android:layout_margin="6dp"
         local:MvxBind="Visible IsAllAccountsEmpty"
         local:MvxLang="Text EmptyListPlaceholderLabel" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_create_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add" />
+  
+   <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/menu_add_element"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="@dimen/fab_margin">
+          <com.github.clans.fab.FloatingActionButton
+              android:id="@+id/fab_add_account"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_add"
+              fab:fab_colorNormal="@color/colorPrimaryDark"
+              fab:fab_size="mini"
+              fab:fab_label="@string/fab_add_account" />
+          <com.github.clans.fab.FloatingActionButton
+              android:id="@+id/fab_add_income"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_add"
+              fab:fab_colorNormal="@color/colorPrimaryDark"
+              fab:fab_size="mini"
+              fab:fab_label="@string/fab_add_income" />
+          <com.github.clans.fab.FloatingActionButton
+              android:id="@+id/fab_add_expense"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_add"
+              fab:fab_colorNormal="@color/colorPrimaryDark"              
+              fab:fab_size="mini"
+              fab:fab_label="@string/fab_add_expense" />
+          <com.github.clans.fab.FloatingActionButton
+              android:id="@+id/fab_add_transfer"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/ic_add"
+              fab:fab_colorNormal="@color/colorPrimaryDark"
+              fab:fab_size="mini"
+              fab:fab_label="@string/fab_add_transfer" />
+        </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>
