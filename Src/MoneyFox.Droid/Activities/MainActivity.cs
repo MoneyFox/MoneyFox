@@ -40,6 +40,11 @@ namespace MoneyFox.Droid.Activities
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
+            if (bundle == null)
+            {
+                ViewModel.ShowMenuAndFirstDetail();
+            }
+
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             if (toolbar != null)
             {
