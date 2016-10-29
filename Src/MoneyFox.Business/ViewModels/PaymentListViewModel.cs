@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
@@ -28,6 +27,7 @@ namespace MoneyFox.Business.ViewModels
         private ObservableCollection<DateListGroup<PaymentViewModel>> source;
         private MvxCommand<PaymentViewModel> editCommand;
         private IBalanceViewModel balanceViewModel;
+        private IPaymentListViewActionViewModel viewActionViewModel;
         private int accountId;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
@@ -46,6 +46,8 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.endOfMonthManager = endOfMonthManager;
         }
+
+        #region Properties
 
         public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
 
@@ -73,39 +75,16 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        /// <summary>
-        ///     Loads the data for this view.
-        /// </summary>
-        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
-
-        /// <summary>
-        ///     Navigate to the add PaymentViewModel view.
-        /// </summary>
-        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
-
-        /// <summary>
-        ///     Deletes the current account and updates the balance.
-        /// </summary>
-        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-
-        /// <summary>
-        ///     Edits the passed PaymentViewModel.
-        /// </summary>
-        public MvxCommand<PaymentViewModel> EditCommand
+        public IPaymentListViewActionViewModel ViewActionViewModel
         {
-            get { return editCommand; }
+            get { return viewActionViewModel; }
             private set
             {
-                editCommand = value; 
+                viewActionViewModel = value;
                 RaisePropertyChanged();
             }
         }
 
-        /// <summary>
-        ///     Deletes the passed PaymentViewModel.
-        /// </summary>
-        public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(DeletePayment);
 
         /// <summary>
         ///     Returns all PaymentViewModel who are assigned to this repository
@@ -142,10 +121,40 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Title => accountRepository.FindById(AccountId).Name;
 
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        ///     Loads the data for this view.
+        /// </summary>
+        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
+
+        /// <summary>
+        ///     Edits the passed PaymentViewModel.
+        /// </summary>
+        public MvxCommand<PaymentViewModel> EditCommand
+        {
+            get { return editCommand; }
+            private set
+            {
+                editCommand = value; 
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Deletes the passed PaymentViewModel.
+        /// </summary>
+        public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(DeletePayment);
+        
+        #endregion
+
         public void Init(int id)
         {
             AccountId = id;
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
+            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, settingsManager, dialogService, BalanceViewModel, AccountId);
         }
 
         private void LoadPayments()
@@ -172,28 +181,6 @@ namespace MoneyFox.Business.ViewModels
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
             EditCommand = new MvxCommand<PaymentViewModel>(Edit);
-        }
-
-        // TODO: Use the actual enum rather than magic strings - Seth Bartlett 7/1/2016 12:07PM
-        private void GoToAddPayment(string paymentType)
-        {
-            ShowViewModel<ModifyPaymentViewModel>(
-                new {type = (PaymentType) Enum.Parse(typeof(PaymentType), paymentType)});
-        }
-
-        // TODO: I'm pretty sure this shouldn't exist in this ViewModel - Seth Bartlett 7/1/2016 12:06PM
-        // This may actually exist from the buttons at the bottom right of the view, if so, this view should be separated out. - Seth Bartlett 7/1/2016 2:31AM
-        private async void DeleteAccount()
-        {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
-            {
-                if (accountRepository.Delete(accountRepository.FindById(AccountId)))
-                {
-                    settingsManager.LastDatabaseUpdate = DateTime.Now;
-                }
-                BalanceViewModel.UpdateBalanceCommand.Execute();
-                Close(this);
-            }
         }
 
         private void Edit(PaymentViewModel payment)

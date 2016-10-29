@@ -37,8 +37,8 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = FontAwesomeIcon.University,
                     Label = Strings.AccountsLabel,
-                    DestViewModel = typeof(MainViewModel),
-                    DestPage = typeof(MainView)
+                    DestViewModel = typeof(AccountListViewModel),
+                    DestPage = typeof(AccountListView)
                 },
                 new NavMenuItem
                 {

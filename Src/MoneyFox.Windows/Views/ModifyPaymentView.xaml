@@ -67,7 +67,7 @@
                         </interactivity:Interaction.Behaviors>
                     </ComboBox>
 
-                    <ComboBox x:Uid="targetAccountViewModelTextBox"
+                    <ComboBox x:Uid="TargetAccountTextBox"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
                               Header="target AccountViewModel"
@@ -99,8 +99,8 @@
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextAlignment="Right" />
                     <Grid Margin="0,7,0,0">
-                        <TextBox x:Uid="CategoryViewModelTextBox"
-                                 Header="CategoryViewModel"
+                        <TextBox x:Uid="CategoryTextBox"
+                                 Header="Category"
                                  IsReadOnly="True"
                                  Text="{Binding SelectedPayment.Category.Name,
                                                 UpdateSourceTrigger=PropertyChanged}">

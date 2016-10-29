@@ -1,26 +1,25 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Tests.Mocks;
+using System.Collections.Generic;
+using MoneyFox.Business.Tests.Mocks;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Core.Views;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
-using System.Collections.Generic;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
+using Xunit;
+using XunitShouldExtension;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
-    public class MainViewModelTests : MvxIoCSupportingTest
+    public class AccountListViewActionViewModelTests : MvxIoCSupportingTest
     {
         protected MockDispatcher MockDispatcher { get; private set; }
 
-        [TestInitialize]
-        public void Init()
+        public AccountListViewActionViewModelTests()
         {
             Setup();
         }
@@ -37,11 +36,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
             Ioc.RegisterSingleton<IMvxMessenger>(new MvxMessengerHub());
         }
 
-        [TestMethod]
+        [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IAccountRepository>().Object)
-                .GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
+            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddIncomeCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
@@ -49,11 +48,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
             MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Income");
         }
 
-        [TestMethod]
+        [Fact]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IAccountRepository>().Object)
-                .GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
+            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddExpenseCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
@@ -61,11 +60,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
             MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Expense");
         }
 
-        [TestMethod]
+        [Fact]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new MainViewModel(new Mock<IAccountRepository>().Object)
-                .GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
+            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+                .GoToAddTransferCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
             MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
@@ -73,17 +72,17 @@ namespace MoneyFox.Shared.Tests.ViewModels
             MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Transfer");
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAddIncomeEnabled_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
                 .Returns(new List<AccountViewModel>());
 
-            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAddIncomeEnabled_OneAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
@@ -93,20 +92,20 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new AccountViewModel()
                 });
 
-            new MainViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAddExpenseEnabled_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
                 .Returns(new List<AccountViewModel>());
 
-            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAddExpenseEnabled_OneAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
@@ -116,20 +115,20 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new AccountViewModel()
                 });
 
-            new MainViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTransferAvailable_EmptyData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
             accountRepositoryMock.Setup(x => x.GetList(null))
                 .Returns(new List<AccountViewModel>());
 
-            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTransferAvailable_OneAccountInData_NotAvailable()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
@@ -139,10 +138,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new AccountViewModel()
                 });
 
-            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTransferAvailable_TwoAccountInData_Available()
         {
             var accountRepositoryMock = new Mock<IAccountRepository>();
@@ -153,7 +152,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                     new AccountViewModel()
                 });
 
-            new MainViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }

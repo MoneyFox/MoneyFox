@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -99,6 +99,10 @@
     </Reference>
     <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.2.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FloatingActionButton-Xamarin, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FAB.XamarinAndroid.1.6.4.0\lib\MonoAndroid50\FloatingActionButton-Xamarin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HockeySDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -383,6 +387,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
+    <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="DroidModule.cs" />
@@ -437,7 +442,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_splash_screen.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
-    <AndroidResource Include="Resources\layout\fragment_account_list.axml" />
+    <AndroidResource Include="Resources\layout\fragment_account_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_account.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -643,7 +650,9 @@
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\values\strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

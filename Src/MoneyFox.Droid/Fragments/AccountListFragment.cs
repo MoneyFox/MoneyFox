@@ -1,17 +1,11 @@
-using System.Collections.Generic;
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using Clans.Fab;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -19,14 +13,6 @@ namespace MoneyFox.Droid.Fragments
     [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        private readonly List<string> itemsForCreationList = new List<string>
-        {
-            Strings.AddAccountLabel,
-            Strings.AddIncomeLabel,
-            Strings.AddExpenseLabel,
-            Strings.AddTransferLabel
-        };
-
         private View view;
         protected override int FragmentId => Resource.Layout.fragment_account_list;
         protected override string Title => Strings.AccountsLabel;
@@ -39,15 +25,7 @@ namespace MoneyFox.Droid.Fragments
             var list = view.FindViewById<ListView>(Resource.Id.account_list);
             RegisterForContextMenu(list);
 
-            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_item);
-            button.Click += (s, e) =>
-            {
-                var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
-                builder.SetTitle(Strings.ChooseLabel);
-                builder.SetItems(GetItemArrayForCreationList(), OnSelectItemForCreation);
-                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog)?.Dismiss());
-                builder.Show();
-            };
+            view.FindViewById<FloatingActionMenu>(Resource.Id.fab_menu_add_element).SetClosedOnTouchOutside(true);
 
             return view;
         }
@@ -58,46 +36,11 @@ namespace MoneyFox.Droid.Fragments
             base.OnStart();
         }
 
-        private string[] GetItemArrayForCreationList()
-        {
-            if (ViewModel.AllAccounts?.Count > 1)
-            {
-                return itemsForCreationList.ToArray();
-            }
-            var returnArray = new string[itemsForCreationList.Count - 1];
-            itemsForCreationList.CopyTo(0, returnArray, 0, itemsForCreationList.Count - 1);
-
-            return returnArray;
-        }
-
-        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args)
-        {
-            var selected = itemsForCreationList[args.Which];
-            var mainview = Mvx.Resolve<MainViewModel>();
-
-            if (selected == Strings.AddAccountLabel)
-            {
-                mainview.GoToAddAccountCommand.Execute();
-            }
-            else if (selected == Strings.AddIncomeLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
-            }
-            else if (selected == Strings.AddExpenseLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
-            }
-            else if (selected == Strings.AddTransferLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
-            }
-        }
-
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
             {
-                ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
+                ViewModel = (BalanceViewModel)ViewModel.BalanceViewModel
             };
 
             FragmentManager.BeginTransaction()

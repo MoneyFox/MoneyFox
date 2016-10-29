@@ -8,10 +8,14 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
     {
         ObservableCollection<AccountViewModel> AllAccounts { get; set; }
 
-        AccountViewModel SelectedAccountViewModel { get; set; }
-
         IBalanceViewModel BalanceViewModel { get; }
 
+        IViewActionViewModel ViewActionViewModel { get; }
+
         MvxCommand LoadedCommand { get; }
+
+        MvxCommand<AccountViewModel> EditAccountCommand { get; }
+
+        MvxCommand<AccountViewModel> DeleteAccountCommand { get; }
     }
 }

@@ -20,6 +20,8 @@ namespace MoneyFox.Business
             if (Mvx.Resolve<Session>().ValidateSession())
             {
                 ShowViewModel<MainViewModel>();
+                ShowViewModel<AccountListViewModel>();
+                ShowViewModel<MenuViewModel>();
             }
             else
             {
