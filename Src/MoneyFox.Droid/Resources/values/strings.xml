@@ -19,6 +19,7 @@
   
   <!--Floating Action Button-->
   <string name="fab_add_account">Add Account</string>
+  <string name="fab_delete_account">Delete Account</string>
   <string name="fab_add_expense">Add Expense</string>
   <string name="fab_add_income">Add Income</string>
   <string name="fab_add_transfer">Add Transfer</string>

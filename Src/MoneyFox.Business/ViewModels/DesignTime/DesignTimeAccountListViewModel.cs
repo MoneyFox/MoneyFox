@@ -26,5 +26,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public AccountViewModel SelectedAccountViewModel { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public MvxCommand LoadedCommand => new MvxCommand(() => { });
+        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>((vm) => { });
+        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>((vm) => { });
     }
 }

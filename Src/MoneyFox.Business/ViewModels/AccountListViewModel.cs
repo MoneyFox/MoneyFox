@@ -11,13 +11,14 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class AccountListViewModel : BaseViewModel
+    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
+
         private ObservableCollection<AccountViewModel> allAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
@@ -33,14 +34,11 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
-            ViewActionViewModel = new ViewActionViewModel();
         }
 
         #region Properties
 
         public IBalanceViewModel BalanceViewModel { get; }
-
-        public IViewActionViewModel ViewActionViewModel { get; }
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.

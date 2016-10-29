@@ -9,9 +9,9 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
     {
         IBalanceViewModel BalanceViewModel { get; }
 
-        MvxCommand LoadCommand { get; }
+        IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
-        MvxCommand DeleteAccountCommand { get; }
+        MvxCommand LoadCommand { get; }
 
         MvxCommand<PaymentViewModel> EditCommand { get; }
 

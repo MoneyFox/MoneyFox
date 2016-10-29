@@ -24,7 +24,7 @@
             android:id="@+id/account_list"
             local:layout_behavior="@string/appbar_scrolling_view_behavior"
             local:MvxItemTemplate="@layout/listitem_account"
-            local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
+            local:MvxBind="ItemsSource AccountListViewModel.AllAccounts;ItemClick AccountListViewModel.OpenOverviewCommand" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +34,6 @@
         android:layout_margin="6dp"
         local:MvxBind="Visible IsAllAccountsEmpty"
         local:MvxLang="Text EmptyListPlaceholderLabel" />
-  
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/fab_menu_add_element"
         android:layout_width="wrap_content"

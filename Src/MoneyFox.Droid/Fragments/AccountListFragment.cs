@@ -1,21 +1,18 @@
 using System.Collections.Generic;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Clans.Fab;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.AccountListFragment")]
-    public class AccountListFragment : BaseFragment<AccountListViewModel>
+    public class AccountListFragment : BaseFragment<MainViewModel>
     {
         private readonly List<string> itemsForCreationList = new List<string>
         {
@@ -44,38 +41,15 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnStart()
         {
-            ViewModel.LoadedCommand.Execute();
+            ViewModel.AccountListViewModel.LoadedCommand.Execute();
             base.OnStart();
-        }
-
-        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args)
-        {
-            var selected = itemsForCreationList[args.Which];
-            var mainview = Mvx.Resolve<MainViewModel>();
-
-            if (selected == Strings.AddAccountLabel)
-            {
-                mainview.GoToAddAccountCommand.Execute();
-            }
-            else if (selected == Strings.AddIncomeLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
-            }
-            else if (selected == Strings.AddExpenseLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
-            }
-            else if (selected == Strings.AddTransferLabel)
-            {
-                mainview.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
-            }
         }
 
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
             {
-                ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
+                ViewModel = (BalanceViewModel)ViewModel.AccountListViewModel.BalanceViewModel
             };
 
             FragmentManager.BeginTransaction()
@@ -95,16 +69,16 @@ namespace MoneyFox.Droid.Fragments
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.AllAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
+            var selected = ViewModel.AccountListViewModel.AllAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
 
             switch (item.ItemId)
             {
                 case 0:
-                    ViewModel.EditAccountCommand.Execute(selected);
+                    ViewModel.AccountListViewModel.EditAccountCommand.Execute(selected);
                     return true;
 
                 case 1:
-                    ViewModel.DeleteAccountCommand.Execute(selected);
+                    ViewModel.AccountListViewModel.DeleteAccountCommand.Execute(selected);
                     return true;
 
                 default:
