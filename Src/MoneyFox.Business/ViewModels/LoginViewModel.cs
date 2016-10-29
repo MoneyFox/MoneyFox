@@ -18,6 +18,8 @@ namespace MoneyFox.Business.ViewModels
         private void LoginNavigation()
         {
             ShowViewModel<MainViewModel>();
+            ShowViewModel<AccountListViewModel>();
+            ShowViewModel<MenuViewModel>();
         }
     }
 }

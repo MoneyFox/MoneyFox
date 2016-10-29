@@ -24,7 +24,7 @@
             android:id="@+id/account_list"
             local:layout_behavior="@string/appbar_scrolling_view_behavior"
             local:MvxItemTemplate="@layout/listitem_account"
-            local:MvxBind="ItemsSource AllAccounts;ItemClick AccountListViewModel.OpenOverviewCommand" />
+            local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"

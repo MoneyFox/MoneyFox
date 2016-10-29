@@ -148,10 +148,6 @@ namespace MoneyFox.Business.ViewModels
             {
                 AllAccounts.Remove(accountToDelete);
             }
-
-            // refresh view when an AccountViewModel is deleted allowing buttons to update 
-            // TODO probably a better solution
-            ShowViewModel<MainViewModel>();
         }
 
         private void GoToAddAccount()
