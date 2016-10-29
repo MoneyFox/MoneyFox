@@ -1,11 +1,9 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.MainView"
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.AccountListView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:converter="using:MoneyFox.Windows.Converter"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       mc:Ignorable="d">
 
@@ -19,9 +17,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountViewModelTitle"
+                <TextBlock x:Uid="AccountTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="AccountViewModels" />
+                           Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -38,23 +36,23 @@
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Income"
                               Icon="Add"
-                              Label="add income"
-                              IsEnabled="{Binding IsAddIncomeAvailable}" />
+                              IsEnabled="{Binding IsAddIncomeAvailable}"
+                              Label="add income" />
                 <AppBarButton x:Uid="AddExpenseLabel"
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Expense"
                               Icon="Remove"
-                              Label="add spending"
-                              IsEnabled="{Binding IsAddExpenseAvailable}" />
+                              IsEnabled="{Binding IsAddExpenseAvailable}"
+                              Label="add spending" />
                 <AppBarButton x:Uid="AddTransferLabel"
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Transfer"
                               Icon="Switch"
-                              Label="add transfer"
-                              IsEnabled="{Binding IsTransferAvailable}" />
+                              IsEnabled="{Binding IsTransferAvailable}"
+                              Label="add transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddAccountViewModelLabel"
+                <AppBarButton x:Uid="AddAccountLabel"
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
                               Label="Add AccountViewModel" />

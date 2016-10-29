@@ -3,9 +3,9 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class MainView
+    public sealed partial class AccountListView
     {
-        public MainView()
+        public AccountListView()
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<MainViewModel>();
