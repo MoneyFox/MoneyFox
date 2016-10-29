@@ -34,11 +34,14 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
         }
 
         #region Properties
 
         public IBalanceViewModel BalanceViewModel { get; }
+
+        public IViewActionViewModel ViewActionViewModel { get; }
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.

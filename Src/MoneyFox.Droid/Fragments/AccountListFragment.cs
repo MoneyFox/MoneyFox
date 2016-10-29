@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -12,16 +11,8 @@ namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.AccountListFragment")]
-    public class AccountListFragment : BaseFragment<MainViewModel>
+    public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        private readonly List<string> itemsForCreationList = new List<string>
-        {
-            Strings.AddAccountLabel,
-            Strings.AddIncomeLabel,
-            Strings.AddExpenseLabel,
-            Strings.AddTransferLabel
-        };
-
         private View view;
         protected override int FragmentId => Resource.Layout.fragment_account_list;
         protected override string Title => Strings.AccountsLabel;
@@ -41,7 +32,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnStart()
         {
-            ViewModel.AccountListViewModel.LoadedCommand.Execute();
+            ViewModel.LoadedCommand.Execute();
             base.OnStart();
         }
 
@@ -49,7 +40,7 @@ namespace MoneyFox.Droid.Fragments
         {
             var fragment = new BalanceFragment
             {
-                ViewModel = (BalanceViewModel)ViewModel.AccountListViewModel.BalanceViewModel
+                ViewModel = (BalanceViewModel)ViewModel.BalanceViewModel
             };
 
             FragmentManager.BeginTransaction()
@@ -69,16 +60,16 @@ namespace MoneyFox.Droid.Fragments
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.AccountListViewModel.AllAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
+            var selected = ViewModel.AllAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
 
             switch (item.ItemId)
             {
                 case 0:
-                    ViewModel.AccountListViewModel.EditAccountCommand.Execute(selected);
+                    ViewModel.EditAccountCommand.Execute(selected);
                     return true;
 
                 case 1:
-                    ViewModel.AccountListViewModel.DeleteAccountCommand.Execute(selected);
+                    ViewModel.DeleteAccountCommand.Execute(selected);
                     return true;
 
                 default:
