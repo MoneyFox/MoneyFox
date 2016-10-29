@@ -66,9 +66,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountViewModelTitle"
+                <TextBlock x:Uid="AccountTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="AccountViewModels" />
+                           Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -102,7 +102,7 @@
                 </controls:AlternatingRowListViewMainScreen>
             </ScrollViewer>
 
-            <TextBlock x:Uid="AccountViewModelsPlaceholder"
+            <TextBlock x:Uid="AccountsPlaceholder"
                        Grid.Row="1"
                        Margin="6"
                        HorizontalAlignment="Center"
@@ -133,10 +133,10 @@
                               Label="add transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddAccountViewModelLabel"
+                <AppBarButton x:Uid="AddAccountLabel"
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
-                              Label="Add AccountViewModel" />
+                              Label="Add Account" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
