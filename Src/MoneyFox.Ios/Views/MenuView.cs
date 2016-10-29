@@ -27,7 +27,7 @@ namespace MoneyFox.Ios.Views {
             homeButton.SetTitle(Strings.AccountsLabel, UIControlState.Normal);
             homeButton.BackgroundColor = UIColor.White;
             homeButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
-            set.Bind(homeButton).To(vm => vm.ShowViewModelByType(typeof(AccountListViewModel)));
+            set.Bind(homeButton).To(vm => vm.ShowAccountListCommand);
 
             set.Apply();
 
