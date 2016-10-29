@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -14,8 +13,6 @@ namespace MoneyFox.Windows.Views.UserControls
         public AccountListUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<AccountListViewModel>();
-         
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)

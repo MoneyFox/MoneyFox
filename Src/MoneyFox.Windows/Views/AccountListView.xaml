@@ -1,11 +1,60 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.AccountListView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="using:MoneyFox.Windows.Controls"
+                      xmlns:converter="using:MoneyFox.Windows.Converter"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel,
+                                                       IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Page.Resources>
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="AccountTemplate" x:DataType="dataModels:AccountViewModel">
+            <StackPanel Margin="0,0,0,12"
+                        HorizontalAlignment="Stretch"
+                        Background="Transparent"
+                        Holding="AccountList_Holding"
+                        RightTapped="AccountList_RightTapped">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Edit"
+                                        Click="Edit_OnClick"
+                                        Text="Edit" />
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Click="Delete_OnClick"
+                                        Text="Delete" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind Name}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock HorizontalAlignment="Right"
+                               Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                               TextAlignment="Right" />
+                </Grid>
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -26,27 +75,59 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:AccountListUserControl VerticalAlignment="Stretch" />
+            <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
+                                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                                           EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                           ItemTemplate="{StaticResource AccountTemplate}"
+                                                           ItemsSource="{Binding AllAccounts}"
+                                                           OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                           ShowsScrollingPlaceholders="False"
+                                                           WarningBackground="{StaticResource WarningBrush}">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </controls:AlternatingRowListViewMainScreen>
+            </ScrollViewer>
+
+            <TextBlock x:Uid="AccountsPlaceholder"
+                       Grid.Row="1"
+                       Margin="6"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{ThemeResource SystemBaseMediumLowColor}"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       TextWrapping="Wrap"
+                       Visibility="{Binding IsAllAccountsEmpty,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}" />
         </Grid>
 
-        <CommandBar Grid.Row="3">
-
+        <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
-                              Command="{Binding GoToAddPaymentCommand}"
-                              CommandParameter="Income"
+                              Command="{Binding GoToAddIncomeCommand}"
                               Icon="Add"
                               IsEnabled="{Binding IsAddIncomeAvailable}"
                               Label="add income" />
                 <AppBarButton x:Uid="AddExpenseLabel"
-                              Command="{Binding GoToAddPaymentCommand}"
-                              CommandParameter="Expense"
+                              Command="{Binding GoToAddExpenseCommand}"
                               Icon="Remove"
                               IsEnabled="{Binding IsAddExpenseAvailable}"
                               Label="add spending" />
                 <AppBarButton x:Uid="AddTransferLabel"
-                              Command="{Binding GoToAddPaymentCommand}"
-                              CommandParameter="Transfer"
+                              Command="{Binding GoToAddTransferCommand}"
                               Icon="Switch"
                               IsEnabled="{Binding IsTransferAvailable}"
                               Label="add transfer" />
@@ -55,7 +136,7 @@
                 <AppBarButton x:Uid="AddAccountLabel"
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
-                              Label="Add AccountViewModel" />
+                              Label="Add Account" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

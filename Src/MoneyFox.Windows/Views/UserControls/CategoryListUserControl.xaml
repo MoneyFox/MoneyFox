@@ -1,66 +1,64 @@
 ﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.CategoryListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:designTime1="using:MoneyFox.Shared.ViewModels.DesignTime"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
-             d:DataContext="{d:DesignInstance designTime1:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
-             mc:Ignorable="d"
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel,
+                                              IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <converter:ClickConverter x:Key="ClickConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="CategoryTemplate"
-                      x:DataType="dataModels:CategoryViewModel">
-            <StackPanel Margin="0,6,0,6"
+        <DataTemplate x:Key="CategoryTemplate" x:DataType="dataModels:CategoryViewModel">
+            <StackPanel MinWidth="300"
+                        Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
-                        MinWidth="300"
-                        RightTapped="CategoryListRightTapped"
-                        Holding="CategoryListHolding">
+                        Holding="CategoryListHolding"
+                        RightTapped="CategoryListRightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
-                                        Text="Edit"
-                                        Click="EditCategory" />
+                                        Click="EditCategory"
+                                        Text="Edit" />
                         <MenuFlyoutItem x:Uid="Delete"
-                                        Text="Delete"
-                                        Click="DeleteCategory" />
+                                        Click="DeleteCategory"
+                                        Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Text="{x:Bind Name}"
-                           Style="{ThemeResource BodyTextBlockStyle}" />
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind Name}" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Background="Transparent"
-                    Padding="3">
-                <TextBlock Text="{Binding Key}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                           FontSize="18"
+            <Border Background="Transparent" Padding="3">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
+                           FontSize="18"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           Text="{Binding Key}" />
             </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="JumpTemplate">
             <Border Padding="5">
                 <Border HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Group.Key}"
-                               Width="150"
-                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               FontSize="18"
+                    <TextBlock Width="150"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Center" />
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               Text="{Binding Group.Key}" />
                 </Border>
             </Border>
         </DataTemplate>
@@ -75,55 +73,55 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
-        <TextBox Header="search"
+        <TextBox x:Uid="SearchHeader"
                  Grid.Row="0"
                  Margin="5,0,5,0"
-                 x:Uid="SearchHeader"
-                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                 Header="search"
+                 Text="{Binding SearchText,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}" />
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
 
-                <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                 ItemTemplate="{StaticResource CategoryTemplate }"
+                <controls:AlternatingRowListView EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                                  IsItemClickEnabled="True"
-                                                 IsSynchronizedWithCurrentItem="False">
+                                                 IsSynchronizedWithCurrentItem="False"
+                                                 ItemTemplate="{StaticResource CategoryTemplate}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 OddRowBackground="{StaticResource ListViewBackgroundOddBrush}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
-                        <GroupStyle HidesIfEmpty="True"
-                                    HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
                     </ListView.GroupStyle>
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
-                          ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
-                          ItemTemplate="{StaticResource JumpTemplate}" />
+                          ItemTemplate="{StaticResource JumpTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Groups},
+                                                Path=CollectionGroups}" />
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
         <TextBlock x:Uid="CategoriesPlaceholder"
                    Grid.Row="1"
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
                    Margin="6"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding IsCategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding IsCategoriesEmpty,
+                                        Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

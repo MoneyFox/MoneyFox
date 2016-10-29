@@ -2,6 +2,7 @@ using Android.Content;
 using Android.Widget;
 using Autofac;
 using Autofac.Extras.MvvmCross;
+using Clans.Fab;
 using MoneyFox.Business;
 using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
@@ -30,6 +31,7 @@ namespace MoneyFox.Droid
         {
             base.FillTargetFactories(registry);
             registry.RegisterFactory(new MvxCustomBindingFactory<LinearLayout>("WarningBackgroundShape", (view) => new WarningBackgroundShapeBinding(view)));
+            registry.RegisterFactory(new MvxCustomBindingFactory<FloatingActionButton>("Click", (view) => new FloatingActionButtonClickBinding(view)));
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
