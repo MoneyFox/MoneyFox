@@ -51,6 +51,8 @@ namespace MoneyFox.Business.ViewModels
                 if (categories == value) return;
                 categories = value;
                 RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsCategoriesEmpty));
             }
         }
 
@@ -82,8 +84,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        public bool IsCategoriesEmpty => !Categories.Any();
-
+        public bool IsCategoriesEmpty => !Categories?.Any() ?? true;
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
