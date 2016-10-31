@@ -128,7 +128,6 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
