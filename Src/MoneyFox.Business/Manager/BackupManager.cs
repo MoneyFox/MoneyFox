@@ -55,8 +55,8 @@ namespace MoneyFox.Business.Manager
         ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
         ///     A sync can be attempted up to a number of times configured in ServiceConstants
         /// </summary>
-        /// <param name="attempts">How many times to try syncing</param>
-        public async Task EnqueueBackupTask(int attempts = 5)
+        /// <param name="attempts">How many times of trying to sync already where made.</param>
+        public async Task EnqueueBackupTask(int attempts = 0)
         {
             if (attempts < ServiceConstants.SyncAttempts)
             {

@@ -128,7 +128,6 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
@@ -150,8 +149,8 @@ namespace MoneyFox.Business.ViewModels
 
         private void Loaded()
         {
-            Categories = new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList());
-            Source = CreateGroup();
+            SearchText = string.Empty;
+            Search();
         }
 
         private void EditCategory(CategoryViewModel category)

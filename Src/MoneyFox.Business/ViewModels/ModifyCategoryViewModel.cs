@@ -147,6 +147,9 @@ namespace MoneyFox.Business.ViewModels
             if (categoryRepository.Delete(SelectedCategory))
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
             }
             Close(this);
         }

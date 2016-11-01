@@ -43,6 +43,6 @@ namespace MoneyFox.Foundation.Interfaces
         /// <summary>
         ///     Enqueues a new backup task
         /// </summary>
-        Task EnqueueBackupTask(int attempts = 5);
+        Task EnqueueBackupTask(int attempts = 0);
     }
 }
