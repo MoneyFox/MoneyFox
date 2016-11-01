@@ -181,6 +181,7 @@ namespace MoneyFox.Business.ViewModels
                 }
 
                 CategoryRepository.Delete(categoryToDelete);
+                Search();
             }
         }
     }

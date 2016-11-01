@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Business.Manager
@@ -16,23 +18,27 @@ namespace MoneyFox.Business.Manager
     {
         private readonly IBackupService backupService;
 
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
-        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly ISettingsManager settingsManager;
+        private readonly IPaymentRepository paymentRepository;
+
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private bool oldBackupRestored;
 
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
             IDatabaseManager databaseManager,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager,
+            IPaymentRepository paymentRepository)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
             this.settingsManager = settingsManager;
+            this.paymentRepository = paymentRepository;
         }
 
         /// <summary>
@@ -80,7 +86,6 @@ namespace MoneyFox.Business.Manager
             }
         }
 
-
         /// <summary>
         ///     Gets the backup date from the backup service.
         /// </summary>
@@ -127,6 +132,8 @@ namespace MoneyFox.Business.Manager
 
             databaseManager.CreateDatabase();
             databaseManager.MigrateDatabase();
+
+            paymentRepository.ReloadCache();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
