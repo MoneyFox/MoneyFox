@@ -139,5 +139,11 @@ namespace MoneyFox.DataAccess.Repositories
                 return db.Delete(itemToDelete) == 1;
             }
         }
+
+        public void ReloadCache()
+        {
+            DataCache.Clear();
+            GetList();
+        }
     }
 }
