@@ -35,7 +35,16 @@ namespace MoneyFox.DataAccess.Repositories
             {
                 using (var db = dbManager.GetConnection())
                 {
-                    DataCache = db.GetAllWithChildren<Payment>()
+                    // Load recurring payments and mapp them to the payments to ensure recurring payments have all FK's loaded.
+                    var recurringPayments = db.GetAllWithChildren<RecurringPayment>();
+                    var payments = db.GetAllWithChildren<Payment>();
+
+                    foreach (var payment in payments.Where(x => x.IsRecurring))
+                    {
+                        payment.RecurringPayment = recurringPayments.First(x => x.Id == payment.RecurringPaymentId);
+                    }
+
+                    DataCache = payments
                         .AsQueryable()
                         .ProjectTo<PaymentViewModel>()
                         .ToList();
@@ -53,9 +62,16 @@ namespace MoneyFox.DataAccess.Repositories
             {
                 try
                 {
-                    return DataCache.Any() 
-                        ? DataCache.Find(x => x.Id == id)
-                        : Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
+                    if (!DataCache.Any())
+                    {
+                        // Load recurring payment and mapp them to the payments to ensure recurring payments have all FK's loaded.
+                        var payment = Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
+                        payment.RecurringPayment = Mapper.Map<RecurringPaymentViewModel>(db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId));
+
+                        return payment;
+                    }
+
+                    return DataCache.Find(x => x.Id == id);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -90,6 +106,7 @@ namespace MoneyFox.DataAccess.Repositories
                         db.Insert(payment.RecurringPayment);
                         payment.RecurringPayment =
                             db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First();
+                        payment.RecurringPaymentId = payment.RecurringPayment.Id;
                     }
 
                     db.Insert(payment);
@@ -133,7 +150,7 @@ namespace MoneyFox.DataAccess.Repositories
         {
             using (var db = dbManager.GetConnection())
             {
-                DataCache.Remove(paymentToDelete);
+                DataCache.RemoveAll(x => x.Id == paymentToDelete.Id);
 
                 var itemToDelete = db.Table<Payment>().Single(x => x.Id == paymentToDelete.Id);
                 return db.Delete(itemToDelete) == 1;

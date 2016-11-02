@@ -51,6 +51,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             try
             {
                 paymentRepository.Save(testPayment);
+                paymentRepository.ReloadCache();
                 testPayment.Id.ShouldBeGreaterThan(0);
             }
             finally
@@ -77,6 +78,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
                 testPayment.Note = updatedNote;
 
                 paymentRepository.Save(testPayment);
+                paymentRepository.ReloadCache();
                 paymentRepository.FindById(testPayment.Id).Note.ShouldBe(updatedNote);
             }
             finally
@@ -97,6 +99,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             try
             {
                 paymentRepository.Save(testPayment);
+                paymentRepository.ReloadCache();
 
                 var selectedAccount = paymentRepository.GetList().First();
 
@@ -121,6 +124,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             try
             {
                 paymentRepository.Save(testPayment);
+                paymentRepository.ReloadCache();
 
                 paymentRepository.GetList(x => x.Id == testPayment.Id).First().Id.ShouldBe(testPayment.Id);
                 paymentRepository.GetList(x => x.Id == 99).FirstOrDefault().ShouldBeNull();
@@ -141,6 +145,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.Id = 0;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             paymentRepository.FindById(testPayment.Id).ShouldNotBeNull();
 
             paymentRepository.Delete(testPayment);
@@ -158,6 +163,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.Id = 0;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -187,6 +193,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.Category = category;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var payment = paymentRepository.FindById(testPayment.Id);
 
             payment.ShouldNotBeNull();
@@ -219,6 +226,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.Category = testCategory;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -255,6 +263,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
 
             paymentRepository.Save(testPayment);
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             categoryRepository.GetList(x => x.Name == testPayment.Category.Name).Count().ShouldBe(1);
@@ -283,6 +292,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.Category = category;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             paymentRepository.FindById(testPayment.Id).CategoryId.Value.ShouldBeGreaterThan(0);
         }
 
@@ -307,6 +317,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.TargetAccount = null;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -343,6 +354,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
 
             paymentRepository.Save(testPayment);
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             accountRepository.GetList(x => x.Name == testPayment.ChargedAccount.Name).Count().ShouldBe(1);
@@ -363,6 +375,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
 
             var account = fixture.Create<AccountViewModel>();
             accountRepository.Save(account);
+            paymentRepository.ReloadCache();
             account.Id.ShouldBeGreaterThan(0);
 
             var testPayment = new Fixture().Create<PaymentViewModel>();
@@ -370,6 +383,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.ChargedAccount = account;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             paymentRepository.FindById(testPayment.Id).ChargedAccountId.ShouldBe(account.Id);
         }
 
@@ -394,6 +408,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.TargetAccount = null;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -430,6 +445,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
 
             paymentRepository.Save(testPayment);
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             accountRepository.GetList(x => x.Name == testPayment.TargetAccount.Name).Count().ShouldBe(1);
@@ -451,6 +467,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             var account = fixture.Create<AccountViewModel>();
 
             accountRepository.Save(account);
+            paymentRepository.ReloadCache();
             account.Id.ShouldBeGreaterThan(0);
 
             var testPayment = new Fixture().Create<PaymentViewModel>();
@@ -462,7 +479,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
         }
 
         [TestMethod]
-        public void Save_WithRecurringPayment()
+        public void FindById_WithRecurringPayment()
         {
             var paymentRepository =
                 new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
@@ -475,6 +492,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.IsRecurring = true;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -489,7 +507,118 @@ namespace MoneyFox.DataAccess.Tests.Repository
         }
 
         [TestMethod]
+        public void FindById_WithRecurringPayment_RecPaymentDependenciesLoaded()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var accountRepository =
+                new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var fixture = new Fixture();
+
+            var account = fixture.Create<AccountViewModel>();
+            account.Id = 0;
+            accountRepository.Save(account);
+
+            var testPayment = fixture.Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.RecurringPaymentId = 0;
+            testPayment.RecurringPayment.Id = 0;
+            testPayment.IsRecurring = true;
+            testPayment.ChargedAccount = account;
+            testPayment.RecurringPayment.ChargedAccount = account;
+
+
+            paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<PaymentViewModel>();
+
+            selected.RecurringPayment.ShouldNotBeNull();
+            selected.RecurringPayment.Id.ShouldBe(selected.RecurringPaymentId);
+            selected.RecurringPayment.Id.ShouldBe(testPayment.RecurringPayment.Id);
+
+            selected.RecurringPayment.ChargedAccount.ShouldNotBeNull();
+
+            paymentRepository.Delete(testPayment);
+            paymentRepository.FindById(testPayment.Id).ShouldBeNull();
+        }
+        
+        [TestMethod]
+        public void GetList_WithRecurringPayment_RecPaymentDependenciesLoaded()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var accountRepository =
+                new AccountRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var fixture = new Fixture();
+
+            var account = fixture.Create<AccountViewModel>();
+            account.Id = 0;
+            accountRepository.Save(account);
+
+            var testPayment = fixture.Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.RecurringPaymentId = 0;
+            testPayment.RecurringPayment.Id = 0;
+            testPayment.IsRecurring = true;
+            testPayment.ChargedAccount = account;
+            testPayment.RecurringPayment.ChargedAccount = account;
+
+            paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
+            var selected = paymentRepository.GetList(x => x.Id == testPayment.Id).First();
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<PaymentViewModel>();
+
+            selected.RecurringPayment.ShouldNotBeNull();
+            selected.RecurringPayment.Id.ShouldBe(selected.RecurringPaymentId);
+            selected.RecurringPayment.Id.ShouldBe(testPayment.RecurringPayment.Id);
+
+            selected.RecurringPayment.ChargedAccount.ShouldNotBeNull();
+
+            paymentRepository.Delete(testPayment);
+            paymentRepository.FindById(testPayment.Id).ShouldBeNull();
+        }
+
+        [TestMethod]
         public void Save_WithRecurringPayment_IdSet()
+        {
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var testPayment = new Fixture().Create<PaymentViewModel>();
+            testPayment.Id = 0;
+            testPayment.IsRecurring = true;
+            testPayment.RecurringPayment.Id = 0;
+
+            paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
+            var selected = paymentRepository.FindById(testPayment.Id);
+
+            selected.ShouldNotBeNull();
+            selected.ShouldBeInstanceOf<PaymentViewModel>();
+
+            selected.RecurringPayment.ShouldNotBeNull();
+            selected.RecurringPayment.ShouldBeInstanceOf<RecurringPaymentViewModel>();
+
+            selected.RecurringPayment.Id.ShouldBeGreaterThan(0);
+            selected.RecurringPaymentId.ShouldBeGreaterThan(0);
+        }
+
+        [TestMethod]
+        public void Save_WithRecurringPayment_IdInCacheSet()
         {
             var paymentRepository =
                 new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
@@ -512,7 +641,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             selected.RecurringPayment.Id.ShouldBeGreaterThan(0);
             selected.RecurringPaymentId.ShouldBeGreaterThan(0);
         }
-        
+
         [TestMethod]
         public void SaveAndUpdate_WithRecurringPayment_NoDuplicates()
         {
@@ -528,6 +657,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             recurringPayment.Id = 0;
 
             recurringPaymentRepository.Save(recurringPayment);
+            paymentRepository.ReloadCache();
 
             var testPayment = new Fixture().Create<PaymentViewModel>();
             testPayment.Id = 0;
@@ -564,6 +694,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             testPayment.RecurringPayment = recurringPayment;
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             paymentRepository.FindById(testPayment.Id).RecurringPaymentId.ShouldBe(recurringPayment.Id);
         }
 
@@ -581,6 +712,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             };
 
             paymentRepository.Save(testPayment);
+            paymentRepository.ReloadCache();
             var selected = paymentRepository.FindById(testPayment.Id);
 
             selected.ShouldNotBeNull();
@@ -609,6 +741,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
             payment.Category = category;
 
             paymentRepository.Save(payment);
+            paymentRepository.ReloadCache();
 
             var selected = paymentRepository.GetList(x => x.Id == payment.Id).First();
             selected.ShouldNotBeNull();
