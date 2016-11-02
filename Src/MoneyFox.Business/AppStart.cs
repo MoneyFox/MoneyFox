@@ -17,6 +17,13 @@ namespace MoneyFox.Business
         /// <param name="hint">parameter for the launch of the app.</param>
         public async void Start(object hint = null)
         {
+            var dialogService = Mvx.Resolve<IDialogService>();
+            dialogService.ShowLoadingDialog();
+            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
+            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
+            Mvx.Resolve<IPaymentManager>().ClearPayments();
+            dialogService.HideLoadingDialog();
+
             if (Mvx.Resolve<Session>().ValidateSession())
             {
                 ShowViewModel<MainViewModel>();
@@ -28,13 +35,8 @@ namespace MoneyFox.Business
                 ShowViewModel<LoginViewModel>();
             }
 
-            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
             Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
-            Mvx.Resolve<IPaymentManager>().ClearPayments();
-#pragma warning disable 4014
-            Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewer();
-#pragma warning restore 4014
+            await Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewer();
         }
     }
 }
