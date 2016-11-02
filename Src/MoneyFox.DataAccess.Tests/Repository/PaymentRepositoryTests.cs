@@ -747,5 +747,27 @@ namespace MoneyFox.DataAccess.Tests.Repository
             selected.ShouldNotBeNull();
             selected.Category.ShouldNotBeNull();
         }
+
+        [TestMethod]
+        public void CacheProperlyUpdated()
+        {
+            // Setup
+            var paymentRepository =
+                new PaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                    new MvxWpfFileStore(FILE_ROOT)));
+
+            var payment = new Fixture().Create<PaymentViewModel>();
+            payment.Id = 0;
+            payment.IsCleared = false;
+
+            // Setup
+            paymentRepository.Save(payment);
+
+            payment.IsCleared = true;
+            paymentRepository.Save(payment);
+
+            // Assert
+            paymentRepository.FindById(payment.Id).IsCleared.ShouldBeTrue();
+        }
     }
 }
