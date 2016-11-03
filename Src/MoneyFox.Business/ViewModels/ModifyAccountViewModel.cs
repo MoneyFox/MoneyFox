@@ -126,8 +126,8 @@ namespace MoneyFox.Business.ViewModels
             else
             {
                 IsEdit = true;
-                amount = SelectedAccount.CurrentBalance;
                 SelectedAccount = accountRepository.FindById(accountId);
+                amount = SelectedAccount.CurrentBalance;
             }
         }
 
