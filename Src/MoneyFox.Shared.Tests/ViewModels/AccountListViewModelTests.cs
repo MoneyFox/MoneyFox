@@ -96,53 +96,6 @@ namespace MoneyFox.Shared.Tests.ViewModels
         }
 
         [TestMethod]
-        public void DeleteAccountCommand_CascadeDeletePayments()
-        {
-            var deleteCalled = false;
-
-            var accountData = new AccountViewModel {
-                CurrentBalance = 0,
-                Id = 300,
-                Name = "Test AccountViewModel"
-            };
-
-            var testList = new ObservableCollection<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 1,
-                    Amount = 100,
-                    ChargedAccountId = accountData.Id
-                },
-                new PaymentViewModel
-                {
-                    Id = 2,
-                    Amount = 200,
-                    ChargedAccountId = accountData.Id
-                }
-            };
-
-            accountRepository.Setup(x => x.Delete(It.IsAny<AccountViewModel>())).Callback(() => deleteCalled = true);
-            accountRepository.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel> { accountData });
-
-            var mockPaymentRepo = new Mock<IPaymentManager>();
-            mockPaymentRepo.Setup(c => c.DeletePayment(It.IsAny<PaymentViewModel>()))
-                .Callback((PaymentViewModel payment) => { testList.Remove(payment); });
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
-                .Returns(Task.FromResult(true));
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var viewModel = new AccountListViewModel(accountRepository.Object, mockPaymentRepo.Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object);
-
-            viewModel.DeleteAccountCommand.Execute(accountData);
-            deleteCalled.ShouldBeTrue();
-            testList.Any().ShouldBeFalse();
-        }
-
-        [TestMethod]
         public void IsAllAccountsEmpty_AccountsEmpty_True()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
