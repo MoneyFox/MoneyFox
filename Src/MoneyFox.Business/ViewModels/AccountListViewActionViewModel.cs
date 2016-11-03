@@ -21,7 +21,7 @@ namespace MoneyFox.Business.ViewModels
         }
 
         public MvxCommand GoToAddAccountCommand => 
-                new MvxCommand(() => ShowViewModel<ModifyAccountViewModel>(new { isEdit = false, selectedAccountId = 0 }));
+                new MvxCommand(() => ShowViewModel<ModifyAccountViewModel>(new { accountId = 0 }));
 
         public MvxCommand GoToAddIncomeCommand =>
                 new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Income}));

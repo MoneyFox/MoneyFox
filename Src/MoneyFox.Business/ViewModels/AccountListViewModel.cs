@@ -102,7 +102,7 @@ namespace MoneyFox.Business.ViewModels
         
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = accountViewModel.Id});
+            ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
         }
 
         private void Loaded()
