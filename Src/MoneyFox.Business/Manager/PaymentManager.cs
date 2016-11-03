@@ -53,6 +53,10 @@ namespace MoneyFox.Business.Manager
             return saveWasSuccessful;
         }
 
+        /// <summary>
+        ///     Deletes all the payments and the recurring payments associated with teh account.
+        /// </summary>
+        /// <param name="accountViewModel">The associated Account.</param>
         public void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel)
         {
             var paymentToDelete = paymentRepository
@@ -62,10 +66,24 @@ namespace MoneyFox.Business.Manager
 
             foreach (var payment in paymentToDelete)
             {
+                if (payment.IsRecurring)
+                {
+                    foreach (var recTrans in recurringPaymentRepository.GetList(x => x.Id == payment.RecurringPaymentId)
+                    )
+                    {
+                        recurringPaymentRepository.Delete(recTrans);
+                    }
+                }
+
                 paymentRepository.Delete(payment);
             }
         }
 
+        /// <summary>
+        ///     Checks if an recurring payment is up to repeat.
+        /// </summary>
+        /// <param name="payment">Payment to check if it has to be repeated</param>
+        /// <returns>True or false if a repetition has to be created.</returns>
         public async Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring)
@@ -191,6 +209,12 @@ namespace MoneyFox.Business.Manager
             return true;
         }
 
+        /// <summary>
+        ///     Deletes a payment and if asks the user if the recurring payment shall be deleted as well.
+        ///     If the users says yes, delete recurring payment.
+        /// </summary>
+        /// <param name="payment">Payment to delete.</param>
+        /// <returns>Returns if the operation was successful</returns>
         public async Task<bool> DeletePayment(PaymentViewModel payment)
         {
             paymentRepository.Delete(payment);
