@@ -685,7 +685,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while saving the item..
+        ///   Looks up a localized string similar to An error occured while deleting the item..
         /// </summary>
         public static string ErrorMessageDelete {
             get {

@@ -16,20 +16,20 @@ namespace MoneyFox.Business.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IEndOfMonthManager endOfMonthManager;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
 
         private ObservableCollection<AccountViewModel> allAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository,
+            IPaymentManager paymentManager,
             IDialogService dialogService, 
             IEndOfMonthManager endOfMonthManager,
             ISettingsManager settingsManager)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
+            this.paymentManager = paymentManager;
             this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
 
@@ -102,7 +102,7 @@ namespace MoneyFox.Business.ViewModels
         
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = accountViewModel.Id});
+            ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
         }
 
         private void Loaded()
@@ -131,23 +131,23 @@ namespace MoneyFox.Business.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var paymentsToDelete = paymentRepository.GetList(p => p.ChargedAccountId == accountToDelete.Id);
+                paymentManager.DeleteAssociatedPaymentsFromDatabase(accountToDelete);
 
-                foreach (var payment in paymentsToDelete.ToList())
-                {
-                    paymentRepository.Delete(payment);
-                }
                 if (accountRepository.Delete(accountToDelete))
                 {
+                    if (AllAccounts.Contains(accountToDelete))
+                    {
+                        AllAccounts.Remove(accountToDelete);
+                    }
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
+                }
+                else
+                {
+                    await dialogService
+                        .ShowConfirmMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
                 }
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
-
-            if (AllAccounts.Contains(accountToDelete))
-            {
-                AllAccounts.Remove(accountToDelete);
-            }
         }
 
         private void GoToAddAccount()

@@ -14,7 +14,6 @@ namespace MoneyFox.Windows.Views
         public ModifyPaymentView()
         {
             InitializeComponent();
-            //DataContext = Mvx.Resolve<ModifyPaymentViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

@@ -36,6 +36,7 @@ namespace MoneyFox.Business.Manager
             {
                 recurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
+                payment.RecurringPayment = null;
             }
 
             bool handledRecuringPayment;
@@ -52,18 +53,10 @@ namespace MoneyFox.Business.Manager
             return saveWasSuccessful;
         }
 
-        public void RemoveRecurringForPayment(PaymentViewModel paymentToChange)
-        {
-            var payments = paymentRepository.GetList(x => x.Id == paymentToChange.Id).ToList();
-
-            foreach (var payment in payments)
-            {
-                payment.RecurringPayment = null;
-                payment.IsRecurring = false;
-                paymentRepository.Save(payment);
-            }
-        }
-
+        /// <summary>
+        ///     Deletes all the payments and the recurring payments associated with teh account.
+        /// </summary>
+        /// <param name="accountViewModel">The associated Account.</param>
         public void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel)
         {
             var paymentToDelete = paymentRepository
@@ -73,10 +66,24 @@ namespace MoneyFox.Business.Manager
 
             foreach (var payment in paymentToDelete)
             {
+                if (payment.IsRecurring)
+                {
+                    foreach (var recTrans in recurringPaymentRepository.GetList(x => x.Id == payment.RecurringPaymentId)
+                    )
+                    {
+                        recurringPaymentRepository.Delete(recTrans);
+                    }
+                }
+
                 paymentRepository.Delete(payment);
             }
         }
 
+        /// <summary>
+        ///     Checks if an recurring payment is up to repeat.
+        /// </summary>
+        /// <param name="payment">Payment to check if it has to be repeated</param>
+        /// <returns>True or false if a repetition has to be created.</returns>
         public async Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring)
@@ -84,8 +91,7 @@ namespace MoneyFox.Business.Manager
                 return false;
             }
 
-            return
-                await
+            return await
                     dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                         Strings.ChangeSubsequentPaymentMessage,
                         Strings.RecurringLabel, Strings.JustThisLabel);
@@ -139,26 +145,6 @@ namespace MoneyFox.Business.Manager
                 {
                     Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
-            }
-        }
-
-        public void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment)
-        {
-            try
-            {
-                var relatedPayment = paymentRepository
-                    .GetList(x => x.IsRecurring && (x.RecurringPaymentId == recurringPayment.Id));
-
-                foreach (var payment in relatedPayment)
-                {
-                    payment.IsRecurring = false;
-                    payment.RecurringPaymentId = 0;
-                    paymentRepository.Save(payment);
-                }
-            }
-            catch (Exception ex)
-            {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
 
@@ -223,25 +209,28 @@ namespace MoneyFox.Business.Manager
             return true;
         }
 
-        public bool DeletePayment(PaymentViewModel payment)
+        /// <summary>
+        ///     Deletes a payment and if asks the user if the recurring payment shall be deleted as well.
+        ///     If the users says yes, delete recurring payment.
+        /// </summary>
+        /// <param name="payment">Payment to delete.</param>
+        /// <returns>Returns if the operation was successful</returns>
+        public async Task<bool> DeletePayment(PaymentViewModel payment)
         {
             paymentRepository.Delete(payment);
 
-            // If this PaymentViewModel was the last one for the linked recurring PaymentViewModel
-            // delete the db entry for the recurring PaymentViewModel.
-            var succeed = true;
-            if (paymentRepository.GetList().All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
-            {
-                var recurringList = recurringPaymentRepository
-                    .GetList(x => x.Id == payment.RecurringPaymentId)
-                    .ToList();
+            if (!await CheckRecurrenceOfPayment(payment)) return true;
 
-                foreach (var recTrans in recurringList)
+            // Delete all recurring payments if the user wants so.
+            var succeed = true;
+            if (recurringPaymentRepository.GetList().Any(x => x.Id == payment.RecurringPaymentId))
+            {
+                var recpayment = recurringPaymentRepository
+                    .FindById(payment.RecurringPaymentId);
+
+                if (!recurringPaymentRepository.Delete(recpayment))
                 {
-                    if (!recurringPaymentRepository.Delete(recTrans))
-                    {
-                        succeed = false;
-                    }
+                    succeed = false;
                 }
             }
             return succeed;

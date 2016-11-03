@@ -53,7 +53,7 @@ namespace MoneyFox.Windows.Services
 
             var result = await dialog.ShowAsync();
 
-            return result.Label == Strings.YesLabel;
+            return result.Label == (positiveButtonText ?? Strings.YesLabel);
         }
 
         /// <summary>

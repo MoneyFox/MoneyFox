@@ -19,7 +19,6 @@ namespace MoneyFox.Business.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<RecurringPaymentViewModel> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
         private readonly IEndOfMonthManager endOfMonthManager;
 
@@ -32,7 +31,6 @@ namespace MoneyFox.Business.ViewModels
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IRepository<RecurringPaymentViewModel> recurringPaymentRepository,
             IPaymentManager paymentManager,
             IDialogService dialogService,
             ISettingsManager settingsManager,
@@ -41,7 +39,6 @@ namespace MoneyFox.Business.ViewModels
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
-            this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.endOfMonthManager = endOfMonthManager;
@@ -154,7 +151,7 @@ namespace MoneyFox.Business.ViewModels
         {
             AccountId = id;
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
-            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, settingsManager, dialogService, BalanceViewModel, AccountId);
+            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, paymentManager, settingsManager, dialogService, BalanceViewModel, AccountId);
         }
 
         private void LoadPayments()
@@ -190,21 +187,12 @@ namespace MoneyFox.Business.ViewModels
 
         private async void DeletePayment(PaymentViewModel payment)
         {
-            if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
-            {
-                return;
-            }
+            if (!await dialogService
+                .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            if (await paymentManager.CheckRecurrenceOfPayment(payment))
-            {
-                paymentManager.RemoveRecurringForPayment(payment);
-                recurringPaymentRepository.Delete(payment.RecurringPayment);
-            }
-
-            var accountSucceded = paymentManager.RemovePaymentAmount(payment);
-            var paymentSucceded = paymentRepository.Delete(payment);
-            if (accountSucceded && paymentSucceded)
+            var deletePaymentSucceded = await paymentManager.DeletePayment(payment);
+            var deleteAccountSucceded = paymentManager.RemovePaymentAmount(payment);
+            if (deletePaymentSucceded && deleteAccountSucceded)
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
             }

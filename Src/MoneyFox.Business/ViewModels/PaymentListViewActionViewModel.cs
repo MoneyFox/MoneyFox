@@ -17,18 +17,21 @@ namespace MoneyFox.Business.ViewModels
     public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
         private readonly IAccountRepository accountRepository;
+        private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly int accountId;
 
-        public PaymentListViewActionViewModel(IAccountRepository accountRepository, 
+        public PaymentListViewActionViewModel(IAccountRepository accountRepository,
+            IPaymentManager paymentManager,
             ISettingsManager settingsManager, 
             IDialogService dialogService, 
             IBalanceViewModel balanceViewModel, 
             int accountId)
         {
             this.accountRepository = accountRepository;
+            this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
@@ -65,13 +68,22 @@ namespace MoneyFox.Business.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                if (accountRepository.Delete(accountRepository.FindById(accountId)))
+                var accountToDelete = accountRepository.FindById(accountId);
+
+                paymentManager.DeleteAssociatedPaymentsFromDatabase(accountToDelete);
+
+                if (accountRepository.Delete(accountToDelete))
                 {
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
+                    Close(this);
                 }
-                balanceViewModel.UpdateBalanceCommand.Execute();
-                Close(this);
+                else
+                {
+                    await
+                        dialogService.ShowConfirmMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                }
             }
+            balanceViewModel.UpdateBalanceCommand.Execute();
         }
     }
 }
