@@ -19,7 +19,6 @@ namespace MoneyFox.Business.Tests.Converter
             CultureInfo testCulture = new CultureInfo(cultureID, false);
             var amount = -88.23;
             var positiveAmount = 88.23;
-            //var amount = c.ToString(testCulture);
             new AmountFormatConverter().Convert(amount, null, null, testCulture).ShouldBe("-" + testCulture.NumberFormat.CurrencySymbol + positiveAmount.ToString(testCulture));
         }
     }
