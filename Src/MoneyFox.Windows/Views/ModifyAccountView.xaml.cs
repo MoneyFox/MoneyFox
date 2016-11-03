@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -13,7 +12,6 @@ namespace MoneyFox.Windows.Views
         public ModifyAccountView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyAccountViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

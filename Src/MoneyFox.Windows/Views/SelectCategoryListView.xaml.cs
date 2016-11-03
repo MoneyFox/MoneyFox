@@ -1,7 +1,6 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -10,7 +9,6 @@ namespace MoneyFox.Windows.Views
         public SelectCategoryListView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SelectCategoryListViewModel>();
         }
 
         protected override void OnKeyDown(KeyRoutedEventArgs e)
