@@ -7,18 +7,6 @@ namespace MoneyFox.Business.Tests.Converter
 {
     public class AmountFormatConverterTests
     {
-        [Theory]
-        [InlineData(123.45, "en-US")]
-        [InlineData(30, "en-US")]
-        [InlineData(123.45, "de-CH")]
-        [InlineData(30, "de-CH")]
-        [InlineData(123.45, "it-IT")]
-        [InlineData(30, "it-IT")]
-        public void Convert_FloatAmount_ValidString(double amount, string cultureString)
-        {
-            new AmountFormatConverter().Convert(amount, null, null, new CultureInfo(cultureString)).ShouldBe(amount.ToString("C", new CultureInfo(cultureString)));
-        }
-
         [Theory]              // Currencies: 
         [InlineData("fr-Fr")] // France
         [InlineData("de-DE")] // Germany
