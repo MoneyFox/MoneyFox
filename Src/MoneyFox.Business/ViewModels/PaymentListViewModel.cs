@@ -151,7 +151,7 @@ namespace MoneyFox.Business.ViewModels
         {
             AccountId = id;
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
-            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, settingsManager, dialogService, BalanceViewModel, AccountId);
+            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, paymentManager, settingsManager, dialogService, BalanceViewModel, AccountId);
         }
 
         private void LoadPayments()
