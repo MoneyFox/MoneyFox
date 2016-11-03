@@ -187,20 +187,12 @@ namespace MoneyFox.Business.ViewModels
 
         private async void DeletePayment(PaymentViewModel payment)
         {
-            if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
-            {
-                return;
-            }
+            if (!await dialogService
+                .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            if (await paymentManager.CheckRecurrenceOfPayment(payment))
-            {
-                paymentManager.RemoveRecurringForPayment(payment);
-            }
-
-            var accountSucceded = paymentManager.RemovePaymentAmount(payment);
-            var paymentSucceded = paymentRepository.Delete(payment);
-            if (accountSucceded && paymentSucceded)
+            var deletePaymentSucceded = await paymentManager.DeletePayment(payment);
+            var deleteAccountSucceded = paymentManager.RemovePaymentAmount(payment);
+            if (deletePaymentSucceded && deleteAccountSucceded)
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
             }

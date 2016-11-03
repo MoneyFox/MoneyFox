@@ -36,6 +36,7 @@ namespace MoneyFox.Business.Manager
             {
                 recurringPaymentRepository.Delete(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
+                payment.RecurringPayment = null;
             }
 
             bool handledRecuringPayment;
@@ -50,18 +51,6 @@ namespace MoneyFox.Business.Manager
             var saveWasSuccessful = handledRecuringPayment && paymentRepository.Save(payment);
 
             return saveWasSuccessful;
-        }
-
-        public void RemoveRecurringForPayment(PaymentViewModel paymentToChange)
-        {
-            var payments = paymentRepository.GetList(x => x.Id == paymentToChange.Id).ToList();
-
-            foreach (var payment in payments)
-            {
-                payment.RecurringPayment = null;
-                payment.IsRecurring = false;
-                paymentRepository.Save(payment);
-            }
         }
 
         public void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel)
@@ -141,27 +130,6 @@ namespace MoneyFox.Business.Manager
             }
         }
 
-        public void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment)
-        {
-            try
-            {
-                var relatedPayment = paymentRepository
-                    .GetList(x => x.IsRecurring && (x.RecurringPaymentId == recurringPayment.Id));
-
-                foreach (var payment in relatedPayment)
-                {
-                    recurringPaymentRepository.Delete(recurringPayment);
-                    payment.IsRecurring = false;
-                    payment.RecurringPaymentId = 0;
-                    paymentRepository.Save(payment);
-                }
-            }
-            catch (Exception ex)
-            {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
-            }
-        }
-
         /// <summary>
         ///     Adds the PaymentViewModel amount from the selected AccountViewModel
         /// </summary>
@@ -223,25 +191,22 @@ namespace MoneyFox.Business.Manager
             return true;
         }
 
-        public bool DeletePayment(PaymentViewModel payment)
+        public async Task<bool> DeletePayment(PaymentViewModel payment)
         {
             paymentRepository.Delete(payment);
 
-            // If this PaymentViewModel was the last one for the linked recurring PaymentViewModel
-            // delete the db entry for the recurring PaymentViewModel.
-            var succeed = true;
-            if (paymentRepository.GetList().All(x => x.RecurringPaymentId != payment.RecurringPaymentId))
-            {
-                var recurringList = recurringPaymentRepository
-                    .GetList(x => x.Id == payment.RecurringPaymentId)
-                    .ToList();
+            if (!await CheckRecurrenceOfPayment(payment)) return true;
 
-                foreach (var recTrans in recurringList)
+            // Delete all recurring payments if the user wants so.
+            var succeed = true;
+            if (recurringPaymentRepository.GetList().Any(x => x.Id == payment.RecurringPaymentId))
+            {
+                var recpayment = recurringPaymentRepository
+                    .FindById(payment.RecurringPaymentId);
+
+                if (!recurringPaymentRepository.Delete(recpayment))
                 {
-                    if (!recurringPaymentRepository.Delete(recTrans))
-                    {
-                        succeed = false;
-                    }
+                    succeed = false;
                 }
             }
             return succeed;

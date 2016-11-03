@@ -416,24 +416,19 @@ namespace MoneyFox.Business.ViewModels
 
         private async void Delete()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
-            {
-                if (await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
-                {
-                    paymentManager.RemoveRecurringForPayment(SelectedPayment);
-                }
+            if (!await dialogService
+                .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-                var paymentSucceded = paymentRepository.Delete(SelectedPayment);
-                var accountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
-                if (paymentSucceded && accountSucceded)
-                {
-                    settingsManager.LastDatabaseUpdate = DateTime.Now;
+            var deletePaymentSucceded = await paymentManager.DeletePayment(SelectedPayment);
+            var deleteAccountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
+            if (deletePaymentSucceded && deleteAccountSucceded)
+            {
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                    backupManager.EnqueueBackupTask();
+                backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-                }
-                Close(this);
             }
+            Close(this);
         }
 
         private async void ShowAccountRequiredMessage()
