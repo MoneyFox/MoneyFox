@@ -222,6 +222,11 @@ namespace MoneyFox.Business.Manager
             if (!await CheckRecurrenceOfPayment(payment)) return true;
 
             // Delete all recurring payments if the user wants so.
+            return DeleteRecurringPaymentForPayment(payment);
+        }
+
+        private bool DeleteRecurringPaymentForPayment(PaymentViewModel payment)
+        {
             var succeed = true;
             if (recurringPaymentRepository.GetList().Any(x => x.Id == payment.RecurringPaymentId))
             {
@@ -231,6 +236,24 @@ namespace MoneyFox.Business.Manager
                 if (!recurringPaymentRepository.Delete(recpayment))
                 {
                     succeed = false;
+                }
+
+                // edit other payments
+                if (succeed)
+                {
+                    foreach (var paymentViewModel in
+                        paymentRepository.GetList(x => x.IsRecurring && x.RecurringPaymentId == recpayment.Id))
+                    {
+                        paymentViewModel.IsRecurring = false;
+                        paymentViewModel.RecurringPayment = null;
+
+                        var saveSuccess = paymentRepository.Save(paymentViewModel);
+
+                        if (!saveSuccess)
+                        {
+                            succeed = false;
+                        }
+                    }
                 }
             }
             return succeed;
