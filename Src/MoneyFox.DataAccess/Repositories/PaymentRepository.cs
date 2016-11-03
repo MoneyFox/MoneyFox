@@ -117,9 +117,6 @@ namespace MoneyFox.DataAccess.Repositories
                     return true;
                 }
                 db.UpdateWithChildren(payment);
-                // remove old version from the cache and add new
-                DataCache.RemoveAll(x => x.Id == paymentToSave.Id);
-                DataCache.Add(paymentToSave);
                 return true;
             }
         }
