@@ -399,7 +399,7 @@ namespace MoneyFox.Business.ViewModels
         private async Task PrepareRecurringPayment()
         {
             if ((IsEdit && await paymentManager.CheckRecurrenceOfPayment(SelectedPayment))
-                || SelectedPayment.IsRecurring)
+                || (!IsEdit && SelectedPayment.IsRecurring))
             {
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
                     GetRecurringFromPayment(SelectedPayment,
