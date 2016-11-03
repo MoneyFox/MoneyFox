@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Business.Converter;
-using System;
 using System.Globalization;
 using Xunit;
 using XunitShouldExtension;
@@ -9,13 +8,16 @@ namespace MoneyFox.Business.Tests.Converter
     public class AmountFormatConverterTests
     {
         [Theory]
-        [InlineData(123.45)]
-        [InlineData(30)]
-        public void Convert_FloatAmount_ValidString(double amount)
+        [InlineData(123.45, "en-US")]
+        [InlineData(30, "en-US")]
+        [InlineData(123.45, "de-CH")]
+        [InlineData(30, "de-CH")]
+        [InlineData(123.45, "it-IT")]
+        [InlineData(30, "it-IT")]
+        public void Convert_FloatAmount_ValidString(double amount, string cultureString)
         {
-            new AmountFormatConverter().Convert(amount, null, null, new CultureInfo("en-US")).ShouldBe(amount.ToString("C"));
+            new AmountFormatConverter().Convert(amount, null, null, new CultureInfo(cultureString)).ShouldBe(amount.ToString("C", new CultureInfo(cultureString)));
         }
-
 
         [Theory]              // Currencies: 
         [InlineData("fr-Fr")] // France
@@ -32,11 +34,5 @@ namespace MoneyFox.Business.Tests.Converter
             //var amount = c.ToString(testCulture);
             new AmountFormatConverter().Convert(amount, null, null, testCulture).ShouldBe("-" + testCulture.NumberFormat.CurrencySymbol + positiveAmount.ToString(testCulture));
         }
-
-
-
-
-
-
     }
 }
