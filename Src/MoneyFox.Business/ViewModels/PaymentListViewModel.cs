@@ -19,7 +19,6 @@ namespace MoneyFox.Business.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IRepository<RecurringPaymentViewModel> recurringPaymentRepository;
         private readonly ISettingsManager settingsManager;
         private readonly IEndOfMonthManager endOfMonthManager;
 
@@ -32,7 +31,6 @@ namespace MoneyFox.Business.ViewModels
 
         public PaymentListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IRepository<RecurringPaymentViewModel> recurringPaymentRepository,
             IPaymentManager paymentManager,
             IDialogService dialogService,
             ISettingsManager settingsManager,
@@ -41,7 +39,6 @@ namespace MoneyFox.Business.ViewModels
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
-            this.recurringPaymentRepository = recurringPaymentRepository;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.endOfMonthManager = endOfMonthManager;
@@ -199,7 +196,6 @@ namespace MoneyFox.Business.ViewModels
             if (await paymentManager.CheckRecurrenceOfPayment(payment))
             {
                 paymentManager.RemoveRecurringForPayment(payment);
-                recurringPaymentRepository.Delete(payment.RecurringPayment);
             }
 
             var accountSucceded = paymentManager.RemovePaymentAmount(payment);

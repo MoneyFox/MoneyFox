@@ -84,8 +84,7 @@ namespace MoneyFox.Business.Manager
                 return false;
             }
 
-            return
-                await
+            return await
                     dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                         Strings.ChangeSubsequentPaymentMessage,
                         Strings.RecurringLabel, Strings.JustThisLabel);
@@ -151,6 +150,7 @@ namespace MoneyFox.Business.Manager
 
                 foreach (var payment in relatedPayment)
                 {
+                    recurringPaymentRepository.Delete(recurringPayment);
                     payment.IsRecurring = false;
                     payment.RecurringPaymentId = 0;
                     paymentRepository.Save(payment);
