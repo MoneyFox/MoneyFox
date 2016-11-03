@@ -13,7 +13,7 @@ namespace MoneyFox.Business.Tests.Converter
         [InlineData(30)]
         public void Convert_FloatAmount_ValidString(double amount)
         {
-            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
+            new AmountFormatConverter().Convert(amount, null, null, new CultureInfo("en-US")).ShouldBe(amount.ToString("C"));
         }
 
 
