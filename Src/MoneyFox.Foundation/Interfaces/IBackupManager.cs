@@ -44,5 +44,11 @@ namespace MoneyFox.Foundation.Interfaces
         ///     Enqueues a new backup task
         /// </summary>
         Task EnqueueBackupTask(int attempts = 0);
+
+        /// <summary>
+        ///     Syncs the local database with the Backupservice and
+        ///     restores it if the one on the Backupservice is newer.
+        /// </summary>
+        Task SyncBackup();
     }
 }

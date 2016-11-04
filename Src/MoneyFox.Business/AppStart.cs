@@ -18,8 +18,9 @@ namespace MoneyFox.Business
         public async void Start(object hint = null)
         {
             var dialogService = Mvx.Resolve<IDialogService>();
+
             dialogService.ShowLoadingDialog();
-            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
+            await Mvx.Resolve<IBackupManager>().SyncBackup();
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
             dialogService.HideLoadingDialog();
@@ -36,7 +37,6 @@ namespace MoneyFox.Business
             }
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
-            await Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewer();
         }
     }
 }
