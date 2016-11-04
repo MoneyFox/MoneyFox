@@ -1,8 +1,5 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Views
 {
@@ -26,25 +23,6 @@ namespace MoneyFox.Windows.Views
                     BottomCommandBar.Visibility = Visibility.Visible;
                 }
             };
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var viewModel = (ModifyCategoryViewModel) DataContext;
-
-            var category = e.Parameter as CategoryViewModel;
-            if (category != null)
-            {
-                viewModel.IsEdit = true;
-                viewModel.SelectedCategory = category;
-            }
-            else
-            {
-                viewModel.IsEdit = false;
-                viewModel.SelectedCategory = new CategoryViewModel();
-            }
-
-            base.OnNavigatedTo(e);
         }
     }
 }
