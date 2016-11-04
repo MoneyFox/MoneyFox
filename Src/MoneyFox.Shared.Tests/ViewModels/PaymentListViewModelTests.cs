@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using Moq;
@@ -17,6 +16,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         private Mock<IPaymentManager> paymentManager;
         private Mock<ISettingsManager> settingsManager;
         private Mock<IEndOfMonthManager> endOfMonthManager;
+        private Mock<IBackupManager> backupManager;
 
         [TestInitialize]
         public void Init()
@@ -27,6 +27,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             paymentManager = new Mock<IPaymentManager>();
             settingsManager = new Mock<ISettingsManager>();
             endOfMonthManager = new Mock<IEndOfMonthManager>();
+            backupManager = new Mock<IBackupManager>();
 
             accountRepository.SetupAllProperties();
             paymentRepository.SetupAllProperties();
@@ -41,7 +42,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager.Object, 
                 null,
                 settingsManager.Object,
-                endOfMonthManager.Object);
+                endOfMonthManager.Object,
+                backupManager.Object)
+            ;
 
             vm.Init(42);
             vm.AccountId.ShouldBe(42);
@@ -55,7 +58,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 paymentManager.Object, 
                 null,
                 settingsManager.Object,
-                endOfMonthManager.Object);
+                endOfMonthManager.Object,
+                backupManager.Object);
 
             vm.Init(0);
             vm.AccountId.ShouldBe(0);

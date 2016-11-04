@@ -21,6 +21,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
         private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IBackupManager backupManager;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<PaymentViewModel>> source;
@@ -34,7 +35,8 @@ namespace MoneyFox.Business.ViewModels
             IPaymentManager paymentManager,
             IDialogService dialogService,
             ISettingsManager settingsManager,
-            IEndOfMonthManager endOfMonthManager)
+            IEndOfMonthManager endOfMonthManager, 
+            IBackupManager backupManager)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
@@ -42,6 +44,7 @@ namespace MoneyFox.Business.ViewModels
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.endOfMonthManager = endOfMonthManager;
+            this.backupManager = backupManager;
         }
 
         #region Properties
@@ -195,6 +198,9 @@ namespace MoneyFox.Business.ViewModels
             if (deletePaymentSucceded && deleteAccountSucceded)
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
+#pragma warning disable 4014
+                backupManager.EnqueueBackupTask();
+#pragma warning restore 4014
             }
             LoadCommand.Execute();
         }
