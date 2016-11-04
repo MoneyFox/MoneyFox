@@ -101,7 +101,7 @@ namespace MoneyFox.DataAccess.Repositories
 
                 if (payment.Id == 0)
                 {
-                    if (payment.IsRecurring)
+                    if (payment.IsRecurring && payment.RecurringPayment.Id == 0)
                     {
                         db.Insert(payment.RecurringPayment);
                         payment.RecurringPayment =

@@ -114,9 +114,7 @@
                                Margin="0,0,0,-2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Bottom"
-                               DataContext="/Assets/{0}/close.png"
-                               Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                Converter={StaticResource ThemedImageConverter}}">
+                               Source="/Assets/Close.png">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
                                     <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />

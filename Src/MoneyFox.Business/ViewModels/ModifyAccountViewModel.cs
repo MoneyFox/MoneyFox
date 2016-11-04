@@ -111,32 +111,24 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        public void Init(bool isEdit)
+        /// <summary>
+        ///     Initializes the ViewModel
+        /// </summary>
+        /// <param name="accountId">Pass the ID of the account to edit. If this is 0 the VM changes to Creation mode</param>
+        public void Init(int accountId = 0)
         {
-            IsEdit = isEdit;
-
-            if (!IsEdit)
+            if (accountId == 0)
             {
+                IsEdit = false;
                 amount = 0;
                 SelectedAccount = new AccountViewModel();
             }
             else
             {
+                IsEdit = true;
+                SelectedAccount = accountRepository.FindById(accountId);
                 amount = SelectedAccount.CurrentBalance;
             }
-        }
-
-        /// <summary>
-        ///     Initializes the ViewModel
-        /// </summary>
-        /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
-        /// <param name="selectedAccountId">if in edit mode, this is the selected AccountViewModel.</param>
-        public void Init(bool isEdit, int selectedAccountId)
-        {
-            IsEdit = isEdit;
-            SelectedAccount = selectedAccountId != 0
-                ? accountRepository.GetList(x => x.Id == selectedAccountId).First()
-                : new AccountViewModel();
         }
 
         private async void SaveAccount()

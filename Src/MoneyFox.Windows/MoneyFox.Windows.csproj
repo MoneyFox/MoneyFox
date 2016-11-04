@@ -235,9 +235,7 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\dark\close.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Close.png" />
     <Content Include="Assets\dark\done.png" />
     <Content Include="Assets\dark\filter.png" />
     <Content Include="Assets\dark\internet.png">
@@ -254,9 +252,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\IncomeTileIcon.png" />
-    <Content Include="Assets\light\close.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\light\done.png" />
     <Content Include="Assets\light\filter.png" />
     <Content Include="Assets\light\internet.png">

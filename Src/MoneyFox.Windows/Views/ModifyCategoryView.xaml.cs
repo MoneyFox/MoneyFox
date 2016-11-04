@@ -1,10 +1,8 @@
-﻿using MvvmCross.Platform;
-using Windows.UI.ViewManagement;
+﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
-
 
 namespace MoneyFox.Windows.Views
 {
@@ -16,7 +14,6 @@ namespace MoneyFox.Windows.Views
         public ModifyCategoryView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyCategoryViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

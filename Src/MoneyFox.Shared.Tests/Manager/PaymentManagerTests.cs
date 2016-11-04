@@ -130,29 +130,6 @@ namespace MoneyFox.Shared.Tests.Manager
         }
 
         [TestMethod]
-        public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
-        {
-            var payment = new PaymentViewModel
-            {
-                Id = 2,
-                RecurringPaymentId = 3,
-                RecurringPayment = new RecurringPaymentViewModel {Id = 3},
-                IsRecurring = true
-            };
-
-            var paymentRepositorySetup = new Mock<IPaymentRepository>();
-            paymentRepositorySetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel> {payment});
-
-            new PaymentManager(paymentRepositorySetup.Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRecurringPaymentRepository>().Object,
-                new Mock<IDialogService>().Object).RemoveRecurringForPayments(payment.RecurringPayment);
-
-            payment.IsRecurring.ShouldBeFalse();
-            payment.RecurringPaymentId.ShouldBe(0);
-        }
-
-        [TestMethod]
         public void SavePayment_RecPayment_IdInPaymentSaved()
         {
             var payment = new PaymentViewModel
