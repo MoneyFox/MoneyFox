@@ -80,24 +80,6 @@ namespace MoneyFox.Business.Manager
         }
 
         /// <summary>
-        ///     Checks if an recurring payment is up to repeat.
-        /// </summary>
-        /// <param name="payment">Payment to check if it has to be repeated</param>
-        /// <returns>True or false if a repetition has to be created.</returns>
-        public async Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment)
-        {
-            if (!payment.IsRecurring)
-            {
-                return false;
-            }
-
-            return await
-                    dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
-                        Strings.ChangeSubsequentPaymentMessage,
-                        Strings.RecurringLabel, Strings.JustThisLabel);
-        }
-
-        /// <summary>
         ///     returns a list with payments who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring payments</returns>
@@ -219,7 +201,9 @@ namespace MoneyFox.Business.Manager
         {
             paymentRepository.Delete(payment);
 
-            if (!await CheckRecurrenceOfPayment(payment)) return true;
+            if (!payment.IsRecurring || !await
+                    dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle,
+                        Strings.DeleteRecurringPaymentMessage)) return true;
 
             // Delete all recurring payments if the user wants so.
             return DeleteRecurringPaymentForPayment(payment);

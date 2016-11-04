@@ -154,7 +154,7 @@
     <value>Kapitalfluss</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Dies ist eine wiederkehrende Zahlung. Soll die Anpassung auch auf künftige Zahlungen übernommen werden oder nur auf diese?</value>
+    <value>Du hast eine wiederkehrende Zahlung bearbeitet. Möchtest du künftige Zahlungen ebenfalls entsprechend anpassen?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Wiederholungen aktualisieren?</value>
@@ -205,7 +205,7 @@
     <value>Gewinn</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Nur diese</value>
+    <value>Nein, nur diese</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Wir konnten dich nicht einloggen. Bitte prüfe ob du mit dem Internet verbunden bist.</value>
@@ -243,8 +243,8 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Überschreiben?</value>
   </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Alle aktualisieren</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Ja, alle aktualisieren</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Wiederherstellen fehlgeschlagen!</value>
@@ -404,7 +404,7 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
     <value>Übertrag hinzufügen</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Beim Speichern des Eintrags ist ein Fehler aufgetreten.</value>
+    <value>Es ist ein Fehler beim Löschen des Eintrags aufgetreten.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Beim Speichern des Eintrags ist ein Fehler aufgetreten.</value>
@@ -612,5 +612,11 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
     <value>Seitenleiste öffnen</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>Du hast eine wiederkehrende Zahlung gelöscht. Möchtest du die Wiederholung löschen?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Wiederholung löschen?</value>
   </data>
 </root>

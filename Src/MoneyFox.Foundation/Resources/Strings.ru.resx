@@ -154,7 +154,7 @@
     <value>Баланс</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Это повторяющаяся операция. Вы хотите обновить все будущие операции или только эту?</value>
+    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
@@ -205,7 +205,7 @@
     <value>Прирост</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Только это</value>
+    <value>No, just this</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Мы не можем зайти в ваш аккаунт. Проверьте ваше интернет подключение.</value>
@@ -243,8 +243,8 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Перезаписать?</value>
   </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Обновить всё</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Yes, update All</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Не удалось восстановить!</value>
@@ -403,7 +403,7 @@
     <value>Добавить перевод</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Произошла ошибка при сохранении элемента.</value>
+    <value>An error occured while deleting the item.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Произошла ошибка при сохранении элемента.</value>
@@ -609,5 +609,11 @@
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
     <value>Drawer Open</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
 </root>
