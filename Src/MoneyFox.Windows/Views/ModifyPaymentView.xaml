@@ -136,7 +136,8 @@
                              Margin="0,7,0,0"
                              Header="note"
                              Text="{Binding SelectedPayment.Note,
-                                            Mode=TwoWay}"
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged}"
                              TextWrapping="Wrap" />
                     <ToggleSwitch x:Uid="RepeatSwitch"
                                   Margin="0,7,0,0"
