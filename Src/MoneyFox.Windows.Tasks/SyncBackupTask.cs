@@ -23,15 +23,12 @@ namespace MoneyFox.Windows.Tasks
 
                 var settingsManager = new SettingsManager(new WindowsCommonSettings());
 
-                var autoBackupManager = new AutoBackupManager(
-                    new BackupManager(
-                        new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(), dbManager, settingsManager,
-                        new PaymentRepository(dbManager))
-                    ,settingsManager);
+                var backupManager = new BackupManager(new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
+                        new MvxWindowsCommonFileStore(), 
+                        dbManager, settingsManager,
+                        new PaymentRepository(dbManager));
 
-                await autoBackupManager.RestoreBackupIfNewer();
-                await autoBackupManager.UploadBackupIfNewer();
+                await backupManager.SyncBackup();
             }
             finally
             {

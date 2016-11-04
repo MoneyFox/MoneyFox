@@ -3,7 +3,6 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Cheesebaron.MvxPlugins.Settings.Droid;
-using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
@@ -34,14 +33,12 @@ namespace MoneyFox.Droid.Services
 
             var settings = new SettingsManager(new Settings());
 
-            var autoBackupManager = new AutoBackupManager(
-                new BackupManager(
-                    new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), new MvxAndroidFileStore(), dbManager, settings,
-                    new PaymentRepository(dbManager))
-                ,settings);
+            var backupManager = new BackupManager(new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), 
+                new MvxAndroidFileStore(), 
+                dbManager, settings, 
+                new PaymentRepository(dbManager));
 
-            await autoBackupManager.RestoreBackupIfNewer();
-            await autoBackupManager.UploadBackupIfNewer();
+            await backupManager.SyncBackup();
         }
     }
 }

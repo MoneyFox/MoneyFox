@@ -7,6 +7,7 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Business.Manager
@@ -64,7 +65,9 @@ namespace MoneyFox.Business.Manager
         /// <param name="attempts">How many times of trying to sync already where made.</param>
         public async Task EnqueueBackupTask(int attempts = 0)
         {
-            if (attempts < ServiceConstants.SyncAttempts)
+            if (settingsManager.IsLoggedInToBackupService 
+                    && settingsManager.IsBackupAutouploadEnabled 
+                    && attempts < ServiceConstants.SyncAttempts)
             {
                 await semaphoreSlim.WaitAsync(ServiceConstants.BackupOperationTimeout, cancellationTokenSource.Token);
                 try
@@ -83,6 +86,31 @@ namespace MoneyFox.Business.Manager
                     await Task.Delay(ServiceConstants.BackupRepeatDelay);
                     await EnqueueBackupTask(attempts + 1);
                 }
+            }
+        }
+
+        /// <summary>
+        ///     Syncs the local database with the Backupservice and
+        ///     restores it if the one on the Backupservice is newer.
+        /// </summary>
+        public async Task SyncBackup()
+        {
+            try
+            {
+                if (!settingsManager.IsBackupAutouploadEnabled) return;
+
+                if (await GetBackupDate() < settingsManager.LastDatabaseUpdate)
+                {
+                    await EnqueueBackupTask();
+                }
+                else
+                {
+                    await RestoreBackup();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
 
