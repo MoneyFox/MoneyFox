@@ -11,8 +11,6 @@ namespace MoneyFox.Foundation.Interfaces
 
         void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel);
 
-        Task<bool> CheckRecurrenceOfPayment(PaymentViewModel payment);
-
         IEnumerable<PaymentViewModel> LoadRecurringPaymentList(Func<PaymentViewModel, bool> filter = null);
 
         void ClearPayments();

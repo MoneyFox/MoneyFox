@@ -154,7 +154,7 @@
     <value>Cashflow</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>This Payment is recurring. Do you want to update the future Payments aswell or just this occurence?</value>
+    <value>This Payment is recurring. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>
@@ -205,7 +205,7 @@
     <value>Gains</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Just This</value>
+    <value>No, just this</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>We couldn't log you in. Please ensure you have an active internet connection.</value>
@@ -243,8 +243,8 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Overwrite?</value>
   </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Update All</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Yes, update All</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Restore failed!</value>
@@ -611,5 +611,11 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
     <value>Drawer Open</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
 </root>

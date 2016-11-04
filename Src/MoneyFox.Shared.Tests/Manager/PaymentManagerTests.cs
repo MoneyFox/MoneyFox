@@ -78,58 +78,6 @@ namespace MoneyFox.Shared.Tests.Manager
         }
 
         [TestMethod]
-        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
-        {
-            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRecurringPaymentRepository>().Object,
-                new Mock<IDialogService>().Object)
-                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = false});
-
-            result.ShouldBeFalse();
-        }
-
-        [TestMethod]
-        public async Task CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput()
-        {
-            const bool userAnswer = true;
-            var dialogService = new Mock<IDialogService>();
-            dialogService.Setup(
-                x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentPaymentTitle),
-                    It.Is<string>(y => y == Strings.ChangeSubsequentPaymentMessage),
-                    It.Is<string>(y => y == Strings.RecurringLabel),
-                    It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
-
-            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRecurringPaymentRepository>().Object,
-                dialogService.Object)
-                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = true});
-
-            Assert.AreEqual(userAnswer, result);
-        }
-
-        [TestMethod]
-        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnUserInput()
-        {
-            const bool userAnswer = false;
-            var dialogService = new Mock<IDialogService>();
-            dialogService.Setup(
-                x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentPaymentTitle),
-                    It.Is<string>(y => y == Strings.ChangeSubsequentPaymentMessage),
-                    It.Is<string>(y => y == Strings.RecurringLabel),
-                    It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
-
-            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
-                new Mock<IAccountRepository>().Object,
-                new Mock<IRecurringPaymentRepository>().Object,
-                dialogService.Object)
-                .CheckRecurrenceOfPayment(new PaymentViewModel {IsRecurring = true});
-
-            Assert.AreEqual(userAnswer, result);
-        }
-
-        [TestMethod]
         public void SavePayment_RecPayment_IdInPaymentSaved()
         {
             var payment = new PaymentViewModel

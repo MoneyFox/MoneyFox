@@ -478,7 +478,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Payment is recurring. Do you want to update the future Payments aswell or just this occurence?.
+        ///   Looks up a localized string similar to This Payment is recurring. Do you want to update the future Payments aswell?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
@@ -573,6 +573,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string DeletePaymentConfirmationMessage {
             get {
                 return ResourceManager.GetString("DeletePaymentConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve deleted a recurring payment. Do you want to delete the recurrence as well?.
+        /// </summary>
+        public static string DeleteRecurringPaymentMessage {
+            get {
+                return ResourceManager.GetString("DeleteRecurringPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Recurrence?.
+        /// </summary>
+        public static string DeleteRecurringPaymentTitle {
+            get {
+                return ResourceManager.GetString("DeleteRecurringPaymentTitle", resourceCulture);
             }
         }
         
@@ -820,7 +838,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Just This.
+        ///   Looks up a localized string similar to No, just this.
         /// </summary>
         public static string JustThisLabel {
             get {
@@ -1289,15 +1307,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update All.
-        /// </summary>
-        public static string RecurringLabel {
-            get {
-                return ResourceManager.GetString("RecurringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Restore failed!.
         /// </summary>
         public static string RestoreFailedMessage {
@@ -1510,6 +1519,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string TransferHeader {
             get {
                 return ResourceManager.GetString("TransferHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, update All.
+        /// </summary>
+        public static string UpdateAllLabel {
+            get {
+                return ResourceManager.GetString("UpdateAllLabel", resourceCulture);
             }
         }
         
