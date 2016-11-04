@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\Enumerations.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
-    <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />

@@ -55,7 +55,6 @@
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Manager\EndOfMonthManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
