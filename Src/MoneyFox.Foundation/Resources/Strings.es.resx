@@ -154,7 +154,7 @@
     <value>Flujo de caja</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Este pago es recurrente. ¿Desea actualizar también los pagos futuros o simplemente esta ocurrencia?</value>
+    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>¿Actualización de repetición?</value>
@@ -205,7 +205,7 @@
     <value>Ganancias</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Sólo por esta</value>
+    <value>No, just this</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Nosotros no podíamos iniciar sesión. Asegúrese de que usted tiene una conexión activa a internet.</value>
@@ -243,8 +243,8 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>¿Desea sobrescribir?</value>
   </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Actualizar todos</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Yes, update All</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>No se pudo restaurar!</value>
@@ -403,7 +403,7 @@
     <value>Agregar transferencia</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Error al guardar el artículo.</value>
+    <value>An error occured while deleting the item.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Error al guardar el artículo.</value>
@@ -608,5 +608,11 @@
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
     <value>Drawer Open</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
 </root>

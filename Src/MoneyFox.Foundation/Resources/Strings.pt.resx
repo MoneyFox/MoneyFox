@@ -154,7 +154,7 @@
     <value>Fluxo de caixa</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Este pagamento é recorrente. Você quer atualizar os pagamentos futuros ou apenas esta ocorrência?</value>
+    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Atualizar a recorrência?</value>
@@ -205,7 +205,7 @@
     <value>Ganhos</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Só isso</value>
+    <value>No, just this</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Nós não conseguimos fazer seu login. Por favor, garanta que você tenha uma conexão de Internet ativa.</value>
@@ -243,8 +243,8 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Substituir?</value>
   </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Atualizar todos</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Yes, update All</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Falha na restauração!</value>
@@ -404,7 +404,7 @@ Você deseja ir à loja para avaliar?</value>
     <value>Adicionar transferência</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Ocorreu um erro ao salvar o item.</value>
+    <value>An error occured while deleting the item.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Ocorreu um erro ao salvar o item.</value>
@@ -609,5 +609,11 @@ Você deseja ir à loja para avaliar?</value>
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
     <value>Drawer Open</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Delete Recurrence?</value>
   </data>
 </root>

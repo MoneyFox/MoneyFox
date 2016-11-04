@@ -154,7 +154,7 @@
     <value>Cashflow</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>This Payment is recurring. Do you want to update the future Payments aswell?</value>
+    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>

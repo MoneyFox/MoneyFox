@@ -478,7 +478,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Payment is recurring. Do you want to update the future Payments aswell?.
+        ///   Looks up a localized string similar to You updated a recurring payment. Do you want to update the future Payments aswell?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
