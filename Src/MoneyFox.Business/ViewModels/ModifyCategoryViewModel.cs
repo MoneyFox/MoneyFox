@@ -89,14 +89,18 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Initialize the ViewModel
         /// </summary>
-        /// <param name="isEdit">Indicates if a CategoryViewModel is being edited or created</param>
-        public void Init(bool isEdit)
+        /// <param name="categoryId">Pass the ID of the category to edit. If this is 0 the VM changes to Creation mode</param>
+        public void Init(int categoryId)
         {
-            IsEdit = isEdit;
-
-            if (!IsEdit)
+            if (categoryId == 0)
             {
+                IsEdit = false;
                 SelectedCategory = new CategoryViewModel();
+            }
+            else
+            {
+                IsEdit = true;
+                SelectedCategory = categoryRepository.FindById(categoryId);
             }
         }
 
