@@ -28,26 +28,26 @@ namespace MoneyFox.Windows.Views
             };
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.NavigationMode != NavigationMode.Back)
-            {
-                var viewModel = (ModifyPaymentViewModel) DataContext;
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+        //    if (e.NavigationMode != NavigationMode.Back)
+        //    {
+        //        var viewModel = (ModifyPaymentViewModel) DataContext;
 
-                var payment = e.Parameter as PaymentViewModel;
-                if (payment != null)
-                {
-                    //  This payment type will be ignored. Has to be set though.
-                    viewModel.Init(PaymentType.Expense, payment.Id);
-                }
-                else if (e.Parameter?.GetType() == typeof(PaymentType))
-                {
-                    viewModel.Init((PaymentType) e.Parameter);
-                }
-            }
+        //        var payment = e.Parameter as PaymentViewModel;
+        //        if (payment != null)
+        //        {
+        //            //  This payment type will be ignored. Has to be set though.
+        //            viewModel.Init(PaymentType.Expense, payment.Id);
+        //        }
+        //        else if (e.Parameter?.GetType() == typeof(PaymentType))
+        //        {
+        //            viewModel.Init((PaymentType) e.Parameter);
+        //        }
+        //    }
 
-            base.OnNavigatedTo(e);
-        }
+        //    base.OnNavigatedTo(e);
+        //}
 
         private void TextBoxOnFocus(object sender, RoutedEventArgs e)
         {
