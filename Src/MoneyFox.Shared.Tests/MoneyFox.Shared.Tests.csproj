@@ -124,7 +124,6 @@
     <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Helper\PaymentTypeHelperTest.cs" />
-    <Compile Include="Helper\RecurringPaymentHelperTests.cs" />
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Manager\EndMonthManagerTests.cs" />
     <Compile Include="Manager\PaymentManagerTests.cs" />

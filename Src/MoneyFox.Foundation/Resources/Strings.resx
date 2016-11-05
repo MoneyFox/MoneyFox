@@ -618,4 +618,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Delete Recurrence?</value>
   </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Bimonthly</value>
+  </data>
 </root>

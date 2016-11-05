@@ -192,6 +192,7 @@ namespace MoneyFox.Business.ViewModels
             PaymentRecurrence.Weekly,
             PaymentRecurrence.Biweekly,
             PaymentRecurrence.Monthly,
+            PaymentRecurrence.Bimonthly,
             PaymentRecurrence.Yearly
         };
 
