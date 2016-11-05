@@ -368,6 +368,8 @@ namespace MoneyFox.Business.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
+            if (amount < 0)
+                amount *= -1;
             SelectedPayment.Amount = amount;
 
             //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
