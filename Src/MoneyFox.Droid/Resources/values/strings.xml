@@ -4,21 +4,21 @@
   <string name="drawer_open">Navigationsübersicht öffnen</string>
   <string name="drawer_close">Navigationsübersicht schließen</string>
   <!--menus-->
-  <string name="menu_add">Hinzufügen</string>
-  <string name="menu_save">Speichern</string>
-  <string name="menu_delete">Löschen</string>
-  <string name="menu_select">Auswählen</string>
+  <string name="menu_add">Add</string>
+  <string name="menu_save">Save</string>
+  <string name="menu_delete">Delete</string>
+  <string name="menu_select">Select</string>
   <!--Navigation Drawer-->
-  <string name="menu_accounts">Konten</string>
-  <string name="menu_statistics">Statistiken</string>
-  <string name="menu_categories">Kategorien</string>
-  <string name="menu_backup">Sicherung</string>
-  <string name="menu_settings">Einstellungen</string>
-  <string name="menu_about">Info</string>
+  <string name="menu_accounts">Accounts</string>
+  <string name="menu_statistics">Statistics</string>
+  <string name="menu_categories">Categories</string>
+  <string name="menu_backup">Backup</string>
+  <string name="menu_settings">Settings</string>
+  <string name="menu_about">About</string>
   <!--Floating Action Button-->
-  <string name="fab_add_account">Konto hinzufügen</string>
-  <string name="fab_delete_account">Konto löschen</string>
-  <string name="fab_add_expense">Ausgabe hinzufügen</string>
-  <string name="fab_add_income">Einnahme hinzufügen</string>
-  <string name="fab_add_transfer">Übertrag hinzufügen</string>
+  <string name="fab_add_account">Add Account</string>
+  <string name="fab_delete_account">Delete Account</string>
+  <string name="fab_add_expense">Add Expense</string>
+  <string name="fab_add_income">Add Income</string>
+  <string name="fab_add_transfer">Add Transfer</string>
 </resources>

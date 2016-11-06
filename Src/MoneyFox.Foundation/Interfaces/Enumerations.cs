@@ -14,7 +14,8 @@
         Weekly = 2,
         Monthly = 3,
         Yearly = 4,
-        Biweekly = 5
+        Biweekly = 5,
+        Bimonthly = 6
     }
 
     public enum ListStatisticType

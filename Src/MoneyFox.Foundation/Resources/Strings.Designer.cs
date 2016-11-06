@@ -379,6 +379,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bimonthly.
+        /// </summary>
+        public static string BimonthlyLabel {
+            get {
+                return ResourceManager.GetString("BimonthlyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biweekly.
         /// </summary>
         public static string BiweeklyLabel {

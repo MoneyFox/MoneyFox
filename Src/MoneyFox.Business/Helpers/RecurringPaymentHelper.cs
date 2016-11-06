@@ -103,6 +103,9 @@ namespace MoneyFox.Business.Helpers
                 case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != relatedPayment.Date.Month;
 
+                case PaymentRecurrence.Bimonthly:
+                    return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-2).Month;
+
                 case PaymentRecurrence.Yearly:
                     return ((DateTime.Now.Year != relatedPayment.Date.Year)
                             && (DateTime.Now.Month >= relatedPayment.Date.Month))
