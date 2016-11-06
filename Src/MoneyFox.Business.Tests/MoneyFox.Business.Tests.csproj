@@ -54,6 +54,7 @@
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
+    <Compile Include="Helper\RecurringPaymentHelperTests.cs" />
     <Compile Include="Manager\PaymentManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
