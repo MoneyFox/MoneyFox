@@ -59,8 +59,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -72,49 +72,47 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+        <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
-                                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
-                                                           EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                           ItemTemplate="{StaticResource AccountTemplate}"
-                                                           ItemsSource="{Binding AllAccounts}"
-                                                           OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                           ShowsScrollingPlaceholders="False"
-                                                           WarningBackground="{StaticResource WarningBrush}">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
+                                                       EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                                       EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                       ItemTemplate="{StaticResource AccountTemplate}"
+                                                       ItemsSource="{Binding AllAccounts}"
+                                                       OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                       ShowsScrollingPlaceholders="False"
+                                                       WarningBackground="{StaticResource WarningBrush}">
 
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </controls:AlternatingRowListViewMainScreen>
-            </ScrollViewer>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </controls:AlternatingRowListViewMainScreen>
+        </ScrollViewer>
 
-            <TextBlock x:Uid="AccountsPlaceholder"
-                       Grid.Row="1"
-                       Margin="6"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                       TextWrapping="Wrap"
-                       Visibility="{Binding IsAllAccountsEmpty,
-                                            Converter={StaticResource BooleanToVisibilityConverter}}" />
-        </Grid>
+        <TextBlock x:Uid="AccountsPlaceholder"
+                   Grid.Row="2"
+                   Margin="6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="{ThemeResource SystemBaseMediumLowColor}"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding IsAllAccountsEmpty,
+                                        Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">
+        <CommandBar Grid.Row="3"
+                    Height="48"
+                    DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddIncomeCommand}"
