@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.1.1",
+    "Autofac": "4.2.0",
     "Autofac.Extras.MvvmCross": "4.0.0",
     "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
     "Cheesebaron.MvxPlugins.Settings": "2.1.0",
@@ -9,7 +9,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "2.0.4",
-    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.Color": "4.4.0",
     "MvvmCross.Plugin.Email": "4.4.0",
