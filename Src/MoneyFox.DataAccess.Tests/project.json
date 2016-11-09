@@ -2,8 +2,8 @@
   "dependencies": {
     "AutoFixture": "3.50.2",
     "AutoFixture.Xunit": "3.50.2",
-    "MvvmCross.Plugin.File": "4.3.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.3.4",
+    "MvvmCross.Plugin.File": "4.4.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0",
     "Xunit.Should.Extension": "1.0.4"
