@@ -13,7 +13,6 @@ using MoneyFox.Foundation.Constants;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -65,7 +64,7 @@ namespace MoneyFox.Droid.Activities
         }
 
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
-            FragmentTransaction transaction)
+            Android.Support.V4.App.FragmentTransaction transaction)
         {
             var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
