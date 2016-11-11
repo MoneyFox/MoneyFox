@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
     <AndroidLinkMode>None</AndroidLinkMode>
