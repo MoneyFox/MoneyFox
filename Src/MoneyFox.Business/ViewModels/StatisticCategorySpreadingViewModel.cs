@@ -42,7 +42,6 @@ namespace MoneyFox.Business.ViewModels
             get { return spreadingModel; }
             set
             {
-                if(spreadingModel == value) return;
                 spreadingModel = value;
                 RaisePropertyChanged();
             }
@@ -64,9 +63,9 @@ namespace MoneyFox.Business.ViewModels
 
         protected override void Load()
         {
+            LegendList = new ObservableCollection<LegendItem>();
             SpreadingModel = null;
             SpreadingModel = GetSpreadingModel();
-            LegendList = new ObservableCollection<LegendItem>();
         }
 
         /// <summary>
