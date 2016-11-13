@@ -21,7 +21,6 @@ namespace MoneyFox.Business.ViewModels
         {
             this.settingsManager = settingsManager;
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
-            CashFlowModel = GetCashFlowModel();
         }
 
         /// <summary>
