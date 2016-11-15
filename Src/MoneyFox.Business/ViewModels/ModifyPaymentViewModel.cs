@@ -171,33 +171,7 @@ namespace MoneyFox.Business.ViewModels
             set
             {
                 // we remove all separator chars to ensure that it works in all regions
-                string amountstring = value.ToString();
-
-                if (amountstring.Any(Char.IsPunctuation))
-                {
-                    int decimalSeparatorIndex = 0;
-                    int punctuationCount = 0;
-                    string decimalsString = "";
-
-                    foreach (char c in amountstring)
-                    {
-                        if (!Char.IsPunctuation(c))
-                        {
-                            decimalsString += c;
-
-                        }
-                        else
-                        {
-                            punctuationCount++;
-                            if (amountstring.IndexOf(c) >= amountstring.Length - 3)
-                            {
-                                decimalSeparatorIndex = amountstring.IndexOf(c);
-                                punctuationCount--;
-                            }
-                        }
-                    }
-                    amountstring = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator.ToString() + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
-                }
+                string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
 
                 double convertedValue;
                 if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
