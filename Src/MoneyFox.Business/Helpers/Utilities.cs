@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.Helpers
@@ -36,5 +37,40 @@ namespace MoneyFox.Business.Helpers
         /// <returns>Formated string.</returns>
         public static string FormatLargeNumbers(double value)
             => value.ToString("N", CultureInfo.CurrentCulture);
+
+        /// <summary>
+        ///     Returns the number string with just this culture's decimal separator.
+        /// </summary>
+        /// <param name="amount">Amount to be converted.</param>
+        /// <returns>Formated string.</returns>
+        public static string RemoveGroupingSeparators(string amount)
+        {
+            if (amount.Any(Char.IsPunctuation))
+            {
+                int decimalSeparatorIndex = 0;
+                int punctuationCount = 0;
+                string decimalsString = "";
+
+                foreach (char c in amount)
+                {
+                    if (!Char.IsPunctuation(c))
+                    {
+                        decimalsString += c;
+
+                    }
+                    else
+                    {
+                        punctuationCount++;
+                        if (amount.IndexOf(c) >= amount.Length - 3)
+                        {
+                            decimalSeparatorIndex = amount.IndexOf(c);
+                            punctuationCount--;
+                        }
+                    }
+                }
+                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator.ToString() + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
+            }
+            return amount;
+        }
     }
 }
