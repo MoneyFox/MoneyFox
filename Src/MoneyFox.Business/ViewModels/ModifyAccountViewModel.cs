@@ -85,11 +85,11 @@ namespace MoneyFox.Business.ViewModels
             get { return Utilities.FormatLargeNumbers(amount); }
             set
             {
-                // we replace the separator char to ensure that it works in all regions
-                var amountstring = value.Replace(',', '.');
+                // we remove all separator chars to ensure that it works in all regions
+                string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
 
                 double convertedValue;
-                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
                 {
                     amount = convertedValue;
                 }
