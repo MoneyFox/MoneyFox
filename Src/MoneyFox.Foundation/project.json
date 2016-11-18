@@ -1,7 +1,7 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "Microsoft.OneDriveSDK": "2.0.4",
+    "Microsoft.OneDriveSDK": "2.0.6",
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.Messenger": "4.4.0",
     "MvvmCross.Plugin.SQLitePCL": "4.4.0",
