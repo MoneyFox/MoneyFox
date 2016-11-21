@@ -60,8 +60,7 @@ namespace MoneyFox.Windows.Business
                 };
 
                 //  Task will be executed every day at midnight.
-                builder.SetTrigger(new TimeTrigger(60, false));
-                //builder.SetTrigger(new TimeTrigger(MinutesTilMidnight(), false));
+                builder.SetTrigger(new TimeTrigger(MinutesTilMidnight(), false));
                 var task = builder.Register();
 
                 task.Completed += (sender, args) =>
@@ -97,7 +96,7 @@ namespace MoneyFox.Windows.Business
         /// <summary>
         ///     Returns the minutes to 5 minutes after midnight.
         /// </summary>
-        private uint MinutesTilMidnight()
+        private static uint MinutesTilMidnight()
         {
             var tommorowMidnight = DateTime.Today.AddDays(1);
             var timeTilMidnight = tommorowMidnight - DateTime.Now;
