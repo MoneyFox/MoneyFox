@@ -152,7 +152,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = false, selectedAccountId = 0});
+            ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
         }
     }
 }
