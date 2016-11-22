@@ -541,7 +541,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search String</value>
+    <value>Search</value>
   </data>
   <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
     <value>Klaar</value>
@@ -556,7 +556,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search String</value>
+    <value>Search</value>
   </data>
   <data name="MenuViewModel.SloganLabel" xml:space="preserve">
     <value>A way to make budgeting easy.</value>

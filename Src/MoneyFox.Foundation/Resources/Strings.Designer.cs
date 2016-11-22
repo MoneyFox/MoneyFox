@@ -451,7 +451,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search String.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string CategoryListViewModel_SearchStringLabel {
             get {
@@ -1343,7 +1343,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search String.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string SelectCategoryListViewModel_SearchStringLabel {
             get {
