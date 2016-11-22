@@ -76,6 +76,7 @@ namespace MoneyFox.Droid
         {
             textView.TextChanged += (sender, args) => textView.Text = string.Empty + textView.Text;
             textView.Hint = string.Empty + textView.Hint;
+            textView.AfterTextChanged += (sender, args) => textView.Text = "" + textView.Text;
         }
 
         /// <summary>
