@@ -24,6 +24,7 @@ namespace MoneyFox.Business.ViewModels
 
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
         private PlotModel spreadingModel;
+        private ObservableCollection<LegendItem> legendList;
 
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
             ISettingsManager settingsManager,
@@ -49,7 +50,16 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     A collection with the current items for the legend.
         /// </summary>
-        public ObservableCollection<LegendItem> LegendList { get; set; }
+        public ObservableCollection<LegendItem> LegendList
+        {
+            get { return legendList; }
+            set
+            {
+                if (legendList == value) return;
+                legendList = value;
+                RaisePropertyChanged();
+            }
+        }
 
         protected override void Load()
         {
