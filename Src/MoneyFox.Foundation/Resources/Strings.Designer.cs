@@ -1045,6 +1045,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude account from balance.
+        /// </summary>
+        public static string ModifyAccountViewModel_IsExcludedLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.IsExcludedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string ModifyAccountViewModel_NoteLabel {

@@ -58,6 +58,11 @@
                     local:MvxBind="Text SelectedAccount.Note"
                     local:MvxLang="Hint NoteLabel" />
             </android.support.design.widget.TextInputLayout>
+          <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Checked SelectedAccount.IsExcluded"
+                    local:MvxLang="Hint IsExcludedLabel" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
