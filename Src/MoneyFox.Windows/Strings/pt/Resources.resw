@@ -148,7 +148,7 @@
     <value>Seus dados serão salvos em sua conta OneDrive. Você vai encontrá-los em uma nova pasta chamada "MoneyFoxBackupManager".</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Baixe o backup de banco de dados inserido anterior e substitua seus dados locais com ele. Aviso: Alterações locais feitas enquanto isso estaremos perdidos.</value>
+    <value>Baixe a cópia de segurança do banco de dados inserido anteriormente e substitua seus dados locais com ele. AVISO: Alterações locais feitas durante isso será perdido.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
@@ -397,6 +397,6 @@
     <value>Para ver todas as contribuições vá ao GitHub:</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
+    <value>Faça upload e download dos backups automaticamente</value>
   </data>
 </root>

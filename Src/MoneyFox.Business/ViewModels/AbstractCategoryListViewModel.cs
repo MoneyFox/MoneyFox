@@ -96,6 +96,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 searchText = value;
                 Search();
+                RaisePropertyChanged();
             }
         }
 
