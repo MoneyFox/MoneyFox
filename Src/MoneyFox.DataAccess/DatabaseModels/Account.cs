@@ -15,6 +15,7 @@ namespace MoneyFox.DataAccess.DatabaseModels
         public double CurrentBalance { get; set; }
         public string Note { get; set; }
         public bool IsOverdrawn { get; set; }
+        public bool IsExcluded { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
         public List<Payment> Payments { get; set; }

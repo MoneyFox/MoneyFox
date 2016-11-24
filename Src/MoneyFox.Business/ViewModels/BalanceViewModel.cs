@@ -66,7 +66,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance() => accountRepository.GetList()?.Sum(x => x.CurrentBalance) ?? 0;
+        protected virtual double GetTotalBalance() => accountRepository.GetList(x => !x.IsExcluded)?.Sum(x => x.CurrentBalance) ?? 0;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -74,7 +74,7 @@ namespace MoneyFox.Business.ViewModels
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
         protected virtual double GetEndOfMonthValue()
         {
-            return endOfMonthManager.GetTotalEndOfMonthBalance(accountRepository.GetList());
+            return endOfMonthManager.GetTotalEndOfMonthBalance(accountRepository.GetList(x => !x.IsExcluded));
         }
     }
 }
