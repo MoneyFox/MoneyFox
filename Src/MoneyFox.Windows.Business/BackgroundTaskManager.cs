@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Windows.ApplicationModel.Background;
-using Windows.Storage;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
