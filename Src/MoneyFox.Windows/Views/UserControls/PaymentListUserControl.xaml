@@ -5,13 +5,13 @@
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:designTime="using:MoneyFox.Shared.ViewModels.DesignTime"
+             xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
+             xmlns:designTime1="using:MoneyFox.Business.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-             xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -47,46 +47,40 @@
                                         Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid Margin="0,0,0,3" HorizontalAlignment="Stretch">
-                    <TextBlock Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock HorizontalAlignment="Right" Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
-
-                </Grid>
-                <Grid>
+                <Grid Margin="2,0,0,3" HorizontalAlignment="Stretch">
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                        <TextBlock Margin="0,0,2,10"
-                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                   Text="{x:Bind Category.Name}" />
-                        <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                   Text="/"
-                                   Visibility="{Binding Note,
-                                                        Converter={StaticResource NoteVisibilityConverter}}" />
+                        <TextBlock Text="{x:Bind Category.Name}" />
+                        <TextBlock Text="/" Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}" />
                         <TextBlock MaxWidth="150"
-                                   Margin="2,0,0,0"
                                    MaxLines="1"
-                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                    Text="{x:Bind Note}"
                                    TextTrimming="CharacterEllipsis"
                                    Visibility="{x:Bind Note, Converter={StaticResource NoteVisibilityConverter}}" />
                     </StackPanel>
+                    <TextBlock HorizontalAlignment="Right" Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+                </Grid>
+                <Grid Margin="2,0,0,2">
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                               Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                         <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <SymbolIcon Width="30"
-                                        Height="30"
+                            <SymbolIcon Width="20"
+                                        Height="20"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Symbol="57660" />
                         </Grid>
                         <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image Width="30"
-                                   Height="30"
+                            <Image Width="20"
+                                   Height="20"
                                    DataContext="/Assets/{0}/repeat.png"
                                    Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
                                                     Converter={StaticResource ThemedImageConverter}}" />
                         </Grid>
                         <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image Width="30"
-                                   Height="30"
+                            <Image Width="20"
+                                   Height="20"
                                    DataContext="/Assets/{0}/done.png"
                                    Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
                                                     Converter={StaticResource ThemedImageConverter}}" />
