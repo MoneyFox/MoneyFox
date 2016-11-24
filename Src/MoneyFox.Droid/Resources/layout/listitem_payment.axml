@@ -19,7 +19,7 @@
             android:gravity="left"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/black"
-            local:MvxBind="Text Date, Converter=DateTimeFormat" />
+            local:MvxBind="Text Category.Name"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_marginTop="5dp"
             android:layout_weight="0.9"
-            local:MvxBind="Text Category.Name" />
+            local:MvxBind="Text Date, Converter=DateTimeFormat" />
         <ImageView
             android:src="@drawable/ic_transfer"
             android:layout_gravity="right"
