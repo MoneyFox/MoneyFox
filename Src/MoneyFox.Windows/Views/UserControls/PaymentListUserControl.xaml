@@ -116,10 +116,11 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="dataModels:PaymentViewModel">
                                             <Grid MinWidth="100"
-                                                  Margin="-3,0,0,6"
+                                                  Margin="-5,0,0,6"
                                                   HorizontalAlignment="Stretch"
                                                   Holding="PaymentViewModelList_Holding"
                                                   RightTapped="PaymentViewModelList_RightTapped">
+
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem x:Uid="Edit"
@@ -130,8 +131,9 @@
                                                                         Text="Delete" />
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
-                                                <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
-                                                    <TextBlock Text="{x:Bind Category.Name}" />
+
+                                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
                                                     <TextBlock MaxWidth="150"
                                                                MaxLines="1"
                                                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
