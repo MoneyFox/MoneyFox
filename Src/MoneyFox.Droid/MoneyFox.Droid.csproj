@@ -494,7 +494,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_payment.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />

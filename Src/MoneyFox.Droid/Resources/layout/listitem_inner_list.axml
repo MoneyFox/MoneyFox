@@ -4,16 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        local:MvxBind="Visible Key" />
-  <Mvx.MvxLinearLayout
-            android:id="@+id/expandable_payment_list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            local:MvxItemTemplate="@layout/listitem_payment"
-            local:MvxBind="ItemsSource .;ItemClick EditCommand" />
+    <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          local:MvxBind="Visible Key" />
+    <Mvx.MvxLinearLayout
+          android:id="@+id/expandable_payment_list"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          local:MvxItemTemplate="@layout/listitem_payment"
+          local:MvxBind="ItemsSource .;ItemClick EditCommand" />
 </LinearLayout>
