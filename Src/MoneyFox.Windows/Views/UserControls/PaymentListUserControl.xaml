@@ -6,12 +6,12 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
-             xmlns:designTime1="using:MoneyFox.Business.ViewModels.DesignTime"
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
