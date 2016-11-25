@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
 
         ObservableCollection<PaymentViewModel> RelatedPayments { get; }
 
-        ObservableCollection<DateListGroup<PaymentViewModel>> Source { get; }
+        ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source { get; }
 
         string Title { get; }
     }

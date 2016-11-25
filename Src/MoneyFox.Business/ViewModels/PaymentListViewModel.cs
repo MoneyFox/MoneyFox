@@ -24,7 +24,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
-        private ObservableCollection<DateListGroup<PaymentViewModel>> source;
+        private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private MvxCommand<PaymentViewModel> editCommand;
         private IBalanceViewModel balanceViewModel;
         private IPaymentListViewActionViewModel viewActionViewModel;
@@ -104,7 +104,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<PaymentViewModel>> Source
+        public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source
         {
             get { return source; }
             set
@@ -173,11 +173,19 @@ namespace MoneyFox.Business.ViewModels
                 payment.CurrentAccountId = AccountId;
             }
 
-            Source = new ObservableCollection<DateListGroup<PaymentViewModel>>(
-                DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
-                    CultureInfo.CurrentUICulture,
-                    s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
-                    s => s.Date, true));
+            var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
+                CultureInfo.CurrentUICulture,
+                s => s.Date.ToString("D", CultureInfo.InvariantCulture),
+                s => s.Date, true);
+
+            Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
+                    DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
+                        s =>
+                        {
+                            var date = Convert.ToDateTime(s.Key);
+                            return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
+                        },
+                    s => Convert.ToDateTime(s.Key), true));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
             EditCommand = new MvxCommand<PaymentViewModel>(Edit);

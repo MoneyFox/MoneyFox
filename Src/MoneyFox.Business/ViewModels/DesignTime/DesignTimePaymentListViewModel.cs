@@ -17,11 +17,13 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(s => { });
         public ObservableCollection<PaymentViewModel> RelatedPayments => new ObservableCollection<PaymentViewModel>();
 
-        public ObservableCollection<DateListGroup<PaymentViewModel>> Source => new ObservableCollection<DateListGroup<PaymentViewModel>>
+        public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source => new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>
         {
-            new DateListGroup<PaymentViewModel>("31.1.1992")
+            new DateListGroup<DateListGroup<PaymentViewModel>>("Januar 1992")
             {
+                new DateListGroup<PaymentViewModel>("31.1.1992") {
                 new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}}
+                }
             }
         };
 
