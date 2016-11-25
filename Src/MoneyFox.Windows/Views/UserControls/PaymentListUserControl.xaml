@@ -41,11 +41,11 @@
         </DataTemplate>
 
         <DataTemplate x:Key="JumpTemplate">
-            <Border Padding="5">
-                <Border HorizontalAlignment="Left">
+            <Border>
+                <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="20"
+                               FontSize="18"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>
@@ -185,7 +185,7 @@
                                                 Path=CollectionGroups}">
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Horizontal" />
+                            <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                 </GridView>
