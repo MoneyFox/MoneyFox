@@ -20,7 +20,7 @@
             android:background="@android:color/transparent" />
         <Mvx.MvxExpandableListView
             android:id="@+id/expandable_payment_list"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             local:MvxGroupItemTemplate="@layout/header_payment_list"
             local:MvxItemTemplate="@layout/listitem_inner_list"
