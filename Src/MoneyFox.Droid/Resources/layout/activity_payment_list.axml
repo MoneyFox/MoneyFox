@@ -23,7 +23,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             local:MvxGroupItemTemplate="@layout/header_payment_list"
-            local:MvxItemTemplate="@layout/listitem_payment"
+            local:MvxItemTemplate="@layout/listitem_inner_list"
             local:MvxBind="ItemsSource Source;ItemClick EditCommand" />
     </LinearLayout>
     <TextView

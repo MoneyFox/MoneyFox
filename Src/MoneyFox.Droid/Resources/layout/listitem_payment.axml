@@ -41,7 +41,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_marginTop="5dp"
             android:layout_weight="0.9"
-            local:MvxBind="Text Date, Converter=DateTimeFormat" />
+            local:MvxBind="Text Note, Converter=DateTimeFormat" />
         <ImageView
             android:src="@drawable/ic_transfer"
             android:layout_gravity="right"

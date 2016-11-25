@@ -516,7 +516,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_add.axml" />
     <AndroidResource Include="Resources\layout\activity_payment_list.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_select_category_list.axml">
       <SubType>AndroidResource</SubType>
@@ -543,6 +543,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\comboboxitem_recurrence.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_inner_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
