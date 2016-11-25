@@ -11,9 +11,10 @@
           android:textAppearance="?android:attr/textAppearanceMedium"
           local:MvxBind="Visible Key" />
     <Mvx.MvxLinearLayout
-          android:id="@+id/expandable_payment_list"
+          android:id="@+id/inner_payment_list"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
+          android:orientation="vertical"
           local:MvxItemTemplate="@layout/listitem_payment"
           local:MvxBind="ItemsSource .;ItemClick EditCommand" />
 </LinearLayout>

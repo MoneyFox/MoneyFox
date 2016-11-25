@@ -19,7 +19,7 @@
             android:gravity="left"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/black"
-            local:MvxBind="Text Category.Name"/>
+            local:MvxBind="Text Category.Name" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
