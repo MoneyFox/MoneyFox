@@ -57,7 +57,7 @@
             local:fab_colorNormal="@color/colorPrimaryDark"
             local:fab_size="mini"
             local:fab_label="@string/fab_add_income"
-            local:MvxBind="Click ViewActionViewModel.GoToAddIncomeCommand" />
+            local:MvxBind="Click ViewActionViewModel.eGoToAddIncomeCommand" />
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_add_expense"
             android:layout_width="wrap_content"
