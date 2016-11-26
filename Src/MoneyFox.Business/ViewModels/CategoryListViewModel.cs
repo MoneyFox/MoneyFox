@@ -21,10 +21,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
-
-        protected override void Selected(CategoryViewModel category)
+        
+        /// <summary>
+        ///     Post selected CategoryViewModel to message hub
+        /// </summary>
+        protected override void ItemClick(CategoryViewModel category)
         {
-            //Do nothing later will redirect to CategoryViewModel spending details
+            EditCategoryCommand.Execute(category);
         }
     }
 }

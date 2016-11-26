@@ -90,7 +90,7 @@
                                                  OddRowBackground="{StaticResource ListViewBackgroundOddBrush}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <ListView.ItemContainerStyle>

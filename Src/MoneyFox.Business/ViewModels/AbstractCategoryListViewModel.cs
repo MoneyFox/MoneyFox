@@ -35,7 +35,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract void Selected(CategoryViewModel category);
+        protected abstract void ItemClick(CategoryViewModel category);
 
         #region Properties
 
@@ -119,7 +119,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxCommand<CategoryViewModel> SelectCommand => new MvxCommand<CategoryViewModel>(Selected);
+        public MvxCommand<CategoryViewModel> ItemClickCommand => new MvxCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group

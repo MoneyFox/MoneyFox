@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_frame"
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:listSelector="@drawable/list_item_selector"
             local:MvxItemTemplate="@layout/listitem_inner_category_list"
-            local:MvxBind="ItemsSource Source; ItemClick SelectCommand" />
+            local:MvxBind="ItemsSource Source; ItemClick ItemClickCommand" />
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
