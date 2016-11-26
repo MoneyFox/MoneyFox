@@ -621,4 +621,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Bimonthly</value>
   </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
+  </data>
 </root>

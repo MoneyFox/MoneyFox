@@ -51,13 +51,21 @@
                                         UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
                 <TextBox x:Uid="NoteTextBox"
-                         Margin="0,0,-0.167,0"
+                         Margin="0,0,0,12"
                          VerticalAlignment="Top"
                          Header="Notes"
                          Text="{Binding SelectedAccount.Note,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
                          TextWrapping="Wrap" />
+
+                <CheckBox x:Uid="AccoutnExcluded"
+                          Margin="0,0,0,12"
+                          VerticalAlignment="Top"
+                          Content="Exclude account from balance"
+                          IsChecked="{Binding SelectedAccount.IsExcluded,
+                                              Mode=TwoWay,
+                                              UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </ScrollViewer>
         <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
