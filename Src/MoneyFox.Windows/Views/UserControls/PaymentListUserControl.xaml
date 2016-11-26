@@ -5,11 +5,11 @@
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:designTime="using:MoneyFox.Shared.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
              xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
              x:Name="PaymentControl"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
@@ -35,7 +35,6 @@
             <StackPanel MinWidth="100"
                         Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
-                        Holding="PaymentViewModelList_Holding"
                         RightTapped="PaymentViewModelList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
