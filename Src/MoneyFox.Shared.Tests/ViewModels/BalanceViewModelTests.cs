@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
@@ -48,10 +50,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             var accountMockSetup = new Mock<IAccountRepository>();
-            accountMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<AccountViewModel>
+            accountMockSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                .Returns(() => new List<AccountViewModel>
             {
-                new AccountViewModel {CurrentBalance = 500},
-                new AccountViewModel {CurrentBalance = 200}
+                new AccountViewModel {CurrentBalance = 500, IsExcluded = false},
+                new AccountViewModel {CurrentBalance = 200, IsExcluded = false}
             });
 
             var vm = new BalanceViewModel(accountMockSetup.Object, new Mock<IEndOfMonthManager>().Object);

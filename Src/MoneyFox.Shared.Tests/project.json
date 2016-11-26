@@ -1,0 +1,21 @@
+﻿{
+  "dependencies": {
+    "AutoFixture": "3.50.2",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
+    "Moq": "4.5.28",
+    "MvvmCross.Plugin.Email": "4.4.0",
+    "MvvmCross.Plugin.Messenger": "4.4.0",
+    "MvvmCross.Plugin.WebBrowser": "4.4.0",
+    "MvvmCross.Tests": "4.4.0",
+    "xunit": "2.1.0",
+    "xunit.runner.visualstudio": "2.1.0",
+    "Xunit.Should.Extension": "1.0.4"
+  },
+  "frameworks": {
+    ".NETFramework,Version=v4.5.2": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}

@@ -131,11 +131,13 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\Shortcuts\Tile.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\TileManager.cs" />
+    <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
