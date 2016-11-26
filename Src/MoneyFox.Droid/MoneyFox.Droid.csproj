@@ -476,7 +476,9 @@
     <AndroidResource Include="Resources\layout\listitem_account.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\listitem_category.axml" />
+    <AndroidResource Include="Resources\layout\listitem_category.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\comboboxitem_account.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -510,7 +512,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
-    <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
+    <AndroidResource Include="Resources\layout\fragment_category_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_save.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -545,7 +549,10 @@
     <AndroidResource Include="Resources\layout\comboboxitem_recurrence.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\listitem_inner_list.axml">
+    <AndroidResource Include="Resources\layout\listitem_inner_payment_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_inner_category_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
