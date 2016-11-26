@@ -87,7 +87,6 @@
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
     <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
-    <Compile Include="Bootstrap\AppInformationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
@@ -97,7 +96,6 @@
     <Compile Include="Bootstrap\ResxLocalizationPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
-    <Compile Include="Bootstrap\StoreOperationsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
@@ -242,7 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
-      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
@@ -389,5 +387,4 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-pt\strings.xml" />
   </ItemGroup>
-  <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>
