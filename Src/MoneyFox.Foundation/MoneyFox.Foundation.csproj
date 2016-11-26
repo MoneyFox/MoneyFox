@@ -13,8 +13,8 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile44</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\Enumerations.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
+    <Compile Include="Interfaces\IAppInformation.cs" />
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\ISettingsManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
+    <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
     <Compile Include="Interfaces\Repositories\IAccountRepository.cs" />

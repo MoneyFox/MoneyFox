@@ -21,8 +21,6 @@
     "MvvmCross.Plugin.WebBrowser": "4.4.0",
     "Newtonsoft.Json": "9.0.1",
     "NotificationsExtensions.Win10": "14332.0.2",
-    "Npadrutt.MvxPlugins.AppInformation": "1.0.6",
-    "Npadrutt.MvxPlugins.StoreOperations": "1.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha",
     "UniversalRateReminder": "2.2.0"
   },

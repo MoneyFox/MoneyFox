@@ -1,4 +1,4 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
     "Autofac": "4.2.0",
@@ -8,6 +8,6 @@
     "SQLiteNetExtensions": "2.0.0-alpha2"
   },
   "frameworks": {
-    ".NETPortable,Version=v4.6,Profile=Profile44": {}
+    ".NETPortable,Version=v4.5,Profile=Profile111": {}
   }
 }

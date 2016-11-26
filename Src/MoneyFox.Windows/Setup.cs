@@ -22,8 +22,6 @@ using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
-using Npadrutt.MvxPlugins.AppInformation;
-using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 using Npadrutt.MvxPlugins.StoreOperations;
 using Npadrutt.MvxPlugins.StoreOperations.WindowsUWP;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;

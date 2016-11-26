@@ -1,0 +1,14 @@
+﻿{
+    "dependencies": {
+    },
+    "frameworks": {
+        "Xamarin.iOS,Version=v1.0": {
+            "imports": [
+                "portable-net45+win8+wpa81+wp8"
+            ]
+        }
+    },
+    "runtimes": {
+        "win": {}
+    }
+}
