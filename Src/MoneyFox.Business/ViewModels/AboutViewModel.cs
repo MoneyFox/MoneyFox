@@ -1,11 +1,10 @@
 ﻿using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
-using Npadrutt.MvxPlugins.AppInformation;
-using Npadrutt.MvxPlugins.StoreOperations;
 
 namespace MoneyFox.Business.ViewModels
 {

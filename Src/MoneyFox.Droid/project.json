@@ -1,0 +1,45 @@
+﻿{
+  "dependencies": {
+    "AndHUD": "1.2.0",
+    "Autofac": "4.2.1",
+    "Autofac.Extras.MvvmCross": "4.0.0",
+    "AutoMapper": "5.2.0",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
+    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
+    "FAB.XamarinAndroid": "1.6.4",
+    "HockeySDK.Xamarin": "4.1.0",
+    "Microsoft.CSharp": "4.3.0",
+    "Microsoft.NETCore.Platforms": "1.1.0",
+    "Microsoft.NETNative.Analyzer": "1.0.0",
+    "Microsoft.OneDriveSDK": "2.0.6",
+    "MvvmCross.Binding": "4.4.0",
+    "MvvmCross.Core": "4.4.0",
+    "MvvmCross.Droid.Shared": "4.4.0",
+    "MvvmCross.Droid.Support.Core.UI": "4.4.0",
+    "MvvmCross.Droid.Support.Core.Utils": "4.4.1",
+    "MvvmCross.Droid.Support.Design": "4.4.0",
+    "MvvmCross.Droid.Support.Fragment": "4.4.0",
+    "MvvmCross.Droid.Support.V4": "4.4.1",
+    "MvvmCross.Droid.Support.V7.AppCompat": "4.4.0",
+    "MvvmCross.Droid.Support.V7.Preference": "4.4.0",
+    "MvvmCross.Platform": "4.4.0",
+    "MvvmCross.Plugin.Color": "4.4.0",
+    "MvvmCross.Plugin.Email": "4.4.0",
+    "MvvmCross.Plugin.File": "4.4.0",
+    "MvvmCross.Plugin.Messenger": "4.4.0",
+    "MvvmCross.Plugin.ResxLocalization": "4.4.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
+    "MvvmCross.Plugin.Visibility": "4.4.0",
+    "MvvmCross.Plugin.WebBrowser": "4.4.0",
+    "NETStandard.Library": "1.6.1",
+    "OxyPlot.Core": "1.0.0",
+    "OxyPlot.Xamarin.Android": "1.0.0-unstable1983",
+    "Xamarin.Auth": "1.3.0"
+  },
+  "frameworks": {
+    "MonoAndroid,Version=v7.0": {}
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
