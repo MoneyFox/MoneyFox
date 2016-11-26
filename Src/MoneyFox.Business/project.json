@@ -1,4 +1,4 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
     "Autofac": "4.2.1",

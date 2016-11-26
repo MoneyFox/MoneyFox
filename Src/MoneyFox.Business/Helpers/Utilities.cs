@@ -45,7 +45,8 @@ namespace MoneyFox.Business.Helpers
         /// <returns>Formated string.</returns>
         public static string RemoveGroupingSeparators(string amount)
         {
-            if(true) //if (amount.Any(Char.IsPunctuation))
+            // TODO: remove ToCharArray
+            if (amount.ToCharArray().Any(Char.IsPunctuation))
             {
                 int decimalSeparatorIndex = 0;
                 int punctuationCount = 0;
