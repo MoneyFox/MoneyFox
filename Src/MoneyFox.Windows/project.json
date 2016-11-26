@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.2.0",
+    "Autofac": "4.2.1",
     "Autofac.Extras.MvvmCross": "4.0.0",
     "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
     "Cheesebaron.MvxPlugins.Settings": "2.1.0",
