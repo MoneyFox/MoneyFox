@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             local:MvxGroupItemTemplate="@layout/header_payment_list"
             local:MvxItemTemplate="@layout/listitem_inner_payment_list"
-            local:MvxBind="ItemsSource Source;ItemClick EditCommand" />
+            local:MvxBind="ItemsSource Source" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"

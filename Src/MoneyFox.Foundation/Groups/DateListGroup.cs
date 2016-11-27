@@ -49,7 +49,7 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="itemClickCommand"></param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort, MvxCommand<T> itemClickCommand = null)
+            GetSortKeyDelegate getSortKey, bool sort = true, MvxCommand<T> itemClickCommand = null)
         {
             var list = new List<DateListGroup<T>>();
 

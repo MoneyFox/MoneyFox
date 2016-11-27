@@ -131,19 +131,6 @@ namespace MoneyFox.Business.ViewModels
         public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
 
         /// <summary>
-        ///     Edits the passed PaymentViewModel.
-        /// </summary>
-        public MvxCommand<PaymentViewModel> EditCommand
-        {
-            get { return editCommand; }
-            private set
-            {
-                editCommand = value; 
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
         public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(DeletePayment);
@@ -159,7 +146,6 @@ namespace MoneyFox.Business.ViewModels
 
         private void LoadPayments()
         {
-            EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
@@ -176,19 +162,17 @@ namespace MoneyFox.Business.ViewModels
             var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
                 CultureInfo.CurrentUICulture,
                 s => s.Date.ToString("D", CultureInfo.InvariantCulture),
-                s => s.Date, true);
+                s => s.Date,
+                itemClickCommand: new MvxCommand<PaymentViewModel>(Edit));
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
-                    DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
-                        s =>
-                        {
-                            var date = Convert.ToDateTime(s.Key);
-                            return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
-                        },
-                    s => Convert.ToDateTime(s.Key), true));
-
-            //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand<PaymentViewModel>(Edit);
+                DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
+                    s =>
+                    {
+                        var date = Convert.ToDateTime(s.Key);
+                        return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
+                    },
+                    s => Convert.ToDateTime(s.Key)));
         }
 
         private void Edit(PaymentViewModel payment)
