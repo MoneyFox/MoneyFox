@@ -130,6 +130,8 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
 
+        public MvxCommand<PaymentViewModel> EditPaymentCommand => new MvxCommand<PaymentViewModel>(EditPayment);
+
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
@@ -163,7 +165,7 @@ namespace MoneyFox.Business.ViewModels
                 CultureInfo.CurrentUICulture,
                 s => s.Date.ToString("D", CultureInfo.InvariantCulture),
                 s => s.Date,
-                itemClickCommand: new MvxCommand<PaymentViewModel>(Edit));
+                itemClickCommand: EditPaymentCommand);
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
                 DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
@@ -175,7 +177,7 @@ namespace MoneyFox.Business.ViewModels
                     s => Convert.ToDateTime(s.Key)));
         }
 
-        private void Edit(PaymentViewModel payment)
+        private void EditPayment(PaymentViewModel payment)
         {
             ShowViewModel<ModifyPaymentViewModel>(new {paymentId = payment.Id});
         }
