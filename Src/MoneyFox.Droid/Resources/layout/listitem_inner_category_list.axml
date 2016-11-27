@@ -12,12 +12,12 @@
         android:layout_marginLeft="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         local:MvxBind="Text Key" />
-    <Mvx.MvxLinearLayout
+    <MvxClickableLinearLayout
         android:id="@+id/inner_category_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:clickable="true"
         local:MvxItemTemplate="@layout/listitem_category"
-        local:MvxBind="ItemsSource ." />
+        local:MvxBind="ItemsSource .;ItemClick ItemClickCommand" />
 </LinearLayout>

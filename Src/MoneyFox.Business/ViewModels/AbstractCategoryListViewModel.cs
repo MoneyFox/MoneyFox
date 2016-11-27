@@ -20,7 +20,7 @@ namespace MoneyFox.Business.ViewModels
         private string searchText;
         private ObservableCollection<CategoryViewModel> categories;
         private CategoryViewModel selectedCategory;
-        private ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> source;
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
@@ -61,7 +61,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> Source
+        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> Source
         {
             get { return source; }
             set
@@ -166,13 +166,13 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
         }
 
-        private ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> CreateGroup() =>
-            new ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>>(
-                AlphaGroupListGroup<CategoryListItemWrapper>.CreateGroups(Categories.Select(x => new CategoryListItemWrapper(x, ItemClickCommand)),
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
+            new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
+                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(Categories,
                     CultureInfo.CurrentUICulture,
-                    s => string.IsNullOrEmpty(s.Item.Name)
+                    s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Item.Name[0].ToString().ToUpper()));
+                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand));
 
         private async void DeleteCategory(CategoryViewModel categoryToDelete)
         {
@@ -187,24 +187,5 @@ namespace MoneyFox.Business.ViewModels
                 Search();
             }
         }
-    }
-
-    public class CategoryListItemWrapper
-    {
-        public CategoryListItemWrapper(CategoryViewModel item, MvxCommand<CategoryViewModel> itemClickCommand)
-        {
-            Item = item;
-            ItemClickCommand = new MvxCommand<CategoryListItemWrapper>(Foo);
-        }
-
-        private void Foo(CategoryListItemWrapper obj)
-        {
-            Debug.WriteLine("Foo");
-        }
-
-        public CategoryViewModel Item { get; }
-
-        public MvxCommand<CategoryListItemWrapper> ItemClickCommand { get; }
-
     }
 }

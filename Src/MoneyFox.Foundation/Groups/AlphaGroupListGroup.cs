@@ -23,15 +23,22 @@ namespace MoneyFox.Foundation.Groups
         ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        public AlphaGroupListGroup(string key)
+        /// <param name="itemClickCommand">The command to execute on click</param>
+        public AlphaGroupListGroup(string key, MvxCommand<T> itemClickCommand = null)
         {
             Key = key;
+            ItemClickCommand = itemClickCommand;
         }
 
         /// <summary>
         ///     The Key of this group.
         /// </summary>
         public string Key { get; }
+
+        /// <summary>
+        ///     The command to execute on a click.
+        /// </summary>
+        public MvxCommand<T> ItemClickCommand { get; }
 
         /// <summary>
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
@@ -42,7 +49,7 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="sort">Will sort the data if true.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
-            GetKeyDelegate getKey, bool sort = true)
+            GetKeyDelegate getKey, bool sort = true, MvxCommand<T> itemClickCommand = null)
         {
             var list = new List<AlphaGroupListGroup<T>>();
 
@@ -52,7 +59,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new AlphaGroupListGroup<T>(index));
+                    list.Add(new AlphaGroupListGroup<T>(index, itemClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))
