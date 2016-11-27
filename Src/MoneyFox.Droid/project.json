@@ -22,6 +22,7 @@
     "MvvmCross.Droid.Support.V4": "4.4.1",
     "MvvmCross.Droid.Support.V7.AppCompat": "4.4.0",
     "MvvmCross.Droid.Support.V7.Preference": "4.4.0",
+    "MvvmCross.Droid.Support.V7.RecyclerView": "4.4.0",
     "MvvmCross.Platform": "4.4.0",
     "MvvmCross.Plugin.Color": "4.4.0",
     "MvvmCross.Plugin.Email": "4.4.0",
