@@ -1,14 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
-using Npadrutt.MvxPlugins.AppInformation;
-using Npadrutt.MvxPlugins.StoreOperations;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

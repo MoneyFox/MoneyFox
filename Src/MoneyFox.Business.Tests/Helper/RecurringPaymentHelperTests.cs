@@ -139,7 +139,7 @@ namespace MoneyFox.Business.Tests.Helper
         [InlineData(PaymentRecurrence.Biweekly, 14)]
         [InlineData(PaymentRecurrence.Monthly, 31)]
         [InlineData(PaymentRecurrence.Bimonthly, 62)]
-        [InlineData(PaymentRecurrence.Yearly, 360)]
+        [InlineData(PaymentRecurrence.Yearly, 365)]
         public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed)
         {
             var account = new AccountViewModel {Id = 2};
