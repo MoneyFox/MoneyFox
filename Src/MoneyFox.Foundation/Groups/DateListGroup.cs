@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Foundation.Groups
 {
@@ -16,19 +17,27 @@ namespace MoneyFox.Foundation.Groups
 
         public delegate DateTime GetSortKeyDelegate(T item);
 
+
         /// <summary>
         ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        public DateListGroup(string key)
+        /// <param name="itemClickCommand">The command to execute on click</param>
+        public DateListGroup(string key, MvxCommand<T> itemClickCommand = null)
         {
             Key = key;
+            ItemClickCommand = itemClickCommand;
         }
 
         /// <summary>
         ///     The Key of this group.
         /// </summary>
         public string Key { get; }
+
+        /// <summary>
+        ///     The command to execute on a click.
+        /// </summary>
+        public MvxCommand<T> ItemClickCommand { get; }
 
         /// <summary>
         ///     Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
@@ -38,9 +47,10 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="getKey">A delegate to get the key from an item.</param>
         /// <param name="getSortKey">A delegate to get the key for sorting from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
+        /// <param name="itemClickCommand"></param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort)
+            GetSortKeyDelegate getSortKey, bool sort, MvxCommand<T> itemClickCommand = null)
         {
             var list = new List<DateListGroup<T>>();
 
@@ -50,7 +60,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new DateListGroup<T>(index));
+                    list.Add(new DateListGroup<T>(index, itemClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))

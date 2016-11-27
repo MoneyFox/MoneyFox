@@ -7,6 +7,8 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
+using System;
+using System.Diagnostics;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -18,7 +20,7 @@ namespace MoneyFox.Business.ViewModels
         private string searchText;
         private ObservableCollection<CategoryViewModel> categories;
         private CategoryViewModel selectedCategory;
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
+        private ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> source;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
@@ -59,7 +61,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> Source
+        public ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> Source
         {
             get { return source; }
             set
@@ -164,13 +166,13 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
         }
 
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
-            new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
-                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(Categories,
+        private ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>> CreateGroup() =>
+            new ObservableCollection<AlphaGroupListGroup<CategoryListItemWrapper>>(
+                AlphaGroupListGroup<CategoryListItemWrapper>.CreateGroups(Categories.Select(x => new CategoryListItemWrapper(x, ItemClickCommand)),
                     CultureInfo.CurrentUICulture,
-                    s => string.IsNullOrEmpty(s.Name)
+                    s => string.IsNullOrEmpty(s.Item.Name)
                         ? "-"
-                        : s.Name[0].ToString().ToUpper()));
+                        : s.Item.Name[0].ToString().ToUpper()));
 
         private async void DeleteCategory(CategoryViewModel categoryToDelete)
         {
@@ -185,5 +187,24 @@ namespace MoneyFox.Business.ViewModels
                 Search();
             }
         }
+    }
+
+    public class CategoryListItemWrapper
+    {
+        public CategoryListItemWrapper(CategoryViewModel item, MvxCommand<CategoryViewModel> itemClickCommand)
+        {
+            Item = item;
+            ItemClickCommand = new MvxCommand<CategoryListItemWrapper>(Foo);
+        }
+
+        private void Foo(CategoryListItemWrapper obj)
+        {
+            Debug.WriteLine("Foo");
+        }
+
+        public CategoryViewModel Item { get; }
+
+        public MvxCommand<CategoryListItemWrapper> ItemClickCommand { get; }
+
     }
 }

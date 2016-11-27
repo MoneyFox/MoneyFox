@@ -21,7 +21,7 @@ namespace MoneyFox.Droid.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
+            var categoryList = view.FindViewById<MvxLinearLayout>(Resource.Id.category_list);
             RegisterForContextMenu(categoryList);
 
             view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp">
         <android.support.design.widget.TextInputLayout
@@ -19,15 +19,17 @@
                 local:MvxBind="Text SearchText"
                 local:MvxLang="Hint SearchStringLabel" />
         </android.support.design.widget.TextInputLayout>
-        <MvxListView
-            android:id="@+id/category_list"
-            android:orientation="vertical"
-            android:choiceMode="singleChoice"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@drawable/list_item_selector"
-            local:MvxItemTemplate="@layout/listitem_inner_category_list"
-            local:MvxBind="ItemsSource Source" />
+        <ScrollView 
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+            <Mvx.MvxLinearLayout
+                  android:id="@+id/category_list"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  local:MvxItemTemplate="@layout/listitem_inner_category_list"
+                  local:MvxBind="ItemsSource Source" />
+        </ScrollView>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
