@@ -22,14 +22,6 @@ namespace MoneyFox.Windows.Views.UserControls
             flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
-        private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
-        }
-
         private void EditCategory(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
