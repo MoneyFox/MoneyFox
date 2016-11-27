@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:listSelector="@drawable/list_item_selector"
             local:MvxItemTemplate="@layout/listitem_inner_category_list"
-            local:MvxBind="ItemsSource Source; ItemClick ItemClickCommand" />
+            local:MvxBind="ItemsSource Source" />
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
