@@ -14,14 +14,6 @@ namespace MoneyFox.Windows.Views
             InitializeComponent();
         }
 
-        private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
-        }
-
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;

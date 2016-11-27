@@ -30,7 +30,6 @@
             <StackPanel Margin="0,0,0,12"
                         HorizontalAlignment="Stretch"
                         Background="Transparent"
-                        Holding="AccountList_Holding"
                         RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
