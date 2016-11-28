@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         local:MvxBind="Text EndDate, Converter=DateTimeFormat"
-        local:MvxLang="Hint EndDateLabel"/>
+        local:MvxLang="Hint EndDateLabel" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -32,5 +32,5 @@
         android:layout_marginRight="12dp"
         android:textColor="@color/colorAccent"
         android:layout_marginBottom="5dp"
-        local:MvxLang="Text DoneLabel"/>
+        local:MvxLang="Text DoneLabel" />
 </LinearLayout>
