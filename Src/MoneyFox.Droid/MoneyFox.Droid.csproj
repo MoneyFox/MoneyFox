@@ -98,10 +98,8 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
-    <Compile Include="Adapter\MvxClickableLinearLayoutAdapter.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
     <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
-    <Compile Include="Controls\MvxClickableLinearLayout.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="DroidModule.cs" />
@@ -124,6 +122,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BackgroundTaskManager.cs" />
     <Compile Include="Services\ClearPaymentService.cs" />
+    <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\RecurringPaymentService.cs" />
     <Compile Include="Services\SyncBackupService.cs" />
     <Compile Include="Setup.cs" />

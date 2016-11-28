@@ -22,10 +22,12 @@ namespace MoneyFox.Foundation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroup(string key, MvxCommand<T> itemClickCommand = null)
+        /// <param name="itemLongClickCommand">The command to execute on a long click</param>
+        public DateListGroup(string key, MvxCommand<T> itemClickCommand = null, MvxCommand<T> itemLongClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
+            ItemLongClickCommand = itemLongClickCommand;
         }
 
         /// <summary>
@@ -39,6 +41,11 @@ namespace MoneyFox.Foundation.Groups
         public MvxCommand<T> ItemClickCommand { get; }
 
         /// <summary>
+        ///     The command to execute on along  click.
+        /// </summary>
+        public MvxCommand<T> ItemLongClickCommand { get; }
+
+        /// <summary>
         ///     Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
@@ -46,10 +53,11 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="getKey">A delegate to get the key from an item.</param>
         /// <param name="getSortKey">A delegate to get the key for sorting from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
-        /// <param name="itemClickCommand"></param>
+        /// <param name="itemClickCommand">The command to execute on a click.</param>
+        /// <param name="itemLongClickCommand">The command to execute on a long click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort = true, MvxCommand<T> itemClickCommand = null)
+            GetSortKeyDelegate getSortKey, bool sort = true, MvxCommand<T> itemClickCommand = null, MvxCommand<T> itemLongClickCommand = null)
         {
             var list = new List<DateListGroup<T>>();
 
@@ -59,7 +67,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new DateListGroup<T>(index, itemClickCommand));
+                    list.Add(new DateListGroup<T>(index, itemClickCommand, itemLongClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))

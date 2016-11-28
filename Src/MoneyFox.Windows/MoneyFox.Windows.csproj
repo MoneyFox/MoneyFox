@@ -127,6 +127,7 @@
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />

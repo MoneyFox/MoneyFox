@@ -18,19 +18,6 @@
         Bimonthly = 6
     }
 
-    public enum ListStatisticType
-    {
-        CategorySpreading,
-        CategorySummary
-    }
-
-    public enum InvocationType
-    {
-        Account,
-        Payment,
-        Setting
-    }
-
     public enum StatisticType
     {
         Cashflow,
@@ -44,5 +31,11 @@
         Income,
         Expense,
         Transfer
+    }
+
+    public enum ModifyOperation
+    {
+        Edit,
+        Delete
     }
 }

@@ -19,5 +19,5 @@
         android:orientation="vertical"
         android:clickable="true"
         local:MvxItemTemplate="@layout/listitem_category"
-        local:MvxBind="ItemsSource .;ItemClick ItemClickCommand" />
+        local:MvxBind="ItemsSource .;ItemClick ItemClickCommand; ItemLongClick ItemLongClickCommand" />
 </LinearLayout>

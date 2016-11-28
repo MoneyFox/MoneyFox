@@ -17,5 +17,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         local:MvxItemTemplate="@layout/listitem_payment"
-        local:MvxBind="ItemsSource .;ItemClick ItemClickCommand" />
+        local:MvxBind="ItemsSource .;ItemClick ItemClickCommand; ItemLongClick ItemLongClickCommand" />
 </LinearLayout>
