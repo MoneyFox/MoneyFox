@@ -17,6 +17,9 @@ namespace MoneyFox.Droid
             builder.RegisterType<NotificationService>().As<INotificationService>();
             builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
             builder.RegisterType<TileManager>().As<ITileManager>();
+
+            builder.RegisterType<IAppInformation>().As<DroidAppInformation>();
+            builder.RegisterType<IStoreOperations>().As<PlayStoreOperations>();
         }
     }
 }
