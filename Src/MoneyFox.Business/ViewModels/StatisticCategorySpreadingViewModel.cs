@@ -63,8 +63,8 @@ namespace MoneyFox.Business.ViewModels
 
         protected override void Load()
         {
-            SpreadingModel = null;
             LegendList = new ObservableCollection<LegendItem>();
+            SpreadingModel = null;
             SpreadingModel = GetSpreadingModel();
         }
 
