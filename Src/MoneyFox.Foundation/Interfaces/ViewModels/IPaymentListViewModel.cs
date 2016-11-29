@@ -13,13 +13,13 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
 
         MvxCommand LoadCommand { get; }
 
-        MvxCommand<PaymentViewModel> EditCommand { get; }
+        MvxCommand<PaymentViewModel> EditPaymentCommand { get; }
 
         MvxCommand<PaymentViewModel> DeletePaymentCommand { get; }
 
         ObservableCollection<PaymentViewModel> RelatedPayments { get; }
 
-        ObservableCollection<DateListGroup<PaymentViewModel>> Source { get; }
+        ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source { get; }
 
         string Title { get; }
     }

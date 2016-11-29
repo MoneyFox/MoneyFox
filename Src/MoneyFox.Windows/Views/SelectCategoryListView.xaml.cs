@@ -16,7 +16,7 @@ namespace MoneyFox.Windows.Views
             if (e.Key == VirtualKey.Enter)
             {
                 SelectCategoryListViewModel viewModel = (SelectCategoryListViewModel) DataContext;
-                viewModel.SelectCommand.Execute(viewModel.SelectedCategory);
+                viewModel.ItemClickCommand.Execute(viewModel.SelectedCategory);
             }
 
             base.OnKeyDown(e);

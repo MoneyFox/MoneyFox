@@ -17,6 +17,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
         private Mock<ISettingsManager> settingsManager;
         private Mock<IEndOfMonthManager> endOfMonthManager;
         private Mock<IBackupManager> backupManager;
+        private Mock<IModifyDialogService> modifyDialogService;
 
         [TestInitialize]
         public void Init()
@@ -28,6 +29,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             settingsManager = new Mock<ISettingsManager>();
             endOfMonthManager = new Mock<IEndOfMonthManager>();
             backupManager = new Mock<IBackupManager>();
+            modifyDialogService = new Mock<IModifyDialogService>();
 
             accountRepository.SetupAllProperties();
             paymentRepository.SetupAllProperties();
@@ -43,8 +45,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 null,
                 settingsManager.Object,
                 endOfMonthManager.Object,
-                backupManager.Object)
-            ;
+                backupManager.Object,
+                modifyDialogService.Object);
 
             vm.Init(42);
             vm.AccountId.ShouldBe(42);
@@ -59,7 +61,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 null,
                 settingsManager.Object,
                 endOfMonthManager.Object,
-                backupManager.Object);
+                backupManager.Object,
+                modifyDialogService.Object);
 
             vm.Init(0);
             vm.AccountId.ShouldBe(0);

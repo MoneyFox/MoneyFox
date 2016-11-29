@@ -24,7 +24,7 @@ namespace MoneyFox.Windows.Views.UserControls
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            viewmodel?.EditCommand.Execute(payment);
+            viewmodel?.EditPaymentCommand.Execute(payment);
         }
 
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)

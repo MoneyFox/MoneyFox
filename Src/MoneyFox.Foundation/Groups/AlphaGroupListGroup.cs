@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Foundation.Groups
 {
@@ -22,9 +23,13 @@ namespace MoneyFox.Foundation.Groups
         ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        public AlphaGroupListGroup(string key)
+        /// <param name="itemClickCommand">The command to execute on click.</param>
+        /// <param name="itemLongClickCommand">The command to execute on a long click.</param>
+        public AlphaGroupListGroup(string key, MvxCommand<T> itemClickCommand = null, MvxCommand<T> itemLongClickCommand = null)
         {
             Key = key;
+            ItemClickCommand = itemClickCommand;
+            ItemLongClickCommand = itemLongClickCommand;
         }
 
         /// <summary>
@@ -33,15 +38,27 @@ namespace MoneyFox.Foundation.Groups
         public string Key { get; }
 
         /// <summary>
+        ///     The command to execute on a click.
+        /// </summary>
+        public MvxCommand<T> ItemClickCommand { get; }
+
+        /// <summary>
+        ///     The command to execute on a long click.
+        /// </summary>
+        public MvxCommand<T> ItemLongClickCommand { get; }
+
+        /// <summary>
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="ci">The CultureInfo to group and sort by.</param>
         /// <param name="getKey">A delegate to get the key from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
+        /// <param name="itemClickCommand">The command to execute on a click</param>
+        /// <param name="itemLongClickCommand">The command to execute on a long click</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
-            GetKeyDelegate getKey, bool sort = true)
+            GetKeyDelegate getKey, bool sort = true, MvxCommand<T> itemClickCommand = null, MvxCommand<T> itemLongClickCommand = null)
         {
             var list = new List<AlphaGroupListGroup<T>>();
 
@@ -51,7 +68,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new AlphaGroupListGroup<T>(index));
+                    list.Add(new AlphaGroupListGroup<T>(index, itemClickCommand, itemLongClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))
