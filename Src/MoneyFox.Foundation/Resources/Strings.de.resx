@@ -543,15 +543,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Suchbegriff</value>
   </data>
-  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
-    <value>Fertig</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
-    <value>End Datum</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
-    <value>Anfangsdatum</value>
-  </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>Du hast noch keine Kategorien erfasst. Erfasse eine über den Plus Knopf unten.</value>
   </data>
@@ -618,5 +609,11 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Wiederholung löschen?</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Alle zwei Monate</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Konto von Monatsbilanz ausschliessen</value>
   </data>
 </root>
