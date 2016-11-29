@@ -49,8 +49,6 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<ISettings, WindowsCommonSettings>();
             Mvx.RegisterType<IConnectivity, Connectivity>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
-            Mvx.RegisterType<IAppInformation, WindowsAppInformation>();
-            Mvx.RegisterType<IStoreOperations, MarketplaceOperations>();
         }
 
         protected override IMvxIoCProvider CreateIocProvider()

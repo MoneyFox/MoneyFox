@@ -17,6 +17,8 @@ namespace MoneyFox.Windows
             builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
             builder.RegisterType<TileUpdateService>().As<ITileUpdateService>();
             builder.RegisterType<TileManager>().As<ITileManager>();
+            builder.RegisterType<WindowsAppInformation>().As<IAppInformation>();
+            builder.RegisterType<MarketplaceOperations>().As<IStoreOperations>();
         }
     }
 }
