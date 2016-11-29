@@ -26,7 +26,7 @@
   <string name="fab_add_transfer">Add Transfer</string>
 
   <!--Text-->
-  <string name="text_start_date">start date</string>
-  <string name="text_end_date">end date</string>
-  <string name="text_done">done</string>
+  <string name="text_start_date">Start Date</string>
+  <string name="text_end_date">End Date</string>
+  <string name="text_done">Done</string>
 </resources>
