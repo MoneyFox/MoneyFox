@@ -18,8 +18,8 @@ namespace MoneyFox.Droid
             builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
             builder.RegisterType<TileManager>().As<ITileManager>();
 
-            builder.RegisterType<IAppInformation>().As<DroidAppInformation>();
-            builder.RegisterType<IStoreOperations>().As<PlayStoreOperations>();
+            builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
+            builder.RegisterType<PlayStoreOperations>().As<IStoreOperations>();
         }
     }
 }
