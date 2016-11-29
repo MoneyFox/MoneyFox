@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
@@ -24,10 +25,11 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
-        private ObservableCollection<DateListGroup<PaymentViewModel>> source;
+        private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private MvxCommand<PaymentViewModel> editCommand;
         private IBalanceViewModel balanceViewModel;
         private IPaymentListViewActionViewModel viewActionViewModel;
+        private IModifyDialogService modifyDialogService;
         private int accountId;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
@@ -36,7 +38,8 @@ namespace MoneyFox.Business.ViewModels
             IDialogService dialogService,
             ISettingsManager settingsManager,
             IEndOfMonthManager endOfMonthManager, 
-            IBackupManager backupManager)
+            IBackupManager backupManager, 
+            IModifyDialogService modifyDialogService)
         {
             this.paymentManager = paymentManager;
             this.accountRepository = accountRepository;
@@ -45,6 +48,7 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.endOfMonthManager = endOfMonthManager;
             this.backupManager = backupManager;
+            this.modifyDialogService = modifyDialogService;
         }
 
         #region Properties
@@ -104,7 +108,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<PaymentViewModel>> Source
+        public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source
         {
             get { return source; }
             set
@@ -131,17 +135,14 @@ namespace MoneyFox.Business.ViewModels
         public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
 
         /// <summary>
-        ///     Edits the passed PaymentViewModel.
+        ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public MvxCommand<PaymentViewModel> EditCommand
-        {
-            get { return editCommand; }
-            private set
-            {
-                editCommand = value; 
-                RaisePropertyChanged();
-            }
-        }
+        public MvxCommand<PaymentViewModel> EditPaymentCommand => new MvxCommand<PaymentViewModel>(EditPayment);
+
+        /// <summary>
+        ///     Opens a option dialog to select the modify operation
+        /// </summary>
+        public MvxCommand<PaymentViewModel> OpenContextMenuCommand => new MvxCommand<PaymentViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
@@ -159,7 +160,6 @@ namespace MoneyFox.Business.ViewModels
 
         private void LoadPayments()
         {
-            EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
@@ -173,19 +173,41 @@ namespace MoneyFox.Business.ViewModels
                 payment.CurrentAccountId = AccountId;
             }
 
-            Source = new ObservableCollection<DateListGroup<PaymentViewModel>>(
-                DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
-                    CultureInfo.CurrentUICulture,
-                    s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
-                    s => s.Date, true));
+            var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
+                CultureInfo.CurrentUICulture,
+                s => s.Date.ToString("D", CultureInfo.InvariantCulture),
+                s => s.Date,
+                itemClickCommand: EditPaymentCommand, itemLongClickCommand:OpenContextMenuCommand);
 
-            //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand<PaymentViewModel>(Edit);
+            Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
+                DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
+                    s =>
+                    {
+                        var date = Convert.ToDateTime(s.Key);
+                        return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
+                    },
+                    s => Convert.ToDateTime(s.Key)));
         }
 
-        private void Edit(PaymentViewModel payment)
+        private void EditPayment(PaymentViewModel payment)
         {
             ShowViewModel<ModifyPaymentViewModel>(new {paymentId = payment.Id});
+        }
+        
+        private async void OpenContextMenu(PaymentViewModel payment)
+        {
+            var result = await modifyDialogService.ShowEditSelectionDialog();
+
+            switch (result)
+            {
+                case ModifyOperation.Edit:
+                    EditPaymentCommand.Execute(payment);
+                    break;
+
+                case ModifyOperation.Delete:
+                    DeletePaymentCommand.Execute(payment);
+                    break;
+            }
         }
 
         private async void DeletePayment(PaymentViewModel payment)

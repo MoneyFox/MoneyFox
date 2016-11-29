@@ -7,12 +7,14 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Business.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly ICategoryRepository CategoryRepository;
+        protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
 
         private string searchText;
@@ -24,18 +26,20 @@ namespace MoneyFox.Business.ViewModels
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{CategoryViewModel}" />.</param>
+        /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
-            IDialogService dialogService)
+           IModifyDialogService modifyDialogService, IDialogService dialogService)
         {
             DialogService = dialogService;
+            ModifyDialogService = modifyDialogService;
             CategoryRepository = categoryRepository;
         }
 
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract void Selected(CategoryViewModel category);
+        protected abstract void ItemClick(CategoryViewModel category);
 
         #region Properties
 
@@ -119,7 +123,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxCommand<CategoryViewModel> SelectCommand => new MvxCommand<CategoryViewModel>(Selected);
+        public MvxCommand<CategoryViewModel> ItemClickCommand => new MvxCommand<CategoryViewModel>(ItemClick);
+
+        /// <summary>
+        ///     Opens a option dialog to select the modify operation
+        /// </summary>
+        public MvxCommand<CategoryViewModel> OpenContextMenuCommand => new MvxCommand<CategoryViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
@@ -170,7 +179,24 @@ namespace MoneyFox.Business.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Name[0].ToString().ToUpper()));
+                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand,
+                    itemLongClickCommand:OpenContextMenuCommand));
+
+        private async void OpenContextMenu(CategoryViewModel category)
+        {
+            var result = await ModifyDialogService.ShowEditSelectionDialog();
+
+            switch (result)
+            {
+                case ModifyOperation.Edit:
+                    EditCategoryCommand.Execute(category);
+                    break;
+
+                case ModifyOperation.Delete:
+                    DeleteCategoryCommand.Execute(category);
+                    break;
+            }
+        }
 
         private async void DeleteCategory(CategoryViewModel categoryToDelete)
         {

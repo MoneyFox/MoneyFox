@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\IEndOfMonthManager.cs" />
+    <Compile Include="Interfaces\IModifyDialogService.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />

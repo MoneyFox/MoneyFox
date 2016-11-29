@@ -1361,33 +1361,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_DoneLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.DoneLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Date.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_EndDateLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.EndDateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_StartDateLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.StartDateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Date.
         /// </summary>
         public static string SelectDateTitle {

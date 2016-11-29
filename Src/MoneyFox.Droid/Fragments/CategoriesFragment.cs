@@ -5,7 +5,6 @@ using Android.Views;
 using Android.Widget;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Shared.Attributes;
 
 namespace MoneyFox.Droid.Fragments
@@ -21,8 +20,8 @@ namespace MoneyFox.Droid.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            var categoryList = view.FindViewById<MvxListView>(Resource.Id.category_list);
-            RegisterForContextMenu(categoryList);
+            //var categoryList = view.FindViewById<MvxClickableLinearLayout>(Resource.Id.inner_category_list);
+            //RegisterForContextMenu(categoryList);
 
             view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
             {
