@@ -351,55 +351,55 @@
     <value>每月费用</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>没有任何账户。点击在底部的三点符号添加一个。</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>没有任何类别。点击在底部的加号添加一个。</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>没有任何款项。点击在底部的三个符号之一添加一个。</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>您可以更改黑暗与明亮主题。使此更改生效需要重启本应用程序。</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
-    <value>Loading...</value>
+    <value>正在加载...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
     <value>If you activate this setting after every change on the database a backup is made to OneDrive.
 Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>有些东西没有被翻译或者翻译有误？帮助我们，在 crowdin 上改善 Money Fox 的翻译：</value>
   </data>
   <data name="CancelLabel.Label" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DoneLabel.Label" xml:space="preserve">
-    <value>Done</value>
+    <value>完成</value>
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>当前余额</value>
   </data>
   <data name="Logout.Content" xml:space="preserve">
-    <value>Logout</value>
+    <value>退出登录</value>
   </data>
   <data name="Iban.Header" xml:space="preserve">
     <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Backup Manually</value>
+    <value>手动备份</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
-    <value>Backup Automatically</value>
+    <value>自动备份</value>
   </data>
   <data name="DesignerContribution.Text" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>本应用图标的创作者：</value>
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>完整的贡献者名单在 GitHub：</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
+    <value>手动上传和下载备份</value>
   </data>
 </root>

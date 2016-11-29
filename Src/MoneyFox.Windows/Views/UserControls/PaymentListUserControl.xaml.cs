@@ -24,7 +24,7 @@ namespace MoneyFox.Windows.Views.UserControls
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            viewmodel?.EditCommand.Execute(payment);
+            viewmodel?.EditPaymentCommand.Execute(payment);
         }
 
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
@@ -36,14 +36,6 @@ namespace MoneyFox.Windows.Views.UserControls
                 return;
             }
             (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
-        }
-
-        private void PaymentViewModelList_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)

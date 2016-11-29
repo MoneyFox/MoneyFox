@@ -12,6 +12,7 @@ namespace MoneyFox.Foundation.DataModels
         private double currentBalance;
         private string note;
         private bool isOverdrawn;
+        private bool isExcluded;
 
         public int Id
         {
@@ -75,6 +76,17 @@ namespace MoneyFox.Foundation.DataModels
             {
                 if (isOverdrawn == value) return;
                 isOverdrawn = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsExcluded
+        {
+            get { return isExcluded; }
+            set
+            {
+                if (isExcluded == value) return;
+                isExcluded = value;
                 RaisePropertyChanged();
             }
         }

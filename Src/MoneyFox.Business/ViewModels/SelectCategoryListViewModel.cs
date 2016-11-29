@@ -16,11 +16,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
+        /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
         public SelectCategoryListViewModel(ICategoryRepository categoryRepository,
+            IModifyDialogService modifyDialogService,
             IDialogService dialogService, IMvxMessenger messenger) 
-            : base(categoryRepository, dialogService)
+            : base(categoryRepository, modifyDialogService, dialogService)
         {
             this.messenger = messenger;
         }
@@ -38,7 +40,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void Selected(CategoryViewModel category)
+        protected override void ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
             Close(this);

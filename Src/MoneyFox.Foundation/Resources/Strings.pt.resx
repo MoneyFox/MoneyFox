@@ -154,7 +154,7 @@
     <value>Fluxo de caixa</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
+    <value>Você atualizou um pagamento recorrente. Você quer atualizar também futuros pagamentos?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Atualizar a recorrência?</value>
@@ -205,7 +205,7 @@
     <value>Ganhos</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>No, just this</value>
+    <value>Não, só isso</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Nós não conseguimos fazer seu login. Por favor, garanta que você tenha uma conexão de Internet ativa.</value>
@@ -244,7 +244,7 @@
     <value>Substituir?</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Yes, update All</value>
+    <value>Sim, atualize todos</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Falha na restauração!</value>
@@ -256,7 +256,7 @@
     <value>Selecionar Data</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>selecionar operação</value>
+    <value>Selecionar operação</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Preferências</value>
@@ -274,7 +274,7 @@
     <value>Successo!</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Tarefa foi concluída com sucesso.</value>
+    <value>A tarefa foi concluída com sucesso.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Editar transferência</value>
@@ -404,7 +404,7 @@ Você deseja ir à loja para avaliar?</value>
     <value>Adicionar transferência</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>An error occured while deleting the item.</value>
+    <value>Ocorreu um erro ao excluir o item.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Ocorreu um erro ao salvar o item.</value>
@@ -506,7 +506,7 @@ Você deseja ir à loja para avaliar?</value>
     <value>Balanço atual</value>
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
-    <value>Iban</value>
+    <value>IBAN</value>
   </data>
   <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
     <value>Nota</value>
@@ -605,15 +605,15 @@ Você deseja ir à loja para avaliar?</value>
     <value>Estatísticas</value>
   </data>
   <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Drawer Close</value>
+    <value>gaveta fechada</value>
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Drawer Open</value>
+    <value>gaveta aberta</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Você atualizou um pagamento recorrente. Você quer atualizar futuros pagamentos também?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Excluir recorrência?</value>
   </data>
 </root>

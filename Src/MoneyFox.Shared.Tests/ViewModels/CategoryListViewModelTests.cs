@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new CategoryViewModel {Name = string.Empty}
             });
 
-            var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IDialogService>().Object);
+            var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IModifyDialogService>().Object, new Mock<IDialogService>().Object);
             vm.LoadedCommand.Execute();
 
             vm.Source.ShouldNotBeNull();

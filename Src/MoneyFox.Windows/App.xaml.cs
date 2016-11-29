@@ -113,25 +113,6 @@ namespace MoneyFox.Windows
 
             // Ensure the current window is active
             Window.Current.Activate();
-
-            var settings = ApplicationData.Current.LocalSettings;
-            var clearPaymentResult = settings.Values["CLEAR_PAYMENT"]?.ToString();
-            if (!string.IsNullOrEmpty(clearPaymentResult) && clearPaymentResult == "true")
-            {
-                await new DialogService().ShowMessage("Task Executed", "Clear PaymentViewModel");
-            }
-
-            var recPaymentResult = settings.Values["RECURRING_PAYMENT"]?.ToString();
-            if (!string.IsNullOrEmpty(recPaymentResult) && recPaymentResult == "true")
-            {
-                await new DialogService().ShowMessage("Task Executed", "RecPayment");
-            }
-
-            var syncBackupResult = settings.Values["SYNC_BACKUP"]?.ToString();
-            if (!string.IsNullOrEmpty(syncBackupResult) && syncBackupResult == "true")
-            {
-                await new DialogService().ShowMessage("Task Executed", "Sync Backup");
-            }
         }
 
         private async void CallRateReminder()

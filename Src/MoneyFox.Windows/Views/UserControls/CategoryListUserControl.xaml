@@ -23,7 +23,6 @@
             <StackPanel MinWidth="300"
                         Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
-                        Holding="CategoryListHolding"
                         RightTapped="CategoryListRightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -51,10 +50,9 @@
         </DataTemplate>
 
         <DataTemplate x:Key="JumpTemplate">
-            <Border Padding="5">
-                <Border HorizontalAlignment="Left">
-                    <TextBlock Width="150"
-                               HorizontalAlignment="Left"
+            <Border>
+                <Border Margin="5" HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                FontSize="18"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
@@ -91,7 +89,7 @@
                                                  OddRowBackground="{StaticResource ListViewBackgroundOddBrush}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding SelectCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <ListView.ItemContainerStyle>
@@ -107,9 +105,17 @@
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
                           ItemTemplate="{StaticResource JumpTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups},
-                                                Path=CollectionGroups}" />
+                                                Path=CollectionGroups}">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 

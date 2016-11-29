@@ -11,6 +11,7 @@ namespace MoneyFox.Droid
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterType<ModifyDialogService>().As<IModifyDialogService>();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
             builder.RegisterType<NotificationService>().As<INotificationService>();

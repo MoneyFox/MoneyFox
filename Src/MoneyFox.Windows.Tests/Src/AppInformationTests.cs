@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Npadrutt.MvxPlugins.AppInformation.WindowsUWP;
 
 namespace MoneyFox.Windows.Tests
 {

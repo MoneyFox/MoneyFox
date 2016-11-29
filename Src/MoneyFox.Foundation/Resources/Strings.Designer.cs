@@ -451,7 +451,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search String.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string CategoryListViewModel_SearchStringLabel {
             get {
@@ -1045,6 +1045,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude account from balance.
+        /// </summary>
+        public static string ModifyAccountViewModel_IsExcludedLabel {
+            get {
+                return ResourceManager.GetString("ModifyAccountViewModel.IsExcludedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string ModifyAccountViewModel_NoteLabel {
@@ -1343,38 +1352,11 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search String.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string SelectCategoryListViewModel_SearchStringLabel {
             get {
                 return ResourceManager.GetString("SelectCategoryListViewModel.SearchStringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Done.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_DoneLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.DoneLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Date.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_EndDateLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.EndDateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start Date.
-        /// </summary>
-        public static string SelectDateRangeDialogViewModel_StartDateLabel {
-            get {
-                return ResourceManager.GetString("SelectDateRangeDialogViewModel.StartDateLabel", resourceCulture);
             }
         }
         

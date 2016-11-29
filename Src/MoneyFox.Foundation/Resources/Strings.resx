@@ -541,22 +541,13 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search String</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
-    <value>Start Date</value>
+    <value>Search</value>
   </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search String</value>
+    <value>Search</value>
   </data>
   <data name="MenuViewModel.SloganLabel" xml:space="preserve">
     <value>A way to make budgeting easy.</value>
@@ -620,5 +611,8 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Bimonthly</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
 </root>
