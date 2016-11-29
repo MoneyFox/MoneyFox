@@ -399,4 +399,7 @@
   <data name="AutoBackupSetting.Header" xml:space="preserve">
     <value>Upload and download backup manually</value>
   </data>
+  <data name="AccoutnExcluded.Content" xml:space="preserve">
+    <value>Exclude account from balance</value>
+  </data>
 </root>

@@ -124,7 +124,7 @@
     <value>Sobre</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Por favor selecione uma conta.</value>
+    <value>Por favor, selecione uma conta.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
     <value>Contas</value>
@@ -541,15 +541,6 @@ Você deseja ir à loja para avaliar?</value>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Sequência de pesquisa</value>
   </data>
-  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
-    <value>Concluir</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
-    <value>Data Final</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
-    <value>Data de Início</value>
-  </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>A categoria não existe. Clique sobre o "mais" abaixo.</value>
   </data>
@@ -615,5 +606,11 @@ Você deseja ir à loja para avaliar?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Excluir recorrência?</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Bimestral</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
 </root>

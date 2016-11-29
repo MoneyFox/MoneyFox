@@ -154,7 +154,7 @@
     <value>Баланс</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
+    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
@@ -205,7 +205,7 @@
     <value>Прирост</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>No, just this</value>
+    <value>Нет, только это</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Мы не можем зайти в ваш аккаунт. Проверьте ваше интернет подключение.</value>
@@ -244,7 +244,7 @@
     <value>Перезаписать?</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Yes, update All</value>
+    <value>Да, обновить все</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Не удалось восстановить!</value>
@@ -403,7 +403,7 @@
     <value>Добавить перевод</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>An error occured while deleting the item.</value>
+    <value>Ошибка при удалении.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
     <value>Произошла ошибка при сохранении элемента.</value>
@@ -541,15 +541,6 @@
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Строка поиска</value>
   </data>
-  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
-    <value>Готово</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
-    <value>Дата окончания публикации</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
-    <value>Начиная с</value>
-  </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>У вас нет категорий. Добавьте один, нажав на кнопку «плюс» в нижней.</value>
   </data>
@@ -578,31 +569,31 @@
     <value>Пароль</value>
   </data>
   <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Add</value>
+    <value>Добавить</value>
   </data>
   <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>Удалить</value>
   </data>
   <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>About</value>
+    <value>О приложении</value>
   </data>
   <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Счета</value>
   </data>
   <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Backup</value>
+    <value>Резервная копия</value>
   </data>
   <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Categories</value>
+    <value>Категории</value>
   </data>
   <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Settings</value>
+    <value>Параметры</value>
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Статистика</value>
   </data>
   <data name="DrawerCloseLabel" xml:space="preserve">
     <value>Drawer Close</value>
@@ -611,9 +602,15 @@
     <value>Drawer Open</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Удалить повторения?</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Два раза в месяц</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
 </root>
