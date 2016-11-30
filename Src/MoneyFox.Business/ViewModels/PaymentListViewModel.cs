@@ -23,13 +23,12 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IBackupManager backupManager;
+        private readonly IModifyDialogService modifyDialogService;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
-        private MvxCommand<PaymentViewModel> editCommand;
         private IBalanceViewModel balanceViewModel;
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private IModifyDialogService modifyDialogService;
         private int accountId;
 
         public PaymentListViewModel(IAccountRepository accountRepository,
