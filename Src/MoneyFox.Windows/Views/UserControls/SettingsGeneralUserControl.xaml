@@ -19,19 +19,22 @@
                           Header="Upload and download backup manually"
                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}" />
+            
             <!-- Creating combo box to store options to change the default language.-->
-            <ComboBox x:Name= "default_language_box" 
+            <ComboBox SelectedIndex="0"
+                      x:Name= "default_language_box" 
                       Margin="0,75,0,0"
                       Width="250"
                       Header="Please chose a default language.">
             <!-- The different drop down options for 6 different languages.-->
-                <x:String>English</x:String>
-                <x:String>Deutsch</x:String>
-                <x:String>Pусский</x:String>
-                <x:String>Español</x:String>
-                <x:String>Português</x:String>
-                <x:String>中文</x:String>
+                <ComboBoxItem Tag="De">Deutsch</ComboBoxItem>
+                <ComboBoxItem Tag="En">English</ComboBoxItem>
+                <ComboBoxItem Tag="Ru">Pусский</ComboBoxItem>
+                <ComboBoxItem Tag="Es">Español</ComboBoxItem>
+                <ComboBoxItem Tag="Pt">Português</ComboBoxItem>
+                <ComboBoxItem Tag="Cn">中文</ComboBoxItem>
             </ComboBox>
+            
         </StackPanel>
     </Grid>
 </UserControl>

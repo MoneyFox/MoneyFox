@@ -7,6 +7,9 @@ namespace MoneyFox.Windows
 {
     public class WindowsModule : Module
     {
+        //Variable to store selected languge, setting default option in the Language settings combo box.
+        public int DefaultLanguageIndex = 7;
+
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DialogService>().As<IDialogService>();

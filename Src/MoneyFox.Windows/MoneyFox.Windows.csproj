@@ -126,6 +126,7 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
+    <Compile Include="DefaultLanguageSetter.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />

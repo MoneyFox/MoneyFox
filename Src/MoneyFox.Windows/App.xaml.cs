@@ -35,6 +35,9 @@ namespace MoneyFox.Windows
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        /// 
+
+
         public App()
         {
             InitializeComponent();
@@ -78,6 +81,23 @@ namespace MoneyFox.Windows
                 shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
                 shell.MyAppFrame.NavigationFailed += OnNavigationFailed;
+
+                //Create an object of the DefaultLanguageSetter class.
+                DefaultLanguageSetter DLS = new DefaultLanguageSetter();
+
+                //Depending on the Langage of the machine, the default language index for the combo box is set.
+                if (shell.Language.Contains("de"))
+                    DLS.setIndex(0);
+                if (shell.Language.Contains("de"))
+                    DLS.setIndex(1);
+                if (shell.Language.Contains("es"))
+                    DLS.setIndex(2);
+                if (shell.Language.Contains("pt"))
+                    DLS.setIndex(3);
+                if (shell.Language.Contains("ru"))
+                    DLS.setIndex(4);
+                if (shell.Language.Contains("cn"))
+                    DLS.setIndex(5);
             }
 
             // Place our app shell in the current Window
