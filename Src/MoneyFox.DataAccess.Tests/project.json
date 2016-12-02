@@ -9,9 +9,9 @@
     "xunit.runner.visualstudio": "2.1.0",
     "Xunit.Should.Extension": "1.0.4"
   },
-  "frameworks": {
-    ".NETFramework,Version=v4.5.2": {}
-  },
+    "frameworks": {
+        ".NETFramework,Version=v4.6.1": {}
+    },
   "runtimes": {
     "win": {}
   }
