@@ -401,4 +401,7 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="AutoBackupSetting.Header" xml:space="preserve">
     <value>Backup manuell hoch- und herunterladen</value>
   </data>
+  <data name="AccoutnExcluded.Content" xml:space="preserve">
+    <value>Exclude account from balance</value>
+  </data>
 </root>
