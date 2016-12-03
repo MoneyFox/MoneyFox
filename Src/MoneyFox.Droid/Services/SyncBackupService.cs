@@ -23,7 +23,7 @@ namespace MoneyFox.Droid.Services
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            Task.Run(() => SyncBackups());
+            //Task.Run(() => SyncBackups());
             return base.OnStartCommand(intent, flags, startId);
         }
 

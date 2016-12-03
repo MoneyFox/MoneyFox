@@ -21,4 +21,8 @@
   <string name="fab_add_expense">Adicionar despesa</string>
   <string name="fab_add_income">Adicionar renda</string>
   <string name="fab_add_transfer">Adicionar transferência</string>
+  <!--Text-->
+  <string name="text_start_date">start date</string>
+  <string name="text_end_date">end date</string>
+  <string name="text_done">done</string>
 </resources>

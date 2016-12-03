@@ -540,15 +540,6 @@
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Cadena de búsqueda</value>
   </data>
-  <data name="SelectDateRangeDialogViewModel.DoneLabel" xml:space="preserve">
-    <value>Hecho</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.EndDateLabel" xml:space="preserve">
-    <value>Fecha de finalización</value>
-  </data>
-  <data name="SelectDateRangeDialogViewModel.StartDateLabel" xml:space="preserve">
-    <value>Fecha de inicio</value>
-  </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>Hay no hay categorías. Agregar una pulsando en el botón más en la parte inferior.</value>
   </data>
@@ -614,5 +605,11 @@
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Delete Recurrence?</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Bimonthly</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
   </data>
 </root>

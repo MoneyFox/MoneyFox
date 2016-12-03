@@ -402,4 +402,7 @@ Also if you launch the application there it will check if there are newer backup
   <data name="AutoBackupSetting.Header" xml:space="preserve">
     <value>手动上传和下载备份</value>
   </data>
+  <data name="AccoutnExcluded.Content" xml:space="preserve">
+    <value>Exclude account from balance</value>
+  </data>
 </root>

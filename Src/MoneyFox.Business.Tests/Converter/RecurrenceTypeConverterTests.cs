@@ -19,6 +19,7 @@ namespace MoneyFox.Business.Tests.Converter
                 yield return new object[] { PaymentRecurrence.Weekly, Strings.WeeklyLabel };
                 yield return new object[] { PaymentRecurrence.Biweekly, Strings.BiweeklyLabel };
                 yield return new object[] { PaymentRecurrence.Monthly, Strings.MonthlyLabel };
+                yield return new object[] { PaymentRecurrence.Bimonthly, Strings.BimonthlyLabel };
                 yield return new object[] { PaymentRecurrence.Yearly, Strings.YearlyLabel };
             }
         }
