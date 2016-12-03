@@ -28,7 +28,7 @@ namespace MoneyFox.Windows.Tasks
                         dbManager, settingsManager,
                         new PaymentRepository(dbManager));
 
-                await backupManager.SyncBackup();
+                await backupManager.DownloadBackup();
             }
             finally
             {

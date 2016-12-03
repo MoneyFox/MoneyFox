@@ -49,6 +49,6 @@ namespace MoneyFox.Foundation.Interfaces
         ///     Syncs the local database with the Backupservice and
         ///     restores it if the one on the Backupservice is newer.
         /// </summary>
-        Task SyncBackup();
+        Task DownloadBackup();
     }
 }

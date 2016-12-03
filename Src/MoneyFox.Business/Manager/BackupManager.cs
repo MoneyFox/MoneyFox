@@ -93,17 +93,13 @@ namespace MoneyFox.Business.Manager
         ///     Syncs the local database with the Backupservice and
         ///     restores it if the one on the Backupservice is newer.
         /// </summary>
-        public async Task SyncBackup()
+        public async Task DownloadBackup()
         {
             try
             {
                 if (!settingsManager.IsBackupAutouploadEnabled) return;
 
-                if (await GetBackupDate() < settingsManager.LastDatabaseUpdate)
-                {
-                    await EnqueueBackupTask();
-                }
-                else
+                if (await GetBackupDate() > settingsManager.LastDatabaseUpdate)
                 {
                     await RestoreBackup();
                 }
