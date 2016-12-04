@@ -38,7 +38,7 @@ namespace MoneyFox.Droid.Services
                 dbManager, settings, 
                 new PaymentRepository(dbManager));
 
-            await backupManager.SyncBackup();
+            await backupManager.DownloadBackup();
         }
     }
 }

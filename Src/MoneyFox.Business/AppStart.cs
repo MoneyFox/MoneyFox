@@ -20,7 +20,7 @@ namespace MoneyFox.Business
             var dialogService = Mvx.Resolve<IDialogService>();
 
             dialogService.ShowLoadingDialog();
-            await Mvx.Resolve<IBackupManager>().SyncBackup();
+            await Mvx.Resolve<IBackupManager>().DownloadBackup();
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
             dialogService.HideLoadingDialog();

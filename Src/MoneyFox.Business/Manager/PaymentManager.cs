@@ -92,13 +92,25 @@ namespace MoneyFox.Business.Manager
                             && ((filter == null) || filter.Invoke(x)))
                 .ToList();
 
-            return list
-                .Select(x => x.RecurringPaymentId)
-                .Distinct()
-                .Select(id => list.Where(x => x.RecurringPaymentId == id)
+            var recurringPayments = recurringPaymentRepository.GetList().Select(x => x.Id).ToList();
+
+            var clearedRecPayments = list.Where(x => recurringPayments.Contains(x.RecurringPaymentId)).ToList();
+
+            var listLastOccurence = new List<PaymentViewModel>();
+
+            foreach (var recPaymentId in recurringPayments)
+            {
+                var payment = clearedRecPayments
+                    .Where(x => x.RecurringPaymentId == recPaymentId)
                     .OrderByDescending(x => x.Date)
-                    .Last())
-                .ToList();
+                    .LastOrDefault();
+
+                if(payment == null) continue;
+
+                listLastOccurence.Add(payment);
+            }
+
+            return listLastOccurence;
         }
 
         public void ClearPayments()
