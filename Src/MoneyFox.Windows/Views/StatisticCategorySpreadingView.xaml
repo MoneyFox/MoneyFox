@@ -7,8 +7,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:oxyPlot="using:OxyPlot.Windows"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -21,7 +21,7 @@
         <oxyPlot:OxyColorConverter x:Key="OxyColorConverter" />
 
         <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                 <Grid Width="20"
                       Height="20"
                       Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}" />
