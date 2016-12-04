@@ -1,24 +1,28 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class StatisticCategorySpreadingView : IDisposable
+    public sealed partial class StatisticCategorySpreadingView
     {
         public StatisticCategorySpreadingView()
         {
             InitializeComponent();
         }
 
-        public void Dispose()
-        {
-            SpreadingPlotView.Model = null;
-        }
-
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            SpreadingPlotView.Model = null;
+            SpreadingPlotView = null;
+
+            base.OnNavigatingFrom(e);
         }
     }
 }
