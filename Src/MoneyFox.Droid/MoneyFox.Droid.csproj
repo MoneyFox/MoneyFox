@@ -53,9 +53,9 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
-    <AotAssemblies>False</AotAssemblies>
+    <AotAssemblies>True</AotAssemblies>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
-    <EnableLLVM>False</EnableLLVM>
+    <EnableLLVM>True</EnableLLVM>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
