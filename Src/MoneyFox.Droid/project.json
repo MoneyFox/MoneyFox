@@ -4,7 +4,6 @@
     "Autofac": "4.2.1",
     "Autofac.Extras.MvvmCross": "4.0.0",
     "AutoMapper": "5.2.0",
-    "Cheesebaron.MvxPlugins.Connectivity": "2.2.0",
     "Cheesebaron.MvxPlugins.Settings": "2.2.0",
     "FAB.XamarinAndroid": "1.6.4",
     "HockeySDK.Xamarin": "4.1.0",
