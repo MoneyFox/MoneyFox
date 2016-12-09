@@ -14,7 +14,7 @@ namespace MoneyFox.Windows.Business
         /// <param name="income">Income of these month</param>
         /// <param name="spending">Expense of these month</param>
         /// <param name="earnings">Earnings of these month </param>
-        public void UpdateMainTile(string income, string spending, string earnings)
+        public void UpdateMainTile(string balance, string income, string spending, string earnings)
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
@@ -22,9 +22,9 @@ namespace MoneyFox.Windows.Business
             {
                 Visual = new TileVisual
                 {
-                    TileMedium = GetBindingMediumContent(income, spending, earnings),
-                    TileWide = GetBindingWideContent(income, spending, earnings),
-                    TileLarge = GetBindingLargeContent(income, spending, earnings)
+                    TileMedium = GetBindingMediumContent(balance, income, spending, earnings),
+                    TileWide = GetBindingWideContent(balance, income, spending, earnings),
+                    TileLarge = GetBindingLargeContent(balance, income, spending, earnings)
                 } 
             };
 
@@ -32,7 +32,7 @@ namespace MoneyFox.Windows.Business
             TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
         }
 
-        private static TileBinding GetBindingMediumContent(string income, string spending, string earnings)
+        private static TileBinding GetBindingMediumContent(string balance, string income, string spending, string earnings)
         {
             var content = new TileBindingContentAdaptive
             {
@@ -42,6 +42,12 @@ namespace MoneyFox.Windows.Business
                 },
                 Children =
                 {
+                    new AdaptiveText
+                    {
+                        Text = balance,
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                        HintWrap = true
+                    },
                     new AdaptiveText
                     {
                         Text = income,
@@ -71,7 +77,7 @@ namespace MoneyFox.Windows.Business
             };
         }
 
-        private static TileBinding GetBindingWideContent(string income, string spending, string earnings)
+        private static TileBinding GetBindingWideContent(string balance, string income, string spending, string earnings)
         {
             var content = new TileBindingContentAdaptive
             {
@@ -81,6 +87,11 @@ namespace MoneyFox.Windows.Business
                 },
                 Children =
                 {
+                    new AdaptiveText
+                    {
+                        Text = balance,
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                    },
                     new AdaptiveText
                     {
                         Text = income,
@@ -108,7 +119,7 @@ namespace MoneyFox.Windows.Business
             };
         }
 
-        private static TileBinding GetBindingLargeContent(string income, string spending, string earnings)
+        private static TileBinding GetBindingLargeContent(string balance, string income, string spending, string earnings)
         {
             var content = new TileBindingContentAdaptive
             {
@@ -118,6 +129,11 @@ namespace MoneyFox.Windows.Business
                 },
                 Children =
                 {
+                    new AdaptiveText
+                    {
+                        Text = balance,
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                    },
                     new AdaptiveText
                     {
                         Text = income,
