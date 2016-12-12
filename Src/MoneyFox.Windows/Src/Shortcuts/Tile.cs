@@ -21,8 +21,10 @@ namespace MoneyFox.Windows.Shortcuts
                 new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>())
                     .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
+            string balance = (cashFlow.Income.Value - cashFlow.Spending.Value).ToString();
+
             Mvx.Resolve<ITileUpdateService>()
-                .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
+                 .UpdateMainTile(balance, cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
         }
     }
 }

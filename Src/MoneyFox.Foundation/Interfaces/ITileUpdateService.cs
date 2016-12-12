@@ -8,6 +8,6 @@
         /// <param name="income">Income of these month</param>
         /// <param name="spending">Expense of these month</param>
         /// <param name="earnings">Earnings of these month </param>
-        void UpdateMainTile(string income, string spending, string earnings);
+        void UpdateMainTile(string balance, string income, string spending, string earnings);
     }
 }

@@ -32,7 +32,11 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public const string DARK_THEME_SELECTED_KEYNAME = "dark_theme_selected";
 
-        private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
+        public const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
+
+        //constant for default language setting
+        public const string DEFAULT_LANGUAGE_CHOSEN_KEYNAME = "LanguageChosen";
+        public const bool DEFAULT_LANGUAGE_CHOSEN_KEYDEFAULT = false;
 
         private readonly ISettings settings;
 
@@ -99,6 +103,12 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
         }
 
+        //Implementation of default language change.
+        public bool IsDefaultLanguageChosen
+        {
+            get { return settings.GetValue(DEFAULT_LANGUAGE_CHOSEN_KEYNAME, DEFAULT_LANGUAGE_CHOSEN_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(DEFAULT_LANGUAGE_CHOSEN_KEYNAME, value); }
+        }
         #endregion Properties
     }
 }

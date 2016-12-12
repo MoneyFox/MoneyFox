@@ -86,6 +86,11 @@ namespace MoneyFox.Business.ViewModels
                 dialogService.ShowMessage(Strings.PasswordConfirmationWrongTitle,
                     Strings.PasswordConfirmationWrongMessage);
                 return;
+            } else if (Password == "" || PasswordConfirmation == "")
+            {
+                dialogService.ShowMessage("Password Error",
+                    "Please enter something into the password field.");
+                return;
             }
 
             passwordStorage.SavePassword(Password);
