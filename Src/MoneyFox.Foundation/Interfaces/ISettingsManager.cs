@@ -12,5 +12,8 @@ namespace MoneyFox.Foundation.Interfaces
         DateTime LastDatabaseUpdate { get; set; }
         bool IsDarkThemeSelected { get; set; }
         bool IsLoggedInToBackupService { get; set; }
+        //get and set for defualt language
+        bool IsDefaultLanguageChosen{ get; set; }
+
     }
 }
