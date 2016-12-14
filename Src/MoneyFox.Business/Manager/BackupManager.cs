@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
@@ -23,6 +24,7 @@ namespace MoneyFox.Business.Manager
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IConnectivity connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -33,13 +35,15 @@ namespace MoneyFox.Business.Manager
             IMvxFileStore fileStore,
             IDatabaseManager databaseManager,
             ISettingsManager settingsManager,
-            IPaymentRepository paymentRepository)
+            IPaymentRepository paymentRepository, 
+            IConnectivity connectivity)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
             this.settingsManager = settingsManager;
             this.paymentRepository = paymentRepository;
+            this.connectivity = connectivity;
         }
 
         /// <summary>
@@ -47,6 +51,7 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public async Task Login()
         {
+            if (!connectivity.IsConnected) return;
             await backupService.Login();
         }
 
@@ -55,6 +60,7 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public async Task Logout()
         {
+            if (!connectivity.IsConnected) return;
             await backupService.Logout();
         }
 
@@ -65,6 +71,8 @@ namespace MoneyFox.Business.Manager
         /// <param name="attempts">How many times of trying to sync already where made.</param>
         public async Task EnqueueBackupTask(int attempts = 0)
         {
+            if (!connectivity.IsConnected) return;
+
             if (settingsManager.IsLoggedInToBackupService 
                     && settingsManager.IsBackupAutouploadEnabled 
                     && attempts < ServiceConstants.SyncAttempts)
@@ -95,6 +103,8 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public async Task DownloadBackup()
         {
+            if (!connectivity.IsConnected) return;
+
             try
             {
                 if (!settingsManager.IsBackupAutouploadEnabled) return;
@@ -116,6 +126,8 @@ namespace MoneyFox.Business.Manager
         /// <returns>Backupdate.</returns>
         public async Task<DateTime> GetBackupDate()
         {
+            if (!connectivity.IsConnected) return DateTime.MinValue;
+
             var date = await backupService.GetBackupDate();
             return date.ToLocalTime();
         }
@@ -127,6 +139,8 @@ namespace MoneyFox.Business.Manager
         /// <returns>Backups available or not.</returns>
         public async Task<bool> IsBackupExisting()
         {
+            if (!connectivity.IsConnected) return false;
+
             var files = await backupService.GetFileNames();
             return (files != null) && files.Any();
         }
@@ -136,6 +150,8 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public async Task<bool> CreateNewBackup()
         {
+            if (!connectivity.IsConnected) return false;
+
             return await backupService.Upload();
         }
 
@@ -146,6 +162,8 @@ namespace MoneyFox.Business.Manager
         /// </summary>
         public async Task RestoreBackup()
         {
+            if (!connectivity.IsConnected) return;
+
             var backupNames = GetBackupName(await backupService.GetFileNames());
             await backupService.Restore(backupNames.Item1, backupNames.Item2);
 
@@ -162,7 +180,7 @@ namespace MoneyFox.Business.Manager
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
 
-        private Tuple<string, string> GetBackupName(List<string> filenames)
+        private Tuple<string, string> GetBackupName(ICollection<string> filenames)
         {
             if (filenames.Contains(DatabaseConstants.BACKUP_NAME))
             {
