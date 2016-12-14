@@ -127,7 +127,6 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="DefaultLanguageSetter.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
@@ -504,6 +503,11 @@
       <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
       <Name>MoneyFox.Windows.Tasks</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DefaultLanguageSetter">
+      <HintPath>..\..\DefaultLanguageSetter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
+
 
     <Grid>
         <StackPanel>
@@ -21,12 +24,13 @@
                                          Mode=TwoWay}" />
             
             <!-- Creating combo box to store options to change the default language.-->
-            <ComboBox SelectedIndex="0"
-                      x:Name= "default_language_box" 
+            <ComboBox x:Name= "default_language_box" 
                       Margin="0,75,0,0"
                       Width="250"
-                      Header="Please chose a default language.">
-            <!-- The different drop down options for 6 different languages.-->
+                      Header="Please chose a default language."
+                      SelectionChanged="default_language_box_SelectionChanged">
+                
+                <!-- The different drop down options for 6 different languages.-->
                 <ComboBoxItem Tag="De">Deutsch</ComboBoxItem>
                 <ComboBoxItem Tag="En">English</ComboBoxItem>
                 <ComboBoxItem Tag="Ru">Pусский</ComboBoxItem>

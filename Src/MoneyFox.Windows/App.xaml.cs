@@ -23,14 +23,17 @@ using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
+using DefaultLanguageSetter;
 
 namespace MoneyFox.Windows
 {
     /// <summary>
     ///     Provides application-specific behavior to supplement the default Application class.
     /// </summary>
+    /// 
     public sealed partial class App
     {
+        
         /// <summary>
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -62,7 +65,6 @@ namespace MoneyFox.Windows
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light;
         }
-
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used such as when the application is launched to open a specific file.
@@ -70,39 +72,62 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
             var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
+
+            //Two objects to store language preferences loaded from app data.
+            object bool_check = localSettings.Values["LangBool"];
+            object value = localSettings.Values["ChosenLang"];
+
             if (shell == null)
             {
                 //TODO: check if this can be removed with the neutral language set.
                 // Create a AppShell to act as the navigation context and navigate to the first page
-                shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
+                if (Convert.ToBoolean(bool_check) == false)
+                {
+                    shell = new AppShell { Language = ApplicationLanguages.Languages[0] };
 
-                shell.MyAppFrame.NavigationFailed += OnNavigationFailed;
+                
 
-                //Create an object of the DefaultLanguageSetter class.
-                DefaultLanguageSetter DLS = new DefaultLanguageSetter();
+                    shell.MyAppFrame.NavigationFailed += OnNavigationFailed;
 
-                //Depending on the Langage of the machine, the default language index for the combo box is set.
-                if (shell.Language.Contains("de"))
-                    DLS.setIndex(0);
-                if (shell.Language.Contains("de"))
-                    DLS.setIndex(1);
-                if (shell.Language.Contains("es"))
-                    DLS.setIndex(2);
-                if (shell.Language.Contains("pt"))
-                    DLS.setIndex(3);
-                if (shell.Language.Contains("ru"))
-                    DLS.setIndex(4);
-                if (shell.Language.Contains("cn"))
-                    DLS.setIndex(5);
+                    //Create an object of the DefaultLanguageSetter class.
+                    DefaultLanguageSetter.LanguageSetter DLS = new DefaultLanguageSetter.LanguageSetter();
+
+                    //Depending on the Langage of the machine, the default language index for the combo box is set.
+                    if (shell.Language.Contains("de"))
+                        DLS.setIndex(0);
+                    if (shell.Language.Contains("de"))
+                        DLS.setIndex(1);
+                    if (shell.Language.Contains("es"))
+                        DLS.setIndex(2);
+                    if (shell.Language.Contains("pt"))
+                        DLS.setIndex(3);
+                    if (shell.Language.Contains("ru"))
+                        DLS.setIndex(4);
+                    if (shell.Language.Contains("cn"))
+                        DLS.setIndex(5);
+                }
+                else
+                {
+                    shell = new AppShell { Language = Convert.ToString(value) };
+                }
             }
 
             // Place our app shell in the current Window
             Window.Current.Content = shell;
-            ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+            if (Convert.ToBoolean(bool_check) == false)
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+            }
+            else
+            {
+                ApplicationLanguages.PrimaryLanguageOverride = Convert.ToString(value);
+            }
 
             if (shell.MyAppFrame.Content == null)
             {

@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
+using DefaultLanguageSetter;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -35,48 +36,40 @@ namespace MoneyFox.Business.ViewModels
         public bool IsDefaultLanguageChanged
         {
             get { return settingsManager.IsDefaultLanguageChosen; }
-            set { settingsManager.IsDefaultLanguageChosen = value; }
+            set
+            {
+                settingsManager.IsDefaultLanguageChosen = value;
+                RaisePropertyChanged();
+            }
         }
         //The code which runs when the ChangeLanguage command occurs.
         public void ChangeLanguage()
         {
-            //    if (shell.Language.Contains("de"))
-            //        DLS.setIndex(0);
-            //    if (shell.Language.Contains("de"))
-            //        DLS.setIndex(1);
-            //    if (shell.Language.Contains("es"))
-            //        DLS.setIndex(2);
-            //    if (shell.Language.Contains("pt"))
-            //        DLS.setIndex(3);
-            //   if (shell.Language.Contains("ru"))
-            //        DLS.setIndex(4);
-            //   if (shell.Language.Contains("cn"))
-            //        DLS.setIndex(5);
-
+            DefaultLanguageSetter.LanguageSetter.LangSelected = true;
 
             //if (default_language_box.Index == 0)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "de";
+            //    "de";
             //}
             //if (default_language_box.Index == 1)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "de";
+            //    DefaultLanguageSetter.LanguageSetter.ChosenLang = "de";
             //}
             //if (default_language_box.Index == 2)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "es";
+            //    DefaultLanguageSetter.LanguageSetter.ChosenLang = "es";
             //}
             //if (default_language_box.Index == 3)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "pt";
+            //    DefaultLanguageSetter.LanguageSetter.ChosenLang = "pt";
             //}
             //if (default_language_box.Index == 4)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "ru";
+            //    DefaultLanguageSetter.LanguageSetter.ChosenLang = "ru";
             //}
             //if (default_language_box.Index == 5)
             //{
-            //    DefaultLanguageSetter.ChosenLang = "cn";
+            //    DefaultLanguageSetter.LanguageSetter.ChosenLang = "cn";
             //}
         }
     }
