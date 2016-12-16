@@ -184,6 +184,9 @@
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExtendedSplashScreen.xaml.cs">
+      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
     </Compile>
@@ -406,6 +409,10 @@
     <Page Include="Views\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ExtendedSplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatisticCashFlowView.xaml">
       <Generator>MSBuild:Compile</Generator>
