@@ -129,7 +129,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToContributionPage()
         {
-            webBrowserTask.ShowWebPage(Constants.ICONDESIGNER_TWITTER_URL);
+            webBrowserTask.ShowWebPage(Constants.GITHUB_CONTRIBUTION_URL);
         }
     }
 }
