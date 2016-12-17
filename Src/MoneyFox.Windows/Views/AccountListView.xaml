@@ -83,7 +83,7 @@
                                                        ItemsSource="{Binding AllAccounts}"
                                                        OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                                        ShowsScrollingPlaceholders="False"
-                                                       WarningBackground="{StaticResource WarningBrush}" Height="924" Width="1910">
+                                                       WarningBackground="{StaticResource WarningBrush}">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
