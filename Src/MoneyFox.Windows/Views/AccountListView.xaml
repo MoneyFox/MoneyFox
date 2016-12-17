@@ -52,6 +52,7 @@
                 </Grid>
                 <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
             </StackPanel>
+
         </DataTemplate>
     </Page.Resources>
 
@@ -74,6 +75,7 @@
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+
             <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
                                                        EntranceNavigationTransitionInfo.IsTargetElement="True"
                                                        EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
@@ -81,7 +83,7 @@
                                                        ItemsSource="{Binding AllAccounts}"
                                                        OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                                        ShowsScrollingPlaceholders="False"
-                                                       WarningBackground="{StaticResource WarningBrush}">
+                                                       WarningBackground="{StaticResource WarningBrush}" Height="924" Width="1910">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -110,7 +112,6 @@
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <CommandBar Grid.Row="3"
-                    Height="48"
                     DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
