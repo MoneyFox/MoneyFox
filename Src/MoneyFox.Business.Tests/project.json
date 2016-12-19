@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "AutoFixture": "3.50.2",
-    "Moq": "4.5.28",
+    "Moq": "4.5.29",
     "MvvmCross.Tests": "4.4.0",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0",
