@@ -18,6 +18,8 @@
 
     <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource ColorPrimaryDark}" />
 
+    <SolidColorBrush x:Key="SplashScreenBackgroundBrush" Color="{StaticResource ColorSplashScreenBackground}" />
+
     <SolidColorBrush x:Key="AppBarBrush" Color="{StaticResource ColorAppBar}" />
 
     <SolidColorBrush x:Key="SplitViewToggleButtonForegroundLight" Color="White" />

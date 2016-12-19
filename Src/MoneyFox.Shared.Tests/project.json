@@ -3,7 +3,7 @@
     "AutoFixture": "3.50.2",
     "Cheesebaron.MvxPlugins.Connectivity": "2.2.0",
     "Cheesebaron.MvxPlugins.Settings": "2.2.0",
-    "Moq": "4.5.28",
+    "Moq": "4.5.29",
     "MvvmCross.Plugin.Email": "4.4.0",
     "MvvmCross.Plugin.Messenger": "4.4.0",
     "MvvmCross.Plugin.WebBrowser": "4.4.0",
