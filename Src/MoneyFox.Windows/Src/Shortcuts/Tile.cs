@@ -22,7 +22,7 @@ namespace MoneyFox.Windows.Shortcuts
                     .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
             Mvx.Resolve<ITileUpdateService>()
-                .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
+                .UpdateMainTile(cashFlow.Income.Label, cashFlow.Expense.Label, cashFlow.Revenue.Label);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             return new CashFlow
             {
                 Income = income,
-                Spending = spent,
+                Expense = spent,
                 Revenue = increased
             };
         }

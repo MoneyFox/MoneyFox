@@ -56,7 +56,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
 
             //Assertion
             result.Income.Value.ShouldBe(60);
-            result.Spending.Value.ShouldBe(50);
+            result.Expense.Value.ShouldBe(50);
             result.Revenue.Value.ShouldBe(10);
         }
 
@@ -99,7 +99,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
 
             //Assertion
             result.Income.Value.ShouldBe(0);
-            result.Spending.Value.ShouldBe(60);
+            result.Expense.Value.ShouldBe(60);
             result.Revenue.Value.ShouldBe(-60);
         }
 

@@ -13,11 +13,16 @@
         /// <summary>
         ///     The spending of the cash flow object.
         /// </summary>
-        public StatisticItem Spending { get; set; }
+        public StatisticItem Expense { get; set; }
 
         /// <summary>
         ///     The revenue of the cash flow object.
         /// </summary>
         public StatisticItem Revenue { get; set; }
+
+        /// <summary>
+        ///     Describes the Cash Flow
+        /// </summary>
+        public string CashFlowLabel { get; set; }
     }
 }
