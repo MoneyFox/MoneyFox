@@ -406,4 +406,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-v21\ic_recurring.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-fr\strings.xml" />
+  </ItemGroup>
 </Project>

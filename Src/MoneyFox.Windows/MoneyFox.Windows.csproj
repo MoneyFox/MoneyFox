@@ -26,6 +26,7 @@
     <PackageCertificateThumbprint>2BD393557073ED01CE890EA7BCA8FC74A2047C79</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>5C4EBAD00EE8CD67D9E7B24CFDECFFFA2A9CE8B5</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
+    <UseDotNetNativeSharedAssemblyFrameworkPackage>true</UseDotNetNativeSharedAssemblyFrameworkPackage>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -101,6 +102,7 @@
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
     <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\fr\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
     <PRIResource Include="Strings\es\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />

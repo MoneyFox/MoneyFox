@@ -98,6 +98,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.de.resx" />
     <EmbeddedResource Include="Resources\Strings.es.resx" />
+    <EmbeddedResource Include="Resources\Strings.fr.resx" />
+    <EmbeddedResource Include="Resources\Strings.it.resx" />
     <EmbeddedResource Include="Resources\Strings.nl.resx">
       <LastGenOutput>Strings.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
