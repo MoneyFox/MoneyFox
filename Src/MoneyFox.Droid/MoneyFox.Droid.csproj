@@ -60,7 +60,7 @@
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <BundleAssemblies>False</BundleAssemblies>
-    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
     <EnableProguard>False</EnableProguard>
     <DebugSymbols>False</DebugSymbols>
@@ -88,7 +88,6 @@
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
     <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Src\Connectivity.cs" />
     <Compile Include="Converters\OxyPlotColorConverter.cs" />
     <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />

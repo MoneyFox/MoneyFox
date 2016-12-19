@@ -4,6 +4,7 @@ using System.Linq;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
+using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Series;
@@ -63,7 +64,6 @@ namespace MoneyFox.Business.ViewModels
 
         protected override void Load()
         {
-            SpreadingModel = null;
             LegendList = new ObservableCollection<LegendItem>();
             SpreadingModel = GetSpreadingModel();
         }
