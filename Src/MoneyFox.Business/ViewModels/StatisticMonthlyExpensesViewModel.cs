@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -19,7 +22,7 @@ namespace MoneyFox.Business.ViewModels
         public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager,
             IMvxMessenger messenger)
-            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth(), messenger)
+            : base(DateTime.Today.AddMonths(-5), DateTime.Now.GetLastDayOfMonth(), messenger)
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
             this.settingsManager = settingsManager;
@@ -39,6 +42,8 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        public MvxObservableCollection<LegendItem> LegendList { get; set; } = new MvxObservableCollection<LegendItem>();
+
         /// <summary>
         ///     Loads the expense history with the current start and end date.
         /// </summary>
@@ -50,10 +55,11 @@ namespace MoneyFox.Business.ViewModels
 
         private PlotModel GetModel()
         {
-            var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
+            var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate).ToList();
 
             //TODO: refactor this into an helper class
             var model = new PlotModel();
+            LegendList.Clear();
 
             var columnSeriesIncome = new ColumnSeries();
             var columnSeriesExpense = new ColumnSeries();
@@ -62,7 +68,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
-                //Angle = 45
+                Angle = 45
             };
 
             if (settingsManager.IsDarkThemeSelected)
@@ -86,8 +92,9 @@ namespace MoneyFox.Business.ViewModels
                 columnSeriesIncome.Items.Add(new ColumnItem(statisticItem.Income.Value) {Color = OxyColors.LightGreen });
                 columnSeriesExpense.Items.Add(new ColumnItem(statisticItem.Expense.Value) {Color = expenseRed});
                 columnSeriesRevenue.Items.Add(new ColumnItem(statisticItem.Revenue.Value) {Color = OxyColors.Cyan });
-                axe.Labels.Add(statisticItem.CashFlowLabel);
             }
+
+            LegendList.AddRange(monthlyExpenses.Select(x => new LegendItem { Text = x.CashFlowLabel}));
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeriesIncome);

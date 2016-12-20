@@ -30,7 +30,7 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_category_spreading);
+            SetContentView(Resource.Layout.activity_graphical_statistic_with_legend);
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

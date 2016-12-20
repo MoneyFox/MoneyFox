@@ -20,11 +20,12 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             local:MvxBind="Text Title" />
-      <oxyplot.xamarin.android.PlotView
-          android:id="@+id/plotViewModel"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:minHeight="60dp"
-          android:minWidth="40dp" />
+        <oxyplot.xamarin.android.PlotView
+            android:id="@+id/plotViewModel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:enabled="false"
+            android:minHeight="60dp"
+            android:minWidth="40dp" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

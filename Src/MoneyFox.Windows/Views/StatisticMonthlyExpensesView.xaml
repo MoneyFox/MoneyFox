@@ -1,15 +1,26 @@
-﻿<views:MvxWindowsPage
-    x:Class="MoneyFox.Windows.Views.StatisticMonthlyExpensesView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:windows="using:OxyPlot.Windows"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-    xmlns:views="using:MvvmCross.WindowsUWP.Views"
-    mc:Ignorable="d">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticMonthlyExpensesView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:windows="using:OxyPlot.Windows"
+                      mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
+            <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                <TextBlock Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{x:Bind Text}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -22,39 +33,50 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Cash Flow"
-                           x:Uid="MonthlyExpenseStatisticTitle" />
+                <TextBlock x:Uid="MonthlyExpenseStatisticTitle"
+                           Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Cash Flow" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
         <Grid Grid.Row="1">
-            <TextBlock Text="{Binding Title}"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{Binding Title}" />
             <windows:PlotView x:Name="ExpensePlotView"
-                              IsMouseWheelEnabled="False"
-                              IsEnabled="False"
-                              Model="{Binding MonthlyExpensesModel}"
-                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              MinWidth="40"
+                              MinHeight="60"
+                              Margin="0,30,30,0"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              VerticalContentAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
-                              MinHeight="60"
-                              MinWidth="40"
-                              Margin="0,30,30,0" />
+                              VerticalContentAlignment="Stretch"
+                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              IsEnabled="False"
+                              IsMouseWheelEnabled="False"
+                              Model="{Binding MonthlyExpensesModel}" />
         </Grid>
-        <CommandBar Grid.Row="2"
-                    ClosedDisplayMode="Minimal">
+
+        <ListView Grid.Row="2"
+                  HorizontalAlignment="Stretch"
+                  ItemTemplate="{StaticResource LegendListTemplate}"
+                  ItemsSource="{Binding LegendList}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="MinHeight" Value="0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <CommandBar Grid.Row="3" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              x:Uid="SetDate"
-                              Label="Set Date"
-                              Click="SetDate" />
+                <AppBarButton x:Uid="SetDate"
+                              Click="SetDate"
+                              Icon="Calendar"
+                              Label="Set Date" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

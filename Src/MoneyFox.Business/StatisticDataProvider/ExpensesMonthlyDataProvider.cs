@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation;
@@ -37,9 +36,6 @@ namespace MoneyFox.Business.StatisticDataProvider
                        .ToList());
 
                 cashFlow.CashFlowLabel = date.ToString("yyyy MM")
-                                         + "\n Income: " + cashFlow.Income.Value
-                                         + "\n Expense: " + cashFlow.Expense.Value
-                                         + "\n Revenue: " + cashFlow.Revenue.Value;
 
                 cashFlows.Add(cashFlow);
 
