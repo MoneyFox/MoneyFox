@@ -23,7 +23,7 @@
         Cashflow,
         CategorySpreading,
         CategorySummary,
-        ExpenseHistory
+        CashflowHistory
     }
 
     public enum TyleType

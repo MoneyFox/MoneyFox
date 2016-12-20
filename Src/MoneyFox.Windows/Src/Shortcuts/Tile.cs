@@ -19,7 +19,7 @@ namespace MoneyFox.Windows.Shortcuts
 
             var cashFlow =
                 new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>())
-                    .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
+                    .GetCashFlow(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
             Mvx.Resolve<ITileUpdateService>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Expense.Label, cashFlow.Revenue.Label);

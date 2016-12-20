@@ -51,7 +51,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             });
 
             //Excution
-            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetCashFlow(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -94,7 +94,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 .Returns((Expression<Func<PaymentViewModel, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
 
             //Excution
-            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepoSetup.Object).GetCashFlow(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -107,7 +107,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CashFlowDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
+            new CashFlowDataProvider(null).GetCashFlow(DateTime.Today, DateTime.Today);
         }
     }
 }

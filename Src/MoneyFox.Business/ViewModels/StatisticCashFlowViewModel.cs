@@ -53,7 +53,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PlotModel GetCashFlowModel()
         {
-            var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
+            var cashFlow = cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
 
             var model = new PlotModel();
 

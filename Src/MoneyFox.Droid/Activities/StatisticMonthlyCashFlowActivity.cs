@@ -36,7 +36,7 @@ namespace MoneyFox.Droid.Activities
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
 
-            Title = Strings.ExpenseHistoryLabel;
+            Title = Strings.CashFlowHistoryLabel;
         }
 
         protected override void OnStart()

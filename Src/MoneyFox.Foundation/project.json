@@ -1,11 +1,12 @@
 ﻿{
   "supports": {},
-  "dependencies": {
-    "Microsoft.OneDriveSDK": "2.0.6",
-    "MvvmCross.Core": "4.4.0",
-    "MvvmCross.Plugin.Messenger": "4.4.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0"
-  },
+    "dependencies": {
+        "Microsoft.OneDriveSDK": "2.0.6",
+        "OxyPlot.Core": "1.0.0",
+        "MvvmCross.Core": "4.4.0",
+        "MvvmCross.Plugin.Messenger": "4.4.0",
+        "MvvmCross.Plugin.SQLitePCL": "4.4.0"
+    },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile111": {}
   }

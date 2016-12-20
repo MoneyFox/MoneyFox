@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
@@ -15,11 +15,11 @@ namespace MoneyFox.Business.ViewModels
     public class StatisticMonthlyCashFlowViewModel : StatisticViewModel
     {
         private readonly OxyColor expenseRed = OxyColor.Parse("#c43633");
-        private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
+        private readonly CashFlowDataProvider monthlyExpensesDataProvider;
         private readonly ISettingsManager settingsManager;
         private PlotModel monthlyExpensesModel;
 
-        public StatisticMonthlyCashFlowViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
+        public StatisticMonthlyCashFlowViewModel(CashFlowDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager,
             IMvxMessenger messenger)
             : base(DateTime.Today.AddMonths(-5), DateTime.Now.GetLastDayOfMonth(), messenger)
@@ -55,7 +55,7 @@ namespace MoneyFox.Business.ViewModels
 
         private PlotModel GetModel()
         {
-            var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate).ToList();
+            var monthlyExpenses = monthlyExpensesDataProvider.GetCashFlowList(StartDate, EndDate).ToList();
 
             //TODO: refactor this into an helper class
             var model = new PlotModel();

@@ -4,7 +4,6 @@ using System.Linq;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
-using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Series;
@@ -110,11 +109,5 @@ namespace MoneyFox.Business.ViewModels
             model.Series.Add(pieSeries);
             return model;
         }
-    }
-
-    public class LegendItem
-    {
-        public OxyColor Color { get; set; }
-        public string Text { get; set; }
     }
 }

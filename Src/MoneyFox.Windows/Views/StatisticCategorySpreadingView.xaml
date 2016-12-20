@@ -5,9 +5,9 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:oxyPlot="using:OxyPlot.Windows"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       mc:Ignorable="d">
 
@@ -20,7 +20,7 @@
     <Page.Resources>
         <oxyPlot:OxyColorConverter x:Key="OxyColorConverter" />
 
-        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
+        <DataTemplate x:Key="LegendListTemplate" x:DataType="models:LegendItem">
             <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
                 <Grid Width="20"
                       Height="20"
