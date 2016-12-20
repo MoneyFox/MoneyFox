@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/light_gray"
+        android:textColor="@color/dark_gray"
         local:MvxBind="Text Key" />
     <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
         android:id="@+id/inner_payment_list"
