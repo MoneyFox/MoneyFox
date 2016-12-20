@@ -22,7 +22,8 @@ namespace MoneyFox.Business.StatisticDataProvider
             => paymentRepository
                 .GetList(x => x.Type == (int) PaymentType.Expense)
                 .Where(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
-                .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))
+                .OrderBy(x => x.Date)
+                .GroupBy(x => x.Date.ToString("yyyy MMMM", CultureInfo.InvariantCulture))
                 .Select(group => new StatisticItem
                 {
                     Category = group.Key,
