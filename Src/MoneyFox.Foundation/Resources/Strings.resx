@@ -615,4 +615,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
   </data>
+  <data name="LegendHeaderText" xml:space="preserve">
+    <value>Date : Income / Spending / Revenue</value>
+  </data>
 </root>

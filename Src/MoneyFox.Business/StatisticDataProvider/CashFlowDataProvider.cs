@@ -49,13 +49,13 @@ namespace MoneyFox.Business.StatisticDataProvider
                                      && (x.Date.Date <= date.GetLastDayOfMonth()))
                        .ToList());
 
-                cashFlow.CashFlowLabel = date.ToString("yyyy MM")
+                cashFlow.Label = date.ToString("MM yy")
                                          + ": +" + cashFlow.Income.Value.ToString("C")
                                          + " / -" + cashFlow.Expense.Value.ToString("C")
                                          + " / " + cashFlow.Revenue.Value.ToString("C");
 
+                cashFlow.Month = date.Month.ToString("d2") + " " + date.Year.ToString("D2");
                 cashFlows.Add(cashFlow);
-
                 tempDate = tempDate.AddMonths(1);
             }
 

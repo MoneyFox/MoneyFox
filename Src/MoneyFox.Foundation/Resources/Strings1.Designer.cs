@@ -856,6 +856,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date : Income / Spending / Revenue.
+        /// </summary>
+        public static string LegendHeaderText {
+            get {
+                return ResourceManager.GetString("LegendHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string LoadingLabel {

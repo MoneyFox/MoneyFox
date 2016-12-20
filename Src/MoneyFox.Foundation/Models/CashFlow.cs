@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Foundation.Models
+﻿using System;
+
+namespace MoneyFox.Foundation.Models
 {
     /// <summary>
     ///     Represents a cash flow object for usage in statistics
@@ -23,6 +25,11 @@
         /// <summary>
         ///     Describes the Cash Flow
         /// </summary>
-        public string CashFlowLabel { get; set; }
+        public string Label { get; set; }
+
+        /// <summary>
+        ///     The month of the cashflow
+        /// </summary>
+        public string Month{ get; set; }
     }
 }
