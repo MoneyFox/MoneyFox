@@ -96,7 +96,7 @@
     <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
+    <Compile Include="ViewModels\StatisticMonthlyCashFlowViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />

@@ -12,11 +12,11 @@ using OxyPlot.Xamarin.Android;
 
 namespace MoneyFox.Droid.Activities
 {
-    [Activity(Label = "StatisticMonthlyExpenseActivity",
-        Name = "moneyfox.droid.activities.StatisticMonthlyExpenseActivity",
+    [Activity(Label = "StatisticMonthlyCashFlowActivity",
+        Name = "moneyfox.droid.activities.StatisticMonthlyCashFlowActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticMonthlyExpenseActivity : MvxAppCompatActivity<StatisticMonthlyExpensesViewModel>,
+    public class StatisticMonthlyCashFlowActivity : MvxAppCompatActivity<StatisticMonthlyCashFlowViewModel>,
         IDialogCloseListener
     {
         private PlotView plotModel;

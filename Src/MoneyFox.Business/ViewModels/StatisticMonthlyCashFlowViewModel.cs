@@ -12,14 +12,14 @@ using OxyPlot.Series;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
+    public class StatisticMonthlyCashFlowViewModel : StatisticViewModel
     {
         private readonly OxyColor expenseRed = OxyColor.Parse("#c43633");
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
         private readonly ISettingsManager settingsManager;
         private PlotModel monthlyExpensesModel;
 
-        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
+        public StatisticMonthlyCashFlowViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager,
             IMvxMessenger messenger)
             : base(DateTime.Today.AddMonths(-5), DateTime.Now.GetLastDayOfMonth(), messenger)

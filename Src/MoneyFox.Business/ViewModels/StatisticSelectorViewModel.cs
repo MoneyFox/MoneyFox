@@ -62,7 +62,7 @@ namespace MoneyFox.Business.ViewModels
                     break;
 
                 case StatisticType.ExpenseHistory:
-                    ShowViewModel<StatisticMonthlyExpensesViewModel>();
+                    ShowViewModel<StatisticMonthlyCashFlowViewModel>();
                     break;
             }
         }

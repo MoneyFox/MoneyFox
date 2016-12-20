@@ -36,6 +36,9 @@ namespace MoneyFox.Business.StatisticDataProvider
                        .ToList());
 
                 cashFlow.CashFlowLabel = date.ToString("yyyy MM")
+                                         + ": +" +  cashFlow.Income.Value.ToString("C")
+                                         + " / -" + cashFlow.Expense.Value.ToString("C")
+                                         + " / " + cashFlow.Revenue.Value.ToString("C");
 
                 cashFlows.Add(cashFlow);
 
