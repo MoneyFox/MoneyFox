@@ -12,11 +12,12 @@
         android:layout_marginLeft="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         local:MvxBind="Text Key" />
-  <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
-      android:id="@+id/inner_category_list"
+    <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+        android:id="@+id/inner_category_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:nestedScrollingEnabled="false"
         android:clickable="true"
         local:MvxItemTemplate="@layout/listitem_category"
         local:MvxBind="ItemsSource .;ItemClick ItemClickCommand; ItemLongClick ItemLongClickCommand" />
