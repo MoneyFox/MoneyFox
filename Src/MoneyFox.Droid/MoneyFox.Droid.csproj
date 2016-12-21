@@ -86,7 +86,7 @@
     <Compile Include="Activities\StatisticCashFlowActivity.cs" />
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
-    <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
+    <Compile Include="Activities\StatisticMonthlyCashFlowActivity.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -218,7 +218,7 @@
     <AndroidResource Include="Resources\layout\dialog_select_date_range.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_category_spreading.axml">
+    <AndroidResource Include="Resources\layout\activity_graphical_statistic_with_legend.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_legend_item.axml">

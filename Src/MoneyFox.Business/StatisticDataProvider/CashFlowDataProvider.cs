@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
-    public class CashFlowDataProvider : IStatisticProvider<CashFlow>
+    public class CashFlowDataProvider
     {
         private readonly IRepository<PaymentViewModel> paymentRepository;
 
@@ -26,23 +26,44 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given timeframe</returns>
-        public CashFlow GetValues(DateTime startDate, DateTime endDate)
+        public CashFlow GetCashFlow(DateTime startDate, DateTime endDate)
         {
-            var getPaymentListFunc =
-                new Func<List<PaymentViewModel>>(() =>
-                    paymentRepository
-                        .GetList(x => (x.Type != PaymentType.Transfer)
-                                      && (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
-                        .ToList());
-
-            return GetCashFlowStatisticItems(getPaymentListFunc);
+            return GetCashFlowStatisticItems(paymentRepository
+                .GetList(x => x.Type != PaymentType.Transfer
+                              && x.Date.Date >= startDate.Date
+                              && x.Date.Date <= endDate.Date)
+                .ToList());
         }
 
-        private CashFlow GetCashFlowStatisticItems(
-            Func<List<PaymentViewModel>> getPaymentListFunc)
+        public List<CashFlow> GetCashFlowList(DateTime startDate, DateTime endDate)
         {
-            var payments = getPaymentListFunc();
+            List<CashFlow> cashFlows = new List<CashFlow>();
+            var tempDate = startDate;
 
+            while (endDate.Date >= tempDate.Date)
+            {
+                var date = tempDate;
+                var cashFlow = GetCashFlowStatisticItems(paymentRepository
+                       .GetList(x => (x.Type != PaymentType.Transfer)
+                                     && (x.Date.Date >= date.Date)
+                                     && (x.Date.Date <= date.GetLastDayOfMonth()))
+                       .ToList());
+
+                cashFlow.Label = date.ToString("MM yy")
+                                         + ": +" + cashFlow.Income.Value.ToString("C")
+                                         + " / -" + cashFlow.Expense.Value.ToString("C")
+                                         + " / " + cashFlow.Revenue.Value.ToString("C");
+
+                cashFlow.Month = date.Month.ToString("d2") + " " + date.Year.ToString("D2");
+                cashFlows.Add(cashFlow);
+                tempDate = tempDate.AddMonths(1);
+            }
+
+            return cashFlows;
+        }
+
+        private CashFlow GetCashFlowStatisticItems(List<PaymentViewModel> payments)
+        {
             var income = new StatisticItem
             {
                 Category = Strings.RevenueLabel,
@@ -70,7 +91,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             return new CashFlow
             {
                 Income = income,
-                Spending = spent,
+                Expense = spent,
                 Revenue = increased
             };
         }

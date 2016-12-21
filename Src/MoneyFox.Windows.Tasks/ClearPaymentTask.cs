@@ -60,9 +60,9 @@ namespace MoneyFox.Windows.Tasks
         {
             var cashFlow =
                 new CashFlowDataProvider(paymentRepository)
-                    .GetValues(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
+                    .GetCashFlow(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
-            new TileUpdateService().UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label,
+            new TileUpdateService().UpdateMainTile(cashFlow.Income.Label, cashFlow.Expense.Label,
                 cashFlow.Revenue.Label);
         }
     }

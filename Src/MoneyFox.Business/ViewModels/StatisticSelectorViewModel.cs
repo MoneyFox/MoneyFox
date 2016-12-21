@@ -18,6 +18,11 @@ namespace MoneyFox.Business.ViewModels
                 Name = Strings.CashflowLabel,
                 Description = Strings.CashflowDescription,
                 Type = StatisticType.Cashflow
+            },new StatisticSelectorType
+            {
+                Name = Strings.CashFlowHistoryLabel,
+                Description = Strings.CashFlowHistoryDescription,
+                Type = StatisticType.CashflowHistory
             },
             new StatisticSelectorType
             {
@@ -30,12 +35,6 @@ namespace MoneyFox.Business.ViewModels
                 Name = Strings.CategorySummaryLabel,
                 Description = Strings.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.ExpenseHistoryLabel,
-                Description = Strings.ExpenseHistoryDescription,
-                Type = StatisticType.ExpenseHistory
             }
         };
 
@@ -61,8 +60,8 @@ namespace MoneyFox.Business.ViewModels
                     ShowViewModel<StatisticCategorySummaryViewModel>();
                     break;
 
-                case StatisticType.ExpenseHistory:
-                    ShowViewModel<StatisticMonthlyExpensesViewModel>();
+                case StatisticType.CashflowHistory:
+                    ShowViewModel<StatisticMonthlyCashFlowViewModel>();
                     break;
             }
         }

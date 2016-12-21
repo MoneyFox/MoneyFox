@@ -5,9 +5,9 @@ using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class StatisticMonthlyExpensesView : IDisposable
+    public sealed partial class StatisticMonthlyCashFlowView : IDisposable
     {
-        public StatisticMonthlyExpensesView()
+        public StatisticMonthlyCashFlowView()
         {
             InitializeComponent();
         }
