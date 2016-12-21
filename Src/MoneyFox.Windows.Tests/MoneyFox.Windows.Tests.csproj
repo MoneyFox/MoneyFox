@@ -99,7 +99,7 @@
   <ItemGroup>
     <Compile Include="Converters\BooleanToVisibilityConverterTests.cs" />
     <Compile Include="Dependencies\WindowsCommonSettingsTests.cs" />
-    <Compile Include="MvxPlugins\MvxFileStoreTests.cs" />
+    <Compile Include="Dependencies\MvxFileStoreTests.cs" />
     <Compile Include="SqliteConnectionCreatorTests.cs" />
     <Compile Include="Src\AppInformationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

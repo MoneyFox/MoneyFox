@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MvvmCross.Plugins.File.WindowsCommon;
 
-namespace MoneyFox.Windows.Tests.MvxPlugins
+namespace MoneyFox.Windows.Tests.Dependencies
 {
     [TestClass]
     public class MvxFileStoreTests
