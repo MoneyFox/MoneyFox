@@ -23,7 +23,7 @@ namespace MoneyFox.Business.ViewModels
         public StatisticMonthlyCashFlowViewModel(CashFlowDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager,
             IMvxMessenger messenger)
-            : base(DateTime.Today.AddMonths(-5), DateTime.Now.GetLastDayOfMonth(), messenger)
+            : base(DateTime.Today.AddMonths(-5), DateTime.Today.GetLastDayOfMonth(), messenger)
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
             this.settingsManager = settingsManager;
