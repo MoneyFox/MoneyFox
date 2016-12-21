@@ -65,7 +65,6 @@
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
@@ -96,7 +95,7 @@
     <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
+    <Compile Include="ViewModels\StatisticMonthlyCashFlowViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />

@@ -10,6 +10,8 @@ namespace MoneyFox.Business.ViewModels
 {
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
+        private readonly OxyColor expenseRed = OxyColor.Parse("#c43633");
+
         private readonly CashFlowDataProvider cashFlowDataProvider;
         private readonly ISettingsManager settingsManager;
         private PlotModel cashFlowModel;
@@ -51,7 +53,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PlotModel GetCashFlowModel()
         {
-            var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
+            var cashFlow = cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
 
             var model = new PlotModel();
 
@@ -82,8 +84,8 @@ namespace MoneyFox.Business.ViewModels
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value) {Color = OxyColors.LightGreen});
             axe.Labels.Add(cashFlow.Income.Label);
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Spending.Value) {Color = OxyColor.FromRgb(196, 54, 51)});
-            axe.Labels.Add(cashFlow.Spending.Label);
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Expense.Value) {Color = expenseRed });
+            axe.Labels.Add(cashFlow.Expense.Label);
             columnSeries.Items.Add(new ColumnItem(cashFlow.Revenue.Value) {Color = OxyColors.Cyan});
             axe.Labels.Add(cashFlow.Revenue.Label);
 

@@ -1,4 +1,4 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticMonthlyCashFlowView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -6,25 +6,14 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:oxyPlot="using:OxyPlot.Windows"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:windows="using:OxyPlot.Windows"
                       mc:Ignorable="d">
 
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
     <Page.Resources>
-        <oxyPlot:OxyColorConverter x:Key="OxyColorConverter" />
-
         <DataTemplate x:Key="LegendListTemplate" x:DataType="models:LegendItem">
             <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                <Grid Width="20"
-                      Height="20"
-                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}" />
                 <TextBlock Margin="5,0,0,0"
                            VerticalAlignment="Center"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
@@ -33,36 +22,42 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition MinHeight="317" />
+            <RowDefinition />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="SpreadingStatisticTitle"
+                <TextBlock x:Uid="MonthlyExpenseStatisticTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Spreading" />
+                           Text="Cash Flow" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
         <Grid Grid.Row="1">
             <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{Binding Title}" />
-            <oxyPlot:PlotView x:Name="SpreadingPlotView"
+            <windows:PlotView x:Name="ExpensePlotView"
                               MinWidth="40"
-                              MinHeight="150"
-                              Margin="15, 20, 15, 15"
+                              MinHeight="60"
+                              Margin="0,30,30,0"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                              Model="{Binding SpreadingModel}" />
-
+                              IsEnabled="False"
+                              IsMouseWheelEnabled="False"
+                              Model="{Binding MonthlyExpensesModel}" />
         </Grid>
 
         <ListView Grid.Row="2"
@@ -76,9 +71,7 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <CommandBar Grid.Row="3"
-                    Height="24"
-                    ClosedDisplayMode="Minimal">
+        <CommandBar Grid.Row="3" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
