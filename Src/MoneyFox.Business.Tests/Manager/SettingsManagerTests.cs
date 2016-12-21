@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Dynamic;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using Cheesebaron.MvxPlugins.Settings.Wpf;
 using MoneyFox.Business.Manager;
-using Moq;
 using Xunit;
 using XunitShouldExtension;
 
@@ -13,16 +11,49 @@ namespace MoneyFox.Business.Tests.Manager
         [Fact]
         public void DefaultAccount_DefaultValue()
         {
-            int result = 0;
+            new SettingsManager(new Settings()).DefaultAccount.ShouldBe(-1);
+        }
 
-            var settingsMockSetup = new Mock<ISettings>();
-            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<int>(), true)).Callback(
-                (string key, int value, bool shallSync) =>
-                {
-                    result = 0;
-                });
+        [Fact]
+        public void ShowCashFlowOnMainTile_DefaultValue()
+        {
+            new SettingsManager(new Settings()).ShowCashFlowOnMainTile.ShouldBeTrue();
+        }
 
-            new SettingsManager(settingsMockSetup.Object).DefaultAccount.ShouldBe(-1);
+        [Fact]
+        public void IsBackupAutouploadEnabled_DefaultValue()
+        {
+            new SettingsManager(new Settings()).IsBackupAutouploadEnabled.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void SessionTimestamp_DefaultValue()
+        {
+            new SettingsManager(new Settings()).SessionTimestamp.ShouldBe(string.Empty);
+        }
+
+        [Fact]
+        public void LastDatabaseUpdate_DefaultValue()
+        {
+            new SettingsManager(new Settings()).LastDatabaseUpdate.ShouldBe(DateTime.MinValue);
+        }
+
+        [Fact]
+        public void PasswordRequired_DefaultValue()
+        {
+            new SettingsManager(new Settings()).PasswordRequired.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void IsDarkThemeSelected_DefaultValue()
+        {
+            new SettingsManager(new Settings()).IsDarkThemeSelected.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void IsLoggedInToBackupService_DefaultValue()
+        {
+            new SettingsManager(new Settings()).IsLoggedInToBackupService.ShouldBeFalse();
         }
     }
 }

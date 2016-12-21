@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "AutoFixture": "3.50.2",
+    "Cheesebaron.MvxPlugins.Settings": "2.2.0",
     "Moq": "4.5.29",
     "MvvmCross.Tests": "4.4.0",
     "xunit": "2.1.0",
