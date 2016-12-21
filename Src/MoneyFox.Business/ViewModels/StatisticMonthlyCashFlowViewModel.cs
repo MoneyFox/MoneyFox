@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Linq;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Models;
+using MoneyFox.Foundation.Resources;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -9,17 +13,17 @@ using OxyPlot.Series;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
+    public class StatisticMonthlyCashFlowViewModel : StatisticViewModel
     {
-        private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
-        private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
+        private readonly OxyColor expenseRed = OxyColor.Parse("#c43633");
+        private readonly CashFlowDataProvider monthlyExpensesDataProvider;
         private readonly ISettingsManager settingsManager;
         private PlotModel monthlyExpensesModel;
 
-        public StatisticMonthlyExpensesViewModel(MonthlyExpensesDataProvider monthlyExpensesDataProvider,
+        public StatisticMonthlyCashFlowViewModel(CashFlowDataProvider monthlyExpensesDataProvider,
             ISettingsManager settingsManager,
             IMvxMessenger messenger)
-            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth(), messenger)
+            : base(DateTime.Today.AddMonths(-5), DateTime.Now.GetLastDayOfMonth(), messenger)
         {
             this.monthlyExpensesDataProvider = monthlyExpensesDataProvider;
             this.settingsManager = settingsManager;
@@ -39,6 +43,8 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        public MvxObservableCollection<LegendItem> LegendList { get; set; } = new MvxObservableCollection<LegendItem>();
+
         /// <summary>
         ///     Loads the expense history with the current start and end date.
         /// </summary>
@@ -50,17 +56,19 @@ namespace MoneyFox.Business.ViewModels
 
         private PlotModel GetModel()
         {
-            var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
+            var monthlyExpenses = monthlyExpensesDataProvider.GetCashFlowList(StartDate, EndDate).ToList();
 
             //TODO: refactor this into an helper class
             var model = new PlotModel();
+            LegendList.Clear();
 
-            var columnSeries = new ColumnSeries();
+            var columnSeriesIncome = new ColumnSeries();
+            var columnSeriesExpense = new ColumnSeries();
+            var columnSeriesRevenue = new ColumnSeries();
             var axe = new CategoryAxis
             {
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
-                Angle = 45
             };
 
             if (settingsManager.IsDarkThemeSelected)
@@ -81,12 +89,18 @@ namespace MoneyFox.Business.ViewModels
 
             foreach (var statisticItem in monthlyExpenses)
             {
-                columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = graphColor});
-                axe.Labels.Add(statisticItem.Label);
+                columnSeriesIncome.Items.Add(new ColumnItem(statisticItem.Income.Value) {Color = OxyColors.LightGreen });
+                columnSeriesExpense.Items.Add(new ColumnItem(statisticItem.Expense.Value) {Color = expenseRed});
+                columnSeriesRevenue.Items.Add(new ColumnItem(statisticItem.Revenue.Value) {Color = OxyColors.Cyan });
+                axe.Labels.Add(statisticItem.Month);
             }
+            LegendList.Add(new LegendItem {Text = Strings.LegendHeaderText });
+            LegendList.AddRange(monthlyExpenses.Select(x => new LegendItem { Text = x.Label}));
 
             model.Axes.Add(axe);
-            model.Series.Add(columnSeries);
+            model.Series.Add(columnSeriesIncome);
+            model.Series.Add(columnSeriesExpense);
+            model.Series.Add(columnSeriesRevenue);
             return model;
         }
     }

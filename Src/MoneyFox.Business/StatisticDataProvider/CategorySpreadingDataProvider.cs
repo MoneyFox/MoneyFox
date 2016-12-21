@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
-    public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class CategorySpreadingDataProvider
     {
         private readonly IRepository<PaymentViewModel> paymentRepository;
 
