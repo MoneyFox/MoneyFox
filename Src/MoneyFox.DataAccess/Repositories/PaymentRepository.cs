@@ -101,6 +101,10 @@ namespace MoneyFox.DataAccess.Repositories
                 var payment = Mapper.Map<Payment>(paymentToSave);
                 //We have to map the category ID manually, otherwise it won't be set when compiled with .net native.
                 payment.CategoryId = paymentToSave.CategoryId;
+                if (payment.IsRecurring)
+                {
+                    payment.RecurringPayment.CategoryId = paymentToSave.RecurringPayment.CategoryId;
+                }
 
                 if (payment.Id == 0)
                 {
