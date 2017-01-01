@@ -66,7 +66,8 @@ namespace MoneyFox.DataAccess.Repositories
                     {
                         // Load recurring payment and mapp them to the payments to ensure recurring payments have all FK's loaded.
                         var payment = Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
-                        payment.RecurringPayment = Mapper.Map<RecurringPaymentViewModel>(db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId));
+                        payment.RecurringPayment = Mapper.Map<RecurringPaymentViewModel>(
+                            db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId));
 
                         return payment;
                     }

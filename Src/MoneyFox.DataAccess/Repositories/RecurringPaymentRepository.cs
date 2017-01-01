@@ -54,6 +54,8 @@ namespace MoneyFox.DataAccess.Repositories
             using (var db = dbManager.GetConnection())
             {
                 var recurringPayment = Mapper.Map<RecurringPayment>(paymentVmToSave);
+                //We have to map the category ID manually, otherwise it won't be set when compiled with .net native.
+                recurringPayment.CategoryId = paymentVmToSave.CategoryId;
 
                 if (recurringPayment.Id == 0)
                 {
