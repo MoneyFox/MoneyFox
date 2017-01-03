@@ -2,8 +2,8 @@
   "dependencies": {
     "Autofac": "4.2.1",
     "Autofac.Extras.MvvmCross": "4.0.0",
-    "Cheesebaron.MvxPlugins.Connectivity": "2.1.0",
-    "Cheesebaron.MvxPlugins.Settings": "2.1.0",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.2.0",
+    "Cheesebaron.MvxPlugins.Settings": "2.2.0",
     "Cirrious.FluentLayout": "2.5.0",
     "Microsoft.NETCore.Platforms": "1.1.0",
     "Microsoft.OneDriveSDK": "2.0.6",
@@ -21,7 +21,7 @@
     "NETStandard.Library": "1.6.1",
     "OxyPlot.Core": "1.0.0",
     "OxyPlot.Xamarin.iOS": "1.0.0-unstable1983",
-    "SidebarNavigation": "1.9.1",
+    "SidebarNavigation": "1.9.3",
     "Xamarin.Auth": "1.3.0"
   },
   "frameworks": {
