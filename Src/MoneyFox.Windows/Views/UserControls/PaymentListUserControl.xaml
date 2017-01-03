@@ -95,6 +95,7 @@
                                                                  IsSynchronizedWithCurrentItem="False"
                                                                  ItemsSource="{Binding}"
                                                                  OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                                                 ScrollViewer.VerticalScrollMode="Disabled"
                                                                  ShowsScrollingPlaceholders="false">
 
                                     <interactivity:Interaction.Behaviors>

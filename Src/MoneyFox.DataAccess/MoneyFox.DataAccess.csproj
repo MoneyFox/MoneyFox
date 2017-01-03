@@ -44,7 +44,6 @@
     <Compile Include="DatabaseModels\Category.cs" />
     <Compile Include="DatabaseModels\Payment.cs" />
     <Compile Include="DatabaseModels\RecurringPayment.cs" />
-    <Compile Include="QueryableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

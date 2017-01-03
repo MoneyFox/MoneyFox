@@ -1,13 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
-using Android.Content;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using AndroidHUD;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 

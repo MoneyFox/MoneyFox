@@ -9,13 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/gray"
         local:MvxBind="Text Key" />
     <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
         android:id="@+id/inner_payment_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:nestedScrollingEnabled="false"
         local:MvxItemTemplate="@layout/listitem_payment"
         local:MvxBind="ItemsSource .;ItemClick ItemClickCommand; ItemLongClick ItemLongClickCommand" />
 </LinearLayout>

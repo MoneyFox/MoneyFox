@@ -1,9 +1,11 @@
 ﻿using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace MoneyFox.Windows.Tests.Dependencies {
+namespace MoneyFox.Windows.Tests.Dependencies
+{
     [TestClass]
-    public class WindowsCommonSettingsTests {
+    public class WindowsCommonSettingsTests
+    {
         [TestMethod]
         public void Ctor()
         {
@@ -12,7 +14,8 @@ namespace MoneyFox.Windows.Tests.Dependencies {
         }
 
         [TestMethod]
-        public void GetValues_NoValue_ReturnDefault() {
+        public void GetValues_NoValue_ReturnDefault()
+        {
             Assert.AreEqual(true, new WindowsCommonSettings().GetValue("Fooo", true));
         }
 
