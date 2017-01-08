@@ -6,6 +6,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Platform;
+using MoneyFox.Windows.Services;
 
 namespace MoneyFox.Windows.Views
 {
@@ -59,6 +60,24 @@ namespace MoneyFox.Windows.Views
         {
             base.OnNavigatedFrom(e);
             Frame.BackStack.Clear();
+        }
+
+
+        private async void SignInPassport()
+        {
+                if (await MicrosoftPassportHelper.CreatePassportKeyAsync())
+                {
+                    appShell?.SetLoggedInView();
+                    (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
+            }else
+            {
+                PassportStatus.Text = "Microsoft Passport is not enabled.\nPlease go to settings\n to enable passport";
+            }
+        }
+
+        private void PassportSignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            SignInPassport();
         }
     }
 }

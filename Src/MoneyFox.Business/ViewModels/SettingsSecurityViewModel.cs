@@ -81,6 +81,13 @@ namespace MoneyFox.Business.ViewModels
 
         private void SavePassword()
         {
+            if (string.IsNullOrEmpty(Password))
+            {
+                dialogService.ShowMessage(Strings.PasswordEmptyTitle,
+                                          Strings.PasswordEmptyMessage);
+                return;
+            }
+
             if (Password != PasswordConfirmation)
             {
                 dialogService.ShowMessage(Strings.PasswordConfirmationWrongTitle,
