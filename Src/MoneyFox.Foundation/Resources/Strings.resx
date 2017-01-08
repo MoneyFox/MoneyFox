@@ -618,4 +618,10 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="LegendHeaderText" xml:space="preserve">
     <value>Date : Income / Spending / Revenue</value>
   </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
 </root>

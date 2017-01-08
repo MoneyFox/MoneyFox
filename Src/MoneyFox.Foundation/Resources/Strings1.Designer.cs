@@ -1270,6 +1270,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password you&apos;ve entered is empty. Please enter a password first and try again..
+        /// </summary>
+        public static string PasswordEmptyMessage {
+            get {
+                return ResourceManager.GetString("PasswordEmptyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is empty.
+        /// </summary>
+        public static string PasswordEmptyTitle {
+            get {
+                return ResourceManager.GetString("PasswordEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password was saved succesfully..
         /// </summary>
         public static string PasswordSavedMessage {
