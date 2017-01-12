@@ -95,7 +95,7 @@ namespace MoneyFox.Business.ViewModels
                 axe.Labels.Add(statisticItem.Month);
             }
             LegendList.Add(new LegendItem {Text = Strings.LegendHeaderText });
-            LegendList.AddRange(monthlyExpenses.Select(x => new LegendItem { Text = x.Label}));
+            LegendList.AddRange(monthlyExpenses.Select(x => new LegendItem { Text = x.Label}).Reverse());
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeriesIncome);
