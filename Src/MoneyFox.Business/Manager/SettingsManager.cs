@@ -21,6 +21,9 @@ namespace MoneyFox.Business.Manager
         private const string PASSWORD_REQUIRED_KEYNAME = "PasswordRequired";
         private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
 
+        private const string PASSPORT_REQUIRED_KEYNAME = "PassportRequired";
+        private const bool PASSPORT_REQUIRED_KEYDEFAULT = false;
+
         private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
         private const bool BACKUP_LOGGEDIN_KEYDEFAULT = false;
 
@@ -80,6 +83,12 @@ namespace MoneyFox.Business.Manager
             get { return settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
         }
+
+        public bool PassportEnabled {
+            get { return settings.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(PASSPORT_REQUIRED_KEYNAME, value); }
+        }
+
 
         public DateTime LastDatabaseUpdate
         {

@@ -14,13 +14,23 @@ namespace MoneyFox.Windows.Views
     {
         private readonly AppShell appShell;
 
+
+        public void hideButton(object sender, RoutedEventArgs e)
+        {
+            if (!((ViewModel as LoginViewModel).PassportEnabled))
+            {
+                PassportLogin.Visibility = Visibility.Collapsed;
+            }
+        }
+
         public LoginView()
         {
             InitializeComponent();
             appShell = Window.Current.Content as AppShell;
             appShell?.SetLoginView();
+            Loaded+=new RoutedEventHandler(hideButton);
         }
-
+        
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             Login();
@@ -62,22 +72,26 @@ namespace MoneyFox.Windows.Views
             Frame.BackStack.Clear();
         }
 
-
         private async void SignInPassport()
         {
+            if ((ViewModel as LoginViewModel).PassportEnabled)
+            {
                 if (await MicrosoftPassportHelper.CreatePassportKeyAsync())
                 {
                     appShell?.SetLoggedInView();
                     (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
-            }else
-            {
-                PassportStatus.Text = "Microsoft Passport is not enabled.\nPlease go to settings\n to enable passport";
+                }
             }
+            else
+            {
+                PassportLogin.Visibility = Visibility.Collapsed;
+            }
+            
         }
 
         private void PassportSignInButton_Click(object sender, RoutedEventArgs e)
         {
             SignInPassport();
-        }
+        }       
     }
 }

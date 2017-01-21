@@ -37,17 +37,12 @@
                     HorizontalAlignment="Stretch"
                     Click="ButtonLogin_Click"
                     Content="Login" />
-            <Button x:Uid="PassportLogin"
+            <Button x:Name="PassportLogin"
                     Margin="0,10,0,0"
                     HorizontalAlignment="Stretch"
                     Click="PassportSignInButton_Click"
                     Content="Login with Microsoft Passport" />
-            <TextBlock x:Name="PassportStatus"
-                       Margin="0,0,0,15"
-                       HorizontalAlignment="Center"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                       TextAlignment="center"
-                       Text=" " />
+            
         </StackPanel>
     </Grid>
 </views:MvxWindowsPage>
