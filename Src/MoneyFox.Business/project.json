@@ -1,9 +1,9 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "Autofac": "4.2.1",
-    "Cheesebaron.MvxPlugins.Connectivity": "2.2.0",
-    "Cheesebaron.MvxPlugins.Settings": "2.2.0",
+    "Autofac": "4.3.0",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.2.1",
+    "Cheesebaron.MvxPlugins.Settings": "2.2.1",
     "MvvmCross.Plugin.Email": "4.4.0",
     "MvvmCross.Plugin.ResxLocalization": "4.4.0",
     "MvvmCross.Plugin.Visibility": "4.4.0",
