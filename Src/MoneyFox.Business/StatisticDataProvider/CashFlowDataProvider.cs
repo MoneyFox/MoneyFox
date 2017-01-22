@@ -44,10 +44,10 @@ namespace MoneyFox.Business.StatisticDataProvider
             {
                 var date = tempDate;
                 var cashFlow = GetCashFlowStatisticItems(paymentRepository
-                       .GetList(x => (x.Type != PaymentType.Transfer)
-                                     && (x.Date.Date >= date.Date)
-                                     && (x.Date.Date <= date.GetLastDayOfMonth()))
-                       .ToList());
+                                                             .GetList(x => x.Type != PaymentType.Transfer
+                                                                           && x.Date.Date >= date.Date
+                                                                           && x.Date.Date <= date.GetLastDayOfMonth())
+                                                             .ToList());
 
                 cashFlow.Label = date.ToString("MM yy")
                                          + ": +" + cashFlow.Income.Value.ToString("C")
