@@ -33,6 +33,7 @@
                          KeyDown="PasswordBox_KeyDown"
                          PasswordRevealMode="Peek" />
             <Button x:Uid="Login"
+                    x:Name="LoginButton"
                     Margin="0,10,0,0"
                     HorizontalAlignment="Stretch"
                     Click="ButtonLogin_Click"

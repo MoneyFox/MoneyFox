@@ -21,6 +21,12 @@ namespace MoneyFox.Windows.Views
             {
                 PassportLogin.Visibility = Visibility.Collapsed;
             }
+
+            if (!((ViewModel as LoginViewModel).PasswordEnabled))
+            {
+                PasswordBox.Visibility = Visibility.Collapsed;
+                LoginButton.Visibility = Visibility.Collapsed;
+            }
         }
 
         public LoginView()

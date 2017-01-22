@@ -30,6 +30,11 @@ namespace MoneyFox.Business.ViewModels
         public MvxCommand LoginNavigationCommand => new MvxCommand(LoginNavigation);
 
 
+        public bool PasswordEnabled
+        {
+            get { return settingsManager.PasswordRequired; }
+        }
+
         public bool PassportEnabled
         {
             get { return settingsManager.PassportEnabled; }

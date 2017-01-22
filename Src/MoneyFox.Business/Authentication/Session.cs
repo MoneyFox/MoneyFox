@@ -22,7 +22,7 @@ namespace MoneyFox.Business.Authentication
         /// </summary>
         public bool ValidateSession()
         {
-            if (!settingsManager.PasswordRequired)
+            if (!settingsManager.PasswordRequired && !settingsManager.PassportEnabled)
             {
                 return true;
             }

@@ -39,6 +39,7 @@ namespace MoneyFox.Business.ViewModels
             get { return settingsManager.PassportEnabled; }
             set
             {
+                
                 settingsManager.PassportEnabled = value;
                 RaisePropertyChanged();
             }
@@ -50,7 +51,7 @@ namespace MoneyFox.Business.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     The password who the user set.
+        ///     The password that the user set.
         /// </summary>
         public string Password
         {
