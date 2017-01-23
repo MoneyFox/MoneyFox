@@ -50,6 +50,17 @@
                         Content="Save Password"
                         Command="{Binding SavePasswordCommand}" />
             </StackPanel>
+            <ToggleSwitch x:Name="PassportSwitch"
+                          IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          x:Uid="PassportSettingSwitch"
+                          OnContent="Passport Login Enabled"
+                          OffContent="Enable Passport Login" />
+            <TextBlock x:Name="PassportStatus"
+                       Margin="0,0,0,15"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       TextAlignment="center"
+                       Text=" " />
         </StackPanel>
     </Grid>
 </UserControl>

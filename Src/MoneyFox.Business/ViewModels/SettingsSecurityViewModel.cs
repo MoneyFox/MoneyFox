@@ -33,13 +33,25 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+
+        public bool IsPassportActive
+        {
+            get { return settingsManager.PassportEnabled; }
+            set
+            {
+                
+                settingsManager.PassportEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     The password who the user set.
+        ///     The password that the user set.
         /// </summary>
         public string Password
         {
