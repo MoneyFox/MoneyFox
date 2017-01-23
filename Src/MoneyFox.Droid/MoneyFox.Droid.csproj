@@ -409,4 +409,10 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-fr\strings.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-zh-CN\strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-es\strings.xml" />
+  </ItemGroup>
 </Project>
