@@ -9,6 +9,7 @@ namespace MoneyFox.Foundation.Interfaces
         bool IsBackupAutouploadEnabled { get; set; }
         string SessionTimestamp { get; set; }
         bool PasswordRequired { get; set; }
+        bool PassportEnabled { get; set; }
         DateTime LastDatabaseUpdate { get; set; }
         bool IsDarkThemeSelected { get; set; }
         bool IsLoggedInToBackupService { get; set; }
