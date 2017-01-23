@@ -1,7 +1,7 @@
 ﻿{
   "supports": {},
   "dependencies": {
-    "Autofac": "4.2.1",
+    "Autofac": "4.3.0",
     "AutoMapper": "5.2.0",
     "MvvmCross.Plugin.File": "4.4.0",
     "MvvmCross.Plugin.SQLitePCL": "4.4.0",
