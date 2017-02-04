@@ -10,6 +10,16 @@
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
