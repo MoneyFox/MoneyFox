@@ -45,10 +45,10 @@
     <Compile Include="DataModels\CategoryViewModel.cs" />
     <Compile Include="DataModels\PaymentViewModel.cs" />
     <Compile Include="DataModels\RecurringPaymentViewModel.cs" />
+    <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
-    <Compile Include="Interfaces\Enumerations.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Interfaces\IAppInformation.cs" />
