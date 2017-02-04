@@ -41,6 +41,7 @@
                               VerticalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
+                              EntranceNavigationTransitionInfo.IsTargetElement="True"
                               IsEnabled="False"
                               IsMouseWheelEnabled="False"
                               Model="{Binding CashFlowModel}" />

@@ -6,11 +6,11 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       xmlns:models="using:MoneyFox.Foundation.Models"
-                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:viewModels1="using:MoneyFox.Business.ViewModels"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      d:DataContext="{d:DesignInstance viewModels1:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
@@ -63,8 +63,7 @@
             <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}" ItemsSource="{Binding StatisticItems}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
-                                                  InputConverter="{StaticResource SelectedConverter}" />
+                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ListView>

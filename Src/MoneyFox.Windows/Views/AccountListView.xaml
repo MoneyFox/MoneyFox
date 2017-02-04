@@ -111,8 +111,7 @@
                    Visibility="{Binding IsAllAccountsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <CommandBar Grid.Row="3"
-                    DataContext="{Binding ViewActionViewModel}">
+        <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddIncomeCommand}"

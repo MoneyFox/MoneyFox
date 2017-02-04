@@ -55,6 +55,7 @@
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              EntranceNavigationTransitionInfo.IsTargetElement="True"
                               IsEnabled="False"
                               IsMouseWheelEnabled="False"
                               Model="{Binding MonthlyExpensesModel}" />
@@ -62,6 +63,7 @@
 
         <ListView Grid.Row="2"
                   HorizontalAlignment="Stretch"
+                  EntranceNavigationTransitionInfo.IsTargetElement="True"
                   ItemTemplate="{StaticResource LegendListTemplate}"
                   ItemsSource="{Binding LegendList}">
             <ListView.ItemContainerStyle>

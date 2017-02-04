@@ -63,7 +63,9 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                        Text="{Binding Title}" />
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1"
+                          EntranceNavigationTransitionInfo.IsTargetElement="True"
+                          VerticalScrollBarVisibility="Auto">
                 <controls:AlternatingRowListView EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                                  ItemTemplate="{StaticResource CategoryTemplate}"
                                                  ItemsSource="{Binding CategorySummary}"

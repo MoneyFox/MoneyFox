@@ -61,12 +61,14 @@
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              EntranceNavigationTransitionInfo.IsTargetElement="True"
                               Model="{Binding SpreadingModel}" />
 
         </Grid>
 
         <ListView Grid.Row="2"
                   HorizontalAlignment="Stretch"
+                  EntranceNavigationTransitionInfo.IsTargetElement="True"
                   ItemTemplate="{StaticResource LegendListTemplate}"
                   ItemsSource="{Binding LegendList}">
             <ListView.ItemContainerStyle>
