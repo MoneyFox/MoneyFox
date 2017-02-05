@@ -13,7 +13,7 @@ namespace MoneyFox.Ios
             builder.RegisterType<DialogService>().As<IDialogService>();
             //builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
-            builder.RegisterType<NotificationService>().As<INotificationService>();
+            //builder.RegisterType<NotificationService>().As<INotificationService>();
             //builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
 
             builder.RegisterInstance(new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));

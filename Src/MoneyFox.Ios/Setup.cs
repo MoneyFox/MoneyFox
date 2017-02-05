@@ -16,8 +16,8 @@ using UIKit;
 namespace MoneyFox.Ios {
     public class Setup : MvxIosSetup {
 
-        public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
-            : base(applicationDelegate, window) {}
+        public Setup(MvxApplicationDelegate appDelegate, IMvxIosViewPresenter presenter)
+			: base(appDelegate, presenter){}
 
         protected override IMvxIoCProvider CreateIocProvider()
         {
@@ -32,7 +32,7 @@ namespace MoneyFox.Ios {
         protected override void InitializeFirstChance() {
             base.InitializeFirstChance();
 
-            Mvx.RegisterSingleton<MvxPresentationHint>(() => new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
+            //Mvx.RegisterSingleton<MvxPresentationHint>(() => new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
         }
 
         protected override IMvxIosViewPresenter CreatePresenter() {

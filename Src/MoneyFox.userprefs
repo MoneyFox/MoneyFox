@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{8BC1B5F1-926A-4065-BC6C-B43E9C904D47}|Default">
   <MonoDevelop.Ide.ItemProperties.Platforms.MoneyFox.Ios PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E4641BF9-28DE-4082-AAC0-E8DBEBBD37EE" />
-  <MonoDevelop.Ide.ItemProperties.Platforms.MoneyFox.Droid PreferredExecutionTarget="Android.Nexus_5_API_23" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyFox.Ios/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyFox.Business/Manager/BackupManager.cs">
     <Files>
-      <File FileName="MoneyFox.Ios/Main.cs" Line="9" Column="1" />
-      <File FileName="MoneyFox.Ios/Views/MainView.cs" Line="20" Column="1" />
-      <File FileName="MoneyFox.Ios/AppDelegate.cs" Line="1" Column="1" />
+      <File FileName="MoneyFox.Ios/IosModule.cs" Line="16" Column="15" />
+      <File FileName="MoneyFox.Ios/Info.plist" />
+      <File FileName="MoneyFox.Ios/Main.cs" Line="12" Column="2" />
+      <File FileName="MoneyFox.Ios/Setup.cs" Line="19" Column="56" />
+      <File FileName="MoneyFox.Ios/AppDelegate.cs" Line="26" Column="6" />
+      <File FileName="MoneyFox.Business/Manager/BackupManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
@@ -13,4 +15,7 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>MoneyFox.Droid/MoneyFox.Droid.csproj</String>
+  </DisabledProjects>
 </Properties>
