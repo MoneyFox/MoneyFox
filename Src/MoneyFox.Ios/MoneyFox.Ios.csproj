@@ -123,6 +123,8 @@
     <InterfaceDefinition Include="Main.storyboard" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs" />
+    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
+    <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />
@@ -155,6 +157,9 @@
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OneDriveAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

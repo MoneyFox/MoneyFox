@@ -8,7 +8,7 @@ namespace MoneyFox.Business.Extensions
     public static class OAuth2AuthenticatorExtensions
     {
         ///  <summary>
-        ///  Method that requests a new access token based on an initial refresh token
+        ///  	Method that requests a new access token based on an initial refresh token
         ///  </summary>
         /// <param name="authenticator">Authenticator object</param>
         /// <param name="refreshToken">Refresh token, typically from the <see cref="AccountStore"/>'s refresh_token property</param>

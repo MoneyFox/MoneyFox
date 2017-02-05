@@ -4,14 +4,12 @@ using MoneyFox.Business;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
-using MvvmCross.iOS.Support;
 using MvvmCross.iOS.Support.JASidePanels;
 using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
-using UIKit;
 
 namespace MoneyFox.Ios {
     public class Setup : MvxIosSetup {
@@ -32,7 +30,7 @@ namespace MoneyFox.Ios {
         protected override void InitializeFirstChance() {
             base.InitializeFirstChance();
 
-            //Mvx.RegisterSingleton<MvxPresentationHint>(() => new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
+            Mvx.RegisterSingleton<MvxPresentationHint>(() => new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
         }
 
         protected override IMvxIosViewPresenter CreatePresenter() {

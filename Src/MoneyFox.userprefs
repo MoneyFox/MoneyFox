@@ -1,21 +1,40 @@
 ﻿<Properties StartupConfiguration="{8BC1B5F1-926A-4065-BC6C-B43E9C904D47}|Default">
   <MonoDevelop.Ide.ItemProperties.Platforms.MoneyFox.Ios PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E4641BF9-28DE-4082-AAC0-E8DBEBBD37EE" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyFox.Business/Manager/BackupManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyFox.Ios/OneDriveAuth/IosAuthenticationProvider.cs">
     <Files>
-      <File FileName="MoneyFox.Ios/IosModule.cs" Line="16" Column="15" />
-      <File FileName="MoneyFox.Ios/Info.plist" />
-      <File FileName="MoneyFox.Ios/Main.cs" Line="12" Column="2" />
-      <File FileName="MoneyFox.Ios/Setup.cs" Line="19" Column="56" />
-      <File FileName="MoneyFox.Ios/AppDelegate.cs" Line="26" Column="6" />
-      <File FileName="MoneyFox.Business/Manager/BackupManager.cs" Line="1" Column="1" />
+      <File FileName="MoneyFox.Ios/OneDriveAuth/IosAuthenticationProvider.cs" Line="36" Column="24" />
+      <File FileName="MoneyFox.Droid/OneDriveAuth/DroidAuthenticationProvider.cs" Line="47" Column="93" />
+      <File FileName="MoneyFox.Ios/OneDriveAuth/OneDriveAuthenticator.cs" Line="28" Column="14" />
+      <File FileName="MoneyFox.Business/Extensions/OAuth2AuthenticatorExtensions.cs" Line="16" Column="60" />
+      <File FileName="MoneyFox.Ios/Main.cs" Line="9" Column="1" />
+      <File FileName="MoneyFox.Ios/OneDriveAuth/OAuthView.cs" Line="10" Column="27" />
+      <File FileName="MoneyFox.Business/AppStart.cs" Line="40" Column="13" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MoneyFox" expanded="True">
+            <Node name="Core" expanded="True">
+              <Node name="MoneyFox.Business" expanded="True">
+                <Node name="Extensions" expanded="True" />
+                <Node name="Manager" expanded="True" />
+              </Node>
+              <Node name="MoneyFox.Foundation" expanded="True" />
+            </Node>
+            <Node name="Platforms" expanded="True">
+              <Node name="MoneyFox.Droid" expanded="True">
+                <Node name="OneDriveAuth" expanded="True" />
+              </Node>
+              <Node name="MoneyFox.Ios" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <DisabledProjects>
-    <String>MoneyFox.Droid/MoneyFox.Droid.csproj</String>
-  </DisabledProjects>
 </Properties>
