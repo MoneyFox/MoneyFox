@@ -125,6 +125,7 @@
     <Compile Include="ViewController.designer.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
+    <Compile Include="Src\BackgroundTaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />

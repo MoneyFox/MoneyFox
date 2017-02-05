@@ -15,7 +15,7 @@ namespace MoneyFox.Ios
 			builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
 			builder.RegisterType<ProtectedData>().As<IProtectedData>();
 			//builder.RegisterType<NotificationService>().As<INotificationService>();
-			//builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
+			builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
 			//builder.RegisterType<TileManager>().As<ITileManager>();
 
 			//builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
