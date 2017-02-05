@@ -1,6 +1,10 @@
 ﻿<Properties StartupConfiguration="{8BC1B5F1-926A-4065-BC6C-B43E9C904D47}|Default">
   <MonoDevelop.Ide.ItemProperties.Platforms.MoneyFox.Ios PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.E4641BF9-28DE-4082-AAC0-E8DBEBBD37EE" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyFox.Ios/Main.cs">
+    <Files>
+      <File FileName="MoneyFox.Ios/Main.cs" Line="9" Column="1" />
+      <File FileName="MoneyFox.DataAccess/Repositories/PaymentRepository.cs" Line="49" Column="35" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -11,9 +15,7 @@
                 <Node name="Manager" expanded="True" />
               </Node>
               <Node name="MoneyFox.DataAccess" expanded="True">
-                <Node name="Repositories" expanded="True">
-                  <Node name="PaymentRepository.cs" selected="True" />
-                </Node>
+                <Node name="Repositories" expanded="True" />
               </Node>
               <Node name="MoneyFox.Foundation" expanded="True" />
             </Node>
@@ -21,7 +23,7 @@
               <Node name="MoneyFox.Droid" expanded="True">
                 <Node name="OneDriveAuth" expanded="True" />
               </Node>
-              <Node name="MoneyFox.Ios" expanded="True">
+              <Node name="MoneyFox.Ios" expanded="True" selected="True">
                 <Node name="Src" expanded="True" />
               </Node>
             </Node>
