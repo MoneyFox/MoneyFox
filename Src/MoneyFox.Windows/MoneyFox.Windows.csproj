@@ -498,15 +498,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
-      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
+      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
+      <Project>{10036117-bb05-427c-bdc2-f2ceb1e974b1}</Project>
       <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
