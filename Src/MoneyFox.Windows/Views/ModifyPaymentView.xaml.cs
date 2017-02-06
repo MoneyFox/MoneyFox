@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
@@ -75,6 +76,22 @@ namespace MoneyFox.Windows.Views
             var cacheSize = ((Frame) Parent).CacheSize;
             ((Frame) Parent).CacheSize = 0;
             ((Frame) Parent).CacheSize = cacheSize;
+        }
+
+        private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)ViewModel;
+            // we set the value here to ensure the animation has played before the element is hidden
+            if (!viewModel.SelectedPayment.IsRecurring)
+            {
+                viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
+                await RecurringStackPanel.Fade(1).StartAsync();
+            }
+            else
+            {
+                await RecurringStackPanel.Fade().StartAsync();
+                viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
+            }
         }
     }
 }
