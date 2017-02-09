@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -75,7 +74,6 @@ namespace MoneyFox.Windows.Views
                     await CallRateReminder();
                 });
             }
-
         }
 
         private async Task SetJumplist()

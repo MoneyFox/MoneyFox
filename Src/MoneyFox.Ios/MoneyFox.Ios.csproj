@@ -20,9 +20,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -43,7 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
@@ -99,10 +100,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="OneDriveAuth\OAuthView.cs" />
     <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\Localize.cs" />
-    <Compile Include="Src\NotificationService.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Views\AccountList\AccountListView.cs" />
     <Compile Include="Views\AccountList\AccountListView.designer.cs">
@@ -122,6 +121,12 @@
       <DependentUpon>AccountTableCell.cs</DependentUpon>
     </Compile>
     <None Include="project.json" />
+    <InterfaceDefinition Include="Main.storyboard" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs" />
+    <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
+    <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
+    <Compile Include="Src\BackgroundTaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />
@@ -154,6 +159,9 @@
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OneDriveAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

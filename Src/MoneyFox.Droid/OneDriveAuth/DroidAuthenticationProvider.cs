@@ -5,8 +5,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Microsoft.Graph;
 using MoneyFox.Business.Extensions;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
@@ -14,7 +14,7 @@ using Xamarin.Auth;
 
 namespace MoneyFox.Droid.OneDriveAuth
 {
-    public class DroidAuthenticationProvider : IAuthenticationProvider
+    public class DroidAuthenticationProvider : ICustomAuthenticationProvider
     {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
@@ -24,7 +24,6 @@ namespace MoneyFox.Droid.OneDriveAuth
         ///     Authenticates the user with the service and saves the refresh token.
         /// </summary>
         /// <param name="request">Http request message</param>
-        /// <returns></returns>
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
             authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,

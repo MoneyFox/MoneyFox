@@ -1,54 +1,63 @@
-using System;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
-using MoneyFox.Shared.Constants;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Business.Extensions;
+using UIKit;
 using Xamarin.Auth;
-using Constants = Microsoft.OneDrive.Sdk.Constants;
+using MoneyFox.Ios.OneDriveAuth;
 
-namespace MoneyFox.Ios.OneDriveAuth {
-    public class IosAuthenticationProvider : AuthenticationProvider {
+namespace MoneyFox.Ios
+{
+	public class IosAuthenticationProvider : ICustomAuthenticationProvider
+	{
+		private OAuth2Authenticator authenticator;
 
-        public IosAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo) {
-        }
-        
-        protected override async Task<AccountSession> GetAuthenticationResultAsync() {
-            var sessionFromCache = await GetSessionFromCache();
+		public async Task AuthenticateRequestAsync(HttpRequestMessage request)
+		{
+			authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+				ServiceConstants.MSA_CLIENT_SECRET,
+				string.Join(",", ServiceConstants.Scopes),
+				new Uri(ServiceConstants.AUTHENTICATION_URL),
+				new Uri(ServiceConstants.RETURN_URL),
+				new Uri(ServiceConstants.TOKEN_URL));
 
-            if (sessionFromCache != null) {
-                return sessionFromCache;
-            }
+			var protectedData = new ProtectedData();
+			var accessToken = string.Empty;
+			var refreshToken = protectedData.Unprotect(ServiceConstants.REFRESH_TOKEN);
 
-            return new AccountSession(await new OAuthView().ShowWebView(), ServiceInfo.AppId,
-                AccountType.MicrosoftAccount) {
-                    CanSignOut = true
-                };
-        }
+			if (string.IsNullOrEmpty(refreshToken))
+			{
+				var authView = new OAuthView();
+				var result = await authView.ShowWebView();
+				if (result != null)
+				{
+					// pass access_token to the onedrive sdk
+					accessToken = result[ServiceConstants.ACCESS_TOKEN];
 
-        /// <summary>
-        ///     Tries to get an account session from the cache or via the refresh token.
-        /// </summary>
-        /// <returns>AccountSession created via the refresh token.</returns>
-        private async Task<AccountSession> GetSessionFromCache() {
-            var accounts = AccountStore.Create().FindAccountsForService(ServiceConstants.KEY_STORE_TAG_ONEDRIVE).ToList();
+					// add refresh token to the password vault to enable future silent login
+					new ProtectedData().Protect(ServiceConstants.REFRESH_TOKEN, result[ServiceConstants.REFRESH_TOKEN]);
+				}
+			}
+			else
+			{
+				accessToken = await authenticator.RequestRefreshTokenAsync(refreshToken);
+			}
 
-            if (accounts.Any()) {
-                var accountValues = accounts.FirstOrDefault()?.Properties;
+			request.Headers.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+		}
 
-                if (accountValues == null) {
-                    return null;
-                }
+		public void Logout()
+		{
+			new ProtectedData().Remove(ServiceConstants.REFRESH_TOKEN);
 
-                string refreshToken;
-                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken)) {
-                    return await RefreshAccessTokenAsync(refreshToken);
-                }
-            }
-            return null;
-        }
-
-        public override Task SignOutAsync() {
-            throw new NotImplementedException();
-        }
-    }
+			authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+				string.Empty,
+				new Uri(ServiceConstants.LOGOUT_URL),
+				new Uri(ServiceConstants.RETURN_URL));
+		}
+	}
 }

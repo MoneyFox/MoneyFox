@@ -4,20 +4,18 @@ using MoneyFox.Business;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
-using MvvmCross.iOS.Support;
 using MvvmCross.iOS.Support.JASidePanels;
 using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
-using UIKit;
 
 namespace MoneyFox.Ios {
     public class Setup : MvxIosSetup {
 
-        public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
-            : base(applicationDelegate, window) {}
+        public Setup(MvxApplicationDelegate appDelegate, IMvxIosViewPresenter presenter)
+			: base(appDelegate, presenter){}
 
         protected override IMvxIoCProvider CreateIocProvider()
         {

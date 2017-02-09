@@ -63,11 +63,11 @@ namespace MoneyFox.Ios.Services {
         }
 
         public void ShowLoadingDialog() {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void HideLoadingDialog() {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

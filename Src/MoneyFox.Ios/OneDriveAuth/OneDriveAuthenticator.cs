@@ -1,33 +1,41 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Interfaces;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Ios.OneDriveAuth
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        public async Task<IOneDriveClient> LoginAsync()
+        /// <summary>
+        ///     Perform an async Login Request
+        /// </summary>
+        public Task<IOneDriveClient> LoginAsync()
         {
             try
             {
-                return new OneDriveClient(ServiceConstants.BASE_URL, new IosAuthenticationProvider());
-            }
-            catch (Exception ex)
-            {
-                // Swallow authentication cancelled exceptions
-                //if (!ex.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                //{
-                //    if (ex.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                //    {
-                //        throw new BackupException("Authentication Failed");
-                //    }
-                //}
+                var tcs = new TaskCompletionSource<IOneDriveClient>();
 
+                tcs.SetResult(new OneDriveClient(ServiceConstants.BASE_URL, new IosAuthenticationProvider()));
+
+                return tcs.Task;
+            }
+            catch (Exception)
+            {
                 throw new BackupException("Authentication Failed");
             }
+        }
+
+        /// <summary>
+        ///     Perform an async Logout Request
+        /// </summary>
+        public Task LogoutAsync()
+        {
+            var tcs = new TaskCompletionSource<bool>();
+			new IosAuthenticationProvider().Logout();
+            return tcs.Task;
         }
     }
 }
