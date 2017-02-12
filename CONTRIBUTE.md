@@ -3,11 +3,6 @@
 Thanks for your interest! We appreciate any contribution to the project.
 This document tries to help you get started. If you have questions please write me a mail (see profile).
 
-## Tools
-You will need the SQLite UWP plugin for Visual Studio.
-
-For more information see this [wiki page](https://github.com/MoneyFox/MoneyFox.Windows/wiki/Getting-Started)
-
 ## Feature Requests / Bug reports
 Is there a feature you would like to see in a future release? Or have you found a bug? Create a new issue and give describe it as good as possible.
 
@@ -35,3 +30,6 @@ Pull requests are the primary mechanism we use to change something on the Money 
 Please make pull requests against the `master` branch.
 
 Also, please ensure you have unit tests written for your changes where possible and that all existing tests are still running.
+
+## Getting Started
+Have a look at our [Getting Started] (https://github.com/MoneyFox/MoneyFox/wiki/Getting-Started) page in our wiki.
