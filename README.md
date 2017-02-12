@@ -19,6 +19,7 @@ Second there is a beta for all these guys who want get their hands on all the ne
 Windows (please send me your Microsoft Account that I can give you access to the beta flights)
 
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
+(You can also opt-in for the beta in the play store)
 
 
 ### Contribution
