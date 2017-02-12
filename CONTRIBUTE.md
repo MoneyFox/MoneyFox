@@ -14,7 +14,7 @@ You want to contribute code? Great! Look for issues with the following labels, d
 
 To quote [firsttimersonly.com](http://www.firsttimersonly.com/): "I'm willing to hold your hand so you can make your first PR. This issue is rather a bit easier than normal. And anyone who's already contributed to open source isn't allowed to touch this one!"
 
-- easy:
+- up-for-grabs:
 
 This issues should be easy to solve and are great to start if you already have contributed to OSS before and are new here.
 
