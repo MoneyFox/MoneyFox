@@ -9,6 +9,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "2.0.6",
+    "Microsoft.Toolkit.Uwp.UI.Animations": "1.2.0",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.Color": "4.4.0",

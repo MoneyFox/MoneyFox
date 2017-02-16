@@ -10,7 +10,6 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <ProgressRing Width="100"
                           Height="100"
-                          Margin="0,20,0,0"
                           IsActive="True" />
             <TextBlock x:Uid="Loading"
                        Text="Loading..."
