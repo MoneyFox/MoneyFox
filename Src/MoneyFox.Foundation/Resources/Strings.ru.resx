@@ -596,10 +596,10 @@
     <value>Статистика</value>
   </data>
   <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Drawer Close</value>
+    <value>Закрыть ящик</value>
   </data>
   <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Drawer Open</value>
+    <value>Открытый ящик</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
@@ -611,6 +611,6 @@
     <value>Два раза в месяц</value>
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Исключить счета из баланса</value>
   </data>
 </root>
