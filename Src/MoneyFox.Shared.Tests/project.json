@@ -1,15 +1,15 @@
 ﻿{
   "dependencies": {
     "AutoFixture": "3.50.2",
-    "Cheesebaron.MvxPlugins.Connectivity": "2.2.1",
-    "Cheesebaron.MvxPlugins.Settings": "2.2.1",
-    "Moq": "4.5.30",
+    "Cheesebaron.MvxPlugins.Connectivity": "2.2.2",
+    "Cheesebaron.MvxPlugins.Settings": "2.2.2",
+    "Moq": "4.7.0",
     "MvvmCross.Plugin.Email": "4.4.0",
     "MvvmCross.Plugin.Messenger": "4.4.0",
     "MvvmCross.Plugin.WebBrowser": "4.4.0",
     "MvvmCross.Tests": "4.4.0",
-    "xunit": "2.1.0",
-    "xunit.runner.visualstudio": "2.1.0",
+    "xunit": "2.2.0",
+    "xunit.runner.visualstudio": "2.2.0",
     "Xunit.Should.Extension": "1.0.4"
   },
   "frameworks": {
