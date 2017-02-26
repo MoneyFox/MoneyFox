@@ -17,7 +17,6 @@
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="dataModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
@@ -137,13 +136,15 @@
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextWrapping="Wrap" />
+                    <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
                     <ToggleSwitch x:Uid="RepeatSwitch"
                                   Margin="0,7,0,0"
                                   VerticalAlignment="Stretch"
                                   Header="repeat"
                                   IsOn="{Binding SelectedPayment.IsRecurring,
-                                                 Mode=TwoWay}" />
-                    <StackPanel Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                                                 Mode=OneWay}"
+                                  Toggled="ToggleRecurringVisibility" />
+                    <StackPanel x:Name="RecurringStackPanel" Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox x:Uid="RecurrenceComboBox"
                                   Margin="0,7,0,0"
                                   HorizontalAlignment="Stretch"
