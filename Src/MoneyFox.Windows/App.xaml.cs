@@ -3,26 +3,15 @@ using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
-using Windows.Globalization;
-using Windows.Storage;
-using Windows.System.UserProfile;
 using Windows.UI;
-using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using UniversalRateReminder;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows
 {
