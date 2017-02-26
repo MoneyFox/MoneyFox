@@ -60,16 +60,13 @@ namespace MoneyFox.Windows.Views
         private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
         {
             var viewModel = (ModifyPaymentViewModel)ViewModel;
-            // we set the value here to ensure the animation has played before the element is hidden
             if (viewModel.SelectedPayment.IsRecurring)
             {
-                //viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
                 await RecurringStackPanel.Fade(1).StartAsync();
             }
             else
             {
                 await RecurringStackPanel.Fade().StartAsync();
-                //viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
             }
         }
 
