@@ -29,27 +29,6 @@ namespace MoneyFox.Windows.Views
             };
         }
 
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    if (e.NavigationMode != NavigationMode.Back)
-        //    {
-        //        var viewModel = (ModifyPaymentViewModel) DataContext;
-
-        //        var payment = e.Parameter as PaymentViewModel;
-        //        if (payment != null)
-        //        {
-        //            //  This payment type will be ignored. Has to be set though.
-        //            viewModel.Init(PaymentType.Expense, payment.Id);
-        //        }
-        //        else if (e.Parameter?.GetType() == typeof(PaymentType))
-        //        {
-        //            viewModel.Init((PaymentType) e.Parameter);
-        //        }
-        //    }
-
-        //    base.OnNavigatedTo(e);
-        //}
-
         private void TextBoxOnFocus(object sender, RoutedEventArgs e)
         {
             TextBoxAmount.SelectAll();
@@ -82,15 +61,24 @@ namespace MoneyFox.Windows.Views
         {
             var viewModel = (ModifyPaymentViewModel)ViewModel;
             // we set the value here to ensure the animation has played before the element is hidden
-            if (!viewModel.SelectedPayment.IsRecurring)
+            if (viewModel.SelectedPayment.IsRecurring)
             {
-                viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
+                //viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
                 await RecurringStackPanel.Fade(1).StartAsync();
             }
             else
             {
                 await RecurringStackPanel.Fade().StartAsync();
-                viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
+                //viewModel.SelectedPayment.IsRecurring = !viewModel.SelectedPayment.IsRecurring;
+            }
+        }
+
+        private void SetVisibiltyInitialy(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)ViewModel;
+            if (!viewModel.SelectedPayment.IsRecurring)
+            {
+                ToggleRecurringVisibility(this, null);
             }
         }
     }
