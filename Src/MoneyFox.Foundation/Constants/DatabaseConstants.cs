@@ -28,6 +28,11 @@
         public const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
 
         /// <summary>
+        ///     Name of the Backup Folder
+        /// </summary>
+        public const string ARCHIVE_FOLDER_NAME = "Archive";
+
+        /// <summary>
         ///     Name of the database backup
         /// </summary>
         public const string BACKUP_NAME = "backupmoneyfox2.db";

@@ -401,6 +401,6 @@
     <value>Загружать и скачивать резервную копию вручную</value>
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Исключить счета из баланса</value>
   </data>
 </root>

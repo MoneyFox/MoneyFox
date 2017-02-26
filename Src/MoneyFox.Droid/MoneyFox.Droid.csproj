@@ -404,4 +404,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-es\strings.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-ru\strings.xml" />
+  </ItemGroup>
 </Project>
