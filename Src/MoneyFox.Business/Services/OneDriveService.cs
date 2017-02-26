@@ -27,6 +27,7 @@ namespace MoneyFox.Business.Services
         private IOneDriveClient OneDriveClient { get; set; }
 
         private Item BackupFolder { get; set; }
+        private Item ArchiveFolder { get; set; }
 
         /// <summary>
         ///     Login User to OneDrive.
@@ -56,6 +57,10 @@ namespace MoneyFox.Business.Services
             }
 
             await LoadBackupFolder();
+            await LoadArchiveFolder();
+
+            await DeleteCleanupOldBackups();
+            await ArchiveCurrentBackup();
 
             using (var dbstream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
             {
@@ -70,6 +75,30 @@ namespace MoneyFox.Business.Services
 
                 return uploadedItem != null;
             }
+        }
+
+        private async Task DeleteCleanupOldBackups()
+        {
+            var archiveBackups = await OneDriveClient.Drive.Items[ArchiveFolder?.Id].Children.Request().GetAsync();
+
+            if(archiveBackups.Count < 5) return;
+            var oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
+
+            await OneDriveClient.Drive.Items[oldestBackup?.Id].Request().DeleteAsync();
+        }
+
+        private async Task ArchiveCurrentBackup()
+        {
+            var updateItem = new Item {ParentReference = new ItemReference {Id = ArchiveFolder.Id}};
+
+            var backups = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+            var currentBackup = backups.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+
+            var itemWithUpdates = await OneDriveClient
+                .Drive
+                .Items[currentBackup.Id]
+                .Request()
+                .UpdateAsync(updateItem);
         }
 
         /// <summary>
@@ -180,6 +209,34 @@ namespace MoneyFox.Business.Services
 
             BackupFolder = await OneDriveClient.Drive.Items[root.Id].Children.Request()
                 .AddAsync(folderToCreate);
+        }
+
+        private async Task LoadArchiveFolder()
+        {
+            if (ArchiveFolder != null)
+            {
+                return;
+            }
+
+            var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
+            ArchiveFolder = children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
+
+            if (ArchiveFolder == null)
+            {
+                await CreateArchiveFolder();
+            }
+        }
+
+        private async Task CreateArchiveFolder()
+        {
+            var folderToCreate = new Item
+            {
+                Name = DatabaseConstants.ARCHIVE_FOLDER_NAME,
+                Folder = new Folder()
+            };
+
+            ArchiveFolder =
+                await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().AddAsync(folderToCreate);
         }
     }
 }
