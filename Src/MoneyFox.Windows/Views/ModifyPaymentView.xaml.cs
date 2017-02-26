@@ -5,8 +5,6 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Views
 {
