@@ -35,7 +35,8 @@ namespace MoneyFox.DataAccess.Repositories
                 {
                     query = query.Where(filter);
                 }
-                return query.ToList();
+
+                return query.OrderBy(x => x.Name).ToList();
             }
         }
 
