@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,7 +69,7 @@ namespace MoneyFox.Business.Services
                     .Drive
                     .Root
                     .ItemWithPath(Path.Combine(DatabaseConstants.BACKUP_FOLDER_NAME,
-                        DatabaseConstants.BACKUP_NAME))
+                                                DatabaseConstants.BACKUP_NAME))
                     .Content
                     .Request()
                     .PutAsync<Item>(dbstream);
@@ -89,10 +90,14 @@ namespace MoneyFox.Business.Services
 
         private async Task ArchiveCurrentBackup()
         {
-            var updateItem = new Item {ParentReference = new ItemReference {Id = ArchiveFolder.Id}};
-
             var backups = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
             var currentBackup = backups.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+
+            var updateItem = new Item
+            {
+                ParentReference = new ItemReference {Id = ArchiveFolder.Id},
+                Name = string.Format(DatabaseConstants.BACKUP_ARCHIVE_NAME, DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss"))
+            };
 
             var itemWithUpdates = await OneDriveClient
                 .Drive

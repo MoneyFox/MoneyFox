@@ -36,5 +36,10 @@
         ///     Name of the database backup
         /// </summary>
         public const string BACKUP_NAME = "backupmoneyfox2.db";
+
+        /// <summary>
+        ///     Name of the database backup archive
+        /// </summary>
+        public const string BACKUP_ARCHIVE_NAME = "backupmoneyfox2_{0}.db";
     }
 }
