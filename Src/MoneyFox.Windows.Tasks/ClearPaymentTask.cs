@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.StatisticDataProvider;
@@ -40,7 +40,7 @@ namespace MoneyFox.Windows.Tasks
                 ClearPayments();
 
                 // We have to access the settings object here directly without the settings helper since this thread is executed independently.
-                if (new WindowsCommonSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
+                if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
                 {
                     UpdateMainTile();
                 }

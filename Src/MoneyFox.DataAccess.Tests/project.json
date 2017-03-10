@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.3.0",
+    "Autofac": "4.4.0",
     "AutoFixture": "3.50.2",
     "AutoFixture.Xunit": "3.50.2",
     "MvvmCross.Plugin.File": "4.4.0",

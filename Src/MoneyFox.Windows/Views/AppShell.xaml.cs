@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using FontAwesome.UWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
@@ -212,7 +212,7 @@ namespace MoneyFox.Windows.Views
             }
 
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsPaneOpen &&
-                !new SettingsManager(new WindowsCommonSettings()).IsDarkThemeSelected)
+                !new SettingsManager(new WindowsUwpSettings()).IsDarkThemeSelected)
             {
                 TogglePaneButton.Foreground =
                     (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];

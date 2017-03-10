@@ -2,9 +2,9 @@ using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Extras.MvvmCross;
 using Cheesebaron.MvxPlugins.Connectivity;
-using Cheesebaron.MvxPlugins.Connectivity.WindowsCommon;
+using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Services;
@@ -46,7 +46,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
-            Mvx.RegisterType<ISettings, WindowsCommonSettings>();
+            Mvx.RegisterType<ISettings, WindowsUwpSettings>();
             Mvx.RegisterType<IConnectivity, Connectivity>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
         }

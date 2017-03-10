@@ -1,4 +1,4 @@
-﻿using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+﻿using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyFox.Windows.Tests.Dependencies
@@ -9,14 +9,14 @@ namespace MoneyFox.Windows.Tests.Dependencies
         [TestMethod]
         public void Ctor()
         {
-            var settings = new WindowsCommonSettings();
+            var settings = new WindowsUwpSettings();
             Assert.IsNotNull(settings);
         }
 
         [TestMethod]
         public void GetValues_NoValue_ReturnDefault()
         {
-            Assert.AreEqual(true, new WindowsCommonSettings().GetValue("Fooo", true));
+            Assert.AreEqual(true, new WindowsUwpSettings().GetValue("Fooo", true));
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace MoneyFox.Windows.Tests.Dependencies
             var key = "Foo";
             var value = "abcd";
 
-            var settings = new WindowsCommonSettings();
+            var settings = new WindowsUwpSettings();
             settings.AddOrUpdateValue(key, value);
 
             Assert.AreEqual(value, settings.GetValue(key, "123"));

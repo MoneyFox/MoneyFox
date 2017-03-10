@@ -1,5 +1,5 @@
 ﻿using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
@@ -27,7 +27,7 @@ namespace MoneyFox.Windows.Tasks
                     null);
 
                 new RecurringPaymentManager(paymentManager, paymentRepository,
-                    new SettingsManager(new WindowsCommonSettings())).CheckRecurringPayments();
+                    new SettingsManager(new WindowsUwpSettings())).CheckRecurringPayments();
             }
             finally
             {

@@ -7,7 +7,7 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
 using MoneyFox.Windows.Views;
@@ -44,7 +44,7 @@ namespace MoneyFox.Windows
         {
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
-            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
+            RequestedTheme = new WindowsUwpSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light;
         }
@@ -110,7 +110,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            new SettingsManager(new WindowsCommonSettings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new WindowsUwpSettings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }
