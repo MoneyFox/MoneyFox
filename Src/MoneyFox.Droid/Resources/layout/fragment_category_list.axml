@@ -19,13 +19,13 @@
                 local:MvxBind="Text SearchText"
                 local:MvxLang="Hint SearchStringLabel" />
         </android.support.design.widget.TextInputLayout>
-        <MvxListView
-              android:id="@+id/category_list"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              local:MvxItemTemplate="@layout/listitem_inner_category_list"
-              local:MvxBind="ItemsSource Source" />
+        <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+                android:id="@+id/category_list"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                local:MvxItemTemplate="@layout/listitem_inner_category_list"
+                local:MvxBind="ItemsSource Source" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
