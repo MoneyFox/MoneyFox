@@ -215,8 +215,8 @@ namespace MoneyFox.Business.ViewModels
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
             var deletePaymentSucceded = await paymentManager.DeletePayment(payment);
-            var deleteAccountSucceded = paymentManager.RemovePaymentAmount(payment);
-            if (deletePaymentSucceded && deleteAccountSucceded)
+            var removePaymentAmountSuceed = paymentManager.RemovePaymentAmount(payment);
+            if (deletePaymentSucceded && removePaymentAmountSuceed)
             {
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
