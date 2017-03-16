@@ -93,7 +93,8 @@
                                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                            Text="{Binding Key}" />
                                 <ListView HorizontalAlignment="Stretch"
-                                          Background="{StaticResource ListItemBrush}"
+                                          Margin="-12,0,-12,0"
+                                          Background="Transparent"
                                           IsItemClickEnabled="True"
                                           IsSynchronizedWithCurrentItem="False"
                                           ItemsSource="{Binding}"
@@ -116,7 +117,9 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="dataModels:PaymentViewModel">
                                             <Grid MinWidth="100"
-                                                  Margin="-5,0,0,6"
+                                                  Margin="0,0,0,2"
+                                                  Padding="4"
+                                                  Background="{StaticResource ListItemBrush}"
                                                   HorizontalAlignment="Stretch"
                                                   RightTapped="PaymentViewModelList_RightTapped">
 
