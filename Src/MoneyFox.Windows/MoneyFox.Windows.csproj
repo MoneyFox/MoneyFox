@@ -228,9 +228,6 @@
     <Compile Include="Views\UserControls\SettingsShortcutsUserControl.xaml.cs">
       <DependentUpon>SettingsShortcutsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\TabHeader.xaml.cs">
-      <DependentUpon>TabHeader.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -462,10 +459,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\SettingsShortcutsUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\TabHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
