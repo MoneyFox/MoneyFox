@@ -24,6 +24,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                local:layout_behavior="@string/appbar_scrolling_view_behavior"
                 local:MvxItemTemplate="@layout/listitem_inner_category_list"
                 local:MvxBind="ItemsSource Source" />
     </LinearLayout>
