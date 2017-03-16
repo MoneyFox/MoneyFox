@@ -148,7 +148,7 @@ namespace MoneyFox.Business.ViewModels
             var relatedPayments = paymentRepository
                 .GetList(x => (x.ChargedAccountId == AccountId) || (x.TargetAccountId == AccountId))
                 .OrderByDescending(x => x.Date)
-                .ToList());
+                .ToList();
 
             foreach (var payment in relatedPayments)
             {

@@ -9,6 +9,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
+                                                       IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>

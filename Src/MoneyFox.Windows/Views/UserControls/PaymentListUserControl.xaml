@@ -68,8 +68,10 @@
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
+                          Margin="-12,0,-12,0"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
-                          SelectionMode="None">
+                          SelectionMode="None"
+                          Background="Transparent">
 
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
@@ -84,19 +86,19 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,30,0,0">
+                            <StackPanel Margin="0,30,0,0"
+                                        Padding="4">
                                 <TextBlock Margin="0,0,0,7"
                                            FontSize="18"
                                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                            Text="{Binding Key}" />
-                                <controls:AlternatingRowListView HorizontalAlignment="Stretch"
-                                                                 EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                                 IsItemClickEnabled="True"
-                                                                 IsSynchronizedWithCurrentItem="False"
-                                                                 ItemsSource="{Binding}"
-                                                                 OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                                                 ScrollViewer.VerticalScrollMode="Disabled"
-                                                                 ShowsScrollingPlaceholders="false">
+                                <ListView HorizontalAlignment="Stretch"
+                                          Background="{StaticResource ListItemBrush}"
+                                          IsItemClickEnabled="True"
+                                          IsSynchronizedWithCurrentItem="False"
+                                          ItemsSource="{Binding}"
+                                          ScrollViewer.VerticalScrollMode="Disabled"
+                                          ShowsScrollingPlaceholders="false">
 
                                     <interactivity:Interaction.Behaviors>
                                         <core:EventTriggerBehavior EventName="ItemClick">
@@ -170,7 +172,7 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
 
-                                </controls:AlternatingRowListView>
+                                </ListView>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

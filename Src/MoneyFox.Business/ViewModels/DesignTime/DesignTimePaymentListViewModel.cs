@@ -21,6 +21,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             new DateListGroup<DateListGroup<PaymentViewModel>>("Januar 1992")
             {
                 new DateListGroup<PaymentViewModel>("31.1.1992") {
+                new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
                 new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}}
                 }
             }
