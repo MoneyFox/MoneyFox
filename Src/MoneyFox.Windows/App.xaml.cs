@@ -30,8 +30,7 @@ namespace MoneyFox.Windows
             SetColor();
             Suspending += OnSuspending;
 #if !DEBUG
-            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID,
-                new TelemetryConfiguration {EnableDiagnostics = true});
+            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif
         }
 

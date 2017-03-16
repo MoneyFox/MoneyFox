@@ -1,9 +1,9 @@
 ﻿{
   "dependencies": {
-    "Autofac": "4.3.0",
+    "Autofac": "4.4.0",
     "Autofac.Extras.MvvmCross": "4.0.2",
-    "Cheesebaron.MvxPlugins.Connectivity": "2.2.1",
-    "Cheesebaron.MvxPlugins.Settings": "2.2.1",
+    "Cheesebaron.MvxPlugins.Connectivity": "3.0.3",
+    "Cheesebaron.MvxPlugins.Settings": "3.0.3",
     "Cirrious.FluentLayout": "2.5.0",
     "Microsoft.NETCore.Platforms": "1.1.0",
     "Microsoft.OneDriveSDK": "2.0.6",
