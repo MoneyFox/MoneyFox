@@ -26,10 +26,11 @@
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="dataModels:AccountViewModel">
-            <StackPanel Margin="0,0,0,12"
+        <DataTemplate x:Key="AccountItemTemplate" x:DataType="dataModels:AccountViewModel">
+            <StackPanel Margin="0,0,0,2"
+                        Padding="4"
                         HorizontalAlignment="Stretch"
-                        Background="Transparent"
+                        Background="{StaticResource ListItemBrush}"
                         RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -52,7 +53,6 @@
                 </Grid>
                 <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
             </StackPanel>
-
         </DataTemplate>
     </Page.Resources>
 
@@ -76,14 +76,14 @@
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
 
-            <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
-                                                       EntranceNavigationTransitionInfo.IsTargetElement="True"
-                                                       EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                       ItemTemplate="{StaticResource AccountTemplate}"
-                                                       ItemsSource="{Binding AllAccounts}"
-                                                       OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                       ShowsScrollingPlaceholders="False"
-                                                       WarningBackground="{StaticResource WarningBrush}">
+            <controls:WarningListView HorizontalAlignment="Stretch"
+                                      Margin="-12,0,-12,0"
+                                      EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                      ItemTemplate="{StaticResource AccountItemTemplate}"
+                                      ItemsSource="{Binding AllAccounts}"
+                                      ShowsScrollingPlaceholders="False"
+                                      Background="Transparent"
+                                      WarningBackground="{StaticResource WarningBrush}">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -97,7 +97,7 @@
                         <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </controls:AlternatingRowListViewMainScreen>
+            </controls:WarningListView>
         </ScrollViewer>
 
         <TextBlock x:Uid="AccountsPlaceholder"

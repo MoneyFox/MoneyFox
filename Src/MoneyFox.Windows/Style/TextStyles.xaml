@@ -4,9 +4,7 @@
 
     <Style x:Key="PageTitleTextBlockStyle"
            TargetType="TextBlock"
-           BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="FontWeight"
-                Value="Bold" />
+           BasedOn="{StaticResource HeaderTextBlockStyle}">
         <Setter Property="TextWrapping"
                 Value="NoWrap" />
         <Setter Property="CharacterSpacing"
