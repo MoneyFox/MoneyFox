@@ -251,6 +251,10 @@
       <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MPAndroidChart.Xamarin\MPAndroidChart.csproj">
+      <Project>{9946103e-e7b9-47fa-b6ba-474a6528bff4}</Project>
+      <Name>MPAndroidChart</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_delete.png" />

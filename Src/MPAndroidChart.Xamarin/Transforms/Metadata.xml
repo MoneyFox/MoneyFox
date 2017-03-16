@@ -1,0 +1,51 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='com.github.mikephil']" name="managedName">MikePhil</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting']" name="managedName">MikePhil.Charting</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.buffer']" name="managedName">MikePhil.Charting.Buffer</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.animation']" name="managedName">MikePhil.Charting.Animation</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.exception']" name="managedName">MikePhil.Charting.Exception</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.matrix']" name="managedName">MikePhil.Charting.Matrix</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.utils']" name="managedName">MikePhil.Charting.Util</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.data']" name="managedName">MikePhil.Charting.Data</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.highlight']" name="managedName">MikePhil.Charting.Highlight</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.charts']" name="managedName">MikePhil.Charting.Charts</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.jobs']" name="managedName">MikePhil.Charting.Jobs</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.renderer']" name="managedName">MikePhil.Charting.Renderer</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.renderer.scatter']" name="managedName">MikePhil.Charting.Renderer.Scatter</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.interfaces']" name="managedName">MikePhil.Charting.Interfaces</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']" name="managedName">MikePhil.Charting.Interfaces.Datasets</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.interfaces.dataprovider']" name="managedName">MikePhil.Charting.Interfaces.Dataprovider</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.components']" name="managedName">MikePhil.Charting.Components</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.listener']" name="managedName">MikePhil.Charting.Listener</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.formatter']" name="managedName">MikePhil.Charting.Formatter</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.data.filter']" name="managedName">MikePhil.Charting.Data.Filter</attr>
+
+  <attr path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='ILineDataSet']/method[@name='getMode' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.listener']/interface[@name='OnDrawListener']" name="managedName">IOnDrawListenerSupport</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.listener']/interface[@name='OnChartValueSelectedListener']" name="managedName">IOnChartValueSelectedListenerSupport</attr>
+  <attr path="/api/package[@name='com.github.mikephil.charting.listener']/interface[@name='OnChartGestureListener']" name="managedName">IOnChartGestureListenerSupport</attr>
+  
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.dataprovider']/interface[@name='ChartInterface']/method[@name='getData' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.dataprovider']/interface[@name='BarLineScatterCandleBubbleDataProvider']/method[@name='getData' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryIndex' and count(parameter)=1 and parameter[1][@type='T']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='addEntry' and count(parameter)=1 and parameter[1][@type='T']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='addEntryOrdered' and count(parameter)=1 and parameter[1][@type='T']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForIndex' and count(parameter)=1 and parameter[1][@type='int']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXIndex' and count(parameter)=1 and parameter[1][@type='int']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXIndex' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='com.github.mikephil.charting.data.DataSet.Rounding']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='removeEntry' and count(parameter)=1 and parameter[1][@type='T']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXPos' and count(parameter)=1 and parameter[1][@type='float']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXPos' and count(parameter)=2 and parameter[1][@type='float'] and parameter[2][@type='com.github.mikephil.charting.data.DataSet.Rounding']]"  />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXValue' and count(parameter)=2 and parameter[1][@type='float'] and parameter[2][@type='float']]" />
+  <remove-node path="/api/package[@name='com.github.mikephil.charting.interfaces.datasets']/interface[@name='IDataSet']/method[@name='getEntryForXValue' and count(parameter)=3 and parameter[1][@type='float'] and parameter[2][@type='float'] and parameter[3][@type='com.github.mikephil.charting.data.DataSet.Rounding']]" />
+
+
+  <attr path="/api/package[@name='com.github.mikephil.charting.charts']/class[@name='Chart']/method[@name='calculateOffsets' and count(parameter)=0]" name="visibility">public</attr>
+</metadata>

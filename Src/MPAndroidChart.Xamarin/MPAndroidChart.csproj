@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9946103E-E7B9-47FA-B6BA-474A6528BFF4}</ProjectGuid>
+    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPAndroidChart</RootNamespace>
+    <AssemblyName>MPAndroidChart</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Java7DocPaths>JavaDocs</Java7DocPaths>
+    <JavaDocPaths>JavaDocs</JavaDocPaths>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Java7DocPaths>JavaDocs</Java7DocPaths>
+    <JavaDocPaths>JavaDocs</JavaDocPaths>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>lib\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <Java7DocPaths>JavaDocs</Java7DocPaths>
+    <JavaDocPaths>JavaDocs</JavaDocPaths>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Additions\Buffer\BarBuffer.cs" />
+    <Compile Include="Additions\Util\EntryXComparator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Jars\AboutJars.txt" />
+    <None Include="Additions\AboutAdditions.txt" />
+    <LibraryProjectZip Include="Jars\MPChartLib-release.aar" />
+    <None Include="JavaDocs\package-list" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml">
+      <SubType>Designer</SubType>
+    </TransformFile>
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="JavaDocs\allclasses-frame.html" />
+    <Content Include="JavaDocs\allclasses-noframe.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\ChartAnimator.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\Easing.EasingOption.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\Easing.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\EasingFunction.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\animation\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\AbstractBuffer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\BarBuffer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\HorizontalBarBuffer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\buffer\ScatterBuffer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\BarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\BarLineChartBase.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\BubbleChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\CandleStickChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\Chart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\CombinedChart.DrawOrder.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\CombinedChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\HorizontalBarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\LineChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\PieChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\PieRadarChartBase.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\RadarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\ScatterChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\charts\ScatterChart.ScatterShape.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\AxisBase.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\ComponentBase.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendDirection.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendForm.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendHorizontalAlignment.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendOrientation.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendPosition.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\Legend.LegendVerticalAlignment.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\LimitLine.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\LimitLine.LimitLabelPosition.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\MarkerView.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\XAxis.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\XAxis.XAxisPosition.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\YAxis.AxisDependency.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\YAxis.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\components\YAxis.YAxisLabelPosition.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BarData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BarEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BarLineScatterCandleBubbleData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BarLineScatterCandleBubbleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BaseDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BaseEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BubbleData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BubbleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\BubbleEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\CandleData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\CandleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\CandleEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\ChartData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\CombinedData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\DataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\DataSet.Rounding.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\Entry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\filter\Approximator.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\filter\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\filter\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\filter\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\LineData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\LineDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\LineDataSet.Mode.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\LineRadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\LineScatterCandleRadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\PieData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\PieDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\PieDataSet.ValuePosition.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\PieEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\RadarData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\RadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\RadarEntry.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\ScatterData.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\data\ScatterDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\exception\DrawingDataSetNotCreatedException.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\exception\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\exception\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\exception\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\AxisValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\ColorFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\DefaultAxisValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\DefaultFillFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\DefaultValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FillFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FormattedStringCache.Generic.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FormattedStringCache.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FormattedStringCache.PrimDouble.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FormattedStringCache.PrimFloat.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\FormattedStringCache.PrimIntFloat.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\LargeValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\PercentFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\StackedValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\formatter\ValueFormatter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\BarHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\ChartHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\CombinedHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\Highlight.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\Highlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\HorizontalBarHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\PieHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\PieRadarHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\RadarHighlighter.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\highlight\Range.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\BarDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\BarLineScatterCandleBubbleDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\BubbleDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\CandleDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\ChartInterface.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\CombinedDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\LineDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\dataprovider\ScatterDataProvider.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IBarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IBarLineScatterCandleBubbleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IBubbleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\ICandleDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\ILineDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\ILineRadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\ILineScatterCandleRadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IPieDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IRadarDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\IScatterDataSet.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\interfaces\datasets\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\AnimatedMoveViewJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\AnimatedViewPortJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\AnimatedZoomJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\MoveViewJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\ViewPortJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\jobs\ZoomJob.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\BarLineChartTouchListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\ChartTouchListener.ChartGesture.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\ChartTouchListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\OnChartGestureListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\OnChartValueSelectedListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\OnDrawLineChartTouchListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\OnDrawListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\listener\PieRadarChartTouchListener.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\matrix\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\matrix\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\matrix\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\matrix\Vector3.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\AxisRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\BarChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\BarLineScatterCandleBubbleRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\BarLineScatterCandleBubbleRenderer.XBounds.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\BubbleChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\CandleStickChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\CombinedChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\DataRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\HorizontalBarChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\LegendRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\LineChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\LineRadarRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\LineScatterCandleRadarRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\PieChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\RadarChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\Renderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\ScatterChartRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\ChevronDownShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\ChevronUpShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\CircleShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\CrossShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\ShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\SquareShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\TriangleShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\scatter\XShapeRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\XAxisRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\XAxisRendererHorizontalBarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\XAxisRendererRadarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\YAxisRenderer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\YAxisRendererHorizontalBarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\renderer\YAxisRendererRadarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\ColorTemplate.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\EntryXComparator.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\FileUtils.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\FSize.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\HorizontalViewPortHandler.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\MPPointD.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\MPPointF.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\ObjectPool.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\ObjectPool.Poolable.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\package-frame.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\package-summary.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\package-tree.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\ShapeRendererHandler.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\Transformer.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\TransformerHorizontalBarChart.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\Utils.html" />
+    <Content Include="JavaDocs\com\github\mikephil\charting\utils\ViewPortHandler.html" />
+    <Content Include="JavaDocs\constant-values.html" />
+    <Content Include="JavaDocs\deprecated-list.html" />
+    <Content Include="JavaDocs\help-doc.html" />
+    <Content Include="JavaDocs\index-all.html" />
+    <Content Include="JavaDocs\index.html" />
+    <Content Include="JavaDocs\overview-frame.html" />
+    <Content Include="JavaDocs\overview-summary.html" />
+    <Content Include="JavaDocs\overview-tree.html" />
+    <Content Include="JavaDocs\resources\background.gif" />
+    <Content Include="JavaDocs\resources\tab.gif" />
+    <Content Include="JavaDocs\resources\titlebar.gif" />
+    <Content Include="JavaDocs\resources\titlebar_end.gif" />
+    <Content Include="JavaDocs\serialized-form.html" />
+    <Content Include="JavaDocs\stylesheet.css" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,17 @@
+com.github.mikephil.charting.animation
+com.github.mikephil.charting.buffer
+com.github.mikephil.charting.charts
+com.github.mikephil.charting.components
+com.github.mikephil.charting.data
+com.github.mikephil.charting.data.filter
+com.github.mikephil.charting.exception
+com.github.mikephil.charting.formatter
+com.github.mikephil.charting.highlight
+com.github.mikephil.charting.interfaces.dataprovider
+com.github.mikephil.charting.interfaces.datasets
+com.github.mikephil.charting.jobs
+com.github.mikephil.charting.listener
+com.github.mikephil.charting.matrix
+com.github.mikephil.charting.renderer
+com.github.mikephil.charting.renderer.scatter
+com.github.mikephil.charting.utils
