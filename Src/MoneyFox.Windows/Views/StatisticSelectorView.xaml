@@ -8,9 +8,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels1="using:MoneyFox.Business.ViewModels"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
-                      d:DataContext="{d:DesignInstance viewModels1:StatisticSelectorViewModel,
+                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 

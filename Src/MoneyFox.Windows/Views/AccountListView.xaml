@@ -26,7 +26,8 @@
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="AccountItemTemplate" x:DataType="dataModels:AccountViewModel">
+        <DataTemplate x:Key="AccountItemTemplate"
+                      x:DataType="dataModels:AccountViewModel">
             <StackPanel Margin="0,0,0,2"
                         Padding="4"
                         HorizontalAlignment="Stretch"
@@ -51,10 +52,35 @@
                                Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                TextAlignment="Right" />
                 </Grid>
-                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{x:Bind Iban}" />
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
+
+    <!--  Adaptive triggers  -->
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState>
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="480" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="HeaderTitle.Style"
+                            Value="{ThemeResource PageTitleTextBlockStyle}" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState>
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="HeaderTitle.Style"
+                            Value="{ThemeResource PageTitleTextBlockStylePhone}" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -66,7 +92,7 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountTitle"
+                <TextBlock x:Uid="AccountTitle" Name="HeaderTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
