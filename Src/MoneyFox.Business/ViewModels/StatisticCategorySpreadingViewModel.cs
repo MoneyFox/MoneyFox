@@ -67,6 +67,8 @@ namespace MoneyFox.Business.ViewModels
             SpreadingModel = GetSpreadingModel();
         }
 
+        public List<StatisticItem> StatisticItems { get; set; }
+
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
         /// </summary>
@@ -75,6 +77,9 @@ namespace MoneyFox.Business.ViewModels
             var items = spreadingDataProvider.GetValues(StartDate, EndDate);
 
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
+
+            StatisticItems = statisticItems.ToList();
+
             if (!statisticItems.Any())
             {
                 return new PlotModel();

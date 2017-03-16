@@ -231,7 +231,7 @@
     <AndroidResource Include="Resources\layout\listitem_inner_category_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_barchart.axml">
+    <AndroidResource Include="Resources\layout\activity_cash_flow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -30,7 +30,7 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_barchart);
+            SetContentView(Resource.Layout.activity_cash_flow);
             Title = Strings.CashflowLabel;
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
