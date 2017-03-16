@@ -17,8 +17,6 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
 
         MvxCommand<PaymentViewModel> DeletePaymentCommand { get; }
 
-        ObservableCollection<PaymentViewModel> RelatedPayments { get; }
-
         ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source { get; }
 
         string Title { get; }
