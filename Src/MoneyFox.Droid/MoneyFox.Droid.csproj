@@ -205,7 +205,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_date_range.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_graphical_statistic_with_legend.axml">
       <SubType>AndroidResource</SubType>
