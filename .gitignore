@@ -226,5 +226,4 @@ Src/MoneyFox.Windows/_pkginfo.txt
 Src/MoneyFox.Droid/Resources/Resource.Designer.cs
 Src/.vs/restore.dg
 *.targets
-*.targets
 *.props
