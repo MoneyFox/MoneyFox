@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -8,7 +10,8 @@ using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using OxyPlot.Xamarin.Android;
+using MikePhil.Charting.Data;
+using MikePhil.Charting.Charts;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -18,33 +21,49 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDialogCloseListener
     {
-        private PlotView plotModel;
-
         public void HandleDialogClose()
         {
-            plotModel.Model = ViewModel.CashFlowModel;
+            SetChartData();
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_generic_graphical_statistic);
+            SetContentView(Resource.Layout.activity_barchart);
+            Title = Strings.CashflowLabel;
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
+            SetChartData();
+        }
 
-            Title = Strings.CashflowLabel;
+        private void SetChartData()
+        {
+            var chart = FindViewById<BarChart>(Resource.Id.chart);
+
+            var dataSetdExpenses = new BarDataSet(new List<BarEntry> { new BarEntry(1, (float)ViewModel.CashFlow.Expense.Value) }, ViewModel.CashFlow.Expense.Label);
+            dataSetdExpenses.SetColors(Resources.GetColor(Resource.Color.color_expense, Theme));
+
+            var dataSetIncome = new BarDataSet(new List<BarEntry> { new BarEntry(2, (float)ViewModel.CashFlow.Income.Value) }, ViewModel.CashFlow.Income.Label);
+            dataSetIncome.SetColors(Resources.GetColor(Resource.Color.color_income, Theme));
+
+            var dataSetRevenue = new BarDataSet(new List<BarEntry> { new BarEntry(3, (float)ViewModel.CashFlow.Revenue.Value) }, ViewModel.CashFlow.Revenue.Label);
+            dataSetRevenue.SetColors(Resources.GetColor(Resource.Color.color_revenue, Theme));
+
+            var barData = new BarData(dataSetdExpenses, dataSetIncome, dataSetRevenue);
+            barData.BarWidth = 0.9f;
+            chart.Data = barData;
+            chart.SetPinchZoom(false);
+            chart.SetFitBars(true);
+            chart.Invalidate();
         }
 
         protected override void OnStart()
         {
-            OnResume();
+            base.OnStart();
 
             ViewModel.LoadCommand.Execute();
-            //we have to assign this here since binding won't work.
-            plotModel.Model = ViewModel.CashFlowModel;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

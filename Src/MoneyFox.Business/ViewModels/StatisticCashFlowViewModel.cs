@@ -1,6 +1,8 @@
-﻿using MoneyFox.Business.StatisticDataProvider;
+﻿using System.Collections.Generic;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Models;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -48,12 +50,16 @@ namespace MoneyFox.Business.ViewModels
             CashFlowModel = GetCashFlowModel();
         }
 
+        public CashFlow CashFlow { get; set; }
+
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
         public PlotModel GetCashFlowModel()
         {
             var cashFlow = cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
+
+            CashFlow = cashFlow;
 
             var model = new PlotModel();
 
