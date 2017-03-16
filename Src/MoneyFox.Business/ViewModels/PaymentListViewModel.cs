@@ -78,16 +78,7 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public IPaymentListViewActionViewModel ViewActionViewModel
-        {
-            get { return viewActionViewModel; }
-            private set
-            {
-                viewActionViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        public IPaymentListViewActionViewModel ViewActionViewModel => viewActionViewModel;
 
         /// <summary>
         ///     Returns all PaymentViewModel who are assigned to this repository
@@ -165,7 +156,7 @@ namespace MoneyFox.Business.ViewModels
             RelatedPayments = new ObservableCollection<PaymentViewModel>(paymentRepository
                 .GetList(x => (x.ChargedAccountId == AccountId) || (x.TargetAccountId == AccountId))
                 .OrderByDescending(x => x.Date)
-                .ToList();
+                .ToList());
 
             foreach (var payment in RelatedPayments)
             {
