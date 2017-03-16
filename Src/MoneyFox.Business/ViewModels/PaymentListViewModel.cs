@@ -25,6 +25,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IModifyDialogService modifyDialogService;
 
+        private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private IBalanceViewModel balanceViewModel;
         private IPaymentListViewActionViewModel viewActionViewModel;
@@ -51,7 +52,7 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
-        public bool IsPaymentsEmtpy => (Source != null) && !Source.Any();
+        public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
 
         public int AccountId
         {
@@ -83,6 +84,22 @@ namespace MoneyFox.Business.ViewModels
             private set
             {
                 viewActionViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        ///     Returns all PaymentViewModel who are assigned to this repository
+        ///     Currently only used for Android to get the selected PaymentViewModel.
+        /// </summary>
+        public ObservableCollection<PaymentViewModel> RelatedPayments
+        {
+            get { return relatedPayments; }
+            set
+            {
+                if (relatedPayments == value) return;
+                relatedPayments = value;
                 RaisePropertyChanged();
             }
         }
@@ -145,17 +162,17 @@ namespace MoneyFox.Business.ViewModels
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            var relatedPayments = paymentRepository
+            RelatedPayments = new ObservableCollection<PaymentViewModel>(paymentRepository
                 .GetList(x => (x.ChargedAccountId == AccountId) || (x.TargetAccountId == AccountId))
                 .OrderByDescending(x => x.Date)
                 .ToList();
 
-            foreach (var payment in relatedPayments)
+            foreach (var payment in RelatedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }
 
-            var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(relatedPayments,
+            var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
                 CultureInfo.CurrentUICulture,
                 s => s.Date.ToString("D", CultureInfo.InvariantCulture),
                 s => s.Date,

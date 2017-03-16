@@ -15,6 +15,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(s => { });
         public MvxCommand DeleteAccountCommand => new MvxCommand(() => { });
         public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(s => { });
+        public ObservableCollection<PaymentViewModel> RelatedPayments => new ObservableCollection<PaymentViewModel>();
 
         public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source => new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>
         {
