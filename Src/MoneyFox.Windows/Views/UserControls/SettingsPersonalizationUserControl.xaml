@@ -14,7 +14,10 @@
                    TextWrapping="WrapWholeWords"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
         <ToggleSwitch Margin="5" x:Uid="ThemeToggleSwitch"
-                      IsOn="{Binding IsDarkThemeEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      OnContent="Dark Theme" OffContent="Light Theme" />
+                      IsOn="{Binding UseSystemTheme,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      OnContent="System Theme" OffContent="Custom Setting" />
+        <ToggleSwitch Margin="5,5,0,5" x:Uid="ThemeToggleSwitch"
+                    IsOn="{Binding IsDarkThemeEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    OnContent="Dark Theme" OffContent="Light Theme" />
     </StackPanel>
 </UserControl>

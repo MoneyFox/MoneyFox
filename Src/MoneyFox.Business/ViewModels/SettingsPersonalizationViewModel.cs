@@ -16,5 +16,13 @@ namespace MoneyFox.Business.ViewModels
             get { return settingsManager.IsDarkThemeSelected; }
             set { settingsManager.IsDarkThemeSelected = value; }
         }
+
+        public bool UseSystemTheme
+        {
+            get { return settingsManager.UseSystemTheme; }
+            set { settingsManager.UseSystemTheme = value; }
+        }
+
+        
     }
 }
