@@ -26,10 +26,12 @@
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="dataModels:AccountViewModel">
-            <StackPanel Margin="0,0,0,12"
+        <DataTemplate x:Key="AccountItemTemplate"
+                      x:DataType="dataModels:AccountViewModel">
+            <StackPanel Margin="0,0,0,2"
+                        Padding="4"
                         HorizontalAlignment="Stretch"
-                        Background="Transparent"
+                        Background="{StaticResource ListItemBrush}"
                         RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -50,11 +52,35 @@
                                Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                TextAlignment="Right" />
                 </Grid>
-                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind Iban}" />
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{x:Bind Iban}" />
             </StackPanel>
-
         </DataTemplate>
     </Page.Resources>
+
+    <!--  Adaptive triggers  -->
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState>
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="480" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="HeaderTitle.Style"
+                            Value="{ThemeResource PageTitleTextBlockStyle}" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState>
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="HeaderTitle.Style"
+                            Value="{ThemeResource PageTitleTextBlockStylePhone}" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -66,7 +92,7 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountTitle"
+                <TextBlock x:Uid="AccountTitle" Name="HeaderTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
@@ -76,14 +102,14 @@
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
 
-            <controls:AlternatingRowListViewMainScreen HorizontalAlignment="Stretch"
-                                                       EntranceNavigationTransitionInfo.IsTargetElement="True"
-                                                       EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                       ItemTemplate="{StaticResource AccountTemplate}"
-                                                       ItemsSource="{Binding AllAccounts}"
-                                                       OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                       ShowsScrollingPlaceholders="False"
-                                                       WarningBackground="{StaticResource WarningBrush}">
+            <controls:WarningListView HorizontalAlignment="Stretch"
+                                      Margin="-12,0,-12,0"
+                                      EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                      ItemTemplate="{StaticResource AccountItemTemplate}"
+                                      ItemsSource="{Binding AllAccounts}"
+                                      ShowsScrollingPlaceholders="False"
+                                      Background="Transparent"
+                                      WarningBackground="{StaticResource WarningBrush}">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -97,7 +123,7 @@
                         <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </controls:AlternatingRowListViewMainScreen>
+            </controls:WarningListView>
         </ScrollViewer>
 
         <TextBlock x:Uid="AccountsPlaceholder"

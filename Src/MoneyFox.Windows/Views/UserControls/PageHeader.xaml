@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Height="48"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Top"
              HorizontalContentAlignment="Stretch"
              VerticalContentAlignment="Top"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
              mc:Ignorable="d">
 
     <Grid Background="{x:Bind Background}">
