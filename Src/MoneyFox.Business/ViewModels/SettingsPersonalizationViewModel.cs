@@ -23,6 +23,11 @@ namespace MoneyFox.Business.ViewModels
             set { settingsManager.UseSystemTheme = value; }
         }
 
-        
+        public bool UseCustomTheme
+        {
+            get { return !UseSystemTheme; }
+        }
+
+
     }
 }
