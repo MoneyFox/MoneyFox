@@ -26,6 +26,12 @@
 
     <SolidColorBrush x:Key="SplitViewToggleButtonForegroundDark" Color="Black" />
 
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                     Color="{StaticResource ColorCustomBackground}" />
+
+    <SolidColorBrush x:Key="ListItemBrush"
+                     Color="{StaticResource ListItemColor}" />
+
     <!--  Accent Color  -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlDisabledAccentBrush" Color="{ThemeResource SystemAccentColor}" />

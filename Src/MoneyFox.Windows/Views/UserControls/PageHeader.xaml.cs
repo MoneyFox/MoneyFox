@@ -1,4 +1,4 @@
-﻿using Windows.Foundation;
+﻿      using Windows.Foundation;
 using Windows.UI.Xaml;
 
 namespace MoneyFox.Windows.Views.UserControls
