@@ -68,6 +68,7 @@
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />

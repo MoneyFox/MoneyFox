@@ -8,9 +8,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels1="using:MoneyFox.Business.ViewModels"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
-                      d:DataContext="{d:DesignInstance viewModels1:StatisticSelectorViewModel,
+                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
@@ -18,24 +18,16 @@
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <StackPanel Margin="0,2,0,4"
+            <StackPanel Margin="0,0,0,2"
+                        Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
-                        Background="Transparent">
+                        Padding="4">
                 <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
                            Text="{x:Bind Name}"
                            TextTrimming="CharacterEllipsis" />
                 <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            Text="{x:Bind Description}"
                            TextWrapping="WrapWholeWords" />
-                <Path Height="5"
-                      Margin="-7,0,-7,0"
-                      Data="M9,242 L456,242"
-                      Fill="{ThemeResource SystemControlHighlightChromeHighBrush}"
-                      Stretch="Fill"
-                      Stroke="{ThemeResource SystemControlHighlightChromeHighBrush}"
-                      StrokeThickness="1"
-                      UseLayoutRounding="False" />
-
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -55,17 +47,26 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
         <ScrollViewer Grid.Row="1"
-                      Margin="7,7,7,0"
-                      HorizontalAlignment="Center"
+                      Margin="0,7,0,0"
+                      HorizontalAlignment="Stretch"
                       EntranceNavigationTransitionInfo.IsTargetElement="True"
                       VerticalScrollBarVisibility="Disabled">
 
-            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}" ItemsSource="{Binding StatisticItems}">
+            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}" ItemsSource="{Binding StatisticItems}" Background="Transparent" Margin="-12,0,-12,0">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
                         <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
         </ScrollViewer>
     </Grid>

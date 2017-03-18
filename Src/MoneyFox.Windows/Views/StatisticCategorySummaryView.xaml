@@ -9,6 +9,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
+                                                       IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -21,10 +24,13 @@
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
-                  VerticalAlignment="Center"
-                  Background="Transparent">
-                <TextBlock Text="{Binding Category}" TextTrimming="CharacterEllipsis" />
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                  Padding="4"
+                  Margin="0,0,0,2"
+                  Background="{StaticResource ListItemBrush}">
+                <TextBlock Text="{Binding Category}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
                     <TextBlock HorizontalAlignment="Right"
                                Text="{Binding Value,
                                               Converter={StaticResource AmountFormatConverter}}"
@@ -66,17 +72,17 @@
             <ScrollViewer Grid.Row="1"
                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                           VerticalScrollBarVisibility="Auto">
-                <controls:AlternatingRowListView EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                 ItemTemplate="{StaticResource CategoryTemplate}"
-                                                 ItemsSource="{Binding CategorySummary}"
-                                                 OddRowBackground="{StaticResource ListViewBackgroundOddBrush}">
+                <ListView Background="Transparent"   
+                          Margin="-12,0,-12,0"
+                    ItemTemplate="{StaticResource CategoryTemplate}"
+                    ItemsSource="{Binding CategorySummary}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                </controls:AlternatingRowListView>
+                </ListView>
             </ScrollViewer>
         </Grid>
         <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">

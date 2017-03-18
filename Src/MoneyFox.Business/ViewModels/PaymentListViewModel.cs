@@ -78,16 +78,7 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public IPaymentListViewActionViewModel ViewActionViewModel
-        {
-            get { return viewActionViewModel; }
-            private set
-            {
-                viewActionViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        public IPaymentListViewActionViewModel ViewActionViewModel => viewActionViewModel;
 
         /// <summary>
         ///     Returns all PaymentViewModel who are assigned to this repository

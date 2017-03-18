@@ -117,7 +117,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AlternatingRowListViewMainScreen.cs" />
+    <Compile Include="Controls\WarningListView.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
@@ -204,9 +204,6 @@
     <Compile Include="Views\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\AccountListUserControl.xaml.cs">
-      <DependentUpon>AccountListUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -230,9 +227,6 @@
     </Compile>
     <Compile Include="Views\UserControls\SettingsShortcutsUserControl.xaml.cs">
       <DependentUpon>SettingsShortcutsUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TabHeader.xaml.cs">
-      <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
@@ -436,10 +430,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\AccountListUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -469,10 +459,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\SettingsShortcutsUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\TabHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
