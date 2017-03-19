@@ -41,11 +41,27 @@ namespace MoneyFox.Windows
         /// </summary>
         private void SetColor()
         {
+
+
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
-            RequestedTheme = new WindowsUwpSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
-                ? ApplicationTheme.Dark
-                : ApplicationTheme.Light;
+
+            if(new WindowsUwpSettings().GetValue(SettingsManager.USE_SYSTEM_THEME_KEYNAME, true))
+            {
+                // System theme setting:
+                // Light - #FFFFFFFF
+                // Dark - #FF000000
+
+                RequestedTheme = new UISettings().GetColorValue(UIColorType.Background).ToString() == "#FF000000"
+                    ? ApplicationTheme.Dark
+                    : ApplicationTheme.Light;
+            }
+            else
+            {
+                RequestedTheme = new WindowsUwpSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
+                    ? ApplicationTheme.Dark
+                    : ApplicationTheme.Light;
+            }
         }
 
         /// <summary>

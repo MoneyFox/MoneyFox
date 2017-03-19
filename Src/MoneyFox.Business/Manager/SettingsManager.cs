@@ -34,8 +34,10 @@ namespace MoneyFox.Business.Manager
         ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
         /// </summary>
         public const string DARK_THEME_SELECTED_KEYNAME = "dark_theme_selected";
-
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
+
+        public const string USE_SYSTEM_THEME_KEYNAME = "use_system_theme";
+        private const bool USE_SYSTEM_THEME_KEYDEFAULT = true;
 
         private readonly ISettings settings;
 
@@ -100,6 +102,12 @@ namespace MoneyFox.Business.Manager
         {
             get { return settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value); }
+        }
+
+        public bool UseSystemTheme
+        {
+            get { return settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value); }
         }
 
         public bool IsLoggedInToBackupService
