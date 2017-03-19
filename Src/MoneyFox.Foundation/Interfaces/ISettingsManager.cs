@@ -12,6 +12,7 @@ namespace MoneyFox.Foundation.Interfaces
         bool PassportEnabled { get; set; }
         DateTime LastDatabaseUpdate { get; set; }
         bool IsDarkThemeSelected { get; set; }
+        bool UseSystemTheme { get; set; }
         bool IsLoggedInToBackupService { get; set; }
     }
 }
