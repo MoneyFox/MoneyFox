@@ -9,8 +9,7 @@
     "MvvmCross.Plugin.WebBrowser": "4.4.0",
     "MvvmCross.Tests": "4.4.0",
     "xunit": "2.2.0",
-    "xunit.runner.visualstudio": "2.2.0",
-    "Xunit.Should.Extension": "1.0.4"
+    "xunit.runner.visualstudio": "2.2.0"
   },
   "frameworks": {
     ".NETFramework,Version=v4.6.1": {}

@@ -5,10 +5,10 @@ using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using Ploeh.AutoFixture;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Manager
 {

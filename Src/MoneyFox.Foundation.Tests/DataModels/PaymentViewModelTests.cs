@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Foundation.DataModels;
 using Ploeh.AutoFixture;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Foundation.Tests.DataModels
 {

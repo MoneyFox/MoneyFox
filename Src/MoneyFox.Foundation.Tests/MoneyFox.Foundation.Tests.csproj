@@ -55,6 +55,7 @@
     <Compile Include="DataModels\RecurringPaymentViewModelTests.cs" />
     <Compile Include="DataModels\PaymentViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShouldExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

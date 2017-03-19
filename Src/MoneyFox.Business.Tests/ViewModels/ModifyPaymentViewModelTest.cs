@@ -8,11 +8,11 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Plugins.Messenger;
 using Ploeh.AutoFixture;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {

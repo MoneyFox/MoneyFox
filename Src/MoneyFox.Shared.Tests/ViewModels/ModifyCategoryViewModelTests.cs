@@ -11,6 +11,7 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Foundation.Tests;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
