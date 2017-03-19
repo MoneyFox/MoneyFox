@@ -55,5 +55,11 @@ namespace MoneyFox.Business.Tests.Manager
         {
             new SettingsManager(new Settings()).IsLoggedInToBackupService.ShouldBeFalse();
         }
+
+        [Fact]
+        public void UseSystemTheme_DefaultValue()
+        {
+            new SettingsManager(new Settings()).UseSystemTheme.ShouldBeTrue();
+        }
     }
 }
