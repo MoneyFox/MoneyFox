@@ -1,8 +1,8 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Wpf;
 using MoneyFox.Business.Manager;
+using MoneyFox.Foundation.Tests;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Manager
 {

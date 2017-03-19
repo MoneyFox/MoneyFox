@@ -3,6 +3,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;

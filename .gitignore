@@ -224,7 +224,7 @@ Src/MoneyFox.Windows.Tests/MoneyFox.Windows.Tests_TemporaryKey.pfx
 Src/MoneyFox.Windows/_pkginfo.txt
 *.appx
 Src/MoneyFox.Droid/Resources/Resource.Designer.cs
-Src/.vs/restore.dg
+.vs/
 *.targets
 *.targets
 *.props

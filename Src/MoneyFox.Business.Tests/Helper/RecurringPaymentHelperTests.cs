@@ -2,8 +2,8 @@
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Helper
 {

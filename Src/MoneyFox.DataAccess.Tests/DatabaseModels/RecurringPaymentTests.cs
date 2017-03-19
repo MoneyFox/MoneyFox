@@ -3,8 +3,8 @@ using AutoMapper;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.DataAccess.Tests.DatabaseModels
 {

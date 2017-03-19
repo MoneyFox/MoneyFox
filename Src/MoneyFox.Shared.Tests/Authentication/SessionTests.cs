@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Test.Core;
 
