@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticCategorySummaryViewModel : StatisticViewModel
+    public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
         private ObservableCollection<StatisticItem> categorySummary;

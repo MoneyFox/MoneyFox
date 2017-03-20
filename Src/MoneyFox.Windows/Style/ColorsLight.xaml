@@ -6,6 +6,9 @@
     <Color x:Key="ColorPrimary">#263873</Color>
     <Color x:Key="ColorPrimaryDark">#1a264c</Color>
 
+    <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
+    <Color x:Key="ColorCustomBackground">WhiteSmoke</Color>
+
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
     <Color x:Key="ColorAppBar">#111632</Color>
@@ -14,6 +17,8 @@
     <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
 
     <Color x:Key="ListEvenColor">White</Color>
-    <Color x:Key="ListOddColor">#FFF2F2F2</Color>
+    <Color x:Key="ListOddColor">White</Color>
+    
+    <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 </ResourceDictionary>

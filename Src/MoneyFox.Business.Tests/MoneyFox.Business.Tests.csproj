@@ -52,6 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\MoneyFox.Foundation.Tests\ShouldExtension.cs">
+      <Link>ShouldExtension.cs</Link>
+    </Compile>
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />

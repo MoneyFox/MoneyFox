@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using MvvmCross.Plugins.File.Wpf;
 using MvvmCross.Plugins.Sqlite.Wpf;
 using Ploeh.AutoFixture;
-using XunitShouldExtension;
 
 namespace MoneyFox.DataAccess.Tests.Repository
 {

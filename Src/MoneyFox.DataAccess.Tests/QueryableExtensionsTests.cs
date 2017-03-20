@@ -4,9 +4,9 @@ using Autofac;
 using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using Ploeh.AutoFixture;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.DataAccess.Tests
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyFox.Business.Converter;
+using MoneyFox.Foundation.Tests;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Converter
 {

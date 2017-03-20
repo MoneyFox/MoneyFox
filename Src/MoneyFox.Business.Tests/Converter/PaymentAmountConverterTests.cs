@@ -2,11 +2,11 @@
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Converter
 {

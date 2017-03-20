@@ -4,6 +4,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Core.Views;
@@ -11,7 +12,6 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {

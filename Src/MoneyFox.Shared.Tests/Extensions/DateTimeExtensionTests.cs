@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Extensions;
+using MoneyFox.Foundation.Tests;
 
 namespace MoneyFox.Shared.Tests.Extensions
 {

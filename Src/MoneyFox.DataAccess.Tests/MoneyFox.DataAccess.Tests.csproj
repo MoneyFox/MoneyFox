@@ -52,6 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\MoneyFox.Foundation.Tests\ShouldExtension.cs">
+      <Link>ShouldExtension.cs</Link>
+    </Compile>
     <Compile Include="DatabaseModels\RecurringPaymentTests.cs" />
     <Compile Include="Repository\PaymentRepositoryTests.cs" />
     <Compile Include="DatabaseModels\PaymentTests.cs" />

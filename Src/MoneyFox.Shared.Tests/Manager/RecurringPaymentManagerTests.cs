@@ -8,6 +8,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Tests;
 using Moq;
 
 namespace MoneyFox.Shared.Tests.Manager

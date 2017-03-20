@@ -9,12 +9,12 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 using Ploeh.AutoFixture;
 using Xunit;
-using XunitShouldExtension;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MoneyFox.Business.Tests.ViewModels

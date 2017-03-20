@@ -1,8 +1,8 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Wpf;
 using MoneyFox.Business.Manager;
+using MoneyFox.Foundation.Tests;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Business.Tests.Manager
 {
@@ -54,6 +54,12 @@ namespace MoneyFox.Business.Tests.Manager
         public void IsLoggedInToBackupService_DefaultValue()
         {
             new SettingsManager(new Settings()).IsLoggedInToBackupService.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void UseSystemTheme_DefaultValue()
+        {
+            new SettingsManager(new Settings()).UseSystemTheme.ShouldBeTrue();
         }
     }
 }
