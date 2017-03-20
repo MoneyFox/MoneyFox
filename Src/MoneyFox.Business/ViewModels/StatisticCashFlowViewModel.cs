@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MoneyFox.Business.StatisticDataProvider;
+﻿using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
@@ -25,7 +24,6 @@ namespace MoneyFox.Business.ViewModels
         {
             this.settingsManager = settingsManager;
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
-            CashFlowModel = GetCashFlowModel();
         }
 
         /// <summary>

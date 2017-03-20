@@ -50,9 +50,10 @@ namespace MoneyFox.Droid.Activities
             var dataSetRevenue = new BarDataSet(new List<BarEntry> { new BarEntry(3, (float)ViewModel.CashFlow.Revenue.Value) }, ViewModel.CashFlow.Revenue.Label);
             dataSetRevenue.SetColors(Resources.GetColor(Resource.Color.color_revenue, Theme));
 
-            var barData = new BarData(dataSetdExpenses, dataSetIncome, dataSetRevenue);
-            barData.BarWidth = 0.9f;
+            var barData = new BarData(dataSetdExpenses, dataSetIncome, dataSetRevenue) {BarWidth = 0.9f};
+
             chart.Data = barData;
+            chart.Description.Enabled = false;
             chart.SetPinchZoom(false);
             chart.SetFitBars(true);
             chart.Invalidate();
@@ -61,7 +62,6 @@ namespace MoneyFox.Droid.Activities
         protected override void OnStart()
         {
             base.OnStart();
-
             ViewModel.LoadCommand.Execute();
         }
 

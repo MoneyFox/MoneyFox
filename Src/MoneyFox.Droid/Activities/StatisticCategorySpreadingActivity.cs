@@ -1,14 +1,19 @@
+using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MikePhil.Charting.Charts;
+using MikePhil.Charting.Components;
+using MikePhil.Charting.Data;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using OxyPlot.Xamarin.Android;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -19,33 +24,64 @@ namespace MoneyFox.Droid.Activities
     public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>,
         IDialogCloseListener
     {
-        private PlotView plotModel;
-
         public void HandleDialogClose()
         {
-            plotModel.Model = ViewModel.SpreadingModel;
+            SetChartData();
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_graphical_statistic_with_legend);
+            SetContentView(Resource.Layout.activity_category_spreading);
+            Title = Strings.CategorySpreadingLabel;
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
-
-            Title = Strings.CategorySpreadingLabel;
-        }
-
-        protected override void OnStart()
-        {
-            OnResume();
 
             ViewModel.LoadCommand.Execute();
-            plotModel.Model = ViewModel.SpreadingModel;
+
+            SetChartData();
         }
+
+        private void SetChartData()
+        {
+            var chart = FindViewById<PieChart>(Resource.Id.chart);
+
+            // enable rotation of the chart by touch
+            chart.RotationAngle = 0;
+            chart.RotationEnabled = true;
+            chart.HighlightPerTapEnabled = true;
+            chart.SetUsePercentValues(true);
+            chart.Description.Enabled = false;
+
+            chart.DrawHoleEnabled = true;
+            chart.SetHoleColor(Color.Transparent);
+            chart.HoleRadius = 7f;
+
+            var entries = new List<PieEntry>();
+            var values = ViewModel.StatisticItems.Select(x => x.Value).ToList();
+            for (int i = 0; values.Count <= i; i++)
+            {
+                entries.Add(new PieEntry((float)values[i], 0));
+            }
+
+            var labels = ViewModel.StatisticItems.Select(x => x.Label);
+
+            var dataset = new PieDataSet(entries, "Categories");
+            
+            var data = new PieData(dataset);
+
+            chart.Data = data;
+            chart.Invalidate();
+        }
+
+
+        //protected override void OnStart()
+        //{
+        //    base.OnStart();
+        //    ViewModel.LoadCommand.Execute();
+        //}
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {

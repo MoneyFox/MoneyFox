@@ -20,6 +20,14 @@ namespace MoneyFox.Business.ViewModels
             OxyColor.Parse("#d49078")
         };
 
+        public readonly string[] ColorCodes =
+        {
+            "#393939", "#4b4b4b",
+            "#5d5d5d", "#a75538",
+            "#c16342", "#cb7a5d",
+            "#d49078"
+        };
+
         private readonly ISettingsManager settingsManager;
 
         private readonly CategorySpreadingDataProvider spreadingDataProvider;

@@ -234,6 +234,9 @@
     <AndroidResource Include="Resources\layout\activity_cash_flow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_category_spreading.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />
