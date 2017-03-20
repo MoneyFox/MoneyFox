@@ -6,9 +6,12 @@ using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MikePhil.Charting.Animation;
 using MikePhil.Charting.Charts;
 using MikePhil.Charting.Components;
 using MikePhil.Charting.Data;
+using MikePhil.Charting.Formatter;
+using MikePhil.Charting.Util;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
@@ -48,40 +51,68 @@ namespace MoneyFox.Droid.Activities
         {
             var chart = FindViewById<PieChart>(Resource.Id.chart);
 
-            // enable rotation of the chart by touch
             chart.RotationAngle = 0;
             chart.RotationEnabled = true;
-            chart.HighlightPerTapEnabled = true;
+            chart.HighlightPerTapEnabled = false;
             chart.SetUsePercentValues(true);
             chart.Description.Enabled = false;
+            chart.SetExtraOffsets(5, 10, 5, 5);
 
             chart.DrawHoleEnabled = true;
             chart.SetHoleColor(Color.Transparent);
             chart.HoleRadius = 7f;
 
+            chart.AnimateY(1400, Easing.EasingOption.EaseInOutQuad);
+
             var entries = new List<PieEntry>();
             var values = ViewModel.StatisticItems.Select(x => x.Value).ToList();
-            for (int i = 0; values.Count <= i; i++)
+            var labels = ViewModel.StatisticItems.Select(x => x.Label).ToList();
+
+            for (int i = 0; i < values.Count; i++)
             {
-                entries.Add(new PieEntry((float)values[i], 0));
+                entries.Add(new PieEntry((float)values[i], labels[i]));
             }
 
-            var labels = ViewModel.StatisticItems.Select(x => x.Label);
+            var dataSet = new PieDataSet(entries, "")
+            {
+                SliceSpace = 1f
+            };
 
-            var dataset = new PieDataSet(entries, "Categories");
-            
-            var data = new PieData(dataset);
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading1, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading2, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading3, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading4, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading5, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading6, Theme));
+            dataSet.AddColor(Resources.GetColor(Resource.Color.color_spreading7, Theme));
 
+            var data = new PieData(dataSet);
+            data.SetValueFormatter(new PercentFormatter());
+            data.SetValueTextSize(11f);
+            data.SetValueTextColor(Color.White);
+
+            chart.SetDrawEntryLabels(false);
             chart.Data = data;
+
+            var legend = chart.Legend;
+            legend.TextSize = 12f;
+            legend.Orientation = Legend.LegendOrientation.Vertical;
+            legend.SetDrawInside(false);
+            legend.VerticalAlignment = Legend.LegendVerticalAlignment.Top;
+            legend.HorizontalAlignment = Legend.LegendHorizontalAlignment.Left;
+            legend.XEntrySpace = 7f;
+            legend.YEntrySpace = 0;
+            legend.YOffset = 0f;
+
+            chart.HighlightValues(null);
             chart.Invalidate();
         }
 
-
-        //protected override void OnStart()
-        //{
-        //    base.OnStart();
-        //    ViewModel.LoadCommand.Execute();
-        //}
+        protected override void OnStart()
+        {
+            base.OnStart();
+            ViewModel.LoadCommand.Execute();
+        }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {

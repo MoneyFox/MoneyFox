@@ -19,11 +19,11 @@ namespace MoneyFox.Business.ViewModels
 
         public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, 
             ISettingsManager settingsManager,
-            IMvxMessenger messenger) 
+            IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider) 
             : base(messenger)
         {
             this.settingsManager = settingsManager;
-            cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
+            this.cashFlowDataProvider = cashFlowDataProvider;
         }
 
         /// <summary>

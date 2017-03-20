@@ -11,6 +11,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MikePhil.Charting.Data;
 using MikePhil.Charting.Charts;
+using MikePhil.Charting.Components;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -34,6 +35,9 @@ namespace MoneyFox.Droid.Activities
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            ViewModel.LoadCommand.Execute();
+
             SetChartData();
         }
 
@@ -56,6 +60,17 @@ namespace MoneyFox.Droid.Activities
             chart.Description.Enabled = false;
             chart.SetPinchZoom(false);
             chart.SetFitBars(true);
+
+            var legend = chart.Legend;
+            legend.TextSize = 12f;
+            legend.Orientation = Legend.LegendOrientation.Horizontal;
+            legend.SetDrawInside(true);
+            legend.VerticalAlignment = Legend.LegendVerticalAlignment.Bottom;
+            legend.HorizontalAlignment = Legend.LegendHorizontalAlignment.Left;
+            legend.XEntrySpace = 7f;
+            legend.YEntrySpace = 0;
+            legend.YOffset = 0f;
+
             chart.Invalidate();
         }
 

@@ -14,6 +14,15 @@
   <color name="color_income">#43bc72</color>
   <color name="color_revenue">#3b9db7</color>
 
+  <!--Spreading Colors-->
+  <color name="color_spreading1">#393939</color>
+  <color name="color_spreading2">#4b4b4b</color>
+  <color name="color_spreading3">#5d5d5d</color>
+  <color name="color_spreading4">#a75538</color>
+  <color name="color_spreading5">#c16342</color>
+  <color name="color_spreading6">#cb7a5d</color>
+  <color name="color_spreading7">#d49078</color>
+  
   <!-- White to Black -->
   <color name="white">#FFFFFF</color>
   <color name="light_gray">#EFF2F5</color>

@@ -14,19 +14,19 @@
     <include
         layout="@layout/toolbar_actionbar" />
 
-    <TextView
-        android:id="@+id/text_view_graphical_statistic_title"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        local:MvxBind="Text Title" />
-
-    <com.github.mikephil.charting.charts.PieChart
-          android:id="@+id/chart"
+      <TextView
+          android:id="@+id/text_view_graphical_statistic_title"
+          android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"/>
+          android:layout_height="wrap_content"
+          android:gravity="left"
+          local:MvxBind="Text Title" />
 
+      <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:paddingBottom="12dp"/>
   </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
