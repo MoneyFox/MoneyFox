@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Platform;
@@ -28,8 +29,6 @@ namespace MoneyFox.Business.Manager
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-
-        private bool oldBackupRestored;
 
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
@@ -164,30 +163,17 @@ namespace MoneyFox.Business.Manager
         {
             if (!connectivity.IsConnected) return;
 
-            var backupNames = GetBackupName(await backupService.GetFileNames());
-            await backupService.Restore(backupNames.Item1, backupNames.Item2);
+            await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
 
-            if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
-            {
-                fileStore.DeleteFile(DatabaseConstants.DB_NAME);
-            }
+            var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
+
+            if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
 
             databaseManager.CreateDatabase();
-            databaseManager.MigrateDatabase();
 
             paymentRepository.ReloadCache();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
-        }
-
-        private Tuple<string, string> GetBackupName(ICollection<string> filenames)
-        {
-            if (filenames.Contains(DatabaseConstants.BACKUP_NAME))
-            {
-                return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME);
-            }
-            oldBackupRestored = true;
-            return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD);
         }
     }
 }
