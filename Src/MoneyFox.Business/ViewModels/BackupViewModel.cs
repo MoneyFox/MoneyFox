@@ -20,9 +20,9 @@ namespace MoneyFox.Business.ViewModels
         private bool backupAvailable;
 
         public BackupViewModel(IBackupManager backupManager,
-            IDialogService dialogService,
-            IConnectivity connectivity,
-            ISettingsManager settingsManager)
+                               IDialogService dialogService,
+                               IConnectivity connectivity,
+                               ISettingsManager settingsManager)
         {
             this.backupManager = backupManager;
             this.dialogService = dialogService;
@@ -101,7 +101,7 @@ namespace MoneyFox.Business.ViewModels
             private set
             {
                 if (backupAvailable == value) return;
-                backupAvailable = value; 
+                backupAvailable = value;
                 RaisePropertyChanged();
             }
         }
@@ -165,10 +165,17 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
-            dialogService.ShowLoadingDialog();
-            await backupManager.RestoreBackup();
-            dialogService.HideLoadingDialog();
-            await ShowCompletionNote();
+            try
+            {
+                dialogService.ShowLoadingDialog();
+                await backupManager.RestoreBackup();
+                dialogService.HideLoadingDialog();
+                await ShowCompletionNote();
+            }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.ErrorMessageRestore);
+            }
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

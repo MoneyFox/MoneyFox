@@ -7,18 +7,6 @@
     {
         /// <summary>
         ///     Name of the sqlite database
-        ///     DEPREDCATED: Use DB_NAME instead
-        /// </summary>
-        public const string DB_NAME_OLD = "moneyfox.db";
-
-        /// <summary>
-        ///     Name of the database backup
-        ///     DEPREDCATED: Use BACKUP_NAME instead
-        /// </summary>
-        public const string BACKUP_NAME_OLD = "backupmoneyfox.db";
-
-        /// <summary>
-        ///     Name of the sqlite database
         /// </summary>
         public const string DB_NAME = "moneyfox2.db";
 
