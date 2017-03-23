@@ -49,6 +49,15 @@ namespace MoneyFox.Business.Helpers
             if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+
+                double value = recurringPayment.StartDate.Day;  //the Day value i.e. 31
+                double max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                double difference = -(value - max);
+
+                if (difference < 0)
+                {
+                    date = date.AddDays(difference);
+                }
             }
 
             return new PaymentViewModel
@@ -117,3 +126,4 @@ namespace MoneyFox.Business.Helpers
         }
     }
 }
+ 

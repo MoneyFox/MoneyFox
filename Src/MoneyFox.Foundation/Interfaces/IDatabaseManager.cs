@@ -17,7 +17,5 @@ namespace MoneyFox.Foundation.Interfaces
         /// </summary>
         /// <returns>Established SQLite Connection.</returns>
         SQLiteConnection GetConnection();
-
-        void MigrateDatabase();
     }
 }

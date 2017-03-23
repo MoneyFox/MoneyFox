@@ -739,6 +739,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an issue during restoring your backup. Please contact us if this error persist..
+        /// </summary>
+        public static string ErrorMessageRestore {
+            get {
+                return ResourceManager.GetString("ErrorMessageRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured while saving the item..
         /// </summary>
         public static string ErrorMessageSave {
