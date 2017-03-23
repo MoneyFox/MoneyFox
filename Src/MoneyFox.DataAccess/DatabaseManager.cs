@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
@@ -29,7 +26,6 @@ namespace MoneyFox.DataAccess
             this.fileStore = fileStore;
 
             CreateDatabase();
-            MigrateDatabase();
         }
 
         /// <summary>
@@ -53,56 +49,6 @@ namespace MoneyFox.DataAccess
                 db.CreateTable<Category>();
                 db.CreateTable<Payment>();
                 db.CreateTable<RecurringPayment>();
-            }
-        }
-
-        public void MigrateDatabase()
-        {
-            if (fileStore.Exists(DatabaseConstants.DB_NAME_OLD))
-            {
-                using (
-                    var dbOld = connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME_OLD, false)))
-                {
-                    using (var db = GetConnection())
-                    {
-                        db.InsertAll(dbOld.Table<AccountViewModel>());
-                        db.InsertAll(dbOld.Table<CategoryViewModel>());
-
-                        var recPaymentList = dbOld.Table<RecurringPaymentViewModel>().ToList();
-
-                        var accounts = db.Table<AccountViewModel>().ToList();
-
-                        var paymentsToMigrate = new List<PaymentViewModel>();
-                        foreach (var payment in dbOld.Table<PaymentViewModel>().ToList())
-                        {
-                            if (accounts.Exists(x => x.Id == payment.ChargedAccountId))
-                            {
-                                paymentsToMigrate.Add(payment);
-                            }
-                        }
-
-                        foreach (
-                            var payment in paymentsToMigrate.Where(x => x.IsRecurring && (x.RecurringPaymentId == 0)))
-                        {
-                            payment.IsRecurring = false;
-                        }
-
-                        foreach (var recurringPayment in recPaymentList)
-                        {
-                            var recIdOld = recurringPayment.Id;
-                            db.Insert(recurringPayment);
-
-                            foreach (var payment in paymentsToMigrate.Where(x => x.RecurringPaymentId == recIdOld))
-                            {
-                                payment.RecurringPaymentId = db.Table<RecurringPaymentViewModel>().LastOrDefault().Id;
-                            }
-                        }
-
-                        db.InsertAll(paymentsToMigrate);
-                    }
-                }
-
-                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
         }
 

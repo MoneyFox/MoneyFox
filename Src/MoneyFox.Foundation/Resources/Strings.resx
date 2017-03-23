@@ -624,4 +624,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="PasswordEmptyTitle" xml:space="preserve">
     <value>Password is empty</value>
   </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+  </data>
 </root>
