@@ -92,6 +92,8 @@ namespace MoneyFox.Business.Services
             var backups = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
             var currentBackup = backups.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
+            if (currentBackup == null) return;
+
             var updateItem = new Item
             {
                 ParentReference = new ItemReference {Id = ArchiveFolder.Id},
