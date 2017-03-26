@@ -71,7 +71,6 @@
     <Compile Include="Activities\StatisticCashFlowActivity.cs" />
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
-    <Compile Include="Activities\StatisticMonthlyCashFlowActivity.cs" />
     <Compile Include="BackgroundTaskManager.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
@@ -132,8 +131,6 @@
     <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
     <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
-    <AndroidResource Include="Resources\layout\activity_generic_graphical_statistic.axml" />
-    <AndroidResource Include="Resources\layout\activity_graphical_statistic_with_legend.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_modify_account.axml" />
@@ -187,9 +184,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\activity_generic_graphical_statistic.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\icon_wide.png" />
     <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml">
       <SubType>AndroidResource</SubType>
@@ -218,9 +212,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_date_range.axml">
       <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_graphical_statistic_with_legend.axml">
-      <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_legend_item.axml">
       <SubType>AndroidResource</SubType>
