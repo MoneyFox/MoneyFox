@@ -35,9 +35,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Foundation.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Business.Tests", "MoneyFox.Business.Tests\MoneyFox.Business.Tests.csproj", "{8318F191-C206-4DC3-AE67-F34BF5B84E0B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{C669C705-DA69-434A-9835-76CFF1E71D65}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPAndroidChart", "MPAndroidChart.Xamarin\MPAndroidChart.csproj", "{9946103E-E7B9-47FA-B6BA-474A6528BFF4}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Droid", "MoneyFox.Droid\MoneyFox.Droid.csproj", "{A89DECE5-94C8-410F-B247-658D5EB04841}"
 EndProject
 Global
