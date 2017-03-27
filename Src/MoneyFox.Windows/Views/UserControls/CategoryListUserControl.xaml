@@ -1,7 +1,6 @@
 ﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.CategoryListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,7 +20,9 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="dataModels:CategoryViewModel">
             <StackPanel MinWidth="300"
-                        Margin="0,6,0,6"
+                        Margin="0,0,0,2"
+                        Padding="4"
+                        Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         RightTapped="CategoryListRightTapped">
                 <FlyoutBase.AttachedFlyout>
@@ -81,15 +82,15 @@
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
 
-                <controls:AlternatingRowListView EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                 IsItemClickEnabled="True"
-                                                 IsSynchronizedWithCurrentItem="False"
-                                                 ItemTemplate="{StaticResource CategoryTemplate}"
-                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                 OddRowBackground="{StaticResource ListViewBackgroundOddBrush}">
+                <ListView IsItemClickEnabled="True"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="-12,0,-12,0"
+                          ItemTemplate="{StaticResource CategoryTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Groups}}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                     <ListView.ItemContainerStyle>
@@ -101,7 +102,7 @@
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
                     </ListView.GroupStyle>
-                </controls:AlternatingRowListView>
+                </ListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"

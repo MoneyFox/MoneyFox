@@ -8,7 +8,7 @@ namespace MoneyFox.Windows.Controls
     public class WarningListView : ListView
     {
         public static readonly DependencyProperty WarningBackgroundProperty =
-            DependencyProperty.Register("WarningBackground", typeof(Brush), typeof(AlternatingRowListView), null);
+            DependencyProperty.Register("WarningBackground", typeof(Brush), typeof(ListView), null);
       
 
         public Brush WarningBackground
