@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using MoneyFox.Business.StatisticDataProvider;
+﻿using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
@@ -28,12 +27,7 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <summary>
-        ///     Used by Android
-        /// </summary>
-        public CashFlow CashFlow { get; set; }
-
-        /// <summary>
-        ///     Used by Windows
+        ///     Contains the Statistic items to display
         /// </summary>
         public MvxObservableCollection<StatisticItem> StatisticItems { get; set; }
 
@@ -42,12 +36,10 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         private void LoadCashFlowData()
         {
-            var cashFlow = cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
-
+            //TODO: Unit Test for order!
+            //TODO: Unit Test for selection.
             StatisticItems.Clear();
-            StatisticItems.Add(new StatisticItem {Label = cashFlow.Income.Label, Value = cashFlow.Income.Value});
-            StatisticItems.Add(new StatisticItem { Label = cashFlow.Expense.Label, Value = cashFlow.Expense.Value });
-            StatisticItems.Add(new StatisticItem { Label = cashFlow.Revenue.Label, Value = cashFlow.Revenue.Value });
+            StatisticItems.AddRange(cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
         }
     }
 }

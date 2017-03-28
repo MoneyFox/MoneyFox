@@ -6,23 +6,8 @@ namespace MoneyFox.Foundation.Models
 {
     public class StatisticItem : INotifyPropertyChanged
     {
-        private string category;
         private string label;
         private double value;
-
-        /// <summary>
-        ///     Value used to group the items
-        /// </summary>
-        public string Category
-        {
-            get { return category; }
-            set
-            {
-                if (category == value) return;
-                category = value;
-                RaisePropertyChanged();
-            }
-        }
 
         /// <summary>
         ///     Value of this item

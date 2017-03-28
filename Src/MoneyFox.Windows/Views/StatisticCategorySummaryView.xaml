@@ -1,7 +1,6 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCategorySummaryView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:controls="using:MoneyFox.Windows.Controls"
                       xmlns:converter="using:MoneyFox.Windows.Converter"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,17 +26,13 @@
                   Padding="4"
                   Margin="0,0,0,2"
                   Background="{StaticResource ListItemBrush}">
-                <TextBlock Text="{Binding Category}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal"
                             VerticalAlignment="Center">
                     <TextBlock HorizontalAlignment="Right"
                                Text="{Binding Value,
                                               Converter={StaticResource AmountFormatConverter}}"
-                               TextAlignment="Right" />
-                    <TextBlock Margin="5,0,0,0"
-                               HorizontalAlignment="Right"
-                               Text="{Binding Label}"
                                TextAlignment="Right" />
                 </StackPanel>
             </Grid>

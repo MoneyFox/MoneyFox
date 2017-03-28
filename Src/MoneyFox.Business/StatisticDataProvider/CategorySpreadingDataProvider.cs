@@ -40,7 +40,7 @@ namespace MoneyFox.Business.StatisticDataProvider
                     into temp
                     select new StatisticItem
                     {
-                        Category = temp.Key.category,
+                        Label = temp.Key.category,
                         // we subtract income payments here so that we have all expenses without presign
                         Value = temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount)
                     })
@@ -61,7 +61,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             var totAmount = statisticList.Sum(x => x.Value);
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Label = statisticItem.Category
+                statisticItem.Label = statisticItem.Label
                                       + ": "
                                       + statisticItem.Value.ToString("C")
                                       + " ("
@@ -80,13 +80,13 @@ namespace MoneyFox.Business.StatisticDataProvider
 
             var othersItem = new StatisticItem
             {
-                Category = "Others",
+                Label = "Others",
                 Value = tempStatisticList
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
             };
 
-            othersItem.Label = othersItem.Category + ": " + othersItem.Value;
+            othersItem.Label = othersItem.Label + ": " + othersItem.Value;
 
             if (othersItem.Value > 0)
             {

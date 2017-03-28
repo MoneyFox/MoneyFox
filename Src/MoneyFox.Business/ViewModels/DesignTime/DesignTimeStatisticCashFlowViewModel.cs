@@ -8,13 +8,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
     {
         public string Title => "I AM A MIGHTY TITLE";
 
-        public CashFlow CashFlow => new CashFlow
-        {
-            Expense = new StatisticItem { Label = "Expense", Category = "Expense",  Value = 1234},
-            Income = new StatisticItem { Label = "Income", Category = "Income",  Value = 1465},
-            Revenue = new StatisticItem { Label = "Revenue", Category = "Revenue",  Value = 543},
-        };
-
         public MvxObservableCollection<StatisticItem> StatisticItems => new MvxObservableCollection<StatisticItem>
         {
             new StatisticItem {Label = "Expense", Value = 1234},
