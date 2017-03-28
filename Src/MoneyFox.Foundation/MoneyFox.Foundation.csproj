@@ -68,6 +68,8 @@
     <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\ISettingsManager.cs" />
+    <Compile Include="Interfaces\ViewModels\IStatisticCashFlowViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />

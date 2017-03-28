@@ -23,6 +23,7 @@
     "Newtonsoft.Json": "9.0.1",
     "NotificationsExtensions.Win10": "14332.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha",
+    "Telerik.UI.for.UniversalWindowsPlatform": "1.0.0.1",
     "UniversalRateReminder": "2.2.0"
   },
   "frameworks": {
