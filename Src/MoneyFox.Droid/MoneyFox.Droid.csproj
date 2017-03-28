@@ -30,6 +30,14 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <Debugger>.Net (Xamarin)</Debugger>
+    <AotAssemblies>False</AotAssemblies>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -63,7 +71,6 @@
     <Compile Include="Activities\StatisticCashFlowActivity.cs" />
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
-    <Compile Include="Activities\StatisticMonthlyCashFlowActivity.cs" />
     <Compile Include="BackgroundTaskManager.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
@@ -124,8 +131,6 @@
     <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
     <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
-    <AndroidResource Include="Resources\layout\activity_generic_graphical_statistic.axml" />
-    <AndroidResource Include="Resources\layout\activity_graphical_statistic_with_legend.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_modify_account.axml" />
@@ -144,20 +149,52 @@
     <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
     <AndroidResource Include="Resources\layout\fragment_navigation.axml" />
     <AndroidResource Include="Resources\layout\fragment_navigation_header.axml" />
+    <AndroidResource Include="Resources\menu\navigation_drawer.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
+    <AndroidResource Include="Resources\layout\listitem_account.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_category.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_category_summary.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_payment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
+    <AndroidResource Include="Resources\drawable\icon_wide.png" />
+    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_general.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
-    <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\header_payment_list.axml" />
-    <AndroidResource Include="Resources\layout\listitem_account.axml" />
-    <AndroidResource Include="Resources\layout\listitem_category.axml" />
-    <AndroidResource Include="Resources\layout\listitem_category_summary.axml" />
-    <AndroidResource Include="Resources\layout\listitem_inner_category_list.axml" />
-    <AndroidResource Include="Resources\layout\listitem_inner_payment_list.axml" />
-    <AndroidResource Include="Resources\layout\listitem_legend_item.axml" />
-    <AndroidResource Include="Resources\layout\listitem_payment.axml" />
-    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
+    <AndroidResource Include="Resources\menu\menu_save.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_add.axml" />
+    <AndroidResource Include="Resources\layout\listitem_legend_item.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\header_payment_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_inner_payment_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_inner_category_list.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_cash_flow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_category_spreading.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

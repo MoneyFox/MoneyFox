@@ -3,7 +3,18 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="7dp">
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginRight="12dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="5dp"
+        android:text="@string/select_date_range"/>
     <TextView
         android:id="@+id/textview_start_date"
         android:layout_width="match_parent"
@@ -33,7 +44,7 @@
         android:layout_height="wrap_content"
         local:MvxBind="Text EndDate, Converter=DateTimeFormat" />
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="5dp"
         android:background="@color/med_gray" />
@@ -46,5 +57,6 @@
         android:layout_marginRight="12dp"
         android:textColor="@color/colorAccent"
         android:layout_marginBottom="5dp"
+        android:clickable="true"
         android:text="@string/text_done"/>
 </LinearLayout>
