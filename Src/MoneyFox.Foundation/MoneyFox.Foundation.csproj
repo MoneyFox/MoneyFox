@@ -89,7 +89,6 @@
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Models\CashFlow.cs" />
-    <Compile Include="Models\LegendItem.cs" />
     <Compile Include="Models\StatisticItem.cs" />
     <Compile Include="Models\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

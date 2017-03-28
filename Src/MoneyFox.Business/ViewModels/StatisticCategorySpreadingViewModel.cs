@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Models;
@@ -11,7 +10,6 @@ namespace MoneyFox.Business.ViewModels
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
-        private ObservableCollection<LegendItem> legendList;
 
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
             IMvxMessenger messenger) 
@@ -21,23 +19,8 @@ namespace MoneyFox.Business.ViewModels
             StatisticItems = new MvxObservableCollection<StatisticItem>();
         }
 
-        /// <summary>
-        ///     A collection with the current items for the legend.
-        /// </summary>
-        public ObservableCollection<LegendItem> LegendList
-        {
-            get { return legendList; }
-            set
-            {
-                if (legendList == value) return;
-                legendList = value;
-                RaisePropertyChanged();
-            }
-        }
-
         protected override void Load()
         {
-            LegendList = new ObservableCollection<LegendItem>();
             LoadStatisticData();
         }
 
