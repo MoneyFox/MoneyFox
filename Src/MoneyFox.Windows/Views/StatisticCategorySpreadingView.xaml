@@ -11,6 +11,7 @@
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySpreadingViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
@@ -42,7 +43,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -61,17 +63,45 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <chart:RadPieChart PaletteName="DefaultDark">
+            <chart:RadPieChart PaletteName="DefaultDark" x:Name="chart">
                 <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
                                  RadiusFactor="0.6">
                     <chart:DoughnutSeries.ValueBinding>
                         <chart:PropertyNameDataPointBinding PropertyName="Value" />
                     </chart:DoughnutSeries.ValueBinding>
+                    <chart:PieSeries.LegendTitleBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:PieSeries.LegendTitleBinding>
                 </chart:DoughnutSeries>
             </chart:RadPieChart>
         </Grid>
 
-        <CommandBar Grid.Row="3"
+        <Grid Grid.Row="3">
+            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
+                <primitives:RadLegendControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </primitives:RadLegendControl.ItemsPanel>
+                <primitives:RadLegendControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Fill="{Binding Fill}"
+                                     Stroke="{Binding Stroke}"
+                                     StrokeThickness="1"
+                                     Width="10"
+                                     Height="10" />
+                            <TextBlock Text="{Binding Title}"
+                                       Foreground="{Binding Fill}"
+                                       Margin="10"
+                                       FontStyle="Italic" />
+                        </StackPanel>
+                    </DataTemplate>
+                </primitives:RadLegendControl.ItemTemplate>
+            </primitives:RadLegendControl>
+        </Grid>
+
+        <CommandBar Grid.Row="4"
                     Height="24"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
