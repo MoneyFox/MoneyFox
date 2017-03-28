@@ -16,9 +16,6 @@
     <Color x:Key="AppForegroundColorPrimary">#FF2B343D</Color>
     <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
 
-    <Color x:Key="ListEvenColor">White</Color>
-    <Color x:Key="ListOddColor">White</Color>
-    
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 </ResourceDictionary>
