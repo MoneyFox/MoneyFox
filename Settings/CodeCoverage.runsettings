@@ -41,21 +41,10 @@
                 <ModulePath>.*Tests.dll</ModulePath>
                 <ModulePath>.*xunit.*</ModulePath>
                 <ModulePath>.*xunit.*</ModulePath>
+                <ModulePath>.*cheesebaron.*</ModulePath>
+                <ModulePath>.*sqlitenetextensions.dll</ModulePath>
               </Exclude>
             </ModulePaths>
-
-            <!-- Match fully qualified names of functions: -->
-            <!-- (Use "\." to delimit namespaces in C# or Visual Basic, "::" in C++.)  -->
-            <Functions>
-              <Exclude>
-                <Function>^Fabrikam\.UnitTest\..*</Function>
-                <Function>^std::.*</Function>
-                <Function>^ATL::.*</Function>
-                <Function>.*::__GetTestMethodInfo.*</Function>
-                <Function>^Microsoft::VisualStudio::CppCodeCoverageFramework::.*</Function>
-                <Function>^Microsoft::VisualStudio::CppUnitTestFramework::.*</Function>
-              </Exclude>
-            </Functions>
 
             <!-- Match attributes on any code element: -->
             <Attributes>
@@ -69,24 +58,6 @@
                 <Attribute>^System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute$</Attribute>
               </Exclude>
             </Attributes>
-
-            <!-- Match the path of the source files in which each method is defined: -->
-            <Sources>
-              <Exclude>
-                <Source>.*\\atlmfc\\.*</Source>
-                <Source>.*\\vctools\\.*</Source>
-                <Source>.*\\public\\sdk\\.*</Source>
-                <Source>.*\\microsoft sdks\\.*</Source>
-                <Source>.*\\vc\\include\\.*</Source>
-              </Exclude>
-            </Sources>
-
-            <!-- Match the company name property in the assembly: -->
-            <CompanyNames>
-              <Exclude>
-                <CompanyName>.*microsoft.*</CompanyName>
-              </Exclude>
-            </CompanyNames>
 
             <!-- Match the public key token of a signed assembly: -->
             <PublicKeyTokens>
