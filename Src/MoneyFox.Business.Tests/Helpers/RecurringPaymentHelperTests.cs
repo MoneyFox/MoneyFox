@@ -5,7 +5,7 @@ using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Tests;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.Helper
+namespace MoneyFox.Business.Tests.Helpers
 {
     public class RecurringPaymentHelperTests
     {

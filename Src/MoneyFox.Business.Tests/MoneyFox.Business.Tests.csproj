@@ -62,7 +62,8 @@
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
-    <Compile Include="Helper\RecurringPaymentHelperTests.cs" />
+    <Compile Include="Helpers\RecurringPaymentHelperTests.cs" />
+    <Compile Include="Helpers\UtilitiesTest.cs" />
     <Compile Include="Manager\PaymentManagerTests.cs" />
     <Compile Include="Manager\SettingsManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
