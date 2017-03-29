@@ -1,7 +1,6 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
 using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MoneyFox.Business.Tests.Extensions
 {
@@ -10,7 +9,7 @@ namespace MoneyFox.Business.Tests.Extensions
         [Fact]
         public void GetFirstDayOfMonth()
         {
-            Assert.AreEqual(new DateTime(2017, 03, 01), new DateTime(2017, 03, 29).GetFirstDayOfMonth());
+            Assert.Equal(new DateTime(2017, 03, 01), new DateTime(2017, 03, 29).GetFirstDayOfMonth());
         }
 
         [Theory]
@@ -19,7 +18,7 @@ namespace MoneyFox.Business.Tests.Extensions
         [InlineData(04, 30)]
         public void GetLastDayOfMonth(int month, int expectedDay)
         {
-            Assert.AreEqual(new DateTime(2017, month, expectedDay), new DateTime(2017, month, 15).GetLastDayOfMonth());
+            Assert.Equal(new DateTime(2017, month, expectedDay), new DateTime(2017, month, 15).GetLastDayOfMonth());
         }
     }
 }

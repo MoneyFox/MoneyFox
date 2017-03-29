@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using MoneyFox.Business.ViewModels;
@@ -15,7 +14,6 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 using Ploeh.AutoFixture;
 using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
@@ -29,7 +27,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
         [Fact]
         public void Title_EditAccount_CorrectTitle()
-        {
+        {            
+            // Arrange
             var accountname = "Sparkonto";
 
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -43,26 +42,31 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedAccount = new AccountViewModel {Id = 3, Name = accountname}
             };
 
+            // Act / Assert
             viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
         }
 
         [Fact]
         public void Title_AddAccount_CorrectTitle()
         {
+            // Arrange
             var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IBackupManager>().Object)
             { IsEdit = false};
 
+            // Act / Assert
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
         }
 
-        [Fact]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names()
+        [Theory]
+        [InlineData("Test AccountViewModel", "Test AccountViewModel")]
+        [InlineData("Test AccountViewModel", "TESt AccountViewModel")]
+        public void SaveCommand_DoesNotAllowDuplicateNames(string name1, string name2)
         {
+            // Arrange
             var accountList = new List<AccountViewModel>();
-
             var settingsManagerMock = new Mock<ISettingsManager>();
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -91,50 +95,17 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedAccount = newAccount
             };
 
+            // Act
             viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, accountList.Count());
-        }
 
-        [Fact]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
-        {
-            var accountList = new List<AccountViewModel>();
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(accountList);
-            accountRepositorySetup.Setup(c => c.Save(It.IsAny<AccountViewModel>()))
-                .Callback((AccountViewModel acc) => { accountList.Add(acc); });
-
-            var account = new AccountViewModel
-            {
-                Id = 1,
-                Name = "Test AccountViewModel"
-            };
-            var newAccount = new AccountViewModel
-            {
-                Name = "TESt AccountViewModel"
-            };
-            accountList.Add(account);
-
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false,
-                SelectedAccount = newAccount
-            };
-
-            viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, accountList.Count);
+            // Assert
+            Assert.Equal(1, accountList.Count);
         }
 
         [Fact]
         public void SaveCommand_SavesAccount()
         {
+            // Arrange
             var accountList = new List<AccountViewModel>();
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -160,13 +131,17 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedAccount = account
             };
 
+            // Act
             viewmodel.SaveCommand.Execute();
-            Assert.AreEqual(1, accountList.Count);
+
+            // Assert
+            Assert.Equal(1, accountList.Count);
         }
 
         [Fact]
         public void Save_UpdateTimeStamp()
         {
+            // Arrange
             var account = new AccountViewModel {Id = 0, Name = "AccountViewModel"};
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -187,8 +162,10 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedAccount = account
             };
 
+            // Act
             viewmodel.SaveCommand.Execute();
 
+            // Assert
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
@@ -238,11 +215,10 @@ namespace MoneyFox.Business.Tests.ViewModels
         [InlineData("3,500.5", 3500.5, "it-IT")]
         [InlineData("3,500.50", 3500.5, "it-IT")]
         [InlineData("3.500,5", 3500.5, "it-IT")]
-        public void AmountString_CorrectConvertedAmount(string amount, double convertedAmount, string culture)
+        public void AmountString(string amount, double convertedAmount, string culture)
         {
+            // Arrange
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
-
-            // Setup
             var account = new Fixture().Create<AccountViewModel>();
 
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -257,7 +233,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 SelectedAccount = account
             };
 
-            // Execute
+            // Act
             viewmodel.AmountString = amount;
 
             // Assert

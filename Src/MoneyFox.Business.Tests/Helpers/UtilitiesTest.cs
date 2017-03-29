@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Tests;
