@@ -134,13 +134,19 @@ namespace MoneyFox.Business.Tests.Helpers
         }
 
         [Theory]
-        [InlineData(PaymentRecurrence.Daily, 1)]
-        [InlineData(PaymentRecurrence.Weekly, 8)]
-        [InlineData(PaymentRecurrence.Biweekly, 14)]
-        [InlineData(PaymentRecurrence.Monthly, 31)]
-        [InlineData(PaymentRecurrence.Bimonthly, 62)]
-        [InlineData(PaymentRecurrence.Yearly, 365)]
-        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed)
+        [InlineData(PaymentRecurrence.Daily, 1, true)]
+        [InlineData(PaymentRecurrence.Weekly, 8, true)]
+        [InlineData(PaymentRecurrence.Biweekly, 14, true)]
+        [InlineData(PaymentRecurrence.Monthly, 31, true)]
+        [InlineData(PaymentRecurrence.Bimonthly, 62, true)]
+        [InlineData(PaymentRecurrence.Yearly, 365, true)]
+        [InlineData(PaymentRecurrence.Daily, 0, false)]
+        [InlineData(PaymentRecurrence.Weekly, 5, false)]
+        [InlineData(PaymentRecurrence.Biweekly, 10, false)]
+        [InlineData(PaymentRecurrence.Monthly, 15, false)]
+        [InlineData(PaymentRecurrence.Bimonthly, 20, false)]
+        [InlineData(PaymentRecurrence.Yearly, 300, false)]
+        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed, bool expectedResult)
         {
             var account = new AccountViewModel {Id = 2};
 
@@ -156,7 +162,7 @@ namespace MoneyFox.Business.Tests.Helpers
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
                 new PaymentViewModel {Date = DateTime.Today.AddDays(-amountOfDaysPassed), IsCleared = true})
-                .ShouldBeTrue();
+                .ShouldBe(expectedResult);
         }
 
         [Theory]
