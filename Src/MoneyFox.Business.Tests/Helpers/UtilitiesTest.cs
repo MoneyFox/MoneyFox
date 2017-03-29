@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Tests;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.Helper
+namespace MoneyFox.Business.Tests.Helpers
 {
-    [TestClass]
     public class UtilitiesTest
     {
-        [TestMethod]
+        [Fact]
         public void RoundStatisticItems_ListOfItems_ListWithRoundedItems()
         {
             var statisticItems = new List<StatisticItem>
@@ -32,30 +32,25 @@ namespace MoneyFox.Shared.Tests.Helper
                     Value = 9
                 }
             };
-            Utilities.RoundStatisticItems(statisticItems);
-            statisticItems[0].Value.ShouldBe(3.23);
-            statisticItems[1].Value.ShouldBe(6.59);
-            statisticItems[2].Value.ShouldBe(55.39);
-            statisticItems[3].Value.ShouldBe(9);
+            var result = Utilities.RoundStatisticItems(statisticItems).ToList();
+            result[0].Value.ShouldBe(3.23);
+            result[1].Value.ShouldBe(6.59);
+            result[2].Value.ShouldBe(55.39);
+            result[3].Value.ShouldBe(9);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
             Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof(DateTime));
         }
 
-        [TestMethod]
-        public void FormatLargeNumbers_NumberWithFloat_ValidString()
+        [Theory]
+        [InlineData(6000000.45)]
+        [InlineData(6000000)]
+        [InlineData(6000000.4567)]
+        public void FormatLargeNumbers_ValidString(double amount)
         {
-            const double amount = 6000000.45;
-            Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
-        }
-
-        [TestMethod]
-        public void FormatLargeNumbers_NumberWithoutFloat_ValidString()
-        {
-            const double amount = 6000000;
             Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
         }
     }
