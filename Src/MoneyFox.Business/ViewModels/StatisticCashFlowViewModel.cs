@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Foundation.Models;
 using MvvmCross.Plugins.Messenger;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -18,12 +19,11 @@ namespace MoneyFox.Business.ViewModels
 
         public StatisticCashFlowViewModel(IPaymentRepository paymentRepository, 
             ISettingsManager settingsManager,
-            IMvxMessenger messenger) 
+            IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider) 
             : base(messenger)
         {
             this.settingsManager = settingsManager;
-            cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
-            CashFlowModel = GetCashFlowModel();
+            this.cashFlowDataProvider = cashFlowDataProvider;
         }
 
         /// <summary>
@@ -48,12 +48,16 @@ namespace MoneyFox.Business.ViewModels
             CashFlowModel = GetCashFlowModel();
         }
 
+        public CashFlow CashFlow { get; set; }
+
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
         public PlotModel GetCashFlowModel()
         {
             var cashFlow = cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
+
+            CashFlow = cashFlow;
 
             var model = new PlotModel();
 

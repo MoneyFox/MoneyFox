@@ -18,11 +18,6 @@ namespace MoneyFox.Business.ViewModels
                 Name = Strings.CashflowLabel,
                 Description = Strings.CashflowDescription,
                 Type = StatisticType.Cashflow
-            },new StatisticSelectorType
-            {
-                Name = Strings.CashFlowHistoryLabel,
-                Description = Strings.CashFlowHistoryDescription,
-                Type = StatisticType.CashflowHistory
             },
             new StatisticSelectorType
             {
@@ -58,10 +53,6 @@ namespace MoneyFox.Business.ViewModels
 
                 case StatisticType.CategorySummary:
                     ShowViewModel<StatisticCategorySummaryViewModel>();
-                    break;
-
-                case StatisticType.CashflowHistory:
-                    ShowViewModel<StatisticMonthlyCashFlowViewModel>();
                     break;
             }
         }

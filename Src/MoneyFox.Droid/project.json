@@ -10,6 +10,7 @@
     "Microsoft.CSharp": "4.3.0",
     "Microsoft.NETCore.Platforms": "1.1.0",
     "Microsoft.OneDriveSDK": "2.0.6",
+    "MPAndroidChart": "3.0.1.1",
     "MvvmCross.Binding": "4.4.0",
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Droid.Shared": "4.4.0",

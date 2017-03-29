@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MoneyFox.Foundation.Models
@@ -31,7 +32,7 @@ namespace MoneyFox.Foundation.Models
             get { return value; }
             set
             {
-                if (this.value == value) return;
+                if (Math.Abs(this.value - value) < 0.01) return;
                 this.value = value;
                 RaisePropertyChanged();
             }
