@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -55,10 +56,12 @@
     <Compile Include="..\MoneyFox.Foundation.Tests\ShouldExtension.cs">
       <Link>ShouldExtension.cs</Link>
     </Compile>
+    <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
+    <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Helper\RecurringPaymentHelperTests.cs" />
     <Compile Include="Manager\PaymentManagerTests.cs" />
     <Compile Include="Manager\SettingsManagerTests.cs" />
