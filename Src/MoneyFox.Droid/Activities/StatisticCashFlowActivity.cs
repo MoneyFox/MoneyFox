@@ -45,13 +45,13 @@ namespace MoneyFox.Droid.Activities
         {
             var chart = FindViewById<BarChart>(Resource.Id.chart);
 
-            var dataSetdExpenses = new BarDataSet(new List<BarEntry> { new BarEntry(1, (float)ViewModel.CashFlow.Expense.Value) }, ViewModel.CashFlow.Expense.Label);
+            var dataSetdExpenses = new BarDataSet(new List<BarEntry> { new BarEntry(0, (float)ViewModel.StatisticItems[0].Value) }, ViewModel.StatisticItems[0].Label);
             dataSetdExpenses.SetColors(Resources.GetColor(Resource.Color.color_expense, Theme));
 
-            var dataSetIncome = new BarDataSet(new List<BarEntry> { new BarEntry(2, (float)ViewModel.CashFlow.Income.Value) }, ViewModel.CashFlow.Income.Label);
+            var dataSetIncome = new BarDataSet(new List<BarEntry> { new BarEntry(1, (float)ViewModel.StatisticItems[1].Value) }, ViewModel.StatisticItems[1].Label);
             dataSetIncome.SetColors(Resources.GetColor(Resource.Color.color_income, Theme));
 
-            var dataSetRevenue = new BarDataSet(new List<BarEntry> { new BarEntry(3, (float)ViewModel.CashFlow.Revenue.Value) }, ViewModel.CashFlow.Revenue.Label);
+            var dataSetRevenue = new BarDataSet(new List<BarEntry> { new BarEntry(2, (float)ViewModel.StatisticItems[2].Value) }, ViewModel.StatisticItems[2].Label);
             dataSetRevenue.SetColors(Resources.GetColor(Resource.Color.color_revenue, Theme));
 
             var barData = new BarData(dataSetdExpenses, dataSetIncome, dataSetRevenue) {BarWidth = 0.9f};

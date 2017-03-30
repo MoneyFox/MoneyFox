@@ -5,10 +5,13 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:oxyPlot="using:OxyPlot.Windows"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySpreadingViewModel,
+                                                       IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -17,28 +20,13 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Page.Resources>
-        <oxyPlot:OxyColorConverter x:Key="OxyColorConverter" />
-
-        <DataTemplate x:Key="LegendListTemplate" x:DataType="models:LegendItem">
-            <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
-                <Grid Width="20"
-                      Height="20"
-                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}" />
-                <TextBlock Margin="5,0,0,0"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="{x:Bind Text}" />
-            </StackPanel>
-        </DataTemplate>
-    </Page.Resources>
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition MinHeight="317" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -51,34 +39,51 @@
         </userControls:PageHeader>
 
         <Grid Grid.Row="1">
-            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{Binding Title}" />
-            <oxyPlot:PlotView x:Name="SpreadingPlotView"
-                              MinWidth="40"
-                              MinHeight="150"
-                              Margin="15, 20, 15, 15"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              HorizontalContentAlignment="Stretch"
-                              VerticalContentAlignment="Stretch"
-                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                              EntranceNavigationTransitionInfo.IsTargetElement="True"
-                              Model="{Binding SpreadingModel}" />
-
+            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="{Binding Title}"
+                       VerticalAlignment="Center" />
         </Grid>
 
-        <ListView Grid.Row="2"
-                  HorizontalAlignment="Stretch"
-                  EntranceNavigationTransitionInfo.IsTargetElement="True"
-                  ItemTemplate="{StaticResource LegendListTemplate}"
-                  ItemsSource="{Binding LegendList}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="MinHeight" Value="0" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+        <Grid Grid.Row="2">
+            <chart:RadPieChart PaletteName="DefaultDark" x:Name="chart">
+                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
+                                 RadiusFactor="0.6">
+                    <chart:DoughnutSeries.ValueBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                    </chart:DoughnutSeries.ValueBinding>
+                    <chart:PieSeries.LegendTitleBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:PieSeries.LegendTitleBinding>
+                </chart:DoughnutSeries>
+            </chart:RadPieChart>
+        </Grid>
 
-        <CommandBar Grid.Row="3"
+        <Grid Grid.Row="3">
+            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
+                <primitives:RadLegendControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </primitives:RadLegendControl.ItemsPanel>
+                <primitives:RadLegendControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Fill="{Binding Fill}"
+                                     Stroke="{Binding Stroke}"
+                                     StrokeThickness="1"
+                                     Width="10"
+                                     Height="10" />
+                            <TextBlock Text="{Binding Title}"
+                                       Foreground="{Binding Fill}"
+                                       Margin="10"
+                                       FontStyle="Italic" />
+                        </StackPanel>
+                    </DataTemplate>
+                </primitives:RadLegendControl.ItemTemplate>
+            </primitives:RadLegendControl>
+        </Grid>
+
+        <CommandBar Grid.Row="4"
                     Height="24"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
