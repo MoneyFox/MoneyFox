@@ -162,6 +162,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excluded Accounts.
+        /// </summary>
+        public static string AccountListViewModel_ExcludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("AccountListViewModel.ExcludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Included Accounts.
+        /// </summary>
+        public static string AccountListViewModel_IncludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("AccountListViewModel.IncludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully modified.
         /// </summary>
         public static string AccountModifiedMessage {

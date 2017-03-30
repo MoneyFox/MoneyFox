@@ -9,7 +9,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
     {
         public DesignTimeAccountListViewModel()
         {
-            AllAccounts = new ObservableCollection<AccountViewModel>
+            IncludedAccounts = new ObservableCollection<AccountViewModel>
             {
                 new AccountViewModel
                 {
@@ -22,7 +22,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             BalanceViewModel = new DesignTimeBalanceViewModel();
         }
 
-        public ObservableCollection<AccountViewModel> AllAccounts { get; set; }
+        public ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
         public AccountViewModel SelectedAccountViewModel { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public IViewActionViewModel ViewActionViewModel { get; }

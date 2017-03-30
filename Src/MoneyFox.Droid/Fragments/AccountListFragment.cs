@@ -60,7 +60,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.AllAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
+            var selected = ViewModel.IncludedAccounts[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
 
             switch (item.ItemId)
             {

@@ -105,7 +105,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
                 endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeTrue();
+            vm.IsIncludedAccountsEmpty.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeFalse();
+            vm.IsIncludedAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeFalse();
+            vm.IsIncludedAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -149,9 +149,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
 
             vm.LoadedCommand.Execute();
-            vm.AllAccounts.Count.ShouldBe(2);
-            vm.AllAccounts[0].Id.ShouldBe(22);
-            vm.AllAccounts[1].Id.ShouldBe(33);
+            vm.IncludedAccounts.Count.ShouldBe(2);
+            vm.IncludedAccounts[0].Id.ShouldBe(22);
+            vm.IncludedAccounts[1].Id.ShouldBe(33);
         }
 
         [TestMethod]
@@ -163,7 +163,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel>());
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.AllAccounts.Any().ShouldBeFalse();
+            vm.IncludedAccounts.Any().ShouldBeFalse();
         }
     }
 }

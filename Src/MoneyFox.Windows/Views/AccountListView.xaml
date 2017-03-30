@@ -106,7 +106,7 @@
                                       Margin="-12,0,-12,0"
                                       EntranceNavigationTransitionInfo.IsTargetElement="True"
                                       ItemTemplate="{StaticResource AccountItemTemplate}"
-                                      ItemsSource="{Binding AllAccounts}"
+                                      ItemsSource="{Binding IncludedAccounts}"
                                       ShowsScrollingPlaceholders="False"
                                       Background="Transparent"
                                       WarningBackground="{StaticResource WarningBrush}">
@@ -134,7 +134,7 @@
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
-                   Visibility="{Binding IsAllAccountsEmpty,
+                   Visibility="{Binding IsIncludedAccountsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">

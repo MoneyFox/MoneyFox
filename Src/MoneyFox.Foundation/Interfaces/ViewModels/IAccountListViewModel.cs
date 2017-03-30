@@ -6,7 +6,7 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
 {
     public interface IAccountListViewModel
     {
-        ObservableCollection<AccountViewModel> AllAccounts { get; set; }
+        ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
 
         IBalanceViewModel BalanceViewModel { get; }
 
