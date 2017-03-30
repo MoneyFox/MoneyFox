@@ -18,28 +18,31 @@ namespace MoneyFox.Droid.Services
     {
         public override IBinder OnBind(Intent intent)
         {
-            return new Binder();
+            return null;
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            //Task.Run(() => SyncBackups());
-            return base.OnStartCommand(intent, flags, startId);
+            Task.Run(() => SyncBackups());
+            return StartCommandResult.RedeliverIntent;
         }
 
         private async void SyncBackups()
         {
             var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
+            var paymentRepository = new PaymentRepository(dbManager);
 
             var settings = new SettingsManager(new Settings());
 
-            var backupManager = new BackupManager(new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()), 
-                new MvxAndroidFileStore(), 
-                dbManager, settings, 
-                new PaymentRepository(dbManager),
-                new Connectivity());
+            var backupManager =
+                new BackupManager(new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()),
+                    new MvxAndroidFileStore(),
+                    dbManager, settings,
+                    paymentRepository,
+                    new Connectivity());
 
             await backupManager.DownloadBackup();
+            paymentRepository.ReloadCache();
         }
     }
 }

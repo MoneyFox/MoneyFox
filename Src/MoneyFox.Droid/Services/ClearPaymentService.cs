@@ -15,14 +15,13 @@ namespace MoneyFox.Droid.Services
     {
         public override IBinder OnBind(Intent intent)
         {
-            return new Binder();
+            return null;
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             Task.Run(() => ClearPayments());
-
-            return base.OnStartCommand(intent, flags, startId);
+            return StartCommandResult.RedeliverIntent;
         }
 
         public void ClearPayments()
@@ -37,6 +36,7 @@ namespace MoneyFox.Droid.Services
                 null);
 
             paymentManager.ClearPayments();
+            paymentRepository.ReloadCache();
         }
     }
 }

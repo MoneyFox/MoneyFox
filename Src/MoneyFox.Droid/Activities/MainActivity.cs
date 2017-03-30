@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
@@ -9,10 +10,13 @@ using Android.Views;
 using HockeyApp.Android;
 using HockeyApp.Android.Metrics;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -60,6 +64,25 @@ namespace MoneyFox.Droid.Activities
 
                 DrawerLayout.AddDrawerListener(drawerToggle);
                 drawerToggle.SyncState();
+            }
+
+            RegisterService();
+        }
+        private void RegisterService()
+        {
+            var pendingIntentClearPayments = PendingIntent.GetService(this, 0, new Intent(this, typeof(ClearPaymentService)), PendingIntentFlags.UpdateCurrent);
+            var pendingIntentRecurringPayments = PendingIntent.GetService(this, 0, new Intent(this, typeof(RecurringPaymentService)), PendingIntentFlags.UpdateCurrent);
+            var pendingIntentSyncBackups = PendingIntent.GetService(this, 0, new Intent(this, typeof(SyncBackupService)), PendingIntentFlags.UpdateCurrent);
+
+            var alarmmanager = (AlarmManager)GetSystemService(AlarmService);
+
+            // The task will be executed all 6 hours.
+            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentClearPayments);
+            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentRecurringPayments);
+
+            if (Mvx.Resolve<ISettingsManager>().IsBackupAutouploadEnabled)
+            {
+                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentSyncBackups);
             }
         }
 
