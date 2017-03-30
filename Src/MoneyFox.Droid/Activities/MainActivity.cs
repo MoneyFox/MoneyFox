@@ -65,25 +65,6 @@ namespace MoneyFox.Droid.Activities
                 DrawerLayout.AddDrawerListener(drawerToggle);
                 drawerToggle.SyncState();
             }
-
-            RegisterService();
-        }
-        private void RegisterService()
-        {
-            var pendingIntentClearPayments = PendingIntent.GetService(this, 0, new Intent(this, typeof(ClearPaymentService)), PendingIntentFlags.UpdateCurrent);
-            var pendingIntentRecurringPayments = PendingIntent.GetService(this, 0, new Intent(this, typeof(RecurringPaymentService)), PendingIntentFlags.UpdateCurrent);
-            var pendingIntentSyncBackups = PendingIntent.GetService(this, 0, new Intent(this, typeof(SyncBackupService)), PendingIntentFlags.UpdateCurrent);
-
-            var alarmmanager = (AlarmManager)GetSystemService(AlarmService);
-
-            // The task will be executed all 6 hours.
-            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentClearPayments);
-            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentRecurringPayments);
-
-            if (Mvx.Resolve<ISettingsManager>().IsBackupAutouploadEnabled)
-            {
-                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentSyncBackups);
-            }
         }
 
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,

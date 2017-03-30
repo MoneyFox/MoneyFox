@@ -42,7 +42,6 @@ namespace MoneyFox.Droid.Services
                     new Connectivity());
 
             await backupManager.DownloadBackup();
-            paymentRepository.ReloadCache();
         }
     }
 }
