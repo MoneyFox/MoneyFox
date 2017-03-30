@@ -27,7 +27,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             {
                 categories.Add(new StatisticItem
                 {
-                    Category = category.Name,
+                    Label = category.Name,
                     Value = paymentRepository
                         .GetList()
                         .Where(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
