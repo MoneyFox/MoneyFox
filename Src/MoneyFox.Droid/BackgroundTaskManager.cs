@@ -28,12 +28,12 @@ namespace MoneyFox.Droid
             var alarmmanager = (AlarmManager)currentActivity.GetSystemService(Context.AlarmService);
 
             // The task will be executed all 6 hours.
-            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 21600000, pendingIntentClearPayments);
-            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 21600000, pendingIntentRecurringPayments);
+            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentClearPayments);
+            alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentRecurringPayments);
 
             if (settingsManager.IsBackupAutouploadEnabled)
             {
-                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 21600000, 21600000, pendingIntentSyncBackups);
+                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 3600000, 3600000, pendingIntentSyncBackups);
             }
         }
     }
