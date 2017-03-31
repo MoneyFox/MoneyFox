@@ -17,14 +17,6 @@ namespace MoneyFox.Business
         /// <param name="hint">parameter for the launch of the app.</param>
         public void Start(object hint = null)
         {
-            //var dialogService = Mvx.Resolve<IDialogService>();
-
-            //dialogService.ShowLoadingDialog();
-            //await Mvx.Resolve<IBackupManager>().DownloadBackup();
-            //Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
-            //Mvx.Resolve<IPaymentManager>().ClearPayments();
-            //dialogService.HideLoadingDialog();
-
             if (Mvx.Resolve<Session>().ValidateSession())
             {
                 ShowViewModel<MainViewModel>();
