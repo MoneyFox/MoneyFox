@@ -41,6 +41,7 @@ namespace MoneyFox.Windows.Tasks
                     null);
 
                 ClearPayments();
+                PaymentRepository.IsCacheMarkedForReload = true;
 
                 // We have to access the settings object here directly without the settings helper since this thread is executed independently.
                 if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))

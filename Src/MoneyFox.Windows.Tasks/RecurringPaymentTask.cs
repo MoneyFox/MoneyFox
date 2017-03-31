@@ -28,6 +28,8 @@ namespace MoneyFox.Windows.Tasks
                     new RecurringPaymentRepository(dbManager),
                     null);
 
+                PaymentRepository.IsCacheMarkedForReload = true;
+
                 new RecurringPaymentManager(paymentManager, paymentRepository,
                     new SettingsManager(new WindowsUwpSettings())).CheckRecurringPayments();
             }
