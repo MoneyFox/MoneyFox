@@ -146,7 +146,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
         }
 
         [TestMethod]
-        public void FindById_AccountDeleted()
+        public void FindById_RecurringPaymentDeleted()
         {
             var recurringPaymentRepository =
                 new RecurringPaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),
