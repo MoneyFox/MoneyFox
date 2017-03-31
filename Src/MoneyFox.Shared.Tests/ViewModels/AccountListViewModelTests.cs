@@ -105,7 +105,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
                 endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsIncludedAccountsEmpty.ShouldBeTrue();
+            vm.IsAllAccountsEmpty.ShouldBeTrue();
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsIncludedAccountsEmpty.ShouldBeFalse();
+            vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]
@@ -133,7 +133,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
-            vm.IsIncludedAccountsEmpty.ShouldBeFalse();
+            vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [TestMethod]

@@ -17,41 +17,44 @@
             android:layout_gravity="center"
             android:translationZ="6dp"
             android:background="@android:color/transparent" />
-      <ScrollView            
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+      <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"> 
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="left"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:layout_margin="6dp"
+              local:MvxBind="Visibility InvertedVisibility(IsAllAccountsEmpty)"
+              local:MvxLang="Text IncludedAccountsHeader" />
+          <MvxListView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:listSelector="@drawable/list_item_selector"
+              android:id="@+id/included_account_list"
+              local:MvxItemTemplate="@layout/listitem_account"
+              local:MvxBind="ItemsSource IncludedAccounts;ItemClick OpenOverviewCommand" />
             <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_margin="6dp"
-                  local:MvxBind="Visibility InvertedVisibility(IsExcludedAccountsEmpty)"
-                  local:MvxLang="Text IncludedAccountsHeader" />
-        <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:listSelector="@drawable/list_item_selector"
-                  android:id="@+id/included_account_list"
-                  local:layout_behavior="@string/appbar_scrolling_view_behavior"
-                  local:MvxItemTemplate="@layout/listitem_account"
-                  local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
-            <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_margin="6dp"
-                  local:MvxBind="Visibility InvertedVisibility(IsExcludedAccountsEmpty)"
-                  local:MvxLang="Text ExcludedAccountsHeader" />
-            <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:listSelector="@drawable/list_item_selector"
-                  android:id="@+id/excluded_account_list"
-                  local:layout_behavior="@string/appbar_scrolling_view_behavior"
-                  local:MvxItemTemplate="@layout/listitem_account"
-                  local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand;Visibility InvertedVisibility(IsExcludedAccountsEmpty)" />
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="left"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:layout_margin="6dp"
+              local:MvxBind="Visibility InvertedVisibility(IsExcludedAccountsEmpty)"
+              local:MvxLang="Text ExcludedAccountsHeader" />
+            <MvxListView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:listSelector="@drawable/list_item_selector"
+              android:id="@+id/excluded_account_list"
+              local:MvxItemTemplate="@layout/listitem_account"
+              local:MvxBind="ItemsSource ExcludedAccounts;ItemClick OpenOverviewCommand;Visibility InvertedVisibility(IsExcludedAccountsEmpty)" />
+        </LinearLayout>
       </ScrollView>
     </LinearLayout>
     <TextView

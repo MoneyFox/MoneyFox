@@ -163,6 +163,14 @@ namespace MoneyFox.Business.ViewModels
                     if (IncludedAccounts.Contains(accountToDelete))
                     {
                         IncludedAccounts.Remove(accountToDelete);
+                        // ReSharper disable once ExplicitCallerInfoArgument
+                        RaisePropertyChanged(nameof(IncludedAccounts));
+                    }
+                    if (ExcludedAccounts.Contains(accountToDelete))
+                    {
+                        ExcludedAccounts.Remove(accountToDelete);
+                        // ReSharper disable once ExplicitCallerInfoArgument
+                        RaisePropertyChanged(nameof(ExcludedAccounts));
                     }
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
                 }
