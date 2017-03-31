@@ -30,7 +30,6 @@ namespace MoneyFox.Droid.Services
         private async void SyncBackups()
         {
             var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
-            var paymentRepository = new PaymentRepository(dbManager);
 
             var settings = new SettingsManager(new Settings());
 
@@ -38,10 +37,11 @@ namespace MoneyFox.Droid.Services
                 new BackupManager(new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()),
                     new MvxAndroidFileStore(),
                     dbManager, settings,
-                    paymentRepository,
                     new Connectivity());
 
             await backupManager.DownloadBackup();
+
+            PaymentRepository.IsCacheMarkedForReload = true;
         }
     }
 }

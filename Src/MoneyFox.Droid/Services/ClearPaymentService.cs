@@ -36,7 +36,7 @@ namespace MoneyFox.Droid.Services
                 null);
 
             paymentManager.ClearPayments();
-            paymentRepository.ReloadCache();
+            PaymentRepository.IsCacheMarkedForReload = true;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace MoneyFox.Droid.Services
                 null);
 
             new RecurringPaymentManager(paymentManager, paymentRepository, new SettingsManager(new Settings())).CheckRecurringPayments();
-            paymentRepository.ReloadCache();
+            PaymentRepository.IsCacheMarkedForReload = true;
         }
     }
 }
