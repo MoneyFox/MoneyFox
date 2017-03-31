@@ -2,14 +2,8 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Cheesebaron.MvxPlugins.Settings.Droid;
-using MoneyFox.Business.Manager;
-using MoneyFox.Business.Services;
-using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Droid.OneDriveAuth;
-using MvvmCross.Plugins.File.Droid;
-using MvvmCross.Plugins.Sqlite.Droid;
+using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Services
 {
@@ -29,19 +23,7 @@ namespace MoneyFox.Droid.Services
 
         private async void SyncBackups()
         {
-            var dbManager = new DatabaseManager(new DroidSqliteConnectionFactory(), new MvxAndroidFileStore());
-
-            var settings = new SettingsManager(new Settings());
-
-            var backupManager =
-                new BackupManager(new OneDriveService(new MvxAndroidFileStore(), new OneDriveAuthenticator()),
-                    new MvxAndroidFileStore(),
-                    dbManager, settings,
-                    new Connectivity());
-
-            await backupManager.DownloadBackup();
-
-            PaymentRepository.IsCacheMarkedForReload = true;
+            await Mvx.Resolve<IBackupManager>().DownloadBackup();
         }
     }
 }

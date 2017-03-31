@@ -27,7 +27,7 @@ namespace MoneyFox.Droid
 
             var alarmmanager = (AlarmManager)currentActivity.GetSystemService(Context.AlarmService);
 
-            // The task will be executed all 6 hours.
+            // The task will be executed all 1 hours.
             alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentClearPayments);
             alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentRecurringPayments);
 
