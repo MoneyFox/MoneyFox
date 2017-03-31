@@ -13,6 +13,13 @@ namespace MoneyFox.Windows.Business
         private const string RECURRING_PAYMENT_TASK = "RecurringPaymentTask";
         private const string SYNC_BACKUP_TASK = "SyncBackupTask";
 
+        private readonly ISettingsManager settingsManager;
+
+        public BackgroundTaskManager(ISettingsManager settingsManager)
+        {
+            this.settingsManager = settingsManager;
+        }
+
         public async void StartBackgroundTask()
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
@@ -23,10 +30,13 @@ namespace MoneyFox.Windows.Business
 
             RegisterClearPaymentTask();
             RegisterRecurringPaymentTask();
-            RegisterSyncBackupTask();
+            if (settingsManager.IsBackupAutouploadEnabled)
+            {
+                RegisterSyncBackupTask();
+            }
         }
 
-        private static void RegisterClearPaymentTask()
+        private void RegisterClearPaymentTask()
         {
             if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENT_TASK))
             {
@@ -35,14 +45,14 @@ namespace MoneyFox.Windows.Business
                     Name = CLEAR_PAYMENT_TASK,
                     TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENT_TASK)
                 };
-                // Task will be executed all 6 hours
-                // 360 = 6 * 60 Minutes
-                builder.SetTrigger(new TimeTrigger(360, false));
+
+                // Task will be executed all 1 hours
+                builder.SetTrigger(new TimeTrigger(60, false));
                 builder.Register();
             }
         }
 
-        private static void RegisterRecurringPaymentTask()
+        private void RegisterRecurringPaymentTask()
         {
             if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
             {
@@ -52,13 +62,13 @@ namespace MoneyFox.Windows.Business
                     TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
                 };
 
-                //  Task will be executed every day at midnight.
-                builder.SetTrigger(new TimeTrigger(360, false));
+                // Task will be executed all 1 hours
+                builder.SetTrigger(new TimeTrigger(60, false));
                 builder.Register();
             }
         }
 
-        private static void RegisterSyncBackupTask()
+        private void RegisterSyncBackupTask()
         {
             if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != SYNC_BACKUP_TASK))
             {
@@ -67,9 +77,9 @@ namespace MoneyFox.Windows.Business
                     Name = SYNC_BACKUP_TASK,
                     TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK)
                 };
-                // Task will be executed all 3 hours
-                // 180 = 3 * 60 Minutes
-                builder.SetTrigger(new TimeTrigger(180, false));
+
+                // Task will be executed all 1 hours
+                builder.SetTrigger(new TimeTrigger(60, false));
                 builder.Register();
             }
         }

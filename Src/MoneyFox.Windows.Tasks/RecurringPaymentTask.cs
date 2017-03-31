@@ -16,6 +16,8 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
+                MapperConfiguration.Setup();
+
                 var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWindowsCommonFileStore());
 

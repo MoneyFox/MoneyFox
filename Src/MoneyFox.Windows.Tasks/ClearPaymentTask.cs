@@ -11,6 +11,7 @@ using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using Autofac;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -27,6 +28,8 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
+                MapperConfiguration.Setup();
+
                 var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWindowsCommonFileStore());
 

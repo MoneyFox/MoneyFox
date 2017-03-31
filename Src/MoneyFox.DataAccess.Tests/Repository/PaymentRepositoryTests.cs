@@ -24,9 +24,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            var cb = new ContainerBuilder();
-            cb.RegisterModule<DataAccessModule>();
-            cb.Build();
+            MapperConfiguration.Setup();
         }
 
         [TestInitialize]
