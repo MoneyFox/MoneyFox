@@ -415,24 +415,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shows a month by month comparison over your total cash flow for the selected time range..
-        /// </summary>
-        public static string CashFlowHistoryDescription {
-            get {
-                return ResourceManager.GetString("CashFlowHistoryDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cash Flow History.
-        /// </summary>
-        public static string CashFlowHistoryLabel {
-            get {
-                return ResourceManager.GetString("CashFlowHistoryLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cashflow.
         /// </summary>
         public static string CashflowLabel {
@@ -861,15 +843,6 @@ namespace MoneyFox.Foundation.Resources {
         public static string JustThisLabel {
             get {
                 return ResourceManager.GetString("JustThisLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date : Income / Spending / Revenue.
-        /// </summary>
-        public static string LegendHeaderText {
-            get {
-                return ResourceManager.GetString("LegendHeaderText", resourceCulture);
             }
         }
         

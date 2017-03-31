@@ -15,15 +15,15 @@ namespace MoneyFox.Business
         ///     Execute code on start up.
         /// </summary>
         /// <param name="hint">parameter for the launch of the app.</param>
-        public async void Start(object hint = null)
+        public void Start(object hint = null)
         {
-            var dialogService = Mvx.Resolve<IDialogService>();
+            //var dialogService = Mvx.Resolve<IDialogService>();
 
-            dialogService.ShowLoadingDialog();
-            await Mvx.Resolve<IBackupManager>().DownloadBackup();
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
-            Mvx.Resolve<IPaymentManager>().ClearPayments();
-            dialogService.HideLoadingDialog();
+            //dialogService.ShowLoadingDialog();
+            //await Mvx.Resolve<IBackupManager>().DownloadBackup();
+            //Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
+            //Mvx.Resolve<IPaymentManager>().ClearPayments();
+            //dialogService.HideLoadingDialog();
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {

@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
@@ -24,7 +23,6 @@ namespace MoneyFox.Business.Manager
         private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IConnectivity connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -34,14 +32,12 @@ namespace MoneyFox.Business.Manager
             IMvxFileStore fileStore,
             IDatabaseManager databaseManager,
             ISettingsManager settingsManager,
-            IPaymentRepository paymentRepository, 
             IConnectivity connectivity)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.databaseManager = databaseManager;
             this.settingsManager = settingsManager;
-            this.paymentRepository = paymentRepository;
             this.connectivity = connectivity;
         }
 
@@ -171,7 +167,7 @@ namespace MoneyFox.Business.Manager
 
             databaseManager.CreateDatabase();
 
-            paymentRepository.ReloadCache();
+            PaymentRepository.IsCacheMarkedForReload = true;
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
