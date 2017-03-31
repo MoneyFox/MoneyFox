@@ -68,6 +68,8 @@
     <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\ISettingsManager.cs" />
+    <Compile Include="Interfaces\ViewModels\IStatisticCashFlowViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />
@@ -86,8 +88,6 @@
     <Compile Include="Interfaces\ViewModels\IViewActionViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
-    <Compile Include="Models\CashFlow.cs" />
-    <Compile Include="Models\LegendItem.cs" />
     <Compile Include="Models\StatisticItem.cs" />
     <Compile Include="Models\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

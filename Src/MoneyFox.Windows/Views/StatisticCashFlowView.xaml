@@ -7,7 +7,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
-                      xmlns:windows="using:OxyPlot.Windows"
+                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCashFlowViewModel,
+                                                       IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -19,6 +22,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -30,23 +34,32 @@
                            Text="Cash Flow" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
-
         <Grid Grid.Row="1">
-            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{Binding Title}" />
-            <windows:PlotView x:Name="CashFlowPlotView"
-                              MinWidth="40"
-                              MinHeight="60"
-                              Margin="0,30,30,0"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              HorizontalContentAlignment="Stretch"
-                              VerticalContentAlignment="Stretch"
-                              EntranceNavigationTransitionInfo.IsTargetElement="True"
-                              IsEnabled="False"
-                              IsMouseWheelEnabled="False"
-                              Model="{Binding CashFlowModel}" />
+            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="{Binding Title}"
+                       VerticalAlignment="Center"/>
         </Grid>
-        <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">
+
+        <Grid Grid.Row="2">
+            <chart:RadCartesianChart>
+                <chart:RadCartesianChart.HorizontalAxis>
+                    <chart:CategoricalAxis />
+                </chart:RadCartesianChart.HorizontalAxis>
+                <chart:RadCartesianChart.VerticalAxis>
+                    <chart:LinearAxis />
+                </chart:RadCartesianChart.VerticalAxis>
+
+                <chart:BarSeries ItemsSource="{Binding StatisticItems}">
+                    <chart:BarSeries.CategoryBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:BarSeries.CategoryBinding>
+                    <chart:BarSeries.ValueBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                    </chart:BarSeries.ValueBinding>
+                </chart:BarSeries>
+            </chart:RadCartesianChart>
+        </Grid>
+        <CommandBar Grid.Row="3" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"

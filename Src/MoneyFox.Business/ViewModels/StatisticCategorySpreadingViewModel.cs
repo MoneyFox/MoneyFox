@@ -1,118 +1,39 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using MoneyFox.Business.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Models;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
-using OxyPlot;
-using OxyPlot.Series;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private readonly OxyColor[] colors =
-        {
-            OxyColor.Parse("#393939"), OxyColor.Parse("#4b4b4b"),
-            OxyColor.Parse("#5d5d5d"), OxyColor.Parse("#a75538"),
-            OxyColor.Parse("#c16342"), OxyColor.Parse("#cb7a5d"),
-            OxyColor.Parse("#d49078")
-        };
-
-        private readonly ISettingsManager settingsManager;
-
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
-        private PlotModel spreadingModel;
-        private ObservableCollection<LegendItem> legendList;
 
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
-            ISettingsManager settingsManager,
-            IMvxMessenger messenger) : base(messenger)
+            IMvxMessenger messenger) 
+            : base(messenger)
         {
             this.spreadingDataProvider = spreadingDataProvider;
-            this.settingsManager = settingsManager;
-        }
-
-        /// <summary>
-        ///     Contains the PlotModel for the CategorySpreading graph
-        /// </summary>
-        public PlotModel SpreadingModel
-        {
-            get { return spreadingModel; }
-            set
-            {
-                spreadingModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     A collection with the current items for the legend.
-        /// </summary>
-        public ObservableCollection<LegendItem> LegendList
-        {
-            get { return legendList; }
-            set
-            {
-                if (legendList == value) return;
-                legendList = value;
-                RaisePropertyChanged();
-            }
+            StatisticItems = new MvxObservableCollection<StatisticItem>();
         }
 
         protected override void Load()
         {
-            LegendList = new ObservableCollection<LegendItem>();
-            SpreadingModel = GetSpreadingModel();
+            LoadStatisticData();
         }
 
-        public List<StatisticItem> StatisticItems { get; set; }
+        public MvxObservableCollection<StatisticItem> StatisticItems { get; set; }
 
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        private PlotModel GetSpreadingModel()
+        private void LoadStatisticData()
         {
-            var items = spreadingDataProvider.GetValues(StartDate, EndDate);
-
-            var statisticItems = items as IList<StatisticItem> ?? items.ToList();
-
-            StatisticItems = statisticItems.ToList();
-
-            if (!statisticItems.Any())
-            {
-                return new PlotModel();
-            }
-
-            var model = new PlotModel();
-
-            if (settingsManager.IsDarkThemeSelected)
-            {
-                model.Background = OxyColors.Black;
-                model.TextColor = OxyColors.White;
-            }
-            else
-            {
-                model.Background = OxyColors.White;
-                model.TextColor = OxyColors.Black;
-            }
-
-            var pieSeries = new PieSeries
-            {
-                InsideLabelFormat = ""
-            };
-
-            var colorIndex = 0;
-            foreach (var item in statisticItems)
-            {
-                pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
-                LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label});
-                colorIndex++;
-            }
-
-            model.Series.Add(pieSeries);
-            return model;
+            var items = spreadingDataProvider.GetValues(StartDate, EndDate).ToList();
+            StatisticItems.Clear();
+            StatisticItems.AddRange(items);
         }
     }
 }

@@ -82,7 +82,6 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
-    <Compile Include="Converters\OxyPlotColorConverter.cs" />
     <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />

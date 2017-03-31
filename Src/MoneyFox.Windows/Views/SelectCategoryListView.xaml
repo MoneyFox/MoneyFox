@@ -35,9 +35,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="SelectCategoryViewModelListViewTitle"
+                <TextBlock x:Uid="SelectCategoryTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Select CategoryViewModel" />
+                           Text="Select Category" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -49,7 +49,7 @@
 
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddCategoryViewModelLabel"
+                <AppBarButton x:Uid="AddCategoryLabel"
                               Command="{Binding CreateNewCategoryCommand}"
                               Icon="Add"
                               Label="add" />

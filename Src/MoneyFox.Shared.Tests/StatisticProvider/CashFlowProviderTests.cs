@@ -56,9 +56,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 DateTime.Today.AddDays(3));
 
             //Assertion
-            result.Income.Value.ShouldBe(60);
-            result.Expense.Value.ShouldBe(50);
-            result.Revenue.Value.ShouldBe(10);
+            result[0].Value.ShouldBe(60);
+            result[1].Value.ShouldBe(50);
+            result[2].Value.ShouldBe(10);
         }
 
         [TestMethod]
@@ -99,9 +99,9 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
                 DateTime.Today.AddDays(3));
 
             //Assertion
-            result.Income.Value.ShouldBe(0);
-            result.Expense.Value.ShouldBe(60);
-            result.Revenue.Value.ShouldBe(-60);
+            result[0].Value.ShouldBe(0);
+            result[1].Value.ShouldBe(60);
+            result[2].Value.ShouldBe(-60);
         }
 
         [TestMethod]
