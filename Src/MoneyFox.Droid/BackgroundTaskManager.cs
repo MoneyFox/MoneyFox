@@ -40,7 +40,10 @@ namespace MoneyFox.Droid
 
         public void StopBackupSyncTask()
         {
-            throw new NotImplementedException();
+            var alarmmanager = (AlarmManager)currentActivity.GetSystemService(Context.AlarmService);
+            var pendingIntentSyncBackups = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(SyncBackupService)), PendingIntentFlags.CancelCurrent);
+
+            alarmmanager.Cancel(pendingIntentSyncBackups);
         }
 
         private void StartSyncBackupService()

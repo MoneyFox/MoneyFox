@@ -68,6 +68,7 @@
     <Compile Include="ViewModels\AccountListViewActionViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

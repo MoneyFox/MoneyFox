@@ -48,7 +48,10 @@ namespace MoneyFox.Windows.Business
         /// </summary>
         public void StopBackupSyncTask()
         {
-            throw new NotImplementedException();
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
+            {
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == SYNC_BACKUP_TASK).Value.Unregister(true);
+            }
         }
 
         private void RegisterClearPaymentTask()

@@ -27,8 +27,17 @@ namespace MoneyFox.Business.ViewModels
             get { return settingsManager.IsBackupAutouploadEnabled; }
             set
             {
+                if (settingsManager.IsBackupAutouploadEnabled == value) return;
+
+                if (settingsManager.IsBackupAutouploadEnabled)
+                {
+                    backgroundTaskManager.StopBackupSyncTask();
+                } 
+                else
+                {
+                    backgroundTaskManager.StartBackupSyncTask();
+                }
                 settingsManager.IsBackupAutouploadEnabled = value;
-                backgroundTaskManager.StartBackupSyncTask();
                 RaisePropertyChanged();
             }
         }
@@ -41,7 +50,8 @@ namespace MoneyFox.Business.ViewModels
             get { return settingsManager.BackupSyncRecurrence; }
             set
             {
-                settingsManager.BackupSyncRecurrence = value;
+                if(settingsManager.BackupSyncRecurrence == value) return;
+                settingsManager.BackupSyncRecurrence = value < 1 ? 1 : value;
                 backgroundTaskManager.StartBackupSyncTask();
                 RaisePropertyChanged();
             }
