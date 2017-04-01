@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Business.Services;
 using MoneyFox.Foundation.Interfaces;
