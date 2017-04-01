@@ -10,7 +10,6 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Theory]
         [InlineData(5, 5)]
         [InlineData(1, 1)]
-        [InlineData(0, 1)]
         [InlineData(-2, 1)]
         [InlineData(24, 24)]
         [InlineData(48, 48)]
@@ -22,7 +21,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var taskStarted = false;
             var backgroundTaskManager = new Mock<IBackgroundTaskManager>();
-            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback((bool x) => taskStarted = x);
+            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback(() => taskStarted = true);
 
             // Act
             var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
@@ -38,11 +37,11 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             // Arrange
             var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupAllProperties();
+            settingsManagerMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(false);
 
             var taskStarted = false;
             var backgroundTaskManager = new Mock<IBackgroundTaskManager>();
-            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback((bool x) => taskStarted = x);
+            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback(() => taskStarted = true);
 
             // Act
             var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
@@ -57,15 +56,15 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             // Arrange
             var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupAllProperties();
+            settingsManagerMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
             var taskStopped = false;
             var backgroundTaskManager = new Mock<IBackgroundTaskManager>();
-            backgroundTaskManager.Setup(x => x.StopBackupSyncTask()).Callback((bool x) => taskStopped = x);
+            backgroundTaskManager.Setup(x => x.StopBackupSyncTask()).Callback(() => taskStopped = true);
 
             // Act
             var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
-            vm.IsAutoBackupEnabled = true;
+            vm.IsAutoBackupEnabled = false;
 
             // Assert
             Assert.True(taskStopped);

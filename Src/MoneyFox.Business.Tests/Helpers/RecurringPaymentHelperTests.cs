@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
@@ -161,7 +162,7 @@ namespace MoneyFox.Business.Tests.Helpers
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new PaymentViewModel {Date = DateTime.Today.AddDays(-amountOfDaysPassed), IsCleared = true})
+                new PaymentViewModel {Date = DateTime.Today.GetFirstDayOfMonth(), IsCleared = true})
                 .ShouldBe(expectedResult);
         }
 
