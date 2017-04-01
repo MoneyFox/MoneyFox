@@ -20,13 +20,12 @@ namespace MoneyFox.Windows.Business
             this.settingsManager = settingsManager;
         }
 
-        public async void StartBackgroundTask()
+        public async void StartBackgroundTasks()
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
 
             if (requestAccess == BackgroundAccessStatus.DeniedByUser 
                 || requestAccess == BackgroundAccessStatus.DeniedBySystemPolicy) return;
-
 
             RegisterClearPaymentTask();
             RegisterRecurringPaymentTask();
@@ -34,6 +33,22 @@ namespace MoneyFox.Windows.Business
             {
                 RegisterSyncBackupTask();
             }
+        }
+
+        /// <summary>
+        ///     Registers the backup sync task.
+        /// </summary>
+        public void StartBackupSyncTask()
+        {
+            RegisterSyncBackupTask();
+        }
+
+        /// <summary>
+        ///     Unregisters the backup sync task.
+        /// </summary>
+        public void StopBackupSyncTask()
+        {
+            throw new NotImplementedException();
         }
 
         private void RegisterClearPaymentTask()
@@ -78,8 +93,7 @@ namespace MoneyFox.Windows.Business
                     TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK)
                 };
 
-                // Task will be executed all 1 hours
-                builder.SetTrigger(new TimeTrigger(60, false));
+                builder.SetTrigger(new TimeTrigger((uint)settingsManager.BackupSyncRecurrence, false));
                 builder.Register();
             }
         }

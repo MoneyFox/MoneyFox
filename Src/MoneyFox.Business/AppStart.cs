@@ -28,7 +28,7 @@ namespace MoneyFox.Business
                 ShowViewModel<LoginViewModel>();
             }
 
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTask();
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTasks();
         }
     }
 }

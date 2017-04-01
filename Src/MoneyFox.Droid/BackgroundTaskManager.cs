@@ -19,7 +19,7 @@ namespace MoneyFox.Droid
         }
 
 
-        public void StartBackgroundTask()
+        public void StartBackgroundTasks()
         {
             var pendingIntentClearPayments = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(ClearPaymentService)), PendingIntentFlags.UpdateCurrent);
             var pendingIntentRecurringPayments = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(RecurringPaymentService)), PendingIntentFlags.UpdateCurrent);
@@ -30,10 +30,29 @@ namespace MoneyFox.Droid
             // The task will be executed all 1 hours.
             alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentClearPayments);
             alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, 3600000, pendingIntentRecurringPayments);
+            StartSyncBackupService();
+        }
+
+        public void StartBackupSyncTask()
+        {
+            StartSyncBackupService();
+        }
+
+        public void StopBackupSyncTask()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void StartSyncBackupService()
+        {
+            var pendingIntentSyncBackups = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(SyncBackupService)), PendingIntentFlags.UpdateCurrent);
+            var alarmmanager = (AlarmManager)currentActivity.GetSystemService(Context.AlarmService);
 
             if (settingsManager.IsBackupAutouploadEnabled)
             {
-                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 3600000, 3600000, pendingIntentSyncBackups);
+                // Convert hours to milliseconds
+                var interval = 60 * 60 * 1000 * settingsManager.BackupSyncRecurrence;
+                alarmmanager.SetInexactRepeating(AlarmType.RtcWakeup, 10000, interval, pendingIntentSyncBackups);
             }
         }
     }
