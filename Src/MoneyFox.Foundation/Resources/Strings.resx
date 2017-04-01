@@ -373,12 +373,6 @@ Do you want to go the the store to rate?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a Payment.</value>
   </data>
-  <data name="CashFlowHistoryLabel" xml:space="preserve">
-    <value>Cash Flow History</value>
-  </data>
-  <data name="CashFlowHistoryDescription" xml:space="preserve">
-    <value>Shows a month by month comparison over your total cash flow for the selected time range.</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
@@ -614,9 +608,6 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
-  </data>
-  <data name="LegendHeaderText" xml:space="preserve">
-    <value>Date : Income / Spending / Revenue</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
     <value>The password you've entered is empty. Please enter a password first and try again.</value>

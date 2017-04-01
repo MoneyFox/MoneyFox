@@ -373,12 +373,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Zusammenfassung der Kategorien mit einer Zahlung.</value>
   </data>
-  <data name="ExpenseHistoryLabel" xml:space="preserve">
-    <value>Ausgabenverlauf</value>
-  </data>
-  <data name="ExpenseHistoryDescription" xml:space="preserve">
-    <value>Zeigt ein monatlicher Vergleich über deine gesamtem Ausgaben für den gewünschten Zeitraum.</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Konto hinzufügen</value>
   </data>
@@ -615,5 +609,14 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
     <value>Konto von Monatsbilanz ausschliessen</value>
+  </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>Das eingegebene Passwort ist leer. Bitte gib ein Passwort ein und versuche es nochmals.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>Das Passwort ist leer</value>
+  </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>Es gab ein Problem beim Wiederherstellen der Sicherung. Wenn dieser Fehler weiterhin auftritt, kontaktiere uns bitte.</value>
   </data>
 </root>
