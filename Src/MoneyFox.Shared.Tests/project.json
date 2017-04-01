@@ -4,6 +4,7 @@
     "Cheesebaron.MvxPlugins.Connectivity": "3.0.3",
     "Cheesebaron.MvxPlugins.Settings": "3.0.3",
     "Moq": "4.7.1",
+    "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.Email": "4.4.0",
     "MvvmCross.Plugin.Messenger": "4.4.0",
     "MvvmCross.Plugin.WebBrowser": "4.4.0",

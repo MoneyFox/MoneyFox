@@ -21,7 +21,6 @@
     "NETStandard.Library": "1.6.1",
     "OxyPlot.Core": "1.0.0",
     "OxyPlot.Xamarin.iOS": "1.0.0",
-    "SidebarNavigation": "1.9.3",
     "Xamarin.Auth": "1.3.0"
   },
   "frameworks": {
