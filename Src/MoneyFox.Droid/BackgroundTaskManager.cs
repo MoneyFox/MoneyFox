@@ -1,4 +1,3 @@
-using System;
 using Android.App;
 using Android.Content;
 using MoneyFox.Droid.Services;
@@ -23,7 +22,6 @@ namespace MoneyFox.Droid
         {
             var pendingIntentClearPayments = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(ClearPaymentService)), PendingIntentFlags.UpdateCurrent);
             var pendingIntentRecurringPayments = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(RecurringPaymentService)), PendingIntentFlags.UpdateCurrent);
-            var pendingIntentSyncBackups = PendingIntent.GetService(currentActivity, 0, new Intent(currentActivity, typeof(SyncBackupService)), PendingIntentFlags.UpdateCurrent);
 
             var alarmmanager = (AlarmManager)currentActivity.GetSystemService(Context.AlarmService);
 
