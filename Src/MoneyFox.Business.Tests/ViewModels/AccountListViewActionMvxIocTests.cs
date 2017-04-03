@@ -10,7 +10,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
-    [Collection("ViewModel collection")]
+    [Collection("MvxIocCollection")]
     public class AccountListViewActionMvxIocTests : MvxIocFixture
     {
         [Fact]

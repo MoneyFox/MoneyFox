@@ -9,7 +9,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter
 {
-    [Collection("MvxIocFixture")]
+    [Collection("MvxIocCollection")]
     public class PaymentAmountConverterTests 
     {
         [Fact]
