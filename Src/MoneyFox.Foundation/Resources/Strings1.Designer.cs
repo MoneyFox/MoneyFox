@@ -1406,6 +1406,33 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set the amount of hours to sync the backup..
+        /// </summary>
+        public static string SettingsGeneralViewModel_BackupSyncRecurrenceInfoLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup Recurrence.
+        /// </summary>
+        public static string SettingsGeneralViewModel_BackupSyncRecurrenceLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.BackupSyncRecurrenceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hour(s).
+        /// </summary>
+        public static string SettingsGeneralViewModel_HourLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.HourLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsLabel {
