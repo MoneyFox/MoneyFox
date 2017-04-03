@@ -10,21 +10,14 @@ using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Platform.Core;
-using MvvmCross.Test.Core;
 using Ploeh.AutoFixture;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
-    public class ModifyAccountViewModelTests : MvxIoCSupportingTest
+    [Collection("ViewModel collection")]
+    public class ModifyAccountViewModelTests
     {
-        public ModifyAccountViewModelTests()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-        }
-
         [Fact]
         public void Title_EditAccount_CorrectTitle()
         {            

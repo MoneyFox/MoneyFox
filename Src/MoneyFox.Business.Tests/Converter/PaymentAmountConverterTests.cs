@@ -5,12 +5,12 @@ using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Platform;
-using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter
 {
-    public class PaymentAmountConverterTests : MvxIoCSupportingTest
+    [Collection("MvxIocFixture")]
+    public class PaymentAmountConverterTests 
     {
         [Fact]
         public void Converter_Payment_NegativeAmountSign()
@@ -31,9 +31,6 @@ namespace MoneyFox.Business.Tests.Converter
         [Fact]
         public void Converter_TransferSameAccount_Minus()
         {
-            ClearAll();
-            Setup();
-
             var account = new AccountViewModel
             {
                 Id = 4,
@@ -57,8 +54,6 @@ namespace MoneyFox.Business.Tests.Converter
         [Fact]
         public void Converter_TransferSameAccount_Plus()
         {
-            ClearAll();
-            Setup();
             var account = new AccountViewModel
             {
                 Id = 4,
