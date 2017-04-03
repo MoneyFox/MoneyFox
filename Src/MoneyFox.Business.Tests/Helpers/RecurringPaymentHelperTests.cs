@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
@@ -143,7 +144,6 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Daily, 0, false)]
         [InlineData(PaymentRecurrence.Weekly, 5, false)]
         [InlineData(PaymentRecurrence.Biweekly, 10, false)]
-        [InlineData(PaymentRecurrence.Monthly, 15, false)]
         [InlineData(PaymentRecurrence.Bimonthly, 20, false)]
         [InlineData(PaymentRecurrence.Yearly, 300, false)]
         public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed, bool expectedResult)
@@ -163,6 +163,26 @@ namespace MoneyFox.Business.Tests.Helpers
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
                 new PaymentViewModel {Date = DateTime.Today.AddDays(-amountOfDaysPassed), IsCleared = true})
                 .ShouldBe(expectedResult);
+        }
+
+        [Fact]
+        public void CheckIfRepeatable_ValidatedRecurrenceMonthly_False()
+        {
+            var account = new AccountViewModel {Id = 2};
+
+            var recurringPayment = new RecurringPaymentViewModel
+            {
+                Id = 4,
+                Recurrence = PaymentRecurrence.Monthly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
+                new PaymentViewModel {Date = DateTime.Today.GetFirstDayOfMonth(), IsCleared = true})
+                .ShouldBeFalse();
         }
 
         [Theory]

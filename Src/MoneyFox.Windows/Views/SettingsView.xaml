@@ -10,8 +10,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Style="{StaticResource CustomPivotStyle}">
             <!--  General  -->
-            <PivotItem Header="General"
-                       x:Uid="GeneralSettingsHeader"
+            <PivotItem Header="Backup"
+                       x:Uid="BackupSettingsHeader"
                        EntranceNavigationTransitionInfo.IsTargetElement="True">
                 <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0"
                                                          DataContext="{Binding SettingsGeneralViewModel}" />

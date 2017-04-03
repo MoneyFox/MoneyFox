@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -27,28 +26,15 @@ namespace MoneyFox.DataAccess.Repositories
             this.dbManager = dbManager;
         }
 
+        public static bool IsCacheMarkedForReload;
+
         private List<PaymentViewModel> DataCache { get; set; } = new List<PaymentViewModel>();
 
         public IEnumerable<PaymentViewModel> GetList(Expression<Func<PaymentViewModel, bool>> filter = null)
         {
-            if (!DataCache.Any())
+            if (!DataCache.Any() || IsCacheMarkedForReload)
             {
-                using (var db = dbManager.GetConnection())
-                {
-                    // Load recurring payments and mapp them to the payments to ensure recurring payments have all FK's loaded.
-                    var recurringPayments = db.GetAllWithChildren<RecurringPayment>();
-                    var payments = db.GetAllWithChildren<Payment>();
-
-                    foreach (var payment in payments.Where(x => x.IsRecurring))
-                    {
-                        payment.RecurringPayment = recurringPayments.First(x => x.Id == payment.RecurringPaymentId);
-                    }
-
-                    DataCache = payments
-                        .AsQueryable()
-                        .ProjectTo<PaymentViewModel>()
-                        .ToList();
-                }
+                FillCache();
             }
 
             return filter != null
@@ -58,28 +44,34 @@ namespace MoneyFox.DataAccess.Repositories
 
         public PaymentViewModel FindById(int id)
         {
+            if (!DataCache.Any() || IsCacheMarkedForReload)
+            {
+                FillCache();
+            }
+
+            return DataCache.Find(x => x.Id == id);
+        }
+
+        private void FillCache()
+        {
+            DataCache.Clear();
             using (var db = dbManager.GetConnection())
             {
-                try
-                {
-                    if (!DataCache.Any())
-                    {
-                        // Load recurring payment and mapp them to the payments to ensure recurring payments have all FK's loaded.
-                        var payment = Mapper.Map<PaymentViewModel>(db.GetWithChildren<Payment>(id));
-                        payment.RecurringPayment = Mapper.Map<RecurringPaymentViewModel>(
-                            db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId));
+                // Load recurring payments and mapp them to the payments to ensure recurring payments have all FK's loaded.
+                var recurringPayments = db.GetAllWithChildren<RecurringPayment>();
+                var payments = db.GetAllWithChildren<Payment>();
 
-                        return payment;
-                    }
-
-                    return DataCache.Find(x => x.Id == id);
-                }
-                catch (InvalidOperationException ex)
+                foreach (var payment in payments.Where(x => x.IsRecurring))
                 {
-                    Debug.WriteLine(ex);
-                    return null;
+                    payment.RecurringPayment = recurringPayments.First(x => x.Id == payment.RecurringPaymentId);
                 }
+
+                DataCache = payments
+                    .AsQueryable()
+                    .ProjectTo<PaymentViewModel>()
+                    .ToList();
             }
+            IsCacheMarkedForReload = false;
         }
 
         /// <summary>
@@ -162,12 +154,6 @@ namespace MoneyFox.DataAccess.Repositories
                 var itemToDelete = db.Table<Payment>().Single(x => x.Id == paymentToDelete.Id);
                 return db.Delete(itemToDelete) == 1;
             }
-        }
-
-        public void ReloadCache()
-        {
-            DataCache.Clear();
-            GetList();
         }
     }
 }
