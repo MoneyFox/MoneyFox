@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
+using Xunit;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
-    [TestClass]
     public class EndMonthManagerTests
     {
-        [TestMethod]
+        [Fact]
         public void EndofMonthManager_AccountIsNegative()
         {
             AccountViewModel account1 = new AccountViewModel
@@ -42,7 +41,7 @@ namespace MoneyFox.Shared.Tests.Manager
             account1.IsOverdrawn.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void EndofMonthManager_AccountIsPositive()
         {
             AccountViewModel account1 = new AccountViewModel
@@ -70,7 +69,7 @@ namespace MoneyFox.Shared.Tests.Manager
             account1.IsOverdrawn.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetTotalEndOfMonthBalance_TwoAccounts_SumOfAccounts()
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();

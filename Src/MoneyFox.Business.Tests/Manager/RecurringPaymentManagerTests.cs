@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
@@ -10,13 +9,13 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
+using Xunit;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
-    [TestClass]
     public class RecurringPaymentManagerTests
     {
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForDailyRecurring()
         {
             //Setup
@@ -95,7 +94,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList.First().RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Daily);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForWeeklyRecurring()
         {
             //Setup
@@ -150,7 +149,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Weekly);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForBiweeklyRecurring()
         {
             //Setup
@@ -204,7 +203,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Biweekly);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForMonthlyRecurring()
         {
             //Setup
@@ -258,7 +257,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Monthly);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForYearlyRecurring()
         {
             //Setup
@@ -312,7 +311,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Yearly);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_NewEntryForDailyAndWeeklyRecurring()
         {
             //Setup
@@ -398,7 +397,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[1].RecurringPayment.Recurrence.ShouldBe(PaymentRecurrence.Weekly);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_IgnorePaymentsNotReady()
         {
             //Setup
@@ -442,7 +441,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList.Count.ShouldBe(0);
         }
 
-        [TestMethod]
+        [Fact]
         public void CheckRecurringPayments_IgnoreNotClearedPaymentsNotReady()
         {
             //Setup

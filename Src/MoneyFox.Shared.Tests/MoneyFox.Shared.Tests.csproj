@@ -57,28 +57,11 @@
     <Compile Include="..\MoneyFox.Foundation.Tests\ShouldExtension.cs">
       <Link>ShouldExtension.cs</Link>
     </Compile>
-    <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
-    <Compile Include="Extensions\DateTimeExtensionTests.cs" />
-    <Compile Include="Helper\PaymentTypeHelperTest.cs" />
-    <Compile Include="Manager\EndMonthManagerTests.cs" />
-    <Compile Include="Manager\PaymentManagerTests.cs" />
-    <Compile Include="Manager\RecurringPaymentManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
-    <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
-    <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
-    <Compile Include="ViewModels\AboutViewModelTests.cs" />
-    <Compile Include="ViewModels\BackupViewModelTests.cs" />
-    <Compile Include="ViewModels\CategoryListViewModelTests.cs" />
-    <Compile Include="ViewModels\AccountListViewModelTests.cs" />
-    <Compile Include="ViewModels\BalanceViewModelTests.cs" />
-    <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
-    <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
-    <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

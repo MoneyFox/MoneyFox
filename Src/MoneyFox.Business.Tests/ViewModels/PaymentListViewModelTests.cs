@@ -1,15 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Business.ViewModels;
+﻿using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
+using Xunit;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
-    [TestClass]
+    [Collection("MvxIocCollection")]
     public class PaymentListViewModelTests : MvxIoCSupportingTest
     {
         private Mock<IAccountRepository> accountRepository;
@@ -20,10 +19,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
         private Mock<IBackupManager> backupManager;
         private Mock<IModifyDialogService> modifyDialogService;
 
-        [TestInitialize]
-        public void Init()
+        public PaymentListViewModelTests()
         {
-            MvxSingleton.ClearAllSingletons();
             accountRepository = new Mock<IAccountRepository>();
             paymentRepository = new Mock<IPaymentRepository>();
             paymentManager = new Mock<IPaymentManager>();
@@ -34,10 +31,9 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             accountRepository.SetupAllProperties();
             paymentRepository.SetupAllProperties();
-            Setup();
         }
 
-        [TestMethod]
+        [Fact]
         public void Init_PassAccountId_AccountIdSet()
         {
             var vm = new PaymentListViewModel(accountRepository.Object,
@@ -53,7 +49,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.AccountId.ShouldBe(42);
         }
 
-        [TestMethod]
+        [Fact]
         public void Init_NullPassAccountId_AccountIdSet()
         {
             var vm = new PaymentListViewModel(accountRepository.Object,
