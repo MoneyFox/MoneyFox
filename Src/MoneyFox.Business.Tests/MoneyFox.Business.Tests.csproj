@@ -52,6 +52,7 @@
       <Link>ShouldExtension.cs</Link>
     </Compile>
     <Compile Include="Authentication\PasswordStorageTests.cs" />
+    <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />

@@ -57,7 +57,6 @@
     <Compile Include="..\MoneyFox.Foundation.Tests\ShouldExtension.cs">
       <Link>ShouldExtension.cs</Link>
     </Compile>
-    <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />

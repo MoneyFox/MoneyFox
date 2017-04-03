@@ -1,42 +1,34 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Test.Core;
+using Xunit;
 
 namespace MoneyFox.Shared.Tests.Authentication
 {
-    [TestClass]
-    public class SessionTests : MvxIoCSupportingTest
+    [Collection("MvxIocCollection")]
+    public class SessionTests
     {
-        [TestInitialize]
-        public void Init()
-        {
-            ClearAll();
-            Setup();
-        }
-
-        [TestMethod]
+        [Fact]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            Assert.IsTrue(new Session(new Mock<ISettingsManager>().Object).ValidateSession());
+            Assert.True(new Session(new Mock<ISettingsManager>().Object).ValidateSession());
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
-            Assert.IsFalse(new Session(new SettingsManager(settingsSetup.Object)).ValidateSession());
+            Assert.False(new Session(new SettingsManager(settingsSetup.Object)).ValidateSession());
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateSession_PasswordRequiredSession_SessionInvalid()
         {
             var settingsSetup = new Mock<ISettings>();
@@ -49,7 +41,7 @@ namespace MoneyFox.Shared.Tests.Authentication
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void ValidateSession_PasswordRequiredSession_SessionValid()
         {
             var settingsSetup = new Mock<ISettings>();
@@ -62,7 +54,7 @@ namespace MoneyFox.Shared.Tests.Authentication
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void AddSession_SessionTimestampAdded()
         {
             var resultDateTime = DateTime.Today.AddDays(-10);
@@ -74,7 +66,7 @@ namespace MoneyFox.Shared.Tests.Authentication
                 .Returns(true);
 
             new Session(new SettingsManager(settingsSetup.Object)).AddSession();
-            Assert.AreEqual(DateTime.Today, resultDateTime.Date);
+            Assert.Equal(DateTime.Today, resultDateTime.Date);
         }
     }
 }
