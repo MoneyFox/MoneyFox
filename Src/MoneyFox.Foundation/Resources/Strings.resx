@@ -621,4 +621,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
     <value>Set the amount of hours to sync the backup.</value>
   </data>
+  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
 </root>

@@ -25,9 +25,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         local:MvxLang="Hint BackupSyncRecurrenceLabel" />
-    <EditText
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        local:MvxBind="Checked BackupSyncRecurrence, Mode=TwoWay" />  
+        android:orientation="horizontal"
+        android:layout_gravity="right">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            local:MvxBind="Checked BackupSyncRecurrence, Mode=TwoWay" />
+        <TextView
+            android:id="@+id/text_sync_backup_recurrence"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            local:MvxLang="Hint HourLabel" />
+    </LinearLayout>
 </LinearLayout>
