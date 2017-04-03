@@ -16,7 +16,7 @@ using Xunit;
 namespace MoneyFox.Shared.Tests.ViewModels
 {
     [Collection("MvxIocCollection")]
-    public class ModifyCategoryViewModelTests : MvxIoCSupportingTest
+    public class ModifyCategoryViewModelTests
     {
         [Fact]
         public void Title_EditCategory_CorrectTitle()
