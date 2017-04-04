@@ -5,7 +5,6 @@ using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
-using MoneyFox.DataAccess.Repositories;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 
@@ -19,6 +18,8 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
+                MapperConfiguration.Setup();
+
                 var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWindowsCommonFileStore());
 
@@ -27,7 +28,6 @@ namespace MoneyFox.Windows.Tasks
                 var backupManager = new BackupManager(new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
                         new MvxWindowsCommonFileStore(), 
                         dbManager, settingsManager,
-                        new PaymentRepository(dbManager),
                         new Connectivity());
 
                 await backupManager.DownloadBackup();

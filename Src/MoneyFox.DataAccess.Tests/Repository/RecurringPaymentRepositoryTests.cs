@@ -24,9 +24,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
-            var cb = new ContainerBuilder();
-            cb.RegisterModule<DataAccessModule>();
-            cb.Build();
+            MapperConfiguration.Setup();
         }
 
         [TestInitialize]
@@ -148,7 +146,7 @@ namespace MoneyFox.DataAccess.Tests.Repository
         }
 
         [TestMethod]
-        public void FindById_AccountDeleted()
+        public void FindById_RecurringPaymentDeleted()
         {
             var recurringPaymentRepository =
                 new RecurringPaymentRepository(new DatabaseManager(new WindowsSqliteConnectionFactory(),

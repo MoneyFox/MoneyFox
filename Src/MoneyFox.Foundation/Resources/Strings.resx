@@ -618,4 +618,13 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="ErrorMessageRestore" xml:space="preserve">
     <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
   </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Backup Recurrence</value>
+  </data>
 </root>
