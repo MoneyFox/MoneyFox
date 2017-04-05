@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider
+namespace MoneyFox.Business.Tests.StatisticProvider
 {
-    [TestClass]
     public class CategorySummaryProviderTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
+            Assert.Throws<NullReferenceException>(() => new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-
             var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.Setup(x => x.GetList(null)).Returns(new List<CategoryViewModel>
             {
@@ -77,7 +74,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result.First().Value.ShouldBe(-30);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_InitializedData_CalculateIncome()
         {
             //Setup
@@ -144,7 +141,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result[2].Value.ShouldBe(66);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup

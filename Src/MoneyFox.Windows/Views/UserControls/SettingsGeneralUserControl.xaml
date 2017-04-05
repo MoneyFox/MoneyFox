@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
@@ -10,7 +11,6 @@
     <Grid>
         <StackPanel>
             <TextBlock x:Uid="AutoBackupSettingExplanation"
-                       Margin="0,0,0,10"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                        Text="Setting explanation"
                        TextWrapping="WrapWholeWords" />
@@ -19,6 +19,14 @@
                           Header="Upload and download backup manually"
                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}" />
+
+            <TextBlock x:Uid="BackupSyncRecurrenceInfo"
+                       Margin="0,10,0,0"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="Setting explanation"
+                       TextWrapping="WrapWholeWords" />
+            <input:RadNumericBox Value="{Binding BackupSyncRecurrence}" />
+
         </StackPanel>
     </Grid>
 </UserControl>

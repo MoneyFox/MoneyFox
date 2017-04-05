@@ -14,5 +14,6 @@ namespace MoneyFox.Foundation.Interfaces
         bool IsDarkThemeSelected { get; set; }
         bool UseSystemTheme { get; set; }
         bool IsLoggedInToBackupService { get; set; }
+        int BackupSyncRecurrence { get; set; }
     }
 }

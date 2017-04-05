@@ -52,22 +52,39 @@
       <Link>ShouldExtension.cs</Link>
     </Compile>
     <Compile Include="Authentication\PasswordStorageTests.cs" />
+    <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Extensions\StreamExtensionTests.cs" />
+    <Compile Include="Fixtures\MvxIocFixture.cs" />
+    <Compile Include="Helpers\PaymentTypeHelperTest.cs" />
     <Compile Include="Helpers\RecurringPaymentHelperTests.cs" />
     <Compile Include="Helpers\UtilitiesTest.cs" />
+    <Compile Include="Manager\EndMonthManagerTests.cs" />
     <Compile Include="Manager\PaymentManagerTests.cs" />
+    <Compile Include="Manager\RecurringPaymentManagerTests.cs" />
     <Compile Include="Manager\SettingsManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OneDriveServiceTests.cs" />
-    <Compile Include="ViewModels\AccountListViewActionViewModelTests.cs" />
+    <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
+    <Compile Include="TestCollections\MvxIocCollection.cs" />
+    <Compile Include="ViewModels\AboutViewModelTests.cs" />
+    <Compile Include="ViewModels\AccountListViewActionModelTests.cs" />
+    <Compile Include="ViewModels\AccountListViewModelTests.cs" />
+    <Compile Include="ViewModels\BackupViewModelTests.cs" />
+    <Compile Include="ViewModels\BalanceViewModelTests.cs" />
+    <Compile Include="ViewModels\CategoryListViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
+    <Compile Include="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
+    <Compile Include="ViewModels\PaymentListViewModelTests.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

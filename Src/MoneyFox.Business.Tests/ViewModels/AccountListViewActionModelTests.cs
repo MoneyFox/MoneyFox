@@ -1,41 +1,18 @@
 using System.Collections.Generic;
-using MoneyFox.Business.Tests.Mocks;
+using MoneyFox.Business.Tests.Fixtures;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Core.Platform;
-using MvvmCross.Core.Views;
-using MvvmCross.Platform.Core;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
-    public class AccountListViewActionViewModelTests : MvxIoCSupportingTest
+    [Collection("MvxIocCollection")]
+    public class AccountListViewActionModelTests : MvxIocFixture
     {
-        protected MockDispatcher MockDispatcher { get; private set; }
-
-        public AccountListViewActionViewModelTests()
-        {
-            Setup();
-        }
-
-        /// <summary>
-        ///     This is needed for the navigation to work in the test.
-        /// </summary>
-        protected override void AdditionalSetup()
-        {
-            MockDispatcher = new MockDispatcher();
-            Ioc.RegisterSingleton<IMvxViewDispatcher>(MockDispatcher);
-            Ioc.RegisterSingleton<IMvxMainThreadDispatcher>(MockDispatcher);
-            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
-            Ioc.RegisterSingleton<IMvxMessenger>(new MvxMessengerHub());
-        }
-
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {

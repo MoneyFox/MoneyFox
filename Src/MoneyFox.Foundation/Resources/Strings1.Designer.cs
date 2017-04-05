@@ -1072,7 +1072,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categroy Name.
+        ///   Looks up a localized string similar to Category Name.
         /// </summary>
         public static string ModifyCategoryViewModel_CategoryNameLabel {
             get {
@@ -1420,6 +1420,33 @@ namespace MoneyFox.Foundation.Resources {
         public static string SettingsGeneralViewModel_AutobackupLabel {
             get {
                 return ResourceManager.GetString("SettingsGeneralViewModel.AutobackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the amount of hours to sync the backup..
+        /// </summary>
+        public static string SettingsGeneralViewModel_BackupSyncRecurrenceInfoLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup Recurrence.
+        /// </summary>
+        public static string SettingsGeneralViewModel_BackupSyncRecurrenceLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.BackupSyncRecurrenceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hour(s).
+        /// </summary>
+        public static string SettingsGeneralViewModel_HourLabel {
+            get {
+                return ResourceManager.GetString("SettingsGeneralViewModel.HourLabel", resourceCulture);
             }
         }
         
