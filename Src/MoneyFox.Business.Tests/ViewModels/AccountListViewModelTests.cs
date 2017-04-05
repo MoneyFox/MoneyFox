@@ -131,13 +131,16 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_IncludedAccountsSet_False()
+        public void IsAllAccountsEmpty_ExcludedAccountsSet_False()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel> {
-                new AccountViewModel{IsExcluded = true},
-            });
+            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                             .Returns(new List<AccountViewModel>())
+                             .Returns(new List<AccountViewModel>
+                             {
+                                 new AccountViewModel {IsExcluded = true},
+                             });
 
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
             vm.LoadedCommand.Execute();
