@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -257,7 +258,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var dialogSetup = new Mock<IDialogService>();
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string a, string b) => wasDialogServiceCalled = true);
+                .Callback((string a, string b) => wasDialogServiceCalled = true)
+                .Returns(Task.FromResult(0));
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
