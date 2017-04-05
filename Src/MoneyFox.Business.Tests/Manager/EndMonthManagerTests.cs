@@ -9,7 +9,7 @@ using MoneyFox.Foundation.Tests;
 using Moq;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.Manager
+namespace MoneyFox.Business.Tests.Manager
 {
     public class EndMonthManagerTests
     {

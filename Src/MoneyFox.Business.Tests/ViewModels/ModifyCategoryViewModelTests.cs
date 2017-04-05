@@ -1,6 +1,4 @@
-﻿using Moq;
-using MvvmCross.Test.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,9 +10,10 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
+using Moq;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
     [Collection("MvxIocCollection")]
     public class ModifyCategoryViewModelTests

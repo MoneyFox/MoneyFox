@@ -7,7 +7,7 @@ using MoneyFox.Foundation.Tests;
 using Moq;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.Authentication
+namespace MoneyFox.Business.Tests.Authentication
 {
     [Collection("MvxIocCollection")]
     public class SessionTests

@@ -3,7 +3,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.Helper
+namespace MoneyFox.Business.Tests.Helpers
 {
     public class PaymentTypeHelperTest
     {

@@ -10,7 +10,7 @@ using MoneyFox.Foundation.Tests;
 using Moq;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider
+namespace MoneyFox.Business.Tests.StatisticProvider
 {
     public class CategorySummaryProviderTests
     {
@@ -24,7 +24,6 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-
             var categoryRepoSetup = new Mock<ICategoryRepository>();
             categoryRepoSetup.Setup(x => x.GetList(null)).Returns(new List<CategoryViewModel>
             {

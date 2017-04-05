@@ -12,7 +12,7 @@ using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
     [Collection("MvxIocCollection")]
     public class AccountListViewModelTests : MvxIoCSupportingTest

@@ -10,7 +10,7 @@ using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
     public class BalanceViewModelTests : MvxIoCSupportingTest
     {

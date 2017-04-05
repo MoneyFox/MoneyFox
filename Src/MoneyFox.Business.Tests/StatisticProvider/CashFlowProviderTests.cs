@@ -10,7 +10,7 @@ using MoneyFox.Foundation.Tests;
 using Moq;
 using Xunit;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider
+namespace MoneyFox.Business.Tests.StatisticProvider
 {
     public class CashFlowProviderTests
     {
