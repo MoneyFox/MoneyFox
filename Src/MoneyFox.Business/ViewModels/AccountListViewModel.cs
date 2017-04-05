@@ -36,6 +36,9 @@ namespace MoneyFox.Business.ViewModels
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
             ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
+
+            IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
+            ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
         }
 
         #region Properties
@@ -54,7 +57,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> IncludedAccounts
         {
-            get { return includedAccounts; }
+            get => includedAccounts;
             set
             {
                 if(includedAccounts == value) return;
@@ -70,7 +73,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> ExcludedAccounts
         {
-            get { return excludedAccounts; }
+            get => excludedAccounts;
             set
             {
                 if(excludedAccounts == value) return;

@@ -51,6 +51,13 @@
                 Value="{StaticResource AppForegroundColorSecondary}" />
     </Style>
 
+    <Style x:Key="HeaderStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource DeemphasizedBodyTextBlockStyle}">
+        <Setter Property="FontSize"
+                Value="18" />
+    </Style>
+
     <Style x:Key="CustomSubtitleTextBlockStyle"
            TargetType="TextBlock"
            BasedOn="{StaticResource SubtitleTextBlockStyle}">

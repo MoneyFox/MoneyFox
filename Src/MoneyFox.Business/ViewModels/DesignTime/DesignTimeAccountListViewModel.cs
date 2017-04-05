@@ -23,6 +23,9 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         }
 
         public ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
+        public ObservableCollection<AccountViewModel> ExcludedAccounts { get; set; }
+        public bool IsAllAccountsEmpty { get; set; }
+        public bool IsExcludedAccountsEmpty { get; set; }
         public AccountViewModel SelectedAccountViewModel { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public IViewActionViewModel ViewActionViewModel { get; }

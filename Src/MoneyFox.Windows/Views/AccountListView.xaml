@@ -92,7 +92,7 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountTitle" Name="HeaderTitle"
+                <TextBlock x:Uid="AccountTitle" 
                            Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
@@ -101,29 +101,71 @@
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock x:Uid="IncludedAccounts"
+                           Text="Included Accounts"
+                           Margin="3,0,0,0"
+                           Style="{StaticResource HeaderStyle}"
+                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
+                           EntranceNavigationTransitionInfo.IsTargetElement="True" />
+                <controls:WarningListView HorizontalAlignment="Stretch"
+                                          Margin="-12,0,-12,0"
+                                          EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                          ItemTemplate="{StaticResource AccountItemTemplate}"
+                                          ItemsSource="{Binding IncludedAccounts}"
+                                          ShowsScrollingPlaceholders="False"
+                                          Background="Transparent"
+                                          WarningBackground="{StaticResource WarningBrush}">
 
-            <controls:WarningListView HorizontalAlignment="Stretch"
-                                      Margin="-12,0,-12,0"
-                                      EntranceNavigationTransitionInfo.IsTargetElement="True"
-                                      ItemTemplate="{StaticResource AccountItemTemplate}"
-                                      ItemsSource="{Binding IncludedAccounts}"
-                                      ShowsScrollingPlaceholders="False"
-                                      Background="Transparent"
-                                      WarningBackground="{StaticResource WarningBrush}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource SelectedAccountConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </controls:WarningListView>
 
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedAccountConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-            </controls:WarningListView>
+                <TextBlock x:Uid="ExcludedAccounts"
+                           Text="Excluded Accounts"
+                           Margin="3,15,0,0"
+                           Style="{StaticResource HeaderStyle}"
+                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
+                           EntranceNavigationTransitionInfo.IsTargetElement="True" />
+                    <controls:WarningListView HorizontalAlignment="Stretch"
+                                          Margin="-12,0,-12,0"
+                                          EntranceNavigationTransitionInfo.IsTargetElement="True"
+                                          ItemTemplate="{StaticResource AccountItemTemplate}"
+                                          ItemsSource="{Binding ExcludedAccounts}"
+                                          ShowsScrollingPlaceholders="False"
+                                          Background="Transparent"
+                                          WarningBackground="{StaticResource WarningBrush}">
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource SelectedAccountConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </controls:WarningListView>
+            </StackPanel>
         </ScrollViewer>
 
         <TextBlock x:Uid="AccountsPlaceholder"
@@ -134,7 +176,7 @@
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
-                   Visibility="{Binding IsIncludedAccountsEmpty,
+                   Visibility="{Binding IsAllAccountsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">
