@@ -508,7 +508,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>Note</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Categroy Name</value>
+    <value>Category Name</value>
   </data>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
     <value>Note</value>
