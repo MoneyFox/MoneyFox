@@ -623,6 +623,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
     <value>Included Accounts</value>
+  </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
     <value>Set the amount of hours to sync the backup.</value>
   </data>
