@@ -16,6 +16,8 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
+                MapperConfiguration.Setup();
+
                 var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
                     new MvxWindowsCommonFileStore());
 
@@ -25,6 +27,8 @@ namespace MoneyFox.Windows.Tasks
                     new AccountRepository(dbManager),
                     new RecurringPaymentRepository(dbManager),
                     null);
+
+                PaymentRepository.IsCacheMarkedForReload = true;
 
                 new RecurringPaymentManager(paymentManager, paymentRepository,
                     new SettingsManager(new WindowsUwpSettings())).CheckRecurringPayments();

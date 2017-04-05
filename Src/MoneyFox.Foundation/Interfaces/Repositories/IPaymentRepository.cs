@@ -4,6 +4,5 @@ namespace MoneyFox.Foundation.Interfaces.Repositories
 {
     public interface IPaymentRepository : IRepository<PaymentViewModel>
     {
-        void ReloadCache();
     }
 }

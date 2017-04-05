@@ -27,6 +27,9 @@ namespace MoneyFox.Business.Manager
         private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
         private const bool BACKUP_LOGGEDIN_KEYDEFAULT = false;
 
+        private const string BACKUP_SYNC_RECURRENCE_KEYNAME = "BackupSyncRecurrence";
+        private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
+
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
         /// <summary>
@@ -114,6 +117,12 @@ namespace MoneyFox.Business.Manager
         {
             get { return settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
+        }
+
+        public int BackupSyncRecurrence
+        {
+            get { return settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(BACKUP_SYNC_RECURRENCE_KEYNAME, value); }
         }
 
         #endregion Properties

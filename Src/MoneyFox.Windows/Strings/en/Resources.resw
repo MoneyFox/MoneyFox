@@ -341,9 +341,6 @@ Tap to visit the Repository:</value>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Last Backup was created at:</value>
   </data>
-  <data name="GeneralSettingsHeader.Header" xml:space="preserve">
-    <value>General</value>
-  </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Last database modification:</value>
   </data>
@@ -407,5 +404,11 @@ Also if you launch the application there it will check if there are newer backup
   </data>
   <data name="ThemeSettingsHeader.Header" xml:space="preserve">
     <value>Theme</value>
+  </data>
+  <data name="BackupSettingsHeader.Header" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
   </data>
 </root>

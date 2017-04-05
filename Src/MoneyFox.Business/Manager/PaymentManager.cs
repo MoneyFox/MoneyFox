@@ -116,7 +116,7 @@ namespace MoneyFox.Business.Manager
         public void ClearPayments()
         {
             var payments = paymentRepository
-                .GetList(p => !p.IsCleared && (p.Date.Date <= DateTime.Now.Date));
+                .GetList(p => !p.IsCleared && p.Date.Date <= DateTime.Now.Date);
 
             foreach (var payment in payments)
             {
@@ -131,12 +131,13 @@ namespace MoneyFox.Business.Manager
                     }
 
                     payment.IsCleared = true;
-                    paymentRepository.Save(payment);
 
                     AddPaymentAmount(payment);
-                }
+                    paymentRepository.Save(payment);
+                } 
                 catch (Exception ex)
                 {
+                    payment.IsCleared = false;
                     Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
             }
@@ -160,7 +161,7 @@ namespace MoneyFox.Business.Manager
                     ? x
                     : -x;
 
-            if ((payment.ChargedAccount == null) && (payment.ChargedAccountId != 0))
+            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
             {
                 payment.ChargedAccount =
                     accountRepository.GetList(x => x.Id == payment.ChargedAccountId).FirstOrDefault();
