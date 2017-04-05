@@ -1054,7 +1054,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categroy Name.
+        ///   Looks up a localized string similar to Category Name.
         /// </summary>
         public static string ModifyCategoryViewModel_CategoryNameLabel {
             get {
