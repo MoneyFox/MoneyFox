@@ -1,26 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Test.Core;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
+    [Collection("MvxIocCollection")]
     public class BackupViewModelTests : MvxIoCSupportingTest
     {
-        [TestInitialize]
-        public void Init()
-        {
-            ClearAll();
-            Setup();
-        }
 
-        [TestMethod]
+        [Fact]
         public void Loaded_NoConnectivity_NothingCalled()
         {
             // Setup
@@ -47,7 +41,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             getBackupDateCalled.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
@@ -73,7 +67,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             getBackupDateCalled.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
@@ -98,7 +92,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.BackupLastModified.ShouldBe(returnDate);
         }
 
-        [TestMethod]
+        [Fact]
         public void Logout_PropertiesSet()
         {
             // Setup

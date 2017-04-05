@@ -3,34 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
+    [Collection("MvxIocCollection")]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
         private Mock<IAccountRepository> accountRepository;
 
-        [TestInitialize]
-        public void Init()
+        public AccountListViewModelTests()
         {
-            MvxSingleton.ClearAllSingletons();
             accountRepository = new Mock<IAccountRepository>();
             accountRepository.SetupAllProperties();
-
-            Setup();
         }
 
-        [TestMethod]
+        [Fact]
         public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
         {
             var deleteCalled = false;
@@ -52,7 +47,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             deleteCalled.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
         {
             var deleteCalled = false;
@@ -73,7 +68,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             deleteCalled.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void DeleteAccountCommand_AccountNull_DoNothing()
         {
             var deleteCalled = false;
@@ -95,7 +90,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             deleteCalled.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAllAccountsEmpty_AccountsEmpty_True()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -107,7 +102,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.IsAllAccountsEmpty.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAllAccountsEmpty_OneAccount_False()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -120,7 +115,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void IsAllAccountsEmpty_TwoAccount_False()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -135,7 +130,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void AllAccounts_AccountsAvailable_MatchesRepository()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -153,7 +148,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.AllAccounts[1].Id.ShouldBe(33);
         }
 
-        [TestMethod]
+        [Fact]
         public void AllAccounts_NoAccountsAvailable_MatchesRepository()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();

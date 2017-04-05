@@ -1,31 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using MvvmCross.Test.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
+using Moq;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
-    public class ModifyCategoryViewModelTests : MvxIoCSupportingTest
+    [Collection("MvxIocCollection")]
+    public class ModifyCategoryViewModelTests
     {
-        [TestInitialize]
-        public void Init()
-        {
-            ClearAll();
-            Setup();
-        }
-
-        [TestMethod]
+        [Fact]
         public void Title_EditCategory_CorrectTitle()
         {
             var categoryName = "groceries";
@@ -43,7 +36,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.Title.ShouldBe(string.Format(Strings.EditCategoryTitle, categoryName));
         }
 
-        [TestMethod]
+        [Fact]
         public void Title_AddCategory_CorrectTitle()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -58,7 +51,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.Title.ShouldBe(Strings.AddCategoryTitle); 
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names()
         {
             var categoryList = new List<CategoryViewModel>();
@@ -95,7 +88,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             categoryList.Count.ShouldBe(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
         {
             var categoryList = new List<CategoryViewModel>();
@@ -132,7 +125,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             categoryList.Count.ShouldBe(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveCommand_SavesCategory()
         {
             var categoryList = new List<CategoryViewModel>();
@@ -163,7 +156,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             categoryList.Count.ShouldBe(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void SaveCategory_UpdateTimeStamp()
         {
             var category = new CategoryViewModel { Id = 0, Name = "CategoryViewModel", Notes = "" };
@@ -194,7 +187,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
 
-        [TestMethod]
+        [Fact]
         public void DeleteCategory_DeletesCategory()
         {
             var categoryList = new List<CategoryViewModel>();
@@ -229,7 +222,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             categoryList.Any().ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void Cancel_SelectedCategoryReseted()
         {
             string name = "Cateory";
@@ -256,7 +249,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             viewmodel.SelectedCategory.Name.ShouldBe(name);
         }
 
-        [TestMethod]
+        [Fact]
         public void DoneCommand_NameEmpty_ShowMessage()
         {
             // Setup
@@ -264,7 +257,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             var dialogSetup = new Mock<IDialogService>();
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string a, string b) => wasDialogServiceCalled = true);
+                .Callback((string a, string b) => wasDialogServiceCalled = true)
+                .Returns(Task.FromResult(0));
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
