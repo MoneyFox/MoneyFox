@@ -89,7 +89,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns if the IncludedAccounts Collection is emtpy or not.
         /// </summary>
-        public bool IsAllAccountsEmpty => !IncludedAccounts.Any() && !ExcludedAccounts.Any();
+        public bool IsAllAccountsEmpty => !(IncludedAccounts.Any() || ExcludedAccounts.Any());
 
         /// <summary>
         ///     Returns if the ExcludedAccounts Collection is emtpy or not.
