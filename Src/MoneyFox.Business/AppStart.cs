@@ -21,7 +21,7 @@ namespace MoneyFox.Business
             {
                 ShowViewModel<MainViewModel>();
                 ShowViewModel<AccountListViewModel>();
-                ShowViewModel<MenuViewModel>();
+                //ShowViewModel<MenuViewModel>();
             }
             else
             {

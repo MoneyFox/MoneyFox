@@ -107,8 +107,6 @@
     <Compile Include="Views\AccountList\AccountListView.designer.cs">
       <DependentUpon>AccountListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.cs" />
-    <Compile Include="Views\MenuView.cs" />
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -127,6 +125,19 @@
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\Menu\MenuTableViewCell.cs" />
+    <Compile Include="Views\Menu\MenuTableViewCell.designer.cs">
+      <DependentUpon>MenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\Menu\MenuTableViewCell.xib" />
+    <Compile Include="Views\Menu\MenuTableViewSource.cs" />
+    <Compile Include="Views\Menu\MenuView.cs" />
+    <Compile Include="Views\Menu\MenuView.designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\Menu\MenuView.xib" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />
@@ -162,6 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OneDriveAuth\" />
+    <Folder Include="Views\Menu\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
