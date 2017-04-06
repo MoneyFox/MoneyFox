@@ -5,7 +5,8 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using UIKit;
 
-namespace MoneyFox.Ios {
+namespace MoneyFox.Ios 
+{
 	[Register("AppDelegate")]
     public class AppDelegate : MvxApplicationDelegate
 	{
@@ -13,7 +14,7 @@ namespace MoneyFox.Ios {
 
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{
-			//Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
 			var presenter = new MvxIosViewPresenter(this, Window);
 
@@ -23,7 +24,7 @@ namespace MoneyFox.Ios {
 			var startup = Mvx.Resolve<IMvxAppStart>();
 			startup.Start();
 
-			//Window.MakeKeyAndVisible();
+			Window.MakeKeyAndVisible();
 
 			return true;
 		}

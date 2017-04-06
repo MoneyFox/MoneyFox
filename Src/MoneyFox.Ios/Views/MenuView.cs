@@ -10,7 +10,7 @@ using MvvmCross.iOS.Views;
 
 namespace MoneyFox.Ios.Views {
     [Register("MenuView")]
-    [MvxPanelPresentation(MvxPanelEnum.Left, MvxPanelHintType.ActivePanel, false)]
+	[MvxPanelPresentation(MvxPanelEnum.Left, MvxPanelHintType.ActivePanel, false)]
     public class MenuView : MvxViewController<MenuViewModel> {
         public override void ViewDidLoad() {
             base.ViewDidLoad();

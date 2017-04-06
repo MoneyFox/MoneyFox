@@ -5,12 +5,14 @@ using MvvmCross.Binding.iOS.Views;
 using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views;
 
-namespace MoneyFox.Ios.Views.AccountList {
-    [MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
-    public partial class AccountListView : MvxViewController<AccountListViewModel> {
-
-        public override void ViewDidLoad() {
-            base.ViewDidLoad();
+namespace MoneyFox.Ios.Views.AccountList 
+{
+	[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
+    public partial class AccountListView : MvxViewController<AccountListViewModel> 
+	{
+		public override void ViewDidLoad()
+		{
+			Title = Strings.AccountsLabel;
 
             var source = new MvxSimpleTableViewSource(AccountList, AccountTableCell.Key);
             this.CreateBinding(source).To<AccountListViewModel>(vm => vm.AllAccounts).Apply();
@@ -18,12 +20,6 @@ namespace MoneyFox.Ios.Views.AccountList {
             AccountList.RowHeight = 55;
             AccountList.Source = source;
             AccountList.ReloadData();
-        }
-
-        public override void ViewDidAppear(bool animated) {
-            base.ViewDidAppear(animated);
-
-            Title = Strings.AccountsLabel;
         }
     }
 }

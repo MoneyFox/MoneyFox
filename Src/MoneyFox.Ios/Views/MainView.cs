@@ -6,7 +6,7 @@ using MvvmCross.iOS.Views;
 namespace MoneyFox.Ios.Views
 {
     [Register("MainView")]
-	[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
+	[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, false)]
     public class MainView : MvxViewController<MainViewModel>
     {
         public override void ViewDidLoad()
