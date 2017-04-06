@@ -112,7 +112,9 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib" />
+    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib">
+      <IncludeInPackage>false</IncludeInPackage>
+    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\AccountList\AccountViewCell.xib" />
     <Compile Include="Views\AccountList\AccountTableCell.cs" />
     <Compile Include="Views\AccountList\AccountTableCell.designer.cs">

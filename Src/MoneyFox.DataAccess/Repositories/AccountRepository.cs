@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -29,8 +28,7 @@ namespace MoneyFox.DataAccess.Repositories
 		{
 			using (var db = dbManager.GetConnection())
 			{
-				var query = db.Table<Account>().AsQueryable();//.ProjectTo<AccountViewModel>();
-
+				var query = db.Table<Account>().AsQueryable();
 				var newFilter = Mapper.Map<Expression<Func<Account, bool>>>(filter);
 
 				if (filter != null)
