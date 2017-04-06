@@ -618,6 +618,12 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="ErrorMessageRestore" xml:space="preserve">
     <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
   </data>
+  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
     <value>Set the amount of hours to sync the backup.</value>
   </data>
