@@ -227,3 +227,5 @@ Src/MoneyFox.Droid/Resources/Resource.Designer.cs
 .vs/
 *.targets
 *.props
+
+*.userprefs
