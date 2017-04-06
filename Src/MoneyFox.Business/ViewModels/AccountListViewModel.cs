@@ -19,7 +19,8 @@ namespace MoneyFox.Business.ViewModels
         private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
 
-        private ObservableCollection<AccountViewModel> allAccounts;
+        private ObservableCollection<AccountViewModel> includedAccounts;
+        private ObservableCollection<AccountViewModel> excludedAccounts;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentManager paymentManager,
@@ -35,6 +36,9 @@ namespace MoneyFox.Business.ViewModels
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
             ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
+
+            IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
+            ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
         }
 
 		/// <summary>
@@ -57,15 +61,15 @@ namespace MoneyFox.Business.ViewModels
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
-        ///     All existing accounts.
+        ///     All existing accounts who are included to the balance calculation.
         /// </summary>
-        public ObservableCollection<AccountViewModel> AllAccounts
+        public ObservableCollection<AccountViewModel> IncludedAccounts
         {
-            get { return allAccounts; }
+            get => includedAccounts;
             set
             {
-                if(allAccounts == value) return;
-                allAccounts = value;
+                if(includedAccounts == value) return;
+                includedAccounts = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsAllAccountsEmpty));
@@ -73,9 +77,32 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <summary>
-        ///     Returns if the ChargedAccounts Collection is emtpy or not.
+        ///     All existing accounts who are exluded from the balance calculation.
         /// </summary>
-        public bool IsAllAccountsEmpty => !AllAccounts?.Any() ?? true;
+        public ObservableCollection<AccountViewModel> ExcludedAccounts
+        {
+            get => excludedAccounts;
+            set
+            {
+                if(excludedAccounts == value) return;
+                excludedAccounts = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsAllAccountsEmpty));
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsExcludedAccountsEmpty));
+            }
+        }
+
+        /// <summary>
+        ///     Returns if the IncludedAccounts Collection is emtpy or not.
+        /// </summary>
+        public bool IsAllAccountsEmpty => !(IncludedAccounts.Any() || ExcludedAccounts.Any());
+
+        /// <summary>
+        ///     Returns if the ExcludedAccounts Collection is emtpy or not.
+        /// </summary>accoutn
+        public bool IsExcludedAccountsEmpty => !ExcludedAccounts?.Any() ?? true;
 
         #endregion
 
@@ -115,9 +142,10 @@ namespace MoneyFox.Business.ViewModels
 
         private void Loaded()
         {
-            AllAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
+            IncludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => !x.IsExcluded));
+            ExcludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => x.IsExcluded));
             BalanceViewModel.UpdateBalanceCommand.Execute();
-            endOfMonthManager.CheckEndOfMonthBalanceForAccounts(AllAccounts);
+            endOfMonthManager.CheckEndOfMonthBalanceForAccounts(IncludedAccounts);
         }
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
@@ -143,9 +171,17 @@ namespace MoneyFox.Business.ViewModels
 
                 if (accountRepository.Delete(accountToDelete))
                 {
-                    if (AllAccounts.Contains(accountToDelete))
+                    if (IncludedAccounts.Contains(accountToDelete))
                     {
-                        AllAccounts.Remove(accountToDelete);
+                        IncludedAccounts.Remove(accountToDelete);
+                        // ReSharper disable once ExplicitCallerInfoArgument
+                        RaisePropertyChanged(nameof(IncludedAccounts));
+                    }
+                    if (ExcludedAccounts.Contains(accountToDelete))
+                    {
+                        ExcludedAccounts.Remove(accountToDelete);
+                        // ReSharper disable once ExplicitCallerInfoArgument
+                        RaisePropertyChanged(nameof(ExcludedAccounts));
                     }
                     settingsManager.LastDatabaseUpdate = DateTime.Now;
                 }
