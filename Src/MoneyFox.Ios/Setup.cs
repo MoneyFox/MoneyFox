@@ -11,43 +11,47 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
+using UIKit;
 
 namespace MoneyFox.Ios 
 {
     public class Setup : MvxIosSetup 
 	{
-
-        public Setup(MvxApplicationDelegate appDelegate, IMvxIosViewPresenter presenter)
-			: base(appDelegate, presenter){}
-
-        protected override IMvxIoCProvider CreateIocProvider()
-        {
-            var cb = new ContainerBuilder();
-
-            cb.RegisterModule<BusinessModule>();
-            cb.RegisterModule<IosModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
-        }
-
-        protected override void InitializeFirstChance() 
+		public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
+			: base(applicationDelegate, window)
 		{
-            base.InitializeFirstChance();
-        }
+		}
+
+		public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
+			: base(applicationDelegate, presenter)
+		{
+		}
+
+		protected override IMvxTrace CreateDebugTrace()
+		{
+			return new DebugTrace();
+		}
 
 		protected override IMvxIosViewPresenter CreatePresenter()
 		{
-			return new MvxSidePanelsPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
+			return new MvxSidebarPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
 		}
 
-        protected override IMvxApplication CreateApp() 
+		protected override IMvxApplication CreateApp()
 		{
-            Strings.Culture = new Localize().GetCurrentCultureInfo();
+			Strings.Culture = new Localize().GetCurrentCultureInfo();
 
-            return new App();
-        }
+			return new App();
+		}
 
-        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
+		protected override IMvxIoCProvider CreateIocProvider()
+		{
+			var cb = new ContainerBuilder();
 
+			cb.RegisterModule<BusinessModule>();
+			cb.RegisterModule<IosModule>();
+
+			return new AutofacMvxIocProvider(cb.Build());
+		}
     }
 }

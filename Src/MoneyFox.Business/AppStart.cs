@@ -19,9 +19,10 @@ namespace MoneyFox.Business
         {
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                ShowViewModel<MainViewModel>();
-                ShowViewModel<AccountListViewModel>();
-                //ShowViewModel<MenuViewModel>();
+				// TODO Refactor Android to do this in the plattform specific setup.
+                //ShowViewModel<MainViewModel>();
+                ShowViewModel<MenuViewModel>();
+				ShowViewModel<AccountListViewModel>();
             }
             else
             {

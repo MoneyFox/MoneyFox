@@ -126,7 +126,6 @@
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Models\MenuModel.cs" />
-    <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\Menu\MenuTableViewCell.cs" />
     <Compile Include="Views\Menu\MenuTableViewCell.designer.cs">
       <DependentUpon>MenuTableViewCell.cs</DependentUpon>
@@ -138,6 +137,7 @@
       <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
     <InterfaceDefinition Include="Views\Menu\MenuView.xib" />
+    <Compile Include="LinkerPleaseInclude.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewController.cs" />

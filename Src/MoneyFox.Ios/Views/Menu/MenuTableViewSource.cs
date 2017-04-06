@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Foundation;
-using MvvmCross.iOS.Support.SidePanels;
-using MvvmCross.Platform;
 using UIKit;
 
 namespace MoneyFox.Ios
@@ -57,8 +55,6 @@ namespace MoneyFox.Ios
 		{
 			MenuModel item = TableItems[indexPath.Row];
 			item.Navigate.Execute();
-			Mvx.Resolve<IMvxSideMenu>().Close();
-
 		}
 
 		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)

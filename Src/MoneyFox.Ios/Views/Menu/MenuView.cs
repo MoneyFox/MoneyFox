@@ -19,7 +19,6 @@ namespace MoneyFox.Ios
 		public MenuView()
 		{
 			MenuItems = new List<MenuModel>();
-
 		}
 
 		public override void ViewDidLoad()

@@ -37,9 +37,17 @@ namespace MoneyFox.Business.ViewModels
             ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
         }
 
-        #region Properties
+		/// <summary>
+		/// 	Used on Ios
+		/// </summary>
+		public void ShowMenu()
+		{
+			ShowViewModel<MenuViewModel>();
+		}
 
-        public IBalanceViewModel BalanceViewModel { get; }
+		#region Properties
+
+		public IBalanceViewModel BalanceViewModel { get; }
 
         public IViewActionViewModel ViewActionViewModel { get; }
 

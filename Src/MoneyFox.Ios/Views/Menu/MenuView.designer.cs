@@ -21,7 +21,7 @@ namespace MoneyFox.Ios
         UIKit.UITableView MenuTableView { get; set; }
 
         [Outlet]
-		UIKit.UIImageView ProfileImage { get; set; }
+        UIKit.UIImageView ProfileImage { get; set; }
 
         [Outlet]
         UIKit.UILabel SmallLabel { get; set; }

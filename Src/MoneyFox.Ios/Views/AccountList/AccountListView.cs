@@ -12,6 +12,8 @@ namespace MoneyFox.Ios.Views.AccountList
 	{
 		public override void ViewDidLoad()
 		{
+			base.ViewDidLoad();
+
 			Title = Strings.AccountsLabel;
 
             var source = new MvxSimpleTableViewSource(AccountList, AccountTableCell.Key);

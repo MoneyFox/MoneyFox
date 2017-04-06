@@ -2,7 +2,6 @@
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Ios.OneDriveAuth;
 using MoneyFox.Ios.Services;
-using MvvmCross.iOS.Support.SidePanels;
 
 namespace MoneyFox.Ios
 {
@@ -21,7 +20,6 @@ namespace MoneyFox.Ios
 			//builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
 			//builder.RegisterType<PlayStoreOperations>().As<IStoreOperations>();
 
-            builder.RegisterInstance(new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
         }
     }
 }
