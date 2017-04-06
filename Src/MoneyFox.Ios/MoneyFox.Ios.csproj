@@ -138,12 +138,13 @@
     </Compile>
     <InterfaceDefinition Include="Views\Menu\MenuView.xib" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <InterfaceDefinition Include="Views\ModifyAccount\ModifyAccountView.xib" />
+    <Compile Include="Views\ModifyAccount\ModifyAccountView.cs" />
+    <Compile Include="Views\ModifyAccount\ModifyAccountView.designer.cs">
+      <DependentUpon>ModifyAccountView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DetailViewController.cs" />
-    <Compile Include="DetailViewController.designer.cs">
-      <DependentUpon>DetailViewController.cs</DependentUpon>
-    </Compile>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
       <InProject>false</InProject>
@@ -175,6 +176,7 @@
     <Folder Include="OneDriveAuth\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ModifyAccount\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
