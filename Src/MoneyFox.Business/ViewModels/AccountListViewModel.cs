@@ -57,7 +57,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> IncludedAccounts
         {
-            get => includedAccounts;
+            get { return includedAccounts; }
             set
             {
                 if(includedAccounts == value) return;
@@ -73,7 +73,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> ExcludedAccounts
         {
-            get => excludedAccounts;
+            get { return excludedAccounts; }
             set
             {
                 if(excludedAccounts == value) return;
