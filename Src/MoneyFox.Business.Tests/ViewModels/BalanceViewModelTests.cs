@@ -1,29 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
     public class BalanceViewModelTests : MvxIoCSupportingTest
     {
-        [TestInitialize]
-        public void Init()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-        }
-
-        [TestMethod]
+        [Fact]
         public void GetTotalBalance_Zero()
         {
             var endOfMonthManagerSetup = new Mock<IEndOfMonthManager>();
@@ -38,7 +29,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.EndOfMonthBalance.ShouldBe(0);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
             var vm = new BalanceViewModel(new Mock<IAccountRepository>().Object, new Mock<IEndOfMonthManager>().Object);
@@ -47,7 +38,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             vm.TotalBalance.ShouldBe(0);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             var accountMockSetup = new Mock<IAccountRepository>();

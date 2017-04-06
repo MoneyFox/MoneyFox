@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.applysolutions.moneyfox" android:installLocation="auto" android:versionCode="20160655" android:versionName="2.6.68">
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.applysolutions.moneyfox" android:installLocation="auto" android:versionCode="20160656" android:versionName="2.6.69">
+>>>>>>> MoneyFox/master
 	<uses-sdk android:minSdkVersion="19" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

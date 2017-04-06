@@ -11,7 +11,7 @@ using Xunit;
 namespace MoneyFox.Business.Tests.ViewModels
 {
     [Collection("MvxIocCollection")]
-    public class AccountListViewActionMvxIocTests : MvxIocFixture
+    public class AccountListViewActionModelTests : MvxIocFixture
     {
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()

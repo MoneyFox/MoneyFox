@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
 using Moq;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.StatisticProvider
+namespace MoneyFox.Business.Tests.StatisticProvider
 {
-    [TestClass]
     public class CashFlowProviderTests
     {
-        [TestMethod]
+        [Fact]
         public void Constructor_Null_NotNullObject()
         {
             new CashFlowDataProvider(null).ShouldNotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_SetupData_ListWithoutTransfer()
         {
             //Setup
@@ -61,7 +60,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result[2].Value.ShouldBe(10);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
             var paymentList = new List<PaymentViewModel>
@@ -104,11 +103,10 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result[2].Value.ShouldBe(-60);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CashFlowDataProvider(null).GetCashFlow(DateTime.Today, DateTime.Today);
+            Assert.Throws<NullReferenceException>(() => new CashFlowDataProvider(null).GetCashFlow(DateTime.Today, DateTime.Today));
         }
     }
 }

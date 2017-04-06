@@ -1,27 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Business.ViewModels;
+﻿using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
 using Moq;
-using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests.ViewModels
+namespace MoneyFox.Business.Tests.ViewModels
 {
-    [TestClass]
+    [Collection("MvxIocCollection")]
     public class AboutViewModelTests : MvxIoCSupportingTest
     {
-        public AboutViewModelTests()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-        }
-
-        [TestMethod]
+        [Fact]
         public void SendMail_NoParams_CommandCalled()
         {
             var commandCalled = false;
@@ -44,7 +37,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void SupportMail_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -54,7 +47,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 .SupportMail.ShouldBe(Constants.SUPPORT_MAIL);
         }
 
-        [TestMethod]
+        [Fact]
         public void Website_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -64,7 +57,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 .Website.ShouldBe(Constants.WEBSITE_URL);
         }
 
-        [TestMethod]
+        [Fact]
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = new Mock<IAppInformation>();
@@ -77,7 +70,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 .Version.ShouldBe("42");
         }
 
-        [TestMethod]
+        [Fact]
         public void GoToWebsite_NoParams_Called()
         {
             var commandCalled = false;
@@ -95,7 +88,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void GoToRepository_NoParams_CommandCalled()
         {
             var commandCalled = false;
@@ -114,7 +107,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void RateApp_NoParams_CommandCalled()
         {
             var commandCalled = false;
