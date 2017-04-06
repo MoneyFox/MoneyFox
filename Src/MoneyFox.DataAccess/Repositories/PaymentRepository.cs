@@ -66,10 +66,7 @@ namespace MoneyFox.DataAccess.Repositories
                     payment.RecurringPayment = recurringPayments.First(x => x.Id == payment.RecurringPaymentId);
                 }
 
-                DataCache = payments
-                    .AsQueryable()
-                    .ProjectTo<PaymentViewModel>()
-                    .ToList();
+				DataCache = Mapper.Map<List<PaymentViewModel>>(payments.ToList());
             }
             IsCacheMarkedForReload = false;
         }

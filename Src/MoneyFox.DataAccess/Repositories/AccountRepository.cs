@@ -25,20 +25,22 @@ namespace MoneyFox.DataAccess.Repositories
             this.dbManager = dbManager;
         }
 
-        public IEnumerable<AccountViewModel> GetList(Expression<Func<AccountViewModel, bool>> filter = null)
-        {
-            using (var db = dbManager.GetConnection())
-            {
-                var query = db.Table<Account>().AsQueryable().ProjectTo<AccountViewModel>();
+		public IEnumerable<AccountViewModel> GetList(Expression<Func<AccountViewModel, bool>> filter = null)
+		{
+			using (var db = dbManager.GetConnection())
+			{
+				var query = db.Table<Account>().AsQueryable();//.ProjectTo<AccountViewModel>();
 
-                if (filter != null)
-                {
-                    query = query.Where(filter);
-                }
+				var newFilter = Mapper.Map<Expression<Func<Account, bool>>>(filter);
 
-                return query.OrderBy(x => x.Name).ToList();
-            }
-        }
+				if (filter != null)
+				{
+					query = query.Where(newFilter);
+				}
+
+				return Mapper.Map<List<AccountViewModel>>(query.OrderBy(x => x.Name).ToList());
+			}
+		}
 
         public AccountViewModel FindById(int id)
         {

@@ -17,6 +17,8 @@ namespace MoneyFox.Ios.Views.AccountList
 
 			Title = Strings.AccountsLabel;
 
+			ViewModel.LoadedCommand.Execute();
+
             var source = new MvxSimpleTableViewSource(AccountList, AccountTableCell.Key);
             this.CreateBinding(source).To<AccountListViewModel>(vm => vm.IncludedAccounts).Apply();
             this.CreateBinding(source).For(s => s.SelectionChangedCommand).To<AccountListViewModel>(vm => vm.OpenOverviewCommand).Apply();
