@@ -18,7 +18,7 @@ namespace MoneyFox.Ios
 			this.CreateBinding(textFieldAccountName).To((ModifyAccountViewModel vm) => vm.SelectedAccount.Name).Apply();
 
 			var cancelBtn = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (o, args) => ViewModel.CancelCommand.Execute());
-			var saveBtn = new UIBarButtonItem(UIBarButtonSystemItem.Compose, (o, args) => ViewModel.SaveCommand.Execute());
+			var saveBtn = new UIBarButtonItem(UIBarButtonSystemItem.Save, (o, args) => ViewModel.SaveCommand.Execute());
 
 			NavigationItem.SetLeftBarButtonItem(cancelBtn, true);
 			NavigationItem.SetRightBarButtonItem(saveBtn, true);
