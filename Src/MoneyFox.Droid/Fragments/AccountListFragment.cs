@@ -16,9 +16,6 @@ namespace MoneyFox.Droid.Fragments
     [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        private const int GROUP_ID_INCLUDED_ACCOUNTS = 1;
-        private const int GROUP_ID_EXCLUDED_ACCOUNTS = 2;
-
         private View view;
         protected override int FragmentId => Resource.Layout.fragment_account_list;
         protected override string Title => Strings.AccountsLabel;
