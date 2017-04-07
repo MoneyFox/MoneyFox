@@ -63,7 +63,7 @@ namespace MoneyFox.Droid.Activities
             switch (item.ItemId)
             {
                 case 0:
-                    //ViewModel.EditCommand.Execute(selected);
+                    ViewModel.EditPaymentCommand.Execute(selected);
                     return true;
 
                 case 1:

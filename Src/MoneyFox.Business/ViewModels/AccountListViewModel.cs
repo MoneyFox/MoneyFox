@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Interfaces.Repositories;
@@ -18,6 +19,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
+        private readonly IModifyDialogService modifyDialogService;
 
         private ObservableCollection<AccountViewModel> includedAccounts;
         private ObservableCollection<AccountViewModel> excludedAccounts;
@@ -26,13 +28,15 @@ namespace MoneyFox.Business.ViewModels
             IPaymentManager paymentManager,
             IDialogService dialogService, 
             IEndOfMonthManager endOfMonthManager,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager, 
+            IModifyDialogService modifyDialogService)
         {
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
             this.paymentManager = paymentManager;
             this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
+            this.modifyDialogService = modifyDialogService;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
             ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
@@ -57,7 +61,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> IncludedAccounts
         {
-            get => includedAccounts;
+            get { return includedAccounts; }
             set
             {
                 if(includedAccounts == value) return;
@@ -73,7 +77,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> ExcludedAccounts
         {
-            get => excludedAccounts;
+            get { return excludedAccounts; }
             set
             {
                 if(excludedAccounts == value) return;
@@ -125,8 +129,13 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
+        /// <summary>
+        ///     Opens the Context Menu for a list or a recycler view
+        /// </summary>
+        public MvxCommand<AccountViewModel> OpenContextMenuCommand => new MvxCommand<AccountViewModel>(OpenContextMenu);
+
         #endregion
-        
+
         private void EditAccount(AccountViewModel accountViewModel)
         {
             ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
@@ -189,6 +198,22 @@ namespace MoneyFox.Business.ViewModels
         private void GoToAddAccount()
         {
             ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
+        }
+
+        private async void OpenContextMenu(AccountViewModel account)
+        {
+            var result = await modifyDialogService.ShowEditSelectionDialog();
+
+            switch (result)
+            {
+                case ModifyOperation.Edit:
+                    EditAccountCommand.Execute(account);
+                    break;
+
+                case ModifyOperation.Delete:
+                    DeleteAccountCommand.Execute(account);
+                    break;
+            }
         }
     }
 }
