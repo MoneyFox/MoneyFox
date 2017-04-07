@@ -39,18 +39,18 @@
         android:layout_marginTop="5dp"
         android:layout_gravity="right"
         android:orientation="horizontal">
-      <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minWidth="200dp"
-        android:layout_weight="3">
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:inputType="number"
-            local:MvxBind="Checked BackupSyncRecurrence, Mode=TwoWay"
-            local:MvxLang="Hint BackupSyncRecurrenceLabel"/>
+            android:minWidth="200dp"
+            android:layout_weight="3">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:inputType="number"
+                local:MvxBind="Text BackupSyncRecurrence, Mode=TwoWay"
+                local:MvxLang="Hint BackupSyncRecurrenceLabel" />
         </android.support.design.widget.TextInputLayout>
         <TextView
             android:id="@+id/text_sync_backup_recurrence"
