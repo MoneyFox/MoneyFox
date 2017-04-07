@@ -20,11 +20,12 @@
       <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <RelativeLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"> 
           <TextView
+              android:id="@+id/textview_included_list"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="left"
@@ -32,29 +33,33 @@
               android:layout_margin="6dp"
               local:MvxBind="Visibility InvertedVisibility(IsAllAccountsEmpty)"
               local:MvxLang="Text IncludedAccountsHeader" />
-          <MvxListView
+          <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+              android:id="@+id/included_account_list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_below="@id/textview_included_list"
               android:listSelector="@drawable/list_item_selector"
-              android:id="@+id/included_account_list"
               local:MvxItemTemplate="@layout/listitem_account"
-              local:MvxBind="ItemsSource IncludedAccounts;ItemClick OpenOverviewCommand" />
+              local:MvxBind="ItemsSource IncludedAccounts;ItemLongClick OpenContextMenuCommand;ItemClick OpenOverviewCommand" />
             <TextView
+              android:id="@+id/textview_excluded_list"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:layout_below="@id/included_account_list"
               android:layout_gravity="left"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_margin="6dp"
               local:MvxBind="Visibility InvertedVisibility(IsExcludedAccountsEmpty)"
               local:MvxLang="Text ExcludedAccountsHeader" />
-            <MvxListView
+            <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+              android:id="@+id/excluded_account_list"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_below="@id/textview_excluded_list"
               android:listSelector="@drawable/list_item_selector"
-              android:id="@+id/excluded_account_list"
               local:MvxItemTemplate="@layout/listitem_account"
-              local:MvxBind="ItemsSource ExcludedAccounts;ItemClick OpenOverviewCommand;Visibility InvertedVisibility(IsExcludedAccountsEmpty)" />
-        </LinearLayout>
+              local:MvxBind="ItemsSource ExcludedAccounts;ItemClick OpenOverviewCommand; ItemLongClick OpenContextMenuCommand;Visibility InvertedVisibility(IsExcludedAccountsEmpty)" />
+        </RelativeLayout>
       </ScrollView>
     </LinearLayout>
     <TextView

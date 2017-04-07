@@ -28,10 +28,10 @@ namespace MoneyFox.Droid.Fragments
             view = base.OnCreateView(inflater, container, savedInstanceState);
             LoadBalancePanel();
 
-            var includedAccountsList = view.FindViewById<ListView>(Resource.Id.included_account_list);
-            RegisterForContextMenu(includedAccountsList);
-            var excludedAccountList = view.FindViewById<ListView>(Resource.Id.excluded_account_list);
-            RegisterForContextMenu(excludedAccountList);
+            //var includedAccountsList = view.FindViewById<ListView>(Resource.Id.included_account_list);
+            //RegisterForContextMenu(includedAccountsList);
+            //var excludedAccountList = view.FindViewById<ListView>(Resource.Id.excluded_account_list);
+            //RegisterForContextMenu(excludedAccountList);
 
             view.FindViewById<FloatingActionMenu>(Resource.Id.fab_menu_add_element).SetClosedOnTouchOutside(true);
 

@@ -40,7 +40,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
 
             var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
+                new Mock<IModifyDialogService>().Object);
 
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel {Id = 3});
 
@@ -61,7 +62,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(false));
 
             var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
+                new Mock<IModifyDialogService>().Object);
 
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel {Id = 3});
 
@@ -83,7 +85,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
 
             var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
+                new Mock<IModifyDialogService>().Object);
 
             viewModel.DeleteAccountCommand.Execute(null);
 
@@ -97,7 +100,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
             var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object);
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
             vm.LoadedCommand.Execute();
             vm.IsAllAccountsEmpty.ShouldBeTrue();
         }
@@ -106,11 +109,14 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void IsAllAccountsEmpty_OneAccount_False()
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
-            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel> {
-                new AccountViewModel()
-            });
+            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                .Returns(new List<AccountViewModel>
+                {
+                    new AccountViewModel()
+                });
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
             vm.LoadedCommand.Execute();
             vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
@@ -120,12 +126,15 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel> {
-                new AccountViewModel(),
-                new AccountViewModel()
-            });
+            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                .Returns(new List<AccountViewModel>
+                {
+                    new AccountViewModel(),
+                    new AccountViewModel()
+                });
 
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
             vm.LoadedCommand.Execute();
             vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
@@ -136,13 +145,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                             .Returns(new List<AccountViewModel>())
-                             .Returns(new List<AccountViewModel>
-                             {
-                                 new AccountViewModel {IsExcluded = true},
-                             });
+                .Returns(new List<AccountViewModel>())
+                .Returns(new List<AccountViewModel>
+                {
+                    new AccountViewModel {IsExcluded = true},
+                });
 
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
             vm.LoadedCommand.Execute();
             vm.IsAllAccountsEmpty.ShouldBeFalse();
         }
@@ -152,11 +162,14 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel> {
-                new AccountViewModel {Id = 22},
-                new AccountViewModel{Id = 33},
-            });
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                .Returns(new List<AccountViewModel>
+                {
+                    new AccountViewModel {Id = 22},
+                    new AccountViewModel {Id = 33},
+                });
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
 
             vm.LoadedCommand.Execute();
             vm.IncludedAccounts.Count.ShouldBe(2);
@@ -170,13 +183,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                             .Returns(new List<AccountViewModel>())
-                             .Returns(new List<AccountViewModel>
-                             {
-                                 new AccountViewModel {Id = 22},
-                                 new AccountViewModel {Id = 33}
-                             });
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+                .Returns(new List<AccountViewModel>())
+                .Returns(new List<AccountViewModel>
+                {
+                    new AccountViewModel {Id = 22},
+                    new AccountViewModel {Id = 33}
+                });
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
 
             vm.LoadedCommand.Execute();
             vm.ExcludedAccounts.Count.ShouldBe(2);
@@ -190,8 +204,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsManager>();
             var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             accountRepository.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>())).Returns(new List<AccountViewModel>());
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null, endofMonthManagerSetup.Object, settingsManagerMock.Object);
+            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
+                .Returns(new List<AccountViewModel>());
+            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
+                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
             vm.LoadedCommand.Execute();
             vm.IncludedAccounts.Any().ShouldBeFalse();
             vm.ExcludedAccounts.Any().ShouldBeFalse();
