@@ -372,12 +372,6 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>有款项的类别的摘要</value>
   </data>
-  <data name="ExpenseHistoryLabel" xml:space="preserve">
-    <value>支出历史</value>
-  </data>
-  <data name="ExpenseHistoryDescription" xml:space="preserve">
-    <value>显示您所选的时间范围内的总开支，按月比较。</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>添加账户</value>
   </data>
@@ -513,7 +507,7 @@
     <value>备注</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>类别名称</value>
+    <value>Category Name</value>
   </data>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
     <value>备注</value>
@@ -613,5 +607,29 @@
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
+  </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+  </data>
+  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Backup Recurrence</value>
   </data>
 </root>
