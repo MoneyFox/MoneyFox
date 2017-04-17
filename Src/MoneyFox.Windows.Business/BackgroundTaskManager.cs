@@ -96,8 +96,8 @@ namespace MoneyFox.Windows.Business
                     TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK)
                 };
 
-                builder.SetTrigger(new TimeTrigger((uint)settingsManager.BackupSyncRecurrence, false));
-                builder.Register();
+                //builder.SetTrigger(new TimeTrigger((uint)settingsManager.BackupSyncRecurrence, false));
+                //builder.Register();
             }
         }
     }

@@ -633,4 +633,10 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
     <value>Backup Recurrence</value>
   </data>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Biannually</value>
+  </data>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Quarterly</value>
+  </data>
 </root>
