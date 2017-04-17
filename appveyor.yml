@@ -6,7 +6,7 @@ configuration: Debug
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  $blockRdp = $true;
+  - $blockRdp = $true;
 
 install:
 - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
