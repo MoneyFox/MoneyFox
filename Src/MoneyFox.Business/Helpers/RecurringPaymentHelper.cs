@@ -97,9 +97,9 @@ namespace MoneyFox.Business.Helpers
                     return DateTime.Today.Date != relatedPayment.Date.Date;
 
                 case PaymentRecurrence.DailyWithoutWeekend:
-                    return (DateTime.Today.Date != relatedPayment.Date.Date)
-                           && (DateTime.Today.DayOfWeek != DayOfWeek.Saturday)
-                           && (DateTime.Today.DayOfWeek != DayOfWeek.Sunday);
+                    return DateTime.Today.Date != relatedPayment.Date.Date
+                           && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
+                           && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relatedPayment.Date;
@@ -115,14 +115,40 @@ namespace MoneyFox.Business.Helpers
                 case PaymentRecurrence.Bimonthly:
                     return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-2).Month;
 
+                case PaymentRecurrence.Quarterly:
+                    return CheckQuarterly(relatedPayment);
+
+                case PaymentRecurrence.Biannually:
+                    return CheckBiannually(relatedPayment);
+
                 case PaymentRecurrence.Yearly:
-                    return ((DateTime.Now.Year != relatedPayment.Date.Year)
-                            && (DateTime.Now.Month >= relatedPayment.Date.Month))
-                           || (DateTime.Now.Year - relatedPayment.Date.Year > 1);
+                    return DateTime.Now.Year != relatedPayment.Date.Year
+                           && DateTime.Now.Month >= relatedPayment.Date.Month
+                           || DateTime.Now.Year - relatedPayment.Date.Year > 1;
 
                 default:
                     return false;
             }
+        }
+
+        private static bool CheckQuarterly(PaymentViewModel relatedPayment)
+        {
+            if (relatedPayment.Date.Year == DateTime.Now.Year)
+            {
+                return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-3).Month;
+            }
+            var dateDiff =  DateTime.Now - relatedPayment.Date;
+            return dateDiff.TotalDays >= 93;
+        }
+
+        private static bool CheckBiannually(PaymentViewModel relatedPayment)
+        {
+            if (relatedPayment.Date.Year == DateTime.Now.Year)
+            {
+                return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-6).Month;
+            }
+            var dateDiff = DateTime.Now - relatedPayment.Date;
+            return dateDiff.TotalDays >= 184;
         }
     }
 }

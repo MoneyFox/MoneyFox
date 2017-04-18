@@ -17,6 +17,8 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Biweekly, PaymentType.Income)]
         [InlineData(PaymentRecurrence.Monthly, PaymentType.Income)]
         [InlineData(PaymentRecurrence.Bimonthly, PaymentType.Income)]
+        [InlineData(PaymentRecurrence.Quarterly, PaymentType.Income)]
+        [InlineData(PaymentRecurrence.Biannually, PaymentType.Income)]
         [InlineData(PaymentRecurrence.Yearly, PaymentType.Income)]
         [InlineData(PaymentRecurrence.Daily, PaymentType.Expense)]
         [InlineData(PaymentRecurrence.DailyWithoutWeekend, PaymentType.Expense)]
@@ -24,6 +26,8 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Biweekly, PaymentType.Expense)]
         [InlineData(PaymentRecurrence.Monthly, PaymentType.Expense)]
         [InlineData(PaymentRecurrence.Bimonthly, PaymentType.Expense)]
+        [InlineData(PaymentRecurrence.Quarterly, PaymentType.Expense)]
+        [InlineData(PaymentRecurrence.Biannually, PaymentType.Expense)]
         [InlineData(PaymentRecurrence.Yearly, PaymentType.Expense)]
         [InlineData(PaymentRecurrence.Daily, PaymentType.Transfer)]
         [InlineData(PaymentRecurrence.DailyWithoutWeekend, PaymentType.Transfer)]
@@ -31,6 +35,8 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Biweekly, PaymentType.Transfer)]
         [InlineData(PaymentRecurrence.Monthly, PaymentType.Transfer)]
         [InlineData(PaymentRecurrence.Bimonthly, PaymentType.Transfer)]
+        [InlineData(PaymentRecurrence.Quarterly, PaymentType.Transfer)]
+        [InlineData(PaymentRecurrence.Biannually, PaymentType.Transfer)]
         [InlineData(PaymentRecurrence.Yearly, PaymentType.Transfer)]
         public void GetRecurringFromPayment_Endless(PaymentRecurrence recurrence, PaymentType type)
         {
@@ -88,6 +94,8 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Biweekly)]
         [InlineData(PaymentRecurrence.Monthly)]
         [InlineData(PaymentRecurrence.Bimonthly)]
+        [InlineData(PaymentRecurrence.Quarterly)]
+        [InlineData(PaymentRecurrence.Biannually)]
         [InlineData(PaymentRecurrence.Yearly)]
         public void GetPaymentFromRecurring_CorrectMappedPayment(PaymentRecurrence recurrence)
         {
@@ -140,12 +148,18 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Biweekly, 14, true)]
         [InlineData(PaymentRecurrence.Monthly, 31, true)]
         [InlineData(PaymentRecurrence.Bimonthly, 62, true)]
+        [InlineData(PaymentRecurrence.Quarterly, 94, true)]
+        [InlineData(PaymentRecurrence.Biannually, 184, true)]
         [InlineData(PaymentRecurrence.Yearly, 365, true)]
         [InlineData(PaymentRecurrence.Daily, 0, false)]
         [InlineData(PaymentRecurrence.Weekly, 5, false)]
         [InlineData(PaymentRecurrence.Biweekly, 10, false)]
         [InlineData(PaymentRecurrence.Bimonthly, 20, false)]
+        [InlineData(PaymentRecurrence.Quarterly, 59, false)]
+        [InlineData(PaymentRecurrence.Biannually, 137, false)]
         [InlineData(PaymentRecurrence.Yearly, 300, false)]
+        [InlineData(PaymentRecurrence.Biannually, 355, true)] // with year change
+        [InlineData(PaymentRecurrence.Quarterly, 355, true)] // with year change
         public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed, bool expectedResult)
         {
             var account = new AccountViewModel {Id = 2};
