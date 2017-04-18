@@ -1,13 +1,15 @@
 {
-  "supports": {},
-  "dependencies": {
-    "Autofac": "4.4.0",
-    "AutoMapper": "6.0.1",
-    "MvvmCross.Plugin.File": "4.4.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
-    "SQLiteNetExtensions": "2.0.0-alpha2"
-  },
-  "frameworks": {
-    "netstandard1.1": {}
-  }
+    "supports": {},
+    "dependencies": {
+        "Autofac": "4.4.0",
+        "AutoMapper": "6.0.1",
+        "MvvmCross.Plugin.File": "4.4.0",
+        "MvvmCross.Plugin.SQLitePCL": "4.4.0",
+        "SQLiteNetExtensions": "2.0.0-alpha2"
+    },
+    "frameworks": {
+        "netstandard1.3": {
+            "imports": "portable-net45+win8+wpa81"
+        }
+    }
 }
