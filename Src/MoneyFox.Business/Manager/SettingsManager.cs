@@ -32,6 +32,9 @@ namespace MoneyFox.Business.Manager
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
+        private const string FIRST_USE_KEYNAME = "FirstUse";
+        private const bool FIRST_USE_KEYDEFAULT = true;
+
         /// <summary>
         ///     Constant for the Theme Setting
         ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
@@ -124,6 +127,13 @@ namespace MoneyFox.Business.Manager
             get { return settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(BACKUP_SYNC_RECURRENCE_KEYNAME, value); }
         }
+
+        public bool FirstUse
+         {
+            get { return settings.GetValue(FIRST_USE_KEYNAME, FIRST_USE_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(FIRST_USE_KEYNAME, value); }
+         }
+
 
         #endregion Properties
     }
