@@ -1,4 +1,4 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
     "Microsoft.OneDriveSDK": "2.0.6",
@@ -7,6 +7,6 @@
     "MvvmCross.Plugin.SQLitePCL": "4.4.0"
   },
   "frameworks": {
-    ".NETPortable,Version=v4.5,Profile=Profile111": {}
+    "netstandard1.1": {}
   }
 }
