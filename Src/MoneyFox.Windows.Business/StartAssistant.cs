@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 
 namespace MoneyFox.Windows.Business
 {
-    class StartAssistant: IStartAssistant
+    public class StartAssistant: IStartAssistant
     {
        private readonly ICategoryRepository categoryRepository;
         private readonly ISettingsManager settingsManager;

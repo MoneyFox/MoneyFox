@@ -71,7 +71,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<INotificationService, NotificationService>();
             Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
             Mvx.RegisterType<ITileManager, TileManager>();
-            Mvx.RegisterType<IStartAssistant, IStartAssistant>();
+            Mvx.RegisterType<IStartAssistant, StartAssistant>();
         }
 
         protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
