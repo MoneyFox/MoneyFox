@@ -3,32 +3,32 @@
 namespace MoneyFox.Foundation.Exceptions
 {
     /// <summary>
-    ///     This Exception is thrown when something went wrong during backup the database.
+    ///     This Exception is thrown when on a backup restore no backup with the right name was found.
     /// </summary>
-    public class BackupException : Exception
+    public class NoBackupFoundException : Exception
     {
         /// <summary>
-        ///     Creates an Backup Exception
+        ///     Creates an NoBackupFound Exception
         /// </summary>
-        public BackupException()
+        public NoBackupFoundException()
         {
         }
 
         /// <summary>
-        ///     Creates an Backup Exception
+        ///     Creates an NoBackupFound Exception
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
-        public BackupException(string message)
+        public NoBackupFoundException(string message)
             : base(message)
         {
         }
 
         /// <summary>
-        ///     Creates an Backup Exception
+        ///     Creates an NoBackupFound Exception
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public BackupException(string message, Exception exception)
+        public NoBackupFoundException(string message, Exception exception)
             : base(message, exception)
         {
         }
