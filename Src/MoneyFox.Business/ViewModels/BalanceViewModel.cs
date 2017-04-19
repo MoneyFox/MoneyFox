@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 

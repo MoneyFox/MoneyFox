@@ -1,5 +1,5 @@
-﻿using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
+﻿using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.ViewModels
 {

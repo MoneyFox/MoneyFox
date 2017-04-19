@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.Business.Extensions;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 
@@ -14,7 +13,7 @@ namespace MoneyFox.Business.StatisticDataProvider
     {
         private readonly IRepository<PaymentViewModel> paymentRepository;
 
-        public CashFlowDataProvider(IRepository<PaymentViewModel> paymentRepository)
+        public CashFlowDataProvider(IPaymentRepository paymentRepository)
         {
             this.paymentRepository = paymentRepository;
         }

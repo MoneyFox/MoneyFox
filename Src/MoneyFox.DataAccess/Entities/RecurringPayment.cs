@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    internal class RecurringPayment
+    public class RecurringPayment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

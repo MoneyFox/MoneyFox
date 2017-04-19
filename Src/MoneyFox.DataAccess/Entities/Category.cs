@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    internal class Category
+    public class Category
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

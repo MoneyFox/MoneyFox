@@ -5,13 +5,10 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Windows.Business;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Autofac;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -30,18 +27,15 @@ namespace MoneyFox.Windows.Tasks
             {
                 MapperConfiguration.Setup();
 
-                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore());
-
-                paymentRepository = new PaymentRepository(dbManager);
+                var dbFactory = new DbFactory();
+                paymentRepository = new PaymentRepository(dbFactory);
 
                 paymentManager = new PaymentManager(paymentRepository,
-                    new AccountRepository(dbManager),
-                    new RecurringPaymentRepository(dbManager),
+                    new AccountRepository(dbFactory),
+                    new RecurringPaymentRepository(dbFactory),
                     null);
 
                 ClearPayments();
-                PaymentRepository.IsCacheMarkedForReload = true;
 
                 // We have to access the settings object here directly without the settings helper since this thread is executed independently.
                 if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))

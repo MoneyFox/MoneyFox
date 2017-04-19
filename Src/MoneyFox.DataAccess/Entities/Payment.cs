@@ -6,7 +6,7 @@ namespace MoneyFox.DataAccess.Entities
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
-    internal class Payment
+    public class Payment
     {
         public int Id { get; set; }
 

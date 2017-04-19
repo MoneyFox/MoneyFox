@@ -1,6 +1,6 @@
-﻿using MoneyFox.Foundation.DataModels;
+﻿using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels

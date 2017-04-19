@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;

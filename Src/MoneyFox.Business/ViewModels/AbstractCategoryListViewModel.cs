@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
@@ -25,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{CategoryViewModel}" />.</param>
+        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,

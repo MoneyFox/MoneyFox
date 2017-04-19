@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.DataAccess
 {
@@ -8,7 +9,7 @@ namespace MoneyFox.DataAccess
     /// </summary>
     public class ApplicationContext : DbContext
     {
-        public static string DataBasePath { get; set; }
+        //public static string DataBasePath { get; set; }
 
         internal DbSet<Account> Users { get; set; }
         internal DbSet<Payment> Payments { get; set; }
@@ -17,7 +18,7 @@ namespace MoneyFox.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={DataBasePath}");
+            optionsBuilder.UseSqlite($"Filename={DatabaseConstants.DB_NAME}");
         }
     }
 }

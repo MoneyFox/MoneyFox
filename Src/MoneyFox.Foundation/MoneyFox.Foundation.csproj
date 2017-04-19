@@ -75,11 +75,6 @@
     <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
-    <Compile Include="Interfaces\Repositories\IAccountRepository.cs" />
-    <Compile Include="Interfaces\Repositories\ICategoryRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IPaymentRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IRecurringPaymentRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IRepository.cs" />
     <Compile Include="Interfaces\ViewModels\IAccountListViewActionViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />

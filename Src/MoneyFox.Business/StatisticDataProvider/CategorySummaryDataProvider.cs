@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.StatisticDataProvider
