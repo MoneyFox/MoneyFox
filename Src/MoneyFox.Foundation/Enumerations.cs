@@ -15,7 +15,9 @@
         Monthly = 3,
         Yearly = 4,
         Biweekly = 5,
-        Bimonthly = 6
+        Bimonthly = 6,
+        Quarterly = 7,
+        Biannually = 8
     }
 
     public enum StatisticType

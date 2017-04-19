@@ -397,6 +397,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Biannually.
+        /// </summary>
+        public static string BiannuallyLabel {
+            get {
+                return ResourceManager.GetString("BiannuallyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bimonthly.
         /// </summary>
         public static string BimonthlyLabel {
@@ -1329,6 +1338,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string PaymentListViewModel_EmptyListPlaceholderLabel {
             get {
                 return ResourceManager.GetString("PaymentListViewModel.EmptyListPlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarterly.
+        /// </summary>
+        public static string QuarterlyLabel {
+            get {
+                return ResourceManager.GetString("QuarterlyLabel", resourceCulture);
             }
         }
         

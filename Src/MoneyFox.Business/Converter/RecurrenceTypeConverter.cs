@@ -26,6 +26,10 @@ namespace MoneyFox.Business.Converter
                     return Strings.MonthlyLabel;
                 case PaymentRecurrence.Bimonthly:
                     return Strings.BimonthlyLabel;
+                case PaymentRecurrence.Quarterly:
+                    return Strings.QuarterlyLabel;
+                case PaymentRecurrence.Biannually:
+                    return Strings.BiannuallyLabel;
                 case PaymentRecurrence.Yearly:
                     return Strings.YearlyLabel;
 

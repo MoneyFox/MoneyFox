@@ -1,7 +1,7 @@
 {
   "supports": {},
   "dependencies": {
-    "Autofac": "4.4.0",
+    "Autofac": "4.5.0",
     "Cheesebaron.MvxPlugins.Connectivity": "3.0.3",
     "Cheesebaron.MvxPlugins.Settings": "3.0.3",
     "Microsoft.OneDriveSDK": "2.0.6",
