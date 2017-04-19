@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Exceptions;
@@ -66,10 +65,7 @@ namespace MoneyFox.DataAccess.Repositories
                     payment.RecurringPayment = recurringPayments.First(x => x.Id == payment.RecurringPaymentId);
                 }
 
-                DataCache = payments
-                    .AsQueryable()
-                    .ProjectTo<PaymentViewModel>()
-                    .ToList();
+				DataCache = Mapper.Map<List<PaymentViewModel>>(payments.ToList());
             }
             IsCacheMarkedForReload = false;
         }

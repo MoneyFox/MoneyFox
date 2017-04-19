@@ -9,7 +9,7 @@ namespace MoneyFox.Business
         /// </summary>
         public override void Initialize()
         {
-            // Start the app with the Main View Model.
+            // Start the app.
             RegisterAppStart(new AppStart());
         }
     }

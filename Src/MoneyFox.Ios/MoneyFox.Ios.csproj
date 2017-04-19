@@ -107,14 +107,14 @@
     <Compile Include="Views\AccountList\AccountListView.designer.cs">
       <DependentUpon>AccountListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.cs" />
-    <Compile Include="Views\MenuView.cs" />
     <None Include="app.config" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib" />
+    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib">
+      <IncludeInPackage>false</IncludeInPackage>
+    </InterfaceDefinition>
     <InterfaceDefinition Include="Views\AccountList\AccountViewCell.xib" />
     <Compile Include="Views\AccountList\AccountTableCell.cs" />
     <Compile Include="Views\AccountList\AccountTableCell.designer.cs">
@@ -127,12 +127,26 @@
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Views\Menu\MenuTableViewCell.cs" />
+    <Compile Include="Views\Menu\MenuTableViewCell.designer.cs">
+      <DependentUpon>MenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\Menu\MenuTableViewCell.xib" />
+    <Compile Include="Views\Menu\MenuTableViewSource.cs" />
+    <Compile Include="Views\Menu\MenuView.cs" />
+    <Compile Include="Views\Menu\MenuView.designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\Menu\MenuView.xib" />
+    <Compile Include="LinkerPleaseInclude.cs" />
+    <InterfaceDefinition Include="Views\ModifyAccount\ModifyAccountView.xib" />
+    <Compile Include="Views\ModifyAccount\ModifyAccountView.cs" />
+    <Compile Include="Views\ModifyAccount\ModifyAccountView.designer.cs">
+      <DependentUpon>ModifyAccountView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DetailViewController.cs" />
-    <Compile Include="DetailViewController.designer.cs">
-      <DependentUpon>DetailViewController.cs</DependentUpon>
-    </Compile>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
       <InProject>false</InProject>
@@ -162,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OneDriveAuth\" />
+    <Folder Include="Views\Menu\" />
+    <Folder Include="Models\" />
+    <Folder Include="Views\ModifyAccount\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

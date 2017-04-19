@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
@@ -25,20 +24,21 @@ namespace MoneyFox.DataAccess.Repositories
             this.dbManager = dbManager;
         }
 
-        public IEnumerable<AccountViewModel> GetList(Expression<Func<AccountViewModel, bool>> filter = null)
-        {
-            using (var db = dbManager.GetConnection())
-            {
-                var query = db.Table<Account>().AsQueryable().ProjectTo<AccountViewModel>();
+		public IEnumerable<AccountViewModel> GetList(Expression<Func<AccountViewModel, bool>> filter = null)
+		{
+			using (var db = dbManager.GetConnection())
+			{
+				var query = db.Table<Account>().AsQueryable();
+				var newFilter = Mapper.Map<Expression<Func<Account, bool>>>(filter);
 
-                if (filter != null)
-                {
-                    query = query.Where(filter);
-                }
+				if (filter != null)
+				{
+					query = query.Where(newFilter);
+				}
 
-                return query.OrderBy(x => x.Name).ToList();
-            }
-        }
+				return Mapper.Map<List<AccountViewModel>>(query.OrderBy(x => x.Name).ToList());
+			}
+		}
 
         public AccountViewModel FindById(int id)
         {

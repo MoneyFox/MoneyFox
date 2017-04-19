@@ -45,9 +45,17 @@ namespace MoneyFox.Business.ViewModels
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
         }
 
-        #region Properties
+		/// <summary>
+		/// 	Used on Ios
+		/// </summary>
+		public void ShowMenu()
+		{
+			ShowViewModel<MenuViewModel>();
+		}
 
-        public IBalanceViewModel BalanceViewModel { get; }
+		#region Properties
+
+		public IBalanceViewModel BalanceViewModel { get; }
 
         public IViewActionViewModel ViewActionViewModel { get; }
 
