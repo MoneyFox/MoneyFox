@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace MoneyFox.DataAccess.Infrastructure
 {
-    public interface IDbFactory : IDisposable
-    {
-        ApplicationContext Init();
-    }
-
     /// <summary>
     ///     Provides an ApplicationContext as Singleton
     /// </summary>
@@ -15,12 +10,17 @@ namespace MoneyFox.DataAccess.Infrastructure
         ApplicationContext dbContext;
 
         /// <summary>
-        ///     Initializes and ApplicationContext if not already one exists and returns it.
+        ///     Migrates the database and initializes and ApplicationContext if not already one exists and returns it.
         /// </summary>
         /// <returns>Singleton Application Context</returns>
         public ApplicationContext Init()
         {
-            return dbContext ?? (dbContext = new ApplicationContext());
+            if (dbContext == null)
+            {
+                dbContext = new ApplicationContext();
+            }
+            dbContext.Database.MigrateAsync();
+            return dbContext;
         }
 
         protected override void DisposeCore()

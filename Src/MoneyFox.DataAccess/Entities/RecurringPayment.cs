@@ -1,23 +1,21 @@
 ﻿using System;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    [Table("RecurringPayments")]
     internal class RecurringPayment
     {
-        [PrimaryKey, AutoIncrement, Indexed]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [ForeignKey(typeof(Account), Name = nameof(ChargedAccount))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof(Account), Name = nameof(TargetAccount))]
         public int TargetAccountId { get; set; }
 
-        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; }
@@ -26,13 +24,10 @@ namespace MoneyFox.DataAccess.Entities
         public int Recurrence { get; set; }
         public string Note { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
-        public Account ChargedAccount { get; set; }
+        public virtual Account ChargedAccount { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
-        public Account TargetAccount { get; set; }
+        public virtual Account TargetAccount { get; set; }
     }
 }

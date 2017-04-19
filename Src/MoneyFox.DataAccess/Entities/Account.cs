@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
-using SQLite;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    [Table("Accounts")]
     internal class Account
     {
-        [PrimaryKey, AutoIncrement, Indexed]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -17,7 +18,6 @@ namespace MoneyFox.DataAccess.Entities
         public bool IsOverdrawn { get; set; }
         public bool IsExcluded { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
-        public List<Payment> Payments { get; set; }
+        public virtual List<Payment> Payments { get; set; }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.Entities
 {
@@ -8,19 +6,14 @@ namespace MoneyFox.DataAccess.Entities
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
-    [Table("Payments")]
     internal class Payment
     {
-        [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
-        [ForeignKey(typeof(Account), Name = nameof(ChargedAccount))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof(Account), Name = nameof(TargetAccount))]
         public int TargetAccountId { get; set; }
 
-        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
 
         public DateTime Date { get; set; }
@@ -30,19 +23,14 @@ namespace MoneyFox.DataAccess.Entities
         public string Note { get; set; }
         public bool IsRecurring { get; set; }
 
-        [ForeignKey(typeof(RecurringPayment))]
         public int RecurringPaymentId { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
-        [ManyToOne(nameof(ChargedAccountId), CascadeOperations = CascadeOperation.CascadeRead)]
-        public Account ChargedAccount { get; set; }
+        public virtual Account ChargedAccount { get; set; }
 
-        [ManyToOne(nameof(TargetAccountId), CascadeOperations = CascadeOperation.CascadeRead)]
-        public Account TargetAccount { get; set; }
+        public virtual Account TargetAccount { get; set; }
 
-        [OneToOne(CascadeOperations = CascadeOperation.All)]
-        public RecurringPayment RecurringPayment { get; set; }
+        public virtual RecurringPayment RecurringPayment { get; set; }
     }
 }
