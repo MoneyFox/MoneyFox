@@ -49,7 +49,9 @@ namespace MoneyFox.Service
         public async Task<bool> Upload(Stream dataToUpload)
         {
             if (OneDriveClient == null)
+            {
                 OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
 
             await LoadBackupFolder();
             await LoadArchiveFolder();

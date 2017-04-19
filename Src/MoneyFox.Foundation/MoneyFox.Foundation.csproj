@@ -50,6 +50,7 @@
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
+    <Compile Include="Exceptions\NetworkConnectionException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
     <Compile Include="Exceptions\NoBackupFoundException.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
