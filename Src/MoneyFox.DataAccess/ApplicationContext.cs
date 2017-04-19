@@ -11,10 +11,10 @@ namespace MoneyFox.DataAccess
     {
         //public static string DataBasePath { get; set; }
 
-        internal DbSet<Account> Users { get; set; }
-        internal DbSet<Payment> Payments { get; set; }
-        internal DbSet<RecurringPayment> RecurringPayments { get; set; }
-        internal DbSet<Category> Categories { get; set; }
+        internal DbSet<AccountEntity> Users { get; set; }
+        internal DbSet<PaymentEntity> Payments { get; set; }
+        internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
+        internal DbSet<CategoryEntity> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -4,7 +4,8 @@
         "Autofac": "4.4.0",
         "NETStandard.Library": "1.6.0",
         "Microsoft.OneDriveSDK": "2.0.6",
-        "MvvmCross.Plugin.File": "4.4.0"
+        "MvvmCross.Plugin.File": "4.4.0",
+        "Microsoft.EntityFrameworkCore": "1.1.1"
     },
   "frameworks": {
     "netstandard1.3": {

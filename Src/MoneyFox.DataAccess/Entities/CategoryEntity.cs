@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    public class Category
+    public class CategoryEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +13,6 @@ namespace MoneyFox.DataAccess.Entities
         public string Name { get; set; }
         public string Notes { get; set; }
 
-        public virtual List<Payment> Payments { get; set; }
+        public virtual List<PaymentEntity> Payments { get; set; }
     }
 }

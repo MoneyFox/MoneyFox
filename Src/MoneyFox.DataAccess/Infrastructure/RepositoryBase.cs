@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace MoneyFox.DataAccess.Infrastructure
@@ -77,9 +78,9 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// </summary>
         /// <param name="id">Id of the item.</param>
         /// <returns>selected Item.</returns>
-        public virtual T GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
         /// <summary>
@@ -88,7 +89,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns></returns>
         public virtual IEnumerable<T> GetAll()
         {
-            return dbSet.ToList();
+            return dbSet;
         }
 
         /// <summary>
@@ -96,9 +97,9 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// </summary>
         /// <param name="where">Filter to select for.</param>
         /// <returns>Selected Items.</returns>
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+        public virtual IQueryable GetMany(Expression<Func<T, bool>> where)
         {
-            return dbSet.Where(where).ToList();
+            return dbSet.Where(where);
         }
 
         /// <summary>
@@ -107,9 +108,9 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// </summary>
         /// <param name="where">Filter to seleect for.</param>
         /// <returns>First item that matched.</returns>
-        public T Get(Expression<Func<T, bool>> where)
+        public async Task<T> Get(Expression<Func<T, bool>> where)
         {
-            return dbSet.Where(where).FirstOrDefault();
+            return await dbSet.Where(where).FirstOrDefaultAsync();
         }
 
         #endregion    }

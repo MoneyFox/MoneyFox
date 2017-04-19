@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -31,24 +33,17 @@ namespace MoneyFox.DataAccess.Repositories
         void Delete(Expression<Func<T, bool>> where);
 
         /// <summary>
-        ///     Get an item by the id. Returns Null if no item is found.
-        /// </summary>
-        /// <param name="id">Id of the item.</param>
-        /// <returns>selected Item.</returns>
-        T GetById(int id);
-
-        /// <summary>
         ///     Returns all Items of the database table
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
 
         /// <summary>
-        ///     Returns all Items who match the passed filter.
+        ///     Returns a queryable of all Items who match the passed filter.
         /// </summary>
         /// <param name="where">Filter to select for.</param>
         /// <returns>Selected Items.</returns>
-        IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+        IQueryable GetMany(Expression<Func<T, bool>> where);
 
         /// <summary>
         ///     Get the first item who matches the passed filter.
@@ -56,6 +51,13 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         /// <param name="where">Filter to seleect for.</param>
         /// <returns>First item that matched.</returns>
-        T Get(Expression<Func<T, bool>> where);
+        Task<T> Get(Expression<Func<T, bool>> where);
+
+        /// <summary>
+        ///     Get an item by the id. Returns Null if no item is found.
+        /// </summary>
+        /// <param name="id">Id of the item.</param>
+        /// <returns>selected Item.</returns>
+        Task<T> GetById(int id);
     }
 }

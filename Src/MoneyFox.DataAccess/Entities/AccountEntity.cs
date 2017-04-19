@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SQLiteNetExtensions.Attributes;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    public class Account
+    public class AccountEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,6 +17,6 @@ namespace MoneyFox.DataAccess.Entities
         public bool IsOverdrawn { get; set; }
         public bool IsExcluded { get; set; }
 
-        public virtual List<Payment> Payments { get; set; }
+        public virtual List<PaymentEntity> Payments { get; set; }
     }
 }

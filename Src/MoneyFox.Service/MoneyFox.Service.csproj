@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DataServices\CategoryService.cs" />
+    <Compile Include="DataServices\RecurringPaymentService.cs" />
+    <Compile Include="DataServices\PaymentService.cs" />
+    <Compile Include="Pocos\Payment.cs" />
     <Compile Include="ServiceModule.cs" />
     <Compile Include="DataServices\AccountService.cs" />
     <Compile Include="OneDriveService.cs" />
@@ -43,6 +47,10 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
+      <Name>MoneyFox.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>

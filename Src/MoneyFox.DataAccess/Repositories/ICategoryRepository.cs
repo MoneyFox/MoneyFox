@@ -2,7 +2,7 @@ using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess.Repositories
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IRepository<CategoryEntity>
     {
     }
 }

@@ -7,7 +7,7 @@ namespace MoneyFox.DataAccess.Repositories
     ///     Grants access to the data stored in the contact table on the database.
     ///     To commit changes use the UnitOfWork.
     /// </summary>
-    public class PaymentRepository : RepositoryBase<Payment>, IPaymentRepository
+    public class PaymentRepository : RepositoryBase<PaymentEntity>, IPaymentRepository
     {
         public PaymentRepository(IDbFactory dbFactory) : base(dbFactory)
         {

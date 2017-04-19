@@ -42,10 +42,10 @@
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="DataAccessModule.cs" />
-    <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Payment.cs" />
-    <Compile Include="Entities\RecurringPayment.cs" />
+    <Compile Include="Entities\AccountEntity.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\PaymentEntity.cs" />
+    <Compile Include="Entities\RecurringPaymentEntity.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reflection;
+using Autofac;
 
 namespace MoneyFox.Service
 {
@@ -10,20 +10,10 @@ namespace MoneyFox.Service
     {
         protected override void Load(ContainerBuilder builder)
         {
-            MapperConfiguration.Setup();
-
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Repository", StringComparison.OrdinalIgnoreCase))
+                .Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
                 .AsImplementedInterfaces()
                 .SingleInstance();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Manager", StringComparison.OrdinalIgnoreCase))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-
-            builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.DataAccess.Entities
 {
@@ -6,7 +7,7 @@ namespace MoneyFox.DataAccess.Entities
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
-    public class Payment
+    public class PaymentEntity
     {
         public int Id { get; set; }
 
@@ -19,18 +20,18 @@ namespace MoneyFox.DataAccess.Entities
         public DateTime Date { get; set; }
         public double Amount { get; set; }
         public bool IsCleared { get; set; }
-        public int Type { get; set; }
+        public PaymentType Type { get; set; }
         public string Note { get; set; }
         public bool IsRecurring { get; set; }
 
         public int RecurringPaymentId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual CategoryEntity Category { get; set; }
 
-        public virtual Account ChargedAccount { get; set; }
+        public virtual AccountEntity ChargedAccount { get; set; }
 
-        public virtual Account TargetAccount { get; set; }
+        public virtual AccountEntity TargetAccount { get; set; }
 
-        public virtual RecurringPayment RecurringPayment { get; set; }
+        public virtual RecurringPaymentEntity RecurringPayment { get; set; }
     }
 }

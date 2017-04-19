@@ -1,40 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Manager
 {
     public class EndOfMonthManager : IEndOfMonthManager
     {
-        private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentService paymentService;
 
-        public EndOfMonthManager(IPaymentRepository paymentRepository)
+        public EndOfMonthManager(IPaymentService paymentService)
         {
-            this.paymentRepository = paymentRepository;
+            this.paymentService = paymentService;
         }
 
         private int accountId = 0;
 
-        public double GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel)
+        public async Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel)
         {
             accountId = accountViewModel.Id;
             var balance = accountViewModel.CurrentBalance;
-            var unclearedPayments = LoadUnclearedPayments();
 
-            foreach (var payment in unclearedPayments)
+            foreach (var payment in await paymentService.GetUnclearedPayments(accountId, Utilities.GetEndOfMonth()))
             {
-                switch (payment.Type)
+                switch (payment.Data.Type)
                 {
                     case PaymentType.Expense:
-                        balance -= payment.Amount;
+                        balance -= payment.Data.Amount;
                         break;
 
                     case PaymentType.Income:
-                        balance += payment.Amount;
+                        balance += payment.Data.Amount;
                         break;
 
                     case PaymentType.Transfer:
@@ -45,23 +47,15 @@ namespace MoneyFox.Business.Manager
             return balance;
         }
 
-        private IEnumerable<PaymentViewModel> LoadUnclearedPayments()
-            => paymentRepository
-                .GetList(p => !p.IsCleared)
-                .Where(p => p.Date.Date <= Utilities.GetEndOfMonth())
-                .Where(x => (x.ChargedAccountId == accountId)
-                            || (x.TargetAccountId == accountId))
-                .ToList();
-
-        private double HandleTransferAmount(PaymentViewModel payment, double balance)
+        private double HandleTransferAmount(Payment payment, double balance)
         {
-            if (accountId == payment.ChargedAccountId)
+            if (accountId == payment.Data.ChargedAccountId)
             {
-                balance -= payment.Amount;
+                balance -= payment.Data.Amount;
             }
             else
             {
-                balance += payment.Amount;
+                balance += payment.Data.Amount;
             }
             return balance;
         }

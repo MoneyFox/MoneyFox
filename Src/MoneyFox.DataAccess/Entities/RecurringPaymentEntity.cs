@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    public class RecurringPayment
+    public class RecurringPaymentEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,10 +24,10 @@ namespace MoneyFox.DataAccess.Entities
         public int Recurrence { get; set; }
         public string Note { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual CategoryEntity Category { get; set; }
 
-        public virtual Account ChargedAccount { get; set; }
+        public virtual AccountEntity ChargedAccount { get; set; }
 
-        public virtual Account TargetAccount { get; set; }
+        public virtual AccountEntity TargetAccount { get; set; }
     }
 }

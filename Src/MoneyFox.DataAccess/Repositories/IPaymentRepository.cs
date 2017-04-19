@@ -2,7 +2,7 @@
 
 namespace MoneyFox.DataAccess.Repositories
 {
-    public interface IPaymentRepository : IRepository<Payment>
+    public interface IPaymentRepository : IRepository<PaymentEntity>
     {
     }
 }

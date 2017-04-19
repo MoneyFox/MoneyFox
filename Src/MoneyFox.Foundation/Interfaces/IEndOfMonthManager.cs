@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Foundation.Interfaces
@@ -7,8 +8,8 @@ namespace MoneyFox.Foundation.Interfaces
     {
         void CheckEndOfMonthBalanceForAccounts(IEnumerable<AccountViewModel> accounts);
 
-        double GetTotalEndOfMonthBalance(IEnumerable<AccountViewModel> accounts);
+        Task<double> GetTotalEndOfMonthBalance(IEnumerable<AccountViewModel> accounts);
 
-        double GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel);
+        Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel);
     }
 }
