@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess
 {
@@ -9,7 +10,10 @@ namespace MoneyFox.DataAccess
     {
         public static string DataBasePath { get; set; }
 
-        //internal DbSet<User> Users { get; set; }
+        internal DbSet<Account> Users { get; set; }
+        internal DbSet<Payment> Payments { get; set; }
+        internal DbSet<RecurringPayment> RecurringPayments { get; set; }
+        internal DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

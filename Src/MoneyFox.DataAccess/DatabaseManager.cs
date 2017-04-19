@@ -1,4 +1,4 @@
-using MoneyFox.DataAccess.DatabaseModels;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugins.File;

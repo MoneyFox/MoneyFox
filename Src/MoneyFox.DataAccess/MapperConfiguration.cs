@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using MoneyFox.DataAccess.DatabaseModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using System;
+using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess
 {

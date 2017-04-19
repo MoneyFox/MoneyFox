@@ -2,7 +2,7 @@
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace MoneyFox.DataAccess.DatabaseModels
+namespace MoneyFox.DataAccess.Entities
 {
     [Table("RecurringPayments")]
     internal class RecurringPayment

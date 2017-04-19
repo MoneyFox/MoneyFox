@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using AutoMapper;
-using MoneyFox.DataAccess.DatabaseModels;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Tests;

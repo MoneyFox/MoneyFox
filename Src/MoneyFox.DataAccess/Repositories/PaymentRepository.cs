@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using MoneyFox.DataAccess.DatabaseModels;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;

@@ -2,7 +2,7 @@
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace MoneyFox.DataAccess.DatabaseModels
+namespace MoneyFox.DataAccess.Entities
 {
     /// <summary>
     ///     Databasemodel for payments. Includes expenses, income and transfers.

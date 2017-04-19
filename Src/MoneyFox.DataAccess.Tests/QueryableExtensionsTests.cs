@@ -2,7 +2,7 @@
 using System.Linq;
 using Autofac;
 using AutoMapper.QueryableExtensions;
-using MoneyFox.DataAccess.DatabaseModels;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Tests;
 using Ploeh.AutoFixture;
