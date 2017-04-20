@@ -1,10 +1,7 @@
 ﻿using MoneyFox.Business.Converter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
-using Moq;
-using MvvmCross.Platform;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter
@@ -37,8 +34,6 @@ namespace MoneyFox.Business.Tests.Converter
                 CurrentBalance = 400
             };
 
-            Mvx.RegisterSingleton(new Mock<IAccountRepository>().Object);
-
             new PaymentAmountConverter()
                 .Convert(new PaymentViewModel
                 {
@@ -59,10 +54,6 @@ namespace MoneyFox.Business.Tests.Converter
                 Id = 4,
                 CurrentBalance = 400
             };
-
-            var mock = new Mock<IAccountRepository>();
-
-            Mvx.RegisterSingleton(mock.Object);
 
             new PaymentAmountConverter()
                 .Convert(new PaymentViewModel

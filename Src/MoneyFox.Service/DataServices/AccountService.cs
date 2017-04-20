@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
@@ -32,11 +33,11 @@ namespace MoneyFox.Service.DataServices
             this.paymentService = paymentService;
         }
 
-        public Task DeleteAccount(Account account)
+        public async Task DeleteAccount(Account account)
         {
-            paymentService.DeletePayments(account.Data.Payments);
+            await paymentService.DeletePayments(account.Data.Payments.Select(x => new Payment(x)));
             accountRepository.Delete(account.Data);
-            unitOfWork.Commit()
+            await unitOfWork.Commit();
         }
     }
 }

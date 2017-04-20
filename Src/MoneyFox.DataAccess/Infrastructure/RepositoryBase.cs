@@ -98,7 +98,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         ///     Returns all Items of the database table
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return dbSet;
         }

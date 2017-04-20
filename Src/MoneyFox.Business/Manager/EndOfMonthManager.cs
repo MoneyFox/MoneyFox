@@ -82,7 +82,7 @@ namespace MoneyFox.Business.Manager
         {
             var balance = account.Data.CurrentBalance;
 
-            foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth(), accountId))
+            foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth(), account.Data.Id))
             {
                 switch (payment.Data.Type)
                 {

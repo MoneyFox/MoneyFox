@@ -39,11 +39,25 @@ namespace MoneyFox.Business.Tests.Manager
                             {
                                 new Payment
                                 {
-                                    Data = {Id = 10, ChargedAccountId = 1, Amount = 100, Date = DateTime.Now, Type = paymentType }
+                                    Data =
+                                    {
+                                        Id = 10,
+                                        ChargedAccountId = 1,
+                                        Amount = 100,
+                                        Date = DateTime.Now,
+                                        Type = paymentType
+                                    }
                                 },
                                 new Payment
                                 {
-                                    Data = {Id = 15, ChargedAccountId = 1, Amount = 100, Date = DateTime.Now, , Type = paymentType }
+                                    Data =
+                                    {
+                                        Id = 15,
+                                        ChargedAccountId = 1,
+                                        Amount = 100,
+                                        Date = DateTime.Now,
+                                        Type = paymentType
+                                    }
                                 }
                             }));
 
