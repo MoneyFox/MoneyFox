@@ -2,6 +2,7 @@
 using System.Linq;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces.Repositories;
 
 namespace MoneyFox.Windows.Business
 {
@@ -14,10 +15,14 @@ namespace MoneyFox.Windows.Business
         private const string SYNC_BACKUP_TASK = "SyncBackupTask";
 
         private readonly ISettingsManager settingsManager;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly IStartAssistant startAssistant;
 
-        public BackgroundTaskManager(ISettingsManager settingsManager)
+        public BackgroundTaskManager(ISettingsManager settingsManager, ICategoryRepository categoryRepository, IStartAssistant startAssistant)
         {
             this.settingsManager = settingsManager;
+            this.categoryRepository = categoryRepository;
+            this.startAssistant = startAssistant;
         }
 
         public async void StartBackgroundTasks()
@@ -33,6 +38,7 @@ namespace MoneyFox.Windows.Business
             {
                 RegisterSyncBackupTask();
             }
+            startAssistant.AddCategory();
         }
 
         /// <summary>

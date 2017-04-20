@@ -15,5 +15,6 @@ namespace MoneyFox.Foundation.Interfaces
         bool UseSystemTheme { get; set; }
         bool IsLoggedInToBackupService { get; set; }
         int BackupSyncRecurrence { get; set; }
+        bool FirstUse { get; set; }
     }
 }

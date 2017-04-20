@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IEndOfMonthManager.cs" />
     <Compile Include="Interfaces\IModifyDialogService.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
+    <Compile Include="Interfaces\IStartAssistant.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />

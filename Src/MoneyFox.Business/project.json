@@ -11,7 +11,7 @@
     "MvvmCross.Plugin.Visibility": "4.4.0",
     "MvvmCross.Plugin.WebBrowser": "4.4.0",
     "NETStandard.Library": "1.6.1",
-    "Xamarin.Auth": "1.3.0"
+    "Xamarin.Auth": "1.4.1"
   },
   "frameworks": {
     ".NETPortable,Version=v4.5,Profile=Profile7": {}
