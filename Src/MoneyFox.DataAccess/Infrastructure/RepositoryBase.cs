@@ -19,6 +19,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
+            dataContext = dbFactory.Init().Result;
             dbSet = dataContext.Set<T>();
         }
 
@@ -30,7 +31,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <summary>
         ///     Current ApplicationContex.
         /// </summary>
-        protected ApplicationContext DbContext => dataContext ?? (dataContext = DbFactory.Init());
+        protected ApplicationContext DbContext => dataContext ?? (dataContext = DbFactory.Init().Result);
 
         #region Implementation
 

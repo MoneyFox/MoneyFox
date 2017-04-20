@@ -48,7 +48,6 @@
     <Compile Include="Entities\RecurringPaymentEntity.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
-    <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MapperConfiguration.cs" />

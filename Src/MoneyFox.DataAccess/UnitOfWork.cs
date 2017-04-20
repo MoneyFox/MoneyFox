@@ -16,7 +16,7 @@ namespace MoneyFox.DataAccess
             this.dbFactory = dbFactory;
         }
 
-        public ApplicationContext DbContext => dbContext ?? (dbContext = dbFactory.Init());
+        public ApplicationContext DbContext => dbContext ?? (dbContext = dbFactory.Init().Result);
 
         /// <summary>
         ///     Saves all pending changes to the database.

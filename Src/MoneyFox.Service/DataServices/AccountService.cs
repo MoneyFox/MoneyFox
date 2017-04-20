@@ -35,7 +35,8 @@ namespace MoneyFox.Service.DataServices
 
         public async Task DeleteAccount(Account account)
         {
-            await paymentService.DeletePayments(account.Data.Payments.Select(x => new Payment(x)));
+            //TODO: Required or done by cascation?
+            //await paymentService.DeletePayments(account.Data.Payments.Select(x => new Payment(x)));
             accountRepository.Delete(account.Data);
             await unitOfWork.Commit();
         }
