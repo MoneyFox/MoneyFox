@@ -59,7 +59,6 @@
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
-    <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\IModifyDialogService.cs" />

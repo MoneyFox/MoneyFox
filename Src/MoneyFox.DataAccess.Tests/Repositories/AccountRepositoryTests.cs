@@ -225,6 +225,42 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
+        public async void DeleteAccount_RelatedPaymentsRemoved()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var accountRepository = new AccountRepository(factory);
+            var paymentRepository = new PaymentRepository(factory);
+
+            var account = new AccountEntity
+            {
+                Name = "Testtext"
+            };
+
+            var payment = new PaymentEntity
+            {
+                Note = "Foo",
+                ChargedAccount = account
+            };
+
+            accountRepository.Add(account);
+            paymentRepository.Add(payment);
+            await unitOfWork.Commit();
+
+            Assert.Equal(1, await accountRepository.GetAll().CountAsync());
+            Assert.Equal(1, await paymentRepository.GetAll().CountAsync());
+
+            // Act
+            accountRepository.Delete(account);
+
+            // Assert
+            Assert.False(await accountRepository.GetAll().AnyAsync());
+            Assert.False(await paymentRepository.GetAll().AnyAsync());
+        }
+
+        [Fact]
         public async void Delete_EntryNotFound()
         {
             // Arrange
