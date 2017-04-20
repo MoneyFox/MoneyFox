@@ -820,6 +820,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grocery.
+        /// </summary>
+        public static string Grocery {
+            get {
+                return ResourceManager.GetString("Grocery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add income.
         /// </summary>
         public static string IncomeHeader {
@@ -834,6 +843,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string IncreaseLabel {
             get {
                 return ResourceManager.GetString("IncreaseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insurance.
+        /// </summary>
+        public static string Insurance {
+            get {
+                return ResourceManager.GetString("Insurance", resourceCulture);
             }
         }
         
@@ -1348,6 +1366,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string RateReminderTitle {
             get {
                 return ResourceManager.GetString("RateReminderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rent.
+        /// </summary>
+        public static string Rent {
+            get {
+                return ResourceManager.GetString("Rent", resourceCulture);
             }
         }
         
