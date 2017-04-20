@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
@@ -42,6 +43,8 @@ namespace MoneyFox.Business.Manager
                     case PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance);
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
             return balance;
