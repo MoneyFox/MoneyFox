@@ -97,7 +97,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// </summary>
         /// <param name="where">Filter to select for.</param>
         /// <returns>Selected Items.</returns>
-        public virtual IQueryable GetMany(Expression<Func<T, bool>> where)
+        public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
             return dbSet.Where(where);
         }

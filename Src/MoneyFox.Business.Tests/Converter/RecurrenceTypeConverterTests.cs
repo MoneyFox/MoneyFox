@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Business.Converter;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
 using Xunit;
 

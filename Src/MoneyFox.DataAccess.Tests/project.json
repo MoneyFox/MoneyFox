@@ -1,18 +1,40 @@
 ﻿{
-  "dependencies": {
-    "Autofac": "4.5.0",
-    "AutoFixture": "3.50.2",
-    "AutoFixture.Xunit": "3.50.2",
-    "AutoMapper": "6.0.2",
-    "MvvmCross.Plugin.File": "4.4.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
-    "xunit": "2.2.0",
-    "xunit.runner.visualstudio": "2.2.0"
-  },
-  "frameworks": {
-    ".NETFramework,Version=v4.6.1": {}
-  },
-  "runtimes": {
-    "win": {}
-  }
+    "version": "1.0.0-*",
+
+    "testRunner": "xunit",
+
+    "dependencies": {
+        "dotnet-test-xunit": "2.2.0-*",
+        "Microsoft.EntityFrameworkCore": "1.1.1",
+        "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
+        "xunit": "2.2.0",
+        "NETStandard.Library": "1.6.1"
+    },
+
+    "frameworks": {
+        "netcoreapp1.1": {
+            "imports": [
+                "dnxcore50",
+                "portable-net45+win8"
+            ],
+
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "version": "1.1.0",
+                    "type": "platform"
+                },
+                "MoneyFox.DataAccess": {
+                    "target": "project"
+                },
+                "MoneyFox.Foundation": {
+                    "target": "project"
+                }
+            }
+        }
+    },
+    "buildOptions": {
+        "copyToOutput": {
+            "include": [ "xunit.runner.json" ]
+        }
+    }
 }
