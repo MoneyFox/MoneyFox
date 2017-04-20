@@ -1,12 +1,12 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
-using MoneyFox.Business.Helpers;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.Pocos;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.Helpers
+namespace MoneyFox.Service.Tests
 {
     public class RecurringPaymentHelperTests
     {
@@ -56,7 +56,7 @@ namespace MoneyFox.Business.Tests.Helpers
             };
 
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
-                recurrence, enddate);
+                                                                           recurrence, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
             recurring.TargetAccount.Id.ShouldBe(8);
@@ -70,22 +70,6 @@ namespace MoneyFox.Business.Tests.Helpers
             recurring.Note.ShouldBe(payment.Note);
         }
 
-        [Theory]
-        [InlineData(0, "Expense")]
-        [InlineData(1, "Income")]
-        [InlineData(2, "Transfer")]
-        public void GetTypeString_EnumString(int enumInt, string enumString)
-        {
-            PaymentTypeHelper.GetTypeString(enumInt).ShouldBe(enumString);
-        }
-
-        [Theory]
-        [InlineData(3)]
-        [InlineData(-1)]
-        public void GetTypeString_InvalidType_Exception(int enumInt)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>PaymentTypeHelper.GetTypeString(enumInt));
-        }
 
         [Theory]
         [InlineData(PaymentRecurrence.Daily)]
@@ -99,47 +83,53 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Yearly)]
         public void GetPaymentFromRecurring_CorrectMappedPayment(PaymentRecurrence recurrence)
         {
-            var account = new AccountViewModel {Id = 2};
+            var account = new AccountEntity {Id = 2};
 
-            var recurringPayment = new RecurringPaymentViewModel
+            var recurringPayment = new RecurringPayment
             {
-                Id = 4,
-                Recurrence = recurrence,
-                StartDate = new DateTime(2015, 08, DateTime.Today.Day),
-                ChargedAccountId = 2,
-                ChargedAccount = account,
-                Amount = 105
+                Data =
+                {
+                    Id = 4,
+                    Recurrence = recurrence,
+                    StartDate = new DateTime(2015, 08, DateTime.Today.Day),
+                    ChargedAccountId = 2,
+                    ChargedAccount = account,
+                    Amount = 105
+                }
             };
 
             var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
-            result.ChargedAccount.ShouldBe(account);
-            result.ChargedAccountId.ShouldBe(account.Id);
-            result.Amount.ShouldBe(105);
-            result.Date.ShouldBe(DateTime.Today);
+            result.Data.ChargedAccount.ShouldBe(account);
+            result.Data.ChargedAccountId.ShouldBe(account.Id);
+            result.Data.Amount.ShouldBe(105);
+            result.Data.Date.ShouldBe(DateTime.Today);
         }
 
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedPayment()
         {
-            var account = new AccountViewModel { Id = 2 };
+            var account = new AccountEntity {Id = 2};
             var dayOfMonth = 26;
 
-            var recurringPayment = new RecurringPaymentViewModel
+            var recurringPayment = new RecurringPayment
             {
-                Id = 4,
-                Recurrence = PaymentRecurrence.Monthly,
-                StartDate = new DateTime(2015, 08, dayOfMonth),
-                ChargedAccountId = 2,
-                ChargedAccount = account,
-                Amount = 105
+                Data =
+                {
+                    Id = 4,
+                    Recurrence = PaymentRecurrence.Monthly,
+                    StartDate = new DateTime(2015, 08, dayOfMonth),
+                    ChargedAccountId = 2,
+                    ChargedAccount = account,
+                    Amount = 105
+                }
             };
 
             var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
-            result.ChargedAccount.ShouldBe(account);
-            result.ChargedAccountId.ShouldBe(account.Id);
-            result.Amount.ShouldBe(105);
-            result.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
+            result.Data.ChargedAccount.ShouldBe(account);
+            result.Data.ChargedAccountId.ShouldBe(account.Id);
+            result.Data.Amount.ShouldBe(105);
+            result.Data.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
         }
 
         [Theory]
@@ -160,11 +150,12 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Yearly, 300, false)]
         [InlineData(PaymentRecurrence.Biannually, 355, true)] // with year change
         [InlineData(PaymentRecurrence.Quarterly, 355, true)] // with year change
-        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed, bool expectedResult)
+        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed,
+                                                          bool expectedResult)
         {
-            var account = new AccountViewModel {Id = 2};
+            var account = new AccountEntity {Id = 2};
 
-            var recurringPayment = new RecurringPaymentViewModel
+            var recurringPayment = new RecurringPaymentEntity
             {
                 Id = 4,
                 Recurrence = recurrence,
@@ -174,29 +165,17 @@ namespace MoneyFox.Business.Tests.Helpers
                 Amount = 105
             };
 
-            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new PaymentViewModel {Date = DateTime.Today.AddDays(-amountOfDaysPassed), IsCleared = true})
-                .ShouldBe(expectedResult);
-        }
-
-        [Fact]
-        public void CheckIfRepeatable_ValidatedRecurrenceMonthly_False()
-        {
-            var account = new AccountViewModel {Id = 2};
-
-            var recurringPayment = new RecurringPaymentViewModel
-            {
-                Id = 4,
-                Recurrence = PaymentRecurrence.Monthly,
-                StartDate = new DateTime(2015, 08, 25),
-                ChargedAccountId = 2,
-                ChargedAccount = account,
-                Amount = 105
-            };
-
-            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new PaymentViewModel {Date = DateTime.Today.GetFirstDayOfMonth(), IsCleared = true})
-                .ShouldBeFalse();
+            RecurringPaymentHelper.CheckIfRepeatable(
+                                      new Payment
+                                      {
+                                          Data =
+                                          {
+                                              Date = DateTime.Today.AddDays(-amountOfDaysPassed),
+                                              IsCleared = true,
+                                              RecurringPayment = recurringPayment
+                                          }
+                                      })
+                                  .ShouldBe(expectedResult);
         }
 
         [Theory]
@@ -206,11 +185,12 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(PaymentRecurrence.Monthly, 28)]
         [InlineData(PaymentRecurrence.Bimonthly, 55)]
         [InlineData(PaymentRecurrence.Yearly, 340)]
-        public void CheckIfRepeatable_UnclearedPayment_ReturnFalse(PaymentRecurrence recurrence, int amountOfDaysUntilRepeat)
+        public void CheckIfRepeatable_UnclearedPayment_ReturnFalse(
+            PaymentRecurrence recurrence, int amountOfDaysUntilRepeat)
         {
-            var account = new AccountViewModel {Id = 2};
+            var account = new AccountEntity {Id = 2};
 
-            var recurringPayment = new RecurringPaymentViewModel
+            var recurringPayment = new RecurringPaymentEntity
             {
                 Id = 4,
                 Recurrence = PaymentRecurrence.Weekly,
@@ -220,8 +200,42 @@ namespace MoneyFox.Business.Tests.Helpers
                 Amount = 105
             };
 
-            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new PaymentViewModel {Date = DateTime.Today.AddDays(amountOfDaysUntilRepeat)}).ShouldBeFalse();
+            RecurringPaymentHelper.CheckIfRepeatable(new Payment
+                                  {
+                                      Data =
+                                      {
+                                          Date = DateTime.Today.AddDays(amountOfDaysUntilRepeat),
+                                          RecurringPayment = recurringPayment
+                                      }
+                                  })
+                                  .ShouldBeFalse();
+        }
+
+        [Fact]
+        public void CheckIfRepeatable_ValidatedRecurrenceMonthly_False()
+        {
+            var account = new AccountEntity {Id = 2};
+
+            var recurringPayment = new RecurringPaymentEntity
+            {
+                Id = 4,
+                Recurrence = PaymentRecurrence.Monthly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(new Payment
+                                  {
+                                      Data =
+                                      {
+                                          Date = DateTime.Today.GetFirstDayOfMonth(),
+                                          IsCleared = true,
+                                          RecurringPayment = recurringPayment
+                                      }
+                                  })
+                                  .ShouldBeFalse();
         }
     }
 }
