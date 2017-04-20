@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Media;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
-using MoneyFox.Windows.Views;
 using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.Windows
@@ -71,13 +70,11 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var shell = Window.Current.Content as AppShell;
-
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
-                var extendedSplash = new ExtendedSplashScreen(e.SplashScreen, loadState);
-                Window.Current.Content = extendedSplash;
+                //var extendedSplash = new ExtendedSplashScreen(e.SplashScreen, loadState);
+                //Window.Current.Content = extendedSplash;
             }
 
             OverrideTitleBarColor();

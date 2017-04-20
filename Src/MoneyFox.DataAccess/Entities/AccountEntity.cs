@@ -17,6 +17,7 @@ namespace MoneyFox.DataAccess.Entities
         public bool IsOverdrawn { get; set; }
         public bool IsExcluded { get; set; }
 
-        public virtual List<PaymentEntity> Payments { get; set; }
+        public virtual List<PaymentEntity> ChargedPayments { get; set; }
+        public virtual List<PaymentEntity> TargetedPayments { get; set; }
     }
 }

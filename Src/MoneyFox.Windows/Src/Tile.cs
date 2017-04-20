@@ -1,12 +1,10 @@
 ﻿using System;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Extensions;
-using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Windows.Shortcuts
+namespace MoneyFox.Windows
 {
     public abstract class Tile
     {

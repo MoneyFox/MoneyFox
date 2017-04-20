@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Constants;
 
@@ -19,6 +21,21 @@ namespace MoneyFox.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Filename={DatabaseConstants.DB_NAME}");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AccountEntity>()
+                        .HasMany(m => m.ChargedPayments)
+                        .WithOne(t => t.ChargedAccount)
+                        .HasForeignKey(m => m.ChargedAccountId)
+                        .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<AccountEntity>()
+                        .HasMany(m => m.TargetedPayments)
+                        .WithOne(t => t.TargetAccount)
+                        .HasForeignKey(m => m.TargetAccountId)
+                        .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

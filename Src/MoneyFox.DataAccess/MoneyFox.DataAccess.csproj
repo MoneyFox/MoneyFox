@@ -52,6 +52,11 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MapperConfiguration.cs" />
+    <Compile Include="Migrations\20170420195626_InitMigration.cs" />
+    <Compile Include="Migrations\20170420195626_InitMigration.Designer.cs">
+      <DependentUpon>20170420195626_InitMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
