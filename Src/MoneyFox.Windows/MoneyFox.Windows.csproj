@@ -129,7 +129,11 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
+    <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\WindowsAppInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
@@ -290,9 +294,7 @@
       <Name>MoneyFox.Windows.Tasks</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Src\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
