@@ -71,7 +71,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<string>("Note");
 
-                    b.Property<int>("RecurringPaymentId");
+                    b.Property<int?>("RecurringPaymentId");
 
                     b.Property<int?>("TargetAccountId");
 
@@ -139,8 +139,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.HasOne("MoneyFox.DataAccess.Entities.RecurringPaymentEntity", "RecurringPayment")
                         .WithMany("RelatedPayments")
-                        .HasForeignKey("RecurringPaymentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RecurringPaymentId");
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
                         .WithMany("TargetedPayments")

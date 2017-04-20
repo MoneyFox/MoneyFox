@@ -9,7 +9,7 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170420214659_InitMigration")]
+    [Migration("20170420215359_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,7 +72,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<string>("Note");
 
-                    b.Property<int>("RecurringPaymentId");
+                    b.Property<int?>("RecurringPaymentId");
 
                     b.Property<int?>("TargetAccountId");
 
@@ -140,8 +140,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.HasOne("MoneyFox.DataAccess.Entities.RecurringPaymentEntity", "RecurringPayment")
                         .WithMany("RelatedPayments")
-                        .HasForeignKey("RecurringPaymentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RecurringPaymentId");
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
                         .WithMany("TargetedPayments")

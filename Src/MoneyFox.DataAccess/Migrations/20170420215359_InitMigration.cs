@@ -93,7 +93,7 @@ namespace MoneyFox.DataAccess.Migrations
                     IsCleared = table.Column<bool>(nullable: false),
                     IsRecurring = table.Column<bool>(nullable: false),
                     Note = table.Column<string>(nullable: true),
-                    RecurringPaymentId = table.Column<int>(nullable: false),
+                    RecurringPaymentId = table.Column<int>(nullable: true),
                     TargetAccountId = table.Column<int>(nullable: true),
                     Type = table.Column<int>(nullable: false)
                 },
@@ -117,7 +117,7 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.RecurringPaymentId,
                         principalTable: "RecurringPayments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Payments_Users_TargetAccountId",
                         column: x => x.TargetAccountId,

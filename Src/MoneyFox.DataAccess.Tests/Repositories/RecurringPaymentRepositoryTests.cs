@@ -10,12 +10,12 @@ using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Repositories
 {
-    public class RecurringPaymentRepositoryTests : IDisposable
+    public class RecurringRecurringPaymentRepositoryTests : IDisposable
     {
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
-        public RecurringPaymentRepositoryTests()
+        public RecurringRecurringPaymentRepositoryTests()
         {
             using (var db = new ApplicationContext())
             {
@@ -46,6 +46,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -68,9 +69,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new RecurringPaymentRepository(factory);
 
             // Act
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Assert
@@ -88,6 +89,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -113,6 +115,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -137,6 +140,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var newValue = "newText";
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -164,6 +168,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -190,6 +195,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new RecurringPaymentEntity
             {
+                ChargedAccount = new AccountEntity(),
                 Note = "Testtext"
             };
 
@@ -212,7 +218,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new RecurringPaymentRepository(factory);
-            var testEntry = new RecurringPaymentEntity();
+            var testEntry = new RecurringPaymentEntity { ChargedAccount = new AccountEntity() };
             repository.Add(testEntry);
             await unitOfWork.Commit();
 
@@ -232,7 +238,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new RecurringPaymentRepository(factory);
-            var testEntry = new RecurringPaymentEntity();
+            var testEntry = new RecurringPaymentEntity { ChargedAccount = new AccountEntity() };
 
             // Act
             repository.Delete(testEntry);
@@ -251,8 +257,12 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var filterText = "Text";
             var repository = new RecurringPaymentRepository(factory);
-            var testEntry1 = new RecurringPaymentEntity { Note = filterText };
-            var testEntry2 = new RecurringPaymentEntity();
+            var testEntry1 = new RecurringPaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                Note = filterText
+            };
+            var testEntry2 = new RecurringPaymentEntity { ChargedAccount = new AccountEntity() };
             repository.Add(testEntry1);
             repository.Add(testEntry2);
             await unitOfWork.Commit();
@@ -287,9 +297,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new RecurringPaymentRepository(factory);
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Act
@@ -308,9 +318,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new RecurringPaymentRepository(factory);
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Act
@@ -330,9 +340,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var repository = new RecurringPaymentRepository(factory);
             var filterText = "Text";
-            repository.Add(new RecurringPaymentEntity { Note = filterText });
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                Note = filterText
+            });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Act
@@ -351,9 +365,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new RecurringPaymentRepository(factory);
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Act
@@ -372,10 +386,14 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var repository = new RecurringPaymentRepository(factory);
             var filterText = "Text";
-            var testEntry = new RecurringPaymentEntity { Note = filterText };
+            var testEntry = new RecurringPaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                Note = filterText
+            };
             repository.Add(testEntry);
-            repository.Add(new RecurringPaymentEntity());
-            repository.Add(new RecurringPaymentEntity());
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
+            repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity() });
             await unitOfWork.Commit();
 
             // Act

@@ -24,7 +24,7 @@ namespace MoneyFox.DataAccess.Entities
         public string Note { get; set; }
         public bool IsRecurring { get; set; }
 
-        public int RecurringPaymentId { get; set; }
+        public int? RecurringPaymentId { get; set; }
 
         public virtual CategoryEntity Category { get; set; }
 

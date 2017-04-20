@@ -169,7 +169,7 @@ namespace MoneyFox.Business.Manager
 
             if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
 
-            dbFactory.Init();
+            await dbFactory.Init();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
