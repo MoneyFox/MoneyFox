@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Foundation.Interfaces;
 using Moq;
 using Xunit;
-using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Service.Tests
 {

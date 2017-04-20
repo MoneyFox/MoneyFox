@@ -3,6 +3,7 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.Pocos;
 using Xunit;
 

@@ -22,12 +22,28 @@ namespace MoneyFox.Service.DataServices
         /// <returns>List of Payments.</returns>
         Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
 
+        /// <summary>
+        ///     Saves or updates a payment.
+        /// </summary>
+        /// <param name="payment">Payment to save or update.</param>
         Task SavePayment(Payment payment);
 
+        /// <summary>
+        ///     Saves or updates a list of payments.
+        /// </summary>
+        /// <param name="payments">Payments to save or update.</param>
         Task SavePayments(IEnumerable<Payment> payments);
 
+        /// <summary>
+        ///     Deletes a payment from the dataabase.
+        /// </summary>
+        /// <param name="payment">Payment to delete.</param>
         Task DeletePayment(Payment payment);
 
+        /// <summary>
+        ///     Deletes a list of payments from the dataabase.
+        /// </summary>
+        /// <param name="payments">Payments to delete.</param>
         Task DeletePayments(IEnumerable<Payment> payments);
     }
 
@@ -50,12 +66,6 @@ namespace MoneyFox.Service.DataServices
             this.paymentRepository = paymentRepository;
         }
 
-        /// <summary>
-        ///     Returns all uncleared payments up to the passed enddate.
-        /// </summary>
-        /// <param name="accountId">Account to select payments for. </param>
-        /// <param name="enddate">Enddate</param>
-        /// <returns>List of Payments.</returns>
         public async Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0)
         {
             var query = paymentRepository
@@ -73,24 +83,48 @@ namespace MoneyFox.Service.DataServices
                 .ToListAsync();
         }
 
-        public Task SavePayment(Payment payment)
+        public async Task SavePayment(Payment payment)
         {
-            throw new NotImplementedException();
+            if (payment.Data.Id == 0)
+            {
+                paymentRepository.Add(payment.Data);
+            }
+            else
+            {
+                paymentRepository.Update(payment.Data);
+            }
+            await unitOfWork.Commit();
         }
 
-        public Task SavePayments(IEnumerable<Payment> payments)
+        public async Task SavePayments(IEnumerable<Payment> payments)
         {
-            throw new NotImplementedException();
+            foreach (var payment in payments)
+            {
+                if (payment.Data.Id == 0)
+                {
+                    paymentRepository.Add(payment.Data);
+                }
+                else
+                {
+                    paymentRepository.Update(payment.Data);
+                }
+            }
+            await unitOfWork.Commit();
         }
 
-        public Task DeletePayment(Payment payment)
+        public async Task DeletePayment(Payment payment)
         {
-            throw new NotImplementedException();
+            paymentRepository.Delete(payment.Data);
+            await unitOfWork.Commit();
         }
 
-        public Task DeletePayments(IEnumerable<Payment> payments)
+        public async Task DeletePayments(IEnumerable<Payment> payments)
         {
-            throw new NotImplementedException();
+            foreach (var payment in payments)
+            {
+                paymentRepository.Delete(payment.Data);
+            }
+            await unitOfWork.Commit();
         }
     }
 }

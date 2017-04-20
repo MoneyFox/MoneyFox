@@ -6,6 +6,14 @@ namespace MoneyFox.DataAccess
     /// <summary>
     ///     Enables to save changes made over several repositories in one transaction.
     /// </summary>
+    public interface IUnitOfWork
+    {
+        Task Commit();
+    }
+
+    /// <summary>
+    ///     Enables to save changes made over several repositories in one transaction.
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;

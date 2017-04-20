@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
@@ -22,9 +21,9 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class AccountService : IAccountService
     {
-        private IAccountRepository accountRepository;
-        private IPaymentService paymentService;
-        private IUnitOfWork unitOfWork;
+        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentService paymentService;
+        private readonly IUnitOfWork unitOfWork;
 
         public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork, IPaymentService paymentService)
         {
