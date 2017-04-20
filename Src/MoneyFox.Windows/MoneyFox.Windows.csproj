@@ -285,14 +285,6 @@
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{10036117-bb05-427c-bdc2-f2ceb1e974b1}</Project>
-      <Name>MoneyFox.Windows.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
-      <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
-      <Name>MoneyFox.Windows.Tasks</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
