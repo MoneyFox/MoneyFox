@@ -13,7 +13,7 @@ namespace MoneyFox.DataAccess.Entities
 
         public int ChargedAccountId { get; set; }
 
-        public int TargetAccountId { get; set; }
+        public int? TargetAccountId { get; set; }
 
         public int? CategoryId { get; set; }
 

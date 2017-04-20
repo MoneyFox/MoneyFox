@@ -4,8 +4,8 @@
     "Microsoft.OneDriveSDK": "2.0.6",
     "Moq": "4.7.8",
     "NETStandard.Library": "1.6.1",
-    "xunit": "2.2.0",
-    "xunit.runner.visualstudio": "2.2.0"
+    "xunit": "2.3.0-beta1-build3642",
+    "xunit.runner.visualstudio": "2.3.0-beta1-build1309"
   },
   "frameworks": {
     "netstandard1.3": {

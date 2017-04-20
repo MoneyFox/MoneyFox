@@ -8,8 +8,8 @@
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.File": "4.4.0",
     "MvvmCross.Tests": "4.4.0",
-    "xunit": "2.2.0",
-    "xunit.runner.visualstudio": "2.2.0"
+    "xunit": "2.3.0-beta1-build3642",
+    "xunit.runner.visualstudio": "2.3.0-beta1-build1309"
   },
   "frameworks": {
     ".NETFramework,Version=v4.6.1": {}

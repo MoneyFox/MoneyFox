@@ -5,7 +5,7 @@
     "MvvmCross.Plugin.File": "4.4.0",
     "MvvmCross.Plugin.SQLitePCL": "4.4.0",
     "Newtonsoft.Json": "10.0.2",
-    "xunit": "2.2.0"
+    "xunit": "2.3.0-beta1-build3642"
   },
   "frameworks": {
     "uap10.0": {}

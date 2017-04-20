@@ -1,0 +1,1 @@
+Add-Migration [MigrationName] -OutputDir ../Model/Migrations -Project Model -StartupProject MigrationEntryPoint
