@@ -23,7 +23,6 @@ Windows (please send me your Microsoft Account that I can give you access to the
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 (You can also opt-in for the beta in the play store)
 
-
 ### Contribution
 
 Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
@@ -32,8 +31,11 @@ Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CO
 
 Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
+### Code of conduct
+We act under the (Contributor Covenant)[http://contributor-covenant.org/version/1/4/)
+
 ### Tools
-We use Visual Studio 2015 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
+We use Visual Studio 2017 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
 
 Also, please install the SQLite Extension for Visual Studio.
 
