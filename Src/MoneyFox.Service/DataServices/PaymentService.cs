@@ -21,6 +21,15 @@ namespace MoneyFox.Service.DataServices
         /// <param name="accountId">Account to select payments for.</param>
         /// <returns>List of Payments.</returns>
         Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
+
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="payment"></param>
+        /// <returns></returns>
+        Task SavePayment(Payment payment);
+
+        Task SavePayments(IEnumerable<Payment> payments);
     }
 
     /// <summary>

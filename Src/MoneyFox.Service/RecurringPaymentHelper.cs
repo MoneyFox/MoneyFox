@@ -1,8 +1,10 @@
 ﻿using System;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
+using MoneyFox.Service.Pocos;
 
-namespace MoneyFox.Business.Helpers
+namespace MoneyFox.Service
 {
     public static class RecurringPaymentHelper
     {
@@ -41,16 +43,16 @@ namespace MoneyFox.Business.Helpers
         /// </summary>
         /// <param name="recurringPayment">The recurring PaymentViewModel the new PaymentViewModel shall be based on.</param>
         /// <returns>The new created PaymentViewModel</returns>
-        public static PaymentViewModel GetPaymentFromRecurring(RecurringPaymentViewModel recurringPayment)
+        public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment)
         {
             var date = DateTime.Today;
 
             //If the PaymentViewModel is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
+            if (recurringPayment.Data.Recurrence == PaymentRecurrence.Monthly)
             {
-                date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+                date = DateTime.Today.AddDays(recurringPayment.Data.StartDate.Day - DateTime.Today.Day);
 
-                double value = recurringPayment.StartDate.Day;  //the Day value i.e. 31
+                double value = recurringPayment.Data.StartDate.Day;  //the Day value i.e. 31
                 double max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                 double difference = -(value - max);
 
@@ -60,94 +62,93 @@ namespace MoneyFox.Business.Helpers
                 }
             }
 
-            return new PaymentViewModel
+            return new Payment(new PaymentEntity
             {
-                ChargedAccount = recurringPayment.ChargedAccount,
-                ChargedAccountId = recurringPayment.ChargedAccountId,
-                TargetAccount = recurringPayment.TargetAccount,
-                TargetAccountId = recurringPayment.TargetAccountId,
+                ChargedAccount = recurringPayment.Data.ChargedAccount,
+                ChargedAccountId = recurringPayment.Data.ChargedAccountId,
+                TargetAccount = recurringPayment.Data.TargetAccount,
+                TargetAccountId = recurringPayment.Data.TargetAccountId,
                 Date = date,
                 IsRecurring = true,
-                Amount = recurringPayment.Amount,
-                Category = recurringPayment.Category,
-                CategoryId = recurringPayment.CategoryId,
-                Type = recurringPayment.Type,
-                RecurringPaymentId = recurringPayment.Id,
-                RecurringPayment = recurringPayment,
-                Note = recurringPayment.Note
-            };
+                Amount = recurringPayment.Data.Amount,
+                Category = recurringPayment.Data.Category,
+                CategoryId = recurringPayment.Data.CategoryId,
+                Type = recurringPayment.Data.Type,
+                RecurringPaymentId = recurringPayment.Data.Id,
+                RecurringPayment = recurringPayment.Data,
+                Note = recurringPayment.Data.Note
+            });
         }
 
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
-        /// <param name="recurringPayment">Recurring PaymentViewModel to check.</param>
-        /// <param name="relatedPayment">PaymentViewModel to compare.</param>
-        /// <returns>True or False if the PaymentViewModel have to be repeated.</returns>
-        public static bool CheckIfRepeatable(RecurringPaymentViewModel recurringPayment, PaymentViewModel relatedPayment)
+        /// <param name="payment">Last occurence of the recurring payment.</param>
+        /// <returns>True or False if the payment has to be repeated.</returns>
+        public static bool CheckIfRepeatable(Payment payment)
         {
-            if (!relatedPayment.IsCleared)
+            if (!payment.Data.IsCleared)
             {
                 return false;
             }
 
-            switch (recurringPayment.Recurrence)
+            switch (payment.Data.RecurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
-                    return DateTime.Today.Date != relatedPayment.Date.Date;
+                    return DateTime.Today.Date != payment.Data.Date.Date;
 
                 case PaymentRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != relatedPayment.Date.Date
+                    return DateTime.Today.Date != payment.Data.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case PaymentRecurrence.Weekly:
-                    var daysWeekly = DateTime.Now - relatedPayment.Date;
+                    var daysWeekly = DateTime.Now - payment.Data.Date;
                     return daysWeekly.Days >= 7;
 
                 case PaymentRecurrence.Biweekly:
-                    var daysBiweekly = DateTime.Now - relatedPayment.Date;
+                    var daysBiweekly = DateTime.Now - payment.Data.Date;
                     return daysBiweekly.Days >= 14;
 
                 case PaymentRecurrence.Monthly:
-                    return DateTime.Now.Month != relatedPayment.Date.Month;
+                    return DateTime.Now.Month != payment.Data.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
-                    return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-2).Month;
+                    return payment.Data.Date.Month <= DateTime.Now.AddMonths(-2).Month;
 
                 case PaymentRecurrence.Quarterly:
-                    return CheckQuarterly(relatedPayment);
+                    return CheckQuarterly(payment);
 
                 case PaymentRecurrence.Biannually:
-                    return CheckBiannually(relatedPayment);
+                    return CheckBiannually(payment);
 
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != relatedPayment.Date.Year
-                           && DateTime.Now.Month >= relatedPayment.Date.Month
-                           || DateTime.Now.Year - relatedPayment.Date.Year > 1;
+                    return DateTime.Now.Year != payment.Data.Date.Year
+                           && DateTime.Now.Month >= payment.Data.Date.Month
+                           || DateTime.Now.Year - payment.Data.Date.Year > 1;
 
                 default:
                     return false;
             }
         }
 
-        private static bool CheckQuarterly(PaymentViewModel relatedPayment)
+        private static bool CheckQuarterly(Payment payment)
         {
-            if (relatedPayment.Date.Year == DateTime.Now.Year)
+            if (payment.Data.Date.Year == DateTime.Now.Year)
             {
-                return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-3).Month;
+                return payment.Data.Date.Month <= DateTime.Now.AddMonths(-3).Month;
             }
-            var dateDiff =  DateTime.Now - relatedPayment.Date;
+            var dateDiff =  DateTime.Now - payment.Data.Date;
             return dateDiff.TotalDays >= 93;
         }
 
-        private static bool CheckBiannually(PaymentViewModel relatedPayment)
+        private static bool CheckBiannually(Payment payment)
         {
-            if (relatedPayment.Date.Year == DateTime.Now.Year)
+            if (payment.Data.Date.Year == DateTime.Now.Year)
             {
-                return relatedPayment.Date.Month <= DateTime.Now.AddMonths(-6).Month;
+                return payment.Data.Date.Month <= DateTime.Now.AddMonths(-6).Month;
             }
-            var dateDiff = DateTime.Now - relatedPayment.Date;
+            var dateDiff = DateTime.Now - payment.Data.Date;
             return dateDiff.TotalDays >= 184;
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.DataAccess.Entities
 {
@@ -20,8 +22,8 @@ namespace MoneyFox.DataAccess.Entities
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; }
         public double Amount { get; set; }
-        public int Type { get; set; }
-        public int Recurrence { get; set; }
+        public PaymentType Type { get; set; }
+        public PaymentRecurrence Recurrence { get; set; }
         public string Note { get; set; }
 
         public virtual CategoryEntity Category { get; set; }
@@ -29,5 +31,7 @@ namespace MoneyFox.DataAccess.Entities
         public virtual AccountEntity ChargedAccount { get; set; }
 
         public virtual AccountEntity TargetAccount { get; set; }
+
+        public virtual List<PaymentEntity> RelatedPayments { get; set; }
     }
 }

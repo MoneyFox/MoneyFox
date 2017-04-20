@@ -1,0 +1,15 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Microsoft.OneDriveSDK": "2.0.6",
+    "Moq": "4.7.8",
+    "NETStandard.Library": "1.6.0",
+    "xunit": "2.2.0",
+    "xunit.runner.visualstudio": "2.2.0"
+  },
+  "frameworks": {
+    "netstandard1.3": {
+      "imports": "portable-net45+win8+wpa81"
+    }
+  }
+}

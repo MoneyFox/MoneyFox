@@ -5,10 +5,10 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41637575-DF70-48B4-A99C-46299A7D2E8F}</ProjectGuid>
+    <ProjectGuid>{DDDB8B04-D04F-474C-900B-839872CBCA5D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>MoneyFox.Service</RootNamespace>
-    <AssemblyName>MoneyFox.Service</AssemblyName>
+    <RootNamespace>MoneyFox.Service.Tests</RootNamespace>
+    <AssemblyName>MoneyFox.Service.Tests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,30 +34,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataServices\CategoryService.cs" />
-    <Compile Include="DataServices\RecurringPaymentService.cs" />
-    <Compile Include="DataServices\PaymentService.cs" />
-    <Compile Include="Pocos\Category.cs" />
-    <Compile Include="Pocos\Account.cs" />
-    <Compile Include="Pocos\RecurringPayment.cs" />
-    <Compile Include="Pocos\Payment.cs" />
-    <Compile Include="RecurringPaymentHelper.cs" />
-    <Compile Include="ServiceModule.cs" />
-    <Compile Include="DataServices\AccountService.cs" />
-    <Compile Include="OneDriveService.cs" />
+    <None Include="project.json" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OneDriveServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
+      <Project>{41637575-df70-48b4-a99c-46299a7d2e8f}</Project>
+      <Name>MoneyFox.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

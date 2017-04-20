@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Business.Services;
-using MoneyFox.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Plugins.File;
 using Xunit;
+using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.Business.Tests.Services
+namespace MoneyFox.Service.Tests
 {
     public class OneDriveServiceTests
     {
@@ -26,7 +24,7 @@ namespace MoneyFox.Business.Tests.Services
             authenticator.Setup(x => x.LoginAsync()).Callback(() => loginCalled = true).Returns(Task.FromResult(mockOneDriveClient.Object));
 
             // Act
-            await new OneDriveService(new Mock<IMvxFileStore>().Object, authenticator.Object).Login();
+            await new OneDriveService(authenticator.Object).Login();
 
             // Assert
             Assert.True(loginCalled);
@@ -41,7 +39,7 @@ namespace MoneyFox.Business.Tests.Services
             authenticator.Setup(x => x.LogoutAsync()).Callback(() => logoutCalled = true).Returns(Task.FromResult(""));
 
             // Act
-            await new OneDriveService(new Mock<IMvxFileStore>().Object, authenticator.Object).Logout();
+            await new OneDriveService(authenticator.Object).Logout();
 
             // Assert
             Assert.True(logoutCalled);

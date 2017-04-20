@@ -42,7 +42,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         /// <param name="where">Filter to select for.</param>
         /// <returns>Selected Items.</returns>
-        IQueryable GetMany(Expression<Func<T, bool>> where);
+        IQueryable<T> GetMany(Expression<Func<T, bool>> where);
 
         /// <summary>
         ///     Get the first item who matches the passed filter.
