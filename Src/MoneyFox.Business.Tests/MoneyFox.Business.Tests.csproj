@@ -94,9 +94,17 @@
       <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
+      <Name>MoneyFox.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
+      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
+      <Name>MoneyFox.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

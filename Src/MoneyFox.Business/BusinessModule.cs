@@ -31,17 +31,7 @@ namespace MoneyFox.Business
                 .Where(t => t.Name.EndsWith("DataProvider"))
                 .AsSelf()
                 .SingleInstance();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Service"))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Service"))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-
+            
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Manager"))
                 .AsImplementedInterfaces()

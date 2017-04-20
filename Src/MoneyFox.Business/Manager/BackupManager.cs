@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Business.Extensions;
+using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
@@ -20,25 +21,25 @@ namespace MoneyFox.Business.Manager
     {
         private readonly IBackupService backupService;
 
-        private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
         private readonly IConnectivity connectivity;
+        private readonly IDbFactory dbFactory;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
-            IDatabaseManager databaseManager,
             ISettingsManager settingsManager,
-            IConnectivity connectivity)
+            IConnectivity connectivity,
+            IDbFactory dbFactory)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
-            this.databaseManager = databaseManager;
             this.settingsManager = settingsManager;
             this.connectivity = connectivity;
+            this.dbFactory = dbFactory;
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace MoneyFox.Business.Manager
 
             if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
 
-            databaseManager.CreateDatabase();
+            dbFactory.Init();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }

@@ -22,14 +22,13 @@ namespace MoneyFox.Service.DataServices
         /// <returns>List of Payments.</returns>
         Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
 
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="payment"></param>
-        /// <returns></returns>
         Task SavePayment(Payment payment);
 
         Task SavePayments(IEnumerable<Payment> payments);
+
+        Task DeletePayment(Payment payment);
+
+        Task DeletePayments(IEnumerable<Payment> payments);
     }
 
     /// <summary>
@@ -72,6 +71,26 @@ namespace MoneyFox.Service.DataServices
             return await query
                 .Select(x => new Payment(x))
                 .ToListAsync();
+        }
+
+        public Task SavePayment(Payment payment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SavePayments(IEnumerable<Payment> payments)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeletePayment(Payment payment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeletePayments(IEnumerable<Payment> payments)
+        {
+            throw new NotImplementedException();
         }
     }
 }

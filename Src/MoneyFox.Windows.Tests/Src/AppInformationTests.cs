@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Xunit;
+using Assert = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.Assert;
 
 namespace MoneyFox.Windows.Tests
 {
-    [TestClass]
     public class AppInformationTests
     {
-        [TestMethod]
+        [Fact]
         public void GetVersion_VersionInAppManifest_CorrectVersion()
         {
             Assert.AreEqual("1.0.0.0", new WindowsAppInformation().GetVersion());

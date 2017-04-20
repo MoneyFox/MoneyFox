@@ -1,87 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Foundation.Tests;
 using Moq;
 using Xunit;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Tests.Manager
 {
     public class EndMonthManagerTests
     {
-        [Fact]
-        public void EndofMonthManager_AccountIsNegative()
+        [Theory]
+        [InlineData(PaymentType.Expense, true)]
+        [InlineData(PaymentType.Income, false)]
+        public async void EndofMonthManager_AccountIsOverdrawnCorrectSet(PaymentType paymentType, bool expectedResult)
         {
-            AccountViewModel account1 = new AccountViewModel
+            // Arrange
+            var account1 = new Account
             {
-                Id = 1,
-                CurrentBalance = 100
+                Data =
+                {
+                    Id = 1,
+                    CurrentBalance = 100
+                }
             };
             
-            var accounts = new List<AccountViewModel>
+            var accounts = new List<Account>
             {
-                new AccountViewModel {Id=2, CurrentBalance=100}, 
+                new Account{ Data = {Id=2, CurrentBalance=100}}, 
                 account1
             };
 
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
-            {
-                new PaymentViewModel {Id = 10, ChargedAccountId=1, Amount=100,Date= DateTime.Now},
-                new PaymentViewModel {Id = 15, ChargedAccountId=1, Amount=100, Date= DateTime.Now}
-            });
+            var paymentRepoSetup = new Mock<IPaymentService>();
+            paymentRepoSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>(), It.IsAny<int>()))
+                            .Returns(Task.FromResult<IEnumerable<Payment>>(new List<Payment>
+                            {
+                                new Payment
+                                {
+                                    Data = {Id = 10, ChargedAccountId = 1, Amount = 100, Date = DateTime.Now, Type = paymentType }
+                                },
+                                new Payment
+                                {
+                                    Data = {Id = 15, ChargedAccountId = 1, Amount = 100, Date = DateTime.Now, , Type = paymentType }
+                                }
+                            }));
 
-            var testManager = new EndOfMonthManager(paymentRepoSetup.Object);
+            // Act
+            await new EndOfMonthManager(paymentRepoSetup.Object).CheckIfAccountsAreOverdrawn(accounts);
 
-            testManager.CheckEndOfMonthBalanceForAccounts(accounts);
-            account1.IsOverdrawn.ShouldBeTrue();
+            // Assert
+            Assert.Equal(expectedResult, account1.Data.IsOverdrawn);
         }
 
         [Fact]
-        public void EndofMonthManager_AccountIsPositive()
+        public async void GetTotalEndOfMonthBalance_TwoAccounts_SumOfAccounts()
         {
-            AccountViewModel account1 = new AccountViewModel
-            {
-                Id = 1,
-                CurrentBalance = -100,
-            };
+            // Arrange
+            var paymentMockSetup = new Mock<IPaymentService>();
+            paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>(), It.IsAny<int>()))
+                .Returns(Task.FromResult<IEnumerable<Payment>>(new List<Payment>()));
 
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
-            {
-                new PaymentViewModel {Id = 10, TargetAccountId=1, Amount=100,Date= DateTime.Now, Type = PaymentType.Income},
-                new PaymentViewModel {Id = 15, TargetAccountId=1, Amount=100, Date= DateTime.Now, Type = PaymentType.Income}
-            });
+            // Act
+            var result = await new EndOfMonthManager(paymentMockSetup.Object)
+                .GetTotalEndOfMonthBalance(new List<Account>
+                {
+                    new Account {Data = {CurrentBalance = 500}},
+                    new Account {Data = {CurrentBalance = 200}}
+                });
 
-            var accounts = new List<AccountViewModel>
-            {
-                new AccountViewModel {Id=2, CurrentBalance=100},
-                account1
-            };
-
-            EndOfMonthManager testManager = new EndOfMonthManager(paymentRepoSetup.Object);
-            testManager.CheckEndOfMonthBalanceForAccounts(accounts);
-
-            account1.IsOverdrawn.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void GetTotalEndOfMonthBalance_TwoAccounts_SumOfAccounts()
-        {
-            var paymentMockSetup = new Mock<IPaymentRepository>();
-            paymentMockSetup.Setup(x => x.GetList(null)).Returns(() => new List<PaymentViewModel>());
-
-            var endOfMonthManager = new EndOfMonthManager(paymentMockSetup.Object);
-
-            endOfMonthManager.GetTotalEndOfMonthBalance(new List<AccountViewModel>
-            {
-                new AccountViewModel {CurrentBalance = 500},
-                new AccountViewModel {CurrentBalance = 200}
-            }).ShouldBe(700);
+            // Assert
+            Assert.Equal(700, result);
         }
     }
 }
