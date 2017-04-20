@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using MoneyFox.DataAccess;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.DataAccess.Migrations
 {
@@ -70,7 +73,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<int>("RecurringPaymentId");
 
-                    b.Property<int>("TargetAccountId");
+                    b.Property<int?>("TargetAccountId");
 
                     b.Property<int>("Type");
 
@@ -108,7 +111,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<int>("TargetAccountId");
+                    b.Property<int?>("TargetAccountId");
 
                     b.Property<int>("Type");
 
@@ -158,8 +161,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
                         .WithMany()
-                        .HasForeignKey("TargetAccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TargetAccountId");
                 });
         }
     }

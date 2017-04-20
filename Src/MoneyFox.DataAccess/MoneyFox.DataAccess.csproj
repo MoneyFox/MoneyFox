@@ -51,9 +51,9 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MapperConfiguration.cs" />
-    <Compile Include="Migrations\20170420195626_InitMigration.cs" />
-    <Compile Include="Migrations\20170420195626_InitMigration.Designer.cs">
-      <DependentUpon>20170420195626_InitMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20170420214659_InitMigration.cs" />
+    <Compile Include="Migrations\20170420214659_InitMigration.designer.cs">
+      <DependentUpon>20170420214659_InitMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +74,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

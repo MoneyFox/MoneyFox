@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MoneyFox.DataAccess.Migrations
@@ -53,7 +54,7 @@ namespace MoneyFox.DataAccess.Migrations
                     Note = table.Column<string>(nullable: true),
                     Recurrence = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    TargetAccountId = table.Column<int>(nullable: false),
+                    TargetAccountId = table.Column<int>(nullable: true),
                     Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -76,7 +77,7 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.TargetAccountId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +94,7 @@ namespace MoneyFox.DataAccess.Migrations
                     IsRecurring = table.Column<bool>(nullable: false),
                     Note = table.Column<string>(nullable: true),
                     RecurringPaymentId = table.Column<int>(nullable: false),
-                    TargetAccountId = table.Column<int>(nullable: false),
+                    TargetAccountId = table.Column<int>(nullable: true),
                     Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
