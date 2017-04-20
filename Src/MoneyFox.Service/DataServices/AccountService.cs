@@ -22,20 +22,16 @@ namespace MoneyFox.Service.DataServices
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository accountRepository;
-        private readonly IPaymentService paymentService;
         private readonly IUnitOfWork unitOfWork;
 
-        public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork, IPaymentService paymentService)
+        public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork)
         {
             this.accountRepository = accountRepository;
             this.unitOfWork = unitOfWork;
-            this.paymentService = paymentService;
         }
 
         public async Task DeleteAccount(Account account)
         {
-            //TODO: Required or done by cascation?
-            //await paymentService.DeletePayments(account.Data.Payments.Select(x => new Payment(x)));
             accountRepository.Delete(account.Data);
             await unitOfWork.Commit();
         }
