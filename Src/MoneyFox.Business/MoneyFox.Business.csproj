@@ -59,6 +59,7 @@
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Manager\EndOfMonthManager.cs" />
+    <Compile Include="Manager\IEndOfMonthManager.cs" />
     <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />

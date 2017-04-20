@@ -17,10 +17,10 @@ namespace MoneyFox.Service.DataServices
         /// <summary>
         ///     Returns all uncleared payments up to the passed enddate who are assigned to the passed Account ID.
         /// </summary>
-        /// <param name="accountId">Account to select payments for.</param>
         /// <param name="enddate">Enddate</param>
+        /// <param name="accountId">Account to select payments for.</param>
         /// <returns>List of Payments.</returns>
-        Task<IEnumerable<Payment>> GetUnclearedPayments(int accountId, DateTime enddate);
+        Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
     }
 
     /// <summary>
@@ -28,14 +28,14 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class PaymentService : IPaymentService
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
-        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork"/></param>
-        /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository"/></param>
+        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork" /></param>
+        /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
         public PaymentService(IUnitOfWork unitOfWork, IPaymentRepository paymentRepository)
         {
             this.unitOfWork = unitOfWork;
@@ -45,16 +45,22 @@ namespace MoneyFox.Service.DataServices
         /// <summary>
         ///     Returns all uncleared payments up to the passed enddate.
         /// </summary>
-        /// <param name="accountId">Account to select payments for.</param>
+        /// <param name="accountId">Account to select payments for. </param>
         /// <param name="enddate">Enddate</param>
         /// <returns>List of Payments.</returns>
-        public async Task<IEnumerable<Payment>> GetUnclearedPayments(int accountId, DateTime enddate)
+        public async Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0)
         {
-            return await paymentRepository
+            var query = paymentRepository
                 .GetAll()
                 .Where(x => !x.IsCleared)
-                .Where(p => p.Date.Date <= enddate)
-                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .Where(p => p.Date.Date <= enddate);
+
+            if (accountId != 0)
+            {
+                query = query.Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId);
+            }
+
+            return await query
                 .Select(x => new Payment(x))
                 .ToListAsync();
         }

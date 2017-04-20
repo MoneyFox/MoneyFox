@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Manager
 {
+    /// <summary>
+    ///     Provides different calculations for the balance at the end of month.
+    /// </summary>
     public class EndOfMonthManager : IEndOfMonthManager
     {
         private readonly IPaymentService paymentService;
@@ -23,12 +23,17 @@ namespace MoneyFox.Business.Manager
 
         private int accountId = 0;
 
-        public async Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel accountViewModel)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public async Task<double> GetEndOfMonthBalanceForAccount(Account account)
         {
-            accountId = accountViewModel.Id;
-            var balance = accountViewModel.CurrentBalance;
+            accountId = account.Data.Id;
+            var balance = account.Data.CurrentBalance;
 
-            foreach (var payment in await paymentService.GetUnclearedPayments(accountId, Utilities.GetEndOfMonth()))
+            foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth(), accountId))
             {
                 switch (payment.Data.Type)
                 {
@@ -63,32 +68,44 @@ namespace MoneyFox.Business.Manager
             return balance;
         }
 
-        public void CheckEndOfMonthBalanceForAccounts(IEnumerable<AccountViewModel> accounts)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accounts"></param>
+        /// <returns></returns>
+        public async Task CheckIfAccountsAreOverdrawn(IEnumerable<Account> accounts)
         {
             foreach (var account in accounts)
             {
-                account.IsOverdrawn = GetEndOfMonthBalanceForAccount(account) < 0;
+                account.Data.IsOverdrawn = await GetEndOfMonthBalanceForAccount(account) < 0;
             }
         }
 
-        public double GetTotalEndOfMonthBalance(IEnumerable<AccountViewModel> accounts)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accounts"></param>
+        /// <returns></returns>
+        public async Task<double> GetTotalEndOfMonthBalance(IEnumerable<Account> accounts)
         {
-            var balance = accounts.Sum(x => x.CurrentBalance);
-            var unclearedPayments = paymentRepository
-                .GetList(p => !p.IsCleared && (p.Date.Date <= Utilities.GetEndOfMonth()));
+            var balance = accounts.Sum(x => x.Data.CurrentBalance);
 
-            foreach (var payment in unclearedPayments)
+            foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth()))
             {
                 //Transfer can be ignored since they don't change the summary.
-                switch (payment.Type)
+                switch (payment.Data.Type)
                 {
                     case PaymentType.Expense:
-                        balance -= payment.Amount;
+                        balance -= payment.Data.Amount;
                         break;
 
                     case PaymentType.Income:
-                        balance += payment.Amount;
+                        balance += payment.Data.Amount;
                         break;
+                    case PaymentType.Transfer:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
             return balance;
