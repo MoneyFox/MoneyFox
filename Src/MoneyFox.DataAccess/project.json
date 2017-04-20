@@ -5,9 +5,7 @@
     "AutoMapper": "6.0.1",
     "Microsoft.EntityFrameworkCore": "1.1.1",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.1.1",
-    "MvvmCross.Plugin.File": "4.4.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
-    "SQLiteNetExtensions": "2.0.0-alpha2"
+    "MvvmCross.Plugin.File": "4.4.0"
   },
   "frameworks": {
     "netstandard1.3": {
