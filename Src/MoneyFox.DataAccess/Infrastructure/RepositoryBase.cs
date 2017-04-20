@@ -84,6 +84,17 @@ namespace MoneyFox.DataAccess.Infrastructure
         }
 
         /// <summary>
+        ///     Get the first item who matches the passed filter.
+        ///     Returns null if no item matches.
+        /// </summary>
+        /// <param name="where">Filter to seleect for.</param>
+        /// <returns>First item that matched.</returns>
+        public async Task<T> Get(Expression<Func<T, bool>> where)
+        {
+            return await dbSet.Where(where).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         ///     Returns all Items of the database table
         /// </summary>
         /// <returns></returns>
@@ -102,16 +113,6 @@ namespace MoneyFox.DataAccess.Infrastructure
             return dbSet.Where(where);
         }
 
-        /// <summary>
-        ///     Get the first item who matches the passed filter.
-        ///     Returns null if no item matches.
-        /// </summary>
-        /// <param name="where">Filter to seleect for.</param>
-        /// <returns>First item that matched.</returns>
-        public async Task<T> Get(Expression<Func<T, bool>> where)
-        {
-            return await dbSet.Where(where).FirstOrDefaultAsync();
-        }
 
         #endregion    }
     }
