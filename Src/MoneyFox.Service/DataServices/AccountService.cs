@@ -2,6 +2,7 @@
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
+using Microsoft.EntityFrameworkCore;
 
 namespace MoneyFox.Service.DataServices
 {
@@ -14,6 +15,11 @@ namespace MoneyFox.Service.DataServices
         ///     Deletes the passed account and all associated payments.
         /// </summary>
         Task DeleteAccount(Account account);
+
+        /// <summary>
+        ///     Returns the number of existing Accounts.
+        /// </summary>
+        Task<int> GetAccountCount();
     }
 
     /// <summary>
@@ -38,6 +44,12 @@ namespace MoneyFox.Service.DataServices
         {
             accountRepository.Delete(account.Data);
             await unitOfWork.Commit();
+        }
+
+        /// <inheritdoc />
+        public Task<int> GetAccountCount()
+        {
+            return accountRepository.GetAll().CountAsync();
         }
     }
 }

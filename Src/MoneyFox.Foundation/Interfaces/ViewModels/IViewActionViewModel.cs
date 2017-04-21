@@ -9,7 +9,6 @@ namespace MoneyFox.Foundation.Interfaces.ViewModels
     /// </summary>
     public interface IViewActionViewModel
     {
-
         MvxCommand GoToAddIncomeCommand { get; }
 
         MvxCommand GoToAddExpenseCommand { get; }

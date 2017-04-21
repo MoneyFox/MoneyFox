@@ -23,7 +23,7 @@ namespace MoneyFox.Droid.Services
 
         private void CheckRecurringPayments()
         {
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
+            Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
         }
     }
 }

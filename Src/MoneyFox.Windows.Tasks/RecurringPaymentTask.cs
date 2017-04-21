@@ -1,9 +1,9 @@
 ﻿using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -20,13 +20,9 @@ namespace MoneyFox.Windows.Tasks
                 var dbFactory = new DbFactory();
                 var paymentRepository = new PaymentRepository(dbFactory);
 
-                var paymentManager = new PaymentManager(paymentRepository,
-                    new AccountRepository(dbFactory),
-                    new RecurringPaymentRepository(dbFactory),
-                    null);
-
-                new RecurringPaymentManager(paymentManager, paymentRepository,
-                    new SettingsManager(new WindowsUwpSettings())).CheckRecurringPayments();
+                new RecurringPaymentManager(new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                    new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory)))
+                    .CreatePaymentsUpToRecur();
             }
             finally
             {

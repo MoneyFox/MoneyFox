@@ -20,11 +20,9 @@ namespace MoneyFox.Windows.Tasks
             {
                 MapperConfiguration.Setup();
                 
-                var settingsManager = new SettingsManager(new WindowsUwpSettings());
-
                 var backupManager = new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(), 
-                        settingsManager,
+                        new MvxWindowsCommonFileStore(),
+                        new SettingsManager(new WindowsUwpSettings()),
                         new Connectivity(),
                         new DbFactory());
 

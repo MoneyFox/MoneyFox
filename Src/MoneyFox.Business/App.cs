@@ -2,6 +2,9 @@
 
 namespace MoneyFox.Business
 {
+    /// <summary>
+    ///     Entry piont to the Application for MvvmCross.
+    /// </summary>
     public class App : MvxApplication
     {
         /// <summary>

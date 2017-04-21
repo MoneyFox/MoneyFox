@@ -28,8 +28,8 @@ namespace MoneyFox.Business.Tests.StatisticProvider
         public async void GetValues_CorrectSums()
         {
             // Arrange
-            var paymentRepoSetup = new Mock<IPaymentService>();
-            paymentRepoSetup.Setup(x => x.GetPaymentsWithoutTransfer(It.IsAny<DateTime>(), It.IsAny<DateTime>()))
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.GetPaymentsWithoutTransfer(It.IsAny<DateTime>(), It.IsAny<DateTime>()))
                             .Returns(Task.FromResult<IEnumerable<Payment>>(new List<Payment>
                             {
                                 new Payment
@@ -75,7 +75,7 @@ namespace MoneyFox.Business.Tests.StatisticProvider
                             }));
 
             // Act
-            var result = await new CashFlowDataProvider(paymentRepoSetup.Object)
+            var result = await new CashFlowDataProvider(paymentServiceMock.Object)
                 .GetCashFlow(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
 
             // Assert

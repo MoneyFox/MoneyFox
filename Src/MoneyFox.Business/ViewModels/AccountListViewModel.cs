@@ -9,12 +9,12 @@ using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
+using MoneyFox.Business.Manager;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
-        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
         private readonly IEndOfMonthManager endOfMonthManager;
         private readonly IPaymentManager paymentManager;
@@ -32,7 +32,6 @@ namespace MoneyFox.Business.ViewModels
             IModifyDialogService modifyDialogService)
         {
             this.dialogService = dialogService;
-            this.accountRepository = accountRepository;
             this.paymentManager = paymentManager;
             this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
