@@ -16,7 +16,7 @@ namespace MoneyFox.Service.QueryExtensions
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for cleared payments.</returns>
-        public static IQueryable<PaymentEntity> IsCleared(this IQueryable<PaymentEntity> query)
+        public static IQueryable<PaymentEntity> AreCleared(this IQueryable<PaymentEntity> query)
         {
             return query.Where(payment => payment.IsCleared);
         }
@@ -39,7 +39,7 @@ namespace MoneyFox.Service.QueryExtensions
         /// <returns>Query filtered for not cleared payments.</returns>
         public static IQueryable<PaymentEntity> HasDateLargerEqualsThan(this IQueryable<PaymentEntity> query, DateTime date)
         {
-            return query.Where(payment => payment.Date.Date >= date);
+            return query.Where(payment => payment.Date.Date >= date.Date);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace MoneyFox.Service.QueryExtensions
         /// <returns>Query filtered for the date.</returns>
         public static IQueryable<PaymentEntity> HasDateSmallerEqualsThan(this IQueryable<PaymentEntity> query, DateTime date)
         {
-            return query.Where(payment => payment.Date.Date <= date);
+            return query.Where(payment => payment.Date.Date <= date.Date);
         }
 
         /// <summary>
