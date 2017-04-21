@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Constants;
@@ -13,7 +12,7 @@ namespace MoneyFox.DataAccess
     {
         //public static string DataBasePath { get; set; }
 
-        internal DbSet<AccountEntity> Users { get; set; }
+        internal DbSet<AccountEntity> Accounts { get; set; }
         internal DbSet<PaymentEntity> Payments { get; set; }
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
         internal DbSet<CategoryEntity> Categories { get; set; }
@@ -36,6 +35,18 @@ namespace MoneyFox.DataAccess
                         .WithOne(t => t.TargetAccount)
                         .HasForeignKey(m => m.TargetAccountId)
                         .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CategoryEntity>()
+                        .HasMany(m => m.Payments)
+                        .WithOne(t => t.Category)
+                        .HasForeignKey(m => m.CategoryId)
+                        .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<RecurringPaymentEntity>()
+                        .HasMany(m => m.RelatedPayments)
+                        .WithOne(t => t.RecurringPayment)
+                        .HasForeignKey(m => m.RecurringPaymentId)
+                        .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

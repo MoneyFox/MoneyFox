@@ -35,7 +35,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Accounts");
                 });
 
             modelBuilder.Entity("MoneyFox.DataAccess.Entities.CategoryEntity", b =>
@@ -130,7 +130,8 @@ namespace MoneyFox.DataAccess.Migrations
                 {
                     b.HasOne("MoneyFox.DataAccess.Entities.CategoryEntity", "Category")
                         .WithMany("Payments")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "ChargedAccount")
                         .WithMany("ChargedPayments")
@@ -139,7 +140,8 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.HasOne("MoneyFox.DataAccess.Entities.RecurringPaymentEntity", "RecurringPayment")
                         .WithMany("RelatedPayments")
-                        .HasForeignKey("RecurringPaymentId");
+                        .HasForeignKey("RecurringPaymentId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
                         .WithMany("TargetedPayments")

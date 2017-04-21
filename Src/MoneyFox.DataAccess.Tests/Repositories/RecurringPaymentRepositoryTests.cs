@@ -19,6 +19,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         {
             using (var db = new ApplicationContext())
             {
+                File.Delete(Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME));
+
                 db.Database.Migrate();
             }
         }
@@ -228,6 +230,35 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             // Assert
             Assert.Equal(0, repository.GetAll().Count());
+        }
+
+        [Fact]
+        public async void Delete_RelatedPaymentSetNull()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var recurringPaymentRepository = new RecurringPaymentRepository(factory);
+            var paymentRepository = new PaymentRepository(factory);
+
+            var recurringPaymentEntity = new RecurringPaymentEntity { ChargedAccount = new AccountEntity()};
+            var payment = new PaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                RecurringPayment = recurringPaymentEntity
+            };
+
+            paymentRepository.Add(payment);
+            await unitOfWork.Commit();
+
+            // Act
+            recurringPaymentRepository.Delete(recurringPaymentEntity);
+            await unitOfWork.Commit();
+
+            // Assert
+            Assert.Null(payment.RecurringPayment);
+            Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment);
         }
 
         [Fact]

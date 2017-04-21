@@ -9,7 +9,7 @@ namespace MoneyFox.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Accounts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -23,7 +23,7 @@ namespace MoneyFox.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,15 +67,15 @@ namespace MoneyFox.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RecurringPayments_Users_ChargedAccountId",
+                        name: "FK_RecurringPayments_Accounts_ChargedAccountId",
                         column: x => x.ChargedAccountId,
-                        principalTable: "Users",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecurringPayments_Users_TargetAccountId",
+                        name: "FK_RecurringPayments_Accounts_TargetAccountId",
                         column: x => x.TargetAccountId,
-                        principalTable: "Users",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -105,11 +105,11 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Payments_Users_ChargedAccountId",
+                        name: "FK_Payments_Accounts_ChargedAccountId",
                         column: x => x.ChargedAccountId,
-                        principalTable: "Users",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -117,11 +117,11 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.RecurringPaymentId,
                         principalTable: "RecurringPayments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Payments_Users_TargetAccountId",
+                        name: "FK_Payments_Accounts_TargetAccountId",
                         column: x => x.TargetAccountId,
-                        principalTable: "Users",
+                        principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -174,7 +174,7 @@ namespace MoneyFox.DataAccess.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Accounts");
         }
     }
 }

@@ -1,1 +1,1 @@
-Add-Migration [MigrationName] -OutputDir ../MoneyFox.DataAccess/Migrations -Project Model -StartupProject MoneyFox.Windows
+Add-Migration [MigrationName] -OutputDir ../MoneyFox.DataAccess/Migrations -Project MoneyFox.DataAccess -StartupProject MoneyFox.Windows
