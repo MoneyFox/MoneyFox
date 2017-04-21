@@ -2,36 +2,34 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
     public class CategorySummaryDataProvider
     {
-        private readonly ICategoryRepository categoryRepository;
-        private readonly IPaymentRepository paymentRepository;
+        private readonly ICategoryService categoryService;
 
-        public CategorySummaryDataProvider(IPaymentRepository paymentRepository, ICategoryRepository categoryRepository)
+        public CategorySummaryDataProvider(ICategoryService categoryService)
         {
-            this.paymentRepository = paymentRepository;
-            this.categoryRepository = categoryRepository;
+            this.categoryService = categoryService;
         }
 
-        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate)
         {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in categoryRepository.GetList())
+            foreach (var category in await categoryService.GetAllCategories())
             {
                 categories.Add(new StatisticItem
                 {
-                    Label = category.Name,
-                    Value = paymentRepository
-                        .GetList()
-                        .Where(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date))
-                        .Where(x => x.CategoryId == category.Id)
+                    Label = category.Data.Name,
+                    Value = category.Data.Payments
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.Type != PaymentType.Transfer)
                         .Sum(x => x.Type == PaymentType.Expense
                             ? -x.Amount

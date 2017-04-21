@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.DataAccess.Repositories;
+using System.Threading.Tasks;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Models;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
     public class CategorySpreadingDataProvider
     {
-        private readonly IRepository<PaymentViewModel> paymentRepository;
+        private readonly IPaymentService paymentService;
 
-        public CategorySpreadingDataProvider(IRepository<PaymentViewModel> paymentRepository)
+        public CategorySpreadingDataProvider(IPaymentService paymentService)
         {
-            this.paymentRepository = paymentRepository;
+            this.paymentService = paymentService;
         }
 
         /// <summary>
@@ -24,25 +25,25 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
-        public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
-            => GetSpreadingStatisticItems(paymentRepository
-                .GetList(x => (x.Date.Date >= startDate.Date) && (x.Date.Date <= endDate.Date)
-                              && ((x.Type == (int) PaymentType.Expense) || (x.Type == PaymentType.Income)))
-                .ToList());
+        public async Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate)
+        {
+            var paymentEnumerable = await paymentService.GetPaymentsWithoutTransfer(startDate, endDate);
+            return GetSpreadingStatisticItems(paymentEnumerable.ToList());
+        }
 
-        private List<StatisticItem> GetSpreadingStatisticItems(List<PaymentViewModel> payments)
+        private IEnumerable<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
         {
             var tempStatisticList = (from payment in payments
                     group payment by new
                     {
-                        category = payment.Category != null ? payment.Category.Name : string.Empty
+                        category = payment.Data.Category != null ? payment.Data.Category.Name : string.Empty
                     }
                     into temp
                     select new StatisticItem
                     {
                         Label = temp.Key.category,
                         // we subtract income payments here so that we have all expenses without presign
-                        Value = temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount)
+                        Value = temp.Sum(x => x.Data.Type == PaymentType.Income ? -x.Data.Amount : x.Data.Amount)
                     })
                 .Where(x => x.Value > 0)
                 .OrderByDescending(x => x.Value)

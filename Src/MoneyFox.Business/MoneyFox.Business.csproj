@@ -60,6 +60,8 @@
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">

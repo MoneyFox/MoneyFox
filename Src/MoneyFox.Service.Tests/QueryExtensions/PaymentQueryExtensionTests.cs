@@ -186,6 +186,24 @@ namespace MoneyFox.Service.Tests.QueryExtensions
             Assert.Equal(4, resultList[2].Id);
         }
 
+        [Fact]
+        public void SelectPayments()
+        {
+            // Arrange
+            var paymentListQuery = new List<PaymentEntity>
+                {
+                    new PaymentEntity {Id = 1},
+                    new PaymentEntity {Id = 2}
+                }
+                .AsQueryable();
 
+            // Act
+            var resultList = paymentListQuery.SelectPayments().ToList();
+
+            // Assert
+            Assert.Equal(2, resultList.Count);
+            Assert.Equal(1, resultList[0].Data.Id);
+            Assert.Equal(2, resultList[1].Data.Id);
+        }
     }
 }

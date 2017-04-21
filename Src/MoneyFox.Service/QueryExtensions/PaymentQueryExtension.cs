@@ -9,7 +9,7 @@ namespace MoneyFox.Service.QueryExtensions
     /// <summary>
     ///     Provides Extensions for payments queries.
     /// </summary>
-    public static class PaymentQueryExtension
+    public static class PaymentQueryExtensions
     {
         /// <summary>
         ///     Adds a filter to a query for cleared payments
