@@ -18,12 +18,6 @@ namespace MoneyFox.Business.Tests.StatisticProvider
     public class CashFlowProviderTests
     {
         [Fact]
-        public void Constructor_Null_NotNullObject()
-        {
-            new CashFlowDataProvider(null).ShouldNotBeNull();
-        }
-
-        [Fact]
         public async void GetValues_NullDependency_NullReferenceException()
         {
             await Assert.ThrowsAsync<NullReferenceException>(

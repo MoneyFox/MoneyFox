@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 using Moq;
@@ -21,7 +18,7 @@ namespace MoneyFox.Business.Tests.StatisticProvider
         public async void GetValues_NullDependency_NullReferenceException()
         {
             await Assert.ThrowsAsync<NullReferenceException>(
-                () => new CashFlowDataProvider(null).GetCashFlow(DateTime.Today, DateTime.Today));
+                () => new CategorySpreadingDataProvider(null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [Fact]
