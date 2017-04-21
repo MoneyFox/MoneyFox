@@ -254,6 +254,41 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
+        public async void Delete_AssignedRelatedPaymentsSetNull()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var categoryRepository = new CategoryRepository(factory);
+            var paymentRepository = new PaymentRepository(factory);
+
+            var category = new CategoryEntity();
+            var recurringPayment = new RecurringPaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                Category = category
+            };
+            var payment = new PaymentEntity
+            {
+                ChargedAccount = new AccountEntity(),
+                Category = category,
+                RecurringPayment = recurringPayment
+            };
+            categoryRepository.Add(category);
+            paymentRepository.Add(payment);
+            await unitOfWork.Commit();
+
+            // Act
+            categoryRepository.Delete(category);
+            await unitOfWork.Commit();
+
+            // Assert
+            Assert.Null(recurringPayment.Category);
+            Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment.Category);
+        }
+
+        [Fact]
         public async void Delete_EntryNotFound()
         {
             // Arrange

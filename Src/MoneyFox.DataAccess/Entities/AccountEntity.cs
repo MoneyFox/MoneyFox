@@ -19,5 +19,8 @@ namespace MoneyFox.DataAccess.Entities
 
         public virtual List<PaymentEntity> ChargedPayments { get; set; }
         public virtual List<PaymentEntity> TargetedPayments { get; set; }
+
+        public virtual List<RecurringPaymentEntity> ChargedRecurringPayments { get; set; }
+        public virtual List<RecurringPaymentEntity> TargetedRecurringPayments { get; set; }
     }
 }

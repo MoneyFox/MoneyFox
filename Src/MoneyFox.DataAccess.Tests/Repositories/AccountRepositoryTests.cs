@@ -225,7 +225,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void DeleteAccount_RelatedPaymentsRemoved()
+        public async void DeleteAccount_RelatedChargedPaymentsRemoved()
         {
             // Arrange
             var factory = new DbFactory();
@@ -259,6 +259,49 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Assert
             Assert.False(await accountRepository.GetAll().AnyAsync());
             Assert.False(await paymentRepository.GetAll().AnyAsync());
+        }
+
+        [Fact]
+        public async void DeleteAccount_RelatedTargetPaymentSetNull()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var accountRepository = new AccountRepository(factory);
+            var paymentRepository = new PaymentRepository(factory);
+
+            var chargedAccount = new AccountEntity
+            {
+                Name = "Charged"
+            };
+            var targetAccount = new AccountEntity
+            {
+                Name = "Target"
+            };
+
+            var payment = new PaymentEntity
+            {
+                Note = "Foo",
+                ChargedAccount = chargedAccount,
+                TargetAccount = targetAccount
+            };
+
+            accountRepository.Add(chargedAccount);
+            accountRepository.Add(targetAccount);
+            paymentRepository.Add(payment);
+            await unitOfWork.Commit();
+
+            Assert.Equal(2, await accountRepository.GetAll().CountAsync());
+            Assert.Equal(1, await paymentRepository.GetAll().CountAsync());
+
+            // Act
+            accountRepository.Delete(targetAccount);
+            await unitOfWork.Commit();
+
+            // Assert
+            Assert.Null(payment.TargetAccount);
+            Assert.NotNull(payment.ChargedAccount);
         }
 
         [Fact]

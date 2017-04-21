@@ -14,5 +14,6 @@ namespace MoneyFox.DataAccess.Entities
         public string Notes { get; set; }
 
         public virtual List<PaymentEntity> Payments { get; set; }
+        public virtual List<RecurringPaymentEntity> RecurringPayments { get; set; }
     }
 }
