@@ -66,6 +66,8 @@
     <Compile Include="Manager\SettingsManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
     <Compile Include="TestCollections\MvxIocCollection.cs" />
   </ItemGroup>
   <ItemGroup>
