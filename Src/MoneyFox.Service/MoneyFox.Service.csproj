@@ -41,6 +41,7 @@
     <Compile Include="Pocos\Account.cs" />
     <Compile Include="Pocos\RecurringPayment.cs" />
     <Compile Include="Pocos\Payment.cs" />
+    <Compile Include="QueryExtensions\PaymentQueryExtension.cs" />
     <Compile Include="RecurringPaymentHelper.cs" />
     <Compile Include="ServiceModule.cs" />
     <Compile Include="DataServices\AccountService.cs" />
@@ -59,6 +60,11 @@
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\..\..\.nuget\packages\Castle.Core\4.0.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

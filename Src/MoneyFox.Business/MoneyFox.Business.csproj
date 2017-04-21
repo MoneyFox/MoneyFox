@@ -59,6 +59,7 @@
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">

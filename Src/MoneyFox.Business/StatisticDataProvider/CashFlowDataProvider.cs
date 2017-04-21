@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Models;
@@ -11,13 +10,6 @@ namespace MoneyFox.Business.StatisticDataProvider
 {
     public class CashFlowDataProvider
     {
-        private readonly IRepository<PaymentViewModel> paymentRepository;
-
-        public CashFlowDataProvider(IPaymentRepository paymentRepository)
-        {
-            this.paymentRepository = paymentRepository;
-        }
-
         /// <summary>
         ///     Selects payments from the given timeframe and calculates the income, the spendings and the revenue.
         ///     There is no differentiation between the accounts, therefore transfers are ignored.
@@ -27,11 +19,7 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <returns>Statistic value for the given timeframe</returns>
         public List<StatisticItem> GetCashFlow(DateTime startDate, DateTime endDate)
         {
-            return GetCashFlowStatisticItems(paymentRepository
-                .GetList(x => x.Type != PaymentType.Transfer
-                              && x.Date.Date >= startDate.Date
-                              && x.Date.Date <= endDate.Date)
-                .ToList());
+            return GetCashFlowStatisticItems(.ToList());
         }
 
         private List<StatisticItem> GetCashFlowStatisticItems(List<PaymentViewModel> payments)

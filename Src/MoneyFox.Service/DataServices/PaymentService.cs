@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
+using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.Service.DataServices
 {
@@ -21,6 +21,13 @@ namespace MoneyFox.Service.DataServices
         /// <param name="accountId">Account to select payments for.</param>
         /// <returns>List of Payments.</returns>
         Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
+
+        /// <summary>
+        ///     Returns all incomes and expenses within the passed timeframe.
+        /// </summary>
+        /// <param name="startdate">Startdate</param>
+        /// <param name="enddate">Enddate.</param>
+        Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate);
 
         /// <summary>
         ///     Saves or updates a payment.
@@ -69,16 +76,28 @@ namespace MoneyFox.Service.DataServices
         {
             var query = paymentRepository
                 .GetAll()
-                .Where(x => !x.IsCleared)
-                .Where(p => p.Date.Date <= enddate);
+                .AreNotCleared()
+                .HasDateSmallerEqualsThan(enddate);
 
             if (accountId != 0)
             {
-                query = query.Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId);
+                query = query.HasAccountId(accountId);
             }
 
             return await query
-                .Select(x => new Payment(x))
+                .SelectPayments()
+                .ToListAsync();
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate)
+        {
+            return await paymentRepository
+                .GetAll()
+                .WithoutTransfers()
+                .HasDateLargerEqualsThan(startdate.Date)
+                .HasDateSmallerEqualsThan(enddate.Date)
+                .SelectPayments()
                 .ToListAsync();
         }
 
