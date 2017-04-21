@@ -18,9 +18,7 @@ namespace MoneyFox.Service.DataServices
         IEnumerable<RecurringPayment> GetPaymentsToRecur();
     }
 
-    /// <summary>
-    ///     Offers service methods to access and modify recurring payment data.
-    /// </summary>
+    /// <inheritdoc />
     public class RecurringPaymentService : IRecurringPaymentService
     {
         private readonly IRecurringPaymentRepository recurringPaymentRepository;
@@ -30,10 +28,7 @@ namespace MoneyFox.Service.DataServices
             this.recurringPaymentRepository = recurringPaymentRepository;
         }
 
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc />
         public IEnumerable<RecurringPayment> GetPaymentsToRecur()
         {
             return recurringPaymentRepository.GetMany(x => x.IsEndless ||

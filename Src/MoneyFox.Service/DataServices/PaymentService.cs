@@ -47,9 +47,7 @@ namespace MoneyFox.Service.DataServices
         Task DeletePayments(IEnumerable<Payment> payments);
     }
 
-    /// <summary>
-    ///     Offers service methods to access and modify payment data.
-    /// </summary>
+    /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository paymentRepository;
@@ -66,6 +64,7 @@ namespace MoneyFox.Service.DataServices
             this.paymentRepository = paymentRepository;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0)
         {
             var query = paymentRepository
@@ -83,6 +82,7 @@ namespace MoneyFox.Service.DataServices
                 .ToListAsync();
         }
 
+        /// <inheritdoc />
         public async Task SavePayment(Payment payment)
         {
             if (payment.Data.Id == 0)
@@ -96,6 +96,7 @@ namespace MoneyFox.Service.DataServices
             await unitOfWork.Commit();
         }
 
+        /// <inheritdoc />
         public async Task SavePayments(IEnumerable<Payment> payments)
         {
             foreach (var payment in payments)
@@ -112,12 +113,14 @@ namespace MoneyFox.Service.DataServices
             await unitOfWork.Commit();
         }
 
+        /// <inheritdoc />
         public async Task DeletePayment(Payment payment)
         {
             paymentRepository.Delete(payment.Data);
             await unitOfWork.Commit();
         }
 
+        /// <inheritdoc />
         public async Task DeletePayments(IEnumerable<Payment> payments)
         {
             foreach (var payment in payments)

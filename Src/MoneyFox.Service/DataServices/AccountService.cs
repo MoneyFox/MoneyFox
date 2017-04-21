@@ -24,12 +24,16 @@ namespace MoneyFox.Service.DataServices
         private readonly IAccountRepository accountRepository;
         private readonly IUnitOfWork unitOfWork;
 
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork)
         {
             this.accountRepository = accountRepository;
             this.unitOfWork = unitOfWork;
         }
 
+        /// <inheritdoc />
         public async Task DeleteAccount(Account account)
         {
             accountRepository.Delete(account.Data);
