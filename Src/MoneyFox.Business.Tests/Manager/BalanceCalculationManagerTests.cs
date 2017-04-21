@@ -10,7 +10,7 @@ using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Tests.Manager
 {
-    public class EndMonthManagerTests
+    public class BalanceCalculationManagerTests
     {
         [Theory]
         [InlineData(PaymentType.Expense, true)]
@@ -61,8 +61,12 @@ namespace MoneyFox.Business.Tests.Manager
                                 }
                             }));
 
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
+                              .ReturnsAsync(accounts);
+
             // Act
-            await new EndOfMonthManager(paymentRepoSetup.Object).CheckIfAccountsAreOverdrawn(accounts);
+            await new BalanceCalculationManager(paymentRepoSetup.Object, accountServiceMock.Object).CheckIfAccountsAreOverdrawn();
 
             // Assert
             Assert.Equal(expectedResult, account1.Data.IsOverdrawn);
@@ -72,17 +76,21 @@ namespace MoneyFox.Business.Tests.Manager
         public async void GetTotalEndOfMonthBalance_TwoAccounts_SumOfAccounts()
         {
             // Arrange
-            var paymentMockSetup = new Mock<IPaymentService>();
-            paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>(), It.IsAny<int>()))
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>(), It.IsAny<int>()))
                 .Returns(Task.FromResult<IEnumerable<Payment>>(new List<Payment>()));
 
+            var accountServiceMock = new Mock<AccountService>();
+            accountServiceMock.Setup(x => x.GetAllAccounts())
+                .ReturnsAsync(new List<Account>
+                              {
+                                  new Account {Data = { CurrentBalance = 500}},
+                                  new Account {Data = { CurrentBalance = 200}}
+                              });
+
             // Act
-            var result = await new EndOfMonthManager(paymentMockSetup.Object)
-                .GetTotalEndOfMonthBalance(new List<Account>
-                {
-                    new Account {Data = {CurrentBalance = 500}},
-                    new Account {Data = {CurrentBalance = 200}}
-                });
+            var result = await new BalanceCalculationManager(paymentServiceMock.Object, accountServiceMock.Object)
+                .GetTotalEndOfMonthBalance();
 
             // Assert
             Assert.Equal(700, result);

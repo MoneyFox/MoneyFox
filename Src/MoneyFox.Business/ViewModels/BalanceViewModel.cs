@@ -1,23 +1,20 @@
-﻿using System.Linq;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
 
         private double totalBalance;
         private double endOfMonthBalance;
 
-        public BalanceViewModel(IAccountRepository accountRepository, IEndOfMonthManager endOfMonthManager)
+        public BalanceViewModel(IBalanceCalculationManager balanceCalculationManager)
         {
-            this.accountRepository = accountRepository;
-            this.endOfMonthManager = endOfMonthManager;
+            this.balanceCalculationManager = balanceCalculationManager;
         }
 
         /// <summary>
@@ -56,25 +53,25 @@ namespace MoneyFox.Business.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private void UpdateBalance()
+        private async void UpdateBalance()
         {
-            TotalBalance = GetTotalBalance();
-            EndOfMonthBalance = GetEndOfMonthValue();
+            TotalBalance = await GetTotalBalance();
+            EndOfMonthBalance = await GetEndOfMonthValue();
         }
 
         /// <summary>
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance() => accountRepository.GetList(x => !x.IsExcluded)?.Sum(x => x.CurrentBalance) ?? 0;
+        protected virtual async Task<double> GetTotalBalance() => await balanceCalculationManager.GetTotalBalance();
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
         /// </summary>
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-        protected virtual double GetEndOfMonthValue()
+        protected virtual async Task<double> GetEndOfMonthValue()
         {
-            return endOfMonthManager.GetTotalEndOfMonthBalance(accountRepository.GetList(x => !x.IsExcluded));
+            return await balanceCalculationManager.GetTotalEndOfMonthBalance();
         }
     }
 }

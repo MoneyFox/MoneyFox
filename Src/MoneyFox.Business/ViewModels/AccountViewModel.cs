@@ -1,92 +1,92 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyFox.Service.Pocos;
 
-namespace MoneyFox.Foundation.DataModels
+namespace MoneyFox.Business.ViewModels
 {
     public class AccountViewModel : INotifyPropertyChanged
     {
-        private int id;
-        private string name;
-        private string iban;
-        private double currentBalance;
-        private string note;
-        private bool isOverdrawn;
-        private bool isExcluded;
+        public AccountViewModel(Account account)
+        {
+            Data = account;
+        }
+
+        public Account Data { get; private set; }
 
         public int Id
         {
-            get { return id; }
+            get { return Data.Data.Id; }
             set
             {
-                if (id == value) return;
-                id = value;
+                if (Data.Data.Id == value) return;
+                Data.Data.Id = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Name
         {
-            get { return name; }
+            get { return Data.Data.Name; }
             set
             {
-                if (name == value) return;
-                name = value;
+                if (Data.Data == value) return;
+                Data.Data = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Iban
         {
-            get { return iban; }
+            get { return Data.Data.Iban; }
             set
             {
-                if (iban == value) return;
-                iban = value;
+                if (Data.Data.Iban == value) return;
+                Data.Data.Iban = value;
                 RaisePropertyChanged();
             }
         }
 
         public double CurrentBalance
         {
-            get { return currentBalance; }
+            get { return Data.Data.CurrentBalance; }
             set
             {
-                if (Math.Abs(currentBalance - value) < 0.01) return;
-                currentBalance = value;
+                if (Math.Abs(Data.Data.CurrentBalance - value) < 0.01) return;
+                Data.Data.CurrentBalance = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Note
         {
-            get { return note; }
+            get { return Data.Data.Note; }
             set
             {
-                if (note == value) return;
-                note = value;
+                if (Data.Data.Note == value) return;
+                Data.Data.Note = value;
                 RaisePropertyChanged();
             }
         }
 
         public bool IsOverdrawn
         {
-            get { return isOverdrawn; }
+            get { return Data.Data.IsOverdrawn; }
             set
             {
-                if (isOverdrawn == value) return;
-                isOverdrawn = value;
+                if (Data.Data.IsOverdrawn == value) return;
+                Data.Data.IsOverdrawn = value;
                 RaisePropertyChanged();
             }
         }
 
         public bool IsExcluded
         {
-            get { return isExcluded; }
+            get { return Data.Data.IsExcluded; }
             set
             {
-                if (isExcluded == value) return;
-                isExcluded = value;
+                if (Data.Data.IsExcluded == value) return;
+                Data.Data.IsExcluded = value;
                 RaisePropertyChanged();
             }
         }

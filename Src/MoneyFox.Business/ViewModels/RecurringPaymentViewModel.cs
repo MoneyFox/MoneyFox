@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Business.ViewModels;
 
 namespace MoneyFox.Foundation.DataModels
 {

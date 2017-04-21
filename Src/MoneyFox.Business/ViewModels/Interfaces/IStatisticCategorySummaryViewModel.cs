@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Foundation.Models;
 
-namespace MoneyFox.Foundation.Interfaces.ViewModels
+namespace MoneyFox.Business.ViewModels.Interfaces
 {
     public interface IStatisticCategorySummaryViewModel
     {

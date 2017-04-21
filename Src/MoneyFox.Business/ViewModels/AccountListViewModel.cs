@@ -1,50 +1,53 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
-        private readonly IDialogService dialogService;
-        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IAccountService accountService;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
         private readonly IModifyDialogService modifyDialogService;
+        private readonly IDialogService dialogService;
 
         private ObservableCollection<AccountViewModel> includedAccounts;
         private ObservableCollection<AccountViewModel> excludedAccounts;
 
-        public AccountListViewModel(IAccountRepository accountRepository,
-            IPaymentManager paymentManager,
-            IDialogService dialogService, 
-            IEndOfMonthManager endOfMonthManager,
-            ISettingsManager settingsManager, 
-            IModifyDialogService modifyDialogService)
+        public AccountListViewModel(IAccountService accountService,
+                                    IBalanceCalculationManager balanceCalculationManager,
+                                    IPaymentManager paymentManager,
+                                    ISettingsManager settingsManager, 
+                                    IModifyDialogService modifyDialogService,
+                                    IDialogService dialogService)
         {
-            this.dialogService = dialogService;
+            this.accountService = accountService;
+            this.balanceCalculationManager = balanceCalculationManager;
             this.paymentManager = paymentManager;
-            this.endOfMonthManager = endOfMonthManager;
             this.settingsManager = settingsManager;
             this.modifyDialogService = modifyDialogService;
+            this.dialogService = dialogService;
 
-            BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
-            ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
+            BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
+            //TODO
+            //ViewActionViewModel = new AccountListViewActionViewModel(accountService);
 
             IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
         }
 
-		/// <summary>
+        /// <summary>
 		/// 	Used on Ios
 		/// </summary>
 		public void ShowMenu()
@@ -112,24 +115,24 @@ namespace MoneyFox.Business.ViewModels
         #region Commands
 
         /// <summary>
-        ///     Prepares the AccountViewModel list
+        ///     Prepares the Account list
         /// </summary>
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     Open the payment overview for this AccountViewModel.
+        ///     Open the payment overview for this Account.
         /// </summary>
-        public MvxCommand<AccountViewModel> OpenOverviewCommand => new MvxCommand<AccountViewModel>(GoToPaymentOverView);
+        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToPaymentOverView);
 
         /// <summary>
-        ///     Edit the selected AccountViewModel
+        ///     Edit the selected Account
         /// </summary>
-        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(EditAccount);
+        public MvxCommand<Account> EditAccountCommand => new MvxCommand<Account>(EditAccount);
 
         /// <summary>
-        ///     Deletes the selected AccountViewModel
+        ///     Deletes the selected Account
         /// </summary>
-        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(Delete);
+        public MvxCommand<Account> DeleteAccountCommand => new MvxCommand<Account>(Delete);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
@@ -139,34 +142,40 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Opens the Context Menu for a list or a recycler view
         /// </summary>
-        public MvxCommand<AccountViewModel> OpenContextMenuCommand => new MvxCommand<AccountViewModel>(OpenContextMenu);
+        public MvxCommand<Account> OpenContextMenuCommand => new MvxCommand<Account>(OpenContextMenu);
 
         #endregion
 
-        private void EditAccount(AccountViewModel accountViewModel)
+        private void EditAccount(Account accountViewModel)
         {
-            ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
+            //TODO
+            //ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
         }
 
-        private void Loaded()
+        private async void Loaded()
         {
-            IncludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => !x.IsExcluded));
-            ExcludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => x.IsExcluded));
+            var includedAccountList = await accountService.GetNotExcludedAccounts();
+            var excludedAccountList = await accountService.GetNotExcludedAccounts();
+
+            IncludedAccounts = new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
+            ExcludedAccounts = new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
+
             BalanceViewModel.UpdateBalanceCommand.Execute();
-            endOfMonthManager.CheckEndOfMonthBalanceForAccounts(IncludedAccounts);
+            await balanceCalculationManager.GetTotalEndOfMonthBalance();
         }
 
-        private void GoToPaymentOverView(AccountViewModel accountViewModel)
+        private void GoToPaymentOverView(Account accountViewModel)
         {
             if (accountViewModel == null)
             {
                 return;
             }
 
-            ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
+            // TODO
+           // ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
-        private async void Delete(AccountViewModel accountToDelete)
+        private async void Delete(Account accountToDelete)
         {
             if (accountToDelete == null)
             {
@@ -207,7 +216,7 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
         }
 
-        private async void OpenContextMenu(AccountViewModel account)
+        private async void OpenContextMenu(Account account)
         {
             var result = await modifyDialogService.ShowEditSelectionDialog();
 

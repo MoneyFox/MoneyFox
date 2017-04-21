@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;

@@ -57,7 +57,7 @@
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Manager\BackupManager.cs" />
-    <Compile Include="Manager\EndOfMonthManager.cs" />
+    <Compile Include="Manager\BalanceCalculationManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,8 +67,10 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
@@ -76,9 +78,21 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IAccountListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\ICategoryListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IStatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IViewActionViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">

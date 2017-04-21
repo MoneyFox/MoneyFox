@@ -62,7 +62,7 @@
     <Compile Include="Fixtures\MvxIocFixture.cs" />
     <Compile Include="Helpers\PaymentTypeHelperTest.cs" />
     <Compile Include="Helpers\UtilitiesTest.cs" />
-    <Compile Include="Manager\EndMonthManagerTests.cs" />
+    <Compile Include="Manager\BalanceCalculationManagerTests.cs" />
     <Compile Include="Manager\SettingsManagerTests.cs" />
     <Compile Include="Mocks\MockDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

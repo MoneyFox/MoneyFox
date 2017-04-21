@@ -41,6 +41,7 @@
     <Compile Include="Pocos\Account.cs" />
     <Compile Include="Pocos\RecurringPayment.cs" />
     <Compile Include="Pocos\Payment.cs" />
+    <Compile Include="QueryExtensions\AccountQueryExtensions.cs" />
     <Compile Include="QueryExtensions\CategoryQueryExtensions.cs" />
     <Compile Include="QueryExtensions\PaymentQueryExtension.cs" />
     <Compile Include="RecurringPaymentHelper.cs" />

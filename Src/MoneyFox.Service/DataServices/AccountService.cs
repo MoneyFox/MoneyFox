@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.Service.DataServices
 {
@@ -12,14 +14,26 @@ namespace MoneyFox.Service.DataServices
     public interface IAccountService
     {
         /// <summary>
-        ///     Deletes the passed account and all associated payments.
+        ///     Returns a list with all accounts.
         /// </summary>
-        Task DeleteAccount(Account account);
+        /// <returns></returns>
+        Task<IEnumerable<Account>> GetAllAccounts();
 
         /// <summary>
         ///     Returns the number of existing Accounts.
         /// </summary>
         Task<int> GetAccountCount();
+
+        /// <summary>
+        ///     Returns a list with all not excluded Accounts.
+        /// </summary>
+        /// <returns>List with all not excluded Accounts.</returns>
+        Task<IEnumerable<Account>> GetNotExcludedAccounts();
+
+        /// <summary>
+        ///     Deletes the passed account and all associated payments.
+        /// </summary>
+        Task DeleteAccount(Account account);
     }
 
     /// <summary>
@@ -40,16 +54,32 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
-        public async Task DeleteAccount(Account account)
+        public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            accountRepository.Delete(account.Data);
-            await unitOfWork.Commit();
+            return await accountRepository.GetAll().SelectAccounts().ToListAsync();
         }
 
         /// <inheritdoc />
         public Task<int> GetAccountCount()
         {
             return accountRepository.GetAll().CountAsync();
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Account>> GetNotExcludedAccounts()
+        {
+            return await accountRepository
+                .GetAll()
+                .AreNotExcluded()
+                .SelectAccounts()
+                .ToListAsync();
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAccount(Account account)
+        {
+            accountRepository.Delete(account.Data);
+            await unitOfWork.Commit();
         }
     }
 }

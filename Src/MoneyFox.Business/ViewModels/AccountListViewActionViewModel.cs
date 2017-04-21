@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces.ViewModels;
-using MvvmCross.Core.ViewModels;
-using MoneyFox.Service.DataServices;
+﻿using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Foundation.Interfaces.ViewModels
+namespace MoneyFox.Business.ViewModels.Interfaces
 {
     public interface IStatisticCashFlowViewModel
     {
