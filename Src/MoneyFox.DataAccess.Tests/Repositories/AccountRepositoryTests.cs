@@ -254,6 +254,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             // Act
             accountRepository.Delete(account);
+            await unitOfWork.Commit();
 
             // Assert
             Assert.False(await accountRepository.GetAll().AnyAsync());
