@@ -9,7 +9,7 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170421143440_InitMigration")]
+    [Migration("20170421160037_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,23 +147,25 @@ namespace MoneyFox.DataAccess.Migrations
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
                         .WithMany("TargetedPayments")
                         .HasForeignKey("TargetAccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("MoneyFox.DataAccess.Entities.RecurringPaymentEntity", b =>
                 {
                     b.HasOne("MoneyFox.DataAccess.Entities.CategoryEntity", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .WithMany("RecurringPayments")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "ChargedAccount")
-                        .WithMany()
+                        .WithMany("ChargedRecurringPayments")
                         .HasForeignKey("ChargedAccountId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MoneyFox.DataAccess.Entities.AccountEntity", "TargetAccount")
-                        .WithMany()
-                        .HasForeignKey("TargetAccountId");
+                        .WithMany("TargetedRecurringPayments")
+                        .HasForeignKey("TargetAccountId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
         }
     }

@@ -50,11 +50,6 @@
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="MapperConfiguration.cs" />
-    <Compile Include="Migrations\20170421143440_InitMigration.cs" />
-    <Compile Include="Migrations\20170421143440_InitMigration.designer.cs">
-      <DependentUpon>20170421143440_InitMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -73,7 +68,9 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

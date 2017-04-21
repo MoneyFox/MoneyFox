@@ -65,7 +65,7 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_RecurringPayments_Accounts_ChargedAccountId",
                         column: x => x.ChargedAccountId,
@@ -77,7 +77,7 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.TargetAccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +123,7 @@ namespace MoneyFox.DataAccess.Migrations
                         column: x => x.TargetAccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
