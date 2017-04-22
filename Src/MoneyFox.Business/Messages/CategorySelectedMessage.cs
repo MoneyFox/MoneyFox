@@ -1,7 +1,7 @@
-using MoneyFox.Foundation.DataModels;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Foundation.Messages
+namespace MoneyFox.Business.Messages
 {
     public class CategorySelectedMessage : MvxMessage
     {
@@ -10,7 +10,7 @@ namespace MoneyFox.Foundation.Messages
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="selectedCategory">Selected CategoryViewModel</param>
-        public CategorySelectedMessage(object sender, CategoryViewModel selectedCategory) : base(sender)
+        public CategorySelectedMessage(object sender, Category selectedCategory) : base(sender)
         {
             SelectedCategory = selectedCategory;
         }
@@ -18,6 +18,6 @@ namespace MoneyFox.Foundation.Messages
         /// <summary>
         ///     Selected CategoryViewModel.
         /// </summary>
-        public CategoryViewModel SelectedCategory { get; }
+        public Category SelectedCategory { get; }
     }
 }

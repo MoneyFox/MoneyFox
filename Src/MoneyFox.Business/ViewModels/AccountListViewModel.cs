@@ -17,7 +17,6 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IAccountService accountService;
         private readonly IBalanceCalculationManager balanceCalculationManager;
-        private readonly IPaymentManager paymentManager;
         private readonly ISettingsManager settingsManager;
         private readonly IModifyDialogService modifyDialogService;
         private readonly IDialogService dialogService;
@@ -27,14 +26,12 @@ namespace MoneyFox.Business.ViewModels
 
         public AccountListViewModel(IAccountService accountService,
                                     IBalanceCalculationManager balanceCalculationManager,
-                                    IPaymentManager paymentManager,
                                     ISettingsManager settingsManager, 
                                     IModifyDialogService modifyDialogService,
                                     IDialogService dialogService)
         {
             this.accountService = accountService;
             this.balanceCalculationManager = balanceCalculationManager;
-            this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
             this.modifyDialogService = modifyDialogService;
             this.dialogService = dialogService;
@@ -122,17 +119,17 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Open the payment overview for this Account.
         /// </summary>
-        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToPaymentOverView);
+        public MvxCommand<AccountViewModel> OpenOverviewCommand => new MvxCommand<AccountViewModel>(GoToPaymentOverView);
 
         /// <summary>
         ///     Edit the selected Account
         /// </summary>
-        public MvxCommand<Account> EditAccountCommand => new MvxCommand<Account>(EditAccount);
+        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(EditAccount);
 
         /// <summary>
         ///     Deletes the selected Account
         /// </summary>
-        public MvxCommand<Account> DeleteAccountCommand => new MvxCommand<Account>(Delete);
+        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(Delete);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
@@ -142,11 +139,11 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Opens the Context Menu for a list or a recycler view
         /// </summary>
-        public MvxCommand<Account> OpenContextMenuCommand => new MvxCommand<Account>(OpenContextMenu);
+        public MvxCommand<AccountViewModel> OpenContextMenuCommand => new MvxCommand<AccountViewModel>(OpenContextMenu);
 
         #endregion
 
-        private void EditAccount(Account accountViewModel)
+        private void EditAccount(AccountViewModel accountViewModel)
         {
             //TODO
             //ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
@@ -164,7 +161,7 @@ namespace MoneyFox.Business.ViewModels
             await balanceCalculationManager.GetTotalEndOfMonthBalance();
         }
 
-        private void GoToPaymentOverView(Account accountViewModel)
+        private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if (accountViewModel == null)
             {
@@ -175,7 +172,7 @@ namespace MoneyFox.Business.ViewModels
            // ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
-        private async void Delete(Account accountToDelete)
+        private async void Delete(AccountViewModel accountToDelete)
         {
             if (accountToDelete == null)
             {
@@ -213,10 +210,11 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
+            //TODO
+            //ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
         }
 
-        private async void OpenContextMenu(Account account)
+        private async void OpenContextMenu(AccountViewModel account)
         {
             var result = await modifyDialogService.ShowEditSelectionDialog();
 

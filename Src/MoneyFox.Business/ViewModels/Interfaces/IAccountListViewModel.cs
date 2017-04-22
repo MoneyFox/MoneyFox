@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {
     public interface IAccountListViewModel
     {
-        ObservableCollection<Account> IncludedAccounts { get; set; }
+        ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
 
-        ObservableCollection<Account> ExcludedAccounts { get; set; }
+        ObservableCollection<AccountViewModel> ExcludedAccounts { get; set; }
 
         bool IsAllAccountsEmpty { get; }
 
@@ -20,8 +19,8 @@ namespace MoneyFox.Business.ViewModels.Interfaces
 
         MvxCommand LoadedCommand { get; }
 
-        MvxCommand<Account> EditAccountCommand { get; }
+        MvxCommand<AccountViewModel> EditAccountCommand { get; }
 
-        MvxCommand<Account> DeleteAccountCommand { get; }
+        MvxCommand<AccountViewModel> DeleteAccountCommand { get; }
     }
 }

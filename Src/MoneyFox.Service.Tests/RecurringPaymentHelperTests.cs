@@ -1,9 +1,7 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.Pocos;
 using Xunit;
@@ -45,31 +43,34 @@ namespace MoneyFox.Service.Tests
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
-            var payment = new PaymentViewModel
+            var payment = new Payment
             {
-                ChargedAccount = new AccountViewModel {Id = 3},
-                TargetAccount = new AccountViewModel {Id = 8},
-                Category = new CategoryViewModel {Id = 16},
-                Date = startDate,
-                Amount = 2135,
-                IsCleared = false,
-                Type = type,
-                IsRecurring = true
+                Data =
+                {
+                    ChargedAccount = new AccountEntity {Id = 3},
+                    TargetAccount = new AccountEntity {Id = 8},
+                    Category = new CategoryEntity {Id = 16},
+                    Date = startDate,
+                    Amount = 2135,
+                    IsCleared = false,
+                    Type = type,
+                    IsRecurring = true
+                }
             };
 
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
                                                                            recurrence, enddate);
 
-            recurring.ChargedAccount.Id.ShouldBe(3);
-            recurring.TargetAccount.Id.ShouldBe(8);
-            recurring.StartDate.ShouldBe(startDate);
-            recurring.EndDate.ShouldBe(enddate);
-            recurring.IsEndless.ShouldBe(true);
-            recurring.Amount.ShouldBe(payment.Amount);
-            recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe(type);
-            recurring.Recurrence.ShouldBe(recurrence);
-            recurring.Note.ShouldBe(payment.Note);
+            recurring.Data.ChargedAccount.Id.ShouldBe(3);
+            recurring.Data.TargetAccount.Id.ShouldBe(8);
+            recurring.Data.StartDate.ShouldBe(startDate);
+            recurring.Data.EndDate.ShouldBe(enddate);
+            recurring.Data.IsEndless.ShouldBe(true);
+            recurring.Data.Amount.ShouldBe(payment.Data.Amount);
+            recurring.Data.Category.Id.ShouldBe(payment.Data.Category.Id);
+            recurring.Data.Type.ShouldBe(type);
+            recurring.Data.Recurrence.ShouldBe(recurrence);
+            recurring.Data.Note.ShouldBe(payment.Data.Note);
         }
 
 

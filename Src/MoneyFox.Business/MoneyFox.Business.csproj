@@ -60,6 +60,8 @@
     <Compile Include="Manager\BalanceCalculationManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />
+    <Compile Include="Messages\CategorySelectedMessage.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />

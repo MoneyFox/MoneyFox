@@ -1,7 +1,6 @@
 ﻿using System;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Service
@@ -16,26 +15,29 @@ namespace MoneyFox.Service
         /// <param name="recurrence">How often the PaymentViewModel shall be repeated.</param>
         /// <param name="enddate">Enddate for the recurring PaymentViewModel if it's not endless.</param>
         /// <returns>The new created recurring PaymentViewModel</returns>
-        public static RecurringPaymentViewModel GetRecurringFromPayment(PaymentViewModel payment,
-                bool isEndless,
-                PaymentRecurrence recurrence,
-                DateTime enddate = new DateTime())
-            => new RecurringPaymentViewModel
+        public static RecurringPayment GetRecurringFromPayment(Payment payment,
+                                                               bool isEndless,
+                                                               PaymentRecurrence recurrence,
+                                                               DateTime enddate = new DateTime())
+            => new RecurringPayment
             {
-                Id = payment.RecurringPaymentId,
-                ChargedAccount = payment.ChargedAccount,
-                ChargedAccountId = payment.ChargedAccount.Id,
-                TargetAccount = payment.TargetAccount,
-                TargetAccountId = payment.TargetAccount?.Id ?? 0,
-                StartDate = payment.Date,
-                EndDate = enddate,
-                IsEndless = isEndless,
-                Amount = payment.Amount,
-                CategoryId = payment.CategoryId,
-                Category = payment.Category,
-                Type = payment.Type,
-                Recurrence = recurrence,
-                Note = payment.Note
+                Data =
+                {
+                    Id = payment.Data.RecurringPaymentId ?? 0,
+                    ChargedAccount = payment.Data.ChargedAccount,
+                    ChargedAccountId = payment.Data.ChargedAccount.Id,
+                    TargetAccount = payment.Data.TargetAccount,
+                    TargetAccountId = payment.Data.TargetAccount?.Id ?? 0,
+                    StartDate = payment.Data.Date,
+                    EndDate = enddate,
+                    IsEndless = isEndless,
+                    Amount = payment.Data.Amount,
+                    CategoryId = payment.Data.CategoryId,
+                    Category = payment.Data.Category,
+                    Type = payment.Data.Type,
+                    Recurrence = recurrence,
+                    Note = payment.Data.Note
+                }
             };
 
         /// <summary>

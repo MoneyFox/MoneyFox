@@ -67,8 +67,6 @@
     <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
-    <Compile Include="Messages\CategorySelectedMessage.cs" />
-    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Models\StatisticItem.cs" />
     <Compile Include="Models\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

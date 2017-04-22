@@ -57,6 +57,8 @@
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\PaymentAmountConverterTests.cs" />
     <Compile Include="Converter\RecurrenceTypeConverterTests.cs" />
+    <Compile Include="DataModels\PaymentViewModelTests.cs" />
+    <Compile Include="DataModels\RecurringPaymentViewModelTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Extensions\StreamExtensionTests.cs" />
     <Compile Include="Fixtures\MvxIocFixture.cs" />

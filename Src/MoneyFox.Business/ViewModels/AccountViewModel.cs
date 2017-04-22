@@ -9,84 +9,84 @@ namespace MoneyFox.Business.ViewModels
     {
         public AccountViewModel(Account account)
         {
-            Data = account;
+            Account = account;
         }
 
-        public Account Data { get; private set; }
+        public Account Account { get; }
 
         public int Id
         {
-            get { return Data.Data.Id; }
+            get { return Account.Data.Id; }
             set
             {
-                if (Data.Data.Id == value) return;
-                Data.Data.Id = value;
+                if (Account.Data.Id == value) return;
+                Account.Data.Id = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Name
         {
-            get { return Data.Data.Name; }
+            get { return Account.Data.Name; }
             set
             {
-                if (Data.Data == value) return;
-                Data.Data = value;
+                if (Account.Data.Name == value) return;
+                Account.Data = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Iban
         {
-            get { return Data.Data.Iban; }
+            get { return Account.Data.Iban; }
             set
             {
-                if (Data.Data.Iban == value) return;
-                Data.Data.Iban = value;
+                if (Account.Data.Iban == value) return;
+                Account.Data.Iban = value;
                 RaisePropertyChanged();
             }
         }
 
         public double CurrentBalance
         {
-            get { return Data.Data.CurrentBalance; }
+            get { return Account.Data.CurrentBalance; }
             set
             {
-                if (Math.Abs(Data.Data.CurrentBalance - value) < 0.01) return;
-                Data.Data.CurrentBalance = value;
+                if (Math.Abs(Account.Data.CurrentBalance - value) < 0.01) return;
+                Account.Data.CurrentBalance = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Note
         {
-            get { return Data.Data.Note; }
+            get { return Account.Data.Note; }
             set
             {
-                if (Data.Data.Note == value) return;
-                Data.Data.Note = value;
+                if (Account.Data.Note == value) return;
+                Account.Data.Note = value;
                 RaisePropertyChanged();
             }
         }
 
         public bool IsOverdrawn
         {
-            get { return Data.Data.IsOverdrawn; }
+            get { return Account.Data.IsOverdrawn; }
             set
             {
-                if (Data.Data.IsOverdrawn == value) return;
-                Data.Data.IsOverdrawn = value;
+                if (Account.Data.IsOverdrawn == value) return;
+                Account.Data.IsOverdrawn = value;
                 RaisePropertyChanged();
             }
         }
 
         public bool IsExcluded
         {
-            get { return Data.Data.IsExcluded; }
+            get { return Account.Data.IsExcluded; }
             set
             {
-                if (Data.Data.IsExcluded == value) return;
-                Data.Data.IsExcluded = value;
+                if (Account.Data.IsExcluded == value) return;
+                Account.Data.IsExcluded = value;
                 RaisePropertyChanged();
             }
         }

@@ -11,8 +11,6 @@ namespace MoneyFox.DataAccess
     {
         protected override void Load(ContainerBuilder builder)
         {
-            MapperConfiguration.Setup();
-
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Repository", StringComparison.OrdinalIgnoreCase))
                 .AsImplementedInterfaces()

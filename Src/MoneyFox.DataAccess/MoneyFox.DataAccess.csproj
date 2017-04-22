@@ -49,7 +49,6 @@
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
-    <Compile Include="MapperConfiguration.cs" />
     <Compile Include="Migrations\20170421160037_InitMigration.cs" />
     <Compile Include="Migrations\20170421160037_InitMigration.designer.cs">
       <DependentUpon>20170421160037_InitMigration.cs</DependentUpon>

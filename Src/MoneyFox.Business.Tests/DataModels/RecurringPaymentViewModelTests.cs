@@ -1,15 +1,17 @@
-﻿using MoneyFox.Foundation.DataModels;
+﻿using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.DataModels;
+using MoneyFox.Foundation.Tests;
 using Ploeh.AutoFixture;
 using Xunit;
 
-namespace MoneyFox.Foundation.Tests.DataModels
+namespace MoneyFox.Business.Tests.DataModels
 {
-    public class PaymentViewModelTests
+    public class RecurringPaymentViewModelTests
     {
         [Fact]
         public void Category_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new RecurringPaymentViewModel();
             paymentVm.Category.ShouldBeNull();
             paymentVm.CategoryId.ShouldBeNull();
 
@@ -24,7 +26,7 @@ namespace MoneyFox.Foundation.Tests.DataModels
         [Fact]
         public void ChargedAccount_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new RecurringPaymentViewModel();
             paymentVm.ChargedAccount.ShouldBeNull();
             paymentVm.ChargedAccountId.ShouldBe(0);
 
@@ -39,7 +41,7 @@ namespace MoneyFox.Foundation.Tests.DataModels
         [Fact]
         public void TargetAccount_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new RecurringPaymentViewModel();
             paymentVm.TargetAccount.ShouldBeNull();
             paymentVm.TargetAccountId.ShouldBe(0);
 
