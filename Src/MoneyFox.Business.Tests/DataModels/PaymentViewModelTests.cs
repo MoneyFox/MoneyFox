@@ -30,7 +30,10 @@ namespace MoneyFox.Business.Tests.DataModels
             paymentVm.ChargedAccount.ShouldBeNull();
             paymentVm.ChargedAccountId.ShouldBe(0);
 
-            var accountViewModel = new Fixture().Create<AccountViewModel>();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            var accountViewModel = fixture.Create<AccountViewModel>();
             paymentVm.ChargedAccount = accountViewModel;
 
             paymentVm.ChargedAccount.ShouldBe(accountViewModel);
@@ -45,7 +48,10 @@ namespace MoneyFox.Business.Tests.DataModels
             paymentVm.TargetAccount.ShouldBeNull();
             paymentVm.TargetAccountId.ShouldBe(0);
 
-            var accountViewModel = new Fixture().Create<AccountViewModel>();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            var accountViewModel = fixture.Create<AccountViewModel>();
             paymentVm.TargetAccount = accountViewModel;
 
             paymentVm.TargetAccount.ShouldBe(accountViewModel);
