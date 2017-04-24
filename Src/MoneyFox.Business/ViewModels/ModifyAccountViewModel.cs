@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using MoneyFox.Business.Helpers;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -13,23 +12,24 @@ namespace MoneyFox.Business.ViewModels
 {
     public class ModifyAccountViewModel : BaseViewModel
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IDialogService dialogService;
+        private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
+        private readonly IDialogService dialogService;
 
         private bool isEdit;
         private double amount;
         private AccountViewModel selectedAccount;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService,
+        public ModifyAccountViewModel(IAccountService accountService,
             ISettingsManager settingsManager,
-            IBackupManager backupManager)
+            IBackupManager backupManager,
+            IDialogService dialogService)
         {
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
-            this.accountRepository = accountRepository;
+            this.accountService = accountService;
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MoneyFox.Business.ViewModels
             set
             {
                 // we remove all separator chars to ensure that it works in all regions
-                string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
+                string amountstring = Utilities.RemoveGroupingSeparators(value);
 
                 double convertedValue;
                 if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
@@ -115,18 +115,18 @@ namespace MoneyFox.Business.ViewModels
         ///     Initializes the ViewModel
         /// </summary>
         /// <param name="accountId">Pass the ID of the account to edit. If this is 0 the VM changes to Creation mode</param>
-        public void Init(int accountId = 0)
+        public async void Init(int accountId = 0)
         {
             if (accountId == 0)
             {
                 IsEdit = false;
                 amount = 0;
-                SelectedAccount = new AccountViewModel();
+                SelectedAccount = new AccountViewModel(new Account());
             }
             else
             {
                 IsEdit = true;
-                SelectedAccount = accountRepository.FindById(accountId);
+                SelectedAccount =  new AccountViewModel(await accountService.GetById(accountId));
                 amount = SelectedAccount.CurrentBalance;
             }
         }
@@ -141,34 +141,28 @@ namespace MoneyFox.Business.ViewModels
 
             SelectedAccount.CurrentBalance = amount;
 
-            if (!IsEdit &&
-                accountRepository.GetList(
-                    a => string.Equals(a.Name, SelectedAccount.Name, StringComparison.CurrentCultureIgnoreCase)).Any())
+            if (!IsEdit && !await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            if (accountRepository.Save(SelectedAccount))
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await accountService.SaveAccount(SelectedAccount.Account);
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-                Close(this);
-            }
+            Close(this);
+            
         }
 
-        private void DeleteAccount()
+        private async void DeleteAccount()
         {
-            if (accountRepository.Delete(SelectedAccount))
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await accountService.DeleteAccount(SelectedAccount.Account);
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-
-            }
             Close(this);
         }
 

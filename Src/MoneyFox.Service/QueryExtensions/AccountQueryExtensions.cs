@@ -30,6 +30,17 @@ namespace MoneyFox.Service.QueryExtensions
         }
 
         /// <summary>
+        ///     Adds a filter to a query to find all accounts with the passed name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="name">Name to filter for</param>
+        /// <returns>Query with the added filter.</returns>
+        public static IQueryable<AccountEntity> NameEquals(this IQueryable<AccountEntity> query, string name)
+        {
+            return query.Where(x => x.IsExcluded);
+        }
+
+        /// <summary>
         ///     Selects a <see cref="Account"/> for every item in a query.
         /// </summary>
         /// <param name="query">Existing query.</param>

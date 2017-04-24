@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
@@ -16,19 +18,39 @@ namespace MoneyFox.Service.DataServices
         /// <summary>
         ///     Returns a list with all accounts.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns a IEnumerable with all accounts.</returns>
         Task<IEnumerable<Account>> GetAllAccounts();
+
+        /// <summary>
+        ///     Returns a Account searched by ID.
+        /// </summary>
+        /// <param name="id">Id to select the account for.</param>
+        /// <returns>The selected Account</returns>
+        Task<Account> GetById(int id);
 
         /// <summary>
         ///     Returns the number of existing Accounts.
         /// </summary>
+        /// <returns>Count of all existing accounts</returns>
         Task<int> GetAccountCount();
+
+        /// <summary>
+        ///     Checks if the name is already taken by another account.
+        /// </summary>
+        /// <param name="name">Name to look for..</param>
+        /// <returns>if account name is already taken.</returns>
+        Task<bool> CheckIfNameAlreadyTaken(string name);
 
         /// <summary>
         ///     Returns a list with all not excluded Accounts.
         /// </summary>
         /// <returns>List with all not excluded Accounts.</returns>
         Task<IEnumerable<Account>> GetNotExcludedAccounts();
+
+        /// <summary>
+        ///     Save the passed account.
+        /// </summary>
+        Task SaveAccount(Account account);
 
         /// <summary>
         ///     Deletes the passed account and all associated payments.
@@ -60,9 +82,23 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
+        public async Task<Account> GetById(int id)
+        {
+            return new Account(await accountRepository.GetById(id));
+        }
+
+        /// <inheritdoc />
         public Task<int> GetAccountCount()
         {
             return accountRepository.GetAll().CountAsync();
+        }
+
+        /// <inheritdoc />
+        public Task<bool> CheckIfNameAlreadyTaken(string name)
+        {
+            return accountRepository.GetAll()
+                                    .NameEquals(name)
+                                    .AnyAsync();
         }
 
         /// <inheritdoc />
@@ -73,6 +109,13 @@ namespace MoneyFox.Service.DataServices
                 .AreNotExcluded()
                 .SelectAccounts()
                 .ToListAsync();
+        }
+
+        /// <inheritdoc />
+        public async Task SaveAccount(Account account)
+        {
+            accountRepository.Add(account.Data);
+            await unitOfWork.Commit();
         }
 
         /// <inheritdoc />
