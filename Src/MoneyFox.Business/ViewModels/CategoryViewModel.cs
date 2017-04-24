@@ -1,32 +1,36 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyFox.Service.Pocos;
 
-namespace MoneyFox.Foundation.DataModels
+namespace MoneyFox.Business.ViewModels
 {
     public class CategoryViewModel : INotifyPropertyChanged
     {
-        private int id;
-        private string name;
-        private string notes;
+        public CategoryViewModel(Category category)
+        {
+            Category = category;
+        }
+
+        public Category Category { get; set; }
 
         public int Id
         {
-            get { return id; }
+            get { return Category.Data.Id; }
             set
             {
-                if (id == value) return;
-                id = value;
+                if (Category.Data.Id == value) return;
+                Category.Data.Id = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Name
         {
-            get { return name; }
+            get { return Category.Data.Name; }
             set
             {
-                if (name == value) return;
-                name = value;
+                if (Category.Data.Name == value) return;
+                Category.Data.Name = value;
                 RaisePropertyChanged();
             }
         }
@@ -37,11 +41,11 @@ namespace MoneyFox.Foundation.DataModels
         /// </summary>
         public string Notes
         {
-            get { return notes; }
+            get { return Category.Data.Notes; }
             set
             {
-                if (notes == value) return;
-                notes = value;
+                if (Category.Data.Notes == value) return;
+                Category.Data.Notes = value;
                 RaisePropertyChanged();
             }
         }

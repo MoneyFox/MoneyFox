@@ -1,19 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
-        protected readonly ICategoryRepository CategoryRepository;
+        protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
 
@@ -25,15 +24,15 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
+        /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected AbstractCategoryListViewModel(ICategoryRepository categoryRepository,
+        protected AbstractCategoryListViewModel(ICategoryService categoryService,
            IModifyDialogService modifyDialogService, IDialogService dialogService)
         {
-            DialogService = dialogService;
+            CategoryService = categoryService;
             ModifyDialogService = modifyDialogService;
-            CategoryRepository = categoryRepository;
+            DialogService = dialogService;
         }
 
         /// <summary>
@@ -141,18 +140,17 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public void Search()
+        public async void Search()
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
-                Categories = new ObservableCollection<CategoryViewModel>
-                    (CategoryRepository.GetList(
-                        x => (x.Name != null) && x.Name.ToLower().Contains(searchText.ToLower()))
-                        .OrderBy(x => x.Name));
+                var searchedCategories = await CategoryService.SearchByName(searchText);
+                Categories = new ObservableCollection<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
             } else
             {
+                var selectedCategories = await CategoryService.GetAllCategories();
                 Categories =
-                    new ObservableCollection<CategoryViewModel>(CategoryRepository.GetList().OrderBy(x => x.Name));
+                    new ObservableCollection<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
             }
             Source = CreateGroup();
         }
@@ -165,12 +163,14 @@ namespace MoneyFox.Business.ViewModels
 
         private void EditCategory(CategoryViewModel category)
         {
-            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
+            //TODO:
+            //ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
         }
 
         private void CreateNewCategory(CategoryViewModel category)
         {
-            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
+            //TODO:
+            //ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
@@ -207,7 +207,7 @@ namespace MoneyFox.Business.ViewModels
                     Categories.Remove(categoryToDelete);
                 }
 
-                CategoryRepository.Delete(categoryToDelete);
+                await CategoryService.DeleteCategory(categoryToDelete.Category);
                 Search();
             }
         }

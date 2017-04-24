@@ -46,7 +46,7 @@
     <Compile Include="OneDriveServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions\AccountQueryExtensionTests.cs" />
-    <Compile Include="QueryExtensions\CategoryQueryExtensions.cs" />
+    <Compile Include="QueryExtensions\CategoryQueryExtensionsTests.cs" />
     <Compile Include="QueryExtensions\PaymentQueryExtensionTests.cs" />
     <Compile Include="RecurringPaymentHelperTests.cs" />
   </ItemGroup>

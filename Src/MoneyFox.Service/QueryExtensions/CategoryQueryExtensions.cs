@@ -8,7 +8,38 @@ namespace MoneyFox.Service.QueryExtensions
     ///     Provides Extensions for categories queries.
     /// </summary>
     public static class CategoryQueryExtensions
-    {        
+    {
+        /// <summary>
+        ///     Adds a filter for Categories who do not have a Null name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query with the added filter.</returns>
+        public static IQueryable<CategoryEntity> NameNotNull(this IQueryable<CategoryEntity> query)
+        {
+            return query.Where(category => !string.IsNullOrWhiteSpace(category.Name));
+        }
+
+        /// <summary>
+        ///      Adds a filter for Categories who have a certain string in the name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="searchterm">Searchterm to look for.</param>
+        /// <returns>Query with the added filter.</returns>
+        public static IQueryable<CategoryEntity> NameContains(this IQueryable<CategoryEntity> query, string searchterm)
+        {
+            return query.Where(category => category.Name.ToLower().Contains(searchterm.ToLower()));
+        }
+
+        /// <summary>
+        ///      Ordery a category query by name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Ordered Query</returns>
+        public static IQueryable<CategoryEntity> OrderByName(this IQueryable<CategoryEntity> query)
+        {
+            return query.OrderBy(category => category.Name);
+        }
+
         /// <summary>
         ///     Selects a <see cref="Category"/> for every item in a query.
         /// </summary>
