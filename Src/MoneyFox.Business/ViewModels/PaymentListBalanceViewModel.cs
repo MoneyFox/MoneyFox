@@ -1,5 +1,6 @@
-﻿using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.Manager;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -9,15 +10,15 @@ namespace MoneyFox.Business.ViewModels
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
         private readonly int accountId;
-        private readonly IAccountRepository accountRepository;
-        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IAccountService accountService;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
 
-        public PaymentListBalanceViewModel(IAccountRepository accountRepository, IEndOfMonthManager endOfMonthManager,
+        public PaymentListBalanceViewModel(IAccountService accountService, IBalanceCalculationManager balanceCalculationManager,
             int accountId)
-            : base(accountRepository, endOfMonthManager)
+            : base(balanceCalculationManager)
         {
-            this.accountRepository = accountRepository;
-            this.endOfMonthManager = endOfMonthManager;
+            this.accountService = accountService;
+            this.balanceCalculationManager = balanceCalculationManager;
             this.accountId = accountId;
         }
 
@@ -25,17 +26,20 @@ namespace MoneyFox.Business.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override double GetTotalBalance()
-            => accountRepository.FindById(accountId)?.CurrentBalance ?? 0;
+        protected override async Task<double> GetTotalBalance()
+        {
+            var account = await accountService.GetById(accountId);
+            return account.Data.CurrentBalance;
+        }
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
         ///     This includes all payments coming until the end of month.
         /// </summary>
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
-        protected override double GetEndOfMonthValue()
+        protected override async Task<double> GetEndOfMonthValue()
         {
-            return endOfMonthManager.GetEndOfMonthBalanceForAccount(accountRepository.FindById(accountId));
+            return await balanceCalculationManager.GetEndOfMonthBalanceForAccount(await accountService.GetById(accountId));
         }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
@@ -94,8 +95,14 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
+    <Compile Include="ViewModels\StatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
