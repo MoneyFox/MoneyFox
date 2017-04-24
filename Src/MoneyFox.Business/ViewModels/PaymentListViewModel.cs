@@ -2,13 +2,14 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -16,12 +17,12 @@ namespace MoneyFox.Business.ViewModels
 {
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IAccountService accountService;
+        private readonly IPaymentService paymentService;
         private readonly IDialogService dialogService;
-        private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
-        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IBackupManager backupManager;
         private readonly IModifyDialogService modifyDialogService;
 
@@ -31,21 +32,21 @@ namespace MoneyFox.Business.ViewModels
         private IPaymentListViewActionViewModel viewActionViewModel;
         private int accountId;
 
-        public PaymentListViewModel(IAccountRepository accountRepository,
+        public PaymentListViewModel(IAccountService accountService,
+                                    IPaymentService paymentService,
             IPaymentRepository paymentRepository,
-            IPaymentManager paymentManager,
             IDialogService dialogService,
             ISettingsManager settingsManager,
-            IEndOfMonthManager endOfMonthManager, 
+                                    IBalanceCalculationManager balanceCalculationManager, 
             IBackupManager backupManager, 
             IModifyDialogService modifyDialogService)
         {
-            this.paymentManager = paymentManager;
-            this.accountRepository = accountRepository;
+            this.accountService = accountService;
+            this.paymentService = paymentService;
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
-            this.endOfMonthManager = endOfMonthManager;
+            this.balanceCalculationManager = balanceCalculationManager;
             this.backupManager = backupManager;
             this.modifyDialogService = modifyDialogService;
         }
@@ -144,8 +145,8 @@ namespace MoneyFox.Business.ViewModels
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
-            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, paymentManager, settingsManager, dialogService, BalanceViewModel, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
+            viewActionViewModel = new PaymentListViewActionViewModel(accountService, settingsManager, dialogService, BalanceViewModel, AccountId);
         }
 
         private void LoadPayments()
@@ -205,15 +206,12 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            var deletePaymentSucceded = await paymentManager.DeletePayment(payment);
-            var removePaymentAmountSuceed = paymentManager.RemovePaymentAmount(payment);
-            if (deletePaymentSucceded && removePaymentAmountSuceed)
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await paymentService.DeletePayment(payment.Payment);
+           
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            }
             LoadCommand.Execute();
         }
     }

@@ -100,6 +100,8 @@
     <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
