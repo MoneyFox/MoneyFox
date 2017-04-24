@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MvvmCross.Core.ViewModels;
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -28,6 +29,13 @@ namespace MoneyFox.Service.DataServices
         /// <param name="startdate">Startdate</param>
         /// <param name="enddate">Enddate.</param>
         Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate);
+
+        /// <summary>
+        ///     Returns a payment searched by ID.
+        /// </summary>
+        /// <param name="id">Id to select the payment for.</param>
+        /// <returns>The selected payment</returns>
+        Task<Payment> GetById(int id);
 
         /// <summary>
         ///     Saves or updates a payment.
@@ -102,8 +110,15 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
+        public async Task<Payment> GetById(int id)
+        {
+            return new Payment(await paymentRepository.GetById(id));
+        }
+
+        /// <inheritdoc />
         public async Task SavePayment(Payment payment)
         {
+            PaymentAmountHelper.AddPaymentAmount(payment);
             if (payment.Data.Id == 0)
             {
                 paymentRepository.Add(payment.Data);
@@ -120,6 +135,8 @@ namespace MoneyFox.Service.DataServices
         {
             foreach (var payment in payments)
             {
+                PaymentAmountHelper.AddPaymentAmount(payment);
+
                 if (payment.Data.Id == 0)
                 {
                     paymentRepository.Add(payment.Data);
@@ -135,6 +152,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task DeletePayment(Payment payment)
         {
+            PaymentAmountHelper.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment.Data);
             await unitOfWork.Commit();
         }

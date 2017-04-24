@@ -5,12 +5,13 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Business.Messages;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Messages;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -20,9 +21,8 @@ namespace MoneyFox.Business.ViewModels
     public class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
-        private readonly IAccountRepository accountRepository;
+        private readonly IPaymentService paymentService;
+        private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
 
@@ -39,19 +39,17 @@ namespace MoneyFox.Business.ViewModels
         private bool isEdit;
         private int paymentId;
 
-        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
-            IAccountRepository accountRepository,
+        public ModifyPaymentViewModel(IPaymentService paymentService,
+            IAccountService accountService,
             IDialogService dialogService,
-            IPaymentManager paymentManager, 
             ISettingsManager settingsManager, 
             IMvxMessenger messenger, IBackupManager backupManager)
         {
             this.dialogService = dialogService;
-            this.paymentManager = paymentManager;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
-            this.paymentRepository = paymentRepository;
-            this.accountRepository = accountRepository;
+            this.paymentService = paymentService;
+            this.accountService = accountService;
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
@@ -278,9 +276,10 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         /// <param name="type">Type of the PaymentViewModel. Is ignored when paymentId is passed.</param>
         /// <param name="paymentId">The id of the PaymentViewModel to edit.</param>
-        public void Init(PaymentType type, int paymentId = 0)
+        public async void Init(PaymentType type, int paymentId = 0)
         {
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList());
+            var accounts = await accountService.GetAllAccounts();
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts.Select(x => new AccountViewModel(x)));
             ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
             if (paymentId == 0)
@@ -295,7 +294,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 IsEdit = true;
                 PaymentId = paymentId;
-                selectedPayment = paymentRepository.FindById(PaymentId);
+                selectedPayment = new PaymentViewModel(await paymentService.GetById(PaymentId));
                 PrepareEdit();
             }
 
@@ -332,12 +331,12 @@ namespace MoneyFox.Business.ViewModels
 
         private void SetDefaultPayment(PaymentType paymentType)
         {
-            SelectedPayment = new PaymentViewModel
+            SelectedPayment = new PaymentViewModel(new Payment())
             {
                 Type = paymentType,
                 Date = DateTime.Now,
                 // Assign empty CategoryViewModel to reset the GUI
-                Category = new CategoryViewModel(),
+                Category = new CategoryViewModel(new Category()),
                 ChargedAccount = ChargedAccounts.FirstOrDefault()
             };
         }
@@ -379,16 +378,11 @@ namespace MoneyFox.Business.ViewModels
             await PrepareRecurringPayment();
 
             // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-            var paymentSucceded = paymentManager.SavePayment(SelectedPayment);
-            var accountSucceded = paymentManager.AddPaymentAmount(SelectedPayment);
-            if (paymentSucceded && accountSucceded)
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
-
+            await paymentService.SavePayment(SelectedPayment.Payment);
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            }
 
             Close(this);
         }
@@ -397,24 +391,24 @@ namespace MoneyFox.Business.ViewModels
         {
             if (IsEdit)
             {
-                paymentManager.RemovePaymentAmount(SelectedPayment, AccountViewModelBeforeEdit);
+                PaymentAmountHelper.RemovePaymentAmount(SelectedPayment.Payment);
             }
         }
 
         private async Task PrepareRecurringPayment()
         {
-            if ((IsEdit
+            if (IsEdit
                  && selectedPayment.IsRecurring
                  && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                      Strings.ChangeSubsequentPaymentMessage,
-                     Strings.UpdateAllLabel, Strings.JustThisLabel))
-                || (!IsEdit && SelectedPayment.IsRecurring))
+                     Strings.UpdateAllLabel, Strings.JustThisLabel)
+                || !IsEdit && SelectedPayment.IsRecurring)
             {
-                SelectedPayment.RecurringPayment = RecurringPaymentHelper.
-                    GetRecurringFromPayment(SelectedPayment,
-                        IsEndless,
-                        Recurrence,
-                        EndDate);
+                SelectedPayment.RecurringPayment = new RecurringPaymentViewModel(
+                    RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
+                                                                   IsEndless,
+                                                                   Recurrence,
+                                                                   EndDate));
             }
         }
 
@@ -428,15 +422,11 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            var deletePaymentSucceded = await paymentManager.DeletePayment(SelectedPayment);
-            var deleteAccountSucceded = paymentManager.RemovePaymentAmount(SelectedPayment);
-            if (deletePaymentSucceded && deleteAccountSucceded)
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await paymentService.DeletePayment(SelectedPayment.Payment);
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            }
             Close(this);
         }
 

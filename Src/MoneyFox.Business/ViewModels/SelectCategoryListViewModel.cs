@@ -41,7 +41,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            messenger.Publish(new CategorySelectedMessage(this, category.Category));
+            messenger.Publish(new CategorySelectedMessage(this, category));
             Close(this);
         }
 

@@ -98,6 +98,7 @@
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />

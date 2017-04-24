@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.Pocos;
 using Ploeh.AutoFixture;
 using Xunit;
 
@@ -11,7 +11,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void Category_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new PaymentViewModel(new Payment());
             paymentVm.Category.ShouldBeNull();
             paymentVm.CategoryId.ShouldBeNull();
 
@@ -26,7 +26,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void ChargedAccount_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new PaymentViewModel(new Payment());
             paymentVm.ChargedAccount.ShouldBeNull();
             paymentVm.ChargedAccountId.ShouldBe(0);
 
@@ -44,7 +44,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void TargetAccount_SetId()
         {
-            var paymentVm = new PaymentViewModel();
+            var paymentVm = new PaymentViewModel(new Payment());
             paymentVm.TargetAccount.ShouldBeNull();
             paymentVm.TargetAccountId.ShouldBe(0);
 

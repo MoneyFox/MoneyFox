@@ -2,40 +2,26 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class PaymentViewModel : INotifyPropertyChanged
     {
-        private CategoryViewModel category;
+        public PaymentViewModel(Payment payment)
+        {
+            Payment = payment;
+        }
 
-        private AccountViewModel chargedAccount;
-
-        private RecurringPaymentViewModel recurringPayment;
-
-        private AccountViewModel targetAccount;
-
-        private int id;
-        private int chargedAccountId;
-        private int targetAccountId;
-        private int? categoryId;
-        private DateTime date;
-        private double amount;
-        private bool isCleared;
-        private PaymentType type;
-        private string note;
-        private bool isRecurring;
-        private int recurringPaymentId;
-        private int currentAccountId;
-
+        public Payment Payment { get; set; }
+        
         public int Id
         {
-            get { return id; }
+            get { return Payment.Data.Id; }
             set
             {
-                if (id == value) return;
-                id = value;
+                if (Payment.Data.Id == value) return;
+                Payment.Data.Id = value;
                 RaisePropertyChanged();
             }
         }
@@ -46,11 +32,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int ChargedAccountId
         {
-            get { return chargedAccountId; }
+            get { return Payment.Data.ChargedAccountId; }
             set
             {
-                if (chargedAccountId == value) return;
-                chargedAccountId = value;
+                if (Payment.Data.ChargedAccountId == value) return;
+                Payment.Data.ChargedAccountId = value;
                 RaisePropertyChanged();
             }
         }
@@ -59,13 +45,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Foreign key to the account who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        public int TargetAccountId
+        public int? TargetAccountId
         {
-            get { return targetAccountId; }
+            get { return Payment.Data.TargetAccountId; }
             set
             {
-                if (targetAccountId == value) return;
-                targetAccountId = value;
+                if (Payment.Data.TargetAccountId == value) return;
+                Payment.Data.TargetAccountId = value;
                 RaisePropertyChanged();
             }
         }
@@ -75,11 +61,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? CategoryId
         {
-            get { return categoryId; }
+            get { return Payment.Data.CategoryId; }
             set
             {
-                if (categoryId == value) return;
-                categoryId = value;
+                if (Payment.Data.CategoryId == value) return;
+                Payment.Data.CategoryId = value;
                 RaisePropertyChanged();
             }
         }
@@ -89,11 +75,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime Date
         {
-            get { return date; }
+            get { return Payment.Data.Date; }
             set
             {
-                if (date == value) return;
-                date = value;
+                if (Payment.Data.Date == value) return;
+                Payment.Data.Date = value;
                 RaisePropertyChanged();
             }
         }
@@ -103,11 +89,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double Amount
         {
-            get { return amount; }
+            get { return Payment.Data.Amount; }
             set
             {
-                if (Math.Abs(amount - value) < 0.01) return;
-                amount = value;
+                if (Math.Abs(Payment.Data.Amount - value) < 0.01) return;
+                Payment.Data.Amount = value;
                 RaisePropertyChanged();
             }
         }
@@ -118,11 +104,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsCleared
         {
-            get { return isCleared; }
+            get { return Payment.Data.IsCleared; }
             set
             {
-                if (isCleared == value) return;
-                isCleared = value;
+                if (Payment.Data.IsCleared == value) return;
+                Payment.Data.IsCleared = value;
                 RaisePropertyChanged();
             }
         }
@@ -132,11 +118,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PaymentType Type
         {
-            get { return type; }
+            get { return Payment.Data.Type; }
             set
             {
-                if (type == value) return;
-                type = value;
+                if (Payment.Data.Type == value) return;
+                Payment.Data.Type = value;
                 RaisePropertyChanged();
             }
         }
@@ -146,11 +132,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Note
         {
-            get { return note; }
+            get { return Payment.Data.Note; }
             set
             {
-                if (note == value) return;
-                note = value;
+                if (Payment.Data.Note == value) return;
+                Payment.Data.Note = value;
                 RaisePropertyChanged();
             }
         }
@@ -160,11 +146,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsRecurring
         {
-            get { return isRecurring; }
+            get { return Payment.Data.IsRecurring; }
             set
             {
-                if (isRecurring == value) return;
-                isRecurring = value;
+                if (Payment.Data.IsRecurring == value) return;
+                Payment.Data.IsRecurring = value;
                 RaisePropertyChanged();
             }
         }
@@ -172,13 +158,13 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Foreign key to the <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
-        public int RecurringPaymentId
+        public int? RecurringPaymentId
         {
-            get { return recurringPaymentId; }
+            get { return Payment.Data.RecurringPaymentId; }
             set
             {
-                if (recurringPaymentId == value) return;
-                recurringPaymentId = value;
+                if (Payment.Data.RecurringPaymentId == value) return;
+                Payment.Data.RecurringPaymentId = value;
                 RaisePropertyChanged();
             }
         }
@@ -189,15 +175,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get { return chargedAccount; }
+            get { return new AccountViewModel(new Account(Payment.Data.ChargedAccount)); }
             set
             {
-                if (chargedAccount != value)
-                {
-                    chargedAccount = value;
-                    ChargedAccountId = value?.Id ?? 0;
-                    RaisePropertyChanged();
-                }
+                Payment.Data.ChargedAccount = value.Account.Data;
+                ChargedAccount = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -207,15 +190,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get { return targetAccount; }
+            get { return new AccountViewModel(new Account(Payment.Data.TargetAccount)); ; }
             set
             {
-                if (targetAccount != value)
-                {
-                    targetAccount = value;
-                    TargetAccountId = value?.Id ?? 0;
-                    RaisePropertyChanged();
-                }
+                Payment.Data.TargetAccount = value.Account.Data;
+                TargetAccount = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -224,15 +204,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel Category
         {
-            get { return category; }
+            get { return new CategoryViewModel(new Category(Payment.Data.Category)); ; }
             set
             {
-                if (category != value)
-                {
-                    category = value;
-                    CategoryId = value?.Id ?? 0;
-                    RaisePropertyChanged();
-                }
+                Payment.Data.Category = value.Category.Data;
+                Category = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -241,15 +218,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public RecurringPaymentViewModel RecurringPayment
         {
-            get { return recurringPayment; }
+            get { return new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment)); }
             set
             {
-                if (recurringPayment != value)
-                {
-                    recurringPayment = value;
-                    RecurringPaymentId = value?.Id ?? 0;
-                    RaisePropertyChanged();
-                }
+                Payment.Data.RecurringPayment = value.RecurringPayment.Data;
+                RecurringPayment = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -263,6 +237,8 @@ namespace MoneyFox.Business.ViewModels
         ///     This is a shortcut to access if the payment is a transfer or not.
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
+
+        private int currentAccountId;
 
         public int CurrentAccountId
         {

@@ -2,7 +2,6 @@
 using System.Globalization;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MvvmCross.Platform.Converters;
 
 namespace MoneyFox.Business.Converter

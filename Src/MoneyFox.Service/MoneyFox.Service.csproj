@@ -37,6 +37,7 @@
     <Compile Include="DataServices\CategoryService.cs" />
     <Compile Include="DataServices\RecurringPaymentService.cs" />
     <Compile Include="DataServices\PaymentService.cs" />
+    <Compile Include="PaymentAmountHelper.cs" />
     <Compile Include="Pocos\Category.cs" />
     <Compile Include="Pocos\Account.cs" />
     <Compile Include="Pocos\RecurringPayment.cs" />

@@ -14,7 +14,7 @@ namespace MoneyFox.Business.Tests.Converter
         public void Converter_Payment_NegativeAmountSign()
         {
             new PaymentAmountConverter()
-                .Convert(new PaymentViewModel {Amount = 80, Type = PaymentType.Expense}, null, null, null)
+                .Convert(new PaymentViewModel(new Payment()) {Amount = 80, Type = PaymentType.Expense}, null, null, null)
                 .ShouldBe("- " + 80.ToString("C"));
         }
 
@@ -22,7 +22,7 @@ namespace MoneyFox.Business.Tests.Converter
         public void Converter_Payment_PositiveAmountSign()
         {
             new PaymentAmountConverter()
-                .Convert(new PaymentViewModel {Amount = 80, Type = PaymentType.Income}, null, null, null)
+                .Convert(new PaymentViewModel(new Payment()) {Amount = 80, Type = PaymentType.Income}, null, null, null)
                 .ShouldBe("+ " + 80.ToString("C"));
         }
 
@@ -36,7 +36,7 @@ namespace MoneyFox.Business.Tests.Converter
             };
 
             new PaymentAmountConverter()
-                .Convert(new PaymentViewModel
+                .Convert(new PaymentViewModel(new Payment())
                 {
                     Amount = 80,
                     Type = PaymentType.Transfer,
@@ -57,7 +57,7 @@ namespace MoneyFox.Business.Tests.Converter
             };
 
             new PaymentAmountConverter()
-                .Convert(new PaymentViewModel
+                .Convert(new PaymentViewModel(new Payment())
                 {
                     Amount = 80,
                     Type = PaymentType.Transfer,
