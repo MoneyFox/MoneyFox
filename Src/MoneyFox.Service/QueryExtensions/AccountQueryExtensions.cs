@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Service.Pocos;
 
@@ -37,7 +38,7 @@ namespace MoneyFox.Service.QueryExtensions
         /// <returns>Query with the added filter.</returns>
         public static IQueryable<AccountEntity> NameEquals(this IQueryable<AccountEntity> query, string name)
         {
-            return query.Where(x => x.IsExcluded);
+            return query.Where(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>

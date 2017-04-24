@@ -20,13 +20,27 @@ namespace MoneyFox.Service.DataServices
         Task<IEnumerable<Category>> GetAllCategories();
 
         /// <summary>
+        ///     Looks up the category with the passed id and returns it.
+        /// </summary>
+        /// <param name="id">Id to look for.</param>
+        /// <returns>Found Id.</returns>
+        Task<Category> GetById(int id);
+
+        /// <summary>
         ///     Searches all categories by the passed searchterm.
         ///     Only considers the Name field.
         /// </summary>
         /// <param name="searchTerm"></param>
         /// <returns></returns>
         Task<IEnumerable<Category>> SearchByName(string searchTerm);
-       
+
+        /// <summary>
+        ///     Checks if the name is already taken by another category.
+        /// </summary>
+        /// <param name="name">Name to look for.</param>
+        /// <returns>If category name is already taken.</returns>
+        Task<bool> CheckIfNameAlreadyTaken(string name);
+
         /// <summary>
         ///     Save the passed category.
         /// </summary>
@@ -63,6 +77,12 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
+        public async Task<Category> GetById(int id)
+        {
+            return new Category(await categoryRepository.GetById(id));
+        }
+
+        /// <inheritdoc />
         public async Task<IEnumerable<Category>> SearchByName(string searchTerm)
         {
             return await categoryRepository
@@ -72,6 +92,14 @@ namespace MoneyFox.Service.DataServices
                 .OrderByName()
                 .SelectCategories()
                 .ToListAsync();
+        }
+
+        /// <inheritdoc />
+        public Task<bool> CheckIfNameAlreadyTaken(string name)
+        {
+            return categoryRepository.GetAll()
+                                    .NameEquals(name)
+                                    .AnyAsync();
         }
 
         /// <inheritdoc />

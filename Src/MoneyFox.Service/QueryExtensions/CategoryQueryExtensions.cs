@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Service.Pocos;
 
@@ -17,6 +18,17 @@ namespace MoneyFox.Service.QueryExtensions
         public static IQueryable<CategoryEntity> NameNotNull(this IQueryable<CategoryEntity> query)
         {
             return query.Where(category => !string.IsNullOrWhiteSpace(category.Name));
+        }
+
+        /// <summary>
+        ///     Adds a filter to a query to find all category with the passed name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="name">Name to filter for</param>
+        /// <returns>Query with the added filter.</returns>
+        public static IQueryable<CategoryEntity> NameEquals(this IQueryable<CategoryEntity> query, string name)
+        {
+            return query.Where(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>

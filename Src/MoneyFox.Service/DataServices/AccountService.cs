@@ -35,7 +35,7 @@ namespace MoneyFox.Service.DataServices
         /// <summary>
         ///     Checks if the name is already taken by another account.
         /// </summary>
-        /// <param name="name">Name to look for..</param>
+        /// <param name="name">Name to look for.</param>
         /// <returns>if account name is already taken.</returns>
         Task<bool> CheckIfNameAlreadyTaken(string name);
 

@@ -1,7 +1,6 @@
-﻿using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.DataModels;
+﻿using MoneyFox.Business.Messages;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Messages;
+using MoneyFox.Service.DataServices;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -15,14 +14,14 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
+        /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
-        public SelectCategoryListViewModel(ICategoryRepository categoryRepository,
+        public SelectCategoryListViewModel(ICategoryService categoryService,
             IModifyDialogService modifyDialogService,
             IDialogService dialogService, IMvxMessenger messenger) 
-            : base(categoryRepository, modifyDialogService, dialogService)
+            : base(categoryService, modifyDialogService, dialogService)
         {
             this.messenger = messenger;
         }
@@ -42,7 +41,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            messenger.Publish(new CategorySelectedMessage(this, category));
+            messenger.Publish(new CategorySelectedMessage(this, category.Category));
             Close(this);
         }
 
