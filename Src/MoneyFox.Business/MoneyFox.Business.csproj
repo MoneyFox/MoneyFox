@@ -98,6 +98,12 @@
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
+    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPersonalizationViewModel.cs" />
+    <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
+    <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
