@@ -31,7 +31,7 @@ namespace MoneyFox.Business.ViewModels
             set
             {
                 if (Account.Data.Name == value) return;
-                Account.Data = value;
+                Account.Data.Name = value;
                 RaisePropertyChanged();
             }
         }
