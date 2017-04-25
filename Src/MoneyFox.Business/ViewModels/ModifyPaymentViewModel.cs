@@ -302,7 +302,13 @@ namespace MoneyFox.Business.ViewModels
 
         private void PrepareDefault(PaymentType type)
         {
-            SetDefaultPayment(type);
+            SelectedPayment = new PaymentViewModel
+            {
+                Type = type,
+                Date = DateTime.Now,
+                
+            };
+            SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
@@ -322,20 +328,11 @@ namespace MoneyFox.Business.ViewModels
 
             // we have to set the AccountViewModel objects here again to ensure that they are identical to the
             // objects in the AccountViewModel collections.
-            selectedPayment.ChargedAccount =
-                ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
-            selectedPayment.TargetAccount =
-                TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
-        }
-
-        private void SetDefaultPayment(PaymentType paymentType)
-        {
-            SelectedPayment = new PaymentViewModel
-            {
-                Type = paymentType,
-                Date = DateTime.Now,
-                ChargedAccount = ChargedAccounts.FirstOrDefault()
-            };
+            // TODO:  Check if this is needed.
+            //selectedPayment.ChargedAccount =
+            //    ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
+            //selectedPayment.TargetAccount =
+            //    TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
         /// <summary>

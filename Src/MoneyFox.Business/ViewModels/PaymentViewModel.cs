@@ -190,8 +190,8 @@ namespace MoneyFox.Business.ViewModels
             get { return new AccountViewModel(new Account(Payment.Data.ChargedAccount)); }
             set
             {
+                if (ChargedAccount == value) return;
                 Payment.Data.ChargedAccount = value.Account.Data;
-                ChargedAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -205,8 +205,8 @@ namespace MoneyFox.Business.ViewModels
             get { return new AccountViewModel(new Account(Payment.Data.TargetAccount)); ; }
             set
             {
+                if (TargetAccount == value) return;
                 Payment.Data.TargetAccount = value.Account.Data;
-                TargetAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -219,8 +219,9 @@ namespace MoneyFox.Business.ViewModels
             get { return new CategoryViewModel(new Category(Payment.Data.Category)); ; }
             set
             {
+                if (Category == value) return;
+
                 Payment.Data.Category = value.Category.Data;
-                Category = value;
                 RaisePropertyChanged();
             }
         }
@@ -233,8 +234,9 @@ namespace MoneyFox.Business.ViewModels
             get { return new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment)); }
             set
             {
+                if (RecurringPayment == value) return;
+
                 Payment.Data.RecurringPayment = value.RecurringPayment.Data;
-                RecurringPayment = value;
                 RaisePropertyChanged();
             }
         }
