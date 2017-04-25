@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation;
+﻿using System;
+using MoneyFox.Foundation;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Service
@@ -15,11 +16,12 @@ namespace MoneyFox.Service
                 payment.Data.TargetAccount.CurrentBalance += payment.Data.Amount;
             }
 
-            double AmountFunc(double x) => payment.Data.Type == PaymentType.Income
-                ? x
-                : -x;
+            Func<double, double> amountFunc = x =>
+                payment.Data.Type == PaymentType.Income
+                    ? x
+                    : -x;
 
-            payment.Data.ChargedAccount.CurrentBalance += AmountFunc(payment.Data.Amount);
+            payment.Data.ChargedAccount.CurrentBalance += amountFunc(payment.Data.Amount);
         }
 
         public static void RemovePaymentAmount(Payment payment)
@@ -32,11 +34,12 @@ namespace MoneyFox.Service
                 payment.Data.TargetAccount.CurrentBalance -= payment.Data.Amount;
             }
 
-            double AmountFunc(double x) => payment.Data.Type == PaymentType.Income
-                ? -x
-                : x;
+            Func<double, double> amountFunc = x =>
+                payment.Data.Type == PaymentType.Income
+                    ? -x
+                    : x;
 
-            payment.Data.ChargedAccount.CurrentBalance -= AmountFunc(payment.Data.Amount);
+            payment.Data.ChargedAccount.CurrentBalance -= amountFunc(payment.Data.Amount);
         }
     }
 }
