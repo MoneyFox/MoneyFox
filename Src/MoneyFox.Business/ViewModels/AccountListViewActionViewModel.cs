@@ -1,9 +1,12 @@
-﻿using MoneyFox.Service.DataServices;
+﻿using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.Foundation;
+using MoneyFox.Service.DataServices;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <inheritdoc />
-    public class AccountListViewActionViewModel : BaseViewModel//, IAccountListViewActionViewModel
+    public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
     {
         private readonly IAccountService accountService;
 
@@ -12,15 +15,15 @@ namespace MoneyFox.Business.ViewModels
             this.accountService = accountService;
         }
 
-        //public MvxCommand GoToAddAccountCommand =>
-        //        new MvxCommand(() => ShowViewModel<ModifyAccountViewModel>(new { accountId = 0 }));
+        public MvxCommand GoToAddAccountCommand =>
+                new MvxCommand(() => ShowViewModel<ModifyAccountViewModel>(new { accountId = 0 }));
 
-        //public MvxCommand GoToAddIncomeCommand =>
-        //        new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Income}));
-        //public MvxCommand GoToAddExpenseCommand =>
-        //        new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Expense }));
-        //public MvxCommand GoToAddTransferCommand =>
-        //        new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Transfer }));
+        public MvxCommand GoToAddIncomeCommand =>
+                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Income }));
+        public MvxCommand GoToAddExpenseCommand =>
+                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Expense }));
+        public MvxCommand GoToAddTransferCommand =>
+                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Transfer }));
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.

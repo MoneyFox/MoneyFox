@@ -141,7 +141,7 @@ namespace MoneyFox.Business.ViewModels
 
             SelectedAccount.CurrentBalance = amount;
 
-            if (!IsEdit && !await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
+            if (!IsEdit && await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
                 return;

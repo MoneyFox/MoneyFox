@@ -45,6 +45,12 @@ namespace MoneyFox.Service.DataServices
         /// </summary>
         /// <returns>List with all not excluded Accounts.</returns>
         Task<IEnumerable<Account>> GetNotExcludedAccounts();
+        
+        /// <summary>
+        ///     Returns a list with all excluded Accounts.
+        /// </summary>
+        /// <returns>List with all  excluded Accounts.</returns>
+        Task<IEnumerable<Account>> GetExcludedAccounts();
 
         /// <summary>
         ///     Save the passed account.
@@ -110,6 +116,17 @@ namespace MoneyFox.Service.DataServices
             var list = await accountRepository
                 .GetAll()
                 .AreNotExcluded()
+                .ToListAsync();
+
+            return list.Select(x => new Account(x));
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Account>> GetExcludedAccounts()
+        {
+            var list = await accountRepository
+                .GetAll()
+                .AreExcluded()
                 .ToListAsync();
 
             return list.Select(x => new Account(x));

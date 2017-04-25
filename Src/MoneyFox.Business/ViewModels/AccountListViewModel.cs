@@ -151,7 +151,7 @@ namespace MoneyFox.Business.ViewModels
         private async void Loaded()
         {
             var includedAccountList = await accountService.GetNotExcludedAccounts();
-            var excludedAccountList = await accountService.GetNotExcludedAccounts();
+            var excludedAccountList = await accountService.GetExcludedAccounts();
 
             IncludedAccounts =
                 new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
