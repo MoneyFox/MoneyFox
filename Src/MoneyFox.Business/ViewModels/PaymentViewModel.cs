@@ -8,6 +8,18 @@ namespace MoneyFox.Business.ViewModels
 {
     public class PaymentViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        ///     Default constructor. Will create a new <see cref="Payment"/>
+        /// </summary>
+        public PaymentViewModel()
+        {
+            Payment = new Payment();
+        }
+
+        /// <summary>
+        ///     Constructor. Assignes the passed payment to the wrapped payment field.
+        /// </summary>
+        /// <param name="payment">Payment to use for further operations.</param>
         public PaymentViewModel(Payment payment)
         {
             Payment = payment;
@@ -226,12 +238,6 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        /// <summary>
-        ///     Checks if the payment is ready to clear based on the date of
-        ///     the payment and the current date.
-        /// </summary>
-        public bool ClearPaymentNow => Date.Date <= DateTime.Now.Date;
 
         /// <summary>
         ///     This is a shortcut to access if the payment is a transfer or not.

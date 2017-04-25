@@ -11,7 +11,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -331,12 +330,10 @@ namespace MoneyFox.Business.ViewModels
 
         private void SetDefaultPayment(PaymentType paymentType)
         {
-            SelectedPayment = new PaymentViewModel(new Payment())
+            SelectedPayment = new PaymentViewModel
             {
                 Type = paymentType,
                 Date = DateTime.Now,
-                // Assign empty CategoryViewModel to reset the GUI
-                Category = new CategoryViewModel(new Category()),
                 ChargedAccount = ChargedAccounts.FirstOrDefault()
             };
         }
@@ -347,10 +344,8 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="message">Message sent.</param>
         private void ReceiveMessage(CategorySelectedMessage message)
         {
-            if ((SelectedPayment == null) || (message == null))
-            {
-                return;
-            }
+            if (SelectedPayment == null || message == null) return;
+
             SelectedPayment.Category = message.SelectedCategory;
         }
 
@@ -362,7 +357,7 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
-            if (SelectedPayment.IsRecurring && !IsEndless && (EndDate.Date <= DateTime.Today))
+            if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
             {
                 ShowInvalidEndDateMessage();
                 return;
@@ -371,7 +366,9 @@ namespace MoneyFox.Business.ViewModels
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
             if (amount < 0)
+            {
                 amount *= -1;
+            }
             SelectedPayment.Amount = amount;
 
             //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
@@ -455,23 +452,25 @@ namespace MoneyFox.Business.ViewModels
         private void UpdateOtherComboBox()
         {
             var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (var i in TargetAccounts)
+            foreach (var account in TargetAccounts)
             {
-                if (!tempCollection.Contains(i))
+                if (!tempCollection.Contains(account))
                 {
-                    tempCollection.Add(i);
+                    tempCollection.Add(account);
                 }
             }
-            foreach (var i in tempCollection)
+            foreach (var account in tempCollection)
             {
-                if (!TargetAccounts.Contains(i)) //fills targetaccounts
+                //fills targetaccounts
+                if (!TargetAccounts.Contains(account)) 
                 {
-                    TargetAccounts.Add(i);
+                    TargetAccounts.Add(account);
                 }
 
-                if (!ChargedAccounts.Contains(i)) //fills chargedaccounts
+                //fills chargedaccounts
+                if (!ChargedAccounts.Contains(account)) 
                 {
-                    ChargedAccounts.Add(i);
+                    ChargedAccounts.Add(account);
                 }
             }
             ChargedAccounts.Remove(selectedPayment.TargetAccount);

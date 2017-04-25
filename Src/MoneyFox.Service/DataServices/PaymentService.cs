@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -118,15 +117,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task SavePayment(Payment payment)
         {
-            PaymentAmountHelper.AddPaymentAmount(payment);
-            if (payment.Data.Id == 0)
-            {
-                paymentRepository.Add(payment.Data);
-            }
-            else
-            {
-                paymentRepository.Update(payment.Data);
-            }
+            AddPaymentToChangeSet(payment);
             await unitOfWork.Commit();
         }
 
@@ -135,18 +126,22 @@ namespace MoneyFox.Service.DataServices
         {
             foreach (var payment in payments)
             {
-                PaymentAmountHelper.AddPaymentAmount(payment);
-
-                if (payment.Data.Id == 0)
-                {
-                    paymentRepository.Add(payment.Data);
-                }
-                else
-                {
-                    paymentRepository.Update(payment.Data);
-                }
+                AddPaymentToChangeSet(payment);
             }
             await unitOfWork.Commit();
+        }
+
+        private void AddPaymentToChangeSet(Payment payment)
+        {
+            payment.ClearPayment();
+            PaymentAmountHelper.AddPaymentAmount(payment);
+            if (payment.Data.Id == 0)
+            {
+                paymentRepository.Add(payment.Data);
+            } else
+            {
+                paymentRepository.Update(payment.Data);
+            }
         }
 
         /// <inheritdoc />

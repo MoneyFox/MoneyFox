@@ -19,11 +19,12 @@ namespace MoneyFox.Business.Manager
         /// <summary>
         ///     Checks if one of the recurring PaymentViewModel has to be repeated
         /// </summary>
-        public void CreatePaymentsUpToRecur()
+        public async void CreatePaymentsUpToRecur()
         {
             var newPayments = recurringPaymentService.GetPaymentsToRecur()
                 .Select(RecurringPaymentHelper.GetPaymentFromRecurring);
 
+            await paymentService.SavePayments(newPayments);
         }
     }
 }

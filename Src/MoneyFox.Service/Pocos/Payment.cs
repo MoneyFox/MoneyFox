@@ -1,4 +1,5 @@
-﻿using MoneyFox.DataAccess.Entities;
+﻿using System;
+using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.Service.Pocos
 {
@@ -28,5 +29,15 @@ namespace MoneyFox.Service.Pocos
         ///     Paymentdata
         /// </summary>
         public PaymentEntity Data { get; set; }
+
+        /// <summary>
+        ///     This method checks if the payment is up for clearing and sets the
+        ///     flags accordingly.
+        /// </summary>
+        public void ClearPayment()
+        {
+            if (Data.IsCleared) return;
+            Data.IsCleared = Data.Date <= DateTime.Now;
+        }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Manager\BackupManager.cs" />
     <Compile Include="Manager\BalanceCalculationManager.cs" />
+    <Compile Include="Manager\ClearPaymentManager.cs" />
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />

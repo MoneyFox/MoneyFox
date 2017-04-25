@@ -361,6 +361,10 @@
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
+      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
+      <Name>MoneyFox.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
