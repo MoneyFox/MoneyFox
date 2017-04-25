@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
@@ -85,13 +86,14 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> SearchByName(string searchTerm)
         {
-            return await categoryRepository
+            var list = await categoryRepository
                 .GetAll()
                 .NameNotNull()
                 .NameContains(searchTerm)
                 .OrderByName()
-                .SelectCategories()
                 .ToListAsync();
+
+            return list.Select(x => new Category(x));
         }
 
         /// <inheritdoc />

@@ -77,7 +77,11 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            return await accountRepository.GetAll().SelectAccounts().ToListAsync();
+            var list = await accountRepository
+                .GetAll()
+                .ToListAsync();
+
+            return list.Select(x => new Account(x));
         }
 
         /// <inheritdoc />
@@ -106,10 +110,9 @@ namespace MoneyFox.Service.DataServices
             var list = await accountRepository
                 .GetAll()
                 .AreNotExcluded()
-                .SelectAccounts()
                 .ToListAsync();
 
-            return list;
+            return list.Select(x => new Account(x));
         }
 
         /// <inheritdoc />

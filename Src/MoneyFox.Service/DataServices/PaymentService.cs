@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
@@ -91,21 +92,23 @@ namespace MoneyFox.Service.DataServices
                 query = query.HasAccountId(accountId);
             }
 
-            return await query
-                .SelectPayments()
+            var list = await query
                 .ToListAsync();
+
+            return list.Select(x => new Payment(x));
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate)
         {
-            return await paymentRepository
+            var list = await paymentRepository
                 .GetAll()
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(startdate.Date)
                 .HasDateSmallerEqualsThan(enddate.Date)
-                .SelectPayments()
                 .ToListAsync();
+
+            return list.Select(x => new Payment(x));
         }
 
         /// <inheritdoc />
@@ -138,7 +141,8 @@ namespace MoneyFox.Service.DataServices
             if (payment.Data.Id == 0)
             {
                 paymentRepository.Add(payment.Data);
-            } else
+            } 
+            else
             {
                 paymentRepository.Update(payment.Data);
             }
