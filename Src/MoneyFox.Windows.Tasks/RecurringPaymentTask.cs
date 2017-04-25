@@ -15,13 +15,11 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                MapperConfiguration.Setup();
-
                 var dbFactory = new DbFactory();
-                var paymentRepository = new PaymentRepository(dbFactory);
 
-                new RecurringPaymentManager(new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
-                    new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory)))
+                new RecurringPaymentManager(
+                        new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                        new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory)))
                     .CreatePaymentsUpToRecur();
             }
             finally

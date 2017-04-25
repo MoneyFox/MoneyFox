@@ -8,7 +8,7 @@ using MvvmCross.Platform;
 namespace MoneyFox.Droid.Services
 {
     [Service]
-    public class SyncBackupService : Service
+    public class SyncBackupService : Android.App.Service
     {
         public override IBinder OnBind(Intent intent)
         {

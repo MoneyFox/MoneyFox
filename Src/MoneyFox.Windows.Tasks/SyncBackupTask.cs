@@ -1,5 +1,4 @@
 ﻿using Windows.ApplicationModel.Background;
-using MoneyFox.DataAccess;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MoneyFox.Business.Manager;
@@ -18,13 +17,12 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                MapperConfiguration.Setup();
-                
-                var backupManager = new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(),
-                        new SettingsManager(new WindowsUwpSettings()),
-                        new Connectivity(),
-                        new DbFactory());
+                var backupManager = new BackupManager(
+                    new OneDriveService(new OneDriveAuthenticator()),
+                    new MvxWindowsCommonFileStore(),
+                    new SettingsManager(new WindowsUwpSettings()),
+                    new Connectivity(),
+                    new DbFactory());
 
                 await backupManager.DownloadBackup();
             }
