@@ -78,10 +78,10 @@ namespace MoneyFox.Business.Tests.Manager
             // Arrange
             var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>(), It.IsAny<int>()))
-                .Returns(Task.FromResult<IEnumerable<Payment>>(new List<Payment>()));
+                .ReturnsAsync(new List<Payment>());
 
-            var accountServiceMock = new Mock<AccountService>();
-            accountServiceMock.Setup(x => x.GetAllAccounts())
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
                 .ReturnsAsync(new List<Account>
                               {
                                   new Account {Data = { CurrentBalance = 500}},

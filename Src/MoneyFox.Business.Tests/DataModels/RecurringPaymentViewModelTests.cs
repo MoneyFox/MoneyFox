@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Tests;
-using MoneyFox.Service.Pocos;
 using Ploeh.AutoFixture;
 using Xunit;
 
@@ -11,9 +10,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void Category_SetId()
         {
-            var paymentVm = new RecurringPaymentViewModel(new RecurringPayment());
-            paymentVm.Category.ShouldBeNull();
-            paymentVm.CategoryId.ShouldBeNull();
+            var paymentVm = new RecurringPaymentViewModel();
 
             var category = new Fixture().Create<CategoryViewModel>();
             paymentVm.Category = category;
@@ -26,9 +23,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void ChargedAccount_SetId()
         {
-            var paymentVm = new RecurringPaymentViewModel(new RecurringPayment());
-            paymentVm.ChargedAccount.ShouldBeNull();
-            paymentVm.ChargedAccountId.ShouldBe(0);
+            var paymentVm = new RecurringPaymentViewModel();
 
             var fixture = new Fixture();
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
@@ -44,9 +39,7 @@ namespace MoneyFox.Business.Tests.DataModels
         [Fact]
         public void TargetAccount_SetId()
         {
-            var paymentVm = new RecurringPaymentViewModel(new RecurringPayment());
-            paymentVm.TargetAccount.ShouldBeNull();
-            paymentVm.TargetAccountId.ShouldBe(0);
+            var paymentVm = new RecurringPaymentViewModel();
 
             var fixture = new Fixture();
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
