@@ -163,14 +163,12 @@ namespace MoneyFox.Business.ViewModels
 
         private void EditCategory(CategoryViewModel category)
         {
-            //TODO:
-            //ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
         }
 
         private void CreateNewCategory(CategoryViewModel category)
         {
-            //TODO:
-            //ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
+            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>

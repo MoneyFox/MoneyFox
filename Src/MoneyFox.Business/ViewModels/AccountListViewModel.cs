@@ -36,8 +36,7 @@ namespace MoneyFox.Business.ViewModels
             this.dialogService = dialogService;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
-            //TODO
-            //ViewActionViewModel = new AccountListViewActionViewModel(accountService);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountService);
 
             IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
