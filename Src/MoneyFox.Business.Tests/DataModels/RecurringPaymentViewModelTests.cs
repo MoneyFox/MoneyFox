@@ -12,7 +12,10 @@ namespace MoneyFox.Business.Tests.DataModels
         {
             var paymentVm = new RecurringPaymentViewModel();
 
-            var category = new Fixture().Create<CategoryViewModel>();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            var category = fixture.Create<CategoryViewModel>();
             paymentVm.Category = category;
 
             paymentVm.Category.ShouldBe(category);

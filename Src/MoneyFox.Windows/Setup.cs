@@ -7,6 +7,7 @@ using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Service;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
@@ -52,6 +53,7 @@ namespace MoneyFox.Windows
         {
             var cb = new ContainerBuilder();
 
+            cb.RegisterModule<ServiceModule>();
             cb.RegisterModule<BusinessModule>();
             cb.RegisterModule<WindowsModule>();
 
@@ -62,6 +64,7 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IModifyDialogService, ModifyDialogService>();
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();

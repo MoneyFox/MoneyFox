@@ -11,6 +11,7 @@ using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Windows.Views;
 
 namespace MoneyFox.Windows
 {
@@ -73,8 +74,8 @@ namespace MoneyFox.Windows
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
-                //var extendedSplash = new ExtendedSplashScreen(e.SplashScreen, loadState);
-                //Window.Current.Content = extendedSplash;
+                var extendedSplash = new ExtendedSplashScreen(e.SplashScreen, loadState);
+                Window.Current.Content = extendedSplash;
             }
 
             OverrideTitleBarColor();

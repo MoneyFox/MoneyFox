@@ -146,8 +146,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            //TODO
-            //ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
+            ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
         }
 
         private async void Loaded()
@@ -170,8 +169,7 @@ namespace MoneyFox.Business.ViewModels
             {
             }
 
-            // TODO
-            // ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
+            ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 
         private async void Delete(AccountViewModel accountToDelete)
@@ -204,8 +202,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToAddAccount()
         {
-            //TODO
-            //ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
+            ShowViewModel<ModifyAccountViewModel>(new {selectedAccountId = 0});
         }
 
         private async void OpenContextMenu(AccountViewModel account)
