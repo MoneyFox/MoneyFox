@@ -135,7 +135,13 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task SaveAccount(Account account)
         {
-            accountRepository.Add(account.Data);
+            if (account.Data.Id == 0)
+            {
+                accountRepository.Add(account.Data);
+            } else
+            {
+                accountRepository.Update(account.Data);
+            }
             await unitOfWork.Commit();
         }
 

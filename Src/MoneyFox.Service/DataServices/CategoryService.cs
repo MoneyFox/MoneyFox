@@ -107,7 +107,13 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task SaveCategory(Category category)
         {
-            categoryRepository.Add(category.Data);
+            if (category.Data.Id == 0)
+            {
+                categoryRepository.Add(category.Data);
+            } else
+            {
+                categoryRepository.Update(category.Data);
+            }
             await unitOfWork.Commit();
         }
 
