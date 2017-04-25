@@ -72,6 +72,12 @@ namespace MoneyFox.DataAccess
                         .WithOne(t => t.RecurringPayment)
                         .HasForeignKey(m => m.RecurringPaymentId)
                         .OnDelete(DeleteBehavior.SetNull);
+
+            // Set Indizies
+            modelBuilder.Entity<AccountEntity>()
+                        .HasIndex(b => b.Name);
+            modelBuilder.Entity<CategoryEntity>()
+                        .HasIndex(b => b.Name);
         }
     }
 }

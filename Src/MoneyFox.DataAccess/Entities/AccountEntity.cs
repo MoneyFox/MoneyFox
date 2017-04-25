@@ -10,6 +10,7 @@ namespace MoneyFox.DataAccess.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
         public string Iban { get; set; }
         public double CurrentBalance { get; set; }

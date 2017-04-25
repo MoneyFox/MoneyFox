@@ -12,6 +12,7 @@ namespace MoneyFox.DataAccess.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required]
         public int ChargedAccountId { get; set; }
 
         public int? TargetAccountId { get; set; }

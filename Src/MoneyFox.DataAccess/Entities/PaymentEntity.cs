@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using MoneyFox.Foundation;
 
 namespace MoneyFox.DataAccess.Entities
@@ -11,6 +12,7 @@ namespace MoneyFox.DataAccess.Entities
     {
         public int Id { get; set; }
 
+        [Required]
         public int ChargedAccountId { get; set; }
 
         public int? TargetAccountId { get; set; }

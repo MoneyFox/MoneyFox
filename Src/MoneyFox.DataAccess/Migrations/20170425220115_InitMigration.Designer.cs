@@ -9,7 +9,7 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170421160037_InitMigration")]
+    [Migration("20170425220115_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,11 +30,14 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<bool>("IsOverdrawn");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Note");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("Accounts");
                 });
@@ -44,11 +47,14 @@ namespace MoneyFox.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("Notes");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("Categories");
                 });

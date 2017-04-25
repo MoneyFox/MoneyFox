@@ -18,7 +18,7 @@ namespace MoneyFox.DataAccess.Migrations
                     Iban = table.Column<string>(nullable: true),
                     IsExcluded = table.Column<bool>(nullable: false),
                     IsOverdrawn = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Note = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -32,7 +32,7 @@ namespace MoneyFox.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Notes = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -125,6 +125,16 @@ namespace MoneyFox.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accounts_Name",
+                table: "Accounts",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_Name",
+                table: "Categories",
+                column: "Name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_CategoryId",

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
@@ -102,11 +103,13 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetNotExcludedAccounts()
         {
-            return await accountRepository
+            var list = await accountRepository
                 .GetAll()
                 .AreNotExcluded()
                 .SelectAccounts()
                 .ToListAsync();
+
+            return list;
         }
 
         /// <inheritdoc />
