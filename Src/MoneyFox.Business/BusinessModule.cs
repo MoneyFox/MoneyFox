@@ -23,6 +23,11 @@ namespace MoneyFox.Business
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Provider"))
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()
                 .SingleInstance();

@@ -2,37 +2,20 @@
 using System.Threading.Tasks;
 using Windows.Security.Credentials;
 
-
-
 namespace MoneyFox.Windows.Services
 {
-    class MicrosoftPassportHelper
+    public class MicrosoftPassportHelper
     {
-        public static async Task<bool> testPassportAvailable()
+        public static async Task<bool> TestPassportAvailable()
         {
-            bool x = await KeyCredentialManager.IsSupportedAsync();
-            if (x == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await KeyCredentialManager.IsSupportedAsync();
         }
 
         public static async Task<bool> CreatePassportKeyAsync()
         {
-            KeyCredentialRetrievalResult keyCreationResult = await KeyCredentialManager.RequestCreateAsync("temp", KeyCredentialCreationOption.ReplaceExisting);
+            var keyCreationResult = await KeyCredentialManager.RequestCreateAsync("temp", KeyCredentialCreationOption.ReplaceExisting);
 
-            if (keyCreationResult.Status == KeyCredentialStatus.Success)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return keyCreationResult.Status == KeyCredentialStatus.Success;
         }
     }
 }
