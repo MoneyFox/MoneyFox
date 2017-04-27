@@ -72,6 +72,8 @@
     <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
     <Compile Include="TestCollections\MvxIocCollection.cs" />
+    <Compile Include="ViewModels\AboutViewModelTests.cs" />
+    <Compile Include="ViewModels\BalanceViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
