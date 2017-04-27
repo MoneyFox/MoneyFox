@@ -38,7 +38,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
-            balanceCalculationManager.Setup(x => x.GetTotalEndOfMonthBalance())
+            balanceCalculationManager.Setup(x => x.GetTotalBalance())
                 .ReturnsAsync(() => 700);
 
             var vm = new BalanceViewModel(balanceCalculationManager.Object);

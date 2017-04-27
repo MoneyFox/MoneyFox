@@ -62,7 +62,7 @@ namespace MoneyFox.Business.Tests.Manager
                             }));
 
             var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
+            accountServiceMock.Setup(x => x.GetAllAccounts())
                               .ReturnsAsync(accounts);
 
             // Act
