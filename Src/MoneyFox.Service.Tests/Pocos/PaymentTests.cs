@@ -26,13 +26,13 @@ namespace MoneyFox.Service.Tests.Pocos
         public void ClearPayment_AlreadyCleared()
         {
             // Arrange 
-            var payment = new Payment {Data = {Date = DateTime.Now.AddDays(-3), IsCleared = true}};
+            var payment = new Payment {Data = {Date = DateTime.Now.AddDays(3), IsCleared = true}};
 
             // Act
             payment.ClearPayment();
 
             // Assert
-            Assert.False(payment.Data.IsCleared);
+            Assert.True(payment.Data.IsCleared);
         }
     }
 }

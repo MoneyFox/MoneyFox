@@ -24,9 +24,8 @@ namespace MoneyFox.Service.Tests.QueryExtensions
             var resultList = categoryQueryList.NameNotNull().ToList();
 
             // Assert
-            Assert.Equal(2, resultList.Count);
-            Assert.Equal(1, resultList[0].Id);
-            Assert.Equal(2, resultList[1].Id);
+            Assert.Equal(1, resultList.Count);
+            Assert.Equal(3, resultList[0].Id);
         }
 
         [Fact]
