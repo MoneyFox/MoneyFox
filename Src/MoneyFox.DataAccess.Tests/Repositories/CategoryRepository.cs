@@ -68,9 +68,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new CategoryRepository(factory);
 
             // Act
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Assert
@@ -212,7 +212,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new CategoryRepository(factory);
-            var testEntry = new CategoryEntity();
+            var testEntry = new CategoryEntity {Name = "TestCategory" };
             repository.Add(testEntry);
             await unitOfWork.Commit();
 
@@ -234,10 +234,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var categoryRepository = new CategoryRepository(factory);
             var paymentRepository = new PaymentRepository(factory);
 
-            var category = new CategoryEntity();
+            var category = new CategoryEntity {Name = "TestCategory" };
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity(),
+                ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Category = category
             };
             categoryRepository.Add(category);
@@ -263,15 +263,15 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var categoryRepository = new CategoryRepository(factory);
             var paymentRepository = new PaymentRepository(factory);
 
-            var category = new CategoryEntity();
+            var category = new CategoryEntity {Name = "TestCategory" };
             var recurringPayment = new RecurringPaymentEntity
             {
-                ChargedAccount = new AccountEntity(),
+                ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Category = category
             };
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity(),
+                ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Category = category,
                 RecurringPayment = recurringPayment
             };
@@ -296,7 +296,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new CategoryRepository(factory);
-            var testEntry = new CategoryEntity();
+            var testEntry = new CategoryEntity {Name = "TestCategory" };
 
             // Act
             repository.Delete(testEntry);
@@ -316,7 +316,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var filterText = "Text";
             var repository = new CategoryRepository(factory);
             var testEntry1 = new CategoryEntity { Name = filterText };
-            var testEntry2 = new CategoryEntity();
+            var testEntry2 = new CategoryEntity {Name = "TestCategory" };
             repository.Add(testEntry1);
             repository.Add(testEntry2);
             await unitOfWork.Commit();
@@ -351,9 +351,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new CategoryRepository(factory);
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Act
@@ -372,9 +372,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new CategoryRepository(factory);
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Act
@@ -395,8 +395,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new CategoryRepository(factory);
             var filterText = "Text";
             repository.Add(new CategoryEntity { Name = filterText });
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Act
@@ -415,9 +415,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new CategoryRepository(factory);
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Act
@@ -438,8 +438,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var filterText = "Text";
             var testEntry = new CategoryEntity { Name = filterText };
             repository.Add(testEntry);
-            repository.Add(new CategoryEntity());
-            repository.Add(new CategoryEntity());
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
+            repository.Add(new CategoryEntity {Name = "TestCategory" });
             await unitOfWork.Commit();
 
             // Act

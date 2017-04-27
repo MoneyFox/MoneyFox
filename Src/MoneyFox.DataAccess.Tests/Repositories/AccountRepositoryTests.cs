@@ -68,9 +68,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new AccountRepository(factory);
 
             // Act
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Assert
@@ -212,7 +212,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new AccountRepository(factory);
-            var testEntry = new AccountEntity();
+            var testEntry = new AccountEntity { Name = "testAccount"};
             repository.Add(testEntry);
             await unitOfWork.Commit();
 
@@ -312,7 +312,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new AccountRepository(factory);
-            var testEntry = new AccountEntity();
+            var testEntry = new AccountEntity { Name = "testAccount"};
 
             // Act
             repository.Delete(testEntry);
@@ -332,7 +332,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var filterText = "Text";
             var repository = new AccountRepository(factory);
             var testEntry1 = new AccountEntity { Name = filterText };
-            var testEntry2 = new AccountEntity();
+            var testEntry2 = new AccountEntity { Name = "testAccount"};
             repository.Add(testEntry1);
             repository.Add(testEntry2);
             await unitOfWork.Commit();
@@ -367,9 +367,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new AccountRepository(factory);
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Act
@@ -388,9 +388,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new AccountRepository(factory);
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Act
@@ -411,8 +411,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new AccountRepository(factory);
             var filterText = "Text";
             repository.Add(new AccountEntity { Name = filterText });
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Act
@@ -431,9 +431,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var repository = new AccountRepository(factory);
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Act
@@ -454,8 +454,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var filterText = "Text";
             var testEntry = new AccountEntity { Name = filterText };
             repository.Add(testEntry);
-            repository.Add(new AccountEntity());
-            repository.Add(new AccountEntity());
+            repository.Add(new AccountEntity { Name = "testAccount"});
+            repository.Add(new AccountEntity { Name = "testAccount"});
             await unitOfWork.Commit();
 
             // Act

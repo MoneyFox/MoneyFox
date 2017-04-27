@@ -39,10 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="OneDriveServiceTests.cs" />
     <Compile Include="Pocos\PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
