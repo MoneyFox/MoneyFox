@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\AboutViewModelTests.cs" />
     <Compile Include="ViewModels\BackupViewModelTests.cs" />
     <Compile Include="ViewModels\BalanceViewModelTests.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
