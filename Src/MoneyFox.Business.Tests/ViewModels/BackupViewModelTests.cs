@@ -13,7 +13,6 @@ namespace MoneyFox.Business.Tests.ViewModels
     [Collection("MvxIocCollection")]
     public class BackupViewModelTests : MvxIoCSupportingTest
     {
-
         [Fact]
         public void Loaded_NoConnectivity_NothingCalled()
         {
