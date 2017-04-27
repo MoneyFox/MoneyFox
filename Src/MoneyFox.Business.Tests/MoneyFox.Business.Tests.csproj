@@ -93,7 +93,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
-      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
+      <Project>{41637575-df70-48b4-a99c-46299a7d2e8f}</Project>
       <Name>MoneyFox.Service</Name>
     </ProjectReference>
   </ItemGroup>
