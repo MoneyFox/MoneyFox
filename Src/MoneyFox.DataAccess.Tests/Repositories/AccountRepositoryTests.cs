@@ -36,6 +36,22 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
+        public async void Add_NewEntryWithoutName()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var repository = new AccountRepository(factory);
+
+            var testEntry = new AccountEntity();
+
+            // Act // Assert
+            repository.Add(testEntry);
+            await Assert.ThrowsAsync<DbUpdateException>(async () => await unitOfWork.Commit());
+        }
+
+        [Fact]
         public async void Add_AddedAndRead()
         {
             // Arrange
