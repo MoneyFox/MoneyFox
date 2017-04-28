@@ -41,8 +41,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\.nuget\packages\xunit.extensibility.core\2.2.0\lib\netstandard1.1\xunit.core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pocos\AccountTests.cs" />
     <Compile Include="Pocos\PaymentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExtensions\AccountQueryExtensionTests.cs" />
