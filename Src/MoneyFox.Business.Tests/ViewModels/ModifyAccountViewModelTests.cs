@@ -4,11 +4,12 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Threading;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using Ploeh.AutoFixture;
 using Xunit;
@@ -24,12 +25,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             var accountname = "Sparkonto";
 
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IBackupManager>().Object,
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 SelectedAccount = new AccountViewModel {Id = 3, Name = accountname}
@@ -43,11 +42,11 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void Title_AddAccount_CorrectTitle()
         {
             // Arrange
-            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountRepository>().Object,
-                new Mock<IDialogService>().Object,
-                new Mock<ISettingsManager>().Object,
-                new Mock<IBackupManager>().Object)
-            { IsEdit = false};
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+                    new Mock<ISettingsManager>().Object,
+                    new Mock<IBackupManager>().Object,
+                    new Mock<IDialogService>().Object)
+                { IsEdit = false};
 
             // Act / Assert
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
@@ -59,33 +58,37 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void SaveCommand_DoesNotAllowDuplicateNames(string name1, string name2)
         {
             // Arrange
-            var accountList = new List<AccountViewModel>();
-            var settingsManagerMock = new Mock<ISettingsManager>();
+            var accountList = new List<Account>();
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(accountList);
-            accountRepositorySetup.Setup(c => c.Save(It.IsAny<AccountViewModel>()))
-                .Callback((AccountViewModel acc) => { accountList.Add(acc); });
+            var accountRepositorySetup = new Mock<IAccountService>();
+            accountRepositorySetup.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountRepositorySetup.Setup(c => c.GetNotExcludedAccounts())
+                .ReturnsAsync(accountList);
+            accountRepositorySetup.Setup(c => c.SaveAccount(It.IsAny<Account>()))
+                .Callback((Account acc) => { accountList.Add(acc); });
 
-            var account = new AccountViewModel
+            var account = new Account
             {
-                Id = 1,
+                Data =
+                {
+                    Id = 1,
+                    Name = "Test AccountViewModel"
+                }
+            };
+            var accountViewModel = new AccountViewModel(account)
+            {
                 Name = "Test AccountViewModel"
             };
-            var newAccount = new AccountViewModel
-            {
-                Name = "Test AccountViewModel"
-            };
+
             accountList.Add(account);
-            
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IBackupManager>().Object,
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
-                SelectedAccount = newAccount
+                SelectedAccount = accountViewModel
             };
 
             // Act
@@ -99,26 +102,25 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void SaveCommand_SavesAccount()
         {
             // Arrange
-            var accountList = new List<AccountViewModel>();
+            var accountList = new List<Account>();
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(accountList);
-            accountRepositorySetup.Setup(c => c.Save(It.IsAny<AccountViewModel>()))
-                .Callback((AccountViewModel acc) => { accountList.Add(acc); });
+            var accountRepositorySetup = new Mock<IAccountService>();
+            accountRepositorySetup.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountRepositorySetup.Setup(c => c.GetNotExcludedAccounts())
+                .ReturnsAsync(accountList);
+            accountRepositorySetup.Setup(c => c.SaveAccount(It.IsAny<Account>()))
+                .Callback((Account acc) => { accountList.Add(acc); });
 
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var account = new AccountViewModel
+            var account = new AccountViewModel(new Account())
             {
                 Id = 1,
                 Name = "Test AccountViewModel"
             };
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IBackupManager>().Object,
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = account
@@ -135,21 +137,22 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void Save_UpdateTimeStamp()
         {
             // Arrange
-            var account = new AccountViewModel {Id = 0, Name = "AccountViewModel"};
+            var account = new AccountViewModel(new Account { Data = {Id = 0, Name = "AccountViewModel"}});
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
-            accountRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new List<AccountViewModel>());
+            var accountRepositorySetup = new Mock<IAccountService>();
+            accountRepositorySetup.Setup(x => x.SaveAccount(account.Account));
+            accountRepositorySetup.Setup(c => c.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountRepositorySetup.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
 
             var localDateSetting = DateTime.MinValue;
             var settingsManagerMock = new Mock<ISettingsManager>();
             settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
                 .Callback((DateTime x) => localDateSetting = x);
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object,
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IBackupManager>().Object,
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = false,
                 SelectedAccount = account
@@ -214,14 +217,15 @@ namespace MoneyFox.Business.Tests.ViewModels
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
             var account = new Fixture().Create<AccountViewModel>();
 
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.Setup(x => x.Save(account)).Returns(true);
-            accountRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new List<AccountViewModel>());
+            var accountRepositorySetup = new Mock<IAccountService>();
+            accountRepositorySetup.Setup(x => x.SaveAccount(account.Account));
+            accountRepositorySetup.Setup(c => c.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountRepositorySetup.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
 
-            var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object,
-                new Mock<IDialogService>().Object,
+            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IBackupManager>().Object)
+                new Mock<IBackupManager>().Object,
+                new Mock<IDialogService>().Object)
             {
                 SelectedAccount = account
             };

@@ -75,6 +75,8 @@
     <Compile Include="ViewModels\AccountListViewModelTests.cs" />
     <Compile Include="ViewModels\BackupViewModelTests.cs" />
     <Compile Include="ViewModels\BalanceViewModelTests.cs" />
+    <Compile Include="ViewModels\CategoryListViewModelTests.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\SettingsGeneralViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
