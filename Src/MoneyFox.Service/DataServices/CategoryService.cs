@@ -70,11 +70,12 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            return await categoryRepository
+            var list = await categoryRepository
                 .GetAll()
                 .OrderByName()
-                .SelectCategories()
                 .ToListAsync();
+
+            return list.Select(x => new Category(x));
         }
 
         /// <inheritdoc />

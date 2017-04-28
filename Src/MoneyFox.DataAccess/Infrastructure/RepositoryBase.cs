@@ -13,13 +13,13 @@ namespace MoneyFox.DataAccess.Infrastructure
     public abstract class RepositoryBase<T> where T : class
     {
         private ApplicationContext dataContext;
-        private readonly DbSet<T> dbSet;
+        protected readonly DbSet<T> DbSet;
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dataContext = dbFactory.Init().Result;
-            dbSet = dataContext.Set<T>();
+            DbSet = dataContext.Set<T>();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to create.</param>
         public virtual void Add(T entity)
         {
-            dbSet.Add(entity);
+            DbSet.Add(entity);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to update.</param>
         public virtual void Update(T entity)
         {
-            dbSet.Attach(entity);
+            DbSet.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
@@ -59,7 +59,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to delete.</param>
         public virtual void Delete(T entity)
         {
-            dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="where">Filter for items to delete.</param>
         public virtual void Delete(Expression<Func<T, bool>> where)
         {
-            var objects = dbSet.Where(where).AsEnumerable();
+            var objects = DbSet.Where(where).AsEnumerable();
             foreach (var obj in objects)
-                dbSet.Remove(obj);
+                DbSet.Remove(obj);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>selected Item.</returns>
         public virtual async Task<T> GetById(int id)
         {
-            return await dbSet.FindAsync(id);
+            return await DbSet.FindAsync(id);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>First item that matched.</returns>
         public async Task<T> Get(Expression<Func<T, bool>> where)
         {
-            return await dbSet.Where(where).FirstOrDefaultAsync();
+            return await DbSet.Where(where).FirstOrDefaultAsync();
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns></returns>
         public virtual IQueryable<T> GetAll()
         {
-            return dbSet;
+            return DbSet;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>Selected Items.</returns>
         public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return dbSet.Where(where);
+            return DbSet.Where(where);
         }
 
 

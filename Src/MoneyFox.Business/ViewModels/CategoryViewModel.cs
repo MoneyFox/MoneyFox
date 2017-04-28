@@ -26,7 +26,7 @@ namespace MoneyFox.Business.ViewModels
 
         public string Name
         {
-            get { return Category.Data.Name; }
+            get { return Category.Data?.Name; }
             set
             {
                 if (Category.Data.Name == value) return;
@@ -41,7 +41,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Notes
         {
-            get { return Category.Data.Notes; }
+            get { return Category.Data?.Notes; }
             set
             {
                 if (Category.Data.Notes == value) return;

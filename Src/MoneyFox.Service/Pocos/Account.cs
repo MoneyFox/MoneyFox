@@ -1,4 +1,5 @@
-﻿using MoneyFox.DataAccess.Entities;
+﻿using System.Collections.Generic;
+using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.Service.Pocos
 {
@@ -12,7 +13,13 @@ namespace MoneyFox.Service.Pocos
         /// </summary>
         public Account()
         {
-            Data = new AccountEntity();
+            Data = new AccountEntity
+            {
+                ChargedPayments = new List<PaymentEntity>(),
+                TargetedPayments = new List<PaymentEntity>(),
+                ChargedRecurringPayments = new List<RecurringPaymentEntity>(),
+                TargetedRecurringPayments = new List<RecurringPaymentEntity>()
+            };
         }
 
         /// <summary>

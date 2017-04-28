@@ -1,4 +1,6 @@
-﻿using MoneyFox.DataAccess.Entities;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
 
 namespace MoneyFox.DataAccess.Repositories
@@ -11,6 +13,16 @@ namespace MoneyFox.DataAccess.Repositories
     {
         public AccountRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+        }
+
+        public override async Task<AccountEntity> GetById(int id)
+        {
+            return await DbSet
+                .Include(x => x.ChargedPayments)
+                .Include(x => x.TargetedPayments)
+                .Include(x => x.ChargedRecurringPayments)
+                .Include(x => x.TargetedRecurringPayments)
+                .FirstAsync(x => x.Id == id);
         }
     }
 }

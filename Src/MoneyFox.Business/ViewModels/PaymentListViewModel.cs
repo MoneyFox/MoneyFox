@@ -111,7 +111,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountService.GetById(AccountId).Result.Data.Name;
+        public string Title { get; private set; }
 
         #endregion
 
@@ -153,6 +153,8 @@ namespace MoneyFox.Business.ViewModels
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
             var account = await accountService.GetById(AccountId);
+
+            Title = account.Data.Name;
 
             RelatedPayments = new ObservableCollection<PaymentViewModel>(
                 account.Data.ChargedPayments
