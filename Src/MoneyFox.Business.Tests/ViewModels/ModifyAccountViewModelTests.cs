@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq.Expressions;
 using System.Threading;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
@@ -31,7 +29,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
-                SelectedAccount = new AccountViewModel {Id = 3, Name = accountname}
+                SelectedAccount = new AccountViewModel(new Account()) {Id = 3, Name = accountname}
             };
 
             // Act / Assert
