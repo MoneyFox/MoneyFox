@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Remove="ViewModels\ModifyPaymentViewModelTest.cs" />
     <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>
