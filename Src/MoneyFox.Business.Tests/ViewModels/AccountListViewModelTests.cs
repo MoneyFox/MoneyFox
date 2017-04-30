@@ -32,7 +32,9 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             var deleteCalled = false;
 
-            accountServiceMock.Setup(x => x.DeleteAccount(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            accountServiceMock.Setup(x => x.DeleteAccount(It.IsAny<Account>()))
+                              .Callback(() => deleteCalled = true)
+                              .Returns(Task.CompletedTask);
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
@@ -46,7 +48,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 dialogServiceSetup.Object);
 
             // Act
-            viewModel.DeleteAccountCommand.Execute(new Account { Data = {Id = 3}});
+            viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
 
             // Assert
             deleteCalled.ShouldBeTrue();
@@ -71,7 +73,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 dialogServiceSetup.Object);
 
             // Act
-            viewModel.DeleteAccountCommand.Execute(new Account { Data = { Id = 3 } });
+            viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
 
             // Assert
             deleteCalled.ShouldBeFalse();

@@ -52,7 +52,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock.Setup(x => x.GetAccountCount())
-                .ReturnsAsync(1);
+                .ReturnsAsync(0);
 
             new AccountListViewActionViewModel(accountServiceMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }

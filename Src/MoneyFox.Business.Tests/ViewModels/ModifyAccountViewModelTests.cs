@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -102,20 +103,20 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             var accountList = new List<Account>();
 
-            var accountRepositorySetup = new Mock<IAccountService>();
-            accountRepositorySetup.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
-            accountRepositorySetup.Setup(c => c.GetNotExcludedAccounts())
-                .ReturnsAsync(accountList);
-            accountRepositorySetup.Setup(c => c.SaveAccount(It.IsAny<Account>()))
-                .Callback((Account acc) => { accountList.Add(acc); });
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(c => c.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(c => c.GetNotExcludedAccounts())
+                .ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(c => c.SaveAccount(It.IsAny<Account>()))
+                .Callback((Account acc) => { accountList.Add(acc); })
+                .Returns(Task.CompletedTask);
 
             var account = new AccountViewModel(new Account())
             {
-                Id = 1,
                 Name = "Test AccountViewModel"
             };
 
-            var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
+            var viewmodel = new ModifyAccountViewModel(accountServiceMock.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IBackupManager>().Object,
                 new Mock<IDialogService>().Object)
@@ -148,7 +149,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Callback((DateTime x) => localDateSetting = x);
 
             var viewmodel = new ModifyAccountViewModel(new Mock<IAccountService>().Object,
-                new Mock<ISettingsManager>().Object,
+                settingsManagerMock.Object,
                 new Mock<IBackupManager>().Object,
                 new Mock<IDialogService>().Object)
             {
