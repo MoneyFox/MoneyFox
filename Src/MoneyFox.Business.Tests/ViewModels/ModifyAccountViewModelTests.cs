@@ -213,7 +213,9 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             // Arrange
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
-            var account = new Fixture().Create<AccountViewModel>();
+            var fixture = new Fixture();
+            fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+            var account = fixture.Create<AccountViewModel>();
 
             var accountRepositorySetup = new Mock<IAccountService>();
             accountRepositorySetup.Setup(x => x.SaveAccount(account.Account));
