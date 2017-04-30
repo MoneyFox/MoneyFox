@@ -18,9 +18,6 @@ install:
     
 before_build:
 - msbuild src\MoneyFox.sln /t:restore
-
-test_script:
-- dotnet xunit
     
 build:
   verbosity: minimal
