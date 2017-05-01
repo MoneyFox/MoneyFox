@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Windows.Views;
 
@@ -29,6 +30,8 @@ namespace MoneyFox.Windows
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
+
+            ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 #if !DEBUG
             HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.IO;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Constants;
@@ -17,9 +18,11 @@ namespace MoneyFox.DataAccess
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
         internal DbSet<CategoryEntity> Categories { get; set; }
 
+        public static string DbPath { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={DatabaseConstants.DB_NAME}");
+            optionsBuilder.UseSqlite($"Filename={DbPath}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
