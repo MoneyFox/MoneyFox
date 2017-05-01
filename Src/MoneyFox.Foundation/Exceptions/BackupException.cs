@@ -2,6 +2,9 @@
 
 namespace MoneyFox.Foundation.Exceptions
 {
+    /// <summary>
+    ///     This Exception is thrown when something went wrong during backup the database.
+    /// </summary>
     public class BackupException : Exception
     {
         /// <summary>

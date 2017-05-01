@@ -8,7 +8,7 @@ namespace MoneyFox.Windows.Services
     {
         public Task<ModifyOperation> ShowEditSelectionDialog()
         {
-            throw new System.NotSupportedException();
+            throw new System.NotImplementedException();
         }
     }
 }

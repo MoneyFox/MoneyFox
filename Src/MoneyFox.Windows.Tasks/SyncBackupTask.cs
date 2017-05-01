@@ -1,12 +1,11 @@
 ﻿using Windows.ApplicationModel.Background;
-using MoneyFox.DataAccess;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MoneyFox.Business.Manager;
-using MoneyFox.Business.Services;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.Service;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -18,17 +17,12 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                MapperConfiguration.Setup();
-
-                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore());
-
-                var settingsManager = new SettingsManager(new WindowsUwpSettings());
-
-                var backupManager = new BackupManager(new OneDriveService(new MvxWindowsCommonFileStore(), new OneDriveAuthenticator()),
-                        new MvxWindowsCommonFileStore(), 
-                        dbManager, settingsManager,
-                        new Connectivity());
+                var backupManager = new BackupManager(
+                    new OneDriveService(new OneDriveAuthenticator()),
+                    new MvxWindowsCommonFileStore(),
+                    new SettingsManager(new WindowsUwpSettings()),
+                    new Connectivity(),
+                    new DbFactory());
 
                 await backupManager.DownloadBackup();
             }

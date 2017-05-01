@@ -7,6 +7,8 @@ using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Service;
+using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -16,14 +18,11 @@ using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
-using MoneyFox.Windows.Business;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Plugins.Email.WindowsUWP;
 
@@ -44,7 +43,6 @@ namespace MoneyFox.Windows
             //We have to do this here, since the loading via bootloader won't work for UWP projects
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
-            Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
             Mvx.RegisterType<ISettings, WindowsUwpSettings>();
             Mvx.RegisterType<IConnectivity, Connectivity>();
@@ -55,6 +53,7 @@ namespace MoneyFox.Windows
         {
             var cb = new ContainerBuilder();
 
+            cb.RegisterModule<ServiceModule>();
             cb.RegisterModule<BusinessModule>();
             cb.RegisterModule<WindowsModule>();
 
@@ -65,6 +64,7 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
             Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IModifyDialogService, ModifyDialogService>();
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();

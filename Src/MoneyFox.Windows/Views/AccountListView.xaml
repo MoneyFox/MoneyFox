@@ -5,12 +5,12 @@
                       xmlns:converter="using:MoneyFox.Windows.Converter"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:dataModels="using:MoneyFox.Foundation.DataModels"
                       xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
@@ -27,7 +27,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate"
-                      x:DataType="dataModels:AccountViewModel">
+                      x:DataType="viewModels:AccountViewModel">
             <StackPanel Margin="0,0,0,2"
                         Padding="4"
                         HorizontalAlignment="Stretch"

@@ -182,4 +182,9 @@ Src/MoneyFox.Droid/Resources/Resource.Designer.cs
 .vs/
 *.targets
 *.props
+<<<<<<< HEAD
+
+*.userprefs
+=======
 MoneyFox.Droid.nuget.targets
+>>>>>>> MoneyFox/master

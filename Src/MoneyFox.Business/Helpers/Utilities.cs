@@ -6,7 +6,10 @@ using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.Helpers
 {
-    public class Utilities
+    /// <summary>
+    ///     Utility methods
+    /// </summary>
+    public static class Utilities
     {
         /// <summary>
         ///     Returns the last day of the month
@@ -46,8 +49,7 @@ namespace MoneyFox.Business.Helpers
         /// <returns>Formated string.</returns>
         public static string RemoveGroupingSeparators(string amount)
         {
-            // TODO: remove ToCharArray
-            if (amount.ToCharArray().Any(Char.IsPunctuation))
+            if (amount.Any(char.IsPunctuation))
             {
                 int decimalSeparatorIndex = 0;
                 int punctuationCount = 0;

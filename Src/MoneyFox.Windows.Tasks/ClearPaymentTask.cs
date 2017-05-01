@@ -2,16 +2,12 @@
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Extensions;
-using MoneyFox.Business.Manager;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Service.DataServices;
 using MoneyFox.Windows.Business;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Autofac;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -19,29 +15,18 @@ namespace MoneyFox.Windows.Tasks
     {
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
 
-        private IPaymentManager paymentManager;
-        private IPaymentRepository paymentRepository;
+        private IPaymentService paymentService;
 
-        public void Run(IBackgroundTaskInstance taskInstance)
+        public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
 
             try
             {
-                MapperConfiguration.Setup();
+                var dbFactory = new DbFactory();
+                paymentService = new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory));
 
-                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore());
-
-                paymentRepository = new PaymentRepository(dbManager);
-
-                paymentManager = new PaymentManager(paymentRepository,
-                    new AccountRepository(dbManager),
-                    new RecurringPaymentRepository(dbManager),
-                    null);
-
-                ClearPayments();
-                PaymentRepository.IsCacheMarkedForReload = true;
+                await paymentService.SavePayments(await paymentService.GetUnclearedPayments(DateTime.Now));
 
                 // We have to access the settings object here directly without the settings helper since this thread is executed independently.
                 if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
@@ -55,15 +40,10 @@ namespace MoneyFox.Windows.Tasks
             }
         }
 
-        private void ClearPayments()
-        {
-            paymentManager.ClearPayments();
-        }
-
-        private void UpdateMainTile()
+        private async void UpdateMainTile()
         {
             var cashFlow =
-                new CashFlowDataProvider(paymentRepository)
+                await new CashFlowDataProvider(paymentService)
                     .GetCashFlow(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
 
             new TileUpdateService().UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);

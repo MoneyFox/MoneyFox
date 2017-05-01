@@ -4,8 +4,8 @@
     {
         public void ShowMenuAndFirstDetail()
         {
-            ShowViewModel<AccountListViewModel>();
             ShowViewModel<MenuViewModel>();
+            ShowViewModel<AccountListViewModel>();
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 using MoneyFox.Business.Extensions;
-using MoneyFox.Foundation.Messages;
+using MoneyFox.Business.Messages;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -9,10 +9,9 @@ namespace MoneyFox.Business.ViewModels
 {
     public abstract class StatisticViewModel : BaseViewModel
     {
-        private readonly IMvxMessenger messenger;
-
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
+
         private DateTime startDate;
         private DateTime endDate;
 
@@ -34,7 +33,6 @@ namespace MoneyFox.Business.ViewModels
         {
             StartDate = startDate;
             EndDate = endDate;
-            this.messenger = messenger;
 
             token = messenger.Subscribe<DateSelectedMessage>(message =>
             {

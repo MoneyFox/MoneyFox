@@ -1,9 +1,9 @@
 ﻿using System;
 using Foundation;
+using MoneyFox.Business.ViewModels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using UIKit;
-using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Ios.Views.AccountList
 {

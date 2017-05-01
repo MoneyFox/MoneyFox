@@ -2,6 +2,9 @@
 
 namespace MoneyFox.Business
 {
+    /// <summary>
+    ///     Entry piont to the Application for MvvmCross.
+    /// </summary>
     public class App : MvxApplication
     {
         /// <summary>
@@ -9,7 +12,7 @@ namespace MoneyFox.Business
         /// </summary>
         public override void Initialize()
         {
-            // Start the app with the Main View Model.
+            // Start the app.
             RegisterAppStart(new AppStart());
         }
     }

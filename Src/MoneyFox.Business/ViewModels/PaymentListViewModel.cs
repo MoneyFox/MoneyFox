@@ -2,13 +2,14 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -16,43 +17,39 @@ namespace MoneyFox.Business.ViewModels
 {
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly IAccountRepository accountRepository;
+        private readonly IAccountService accountService;
+        private readonly IPaymentService paymentService;
         private readonly IDialogService dialogService;
-        private readonly IPaymentManager paymentManager;
-        private readonly IPaymentRepository paymentRepository;
         private readonly ISettingsManager settingsManager;
-        private readonly IEndOfMonthManager endOfMonthManager;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IBackupManager backupManager;
         private readonly IModifyDialogService modifyDialogService;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private IBalanceViewModel balanceViewModel;
-        private IPaymentListViewActionViewModel viewActionViewModel;
         private int accountId;
 
-        public PaymentListViewModel(IAccountRepository accountRepository,
-            IPaymentRepository paymentRepository,
-            IPaymentManager paymentManager,
+        public PaymentListViewModel(IAccountService accountService,
+            IPaymentService paymentService,
             IDialogService dialogService,
             ISettingsManager settingsManager,
-            IEndOfMonthManager endOfMonthManager, 
-            IBackupManager backupManager, 
+            IBalanceCalculationManager balanceCalculationManager,
+            IBackupManager backupManager,
             IModifyDialogService modifyDialogService)
         {
-            this.paymentManager = paymentManager;
-            this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
+            this.accountService = accountService;
+            this.paymentService = paymentService;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
-            this.endOfMonthManager = endOfMonthManager;
+            this.balanceCalculationManager = balanceCalculationManager;
             this.backupManager = backupManager;
             this.modifyDialogService = modifyDialogService;
         }
 
         #region Properties
 
-        public bool IsPaymentsEmtpy => (RelatedPayments != null) && !RelatedPayments.Any();
+        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
         public int AccountId
         {
@@ -78,7 +75,8 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public IPaymentListViewActionViewModel ViewActionViewModel => viewActionViewModel;
+
+        public IPaymentListViewActionViewModel ViewActionViewModel { get; private set; }
 
         /// <summary>
         ///     Returns all PaymentViewModel who are assigned to this repository
@@ -113,7 +111,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title => accountRepository.FindById(AccountId).Name;
+        public string Title { get; private set; }
 
         #endregion
 
@@ -138,25 +136,31 @@ namespace MoneyFox.Business.ViewModels
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
         public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(DeletePayment);
-        
+
         #endregion
 
         public void Init(int id)
         {
             AccountId = id;
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, endOfMonthManager, AccountId);
-            viewActionViewModel = new PaymentListViewActionViewModel(accountRepository, paymentManager, settingsManager, dialogService, BalanceViewModel, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
+            ViewActionViewModel = new PaymentListViewActionViewModel(accountService, settingsManager, dialogService,
+                BalanceViewModel, AccountId);
         }
 
-        private void LoadPayments()
+        private async void LoadPayments()
         {
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            RelatedPayments = new ObservableCollection<PaymentViewModel>(paymentRepository
-                .GetList(x => (x.ChargedAccountId == AccountId) || (x.TargetAccountId == AccountId))
-                .OrderByDescending(x => x.Date)
-                .ToList());
+            var account = await accountService.GetById(AccountId);
+
+            Title = account.Data.Name;
+
+            RelatedPayments = new ObservableCollection<PaymentViewModel>(
+                account.Data.ChargedPayments
+                    .Concat(account.Data.TargetedPayments)
+                    .OrderByDescending(x => x.Date)
+                    .Select(x => new PaymentViewModel(new Payment(x))));
 
             foreach (var payment in RelatedPayments)
             {
@@ -167,7 +171,7 @@ namespace MoneyFox.Business.ViewModels
                 CultureInfo.CurrentUICulture,
                 s => s.Date.ToString("D", CultureInfo.InvariantCulture),
                 s => s.Date,
-                itemClickCommand: EditPaymentCommand, itemLongClickCommand:OpenContextMenuCommand);
+                itemClickCommand: EditPaymentCommand, itemLongClickCommand: OpenContextMenuCommand);
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
                 DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
@@ -183,7 +187,7 @@ namespace MoneyFox.Business.ViewModels
         {
             ShowViewModel<ModifyPaymentViewModel>(new {paymentId = payment.Id});
         }
-        
+
         private async void OpenContextMenu(PaymentViewModel payment)
         {
             var result = await modifyDialogService.ShowEditSelectionDialog();
@@ -205,15 +209,12 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            var deletePaymentSucceded = await paymentManager.DeletePayment(payment);
-            var removePaymentAmountSuceed = paymentManager.RemovePaymentAmount(payment);
-            if (deletePaymentSucceded && removePaymentAmountSuceed)
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await paymentService.DeletePayment(payment.Payment);
+
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            }
             LoadCommand.Execute();
         }
     }
