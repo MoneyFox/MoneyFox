@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using MoneyFox.Business.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+﻿using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -29,9 +28,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        private void LoadStatisticData()
+        private async void LoadStatisticData()
         {
-            var items = spreadingDataProvider.GetValues(StartDate, EndDate).ToList();
+            var items = await spreadingDataProvider.GetValues(StartDate, EndDate);
             StatisticItems.Clear();
             StatisticItems.AddRange(items);
         }

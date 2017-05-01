@@ -1,6 +1,6 @@
-﻿using MoneyFox.Foundation.DataModels;
+﻿using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
+using MoneyFox.Service.DataServices;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
@@ -10,11 +10,11 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
-        /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" />.</param>
+        /// <param name="categoryService">An instance of <see cref="ICategoryService}" />.</param>
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public CategoryListViewModel(ICategoryRepository categoryRepository, IModifyDialogService modifyDialogService, IDialogService dialogService)
-            : base(categoryRepository, modifyDialogService, dialogService)
+        public CategoryListViewModel(ICategoryService categoryService, IModifyDialogService modifyDialogService, IDialogService dialogService)
+            : base(categoryService, modifyDialogService, dialogService)
         {
         }
 

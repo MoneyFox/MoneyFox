@@ -3,7 +3,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -19,7 +18,7 @@ namespace MoneyFox.Windows.Views.UserControls
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void EditCategory(object sender, RoutedEventArgs e)

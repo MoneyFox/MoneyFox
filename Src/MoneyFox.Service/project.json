@@ -1,0 +1,15 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "Autofac": "4.5.0",
+    "Microsoft.EntityFrameworkCore": "1.1.1",
+    "Microsoft.OneDriveSDK": "2.0.6",
+    "MvvmCross.Plugin.File": "4.4.0",
+    "NETStandard.Library": "1.6.1"
+  },
+  "frameworks": {
+    "netstandard1.3": {
+      "imports": "portable-net45+win8+wpa81"
+    }
+  }
+}

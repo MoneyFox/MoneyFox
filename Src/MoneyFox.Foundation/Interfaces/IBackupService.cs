@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Foundation.Interfaces
@@ -19,8 +20,9 @@ namespace MoneyFox.Foundation.Interfaces
         /// <summary>
         ///     Uploads a copy of the current database.
         /// </summary>
+        /// <param name="dataToUpload">Stream of data to upload.</param>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
-        Task<bool> Upload();
+        Task<bool> Upload(Stream dataToUpload);
 
         /// <summary>
         ///     Restores the file with the passed name
@@ -28,7 +30,7 @@ namespace MoneyFox.Foundation.Interfaces
         /// <param name="backupname">Name of the backup to restore</param>
         /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
-        Task Restore(string backupname, string dbName);
+        Task<Stream> Restore(string backupname, string dbName);
 
         /// <summary>
         ///     Gets a list with all the filenames who are available in the backup folder.

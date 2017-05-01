@@ -13,6 +13,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
@@ -46,6 +47,7 @@ namespace MoneyFox.Droid
         {
             var cb = new ContainerBuilder();
 
+            cb.RegisterModule<ServiceModule>();
             cb.RegisterModule<BusinessModule>();
             cb.RegisterModule<DroidModule>();
 

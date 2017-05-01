@@ -11,7 +11,7 @@ namespace MoneyFox.Ios
 
 	    public void StartBackgroundTasks()
 	    {
-	        throw new NotImplementedException();
+	        //throw new NotImplementedException();
 	    }
 
 	    public void StartBackupSyncTask()

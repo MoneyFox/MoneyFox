@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
@@ -11,7 +11,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         {
             IncludedAccounts = new ObservableCollection<AccountViewModel>
             {
-                new AccountViewModel
+                new AccountViewModel(new Account())
                 {
                     Name = "Sparkonto",
                     CurrentBalance = 1256.25,
@@ -22,15 +22,16 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             BalanceViewModel = new DesignTimeBalanceViewModel();
         }
 
+        public AccountViewModel SelectedAccountViewModel { get; set; }
+
         public ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
         public ObservableCollection<AccountViewModel> ExcludedAccounts { get; set; }
         public bool IsAllAccountsEmpty { get; set; }
         public bool IsExcludedAccountsEmpty { get; set; }
-        public AccountViewModel SelectedAccountViewModel { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public IViewActionViewModel ViewActionViewModel { get; }
         public MvxCommand LoadedCommand => new MvxCommand(() => { });
-        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>((vm) => { });
-        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>((vm) => { });
+        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(vm => { });
+        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(vm => { });
     }
 }

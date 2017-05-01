@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using MoneyFox.Business.Tests.Fixtures;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
 using Moq;
 using Xunit;
 
@@ -16,7 +14,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
                 .GoToAddIncomeCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -28,7 +26,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
                 .GoToAddExpenseCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -40,7 +38,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountRepository>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
                 .GoToAddTransferCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -52,84 +50,71 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void IsAddIncomeEnabled_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>());
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
 
         [Fact]
         public void IsAddIncomeEnabled_OneAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>()
-                {
-                    new AccountViewModel()
-                });
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
         }
 
         [Fact]
         public void IsAddExpenseEnabled_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>());
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
 
         [Fact]
         public void IsAddExpenseEnabled_OneAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>()
-                {
-                    new AccountViewModel()
-                });
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
         }
 
         [Fact]
         public void IsTransferAvailable_EmptyData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>());
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
         public void IsTransferAvailable_OneAccountInData_NotAvailable()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>
-                {
-                    new AccountViewModel()
-                });
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
         public void IsTransferAvailable_TwoAccountInData_Available()
         {
-            var accountRepositoryMock = new Mock<IAccountRepository>();
-            accountRepositoryMock.Setup(x => x.GetList(null))
-                .Returns(new List<AccountViewModel>
-                {
-                    new AccountViewModel(),
-                    new AccountViewModel()
-                });
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAccountCount())
+                .ReturnsAsync(2);
 
-            new AccountListViewActionViewModel(accountRepositoryMock.Object).IsTransferAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }

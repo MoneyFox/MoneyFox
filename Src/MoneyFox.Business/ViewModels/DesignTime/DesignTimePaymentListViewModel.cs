@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Foundation.DataModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
@@ -22,8 +22,8 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             new DateListGroup<DateListGroup<PaymentViewModel>>("Januar 1992")
             {
                 new DateListGroup<PaymentViewModel>("31.1.1992") {
-                new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
-                new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}}
+                new PaymentViewModel(new Payment()) {Amount = 123, Category = new CategoryViewModel(new Category()) {Name = "Beer"}},
+                new PaymentViewModel(new Payment()) {Amount = 123, Category = new CategoryViewModel(new Category()) {Name = "Beer"}}
                 }
             }
         };

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
-using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using Xunit;
 
@@ -15,295 +15,85 @@ namespace MoneyFox.Business.Tests.StatisticProvider
     public class CategorySpreadingProviderTests
     {
         [Fact]
-        public void GetValues_NullDependency_NullReferenceException()
+        public async void GetValues_NullDependency_NullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(() => new CategorySpreadingDataProvider(null).GetValues(DateTime.Today, DateTime.Today));
+            await Assert.ThrowsAsync<NullReferenceException>(
+                () => new CategorySpreadingDataProvider(null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [Fact]
-        public void GetValues_InitializedData_IgnoreTransfers()
+        public void GetValues_CorrectSums()
         {
-            //Setup
-            var testCat = new CategoryViewModel {Id = 2, Name = "Ausgehen"};
+            // Arrange
+            var testCat1 = new CategoryEntity {Id = 2, Name = "Ausgehen"};
+            var testCat2 = new CategoryEntity {Id = 3, Name = "Rent"};
+            var testCat3 = new CategoryEntity {Id = 4, Name = "Food"};
 
-            var paymentList = new List<PaymentViewModel>
+            var paymentList = new List<Payment>
             {
-                new PaymentViewModel
+                new Payment
                 {
-                    Id = 1,
-                    Type = PaymentType.Income,
-                    Date = DateTime.Today,
-                    Amount = 60,
-                    Category = testCat,
-                    CategoryId = 1
+                    Data =
+                    {
+                        Id = 1,
+                        Type = PaymentType.Income,
+                        Date = DateTime.Today,
+                        Amount = 60,
+                        Category = testCat1,
+                        CategoryId = testCat1.Id
+                    }
                 },
-                new PaymentViewModel
+                new Payment
                 {
-                    Id = 2,
-                    Type = PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 90,
-                    Category = testCat,
-                    CategoryId = 1
+                    Data =
+                    {
+                        Id = 2,
+                        Type = PaymentType.Expense,
+                        Date = DateTime.Today,
+                        Amount = 90,
+                        Category = testCat1,
+                        CategoryId = testCat1.Id
+                    }
                 },
-                new PaymentViewModel
+                new Payment
                 {
-                    Id = 3,
-                    Type = PaymentType.Transfer,
-                    Date = DateTime.Today,
-                    Amount = 40,
-                    Category = testCat,
-                    CategoryId = 1
+                    Data =
+                    {
+                        Id = 3,
+                        Type = PaymentType.Expense,
+                        Date = DateTime.Today,
+                        Amount = 10,
+                        Category = testCat3,
+                        CategoryId = testCat3.Id
+                    }
+                },
+                new Payment
+                {
+                    Data =
+                    {
+                        Id = 4,
+                        Type = PaymentType.Expense,
+                        Date = DateTime.Today,
+                        Amount = 90,
+                        Category = testCat2,
+                        CategoryId = testCat2.Id
+                    }
                 }
             };
 
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>()))
-                .Returns((Expression<Func<PaymentViewModel, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(x => x.GetPaymentsWithoutTransfer(It.IsAny<DateTime>(), It.IsAny<DateTime>()))
+                .Returns(Task.FromResult<IEnumerable<Payment>>(paymentList));
 
-            //Excution
-            var result =
-                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
-                    DateTime.Today.AddDays(3)).ToList();
+            // Act
+            var provider = new CategorySpreadingDataProvider(paymentService.Object);
+            var result =  provider.GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).Result.ToList();
 
-            //Assertion
-            result.Count.ShouldBe(1);
-            result.First().Value.ShouldBe(30);
-        }
-
-        [Fact]
-        public void GetValues_InitializedData_CalculateIncome()
-        {
-            //Setup
-
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>())).Returns(new List<CategoryViewModel>
-            {
-                new CategoryViewModel {Id = 1, Name = "Einkaufen"},
-                new CategoryViewModel {Id = 2, Name = "Ausgehen"},
-                new CategoryViewModel {Id = 3, Name = "Foo"}
-            });
-
-            var categoryRepo = categoryRepoSetup.Object;
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 1,
-                    Type = PaymentType.Income,
-                    Date = DateTime.Today,
-                    Amount = 60,
-                    Category = categoryRepo.GetList().ToList()[0],
-                    CategoryId = 1
-                },
-                new PaymentViewModel
-                {
-                    Id = 2,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 90,
-                    Category = categoryRepo.GetList().ToList()[0],
-                    CategoryId = 1
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 40,
-                    Category = categoryRepo.GetList().ToList()[1],
-                    CategoryId = 2
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = PaymentType.Income,
-                    Date = DateTime.Today,
-                    Amount = 66,
-                    Category = categoryRepo.GetList().ToList()[2],
-                    CategoryId = 3
-                }
-            });
-
-            //Excution
-            var result =
-                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
-                    DateTime.Today.AddDays(3)).ToList();
-
-            //Assertion
-            result.Count.ShouldBe(2);
-            result[0].Value.ShouldBe(40);
-            result[1].Value.ShouldBe(30);
-        }
-
-        [Fact]
-        public void GetValues_InitializedData_HandleDateCorrectly()
-        {
-            //Setup
-            var testList = new List<CategoryViewModel>
-            {
-                new CategoryViewModel {Id = 1, Name = "Einkaufen"},
-                new CategoryViewModel {Id = 2, Name = "Ausgehen"},
-                new CategoryViewModel {Id = 3, Name = "Bier"}
-            };
-
-            var paymentList = new List<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 1,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today.AddDays(-5),
-                    Amount = 60,
-                    Category = testList[0],
-                    CategoryId = 1
-                },
-                new PaymentViewModel
-                {
-                    Id = 2,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 90,
-                    Category = testList[1],
-                    CategoryId = 2
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today.AddDays(5),
-                    Amount = 40,
-                    Category = testList[2],
-                    CategoryId = 3
-                }
-            };
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>()))
-                .Returns((Expression<Func<PaymentViewModel, bool>> filter) => paymentList.Where(filter.Compile()).ToList());
-
-            //Excution
-            var result =
-                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
-                    DateTime.Today.AddDays(3)).ToList();
-
-            //Assertion
-            result.Count.ShouldBe(1);
-            result.First().Value.ShouldBe(90);
-        }
-
-        [Fact]
-        public void GetValues_InitializedData_AddOtherItem()
-        {
-            //Setup
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>())).Returns(new List<CategoryViewModel>
-            {
-                new CategoryViewModel {Id = 1, Name = "Einkaufen"},
-                new CategoryViewModel {Id = 2, Name = "Ausgehen"},
-                new CategoryViewModel {Id = 3, Name = "Bier"},
-                new CategoryViewModel {Id = 4, Name = "Wein"},
-                new CategoryViewModel {Id = 5, Name = "Wodka"},
-                new CategoryViewModel {Id = 6, Name = "Limoncella"},
-                new CategoryViewModel {Id = 7, Name = "Spagetthi"},
-                new CategoryViewModel {Id = 8, Name = "Tomaten"}
-            });
-
-            var categoryRepo = categoryRepoSetup.Object;
-
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.Setup(x => x.GetList(It.IsAny<Expression<Func<PaymentViewModel, bool>>>())).Returns(new List<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 1,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 10,
-                    Category = categoryRepo.GetList().ToList()[0],
-                    CategoryId = 1
-                },
-                new PaymentViewModel
-                {
-                    Id = 2,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 20,
-                    Category = categoryRepo.GetList().ToList()[1],
-                    CategoryId = 2
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 30,
-                    Category = categoryRepo.GetList().ToList()[2],
-                    CategoryId = 3
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 40,
-                    Category = categoryRepo.GetList().ToList()[3],
-                    CategoryId = 4
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 50,
-                    Category = categoryRepo.GetList().ToList()[4],
-                    CategoryId = 5
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 60,
-                    Category = categoryRepo.GetList().ToList()[5],
-                    CategoryId = 6
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 70,
-                    Category = categoryRepo.GetList().ToList()[6],
-                    CategoryId = 7
-                },
-                new PaymentViewModel
-                {
-                    Id = 3,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 80,
-                    Category = categoryRepo.GetList().ToList()[7],
-                    CategoryId = 8
-                }
-            });
-
-            //Excution
-            var result =
-                new CategorySpreadingDataProvider(paymentRepoSetup.Object).GetValues(DateTime.Today.AddDays(-3),
-                    DateTime.Today.AddDays(3)).ToList();
-
-            //Assertion
-            result.Count.ShouldBe(7);
-            result[0].Value.ShouldBe(80);
-            result[1].Value.ShouldBe(70);
-            result[2].Value.ShouldBe(60);
-            result[3].Value.ShouldBe(50);
-            result[4].Value.ShouldBe(40);
-            result[5].Value.ShouldBe(30);
-            result[6].Value.ShouldBe(30);
+            // Assert
+            Assert.Equal(3, result.Count);
+            Assert.Equal(90, result[0].Value);
+            Assert.Equal(30, result[1].Value);
+            Assert.Equal(10, result[2].Value);
         }
     }
 }

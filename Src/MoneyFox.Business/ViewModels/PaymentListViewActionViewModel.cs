@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Linq;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -16,22 +15,19 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IPaymentManager paymentManager;
+        private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly int accountId;
 
-        public PaymentListViewActionViewModel(IAccountRepository accountRepository,
-            IPaymentManager paymentManager,
+        public PaymentListViewActionViewModel(IAccountService accountService,
             ISettingsManager settingsManager, 
             IDialogService dialogService, 
             IBalanceViewModel balanceViewModel, 
             int accountId)
         {
-            this.accountRepository = accountRepository;
-            this.paymentManager = paymentManager;
+            this.accountService = accountService;
             this.settingsManager = settingsManager;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
@@ -52,36 +48,25 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => accountRepository.GetList().Count() > 1;
+        public bool IsTransferAvailable => accountService.GetAccountCount().Result > 1;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => accountRepository.GetList().Any();
+        public bool IsAddIncomeAvailable => accountService.GetAccountCount().Result > 0;
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => accountRepository.GetList().Any();
+        public bool IsAddExpenseAvailable => accountService.GetAccountCount().Result > 0;
 
         private async void DeleteAccount()
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                var accountToDelete = accountRepository.FindById(accountId);
-
-                paymentManager.DeleteAssociatedPaymentsFromDatabase(accountToDelete);
-
-                if (accountRepository.Delete(accountToDelete))
-                {
-                    settingsManager.LastDatabaseUpdate = DateTime.Now;
-                    Close(this);
-                }
-                else
-                {
-                    await
-                        dialogService.ShowConfirmMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                }
+                await accountService.DeleteAccount(await accountService.GetById(accountId));
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
+                Close(this);
             }
             balanceViewModel.UpdateBalanceCommand.Execute();
         }

@@ -4,46 +4,51 @@ using MoneyFox.Business;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
-using MvvmCross.iOS.Support.JASidePanels;
-using MvvmCross.iOS.Support.SidePanels;
+using MvvmCross.iOS.Support.XamarinSidebar;
 using MvvmCross.iOS.Views.Presenters;
-using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
+using UIKit;
 
-namespace MoneyFox.Ios {
-    public class Setup : MvxIosSetup {
+namespace MoneyFox.Ios 
+{
+    public class Setup : MvxIosSetup 
+	{
+		public Setup(MvxApplicationDelegate applicationDelegate, UIWindow window)
+			: base(applicationDelegate, window)
+		{
+		}
 
-        public Setup(MvxApplicationDelegate appDelegate, IMvxIosViewPresenter presenter)
-			: base(appDelegate, presenter){}
+		public Setup(MvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
+			: base(applicationDelegate, presenter)
+		{
+		}
 
-        protected override IMvxIoCProvider CreateIocProvider()
-        {
-            var cb = new ContainerBuilder();
+		protected override IMvxTrace CreateDebugTrace()
+		{
+			return new DebugTrace();
+		}
 
-            cb.RegisterModule<BusinessModule>();
-            cb.RegisterModule<IosModule>();
+		protected override IMvxIosViewPresenter CreatePresenter()
+		{
+			return new MvxSidebarPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
+		}
 
-            return new AutofacMvxIocProvider(cb.Build());
-        }
+		protected override IMvxApplication CreateApp()
+		{
+			Strings.Culture = new Localize().GetCurrentCultureInfo();
 
-        protected override void InitializeFirstChance() {
-            base.InitializeFirstChance();
+			return new App();
+		}
 
-            Mvx.RegisterSingleton<MvxPresentationHint>(() => new MvxPanelPopToRootPresentationHint(MvxPanelEnum.Center));
-        }
+		protected override IMvxIoCProvider CreateIocProvider()
+		{
+			var cb = new ContainerBuilder();
 
-        protected override IMvxIosViewPresenter CreatePresenter() {
-            return new MvxSidePanelsPresenter((MvxApplicationDelegate)ApplicationDelegate, Window);
-        }
+			cb.RegisterModule<BusinessModule>();
+			cb.RegisterModule<IosModule>();
 
-        protected override IMvxApplication CreateApp() {
-            Strings.Culture = new Localize().GetCurrentCultureInfo();
-
-            return new App();
-        }
-
-        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
-
+			return new AutofacMvxIocProvider(cb.Build());
+		}
     }
 }

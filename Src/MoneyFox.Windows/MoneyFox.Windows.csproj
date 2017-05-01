@@ -128,7 +128,9 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
@@ -136,18 +138,19 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\Shortcuts\Tile.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\Tile.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\TileManager.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
-    <Compile Include="Views\AppShell.xaml.cs">
-      <DependentUpon>AppShell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountListView.xaml.cs">
+      <DependentUpon>AccountListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AppShell.xaml.cs">
+      <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -161,11 +164,11 @@
     <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExtendedSplashScreen.xaml.cs">
+      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AccountListView.xaml.cs">
-      <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
@@ -184,9 +187,6 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExtendedSplashScreen.xaml.cs">
-      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
@@ -212,11 +212,11 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\SettingsPersonalizationUserControl.xaml.cs">
-      <DependentUpon>SettingsPersonalizationUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\SettingsGeneralUserControl.xaml.cs">
       <DependentUpon>SettingsGeneralUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SettingsPersonalizationUserControl.xaml.cs">
+      <DependentUpon>SettingsPersonalizationUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\SettingsSecurityUserControl.xaml.cs">
       <DependentUpon>SettingsSecurityUserControl.xaml</DependentUpon>
@@ -324,10 +324,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AppShell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Style\AppStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -354,6 +350,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AccountListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BackupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -363,18 +367,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\LoadingDialog.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LoginView.xaml">
+    <Page Include="Views\ExtendedSplashScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccountListView.xaml">
+    <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -383,8 +387,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ModifyCategoryView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ModifyPaymentView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -401,10 +405,6 @@
     <Page Include="Views\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ExtendedSplashScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatisticCashFlowView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -438,11 +438,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\SettingsPersonalizationUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsGeneralUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\SettingsGeneralUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsPersonalizationUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -464,9 +464,6 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.18.0">
-      <Name>SQLite for Universal Windows Platform</Name>
-    </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
@@ -479,19 +476,24 @@
       <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+      <Project>{600fc746-6968-489f-9471-a37a6d312812}</Project>
+      <Name>MoneyFox.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
+      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
+      <Name>MoneyFox.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{10036117-bb05-427c-bdc2-f2ceb1e974b1}</Project>
+      <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
       <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
-      <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
-      <Name>MoneyFox.Windows.Tasks</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

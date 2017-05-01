@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -14,7 +13,7 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class ModifyCategoryViewModel : BaseViewModel
     {
-        private readonly ICategoryRepository categoryRepository;
+        private readonly ICategoryService categoryService;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
@@ -22,11 +21,11 @@ namespace MoneyFox.Business.ViewModels
         private CategoryViewModel selectedCategory;
         private bool isEdit;
 
-        public ModifyCategoryViewModel(ICategoryRepository categoryRepository, IDialogService dialogService,
+        public ModifyCategoryViewModel(ICategoryService categoryService, IDialogService dialogService,
             ISettingsManager settingsManager, 
             IBackupManager backupManager)
         {
-            this.categoryRepository = categoryRepository;
+            this.categoryService = categoryService;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
@@ -90,17 +89,17 @@ namespace MoneyFox.Business.ViewModels
         ///     Initialize the ViewModel
         /// </summary>
         /// <param name="categoryId">Pass the ID of the category to edit. If this is 0 the VM changes to Creation mode</param>
-        public void Init(int categoryId)
+        public async void Init(int categoryId)
         {
             if (categoryId == 0)
             {
                 IsEdit = false;
-                SelectedCategory = new CategoryViewModel();
+                SelectedCategory = new CategoryViewModel(new Category());
             }
             else
             {
                 IsEdit = true;
-                SelectedCategory = categoryRepository.FindById(categoryId);
+                SelectedCategory = new CategoryViewModel(await categoryService.GetById(categoryId));
             }
         }
 
@@ -109,12 +108,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         /// <param name="isEdit">Indicates if a CategoryViewModel is being edited or created</param>
         /// <param name="selectedCategoryId">If we are editing a CategoryViewModel this is its Id</param>
-        public void Init(bool isEdit, int selectedCategoryId)
+        public async void Init(bool isEdit, int selectedCategoryId)
         {
             IsEdit = isEdit;
             SelectedCategory = selectedCategoryId != 0
-                ? categoryRepository.GetList(x => x.Id == selectedCategoryId).First()
-                : new CategoryViewModel();
+                ? new CategoryViewModel(await categoryService.GetById(selectedCategoryId))
+                : new CategoryViewModel(new Category());
         }
 
         private async void SaveCategory()
@@ -125,42 +124,36 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
-            if (!IsEdit &&
-                categoryRepository.GetList(
-                        a => string.Equals(a.Name, SelectedCategory.Name, StringComparison.CurrentCultureIgnoreCase))
-                    .Any())
+            if (!IsEdit && await categoryService.CheckIfNameAlreadyTaken(SelectedCategory.Name))
             {
                 await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            if (categoryRepository.Save(SelectedCategory))
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+            await categoryService.SaveCategory(SelectedCategory.Category);
+            settingsManager.LastDatabaseUpdate = DateTime.Now;
 
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+            backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-                Close(this);
-            }
+            Close(this);
         }
 
         private void DeleteCategory()
         {
-            if (categoryRepository.Delete(SelectedCategory))
-            {
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+        categoryService.DeleteCategory(SelectedCategory.Category);
+        settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
+        backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            }
-            Close(this);
+            
+        Close(this);
         }
 
-        private void Cancel()
+        private async void Cancel()
         {
-            SelectedCategory = categoryRepository.FindById(SelectedCategory.Id);
+            SelectedCategory = new CategoryViewModel(await categoryService.GetById(SelectedCategory.Id));
             Close(this);
         }
     }

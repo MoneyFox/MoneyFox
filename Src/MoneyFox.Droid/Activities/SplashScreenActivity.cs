@@ -1,5 +1,8 @@
+using System;
+using System.IO;
 using Android.App;
 using Android.Content.PM;
+using MoneyFox.Foundation.Constants;
 using MvvmCross.Droid.Views;
 
 namespace MoneyFox.Droid.Activities
@@ -14,6 +17,8 @@ namespace MoneyFox.Droid.Activities
     {
         public SplashScreenActivity() : base(Resource.Layout.activity_splash_screen)
         {
+            DataAccess.ApplicationContext.DbPath =
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
         }
     }
 }
