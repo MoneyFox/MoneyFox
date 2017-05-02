@@ -3,7 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Business.Extensions;
+using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
@@ -20,25 +21,25 @@ namespace MoneyFox.Business.Manager
     {
         private readonly IBackupService backupService;
 
-        private readonly IDatabaseManager databaseManager;
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
         private readonly IConnectivity connectivity;
+        private readonly IDbFactory dbFactory;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
-            IDatabaseManager databaseManager,
             ISettingsManager settingsManager,
-            IConnectivity connectivity)
+            IConnectivity connectivity,
+            IDbFactory dbFactory)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
-            this.databaseManager = databaseManager;
             this.settingsManager = settingsManager;
             this.connectivity = connectivity;
+            this.dbFactory = dbFactory;
         }
 
         /// <summary>
@@ -143,31 +144,32 @@ namespace MoneyFox.Business.Manager
         /// <summary>
         ///     Creates a new backup date.
         /// </summary>
+        /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
         public async Task<bool> CreateNewBackup()
         {
-            if (!connectivity.IsConnected) return false;
+            if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
-            return await backupService.Upload();
+            using (var dbstream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
+            {
+                return await backupService.Upload(dbstream);
+            }
         }
 
         /// <summary>
         ///     Restores an existing backup from the backupservice.
-        ///     If it was an old backup, it will delete the existing db an make an migration.
-        ///     After the restore it will perform a reload of the data so that the cache works with the new data.
         /// </summary>
         public async Task RestoreBackup()
         {
             if (!connectivity.IsConnected) return;
 
-            await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
+            var backupStream = await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
+            fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
 
             var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
 
             if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
 
-            databaseManager.CreateDatabase();
-
-            PaymentRepository.IsCacheMarkedForReload = true;
+            await dbFactory.Init();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }

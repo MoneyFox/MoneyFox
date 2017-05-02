@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using Xunit;
 
@@ -19,260 +18,247 @@ namespace MoneyFox.Business.Tests.ViewModels
     public class ModifyCategoryViewModelTests
     {
         [Fact]
-        public void Title_EditCategory_CorrectTitle()
+        public void Cancel_SelectedCategoryReseted()
         {
-            var categoryName = "groceries";
+            // Arrange
+            string name = "Cateory";
+            var baseCategory = new Category {Data = {Id = 5, Name = name}};
+            var category = new Category {Data = {Id = 5, Name = name}};
+
+            var categoryServiceMock = new Mock<ICategoryService>();
+            categoryServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(baseCategory);
 
             var settingsManagerMock = new Mock<ISettingsManager>();
-            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, 
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+
+            var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        settingsManagerMock.Object,
+                                                        new Mock<IBackupManager>().Object)
             {
                 IsEdit = true,
-                SelectedCategory = new CategoryViewModel { Id = 9, Name = categoryName }
+                SelectedCategory = new CategoryViewModel(category)
             };
 
-            viewmodel.Title.ShouldBe(string.Format(Strings.EditCategoryTitle, categoryName));
-        }
+            // Act
+            viewmodel.SelectedCategory.Name = "foooo";
+            viewmodel.CancelCommand.Execute();
 
-        [Fact]
-        public void Title_AddCategory_CorrectTitle()
-        {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false
-            };
-
-            viewmodel.Title.ShouldBe(Strings.AddCategoryTitle); 
-        }
-
-        [Fact]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names()
-        {
-            var categoryList = new List<CategoryViewModel>();
-
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
-            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>()))
-                .Returns(categoryList);
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
-                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var categoryPrimary = new CategoryViewModel
-            {
-                Id = 1,
-                Name = "Test CategoryViewModel"
-            };
-            var categorySecondary = new CategoryViewModel
-            {
-                Name = "Test CategoryViewModel"
-            };
-            categoryList.Add(categoryPrimary);
-
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object,
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false,
-                SelectedCategory = categorySecondary
-            };
-
-            viewmodel.SaveCommand.Execute();
-            categoryList.Count.ShouldBe(1);
-        }
-
-        [Fact]
-        public void SaveCommand_Does_Not_Allow_Duplicate_Names2()
-        {
-            var categoryList = new List<CategoryViewModel>();
-
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
-            categoryRepositorySetup.Setup(c => c.GetList(It.IsAny<Expression<Func<CategoryViewModel, bool>>>()))
-                .Returns(categoryList);
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
-                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var categoryPrimary = new CategoryViewModel
-            {
-                Id = 1,
-                Name = "TeSt CATEGory"
-            };
-            var categorySecondary = new CategoryViewModel
-            {
-                Name = "Test CategoryViewModel"
-            };
-            categoryList.Add(categoryPrimary);
-
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false,
-                SelectedCategory = categorySecondary
-            };
-
-            viewmodel.SaveCommand.Execute();
-            categoryList.Count.ShouldBe(1);
-        }
-
-        [Fact]
-        public void SaveCommand_SavesCategory()
-        {
-            var categoryList = new List<CategoryViewModel>();
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
-
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
-                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var categoryPrimary = new CategoryViewModel
-            {
-                Id = 1,
-                Name = "Test CategoryViewModel",
-                Notes = "Test Note"
-            };
-
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false,
-                SelectedCategory = categoryPrimary
-            };
-
-            viewmodel.SaveCommand.Execute();
-            categoryList.Count.ShouldBe(1);
-        }
-
-        [Fact]
-        public void SaveCategory_UpdateTimeStamp()
-        {
-            var category = new CategoryViewModel { Id = 0, Name = "CategoryViewModel", Notes = "" };
-
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
-
-            categoryRepositorySetup.SetupAllProperties();
-            categoryRepositorySetup.Setup(x => x.Save(category)).Returns(true);
-            categoryRepositorySetup.Setup(x => x.GetList(null)).Returns(() => new ObservableCollection<CategoryViewModel>());
-
-            var localDateSetting = DateTime.MinValue;
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>()).Callback((DateTime x) => localDateSetting = x);
-            
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = false,
-                SelectedCategory = category
-            };
-
-            viewmodel.SaveCommand.Execute();
-
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+            // Assert
+            viewmodel.SelectedCategory.Name.ShouldBe(name);
         }
 
         [Fact]
         public void DeleteCategory_DeletesCategory()
         {
-            var categoryList = new List<CategoryViewModel>();
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
+            // Arrange
+            var categoryList = new List<Category>();
+            var categoryServiceMock = new Mock<ICategoryService>();
 
-            categoryRepositorySetup.Setup(c => c.Save(It.IsAny<CategoryViewModel>()))
-                .Callback((CategoryViewModel cat) => { categoryList.Add(cat); });
-            categoryRepositorySetup.Setup(c => c.Delete(It.IsAny<CategoryViewModel>()))
-                .Callback((CategoryViewModel cat) => { categoryList.Remove(cat); });
+            categoryServiceMock.Setup(c => c.SaveCategory(It.IsAny<Category>()))
+                               .Callback((Category cat) => { categoryList.Add(cat); });
+            categoryServiceMock.Setup(c => c.DeleteCategory(It.IsAny<Category>()))
+                               .Callback((Category cat) => { categoryList.Remove(cat); });
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var categoryPrimary = new CategoryViewModel
+            var categoryPrimary = new Category
             {
-                Id = 1,
-                Name = "Test CategoryViewModel",
-                Notes = "Notes about the test CategoryViewModel"
+                Data =
+                {
+                    Id = 1,
+                    Name = "Test CategoryViewModel",
+                    Notes = "Notes about the test CategoryViewModel"
+                }
             };
 
             categoryList.Add(categoryPrimary);
 
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object, 
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
+            var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        settingsManagerMock.Object,
+                                                        new Mock<IBackupManager>().Object)
             {
                 IsEdit = true,
-                SelectedCategory = categoryPrimary
+                SelectedCategory = new CategoryViewModel(categoryPrimary)
             };
 
+            // Act
             viewmodel.DeleteCommand.Execute();
+
+            // Assert
             categoryList.Any().ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Cancel_SelectedCategoryReseted()
-        {
-            string name = "Cateory";
-            var baseCategory = new CategoryViewModel { Id = 5, Name = name };
-            var category = new CategoryViewModel { Id = 5, Name = name };
-
-            var categoryRepositorySetup = new Mock<ICategoryRepository>();
-            categoryRepositorySetup.Setup(x => x.FindById(It.IsAny<int>())).Returns(baseCategory);
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-
-            var viewmodel = new ModifyCategoryViewModel(categoryRepositorySetup.Object,
-                new Mock<IDialogService>().Object, 
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            {
-                IsEdit = true,
-                SelectedCategory = category
-            };
-
-            viewmodel.SelectedCategory.Name = "foooo";
-            viewmodel.CancelCommand.Execute();
-
-            viewmodel.SelectedCategory.Name.ShouldBe(name);
         }
 
         [Fact]
         public void DoneCommand_NameEmpty_ShowMessage()
         {
-            // Setup
+            // Arrange
             var wasDialogServiceCalled = false;
 
             var dialogSetup = new Mock<IDialogService>();
             dialogSetup.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string a, string b) => wasDialogServiceCalled = true)
-                .Returns(Task.FromResult(0));
+                       .Callback((string a, string b) => wasDialogServiceCalled = true)
+                       .Returns(Task.FromResult(0));
 
             var settingsManagerMock = new Mock<ISettingsManager>();
 
-            var vm = new ModifyCategoryViewModel(new Mock<ICategoryRepository>().Object,
-                dialogSetup.Object,
-                settingsManagerMock.Object,
-                new Mock<IBackupManager>().Object)
-            { SelectedCategory = new CategoryViewModel() };
+            var vm = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
+                                                 dialogSetup.Object,
+                                                 settingsManagerMock.Object,
+                                                 new Mock<IBackupManager>().Object)
+                {SelectedCategory = new CategoryViewModel(new Category())};
 
-            // Execute
-            vm.SaveCommand.Execute(new CategoryViewModel());
+            // Act
+            vm.SaveCommand.Execute(new CategoryViewModel(new Category()));
 
             // Assert
             wasDialogServiceCalled.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void SaveCategory_UpdateTimeStamp()
+        {
+            // Arrange
+            var category = new CategoryViewModel(new Category()) {Id = 0, Name = "CategoryViewModel", Notes = ""};
+
+            var categoryServiceMock = new Mock<ICategoryService>();
+
+            categoryServiceMock.SetupAllProperties();
+            categoryServiceMock.Setup(x => x.SaveCategory(It.IsAny<Category>())).Returns(Task.CompletedTask);
+            categoryServiceMock.Setup(x => x.GetAllCategories()).ReturnsAsync(new ObservableCollection<Category>());
+
+            var localDateSetting = DateTime.MinValue;
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
+                               .Callback((DateTime x) => localDateSetting = x);
+
+            var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        settingsManagerMock.Object,
+                                                        new Mock<IBackupManager>().Object)
+            {
+                IsEdit = false,
+                SelectedCategory = category
+            };
+
+            // Act
+            viewmodel.SaveCommand.Execute();
+
+            // Assert
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+        }
+
+        [Fact]
+        public void SaveCommand_DoesNotAllowDuplicateNames()
+        {
+            // Arrange
+            var saveWasCalled = false;
+            var categoryServiceMock = new Mock<ICategoryService>();
+            categoryServiceMock.Setup(c => c.CheckIfNameAlreadyTaken(It.IsAny<string>()))
+                               .ReturnsAsync(true);
+            categoryServiceMock.Setup(c => c.SaveCategory(It.IsAny<Category>()))
+                               .Callback(() => saveWasCalled = true)
+                               .Returns(Task.CompletedTask);
+
+            var categoryPrimary = new Category
+            {
+                Data =
+                {
+                    Id = 1,
+                    Name = "Test CategoryViewModel"
+                }
+            };
+
+            var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        new Mock<ISettingsManager>().Object,
+                                                        new Mock<IBackupManager>().Object)
+            {
+                IsEdit = false,
+                SelectedCategory = new CategoryViewModel(categoryPrimary)
+            };
+
+            // Act
+            viewmodel.SaveCommand.Execute();
+
+            // Assert
+            saveWasCalled.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void SaveCommand_SavesCategory()
+        {
+            // Arrange
+            var categoryList = new List<Category>();
+            var categoryServiceMock = new Mock<ICategoryService>();
+
+            categoryServiceMock.Setup(c => c.SaveCategory(It.IsAny<Category>()))
+                               .Callback((Category cat) => { categoryList.Add(cat); })
+                               .Returns(Task.CompletedTask);
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+
+            var categoryPrimary = new Category
+            {
+                Data =
+                {
+                    Id = 1,
+                    Name = "Test CategoryViewModel",
+                    Notes = "Test Note"
+                }
+            };
+
+            var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        settingsManagerMock.Object,
+                                                        new Mock<IBackupManager>().Object)
+            {
+                IsEdit = false,
+                SelectedCategory = new CategoryViewModel(categoryPrimary)
+            };
+
+            // Act
+            viewmodel.SaveCommand.Execute();
+
+            // Assert
+            categoryList.Count.ShouldBe(1);
+        }
+
+        [Fact]
+        public void Title_AddCategory_CorrectTitle()
+        {
+            // Arrange
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        new Mock<ISettingsManager>().Object,
+                                                        new Mock<IBackupManager>().Object)
+            {
+                IsEdit = false
+            };
+
+            // Act / Assert
+            viewmodel.Title.ShouldBe(Strings.AddCategoryTitle);
+        }
+
+        [Fact]
+        public void Title_EditCategory_CorrectTitle()
+        {
+            // Arrange
+            var categoryName = "groceries";
+
+            var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
+                                                        new Mock<IDialogService>().Object,
+                                                        new Mock<ISettingsManager>().Object,
+                                                        new Mock<IBackupManager>().Object)
+            {
+                IsEdit = true,
+                SelectedCategory = new CategoryViewModel(new Category()) {Id = 9, Name = categoryName}
+            };
+
+            // Act / Assert
+            viewmodel.Title.ShouldBe(string.Format(Strings.EditCategoryTitle, categoryName));
         }
     }
 }

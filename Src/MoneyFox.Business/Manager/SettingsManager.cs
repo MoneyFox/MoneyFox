@@ -4,6 +4,9 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Manager
 {
+    /// <summary>
+    ///     Provides access to the app settings.
+    /// </summary>
     public class SettingsManager : ISettingsManager
     {
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";

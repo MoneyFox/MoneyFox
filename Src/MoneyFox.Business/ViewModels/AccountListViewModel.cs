@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
-using MoneyFox.Foundation.Interfaces.ViewModels;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Service.DataServices;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -14,35 +14,40 @@ namespace MoneyFox.Business.ViewModels
 {
     public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IDialogService dialogService;
-        private readonly IEndOfMonthManager endOfMonthManager;
-        private readonly IPaymentManager paymentManager;
+        private readonly IAccountService accountService;
+        private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly ISettingsManager settingsManager;
         private readonly IModifyDialogService modifyDialogService;
+        private readonly IDialogService dialogService;
 
         private ObservableCollection<AccountViewModel> includedAccounts;
         private ObservableCollection<AccountViewModel> excludedAccounts;
 
-        public AccountListViewModel(IAccountRepository accountRepository,
-            IPaymentManager paymentManager,
-            IDialogService dialogService, 
-            IEndOfMonthManager endOfMonthManager,
-            ISettingsManager settingsManager, 
-            IModifyDialogService modifyDialogService)
+        public AccountListViewModel(IAccountService accountService,
+                                    IBalanceCalculationManager balanceCalculationManager,
+                                    ISettingsManager settingsManager,
+                                    IModifyDialogService modifyDialogService,
+                                    IDialogService dialogService)
         {
-            this.dialogService = dialogService;
-            this.accountRepository = accountRepository;
-            this.paymentManager = paymentManager;
-            this.endOfMonthManager = endOfMonthManager;
+            this.accountService = accountService;
+            this.balanceCalculationManager = balanceCalculationManager;
             this.settingsManager = settingsManager;
             this.modifyDialogService = modifyDialogService;
+            this.dialogService = dialogService;
 
-            BalanceViewModel = new BalanceViewModel(accountRepository, endOfMonthManager);
-            ViewActionViewModel = new AccountListViewActionViewModel(accountRepository);
+            BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountService);
 
             IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
+        }
+
+        /// <summary>
+        ///     Used on Ios
+        /// </summary>
+        public void ShowMenu()
+        {
+            ShowViewModel<MenuViewModel>();
         }
 
         #region Properties
@@ -64,7 +69,7 @@ namespace MoneyFox.Business.ViewModels
             get { return includedAccounts; }
             set
             {
-                if(includedAccounts == value) return;
+                if (includedAccounts == value) return;
                 includedAccounts = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
@@ -80,7 +85,7 @@ namespace MoneyFox.Business.ViewModels
             get { return excludedAccounts; }
             set
             {
-                if(excludedAccounts == value) return;
+                if (excludedAccounts == value) return;
                 excludedAccounts = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
@@ -97,7 +102,8 @@ namespace MoneyFox.Business.ViewModels
 
         /// <summary>
         ///     Returns if the ExcludedAccounts Collection is emtpy or not.
-        /// </summary>accoutn
+        /// </summary>
+        /// accoutn
         public bool IsExcludedAccountsEmpty => !ExcludedAccounts?.Any() ?? true;
 
         #endregion
@@ -105,22 +111,23 @@ namespace MoneyFox.Business.ViewModels
         #region Commands
 
         /// <summary>
-        ///     Prepares the AccountViewModel list
+        ///     Prepares the Account list
         /// </summary>
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     Open the payment overview for this AccountViewModel.
+        ///     Open the payment overview for this Account.
         /// </summary>
-        public MvxCommand<AccountViewModel> OpenOverviewCommand => new MvxCommand<AccountViewModel>(GoToPaymentOverView);
+        public MvxCommand<AccountViewModel> OpenOverviewCommand =>
+            new MvxCommand<AccountViewModel>(GoToPaymentOverView);
 
         /// <summary>
-        ///     Edit the selected AccountViewModel
+        ///     Edit the selected Account
         /// </summary>
         public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(EditAccount);
 
         /// <summary>
-        ///     Deletes the selected AccountViewModel
+        ///     Deletes the selected Account
         /// </summary>
         public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(Delete);
 
@@ -141,19 +148,24 @@ namespace MoneyFox.Business.ViewModels
             ShowViewModel<ModifyAccountViewModel>(new { accountId = accountViewModel.Id});
         }
 
-        private void Loaded()
+        private async void Loaded()
         {
-            IncludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => !x.IsExcluded));
-            ExcludedAccounts = new ObservableCollection<AccountViewModel>(accountRepository.GetList(x => x.IsExcluded));
+            var includedAccountList = await accountService.GetNotExcludedAccounts();
+            var excludedAccountList = await accountService.GetExcludedAccounts();
+
+            IncludedAccounts =
+                new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
+            ExcludedAccounts =
+                new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
+
             BalanceViewModel.UpdateBalanceCommand.Execute();
-            endOfMonthManager.CheckEndOfMonthBalanceForAccounts(IncludedAccounts);
+            await balanceCalculationManager.GetTotalEndOfMonthBalance();
         }
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if (accountViewModel == null)
             {
-                return;
             }
 
             ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
@@ -168,29 +180,21 @@ namespace MoneyFox.Business.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                paymentManager.DeleteAssociatedPaymentsFromDatabase(accountToDelete);
+                await accountService.DeleteAccount(accountToDelete.Account);
 
-                if (accountRepository.Delete(accountToDelete))
+                if (IncludedAccounts.Contains(accountToDelete))
                 {
-                    if (IncludedAccounts.Contains(accountToDelete))
-                    {
-                        IncludedAccounts.Remove(accountToDelete);
-                        // ReSharper disable once ExplicitCallerInfoArgument
-                        RaisePropertyChanged(nameof(IncludedAccounts));
-                    }
-                    if (ExcludedAccounts.Contains(accountToDelete))
-                    {
-                        ExcludedAccounts.Remove(accountToDelete);
-                        // ReSharper disable once ExplicitCallerInfoArgument
-                        RaisePropertyChanged(nameof(ExcludedAccounts));
-                    }
-                    settingsManager.LastDatabaseUpdate = DateTime.Now;
+                    IncludedAccounts.Remove(accountToDelete);
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    RaisePropertyChanged(nameof(IncludedAccounts));
                 }
-                else
+                if (ExcludedAccounts.Contains(accountToDelete))
                 {
-                    await dialogService
-                        .ShowConfirmMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                    ExcludedAccounts.Remove(accountToDelete);
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    RaisePropertyChanged(nameof(ExcludedAccounts));
                 }
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
             BalanceViewModel.UpdateBalanceCommand.Execute();
         }

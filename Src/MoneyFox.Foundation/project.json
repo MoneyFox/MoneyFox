@@ -4,9 +4,11 @@
     "Microsoft.OneDriveSDK": "2.0.6",
     "MvvmCross.Core": "4.4.0",
     "MvvmCross.Plugin.Messenger": "4.4.0",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0"
+    "System.Diagnostics.Tools": "4.3.0"
   },
   "frameworks": {
-    ".NETPortable,Version=v4.5,Profile=Profile111": {}
+    "netstandard1.3": {
+      "imports": "portable-net45+win8+wpa81"
+    }
   }
 }

@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Business.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -34,12 +34,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
-        private void LoadCashFlowData()
+        private async void LoadCashFlowData()
         {
             //TODO: Unit Test for order!
             //TODO: Unit Test for selection.
             StatisticItems.Clear();
-            StatisticItems.AddRange(cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
+            StatisticItems.AddRange(await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;

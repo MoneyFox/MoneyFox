@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Clans.Fab;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Shared.Attributes;
 
