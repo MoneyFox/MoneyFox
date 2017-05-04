@@ -32,4 +32,4 @@ Please make pull requests against the `master` branch.
 Also, please ensure you have unit tests written for your changes where possible and that all existing tests are still running.
 
 ## Getting Started
-Have a look at our [Getting Started] (https://github.com/MoneyFox/MoneyFox/wiki/Getting-Started) page in our wiki.
+Have a look at our [Documentation] (https://apply-solutions.atlassian.net/wiki/display/MON/MoneyFox)
