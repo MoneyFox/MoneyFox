@@ -25,7 +25,7 @@ build:
   
 test_script:
 - ps: >-
-    xunit.console.clr4 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net462\MoneyFox.Business.Tests.dll" /appveyor
+    xunit.console.clr4 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\x86\Debug\x64\MoneyFox.Business.Tests.dll" /appveyor
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
