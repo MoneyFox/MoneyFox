@@ -46,7 +46,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 
             var testEntry = new CategoryEntity();
 
-            // Act // Assert
+            // Act / Assert
             repository.Add(testEntry);
             await Assert.ThrowsAsync<DbUpdateException>(async () => await unitOfWork.Commit());
         }

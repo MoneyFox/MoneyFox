@@ -129,6 +129,25 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
+        public async void Add_WithoutAccount()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var repository = new RecurringPaymentRepository(factory);
+
+            var testEntry = new RecurringPaymentEntity()
+            {
+                Note = "Testtext"
+            };
+
+            // Act / Assert
+            repository.Add(testEntry);
+            await Assert.ThrowsAsync<DbUpdateException>(async () => await unitOfWork.Commit());
+        }
+
+        [Fact]
         public async void Update_EntryUpdated()
         {
             // Arrange
@@ -275,7 +294,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Assert
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await unitOfWork.Commit());
         }
-
 
         [Fact]
         public async void Delete_EntryMatchedFilterDeleted()
