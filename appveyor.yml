@@ -24,7 +24,7 @@ build:
   verbosity: minimal
   
 test_script:
--    %xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net462\MoneyFox.Business.Tests.dll" -appveyor
+- "%xunit20%\xunit.console.x86" "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net462\MoneyFox.Business.Tests.dll" -appveyor
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
