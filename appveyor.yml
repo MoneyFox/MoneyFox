@@ -20,7 +20,14 @@ before_build:
 - msbuild src\MoneyFox.sln /t:restore
     
 build:
+  parallel: true
   verbosity: minimal
   
+test:
+  # all except assemblies to test
+  assemblies:
+    except:
+      - MoneyFox.DataAccess.Tests.dll
+
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
