@@ -19,10 +19,9 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public void RecurringPayment_Default_Null()
+        public void Category_Default_Null()
         {
-            Assert.Null(new RecurringPaymentViewModel().RecurringPayment);
+            Assert.Null(new RecurringPaymentViewModel().Category);
         }
-
     }
 }

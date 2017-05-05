@@ -22,5 +22,11 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             Assert.Null(new PaymentViewModel().RecurringPayment);
         }
+
+        [Fact]
+        public void Category_Default_Null()
+        {
+            Assert.Null(new PaymentViewModel().Category);
+        }
     }
 }
