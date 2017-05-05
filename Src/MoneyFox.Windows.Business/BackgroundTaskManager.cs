@@ -93,7 +93,8 @@ namespace MoneyFox.Windows.Business
                 var builder = new BackgroundTaskBuilder
                 {
                     Name = SYNC_BACKUP_TASK,
-                    TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK)
+                    TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK),
+                    IsNetworkRequested = true
                 };
 
                 builder.SetTrigger(new TimeTrigger((uint)(settingsManager.BackupSyncRecurrence * 60), false));
