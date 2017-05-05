@@ -187,11 +187,16 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get { return new AccountViewModel(new Account(Payment.Data.ChargedAccount)); }
+            get
+            {
+                return Payment.Data.ChargedAccount != null
+                    ? new AccountViewModel(new Account(Payment.Data.ChargedAccount))
+                    : null;
+            }
             set
             {
                 if (ChargedAccount == value) return;
-                Payment.Data.ChargedAccount = value.Account.Data;
+                Payment.Data.ChargedAccount = value?.Account.Data;
                 RaisePropertyChanged();
             }
         }
@@ -202,7 +207,10 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get { return new AccountViewModel(new Account(Payment.Data.TargetAccount)); ; }
+            get { return Payment.Data.TargetAccount != null
+                ? new AccountViewModel(new Account(Payment.Data.TargetAccount))
+                : null;
+            }
             set
             {
                 if (TargetAccount == value) return;

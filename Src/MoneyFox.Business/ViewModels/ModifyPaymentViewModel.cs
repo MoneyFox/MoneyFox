@@ -306,9 +306,8 @@ namespace MoneyFox.Business.ViewModels
             {
                 Type = type,
                 Date = DateTime.Now,
-                
+                ChargedAccount = ChargedAccounts.FirstOrDefault(),
             };
-            SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
@@ -392,10 +391,10 @@ namespace MoneyFox.Business.ViewModels
         private async Task PrepareRecurringPayment()
         {
             if (IsEdit
-                 && selectedPayment.IsRecurring
-                 && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
-                     Strings.ChangeSubsequentPaymentMessage,
-                     Strings.UpdateAllLabel, Strings.JustThisLabel)
+                && selectedPayment.IsRecurring
+                && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
+                                                          Strings.ChangeSubsequentPaymentMessage,
+                                                          Strings.UpdateAllLabel, Strings.JustThisLabel)
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
                 SelectedPayment.RecurringPayment = new RecurringPaymentViewModel(
