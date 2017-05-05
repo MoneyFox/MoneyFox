@@ -6,6 +6,8 @@ This document tries to help you get started. If you have questions please write 
 ## Feature Requests / Bug reports
 Is there a feature you would like to see in a future release? Or have you found a bug? Create a new issue and give describe it as good as possible.
 
+## Translation
+Is you language missing or not fully translated? [Head over to Crowdin and help us](https://crowdin.com/project/money-fox)
 
 ## Code
 You want to contribute code? Great! Look for issues with the following labels, depending on what you are looking for:
