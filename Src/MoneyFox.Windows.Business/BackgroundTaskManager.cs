@@ -65,7 +65,7 @@ namespace MoneyFox.Windows.Business
                 };
 
                 // Task will be executed all 1 hours
-                builder.SetTrigger(new TimeTrigger(60, false));
+                builder.SetTrigger(new TimeTrigger(180, false));
                 builder.Register();
             }
         }
@@ -81,7 +81,7 @@ namespace MoneyFox.Windows.Business
                 };
 
                 // Task will be executed all 1 hours
-                builder.SetTrigger(new TimeTrigger(60, false));
+                builder.SetTrigger(new TimeTrigger(180, false));
                 builder.Register();
             }
         }
