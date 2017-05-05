@@ -28,7 +28,7 @@ test:
   assemblies:
     except:
       - MoneyFox.DataAccess.Tests.dll
-      - 'MoneyFox.Windows.Tests*'
+      - '**\*MoneyFox.Windows.Tests.\*'
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
