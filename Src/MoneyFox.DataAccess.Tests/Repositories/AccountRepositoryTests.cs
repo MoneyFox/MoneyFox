@@ -17,6 +17,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public AccountRepositoryTests()
         {
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -28,10 +29,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
-            if (File.Exists(path))
+            if (File.Exists(ApplicationContext.DbPath))
             {
-                File.Delete(path);
+                File.Delete(ApplicationContext.DbPath);
             }
         }
 

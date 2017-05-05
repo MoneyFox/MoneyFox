@@ -17,10 +17,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public RecurringRecurringPaymentRepositoryTests()
         {
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
-                File.Delete(Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME));
-
                 db.Database.Migrate();
             }
         }
@@ -30,10 +29,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
-            if (File.Exists(path))
+            if (File.Exists(ApplicationContext.DbPath))
             {
-                File.Delete(path);
+                File.Delete(ApplicationContext.DbPath);
             }
         }
 

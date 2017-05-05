@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using Xunit;
 
@@ -17,6 +18,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public PaymentRepositoryTests()
         {
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -28,10 +30,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
-            if (File.Exists(path))
+            if (File.Exists(ApplicationContext.DbPath))
             {
-                File.Delete(path);
+                File.Delete(ApplicationContext.DbPath);
             }
         }
 
@@ -126,6 +127,40 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Assert
             Assert.NotNull(testEntry.Id);
             Assert.NotEqual(0, testEntry.Id);
+        }
+
+        [Fact]
+        public async void Add_WithRecurringPayment()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var repository = new PaymentRepository(factory);
+
+            var testAccount = new AccountEntity {Name = "testAccount"};
+            var testEntry = new PaymentEntity
+            {
+                ChargedAccount = testAccount,
+                RecurringPayment = new RecurringPaymentEntity
+                {
+                    ChargedAccount = testAccount,
+                    Recurrence = PaymentRecurrence.Bimonthly,
+                    IsEndless = true
+                },
+                IsRecurring = true,
+                Note = "Testtext"
+            };
+
+            // Act
+            repository.Add(testEntry);
+            await unitOfWork.Commit();
+
+            // Assert
+            Assert.NotNull(testEntry.Id);
+            Assert.NotEqual(0, testEntry.Id);
+            Assert.NotEqual(0, testEntry.RecurringPayment.Id);
+            Assert.NotEqual(0, testEntry.RecurringPaymentId);
         }
 
         [Fact]
@@ -246,7 +281,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Assert
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await unitOfWork.Commit());
         }
-
 
         [Fact]
         public async void Delete_EntryMatchedFilterDeleted()
