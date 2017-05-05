@@ -7,11 +7,10 @@ namespace MoneyFox.Windows.Views.UserControls
     {
         private readonly AppShell appShell;
 
-
         public  async void UpdatePassport()
         {
 
-            if (await MicrosoftPassportHelper.testPassportAvailable())
+            if (await MicrosoftPassportHelper.TestPassportAvailable())
             {
 
             }else
@@ -32,8 +31,6 @@ namespace MoneyFox.Windows.Views.UserControls
             appShell = Window.Current.Content as AppShell;
             Loaded += new RoutedEventHandler(DisablePassportSwitch);
         }
-
-
    }
 
 }

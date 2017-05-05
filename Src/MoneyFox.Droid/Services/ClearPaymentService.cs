@@ -1,14 +1,17 @@
+using System;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
 {
     [Service]
-    public class ClearPaymentService : Service
+    public class ClearPaymentService : Android.App.Service
     {
         public override IBinder OnBind(Intent intent)
         {
@@ -21,9 +24,11 @@ namespace MoneyFox.Droid.Services
             return StartCommandResult.RedeliverIntent;
         }
 
-        public void ClearPayments()
+        public async void ClearPayments()
         {
-            Mvx.Resolve<IPaymentManager>().ClearPayments();
+            var dbFactory = new DbFactory();
+            var paymentService = new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory));
+            await paymentService.GetUnclearedPayments(DateTime.Now);
         }
     }
 }

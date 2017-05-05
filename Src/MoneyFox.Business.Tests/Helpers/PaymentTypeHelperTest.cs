@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.Helpers;
+﻿using System;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using Xunit;
@@ -15,6 +16,15 @@ namespace MoneyFox.Business.Tests.Helpers
         {
             Assert.Equal(type, PaymentTypeHelper.GetEnumFromString(typeString));
         }
+
+        [Theory]
+        [InlineData(3)]
+        [InlineData(-1)]
+        public void GetTypeString_InvalidType_Exception(int enumInt)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(enumInt));
+        }
+
 
         [Fact]
         public void GetEnumFrostring_ExpenseIntEditTrue_Titel()

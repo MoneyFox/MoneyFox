@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Interfaces.ViewModels;
+﻿using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 

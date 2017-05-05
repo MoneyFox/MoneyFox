@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Interfaces.ViewModels;
+﻿using MoneyFox.Business.ViewModels.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime

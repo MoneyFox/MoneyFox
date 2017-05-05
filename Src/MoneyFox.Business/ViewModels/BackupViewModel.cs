@@ -133,6 +133,7 @@ namespace MoneyFox.Business.ViewModels
 
             await backupManager.Login();
             settingsManager.IsLoggedInToBackupService = true;
+            // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
             Loaded();
         }
@@ -141,6 +142,7 @@ namespace MoneyFox.Business.ViewModels
         {
             backupManager.Logout();
             settingsManager.IsLoggedInToBackupService = false;
+            // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 

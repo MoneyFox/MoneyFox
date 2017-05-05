@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Business.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Plugins.Messenger;
 
@@ -30,13 +30,10 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        protected override void Load()
+        protected override async void Load()
         {
             CategorySummary = null;
-            CategorySummary = GetCategorySummaryData();
+            CategorySummary = new ObservableCollection<StatisticItem>(await categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
         }
-
-        private ObservableCollection<StatisticItem> GetCategorySummaryData()
-            => new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
     }
 }

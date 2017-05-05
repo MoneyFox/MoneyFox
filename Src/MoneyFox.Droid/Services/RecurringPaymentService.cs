@@ -8,7 +8,7 @@ using MvvmCross.Platform;
 namespace MoneyFox.Droid.Services
 {
     [Service]
-    public class RecurringPaymentService : Service
+    public class RecurringPaymentService : Android.App.Service
     {
         public override IBinder OnBind(Intent intent)
         {
@@ -23,7 +23,7 @@ namespace MoneyFox.Droid.Services
 
         private void CheckRecurringPayments()
         {
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
+            Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
         }
     }
 }

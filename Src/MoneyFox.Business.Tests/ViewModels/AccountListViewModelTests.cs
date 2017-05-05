@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
@@ -17,200 +18,263 @@ namespace MoneyFox.Business.Tests.ViewModels
     [Collection("MvxIocCollection")]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
-        private Mock<IAccountRepository> accountRepository;
+        private readonly Mock<IAccountService> accountServiceMock;
 
         public AccountListViewModelTests()
         {
-            accountRepository = new Mock<IAccountRepository>();
-            accountRepository.SetupAllProperties();
+            accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.SetupAllProperties();
         }
 
         [Fact]
         public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
         {
+            // Arrange
             var deleteCalled = false;
 
-            accountRepository.Setup(x => x.Delete(It.IsAny<AccountViewModel>())).Callback(() => deleteCalled = true);
+            accountServiceMock.Setup(x => x.DeleteAccount(It.IsAny<Account>()))
+                              .Callback(() => deleteCalled = true)
+                              .Returns(Task.CompletedTask);
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var settingsManagerMock = new Mock<ISettingsManager>();
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                dialogServiceSetup.Object);
 
-            var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
-                new Mock<IModifyDialogService>().Object);
+            // Act
+            viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
 
-            viewModel.DeleteAccountCommand.Execute(new AccountViewModel {Id = 3});
-
+            // Assert
             deleteCalled.ShouldBeTrue();
         }
 
         [Fact]
         public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
         {
+            // Arrange
             var deleteCalled = false;
-            accountRepository.Setup(x => x.Delete(It.IsAny<AccountViewModel>())).Callback(() => deleteCalled = true);
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
+            accountServiceMock.Setup(x => x.DeleteAccount(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(false));
 
-            var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
-                new Mock<IModifyDialogService>().Object);
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                dialogServiceSetup.Object);
 
-            viewModel.DeleteAccountCommand.Execute(new AccountViewModel {Id = 3});
+            // Act
+            viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
 
+            // Assert
             deleteCalled.ShouldBeFalse();
         }
 
         [Fact]
         public void DeleteAccountCommand_AccountNull_DoNothing()
         {
+            // Arrange
             var deleteCalled = false;
 
-            accountRepository.Setup(x => x.Delete(It.IsAny<AccountViewModel>())).Callback(() => deleteCalled = true);
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
+            accountServiceMock.Setup(x => x.DeleteAccount(It.IsAny<Account>())).Callback(() => deleteCalled = true);
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
                 .Returns(Task.FromResult(true));
 
-            var settingsManagerMock = new Mock<ISettingsManager>();
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                dialogServiceSetup.Object);
 
-            var viewModel = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object,
-                dialogServiceSetup.Object, endofMonthManagerSetup.Object, settingsManagerMock.Object,
-                new Mock<IModifyDialogService>().Object);
-
+            // Act
             viewModel.DeleteAccountCommand.Execute(null);
 
+            // Assert
             deleteCalled.ShouldBeFalse();
         }
 
         [Fact]
         public void IsAllAccountsEmpty_AccountsEmpty_True()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
-            vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeTrue();
+            // Arrange
+            accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            // Act
+            viewModel.LoadedCommand.Execute();
+
+            // Assert
+            viewModel.IsAllAccountsEmpty.ShouldBeTrue();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_OneAccount_False()
+        public void IsAllAccountsEmpty_OneAccountInExcluded_False()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>
-                {
-                    new AccountViewModel()
-                });
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
-            vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeFalse();
+            // Arrange
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetExcludedAccounts())
+                .ReturnsAsync(new List<Account> { new Account() });
+
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            // Act
+            viewModel.LoadedCommand.Execute();
+
+            // Assert
+            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_TwoAccount_False()
+        public void IsAllAccountsEmpty_OneAccountInNotExcluded_False()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>
-                {
-                    new AccountViewModel(),
-                    new AccountViewModel()
-                });
+            // Arrange
+            accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
+                .ReturnsAsync(new List<Account> { new Account() });
 
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
-            vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeFalse();
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            // Act
+            viewModel.LoadedCommand.Execute();
+
+            // Assert
+            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_ExcludedAccountsSet_False()
+        public void IsAllAccountsEmpty_TwoAccountNotExcluded_False()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>())
-                .Returns(new List<AccountViewModel>
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
+                .ReturnsAsync(new List<Account>
                 {
-                    new AccountViewModel {IsExcluded = true},
+                    new Account(),
+                    new Account()
                 });
 
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
-            vm.LoadedCommand.Execute();
-            vm.IsAllAccountsEmpty.ShouldBeFalse();
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            viewModel.LoadedCommand.Execute();
+            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void IsAllAccountsEmpty_TwoAccountExcluded_False()
+        {
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetExcludedAccounts())
+                .ReturnsAsync(new List<Account>
+                {
+                    new Account(),
+                    new Account()
+                });
+
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            viewModel.LoadedCommand.Execute();
+            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
         }
 
         [Fact]
         public void IncludedAccounts_AccountsAvailable_MatchesRepository()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>
-                {
-                    new AccountViewModel {Id = 22},
-                    new AccountViewModel {Id = 33},
-                });
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
+            // Arrange
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
-            vm.LoadedCommand.Execute();
-            vm.IncludedAccounts.Count.ShouldBe(2);
-            vm.IncludedAccounts[0].Id.ShouldBe(22);
-            vm.IncludedAccounts[1].Id.ShouldBe(33);
+            accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts())
+                .ReturnsAsync(new List<Account>
+                {
+                    new Account { Data = {Id = 22}},
+                    new Account {Data = {Id = 33}}
+                });
+
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
+
+            // Act
+            viewModel.LoadedCommand.Execute();
+
+            // Assert
+            viewModel.IncludedAccounts.Count.ShouldBe(2);
+            viewModel.IncludedAccounts[0].Id.ShouldBe(22);
+            viewModel.IncludedAccounts[1].Id.ShouldBe(33);
         }
 
         [Fact]
         public void ExcludedAccounts_AccountsAvailable_MatchesRepository()
         {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.SetupSequence(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>())
-                .Returns(new List<AccountViewModel>
+            // Arrange
+            var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
+
+            accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
+            accountServiceMock.Setup(x => x.GetExcludedAccounts())
+                .ReturnsAsync(new List<Account>
                 {
-                    new AccountViewModel {Id = 22},
-                    new AccountViewModel {Id = 33}
+                    new Account { Data = {Id = 22}},
+                    new Account {Data = {Id = 33}}
                 });
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
 
-            vm.LoadedCommand.Execute();
-            vm.ExcludedAccounts.Count.ShouldBe(2);
-            vm.ExcludedAccounts[0].Id.ShouldBe(22);
-            vm.ExcludedAccounts[1].Id.ShouldBe(33);
-        }
+            var viewModel = new AccountListViewModel(accountServiceMock.Object,
+                balanceCalculationManager.Object,
+                new Mock<ISettingsManager>().Object,
+                new Mock<IModifyDialogService>().Object,
+                new Mock<IDialogService>().Object);
 
-        [Fact]
-        public void IncludedAccounts_NoAccountsAvailable_MatchesRepository()
-        {
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            var endofMonthManagerSetup = new Mock<IEndOfMonthManager>();
-            accountRepository.Setup(x => x.GetList(null)).Returns(new List<AccountViewModel>());
-            accountRepository.Setup(x => x.GetList(It.IsAny<Expression<Func<AccountViewModel, bool>>>()))
-                .Returns(new List<AccountViewModel>());
-            var vm = new AccountListViewModel(accountRepository.Object, new Mock<IPaymentManager>().Object, null,
-                endofMonthManagerSetup.Object, settingsManagerMock.Object, new Mock<IModifyDialogService>().Object);
-            vm.LoadedCommand.Execute();
-            vm.IncludedAccounts.Any().ShouldBeFalse();
-            vm.ExcludedAccounts.Any().ShouldBeFalse();
+            // Act
+            viewModel.LoadedCommand.Execute();
+
+            // Assert
+            viewModel.ExcludedAccounts.Count.ShouldBe(2);
+            viewModel.ExcludedAccounts[0].Id.ShouldBe(22);
+            viewModel.ExcludedAccounts[1].Id.ShouldBe(33);
         }
     }
 }

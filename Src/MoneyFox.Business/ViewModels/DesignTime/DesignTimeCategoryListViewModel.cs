@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Foundation.DataModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
@@ -11,7 +11,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         {
             Categories = new ObservableCollection<CategoryViewModel>
             {
-                new CategoryViewModel {Name = "Design Time CategoryViewModel 1"}
+                new CategoryViewModel(new Category()) {Name = "Design Time CategoryViewModel 1"}
             };
         }
 

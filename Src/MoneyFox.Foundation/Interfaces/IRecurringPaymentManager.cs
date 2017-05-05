@@ -1,7 +1,14 @@
 namespace MoneyFox.Foundation.Interfaces
 {
+    /// <summary>
+    ///     Manages operations with recurring payments
+    /// </summary>
     public interface IRecurringPaymentManager
     {
-        void CheckRecurringPayments();
+        /// <summary>
+        ///     Selects recurring payments who are up for to
+        ///     recur and creates new payments for them.
+        /// </summary>
+        void CreatePaymentsUpToRecur();
     }
 }

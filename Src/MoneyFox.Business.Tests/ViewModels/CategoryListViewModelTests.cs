@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.DataModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Interfaces.Repositories;
 using MoneyFox.Foundation.Tests;
+using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
@@ -17,10 +17,10 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void Loaded_PropertiesSet()
         {
-            var categoryRepoSetup = new Mock<ICategoryRepository>();
-            categoryRepoSetup.Setup(x => x.GetList(null)).Returns(() => new List<CategoryViewModel>
+            var categoryRepoSetup = new Mock<ICategoryService>();
+            categoryRepoSetup.Setup(x => x.GetAllCategories()).ReturnsAsync(() => new List<Category>
             {
-                new CategoryViewModel {Name = string.Empty}
+                new Category {Data = {Name = string.Empty}}
             });
 
             var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IModifyDialogService>().Object, new Mock<IDialogService>().Object);

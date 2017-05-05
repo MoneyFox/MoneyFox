@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</ProjectGuid>
@@ -13,8 +13,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -42,66 +43,39 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\DatabaseConstants.cs" />
     <Compile Include="Constants\ServiceConstants.cs" />
-    <Compile Include="DataModels\AccountViewModel.cs" />
-    <Compile Include="DataModels\CategoryViewModel.cs" />
-    <Compile Include="DataModels\PaymentViewModel.cs" />
-    <Compile Include="DataModels\RecurringPaymentViewModel.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
+    <Compile Include="Exceptions\NetworkConnectionException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Exceptions\NoBackupFoundException.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Interfaces\IAppInformation.cs" />
     <Compile Include="Interfaces\IBackgroundTaskManager.cs" />
     <Compile Include="Interfaces\IBackupManager.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
-    <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IDateRangeDialogCloseListener.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
-    <Compile Include="Interfaces\IEndOfMonthManager.cs" />
     <Compile Include="Interfaces\IModifyDialogService.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
-    <Compile Include="Interfaces\IPaymentManager.cs" />
     <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\ISettingsManager.cs" />
-    <Compile Include="Interfaces\ViewModels\IStatisticCashFlowViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Interfaces\IStoreOperations.cs" />
     <Compile Include="Interfaces\ITileManager.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
-    <Compile Include="Interfaces\Repositories\IAccountRepository.cs" />
-    <Compile Include="Interfaces\Repositories\ICategoryRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IPaymentRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IRecurringPaymentRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IRepository.cs" />
-    <Compile Include="Interfaces\ViewModels\IAccountListViewActionViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IPaymentListViewActionViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\IViewActionViewModel.cs" />
-    <Compile Include="Messages\CategorySelectedMessage.cs" />
-    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Models\StatisticItem.cs" />
     <Compile Include="Models\StatisticSelectorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Strings.bg.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.bg.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings1.Designer.cs">
+    <Compile Include="Interfaces\ICustomAuthenticationProvider.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\ICustomAuthenticationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Strings.bg.resx">
@@ -119,10 +93,15 @@
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Strings1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ru.resx" />
     <EmbeddedResource Include="Resources\Strings.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.Auth">
+      <HintPath>..\..\..\..\.nuget\packages\Xamarin.Auth\1.3.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+XamarinIOS10\Xamarin.Auth.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

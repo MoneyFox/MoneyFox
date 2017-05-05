@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.Foundation.Interfaces.ViewModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.ViewModels.DesignTime

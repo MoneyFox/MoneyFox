@@ -1,10 +1,9 @@
 ﻿using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -16,22 +15,12 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                MapperConfiguration.Setup();
+                var dbFactory = new DbFactory();
 
-                var dbManager = new DatabaseManager(new WindowsSqliteConnectionFactory(),
-                    new MvxWindowsCommonFileStore());
-
-                var paymentRepository = new PaymentRepository(dbManager);
-
-                var paymentManager = new PaymentManager(paymentRepository,
-                    new AccountRepository(dbManager),
-                    new RecurringPaymentRepository(dbManager),
-                    null);
-
-                PaymentRepository.IsCacheMarkedForReload = true;
-
-                new RecurringPaymentManager(paymentManager, paymentRepository,
-                    new SettingsManager(new WindowsUwpSettings())).CheckRecurringPayments();
+                new RecurringPaymentManager(
+                        new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                        new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory)))
+                    .CreatePaymentsUpToRecur();
             }
             finally
             {

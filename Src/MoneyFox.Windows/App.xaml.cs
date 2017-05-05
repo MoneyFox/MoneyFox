@@ -10,8 +10,9 @@ using Windows.UI.Xaml.Media;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.HockeyApp;
 using MoneyFox.Business.Manager;
-using MoneyFox.Windows.Views;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Windows.Views;
 
 namespace MoneyFox.Windows
 {
@@ -29,6 +30,8 @@ namespace MoneyFox.Windows
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
+
+            ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 #if !DEBUG
             HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif
@@ -71,8 +74,6 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var shell = Window.Current.Content as AppShell;
-
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
