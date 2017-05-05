@@ -20,7 +20,14 @@ before_build:
 - msbuild src\MoneyFox.sln /t:restore
     
 build:
+  parallel: true
   verbosity: minimal
   
+test_script:
+- cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Service.Tests\bin\Debug\net462\MoneyFox.Service.Tests.dll" -appveyor'
+- cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net462\MoneyFox.Business.Tests.dll" -appveyor'
+- cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Foundation.Tests\bin\Debug\net462\MoneyFox.Foundation.Tests.dll" -appveyor'
+- cmd: dotnet test C:\projects\moneyfox\Src\MoneyFox.DataAccess.Tests\MoneyFox.DataAccess.Tests.csproj
+
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
