@@ -23,11 +23,11 @@ build:
   parallel: true
   verbosity: minimal
   
-test:
-  # all except assemblies to test
-  assemblies:
-    except:
-      - MoneyFox.DataAccess.Tests.dll
+test_script:
+- ps: >-
+    xunit.console.clr4 MoneyFox.Business.Tests /appveyor
+    xunit.console.clr4 MoneyFox.Service.Tests /appveyor
+    xunit.console.clr4 MoneyFox.Foundation.Tests /appveyor
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
