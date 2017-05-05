@@ -27,7 +27,7 @@ test_script:
 - cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Service.Tests\bin\Debug\net462\MoneyFox.Service.Tests.dll" -appveyor'
 - cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net462\MoneyFox.Business.Tests.dll" -appveyor'
 - cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Foundation.Tests\bin\Debug\net462\MoneyFox.Foundation.Tests.dll" -appveyor'
-- cmd: dotnet xunit
+- cmd: dotnet test .\_Tests\MoneyFox.DataAccess.Tests
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
