@@ -72,7 +72,7 @@ namespace MoneyFox.Business.Manager
             var balance = await GetTotalBalance();
             var accounts = await accountService.GetAllAccounts();
             var notExcluded = await accountService.GetNotExcludedAccounts();
-            var excluded = accounts.Except(notExcluded);
+            var excluded = accounts.ToArray().Except(notExcluded.ToArray());
 
             foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth()))
             {
@@ -87,13 +87,18 @@ namespace MoneyFox.Business.Manager
                         break;
 
                     case PaymentType.Transfer:
-                        if(excluded.Contains(payment.Data.ChargedAccountId)){ //Transfer from excluded account
-                            balance += payment.Data.Amount; 
-                        }
-                        else
-                            if(excluded.Contains(payment.Data.TargetAccountId)){ //Transfer to excluded account
-                                balance -= payment.Data.Amount;
-                            }
+                         foreach (var i in excluded)
+                         {
+                         if(Equals(i, payment.Data.ChargedAccountId)){ //Transfer from excluded account
+                              balance += payment.Data.Amount;
+                              break;
+                         }
+                         else
+                              if(Equals(i, payment.Data.TargetAccountId)){ //Transfer to excluded account
+                                  balance -= payment.Data.Amount;
+                                  break;
+                              }
+                         }
                         break;
 
                     default:
