@@ -43,6 +43,7 @@ namespace MoneyFox.Business.Tests.Manager
                                     {
                                         Id = 10,
                                         ChargedAccountId = 1,
+                                        TargetAccountId = 2,
                                         Amount = 100,
                                         Date = DateTime.Now,
                                         Type = paymentType
@@ -54,6 +55,7 @@ namespace MoneyFox.Business.Tests.Manager
                                     {
                                         Id = 15,
                                         ChargedAccountId = 1,
+                                        TargetAccountId = 2,
                                         Amount = 100,
                                         Date = DateTime.Now,
                                         Type = paymentType
