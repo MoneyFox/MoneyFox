@@ -23,16 +23,12 @@ namespace MoneyFox.Service
             {
                 Data =
                 {
-                    Id = payment.Data.RecurringPaymentId ?? 0,
                     ChargedAccount = payment.Data.ChargedAccount,
-                    ChargedAccountId = payment.Data.ChargedAccount.Id,
                     TargetAccount = payment.Data.TargetAccount,
-                    TargetAccountId = payment.Data.TargetAccount?.Id ?? 0,
                     StartDate = payment.Data.Date,
-                    EndDate = enddate,
+                    EndDate = !isEndless ? (DateTime?)enddate : null,
                     IsEndless = isEndless,
                     Amount = payment.Data.Amount,
-                    CategoryId = payment.Data.CategoryId,
                     Category = payment.Data.Category,
                     Type = payment.Data.Type,
                     Recurrence = recurrence,

@@ -17,12 +17,15 @@
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj" />
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="Moq" Version="4.7.9" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />

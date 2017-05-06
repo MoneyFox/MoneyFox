@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -320,8 +321,10 @@ namespace MoneyFox.Business.ViewModels
             Recurrence = SelectedPayment.IsRecurring 
                 ? SelectedPayment.RecurringPayment.Recurrence
                 : PaymentRecurrence.Daily;
-            EndDate = SelectedPayment.IsRecurring
-                ? SelectedPayment.RecurringPayment.EndDate
+
+            Debug.Assert(SelectedPayment.RecurringPayment.EndDate != null, "If payment is not endless, the enddate may not be null");
+            EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
+                ? SelectedPayment.RecurringPayment.EndDate.Value
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
 

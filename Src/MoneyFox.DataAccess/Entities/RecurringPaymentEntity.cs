@@ -20,7 +20,7 @@ namespace MoneyFox.DataAccess.Entities
         public int? CategoryId { get; set; }
 
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public bool IsEndless { get; set; }
         public double Amount { get; set; }
         public PaymentType Type { get; set; }
