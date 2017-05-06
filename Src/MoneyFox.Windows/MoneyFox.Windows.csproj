@@ -87,6 +87,7 @@
     <Prefer32Bit>true</Prefer32Bit>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <DocumentationFile>bin\x64\Debug\MoneyFox.Windows.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>

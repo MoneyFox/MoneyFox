@@ -26,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\MoneyFox.Service.XML</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
