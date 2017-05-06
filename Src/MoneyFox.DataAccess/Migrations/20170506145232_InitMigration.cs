@@ -49,7 +49,7 @@ namespace MoneyFox.DataAccess.Migrations
                     Amount = table.Column<double>(nullable: false),
                     CategoryId = table.Column<int>(nullable: true),
                     ChargedAccountId = table.Column<int>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     IsEndless = table.Column<bool>(nullable: false),
                     Note = table.Column<string>(nullable: true),
                     Recurrence = table.Column<int>(nullable: false),

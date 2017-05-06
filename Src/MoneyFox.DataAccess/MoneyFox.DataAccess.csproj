@@ -52,11 +52,6 @@
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
-    <Compile Include="Migrations\20170425220115_InitMigration.cs" />
-    <Compile Include="Migrations\20170425220115_InitMigration.designer.cs">
-      <DependentUpon>20170425220115_InitMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

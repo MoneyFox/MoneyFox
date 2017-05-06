@@ -107,7 +107,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<int>("ChargedAccountId");
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<DateTime?>("EndDate");
 
                     b.Property<bool>("IsEndless");
 
