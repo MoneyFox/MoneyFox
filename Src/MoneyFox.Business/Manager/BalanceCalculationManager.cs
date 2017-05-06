@@ -87,11 +87,11 @@ namespace MoneyFox.Business.Manager
                         break;
 
                     case PaymentType.Transfer:
-                        if(excluded.Contains(payment.Data.ChargedAccountId())){ //Transfer from excluded account
+                        if(excluded.Contains(payment.Data.ChargedAccountId)){ //Transfer from excluded account
                             balance += payment.Data.Amount; 
                         }
                         else
-                            if(excluded.Contains(payment.Data.TargetAccountId())){ //Transfer to excluded account
+                            if(excluded.Contains(payment.Data.TargetAccountId)){ //Transfer to excluded account
                                 balance -= payment.Data.Amount;
                             }
                         break;
