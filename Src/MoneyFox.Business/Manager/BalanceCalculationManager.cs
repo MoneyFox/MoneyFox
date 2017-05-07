@@ -70,10 +70,12 @@ namespace MoneyFox.Business.Manager
         public async Task<double> GetTotalEndOfMonthBalance()
         {
             var balance = await GetTotalBalance();
+            var accounts = await accountService.GetAllAccounts();
+            var notExcluded = await accountService.GetNotExcludedAccounts();
+            var excluded = accounts.ToArray().Except(notExcluded.ToArray());
 
             foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth()))
             {
-                //Transfer can be ignored since they don't change the summary.
                 switch (payment.Data.Type)
                 {
                     case PaymentType.Expense:
@@ -83,8 +85,22 @@ namespace MoneyFox.Business.Manager
                     case PaymentType.Income:
                         balance += payment.Data.Amount;
                         break;
+
                     case PaymentType.Transfer:
+                         foreach (var i in excluded)
+                         {
+                         if(Equals(i, payment.Data.ChargedAccountId)){ //Transfer from excluded account
+                              balance += payment.Data.Amount;
+                              break;
+                         }
+                         else
+                              if(Equals(i, payment.Data.TargetAccountId)){ //Transfer to excluded account
+                                  balance -= payment.Data.Amount;
+                                  break;
+                              }
+                         }
                         break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
