@@ -93,7 +93,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        public DateTime EndDate
+        public DateTime? EndDate
         {
             get => RecurringPayment.Data.EndDate;
             set
@@ -174,7 +174,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get => new AccountViewModel(new Account(RecurringPayment.Data.ChargedAccount));
+            get => RecurringPayment.Data.ChargedAccount != null
+                ? new AccountViewModel(new Account(RecurringPayment.Data.ChargedAccount))
+                : null;
             set
             {
                 RecurringPayment.Data.ChargedAccount = value.Account.Data;
@@ -189,7 +191,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get => new AccountViewModel(new Account(RecurringPayment.Data.TargetAccount));
+            get => RecurringPayment.Data.TargetAccount != null
+                ? new AccountViewModel(new Account(RecurringPayment.Data.TargetAccount))
+                : null;
             set
             {
                 RecurringPayment.Data.TargetAccount = value.Account.Data;
@@ -203,7 +207,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel Category
         {
-            get => new CategoryViewModel(new Category(RecurringPayment.Data.Category));
+            get => RecurringPayment.Data.Category != null
+                ? new CategoryViewModel(new Category(RecurringPayment.Data.Category))
+                : null;
             set
             {
                 RecurringPayment.Data.Category = value.Category.Data;

@@ -224,7 +224,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel Category
         {
-            get { return new CategoryViewModel(new Category(Payment.Data.Category)); ; }
+            get { return Payment.Data.Category != null
+                ? new CategoryViewModel(new Category(Payment.Data.Category))
+                : null;  }
             set
             {
                 if (Category == value) return;
@@ -239,7 +241,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public RecurringPaymentViewModel RecurringPayment
         {
-            get { return new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment)); }
+            get
+            {
+                return Payment.Data.RecurringPayment != null
+                    ? new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment))
+                    : null;
+            }
             set
             {
                 if (RecurringPayment == value) return;
