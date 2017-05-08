@@ -77,11 +77,12 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void Save_UpdateTimeStamp()
         {
             // Arrange
+            var account = new AccountEntity {Id = 3, Name = "3"};
             var selectedPayment = new Payment
             {
                 Data =
                 {
-                    ChargedAccount = new AccountEntity {Id = 3, Name = "3"}
+                    ChargedAccount = account
                 }
             };
 
@@ -108,7 +109,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IMvxMessenger>().Object,
                                                        new Mock<IBackupManager>().Object)
             {
-                SelectedPayment = new PaymentViewModel(selectedPayment)
+                SelectedPayment = new PaymentViewModel(selectedPayment) { ChargedAccount = new AccountViewModel(new Account(account)) }
             };
             
             // Act
