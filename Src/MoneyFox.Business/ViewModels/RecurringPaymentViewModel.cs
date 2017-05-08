@@ -93,7 +93,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        public DateTime EndDate
+        public DateTime? EndDate
         {
             get => RecurringPayment.Data.EndDate;
             set

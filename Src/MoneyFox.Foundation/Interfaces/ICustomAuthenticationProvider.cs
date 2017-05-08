@@ -1,9 +1,15 @@
 ﻿using Microsoft.Graph;
 
-namespace MoneyFox.Foundation
+namespace MoneyFox.Foundation.Interfaces
 {
-	public interface ICustomAuthenticationProvider : IAuthenticationProvider
+    /// <summary>
+    ///     Provides an interface for a custom authentication provider
+    /// </summary>
+    public interface ICustomAuthenticationProvider : IAuthenticationProvider
 	{
-		void Logout();
+        /// <summary>
+        ///     Log out, delete cached information and close the session.
+        /// </summary>
+        void Logout();
 	}
 }

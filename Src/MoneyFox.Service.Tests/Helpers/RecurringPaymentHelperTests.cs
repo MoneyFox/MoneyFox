@@ -39,6 +39,7 @@ namespace MoneyFox.Service.Tests
         [InlineData(PaymentRecurrence.Yearly, PaymentType.Transfer)]
         public void GetRecurringFromPayment_Endless(PaymentRecurrence recurrence, PaymentType type)
         {
+            // Arrange
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime("7.8.2016");
 
@@ -57,13 +58,14 @@ namespace MoneyFox.Service.Tests
                 }
             };
 
+            // Act
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
                                                                            recurrence, enddate);
 
             recurring.Data.ChargedAccount.Id.ShouldBe(3);
             recurring.Data.TargetAccount.Id.ShouldBe(8);
             recurring.Data.StartDate.ShouldBe(startDate);
-            recurring.Data.EndDate.ShouldBe(enddate);
+            recurring.Data.EndDate.ShouldBeNull();
             recurring.Data.IsEndless.ShouldBe(true);
             recurring.Data.Amount.ShouldBe(payment.Data.Amount);
             recurring.Data.Category.Id.ShouldBe(payment.Data.Category.Id);
@@ -108,6 +110,7 @@ namespace MoneyFox.Service.Tests
             result.Data.Date.ShouldBe(DateTime.Today);
         }
 
+        [Fact]
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedPayment()
         {
             var account = new AccountEntity {Id = 2};
@@ -132,6 +135,81 @@ namespace MoneyFox.Service.Tests
             result.Data.ChargedAccountId.ShouldBe(account.Id);
             result.Data.Amount.ShouldBe(105);
             result.Data.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
+        }
+
+        [Fact]
+        public void GetRecurringFromPayment_IsEndless_EnddateNull()
+        {
+            // Arrange
+            var payment = new Payment
+            {
+                Data = new PaymentEntity
+                {
+                    Amount = 12,
+                    Category = new CategoryEntity { Name = "category" },
+                    ChargedAccount = new AccountEntity { Name = "account" },
+                    Date = DateTime.Now,
+                    IsCleared = false,
+                    Note = "note"
+                }
+            };
+
+            // Act
+            var recurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(payment, true, PaymentRecurrence.Daily);
+
+            // Assert
+            Assert.Null(recurringPayment.Data.EndDate);
+        }
+
+        [Fact]
+        public void GetRecurringFromPayment_IsNotEndless_DefaultEnddate()
+        {
+            // Arrange
+            var payment = new Payment
+            {
+                Data = new PaymentEntity
+                {
+                    Amount = 12,
+                    Category = new CategoryEntity { Name = "category" },
+                    ChargedAccount = new AccountEntity { Name = "account" },
+                    Date = DateTime.Now,
+                    IsCleared = false,
+                    Note = "note"
+                }
+            };
+
+            // Act
+            var recurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(payment, false, PaymentRecurrence.Daily);
+
+            // Assert
+            Assert.NotNull(recurringPayment.Data.EndDate);
+            Assert.Equal(new DateTime(), recurringPayment.Data.EndDate.Value);
+        }
+
+        [Fact]
+        public void GetRecurringFromPayment_IsNotEndless_EnddateSet()
+        {
+            // Arrange
+            var payment = new Payment
+            {
+                Data = new PaymentEntity
+                {
+                    Amount = 12,
+                    Category = new CategoryEntity { Name = "category" },
+                    ChargedAccount = new AccountEntity { Name = "account" },
+                    Date = DateTime.Now,
+                    IsCleared = false,
+                    Note = "note"
+                }
+            };
+            var enddate = DateTime.Now.AddMonths(2);
+
+            // Act
+            var recurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(payment, false, PaymentRecurrence.Daily, enddate);
+
+            // Assert
+            Assert.NotNull(recurringPayment.Data.EndDate);
+            Assert.Equal(enddate, recurringPayment.Data.EndDate.Value);
         }
 
         [Theory]

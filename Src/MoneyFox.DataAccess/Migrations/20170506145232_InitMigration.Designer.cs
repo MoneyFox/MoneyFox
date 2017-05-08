@@ -9,7 +9,7 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170425220115_InitMigration")]
+    [Migration("20170506145232_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,7 +108,7 @@ namespace MoneyFox.DataAccess.Migrations
 
                     b.Property<int>("ChargedAccountId");
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<DateTime?>("EndDate");
 
                     b.Property<bool>("IsEndless");
 

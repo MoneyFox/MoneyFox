@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Business.Extensions;
-using UIKit;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using Xamarin.Auth;
-using MoneyFox.Ios.OneDriveAuth;
 
-namespace MoneyFox.Ios
+namespace MoneyFox.Ios.OneDriveAuth
 {
 	public class IosAuthenticationProvider : ICustomAuthenticationProvider
 	{

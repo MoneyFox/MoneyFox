@@ -26,6 +26,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\MoneyFox.DataAccess.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,9 +52,9 @@
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
-    <Compile Include="Migrations\20170425220115_InitMigration.cs" />
-    <Compile Include="Migrations\20170425220115_InitMigration.designer.cs">
-      <DependentUpon>20170425220115_InitMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20170506145232_InitMigration.cs" />
+    <Compile Include="Migrations\20170506145232_InitMigration.designer.cs">
+      <DependentUpon>20170506145232_InitMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
