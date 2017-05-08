@@ -6,6 +6,9 @@ using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Handles the view representation of a payment.
+    /// </summary>
     public class PaymentViewModel : INotifyPropertyChanged
     {
         /// <summary>
@@ -180,6 +183,9 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
+        
+        private AccountViewModel chargedAccount;
+        private AccountViewModel targetAccount;
 
         /// <summary>
         ///     In case it's a expense or transfer the account who will be charged.
@@ -187,16 +193,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get
-            {
-                return Payment.Data.ChargedAccount != null
-                    ? new AccountViewModel(new Account(Payment.Data.ChargedAccount))
-                    : null;
-            }
+            get { return chargedAccount; }
             set
             {
-                if (ChargedAccount == value) return;
-                Payment.Data.ChargedAccount = value?.Account.Data;
+                if (chargedAccount == value) return;
+                chargedAccount = value;
+                Payment.Data.ChargedAccount = value.Account.Data;
                 RaisePropertyChanged();
             }
         }
@@ -207,13 +209,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get { return Payment.Data.TargetAccount != null
-                ? new AccountViewModel(new Account(Payment.Data.TargetAccount))
-                : null;
-            }
+            get { return targetAccount; }
             set
             {
                 if (TargetAccount == value) return;
+                targetAccount = value;
                 Payment.Data.TargetAccount = value.Account.Data;
                 RaisePropertyChanged();
             }
