@@ -18,6 +18,9 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Handles the logic of the ModifyPayment view
+    /// </summary>
     public class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
@@ -39,6 +42,10 @@ namespace MoneyFox.Business.ViewModels
         private bool isEdit;
         private int paymentId;
 
+
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public ModifyPaymentViewModel(IPaymentService paymentService,
             IAccountService accountService,
             IDialogService dialogService,
@@ -209,6 +216,7 @@ namespace MoneyFox.Business.ViewModels
                     return;
                 }
                 selectedPayment = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -294,7 +302,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 IsEdit = true;
                 PaymentId = paymentId;
-                selectedPayment = new PaymentViewModel(await paymentService.GetById(PaymentId));
+                SelectedPayment = new PaymentViewModel(await paymentService.GetById(PaymentId));
                 PrepareEdit();
             }
 
@@ -314,7 +322,18 @@ namespace MoneyFox.Business.ViewModels
         }
 
         private void PrepareEdit()
-        {
+        {            
+            // we have to set the AccountViewModel objects here again to ensure that they are identical to the
+            // objects in the AccountViewModel collections.
+            SelectedPayment.ChargedAccount =
+                ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
+
+            if (SelectedPayment.Type == PaymentType.Transfer)
+            {
+                SelectedPayment.TargetAccount =
+                    TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
+            }
+
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
@@ -322,19 +341,10 @@ namespace MoneyFox.Business.ViewModels
                 ? SelectedPayment.RecurringPayment.Recurrence
                 : PaymentRecurrence.Daily;
 
-            Debug.Assert(SelectedPayment.RecurringPayment.EndDate != null, "If payment is not endless, the enddate may not be null");
             EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
                 ? SelectedPayment.RecurringPayment.EndDate.Value
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-
-            // we have to set the AccountViewModel objects here again to ensure that they are identical to the
-            // objects in the AccountViewModel collections.
-            // TODO:  Check if this is needed.
-            //selectedPayment.ChargedAccount =
-            //    ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
-            //selectedPayment.TargetAccount =
-            //    TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
         }
 
         /// <summary>
@@ -450,30 +460,30 @@ namespace MoneyFox.Business.ViewModels
 
         private void UpdateOtherComboBox()
         {
-            var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (var account in TargetAccounts)
-            {
-                if (!tempCollection.Contains(account))
-                {
-                    tempCollection.Add(account);
-                }
-            }
-            foreach (var account in tempCollection)
-            {
-                //fills targetaccounts
-                if (!TargetAccounts.Contains(account)) 
-                {
-                    TargetAccounts.Add(account);
-                }
+            //var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
+            //foreach (var account in TargetAccounts)
+            //{
+            //    if (!tempCollection.Contains(account))
+            //    {
+            //        tempCollection.Add(account);
+            //    }
+            //}
+            //foreach (var account in tempCollection)
+            //{
+            //    //fills targetaccounts
+            //    if (!TargetAccounts.Contains(account)) 
+            //    {
+            //        TargetAccounts.Add(account);
+            //    }
 
-                //fills chargedaccounts
-                if (!ChargedAccounts.Contains(account)) 
-                {
-                    ChargedAccounts.Add(account);
-                }
-            }
-            ChargedAccounts.Remove(selectedPayment.TargetAccount);
-            TargetAccounts.Remove(selectedPayment.ChargedAccount);
+            //    //fills chargedaccounts
+            //    if (!ChargedAccounts.Contains(account)) 
+            //    {
+            //        ChargedAccounts.Add(account);
+            //    }
+            //}
+            //ChargedAccounts.Remove(selectedPayment.TargetAccount);
+            //TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
     }
 }

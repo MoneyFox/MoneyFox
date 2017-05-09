@@ -69,7 +69,7 @@
                     <ComboBox x:Uid="TargetAccountTextBox"
                               Margin="0,7,0,0"
                               HorizontalAlignment="Stretch"
-                              Header="target AccountViewModel"
+                              Header="target account"
                               ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
                               ItemsSource="{Binding TargetAccounts,
                                                     Mode=TwoWay,
