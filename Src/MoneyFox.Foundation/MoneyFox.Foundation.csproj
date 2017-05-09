@@ -48,6 +48,7 @@
     <Compile Include="Constants\ServiceConstants.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
+    <Compile Include="Exceptions\BackupAuthenticationFailedException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
     <Compile Include="Exceptions\NetworkConnectionException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
