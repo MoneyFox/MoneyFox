@@ -180,15 +180,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully modified.
-        /// </summary>
-        public static string AccountModifiedMessage {
-            get {
-                return ResourceManager.GetString("AccountModifiedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please select an Account..
         /// </summary>
         public static string AccountRequiredMessage {
@@ -311,6 +302,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string AuthenticationFailedMessage {
             get {
                 return ResourceManager.GetString("AuthenticationFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authentication failed.
+        /// </summary>
+        public static string AuthenticationFailedTitle {
+            get {
+                return ResourceManager.GetString("AuthenticationFailedTitle", resourceCulture);
             }
         }
         

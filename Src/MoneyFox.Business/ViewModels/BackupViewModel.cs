@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
@@ -40,6 +41,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public MvxCommand LoginCommand => new MvxCommand(Login);
 
+        /// <summary>
+        ///     Logs the user out from the backup service.
+        /// </summary>
         public MvxCommand LogoutCommand => new MvxCommand(Logout);
 
         /// <summary>
@@ -119,8 +123,16 @@ namespace MoneyFox.Business.ViewModels
             }
 
             IsLoadingBackupAvailability = true;
-            BackupAvailable = await backupManager.IsBackupExisting();
-            BackupLastModified = await backupManager.GetBackupDate();
+            try
+            {
+                BackupAvailable = await backupManager.IsBackupExisting();
+                BackupLastModified = await backupManager.GetBackupDate();
+            }
+            catch (BackupAuthenticationFailedException)
+            {
+                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
+                                                Strings.AuthenticationFailedMessage);
+            }
             IsLoadingBackupAvailability = false;
         }
 
@@ -130,11 +142,18 @@ namespace MoneyFox.Business.ViewModels
             {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
-
-            await backupManager.Login();
-            settingsManager.IsLoggedInToBackupService = true;
-            // ReSharper disable once ExplicitCallerInfoArgument
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            try
+            {
+                await backupManager.Login();
+                settingsManager.IsLoggedInToBackupService = true;
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsLoggedIn));
+            } 
+            catch (BackupAuthenticationFailedException)
+            {
+                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
+                                                Strings.AuthenticationFailedMessage);
+            }
             Loaded();
         }
 
@@ -154,8 +173,16 @@ namespace MoneyFox.Business.ViewModels
             }
 
             dialogService.ShowLoadingDialog();
-            await backupManager.CreateNewBackup();
-            BackupLastModified = DateTime.Now;
+            try
+            {
+                await backupManager.CreateNewBackup();
+                BackupLastModified = DateTime.Now;
+            } 
+            catch (BackupAuthenticationFailedException)
+            {
+                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
+                                                Strings.AuthenticationFailedMessage);
+            }
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }
@@ -167,17 +194,22 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
+            dialogService.ShowLoadingDialog();
             try
             {
-                dialogService.ShowLoadingDialog();
                 await backupManager.RestoreBackup();
-                dialogService.HideLoadingDialog();
-                await ShowCompletionNote();
+            }
+            catch (BackupAuthenticationFailedException)
+            {
+                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
+                                                Strings.AuthenticationFailedMessage);
             }
             catch (Exception)
             {
                 await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.ErrorMessageRestore);
             }
+            dialogService.HideLoadingDialog();
+            await ShowCompletionNote();
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

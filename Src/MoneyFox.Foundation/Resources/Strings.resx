@@ -385,9 +385,6 @@ Do you want to go the the store to rate?</value>
   <data name="AccountCreatedMessage" xml:space="preserve">
     <value>'{0}' has been succesfully created</value>
   </data>
-  <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully modified</value>
-  </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Add expense</value>
   </data>
@@ -638,5 +635,8 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>Quarterly</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
   </data>
 </root>
