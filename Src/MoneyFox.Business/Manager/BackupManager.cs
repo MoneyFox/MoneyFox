@@ -14,9 +14,7 @@ using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Business.Manager
 {
-    /// <summary>
-    ///     Manages the backup creation and restore process with different services.
-    /// </summary>
+    /// <inheritdoc />
     public class BackupManager : IBackupManager
     {
         private readonly IBackupService backupService;
@@ -42,29 +40,21 @@ namespace MoneyFox.Business.Manager
             this.dbFactory = dbFactory;
         }
 
-        /// <summary>
-        ///     Login User.
-        /// </summary>
+        /// <inheritdoc />
         public async Task Login()
         {
             if (!connectivity.IsConnected) return;
             await backupService.Login();
         }
 
-        /// <summary>
-        ///     Logout User.
-        /// </summary>
+        /// <inheritdoc />
         public async Task Logout()
         {
             if (!connectivity.IsConnected) return;
             await backupService.Logout();
         }
 
-        /// <summary>
-        ///     Enqueue a backup operation, using a semaphore to block concurrent syncs.
-        ///     A sync can be attempted up to a number of times configured in ServiceConstants
-        /// </summary>
-        /// <param name="attempts">How many times of trying to sync already where made.</param>
+        /// <inheritdoc />
         public async Task EnqueueBackupTask(int attempts = 0)
         {
             if (!connectivity.IsConnected) return;
@@ -93,10 +83,7 @@ namespace MoneyFox.Business.Manager
             }
         }
 
-        /// <summary>
-        ///     Syncs the local database with the Backupservice and
-        ///     restores it if the one on the Backupservice is newer.
-        /// </summary>
+        /// <inheritdoc />
         public async Task DownloadBackup()
         {
             if (!connectivity.IsConnected) return;
@@ -116,10 +103,7 @@ namespace MoneyFox.Business.Manager
             }
         }
 
-        /// <summary>
-        ///     Gets the backup date from the backup service.
-        /// </summary>
-        /// <returns>Backupdate.</returns>
+        /// <inheritdoc />
         public async Task<DateTime> GetBackupDate()
         {
             if (!connectivity.IsConnected) return DateTime.MinValue;
@@ -128,23 +112,16 @@ namespace MoneyFox.Business.Manager
             return date.ToLocalTime();
         }
 
-        /// <summary>
-        ///     Checks if there are files in the backup folder. If yes it assumes that there are backups to restore.
-        ///     There is no further check if the files are valid backup files or not.
-        /// </summary>
-        /// <returns>Backups available or not.</returns>
+        /// <inheritdoc />
         public async Task<bool> IsBackupExisting()
         {
             if (!connectivity.IsConnected) return false;
 
             var files = await backupService.GetFileNames();
-            return (files != null) && files.Any();
+            return files != null && files.Any();
         }
 
-        /// <summary>
-        ///     Creates a new backup date.
-        /// </summary>
-        /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
+        /// <inheritdoc />
         public async Task<bool> CreateNewBackup()
         {
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
@@ -155,9 +132,7 @@ namespace MoneyFox.Business.Manager
             }
         }
 
-        /// <summary>
-        ///     Restores an existing backup from the backupservice.
-        /// </summary>
+        /// <inheritdoc />
         public async Task RestoreBackup()
         {
             if (!connectivity.IsConnected) return;
