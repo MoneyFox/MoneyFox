@@ -438,7 +438,7 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (Exception)
             {
-                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.ErrorMessageDelete);
+                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
         }
 

@@ -171,9 +171,6 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Supprimer</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Raccourcis </value>
-  </data>
   <data name="SecurityTitle" xml:space="preserve">
     <value>Sécurité</value>
   </data>
@@ -189,9 +186,6 @@
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Dépenses</value>
   </data>
-  <data name="FeedbackLabel" xml:space="preserve">
-    <value>Commentaires</value>
-  </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Commentaires sur Money Fox</value>
   </data>
@@ -204,17 +198,8 @@
   <data name="JustThisLabel" xml:space="preserve">
     <value>No, just this</value>
   </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>Nous ne pouvions pas vous connectez. Veuillez vous assurer que vous avez une connexion internet active.</value>
-  </data>
-  <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Connexion échouée!</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Champ obligatoire</value>
-  </data>
-  <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Mensuel</value>
@@ -224,12 +209,6 @@
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>Non</value>
-  </data>
-  <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[Sans nom]</value>
-  </data>
-  <data name="NoneLabel" xml:space="preserve">
-    <value>Aucun</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Valider</value>
@@ -242,9 +221,6 @@
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
     <value>Oui, tout mettre à jour</value>
-  </data>
-  <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Échec de la restauration!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenu</value>
@@ -390,9 +366,6 @@
   <data name="ErrorTitleDelete" xml:space="preserve">
     <value>Erreur lors de la suppression</value>
   </data>
-  <data name="ErrorTitleSave" xml:space="preserve">
-    <value>Erreur lors de la sauvegarde</value>
-  </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Choisissez la catégorie</value>
   </data>
@@ -419,9 +392,6 @@
   </data>
   <data name="AuthenticationFailedMessage" xml:space="preserve">
     <value>Échec de l'authentification</value>
-  </data>
-  <data name="SomethingWentWrongTitle" xml:space="preserve">
-    <value>Une erreur s'est produite...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Version</value>
