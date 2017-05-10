@@ -2,14 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.Foundation.Interfaces
 {
+    /// <summary>
+    ///     Provides Backup and Restore operations.
+    /// </summary>
     public interface IBackupService
     {
         /// <summary>
         ///     Login user.
         /// </summary>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task Login();
 
         /// <summary>
@@ -22,6 +27,7 @@ namespace MoneyFox.Foundation.Interfaces
         /// </summary>
         /// <param name="dataToUpload">Stream of data to upload.</param>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<bool> Upload(Stream dataToUpload);
 
         /// <summary>
@@ -30,6 +36,8 @@ namespace MoneyFox.Foundation.Interfaces
         /// <param name="backupname">Name of the backup to restore</param>
         /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
+        /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<Stream> Restore(string backupname, string dbName);
 
         /// <summary>
@@ -37,12 +45,14 @@ namespace MoneyFox.Foundation.Interfaces
         ///     The name of the backupfolder is defined in the Constants.
         /// </summary>
         /// <returns>A list with all filenames.</returns>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<List<string>> GetFileNames();
 
         /// <summary>
         ///     Get's the modification date for the existing backup.
         /// </summary>
         /// <returns>Returns the date of the last backup</returns>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<DateTime> GetBackupDate();
     }
 }
