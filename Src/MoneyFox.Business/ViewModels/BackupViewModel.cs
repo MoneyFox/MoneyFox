@@ -9,6 +9,9 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the backup view.
+    /// </summary>
     public class BackupViewModel : BaseViewModel
     {
         private readonly IBackupManager backupManager;
