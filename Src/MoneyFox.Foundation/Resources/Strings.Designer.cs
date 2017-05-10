@@ -64,6 +64,15 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
+        public static string AboutLabel {
+            get {
+                return ResourceManager.GetString("AboutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
         public static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
@@ -263,27 +272,9 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Authentication failed.
         /// </summary>
-        public static string AuthenticationFailedMessage {
-            get {
-                return ResourceManager.GetString("AuthenticationFailedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Authentication failed.
-        /// </summary>
         public static string AuthenticationFailedTitle {
             get {
                 return ResourceManager.GetString("AuthenticationFailedTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There where an error while create your backup. Please try again later..
-        /// </summary>
-        public static string BackupFailedMessage {
-            get {
-                return ResourceManager.GetString("BackupFailedMessage", resourceCulture);
             }
         }
         
@@ -699,6 +690,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string EditTransferTitle {
             get {
                 return ResourceManager.GetString("EditTransferTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authentication failed.
+        /// </summary>
+        public static string ErrorMessageAuthenticationFailed {
+            get {
+                return ResourceManager.GetString("ErrorMessageAuthenticationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There where an error while create your backup. Please try again later..
+        /// </summary>
+        public static string ErrorMessageBackupFailed {
+            get {
+                return ResourceManager.GetString("ErrorMessageBackupFailed", resourceCulture);
             }
         }
         

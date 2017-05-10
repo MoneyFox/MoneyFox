@@ -141,7 +141,7 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
-  <data name="BackupFailedMessage" xml:space="preserve">
+  <data name="ErrorMessageBackupFailed" xml:space="preserve">
     <value>There where an error while create your backup. Please try again later.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
@@ -391,7 +391,7 @@ Do you want to go the the store to rate?</value>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Loading...</value>
   </data>
-  <data name="AuthenticationFailedMessage" xml:space="preserve">
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Authentication failed</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
@@ -596,5 +596,8 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="BackupRestoreFailedTitle" xml:space="preserve">
     <value>Restore backup failed!</value>
+  </data>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>About</value>
   </data>
 </root>

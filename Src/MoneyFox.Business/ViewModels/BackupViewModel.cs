@@ -131,7 +131,7 @@ namespace MoneyFox.Business.ViewModels
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.AuthenticationFailedMessage);
+                                                Strings.ErrorMessageAuthenticationFailed);
             }
             IsLoadingBackupAvailability = false;
         }
@@ -152,7 +152,7 @@ namespace MoneyFox.Business.ViewModels
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.AuthenticationFailedMessage);
+                                                Strings.ErrorMessageAuthenticationFailed);
             }
             Loaded();
         }
@@ -181,12 +181,12 @@ namespace MoneyFox.Business.ViewModels
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.AuthenticationFailedMessage);
+                                                Strings.ErrorMessageAuthenticationFailed);
             }
             catch (Exception)
             {
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                                                Strings.BackupFailedMessage);
+                                                Strings.ErrorMessageBackupFailed);
 
             }
             dialogService.HideLoadingDialog();
@@ -208,7 +208,7 @@ namespace MoneyFox.Business.ViewModels
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.AuthenticationFailedMessage);
+                                                Strings.ErrorMessageAuthenticationFailed);
             }
             catch (Exception)
             {
