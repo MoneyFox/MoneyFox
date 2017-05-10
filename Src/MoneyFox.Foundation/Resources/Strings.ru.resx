@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>О приложении</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>О приложении</value>
   </data>
@@ -321,9 +318,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Неправильный пароль</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Добавить</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Категории</value>
   </data>
@@ -372,17 +366,11 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Краткое описание категорий с оплатой.</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Добавить счёт</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Отмена</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Выбрать</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>«{0}» была успешно создана</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Добавить расход</value>
@@ -585,12 +573,6 @@
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Статистика</value>
-  </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Закрыть ящик</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Открытый ящик</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>

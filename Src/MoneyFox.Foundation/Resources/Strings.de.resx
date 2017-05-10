@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -321,9 +318,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Passwort falsch</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Zusammenfassung Kategorien</value>
   </data>
@@ -373,17 +367,11 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Zusammenfassung der Kategorien mit einer Zahlung.</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Konto hinzufügen</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Wähle</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>'{0}' wurde erfolgreich erstellt</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
@@ -588,12 +576,6 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistiken</value>
-  </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Seitenleiste schliessen</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Seitenleiste öffnen</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Du hast eine wiederkehrende Zahlung gelöscht. Möchtest du die Wiederholung löschen?</value>

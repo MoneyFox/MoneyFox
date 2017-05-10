@@ -177,11 +177,17 @@ namespace MoneyFox.Business.ViewModels
             {
                 await backupManager.CreateNewBackup();
                 BackupLastModified = DateTime.Now;
-            } 
+            }
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.AuthenticationFailedMessage);
+            }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage(Strings.BackupFailedTitle,
+                                                Strings.BackupFailedMessage);
+
             }
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
@@ -206,7 +212,7 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (Exception)
             {
-                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.ErrorMessageRestore);
+                await dialogService.ShowMessage(Strings.BackupRestoreFailedTitle, Strings.ErrorMessageRestore);
             }
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>About</value>
   </data>
@@ -145,7 +142,7 @@
     <value>Money Fox</value>
   </data>
   <data name="BackupFailedMessage" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>There where an error while create your backup. Please try again later.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Backup</value>
@@ -321,9 +318,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Password wrong</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
   </data>
@@ -373,17 +367,11 @@ Do you want to go the the store to rate?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a Payment.</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Choose</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully created</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Add expense</value>
@@ -588,12 +576,6 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Drawer Close</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Drawer Open</value>
-  </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
   </data>
@@ -638,5 +620,11 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Authentication failed</value>
+  </data>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Backup failed!</value>
+  </data>
+  <data name="BackupRestoreFailedTitle" xml:space="preserve">
+    <value>Restore backup failed!</value>
   </data>
 </root>

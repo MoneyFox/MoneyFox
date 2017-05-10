@@ -13,17 +13,17 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class ModifyCategoryViewModel : BaseViewModel
     {
+        private readonly IBackupManager backupManager;
         private readonly ICategoryService categoryService;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
-        private readonly IBackupManager backupManager;
-
-        private CategoryViewModel selectedCategory;
         private bool isEdit;
 
+        private CategoryViewModel selectedCategory;
+
         public ModifyCategoryViewModel(ICategoryService categoryService, IDialogService dialogService,
-            ISettingsManager settingsManager, 
-            IBackupManager backupManager)
+                                       ISettingsManager settingsManager,
+                                       IBackupManager backupManager)
         {
             this.categoryService = categoryService;
             this.dialogService = dialogService;
@@ -140,15 +140,22 @@ namespace MoneyFox.Business.ViewModels
             Close(this);
         }
 
-        private void DeleteCategory()
+        private async void DeleteCategory()
         {
-        categoryService.DeleteCategory(SelectedCategory.Category);
-        settingsManager.LastDatabaseUpdate = DateTime.Now;
+            try
+            {
+                await categoryService.DeleteCategory(SelectedCategory.Category);
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-        backupManager.EnqueueBackupTask();
+                backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            
-        Close(this);
+
+                Close(this);
+            }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage(Strings.SomethingWentWrongTitle, Strings.ErrorMessageDelete);
+            }
         }
 
         private async void Cancel()
