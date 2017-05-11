@@ -121,7 +121,6 @@ namespace MoneyFox.DataAccess.Infrastructure
             return DbSet.Where(where);
         }
 
-
         #endregion
     }
 }
