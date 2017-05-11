@@ -13,8 +13,16 @@ namespace MoneyFox.DataAccess.Infrastructure
     public abstract class RepositoryBase<T> where T : class
     {
         private ApplicationContext dataContext;
+
+        /// <summary>
+        ///     Currenly used DbSet.
+        /// </summary>
         protected readonly DbSet<T> DbSet;
 
+        /// <summary>
+        ///     Default Constructor
+        /// </summary>
+        /// <param name="dbFactory">Db factory to use.</param>
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
@@ -114,6 +122,6 @@ namespace MoneyFox.DataAccess.Infrastructure
         }
 
 
-        #endregion    }
+        #endregion
     }
 }
