@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Sur</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Sur</value>
   </data>
@@ -174,9 +171,6 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Supprimer</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Raccourcis </value>
-  </data>
   <data name="SecurityTitle" xml:space="preserve">
     <value>Sécurité</value>
   </data>
@@ -192,9 +186,6 @@
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Dépenses</value>
   </data>
-  <data name="FeedbackLabel" xml:space="preserve">
-    <value>Commentaires</value>
-  </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Commentaires sur Money Fox</value>
   </data>
@@ -207,17 +198,8 @@
   <data name="JustThisLabel" xml:space="preserve">
     <value>No, just this</value>
   </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>Nous ne pouvions pas vous connectez. Veuillez vous assurer que vous avez une connexion internet active.</value>
-  </data>
-  <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Connexion échouée!</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Champ obligatoire</value>
-  </data>
-  <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Mensuel</value>
@@ -227,12 +209,6 @@
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>Non</value>
-  </data>
-  <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[Sans nom]</value>
-  </data>
-  <data name="NoneLabel" xml:space="preserve">
-    <value>Aucun</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Valider</value>
@@ -245,9 +221,6 @@
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
     <value>Oui, tout mettre à jour</value>
-  </data>
-  <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Échec de la restauration!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenu</value>
@@ -321,9 +294,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Mot de passe erroné</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Ajouter</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Résumé des catégories</value>
   </data>
@@ -372,26 +342,11 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Résumé des catégories avec un paiement.</value>
   </data>
-  <data name="ExpenseHistoryLabel" xml:space="preserve">
-    <value>Historique des dépenses</value>
-  </data>
-  <data name="ExpenseHistoryDescription" xml:space="preserve">
-    <value>Montre une comparaison par mois sur vos dépenses totales pour l’intervalle de temps sélectionné.</value>
-  </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Ajouter un compte</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Selectionnez</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>« {0} » a été créé avec succès</value>
-  </data>
-  <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>« {0} » a été modifié avec succès</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Ajouter une dépense</value>
@@ -410,9 +365,6 @@
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
     <value>Erreur lors de la suppression</value>
-  </data>
-  <data name="ErrorTitleSave" xml:space="preserve">
-    <value>Erreur lors de la sauvegarde</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Choisissez la catégorie</value>
@@ -440,9 +392,6 @@
   </data>
   <data name="AuthenticationFailedMessage" xml:space="preserve">
     <value>Échec de l'authentification</value>
-  </data>
-  <data name="SomethingWentWrongTitle" xml:space="preserve">
-    <value>Une erreur s'est produite...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Version</value>
@@ -594,12 +543,6 @@
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistiques </value>
   </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Drawer Close</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Drawer Open</value>
-  </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Vous avez supprimé un paiement récurrent. Vous voulez supprimer aussi la récurrence ?</value>
   </data>
@@ -611,5 +554,8 @@
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
     <value>Exclure le compte du solde</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
   </data>
 </root>

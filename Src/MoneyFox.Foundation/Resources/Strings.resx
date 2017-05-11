@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>About</value>
   </data>
@@ -144,8 +141,8 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
-  <data name="BackupFailedMessage" xml:space="preserve">
-    <value>Backup failed!</value>
+  <data name="ErrorMessageBackupFailed" xml:space="preserve">
+    <value>There where an error while create your backup. Please try again later.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Backup</value>
@@ -174,9 +171,6 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Shortcuts</value>
-  </data>
   <data name="SecurityTitle" xml:space="preserve">
     <value>Security</value>
   </data>
@@ -192,9 +186,6 @@
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Expenses</value>
   </data>
-  <data name="FeedbackLabel" xml:space="preserve">
-    <value>Feedback</value>
-  </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback Money Fox</value>
   </data>
@@ -207,17 +198,8 @@
   <data name="JustThisLabel" xml:space="preserve">
     <value>No, just this</value>
   </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>We couldn't log you in. Please ensure you have an active internet connection.</value>
-  </data>
-  <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Mandatory field</value>
-  </data>
-  <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Monthly</value>
@@ -227,12 +209,6 @@
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>No</value>
-  </data>
-  <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[No Name]</value>
-  </data>
-  <data name="NoneLabel" xml:space="preserve">
-    <value>None</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
@@ -245,9 +221,6 @@
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
     <value>Yes, update All</value>
-  </data>
-  <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Restore failed!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
@@ -321,9 +294,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Password wrong</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
   </data>
@@ -373,20 +343,11 @@ Do you want to go the the store to rate?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a Payment.</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Choose</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully created</value>
-  </data>
-  <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>'{0}' has been succesfully modified</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Add expense</value>
@@ -405,9 +366,6 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
     <value>Error on delete</value>
-  </data>
-  <data name="ErrorTitleSave" xml:space="preserve">
-    <value>Error on save</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Choose Categorie</value>
@@ -433,11 +391,8 @@ Do you want to go the the store to rate?</value>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Loading...</value>
   </data>
-  <data name="AuthenticationFailedMessage" xml:space="preserve">
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Authentication failed</value>
-  </data>
-  <data name="SomethingWentWrongTitle" xml:space="preserve">
-    <value>Something went wrong...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Version</value>
@@ -591,12 +546,6 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Drawer Close</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Drawer Open</value>
-  </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
   </data>
@@ -638,5 +587,17 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>Quarterly</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
+  </data>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Backup failed!</value>
+  </data>
+  <data name="BackupRestoreFailedTitle" xml:space="preserve">
+    <value>Restore backup failed!</value>
+  </data>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>About</value>
   </data>
 </root>

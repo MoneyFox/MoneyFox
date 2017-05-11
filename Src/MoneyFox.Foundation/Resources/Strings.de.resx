@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -174,9 +171,6 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Löschen</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Verknüpfungen</value>
-  </data>
   <data name="SecurityTitle" xml:space="preserve">
     <value>Sicherheit</value>
   </data>
@@ -192,9 +186,6 @@
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Ausgabe</value>
   </data>
-  <data name="FeedbackLabel" xml:space="preserve">
-    <value>Rückmeldung</value>
-  </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Rückmeldungen Money Fox</value>
   </data>
@@ -207,17 +198,8 @@
   <data name="JustThisLabel" xml:space="preserve">
     <value>Nein, nur diese</value>
   </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>Wir konnten dich nicht einloggen. Bitte prüfe ob du mit dem Internet verbunden bist.</value>
-  </data>
-  <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login fehlgeschlagen!</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Pflichtfeld</value>
-  </data>
-  <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Monatlich</value>
@@ -227,12 +209,6 @@
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>Nein</value>
-  </data>
-  <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[Kein Name]</value>
-  </data>
-  <data name="NoneLabel" xml:space="preserve">
-    <value>Keine</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>OK</value>
@@ -245,9 +221,6 @@
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
     <value>Ja, alle aktualisieren</value>
-  </data>
-  <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Wiederherstellen fehlgeschlagen!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Einkommen</value>
@@ -321,9 +294,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Passwort falsch</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Zusammenfassung Kategorien</value>
   </data>
@@ -373,20 +343,11 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Zusammenfassung der Kategorien mit einer Zahlung.</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>Konto hinzufügen</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Wähle</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>'{0}' wurde erfolgreich erstellt</value>
-  </data>
-  <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>'{0}' wurde erfolgreich geändert</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
@@ -405,9 +366,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
     <value>Fehler beim Löschen</value>
-  </data>
-  <data name="ErrorTitleSave" xml:space="preserve">
-    <value>Fehler beim Speichern</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Kategorie wählen</value>
@@ -435,9 +393,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   </data>
   <data name="AuthenticationFailedMessage" xml:space="preserve">
     <value>Authentifizierung fehlgeschlagen</value>
-  </data>
-  <data name="SomethingWentWrongTitle" xml:space="preserve">
-    <value>Etwas ist schiefgegangen...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Version</value>
@@ -592,12 +547,6 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>Statistiken</value>
   </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>Seitenleiste schliessen</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>Seitenleiste öffnen</value>
-  </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Du hast eine wiederkehrende Zahlung gelöscht. Möchtest du die Wiederholung löschen?</value>
   </data>
@@ -633,5 +582,8 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
     <value>Sicherungsperiodizität</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
   </data>
 </root>

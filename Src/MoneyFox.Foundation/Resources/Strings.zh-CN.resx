@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>关于</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -174,9 +171,6 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>快捷方式</value>
-  </data>
   <data name="SecurityTitle" xml:space="preserve">
     <value>安全</value>
   </data>
@@ -192,9 +186,6 @@
   <data name="ExpenseLabel" xml:space="preserve">
     <value>支出</value>
   </data>
-  <data name="FeedbackLabel" xml:space="preserve">
-    <value>反馈</value>
-  </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>向Money Fox反馈</value>
   </data>
@@ -207,17 +198,8 @@
   <data name="JustThisLabel" xml:space="preserve">
     <value>不，只是这个</value>
   </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>我们无法使您登录。请确保您的网络连接可用。</value>
-  </data>
-  <data name="LoginFailedTitle" xml:space="preserve">
-    <value>登录失败！</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>此段必填</value>
-  </data>
-  <data name="MenuTitle" xml:space="preserve">
-    <value>菜单</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>每月</value>
@@ -227,12 +209,6 @@
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>不</value>
-  </data>
-  <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[无名称]</value>
-  </data>
-  <data name="NoneLabel" xml:space="preserve">
-    <value>无</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>确定</value>
@@ -245,9 +221,6 @@
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
     <value>是，更新全部</value>
-  </data>
-  <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>还原失败</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>收入</value>
@@ -321,9 +294,6 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>密码错误</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>添加</value>
-  </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>类别摘要</value>
   </data>
@@ -372,20 +342,11 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>有款项的类别的摘要</value>
   </data>
-  <data name="AddAccountLabel" xml:space="preserve">
-    <value>添加账户</value>
-  </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
     <value>选择</value>
-  </data>
-  <data name="AccountCreatedMessage" xml:space="preserve">
-    <value>{0} 创建成功</value>
-  </data>
-  <data name="AccountModifiedMessage" xml:space="preserve">
-    <value>{0} 修改成功</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>添加支出</value>
@@ -404,9 +365,6 @@
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
     <value>删除时出错</value>
-  </data>
-  <data name="ErrorTitleSave" xml:space="preserve">
-    <value>保存时出错</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>选择类别</value>
@@ -434,9 +392,6 @@
   </data>
   <data name="AuthenticationFailedMessage" xml:space="preserve">
     <value>身份验证失败</value>
-  </data>
-  <data name="SomethingWentWrongTitle" xml:space="preserve">
-    <value>出错了...</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>版本</value>
@@ -589,12 +544,6 @@
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
     <value>统计</value>
-  </data>
-  <data name="DrawerCloseLabel" xml:space="preserve">
-    <value>关闭抽屉</value>
-  </data>
-  <data name="DrawerOpenLabel" xml:space="preserve">
-    <value>打开抽屉</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>

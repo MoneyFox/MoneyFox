@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -428,12 +427,19 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            await paymentService.DeletePayment(SelectedPayment.Payment);
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
+            try
+            {
+                await paymentService.DeletePayment(SelectedPayment.Payment);
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
+                backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            Close(this);
+                Close(this);
+            }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+            }
         }
 
         private async void ShowAccountRequiredMessage()

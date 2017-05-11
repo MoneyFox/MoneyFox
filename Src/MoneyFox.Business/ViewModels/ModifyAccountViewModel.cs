@@ -139,13 +139,13 @@ namespace MoneyFox.Business.ViewModels
                 return;
             }
 
-            SelectedAccount.CurrentBalance = amount;
-
             if (!IsEdit && await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
             {
-                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateAccountMessage);
+                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
                 return;
             }
+
+            SelectedAccount.CurrentBalance = amount;
 
             await accountService.SaveAccount(SelectedAccount.Account);
             settingsManager.LastDatabaseUpdate = DateTime.Now;
@@ -158,12 +158,19 @@ namespace MoneyFox.Business.ViewModels
 
         private async void DeleteAccount()
         {
-            await accountService.DeleteAccount(SelectedAccount.Account);
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
+            try
+            {
+                await accountService.DeleteAccount(SelectedAccount.Account);
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
+                backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            Close(this);
+                Close(this);
+            } 
+            catch(Exception)
+            {
+                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+            }
         }
 
         private void Cancel()
