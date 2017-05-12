@@ -137,14 +137,32 @@ namespace MoneyFox.Business.Manager
         {
             if (!connectivity.IsConnected) return;
 
-            var backupStream = await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
-            fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+            var backups = await backupService.GetFileNames();
 
-            var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
+            if (backups.Contains(DatabaseConstants.BACKUP_NAME))
+            {
+                var backupStream =
+                    await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
+                fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
 
-            if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
 
-            await dbFactory.Init();
+                if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+
+                await dbFactory.Init();
+            }
+            else if (backups.Contains(DatabaseConstants.BACKUP_NAME_OLD))
+            {
+                var backupStream =
+                    await backupService.Restore(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.BACKUP_NAME_OLD);
+                fileStore.WriteFile(DatabaseConstants.BACKUP_NAME_OLD, backupStream.ReadToEnd());
+
+                await dbFactory.Init();
+
+                await dbFactory.MigrateOldDatabase();
+
+                fileStore.DeleteFile(DatabaseConstants.BACKUP_NAME_OLD);
+            }
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }

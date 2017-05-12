@@ -6,9 +6,13 @@
     public class DatabaseConstants
     {
         /// <summary>
+        ///     Name of the sqlite database with the old schema
+        /// </summary>
+        public const string DB_NAME_OLD = "moneyfox2.db";
+        /// <summary>
         ///     Name of the sqlite database
         /// </summary>
-        public const string DB_NAME = "moneyfox2.db";
+        public const string DB_NAME = "moneyfox3.db";
 
         /// <summary>
         ///     Name of the Backup Folder
@@ -21,6 +25,11 @@
         public const string ARCHIVE_FOLDER_NAME = "Archive";
 
         /// <summary>
+        ///     Name of the database backup with the old schema
+        /// </summary>
+        public const string BACKUP_NAME_OLD = "backupmoneyfox3.db";
+
+        /// <summary>
         ///     Name of the database backup
         /// </summary>
         public const string BACKUP_NAME = "backupmoneyfox2.db";
@@ -28,6 +37,6 @@
         /// <summary>
         ///     Name of the database backup archive
         /// </summary>
-        public const string BACKUP_ARCHIVE_NAME = "backupmoneyfox2_{0}.db";
+        public const string BACKUP_ARCHIVE_NAME = "backupmoneyfox3_{0}.db";
     }
 }

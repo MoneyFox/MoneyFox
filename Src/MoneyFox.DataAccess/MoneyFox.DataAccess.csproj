@@ -43,12 +43,17 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationContextOld.cs" />
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="DataAccessModule.cs" />
     <Compile Include="Entities\AccountEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
     <Compile Include="Entities\PaymentEntity.cs" />
     <Compile Include="Entities\RecurringPaymentEntity.cs" />
+    <Compile Include="EntityOld\Account.cs" />
+    <Compile Include="EntityOld\Category.cs" />
+    <Compile Include="EntityOld\Payment.cs" />
+    <Compile Include="EntityOld\RecurringPayment.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
