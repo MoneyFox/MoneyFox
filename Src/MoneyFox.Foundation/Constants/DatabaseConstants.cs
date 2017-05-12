@@ -27,12 +27,12 @@
         /// <summary>
         ///     Name of the database backup with the old schema
         /// </summary>
-        public const string BACKUP_NAME_OLD = "backupmoneyfox3.db";
+        public const string BACKUP_NAME_OLD = "backupmoneyfox2.db";
 
         /// <summary>
         ///     Name of the database backup
         /// </summary>
-        public const string BACKUP_NAME = "backupmoneyfox2.db";
+        public const string BACKUP_NAME = "backupmoneyfox3.db";
 
         /// <summary>
         ///     Name of the database backup archive

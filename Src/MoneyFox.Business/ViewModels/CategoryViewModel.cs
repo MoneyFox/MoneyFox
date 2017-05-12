@@ -41,11 +41,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Notes
         {
-            get { return Category.Data?.Notes; }
+            get { return Category.Data?.Note; }
             set
             {
-                if (Category.Data.Notes == value) return;
-                Category.Data.Notes = value;
+                if (Category.Data.Note == value) return;
+                Category.Data.Note = value;
                 RaisePropertyChanged();
             }
         }
