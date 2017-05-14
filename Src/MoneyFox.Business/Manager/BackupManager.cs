@@ -158,6 +158,7 @@ namespace MoneyFox.Business.Manager
                 fileStore.WriteFile(DatabaseConstants.BACKUP_NAME_OLD, backupStream.ReadToEnd());
 
                 await dbFactory.Init();
+                fileStore.TryMove(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD, true);
 
                 await dbFactory.MigrateOldDatabase();
 

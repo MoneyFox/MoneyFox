@@ -43,8 +43,8 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationContextOld.cs" />
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="ApplicationContextOld.cs" />
     <Compile Include="DataAccessModule.cs" />
     <Compile Include="Entities\AccountEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />

@@ -1,7 +1,4 @@
-﻿using System.IO;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using MoneyFox.DataAccess.Entities;
+﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.EntityOld;
 
 namespace MoneyFox.DataAccess
