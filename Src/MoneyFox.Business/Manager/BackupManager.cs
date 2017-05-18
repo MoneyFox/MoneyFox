@@ -162,7 +162,7 @@ namespace MoneyFox.Business.Manager
 
                 await dbFactory.MigrateOldDatabase();
 
-                fileStore.DeleteFile(DatabaseConstants.BACKUP_NAME_OLD);
+                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;

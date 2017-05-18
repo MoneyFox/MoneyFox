@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
@@ -49,13 +50,19 @@ namespace MoneyFox.DataAccess.Infrastructure
                 dbContext = new ApplicationContext();
             }
 
+            dbContext.Database.ExecuteSqlCommand("DELETE FROM Accounts");
+            dbContext.Database.ExecuteSqlCommand("DELETE FROM Categories");
+            dbContext.Database.ExecuteSqlCommand("DELETE FROM Payments");
+            dbContext.Database.ExecuteSqlCommand("DELETE FROM RecurringPayments");
+
+            dbContext.SaveChanges();
+
             using (var dbContextOld = new ApplicationContextOld())
             {
                 foreach (var account in dbContextOld.Accounts)
                 {
                     dbContext.Accounts.Add(new AccountEntity
                     {
-                        Id = account.Id,
                         Name = account.Name,
                         Iban = account.Iban,
                         CurrentBalance = account.CurrentBalance,
@@ -68,42 +75,55 @@ namespace MoneyFox.DataAccess.Infrastructure
                 {
                     dbContext.Categories.Add(new CategoryEntity
                     {
-                        Id = category.Id,
                         Name = category.Name,
                         Note = category.Notes,
                     });
                 }
 
-                foreach (var payment in dbContextOld.Payments)
-                {
-                    dbContext.Payments.Add(new PaymentEntity()
-                    {
-                        Id = payment.Id,
-                        ChargedAccountId = payment.ChargedAccountId,
-                        TargetAccountId = payment.TargetAccountId,
-                        CategoryId = payment.CategoryId,
-                        Date = payment.Date,
-                        Amount = payment.Amount,
-                        Type = (PaymentType) payment.Type,
-                        Note = payment.Note,
-                        IsRecurring = payment.IsRecurring,
-                        RecurringPaymentId = payment.RecurringPaymentId
-                    });
-                }
+                await dbContext.SaveChangesAsync();
 
                 foreach (var recPayment in dbContextOld.RecurringPayments)
                 {
-                    dbContext.RecurringPayments.Add(new RecurringPaymentEntity()
+                    dbContext.RecurringPayments.Add(new RecurringPaymentEntity
                     {
-                        ChargedAccountId = recPayment.ChargedAccountId,
-                        TargetAccountId = recPayment.TargetAccountId,
-                        CategoryId = recPayment.CategoryId,
+                        ChargedAccount = dbContext.Accounts.First(x => x.Name == recPayment.ChargedAccount.Name),
+                        TargetAccount = recPayment.TargetAccount != null ? dbContext.Accounts.FirstOrDefault(x => x.Name == recPayment.ChargedAccount.Name) : null,
+                        Category = recPayment.Category != null ? dbContext.Categories.FirstOrDefault(x => x.Name == recPayment.Category.Name) : null,
                         StartDate = recPayment.StartDate,
                         EndDate = recPayment.EndDate,
                         Amount = recPayment.Amount,
                         Type = (PaymentType)recPayment.Type,
                         Recurrence = (PaymentRecurrence)recPayment.Type,
                         Note = recPayment.Note,
+                    });
+                }
+
+                await dbContext.SaveChangesAsync();
+
+                foreach (var payment in dbContextOld.Payments)
+                {
+                    dbContext.Payments.Add(new PaymentEntity
+                    {
+                        ChargedAccount = dbContext.Accounts.First(x => x.Name == payment.ChargedAccount.Name),
+                        TargetAccount = payment.TargetAccount != null
+                            ? dbContext.Accounts.FirstOrDefault(x => x.Name == payment.TargetAccount.Name)
+                            : null,
+                        Category = payment.Category != null
+                            ? dbContext.Categories.FirstOrDefault(x => x.Name == payment.Category.Name)
+                            : null,
+                        Date = payment.Date,
+                        Amount = payment.Amount,
+                        Type = (PaymentType) payment.Type,
+                        Note = payment.Note,
+                        IsRecurring = payment.IsRecurring,
+                        RecurringPayment = payment.IsRecurring
+                            ? dbContext.RecurringPayments
+                                       .Where(x => Math.Abs(x.Amount - payment.RecurringPayment.Amount) < 0.0001)
+                                       .Where(x => x.ChargedAccountId == payment.ChargedAccount.Id)
+                                       .Where(x => x.StartDate == payment.RecurringPayment.StartDate)
+                                       .Where(x => x.EndDate == payment.RecurringPayment.EndDate)
+                                       .FirstOrDefault(x => x.Note == payment.RecurringPayment.Note)
+                            : null
                     });
                 }
 

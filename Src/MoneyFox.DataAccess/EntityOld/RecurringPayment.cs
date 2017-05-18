@@ -20,5 +20,11 @@ namespace MoneyFox.DataAccess.EntityOld
         public int Type { get; set; }
         public int Recurrence { get; set; }
         public string Note { get; set; }
+
+        public Account ChargedAccount { get; set; }
+
+        public Account TargetAccount { get; set; }
+
+        public Category Category { get; set; }
     }
 }

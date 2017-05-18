@@ -22,5 +22,13 @@ namespace MoneyFox.DataAccess.EntityOld
         public bool IsRecurring { get; set; }
 
         public int RecurringPaymentId { get; set; }
+
+        public Account ChargedAccount { get; set; }
+
+        public Account TargetAccount { get; set; }
+
+        public Category Category { get; set; }
+
+        public RecurringPayment RecurringPayment { get; set; }
     }
 }

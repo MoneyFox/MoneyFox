@@ -21,7 +21,7 @@ namespace MoneyFox.Business
         public void Start(object hint = null)
         {
             var filestore = Mvx.Resolve<IMvxFileStore>();
-            if (filestore.Exists(DatabaseConstants.BACKUP_NAME_OLD))
+            if (filestore.Exists(DatabaseConstants.DB_NAME_OLD))
             {
                 Mvx.Resolve<IDbFactory>().MigrateOldDatabase();
                 filestore.DeleteFile(DatabaseConstants.BACKUP_NAME_OLD);
