@@ -8,27 +8,30 @@ namespace MoneyFox.DataAccess
     /// </summary>
     public interface IUnitOfWork
     {
+        /// <summary>
+        ///     Saves all pending changes to the database.
+        /// </summary>
         Task Commit();
     }
 
-    /// <summary>
-    ///     Enables to save changes made over several repositories in one transaction.
-    /// </summary>
+    /// <inheritdoc />
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
         private ApplicationContext dbContext;
 
+        /// <summary>
+        ///     Default Constructor
+        /// </summary>
+        /// <param name="dbFactory">DbFactory to get Context.</param>
         public UnitOfWork(IDbFactory dbFactory)
         {
             this.dbFactory = dbFactory;
         }
 
-        public ApplicationContext DbContext => dbContext ?? (dbContext = dbFactory.Init().Result);
+        private ApplicationContext DbContext => dbContext ?? (dbContext = dbFactory.Init().Result);
 
-        /// <summary>
-        ///     Saves all pending changes to the database.
-        /// </summary>
+        /// <inheritdoc />
         public async Task Commit()
         {
             await DbContext.SaveChangesAsync();

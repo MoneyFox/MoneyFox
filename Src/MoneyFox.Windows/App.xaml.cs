@@ -32,6 +32,7 @@ namespace MoneyFox.Windows
             Suspending += OnSuspending;
 
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
+            ApplicationContextOld.DbPath = DatabaseConstants.DB_NAME_OLD;
 #if !DEBUG
             HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif
@@ -44,8 +45,6 @@ namespace MoneyFox.Windows
         /// </summary>
         private void SetColor()
         {
-
-
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
 

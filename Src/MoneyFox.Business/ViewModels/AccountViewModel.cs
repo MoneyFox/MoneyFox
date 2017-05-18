@@ -5,18 +5,31 @@ using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of an account view.
+    /// </summary>
     public class AccountViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        ///     Default constructor.
+        /// </summary>
+        /// <param name="account">Account wrap</param>
         public AccountViewModel(Account account)
         {
             Account = account;
         }
 
+        /// <summary>
+        ///     Account Data
+        /// </summary>
         public Account Account { get; }
 
+        /// <summary>
+        ///     Account Id
+        /// </summary>
         public int Id
         {
-            get { return Account.Data.Id; }
+            get => Account.Data.Id;
             set
             {
                 if (Account.Data.Id == value) return;
@@ -25,9 +38,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Account Name
+        /// </summary>
         public string Name
         {
-            get { return Account.Data.Name; }
+            get => Account.Data.Name;
             set
             {
                 if (Account.Data.Name == value) return;
@@ -36,9 +52,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Account IBAN number or account number.
+        /// </summary>
         public string Iban
         {
-            get { return Account.Data.Iban; }
+            get => Account.Data.Iban;
             set
             {
                 if (Account.Data.Iban == value) return;
@@ -47,9 +66,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Current Balance
+        /// </summary>
         public double CurrentBalance
         {
-            get { return Account.Data.CurrentBalance; }
+            get => Account.Data.CurrentBalance;
             set
             {
                 if (Math.Abs(Account.Data.CurrentBalance - value) < 0.01) return;
@@ -58,9 +80,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Note
+        /// </summary>
         public string Note
         {
-            get { return Account.Data.Note; }
+            get => Account.Data.Note;
             set
             {
                 if (Account.Data.Note == value) return;
@@ -69,9 +94,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Indicator if the account currently is overdrawn.
+        /// </summary>
         public bool IsOverdrawn
         {
-            get { return Account.Data.IsOverdrawn; }
+            get => Account.Data.IsOverdrawn;
             set
             {
                 if (Account.Data.IsOverdrawn == value) return;
@@ -80,9 +108,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Indicator if the account is excluded from the balance calculation.
+        /// </summary>
         public bool IsExcluded
         {
-            get { return Account.Data.IsExcluded; }
+            get => Account.Data.IsExcluded;
             set
             {
                 if (Account.Data.IsExcluded == value) return;
@@ -91,8 +122,15 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Invoked when the value of a property changed
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        ///     Update observer after a property changed
+        /// </summary>
+        /// <param name="propertyName">Name of the cahnged property.</param>
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
