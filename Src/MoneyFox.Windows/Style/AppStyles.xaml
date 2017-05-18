@@ -22,6 +22,8 @@
 
     <SolidColorBrush x:Key="AppBarBrush" Color="{StaticResource ColorAppBar}" />
 
+    <SolidColorBrush x:Key="SplitViewToggleButtonForeground" Color="{StaticResource ColorHamburgerButton}" />
+    
     <SolidColorBrush x:Key="SplitViewToggleButtonForegroundLight" Color="White" />
 
     <SolidColorBrush x:Key="SplitViewToggleButtonForegroundDark" Color="Black" />

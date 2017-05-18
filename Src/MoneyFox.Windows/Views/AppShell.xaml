@@ -120,6 +120,9 @@
                     <VisualState.Setters>
                         <Setter Target="RootSplitView.DisplayMode" Value="CompactOverlay" />
                         <Setter Target="RootSplitView.IsPaneOpen" Value="False" />
+                        <Setter  Target="TogglePaneButton.Foreground"
+                                 Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -130,6 +133,8 @@
                         <Setter Target="RootSplitView.DisplayMode" Value="Overlay" />
                         <Setter Target="RootSplitView.IsPaneOpen" Value="False" />
                         <Setter Target="TogglePaneButton.Margin" Value="0,20,0,0" />
+                        <Setter  Target="TogglePaneButton.Foreground"
+                                 Value="{StaticResource SplitViewToggleButtonForeground}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
