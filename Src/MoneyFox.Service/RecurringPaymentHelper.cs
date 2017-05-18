@@ -132,20 +132,12 @@ namespace MoneyFox.Service
 
         private static bool CheckQuarterly(Payment payment)
         {
-            if (payment.Data.Date.Year == DateTime.Now.Year)
-            {
-                return payment.Data.Date.Month <= DateTime.Now.AddMonths(-3).Month;
-            }
             var dateDiff =  DateTime.Now - payment.Data.Date;
             return dateDiff.TotalDays >= 93;
         }
 
         private static bool CheckBiannually(Payment payment)
         {
-            if (payment.Data.Date.Year == DateTime.Now.Year)
-            {
-                return payment.Data.Date.Month <= DateTime.Now.AddMonths(-6).Month;
-            }
             var dateDiff = DateTime.Now - payment.Data.Date;
             return dateDiff.TotalDays >= 184;
         }
