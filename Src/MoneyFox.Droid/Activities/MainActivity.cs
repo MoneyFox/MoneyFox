@@ -1,6 +1,5 @@
 ﻿using System;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
@@ -10,13 +9,10 @@ using Android.Views;
 using HockeyApp.Android;
 using HockeyApp.Android.Metrics;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Activities
 {

@@ -11,8 +11,6 @@ namespace MoneyFox.DataAccess
     /// </summary>
     public class ApplicationContext : DbContext
     {
-        //public static string DataBasePath { get; set; }
-
         internal DbSet<AccountEntity> Accounts { get; set; }
         internal DbSet<PaymentEntity> Payments { get; set; }
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
