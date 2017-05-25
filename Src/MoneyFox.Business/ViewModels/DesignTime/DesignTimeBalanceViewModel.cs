@@ -16,6 +16,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 
         public double EndOfMonthBalance { get; set; }
 
-        public MvxCommand UpdateBalanceCommand => new MvxCommand(() => { });
+        public MvxAsyncCommand UpdateBalanceCommand => new MvxAsyncCommand(async () => { });
     }
 }

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Localization;
@@ -30,9 +31,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void ItemClick(CategoryViewModel category)
+        protected override async Task ItemClick(CategoryViewModel category)
         {
-            EditCategoryCommand.Execute(category);
+            await EditCategoryCommand.ExecuteAsync(category);
         }
     }
 }
