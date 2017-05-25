@@ -45,11 +45,13 @@ namespace MoneyFox.Service.DataServices
         /// <summary>
         ///     Save the passed category.
         /// </summary>
+        /// <param name="category">Category to save.</param>
         Task SaveCategory(Category category);
 
         /// <summary>
         ///     Deletes the passed category and sets references to it to null.
         /// </summary>
+        /// <param name="category">Category to delete.</param>
         Task DeleteCategory(Category category);
     }
 

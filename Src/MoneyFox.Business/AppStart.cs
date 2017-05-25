@@ -18,13 +18,13 @@ namespace MoneyFox.Business
         ///     Execute code on start up.
         /// </summary>
         /// <param name="hint">parameter for the launch of the app.</param>
-        public void Start(object hint = null)
+        public async void Start(object hint = null)
         {
             var filestore = Mvx.Resolve<IMvxFileStore>();
             if (filestore.Exists(DatabaseConstants.DB_NAME_OLD))
             {
-                Mvx.Resolve<IDbFactory>().MigrateOldDatabase();
-                filestore.DeleteFile(DatabaseConstants.BACKUP_NAME_OLD);
+                await Mvx.Resolve<IDbFactory>().MigrateOldDatabase(true);
+                filestore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
 
             if (Mvx.Resolve<Session>().ValidateSession())

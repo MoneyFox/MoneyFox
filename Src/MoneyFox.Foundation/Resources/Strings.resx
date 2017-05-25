@@ -392,7 +392,7 @@ Do you want to go the the store to rate?</value>
     <value>Loading...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>There was an error during the authentication. Please try again later.</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Version</value>

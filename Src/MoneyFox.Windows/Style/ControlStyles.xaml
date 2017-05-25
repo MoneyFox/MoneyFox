@@ -187,7 +187,7 @@
         <Setter Property="Padding"
                 Value="{ThemeResource PivotHeaderItemMargin}" />
         <Setter Property="Height"
-                Value="a" />
+                Value="80" />
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="IsTabStop"

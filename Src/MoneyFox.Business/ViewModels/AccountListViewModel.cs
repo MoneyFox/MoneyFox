@@ -164,10 +164,7 @@ namespace MoneyFox.Business.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null)
-            {
-            }
-
+            if (accountViewModel == null) return;
             ShowViewModel<PaymentListViewModel>(new {id = accountViewModel.Id});
         }
 

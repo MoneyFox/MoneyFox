@@ -15,6 +15,9 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the payment list view.
+    /// </summary>
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly IAccountService accountService;
@@ -29,7 +32,11 @@ namespace MoneyFox.Business.ViewModels
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private IBalanceViewModel balanceViewModel;
         private int accountId;
+        private string title;
 
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public PaymentListViewModel(IAccountService accountService,
             IPaymentService paymentService,
             IDialogService dialogService,
@@ -49,11 +56,17 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
+        /// <summary>
+        ///     Indicator if there are payments or not.
+        /// </summary>
         public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
+        /// <summary>
+        ///     Id for the current account.
+        /// </summary>
         public int AccountId
         {
-            get { return accountId; }
+            get => accountId;
             private set
             {
                 accountId = value;
@@ -66,9 +79,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
+        /// <summary>
+        ///      View Model for the balance subview.
+        /// </summary>
         public IBalanceViewModel BalanceViewModel
         {
-            get { return balanceViewModel; }
+            get => balanceViewModel;
             private set
             {
                 balanceViewModel = value;
@@ -76,6 +92,9 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        /// <summary>
+        ///     View Model for the global actions on the view.
+        /// </summary>
         public IPaymentListViewActionViewModel ViewActionViewModel { get; private set; }
 
         /// <summary>
@@ -84,7 +103,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<PaymentViewModel> RelatedPayments
         {
-            get { return relatedPayments; }
+            get => relatedPayments;
             set
             {
                 if (relatedPayments == value) return;
@@ -98,7 +117,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source
         {
-            get { return source; }
+            get => source;
             set
             {
                 source = value;
@@ -111,7 +130,16 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
-        public string Title { get; private set; }
+        public string Title
+        {
+            get => title;
+            private set
+            {
+                if (title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -139,6 +167,10 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
+        /// <summary>
+        ///     Initialize the view. Is called after the constructor.
+        /// </summary>
+        /// <param name="id">Id of the selected account.</param>
         public void Init(int id)
         {
             AccountId = id;

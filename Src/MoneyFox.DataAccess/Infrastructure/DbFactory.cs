@@ -23,7 +23,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <summary>
         ///     Migras the data from the old database to the new.
         /// </summary>
-        Task MigrateOldDatabase();
+        Task MigrateOldDatabase(bool initMigration = false);
     }
 
     /// <inheritdoc />
@@ -43,19 +43,26 @@ namespace MoneyFox.DataAccess.Infrastructure
         }
 
         /// <inheritdoc />
-        public async Task MigrateOldDatabase()
+        public async Task MigrateOldDatabase(bool initMigration = false)
         {
             if (dbContext == null)
             {
                 dbContext = new ApplicationContext();
             }
 
-            dbContext.Database.ExecuteSqlCommand("DELETE FROM Accounts");
-            dbContext.Database.ExecuteSqlCommand("DELETE FROM Categories");
-            dbContext.Database.ExecuteSqlCommand("DELETE FROM Payments");
-            dbContext.Database.ExecuteSqlCommand("DELETE FROM RecurringPayments");
+            if (!initMigration)
+            {
+                dbContext.Database.ExecuteSqlCommand("DELETE FROM Accounts");
+                dbContext.Database.ExecuteSqlCommand("DELETE FROM Categories");
+                dbContext.Database.ExecuteSqlCommand("DELETE FROM Payments");
+                dbContext.Database.ExecuteSqlCommand("DELETE FROM RecurringPayments");
 
-            dbContext.SaveChanges();
+                dbContext.SaveChanges();
+            }
+            else
+            {
+                await dbContext.Database.MigrateAsync();
+            }
 
             using (var dbContextOld = new ApplicationContextOld())
             {
@@ -116,6 +123,7 @@ namespace MoneyFox.DataAccess.Infrastructure
                         Type = (PaymentType) payment.Type,
                         Note = payment.Note,
                         IsRecurring = payment.IsRecurring,
+                        IsCleared = payment.IsCleared,
                         RecurringPayment = payment.IsRecurring
                             ? dbContext.RecurringPayments
                                        .Where(x => Math.Abs(x.Amount - payment.RecurringPayment.Amount) < 0.0001)
