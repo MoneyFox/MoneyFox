@@ -116,6 +116,7 @@ namespace MoneyFox.DataAccess.Infrastructure
                         Type = (PaymentType) payment.Type,
                         Note = payment.Note,
                         IsRecurring = payment.IsRecurring,
+                        IsCleared = payment.IsCleared,
                         RecurringPayment = payment.IsRecurring
                             ? dbContext.RecurringPayments
                                        .Where(x => Math.Abs(x.Amount - payment.RecurringPayment.Amount) < 0.0001)
