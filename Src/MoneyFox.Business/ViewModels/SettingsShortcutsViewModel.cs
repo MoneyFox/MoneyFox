@@ -25,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
 
         public bool ShowInfoOnMainTile
         {
-            get { return settingsManager.ShowCashFlowOnMainTile; }
+            get => settingsManager.ShowCashFlowOnMainTile;
             set
             {
                 settingsManager.ShowCashFlowOnMainTile = value;

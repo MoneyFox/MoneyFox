@@ -26,7 +26,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime StartDate
         {
-            get { return startDate; }
+            get => startDate;
             set
             {
                 startDate = value; 
@@ -39,7 +39,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime EndDate
         {
-            get { return endDate; }
+            get => endDate;
             set
             {
                 endDate = value; 

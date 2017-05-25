@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class ModifyAccountViewModel : BaseViewModel
+    public class ModifyAccountViewModel : MvxViewModel<ModifyAccountParameter>
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
         private readonly IDialogService dialogService;
+        private readonly IMvxNavigationService navigationService;
 
         private bool isEdit;
         private double amount;
@@ -24,30 +28,38 @@ namespace MoneyFox.Business.ViewModels
         public ModifyAccountViewModel(IAccountService accountService,
             ISettingsManager settingsManager,
             IBackupManager backupManager,
-            IDialogService dialogService)
+            IDialogService dialogService, 
+            IMvxNavigationService navigationService)
         {
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
             this.accountService = accountService;
         }
 
+        #region Commands
+        
         /// <summary>
         ///     Saves all changes to the database
         ///     or creates a new AccountViewModel depending on
         ///     the <see cref="IsEdit" /> property
         /// </summary>
-        public MvxCommand SaveCommand => new MvxCommand(SaveAccount);
+        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
 
         /// <summary>
         ///     Deletes the selected AccountViewModel from the database
         /// </summary>
-        public MvxCommand DeleteCommand => new MvxCommand(DeleteAccount);
+        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
         /// <summary>
         ///     Cancels the operation and will revert the changes
         /// </summary>
-        public MvxCommand CancelCommand => new MvxCommand(Cancel);
+        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
@@ -60,7 +72,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsEdit
         {
-            get { return isEdit; }
+            get => isEdit;
             set
             {
                 isEdit = value;
@@ -82,7 +94,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(amount); }
+            get => Utilities.FormatLargeNumbers(amount);
             set
             {
                 // we remove all separator chars to ensure that it works in all regions
@@ -103,35 +115,36 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel SelectedAccount
         {
-            get { return selectedAccount; }
+            get => selectedAccount;
             set
             {
                 selectedAccount = value;
                 RaisePropertyChanged();
             }
         }
+        
+        #endregion
 
         /// <summary>
         ///     Initializes the ViewModel
         /// </summary>
-        /// <param name="accountId">Pass the ID of the account to edit. If this is 0 the VM changes to Creation mode</param>
-        public async void Init(int accountId = 0)
+        /// <param name="parameter">Parameter object for the view.</param>
+        public override async Task Initialize(ModifyAccountParameter parameter)
         {
-            if (accountId == 0)
+            if (parameter.AccountId == 0)
             {
                 IsEdit = false;
                 amount = 0;
                 SelectedAccount = new AccountViewModel(new Account());
-            }
-            else
+            } else
             {
                 IsEdit = true;
-                SelectedAccount =  new AccountViewModel(await accountService.GetById(accountId));
+                SelectedAccount = new AccountViewModel(await accountService.GetById(parameter.AccountId));
                 amount = SelectedAccount.CurrentBalance;
             }
         }
 
-        private async void SaveAccount()
+        private async Task SaveAccount()
         {
             if (string.IsNullOrEmpty(SelectedAccount.Name))
             {
@@ -152,11 +165,10 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning disable 4014
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            Close(this);
-            
+            await navigationService.Close(this);
         }
 
-        private async void DeleteAccount()
+        private async Task DeleteAccount()
         {
             try
             {
@@ -165,7 +177,7 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning disable 4014
                 backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-                Close(this);
+                await navigationService.Close(this);
             } 
             catch(Exception)
             {
@@ -173,9 +185,9 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private void Cancel()
+        private async Task Cancel()
         {
-            Close(this);
+            await navigationService.Close(this);
         }
     }
 }

@@ -66,6 +66,9 @@
     <Compile Include="Manager\SettingsManager.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
+    <Compile Include="Parameters\ModifyPaymentParameter.cs" />
+    <Compile Include="Parameters\ModifyAccountParameter.cs" />
+    <Compile Include="Parameters\ModifyCategoryParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />

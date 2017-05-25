@@ -37,29 +37,29 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Prepares the View when loaded.
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
         /// <summary>
         ///     Makes the first login and sets the setting for the future navigations to this page.
         /// </summary>
-        public MvxCommand LoginCommand => new MvxCommand(Login);
+        public MvxAsyncCommand LoginCommand => new MvxAsyncCommand(Login);
 
         /// <summary>
         ///     Logs the user out from the backup service.
         /// </summary>
-        public MvxCommand LogoutCommand => new MvxCommand(Logout);
+        public MvxAsyncCommand LogoutCommand => new MvxAsyncCommand(Logout);
 
         /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
-        public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
+        public MvxAsyncCommand BackupCommand => new MvxAsyncCommand(CreateBackup);
 
         /// <summary>
         ///     Will download the database backup from onedrive and overwrite the
         ///     local database with the downloaded.
         ///     All datamodels are then reloaded.
         /// </summary>
-        public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
+        public MvxAsyncCommand RestoreCommand => new MvxAsyncCommand(RestoreBackup);
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
@@ -71,7 +71,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime BackupLastModified
         {
-            get { return backupLastModified; }
+            get => backupLastModified;
             private set
             {
                 if (backupLastModified == value) return;
@@ -85,7 +85,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
-            get { return isLoadingBackupAvailability; }
+            get => isLoadingBackupAvailability;
             private set
             {
                 if (isLoadingBackupAvailability == value) return;
@@ -104,7 +104,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool BackupAvailable
         {
-            get { return backupAvailable; }
+            get => backupAvailable;
             private set
             {
                 if (backupAvailable == value) return;
@@ -113,7 +113,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private async void Loaded()
+        private async Task Loaded()
         {
             if (!IsLoggedIn)
             {
@@ -139,7 +139,7 @@ namespace MoneyFox.Business.ViewModels
             IsLoadingBackupAvailability = false;
         }
 
-        private async void Login()
+        private async Task Login()
         {
             if (!connectivity.IsConnected)
             {
@@ -168,7 +168,7 @@ namespace MoneyFox.Business.ViewModels
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
-        private async void CreateBackup()
+        private async Task CreateBackup()
         {
             if (!await ShowOverwriteBackupInfo())
             {
@@ -196,7 +196,7 @@ namespace MoneyFox.Business.ViewModels
             await ShowCompletionNote();
         }
 
-        private async void RestoreBackup()
+        private async Task RestoreBackup()
         {
             if (!await ShowOverwriteDataInfo())
             {

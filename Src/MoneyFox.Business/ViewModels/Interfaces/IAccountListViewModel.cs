@@ -19,8 +19,8 @@ namespace MoneyFox.Business.ViewModels.Interfaces
 
         MvxCommand LoadedCommand { get; }
 
-        MvxCommand<AccountViewModel> EditAccountCommand { get; }
+        MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
 
-        MvxCommand<AccountViewModel> DeleteAccountCommand { get; }
+        MvxAsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
     }
 }

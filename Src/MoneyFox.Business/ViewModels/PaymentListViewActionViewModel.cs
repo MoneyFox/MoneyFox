@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -19,6 +22,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
+        private readonly IMvxNavigationService navigationService;
         private readonly int accountId;
 
         public PaymentListViewActionViewModel(IAccountService accountService,
@@ -34,16 +38,22 @@ namespace MoneyFox.Business.ViewModels
             this.accountId = accountId;
         }
 
-        public MvxCommand GoToAddIncomeCommand =>
-                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Income}));
+        public MvxAsyncCommand GoToAddIncomeCommand =>
+            new MvxAsyncCommand(async () => await navigationService
+                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                        new ModifyPaymentParameter(PaymentType.Income)));
 
-        public MvxCommand GoToAddExpenseCommand =>
-                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Expense }));
+        public MvxAsyncCommand GoToAddExpenseCommand =>
+            new MvxAsyncCommand(async () => await navigationService
+                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                        new ModifyPaymentParameter(PaymentType.Expense)));
 
-        public MvxCommand GoToAddTransferCommand =>
-                new MvxCommand(() => ShowViewModel<ModifyPaymentViewModel>(new { type = PaymentType.Transfer }));
+        public MvxAsyncCommand GoToAddTransferCommand =>
+            new MvxAsyncCommand(async () => await navigationService
+                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                        new ModifyPaymentParameter(PaymentType.Transfer)));
 
-        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
+        public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
@@ -60,7 +70,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsAddExpenseAvailable => accountService.GetAccountCount().Result > 0;
 
-        private async void DeleteAccount()
+        private async Task DeleteAccount()
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {

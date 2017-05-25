@@ -18,6 +18,6 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        MvxCommand UpdateBalanceCommand { get; }
+        MvxAsyncCommand UpdateBalanceCommand { get; }
     }
 }

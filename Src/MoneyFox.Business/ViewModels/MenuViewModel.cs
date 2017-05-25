@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -8,17 +8,14 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class MenuViewModel : BaseViewModel
     {
-        // used for IOS Binding
-        public MvxCommand ShowAccountListCommand
-            => new MvxCommand(() => ShowViewModelByType(typeof(AccountListViewModel)));
+        private readonly IMvxNavigationService navigationService;
 
-        /// <summary>
-        ///     Do a navigation based on the passed ViewModel type.
-        /// </summary>
-        /// <param name="viewModel">type of the viewmodel to navigate to.</param>
-        public void ShowViewModelByType(Type viewModel)
+        public MenuViewModel(IMvxNavigationService navigationService)
         {
-            ShowViewModel(viewModel);
+            this.navigationService = navigationService;
         }
+
+        public MvxAsyncCommand ShowAccountListCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<AccountListViewModel>());
     }
 }

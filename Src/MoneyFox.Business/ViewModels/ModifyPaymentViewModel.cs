@@ -6,11 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Messages;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -20,13 +22,14 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public class ModifyPaymentViewModel : BaseViewModel
+    public class ModifyPaymentViewModel : MvxViewModel<ModifyPaymentParameter>
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentService paymentService;
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
+        private readonly IMvxNavigationService navigationService;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -39,8 +42,6 @@ namespace MoneyFox.Business.ViewModels
         private bool isEndless;
         private bool isTransfer;
         private bool isEdit;
-        private int paymentId;
-
 
         /// <summary>
         ///     Default constructor
@@ -49,11 +50,13 @@ namespace MoneyFox.Business.ViewModels
             IAccountService accountService,
             IDialogService dialogService,
             ISettingsManager settingsManager, 
-            IMvxMessenger messenger, IBackupManager backupManager)
+            IMvxMessenger messenger, IBackupManager backupManager, 
+            IMvxNavigationService navigationService)
         {
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
+            this.navigationService = navigationService;
             this.paymentService = paymentService;
             this.accountService = accountService;
 
@@ -101,7 +104,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsEdit
         {
-            get { return isEdit; }
+            get => isEdit;
             private set
             {
                 if (isEdit == value) return;
@@ -115,7 +118,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsTransfer
         {
-            get { return isTransfer; }
+            get => isTransfer;
             private set
             {
                 if (isTransfer == value) return;
@@ -129,7 +132,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsEndless
         {
-            get { return isEndless; }
+            get => isEndless;
             set
             {
                 if (isEndless == value) return;
@@ -143,7 +146,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime EndDate
         {
-            get { return endDate; }
+            get => endDate;
             set
             {
                 endDate = value;
@@ -156,9 +159,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PaymentRecurrence Recurrence
         {
-            get { return recurrence; }
+            get => recurrence;
             set
             {
+                if(recurrence == value) return;
+
                 recurrence = value;
                 RaisePropertyChanged();
             }
@@ -171,9 +176,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(amount); }
+            get => Utilities.FormatLargeNumbers(amount);
             set
-            {
+            { 
                 // we remove all separator chars to ensure that it works in all regions
                 string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
 
@@ -207,7 +212,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PaymentViewModel SelectedPayment
         {
-            get { return selectedPayment; }
+            get => selectedPayment;
             set
             {
                 if (value == null)
@@ -255,7 +260,12 @@ namespace MoneyFox.Business.ViewModels
                 }
                 return SelectedPayment.Date;
             }
-            set { SelectedPayment.Date = value; }
+            set
+            {
+                if (SelectedPayment.Date == value) return;
+                SelectedPayment.Date = value;
+                RaisePropertyChanged();
+            }
         }
 
         private AccountViewModel AccountViewModelBeforeEdit { get; set; }
@@ -266,41 +276,34 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        public int PaymentId
-        {
-            get { return paymentId; }
-            private set
-            {
-                paymentId = value; 
-                RaisePropertyChanged();
-            }
-        }
+        /// <summary>
+        ///     Id of the current payment.
+        /// </summary>
+        public int PaymentId { get; set; }
 
         #endregion
 
         /// <summary>
         ///     Init the view for a new PaymentViewModel. Is executed after the constructor call.
         /// </summary>
-        /// <param name="type">Type of the PaymentViewModel. Is ignored when paymentId is passed.</param>
-        /// <param name="paymentId">The id of the PaymentViewModel to edit.</param>
-        public async void Init(PaymentType type, int paymentId = 0)
+        /// <param name="parameter">Parameter object</param>
+        public override async Task Initialize(ModifyPaymentParameter parameter)
         {
             var accounts = await accountService.GetAllAccounts();
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts.Select(x => new AccountViewModel(x)));
             ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
-            if (paymentId == 0)
+            if (parameter.PaymentId == 0)
             {
                 IsEdit = false;
                 IsEndless = true;
 
                 amount = 0;
-                PrepareDefault(type);
-            }
-            else
+                PrepareDefault(parameter.PaymentType);
+            } else
             {
                 IsEdit = true;
-                PaymentId = paymentId;
+                PaymentId = parameter.PaymentId;
                 SelectedPayment = new PaymentViewModel(await paymentService.GetById(PaymentId));
                 PrepareEdit();
             }
@@ -340,9 +343,12 @@ namespace MoneyFox.Business.ViewModels
                 ? SelectedPayment.RecurringPayment.Recurrence
                 : PaymentRecurrence.Daily;
 
-            EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
-                ? SelectedPayment.RecurringPayment.EndDate.Value
-                : DateTime.Now;
+            if (SelectedPayment.RecurringPayment.EndDate != null)
+            {
+                EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
+                    ? SelectedPayment.RecurringPayment.EndDate.Value
+                    : DateTime.Now;
+            }
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
         }
 
@@ -357,7 +363,7 @@ namespace MoneyFox.Business.ViewModels
             SelectedPayment.Category = message.SelectedCategory;
         }
 
-        private async void Save()
+        private async Task Save()
         {
             if (SelectedPayment.ChargedAccount == null)
             {
@@ -389,7 +395,7 @@ namespace MoneyFox.Business.ViewModels
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-            Close(this);
+            await navigationService.Close(this);
         }
 
         private void RemoveOldAmount()
@@ -417,12 +423,13 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private void OpenSelectCategoryList()
+        private async Task OpenSelectCategoryList()
         {
-            ShowViewModel<SelectCategoryListViewModel>();
+            //TODO: use return value here.
+            await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 
-        private async void Delete()
+        private async Task Delete()
         {
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
@@ -434,7 +441,7 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning disable 4014
                 backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-                Close(this);
+                await navigationService.Close(this);
             }
             catch (Exception)
             {
@@ -459,13 +466,14 @@ namespace MoneyFox.Business.ViewModels
             SelectedPayment.Category = null;
         }
 
-        private void Cancel()
+        private async Task Cancel()
         {
-            Close(this);
+            await navigationService.Close(this);
         }
 
         private void UpdateOtherComboBox()
         {
+            //TODO: Refactor this
             //var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
             //foreach (var account in TargetAccounts)
             //{

@@ -5,6 +5,9 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the BalanceView
+    /// </summary>
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IBalanceCalculationManager balanceCalculationManager;
@@ -12,6 +15,9 @@ namespace MoneyFox.Business.ViewModels
         private double totalBalance;
         private double endOfMonthBalance;
 
+        /// <summary>
+        ///     Contstructor
+        /// </summary>
         public BalanceViewModel(IBalanceCalculationManager balanceCalculationManager)
         {
             this.balanceCalculationManager = balanceCalculationManager;
@@ -22,7 +28,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double TotalBalance
         {
-            get { return totalBalance; }
+            get => totalBalance;
             set
             {
                 totalBalance = value; 
@@ -35,7 +41,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double EndOfMonthBalance
         {
-            get { return endOfMonthBalance; }
+            get => endOfMonthBalance;
             set
             {
                 endOfMonthBalance = value;
@@ -47,13 +53,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        public MvxCommand UpdateBalanceCommand => new MvxCommand(UpdateBalance);
+        public MvxAsyncCommand UpdateBalanceCommand => new MvxAsyncCommand(UpdateBalance);
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private async void UpdateBalance()
+        private async Task UpdateBalance()
         {
             TotalBalance = await GetTotalBalance();
             EndOfMonthBalance = await GetEndOfMonthValue();
