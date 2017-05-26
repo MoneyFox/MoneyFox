@@ -1,8 +1,11 @@
 ﻿using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Business
 {
@@ -15,12 +18,17 @@ namespace MoneyFox.Business
         ///     Execute code on start up.
         /// </summary>
         /// <param name="hint">parameter for the launch of the app.</param>
-        public void Start(object hint = null)
+        public async void Start(object hint = null)
         {
+            var filestore = Mvx.Resolve<IMvxFileStore>();
+            if (filestore.Exists(DatabaseConstants.DB_NAME_OLD))
+            {
+                await Mvx.Resolve<IDbFactory>().MigrateOldDatabase(true);
+                filestore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
+            }
+
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-				// TODO Refactor Android to do this in the plattform specific setup.
-                //ShowViewModel<MainViewModel>();
                 ShowViewModel<MenuViewModel>();
 				ShowViewModel<AccountListViewModel>();
             }

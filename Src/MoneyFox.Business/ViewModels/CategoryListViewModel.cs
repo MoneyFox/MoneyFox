@@ -1,5 +1,4 @@
-﻿using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
 using MvvmCross.Localization;
 

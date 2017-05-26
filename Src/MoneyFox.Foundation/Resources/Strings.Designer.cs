@@ -694,7 +694,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authentication failed.
+        ///   Looks up a localized string similar to There was an error during the authentication. Please try again later..
         /// </summary>
         public static string ErrorMessageAuthenticationFailed {
             get {

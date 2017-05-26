@@ -12,7 +12,7 @@ namespace MoneyFox.DataAccess.Entities
 
         [Required]
         public string Name { get; set; }
-        public string Notes { get; set; }
+        public string Note { get; set; }
 
         public virtual List<PaymentEntity> Payments { get; set; }
         public virtual List<RecurringPaymentEntity> RecurringPayments { get; set; }

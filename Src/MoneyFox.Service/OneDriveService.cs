@@ -12,10 +12,14 @@ using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Service
 {
+    /// <inheritdoc />
     public class OneDriveService : IBackupService
     {
         private readonly IOneDriveAuthenticator oneDriveAuthenticator;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public OneDriveService(IOneDriveAuthenticator oneDriveAuthenticator)
         {
             this.oneDriveAuthenticator = oneDriveAuthenticator;
@@ -42,10 +46,7 @@ namespace MoneyFox.Service
             await oneDriveAuthenticator.LogoutAsync();
         }
 
-        /// <summary>
-        ///     Uploads a copy of the current database.
-        /// </summary>
-        /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
+        /// <inheritdoc />
         public async Task<bool> Upload(Stream dataToUpload)
         {
             if (OneDriveClient == null)
@@ -71,17 +72,13 @@ namespace MoneyFox.Service
             return uploadedItem != null;
         }
 
-        /// <summary>
-        ///     Restores the file with the passed name
-        /// </summary
-        /// <param name="backupname">Name of the backup to restore</param>
-        /// <param name="dbName">filename in which the database shall be restored.</param>
-        /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
-        /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
+        /// <inheritdoc />
         public async Task<Stream> Restore(string backupname, string dbName)
         {
             if (OneDriveClient == null)
+            {
                 OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
 
             await LoadBackupFolder();
 
@@ -93,15 +90,13 @@ namespace MoneyFox.Service
             return await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
-        /// <summary>
-        ///     Get's the modification date for the existing backup.
-        ///     If there is no backup yet, it will return <see cref="DateTime.MinValue" />
-        /// </summary>
-        /// <returns>Date of the last backup.</returns>
+        /// <inheritdoc />
         public async Task<DateTime> GetBackupDate()
         {
             if (OneDriveClient == null)
+            {
                 OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
 
             await LoadBackupFolder();
 
@@ -111,7 +106,9 @@ namespace MoneyFox.Service
                 var existingBackup = children.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if (existingBackup != null)
+                {
                     return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                }
             }
             catch (Exception ex)
             {
@@ -121,15 +118,13 @@ namespace MoneyFox.Service
             return DateTime.MinValue;
         }
 
-        /// <summary>
-        ///     Gets a list with all the filenames who are available in the backup folder.
-        ///     The name of the backupfolder is defined in the Constants.
-        /// </summary>
-        /// <returns>A list with all filenames.</returns>
+        /// <inheritdoc />
         public async Task<List<string>> GetFileNames()
         {
             if (OneDriveClient == null)
+            {
                 OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
 
             await LoadBackupFolder();
 
@@ -170,15 +165,16 @@ namespace MoneyFox.Service
 
         private async Task LoadBackupFolder()
         {
-            if (BackupFolder != null)
-                return;
+            if (BackupFolder != null) return;
 
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder =
                 children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
+            {
                 await CreateBackupFolder();
+            }
         }
 
         private async Task CreateBackupFolder()
@@ -198,14 +194,15 @@ namespace MoneyFox.Service
 
         private async Task LoadArchiveFolder()
         {
-            if (ArchiveFolder != null)
-                return;
+            if (ArchiveFolder != null) return;
 
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             ArchiveFolder = children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
             if (ArchiveFolder == null)
+            {
                 await CreateArchiveFolder();
+            }
         }
 
         private async Task CreateArchiveFolder()
@@ -216,8 +213,11 @@ namespace MoneyFox.Service
                 Folder = new Folder()
             };
 
-            ArchiveFolder =
-                await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().AddAsync(folderToCreate);
+            ArchiveFolder = await OneDriveClient.Drive
+                                                .Items[BackupFolder?.Id]
+                                                .Children
+                                                .Request()
+                                                .AddAsync(folderToCreate);
         }
     }
 }
