@@ -117,7 +117,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Prepares everthing after the view is loaded.
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
@@ -132,12 +132,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxCommand<CategoryViewModel> ItemClickCommand => new MvxCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Opens a option dialog to select the modify operation
         /// </summary>
-        public MvxCommand<CategoryViewModel> OpenContextMenuCommand => new MvxCommand<CategoryViewModel>(OpenContextMenu);
+        public MvxAsyncCommand<CategoryViewModel> OpenContextMenuCommand => new MvxAsyncCommand<CategoryViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
@@ -150,7 +150,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public async void Search()
+        public async Task Search()
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
@@ -165,10 +165,10 @@ namespace MoneyFox.Business.ViewModels
             Source = CreateGroup();
         }
 
-        private void Loaded()
+        private async Task Loaded()
         {
             SearchText = string.Empty;
-            Search();
+            await Search();
         }
 
         private async Task EditCategory(CategoryViewModel category)
@@ -190,7 +190,7 @@ namespace MoneyFox.Business.ViewModels
                         : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand,
                     itemLongClickCommand:OpenContextMenuCommand));
 
-        private async void OpenContextMenu(CategoryViewModel category)
+        private async Task OpenContextMenu(CategoryViewModel category)
         {
             var result = await ModifyDialogService.ShowEditSelectionDialog();
 

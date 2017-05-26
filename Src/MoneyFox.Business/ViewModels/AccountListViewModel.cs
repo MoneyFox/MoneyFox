@@ -45,7 +45,7 @@ namespace MoneyFox.Business.ViewModels
             this.navigationService = navigationService;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
-            ViewActionViewModel = new AccountListViewActionViewModel(accountService);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountService, navigationService);
 
             IncludedAccounts = new MvxObservableCollection<AccountViewModel>();
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();

@@ -157,12 +157,12 @@ namespace MoneyFox.Business.ViewModels
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
-            Loaded();
+            await Loaded();
         }
 
-        private void Logout()
+        private async Task Logout()
         {
-            backupManager.Logout();
+            await backupManager.Logout();
             settingsManager.IsLoggedInToBackupService = false;
             // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));

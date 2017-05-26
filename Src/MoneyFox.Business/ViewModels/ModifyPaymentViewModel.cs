@@ -73,22 +73,22 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand SaveCommand => new MvxCommand(Save);
+        public IMvxCommand SaveCommand => new MvxAsyncCommand(Save);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxAsyncCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+        public IMvxCommand DeleteCommand => new MvxAsyncCommand(Delete);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+        public IMvxCommand CancelCommand => new MvxAsyncCommand(Cancel);
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
