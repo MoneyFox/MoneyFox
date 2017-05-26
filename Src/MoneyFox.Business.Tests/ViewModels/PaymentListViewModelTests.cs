@@ -2,8 +2,8 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
 using Xunit;
 
@@ -19,6 +19,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         private readonly Mock<IBalanceCalculationManager> balanceCalculatorManager;
         private readonly Mock<IBackupManager> backupManager;
         private readonly Mock<IModifyDialogService> modifyDialogService;
+        private readonly Mock<IMvxNavigationService> navigationService;
 
         public PaymentListViewModelTests()
         {
@@ -29,6 +30,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             balanceCalculatorManager = new Mock<IBalanceCalculationManager>();
             backupManager = new Mock<IBackupManager>();
             modifyDialogService = new Mock<IModifyDialogService>();
+            navigationService = new Mock<IMvxNavigationService>();
 
             accountService.SetupAllProperties();
             paymentService.SetupAllProperties();
@@ -44,7 +46,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object);
+                                              modifyDialogService.Object,
+                                              navigationService.Object);
 
             // Act
             vm.Init(42);
@@ -63,7 +66,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object);
+                                              modifyDialogService.Object,
+                                              navigationService.Object);
 
             // Act
             vm.Init(0);

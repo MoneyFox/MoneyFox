@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -33,7 +34,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
                                                         new Mock<IDialogService>().Object,
                                                         settingsManagerMock.Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new CategoryViewModel(category)
@@ -76,7 +78,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
                                                         new Mock<IDialogService>().Object,
                                                         settingsManagerMock.Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new CategoryViewModel(categoryPrimary)
@@ -105,7 +108,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var vm = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
                                                  dialogSetup.Object,
                                                  settingsManagerMock.Object,
-                                                 new Mock<IBackupManager>().Object)
+                                                 new Mock<IBackupManager>().Object,
+                                                 new Mock<IMvxNavigationService>().Object)
                 {SelectedCategory = new CategoryViewModel(new Category())};
 
             // Act
@@ -136,7 +140,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
                                                         new Mock<IDialogService>().Object,
                                                         settingsManagerMock.Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = category
@@ -174,7 +179,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
                                                         new Mock<IDialogService>().Object,
                                                         new Mock<ISettingsManager>().Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = new CategoryViewModel(categoryPrimary)
@@ -213,7 +219,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(categoryServiceMock.Object,
                                                         new Mock<IDialogService>().Object,
                                                         settingsManagerMock.Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
                 SelectedCategory = new CategoryViewModel(categoryPrimary)
@@ -233,7 +240,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
                                                         new Mock<IDialogService>().Object,
                                                         new Mock<ISettingsManager>().Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false
             };
@@ -251,7 +259,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewmodel = new ModifyCategoryViewModel(new Mock<ICategoryService>().Object,
                                                         new Mock<IDialogService>().Object,
                                                         new Mock<ISettingsManager>().Object,
-                                                        new Mock<IBackupManager>().Object)
+                                                        new Mock<IBackupManager>().Object,
+                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = true,
                 SelectedCategory = new CategoryViewModel(new Category()) {Id = 9, Name = categoryName}

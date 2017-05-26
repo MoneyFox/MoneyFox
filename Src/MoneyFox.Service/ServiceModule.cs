@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using MoneyFox.DataAccess;
 
 namespace MoneyFox.Service
 {
@@ -10,6 +11,8 @@ namespace MoneyFox.Service
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<DataAccessModule>();
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
                 .AsImplementedInterfaces()
