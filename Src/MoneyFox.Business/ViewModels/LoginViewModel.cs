@@ -7,7 +7,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the LoginView.
     /// </summary>
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
 

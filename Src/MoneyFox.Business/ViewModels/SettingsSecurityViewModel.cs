@@ -5,7 +5,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : BaseViewModel
+    public class SettingsSecurityViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;

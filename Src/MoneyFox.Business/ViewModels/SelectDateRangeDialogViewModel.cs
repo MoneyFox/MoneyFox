@@ -7,7 +7,7 @@ using MoneyFox.Business.Messages;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SelectDateRangeDialogViewModel : BaseViewModel
+    public class SelectDateRangeDialogViewModel : MvxViewModel
     {
         private readonly IMvxMessenger messenger;
 

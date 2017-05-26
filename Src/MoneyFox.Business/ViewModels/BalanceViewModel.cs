@@ -8,7 +8,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the BalanceView
     /// </summary>
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
+    public class BalanceViewModel : MvxViewModel, IBalanceViewModel
     {
         private readonly IBalanceCalculationManager balanceCalculationManager;
 

@@ -6,7 +6,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Represents the side menu
     /// </summary>
-    public class MenuViewModel : BaseViewModel
+    public class MenuViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService navigationService;
 

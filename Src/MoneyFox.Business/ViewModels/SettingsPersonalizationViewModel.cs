@@ -1,8 +1,9 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsPersonalizationViewModel : BaseViewModel
+    public class SettingsPersonalizationViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
 

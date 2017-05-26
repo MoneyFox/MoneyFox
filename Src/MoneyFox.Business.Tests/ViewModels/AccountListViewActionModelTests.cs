@@ -4,6 +4,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using Moq;
+using MvvmCross.Core.Navigation;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -14,7 +15,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
                 .GoToAddIncomeCommand.Execute(PaymentType.Income.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -26,7 +27,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
                 .GoToAddExpenseCommand.Execute(PaymentType.Expense.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -38,7 +39,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
                 .GoToAddTransferCommand.Execute(PaymentType.Transfer.ToString());
 
             MockDispatcher.Requests.Count.ShouldBe(1);
@@ -54,7 +55,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddIncomeAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -64,7 +65,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddIncomeAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeTrue();
         }
 
         [Fact]
@@ -74,7 +75,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddExpenseAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -84,7 +85,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsAddExpenseAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeTrue();
         }
 
         [Fact]
@@ -94,7 +95,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -104,7 +105,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -114,7 +115,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(2);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object).IsTransferAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : MvxViewModel, IPaymentListViewModel
     {
         private readonly IAccountService accountService;
         private readonly IPaymentService paymentService;

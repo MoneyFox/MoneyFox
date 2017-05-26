@@ -8,7 +8,7 @@ using MvvmCross.Core.ViewModels;
 namespace MoneyFox.Business.ViewModels
 {
     /// <inheritdoc />
-    public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
+    public class AccountListViewActionViewModel : MvxViewModel, IAccountListViewActionViewModel
     {
         private readonly IAccountService accountService;
         private readonly IMvxNavigationService navigationService;

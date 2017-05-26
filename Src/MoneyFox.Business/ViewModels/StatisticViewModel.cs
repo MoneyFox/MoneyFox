@@ -7,7 +7,7 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class StatisticViewModel : BaseViewModel
+    public abstract class StatisticViewModel : MvxViewModel
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;

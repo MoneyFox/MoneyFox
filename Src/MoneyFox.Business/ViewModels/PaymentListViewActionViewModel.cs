@@ -16,7 +16,7 @@ namespace MoneyFox.Business.ViewModels
     ///     On Windows this is a normaly in the app bar. 
     ///     On Android for example in a floating action button.
     /// </summary>
-    public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : MvxViewModel, IPaymentListViewActionViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;

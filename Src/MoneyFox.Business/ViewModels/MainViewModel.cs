@@ -1,14 +1,25 @@
-﻿namespace MoneyFox.Business.ViewModels
+﻿using System.Threading.Tasks;
+using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
+
+namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Representation of the MainView
     /// </summary>
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : MvxViewModel
     {
-        public void ShowMenuAndFirstDetail()
+        private readonly IMvxNavigationService navigationService;
+
+        public MainViewModel(IMvxNavigationService navigationService)
         {
-            ShowViewModel<MenuViewModel>();
-            ShowViewModel<AccountListViewModel>();
+            this.navigationService = navigationService;
+        }
+
+        public async Task ShowMenuAndFirstDetail()
+        {
+            await navigationService.Navigate<MenuViewModel>();
+            await navigationService.Navigate<AccountListViewModel>();
         }
     }
 }

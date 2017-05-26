@@ -18,7 +18,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the AccountListView.
     /// </summary>
-    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
+    public class AccountListViewModel : MvxViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
         private readonly IBalanceCalculationManager balanceCalculationManager;

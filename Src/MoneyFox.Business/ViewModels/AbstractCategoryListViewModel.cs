@@ -13,7 +13,7 @@ using MvvmCross.Core.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : MvxViewModel
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;

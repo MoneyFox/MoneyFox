@@ -5,6 +5,7 @@ using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
 using Xunit;
 
@@ -23,7 +24,9 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Category {Data = {Name = string.Empty}}
             });
 
-            var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IModifyDialogService>().Object, new Mock<IDialogService>().Object);
+            var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IModifyDialogService>().Object,
+                                               new Mock<IDialogService>().Object,
+                                               new Mock<IMvxNavigationService>().Object);
             vm.LoadedCommand.Execute();
 
             vm.Source.ShouldNotBeNull();

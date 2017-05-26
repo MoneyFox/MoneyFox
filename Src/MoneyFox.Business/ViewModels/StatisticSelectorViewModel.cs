@@ -8,7 +8,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticSelectorViewModel : BaseViewModel
+    public class StatisticSelectorViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService navigationService;
 

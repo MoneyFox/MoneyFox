@@ -11,6 +11,7 @@ using HockeyApp.Android.Metrics;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Droid.Shared.Caching;
+using MvvmCross.Droid.Shared.Fragments;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
@@ -62,7 +63,7 @@ namespace MoneyFox.Droid.Activities
                 drawerToggle.SyncState();
             }
         }
-
+        
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             Android.Support.V4.App.FragmentTransaction transaction)
         {
