@@ -48,9 +48,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="CategoryViewModelSummaryStatisticTitle"
+                <TextBlock x:Uid="CategorySummaryStatisticTitle"
                            Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="CategoryViewModel Summary" />
+                           Text="Category Summary" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
