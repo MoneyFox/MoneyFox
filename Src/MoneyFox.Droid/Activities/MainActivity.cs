@@ -27,7 +27,7 @@ namespace MoneyFox.Droid.Activities
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -42,7 +42,7 @@ namespace MoneyFox.Droid.Activities
 
             if (bundle == null)
             {
-                ViewModel.ShowMenuAndFirstDetail();
+                await ViewModel.ShowMenuAndFirstDetail();
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
