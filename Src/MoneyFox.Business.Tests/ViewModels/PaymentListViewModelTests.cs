@@ -71,7 +71,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               navigationService.Object);
 
             // Act
-            await vm.Initialize(new PaymentListParameter(0));
+            await vm.Initialize(new PaymentListParameter());
 
             // Assert
             Assert.Equal(0, vm.AccountId);
