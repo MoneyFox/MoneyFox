@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Business.Tests.Fixtures;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
@@ -15,37 +17,93 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
-                .GoToAddIncomeCommand.Execute(PaymentType.Income.ToString());
+            // Arrange
+            ModifyPaymentParameter parameter = null;
 
-            MockDispatcher.Requests.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
-            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Income");
+            var navigationService = new Mock<IMvxNavigationService>();
+            navigationService
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>()))
+                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Returns(Task.CompletedTask);
+            
+            // Act
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+                .GoToAddIncomeCommand.Execute();
+
+            // Assert
+            Assert.NotNull(parameter);
+            Assert.Equal(PaymentType.Income, parameter.PaymentType);
+            Assert.Equal(0, parameter.PaymentId);
         }
 
         [Fact]
         public void GoToAddPayment_ExpenseNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
-                .GoToAddExpenseCommand.Execute(PaymentType.Expense.ToString());
+            // Arrange
+            ModifyPaymentParameter parameter = null;
 
-            MockDispatcher.Requests.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
-            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Expense");
+            var navigationService = new Mock<IMvxNavigationService>();
+            navigationService
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>()))
+                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Returns(Task.CompletedTask);
+            
+            // Act
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+                .GoToAddExpenseCommand.Execute();
+
+            // Assert
+            Assert.NotNull(parameter);
+            Assert.Equal(PaymentType.Expense, parameter.PaymentType);
+            Assert.Equal(0, parameter.PaymentId);
         }
 
         [Fact]
         public void GoToAddPayment_TransferNoEdit_CorrectParameterPassed()
         {
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxNavigationService>().Object)
-                .GoToAddTransferCommand.Execute(PaymentType.Transfer.ToString());
+            // Arrange
+            ModifyPaymentParameter parameter = null;
 
-            MockDispatcher.Requests.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ViewModelType.ShouldBe(typeof(ModifyPaymentViewModel));
-            MockDispatcher.Requests[0].ParameterValues.Count.ShouldBe(1);
-            MockDispatcher.Requests[0].ParameterValues["type"].ShouldBe("Transfer");
+            var navigationService = new Mock<IMvxNavigationService>();
+            navigationService
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>()))
+                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Returns(Task.CompletedTask);
+            
+            // Act
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+                .GoToAddTransferCommand.Execute();
+
+            // Assert
+            Assert.NotNull(parameter);
+            Assert.Equal(PaymentType.Transfer, parameter.PaymentType);
+            Assert.Equal(0, parameter.PaymentId);
+        }
+
+        [Fact]
+        public void GoToAddAccount_NoEdit_CorrectParameterPassed()
+        {
+            // Arrange
+            ModifyPaymentParameter parameter = null;
+
+            var navigationService = new Mock<IMvxNavigationService>();
+            navigationService
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>()))
+                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Returns(Task.CompletedTask);
+            
+            // Act
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+                .GoToAddTransferCommand.Execute();
+
+            // Assert
+            Assert.NotNull(parameter);
+            Assert.Equal(PaymentType.Transfer, parameter.PaymentType);
+            Assert.Equal(0, parameter.PaymentId);
         }
 
         [Fact]
