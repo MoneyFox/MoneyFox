@@ -1,25 +1,35 @@
-﻿using MoneyFox.Business.ViewModels;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
+using MvvmCross.Core.Navigation;
 
 namespace MoneyFox.Windows
 {
-    public class TileHelper : BaseViewModel
+    public class TileHelper
     {
-        public bool DoNavigation(string tileId)
+        private IMvxNavigationService navigationService;
+
+        public TileHelper(IMvxNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
+        public async Task<bool> DoNavigation(string tileId)
         {
             switch (tileId)
             {
                 case Constants.ADD_INCOME_TILE_ID:
-                    ShowViewModel<ModifyPaymentViewModel>(new {type = PaymentType.Income });
+                    await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Income));
                     return true;
 
                 case Constants.ADD_EXPENSE_TILE_ID:
-                    ShowViewModel<ModifyPaymentViewModel>(new {type = PaymentType.Expense });
+                    await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Expense));
                     return true;
 
                 case Constants.ADD_TRANSFER_TILE_ID:
-                    ShowViewModel<ModifyPaymentViewModel>(new {type= PaymentType.Transfer });
+                    await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Transfer));
                     return true;
                 default:
                     return false;

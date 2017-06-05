@@ -344,14 +344,37 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="listViewItem"></param>
-        private void NavMenuList_ItemInvoked(object sender, ListViewItem listViewItem)
+        private async void NavMenuList_ItemInvoked(object sender, ListViewItem listViewItem)
         {
             var item = (NavMenuItem) ((NavMenuListView) sender).ItemFromContainer(listViewItem);
 
             if (item?.DestPage != null &&
                 item.DestPage != MyAppFrame.CurrentSourcePageType)
             {
-                ViewModel.ShowViewModelByType(item.DestViewModel);
+                if (item.DestViewModel == typeof(AccountListViewModel))
+                {
+                    await ViewModel.ShowAccountListCommand.ExecuteAsync();
+                } 
+                else if (item.DestViewModel == typeof(StatisticSelectorViewModel))
+                {
+                    await ViewModel.ShowStatisticSelectorCommand.ExecuteAsync();
+                }
+                else if (item.DestViewModel == typeof(CategoryListViewModel))
+                {
+                    await ViewModel.ShowCategoryListCommand.ExecuteAsync();
+                }
+                else if (item.DestViewModel == typeof(BackupViewModel))
+                {
+                    await ViewModel.ShowBackupViewCommand.ExecuteAsync();
+                }
+                else if (item.DestViewModel == typeof(SettingsViewModel))
+                {
+                    await ViewModel.ShowSettingsCommand.ExecuteAsync();
+                }
+                else if (item.DestViewModel == typeof(AboutViewModel))
+                {
+                    await ViewModel.ShowAboutCommand.ExecuteAsync();
+                }
             }
 
             //reset the bottom or top section depending on which section the user clicked

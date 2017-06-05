@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -6,19 +6,31 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Represents the side menu
     /// </summary>
-    public class MenuViewModel : BaseViewModel
+    public class MenuViewModel : MvxViewModel
     {
-        // used for IOS Binding
-        public MvxCommand ShowAccountListCommand
-            => new MvxCommand(() => ShowViewModelByType(typeof(AccountListViewModel)));
+        private readonly IMvxNavigationService navigationService;
 
-        /// <summary>
-        ///     Do a navigation based on the passed ViewModel type.
-        /// </summary>
-        /// <param name="viewModel">type of the viewmodel to navigate to.</param>
-        public void ShowViewModelByType(Type viewModel)
+        public MenuViewModel(IMvxNavigationService navigationService)
         {
-            ShowViewModel(viewModel);
+            this.navigationService = navigationService;
         }
+
+        public MvxAsyncCommand ShowAccountListCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<AccountListViewModel>());
+
+        public MvxAsyncCommand ShowStatisticSelectorCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<StatisticSelectorViewModel>());
+
+        public MvxAsyncCommand ShowCategoryListCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<CategoryListViewModel>());
+
+        public MvxAsyncCommand ShowBackupViewCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
+
+        public MvxAsyncCommand ShowSettingsCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<SettingsViewModel>());
+
+        public MvxAsyncCommand ShowAboutCommand
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
     }
 }

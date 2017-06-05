@@ -8,7 +8,7 @@ using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel : MvxViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;

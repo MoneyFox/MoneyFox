@@ -10,11 +10,11 @@ namespace MoneyFox.Business.ViewModels.DesignTime
     {
         public IBalanceViewModel BalanceViewModel { get; }
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
-        public MvxCommand LoadCommand { get; }
-        public MvxCommand<PaymentViewModel> EditPaymentCommand { get; }
+        public MvxAsyncCommand LoadCommand { get; }
+        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
         public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(s => { });
         public MvxCommand DeleteAccountCommand => new MvxCommand(() => { });
-        public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(s => { });
+        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(async s => { });
         public ObservableCollection<PaymentViewModel> RelatedPayments => new ObservableCollection<PaymentViewModel>();
 
         public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source => new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>

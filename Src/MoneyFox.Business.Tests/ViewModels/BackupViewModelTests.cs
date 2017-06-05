@@ -104,7 +104,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var logoutCommandCalled = false;
 
             var backupManagerSetup = new Mock<IBackupManager>();
-            backupManagerSetup.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true);
+            backupManagerSetup.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true).Returns(Task.CompletedTask);
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);

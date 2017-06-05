@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
 using Xunit;
 
@@ -45,7 +46,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                dialogServiceSetup.Object);
+                dialogServiceSetup.Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
@@ -70,7 +72,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                dialogServiceSetup.Object);
+                dialogServiceSetup.Object,
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
@@ -96,7 +99,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                dialogServiceSetup.Object);
+                dialogServiceSetup.Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(null);
@@ -118,7 +122,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.LoadedCommand.Execute();
@@ -141,7 +146,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.LoadedCommand.Execute();
@@ -164,7 +170,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.LoadedCommand.Execute();
@@ -190,7 +197,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             viewModel.LoadedCommand.Execute();
             viewModel.IsAllAccountsEmpty.ShouldBeFalse();
@@ -213,7 +221,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             viewModel.LoadedCommand.Execute();
             viewModel.IsAllAccountsEmpty.ShouldBeFalse();
@@ -237,7 +246,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.LoadedCommand.Execute();
@@ -266,7 +276,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
                 new Mock<IModifyDialogService>().Object,
-                new Mock<IDialogService>().Object);
+                new Mock<IDialogService>().Object, 
+                new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.LoadedCommand.Execute();

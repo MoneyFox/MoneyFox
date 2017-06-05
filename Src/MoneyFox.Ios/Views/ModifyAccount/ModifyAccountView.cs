@@ -1,13 +1,13 @@
 ﻿using MoneyFox.Business.ViewModels;
-using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using UIKit;
 
-namespace MoneyFox.Ios
+namespace MoneyFox.Ios.Views.ModifyAccount
 {
-	[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
-	public partial class ModifyAccountView : MvxViewController<ModifyAccountViewModel> 
+    // TODO: refactor for the new attributes with MvvmCross 5.0
+    //[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
+    public partial class ModifyAccountView : MvxViewController<ModifyAccountViewModel> 
 	{
 		public override void ViewDidLoad()
 		{

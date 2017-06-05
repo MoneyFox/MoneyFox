@@ -6,6 +6,9 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the cash flow view.
+    /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
@@ -39,7 +42,13 @@ namespace MoneyFox.Business.ViewModels
             //TODO: Unit Test for order!
             //TODO: Unit Test for selection.
             StatisticItems.Clear();
-            StatisticItems.AddRange(await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
+
+            var statisticData = await cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
+
+            foreach (var statisticItem in statisticData)
+            {
+                StatisticItems.Add(statisticItem);
+            }
         }
     }
 }

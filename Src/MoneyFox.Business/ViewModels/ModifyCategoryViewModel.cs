@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -11,41 +14,55 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public class ModifyCategoryViewModel : BaseViewModel
+    public class ModifyCategoryViewModel : MvxViewModel<ModifyCategoryParameter>
     {
         private readonly IBackupManager backupManager;
         private readonly ICategoryService categoryService;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        protected readonly IMvxNavigationService navigationService;
+
         private bool isEdit;
 
         private CategoryViewModel selectedCategory;
 
-        public ModifyCategoryViewModel(ICategoryService categoryService, IDialogService dialogService,
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public ModifyCategoryViewModel(ICategoryService categoryService, 
+                                       IDialogService dialogService,
                                        ISettingsManager settingsManager,
-                                       IBackupManager backupManager)
+                                       IBackupManager backupManager, 
+                                       IMvxNavigationService navigationService)
         {
             this.categoryService = categoryService;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
+            this.navigationService = navigationService;
         }
+
+        #region Commands
 
         /// <summary>
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
         ///     a new CategoryViewModel.
         /// </summary>
-        public MvxCommand SaveCommand => new MvxCommand(SaveCategory);
+        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveCategory);
 
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        public MvxCommand CancelCommand => new MvxCommand(Cancel);
+        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
 
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public MvxCommand DeleteCommand => new MvxCommand(DeleteCategory);
+        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteCategory);
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
@@ -57,7 +74,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel SelectedCategory
         {
-            get { return selectedCategory; }
+            get => selectedCategory;
             set
             {
                 selectedCategory = value;
@@ -70,7 +87,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsEdit
         {
-            get { return isEdit; }
+            get => isEdit;
             set
             {
                 isEdit = value;
@@ -85,38 +102,25 @@ namespace MoneyFox.Business.ViewModels
             ? string.Format(Strings.EditCategoryTitle, SelectedCategory.Name)
             : Strings.AddCategoryTitle;
 
+        #endregion
+
         /// <summary>
-        ///     Initialize the ViewModel
+        ///     Initialize the ViewModel after MvvmCross finished the navigation.
         /// </summary>
-        /// <param name="categoryId">Pass the ID of the category to edit. If this is 0 the VM changes to Creation mode</param>
-        public async void Init(int categoryId)
+        public override async Task Initialize(ModifyCategoryParameter parameter)
         {
-            if (categoryId == 0)
+            if (parameter.CategoryId == 0)
             {
                 IsEdit = false;
                 SelectedCategory = new CategoryViewModel(new Category());
-            }
-            else
+            } else
             {
                 IsEdit = true;
-                SelectedCategory = new CategoryViewModel(await categoryService.GetById(categoryId));
+                SelectedCategory = new CategoryViewModel(await categoryService.GetById(parameter.CategoryId));
             }
         }
 
-        /// <summary>
-        ///     Initialize the ViewModel
-        /// </summary>
-        /// <param name="isEdit">Indicates if a CategoryViewModel is being edited or created</param>
-        /// <param name="selectedCategoryId">If we are editing a CategoryViewModel this is its Id</param>
-        public async void Init(bool isEdit, int selectedCategoryId)
-        {
-            IsEdit = isEdit;
-            SelectedCategory = selectedCategoryId != 0
-                ? new CategoryViewModel(await categoryService.GetById(selectedCategoryId))
-                : new CategoryViewModel(new Category());
-        }
-
-        private async void SaveCategory()
+        private async Task SaveCategory()
         {
             if (string.IsNullOrEmpty(SelectedCategory.Name))
             {
@@ -137,10 +141,10 @@ namespace MoneyFox.Business.ViewModels
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-            Close(this);
+            await navigationService.Close(this);
         }
 
-        private async void DeleteCategory()
+        private async Task DeleteCategory()
         {
             try
             {
@@ -150,7 +154,7 @@ namespace MoneyFox.Business.ViewModels
                 backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-                Close(this);
+                await navigationService.Close(this);
             }
             catch (Exception)
             {
@@ -158,10 +162,10 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private async void Cancel()
+        private async Task Cancel()
         {
             SelectedCategory = new CategoryViewModel(await categoryService.GetById(SelectedCategory.Id));
-            Close(this);
+            await navigationService.Close(this);
         }
     }
 }

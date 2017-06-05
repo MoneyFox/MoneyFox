@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
@@ -12,8 +13,8 @@ using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Plugins.Messenger;
-using Ploeh.AutoFixture;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -23,7 +24,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Theory]
         [InlineData(PaymentType.Income)]
         [InlineData(PaymentType.Expense)]
-        public void Init_IncomeNotEditing_PropertiesSetupCorrectly(PaymentType type)
+        public async void Init_IncomeNotEditing_PropertiesSetupCorrectly(PaymentType type)
         {
             // Arrange
             var accountServiceMock = new Mock<IAccountService>();
@@ -33,13 +34,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             settingsManagerMock.SetupAllProperties();
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
-                accountServiceMock.Object,
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object);
+                                                       accountServiceMock.Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
 
-            viewmodel.Init(type);
+            await viewmodel.Initialize(new ModifyPaymentParameter(type));
 
             // Act / Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -48,82 +50,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
 
-        [Fact]
-        public void Init_TransferNotEditing_PropertiesSetupCorrectly() 
-        {
-            // Arrange
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock.Setup(x => x.GetAllAccounts())
-                              .ReturnsAsync(new List<Account> {new Account {Data = {Id = 3}}});
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupAllProperties();
-
-            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
-                accountServiceMock.Object,
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object);
-
-            // Act / Assert
-            viewmodel.Init(PaymentType.Transfer);
-            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
-            viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
-            viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Save_UpdateTimeStamp()
-        {
-            // Arrange
-            var account = new AccountEntity {Id = 3, Name = "3"};
-            var selectedPayment = new Payment
-            {
-                Data =
-                {
-                    ChargedAccount = account
-                }
-            };
-
-            var localDateSetting = DateTime.MinValue;
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
-                .Callback((DateTime x) => localDateSetting = x);
-
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(selectedPayment);
-            paymentServiceMock.Setup(x => x.SavePayment(selectedPayment)).Returns(Task.CompletedTask);
-
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock.Setup(x => x.GetAllAccounts())
-                              .ReturnsAsync(new List<Account> {new Account {Data = {Id = 3, Name = "3"}}});
-
-            var dialogService = new Mock<IDialogService>().Object;
-
-            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
-                                                       accountServiceMock.Object,
-                                                       dialogService,
-                                                       settingsManagerMock.Object,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       new Mock<IBackupManager>().Object)
-            {
-                SelectedPayment = new PaymentViewModel(selectedPayment) { ChargedAccount = new AccountViewModel(new Account(account)) }
-            };
-            
-            // Act
-            viewmodel.SaveCommand.Execute();
-
-            // Assert
-            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
-        }
-
         [Theory]
         [InlineData(PaymentType.Income)]
         [InlineData(PaymentType.Expense)]
-        public void Init_IncomeEditing_PropertiesSetupCorrectly(PaymentType type)
+        public async void Init_IncomeEditing_PropertiesSetupCorrectly(PaymentType type)
         {
             // Arrange
             var testEndDate = new DateTime(2099, 1, 31);
@@ -149,14 +79,15 @@ namespace MoneyFox.Business.Tests.ViewModels
             settingsManagerMock.SetupAllProperties();
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
-                accountServiceMock.Object,
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object);
+                                                       accountServiceMock.Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewmodel.Init(type, 12);
+            await viewmodel.Initialize(new ModifyPaymentParameter(type, 12));
 
             // Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -167,141 +98,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
         }
 
-        [Fact]
-        public void Init_TransferEditing_PropertiesSetupCorrectly()
-        {
-            // Arrange
-            var testEndDate = new DateTime(2099, 1, 31);
-
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(new Payment
-            {
-                Data =
-                {
-                    Type = PaymentType.Transfer,
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentEntity
-                    {
-                        EndDate = testEndDate
-                    }
-                }
-            });
-
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock.Setup(x => x.GetAllAccounts()).ReturnsAsync(new List<Account>());
-
-            var settingsManagerMock = new Mock<ISettingsManager>();
-            settingsManagerMock.SetupAllProperties();
-
-            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
-                accountServiceMock.Object,
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object);
-
-            // Act
-            viewmodel.Init(PaymentType.Income, 12);
- 
-            // Assert
-            viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
-            viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
-            viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
-            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
-            viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Save_NoAccount_AccountRequiredInfoShown()
-        {
-            // Arrange
-            bool dialogShown = false;
-
-            var dialogServiceMock = new Mock<IDialogService>();
-            dialogServiceMock.Setup(x => x.ShowMessage(It.Is<string>(s => s == Strings.MandatoryFieldEmptyTitle),
-                                                       It.Is<string>(s => s == Strings.AccountRequiredMessage)))
-                             .Callback(() => dialogShown = true)
-                             .Returns(Task.CompletedTask);
-
-            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
-                                                       new Mock<IAccountService>().Object,
-                                                       dialogServiceMock.Object,
-                                                       new Mock<ISettingsManager>().Object,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       new Mock<IBackupManager>().Object);
-
-            // Act
-            viewmodel.SelectedPayment = new PaymentViewModel();
-            viewmodel.SaveCommand.Execute();
-
-            //Assert
-            Assert.True(dialogShown);
-        }
-
-        [Fact]
-        public void Save_OldDate_InvalidDateInfoShown()
-        {
-            // Arrange
-            bool dialogShown = false;
-
-            var dialogServiceMock = new Mock<IDialogService>();
-            dialogServiceMock.Setup(x => x.ShowMessage(It.Is<string>(s => s == Strings.InvalidEnddateTitle),
-                                                       It.Is<string>(s => s == Strings.InvalidEnddateMessage)))
-                             .Callback(() => dialogShown = true)
-                             .Returns(Task.CompletedTask);
-
-
-            var payment = new PaymentViewModel
-            {
-                ChargedAccount = new AccountViewModel(new Account()) { Name = "Konto"},
-                IsRecurring = true,
-                Date = DateTime.Now.AddDays(-2)
-            };
-
-            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
-                                                       new Mock<IAccountService>().Object,
-                                                       dialogServiceMock.Object,
-                                                       new Mock<ISettingsManager>().Object,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       new Mock<IBackupManager>().Object);
-            // Act
-            viewmodel.SelectedPayment = payment;
-            viewmodel.SaveCommand.Execute();
-
-            //Assert
-            Assert.True(dialogShown);
-        }
-
-        [Fact]
-        public void Save_CorrectlyCalled()
-        {
-            // Arrange
-            bool saveCalled = false;
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
-                              .Callback(() => saveCalled = true)
-                              .Returns(Task.CompletedTask);
-
-            var payment = new PaymentViewModel
-            {
-                ChargedAccount = new AccountViewModel(new Account()) { Name = "Konto" }
-            };
-
-            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
-                                                       new Mock<IAccountService>().Object,
-                                                       new Mock<IDialogService>().Object,
-                                                       new Mock<ISettingsManager>().Object,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       new Mock<IBackupManager>().Object);
-            // Act
-            viewmodel.SelectedPayment = payment;
-            viewmodel.SaveCommand.Execute();
-
-            //Assert
-            Assert.True(saveCalled);
-        }
-
         [Theory]
         [InlineData(PaymentRecurrence.Daily)]
         [InlineData(PaymentRecurrence.DailyWithoutWeekend)]
@@ -309,7 +105,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [InlineData(PaymentRecurrence.Biweekly)]
         [InlineData(PaymentRecurrence.Monthly)]
         [InlineData(PaymentRecurrence.Yearly)]
-        public void SaveCommand_Recurrence_RecurrenceSetCorrectly(PaymentRecurrence recurrence)
+        public async void SaveCommand_Recurrence_RecurrenceSetCorrectly(PaymentRecurrence recurrence)
         {
             // Arrange
             var testPayment = new Payment();
@@ -327,9 +123,10 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
-                                                       new Mock<IBackupManager>().Object);
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
 
-            viewmodel.Init(PaymentType.Income);
+            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Income));
             viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel(new Account());
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.Recurrence = recurrence;
@@ -398,13 +195,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             var testPayment = new PaymentViewModel(new Payment());
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
-                new Mock<IAccountService>().Object,
-                new Mock<IDialogService>().Object,
-                settingsManagerMock.Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IBackupManager>().Object)
+                                                       new Mock<IAccountService>().Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object)
             {
-                SelectedPayment = testPayment,
+                SelectedPayment = testPayment
             };
 
             // Act
@@ -412,6 +210,220 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Assert
             viewmodel.AmountString.ShouldBe(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
+        }
+
+        [Fact]
+        public async void Init_TransferEditing_PropertiesSetupCorrectly()
+        {
+            // Arrange
+            var testEndDate = new DateTime(2099, 1, 31);
+
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(new Payment
+            {
+                Data =
+                {
+                    Type = PaymentType.Transfer,
+                    IsRecurring = true,
+                    RecurringPayment = new RecurringPaymentEntity
+                    {
+                        EndDate = testEndDate
+                    }
+                }
+            });
+
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAllAccounts()).ReturnsAsync(new List<Account>());
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupAllProperties();
+
+            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
+                                                       accountServiceMock.Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+
+            // Act
+            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Income, 12));
+
+            // Assert
+            viewmodel.SelectedPayment.ShouldNotBeNull();
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
+            viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
+            viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
+            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
+            viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
+        }
+
+        [Fact]
+        public async void Init_TransferNotEditing_PropertiesSetupCorrectly()
+        {
+            // Arrange
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAllAccounts())
+                              .ReturnsAsync(new List<Account> {new Account {Data = {Id = 3}}});
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupAllProperties();
+
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
+                                                       accountServiceMock.Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+
+            // Act / Assert
+            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Transfer));
+            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
+            viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
+            viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Save_CorrectlyCalled()
+        {
+            // Arrange
+            bool saveCalled = false;
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
+                              .Callback(() => saveCalled = true)
+                              .Returns(Task.CompletedTask);
+
+            var payment = new PaymentViewModel
+            {
+                ChargedAccount = new AccountViewModel(new Account()) {Name = "Konto"}
+            };
+
+            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
+                                                       new Mock<IAccountService>().Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       new Mock<ISettingsManager>().Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+            // Act
+            viewmodel.SelectedPayment = payment;
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            Assert.True(saveCalled);
+        }
+
+        [Fact]
+        public void Save_NoAccount_AccountRequiredInfoShown()
+        {
+            // Arrange
+            bool dialogShown = false;
+
+            var dialogServiceMock = new Mock<IDialogService>();
+            dialogServiceMock.Setup(x => x.ShowMessage(It.Is<string>(s => s == Strings.MandatoryFieldEmptyTitle),
+                                                       It.Is<string>(s => s == Strings.AccountRequiredMessage)))
+                             .Callback(() => dialogShown = true)
+                             .Returns(Task.CompletedTask);
+
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
+                                                       new Mock<IAccountService>().Object,
+                                                       dialogServiceMock.Object,
+                                                       new Mock<ISettingsManager>().Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+
+            // Act
+            viewmodel.SelectedPayment = new PaymentViewModel();
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            Assert.True(dialogShown);
+        }
+
+        [Fact]
+        public void Save_OldDate_InvalidDateInfoShown()
+        {
+            // Arrange
+            bool dialogShown = false;
+
+            var dialogServiceMock = new Mock<IDialogService>();
+            dialogServiceMock.Setup(x => x.ShowMessage(It.Is<string>(s => s == Strings.InvalidEnddateTitle),
+                                                       It.Is<string>(s => s == Strings.InvalidEnddateMessage)))
+                             .Callback(() => dialogShown = true)
+                             .Returns(Task.CompletedTask);
+
+
+            var payment = new PaymentViewModel
+            {
+                ChargedAccount = new AccountViewModel(new Account()) {Name = "Konto"},
+                IsRecurring = true,
+                Date = DateTime.Now.AddDays(-2)
+            };
+
+            var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
+                                                       new Mock<IAccountService>().Object,
+                                                       dialogServiceMock.Object,
+                                                       new Mock<ISettingsManager>().Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+            // Act
+            viewmodel.SelectedPayment = payment;
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            Assert.True(dialogShown);
+        }
+
+        [Fact]
+        public void Save_UpdateTimeStamp()
+        {
+            // Arrange
+            var account = new AccountEntity {Id = 3, Name = "3"};
+            var selectedPayment = new Payment
+            {
+                Data =
+                {
+                    ChargedAccount = account
+                }
+            };
+
+            var localDateSetting = DateTime.MinValue;
+
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            settingsManagerMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>())
+                               .Callback((DateTime x) => localDateSetting = x);
+
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(selectedPayment);
+            paymentServiceMock.Setup(x => x.SavePayment(selectedPayment)).Returns(Task.CompletedTask);
+
+            var accountServiceMock = new Mock<IAccountService>();
+            accountServiceMock.Setup(x => x.GetAllAccounts())
+                              .ReturnsAsync(new List<Account> {new Account {Data = {Id = 3, Name = "3"}}});
+
+            var dialogService = new Mock<IDialogService>().Object;
+
+            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
+                                                       accountServiceMock.Object,
+                                                       dialogService,
+                                                       settingsManagerMock.Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxNavigationService>().Object)
+            {
+                SelectedPayment =
+                    new PaymentViewModel(selectedPayment) {ChargedAccount = new AccountViewModel(new Account(account))}
+            };
+
+            // Act
+            viewmodel.SaveCommand.Execute();
+
+            // Assert
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
     }
 }

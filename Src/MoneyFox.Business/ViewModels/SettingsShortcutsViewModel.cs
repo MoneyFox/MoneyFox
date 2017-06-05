@@ -9,7 +9,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class SettingsShortcutsViewModel : BaseViewModel
+    public class SettingsShortcutsViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly ITileManager tileManager;
@@ -25,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
 
         public bool ShowInfoOnMainTile
         {
-            get { return settingsManager.ShowCashFlowOnMainTile; }
+            get => settingsManager.ShowCashFlowOnMainTile;
             set
             {
                 settingsManager.ShowCashFlowOnMainTile = value;
