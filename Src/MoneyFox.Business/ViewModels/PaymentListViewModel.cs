@@ -21,7 +21,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : MvxViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
     {
         private readonly IAccountService accountService;
         private readonly IPaymentService paymentService;
@@ -176,13 +176,15 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Initialize the view. Is called after the constructor.
         /// </summary>
-        /// <param name="id">Id of the selected account.</param>
-        public void Init(int id)
+        /// <param name="parameter">Parameter object for this View Model.</param>
+        public override Task Initialize(PaymentListParameter parameter)
         {
-            AccountId = id;
+            AccountId = parameter.AccountId;
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService, settingsManager, dialogService,
-                BalanceViewModel, AccountId);
+                                                                     BalanceViewModel, AccountId);
+
+            return Task.CompletedTask;
         }
 
         private async Task LoadPayments()

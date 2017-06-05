@@ -3,13 +3,13 @@
     /// <summary>
     ///     Parameter object for the ModifyAccountView.
     /// </summary>
-    public class ModifyAccountParameter
+    public class PaymentListParameter
     {
         /// <summary>
         ///     Constructor
         /// </summary>
-        /// <param name="accountId">Account Id to edit</param>
-        public ModifyAccountParameter(int accountId = 0)
+        /// <param name="accountId">Account it to show payments for.</param>
+        public PaymentListParameter(int accountId = 0)
         {
             AccountId = accountId;
         }
