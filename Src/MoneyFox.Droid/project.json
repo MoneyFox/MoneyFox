@@ -1,15 +1,15 @@
 ﻿{
   "dependencies": {
     "AndHUD": "1.2.0",
-    "Autofac": "4.5.0",
+    "Autofac": "4.6.0",
     "Autofac.Extras.MvvmCross": "4.0.2",
     "Cheesebaron.MvxPlugins.Connectivity": "3.0.3",
     "Cheesebaron.MvxPlugins.Settings": "3.0.3",
     "FAB.XamarinAndroid": "1.6.4",
-    "HockeySDK.Xamarin": "4.1.2",
+    "HockeySDK.Xamarin": "4.1.4",
     "Microsoft.CSharp": "4.3.0",
     "Microsoft.NETCore.Platforms": "1.1.0",
-    "Microsoft.OneDriveSDK": "2.0.6",
+    "Microsoft.OneDriveSDK": "2.0.7",
     "MPAndroidChart": "3.0.2",
     "MvvmCross.Binding": "5.0.0",
     "MvvmCross.Core": "5.0.0",
