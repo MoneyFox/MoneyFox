@@ -32,6 +32,7 @@
     "MvvmCross.Plugin.WebBrowser": "5.0.0",
     "NETStandard.Library": "1.6.1",
     "PCLCrypto": "2.0.147",
+    "Xamarin.Android.Support.CustomTabs": "25.3.1",
     "Xamarin.Android.Support.v4": "25.3.1",
     "Xamarin.Android.Support.v7.CardView": "25.3.1",
     "Xamarin.Auth": "1.5.0"
