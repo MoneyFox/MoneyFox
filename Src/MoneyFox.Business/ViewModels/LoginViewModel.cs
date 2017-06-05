@@ -4,18 +4,19 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    /// <summary>
+    ///     Representation of the LoginView.
+    /// </summary>
+    public class LoginViewModel : MvxViewModel
     {
-
         private readonly ISettingsManager settingsManager;
-        private readonly IDialogService dialogService;
-        private readonly IPasswordStorage passwordStorage;
 
-        public LoginViewModel(ISettingsManager settingsManager, IPasswordStorage passwordStorage, IDialogService dialogService)
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public LoginViewModel(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
-            this.passwordStorage = passwordStorage;
-            this.dialogService = dialogService;
         }
 
 
@@ -30,15 +31,9 @@ namespace MoneyFox.Business.ViewModels
         public MvxCommand LoginNavigationCommand => new MvxCommand(LoginNavigation);
 
 
-        public bool PasswordEnabled
-        {
-            get { return settingsManager.PasswordRequired; }
-        }
+        public bool PasswordEnabled => settingsManager.PasswordRequired;
 
-        public bool PassportEnabled
-        {
-            get { return settingsManager.PassportEnabled; }
-        }
+        public bool PassportEnabled => settingsManager.PassportEnabled;
 
         private void LoginNavigation()
         {

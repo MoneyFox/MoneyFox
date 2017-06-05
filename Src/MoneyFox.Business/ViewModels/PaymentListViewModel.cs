@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Groups;
@@ -10,6 +12,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -18,7 +21,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : MvxViewModel, IPaymentListViewModel
     {
         private readonly IAccountService accountService;
         private readonly IPaymentService paymentService;
@@ -27,6 +30,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IBackupManager backupManager;
         private readonly IModifyDialogService modifyDialogService;
+        private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
@@ -43,7 +47,8 @@ namespace MoneyFox.Business.ViewModels
             ISettingsManager settingsManager,
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
-            IModifyDialogService modifyDialogService)
+            IModifyDialogService modifyDialogService, 
+            IMvxNavigationService navigationService)
         {
             this.accountService = accountService;
             this.paymentService = paymentService;
@@ -52,6 +57,7 @@ namespace MoneyFox.Business.ViewModels
             this.balanceCalculationManager = balanceCalculationManager;
             this.backupManager = backupManager;
             this.modifyDialogService = modifyDialogService;
+            this.navigationService = navigationService;
         }
 
         #region Properties
@@ -148,22 +154,22 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
+        public virtual MvxAsyncCommand LoadCommand => new MvxAsyncCommand(LoadPayments);
 
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public MvxCommand<PaymentViewModel> EditPaymentCommand => new MvxCommand<PaymentViewModel>(EditPayment);
+        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
 
         /// <summary>
         ///     Opens a option dialog to select the modify operation
         /// </summary>
-        public MvxCommand<PaymentViewModel> OpenContextMenuCommand => new MvxCommand<PaymentViewModel>(OpenContextMenu);
+        public MvxAsyncCommand<PaymentViewModel> OpenContextMenuCommand => new MvxAsyncCommand<PaymentViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public MvxCommand<PaymentViewModel> DeletePaymentCommand => new MvxCommand<PaymentViewModel>(DeletePayment);
+        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
         #endregion
 
@@ -179,7 +185,7 @@ namespace MoneyFox.Business.ViewModels
                 BalanceViewModel, AccountId);
         }
 
-        private async void LoadPayments()
+        private async Task LoadPayments()
         {
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
@@ -215,12 +221,13 @@ namespace MoneyFox.Business.ViewModels
                     s => Convert.ToDateTime(s.Key)));
         }
 
-        private void EditPayment(PaymentViewModel payment)
+        private async Task EditPayment(PaymentViewModel payment)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {paymentId = payment.Id});
+            await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                new ModifyPaymentParameter(payment.Id));
         }
 
-        private async void OpenContextMenu(PaymentViewModel payment)
+        private async Task OpenContextMenu(PaymentViewModel payment)
         {
             var result = await modifyDialogService.ShowEditSelectionDialog();
 
@@ -236,7 +243,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private async void DeletePayment(PaymentViewModel payment)
+        private async Task DeletePayment(PaymentViewModel payment)
         {
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;

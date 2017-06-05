@@ -2,13 +2,13 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
-using MvvmCross.iOS.Support.SidePanels;
 using MvvmCross.iOS.Views;
 using UIKit;
 
 namespace MoneyFox.Ios.Views.AccountList 
 {
-	[MvxPanelPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
+    // TODO: refactor for the new attributes with MvvmCross 5.0
+    //[MvxChildPresentation(MvxPanelEnum.Center, MvxPanelHintType.ResetRoot, true)]
     public partial class AccountListView : MvxViewController<AccountListViewModel> 
 	{
 		public override void ViewDidLoad()

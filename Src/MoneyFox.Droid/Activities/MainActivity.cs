@@ -11,6 +11,7 @@ using HockeyApp.Android.Metrics;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Droid.Shared.Caching;
+using MvvmCross.Droid.Shared.Fragments;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
@@ -26,7 +27,7 @@ namespace MoneyFox.Droid.Activities
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -41,7 +42,7 @@ namespace MoneyFox.Droid.Activities
 
             if (bundle == null)
             {
-                ViewModel.ShowMenuAndFirstDetail();
+                await ViewModel.ShowMenuAndFirstDetail();
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
@@ -62,7 +63,7 @@ namespace MoneyFox.Droid.Activities
                 drawerToggle.SyncState();
             }
         }
-
+        
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             Android.Support.V4.App.FragmentTransaction transaction)
         {

@@ -52,22 +52,22 @@ namespace MoneyFox.Droid.Fragments
             switch (itemId)
             {
                 case Resource.Id.nav_accounts:
-                    ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
+                    await ViewModel.ShowAccountListCommand.ExecuteAsync();
                     break;
                 case Resource.Id.nav_statistics:
-                    ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));
+                    await ViewModel.ShowStatisticSelectorCommand.ExecuteAsync();
                     break;
                 case Resource.Id.nav_categories:
-                    ViewModel.ShowViewModelByType(typeof(CategoryListViewModel));
+                    await ViewModel.ShowCategoryListCommand.ExecuteAsync();
                     break;
                 case Resource.Id.nav_backup:
-                    ViewModel.ShowViewModelByType(typeof(BackupViewModel));
+                    await ViewModel.ShowBackupViewCommand.ExecuteAsync();
                     break;
                 case Resource.Id.nav_settings:
-                    ViewModel.ShowViewModelByType(typeof(SettingsViewModel));
+                    await ViewModel.ShowSettingsCommand.ExecuteAsync();
                     break;
                 case Resource.Id.nav_about:
-                    ViewModel.ShowViewModelByType(typeof(AboutViewModel));
+                    await ViewModel.ShowAboutCommand.ExecuteAsync();
                     break;
             }
         }

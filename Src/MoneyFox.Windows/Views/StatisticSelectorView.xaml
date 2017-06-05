@@ -9,7 +9,7 @@
                       xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:views="using:MvvmCross.Uwp.Views"
                       d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">

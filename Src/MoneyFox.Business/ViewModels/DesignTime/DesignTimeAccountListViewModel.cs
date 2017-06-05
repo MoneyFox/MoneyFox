@@ -31,7 +31,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public IBalanceViewModel BalanceViewModel { get; }
         public IViewActionViewModel ViewActionViewModel { get; }
         public MvxCommand LoadedCommand => new MvxCommand(() => { });
-        public MvxCommand<AccountViewModel> EditAccountCommand => new MvxCommand<AccountViewModel>(vm => { });
-        public MvxCommand<AccountViewModel> DeleteAccountCommand => new MvxCommand<AccountViewModel>(vm => { });
+        public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(async vm => { });
+        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(async vm => { });
     }
 }

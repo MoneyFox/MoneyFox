@@ -7,8 +7,8 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
+                      xmlns:views="using:MvvmCross.Uwp.Views"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Enabled"
                       mc:Ignorable="d">

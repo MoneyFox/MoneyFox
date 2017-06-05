@@ -9,11 +9,9 @@ namespace MoneyFox.Business.ViewModels.Interfaces
     /// </summary>
     public interface IViewActionViewModel
     {
-        MvxCommand GoToAddIncomeCommand { get; }
-
-        MvxCommand GoToAddExpenseCommand { get; }
-
-        MvxCommand GoToAddTransferCommand { get; }
+        MvxAsyncCommand GoToAddIncomeCommand { get; }
+        MvxAsyncCommand GoToAddExpenseCommand { get; }
+        MvxAsyncCommand GoToAddTransferCommand { get; }
 
         /// <summary>
         ///     Indicates if the button to add a new income should be enabled.

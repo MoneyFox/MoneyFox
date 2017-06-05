@@ -2,13 +2,14 @@
 using CoreGraphics;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.iOS.Support.SidePanels;
+using MvvmCross.iOS.Support.XamarinSidebar;
 using MvvmCross.iOS.Views;
 using UIKit;
 
-namespace MoneyFox.Ios
+namespace MoneyFox.Ios.Views.Menu
 {
-	[MvxPanelPresentation(MvxPanelEnum.Left, MvxPanelHintType.ActivePanel, false)]
+    // TODO: refactor for the new attributes with MvvmCross 5.0
+	//[MvxPanelPresentation(MvxPanelEnum.Left, MvxPanelHintType.ActivePanel, false)]
 	public partial class MenuView : MvxViewController<MenuViewModel>
 	{
 		private CGColor borderColor = new CGColor(45, 177, 128);
