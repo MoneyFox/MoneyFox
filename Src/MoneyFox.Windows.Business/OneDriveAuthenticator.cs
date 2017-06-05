@@ -23,7 +23,7 @@ namespace MoneyFox.Windows.Business
                     ServiceConstants.MSA_CLIENT_ID,
                     ServiceConstants.RETURN_URL,
                     ServiceConstants.Scopes,
-                    new CredentialVault(ServiceConstants.MSA_CLIENT_ID));
+                    new CredentialCache());
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
@@ -49,7 +49,7 @@ namespace MoneyFox.Windows.Business
                     ServiceConstants.MSA_CLIENT_ID,
                     ServiceConstants.RETURN_URL,
                     ServiceConstants.Scopes,
-                    new CredentialVault(ServiceConstants.MSA_CLIENT_ID))
+                    new CredentialCache())
                 .SignOutAsync();
         }
     }

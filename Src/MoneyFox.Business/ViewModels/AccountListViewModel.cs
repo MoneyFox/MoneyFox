@@ -175,7 +175,7 @@ namespace MoneyFox.Business.ViewModels
         {
             if (accountViewModel == null) return;
 
-            await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
+            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
