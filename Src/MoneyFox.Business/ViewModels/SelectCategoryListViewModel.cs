@@ -30,6 +30,7 @@ namespace MoneyFox.Business.ViewModels
             : base(categoryService, modifyDialogService, dialogService, navigationService)
         {
             this.messenger = messenger;
+            this.navigationService = navigationService;
         }
 
         /// <summary>
