@@ -775,7 +775,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There occured an error...
+        ///   Looks up a localized string similar to An error occured.
         /// </summary>
         public static string GeneralErrorTitle {
             get {

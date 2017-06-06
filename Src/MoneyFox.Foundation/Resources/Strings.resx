@@ -601,6 +601,6 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>About</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>There occured an error..</value>
+    <value>An error occured</value>
   </data>
 </root>
