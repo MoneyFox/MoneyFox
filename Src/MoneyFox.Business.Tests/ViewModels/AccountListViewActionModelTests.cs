@@ -22,8 +22,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
                 .Callback((ModifyPaymentParameter param) => parameter = param)
                 .Returns(Task.CompletedTask);
             
@@ -45,8 +44,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
                 .Callback((ModifyPaymentParameter param) => parameter = param)
                 .Returns(Task.CompletedTask);
             
@@ -68,8 +66,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
                 .Callback((ModifyPaymentParameter param) => parameter = param)
                 .Returns(Task.CompletedTask);
             
@@ -91,8 +88,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
                 .Callback((ModifyPaymentParameter param) => parameter = param)
                 .Returns(Task.CompletedTask);
             
