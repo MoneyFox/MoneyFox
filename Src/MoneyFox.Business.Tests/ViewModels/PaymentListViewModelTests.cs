@@ -1,9 +1,10 @@
 ﻿using MoneyFox.Business.Manager;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Moq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
 using Xunit;
 
@@ -19,6 +20,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         private readonly Mock<IBalanceCalculationManager> balanceCalculatorManager;
         private readonly Mock<IBackupManager> backupManager;
         private readonly Mock<IModifyDialogService> modifyDialogService;
+        private readonly Mock<IMvxNavigationService> navigationService;
 
         public PaymentListViewModelTests()
         {
@@ -29,13 +31,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             balanceCalculatorManager = new Mock<IBalanceCalculationManager>();
             backupManager = new Mock<IBackupManager>();
             modifyDialogService = new Mock<IModifyDialogService>();
+            navigationService = new Mock<IMvxNavigationService>();
 
             accountService.SetupAllProperties();
             paymentService.SetupAllProperties();
         }
 
         [Fact]
-        public void Init_PassAccountId_AccountIdSet()
+        public async void Init_PassAccountId_AccountIdSet()
         {
             // Arrange
             var vm = new PaymentListViewModel(accountService.Object,
@@ -44,17 +47,18 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object);
+                                              modifyDialogService.Object,
+                                              navigationService.Object);
 
             // Act
-            vm.Init(42);
+            await vm.Initialize(new PaymentListParameter(42));
 
             // Assert
             Assert.Equal(42, vm.AccountId);
         }
 
         [Fact]
-        public void Init_NullPassAccountId_AccountIdSet()
+        public async void Init_NullPassAccountId_AccountIdSet()
         {
             // Arrange
             var vm = new PaymentListViewModel(accountService.Object,
@@ -63,10 +67,11 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object);
+                                              modifyDialogService.Object,
+                                              navigationService.Object);
 
             // Act
-            vm.Init(0);
+            await vm.Initialize(new PaymentListParameter());
 
             // Assert
             Assert.Equal(0, vm.AccountId);

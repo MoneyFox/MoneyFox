@@ -7,7 +7,6 @@ using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
@@ -21,10 +20,10 @@ using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
-using MvvmCross.WindowsUWP.Platform;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 using MvvmCross.Platform.IoC;
-using MvvmCross.Plugins.Email.WindowsUWP;
+using MvvmCross.Plugins.Email.WindowsCommon;
+using MvvmCross.Uwp.Platform;
 
 namespace MoneyFox.Windows
 {
@@ -53,7 +52,6 @@ namespace MoneyFox.Windows
         {
             var cb = new ContainerBuilder();
 
-            cb.RegisterModule<ServiceModule>();
             cb.RegisterModule<BusinessModule>();
             cb.RegisterModule<WindowsModule>();
 

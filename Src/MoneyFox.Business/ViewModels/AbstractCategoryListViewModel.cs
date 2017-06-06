@@ -1,20 +1,24 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
+using MoneyFox.Business.Parameters;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Service.DataServices;
+using MvvmCross.Core.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : MvxViewModel
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
+        protected readonly IMvxNavigationService navigationService;
 
         private string searchText;
         private ObservableCollection<CategoryViewModel> categories;
@@ -27,18 +31,21 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
+        /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         protected AbstractCategoryListViewModel(ICategoryService categoryService,
-           IModifyDialogService modifyDialogService, IDialogService dialogService)
+           IModifyDialogService modifyDialogService, IDialogService dialogService, 
+           IMvxNavigationService navigationService)
         {
             CategoryService = categoryService;
             ModifyDialogService = modifyDialogService;
             DialogService = dialogService;
+            this.navigationService = navigationService;
         }
 
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract void ItemClick(CategoryViewModel category);
+        protected abstract Task ItemClick(CategoryViewModel category);
 
         #region Properties
 
@@ -107,40 +114,43 @@ namespace MoneyFox.Business.ViewModels
 
         #region Commands
 
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        /// <summary>
+        ///     Prepares everthing after the view is loaded.
+        /// </summary>
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public MvxCommand<CategoryViewModel> DeleteCategoryCommand => new MvxCommand<CategoryViewModel>(DeleteCategory);
+        public MvxAsyncCommand<CategoryViewModel> DeleteCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(DeleteCategory);
 
         /// <summary>
         ///     Edit the currently selected CategoryViewModel
         /// </summary>
-        public MvxCommand<CategoryViewModel> EditCategoryCommand => new MvxCommand<CategoryViewModel>(EditCategory);
+        public MvxAsyncCommand<CategoryViewModel> EditCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(EditCategory);
 
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxCommand<CategoryViewModel> ItemClickCommand => new MvxCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Opens a option dialog to select the modify operation
         /// </summary>
-        public MvxCommand<CategoryViewModel> OpenContextMenuCommand => new MvxCommand<CategoryViewModel>(OpenContextMenu);
+        public MvxAsyncCommand<CategoryViewModel> OpenContextMenuCommand => new MvxAsyncCommand<CategoryViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxCommand<CategoryViewModel> CreateNewCategoryCommand
-            => new MvxCommand<CategoryViewModel>(CreateNewCategory);
+        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand
+            => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
 
         #endregion
 
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public async void Search()
+        public async Task Search()
         {
             if (!string.IsNullOrEmpty(SearchText))
             {
@@ -155,20 +165,20 @@ namespace MoneyFox.Business.ViewModels
             Source = CreateGroup();
         }
 
-        private void Loaded()
+        private async Task Loaded()
         {
             SearchText = string.Empty;
-            Search();
+            await Search();
         }
 
-        private void EditCategory(CategoryViewModel category)
+        private async Task EditCategory(CategoryViewModel category)
         {
-            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = true, selectedCategoryId = category.Id});
+            await navigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
         }
 
-        private void CreateNewCategory(CategoryViewModel category)
+        private async Task CreateNewCategory(CategoryViewModel category)
         {
-            ShowViewModel<ModifyCategoryViewModel>(new {isEdit = false, SelectedCategory = 0});
+            await navigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
@@ -180,7 +190,7 @@ namespace MoneyFox.Business.ViewModels
                         : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand,
                     itemLongClickCommand:OpenContextMenuCommand));
 
-        private async void OpenContextMenu(CategoryViewModel category)
+        private async Task OpenContextMenu(CategoryViewModel category)
         {
             var result = await ModifyDialogService.ShowEditSelectionDialog();
 
@@ -196,7 +206,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private async void DeleteCategory(CategoryViewModel categoryToDelete)
+        private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {

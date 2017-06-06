@@ -4,6 +4,6 @@ namespace MoneyFox.Business.ViewModels.Interfaces
 {
     public interface IPaymentListViewActionViewModel : IViewActionViewModel
     {
-        MvxCommand DeleteAccountCommand { get; }
+        MvxAsyncCommand DeleteAccountCommand { get; }
     }
 }

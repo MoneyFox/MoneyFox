@@ -1,6 +1,8 @@
-﻿using MoneyFox.Business.Messages;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.Messages;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
@@ -10,6 +12,7 @@ namespace MoneyFox.Business.ViewModels
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
+        private readonly IMvxNavigationService navigationService;
 
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
@@ -18,10 +21,13 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
+        /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         public SelectCategoryListViewModel(ICategoryService categoryService,
             IModifyDialogService modifyDialogService,
-            IDialogService dialogService, IMvxMessenger messenger) 
-            : base(categoryService, modifyDialogService, dialogService)
+            IDialogService dialogService,
+            IMvxMessenger messenger,
+            IMvxNavigationService navigationService) 
+            : base(categoryService, modifyDialogService, dialogService, navigationService)
         {
             this.messenger = messenger;
         }
@@ -29,7 +35,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Closes this activity without selecting something.
         /// </summary>
-        public MvxCommand CancelCommand => new MvxCommand(Cancel);
+        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
@@ -39,15 +45,15 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void ItemClick(CategoryViewModel category)
+        protected override async Task ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
-            Close(this);
+            await navigationService.Close(this);
         }
 
-        private void Cancel()
+        private async Task Cancel()
         {
-            Close(this);
+            await navigationService.Close(this);
         }
     }
 }

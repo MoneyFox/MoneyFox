@@ -5,7 +5,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : BaseViewModel
+    public class SettingsSecurityViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
@@ -25,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsPasswortActive
         {
-            get { return settingsManager.PasswordRequired; }
+            get => settingsManager.PasswordRequired;
             set
             {
                 settingsManager.PasswordRequired = value;
@@ -36,7 +36,7 @@ namespace MoneyFox.Business.ViewModels
 
         public bool IsPassportActive
         {
-            get { return settingsManager.PassportEnabled; }
+            get => settingsManager.PassportEnabled;
             set
             {
                 
@@ -55,7 +55,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Password
         {
-            get { return password; }
+            get => password;
             set
             {
                 password = value;
@@ -68,7 +68,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string PasswordConfirmation
         {
-            get { return passwordConfirmation; }
+            get => passwordConfirmation;
             set
             {
                 passwordConfirmation = value;

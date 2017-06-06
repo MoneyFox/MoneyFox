@@ -32,7 +32,7 @@ Head over [here](https://github.com/Apply-Solutions/MoneyManager/blob/master/CON
 Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
 ### Code of conduct
-We act under the (Contributor Covenant)[http://contributor-covenant.org/version/1/4/)
+We act under the [Contributor Covenant](http://contributor-covenant.org/version/1/4/)
 
 ### Tools
 We use Visual Studio 2017 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.

@@ -1,9 +1,10 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsGeneralViewModel : BaseViewModel
+    public class SettingsGeneralViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;

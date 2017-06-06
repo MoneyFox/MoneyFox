@@ -32,7 +32,11 @@ namespace MoneyFox.Business.ViewModels
         {
             var items = await spreadingDataProvider.GetValues(StartDate, EndDate);
             StatisticItems.Clear();
-            StatisticItems.AddRange(items);
+
+            foreach (var statisticItem in items)
+            {
+                StatisticItems.Add(statisticItem);
+            }
         }
     }
 }

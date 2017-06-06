@@ -5,7 +5,7 @@
                       xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:views="using:MvvmCross.Uwp.Views"
                       d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                                        IsDesignTimeCreatable=True}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"

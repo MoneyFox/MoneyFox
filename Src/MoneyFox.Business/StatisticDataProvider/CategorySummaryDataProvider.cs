@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Service.DataServices;
@@ -21,10 +19,12 @@ namespace MoneyFox.Business.StatisticDataProvider
 
         public async Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate)
         {
-            var categories = new ObservableCollection<StatisticItem>();
+            var categories = new List<StatisticItem>();
 
             foreach (var category in await categoryService.GetAllCategories())
             {
+                if (category.Data.Payments == null) continue;
+
                 categories.Add(new StatisticItem
                 {
                     Label = category.Data.Name,
@@ -37,8 +37,7 @@ namespace MoneyFox.Business.StatisticDataProvider
                 });
             }
 
-            return new ObservableCollection<StatisticItem>(
-                categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList());
+            return categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList();
         }
     }
 }

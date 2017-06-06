@@ -1,8 +1,9 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsPersonalizationViewModel : BaseViewModel
+    public class SettingsPersonalizationViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
 
@@ -13,21 +14,16 @@ namespace MoneyFox.Business.ViewModels
 
         public bool IsDarkThemeEnabled
         {
-            get { return settingsManager.IsDarkThemeSelected; }
-            set { settingsManager.IsDarkThemeSelected = value; }
+            get => settingsManager.IsDarkThemeSelected;
+            set => settingsManager.IsDarkThemeSelected = value;
         }
 
         public bool UseSystemTheme
         {
-            get { return settingsManager.UseSystemTheme; }
-            set { settingsManager.UseSystemTheme = value; }
+            get => settingsManager.UseSystemTheme;
+            set => settingsManager.UseSystemTheme = value;
         }
 
-        public bool UseCustomTheme
-        {
-            get { return !UseSystemTheme; }
-        }
-
-
+        public bool UseCustomTheme => !UseSystemTheme;
     }
 }

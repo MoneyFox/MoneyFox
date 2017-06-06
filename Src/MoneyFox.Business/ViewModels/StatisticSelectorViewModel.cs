@@ -1,13 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class StatisticSelectorViewModel : BaseViewModel
+    public class StatisticSelectorViewModel : MvxViewModel
     {
+        private readonly IMvxNavigationService navigationService;
+
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public StatisticSelectorViewModel(IMvxNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
         /// <summary>
         ///     All possible statistic to choose from
         /// </summary>
@@ -36,23 +48,23 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public MvxCommand<StatisticSelectorType> GoToStatisticCommand
-            => new MvxCommand<StatisticSelectorType>(GoToStatistic);
+        public MvxAsyncCommand<StatisticSelectorType> GoToStatisticCommand
+            => new MvxAsyncCommand<StatisticSelectorType>(GoToStatistic);
 
-        private void GoToStatistic(StatisticSelectorType item)
+        private async Task GoToStatistic(StatisticSelectorType item)
         {
             switch (item.Type)
             {
                 case StatisticType.Cashflow:
-                    ShowViewModel<StatisticCashFlowViewModel>();
+                    await navigationService.Navigate<StatisticCashFlowViewModel>();
                     break;
 
                 case StatisticType.CategorySpreading:
-                    ShowViewModel<StatisticCategorySpreadingViewModel>();
+                    await navigationService.Navigate<StatisticCategorySpreadingViewModel>();
                     break;
 
                 case StatisticType.CategorySummary:
-                    ShowViewModel<StatisticCategorySummaryViewModel>();
+                    await navigationService.Navigate<StatisticCategorySummaryViewModel>();
                     break;
             }
         }
