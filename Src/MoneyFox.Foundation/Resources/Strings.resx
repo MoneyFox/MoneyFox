@@ -600,4 +600,7 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="AboutLabel" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>There occured an error..</value>
+  </data>
 </root>

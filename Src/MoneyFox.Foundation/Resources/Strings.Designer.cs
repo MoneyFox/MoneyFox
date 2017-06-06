@@ -775,6 +775,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There occured an error...
+        /// </summary>
+        public static string GeneralErrorTitle {
+            get {
+                return ResourceManager.GetString("GeneralErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string GeneralTitle {
