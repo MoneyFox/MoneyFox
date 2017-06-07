@@ -18,7 +18,7 @@ namespace MoneyFox.Business.ViewModels
         protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
-        protected readonly IMvxNavigationService navigationService;
+        protected readonly IMvxNavigationService NavigationService;
 
         private string searchText;
         private ObservableCollection<CategoryViewModel> categories;
@@ -39,7 +39,7 @@ namespace MoneyFox.Business.ViewModels
             CategoryService = categoryService;
             ModifyDialogService = modifyDialogService;
             DialogService = dialogService;
-            this.navigationService = navigationService;
+            this.NavigationService = navigationService;
         }
 
         /// <summary>
@@ -173,12 +173,12 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task EditCategory(CategoryViewModel category)
         {
-            await navigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
+            await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
-            await navigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
+            await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
