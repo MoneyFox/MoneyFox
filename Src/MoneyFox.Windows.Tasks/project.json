@@ -3,7 +3,7 @@
     "Cheesebaron.MvxPlugins.Connectivity": "3.0.3",
     "Cheesebaron.MvxPlugins.Settings": "3.0.3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-    "MvvmCross.Plugin.File": "5.0.0",
+    "MvvmCross.Plugin.File": "5.0.2",
     "MvvmCross.Plugin.SQLitePCL": "4.4.0",
     "NotificationsExtensions.Win10": "14332.0.2"
   },

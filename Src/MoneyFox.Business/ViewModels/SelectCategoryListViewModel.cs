@@ -9,10 +9,12 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Represents the SelectCategoryListView
+    /// </summary>
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
-        private readonly IMvxNavigationService navigationService;
 
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
@@ -48,12 +50,12 @@ namespace MoneyFox.Business.ViewModels
         protected override async Task ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
-            await navigationService.Close(this);
+            await NavigationService.Close(this);
         }
 
         private async Task Cancel()
         {
-            await navigationService.Close(this);
+            await NavigationService.Close(this);
         }
     }
 }

@@ -7,6 +7,7 @@ using MoneyFox.Foundation.Tests;
 using MoneyFox.Service.DataServices;
 using Moq;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -22,9 +23,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
-                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
                 .Returns(Task.CompletedTask);
             
             // Act
@@ -45,9 +45,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
-                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
                 .Returns(Task.CompletedTask);
             
             // Act
@@ -68,9 +67,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
-                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
                 .Returns(Task.CompletedTask);
             
             // Act
@@ -91,9 +89,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
-                           It.IsAny<ModifyPaymentParameter>()))
-                .Callback((ModifyPaymentParameter param) => parameter = param)
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
                 .Returns(Task.CompletedTask);
             
             // Act

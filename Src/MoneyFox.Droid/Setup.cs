@@ -15,6 +15,7 @@ using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service;
 using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.IoC;
@@ -31,9 +32,10 @@ namespace MoneyFox.Droid
 
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
-            base.FillTargetFactories(registry);
+            MvxAppCompatSetupHelper.FillTargetFactories(registry);
             registry.RegisterFactory(new MvxCustomBindingFactory<LinearLayout>("WarningBackgroundShape", (view) => new WarningBackgroundShapeBinding(view)));
             registry.RegisterFactory(new MvxCustomBindingFactory<FloatingActionButton>("Click", (view) => new FloatingActionButtonClickBinding(view)));
+            base.FillTargetFactories(registry);
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
