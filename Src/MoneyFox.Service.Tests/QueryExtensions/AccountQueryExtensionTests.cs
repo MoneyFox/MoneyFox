@@ -70,7 +70,7 @@ namespace MoneyFox.Service.Tests.QueryExtensions
         }
 
         [Fact]
-        public void NameEquals()
+        public void OrderByName()
         {
             // Arrange
             var accountListQuery = new List<AccountEntity>
