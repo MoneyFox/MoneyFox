@@ -70,6 +70,28 @@ namespace MoneyFox.Service.Tests.QueryExtensions
         }
 
         [Fact]
+        public void NameEquals()
+        {
+            // Arrange
+            var accountListQuery = new List<AccountEntity>
+                {
+                    new AccountEntity {Id = 1, Name = "Foo"},
+                    new AccountEntity {Id = 2, Name = "Alber"},
+                    new AccountEntity {Id = 3, Name = "Thom"}
+                }
+                .AsQueryable();
+
+            // Act
+            var resultList = accountListQuery.OrderByName().ToList();
+
+            // Assert
+            Assert.Equal(3, resultList.Count);
+            Assert.Equal(2, resultList[0].Id);
+            Assert.Equal(1, resultList[1].Id);
+            Assert.Equal(3, resultList[2].Id);
+        }
+
+        [Fact]
         public void SelectAccounts()
         {
             // Arrange
