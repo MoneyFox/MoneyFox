@@ -343,7 +343,7 @@ namespace MoneyFox.Business.ViewModels
                 ? SelectedPayment.RecurringPayment.Recurrence
                 : PaymentRecurrence.Daily;
 
-            if (SelectedPayment.RecurringPayment.EndDate != null)
+            if (SelectedPayment.RecurringPayment?.EndDate != null)
             {
                 EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
                     ? SelectedPayment.RecurringPayment.EndDate.Value
