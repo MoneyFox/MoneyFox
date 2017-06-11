@@ -18,8 +18,6 @@
     "MvvmCross.Plugin.Visibility": "5.0.2",
     "MvvmCross.Plugin.WebBrowser": "5.0.2",
     "NETStandard.Library": "1.6.1",
-    "OxyPlot.Core": "1.0.0",
-    "OxyPlot.Xamarin.iOS": "1.0.0",
     "Xamarin.Auth": "1.5.0"
   },
   "frameworks": {

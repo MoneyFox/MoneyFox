@@ -19,7 +19,7 @@
                 local:MvxBind="Text SearchText"
                 local:MvxLang="Hint SearchStringLabel" />
         </android.support.design.widget.TextInputLayout>
-        <MvxListView
+        <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
             android:id="@+id/category_list"
             android:orientation="vertical"
             android:layout_width="match_parent"

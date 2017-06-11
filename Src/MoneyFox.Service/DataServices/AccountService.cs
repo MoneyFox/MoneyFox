@@ -85,6 +85,7 @@ namespace MoneyFox.Service.DataServices
         {
             var list = await accountRepository
                 .GetAll()
+                .OrderByName()
                 .ToListAsync();
 
             return list.Select(x => new Account(x));
@@ -116,6 +117,7 @@ namespace MoneyFox.Service.DataServices
             var list = await accountRepository
                 .GetAll()
                 .AreNotExcluded()
+                .OrderByName()
                 .ToListAsync();
 
             return list.Select(x => new Account(x));
@@ -127,6 +129,7 @@ namespace MoneyFox.Service.DataServices
             var list = await accountRepository
                 .GetAll()
                 .AreExcluded()
+                .OrderByName()
                 .ToListAsync();
 
             return list.Select(x => new Account(x));

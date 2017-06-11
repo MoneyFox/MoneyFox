@@ -53,5 +53,15 @@ namespace MoneyFox.Business.Tests.Helpers
         {
             Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
         }
+
+        [Theory]
+        [InlineData("10'000", "10'000")]
+        [InlineData("10000", "10000")]
+        [InlineData("10'000.50", "10000.50")]
+        [InlineData("0.005", "0.005")]
+        public void RemoveGroupingSeparators(string amount, string expectedResult)
+        {
+            Assert.Equal(expectedResult, Utilities.RemoveGroupingSeparators(amount));
+        }
     }
 }

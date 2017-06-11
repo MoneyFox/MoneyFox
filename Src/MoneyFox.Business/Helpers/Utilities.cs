@@ -43,7 +43,8 @@ namespace MoneyFox.Business.Helpers
             => value.ToString("N", CultureInfo.CurrentCulture);
 
         /// <summary>
-        ///     Returns the number string with just this culture's decimal separator.
+        ///     Returns the number string with just his culture's decimal separator.
+        ///     If it is an Int it will return the same string as entered.
         /// </summary>
         /// <param name="amount">Amount to be converted.</param>
         /// <returns>Formated string.</returns>
@@ -72,7 +73,12 @@ namespace MoneyFox.Business.Helpers
                         }
                     }
                 }
-                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator.ToString() + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
+
+                if (punctuationCount > decimalSeparatorIndex) return amount;
+
+                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) +
+                         CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator +
+                         decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
             }
             return amount;
         }

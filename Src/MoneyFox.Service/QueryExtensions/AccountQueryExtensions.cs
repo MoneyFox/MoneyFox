@@ -42,6 +42,16 @@ namespace MoneyFox.Service.QueryExtensions
         }
 
         /// <summary>
+        ///     Ordery an account query by the name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Ordered query.</returns>
+        public static IQueryable<AccountEntity> OrderByName(this IQueryable<AccountEntity> query)
+        {
+            return query.OrderBy(x => x.Name);
+        }
+
+        /// <summary>
         ///     Selects a <see cref="Account"/> for every item in a query.
         /// </summary>
         /// <param name="query">Existing query.</param>
