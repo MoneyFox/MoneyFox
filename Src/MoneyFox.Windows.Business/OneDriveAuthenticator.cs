@@ -19,10 +19,7 @@ namespace MoneyFox.Windows.Business
         {
             try
             {
-                var msaAuthenticationProvider = new MsaAuthenticationProvider(
-                    ServiceConstants.MSA_CLIENT_ID,
-                    ServiceConstants.RETURN_URL,
-                    ServiceConstants.Scopes);
+                var msaAuthenticationProvider = new OnlineIdAuthenticationProvider(ServiceConstants.Scopes);
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
