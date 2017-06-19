@@ -6,10 +6,16 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the category Spreading View
+    /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
 
+        /// <summary>
+        ///     Contstructor
+        /// </summary>
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
             IMvxMessenger messenger) 
             : base(messenger)
@@ -18,11 +24,17 @@ namespace MoneyFox.Business.ViewModels
             StatisticItems = new MvxObservableCollection<StatisticItem>();
         }
 
+        /// <summary>
+        ///     Called when loading of the view is completed.
+        /// </summary>
         protected override void Load()
         {
             LoadStatisticData();
         }
 
+        /// <summary>
+        ///     Statistic items to display.
+        /// </summary>
         public MvxObservableCollection<StatisticItem> StatisticItems { get; set; }
 
         /// <summary>
