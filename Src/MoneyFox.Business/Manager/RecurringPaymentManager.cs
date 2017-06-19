@@ -5,20 +5,22 @@ using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.Manager
 {
+    /// <inheritdoc />
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
         private readonly IRecurringPaymentService recurringPaymentService;
         private readonly IPaymentService paymentService;
 
+        /// <summary>
+        ///     Contstructor
+        /// </summary>
         public RecurringPaymentManager(IRecurringPaymentService recurringPaymentService, IPaymentService paymentService)
         {
             this.recurringPaymentService = recurringPaymentService;
             this.paymentService = paymentService;
         }
 
-        /// <summary>
-        ///     Checks if one of the recurring PaymentViewModel has to be repeated
-        /// </summary>
+        /// <inheritdoc />
         public async void CreatePaymentsUpToRecur()
         {
             var newPayments = recurringPaymentService.GetPaymentsToRecur()
