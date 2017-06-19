@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MvvmCross.Plugins.File.WindowsCommon;
+using MvvmCross.Plugins.File.Uwp;
 
 namespace MoneyFox.Windows.Tests.Dependencies
 {
