@@ -26,17 +26,21 @@ namespace MoneyFox.Business.ViewModels
         private readonly int accountId;
 
         public PaymentListViewActionViewModel(IAccountService accountService,
-            ISettingsManager settingsManager, 
-            IDialogService dialogService, 
-            IBalanceViewModel balanceViewModel, 
-            int accountId)
+                                              ISettingsManager settingsManager,
+                                              IDialogService dialogService,
+                                              IBalanceViewModel balanceViewModel,
+                                              IMvxNavigationService navigationService,
+                                              int accountId)
         {
             this.accountService = accountService;
             this.settingsManager = settingsManager;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
+            this.navigationService = navigationService;
             this.accountId = accountId;
         }
+
+        #region Commands
 
         public MvxAsyncCommand GoToAddIncomeCommand =>
             new MvxAsyncCommand(async () => await navigationService
@@ -55,6 +59,10 @@ namespace MoneyFox.Business.ViewModels
 
         public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
@@ -69,6 +77,8 @@ namespace MoneyFox.Business.ViewModels
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
         public bool IsAddExpenseAvailable => accountService.GetAccountCount().Result > 0;
+        
+        #endregion
 
         private async Task DeleteAccount()
         {

@@ -355,7 +355,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Moved to own method for debugg reasons
         /// </summary>
-        /// <param name="message">Message sent.</param>
+        /// <param name="message">Message stent.</param>
         private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;

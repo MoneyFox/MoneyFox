@@ -16,7 +16,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+        <Setter Property="Foreground" Value="{StaticResource SplitViewToggleButtonForeground}" />
         <Setter Property="Content" Value="&#xE700;" />
         <Setter Property="AutomationProperties.Name" Value="Menu" />
         <Setter Property="UseSystemFocusVisuals" Value="True" />
@@ -37,7 +37,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+                                                                    Value="{StaticResource SplitViewToggleButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -51,7 +51,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+                                                                    Value="{StaticResource SplitViewToggleButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -75,7 +75,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+                                                                    Value="{StaticResource SplitViewToggleButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -89,7 +89,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+                                                                    Value="{StaticResource SplitViewToggleButtonForeground}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

@@ -37,6 +37,7 @@ namespace MoneyFox.Business.ViewModels
         private IBalanceViewModel balanceViewModel;
         private int accountId;
         private string title;
+        private IPaymentListViewActionViewModel viewActionViewModel;
 
         /// <summary>
         ///     Default constructor
@@ -101,7 +102,15 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     View Model for the global actions on the view.
         /// </summary>
-        public IPaymentListViewActionViewModel ViewActionViewModel { get; private set; }
+        public IPaymentListViewActionViewModel ViewActionViewModel
+        {
+            get => viewActionViewModel;
+            private set {
+                if (viewActionViewModel == value) return;
+                viewActionViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns all PaymentViewModel who are assigned to this repository
@@ -154,7 +163,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public virtual MvxAsyncCommand LoadCommand => new MvxAsyncCommand(LoadPayments);
+        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(LoadPayments);
 
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
@@ -181,9 +190,12 @@ namespace MoneyFox.Business.ViewModels
         {
             AccountId = parameter.AccountId;
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(accountService, settingsManager, dialogService,
-                                                                     BalanceViewModel, AccountId);
-
+            ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
+                                                                     settingsManager,
+                                                                     dialogService,
+                                                                     BalanceViewModel,
+                                                                     navigationService,
+                                                                     AccountId);
             return Task.CompletedTask;
         }
 

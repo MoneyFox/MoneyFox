@@ -211,18 +211,6 @@ namespace MoneyFox.Windows.Views
                 TogglePaneButtonRect = new Rect();
             }
 
-            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsPaneOpen &&
-                !new SettingsManager(new WindowsUwpSettings()).IsDarkThemeSelected)
-            {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
-            }
-            else
-            {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
-            }
-
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 RootSplitView.IsPaneOpen = false;
