@@ -121,7 +121,7 @@
                         <Setter Target="RootSplitView.DisplayMode" Value="CompactOverlay" />
                         <Setter Target="RootSplitView.IsPaneOpen" Value="False" />
                         <Setter  Target="TogglePaneButton.Foreground"
-                                 Value="{StaticResource SplitViewToggleButtonForegroundLight}" />
+                                 Value="{StaticResource SplitViewToggleButtonForegroundStaticWhite}" />
 
                     </VisualState.Setters>
                 </VisualState>
