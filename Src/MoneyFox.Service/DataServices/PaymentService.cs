@@ -24,7 +24,7 @@ namespace MoneyFox.Service.DataServices
         Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0);
 
         /// <summary>
-        ///     Returns all incomes and expenses within the passed timeframe.
+        ///     Returns all incomes and expenses with the related categories within the passed timeframe.
         /// </summary>
         /// <param name="startdate">Startdate</param>
         /// <param name="enddate">Enddate.</param>
@@ -103,6 +103,7 @@ namespace MoneyFox.Service.DataServices
         {
             var list = await paymentRepository
                 .GetAll()
+                .Include(x => x.Category)
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(startdate.Date)
                 .HasDateSmallerEqualsThan(enddate.Date)
