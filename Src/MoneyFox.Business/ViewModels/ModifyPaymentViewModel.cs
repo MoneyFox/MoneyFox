@@ -42,6 +42,7 @@ namespace MoneyFox.Business.ViewModels
         private bool isEndless;
         private bool isTransfer;
         private bool isEdit;
+        private string title;
 
         /// <summary>
         ///     Default constructor
@@ -237,7 +238,16 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if(title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns the Header for the AccountViewModel field
@@ -308,6 +318,7 @@ namespace MoneyFox.Business.ViewModels
                 PrepareEdit();
             }
 
+            Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
             AccountViewModelBeforeEdit = SelectedPayment.ChargedAccount;
         }
 
