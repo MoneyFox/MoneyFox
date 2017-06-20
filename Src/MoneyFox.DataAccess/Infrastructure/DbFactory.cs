@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.EntityOld;
 using MoneyFox.Foundation;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
@@ -109,7 +110,7 @@ namespace MoneyFox.DataAccess.Infrastructure
 
                 foreach (var payment in dbContextOld.Payments)
                 {
-                    dbContext.Payments.Add(new PaymentEntity
+                    var paymententity = new PaymentEntity
                     {
                         ChargedAccount = dbContext.Accounts.First(x => x.Name == payment.ChargedAccount.Name),
                         TargetAccount = payment.TargetAccount != null
@@ -126,13 +127,15 @@ namespace MoneyFox.DataAccess.Infrastructure
                         IsCleared = payment.IsCleared,
                         RecurringPayment = payment.IsRecurring
                             ? dbContext.RecurringPayments
+                                        .Include(x => x.ChargedAccount)
                                        .Where(x => Math.Abs(x.Amount - payment.RecurringPayment.Amount) < 0.0001)
-                                       .Where(x => x.ChargedAccountId == payment.ChargedAccount.Id)
+                                       .Where(x => x.ChargedAccount.Name == payment.ChargedAccount.Name)
                                        .Where(x => x.StartDate == payment.RecurringPayment.StartDate)
                                        .Where(x => x.EndDate == payment.RecurringPayment.EndDate)
                                        .FirstOrDefault(x => x.Note == payment.RecurringPayment.Note)
                             : null
-                    });
+                    };
+                    dbContext.Payments.Add(paymententity);
                 }
 
                 await dbContext.SaveChangesAsync();

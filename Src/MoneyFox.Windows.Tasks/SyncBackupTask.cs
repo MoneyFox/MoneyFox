@@ -1,11 +1,11 @@
 ﻿using Windows.ApplicationModel.Background;
 using MoneyFox.Windows.Business;
-using MvvmCross.Plugins.File.WindowsCommon;
 using MoneyFox.Business.Manager;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Service;
+using MvvmCross.Plugins.File.Uwp;
 
 namespace MoneyFox.Windows.Tasks
 {

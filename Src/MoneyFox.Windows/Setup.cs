@@ -16,13 +16,13 @@ using MvvmCross.Platform.Plugins;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.File;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
-using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 using MvvmCross.Platform.IoC;
-using MvvmCross.Plugins.Email.WindowsCommon;
+using MvvmCross.Plugins.Email.Uwp;
+using MvvmCross.Plugins.File.Uwp;
+using MvvmCross.Plugins.Visibility.Uwp;
+using MvvmCross.Plugins.WebBrowser.Uwp;
 using MvvmCross.Uwp.Platform;
 
 namespace MoneyFox.Windows
