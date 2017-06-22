@@ -159,16 +159,23 @@ namespace MoneyFox.Business.ViewModels
 
         private async void Loaded()
         {
-            var includedAccountList = await accountService.GetNotExcludedAccounts();
-            var excludedAccountList = await accountService.GetExcludedAccounts();
+            try
+            {
+                var includedAccountList = await accountService.GetNotExcludedAccounts();
+                var excludedAccountList = await accountService.GetExcludedAccounts();
 
-            IncludedAccounts =
-                new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
-            ExcludedAccounts =
-                new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
+                IncludedAccounts =
+                    new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
+                ExcludedAccounts =
+                    new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
 
-            BalanceViewModel.UpdateBalanceCommand.Execute();
-            await balanceCalculationManager.GetTotalEndOfMonthBalance();
+                BalanceViewModel.UpdateBalanceCommand.Execute();
+                await balanceCalculationManager.GetTotalEndOfMonthBalance();
+            }
+            catch(Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
+            }
         }
 
         private async Task GoToPaymentOverView(AccountViewModel accountViewModel)

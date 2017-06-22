@@ -31,7 +31,7 @@ namespace MoneyFox.Droid.Activities
             SetChartData();
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -41,7 +41,7 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            ViewModel.LoadCommand.Execute();
+            await ViewModel.LoadCommand.ExecuteAsync();
 
             SetChartData();
         }

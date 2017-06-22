@@ -35,10 +35,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <inheritdoc />
         public async Task<ApplicationContext> Init()
         {
-            if (dbContext == null)
-            {
-                dbContext = new ApplicationContext();
-            }
+            dbContext = new ApplicationContext();
             await dbContext.Database.MigrateAsync();
             return dbContext;
         }

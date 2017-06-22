@@ -16,7 +16,7 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class StatisticCategorySummaryActivity : MvxAppCompatActivity<StatisticCategorySummaryViewModel>
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -25,13 +25,9 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            Title = Strings.CategorySummaryLabel;
-        }
+			await ViewModel.LoadCommand.ExecuteAsync();
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            ViewModel.LoadCommand.Execute();
+            Title = Strings.CategorySummaryLabel;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

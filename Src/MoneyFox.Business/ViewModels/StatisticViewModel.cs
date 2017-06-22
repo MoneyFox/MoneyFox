@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Messages;
 using MoneyFox.Foundation.Resources;
@@ -45,7 +46,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Loads the data with the current start and end date.
         /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(Load);
+        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(Load);
 
         /// <summary>
         ///     Startdate for a custom statistic
@@ -80,6 +81,6 @@ namespace MoneyFox.Business.ViewModels
                                " - " +
                                EndDate.ToString("d");
 
-        protected abstract void Load();
+        protected abstract Task Load();
     }
 }

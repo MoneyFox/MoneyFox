@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
@@ -7,11 +8,17 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <inheritdoc />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
-        private ObservableCollection<StatisticItem> categorySummary;
 
+        /// <summary>
+        ///     Initializes a new instance of the
+        ///     <see cref="T:MoneyFox.Business.ViewModels.StatisticCategorySummaryViewModel"/> class.
+        /// </summary>
+        /// <param name="categorySummaryDataDataProvider">Category summary data data provider.</param>
+        /// <param name="messenger">Messenger.</param>
         public StatisticCategorySummaryViewModel(CategorySummaryDataProvider categorySummaryDataDataProvider,
             IMvxMessenger messenger) : base(messenger)
         {
@@ -19,12 +26,13 @@ namespace MoneyFox.Business.ViewModels
             CategorySummary = new MvxObservableCollection<StatisticItem>();
         }
 
-        /// <summary>
-        ///     Returns the CategoryViewModel Summary
-        /// </summary>
-        public ObservableCollection<StatisticItem> CategorySummary { get; set; }
+		/// <inheritdoc />
+		public ObservableCollection<StatisticItem> CategorySummary { get; set; }
 
-        protected override async void Load()
+        /// <summary>
+        ///     Overrides the load method to load the category summary data.
+        /// </summary>
+        protected override async Task Load()
         {
             var items = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate);
             CategorySummary.Clear();

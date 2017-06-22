@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.StatisticDataProvider;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
@@ -27,9 +28,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Called when loading of the view is completed.
         /// </summary>
-        protected override void Load()
+        protected override async Task Load()
         {
-            LoadStatisticData();
+            await LoadStatisticData();
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        private async void LoadStatisticData()
+        private async Task LoadStatisticData()
         {
             var items = await spreadingDataProvider.GetValues(StartDate, EndDate);
             StatisticItems.Clear();
