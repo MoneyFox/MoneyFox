@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.StatisticDataProvider;
+﻿using System.Threading.Tasks;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
@@ -24,9 +25,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Loads the cashflow with the current start and end date.
         /// </summary>
-        protected override void Load()
+        protected override async Task Load()
         {
-            LoadCashFlowData();
+            await LoadCashFlowData();
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
-        private async void LoadCashFlowData()
+        private async Task LoadCashFlowData()
         {
             //TODO: Unit Test for order!
             //TODO: Unit Test for selection.

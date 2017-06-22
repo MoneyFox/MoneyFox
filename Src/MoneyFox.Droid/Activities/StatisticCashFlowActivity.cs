@@ -12,6 +12,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MikePhil.Charting.Data;
 using MikePhil.Charting.Charts;
 using MikePhil.Charting.Components;
+using System.Linq;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -26,7 +27,7 @@ namespace MoneyFox.Droid.Activities
             SetChartData();
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -36,13 +37,15 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            ViewModel.LoadCommand.Execute();
+            await ViewModel.LoadCommand.ExecuteAsync();
 
             SetChartData();
         }
 
         private void SetChartData()
         {
+            if (!ViewModel.StatisticItems.Any()) return;
+
             var chart = FindViewById<BarChart>(Resource.Id.chart);
 
             var dataSetdExpenses = new BarDataSet(new List<BarEntry> { new BarEntry(0, (float)ViewModel.StatisticItems[0].Value) }, ViewModel.StatisticItems[0].Label);

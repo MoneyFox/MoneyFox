@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
@@ -24,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<StatisticItem> CategorySummary { get; set; }
 
-        protected override async void Load()
+        protected override async Task Load()
         {
             var items = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate);
             CategorySummary.Clear();
