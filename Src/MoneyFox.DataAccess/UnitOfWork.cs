@@ -50,7 +50,6 @@ namespace MoneyFox.DataAccess
         public UnitOfWork(IDbFactory dbFactory)
         {
             DbContext = dbFactory.Init().Result;
-
         }
 
         private ApplicationContext DbContext { get; }

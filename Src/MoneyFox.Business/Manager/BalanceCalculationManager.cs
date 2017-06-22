@@ -17,7 +17,6 @@ namespace MoneyFox.Business.Manager
         ///     Checks all accounts if the end of month balance is below zero.
         ///     If yes the IsOverdrawn Property is set to true.
         /// </summary>
-        /// <param name="accounts">Accounts to check.</param>
         Task CheckIfAccountsAreOverdrawn();
 
         /// <summary>
@@ -39,11 +38,15 @@ namespace MoneyFox.Business.Manager
         Task<double> GetEndOfMonthBalanceForAccount(Account account);
     }
 
+    /// <inheritdoc />
     public class BalanceCalculationManager : IBalanceCalculationManager
     {
-        private readonly IPaymentService paymentService;
         private readonly IAccountService accountService;
+        private readonly IPaymentService paymentService;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public BalanceCalculationManager(IPaymentService paymentService, IAccountService accountService)
         {
             this.paymentService = paymentService;
@@ -69,10 +72,11 @@ namespace MoneyFox.Business.Manager
         /// <inheritdoc />
         public async Task<double> GetTotalEndOfMonthBalance()
         {
-            var balance = await GetTotalBalance();
-            var accounts = await accountService.GetAllAccounts();
             var notExcluded = await accountService.GetNotExcludedAccounts();
-            var excluded = accounts.ToArray().Except(notExcluded.ToArray());
+            var excluded = await accountService.GetExcludedAccounts();
+            var notExcludedAccounts = notExcluded.ToList();
+
+            var balance = notExcludedAccounts.Sum(x => x.Data.CurrentBalance);
 
             foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth()))
             {
@@ -87,18 +91,21 @@ namespace MoneyFox.Business.Manager
                         break;
 
                     case PaymentType.Transfer:
-                         foreach (var i in excluded)
-                         {
-                         if(Equals(i, payment.Data.ChargedAccountId)){ //Transfer from excluded account
-                              balance += payment.Data.Amount;
-                              break;
-                         }
-                         else
-                              if(Equals(i, payment.Data.TargetAccountId)){ //Transfer to excluded account
-                                  balance -= payment.Data.Amount;
-                                  break;
-                              }
-                         }
+                        foreach (var i in excluded)
+                        {
+                            if (Equals(i, payment.Data.ChargedAccount.Id))
+                            {
+                                //Transfer from excluded account
+                                balance += payment.Data.Amount;
+                                break;
+                            }
+                            if (Equals(i, payment.Data.TargetAccount.Id))
+                            {
+                                //Transfer to excluded account
+                                balance -= payment.Data.Amount;
+                                break;
+                            }
+                        }
                         break;
 
                     default:
@@ -113,7 +120,8 @@ namespace MoneyFox.Business.Manager
         {
             var balance = account.Data.CurrentBalance;
 
-            foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth(), account.Data.Id))
+            foreach (var payment in await paymentService.GetUnclearedPayments(
+                Utilities.GetEndOfMonth(), account.Data.Id))
             {
                 switch (payment.Data.Type)
                 {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -81,6 +80,8 @@ namespace MoneyFox.Service.DataServices
         {
             var query = unitOfWork.PaymentRepository
                 .GetAll()
+                .Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
                 .AreNotCleared()
                 .HasDateSmallerEqualsThan(enddate);
 

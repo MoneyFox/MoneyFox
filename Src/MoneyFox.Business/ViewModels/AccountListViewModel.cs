@@ -148,7 +148,6 @@ namespace MoneyFox.Business.ViewModels
                     new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
 
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-                await balanceCalculationManager.GetTotalEndOfMonthBalance();
             }
             catch(Exception ex)
             {

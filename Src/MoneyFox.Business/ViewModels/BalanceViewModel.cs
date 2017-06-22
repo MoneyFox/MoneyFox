@@ -61,7 +61,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         private async Task UpdateBalance()
         {
-            TotalBalance = await GetTotalBalance();
+            //TotalBalance = await GetTotalBalance();
             EndOfMonthBalance = await GetEndOfMonthValue();
         }
 
