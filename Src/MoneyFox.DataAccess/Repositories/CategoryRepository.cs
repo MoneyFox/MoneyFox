@@ -9,6 +9,9 @@ namespace MoneyFox.DataAccess.Repositories
     /// </summary>
     public class CategoryRepository : RepositoryBase<CategoryEntity>, ICategoryRepository
     {
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public CategoryRepository(ApplicationContext dataContext) : base(dataContext)
         {
         }

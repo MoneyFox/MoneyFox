@@ -9,6 +9,9 @@ namespace MoneyFox.DataAccess.Repositories
     /// </summary>
     public class RecurringPaymentRepository : RepositoryBase<RecurringPaymentEntity>, IRecurringPaymentRepository
     {
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public RecurringPaymentRepository(ApplicationContext dataContext) : base(dataContext)
         {
         }
