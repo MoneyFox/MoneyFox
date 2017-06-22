@@ -27,7 +27,6 @@ namespace MoneyFox.Business.ViewModels
     public class ModifyPaymentViewModel : MvxViewModel<ModifyPaymentParameter>
     {
         private readonly IDialogService dialogService;
-        private readonly ICategoryService categoryService;
         private readonly IPaymentService paymentService;
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
@@ -51,7 +50,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Default constructor
         /// </summary>
         public ModifyPaymentViewModel(IPaymentService paymentService,
-            ICategoryService categoryService,
             IAccountService accountService,
             IDialogService dialogService,
             ISettingsManager settingsManager, 
@@ -60,7 +58,6 @@ namespace MoneyFox.Business.ViewModels
             IMvxNavigationService navigationService)
         {
             this.dialogService = dialogService;
-            this.categoryService = categoryService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
             this.navigationService = navigationService;
