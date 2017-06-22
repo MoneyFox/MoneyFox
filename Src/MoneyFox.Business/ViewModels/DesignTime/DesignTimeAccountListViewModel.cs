@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Service.Pocos;
 using MvvmCross.Core.ViewModels;
@@ -30,7 +31,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public bool IsExcludedAccountsEmpty { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
         public IViewActionViewModel ViewActionViewModel { get; }
-        public MvxCommand LoadedCommand => new MvxCommand(() => { });
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(() => Task.CompletedTask);
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(async vm => { });
         public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(async vm => { });
     }

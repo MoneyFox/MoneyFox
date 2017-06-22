@@ -9,11 +9,14 @@ namespace MoneyFox.Droid.Fragments
         protected override int FragmentId => Resource.Layout.fragment_balance;
         protected override string Title => string.Empty;
 
-        public override void OnStart()
+        public override async void OnStart()
         {
             OnResume();
             RetainInstance = false;
-            ViewModel?.UpdateBalanceCommand.Execute();
+            if (ViewModel != null)
+            {
+                await ViewModel.UpdateBalanceCommand.ExecuteAsync();
+            }
         }
     }
 }
