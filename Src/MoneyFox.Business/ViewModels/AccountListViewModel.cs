@@ -122,7 +122,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Prepares the Account list
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
         /// <summary>
         ///     Open the payment overview for this Account.
@@ -157,7 +157,7 @@ namespace MoneyFox.Business.ViewModels
             await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        private async void Loaded()
+        private async Task Loaded()
         {
             try
             {
@@ -169,7 +169,7 @@ namespace MoneyFox.Business.ViewModels
                 ExcludedAccounts =
                     new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
 
-                BalanceViewModel.UpdateBalanceCommand.Execute();
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
                 await balanceCalculationManager.GetTotalEndOfMonthBalance();
             }
             catch(Exception ex)

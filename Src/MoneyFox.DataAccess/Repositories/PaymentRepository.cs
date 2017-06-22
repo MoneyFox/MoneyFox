@@ -11,7 +11,7 @@ namespace MoneyFox.DataAccess.Repositories
     /// </summary>
     public class PaymentRepository : RepositoryBase<PaymentEntity>, IPaymentRepository
     {
-        public PaymentRepository(IDbFactory dbFactory) : base(dbFactory)
+        public PaymentRepository(ApplicationContext dataContext) : base(dataContext)
         {
         }
 

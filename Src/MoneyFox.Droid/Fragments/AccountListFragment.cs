@@ -26,9 +26,9 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        public override void OnStart()
+        public override async void OnStart()
         {
-            ViewModel.LoadedCommand.Execute();
+            await ViewModel.LoadedCommand.ExecuteAsync();
             base.OnStart();
         }
 

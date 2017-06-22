@@ -24,7 +24,7 @@ namespace MoneyFox.Windows.Tasks
             try
             {
                 var dbFactory = new DbFactory();
-                paymentService = new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory));
+                paymentService = new PaymentService(new UnitOfWork(dbFactory));
 
                 await paymentService.SavePayments(await paymentService.GetUnclearedPayments(DateTime.Now));
 

@@ -27,7 +27,7 @@ namespace MoneyFox.Droid.Services
         public async void ClearPayments()
         {
             var dbFactory = new DbFactory();
-            var paymentService = new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory));
+            var paymentService = new PaymentService(new UnitOfWork(dbFactory));
             await paymentService.GetUnclearedPayments(DateTime.Now);
         }
     }

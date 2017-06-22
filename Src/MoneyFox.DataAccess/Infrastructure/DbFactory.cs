@@ -142,7 +142,6 @@ namespace MoneyFox.DataAccess.Infrastructure
             }
         }
 
-
         /// <summary>
         ///     Dispose the current DbFactory
         /// </summary>
