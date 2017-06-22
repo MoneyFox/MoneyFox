@@ -8,8 +8,15 @@ using MvvmCross.Plugins.ResxLocalization;
 
 namespace MoneyFox.Business
 {
+    /// <summary>
+    ///     Registers the dependencies for the business module
+    /// </summary>
     public class BusinessModule : Module
     {
+        /// <summary>
+        ///     Registers the dependencies for the business module
+        /// </summary>
+        /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<ServiceModule>();
