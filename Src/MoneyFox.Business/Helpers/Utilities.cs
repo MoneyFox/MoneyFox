@@ -62,8 +62,7 @@ namespace MoneyFox.Business.Helpers
                     {
                         decimalsString += c;
 
-                    }
-                    else
+                    } else
                     {
                         punctuationCount++;
                         if (amount.IndexOf(c) >= amount.Length - 3)
