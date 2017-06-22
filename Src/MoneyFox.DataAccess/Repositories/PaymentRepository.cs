@@ -26,7 +26,10 @@ namespace MoneyFox.DataAccess.Repositories
         {
             // Since we assign the category from another context, we have to set it to unchanged.
             // Otherwise EF tries to add it to the database what results in a UNIQUE CONSTRAINT.
-            DbContext.Entry(entity.Category).State = EntityState.Unchanged;
+            if (entity.Category != null)
+            {
+                DbContext.Entry(entity.Category).State = EntityState.Unchanged;
+            }
             base.Add(entity);
         }
 

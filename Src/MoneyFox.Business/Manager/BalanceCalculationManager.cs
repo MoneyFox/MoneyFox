@@ -72,11 +72,8 @@ namespace MoneyFox.Business.Manager
         /// <inheritdoc />
         public async Task<double> GetTotalEndOfMonthBalance()
         {
-            var notExcluded = await accountService.GetNotExcludedAccounts();
             var excluded = await accountService.GetExcludedAccounts();
-            var notExcludedAccounts = notExcluded.ToList();
-
-            var balance = notExcludedAccounts.Sum(x => x.Data.CurrentBalance);
+            var balance = await GetTotalBalance();
 
             foreach (var payment in await paymentService.GetUnclearedPayments(Utilities.GetEndOfMonth()))
             {

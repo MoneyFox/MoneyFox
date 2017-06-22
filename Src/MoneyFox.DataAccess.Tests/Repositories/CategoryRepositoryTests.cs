@@ -236,6 +236,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 Category = category
             };
             unitOfWork.CategoryRepository.Add(category);
+            await unitOfWork.Commit();
+
             unitOfWork.PaymentRepository.Add(payment);
             await unitOfWork.Commit();
 
@@ -268,6 +270,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 RecurringPayment = recurringPayment
             };
             unitOfWork.CategoryRepository.Add(category);
+            await unitOfWork.Commit();
+
             unitOfWork.PaymentRepository.Add(payment);
             await unitOfWork.Commit();
 
