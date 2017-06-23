@@ -12,7 +12,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public CategoryRepository(ApplicationContext dataContext) : base(dataContext)
+        public CategoryRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

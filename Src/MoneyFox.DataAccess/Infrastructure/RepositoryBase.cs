@@ -20,11 +20,11 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <summary>
         ///     Default Constructor
         /// </summary>
-        /// <param name="dataContext">Datacontext to work with.</param>
-        protected RepositoryBase(ApplicationContext dataContext)
+        /// <param name="dbFactory">Datacontext to work with.</param>
+        protected RepositoryBase(IDbFactory dbFactory)
         {
-            DbContext = dataContext;
-            DbSet = dataContext.Set<T>();
+            DbContext = dbFactory.Init().Result;
+            DbSet = DbContext.Set<T>();
         }
 
         /// <summary>

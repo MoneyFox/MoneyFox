@@ -12,7 +12,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public RecurringPaymentRepository(ApplicationContext dataContext) : base(dataContext)
+        public RecurringPaymentRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }

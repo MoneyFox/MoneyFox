@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Service.DataServices
@@ -21,20 +21,20 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class RecurringPaymentService : IRecurringPaymentService
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IRecurringPaymentRepository recurringPaymentRepository;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public RecurringPaymentService(IUnitOfWork unitOfWork)
+        public RecurringPaymentService(IRecurringPaymentRepository recurringPaymentRepository)
         {
-            this.unitOfWork = unitOfWork;
+            this.recurringPaymentRepository = recurringPaymentRepository;
         }
 
         /// <inheritdoc />
         public IEnumerable<RecurringPayment> GetPaymentsToRecur()
         {
-            return unitOfWork.RecurringPaymentRepository
+            return recurringPaymentRepository
                              .GetMany(x => x.IsEndless ||
                                            x.EndDate >= DateTime.Now.Date)
                              .Where(x => x.ChargedAccount != null)

@@ -147,7 +147,7 @@ namespace MoneyFox.Business.ViewModels
                 ExcludedAccounts =
                     new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
 
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                //await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
             }
             catch(Exception ex)
             {
