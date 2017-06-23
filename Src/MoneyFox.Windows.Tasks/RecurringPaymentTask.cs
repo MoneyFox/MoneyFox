@@ -2,7 +2,6 @@
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
@@ -18,8 +17,8 @@ namespace MoneyFox.Windows.Tasks
                 var dbFactory = new DbFactory();
 
                 new RecurringPaymentManager(
-                        new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
-                        new PaymentService(new UnitOfWork(dbFactory), new PaymentRepository(dbFactory)))
+                        new RecurringPaymentService(new UnitOfWork(dbFactory)),
+                        new PaymentService(new UnitOfWork(dbFactory)))
                     .CreatePaymentsUpToRecur();
             }
             finally

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -65,25 +64,24 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
         /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork" /></param>
-        /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
-        public PaymentService(IUnitOfWork unitOfWork, IPaymentRepository paymentRepository)
+        public PaymentService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
-            this.paymentRepository = paymentRepository;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0)
         {
-            var query = paymentRepository
+            var query = unitOfWork.PaymentRepository
                 .GetAll()
+                .Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
                 .AreNotCleared()
                 .HasDateSmallerEqualsThan(enddate);
 
@@ -101,7 +99,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate)
         {
-            var list = await paymentRepository
+            var list = await unitOfWork.PaymentRepository
                 .GetAll()
                 .Include(x => x.Category)
                 .WithoutTransfers()
@@ -115,7 +113,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<Payment> GetById(int id)
         {
-            return new Payment(await paymentRepository.GetById(id));
+            return new Payment(await unitOfWork.PaymentRepository.GetById(id));
         }
 
         /// <inheritdoc />
@@ -141,11 +139,11 @@ namespace MoneyFox.Service.DataServices
             PaymentAmountHelper.AddPaymentAmount(payment);
             if (payment.Data.Id == 0)
             {
-                paymentRepository.Add(payment.Data);
+                unitOfWork.PaymentRepository.Add(payment.Data);
             } 
             else
             {
-                paymentRepository.Update(payment.Data);
+                unitOfWork.PaymentRepository.Update(payment.Data);
             }
         }
 
@@ -153,7 +151,7 @@ namespace MoneyFox.Service.DataServices
         public async Task DeletePayment(Payment payment)
         {
             PaymentAmountHelper.RemovePaymentAmount(payment);
-            paymentRepository.Delete(payment.Data);
+            unitOfWork.PaymentRepository.Delete(payment.Data);
             await unitOfWork.Commit();
         }
 
@@ -162,7 +160,7 @@ namespace MoneyFox.Service.DataServices
         {
             foreach (var payment in payments)
             {
-                paymentRepository.Delete(payment.Data);
+                unitOfWork.PaymentRepository.Delete(payment.Data);
             }
             await unitOfWork.Commit();
         }

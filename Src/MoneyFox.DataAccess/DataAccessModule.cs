@@ -26,7 +26,7 @@ namespace MoneyFox.DataAccess
                 .SingleInstance();
 
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
         }
     }
 }

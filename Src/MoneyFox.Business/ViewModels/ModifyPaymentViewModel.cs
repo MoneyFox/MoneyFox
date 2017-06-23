@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -51,7 +53,8 @@ namespace MoneyFox.Business.ViewModels
             IAccountService accountService,
             IDialogService dialogService,
             ISettingsManager settingsManager, 
-            IMvxMessenger messenger, IBackupManager backupManager, 
+            IMvxMessenger messenger, 
+            IBackupManager backupManager, 
             IMvxNavigationService navigationService)
         {
             this.dialogService = dialogService;
@@ -367,7 +370,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private void ReceiveMessage(CategorySelectedMessage message)
+        private  async void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
 
@@ -376,37 +379,44 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task Save()
         {
-            if (SelectedPayment.ChargedAccount == null)
+            try
             {
-                ShowAccountRequiredMessage();
-                return;
-            }
+                if (SelectedPayment.ChargedAccount == null)
+                {
+                    ShowAccountRequiredMessage();
+                    return;
+                }
 
-            if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
-            {
-                ShowInvalidEndDateMessage();
-                return;
-            }
+                if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
+                {
+                    ShowInvalidEndDateMessage();
+                    return;
+                }
 
-            // Make sure that the old amount is removed to not count the amount twice.
-            RemoveOldAmount();
-            if (amount < 0)
-            {
-                amount *= -1;
-            }
-            SelectedPayment.Amount = amount;
+                // Make sure that the old amount is removed to not count the amount twice.
+                RemoveOldAmount();
+                if (amount < 0)
+                {
+                    amount *= -1;
+                }
+                SelectedPayment.Amount = amount;
 
-            //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
-            await PrepareRecurringPayment();
+                //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
+                await PrepareRecurringPayment();
 
-            // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-            await paymentService.SavePayment(SelectedPayment.Payment);
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
+                // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
+                await paymentService.SavePayment(SelectedPayment.Payment);
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
+                backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-            await navigationService.Close(this);
+                await navigationService.Close(this);
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
+            }
         }
 
         private void RemoveOldAmount()

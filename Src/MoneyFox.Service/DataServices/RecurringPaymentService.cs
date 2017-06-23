@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Service.DataServices
@@ -21,25 +21,29 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class RecurringPaymentService : IRecurringPaymentService
     {
-        private readonly IRecurringPaymentRepository recurringPaymentRepository;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RecurringPaymentService(IRecurringPaymentRepository recurringPaymentRepository)
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public RecurringPaymentService(IUnitOfWork unitOfWork)
         {
-            this.recurringPaymentRepository = recurringPaymentRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public IEnumerable<RecurringPayment> GetPaymentsToRecur()
         {
-            return recurringPaymentRepository.GetMany(x => x.IsEndless ||
-                                                           x.EndDate >= DateTime.Now.Date)
-                                             .Where(x => x.ChargedAccount != null)
-                                             .Select(
-                                                 x => new Payment(
-                                                     x.RelatedPayments.OrderByDescending(y => y.Date).First()))
-                                             .Where(RecurringPaymentHelper.CheckIfRepeatable)
-                                             .Select(x => new RecurringPayment(x.Data.RecurringPayment))
-                                             .ToList();
+            return unitOfWork.RecurringPaymentRepository
+                             .GetMany(x => x.IsEndless ||
+                                           x.EndDate >= DateTime.Now.Date)
+                             .Where(x => x.ChargedAccount != null)
+                             .Select(
+                                 x => new Payment(
+                                     x.RelatedPayments.OrderByDescending(y => y.Date).First()))
+                             .Where(RecurringPaymentHelper.CheckIfRepeatable)
+                             .Select(x => new RecurringPayment(x.Data.RecurringPayment))
+                             .ToList();
         }
     }
 }

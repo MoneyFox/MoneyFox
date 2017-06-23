@@ -26,10 +26,10 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        public override void OnStart()
+        public override async void OnStart()
         {
-            ViewModel.LoadedCommand.Execute();
             base.OnStart();
+            await ViewModel.LoadedCommand.ExecuteAsync();
         }
 
         private void LoadBalancePanel()

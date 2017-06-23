@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using Xunit;
@@ -43,8 +42,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
@@ -52,11 +49,11 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
+            var loadedEntry = await unitOfWork.PaymentRepository.GetById(testEntry.Id);
             Assert.Equal(testEntry.Note, loadedEntry.Note);
         }
 
@@ -67,16 +64,14 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             // Act
-            repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity { Name = "testAccount" }});
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity {ChargedAccount = new AccountEntity { Name = "testAccount" }});
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             await unitOfWork.Commit();
 
             // Assert
-            Assert.Equal(3, repository.GetAll().Count());
+            Assert.Equal(3, unitOfWork.PaymentRepository.GetAll().Count());
         }
 
         [Fact]
@@ -86,8 +81,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
@@ -95,14 +88,14 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
             testEntry.Id = 0;
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             // Assert
-            Assert.Equal(2, repository.GetAll().Count());
+            Assert.Equal(2, unitOfWork.PaymentRepository.GetAll().Count());
         }
 
         [Fact]
@@ -112,8 +105,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
@@ -121,7 +112,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             // Assert
@@ -136,15 +127,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 Note = "Testtext"
             };
 
             // Act / Assert
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await Assert.ThrowsAsync<DbUpdateException>(async () => await unitOfWork.Commit());
         }
 
@@ -154,8 +143,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Arrange
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
-
-            var repository = new PaymentRepository(factory);
 
             var testAccount = new AccountEntity {Name = "testAccount"};
             var testEntry = new PaymentEntity
@@ -172,7 +159,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             // Assert
@@ -189,8 +176,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var newValue = "newText";
             var testEntry = new PaymentEntity
             {
@@ -199,15 +184,15 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             testEntry.Note = newValue;
-            repository.Update(testEntry);
+            unitOfWork.PaymentRepository.Update(testEntry);
             await unitOfWork.Commit();
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
+            var loadedEntry = await unitOfWork.PaymentRepository.GetById(testEntry.Id);
             Assert.Equal(newValue, loadedEntry.Note);
         }
 
@@ -218,8 +203,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
@@ -227,11 +210,11 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             var idBeforeUpdate = testEntry.Id;
-            repository.Update(testEntry);
+            unitOfWork.PaymentRepository.Update(testEntry);
             await unitOfWork.Commit();
 
             // Assert
@@ -245,8 +228,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
@@ -254,14 +235,14 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
-            repository.Update(testEntry);
+            unitOfWork.PaymentRepository.Update(testEntry);
             await unitOfWork.Commit();
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            Assert.Equal(1, unitOfWork.PaymentRepository.GetAll().Count());
         }
 
         [Fact]
@@ -271,17 +252,16 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
             var testEntry = new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} };
-            repository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(testEntry);
             await unitOfWork.Commit();
 
             // Act
-            repository.Delete(testEntry);
+            unitOfWork.PaymentRepository.Delete(testEntry);
             await unitOfWork.Commit();
 
             // Assert
-            Assert.Equal(0, repository.GetAll().Count());
+            Assert.Equal(0, unitOfWork.PaymentRepository.GetAll().Count());
         }
 
         [Fact]
@@ -291,11 +271,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
             var testEntry = new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} };
 
             // Act
-            repository.Delete(testEntry);
+            unitOfWork.PaymentRepository.Delete(testEntry);
 
             // Assert
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await unitOfWork.Commit());
@@ -309,33 +288,32 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var unitOfWork = new UnitOfWork(factory);
 
             var filterText = "Text";
-            var repository = new PaymentRepository(factory);
             var testEntry1 = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Note = filterText
             };
             var testEntry2 = new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} };
-            repository.Add(testEntry1);
-            repository.Add(testEntry2);
+            unitOfWork.PaymentRepository.Add(testEntry1);
+            unitOfWork.PaymentRepository.Add(testEntry2);
             await unitOfWork.Commit();
 
             // Act
-            repository.Delete(x => x.Note == filterText);
+            unitOfWork.PaymentRepository.Delete(x => x.Note == filterText);
             await unitOfWork.Commit();
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            Assert.Equal(1, unitOfWork.PaymentRepository.GetAll().Count());
         }
 
         [Fact]
         public void GetAll_NoData()
         {
             // Arrange
-            var repository = new PaymentRepository(new DbFactory());
+            var unitOfWork= new UnitOfWork(new DbFactory());
 
             // Act
-            var emptyList = repository.GetAll().ToList();
+            var emptyList = unitOfWork.PaymentRepository.GetAll().ToList();
 
             // Assert
             Assert.NotNull(emptyList);
@@ -349,14 +327,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
             await unitOfWork.Commit();
 
             // Act
-            var resultList = repository.GetAll().ToList();
+            var resultList = unitOfWork.PaymentRepository.GetAll().ToList();
 
             // Assert
             Assert.NotNull(resultList);
@@ -370,14 +347,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
             await unitOfWork.Commit();
 
             // Act
-            var resultList = repository.GetMany(x => x.Note == "text").ToList();
+            var resultList = unitOfWork.PaymentRepository.GetMany(x => x.Note == "text").ToList();
 
             // Assert
             Assert.NotNull(resultList);
@@ -391,19 +367,18 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
             var filterText = "Text";
-            repository.Add(new PaymentEntity
+            unitOfWork.PaymentRepository.Add(new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Note = filterText
             });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
             await unitOfWork.Commit();
 
             // Act
-            var resultList = repository.GetMany(x => x.Note == filterText).ToList();
+            var resultList = unitOfWork.PaymentRepository.GetMany(x => x.Note == filterText).ToList();
 
             // Assert
             Assert.NotNull(resultList);
@@ -417,14 +392,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
             await unitOfWork.Commit();
 
             // Act
-            var result = await repository.Get(x => x.Note == "text");
+            var result = await unitOfWork.PaymentRepository.Get(x => x.Note == "text");
 
             // Assert
             Assert.Null(result);
@@ -437,20 +411,19 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
-            var repository = new PaymentRepository(factory);
             var filterText = "Text";
             var testEntry = new PaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount"},
                 Note = filterText
             };
-            repository.Add(testEntry);
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
-            repository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(testEntry);
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
+            unitOfWork.PaymentRepository.Add(new PaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount"} });
             await unitOfWork.Commit();
 
             // Act
-            var result = await repository.Get(x => x.Note == filterText);
+            var result = await unitOfWork.PaymentRepository.Get(x => x.Note == filterText);
 
             // Assert
             Assert.NotNull(result);
