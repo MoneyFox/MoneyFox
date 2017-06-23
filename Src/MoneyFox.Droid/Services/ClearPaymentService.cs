@@ -5,7 +5,6 @@ using Android.Content;
 using Android.OS;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services

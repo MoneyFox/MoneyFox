@@ -5,7 +5,6 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Windows.Business;
 
