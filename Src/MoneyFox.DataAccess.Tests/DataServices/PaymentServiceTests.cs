@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
@@ -49,8 +50,11 @@ namespace MoneyFox.DataAccess.Tests.DataServices
             var factory = new DbFactory();
             var unitOfWork = new UnitOfWork(factory);
 
+            var repository = new PaymentRepository(factory);
+
+            var accountRepository = new AccountRepository(factory);
             var testAccount = new AccountEntity { Name = "testAccount" };
-            unitOfWork.AccountRepository.Add(testAccount);
+            accountRepository.Add(testAccount);
             await unitOfWork.Commit();
 
             var testEntry = new PaymentViewModel(new Payment
@@ -69,7 +73,7 @@ namespace MoneyFox.DataAccess.Tests.DataServices
                                                                PaymentRecurrence.Bimonthly,
                                                                DateTime.Now));
 
-            var paymentService = new PaymentService(unitOfWork);
+            var paymentService = new PaymentService(repository, unitOfWork);
 
             // Act
             await paymentService.SavePayment(testEntry.Payment);

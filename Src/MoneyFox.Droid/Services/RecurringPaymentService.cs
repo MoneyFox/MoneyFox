@@ -5,6 +5,7 @@ using Android.OS;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
@@ -24,11 +25,12 @@ namespace MoneyFox.Droid.Services
         }
 
         private void CheckRecurringPayments()
-        {            
-            var unitOfWork = new UnitOfWork(new DbFactory());
+        {
+            var dbFactory = new DbFactory();
+            var unitOfWork = new UnitOfWork(dbFactory);
             new RecurringPaymentManager(
-                new Service.DataServices.RecurringPaymentService(unitOfWork),
-                new PaymentService(unitOfWork))
+                new Service.DataServices.RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                new PaymentService(new PaymentRepository(dbFactory),  unitOfWork))
                 .CreatePaymentsUpToRecur();
         }
     }

@@ -5,6 +5,7 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Windows.Business;
 
@@ -23,7 +24,7 @@ namespace MoneyFox.Windows.Tasks
             try
             {
                 var dbFactory = new DbFactory();
-                paymentService = new PaymentService(new UnitOfWork(dbFactory));
+                paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
 
                 await paymentService.SavePayments(await paymentService.GetUnclearedPayments(DateTime.Now));
 

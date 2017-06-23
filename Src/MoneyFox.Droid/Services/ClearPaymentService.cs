@@ -5,6 +5,7 @@ using Android.Content;
 using Android.OS;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
@@ -26,7 +27,7 @@ namespace MoneyFox.Droid.Services
         public async void ClearPayments()
         {
             var dbFactory = new DbFactory();
-            var paymentService = new PaymentService(new UnitOfWork(dbFactory));
+            var paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
             await paymentService.GetUnclearedPayments(DateTime.Now);
         }
     }

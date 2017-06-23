@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -59,20 +60,22 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class CategoryService : ICategoryService
     {
+        private readonly ICategoryRepository categoryRepository;
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public CategoryService(IUnitOfWork unitOfWork)
+        public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
         {
+            this.categoryRepository = categoryRepository;
             this.unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            var list = await unitOfWork.CategoryRepository
+            var list = await categoryRepository
                 .GetAll()
                 .OrderByName()
                 .ToListAsync();
@@ -83,13 +86,13 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<Category> GetById(int id)
         {
-            return new Category(await unitOfWork.CategoryRepository.GetById(id));
+            return new Category(await categoryRepository.GetById(id));
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> SearchByName(string searchTerm)
         {
-            var list = await unitOfWork.CategoryRepository
+            var list = await categoryRepository
                 .GetAll()
                 .NameNotNull()
                 .NameContains(searchTerm)
@@ -102,7 +105,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public Task<bool> CheckIfNameAlreadyTaken(string name)
         {
-            return unitOfWork.CategoryRepository.GetAll()
+            return categoryRepository.GetAll()
                                     .NameEquals(name)
                                     .AnyAsync();
         }
@@ -112,10 +115,10 @@ namespace MoneyFox.Service.DataServices
         {
             if (category.Data.Id == 0)
             {
-                unitOfWork.CategoryRepository.Add(category.Data);
+                categoryRepository.Add(category.Data);
             } else
             {
-                unitOfWork.CategoryRepository.Update(category.Data);
+                categoryRepository.Update(category.Data);
             }
             await unitOfWork.Commit();
         }
@@ -123,7 +126,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task DeleteCategory(Category category)
         {
-            unitOfWork.CategoryRepository.Delete(category.Data);
+            categoryRepository.Delete(category.Data);
             await unitOfWork.Commit();
         }
     }
