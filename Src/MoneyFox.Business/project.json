@@ -11,7 +11,7 @@
     "MvvmCross.Plugin.Visibility": "5.0.4",
     "MvvmCross.Plugin.WebBrowser": "5.0.4",
     "NETStandard.Library": "1.6.1",
-    "Xamarin.Auth": "1.5.0.1"
+    "Xamarin.Auth": "1.5.0.3"
   },
   "frameworks": {
     "netstandard1.3": {
