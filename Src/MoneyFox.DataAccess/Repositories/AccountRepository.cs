@@ -14,7 +14,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountRepository(ApplicationContext dataContext) : base(dataContext)
+        public AccountRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 
