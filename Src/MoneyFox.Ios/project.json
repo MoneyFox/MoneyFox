@@ -7,17 +7,17 @@
     "Cirrious.FluentLayout": "2.5.0",
     "Microsoft.NETCore.Platforms": "1.1.0",
     "Microsoft.OneDriveSDK": "2.0.7",
-    "MvvmCross.Binding": "5.0.3",
-    "MvvmCross.Core": "5.0.3",
-    "MvvmCross.iOS.Support.XamarinSidebar": "5.0.3",
-    "MvvmCross.Plugin.Color": "5.0.3",
-    "MvvmCross.Plugin.Email": "5.0.3",
-    "MvvmCross.Plugin.File": "5.0.3",
-    "MvvmCross.Plugin.Messenger": "5.0.3",
-    "MvvmCross.Plugin.Visibility": "5.0.3",
-    "MvvmCross.Plugin.WebBrowser": "5.0.3",
+    "MvvmCross.Binding": "5.0.4",
+    "MvvmCross.Core": "5.0.4",
+    "MvvmCross.iOS.Support.XamarinSidebar": "5.0.4",
+    "MvvmCross.Plugin.Color": "5.0.4",
+    "MvvmCross.Plugin.Email": "5.0.4",
+    "MvvmCross.Plugin.File": "5.0.4",
+    "MvvmCross.Plugin.Messenger": "5.0.4",
+    "MvvmCross.Plugin.Visibility": "5.0.4",
+    "MvvmCross.Plugin.WebBrowser": "5.0.4",
     "NETStandard.Library": "1.6.1",
-    "Xamarin.Auth": "1.5.0.1"
+    "Xamarin.Auth": "1.5.0.3"
   },
   "frameworks": {
     "Xamarin.iOS,Version=v1.0": {

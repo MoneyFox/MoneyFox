@@ -5,13 +5,13 @@
     "Cheesebaron.MvxPlugins.Connectivity": "3.1.0",
     "Cheesebaron.MvxPlugins.Settings": "3.1.0",
     "Microsoft.OneDriveSDK": "2.0.7",
-    "MvvmCross.Plugin.Email": "5.0.3",
-    "MvvmCross.Plugin.File": "5.0.3",
-    "MvvmCross.Plugin.ResxLocalization": "5.0.3",
-    "MvvmCross.Plugin.Visibility": "5.0.3",
-    "MvvmCross.Plugin.WebBrowser": "5.0.3",
+    "MvvmCross.Plugin.Email": "5.0.4",
+    "MvvmCross.Plugin.File": "5.0.4",
+    "MvvmCross.Plugin.ResxLocalization": "5.0.4",
+    "MvvmCross.Plugin.Visibility": "5.0.4",
+    "MvvmCross.Plugin.WebBrowser": "5.0.4",
     "NETStandard.Library": "1.6.1",
-    "Xamarin.Auth": "1.5.0.1"
+    "Xamarin.Auth": "1.5.0.3"
   },
   "frameworks": {
     "netstandard1.3": {
