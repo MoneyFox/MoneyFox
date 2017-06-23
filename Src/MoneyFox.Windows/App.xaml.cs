@@ -8,7 +8,11 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using Microsoft.HockeyApp;
+#if !DEBUG
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+#endif
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
@@ -33,9 +37,6 @@ namespace MoneyFox.Windows
 
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
             ApplicationContextOld.DbPath = DatabaseConstants.DB_NAME_OLD;
-#if !DEBUG
-            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
-#endif
         }
 
         /// <summary>
@@ -73,6 +74,9 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+#if !DEBUG
+            MobileCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+#endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);

@@ -6,10 +6,12 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
-using HockeyApp.Android;
-using HockeyApp.Android.Metrics;
+#if !DEBUG
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+#endif
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation.Constants;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Shared.Fragments;
 using MvvmCross.Droid.Support.V4;
@@ -34,8 +36,8 @@ namespace MoneyFox.Droid.Activities
             SetContentView(Resource.Layout.activity_main);
 
 #if !DEBUG
-            CrashManager.Register(this, ServiceConstants.HOCKEY_APP_DROID_ID);
-            MetricsManager.Register(this, Application, ServiceConstants.HOCKEY_APP_DROID_ID);
+            MobileCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
+                               typeof(Analytics), typeof(Crashes));
 #endif
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
