@@ -8,7 +8,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:fitsSystemWindows="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include
             layout="@layout/toolbar_actionbar" />
@@ -22,15 +22,14 @@
                 local:MvxBind="Text SearchText"
                 local:MvxLang="Hint SearchStringLabel"/>
         </android.support.design.widget.TextInputLayout>
-        <MvxListView
-            android:id="@+id/category_list"
-            android:orientation="vertical"
-            android:choiceMode="singleChoice"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:listSelector="@drawable/list_item_selector"
-            local:MvxItemTemplate="@layout/listitem_inner_category_list"
-            local:MvxBind="ItemsSource Source" />
+        <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+          android:id="@+id/category_list"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          local:layout_behavior="@string/appbar_scrolling_view_behavior"
+          local:MvxItemTemplate="@layout/listitem_inner_category_list"
+          local:MvxBind="ItemsSource Source" />
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
