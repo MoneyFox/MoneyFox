@@ -4,7 +4,7 @@
     "Autofac": "4.6.0",
     "Microsoft.EntityFrameworkCore": "1.1.2",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.1.2",
-    "MvvmCross.Plugin.File": "5.0.3"
+    "MvvmCross.Plugin.File": "5.0.4"
   },
   "frameworks": {
     "netstandard1.3": {

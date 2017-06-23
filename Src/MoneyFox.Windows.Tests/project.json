@@ -2,7 +2,7 @@
   "dependencies": {
     "Cheesebaron.MvxPlugins.Settings": "3.1.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-    "MvvmCross.Plugin.File": "5.0.3",
+    "MvvmCross.Plugin.File": "5.0.4",
     "Newtonsoft.Json": "10.0.3",
     "xunit": "2.2.0",
     "xunit.runner.visualstudio": "2.2.0"

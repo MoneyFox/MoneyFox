@@ -2,8 +2,8 @@
   "supports": {},
   "dependencies": {
     "Microsoft.OneDriveSDK": "2.0.7",
-    "MvvmCross.Core": "5.0.3",
-    "MvvmCross.Plugin.Messenger": "5.0.3",
+    "MvvmCross.Core": "5.0.4",
+    "MvvmCross.Plugin.Messenger": "5.0.4",
     "System.Diagnostics.Tools": "4.3.0"
   },
   "frameworks": {

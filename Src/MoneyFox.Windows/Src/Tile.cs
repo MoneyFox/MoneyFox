@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.HockeyApp;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
@@ -14,8 +13,6 @@ namespace MoneyFox.Windows
         /// </summary>
         public static async void UpdateMainTile()
         {
-            HockeyClient.Current.TrackEvent("Refresh Tile");
-
             // TODO: Refactor to non static and use injections + unit tests
             var cashFlow = await Mvx.Resolve<CashFlowDataProvider>()
                               .GetCashFlow(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
