@@ -12,8 +12,6 @@ namespace MoneyFox.DataAccess.Infrastructure
     /// <typeparam name="T"></typeparam>
     public abstract class RepositoryBase<T> where T : class
     {
-        private ApplicationContext dataContext;
-
         /// <summary>
         ///     Currenly used DbSet.
         /// </summary>
@@ -22,23 +20,17 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <summary>
         ///     Default Constructor
         /// </summary>
-        /// <param name="dbFactory">Db factory to use.</param>
-        protected RepositoryBase(IDbFactory dbFactory)
+        /// <param name="dataContext">Datacontext to work with.</param>
+        protected RepositoryBase(ApplicationContext dataContext)
         {
-            DbFactory = dbFactory;
-            dataContext = dbFactory.Init().Result;
+            DbContext = dataContext;
             DbSet = dataContext.Set<T>();
         }
 
         /// <summary>
-        ///     Factory to create an ApplicationContext
-        /// </summary>
-        protected IDbFactory DbFactory { get; }
-
-        /// <summary>
         ///     Current ApplicationContex.
         /// </summary>
-        protected ApplicationContext DbContext => dataContext ?? (dataContext = DbFactory.Init().Result);
+        protected ApplicationContext DbContext { get; }
 
         #region Implementation
 
@@ -58,7 +50,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         public virtual void Update(T entity)
         {
             DbSet.Attach(entity);
-            dataContext.Entry(entity).State = EntityState.Modified;
+            DbContext.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>

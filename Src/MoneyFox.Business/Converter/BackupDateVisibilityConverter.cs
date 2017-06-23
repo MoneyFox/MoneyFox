@@ -11,6 +11,13 @@ namespace MoneyFox.Business.Converter
     /// </summary>
     public class BackupDateVisibilityConverter : MvxBaseVisibilityValueConverter
     {
+        /// <summary>
+        ///     Converts the passed date to a Visibility.
+        /// </summary>
+        /// <param name="value">Date to convert</param>
+        /// <param name="parameter">Is not used.</param>
+        /// <param name="culture">Is not used</param>
+        /// <returns></returns>
         protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
         {
             return (DateTime) value == new DateTime() ? MvxVisibility.Collapsed : MvxVisibility.Visible;

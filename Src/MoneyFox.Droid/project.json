@@ -27,7 +27,6 @@
     "MvvmCross.Plugin.File": "5.0.3",
     "MvvmCross.Plugin.Messenger": "5.0.3",
     "MvvmCross.Plugin.ResxLocalization": "5.0.3",
-    "MvvmCross.Plugin.SQLitePCL": "4.4.0",
     "MvvmCross.Plugin.Visibility": "5.0.3",
     "MvvmCross.Plugin.WebBrowser": "5.0.3",
     "NETStandard.Library": "1.6.1",

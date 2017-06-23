@@ -5,10 +5,14 @@ using MoneyFox.DataAccess.Infrastructure;
 namespace MoneyFox.DataAccess
 {
     /// <summary>
-    ///     Used for register the dependency based in the DAL.
+    ///     Registers the dependencies for the data access module
     /// </summary>
     public class DataAccessModule : Module
     {
+        /// <summary>
+        ///     Registers the dependencies for the data access module
+        /// </summary>
+        /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
@@ -22,7 +26,7 @@ namespace MoneyFox.DataAccess
                 .SingleInstance();
 
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
         }
     }
 }

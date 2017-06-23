@@ -32,7 +32,7 @@ namespace MoneyFox.Business.ViewModels
         
         public int Id
         {
-            get { return Payment.Data.Id; }
+            get => Payment.Data.Id;
             set
             {
                 if (Payment.Data.Id == value) return;
@@ -47,7 +47,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int ChargedAccountId
         {
-            get { return Payment.Data.ChargedAccountId; }
+            get => Payment.Data.ChargedAccountId;
             set
             {
                 if (Payment.Data.ChargedAccountId == value) return;
@@ -62,7 +62,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? TargetAccountId
         {
-            get { return Payment.Data.TargetAccountId; }
+            get => Payment.Data.TargetAccountId;
             set
             {
                 if (Payment.Data.TargetAccountId == value) return;
@@ -76,7 +76,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? CategoryId
         {
-            get { return Payment.Data.CategoryId; }
+            get => Payment.Data.CategoryId;
             set
             {
                 if (Payment.Data.CategoryId == value) return;
@@ -90,7 +90,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime Date
         {
-            get { return Payment.Data.Date; }
+            get => Payment.Data.Date;
             set
             {
                 if (Payment.Data.Date == value) return;
@@ -104,7 +104,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double Amount
         {
-            get { return Payment.Data.Amount; }
+            get => Payment.Data.Amount;
             set
             {
                 if (Math.Abs(Payment.Data.Amount - value) < 0.01) return;
@@ -119,7 +119,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsCleared
         {
-            get { return Payment.Data.IsCleared; }
+            get => Payment.Data.IsCleared;
             set
             {
                 if (Payment.Data.IsCleared == value) return;
@@ -133,7 +133,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PaymentType Type
         {
-            get { return Payment.Data.Type; }
+            get => Payment.Data.Type;
             set
             {
                 if (Payment.Data.Type == value) return;
@@ -147,7 +147,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Note
         {
-            get { return Payment.Data.Note; }
+            get => Payment.Data.Note;
             set
             {
                 if (Payment.Data.Note == value) return;
@@ -161,7 +161,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsRecurring
         {
-            get { return Payment.Data.IsRecurring; }
+            get => Payment.Data.IsRecurring;
             set
             {
                 if (Payment.Data.IsRecurring == value) return;
@@ -175,7 +175,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? RecurringPaymentId
         {
-            get { return Payment.Data.RecurringPaymentId; }
+            get => Payment.Data.RecurringPaymentId;
             set
             {
                 if (Payment.Data.RecurringPaymentId == value) return;
@@ -193,7 +193,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get { return chargedAccount; }
+            get => chargedAccount;
             set
             {
                 if (chargedAccount == value) return;
@@ -209,7 +209,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get { return targetAccount; }
+            get => targetAccount;
             set
             {
                 if (TargetAccount == value) return;
@@ -224,9 +224,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel Category
         {
-            get { return Payment.Data.Category != null
+            get => Payment.Data.Category != null
                 ? new CategoryViewModel(new Category(Payment.Data.Category))
-                : null;  }
+                : null;
             set
             {
                 if (Category == value) return;
@@ -241,12 +241,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public RecurringPaymentViewModel RecurringPayment
         {
-            get
-            {
-                return Payment.Data.RecurringPayment != null
-                    ? new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment))
-                    : null;
-            }
+            get => Payment.Data.RecurringPayment != null
+                ? new RecurringPaymentViewModel(new RecurringPayment(Payment.Data.RecurringPayment))
+                : null;
             set
             {
                 if (RecurringPayment == value) return;
@@ -263,9 +260,12 @@ namespace MoneyFox.Business.ViewModels
 
         private int currentAccountId;
 
+        /// <summary>
+        ///     Id of the account who currently is used for that view.
+        /// </summary>
         public int CurrentAccountId
         {
-            get { return currentAccountId; }
+            get => currentAccountId;
             set
             {
                 if (currentAccountId == value) return;
@@ -276,6 +276,9 @@ namespace MoneyFox.Business.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        ///     Advices the controls to update to get changes.
+        /// </summary>
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

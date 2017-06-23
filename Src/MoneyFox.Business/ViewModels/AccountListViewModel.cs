@@ -15,9 +15,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    /// <summary>
-    ///     Representation of the AccountListView.
-    /// </summary>
+    /// <inheritdoc />
     public class AccountListViewModel : MvxViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
@@ -25,11 +23,14 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IModifyDialogService modifyDialogService;
         private readonly IDialogService dialogService;
-        protected readonly IMvxNavigationService navigationService;
+        private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<AccountViewModel> includedAccounts;
         private ObservableCollection<AccountViewModel> excludedAccounts;
-
+        
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public AccountListViewModel(IAccountService accountService,
                                     IBalanceCalculationManager balanceCalculationManager,
                                     ISettingsManager settingsManager,
@@ -51,9 +52,7 @@ namespace MoneyFox.Business.ViewModels
             ExcludedAccounts = new MvxObservableCollection<AccountViewModel>();
         }
 
-        /// <summary>
-        ///     Used on Ios
-        /// </summary>
+        /// <inheritdoc />
         public async Task ShowMenu()
         {
             await navigationService.Navigate<MenuViewModel>();
@@ -61,21 +60,19 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
+        /// <inheritdoc />
         public IBalanceViewModel BalanceViewModel { get; }
 
+        /// <inheritdoc />
         public IViewActionViewModel ViewActionViewModel { get; }
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
+        /// <inheritdoc />
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
-        /// <summary>
-        ///     All existing accounts who are included to the balance calculation.
-        /// </summary>
+        /// <inheritdoc />
         public ObservableCollection<AccountViewModel> IncludedAccounts
         {
-            get { return includedAccounts; }
+            get => includedAccounts;
             set
             {
                 if (includedAccounts == value) return;
@@ -86,12 +83,10 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <summary>
-        ///     All existing accounts who are exluded from the balance calculation.
-        /// </summary>
+        /// <inheritdoc />
         public ObservableCollection<AccountViewModel> ExcludedAccounts
         {
-            get { return excludedAccounts; }
+            get => excludedAccounts;
             set
             {
                 if (excludedAccounts == value) return;
@@ -104,50 +99,33 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Returns if the IncludedAccounts Collection is emtpy or not.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsAllAccountsEmpty => !(IncludedAccounts.Any() || ExcludedAccounts.Any());
 
-        /// <summary>
-        ///     Returns if the ExcludedAccounts Collection is emtpy or not.
-        /// </summary>
-        /// accoutn
+        /// <inheritdoc />
         public bool IsExcludedAccountsEmpty => !ExcludedAccounts?.Any() ?? true;
 
         #endregion
 
         #region Commands
 
-        /// <summary>
-        ///     Prepares the Account list
-        /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        /// <inheritdoc />
+        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
-        /// <summary>
-        ///     Open the payment overview for this Account.
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand =>
             new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
-        /// <summary>
-        ///     Edit the selected Account
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
-        /// <summary>
-        ///     Deletes the selected Account
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
 
-        /// <summary>
-        ///     Prepare everything and navigate to AddAccount view
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
 
-        /// <summary>
-        ///     Opens the Context Menu for a list or a recycler view
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand<AccountViewModel> OpenContextMenuCommand => new MvxAsyncCommand<AccountViewModel>(OpenContextMenu);
 
         #endregion
@@ -157,7 +135,7 @@ namespace MoneyFox.Business.ViewModels
             await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        private async void Loaded()
+        private async Task Loaded()
         {
             try
             {
@@ -169,8 +147,7 @@ namespace MoneyFox.Business.ViewModels
                 ExcludedAccounts =
                     new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
 
-                BalanceViewModel.UpdateBalanceCommand.Execute();
-                await balanceCalculationManager.GetTotalEndOfMonthBalance();
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
             }
             catch(Exception ex)
             {

@@ -3,6 +3,9 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Authentication
 {
+    /// <summary>
+    ///     Represents a user Session.
+    /// </summary>
     public class Session
     {
         /// <summary>
@@ -12,6 +15,9 @@ namespace MoneyFox.Business.Authentication
 
         private readonly ISettingsManager settingsManager;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public Session(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;

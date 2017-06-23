@@ -77,8 +77,8 @@ namespace MoneyFox.Droid.Fragments
     {
         public new TViewModel ViewModel
         {
-            get { return (TViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
+            get => (TViewModel) base.ViewModel;
+            set => base.ViewModel = value;
         }
     }
 }
