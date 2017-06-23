@@ -2,13 +2,13 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Droid.OneDriveAuth;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
-using MvvmCross.Plugins.File.Droid;
 
 namespace MoneyFox.Droid.Services
 {
@@ -29,10 +29,10 @@ namespace MoneyFox.Droid.Services
         private async void SyncBackups()
         {
             await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                                                  new MvxIoFileStoreBase(),
-                                                  new SettingsManager(new DroidSettings),
-                                                  new DroidConnectivity(),
-                                                  new DbFactory())
+                                    Mvx.Resolve<IMvxFileStore>(),
+                                    new SettingsManager(new Settings()),
+                                    new Connectivity(),
+                                    new DbFactory())
                 .DownloadBackup();
         }
     }
