@@ -8,6 +8,7 @@
   <string name="menu_save">Save</string>
   <string name="menu_delete">Delete</string>
   <string name="menu_select">Select</string>
+  <string name="menu_set_filter">Set Filter</string>
   <!--Navigation Drawer-->
   <string name="menu_accounts">Accounts</string>
   <string name="menu_statistics">Statistics</string>

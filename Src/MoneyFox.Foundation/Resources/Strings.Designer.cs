@@ -532,6 +532,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleared.
+        /// </summary>
+        public static string ClearedFilterLabel {
+            get {
+                return ResourceManager.GetString("ClearedFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {
@@ -609,6 +618,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string DoneLabel {
+            get {
+                return ResourceManager.GetString("DoneLabel", resourceCulture);
             }
         }
         
@@ -825,6 +843,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string InvalidEnddateTitle {
             get {
                 return ResourceManager.GetString("InvalidEnddateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Recurring.
+        /// </summary>
+        public static string IsRecurringFilterLabel {
+            get {
+                return ResourceManager.GetString("IsRecurringFilterLabel", resourceCulture);
             }
         }
         
@@ -1321,6 +1348,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string SelectDateTitle {
             get {
                 return ResourceManager.GetString("SelectDateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Filter.
+        /// </summary>
+        public static string SelectFilterTitle {
+            get {
+                return ResourceManager.GetString("SelectFilterTitle", resourceCulture);
             }
         }
         

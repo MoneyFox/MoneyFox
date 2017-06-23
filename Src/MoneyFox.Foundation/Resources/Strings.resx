@@ -603,4 +603,16 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>An error occured</value>
   </data>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Is Recurring</value>
+  </data>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Select Filter</value>
+  </data>
 </root>

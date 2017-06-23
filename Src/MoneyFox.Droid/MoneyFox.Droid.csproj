@@ -134,7 +134,9 @@
     <None Include="project.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\menu\menu_add.axml" />
+    <AndroidResource Include="Resources\menu\menu_add.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_modification.axml" />
     <AndroidResource Include="Resources\menu\menu_save.axml" />
     <AndroidResource Include="Resources\menu\menu_select.axml" />
@@ -186,7 +188,6 @@
     <AndroidResource Include="Resources\menu\menu_save.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\menu\menu_add.axml" />
     <AndroidResource Include="Resources\layout\listitem_legend_item.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -205,6 +206,7 @@
     <AndroidResource Include="Resources\layout\activity_category_spreading.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_filter.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -379,6 +381,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-bg\strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_filter_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-v21\ic_filter_white.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

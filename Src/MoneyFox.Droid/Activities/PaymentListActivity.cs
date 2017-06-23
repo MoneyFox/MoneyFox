@@ -1,4 +1,6 @@
+using System;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
@@ -87,11 +89,21 @@ namespace MoneyFox.Droid.Activities
                 .Commit();
         }
 
-        protected override void OnResume()
+        protected override async void OnResume()
         {
             base.OnResume();
+            await ViewModel.LoadCommand.ExecuteAsync();
+        }
 
-            ViewModel.LoadCommand.Execute();
+        /// <summary>
+        ///     Initialize the contents of the Activity's standard options menu.
+        /// </summary>
+        /// <param name="menu">The options menu in which you place your items.</param>
+        /// <returns>To be added.</returns>
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_filter, menu);
+            return true;
         }
 
         /// <summary>
@@ -106,9 +118,41 @@ namespace MoneyFox.Droid.Activities
                     Finish();
                     return true;
 
+                case Resource.Id.action_set_filter:
+                    ShowFilterDialog();
+                    return true;
+
                 default:
                     return false;
             }
+        }
+
+        readonly string[] filters = {
+            Strings.ClearedFilterLabel,
+            Strings.IsRecurringFilterLabel
+        };
+
+        private void ShowFilterDialog()
+        {
+            var builder = new AlertDialog.Builder(this);
+            builder.SetMultiChoiceItems(filters, new bool[filters.Length], (sender, args) =>
+            {
+                switch (args.Which)
+                {
+                    case 0:
+                        ViewModel.ViewActionViewModel.IsClearedFilterActive = args.IsChecked;
+                        break;
+
+                    case 1:
+                        ViewModel.ViewActionViewModel.IsRecurringFilterActive = args.IsChecked;
+                        break;
+                }
+            });
+            builder.SetTitle(Strings.SelectFilterTitle);
+            builder.SetPositiveButton(Strings.DoneLabel, (sender, args) => { });
+
+            var dialog = builder.Create();
+            dialog.Show();
         }
     }
 }
