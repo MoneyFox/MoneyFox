@@ -3,6 +3,9 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.Messages
 {
+    /// <summary>
+    ///     Used to notify other view models about a selected category.
+    /// </summary>
     public class CategorySelectedMessage : MvxMessage
     {
         /// <summary>

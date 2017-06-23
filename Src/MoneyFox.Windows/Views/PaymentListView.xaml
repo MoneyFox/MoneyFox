@@ -12,6 +12,21 @@
                       NavigationCacheMode="Disabled"
                       mc:Ignorable="d">
 
+    <Page.Resources>
+        <Flyout x:Key="FilterFlyout"
+                Placement="Top">
+            <ListBox SelectionMode="Multiple">
+                <ListBoxItem>
+                    <CheckBox Content="Cleared" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <CheckBox Content="Recurring"
+                              IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+            </ListBox>
+        </Flyout>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -33,16 +48,24 @@
 
         <CommandBar Grid.Row="2" DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="FilterLabel"
+                              Icon="Filter"
+                              Label="filter"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="AppBarToggleButton_Click" />
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddIncomeCommand}"
+                              IsEnabled="{Binding IsAddIncomeAvailable}"
                               Icon="Add"
                               Label="add income" />
                 <AppBarButton x:Uid="AddExpenseLabel"
                               Command="{Binding GoToAddExpenseCommand}"
+                              IsEnabled="{Binding IsAddExpenseAvailable}"
                               Icon="Remove"
                               Label="add spending" />
                 <AppBarButton x:Uid="AddTransferLabel"
                               Command="{Binding GoToAddTransferCommand}"
+                              IsEnabled="{Binding IsTransferAvailable}"
                               Icon="Switch"
                               Label="add transfer" />
             </CommandBar.PrimaryCommands>

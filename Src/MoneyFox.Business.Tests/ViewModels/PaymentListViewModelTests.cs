@@ -5,6 +5,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
 using Moq;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using Xunit;
 
@@ -21,6 +22,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         private readonly Mock<IBackupManager> backupManager;
         private readonly Mock<IModifyDialogService> modifyDialogService;
         private readonly Mock<IMvxNavigationService> navigationService;
+        private readonly Mock<IMvxMessenger> messenger;
 
         public PaymentListViewModelTests()
         {
@@ -32,6 +34,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManager = new Mock<IBackupManager>();
             modifyDialogService = new Mock<IModifyDialogService>();
             navigationService = new Mock<IMvxNavigationService>();
+            messenger = new Mock<IMvxMessenger>();
 
             accountService.SetupAllProperties();
             paymentService.SetupAllProperties();
@@ -48,7 +51,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
                                               modifyDialogService.Object,
-                                              navigationService.Object);
+                                              navigationService.Object,
+                                              messenger.Object);
 
             // Act
             await vm.Initialize(new PaymentListParameter(42));
@@ -68,7 +72,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
                                               modifyDialogService.Object,
-                                              navigationService.Object);
+                                              navigationService.Object,
+                                              messenger.Object);
 
             // Act
             await vm.Initialize(new PaymentListParameter());
