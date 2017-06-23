@@ -13,6 +13,9 @@ namespace MoneyFox.Business.ViewModels
         private readonly IAccountService accountService;
         private readonly IBalanceCalculationManager balanceCalculationManager;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public PaymentListBalanceViewModel(IAccountService accountService, IBalanceCalculationManager balanceCalculationManager,
             int accountId)
             : base(balanceCalculationManager)

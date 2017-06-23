@@ -7,6 +7,7 @@ using Android.Widget;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities
@@ -33,7 +34,7 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            var list = FindViewById<ListView>(Resource.Id.category_list);
+            var list = FindViewById<MvxRecyclerView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
 
             FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>

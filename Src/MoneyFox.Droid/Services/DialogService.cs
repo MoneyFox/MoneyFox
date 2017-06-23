@@ -7,7 +7,8 @@ using AndroidHUD;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 
-namespace MoneyFox.Droid.Services {
+namespace MoneyFox.Droid.Services
+{
     public class DialogService : IDialogService 
     {
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;

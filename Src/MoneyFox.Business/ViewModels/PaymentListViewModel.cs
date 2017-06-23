@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation;
@@ -15,6 +17,7 @@ using MoneyFox.Service.Pocos;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -31,6 +34,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IModifyDialogService modifyDialogService;
         private readonly IMvxNavigationService navigationService;
+        private readonly IMvxMessenger messenger;
 
         private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
@@ -38,6 +42,9 @@ namespace MoneyFox.Business.ViewModels
         private int accountId;
         private string title;
         private IPaymentListViewActionViewModel viewActionViewModel;
+
+        //this token ensures that we will be notified when a message is sent.
+        private readonly MvxSubscriptionToken token;
 
         /// <summary>
         ///     Default constructor
@@ -49,7 +56,8 @@ namespace MoneyFox.Business.ViewModels
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
             IModifyDialogService modifyDialogService, 
-            IMvxNavigationService navigationService)
+            IMvxNavigationService navigationService,
+            IMvxMessenger messenger)
         {
             this.accountService = accountService;
             this.paymentService = paymentService;
@@ -59,6 +67,9 @@ namespace MoneyFox.Business.ViewModels
             this.backupManager = backupManager;
             this.modifyDialogService = modifyDialogService;
             this.navigationService = navigationService;
+            this.messenger = messenger;
+
+            token = messenger.Subscribe<PaymentListFilterChangedMessage>(async message => await LoadPayments(message));
         }
 
         #region Properties
@@ -163,7 +174,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(LoadPayments);
+        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(Load);
 
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
@@ -186,7 +197,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Initialize the view. Is called after the constructor.
         /// </summary>
         /// <param name="parameter">Parameter object for this View Model.</param>
-        public override Task Initialize(PaymentListParameter parameter)
+        public override async Task Initialize(PaymentListParameter parameter)
         {
             AccountId = parameter.AccountId;
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
@@ -195,44 +206,66 @@ namespace MoneyFox.Business.ViewModels
                                                                      dialogService,
                                                                      BalanceViewModel,
                                                                      navigationService,
+                                                                     messenger,
                                                                      AccountId);
-            return Task.CompletedTask;
+            //Refresh balance control with the current account
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private async Task LoadPayments()
+        private async Task Load()
         {
-            //Refresh balance control with the current account
-            BalanceViewModel.UpdateBalanceCommand.Execute();
+            await LoadPayments(new PaymentListFilterChangedMessage(this));
+        }
 
+        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        {
             var account = await accountService.GetById(AccountId);
-
             Title = account.Data.Name;
 
-            RelatedPayments = new ObservableCollection<PaymentViewModel>(
-                account.Data.ChargedPayments
-                    .Concat(account.Data.TargetedPayments)
-                    .OrderByDescending(x => x.Date)
-                    .Select(x => new PaymentViewModel(new Payment(x))));
+            var paymentQuery = account.Data.ChargedPayments
+                                      .Concat(account.Data.TargetedPayments);
 
+            if (filterMessage.IsClearedFilterActive)
+            {
+                paymentQuery = paymentQuery.Where(x => x.IsCleared);
+            }
+            if (filterMessage.IsRecurringFilterActive)
+            {
+                paymentQuery = paymentQuery.Where(x => x.IsRecurring);
+            }
+
+            RelatedPayments = new ObservableCollection<PaymentViewModel>(
+                paymentQuery
+                    .OrderByDescending(x => x.Date)
+                    .Select(x => new PaymentViewModel(
+                                new Payment(x))));
+
+            CreateNestedLists();
+        }
+
+        private void CreateNestedLists()
+        {
             foreach (var payment in RelatedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }
 
-            var dailyList = DateListGroup<PaymentViewModel>.CreateGroups(RelatedPayments,
-                CultureInfo.CurrentUICulture,
-                s => s.Date.ToString("D", CultureInfo.InvariantCulture),
-                s => s.Date,
-                itemClickCommand: EditPaymentCommand, itemLongClickCommand: OpenContextMenuCommand);
+            var dailyList = DateListGroup<PaymentViewModel>
+                .CreateGroups(RelatedPayments,
+                              CultureInfo.CurrentUICulture,
+                              s => s.Date.ToString("D", CultureInfo.InvariantCulture),
+                              s => s.Date,
+                              itemClickCommand: EditPaymentCommand, itemLongClickCommand: OpenContextMenuCommand);
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
-                DateListGroup<DateListGroup<PaymentViewModel>>.CreateGroups(dailyList, CultureInfo.CurrentUICulture,
-                    s =>
-                    {
-                        var date = Convert.ToDateTime(s.Key);
-                        return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
-                    },
-                    s => Convert.ToDateTime(s.Key)));
+                DateListGroup<DateListGroup<PaymentViewModel>>
+                    .CreateGroups(dailyList, CultureInfo.CurrentUICulture,
+                                  s =>
+                                  {
+                                      var date = Convert.ToDateTime(s.Key);
+                                      return date.ToString("MMMM",CultureInfo.InvariantCulture) +" " + date.Year;
+                                  },
+                                  s => Convert.ToDateTime(s.Key)));
         }
 
         private async Task EditPayment(PaymentViewModel payment)
