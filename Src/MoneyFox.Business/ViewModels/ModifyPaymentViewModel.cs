@@ -368,7 +368,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private  async void ReceiveMessage(CategorySelectedMessage message)
+        private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
 
