@@ -2,8 +2,10 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
+using MoneyFox.Business.Manager;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
 {
@@ -22,8 +24,12 @@ namespace MoneyFox.Droid.Services
         }
 
         private void CheckRecurringPayments()
-        {
-            Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
+        {            
+            var unitOfWork = new UnitOfWork(new DbFactory());
+            new RecurringPaymentManager(
+                new Service.DataServices.RecurringPaymentService(unitOfWork),
+                new PaymentService(unitOfWork))
+                .CreatePaymentsUpToRecur();
         }
     }
 }
