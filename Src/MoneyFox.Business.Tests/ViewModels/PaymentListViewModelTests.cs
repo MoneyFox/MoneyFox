@@ -3,6 +3,7 @@ using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service.DataServices;
+using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Plugins.Messenger;
@@ -44,6 +45,11 @@ namespace MoneyFox.Business.Tests.ViewModels
         public async void Init_PassAccountId_AccountIdSet()
         {
             // Arrange
+            accountService.Setup(x => x.GetById(It.IsAny<int>()))
+                          .ReturnsAsync(new Account());
+            balanceCalculatorManager.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>()))
+                                    .ReturnsAsync(0);
+
             var vm = new PaymentListViewModel(accountService.Object,
                                               paymentService.Object,
                                               dialogService.Object,
@@ -65,6 +71,11 @@ namespace MoneyFox.Business.Tests.ViewModels
         public async void Init_NullPassAccountId_AccountIdSet()
         {
             // Arrange
+            accountService.Setup(x => x.GetById(It.IsAny<int>()))
+                          .ReturnsAsync(new Account());
+            balanceCalculatorManager.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>()))
+                                    .ReturnsAsync(0);
+
             var vm = new PaymentListViewModel(accountService.Object,
                                               paymentService.Object,
                                               dialogService.Object,

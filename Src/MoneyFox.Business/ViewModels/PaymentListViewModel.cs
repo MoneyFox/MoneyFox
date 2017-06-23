@@ -197,7 +197,7 @@ namespace MoneyFox.Business.ViewModels
         ///     Initialize the view. Is called after the constructor.
         /// </summary>
         /// <param name="parameter">Parameter object for this View Model.</param>
-        public override Task Initialize(PaymentListParameter parameter)
+        public override async Task Initialize(PaymentListParameter parameter)
         {
             AccountId = parameter.AccountId;
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
@@ -209,9 +209,7 @@ namespace MoneyFox.Business.ViewModels
                                                                      messenger,
                                                                      AccountId);
             //Refresh balance control with the current account
-            BalanceViewModel.UpdateBalanceCommand.Execute();
-
-            return Task.CompletedTask;
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
         private async Task Load()
