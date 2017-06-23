@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyFox.DataAccess;
 using MoneyFox.Service.Pocos;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.Service.DataServices
@@ -67,20 +68,22 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class AccountService : IAccountService
     {
+        private readonly IAccountRepository accountRepository;
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public AccountService(IUnitOfWork unitOfWork)
+        public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork)
         {
+            this.accountRepository = accountRepository;
             this.unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            var list = await unitOfWork.AccountRepository
+            var list = await accountRepository
                 .GetAll()
                 .OrderByName()
                 .ToListAsync();
@@ -91,19 +94,19 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<Account> GetById(int id)
         {
-            return new Account(await unitOfWork.AccountRepository.GetById(id));
+            return new Account(await accountRepository.GetById(id));
         }
 
         /// <inheritdoc />
         public Task<int> GetAccountCount()
         {
-            return unitOfWork.AccountRepository.GetAll().CountAsync();
+            return accountRepository.GetAll().CountAsync();
         }
 
         /// <inheritdoc />
         public Task<bool> CheckIfNameAlreadyTaken(string name)
         {
-            return unitOfWork.AccountRepository.GetAll()
+            return accountRepository.GetAll()
                                     .NameEquals(name)
                                     .AnyAsync();
         }
@@ -111,7 +114,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetNotExcludedAccounts()
         {
-            var list = await unitOfWork.AccountRepository
+            var list = await accountRepository
                 .GetAll()
                 .AreNotExcluded()
                 .OrderByName()
@@ -123,7 +126,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetExcludedAccounts()
         {
-            var list = await unitOfWork.AccountRepository
+            var list = await accountRepository
                 .GetAll()
                 .AreExcluded()
                 .OrderByName()
@@ -137,10 +140,10 @@ namespace MoneyFox.Service.DataServices
         {
             if (account.Data.Id == 0)
             {
-                unitOfWork.AccountRepository.Add(account.Data);
+                accountRepository.Add(account.Data);
             } else
             {
-                unitOfWork.AccountRepository.Update(account.Data);
+                accountRepository.Update(account.Data);
             }
             await unitOfWork.Commit();
         }
@@ -148,7 +151,7 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task DeleteAccount(Account account)
         {
-            unitOfWork.AccountRepository.Delete(account.Data);
+            accountRepository.Delete(account.Data);
             await unitOfWork.Commit();
         }
     }

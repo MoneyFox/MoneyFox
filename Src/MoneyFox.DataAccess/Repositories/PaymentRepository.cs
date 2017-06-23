@@ -14,23 +14,8 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentRepository(ApplicationContext dataContext) : base(dataContext)
+        public PaymentRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-        }
-
-        /// <summary>
-        ///     Adds a Payment to the DataContext for save it to the database.
-        /// </summary>
-        /// <param name="entity">Entity to save.</param>
-        public override void Add(PaymentEntity entity)
-        {
-            // Since we assign the category from another context, we have to set it to unchanged.
-            // Otherwise EF tries to add it to the database what results in a UNIQUE CONSTRAINT.
-            if (entity.Category != null)
-            {
-                DbContext.Entry(entity.Category).State = EntityState.Unchanged;
-            }
-            base.Add(entity);
         }
 
         /// <summary>
