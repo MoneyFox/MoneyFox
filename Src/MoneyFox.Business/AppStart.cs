@@ -3,6 +3,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
@@ -20,6 +21,7 @@ namespace MoneyFox.Business
         /// <param name="hint">parameter for the launch of the app.</param>
         public async void Start(object hint = null)
         {
+            var navigationService = Mvx.Resolve<IMvxNavigationService>();
             var filestore = Mvx.Resolve<IMvxFileStore>();
             if (filestore.Exists(DatabaseConstants.DB_NAME_OLD))
             {
@@ -29,12 +31,12 @@ namespace MoneyFox.Business
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                ShowViewModel<MenuViewModel>();
-				ShowViewModel<AccountListViewModel>();
+                await navigationService.Navigate<MenuViewModel>();
+                await navigationService.Navigate<AccountListViewModel>();
             }
             else
             {
-                ShowViewModel<LoginViewModel>();
+                await navigationService.Navigate<LoginViewModel>();
             }
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTasks();
