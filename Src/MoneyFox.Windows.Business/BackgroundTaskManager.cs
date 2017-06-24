@@ -33,6 +33,13 @@ namespace MoneyFox.Windows.Business
             {
                 RegisterSyncBackupTask();
             }
+            else
+            {
+                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
+                {
+                    BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == SYNC_BACKUP_TASK).Value.Unregister(true);
+                }
+            }
         }
 
         /// <summary>

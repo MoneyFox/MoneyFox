@@ -1,5 +1,8 @@
 ﻿namespace MoneyFox.Foundation.Interfaces
 {
+    /// <summary>
+    ///     Handles the Starting and stopping of background tasks.
+    /// </summary>
     public interface IBackgroundTaskManager
     {
         /// <summary>

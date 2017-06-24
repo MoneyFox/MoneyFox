@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -28,6 +29,7 @@ namespace MoneyFox.Droid.Activities
     {
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
+        public CoordinatorLayout MainFrame;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -41,6 +43,7 @@ namespace MoneyFox.Droid.Activities
 #endif
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            MainFrame = FindViewById<CoordinatorLayout>(Resource.Id.main_frame);
 
             if (bundle == null)
             {

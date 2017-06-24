@@ -1,23 +1,31 @@
 using System.Threading.Tasks;
 using Android.App;
+using Android.App.Job;
 using Android.Content;
-using Android.OS;
+using Android.Widget;
 using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Droid.OneDriveAuth;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Service;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Droid.Services
 {
-    [Service]
-    public class SyncBackupService : Android.App.Service
+    [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
+    public class SyncBackupService : JobService
     {
-        public override IBinder OnBind(Intent intent)
+        public override bool OnStartJob(JobParameters @params)
         {
-            return null;
+            return true;
+        }
+
+        public override bool OnStopJob(JobParameters @params)
+        {
+            Toast.MakeText(this, Strings.BackupSyncedMessage, ToastLength.Long);
+            return true;
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

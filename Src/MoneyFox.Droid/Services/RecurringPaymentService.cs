@@ -1,21 +1,29 @@
 using System.Threading.Tasks;
 using Android.App;
+using Android.App.Job;
 using Android.Content;
-using Android.OS;
+using Android.Widget;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
 {
-    [Service]
-    public class RecurringPaymentService : Android.App.Service
+    [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
+    public class RecurringPaymentService : JobService
     {
-        public override IBinder OnBind(Intent intent)
+        public override bool OnStartJob(JobParameters @params)
         {
-            return null;
+            return true;
+        }
+
+        public override bool OnStopJob(JobParameters @params)
+        {
+            Toast.MakeText(this, Strings.RecurringPaymentsCreatedMessages, ToastLength.Long);
+            return true;
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

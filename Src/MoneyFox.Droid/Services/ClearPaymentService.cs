@@ -1,21 +1,30 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
+using Android.App.Job;
 using Android.Content;
-using Android.OS;
+using Android.Support.Design.Widget;
+using Android.Widget;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Droid.Services
 {
-    [Service]
-    public class ClearPaymentService : Android.App.Service
-    {
-        public override IBinder OnBind(Intent intent)
+    [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
+    public class ClearPaymentService : JobService
+    { 
+        public override bool OnStartJob(JobParameters @params)
         {
-            return null;
+            return true;
+        }
+
+        public override bool OnStopJob(JobParameters @params)
+        {
+            Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);
+            return true;
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)

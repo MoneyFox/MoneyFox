@@ -306,6 +306,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You backup was synced..
+        /// </summary>
+        public static string BackupSyncedMessage {
+            get {
+                return ResourceManager.GetString("BackupSyncedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string BackupViewModel_CreateBackupInformationLabel {
@@ -537,6 +546,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string ClearedFilterLabel {
             get {
                 return ResourceManager.GetString("ClearedFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished clearing your payments..
+        /// </summary>
+        public static string ClearPaymentFinishedMessage {
+            get {
+                return ResourceManager.GetString("ClearPaymentFinishedMessage", resourceCulture);
             }
         }
         
@@ -1312,6 +1330,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string RateReminderTitle {
             get {
                 return ResourceManager.GetString("RateReminderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurring payments where created..
+        /// </summary>
+        public static string RecurringPaymentsCreatedMessages {
+            get {
+                return ResourceManager.GetString("RecurringPaymentsCreatedMessages", resourceCulture);
             }
         }
         
