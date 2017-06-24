@@ -19,7 +19,6 @@ namespace MoneyFox.Business.ViewModels
     public class AccountListViewModel : MvxViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
-        private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly ISettingsManager settingsManager;
         private readonly IModifyDialogService modifyDialogService;
         private readonly IDialogService dialogService;
@@ -39,7 +38,6 @@ namespace MoneyFox.Business.ViewModels
                                     IMvxNavigationService navigationService)
         {
             this.accountService = accountService;
-            this.balanceCalculationManager = balanceCalculationManager;
             this.settingsManager = settingsManager;
             this.modifyDialogService = modifyDialogService;
             this.dialogService = dialogService;
@@ -146,8 +144,6 @@ namespace MoneyFox.Business.ViewModels
                     new ObservableCollection<AccountViewModel>(includedAccountList.Select(x => new AccountViewModel(x)));
                 ExcludedAccounts =
                     new ObservableCollection<AccountViewModel>(excludedAccountList.Select(x => new AccountViewModel(x)));
-
-                //await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
             }
             catch(Exception ex)
             {
