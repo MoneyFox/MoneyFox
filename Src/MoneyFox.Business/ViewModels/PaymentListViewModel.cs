@@ -208,13 +208,14 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
         private async Task Load()
         {
             await LoadPayments(new PaymentListFilterChangedMessage(this));
+
+            //Refresh balance control with the current account
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -301,7 +302,7 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning disable 4014
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            LoadCommand.Execute();
+            await LoadCommand.ExecuteAsync();
         }
     }
 }
