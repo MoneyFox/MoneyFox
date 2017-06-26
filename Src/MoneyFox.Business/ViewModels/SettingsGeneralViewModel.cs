@@ -59,6 +59,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 if(settingsManager.BackupSyncRecurrence == value) return;
                 settingsManager.BackupSyncRecurrence = value < 1 ? 1 : value;
+                backgroundTaskManager.StopBackupSyncTask();
                 backgroundTaskManager.StartBackupSyncTask();
                 RaisePropertyChanged();
             }
