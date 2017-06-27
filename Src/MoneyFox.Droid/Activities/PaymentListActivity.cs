@@ -12,6 +12,7 @@ using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using MoneyFox.Foundation.Resources;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -21,7 +22,7 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class PaymentListActivity : MvxAppCompatActivity<PaymentListViewModel>
     {
-        private MvxExpandableListView paymentExpandable;
+        private MvxRecyclerView innerPaymentlist;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,12 +35,8 @@ namespace MoneyFox.Droid.Activities
 
             FindViewById<FloatingActionMenu>(Resource.Id.fab_menu_add_element).SetClosedOnTouchOutside(true);
 
-            paymentExpandable = FindViewById<MvxExpandableListView>(Resource.Id.expandable_payment_list);
-            if (paymentExpandable.Count > 0)
-            {
-                paymentExpandable.ExpandGroup(0);
-            }
-            RegisterForContextMenu(paymentExpandable);
+            innerPaymentlist = FindViewById<MvxRecyclerView>(Resource.Id.inner_payment_list);
+            //RegisterForContextMenu(innerPaymentlist);
 
             LoadBalancePanel();
             Title = ViewModel.Title;
@@ -57,10 +54,8 @@ namespace MoneyFox.Droid.Activities
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.RelatedPayments[ExpandableListView
-                .GetPackedPositionChild(((
-                    ExpandableListView.ExpandableListContextMenuInfo) item.MenuInfo)
-                    .PackedPosition)];
+            var selected = (PaymentViewModel)
+                innerPaymentlist.Adapter.GetItem(((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position);
 
             switch (item.ItemId)
             {
