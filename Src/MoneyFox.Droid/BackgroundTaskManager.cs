@@ -63,7 +63,7 @@ namespace MoneyFox.Droid
                                               new ComponentName(currentActivity,
                                                                 Java.Lang.Class.FromType(typeof(ClearPaymentService))));
 
-            builder.SetPeriodic(30 * 1000);
+            builder.SetPeriodic(30 * 60 * 1000);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);
