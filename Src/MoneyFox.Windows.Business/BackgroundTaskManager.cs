@@ -5,6 +5,7 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
 {
+    /// <inheritdoc />
     public class BackgroundTaskManager : IBackgroundTaskManager
     {
         private const string TASK_NAMESPACE = "MoneyFox.Windows.Tasks";
@@ -20,6 +21,7 @@ namespace MoneyFox.Windows.Business
             this.settingsManager = settingsManager;
         }
 
+        /// <inheritdoc />
         public async void StartBackgroundTasks()
         {
             var requestAccess = await BackgroundExecutionManager.RequestAccessAsync();
@@ -33,26 +35,34 @@ namespace MoneyFox.Windows.Business
             {
                 RegisterSyncBackupTask();
             }
-            else
+        }
+
+        /// <inheritdoc />
+        public void StopBackgroundTasks()
+        {
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENT_TASK))
             {
-                if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
-                {
-                    BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == SYNC_BACKUP_TASK).Value.Unregister(true);
-                }
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENT_TASK).Value.Unregister(true);
+            }
+
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == RECURRING_PAYMENT_TASK))
+            {
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == RECURRING_PAYMENT_TASK).Value.Unregister(true);
+            }
+
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
+            {
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == SYNC_BACKUP_TASK).Value.Unregister(true);
             }
         }
 
-        /// <summary>
-        ///     Registers the backup sync task.
-        /// </summary>
+        /// <inheritdoc />
         public void StartBackupSyncTask()
         {
             RegisterSyncBackupTask();
         }
 
-        /// <summary>
-        ///     Unregisters the backup sync task.
-        /// </summary>
+        /// <inheritdoc />
         public void StopBackupSyncTask()
         {
             if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
