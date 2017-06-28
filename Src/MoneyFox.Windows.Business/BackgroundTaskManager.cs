@@ -10,7 +10,7 @@ namespace MoneyFox.Windows.Business
     {
         private const string TASK_NAMESPACE = "MoneyFox.Windows.Tasks";
 
-        private const string CLEAR_PAYMENT_TASK = "ClearPaymentTask";
+        private const string CLEAR_PAYMENTS_TASK = "ClearPaymentsTask";
         private const string RECURRING_PAYMENT_TASK = "RecurringPaymentTask";
         private const string SYNC_BACKUP_TASK = "SyncBackupTask";
 
@@ -40,9 +40,9 @@ namespace MoneyFox.Windows.Business
         /// <inheritdoc />
         public void StopBackgroundTasks()
         {
-            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENT_TASK))
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENTS_TASK))
             {
-                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENT_TASK).Value.Unregister(true);
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENTS_TASK).Value.Unregister(true);
             }
 
             if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == RECURRING_PAYMENT_TASK))
@@ -73,12 +73,12 @@ namespace MoneyFox.Windows.Business
 
         private void RegisterClearPaymentTask()
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENT_TASK))
+            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
             {
                 var builder = new BackgroundTaskBuilder
                 {
-                    Name = CLEAR_PAYMENT_TASK,
-                    TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENT_TASK)
+                    Name = CLEAR_PAYMENTS_TASK,
+                    TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
                 };
 
                 // Task will be executed all 1 hours

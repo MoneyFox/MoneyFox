@@ -114,7 +114,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="RecurringPaymentTask.cs" />
-    <Compile Include="ClearPaymentTask.cs" />
+    <Compile Include="ClearPaymentsTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SyncBackupTask.cs" />
   </ItemGroup>

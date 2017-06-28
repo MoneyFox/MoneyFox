@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Extensions;
@@ -11,7 +13,10 @@ using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows.Tasks
 {
-    public sealed class ClearPaymentTask : IBackgroundTask
+    /// <summary>
+    ///     Background task to periodically clear payments.
+    /// </summary>
+    public sealed class ClearPaymentsTask : IBackgroundTask
     {
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
 
@@ -20,6 +25,7 @@ namespace MoneyFox.Windows.Tasks
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("Start Clearing Payments.");
 
             try
             {
@@ -33,6 +39,11 @@ namespace MoneyFox.Windows.Tasks
                 {
                     UpdateMainTile();
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("There was an error in Clearing Payment.");
+                Debug.Write(ex);
             }
             finally
             {
