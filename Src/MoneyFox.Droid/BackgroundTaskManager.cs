@@ -28,6 +28,13 @@ namespace MoneyFox.Droid
         }
 
         /// <inheritdoc />
+        public void StopBackgroundTasks()
+        {
+            var tm = (JobSchedulerType)currentActivity.GetSystemService(Context.JobSchedulerService);
+            tm.CancelAll();
+        }
+
+        /// <inheritdoc />
         public void StartBackgroundTasks()
         {
             var tm = (JobSchedulerType)currentActivity.GetSystemService(Context.JobSchedulerService);

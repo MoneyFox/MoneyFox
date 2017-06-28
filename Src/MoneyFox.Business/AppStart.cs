@@ -31,7 +31,9 @@ namespace MoneyFox.Business
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTasks();
+                var backgroundTaskManager = Mvx.Resolve<IBackgroundTaskManager>();
+                backgroundTaskManager.StopBackgroundTasks();
+                backgroundTaskManager.StartBackgroundTasks();
                 await navigationService.Navigate<MenuViewModel>();
                 await navigationService.Navigate<AccountListViewModel>();
             }

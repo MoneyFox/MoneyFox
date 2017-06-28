@@ -6,6 +6,11 @@
     public interface IBackgroundTaskManager
     {
         /// <summary>
+        ///     Stops all Background tasks.
+        /// </summary>
+        void StopBackgroundTasks();
+
+        /// <summary>
         ///     Starts all Background tasks.
         /// </summary>
         void StartBackgroundTasks();
