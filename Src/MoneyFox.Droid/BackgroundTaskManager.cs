@@ -1,6 +1,7 @@
 using Android.App;
 using Android.App.Job;
 using Android.Content;
+using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform.Droid.Platform;
@@ -68,7 +69,7 @@ namespace MoneyFox.Droid
         {
             var builder = new JobInfo.Builder(CLEARPAYMENT_JOB_ID,
                                               new ComponentName(currentActivity,
-                                                                Java.Lang.Class.FromType(typeof(ClearPaymentService))));
+                                                                Java.Lang.Class.FromType(typeof(ClearPaymentJob))));
            
             // Execute all 30 Minutes
             builder.SetPeriodic(30 * 60 * 1000);
@@ -83,7 +84,7 @@ namespace MoneyFox.Droid
         {
             var builder = new JobInfo.Builder(RECURRING_PAYMENT_JOB_ID,
                                               new ComponentName(currentActivity,
-                                                                Java.Lang.Class.FromType(typeof(RecurringPaymentService))));
+                                                                Java.Lang.Class.FromType(typeof(RecurringPaymentJob))));
 
             // Execute all 30 Minutes
             builder.SetPeriodic(30 * 60 * 1000);
@@ -98,7 +99,7 @@ namespace MoneyFox.Droid
         {
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(currentActivity,
-                                                                Java.Lang.Class.FromType(typeof(SyncBackupService))));
+                                                                Java.Lang.Class.FromType(typeof(SyncBackupJob))));
 
             builder.SetPeriodic(60 * 60 * 1000 * settingsManager.BackupSyncRecurrence);
             builder.SetPersisted(true);

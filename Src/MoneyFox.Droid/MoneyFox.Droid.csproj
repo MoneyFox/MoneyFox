@@ -115,12 +115,12 @@
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ClearPaymentService.cs" />
+    <Compile Include="Jobs\ClearPaymentJob.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
-    <Compile Include="Services\RecurringPaymentService.cs" />
-    <Compile Include="Services\SyncBackupService.cs" />
+    <Compile Include="Jobs\RecurringPaymentJob.cs" />
+    <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\Connectivity.cs" />
     <Compile Include="Src\CustomPresenter.cs" />
