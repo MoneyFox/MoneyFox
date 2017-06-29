@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace MoneyFox.Foundation.Interfaces
 {
     /// <summary>
@@ -9,6 +11,6 @@ namespace MoneyFox.Foundation.Interfaces
         ///     Selects recurring payments who are up for to
         ///     recur and creates new payments for them.
         /// </summary>
-        void CreatePaymentsUpToRecur();
+        Task CreatePaymentsUpToRecur();
     }
 }

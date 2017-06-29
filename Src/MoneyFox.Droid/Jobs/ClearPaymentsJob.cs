@@ -1,10 +1,8 @@
 using System;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
-using Android.Content;
 using Android.Widget;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
@@ -20,7 +18,7 @@ namespace MoneyFox.Droid.Jobs
     { 
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(() => ClearPayments(args));
+            Task.Run(async() => await ClearPayments(args));
             return true;
         }
 
@@ -29,7 +27,7 @@ namespace MoneyFox.Droid.Jobs
             return true;
         }
 
-        public async void ClearPayments(JobParameters args)
+        public async Task ClearPayments(JobParameters args)
         {
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);

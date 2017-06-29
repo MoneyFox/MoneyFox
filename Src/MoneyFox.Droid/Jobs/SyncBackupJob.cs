@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Widget;
@@ -20,7 +21,7 @@ namespace MoneyFox.Droid.Jobs
     {
         public override bool OnStartJob(JobParameters args)
         {
-            SyncBackups(args);
+            Task.Run(async () => await SyncBackups(args));
             return true;
         }
 
@@ -29,7 +30,7 @@ namespace MoneyFox.Droid.Jobs
             return true;
         }
 
-        private async void SyncBackups(JobParameters args)
+        private async Task SyncBackups(JobParameters args)
         {
             try
             {

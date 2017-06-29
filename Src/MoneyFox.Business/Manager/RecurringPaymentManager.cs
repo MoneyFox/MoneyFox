@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
@@ -21,7 +22,7 @@ namespace MoneyFox.Business.Manager
         }
 
         /// <inheritdoc />
-        public async void CreatePaymentsUpToRecur()
+        public async Task CreatePaymentsUpToRecur()
         {
             var newPayments = recurringPaymentService.GetPaymentsToRecur()
                 .Select(RecurringPaymentHelper.GetPaymentFromRecurring);
