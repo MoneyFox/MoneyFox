@@ -69,7 +69,7 @@ namespace MoneyFox.Droid
         {
             var builder = new JobInfo.Builder(CLEARPAYMENT_JOB_ID,
                                               new ComponentName(currentActivity,
-                                                                Java.Lang.Class.FromType(typeof(ClearPaymentJob))));
+                                                                Java.Lang.Class.FromType(typeof(ClearPaymentsJob))));
            
             // Execute all 30 Minutes
             builder.SetPeriodic(30 * 60 * 1000);

@@ -115,7 +115,7 @@
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Jobs\ClearPaymentJob.cs" />
+    <Compile Include="Jobs\ClearPaymentsJob.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />

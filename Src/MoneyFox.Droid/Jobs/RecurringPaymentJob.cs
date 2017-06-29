@@ -18,24 +18,18 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class RecurringPaymentJob : JobService
     {
-        public override bool OnStartJob(JobParameters @params)
+        public override bool OnStartJob(JobParameters args)
+        {
+            Task.Run(() => CheckRecurringPayments(args));
+            return true;
+        }
+
+        public override bool OnStopJob(JobParameters args)
         {
             return true;
         }
 
-        public override bool OnStopJob(JobParameters @params)
-        {
-            Toast.MakeText(this, Strings.RecurringPaymentsCreatedMessages, ToastLength.Long);
-            return true;
-        }
-
-        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
-        {
-            Task.Run(() => CheckRecurringPayments());
-            return StartCommandResult.RedeliverIntent;
-        }
-
-        private void CheckRecurringPayments()
+        private void CheckRecurringPayments(JobParameters args)
         {
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
@@ -43,9 +37,12 @@ namespace MoneyFox.Droid.Jobs
             var dbFactory = new DbFactory();
             var unitOfWork = new UnitOfWork(dbFactory);
             new RecurringPaymentManager(
-                new Service.DataServices.RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
                 new PaymentService(new PaymentRepository(dbFactory),  unitOfWork))
                 .CreatePaymentsUpToRecur();
+
+            Toast.MakeText(this, Strings.RecurringPaymentsCreatedMessages, ToastLength.Long);
+            JobFinished(args, false);
         }
     }
 }

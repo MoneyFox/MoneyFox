@@ -20,24 +20,18 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class SyncBackupJob : JobService
     {
-        public override bool OnStartJob(JobParameters @params)
+        public override bool OnStartJob(JobParameters args)
+        {
+            Task.Run(() => SyncBackups(args));
+            return true;
+        }
+
+        public override bool OnStopJob(JobParameters args)
         {
             return true;
         }
 
-        public override bool OnStopJob(JobParameters @params)
-        {
-            Toast.MakeText(this, Strings.BackupSyncedSuccessfullyMessage, ToastLength.Long);
-            return true;
-        }
-
-        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
-        {
-            Task.Run(() => SyncBackups());
-            return StartCommandResult.RedeliverIntent;
-        }
-
-        private async void SyncBackups()
+        private async void SyncBackups(JobParameters args)
         {
             try
             {
@@ -51,8 +45,10 @@ namespace MoneyFox.Droid.Jobs
                                         new Connectivity(),
                                         new DbFactory())
                     .DownloadBackup();
-            }
-            catch (Exception)
+
+                Toast.MakeText(this, Strings.BackupSyncedSuccessfullyMessage, ToastLength.Long);
+                JobFinished(args, false);
+            } catch (Exception)
             {
                 Toast.MakeText(this, Strings.BackupSyncFailedMessage, ToastLength.Long);
             }
