@@ -3,6 +3,7 @@ using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
@@ -12,6 +13,7 @@ namespace MoneyFox.Windows.Tasks
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
             {

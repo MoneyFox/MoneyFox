@@ -3,7 +3,9 @@ using MoneyFox.Windows.Business;
 using MoneyFox.Business.Manager;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MvvmCross.Plugins.File.Uwp;
 
@@ -14,6 +16,7 @@ namespace MoneyFox.Windows.Tasks
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
             {

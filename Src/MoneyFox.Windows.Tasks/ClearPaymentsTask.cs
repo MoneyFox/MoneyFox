@@ -8,6 +8,7 @@ using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Windows.Business;
 
@@ -25,11 +26,12 @@ namespace MoneyFox.Windows.Tasks
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
-            Debug.WriteLine("Start Clearing Payments.");
+            ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
             {
                 var dbFactory = new DbFactory();
+
                 paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
 
                 await paymentService.SavePayments(await paymentService.GetUnclearedPayments(DateTime.Now));
@@ -39,11 +41,6 @@ namespace MoneyFox.Windows.Tasks
                 {
                     UpdateMainTile();
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("There was an error in Clearing Payment.");
-                Debug.Write(ex);
             }
             finally
             {

@@ -17,29 +17,32 @@ using UniversalRateReminder;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class ExtendedSplashScreen : Page
+    /// <summary>
+    ///     Displays an extra splash screen with a busy indicator to have more time to load the app
+    ///     and inform the user that it's still responsive.
+    /// </summary>
+    public sealed partial class ExtendedSplashScreen
     {
         internal bool Dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame RootFrame;
 
-        private readonly SplashScreen splash; // Variable to hold the splash screen object.
-
-        public ExtendedSplashScreen(SplashScreen splashscreen, bool loadState)
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public ExtendedSplashScreen(SplashScreen splashscreen)
         {
             InitializeComponent();
-            splash = splashscreen;
+            var splash = splashscreen;
 
             if (splash != null)
             {
                 // Register an event handler to be executed when the splash screen has been dismissed.
                 splash.Dismissed += DismissedEventHandler;
-
             }
 
             // Create a Frame to act as the navigation context
             RootFrame = new Frame();
         }
-
 
         // Include code to be executed when the system has transitioned from the splash screen to the extended splash screen (application's first view).
         void DismissedEventHandler(SplashScreen sender, object e)

@@ -79,8 +79,7 @@ namespace MoneyFox.Windows
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                bool loadState = (e.PreviousExecutionState == ApplicationExecutionState.Terminated);
-                var extendedSplash = new ExtendedSplashScreen(e.SplashScreen, loadState);
+                var extendedSplash = new ExtendedSplashScreen(e.SplashScreen);
                 Window.Current.Content = extendedSplash;
             }
 
