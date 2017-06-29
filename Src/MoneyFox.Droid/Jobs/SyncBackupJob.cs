@@ -1,9 +1,7 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
-using Android.Content;
 using Android.Widget;
 using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Business.Manager;
@@ -22,7 +20,7 @@ namespace MoneyFox.Droid.Jobs
     {
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(() => SyncBackups(args));
+            SyncBackups(args);
             return true;
         }
 

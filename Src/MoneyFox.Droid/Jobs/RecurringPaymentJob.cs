@@ -1,9 +1,7 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
-using Android.Content;
 using Android.Widget;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
@@ -20,7 +18,7 @@ namespace MoneyFox.Droid.Jobs
     {
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(() => CheckRecurringPayments(args));
+            CheckRecurringPayments(args);
             return true;
         }
 
