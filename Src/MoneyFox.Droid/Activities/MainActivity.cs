@@ -47,6 +47,11 @@ namespace MoneyFox.Droid.Activities
         /// </summary>
         public const int MESSAGE_SERVICE_RECURRING_PAYMENTS = 2;
 
+        /// <summary>
+        ///     Constant for the sync backup Service.
+        /// </summary>
+        public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
+
         Handler handler;
         private ClearPaymentsJob clearPaymentsJob;
         private RecurringPaymentJob recurringPaymentJob;
