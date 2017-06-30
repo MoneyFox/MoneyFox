@@ -306,11 +306,20 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You backup was synced..
+        ///   Looks up a localized string similar to You backup was synced successfully..
         /// </summary>
-        public static string BackupSyncedMessage {
+        public static string BackupSyncedSuccessfullyMessage {
             get {
-                return ResourceManager.GetString("BackupSyncedMessage", resourceCulture);
+                return ResourceManager.GetString("BackupSyncedSuccessfullyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to sync the backup.
+        /// </summary>
+        public static string BackupSyncFailedMessage {
+            get {
+                return ResourceManager.GetString("BackupSyncFailedMessage", resourceCulture);
             }
         }
         

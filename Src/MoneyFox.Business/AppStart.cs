@@ -38,8 +38,6 @@ namespace MoneyFox.Business
             {
                 await navigationService.Navigate<LoginViewModel>();
             }
-
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackgroundTasks();
         }
     }
 }

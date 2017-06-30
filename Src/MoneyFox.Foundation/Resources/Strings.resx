@@ -618,10 +618,13 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="ClearPaymentFinishedMessage" xml:space="preserve">
     <value>Finished clearing your payments.</value>
   </data>
-  <data name="BackupSyncedMessage" xml:space="preserve">
-    <value>You backup was synced.</value>
+  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
+    <value>You backup was synced successfully.</value>
   </data>
   <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
     <value>Recurring payments where created.</value>
+  </data>
+  <data name="BackupSyncFailedMessage" xml:space="preserve">
+    <value>Failed to sync the backup</value>
   </data>
 </root>

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -10,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -17,29 +20,37 @@ using UniversalRateReminder;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class ExtendedSplashScreen : Page
+    /// <summary>
+    ///     Displays an extra splash screen with a busy indicator to have more time to load the app
+    ///     and inform the user that it's still responsive.
+    /// </summary>
+    public sealed partial class ExtendedSplashScreen
     {
+        private const string TASK_NAMESPACE = "MoneyFox.Windows.Tasks";
+        private const string CLEAR_PAYMENTS_TASK = "ClearPaymentsTask";
+        private const string RECURRING_PAYMENT_TASK = "RecurringPaymentTask";
+
+
         internal bool Dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame RootFrame;
 
-        private readonly SplashScreen splash; // Variable to hold the splash screen object.
-
-        public ExtendedSplashScreen(SplashScreen splashscreen, bool loadState)
+        /// <summary>
+        ///     Constructor
+        /// </summary>
+        public ExtendedSplashScreen(SplashScreen splashscreen)
         {
             InitializeComponent();
-            splash = splashscreen;
+            var splash = splashscreen;
 
             if (splash != null)
             {
                 // Register an event handler to be executed when the splash screen has been dismissed.
                 splash.Dismissed += DismissedEventHandler;
-
             }
 
             // Create a Frame to act as the navigation context
             RootFrame = new Frame();
         }
-
 
         // Include code to be executed when the system has transitioned from the splash screen to the extended splash screen (application's first view).
         void DismissedEventHandler(SplashScreen sender, object e)
@@ -63,6 +74,10 @@ namespace MoneyFox.Windows.Views
                     var start = Mvx.Resolve<IMvxAppStart>();
                     start.Start();
 
+                    RegisterClearPaymentTask();
+                    RegisterRecurringPaymentTask();
+                    Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
+
                     shell.ViewModel = Mvx.Resolve<MenuViewModel>();
 
                     //If Jump Lists are supported, adds them
@@ -75,6 +90,39 @@ namespace MoneyFox.Windows.Views
                 });
             }
         }
+        
+        private void RegisterClearPaymentTask()
+        {
+            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
+            {
+                var builder = new BackgroundTaskBuilder
+                {
+                    Name = CLEAR_PAYMENTS_TASK,
+                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
+                };
+
+                // Task will be executed all 30 minutes
+                builder.SetTrigger(new TimeTrigger(30, false));
+                builder.Register();
+            }
+        }
+
+        private void RegisterRecurringPaymentTask()
+        {
+            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
+            {
+                var builder = new BackgroundTaskBuilder
+                {
+                    Name = RECURRING_PAYMENT_TASK,
+                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
+                };
+
+                // Task will be executed all 30 minutes
+                builder.SetTrigger(new TimeTrigger(30, false));
+                builder.Register();
+            }
+        }
+
 
         private async Task SetJumplist()
         {

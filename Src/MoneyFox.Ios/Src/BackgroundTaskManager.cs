@@ -9,6 +9,11 @@ namespace MoneyFox.Ios
 		{
 		}
 
+	    public void StopBackgroundTasks()
+	    {
+	        //throw new NotImplementedException();
+	    }
+
 	    public void StartBackgroundTasks()
 	    {
 	        //throw new NotImplementedException();

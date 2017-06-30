@@ -4,11 +4,17 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Representation of the general settings view.
+    /// </summary>
     public class SettingsGeneralViewModel : MvxViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public SettingsGeneralViewModel(ISettingsManager settingsManager, IBackgroundTaskManager backgroundTaskManager)
         {
             this.settingsManager = settingsManager;
@@ -25,7 +31,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsAutoBackupEnabled
         {
-            get { return settingsManager.IsBackupAutouploadEnabled; }
+            get => settingsManager.IsBackupAutouploadEnabled;
             set
             {
                 if (settingsManager.IsBackupAutouploadEnabled == value) return;
@@ -48,11 +54,12 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int BackupSyncRecurrence
         {
-            get { return settingsManager.BackupSyncRecurrence; }
+            get => settingsManager.BackupSyncRecurrence;
             set
             {
                 if(settingsManager.BackupSyncRecurrence == value) return;
                 settingsManager.BackupSyncRecurrence = value < 1 ? 1 : value;
+                backgroundTaskManager.StopBackupSyncTask();
                 backgroundTaskManager.StartBackupSyncTask();
                 RaisePropertyChanged();
             }

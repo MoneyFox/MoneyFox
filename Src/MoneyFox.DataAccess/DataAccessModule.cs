@@ -20,11 +20,6 @@ namespace MoneyFox.DataAccess
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Manager", StringComparison.OrdinalIgnoreCase))
-                .AsImplementedInterfaces()
-                .SingleInstance();
-
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
         }
