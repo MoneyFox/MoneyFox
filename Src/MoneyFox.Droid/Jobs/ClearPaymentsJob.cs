@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
@@ -53,9 +54,17 @@ namespace MoneyFox.Droid.Jobs
         {
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
+
             var dbFactory = new DbFactory();
             var paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
-            await paymentService.GetUnclearedPayments(DateTime.Now);
+
+            var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+            var unclearedPayments = payments.ToList();
+
+            if (unclearedPayments.Any())
+            {
+                await paymentService.SavePayments(unclearedPayments);
+            }
 
             Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);
             JobFinished(args, false);

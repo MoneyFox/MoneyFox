@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
@@ -26,6 +27,7 @@ namespace MoneyFox.Windows.Tasks
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("ClearPayment started");
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
@@ -34,7 +36,12 @@ namespace MoneyFox.Windows.Tasks
 
                 paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
 
-                await paymentService.SavePayments(await paymentService.GetUnclearedPayments(DateTime.Now));
+                var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+                var unclearedPayments = payments.ToList();
+                if (unclearedPayments.Any())
+                {
+                    await paymentService.SavePayments(unclearedPayments);
+                }
 
                 // We have to access the settings object here directly without the settings helper since this thread is executed independently.
                 if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
@@ -42,10 +49,16 @@ namespace MoneyFox.Windows.Tasks
                     await UpdateMainTile();
                 }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("ClearingPayment - An Error occured");
+                Debug.Write(ex);
+            }
             finally
             {
                 deferral.Complete();
             }
+            Debug.WriteLine("ClearPayment started");
         }
 
         private async Task UpdateMainTile()
