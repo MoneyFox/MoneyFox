@@ -8,6 +8,9 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Reprsents the statistic view.
+    /// </summary>
     public abstract class StatisticViewModel : MvxViewModel
     {
         //this token ensures that we will be notified when a message is sent.
@@ -53,11 +56,13 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime StartDate
         {
-            get { return startDate; }
+            get => startDate;
             set
             {
                 startDate = value;
                 RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(Title));
             }
         }
 
@@ -66,11 +71,13 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public DateTime EndDate
         {
-            get { return endDate; }
+            get => endDate;
             set
             {
                 endDate = value; 
                 RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(Title));
             }
         }
 
