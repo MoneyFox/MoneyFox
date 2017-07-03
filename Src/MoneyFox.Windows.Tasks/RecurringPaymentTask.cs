@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Background;
+﻿using System.Diagnostics;
+using Windows.ApplicationModel.Background;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
@@ -16,6 +17,8 @@ namespace MoneyFox.Windows.Tasks
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("RecurringPaymentTask started.");
+
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
@@ -29,6 +32,7 @@ namespace MoneyFox.Windows.Tasks
             }
             finally
             {
+                Debug.WriteLine("RecurringPaymentTask stopped.");
                 deferral.Complete();
             }
         }
