@@ -161,7 +161,12 @@ namespace MoneyFox.Service.Tests.DataServices
         public async void GetAccountCount_NoData_NoException()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            var data = new List<AccountEntity>
+            {
+                new AccountEntity{Id = 1, Name = "Account1"},
+                new AccountEntity{Id = 2, Name = "Account2"},
+                new AccountEntity{Id = 3, Name = "Account3"}
+            }.AsQueryable();
 
             var mockSet = new Mock<DbSet<AccountEntity>>();
 
@@ -193,6 +198,44 @@ namespace MoneyFox.Service.Tests.DataServices
 
             // Assert
             Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public async void GetAccountCount_CorrectAmount()
+        {
+            // Arrange
+            var data = new List<AccountEntity>().AsQueryable();
+
+            var mockSet = new Mock<DbSet<AccountEntity>>();
+
+            mockSet.As<IAsyncEnumerable<AccountEntity>>()
+                   .Setup(m => m.GetEnumerator())
+                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
+
+            mockSet.As<IQueryable<AccountEntity>>()
+                   .Setup(m => m.Provider)
+                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
+
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+
+            var contextOptions = new DbContextOptions<ApplicationContext>();
+            var mockContext = new Mock<ApplicationContext>(contextOptions);
+            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
+
+            var dbFactory = new Mock<IDbFactory>();
+            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
+
+            var repository = new AccountRepository(dbFactory.Object);
+
+            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+
+            // Act
+            var result = await contactDataService.GetAccountCount();
+
+            // Assert
+            Assert.Equal(3, result);
         }
 
         #endregion
