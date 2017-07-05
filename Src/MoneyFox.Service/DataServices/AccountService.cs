@@ -63,9 +63,7 @@ namespace MoneyFox.Service.DataServices
         Task DeleteAccount(Account account);
     }
 
-    /// <summary>
-    ///     Offers service methods to access and modify account data.
-    /// </summary>
+    /// <inheritdoc />
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository accountRepository;

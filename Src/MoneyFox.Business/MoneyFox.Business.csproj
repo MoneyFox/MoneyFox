@@ -1,150 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15ACA206-DC79-429C-A4A5-D947D62481B5}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyFox.Business</RootNamespace>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>MoneyFox.Business</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-    <ReleaseVersion>0.12.0.0</ReleaseVersion>
+    <PackageId>MoneyFox.Business</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <DocumentationFile>bin\Debug\MoneyFox.Business.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="project.json" />
+    <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="Cheesebaron.MvxPlugins.Connectivity" Version="3.1.0" />
+    <PackageReference Include="Cheesebaron.MvxPlugins.Settings" Version="3.1.0" />
+    <PackageReference Include="Microsoft.OneDriveSDK" Version="2.0.7" />
+    <PackageReference Include="MvvmCross.Plugin.Email" Version="5.0.5" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="5.0.5" />
+    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="5.0.5" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="5.0.5" />
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="5.0.5" />
+    <PackageReference Include="Xamarin.Auth" Version="1.5.0.3" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="AppStart.cs" />
-    <Compile Include="Authentication\PasswordStorage.cs" />
-    <Compile Include="Authentication\Session.cs" />
-    <Compile Include="BusinessModule.cs" />
-    <Compile Include="Converter\AmountFormatConverter.cs" />
-    <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
-    <Compile Include="Converter\DateTimeFormatConverter.cs" />
-    <Compile Include="Converter\PaymentAmountConverter.cs" />
-    <Compile Include="Converter\RecurrenceTypeConverter.cs" />
-    <Compile Include="DebugTrace.cs" />
-    <Compile Include="Extensions\DateTimeExtension.cs" />
-    <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
-    <Compile Include="Extensions\StreamExtension.cs" />
-    <Compile Include="Helpers\PaymentTypeHelper.cs" />
-    <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Manager\BackupManager.cs" />
-    <Compile Include="Manager\BalanceCalculationManager.cs" />
-    <Compile Include="Manager\ClearPaymentManager.cs" />
-    <Compile Include="Manager\RecurringPaymentManager.cs" />
-    <Compile Include="Manager\SettingsManager.cs" />
-    <Compile Include="Messages\CategorySelectedMessage.cs" />
-    <Compile Include="Messages\DateSelectedMessage.cs" />
-    <Compile Include="Messages\FilterChangedMessage.cs" />
-    <Compile Include="Parameters\PaymentListParameter.cs" />
-    <Compile Include="Parameters\ModifyPaymentParameter.cs" />
-    <Compile Include="Parameters\ModifyAccountParameter.cs" />
-    <Compile Include="Parameters\ModifyCategoryParameter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\AccountListViewModel.cs" />
-    <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\BackupViewModel.cs" />
-    <Compile Include="ViewModels\BalanceViewModel.cs" />
-    <Compile Include="ViewModels\CategoryListViewModel.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IAccountListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\ICategoryListViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IStatisticCashFlowViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IViewActionViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
-    <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
-    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PaymentViewModel.cs" />
-    <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
-    <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
-    <Compile Include="ViewModels\SettingsPersonalizationViewModel.cs" />
-    <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
-    <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
-    <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
-    <Compile Include="ViewModels\StatisticViewModel.cs" />
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
+    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
-      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
-      <Name>MoneyFox.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
