@@ -14,7 +14,7 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class AccountServiceTests
     {
-        #region GetExcludedAccounts
+        #region GetAllAccounts
 
         [Fact]
         public async void GetAllAccounts_NoData_NoException()
