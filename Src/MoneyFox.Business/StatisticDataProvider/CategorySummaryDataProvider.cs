@@ -21,7 +21,7 @@ namespace MoneyFox.Business.StatisticDataProvider
         {
             var categories = new List<StatisticItem>();
 
-            foreach (var category in await categoryService.GetAllCategories())
+            foreach (var category in await categoryService.GetAllCategoriesWithPayments())
             {
                 if (category.Data.Payments == null) continue;
 

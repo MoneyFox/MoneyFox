@@ -21,6 +21,12 @@ namespace MoneyFox.Service.DataServices
         Task<IEnumerable<Category>> GetAllCategories();
 
         /// <summary>
+        ///     Returns all categories and joins the payments to them.
+        /// </summary>
+        /// <returns>List with all categories with payments.</returns>
+        Task<IEnumerable<Category>> GetAllCategoriesWithPayments();
+
+        /// <summary>
         ///     Looks up the category with the passed id and returns it.
         /// </summary>
         /// <param name="id">Id to look for.</param>
@@ -77,6 +83,18 @@ namespace MoneyFox.Service.DataServices
         {
             var list = await categoryRepository
                 .GetAll()
+                .OrderByName()
+                .ToListAsync();
+
+            return list.Select(x => new Category(x));
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Category>> GetAllCategoriesWithPayments()
+        {
+            var list = await categoryRepository
+                .GetAll()
+                .Include(x => x.Payments)
                 .OrderByName()
                 .ToListAsync();
 
