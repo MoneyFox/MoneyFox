@@ -106,11 +106,49 @@ namespace MoneyFox.Service.Tests.DataServices
 
         #region GetById
 
+        [Fact]
+        public async void GetById_NoData_NoException()
+        {
+            // Arrange
+            var data = new List<AccountEntity>().AsQueryable();
+
+            var mockSet = new Mock<DbSet<AccountEntity>>();
+
+            mockSet.As<IAsyncEnumerable<AccountEntity>>()
+                   .Setup(m => m.GetEnumerator())
+                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
+
+            mockSet.As<IQueryable<AccountEntity>>()
+                   .Setup(m => m.Provider)
+                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
+
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
+
+            var contextOptions = new DbContextOptions<ApplicationContext>();
+            var mockContext = new Mock<ApplicationContext>(contextOptions);
+            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
+
+            var dbFactory = new Mock<IDbFactory>();
+            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
+
+            var repository = new AccountRepository(dbFactory.Object);
+
+            var accountService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+
+            // Act
+            var result = await accountService.GetById(3);
+
+            // Assert
+            Assert.Null(result.Data);
+        }
+
         [Theory]
         [InlineData(1, "Account1")]
         [InlineData(2, "Account2")]
         [InlineData(3, "Account3")]
-        public async void GetById_NoData_NoException(int id, string expectedName)
+        public async void GetById_ReturnedCorrectly(int id, string expectedName)
         {
             // Arrange
             var data = new List<AccountEntity>
