@@ -279,6 +279,33 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected..
+        /// </summary>
+        public static string BackgroundAccessDeniedByPolicyMessage {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedByPolicyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected..
+        /// </summary>
+        public static string BackgroundAccessDeniedByUserMessage {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedByUserMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access denied.
+        /// </summary>
+        public static string BackgroundAccessDeniedTitle {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
         public static string BackupFailedTitle {

@@ -39,18 +39,20 @@ namespace MoneyFox.Windows.Business
 
         private void RegisterSyncBackupTask()
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != SYNC_BACKUP_TASK))
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == SYNC_BACKUP_TASK))
             {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = SYNC_BACKUP_TASK,
-                    TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK),
-                    IsNetworkRequested = true
-                };
-
-                builder.SetTrigger(new TimeTrigger((uint)(settingsManager.BackupSyncRecurrence * 60), false));
-                builder.Register();
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == SYNC_BACKUP_TASK).Value.Unregister(true);
             }
+
+            var builder = new BackgroundTaskBuilder
+            {
+                Name = SYNC_BACKUP_TASK,
+                TaskEntryPoint = string.Format("{0}.{1}", TASK_NAMESPACE, SYNC_BACKUP_TASK),
+                IsNetworkRequested = true
+            };
+
+            builder.SetTrigger(new TimeTrigger((uint) (settingsManager.BackupSyncRecurrence * 60), false));
+            builder.Register();
         }
     }
 }

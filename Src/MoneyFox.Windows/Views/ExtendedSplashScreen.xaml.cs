@@ -74,9 +74,7 @@ namespace MoneyFox.Windows.Views
                     var start = Mvx.Resolve<IMvxAppStart>();
                     start.Start();
 
-                    RegisterClearPaymentTask();
-                    RegisterRecurringPaymentTask();
-                    Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
+                    RegisterTasks();
 
                     shell.ViewModel = Mvx.Resolve<MenuViewModel>();
 
@@ -90,39 +88,63 @@ namespace MoneyFox.Windows.Views
                 });
             }
         }
-        
+
+        private async void RegisterTasks()
+        {
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
+            {
+                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
+                                                          Strings.BackgroundAccessDeniedByUserMessage);
+            }
+            else if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
+            {
+                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
+                                                                Strings.BackgroundAccessDeniedByPolicyMessage);
+            }
+            else
+            {
+                RegisterClearPaymentTask();
+                RegisterRecurringPaymentTask();
+                Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
+            }
+        }
+
         private void RegisterClearPaymentTask()
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENTS_TASK))
             {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = CLEAR_PAYMENTS_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
-                };
-
-                // Task will be executed all 30 minutes
-                builder.SetTrigger(new TimeTrigger(30, false));
-                builder.Register();
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENTS_TASK).Value.Unregister(true);
             }
+
+            var builder = new BackgroundTaskBuilder
+            {
+                Name = CLEAR_PAYMENTS_TASK,
+                TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
+            };
+
+            // Task will be executed all 30 minutes
+            builder.SetTrigger(new TimeTrigger(30, false));
+            builder.Register();
         }
 
         private void RegisterRecurringPaymentTask()
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == RECURRING_PAYMENT_TASK))
             {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = RECURRING_PAYMENT_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
-                };
-
-                // Task will be executed all 30 minutes
-                builder.SetTrigger(new TimeTrigger(30, false));
-                builder.Register();
+                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == RECURRING_PAYMENT_TASK).Value.Unregister(true);
             }
-        }
+            
+            var builder = new BackgroundTaskBuilder
+            {
+                Name = RECURRING_PAYMENT_TASK,
+                TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
+            };
 
+            // Task will be executed all 30 minutes
+            builder.SetTrigger(new TimeTrigger(30, false));
+            builder.Register();
+        }
 
         private async Task SetJumplist()
         {
