@@ -26,7 +26,7 @@ namespace MoneyFox.Windows.Tasks
                 var dbFactory = new DbFactory();
 
                 await new RecurringPaymentManager(
-                    new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                    new RecurringPaymentService(new RecurringPaymentRepository(dbFactory), new PaymentRepository(dbFactory)),
                         new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory)))
                     .CreatePaymentsUpToRecur();
             }

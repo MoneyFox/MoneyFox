@@ -59,7 +59,7 @@ namespace MoneyFox.Droid.Jobs
             var dbFactory = new DbFactory();
             var unitOfWork = new UnitOfWork(dbFactory);
             await new RecurringPaymentManager(
-                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory), new PaymentRepository(dbFactory)),
                 new PaymentService(new PaymentRepository(dbFactory),  unitOfWork))
                 .CreatePaymentsUpToRecur();
 
