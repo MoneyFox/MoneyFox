@@ -399,6 +399,12 @@ namespace MoneyFox.Business.ViewModels
                 }
                 SelectedPayment.Amount = amount;
 
+                // We remove clearance, when the payment is now in the future.
+                if (SelectedPayment.Date > DateTime.Now)
+                {
+                    SelectedPayment.IsCleared = false;
+                }
+
                 //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
                 await PrepareRecurringPayment();
 
