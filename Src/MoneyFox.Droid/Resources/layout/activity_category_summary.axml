@@ -14,6 +14,9 @@
         <include
             layout="@layout/toolbar_actionbar" />
         <MvxListView
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
