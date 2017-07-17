@@ -76,7 +76,7 @@ namespace MoneyFox.Droid.Jobs
                                                   this, Java.Lang.Class.FromType(typeof(RecurringPaymentJob))));
 
             // Execute all 30 Minutes
-            builder.SetPeriodic(30 * 60 * 1000);
+            builder.SetPeriodic(60 * 60 * 1000);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);
