@@ -112,6 +112,7 @@ namespace MoneyFox.Windows.Views
 
         private void RegisterClearPaymentTask()
         {
+            // Unregister existing task first.
             if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENTS_TASK))
             {
                 BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENTS_TASK).Value.Unregister(true);
@@ -130,6 +131,7 @@ namespace MoneyFox.Windows.Views
 
         private void RegisterRecurringPaymentTask()
         {
+            // Unregister existing task first.
             if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == RECURRING_PAYMENT_TASK))
             {
                 BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == RECURRING_PAYMENT_TASK).Value.Unregister(true);
