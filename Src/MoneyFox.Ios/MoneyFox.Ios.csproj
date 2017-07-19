@@ -133,8 +133,6 @@
     </Compile>
     <None Include="project.json" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
