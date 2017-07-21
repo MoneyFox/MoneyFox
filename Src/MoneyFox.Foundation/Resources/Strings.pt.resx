@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -139,13 +139,13 @@
     <value>Adicionar transferência</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>Dinheiro Fox</value>
+    <value>Money Fox</value>
   </data>
-  <data name="BackupFailedMessage" xml:space="preserve">
-    <value>O backup falhou!</value>
+  <data name="ErrorMessageBackupFailed" xml:space="preserve">
+    <value>Aconteceu um erro ao crirar seu becape. Por favor, tente novamente mais tarde.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Copia de segurança</value>
+    <value>Cópia de Segurança</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Fluxo de caixa</value>
@@ -391,8 +391,8 @@ Você deseja ir à loja para avaliar?</value>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Carregando...</value>
   </data>
-  <data name="AuthenticationFailedMessage" xml:space="preserve">
-    <value>Falha na autenticação</value>
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+    <value>There was an error during the authentication. Please try again later.</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
     <value>Versão</value>
@@ -554,9 +554,84 @@ Você deseja ir à loja para avaliar?</value>
     <value>Bimestral</value>
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Excluir conta do balanço</value>
+  </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>A senha informada está vazia. Por favor, informe uma senha primeiro e tente novamente.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>A senha está vazia</value>
+  </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>Ocorreu um erro com a restauração do backup. Por favor, contate-nos caso o erro persista.</value>
+  </data>
+  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+    <value>Contas excluídas</value>
+  </data>
+  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+    <value>Contas incluídas</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Altere a quantidade de horas para sincronizar o becape.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+    <value>Hora(s)</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Recorrência de Becape</value>
+  </data>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Bianualmente</value>
+  </data>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Trimestralmente</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Falha na autenticação</value>
+  </data>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Falha no becape!</value>
+  </data>
+  <data name="BackupRestoreFailedTitle" xml:space="preserve">
+    <value>Falha na restauração de becape!</value>
+  </data>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>Sobre</value>
+  </data>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>An error occured</value>
+  </data>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Is Recurring</value>
+  </data>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Select Filter</value>
+  </data>
+  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
+    <value>Finished clearing your payments.</value>
+  </data>
+  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
+    <value>You backup was synced successfully.</value>
+  </data>
+  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
+    <value>Recurring payments where created.</value>
+  </data>
+  <data name="BackupSyncFailedMessage" xml:space="preserve">
+    <value>Failed to sync the backup</value>
+  </data>
+  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
+    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
+    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
+    <value>Access denied</value>
   </data>
 </root>
