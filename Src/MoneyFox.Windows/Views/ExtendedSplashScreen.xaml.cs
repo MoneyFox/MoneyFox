@@ -124,8 +124,8 @@ namespace MoneyFox.Windows.Views
                 TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
             };
 
-            // Task will be executed all 30 minutes
-            builder.SetTrigger(new TimeTrigger(30, false));
+            // Task will be executed all hour
+            builder.SetTrigger(new TimeTrigger(60, false));
             builder.Register();
         }
 
@@ -143,8 +143,8 @@ namespace MoneyFox.Windows.Views
                 TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
             };
 
-            // Task will be executed all 30 minutes
-            builder.SetTrigger(new TimeTrigger(30, false));
+            // Task will be executed all hour
+            builder.SetTrigger(new TimeTrigger(60, false));
             builder.Register();
         }
 
