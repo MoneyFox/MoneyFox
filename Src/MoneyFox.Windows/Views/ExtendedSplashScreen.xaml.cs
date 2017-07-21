@@ -112,40 +112,34 @@ namespace MoneyFox.Windows.Views
 
         private void RegisterClearPaymentTask()
         {
-            // Unregister existing task first.
-            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == CLEAR_PAYMENTS_TASK))
+            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
             {
-                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == CLEAR_PAYMENTS_TASK).Value.Unregister(true);
+                var builder = new BackgroundTaskBuilder
+                {
+                    Name = CLEAR_PAYMENTS_TASK,
+                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
+                };
+
+                // Task will be executed all hour
+                builder.SetTrigger(new TimeTrigger(60, false));
+                builder.Register();
             }
-
-            var builder = new BackgroundTaskBuilder
-            {
-                Name = CLEAR_PAYMENTS_TASK,
-                TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
-            };
-
-            // Task will be executed all hour
-            builder.SetTrigger(new TimeTrigger(60, false));
-            builder.Register();
         }
 
         private void RegisterRecurringPaymentTask()
         {
-            // Unregister existing task first.
-            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == RECURRING_PAYMENT_TASK))
+            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
             {
-                BackgroundTaskRegistration.AllTasks.First(task => task.Value.Name == RECURRING_PAYMENT_TASK).Value.Unregister(true);
-            }
-            
-            var builder = new BackgroundTaskBuilder
-            {
-                Name = RECURRING_PAYMENT_TASK,
-                TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
-            };
+                var builder = new BackgroundTaskBuilder
+                {
+                    Name = RECURRING_PAYMENT_TASK,
+                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
+                };
 
-            // Task will be executed all hour
-            builder.SetTrigger(new TimeTrigger(60, false));
-            builder.Register();
+                // Task will be executed all hour
+                builder.SetTrigger(new TimeTrigger(60, false));
+                builder.Register();
+            }
         }
 
         private async Task SetJumplist()
