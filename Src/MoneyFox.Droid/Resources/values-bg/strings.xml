@@ -8,6 +8,7 @@
   <string name="menu_save">Запази</string>
   <string name="menu_delete">Изтрий</string>
   <string name="menu_select">Избери</string>
+  <string name="menu_set_filter">Set Filter</string>
   <!--Navigation Drawer-->
   <string name="menu_accounts">Акаунти</string>
   <string name="menu_statistics">Статистика</string>
