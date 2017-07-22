@@ -31,6 +31,13 @@ namespace MoneyFox.Service.DataServices
         Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate);
 
         /// <summary>
+        ///     Returns all payments assosciated to the passed account Id as charged or target.
+        /// </summary>
+        /// <param name="accountId">Id of the account to load.</param>
+        /// <returns>List of Payments</returns>
+        Task<IEnumerable<Payment>> GetPaymentsByAccountId(int accountId);
+
+        /// <summary>
         ///     Returns a payment searched by ID.
         /// </summary>
         /// <param name="id">Id to select the payment for.</param>
@@ -111,6 +118,16 @@ namespace MoneyFox.Service.DataServices
                 .HasDateSmallerEqualsThan(enddate.Date)
                 .ToListAsync();
 
+            return list.Select(x => new Payment(x));
+        }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Payment>> GetPaymentsByAccountId(int accountId)
+        {
+            var list = await paymentRepository
+                .GetAll()
+                .HasAccountId(accountId)
+                .ToListAsync();
             return list.Select(x => new Payment(x));
         }
 

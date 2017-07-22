@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
@@ -16,6 +17,12 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         public AccountRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+        }
+
+        /// <inheritdoc />
+        public string GetName(int id)
+        {
+            return DbSet.Select(x => x.Name).First();
         }
 
         /// <summary>

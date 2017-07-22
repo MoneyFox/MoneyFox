@@ -28,6 +28,13 @@ namespace MoneyFox.Service.DataServices
         Task<Account> GetById(int id);
 
         /// <summary>
+        ///     Selects the account name for the passed id.
+        /// </summary>
+        /// <param name="id">Id to select the account for.</param>
+        /// <returns>The name of the account.</returns>
+        string GetAccountName(int id);
+
+        /// <summary>
         ///     Returns the number of existing Accounts.
         /// </summary>
         /// <returns>Count of all existing accounts</returns>
@@ -93,6 +100,12 @@ namespace MoneyFox.Service.DataServices
         public async Task<Account> GetById(int id)
         {
             return new Account(await accountRepository.GetById(id));
+        }
+
+        /// <inheritdoc />
+        public string GetAccountName(int id)
+        {
+            return accountRepository.GetName(id);
         }
 
         /// <inheritdoc />
