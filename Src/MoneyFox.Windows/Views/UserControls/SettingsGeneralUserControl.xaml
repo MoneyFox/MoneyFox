@@ -25,7 +25,7 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                        Text="Setting explanation"
                        TextWrapping="WrapWholeWords" />
-            <input:RadNumericBox Value="{Binding BackupSyncRecurrence}" />
+            <input:RadNumericBox Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
         </StackPanel>
     </Grid>

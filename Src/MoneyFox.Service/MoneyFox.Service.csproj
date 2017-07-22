@@ -1,71 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41637575-DF70-48B4-A99C-46299A7D2E8F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>MoneyFox.Service</RootNamespace>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>MoneyFox.Service</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <PackageId>MoneyFox.Service</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wpa81</PackageTargetFallback>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\MoneyFox.Service.XML</DocumentationFile>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="DataServices\CategoryService.cs" />
-    <Compile Include="DataServices\RecurringPaymentService.cs" />
-    <Compile Include="DataServices\PaymentService.cs" />
-    <Compile Include="PaymentAmountHelper.cs" />
-    <Compile Include="Pocos\Category.cs" />
-    <Compile Include="Pocos\Account.cs" />
-    <Compile Include="Pocos\RecurringPayment.cs" />
-    <Compile Include="Pocos\Payment.cs" />
-    <Compile Include="QueryExtensions\AccountQueryExtensions.cs" />
-    <Compile Include="QueryExtensions\CategoryQueryExtensions.cs" />
-    <Compile Include="QueryExtensions\PaymentQueryExtension.cs" />
-    <Compile Include="RecurringPaymentHelper.cs" />
-    <Compile Include="ServiceModule.cs" />
-    <Compile Include="DataServices\AccountService.cs" />
-    <Compile Include="OneDriveService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.OneDriveSDK" Version="2.0.7" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="5.0.5" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="project.json" />
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+
 </Project>

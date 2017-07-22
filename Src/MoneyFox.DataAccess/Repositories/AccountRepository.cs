@@ -34,7 +34,7 @@ namespace MoneyFox.DataAccess.Repositories
                 .Include(x => x.ChargedRecurringPayments).ThenInclude(p => p.TargetAccount)
                 .Include(x => x.TargetedRecurringPayments).ThenInclude(p => p.Category)
                 .Include(x => x.TargetedRecurringPayments).ThenInclude(p => p.ChargedAccount)
-                .FirstAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

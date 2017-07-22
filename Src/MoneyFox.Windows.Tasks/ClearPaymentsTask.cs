@@ -56,9 +56,9 @@ namespace MoneyFox.Windows.Tasks
             }
             finally
             {
+                Debug.WriteLine("ClearPayment started");
                 deferral.Complete();
             }
-            Debug.WriteLine("ClearPayment started");
         }
 
         private async Task UpdateMainTile()

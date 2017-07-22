@@ -53,16 +53,18 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task CheckRecurringPayments(JobParameters args)
         {
+            Debug.WriteLine("RecurringPayment Job started.");
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
             var dbFactory = new DbFactory();
             var unitOfWork = new UnitOfWork(dbFactory);
             await new RecurringPaymentManager(
-                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory)),
+                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory), new PaymentRepository(dbFactory)),
                 new PaymentService(new PaymentRepository(dbFactory),  unitOfWork))
                 .CreatePaymentsUpToRecur();
 
+            Debug.WriteLine("RecurringPayment Job finished.");
             Toast.MakeText(this, Strings.RecurringPaymentsCreatedMessages, ToastLength.Long);
             JobFinished(args, false);
         }
@@ -71,10 +73,10 @@ namespace MoneyFox.Droid.Jobs
         {
             var builder = new JobInfo.Builder(RECURRING_PAYMENT_JOB_ID,
                                               new ComponentName(
-                                                  this, Java.Lang.Class.FromType(typeof(SyncBackupJob))));
+                                                  this, Java.Lang.Class.FromType(typeof(RecurringPaymentJob))));
 
             // Execute all 30 Minutes
-            builder.SetPeriodic(30 * 60 * 1000);
+            builder.SetPeriodic(60 * 60 * 1000);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);

@@ -627,4 +627,13 @@ WARNING: Local changes you made meanwhile we be lost!</value>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
     <value>Failed to sync the backup</value>
   </data>
+  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
+    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
+    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
 </root>

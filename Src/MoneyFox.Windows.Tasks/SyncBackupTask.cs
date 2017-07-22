@@ -1,4 +1,6 @@
-﻿using Windows.ApplicationModel.Background;
+﻿using System;
+using System.Diagnostics;
+using Windows.ApplicationModel.Background;
 using MoneyFox.Windows.Business;
 using MoneyFox.Business.Manager;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
@@ -11,11 +13,15 @@ using MvvmCross.Plugins.File.Uwp;
 
 namespace MoneyFox.Windows.Tasks
 {
+    /// <summary>
+    ///     Background task to sync the backup with OneDrive.
+    /// </summary>
     public sealed class SyncBackupTask : IBackgroundTask
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             var deferral = taskInstance.GetDeferral();
+            Debug.WriteLine("Sync Backup started.");
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
 
             try
@@ -29,8 +35,15 @@ namespace MoneyFox.Windows.Tasks
 
                 await backupManager.DownloadBackup();
             }
-            finally
+            catch (Exception ex)
             {
+                Debug.WriteLine("Sync Backup failed.");
+                Debug.WriteLine(ex);
+
+            } finally
+            {
+                Debug.WriteLine("Sync Backup stopped.");
+
                 deferral.Complete();
             }
         }

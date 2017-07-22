@@ -61,7 +61,7 @@ namespace MoneyFox.Droid.Activities
             base.OnCreate(bundle);
 
             // Handler to create jobs.
-            handler = new Handler((Message msg) => {
+            handler = new Handler(msg => {
                 switch (msg.What)
                 {
                     case MESSAGE_SERVICE_CLEAR_PAYMENTS:

@@ -23,6 +23,8 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class ClearPaymentsJob : JobService
     {
+        private const int CLEARPAYMENT_JOB_ID = 10;
+
         public override bool OnStartJob(JobParameters args)
         {
             Task.Run(async () => await ClearPayments(args));
@@ -52,6 +54,7 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task ClearPayments(JobParameters args)
         {
+            Debug.WriteLine("ClearPayments Job started");
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
@@ -63,14 +66,14 @@ namespace MoneyFox.Droid.Jobs
 
             if (unclearedPayments.Any())
             {
+                Debug.WriteLine("Payments for clearing found.");
                 await paymentService.SavePayments(unclearedPayments);
             }
 
             Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);
+            Debug.WriteLine("ClearPayments Job finished.");
             JobFinished(args, false);
         }
-
-        private const int CLEARPAYMENT_JOB_ID = 10;
 
         public void ScheduleTask()
         {
@@ -78,7 +81,7 @@ namespace MoneyFox.Droid.Jobs
                                               new ComponentName(
                                                   this, Java.Lang.Class.FromType(typeof(ClearPaymentsJob))));
             // Execute all 30 Minutes
-            builder.SetPeriodic(30 * 60 * 1000);
+            builder.SetPeriodic(60 * 60 * 1000);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);

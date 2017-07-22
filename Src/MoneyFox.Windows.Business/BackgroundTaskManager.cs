@@ -48,7 +48,7 @@ namespace MoneyFox.Windows.Business
                     IsNetworkRequested = true
                 };
 
-                builder.SetTrigger(new TimeTrigger((uint)(settingsManager.BackupSyncRecurrence * 60), false));
+                builder.SetTrigger(new TimeTrigger((uint) (settingsManager.BackupSyncRecurrence * 60), false));
                 builder.Register();
             }
         }

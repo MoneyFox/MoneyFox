@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -208,6 +207,8 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
+
+            await Task.CompletedTask;
         }
 
         private async Task Load()

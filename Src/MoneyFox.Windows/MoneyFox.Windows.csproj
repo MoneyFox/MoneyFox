@@ -24,7 +24,7 @@
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>2BD393557073ED01CE890EA7BCA8FC74A2047C79</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>5C4EBAD00EE8CD67D9E7B24CFDECFFFA2A9CE8B5</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>19B65101B5775C3CDCDF415C9CE5C0362B58683D</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
     <UseDotNetNativeSharedAssemblyFrameworkPackage>true</UseDotNetNativeSharedAssemblyFrameworkPackage>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
@@ -54,6 +54,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>

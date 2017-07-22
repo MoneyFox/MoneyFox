@@ -9,6 +9,12 @@ namespace MoneyFox.DataAccess
     /// </summary>
     public class ApplicationContext : DbContext
     {
+        public ApplicationContext()
+        {
+        }
+
+        public ApplicationContext(DbContextOptions options) : base(options) { }
+
         internal DbSet<AccountEntity> Accounts { get; set; }
         internal DbSet<PaymentEntity> Payments { get; set; }
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }

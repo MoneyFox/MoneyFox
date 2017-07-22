@@ -39,7 +39,7 @@ namespace MoneyFox.Droid.Jobs
             return true;
         }
 
-        public override StartCommandResult OnStartCommand(Intent intent, Android.App.StartCommandFlags flags, int startId)
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             var callback = (Messenger)intent.GetParcelableExtra("messenger");
             var m = Message.Obtain();
