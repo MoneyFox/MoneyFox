@@ -42,7 +42,8 @@ namespace MoneyFox.Service.DataServices
                 .GetMany(x => x.IsEndless ||
                               x.EndDate >= DateTime.Now.Date)
                 .Include(x => x.RelatedPayments)
-                .Where(x => x.ChargedAccount != null);
+                .Where(x => x.ChargedAccount != null)
+                .ToList();
 
             var payments = new List<Payment>();
             foreach (var recurringPayment in recurringPayments)
