@@ -54,12 +54,9 @@ namespace MoneyFox.Business.Manager
 
         #region Properties
 
-        public int DefaultAccount
-        {
-            get { return settings.GetValue(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT, true); }
-            set { settings.AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value); }
-        }
-
+        /// <summary>
+        ///     Indicates if the cash flow shall be displayed on the main tile or not.
+        /// </summary>
         public bool ShowCashFlowOnMainTile
         {
             get
@@ -70,6 +67,9 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Indicates if the backup shall be synced automatically.
+        /// </summary>
         public bool IsBackupAutouploadEnabled
         {
             get
@@ -80,48 +80,74 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Timestamp of the session
+        /// </summary>
+        /// <value>The session timestamp.</value>
         public string SessionTimestamp
         {
             get { return settings.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
             set { settings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
         }
 
+        /// <summary>
+        ///     Indicates if a password is required to login.
+        /// </summary>
         public bool PasswordRequired
         {
             get { return settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Indicates if the passport login is activated.
+        /// </summary>
         public bool PassportEnabled {
             get { return settings.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSPORT_REQUIRED_KEYNAME, value); }
         }
 
-
+        /// <summary>
+        ///     Timestamp when the database was updated the last time.
+        /// </summary>
+        /// <value>The last database update.</value>
         public DateTime LastDatabaseUpdate
         {
             get { return settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DateTime.MinValue); }
             set { settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Indicates if the dark theme is enabled.
+        /// </summary>
         public bool IsDarkThemeSelected
         {
             get { return settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Indicate if the system theme is used.
+        /// </summary>
         public bool UseSystemTheme
         {
             get { return settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Indicates if the user is logged in to the backup service.
+        /// </summary>
         public bool IsLoggedInToBackupService
         {
             get { return settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
         }
 
+        /// <summary>
+        ///     Recurrence to sync the backup.
+        /// </summary>
+        /// <value>The backup sync recurrence in hours..</value>
         public int BackupSyncRecurrence
         {
             get { return settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT); }
