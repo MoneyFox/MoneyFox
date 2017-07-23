@@ -1,12 +1,10 @@
-﻿using System;
+﻿﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Manager
 {
-    /// <summary>
-    ///     Provides access to the app settings.
-    /// </summary>
+    
     public class SettingsManager : ISettingsManager
     {
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
@@ -54,9 +52,7 @@ namespace MoneyFox.Business.Manager
 
         #region Properties
 
-        /// <summary>
-        ///     Indicates if the cash flow shall be displayed on the main tile or not.
-        /// </summary>
+        /// <inheritdoc />
         public bool ShowCashFlowOnMainTile
         {
             get
@@ -67,9 +63,7 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Indicates if the backup shall be synced automatically.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
             get
@@ -80,74 +74,55 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Timestamp of the session
-        /// </summary>
-        /// <value>The session timestamp.</value>
+        /// <inheritdoc />
         public string SessionTimestamp
         {
             get { return settings.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
             set { settings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
         }
 
-        /// <summary>
-        ///     Indicates if a password is required to login.
-        /// </summary>
+        /// <inheritdoc />
         public bool PasswordRequired
         {
             get { return settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Indicates if the passport login is activated.
-        /// </summary>
+        /// <inheritdoc />
         public bool PassportEnabled {
             get { return settings.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSPORT_REQUIRED_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Timestamp when the database was updated the last time.
-        /// </summary>
-        /// <value>The last database update.</value>
+        /// <inheritdoc />
         public DateTime LastDatabaseUpdate
         {
             get { return settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DateTime.MinValue); }
             set { settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Indicates if the dark theme is enabled.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsDarkThemeSelected
         {
             get { return settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Indicate if the system theme is used.
-        /// </summary>
+        /// <inheritdoc />
         public bool UseSystemTheme
         {
             get { return settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Indicates if the user is logged in to the backup service.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
             get { return settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
         }
 
-        /// <summary>
-        ///     Recurrence to sync the backup.
-        /// </summary>
-        /// <value>The backup sync recurrence in hours..</value>
+        /// <inheritdoc />
         public int BackupSyncRecurrence
         {
             get { return settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT); }
