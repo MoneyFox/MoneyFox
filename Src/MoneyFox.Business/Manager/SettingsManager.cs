@@ -7,9 +7,6 @@ namespace MoneyFox.Business.Manager
     
     public class SettingsManager : ISettingsManager
     {
-        private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
-        private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
-
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = true;
 
