@@ -12,7 +12,6 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -221,26 +220,23 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
-            var account = await accountService.GetById(AccountId);
-            Title = account.Data.Name;
+            Title = accountService.GetAccountName(AccountId);
 
-            var paymentQuery = account.Data.ChargedPayments
-                                      .Concat(account.Data.TargetedPayments);
+            var paymentQuery = await paymentService.GetPaymentsByAccountId(AccountId);
 
             if (filterMessage.IsClearedFilterActive)
             {
-                paymentQuery = paymentQuery.Where(x => x.IsCleared);
+                paymentQuery = paymentQuery.Where(x => x.Data.IsCleared);
             }
             if (filterMessage.IsRecurringFilterActive)
             {
-                paymentQuery = paymentQuery.Where(x => x.IsRecurring);
+                paymentQuery = paymentQuery.Where(x => x.Data.IsRecurring);
             }
 
             RelatedPayments = new ObservableCollection<PaymentViewModel>(
                 paymentQuery
-                    .OrderByDescending(x => x.Date)
-                    .Select(x => new PaymentViewModel(
-                                new Payment(x))));
+                    .OrderByDescending(x => x.Data.Date)
+                    .Select(x => new PaymentViewModel(x)));
 
             CreateNestedLists();
         }

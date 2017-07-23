@@ -10,6 +10,7 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
@@ -75,6 +76,10 @@ namespace MoneyFox.Windows.Views
                     start.Start();
 
                     RegisterTasks();
+
+                    await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
+                    Mvx.Resolve<IClearPaymentManager>().ClearPayments();
+                    await Mvx.Resolve<IBackupManager>().DownloadBackup();
 
                     shell.ViewModel = Mvx.Resolve<MenuViewModel>();
 

@@ -1,17 +1,12 @@
-﻿using System;
+﻿﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Manager
 {
-    /// <summary>
-    ///     Provides access to the app settings.
-    /// </summary>
+    
     public class SettingsManager : ISettingsManager
     {
-        private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
-        private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
-
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = true;
 
@@ -54,12 +49,7 @@ namespace MoneyFox.Business.Manager
 
         #region Properties
 
-        public int DefaultAccount
-        {
-            get { return settings.GetValue(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT, true); }
-            set { settings.AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value); }
-        }
-
+        /// <inheritdoc />
         public bool ShowCashFlowOnMainTile
         {
             get
@@ -70,6 +60,7 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
             get
@@ -80,48 +71,55 @@ namespace MoneyFox.Business.Manager
             set { settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public string SessionTimestamp
         {
             get { return settings.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
             set { settings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
         }
 
+        /// <inheritdoc />
         public bool PasswordRequired
         {
             get { return settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public bool PassportEnabled {
             get { return settings.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(PASSPORT_REQUIRED_KEYNAME, value); }
         }
 
-
+        /// <inheritdoc />
         public DateTime LastDatabaseUpdate
         {
             get { return settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DateTime.MinValue); }
             set { settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public bool IsDarkThemeSelected
         {
             get { return settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public bool UseSystemTheme
         {
             get { return settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
             get { return settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value); }
         }
 
+        /// <inheritdoc />
         public int BackupSyncRecurrence
         {
             get { return settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT); }

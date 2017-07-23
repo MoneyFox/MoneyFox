@@ -9,12 +9,6 @@ namespace MoneyFox.Business.Tests.Manager
     public class SettingsManagerTests
     {
         [Fact]
-        public void DefaultAccount_DefaultValue()
-        {
-            new SettingsManager(new Settings()).DefaultAccount.ShouldBe(-1);
-        }
-
-        [Fact]
         public void ShowCashFlowOnMainTile_DefaultValue()
         {
             new SettingsManager(new Settings()).ShowCashFlowOnMainTile.ShouldBeTrue();

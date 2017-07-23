@@ -231,7 +231,8 @@ namespace MoneyFox.Business.ViewModels
             {
                 if (Category == value) return;
 
-                Payment.Data.Category = value.Category.Data;
+                Payment.Data.Category = value?.Category.Data;
+
                 RaisePropertyChanged();
             }
         }

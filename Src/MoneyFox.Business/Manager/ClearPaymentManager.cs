@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using MoneyFox.Service.DataServices;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Business.Manager
 {

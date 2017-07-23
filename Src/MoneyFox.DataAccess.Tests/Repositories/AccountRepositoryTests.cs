@@ -481,5 +481,27 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             Assert.NotNull(result);
             Assert.Equal(testEntry.Id, result.Id);
         }
+
+        [Fact]
+        public async void GetName_NameReturned()
+        {
+            // Arrange
+            var factory = new DbFactory();
+            var unitOfWork = new UnitOfWork(factory);
+
+            var repository = new AccountRepository(factory);
+
+            const string accountName = "TestAccount";
+            var testEntry = new AccountEntity { Name = accountName };
+            repository.Add(testEntry);
+            await unitOfWork.Commit();
+
+            // Act
+            var result = repository.GetName(testEntry.Id);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(accountName, result);
+        }
     }
 }

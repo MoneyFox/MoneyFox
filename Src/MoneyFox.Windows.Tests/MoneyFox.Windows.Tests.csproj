@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>MoneyFox.Windows.Tests_TemporaryKey.pfx</PackageCertificateKeyFile>
     <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">14.0</UnitTestPlatformVersion>
-    <PackageCertificateThumbprint>3C019F0B3122402D0BB1591AB3E18C96A2DF8A6B</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>F9692136AAE9B49B81032F1C0A303E29B6FCB9E8</PackageCertificateThumbprint>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
   </PropertyGroup>
