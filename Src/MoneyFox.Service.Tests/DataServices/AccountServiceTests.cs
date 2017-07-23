@@ -199,12 +199,7 @@ namespace MoneyFox.Service.Tests.DataServices
         public async void GetAccountCount_NoData_NoException()
         {
             // Arrange
-            var data = new List<AccountEntity>
-            {
-                new AccountEntity{Id = 1, Name = "Account1"},
-                new AccountEntity{Id = 2, Name = "Account2"},
-                new AccountEntity{Id = 3, Name = "Account3"}
-            }.AsQueryable();
+            var data = new List<AccountEntity>().AsQueryable();
 
             var mockSet = new Mock<DbSet<AccountEntity>>();
 
@@ -242,7 +237,12 @@ namespace MoneyFox.Service.Tests.DataServices
         public async void GetAccountCount_CorrectAmount()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            var data = new List<AccountEntity>
+            {
+                new AccountEntity(),
+                new AccountEntity(),
+                new AccountEntity()
+            }.AsQueryable();
 
             var mockSet = new Mock<DbSet<AccountEntity>>();
 
