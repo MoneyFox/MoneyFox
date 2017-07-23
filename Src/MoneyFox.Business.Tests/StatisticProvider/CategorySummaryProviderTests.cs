@@ -27,7 +27,7 @@ namespace MoneyFox.Business.Tests.StatisticProvider
         {
             // Arrange
             var categoryServiceMock = new Mock<ICategoryService>();
-            categoryServiceMock.Setup(x => x.GetAllCategories())
+            categoryServiceMock.Setup(x => x.GetAllCategoriesWithPayments())
                                .Returns(Task.FromResult<IEnumerable<Category>>(new List<Category>
                                {
                                    new Category
