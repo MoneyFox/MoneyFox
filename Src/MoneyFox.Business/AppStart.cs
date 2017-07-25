@@ -1,7 +1,9 @@
 ﻿using MoneyFox.Business.Authentication;
+using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -37,6 +39,10 @@ namespace MoneyFox.Business
             {
                 await navigationService.Navigate<LoginViewModel>();
             }
+
+            await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
+            Mvx.Resolve<IClearPaymentManager>().ClearPayments();
+            await Mvx.Resolve<IBackupManager>().DownloadBackup();
         }
     }
 }
