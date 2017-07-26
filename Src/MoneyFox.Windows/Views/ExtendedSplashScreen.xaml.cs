@@ -77,10 +77,6 @@ namespace MoneyFox.Windows.Views
 
                     RegisterTasks();
 
-                    await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
-                    Mvx.Resolve<IClearPaymentManager>().ClearPayments();
-                    await Mvx.Resolve<IBackupManager>().DownloadBackup();
-
                     shell.ViewModel = Mvx.Resolve<MenuViewModel>();
 
                     //If Jump Lists are supported, adds them
