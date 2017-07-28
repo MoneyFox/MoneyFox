@@ -23,38 +23,6 @@
                 Value="{StaticResource PageTitleMargin}" />
     </Style>
 
-    <Style x:Key="PageTitleTextBlockStyle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource HeaderTextBlockStyle}">
-        <Setter Property="TextWrapping"
-                Value="NoWrap" />
-        <Setter Property="CharacterSpacing"
-                Value="75" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
-        <Setter Property="Margin"
-                Value="12, 14, 12, 4" />
-    </Style>
-
-    <Style x:Key="PageTitleTextBlockStylePhone"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="FontWeight"
-                Value="Bold" />
-        <Setter Property="TextWrapping"
-                Value="NoWrap" />
-        <Setter Property="CharacterSpacing"
-                Value="75" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
-        <Setter Property="Margin"
-                Value="12, 14, 12, 4" />
-    </Style>
-
     <Style x:Key="DeemphasizedBodyTextBlockStyle"
            TargetType="TextBlock"
            BasedOn="{StaticResource BodyTextBlockStyle}">

@@ -158,9 +158,6 @@
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AppShell.xaml.cs">
-      <DependentUpon>AppShell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
     </Compile>
@@ -370,10 +367,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AccountListView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
