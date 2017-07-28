@@ -8,6 +8,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:windows="using:MoneyFox.Windows"
+    xmlns:uwp="using:FontAwesome.UWP"
     mc:Ignorable="d"
     SizeChanged="ShellPage_OnSizeChanged">
     
@@ -25,15 +26,13 @@
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
-                <Viewbox
-                        Child="{x:Bind Icon}"
-                        Margin="16,12"
-                        VerticalAlignment="Center" />
+                
+                <uwp:FontAwesome Grid.Column="0" Icon="{Binding Symbol}"
+                        VerticalAlignment="Center"  />
                 <TextBlock
                         Grid.Column="1"
                         Margin="0,9,0,11"
                         VerticalAlignment="Center"
-                        Foreground="{x:Bind SelectedForeground, Mode=OneWay}"
                         Text="{x:Bind Label}"
                         Style="{StaticResource BodyTextBlockStyle}"
                         TextTrimming="None" />

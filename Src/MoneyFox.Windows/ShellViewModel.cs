@@ -4,6 +4,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using FontAwesome.UWP;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
@@ -59,13 +60,13 @@ namespace MoneyFox.Windows
             primaryItems.Clear();
             secondaryItems.Clear();
 
-            primaryItems.Add(ShellNavigationItem.FromType<AccountListViewModel>(Strings.AccountsLabel, Symbol.Home));
-            primaryItems.Add(ShellNavigationItem.FromType<StatisticSelectorViewModel>(Strings.StatisticsLabel, Symbol.Home));
+            primaryItems.Add(ShellNavigationItem.FromType<AccountListViewModel>(Strings.AccountsLabel, FontAwesomeIcon.University));
+            primaryItems.Add(ShellNavigationItem.FromType<StatisticSelectorViewModel>(Strings.StatisticsLabel, FontAwesomeIcon.BarChart));
 
-            secondaryItems.Add(ShellNavigationItem.FromType<CategoryListViewModel>(Strings.CategoriesLabel, Symbol.Home));
-            secondaryItems.Add(ShellNavigationItem.FromType<BackupViewModel>(Strings.BackupLabel, Symbol.Home));
-            secondaryItems.Add(ShellNavigationItem.FromType<SettingsViewModel>(Strings.SettingsLabel, Symbol.Home));
-            secondaryItems.Add(ShellNavigationItem.FromType<AboutViewModel>(Strings.AboutLabel, Symbol.Home));
+            secondaryItems.Add(ShellNavigationItem.FromType<CategoryListViewModel>(Strings.CategoriesLabel, FontAwesomeIcon.Tags));
+            secondaryItems.Add(ShellNavigationItem.FromType<BackupViewModel>(Strings.BackupLabel, FontAwesomeIcon.CloudUpload));
+            secondaryItems.Add(ShellNavigationItem.FromType<SettingsViewModel>(Strings.SettingsLabel, FontAwesomeIcon.Cog));
+            secondaryItems.Add(ShellNavigationItem.FromType<AboutViewModel>(Strings.AboutLabel, FontAwesomeIcon.InfoCircle));
         }
 
         public bool IsPaneOpen
@@ -182,6 +183,9 @@ namespace MoneyFox.Windows
             {
                 GoToState(PANORAMIC_STATE_NAME);
             }
+
+            primaryItems.First().IsSelected = true;
+            lastSelectedItem = primaryItems.First();
         }
 
         private void GoToState(string stateName)
