@@ -38,14 +38,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="StatisticSelectorViewTitle"
-                           Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Select Statistic" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+        <TextBlock x:Name="TitlePage"
+                   x:Uid="StatisticSelectorViewTitle"
+                   Text="Select Statistic"
+                   Style="{StaticResource PageTitleStyle}" />
+        
         <ScrollViewer Grid.Row="1"
                       Margin="0,7,0,0"
                       HorizontalAlignment="Stretch"
@@ -69,5 +66,25 @@
                 </ListView.ItemContainerStyle>
             </ListView>
         </ScrollViewer>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin"
+                                Value="48,0,12,7" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </views:MvxWindowsPage>

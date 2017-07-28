@@ -3,6 +3,9 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     ViewModel for the settings view.
+    /// </summary>
     public class SettingsViewModel : MvxViewModel
     {
         public SettingsViewModel(ISettingsManager settingsManager,
