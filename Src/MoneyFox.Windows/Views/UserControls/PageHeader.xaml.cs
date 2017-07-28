@@ -16,8 +16,8 @@ namespace MoneyFox.Windows.Views.UserControls
 
             Loaded += (s, a) =>
             {
-                AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
-                TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
+                //AppShell.Current.TogglePaneButtonRectChanged += Current_TogglePaneButtonSizeChanged;
+                //TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
         }
 

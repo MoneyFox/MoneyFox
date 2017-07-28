@@ -1,0 +1,274 @@
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using MoneyFox.Business.ViewModels;
+using MvvmCross.Core.Navigation;
+using MvvmCross.Core.Navigation.EventArguments;
+using MvvmCross.Core.ViewModels;
+
+namespace MoneyFox.Windows
+{
+    /// <summary>
+    ///     ViewModel for the ShellPage.
+    /// </summary>
+    public class ShellViewModel : MvxViewModel
+    {
+        private const string PANORAMIC_STATE_NAME = "PanoramicState";
+        private const string WIDE_STATE_NAME = "WideState";
+        private const string NARROW_STATE_NAME = "NarrowState";
+        private const double WIDE_STATE_MIN_WINDOW_WIDTH = 640;
+        private const double PANORAMIC_STATE_MIN_WINDOW_WIDTH = 1024;
+
+        private readonly IMvxNavigationService navigationService;
+
+        private SplitViewDisplayMode displayMode = SplitViewDisplayMode.CompactInline;
+
+        private ObservableCollection<ShellNavigationItem> primaryItems =
+            new ObservableCollection<ShellNavigationItem>();
+
+        private ObservableCollection<ShellNavigationItem> secondaryItems =
+            new ObservableCollection<ShellNavigationItem>();
+
+        private IMvxCommand stateChangedCommand;
+
+        private bool isPaneOpen;
+
+        private IMvxCommand itemSelected;
+
+        private object lastSelectedItem;
+
+        private Brush menuButtonColor;
+
+        private IMvxCommand openPaneCommand;
+
+        public ShellViewModel(IMvxNavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+
+            PopulateNavItems();
+            InitializeState(Window.Current.Bounds.Width);
+            navigationService.AfterNavigate += NavigationServiceOnAfterNavigate;
+        }
+
+        private void PopulateNavItems()
+        {
+            primaryItems.Clear();
+            secondaryItems.Clear();
+
+            primaryItems.Add(ShellNavigationItem.FromType<AccountListViewModel>("AccountList", Symbol.Home));
+        }
+
+        public bool IsPaneOpen
+        {
+            get => isPaneOpen;
+            set
+            {
+                if (isPaneOpen == value) return;
+
+                isPaneOpen = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Brush MenuButtonColor
+        {
+            get => menuButtonColor;
+            set
+            {
+                if (menuButtonColor == value) return;
+
+                menuButtonColor = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public SplitViewDisplayMode DisplayMode
+        {
+            get => displayMode;
+            set
+            {
+                if (displayMode == value) return;
+
+                displayMode = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ShellNavigationItem> PrimaryItems
+        {
+            get => primaryItems;
+            set
+            {
+                if (primaryItems == value) return;
+
+                primaryItems = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ShellNavigationItem> SecondaryItems
+        {
+            get => secondaryItems;
+            set
+            {
+                if (secondaryItems == value) return;
+
+                secondaryItems = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public IMvxCommand OpenPaneCommand
+        {
+            get
+            {
+                if (openPaneCommand == null)
+                {
+                    openPaneCommand = new MvxCommand(() => IsPaneOpen = !isPaneOpen);
+                }
+
+                return openPaneCommand;
+            }
+        }
+
+        public IMvxCommand ItemSelectedCommand
+        {
+            get
+            {
+                if (itemSelected == null)
+                {
+                    itemSelected = new MvxCommand<ItemClickEventArgs>(ItemSelected);
+                }
+
+                return itemSelected;
+            }
+        }
+
+        public IMvxCommand StateChangedCommand
+        {
+            get
+            {
+                if (stateChangedCommand == null)
+                {
+                    stateChangedCommand =
+                        new MvxCommand<VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
+                }
+
+                return stateChangedCommand;
+            }
+        }
+
+        private void InitializeState(double windowWith)
+        {
+            if (windowWith < WIDE_STATE_MIN_WINDOW_WIDTH)
+            {
+                GoToState(NARROW_STATE_NAME);
+            }
+            else if (windowWith < PANORAMIC_STATE_MIN_WINDOW_WIDTH)
+            {
+                GoToState(WIDE_STATE_NAME);
+            }
+            else
+            {
+                GoToState(PANORAMIC_STATE_NAME);
+            }
+        }
+
+        private void GoToState(string stateName)
+        {
+            switch (stateName)
+            {
+                case PANORAMIC_STATE_NAME:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    MenuButtonColor = new SolidColorBrush(Colors.White);
+                    break;
+                case WIDE_STATE_NAME:
+                    DisplayMode = SplitViewDisplayMode.CompactInline;
+                    IsPaneOpen = false;
+                    MenuButtonColor = new SolidColorBrush(Colors.White);
+                    break;
+                case NARROW_STATE_NAME:
+                    DisplayMode = SplitViewDisplayMode.Overlay;
+                    IsPaneOpen = false;
+                    
+                    MenuButtonColor = new SolidColorBrush(Colors.Black);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ItemSelected(ItemClickEventArgs args)
+        {
+            if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
+            {
+                IsPaneOpen = false;
+            }
+            Navigate(args.ClickedItem);
+        }
+
+        private void ChangeSelected(object oldValue, object newValue)
+        {
+            if (oldValue != null)
+            {
+                (oldValue as ShellNavigationItem).IsSelected = false;
+            }
+            if (newValue != null)
+            {
+                (newValue as ShellNavigationItem).IsSelected = true;
+            }
+        }
+
+        private async void Navigate(object item)
+        {
+            var navigationItem = item as ShellNavigationItem;
+            if (navigationItem != null)
+            {
+                if (navigationItem.ViewModel == typeof(AccountListViewModel))
+                {
+                    await navigationService.Navigate<AccountListViewModel>();
+                }
+                else if (navigationItem.ViewModel == typeof(StatisticSelectorViewModel))
+                {
+                    await navigationService.Navigate<StatisticSelectorViewModel>();
+                }
+                else if (navigationItem.ViewModel == typeof(CategoryListViewModel))
+                {
+                    await navigationService.Navigate<CategoryListViewModel>();
+                }
+                else if (navigationItem.ViewModel == typeof(BackupViewModel))
+                {
+                    await navigationService.Navigate<BackupViewModel>();
+                }
+                else if (navigationItem.ViewModel == typeof(SettingsViewModel))
+                {
+                    await navigationService.Navigate<SettingsViewModel>();
+                }
+                else if (navigationItem.ViewModel == typeof(AboutViewModel))
+                {
+                    await navigationService.Navigate<AboutViewModel>();
+                }
+            }
+        }
+
+        private void NavigationServiceOnAfterNavigate(object sender, NavigateEventArgs navigateEventArgs)
+        {
+            var navigationItem = PrimaryItems?.FirstOrDefault(i => i.ViewModel == navigateEventArgs?.ViewModel.GetType());
+            if (navigationItem == null)
+            {
+                navigationItem = SecondaryItems?.FirstOrDefault(i => i.ViewModel == navigateEventArgs?.ViewModel.GetType());
+            }
+
+            if (navigationItem != null)
+            {
+                ChangeSelected(lastSelectedItem, navigationItem);
+                lastSelectedItem = navigationItem;
+            }
+        }
+    }
+}

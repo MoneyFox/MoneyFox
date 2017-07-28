@@ -15,6 +15,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
@@ -62,14 +63,14 @@ namespace MoneyFox.Windows.Views
                 Dismissed = true;
                 var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => 
                 {
-                    Window.Current.Content = new AppShell { Language = ApplicationLanguages.Languages[0] };
+                    Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
                     ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-                    var shell = (AppShell) Window.Current.Content;
+                    var shell = (ShellPage) Window.Current.Content;
 
                     // When the navigation stack isn't restored, navigate to the first page
                     // suppressing the initial entrance animation.
-                    var setup = new Setup(shell.MyAppFrame);
+                    var setup = new Setup(shell.Frame);
                     setup.Initialize();
 
                     var start = Mvx.Resolve<IMvxAppStart>();
@@ -77,9 +78,9 @@ namespace MoneyFox.Windows.Views
 
                     RegisterTasks();
 
-                    shell.ViewModel = Mvx.Resolve<MenuViewModel>();
+                    shell.ViewModel = new ShellViewModel(Mvx.Resolve<IMvxNavigationService>());
 
-                    //If Jump Lists are supported, adds them
+                    //If Jump Lists are supported, add them
                     if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
                     {
                         await SetJumplist();

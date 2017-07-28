@@ -55,31 +55,8 @@
         </DataTemplate>
     </Page.Resources>
 
-    <!--  Adaptive triggers  -->
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState>
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="480" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter Target="HeaderTitle.Style"
-                            Value="{ThemeResource PageTitleTextBlockStyle}" />
-                </VisualState.Setters>
-            </VisualState>
-            <VisualState>
-                <VisualState.StateTriggers>
-                    <AdaptiveTrigger MinWindowWidth="0" />
-                </VisualState.StateTriggers>
-                <VisualState.Setters>
-                    <Setter Target="HeaderTitle.Style"
-                            Value="{ThemeResource PageTitleTextBlockStylePhone}" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -87,13 +64,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="AccountTitle" 
-                           Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Accounts" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+        <TextBlock x:Name="TitlePage"
+                   x:Uid="AccountTitle"
+                   Text="Accounts"
+                   Style="{StaticResource PageTitleStyle}" />
 
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
@@ -176,7 +150,7 @@
                    Visibility="{Binding IsAllAccountsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <CommandBar Grid.Row="3" DataContext="{Binding ViewActionViewModel}">
+        <CommandBar Grid.Row="3" Margin="-12,0,-12,0" DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddIncomeCommand}"
@@ -201,5 +175,25 @@
                               Label="Add Account" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin"
+                                Value="48,0,12,7" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </views:MvxWindowsPage>
