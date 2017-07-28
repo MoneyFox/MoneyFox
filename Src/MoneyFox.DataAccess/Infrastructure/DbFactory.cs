@@ -22,6 +22,11 @@ namespace MoneyFox.DataAccess.Infrastructure
         Task<ApplicationContext> Init();
 
         /// <summary>
+        ///     Disposes the current DB context and creates a new one
+        /// </summary>
+        Task Reinit();
+
+        /// <summary>
         ///     Migras the data from the old database to the new.
         /// </summary>
         Task MigrateOldDatabase(bool initMigration = false);
@@ -41,6 +46,13 @@ namespace MoneyFox.DataAccess.Infrastructure
             }
             await dbContext.Database.MigrateAsync();
             return dbContext;
+        }
+
+        /// <inheritdoc />
+        public async Task Reinit()
+        {
+            dbContext.Dispose();
+            await Init();
         }
 
         /// <inheritdoc />
