@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using MoneyFox.Foundation.Interfaces;
+ using MoneyFox.Foundation;
+ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Manager
 {
@@ -27,6 +28,9 @@ namespace MoneyFox.Business.Manager
 
         private const string BACKUP_SYNC_RECURRENCE_KEYNAME = "BackupSyncRecurrence";
         private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
+
+        public const string THEME_KEYNAME = "Theme";
+        private const AppTheme THEME_KEYDEFAULT = AppTheme.System;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
@@ -110,6 +114,12 @@ namespace MoneyFox.Business.Manager
         {
             get { return settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT); }
             set { settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value); }
+        }
+
+        public AppTheme Theme
+        {
+            get { return settings.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT); }
+            set { settings.AddOrUpdateValue(THEME_KEYNAME, value); }
         }
 
         /// <inheritdoc />

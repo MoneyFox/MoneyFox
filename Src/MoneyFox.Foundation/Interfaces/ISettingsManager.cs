@@ -50,6 +50,11 @@ namespace MoneyFox.Foundation.Interfaces
         bool UseSystemTheme { get; set; }
 
         /// <summary>
+        ///     Currently selected theme.
+        /// </summary>
+        AppTheme Theme { get; set; }
+
+        /// <summary>
         ///     Indicates if the user is logged in to the backup service.
         /// </summary>
         bool IsLoggedInToBackupService { get; set; }

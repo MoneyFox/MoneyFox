@@ -140,6 +140,7 @@
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\ThemeService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />

@@ -1,29 +1,25 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using System;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
     public class SettingsPersonalizationViewModel : MvxViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly IThemeService themeService;
 
-        public SettingsPersonalizationViewModel(ISettingsManager settingsManager)
+        public SettingsPersonalizationViewModel(IThemeService themeService)
         {
-            this.settingsManager = settingsManager;
+            this.themeService = themeService;
         }
 
-        public bool IsDarkThemeEnabled
-        {
-            get => settingsManager.IsDarkThemeSelected;
-            set => settingsManager.IsDarkThemeSelected = value;
-        }
+        public MvxCommand<int> SelectedTheme => new MvxCommand<int>(ThemeSelectionChanged);
 
-        public bool UseSystemTheme
+        private void ThemeSelectionChanged(int index)
         {
-            get => settingsManager.UseSystemTheme;
-            set => settingsManager.UseSystemTheme = value;
+            var theme = (AppTheme) Enum.ToObject(typeof(AppTheme), index);
+            themeService.SetTheme(theme);
         }
-
-        public bool UseCustomTheme => !UseSystemTheme;
     }
 }
