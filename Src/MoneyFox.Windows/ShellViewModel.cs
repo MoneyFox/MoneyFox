@@ -1,12 +1,11 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.Navigation.EventArguments;
 using MvvmCross.Core.ViewModels;
@@ -60,7 +59,13 @@ namespace MoneyFox.Windows
             primaryItems.Clear();
             secondaryItems.Clear();
 
-            primaryItems.Add(ShellNavigationItem.FromType<AccountListViewModel>("AccountList", Symbol.Home));
+            primaryItems.Add(ShellNavigationItem.FromType<AccountListViewModel>(Strings.AccountsLabel, Symbol.Home));
+            primaryItems.Add(ShellNavigationItem.FromType<StatisticSelectorViewModel>(Strings.StatisticsLabel, Symbol.Home));
+
+            secondaryItems.Add(ShellNavigationItem.FromType<CategoryListViewModel>(Strings.CategoriesLabel, Symbol.Home));
+            secondaryItems.Add(ShellNavigationItem.FromType<BackupViewModel>(Strings.BackupLabel, Symbol.Home));
+            secondaryItems.Add(ShellNavigationItem.FromType<SettingsViewModel>(Strings.SettingsLabel, Symbol.Home));
+            secondaryItems.Add(ShellNavigationItem.FromType<AboutViewModel>(Strings.AboutLabel, Symbol.Home));
         }
 
         public bool IsPaneOpen
