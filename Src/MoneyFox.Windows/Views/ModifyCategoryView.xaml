@@ -39,7 +39,9 @@
                                         UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </ScrollViewer>
-        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+        <CommandBar x:Name="BottomCommandBar"
+                    Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"

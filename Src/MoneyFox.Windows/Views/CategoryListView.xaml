@@ -15,7 +15,8 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -29,7 +30,8 @@
 
         <userControls:CategoryListUserControl Grid.Row="1" />
 
-        <CommandBar Grid.Row="2">
+        <CommandBar Grid.Row="2"
+                    Margin="{StaticResource NegativeLargeLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Command="{Binding CreateNewCategoryCommand}"

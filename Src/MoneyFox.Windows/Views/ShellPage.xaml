@@ -10,7 +10,8 @@
     xmlns:windows="using:MoneyFox.Windows"
     xmlns:uwp="using:FontAwesome.UWP"
     mc:Ignorable="d"
-    SizeChanged="ShellPage_OnSizeChanged">
+    SizeChanged="ShellPage_OnSizeChanged"
+    KeyDown="AppShell_KeyDown">
     
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="windows:ShellNavigationItem">

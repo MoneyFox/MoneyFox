@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -26,7 +27,7 @@ namespace MoneyFox.Windows
         private const double WIDE_STATE_MIN_WINDOW_WIDTH = 640;
         private const double PANORAMIC_STATE_MIN_WINDOW_WIDTH = 1024;
 
-        private readonly IMvxNavigationService navigationService;
+        public readonly IMvxNavigationService NavigationService;
         private readonly ISettingsManager settings;
 
         private SplitViewDisplayMode displayMode = SplitViewDisplayMode.CompactInline;
@@ -51,7 +52,7 @@ namespace MoneyFox.Windows
 
         public ShellViewModel(IMvxNavigationService navigationService, ISettingsManager settings)
         {
-            this.navigationService = navigationService;
+            this.NavigationService = navigationService;
             this.settings = settings;
 
             PopulateNavItems();
@@ -133,6 +134,18 @@ namespace MoneyFox.Windows
             }
         }
 
+        private Visibility isBackButtonVisible;
+        public Visibility IsBackButtonVisible
+        {
+            get => isBackButtonVisible;
+            set
+            {
+                if (isBackButtonVisible == value) return;
+
+                isBackButtonVisible = value;
+                RaisePropertyChanged();
+            }
+        } 
         public IMvxCommand OpenPaneCommand
         {
             get
@@ -241,32 +254,30 @@ namespace MoneyFox.Windows
         private async void Navigate(object item)
         {
             var navigationItem = item as ShellNavigationItem;
-            if (navigationItem != null)
+            if (navigationItem == null) return;
+            if (navigationItem.ViewModel == typeof(AccountListViewModel))
             {
-                if (navigationItem.ViewModel == typeof(AccountListViewModel))
-                {
-                    await navigationService.Navigate<AccountListViewModel>();
-                }
-                else if (navigationItem.ViewModel == typeof(StatisticSelectorViewModel))
-                {
-                    await navigationService.Navigate<StatisticSelectorViewModel>();
-                }
-                else if (navigationItem.ViewModel == typeof(CategoryListViewModel))
-                {
-                    await navigationService.Navigate<CategoryListViewModel>();
-                }
-                else if (navigationItem.ViewModel == typeof(BackupViewModel))
-                {
-                    await navigationService.Navigate<BackupViewModel>();
-                }
-                else if (navigationItem.ViewModel == typeof(SettingsViewModel))
-                {
-                    await navigationService.Navigate<SettingsViewModel>();
-                }
-                else if (navigationItem.ViewModel == typeof(AboutViewModel))
-                {
-                    await navigationService.Navigate<AboutViewModel>();
-                }
+                await NavigationService.Navigate<AccountListViewModel>();
+            }
+            else if (navigationItem.ViewModel == typeof(StatisticSelectorViewModel))
+            {
+                await NavigationService.Navigate<StatisticSelectorViewModel>();
+            }
+            else if (navigationItem.ViewModel == typeof(CategoryListViewModel))
+            {
+                await NavigationService.Navigate<CategoryListViewModel>();
+            }
+            else if (navigationItem.ViewModel == typeof(BackupViewModel))
+            {
+                await NavigationService.Navigate<BackupViewModel>();
+            }
+            else if (navigationItem.ViewModel == typeof(SettingsViewModel))
+            {
+                await NavigationService.Navigate<SettingsViewModel>();
+            }
+            else if (navigationItem.ViewModel == typeof(AboutViewModel))
+            {
+                await NavigationService.Navigate<AboutViewModel>();
             }
         }
 

@@ -44,7 +44,8 @@
             <userControls:CategoryListUserControl />
         </Grid>
 
-        <CommandBar Grid.Row="2">
+        <CommandBar Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryLabel"
                               Command="{Binding CreateNewCategoryCommand}"

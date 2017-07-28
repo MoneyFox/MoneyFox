@@ -44,7 +44,9 @@
             <userControls:PaymentListUserControl />
         </Grid>
 
-        <CommandBar Grid.Row="2" DataContext="{Binding ViewActionViewModel}">
+        <CommandBar Grid.Row="2"
+                    DataContext="{Binding ViewActionViewModel}"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="FilterLabel"
                               Icon="Filter"

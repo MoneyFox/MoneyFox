@@ -23,17 +23,18 @@
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
-                  Padding="4"
-                  Margin="0,0,0,2"
-                  Background="{StaticResource ListItemBrush}">
-                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-                <StackPanel HorizontalAlignment="Right"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Right"
-                               Text="{Binding Value,
-                                              Converter={StaticResource AmountFormatConverter}}"
-                               TextAlignment="Right" />
+                  Background="{StaticResource ListItemBrush}"
+                  Margin="{StaticResource SmallListItemMargin}">
+                <StackPanel Margin="{StaticResource NegativeMediumLeftRightMargin}">
+                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Right"
+                                   Text="{Binding Value,
+                                                  Converter={StaticResource AmountFormatConverter}}"
+                                   TextAlignment="Right" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -65,7 +66,7 @@
                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                           VerticalScrollBarVisibility="Auto">
                 <ListView Background="Transparent"   
-                          Margin="-12,0,-12,0"
+                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     ItemTemplate="{StaticResource CategoryTemplate}"
                     ItemsSource="{Binding CategorySummary}">
                     <ListView.ItemContainerStyle>
@@ -77,7 +78,9 @@
                 </ListView>
             </ScrollViewer>
         </Grid>
-        <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">
+        <CommandBar Grid.Row="2"
+                    ClosedDisplayMode="Minimal"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"

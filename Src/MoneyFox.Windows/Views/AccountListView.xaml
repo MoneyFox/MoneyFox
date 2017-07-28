@@ -25,37 +25,42 @@
 
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
-            <StackPanel Margin="0,0,0,2"
-                        Padding="4"
-                        HorizontalAlignment="Stretch"
-                        Background="{StaticResource ListItemBrush}"
-                        RightTapped="AccountList_RightTapped">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Edit"
-                                        Click="Edit_OnClick"
-                                        Text="Edit" />
-                        <MenuFlyoutItem x:Uid="Delete"
-                                        Click="Delete_OnClick"
-                                        Text="Delete" />
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch">
-                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind Name}"
-                               TextTrimming="CharacterEllipsis" />
-                    <TextBlock HorizontalAlignment="Right"
-                               Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                               TextAlignment="Right" />
-                </Grid>
-                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="{x:Bind Iban}" />
+            <StackPanel Margin="{StaticResource SmallListItemMargin}"
+                        Padding="{StaticResource SmallListItemPadding}">
+                <StackPanel HorizontalAlignment="Stretch"
+                            Background="{StaticResource ListItemBrush}"
+                            RightTapped="AccountList_RightTapped">
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="Edit"
+                                            Click="Edit_OnClick"
+                                            Text="Edit" />
+                            <MenuFlyoutItem x:Uid="Delete"
+                                            Click="Delete_OnClick"
+                                            Text="Delete" />
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{x:Bind Name}"
+                                       TextTrimming="CharacterEllipsis" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                       TextAlignment="Right" />
+                        </Grid>
+                        <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="{x:Bind Iban}" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -70,16 +75,16 @@
 
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="{StaticResource NegativeLargeLeftRightMargin}">
             <StackPanel>
                 <TextBlock x:Uid="IncludedAccounts"
                            Text="Included Accounts"
-                           Margin="3,0,0,0"
                            Style="{StaticResource HeaderStyle}"
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                            EntranceNavigationTransitionInfo.IsTargetElement="True" />
                 <controls:WarningListView HorizontalAlignment="Stretch"
-                                          Margin="-12,0,-12,0"
                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                                           ItemTemplate="{StaticResource AccountItemTemplate}"
                                           ItemsSource="{Binding IncludedAccounts}"
@@ -106,7 +111,7 @@
 
                 <TextBlock x:Uid="ExcludedAccounts"
                            Text="Excluded Accounts"
-                           Margin="3,15,0,0"
+                           Margin="0,15,0,0"
                            Style="{StaticResource HeaderStyle}"
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                            EntranceNavigationTransitionInfo.IsTargetElement="True" />
@@ -143,13 +148,14 @@
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{ThemeResource SystemBaseMediumLowColor}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
                    Visibility="{Binding IsAllAccountsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <CommandBar Grid.Row="3" Margin="-12,0,-12,0" DataContext="{Binding ViewActionViewModel}">
+        <CommandBar Grid.Row="3"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                    DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddIncomeLabel"
                               Command="{Binding GoToAddIncomeCommand}"
@@ -195,4 +201,4 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
-</views:MvxWindowsPage>
+</views:MvxWindowsPage> 

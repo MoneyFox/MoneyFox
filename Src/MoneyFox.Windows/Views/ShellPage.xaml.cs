@@ -1,6 +1,10 @@
-using Windows.Foundation.Metadata;
+using System;
+using Windows.System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using MvvmCross.Core.Navigation.EventArguments;
 
 namespace MoneyFox.Windows.Views
 {
@@ -11,11 +15,92 @@ namespace MoneyFox.Windows.Views
     {
         public Frame Frame => ShellFrame;
 
-        public ShellViewModel ViewModel { get; set; }
+        private ShellViewModel viewModel;
 
+        public ShellViewModel ViewModel
+        {
+            get => viewModel;
+            set
+            {
+                viewModel = value;
+                viewModel.NavigationService.AfterNavigate += NavigationServiceOnAfterNavigate;
+            }
+        }
+
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public ShellPage()
         {
             InitializeComponent();
+
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.BackRequested += SystemNavigationManager_BackRequested;
+            //start with a hidden back button. This changes when you navigate to an other page
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void NavigationServiceOnAfterNavigate(object sender, NavigateEventArgs navigateEventArgs)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                Frame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            var handled = e.Handled;
+            BackRequested(ref handled);
+            e.Handled = handled;
+        }
+
+        private void BackRequested(ref bool handled)
+        {
+            // Get a hold of the current Frame so that we can inspect the app back stack.
+            if (Frame == null)
+            {
+                return;
+            }
+
+            // Check to see if this is the top-most page on the app back stack.
+            if (Frame.CanGoBack && !handled)
+            {
+                // If not, set the event to handled and go back to the previous page in the app.
+                handled = true;
+                Frame.GoBack();
+
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    Frame.CanGoBack ?
+                        AppViewBackButtonVisibility.Visible :
+                        AppViewBackButtonVisibility.Collapsed;
+            }
+        }
+
+        /// <summary>
+        ///     Default keyboard focus movement for any unhandled keyboarding
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AppShell_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            var direction = FocusNavigationDirection.None;
+            switch (e.Key)
+            {
+                case VirtualKey.Escape:
+                    var temp = false;
+                    BackRequested(ref temp);
+                    break;
+            }
+
+            if (direction != FocusNavigationDirection.None)
+            {
+                var control = FocusManager.FindNextFocusableElement(direction) as Control;
+                if (control == null) return;
+
+                control.Focus(FocusState.Programmatic);
+                e.Handled = true;
+            }
         }
 
         private void ShellPage_OnSizeChanged(object sender, SizeChangedEventArgs e)

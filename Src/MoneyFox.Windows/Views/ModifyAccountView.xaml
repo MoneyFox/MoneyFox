@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
-                   Text="Binding Title"
+                   Text="{Binding Title}"
                    Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"
@@ -23,14 +23,14 @@
                       VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="12,0,12,0" EntranceNavigationTransitionInfo.IsTargetElement="True">
                 <TextBox x:Uid="Name"
-                         Margin="0,0,0,12"
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          VerticalAlignment="Top"
                          Header="Name"
                          Text="{Binding SelectedAccount.Name,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox x:Uid="Iban"
-                         Margin="0,0,0,12"
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          VerticalAlignment="Top"
                          Header="IBAN"
                          Text="{Binding SelectedAccount.Iban,
@@ -38,7 +38,7 @@
                                         UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox x:Uid="CurrentBalanceTextBox"
                          x:Name="TextBoxCurrentBalance"
-                         Margin="0,0,0,12"
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          GotFocus="TextBoxOnFocus"
                          Header="Current Balance"
                          InputScope="Number"
@@ -48,7 +48,7 @@
                                         UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
                 <TextBox x:Uid="NoteTextBox"
-                         Margin="0,0,0,12"
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          VerticalAlignment="Top"
                          Header="Notes"
                          Text="{Binding SelectedAccount.Note,
@@ -57,7 +57,7 @@
                          TextWrapping="Wrap" />
 
                 <CheckBox x:Uid="AccoutnExcluded"
-                          Margin="0,0,0,12"
+                          Margin="{StaticResource SmallTitleContentMargin}"
                           VerticalAlignment="Top"
                           Content="Exclude account from balance"
                           IsChecked="{Binding SelectedAccount.IsExcluded,
@@ -65,7 +65,9 @@
                                               UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </ScrollViewer>
-        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+        <CommandBar x:Name="BottomCommandBar"
+                    Grid.Row="2"
+                    Margin="{StaticResource NegativeLargeLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"

@@ -22,7 +22,8 @@
         <converter:NativeBackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -34,7 +35,6 @@
                    Style="{StaticResource PageTitleStyle}" />
 
         <StackPanel Grid.Row="1"
-                    Margin="19,9.5,19,0"
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
             <Button x:Uid="Login"
                     HorizontalAlignment="Stretch"

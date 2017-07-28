@@ -81,7 +81,8 @@
 
         <CommandBar Grid.Row="4"
                     Height="24"
-                    ClosedDisplayMode="Minimal">
+                    ClosedDisplayMode="Minimal"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"

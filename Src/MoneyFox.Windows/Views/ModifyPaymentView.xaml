@@ -46,8 +46,8 @@
 
         <Grid Grid.Row="1" EntranceNavigationTransitionInfo.IsTargetElement="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="12,0,12,0">
-                    <ComboBox Margin="0,7,0,0"
+                <StackPanel>
+                    <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
                               HorizontalAlignment="Stretch"
                               Header="{Binding AccountHeader}"
                               ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
@@ -64,8 +64,8 @@
                         </interactivity:Interaction.Behaviors>
                     </ComboBox>
 
-                    <ComboBox x:Uid="TargetAccountTextBox"
-                              Margin="0,7,0,0"
+                    <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
+                              x:Uid="TargetAccountTextBox"
                               HorizontalAlignment="Stretch"
                               Header="target account"
                               ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
@@ -86,7 +86,7 @@
                     </ComboBox>
                     <TextBox x:Uid="AmountTextBox"
                              x:Name="TextBoxAmount"
-                             Margin="0,7,0,0"
+                             Margin="{StaticResource SmallTitleContentMargin}"
                              GotFocus="TextBoxOnFocus"
                              Header="amount"
                              InputScope="Number"
@@ -95,7 +95,7 @@
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextAlignment="Right" />
-                    <Grid Margin="0,7,0,0">
+                    <Grid Margin="{StaticResource SmallTitleContentMargin}">
                         <TextBox x:Uid="CategoryTextBox"
                                  Header="Category"
                                  IsReadOnly="True"
@@ -103,7 +103,8 @@
                                                 UpdateSourceTrigger=PropertyChanged}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="GotFocus">
-                                    <core:InvokeCommandAction Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                                    <core:InvokeCommandAction
+                                        Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </TextBox>
@@ -120,7 +121,7 @@
                         </Image>
                     </Grid>
                     <DatePicker x:Uid="DateDatePicker"
-                                Margin="0,12,0,0"
+                                Margin="{StaticResource SmallTitleContentMargin}"
                                 HorizontalAlignment="Left"
                                 Date="{Binding Date,
                                                Converter={StaticResource DateTimeToDateTimeOffsetConverter},
@@ -128,7 +129,7 @@
                                                UpdateSourceTrigger=PropertyChanged}"
                                 Header="date" />
                     <TextBox x:Uid="NoteTextBox"
-                             Margin="0,7,0,0"
+                             Margin="{StaticResource SmallTitleContentMargin}"
                              Header="note"
                              Text="{Binding SelectedPayment.Note,
                                             Mode=TwoWay,
@@ -136,7 +137,7 @@
                              TextWrapping="Wrap" />
                     <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
                     <ToggleSwitch x:Uid="RepeatSwitch"
-                                  Margin="0,7,0,0"
+                                  Margin="{StaticResource SmallTitleContentMargin}"
                                   VerticalAlignment="Stretch"
                                   Header="repeat"
                                   IsOn="{Binding SelectedPayment.IsRecurring,
@@ -144,8 +145,8 @@
                                   Toggled="ToggleRecurringVisibility" />
                     <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibiltyInitialy">
                         <ComboBox x:Uid="RecurrenceComboBox"
-                                  Margin="0,7,0,0"
                                   HorizontalAlignment="Stretch"
+                                  Margin="{StaticResource SmallTitleContentMargin}"
                                   Header="Reccurence"
                                   ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
                                   ItemsSource="{Binding RecurrenceList}"
@@ -153,13 +154,13 @@
                                                          Mode=TwoWay,
                                                          UpdateSourceTrigger=PropertyChanged}" />
                         <CheckBox x:Uid="EndlessCheckBox"
-                                  Margin="0,7,0,0"
                                   Content="Endless"
+                                  Margin="{StaticResource SmallTitleContentMargin}"
                                   IsChecked="{Binding IsEndless,
                                                       Mode=TwoWay,
                                                       UpdateSourceTrigger=PropertyChanged}" />
                         <DatePicker x:Uid="EndDateHeader"
-                                    Margin="0,12,0,0"
+                                    Margin="{StaticResource SmallTitleContentMargin}"
                                     Date="{Binding EndDate,
                                                    Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                    Mode=TwoWay,
@@ -172,7 +173,9 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+        <CommandBar x:Name="BottomCommandBar"
+                    Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"

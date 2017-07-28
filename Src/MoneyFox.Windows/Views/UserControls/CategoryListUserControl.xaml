@@ -20,8 +20,6 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
             <StackPanel MinWidth="300"
-                        Margin="0,0,0,2"
-                        Padding="4"
                         Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         RightTapped="CategoryListRightTapped">
@@ -35,7 +33,7 @@
                                         Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="{x:Bind Name}" />
+                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="{StaticResource MediumLeftRightMargin}" Text="{x:Bind Name}" />
             </StackPanel>
         </DataTemplate>
 
@@ -43,8 +41,9 @@
             <Border Background="Transparent" Padding="3">
                 <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Center"
+                           Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           FontSize="18"
+                           FontSize="{StaticResource MediumFontSize}"
                            Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
@@ -55,7 +54,7 @@
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="18"
+                               FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>
@@ -67,45 +66,49 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
         <TextBox x:Uid="SearchHeader"
                  Grid.Row="0"
-                 Margin="5,0,5,0"
                  Header="search"
                  Text="{Binding SearchText,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}" />
-        <SemanticZoom Grid.Row="1">
+        <SemanticZoom Grid.Row="1"
+                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>
 
                 <ListView IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
-                          Margin="-12,0,-12,0"
+                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                           ItemTemplate="{StaticResource CategoryTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
+                    
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
                                                       InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
+                    
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
                     </ListView.GroupStyle>
                 </ListView>
+                
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
-                <GridView Margin="0,12,0,0"
+                <GridView Margin="{StaticResource MediumTitleContentMargin}"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           ItemTemplate="{StaticResource JumpTemplate}"
@@ -125,7 +128,6 @@
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="{ThemeResource SystemBaseMediumLowColor}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
                    Visibility="{Binding IsCategoriesEmpty,

@@ -7,35 +7,32 @@
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
-        <Pivot Margin="{StaticResource SmallTitleContentMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Pivot Style="{StaticResource CustomPivotStyle}">
             <!--  General  -->
             <PivotItem Header="Backup"
                        x:Uid="BackupSettingsHeader"
                        EntranceNavigationTransitionInfo.IsTargetElement="True">
-                <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0"
-                                                         DataContext="{Binding SettingsGeneralViewModel}" />
+                <userControls:SettingsGeneralUserControl DataContext="{Binding SettingsGeneralViewModel}" />
             </PivotItem>
 
             <!--  Tiles  -->
             <PivotItem Header="Tiles"
                        x:Uid="TilesSettingsHeader">
-                <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0"
-                                                           DataContext="{Binding SettingsShortcutsViewModel}" />
+                <userControls:SettingsShortcutsUserControl DataContext="{Binding SettingsShortcutsViewModel}" />
             </PivotItem>
 
             <!--  Password Settings  -->
             <PivotItem Header="Password"
                        x:Uid="SecuritySettingsHeader">
-                <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0"
-                                                          DataContext="{Binding SettingsSecurityViewModel}" />
+                <userControls:SettingsSecurityUserControl DataContext="{Binding SettingsSecurityViewModel}" />
             </PivotItem>
 
             <!--  Personalization Settings  -->
             <PivotItem Header="Theme"
                        x:Uid="ThemeSettingsHeader">
-                <userControls:SettingsPersonalizationUserControl Margin="-7,0,-7,0"
-                                                                 DataContext="{Binding SettingsPersonalizationViewModel}" />
+                <userControls:SettingsPersonalizationUserControl DataContext="{Binding SettingsPersonalizationViewModel}" />
             </PivotItem>
         </Pivot>
     </Grid>
