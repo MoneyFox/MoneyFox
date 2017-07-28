@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
@@ -10,11 +10,10 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Toolkit.Uwp;
-using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Tasks;
 using MvvmCross.Core.ViewModels;
@@ -29,11 +28,6 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class ExtendedSplashScreen
     {
-        private const string TASK_NAMESPACE = "MoneyFox.Windows.Tasks";
-        private const string CLEAR_PAYMENTS_TASK = "ClearPaymentsTask";
-        private const string RECURRING_PAYMENT_TASK = "RecurringPaymentTask";
-
-
         internal bool Dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame RootFrame;
 
@@ -100,11 +94,34 @@ namespace MoneyFox.Windows.Views
 
         private void RegisteredClearPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
-            args.CheckResult();
+            var messageDict = new Dictionary<string, string>();
+            try
+            {
+                args.CheckResult();
+                messageDict.Add("Successful", "true");
+            }
+            catch(Exception ex)
+            {
+                messageDict.Add("Successful", "false");
+                messageDict.Add("Exception", ex.ToString());
+            }
+            Analytics.TrackEvent("Clear Payment Job finished", messageDict);
         }
-        private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
+
+        private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender,
+                                                               BackgroundTaskCompletedEventArgs args)
         {
-            args.CheckResult();
+            var messageDict = new Dictionary<string, string>();
+            try
+            {
+                args.CheckResult();
+                messageDict.Add("Successful", "true");
+            }
+            catch (Exception ex)
+            {
+                messageDict.Add("Successful", "false");
+                messageDict.Add("Exception", ex.ToString());
+            }
         }
 
         private async Task SetJumplist()
