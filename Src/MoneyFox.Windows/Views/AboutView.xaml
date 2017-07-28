@@ -105,6 +105,16 @@
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>
+
+                <Button x:Name="FeedbackButton"
+                        FontFamily="Segoe MDL2 Assets"
+                        Content="&#xE939;"
+                        HorizontalAlignment="Left"
+                        Margin="138,352,0,0"
+                        VerticalAlignment="Top"
+                        Visibility="Collapsed"
+                        Click="FeedbackButton_Click" />
+
                 <Button x:Uid="RateThisApp"
                         Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
