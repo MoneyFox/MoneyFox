@@ -6,6 +6,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using FontAwesome.UWP;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.Navigation.EventArguments;
@@ -25,6 +27,7 @@ namespace MoneyFox.Windows
         private const double PANORAMIC_STATE_MIN_WINDOW_WIDTH = 1024;
 
         private readonly IMvxNavigationService navigationService;
+        private readonly ISettingsManager settings;
 
         private SplitViewDisplayMode displayMode = SplitViewDisplayMode.CompactInline;
 
@@ -46,9 +49,10 @@ namespace MoneyFox.Windows
 
         private IMvxCommand openPaneCommand;
 
-        public ShellViewModel(IMvxNavigationService navigationService)
+        public ShellViewModel(IMvxNavigationService navigationService, ISettingsManager settings)
         {
             this.navigationService = navigationService;
+            this.settings = settings;
 
             PopulateNavItems();
             InitializeState(Window.Current.Bounds.Width);
@@ -204,8 +208,9 @@ namespace MoneyFox.Windows
                 case NARROW_STATE_NAME:
                     DisplayMode = SplitViewDisplayMode.Overlay;
                     IsPaneOpen = false;
-                    
-                    MenuButtonColor = new SolidColorBrush(Colors.Black);
+                    MenuButtonColor = settings.Theme == AppTheme.Dark
+                        ? new SolidColorBrush(Colors.Black)
+                        : new SolidColorBrush(Colors.White);
                     break;
                 default:
                     break;

@@ -81,7 +81,7 @@ namespace MoneyFox.Windows.Views
 
                     RegisterTasks();
 
-                    shell.ViewModel = new ShellViewModel(Mvx.Resolve<IMvxNavigationService>());
+                    shell.ViewModel = Mvx.Resolve<ShellViewModel>();
 
                     //If Jump Lists are supported, add them
                     if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))

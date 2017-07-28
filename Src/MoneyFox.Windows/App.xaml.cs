@@ -17,9 +17,7 @@ using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows
 {
