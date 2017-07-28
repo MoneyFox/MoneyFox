@@ -5,14 +5,11 @@
                       xmlns:converter="using:MoneyFox.Windows.Converter"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Uwp.Views"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>

@@ -8,14 +8,13 @@ using MvvmCross.Localization;
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
     /// <inheritdoc />
-    public class DesignTimeAccountListViewModel : IAccountListViewModel
+    public class DesignTimeAccountListViewModel : MvxViewModel, IAccountListViewModel
     {
         /// <summary>
         ///     Constructor
         /// </summary>
-        public DesignTimeAccountListViewModel(IMvxLanguageBinder textSource)
+        public DesignTimeAccountListViewModel()
         {
-            TextSource = textSource;
             IncludedAccounts = new ObservableCollection<AccountViewModel>
             {
                 new AccountViewModel(new Account())
