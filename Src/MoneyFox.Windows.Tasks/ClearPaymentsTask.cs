@@ -49,11 +49,6 @@ namespace MoneyFox.Windows.Tasks
                     await UpdateMainTile();
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("ClearingPayment - An Error occured");
-                Debug.Write(ex);
-            }
             finally
             {
                 Debug.WriteLine("ClearPayment stopped.");

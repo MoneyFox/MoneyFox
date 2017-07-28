@@ -10,11 +10,13 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Uwp;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Tasks;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
@@ -75,7 +77,13 @@ namespace MoneyFox.Windows.Views
                     var start = Mvx.Resolve<IMvxAppStart>();
                     start.Start();
 
-                    RegisterTasks();
+
+                    var registeredClearPaymentTask = BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                    var registeredRecurringJob = BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+
+                    registeredClearPaymentTask.Completed += RegisteredClearPaymentTaskOnCompleted;
+                    registeredRecurringJob.Completed += RegisteredRecurringPaymentTaskOnCompleted;
+
 
                     shell.ViewModel = Mvx.Resolve<MenuViewModel>();
 
@@ -90,57 +98,13 @@ namespace MoneyFox.Windows.Views
             }
         }
 
-        private async void RegisterTasks()
+        private void RegisteredClearPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
-            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
-            {
-                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
-                                                          Strings.BackgroundAccessDeniedByUserMessage);
-            }
-            else if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
-            {
-                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
-                                                                Strings.BackgroundAccessDeniedByPolicyMessage);
-            }
-            else
-            {
-                RegisterClearPaymentTask();
-                RegisterRecurringPaymentTask();
-                Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
-            }
+            args.CheckResult();
         }
-
-        private void RegisterClearPaymentTask()
+        private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
-            {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = CLEAR_PAYMENTS_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
-                };
-
-                // Task will be executed all hour
-                builder.SetTrigger(new TimeTrigger(60, false));
-                builder.Register();
-            }
-        }
-
-        private void RegisterRecurringPaymentTask()
-        {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
-            {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = RECURRING_PAYMENT_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
-                };
-
-                // Task will be executed all hour
-                builder.SetTrigger(new TimeTrigger(60, false));
-                builder.Register();
-            }
+            args.CheckResult();
         }
 
         private async Task SetJumplist()
