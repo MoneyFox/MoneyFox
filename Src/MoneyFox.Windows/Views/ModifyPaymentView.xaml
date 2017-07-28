@@ -33,7 +33,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid>
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />

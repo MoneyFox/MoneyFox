@@ -5,7 +5,6 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
@@ -20,7 +19,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

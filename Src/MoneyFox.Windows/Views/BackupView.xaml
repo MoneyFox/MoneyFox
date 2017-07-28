@@ -22,7 +22,7 @@
         <converter:NativeBackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
     </Page.Resources>
 
-    <Grid>
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

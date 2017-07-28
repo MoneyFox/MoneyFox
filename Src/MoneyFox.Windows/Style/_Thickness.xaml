@@ -4,6 +4,7 @@
 
     <!--Custom size margins-->
     <Thickness x:Key="PageTitleMargin">0,0,12,7</Thickness>
+    <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
 
     <!--Medium size margins-->
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
