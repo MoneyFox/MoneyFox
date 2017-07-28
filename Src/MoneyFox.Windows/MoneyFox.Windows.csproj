@@ -215,9 +215,6 @@
     <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PageHeader.xaml.cs">
-      <DependentUpon>PageHeader.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
@@ -443,10 +440,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\CategoryListUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\PageHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
