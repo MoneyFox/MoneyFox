@@ -7,19 +7,22 @@ namespace MoneyFox.Business.ViewModels
 {
     public class SettingsPersonalizationViewModel : MvxViewModel
     {
-        private readonly IThemeService themeService;
+        private readonly ISettingsManager settingsManager;
 
-        public SettingsPersonalizationViewModel(IThemeService themeService)
+        public SettingsPersonalizationViewModel(ISettingsManager settingsManager)
         {
-            this.themeService = themeService;
+            this.settingsManager = settingsManager;
         }
 
-        public MvxCommand<int> SelectedTheme => new MvxCommand<int>(ThemeSelectionChanged);
-
-        private void ThemeSelectionChanged(int index)
+        public int SelectedIndex
         {
-            var theme = (AppTheme) Enum.ToObject(typeof(AppTheme), index);
-            themeService.SetTheme(theme);
+            get => (int) settingsManager.Theme;
+            set
+            {
+                var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
+                settingsManager.Theme = theme;
+                RaisePropertyChanged();
+            }
         }
     }
 }

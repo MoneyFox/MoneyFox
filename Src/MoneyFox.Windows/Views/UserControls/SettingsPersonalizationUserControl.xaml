@@ -13,18 +13,10 @@
                    Text="You can change between dark and light theme. To apply this changes please restart the application."
                    TextWrapping="WrapWholeWords"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-        <ComboBox >
+        <ComboBox SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
+            <ComboBoxItem x:Uid="System" Content="System" />
             <ComboBoxItem x:Uid="Dark" Content="Dark" />
             <ComboBoxItem x:Uid="Light" Content="Light" />
-            <ComboBoxItem x:Uid="System" Content="System" />
         </ComboBox>
-                   
-        <ToggleSwitch x:Name="SystemThemeToggleSwitch" Margin="5" x:Uid="UseSystemThemeToggleSwitch"
-                      IsOn="{Binding UseSystemTheme,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      OnContent="System Theme" OffContent="Custom Theme" Toggled="SystemThemeToggleSwitch_Toggled"/>
-        <ToggleSwitch x:Name="ThemeToggleSwitch" Margin="5,5,0,5" x:Uid="ThemeToggleSwitch"
-                    IsOn="{Binding IsDarkThemeEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    IsEnabled="{Binding UseCustomTheme, Mode=OneWay}"
-                    OnContent="Dark Theme" OffContent="Light Theme"/>
     </StackPanel>
 </UserControl>

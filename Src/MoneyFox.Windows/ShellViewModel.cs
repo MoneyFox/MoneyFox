@@ -208,7 +208,7 @@ namespace MoneyFox.Windows
                 case NARROW_STATE_NAME:
                     DisplayMode = SplitViewDisplayMode.Overlay;
                     IsPaneOpen = false;
-                    MenuButtonColor = settings.Theme == AppTheme.Dark
+                    MenuButtonColor = settings.Theme == AppTheme.Light
                         ? new SolidColorBrush(Colors.Black)
                         : new SolidColorBrush(Colors.White);
                     break;

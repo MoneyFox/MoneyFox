@@ -27,13 +27,16 @@
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
                 
-                <uwp:FontAwesome Grid.Column="0" Icon="{Binding Symbol}"
-                        VerticalAlignment="Center"  />
+                <uwp:FontAwesome Grid.Column="0" 
+                                 Icon="{Binding Symbol}"
+                                 Foreground="White"
+                                 VerticalAlignment="Center"  />
                 <TextBlock
                         Grid.Column="1"
                         Margin="0,9,0,11"
                         VerticalAlignment="Center"
                         Text="{x:Bind Label}"
+                        Foreground="White"
                         Style="{StaticResource BodyTextBlockStyle}"
                         TextTrimming="None" />
                 <VisualStateManager.VisualStateGroups>

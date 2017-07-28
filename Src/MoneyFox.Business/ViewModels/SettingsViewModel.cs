@@ -9,13 +9,12 @@ namespace MoneyFox.Business.ViewModels
             IPasswordStorage passwordStorage,
             ITileManager tileManager,
             IBackgroundTaskManager backgroundTaskManager,
-            IDialogService dialogService,
-            IThemeService themeService)
+            IDialogService dialogService)
         {
             SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager, backgroundTaskManager);
             SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
             SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
-            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(themeService);
+            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
         }
 
         public SettingsGeneralViewModel SettingsGeneralViewModel { get; }
