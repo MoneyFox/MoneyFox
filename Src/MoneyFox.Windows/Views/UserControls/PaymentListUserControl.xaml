@@ -34,7 +34,7 @@
                            VerticalAlignment="Center"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                            Margin="{StaticResource MediumLeftRightMargin}"
-                           FontSize="{StaticResource LargeFontSize}"
+                           FontSize="{StaticResource MediumFontSize}"
                            Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
@@ -45,7 +45,7 @@
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource LargeFontSize}"
+                               FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>
@@ -69,7 +69,7 @@
                       Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
-                          Margin="-15,0,-15,0"
+                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
                           SelectionMode="None"
                           Background="Transparent">
@@ -117,8 +117,8 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                             <Grid MinWidth="100"
+                                                  Margin="{StaticResource SmallListItemMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
-                                                  Margin="{StaticResource MediumLeftRightMargin}"
                                                   Background="{StaticResource ListItemBrush}"
                                                   HorizontalAlignment="Stretch"
                                                   RightTapped="PaymentViewModelList_RightTapped">
@@ -134,43 +134,50 @@
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
 
-                                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                                    <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
-                                                    <TextBlock MaxWidth="150"
-                                                               MaxLines="1"
-                                                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                                               Text="{x:Bind Note}"
-                                                               TextTrimming="CharacterEllipsis" />
-                                                </StackPanel>
-                                                <StackPanel Margin="0,0,0,2"
-                                                            HorizontalAlignment="Right"
-                                                            Orientation="Vertical">
-                                                    <TextBlock Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
-
-                                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                            <SymbolIcon Width="20"
-                                                                        Height="20"
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Center"
-                                                                        Symbol="57660" />
-                                                        </Grid>
-                                                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                            <Image Width="20"
-                                                                   Height="20"
-                                                                   DataContext="/Assets/{0}/repeat.png"
-                                                                   Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
-                                                        </Grid>
-                                                        <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                            <Image Width="20"
-                                                                   Height="20"
-                                                                   DataContext="/Assets/{0}/done.png"
-                                                                   Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
-                                                        </Grid>
+                                                <Grid Margin="{StaticResource MediumLeftRightMargin}">
+                                                    <StackPanel VerticalAlignment="Center"
+                                                                Orientation="Vertical">
+                                                        <TextBlock HorizontalAlignment="Stretch"
+                                                                   Text="{x:Bind Category.Name}" />
+                                                        <TextBlock MaxWidth="150"
+                                                                   MaxLines="1"
+                                                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                                                   Text="{x:Bind Note}"
+                                                                   TextTrimming="CharacterEllipsis" />
                                                     </StackPanel>
-                                                </StackPanel>
+                                                    <StackPanel HorizontalAlignment="Right"
+                                                                Orientation="Vertical">
+                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+
+                                                        <StackPanel HorizontalAlignment="Right"
+                                                                    Orientation="Horizontal">
+                                                            <Grid HorizontalAlignment="Right"
+                                                                  Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                <SymbolIcon Width="20"
+                                                                            Height="20"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Symbol="57660" />
+                                                            </Grid>
+                                                            <Grid HorizontalAlignment="Right"
+                                                                  Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                <Image Width="20"
+                                                                       Height="20"
+                                                                       DataContext="/Assets/{0}/repeat.png"
+                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
+                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+                                                            </Grid>
+                                                            <Grid HorizontalAlignment="Right"
+                                                                  Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                <Image Width="20"
+                                                                       Height="20"
+                                                                       DataContext="/Assets/{0}/done.png"
+                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
+                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
