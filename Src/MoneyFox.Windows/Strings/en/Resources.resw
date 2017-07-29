@@ -423,4 +423,13 @@ Also if you launch the application there it will check if there are newer backup
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Leave a Feedback</value>
   </data>
+  <data name="Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="System.Content" xml:space="preserve">
+    <value>System</value>
+  </data>
 </root>

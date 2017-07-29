@@ -1261,6 +1261,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Microsoft Passport is not enabled on this device.\nPlease go to settings and enable it!.
+        /// </summary>
+        public static string PassportErrorMessage {
+            get {
+                return ResourceManager.GetString("PassportErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The passwod and the password confirmation didn&apos;t match. Please check your input..
         /// </summary>
         public static string PasswordConfirmationWrongMessage {

@@ -1,16 +1,29 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.ApplicationModel;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.DesignTime;
 
 namespace MoneyFox.Windows.Views
 {
+    /// <summary>
+    ///     View to display an list of accounts.
+    /// </summary>
     public sealed partial class AccountListView
     {
+        /// <summary>
+        ///     Initialize View.
+        /// </summary>
         public AccountListView()
         {
             InitializeComponent();
+
+            if (DesignMode.DesignModeEnabled)
+            {
+                ViewModel = new DesignTimeAccountListViewModel();
+            } 
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)

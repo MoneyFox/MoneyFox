@@ -1,4 +1,6 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using System;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -12,18 +14,15 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
         }
 
-        public bool IsDarkThemeEnabled
+        public int SelectedIndex
         {
-            get => settingsManager.IsDarkThemeSelected;
-            set => settingsManager.IsDarkThemeSelected = value;
+            get => (int) settingsManager.Theme;
+            set
+            {
+                var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
+                settingsManager.Theme = theme;
+                RaisePropertyChanged();
+            }
         }
-
-        public bool UseSystemTheme
-        {
-            get => settingsManager.UseSystemTheme;
-            set => settingsManager.UseSystemTheme = value;
-        }
-
-        public bool UseCustomTheme => !UseSystemTheme;
     }
 }
