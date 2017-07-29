@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Windows.Business;
-using MoneyFox.Business.Manager;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MvvmCross.Plugins.File.Uwp;
 
-namespace MoneyFox.Windows.Tasks
+namespace MoneyFox.Windows
 {
     /// <summary>
     ///     Background task to sync the backup with OneDrive.

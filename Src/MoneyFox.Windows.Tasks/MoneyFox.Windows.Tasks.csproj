@@ -116,7 +116,6 @@
     <Compile Include="RecurringPaymentTask.cs" />
     <Compile Include="ClearPaymentsTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncBackupTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
@@ -134,10 +133,6 @@
     <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
       <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
       <Name>MoneyFox.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
-      <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

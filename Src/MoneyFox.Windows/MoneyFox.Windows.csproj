@@ -125,6 +125,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Controls\WarningListView.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
+    <Compile Include="Src\OneDriveAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
@@ -146,11 +148,13 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Src\SyncBackupTask.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\Tile.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\TileManager.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
+    <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -495,10 +499,6 @@
       <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
       <Name>MoneyFox.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{10036117-BB05-427C-BDC2-F2CEB1E974B1}</Project>
-      <Name>MoneyFox.Windows.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
       <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
       <Name>MoneyFox.Windows.Tasks</Name>
@@ -537,6 +537,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.OneDriveSDK">
       <Version>2.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.OneDriveSDK.Authentication">
+      <Version>1.0.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>1.5.1</Version>
