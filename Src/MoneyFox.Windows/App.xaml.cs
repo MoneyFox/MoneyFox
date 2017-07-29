@@ -15,6 +15,7 @@ using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Windows.Tasks;
 using MoneyFox.Windows.Views;
@@ -33,38 +34,33 @@ namespace MoneyFox.Windows
         public App()
         {
             InitializeComponent();
-            SetColor();
+            SetTheme();
             Suspending += OnSuspending;
 
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
             ApplicationContextOld.DbPath = DatabaseConstants.DB_NAME_OLD;
         }
 
-        /// <summary>
-        ///     Bind the saved theme from settings to the root element which cascadingly applies to children elements
-        ///     the reason this is bound in code behind is that because viewmodels are loaded after the pages,
-        ///     resulting to a nullreference exception if bound in xaml.
-        /// </summary>
-        private void SetColor()
+        private void SetTheme()
         {
-            // We have to create a own local settings object here since the general dependency 
-            // registration takes place later and the Theme can only be set in the constructor.
-
-            if(new WindowsUwpSettings().GetValue(SettingsManager.USE_SYSTEM_THEME_KEYNAME, true))
+            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.System))
             {
-                // System theme setting:
-                // Light - #FFFFFFFF
-                // Dark - #FF000000
+                case AppTheme.Dark:
+                RequestedTheme = ApplicationTheme.Dark;
+                break;
 
-                RequestedTheme = new UISettings().GetColorValue(UIColorType.Background).ToString() == "#FF000000"
-                    ? ApplicationTheme.Dark
-                    : ApplicationTheme.Light;
-            }
-            else
-            {
-                RequestedTheme = new WindowsUwpSettings().GetValue(SettingsManager.DARK_THEME_SELECTED_KEYNAME, false)
-                    ? ApplicationTheme.Dark
-                    : ApplicationTheme.Light;
+                case AppTheme.Light:
+                RequestedTheme = ApplicationTheme.Light;
+                break;
+
+                case AppTheme.System:
+                var uiSettings = new UISettings();
+                var color = uiSettings.GetColorValue(UIColorType.Background);
+
+                RequestedTheme = color == Color.FromArgb(255, 255, 255, 255)
+                    ? ApplicationTheme.Light
+                    : ApplicationTheme.Dark;
+                break;
             }
         }
 

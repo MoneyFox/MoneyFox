@@ -12,7 +12,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Toolkit.Uwp;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Tasks;
@@ -58,14 +57,14 @@ namespace MoneyFox.Windows.Views
                 Dismissed = true;
                 var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => 
                 {
-                    Window.Current.Content = new AppShell { Language = ApplicationLanguages.Languages[0] };
+                    Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
                     ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-                    var shell = (AppShell) Window.Current.Content;
+                    var shell = (ShellPage) Window.Current.Content;
 
                     // When the navigation stack isn't restored, navigate to the first page
                     // suppressing the initial entrance animation.
-                    var setup = new Setup(shell.MyAppFrame);
+                    var setup = new Setup(shell.Frame);
                     setup.Initialize();
 
                     var start = Mvx.Resolve<IMvxAppStart>();
@@ -79,9 +78,9 @@ namespace MoneyFox.Windows.Views
                     registeredRecurringJob.Completed += RegisteredRecurringPaymentTaskOnCompleted;
 
 
-                    shell.ViewModel = Mvx.Resolve<MenuViewModel>();
+                    shell.ViewModel = Mvx.Resolve<ShellViewModel>();
 
-                    //If Jump Lists are supported, adds them
+                    //If Jump Lists are supported, add them
                     if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
                     {
                         await SetJumplist();
@@ -105,7 +104,7 @@ namespace MoneyFox.Windows.Views
                 messageDict.Add("Successful", "false");
                 messageDict.Add("Exception", ex.ToString());
             }
-            Analytics.TrackEvent("Clear Payment Job finished", messageDict);
+            Analytics.TrackEvent("Clear Payment Task finished", messageDict);
         }
 
         private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender,
@@ -122,6 +121,7 @@ namespace MoneyFox.Windows.Views
                 messageDict.Add("Successful", "false");
                 messageDict.Add("Exception", ex.ToString());
             }
+            Analytics.TrackEvent("Create Recurring Payments Task finished", messageDict);
         }
 
         private async Task SetJumplist()

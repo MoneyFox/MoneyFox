@@ -4,8 +4,14 @@ using MoneyFox.Business.Helpers;
 
 namespace MoneyFox.Windows.Views
 {
+    /// <summary>
+    ///     View to modify an account
+    /// </summary>
     public sealed partial class ModifyAccountView
     {
+        /// <summary>
+        ///     Construtor
+        /// </summary>
         public ModifyAccountView()
         {
             InitializeComponent();
