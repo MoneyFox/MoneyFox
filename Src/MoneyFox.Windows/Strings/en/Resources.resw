@@ -186,7 +186,7 @@ WARNING: Local changes you made meanwhile we be lost.</value>
 Tap to visit the Repository:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Rate this App</value>
+    <value>Rate this app</value>
   </data>
   <data name="SecuritySettingsHeader.Header" xml:space="preserve">
     <value>Security</value>
@@ -419,5 +419,8 @@ Also if you launch the application there it will check if there are newer backup
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
     <value />
+  </data>
+  <data name="GiveFeedback.Text" xml:space="preserve">
+    <value>Leave a Feedback</value>
   </data>
 </root>

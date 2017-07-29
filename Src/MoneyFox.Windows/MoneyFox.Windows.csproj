@@ -235,90 +235,74 @@
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Assets\ApplyLogo.png" />
-    <Content Include="Properties\Assets\BadgeLogo.scale-100.png" />
-    <Content Include="Properties\Assets\BadgeLogo.scale-125.png" />
-    <Content Include="Properties\Assets\BadgeLogo.scale-150.png" />
-    <Content Include="Properties\Assets\BadgeLogo.scale-200.png" />
-    <Content Include="Properties\Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Properties\Assets\Close.png" />
-    <Content Include="Properties\Assets\dark\done.png" />
-    <Content Include="Properties\Assets\dark\filter.png" />
-    <Content Include="Properties\Assets\dark\internet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\dark\mail.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\dark\repeat.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\dark\statistic.png" />
-    <Content Include="Properties\Assets\dark\twitter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\IncomeTileIcon.png" />
-    <Content Include="Properties\Assets\light\done.png" />
-    <Content Include="Properties\Assets\light\filter.png" />
-    <Content Include="Properties\Assets\light\internet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\light\mail.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\light\repeat.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\light\statistic.png" />
-    <Content Include="Properties\Assets\light\twitter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Properties\Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Properties\Assets\SpendingTileIcon.png" />
-    <Content Include="Properties\Assets\SplashScreen.scale-100.png" />
-    <Content Include="Properties\Assets\SplashScreen.scale-125.png" />
-    <Content Include="Properties\Assets\SplashScreen.scale-150.png" />
-    <Content Include="Properties\Assets\SplashScreen.scale-200.png" />
-    <Content Include="Properties\Assets\SplashScreen.scale-400.png" />
-    <Content Include="Properties\Assets\Square150x150Logo.scale-100.png" />
-    <Content Include="Properties\Assets\Square150x150Logo.scale-125.png" />
-    <Content Include="Properties\Assets\Square150x150Logo.scale-150.png" />
-    <Content Include="Properties\Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Properties\Assets\Square150x150Logo.scale-400.png" />
-    <Content Include="Properties\Assets\Square310x310Logo.scale-100.png" />
-    <Content Include="Properties\Assets\Square310x310Logo.scale-125.png" />
-    <Content Include="Properties\Assets\Square310x310Logo.scale-150.png" />
-    <Content Include="Properties\Assets\Square310x310Logo.scale-200.png" />
-    <Content Include="Properties\Assets\Square310x310Logo.scale-400.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.scale-100.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.scale-125.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.scale-150.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.scale-400.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-16.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-24.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-256.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-48.png" />
-    <Content Include="Properties\Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
-    <Content Include="Properties\Assets\Square71x71Logo.scale-100.png" />
-    <Content Include="Properties\Assets\Square71x71Logo.scale-125.png" />
-    <Content Include="Properties\Assets\Square71x71Logo.scale-150.png" />
-    <Content Include="Properties\Assets\Square71x71Logo.scale-200.png" />
-    <Content Include="Properties\Assets\Square71x71Logo.scale-400.png" />
-    <Content Include="Properties\Assets\StoreLogo.scale-100.png" />
-    <Content Include="Properties\Assets\StoreLogo.scale-125.png" />
-    <Content Include="Properties\Assets\StoreLogo.scale-150.png" />
-    <Content Include="Properties\Assets\StoreLogo.scale-200.png" />
-    <Content Include="Properties\Assets\StoreLogo.scale-400.png" />
-    <Content Include="Properties\Assets\TransferTileIcon.png" />
-    <Content Include="Properties\Assets\Wide310x150Logo.scale-100.png" />
-    <Content Include="Properties\Assets\Wide310x150Logo.scale-125.png" />
-    <Content Include="Properties\Assets\Wide310x150Logo.scale-150.png" />
-    <Content Include="Properties\Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Properties\Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\applylogo.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\Close.png" />
+    <Content Include="Assets\dark\done.png" />
+    <Content Include="Assets\dark\filter.png" />
+    <Content Include="Assets\dark\internet.png" />
+    <Content Include="Assets\dark\mail.png" />
+    <Content Include="Assets\dark\repeat.png" />
+    <Content Include="Assets\dark\statistic.png" />
+    <Content Include="Assets\dark\twitter.png" />
+    <Content Include="Assets\IncomeTileIcon.png" />
+    <Content Include="Assets\light\done.png" />
+    <Content Include="Assets\light\filter.png" />
+    <Content Include="Assets\light\internet.png" />
+    <Content Include="Assets\light\mail.png" />
+    <Content Include="Assets\light\repeat.png" />
+    <Content Include="Assets\light\statistic.png" />
+    <Content Include="Assets\light\twitter.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SpendingTileIcon.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\TransferTileIcon.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
