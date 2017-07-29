@@ -40,4 +40,11 @@
         Edit,
         Delete
     }
+
+    public enum AppTheme
+    {
+        System,
+        Dark,
+        Light
+    }
 }

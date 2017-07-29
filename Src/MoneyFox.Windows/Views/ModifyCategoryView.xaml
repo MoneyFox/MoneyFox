@@ -8,18 +8,16 @@
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
 
-    <Grid>
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="{Binding Title}" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+        <TextBlock x:Name="TitlePage"
+                   Text="{Binding Title}"
+                   Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollMode="Auto"
@@ -41,7 +39,9 @@
                                         UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </ScrollViewer>
-        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+        <CommandBar x:Name="BottomCommandBar"
+                    Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"
@@ -60,6 +60,24 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
 
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin"
+                                Value="48,0,12,7" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
-
 </views:MvxWindowsPage>

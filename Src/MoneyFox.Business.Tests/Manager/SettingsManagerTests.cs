@@ -1,6 +1,7 @@
 ﻿using System;
 using Cheesebaron.MvxPlugins.Settings.Wpf;
 using MoneyFox.Business.Manager;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Tests;
 using Xunit;
 
@@ -54,6 +55,12 @@ namespace MoneyFox.Business.Tests.Manager
         public void UseSystemTheme_DefaultValue()
         {
             new SettingsManager(new Settings()).UseSystemTheme.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void Theme_DefaultValue()
+        {
+            Assert.Equal(AppTheme.System, new SettingsManager(new Settings()).Theme);
         }
     }
 }

@@ -23,36 +23,34 @@
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
-                  Padding="4"
-                  Margin="0,0,0,2"
-                  Background="{StaticResource ListItemBrush}">
-                <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-                <StackPanel HorizontalAlignment="Right"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Right"
-                               Text="{Binding Value,
-                                              Converter={StaticResource AmountFormatConverter}}"
-                               TextAlignment="Right" />
+                  Background="{StaticResource ListItemBrush}"
+                  Margin="{StaticResource SmallListItemMargin}">
+                <StackPanel Margin="{StaticResource NegativeMediumLeftRightMargin}">
+                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Right"
+                                   Text="{Binding Value,
+                                                  Converter={StaticResource AmountFormatConverter}}"
+                                   TextAlignment="Right" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
-                <TextBlock x:Uid="CategorySummaryStatisticTitle"
-                           Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Category Summary" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+        <TextBlock x:Name="TitlePage"
+                   x:Uid="CategorySummaryStatisticTitle"
+                   Text="Category Summary"
+                   Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -68,7 +66,7 @@
                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                           VerticalScrollBarVisibility="Auto">
                 <ListView Background="Transparent"   
-                          Margin="-12,0,-12,0"
+                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     ItemTemplate="{StaticResource CategoryTemplate}"
                     ItemsSource="{Binding CategorySummary}">
                     <ListView.ItemContainerStyle>
@@ -80,7 +78,9 @@
                 </ListView>
             </ScrollViewer>
         </Grid>
-        <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">
+        <CommandBar Grid.Row="2"
+                    ClosedDisplayMode="Minimal"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
@@ -88,5 +88,25 @@
                               Label="Set Date" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin"
+                                Value="48,0,12,7" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </views:MvxWindowsPage>
