@@ -11,7 +11,6 @@ using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -42,32 +41,12 @@ namespace MoneyFox.Windows.Tasks
                 {
                     await paymentService.SavePayments(unclearedPayments);
                 }
-
-                // We have to access the settings object here directly without the settings helper since this thread is executed independently.
-                if (new WindowsUwpSettings().GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, true))
-                {
-                    await UpdateMainTile();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("ClearingPayment - An Error occured");
-                Debug.Write(ex);
             }
             finally
             {
                 Debug.WriteLine("ClearPayment stopped.");
                 deferral.Complete();
             }
-        }
-
-        private async Task UpdateMainTile()
-        {
-            var cashFlow =
-                await new CashFlowDataProvider(paymentService)
-                    .GetCashFlow(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth());
-
-            new TileUpdateService().UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
         }
     }
 }

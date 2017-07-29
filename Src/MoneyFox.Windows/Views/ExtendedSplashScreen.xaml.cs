@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
@@ -10,9 +10,11 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Tasks;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
@@ -25,11 +27,6 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class ExtendedSplashScreen
     {
-        private const string TASK_NAMESPACE = "MoneyFox.Windows.Tasks";
-        private const string CLEAR_PAYMENTS_TASK = "ClearPaymentsTask";
-        private const string RECURRING_PAYMENT_TASK = "RecurringPaymentTask";
-
-
         internal bool Dismissed = false; // Variable to track splash screen dismissal status.
         internal Frame RootFrame;
 
@@ -73,7 +70,13 @@ namespace MoneyFox.Windows.Views
                     var start = Mvx.Resolve<IMvxAppStart>();
                     start.Start();
 
-                    RegisterTasks();
+
+                    var registeredClearPaymentTask = BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                    var registeredRecurringJob = BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+
+                    registeredClearPaymentTask.Completed += RegisteredClearPaymentTaskOnCompleted;
+                    registeredRecurringJob.Completed += RegisteredRecurringPaymentTaskOnCompleted;
+
 
                     shell.ViewModel = Mvx.Resolve<ShellViewModel>();
 
@@ -88,57 +91,37 @@ namespace MoneyFox.Windows.Views
             }
         }
 
-        private async void RegisterTasks()
+        private void RegisteredClearPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
         {
-            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
-            if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
+            var messageDict = new Dictionary<string, string>();
+            try
             {
-                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
-                                                          Strings.BackgroundAccessDeniedByUserMessage);
+                args.CheckResult();
+                messageDict.Add("Successful", "true");
             }
-            else if (backgroundAccessStatus == BackgroundAccessStatus.DeniedByUser)
+            catch(Exception ex)
             {
-                await Mvx.Resolve<IDialogService>().ShowMessage(Strings.BackgroundAccessDeniedTitle,
-                                                                Strings.BackgroundAccessDeniedByPolicyMessage);
+                messageDict.Add("Successful", "false");
+                messageDict.Add("Exception", ex.ToString());
             }
-            else
-            {
-                RegisterClearPaymentTask();
-                RegisterRecurringPaymentTask();
-                Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
-            }
+            Analytics.TrackEvent("Clear Payment Task finished", messageDict);
         }
 
-        private void RegisterClearPaymentTask()
+        private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender,
+                                                               BackgroundTaskCompletedEventArgs args)
         {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != CLEAR_PAYMENTS_TASK))
+            var messageDict = new Dictionary<string, string>();
+            try
             {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = CLEAR_PAYMENTS_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, CLEAR_PAYMENTS_TASK)
-                };
-
-                // Task will be executed all hour
-                builder.SetTrigger(new TimeTrigger(60, false));
-                builder.Register();
+                args.CheckResult();
+                messageDict.Add("Successful", "true");
             }
-        }
-
-        private void RegisterRecurringPaymentTask()
-        {
-            if (BackgroundTaskRegistration.AllTasks.All(task => task.Value.Name != RECURRING_PAYMENT_TASK))
+            catch (Exception ex)
             {
-                var builder = new BackgroundTaskBuilder
-                {
-                    Name = RECURRING_PAYMENT_TASK,
-                    TaskEntryPoint = String.Format("{0}.{1}", TASK_NAMESPACE, RECURRING_PAYMENT_TASK)
-                };
-
-                // Task will be executed all hour
-                builder.SetTrigger(new TimeTrigger(60, false));
-                builder.Register();
+                messageDict.Add("Successful", "false");
+                messageDict.Add("Exception", ex.ToString());
             }
+            Analytics.TrackEvent("Create Recurring Payments Task finished", messageDict);
         }
 
         private async Task SetJumplist()

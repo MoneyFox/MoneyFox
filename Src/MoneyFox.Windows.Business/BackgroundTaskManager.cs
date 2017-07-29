@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Windows.ApplicationModel.Background;
+using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows.Business
@@ -25,7 +26,7 @@ namespace MoneyFox.Windows.Business
         /// <inheritdoc />
         public void StartBackupSyncTask()
         {
-            RegisterSyncBackupTask();
+            BackgroundTaskRegistration registered = BackgroundTaskHelper.Register(typeof(SyncBackupTask), new TimeTrigger(15, true));
         }
 
         /// <inheritdoc />
