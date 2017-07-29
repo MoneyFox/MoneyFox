@@ -22,7 +22,6 @@
                    Style="{StaticResource PageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"
-                      Margin="12,12,12,0"
                       HorizontalAlignment="Center"
                       EntranceNavigationTransitionInfo.IsTargetElement="True"
                       VerticalScrollBarVisibility="Auto">
@@ -102,11 +101,27 @@
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>
+
+                <Button x:Name="FeedbackButton"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Visibility="Collapsed"
+                        Margin="0,10,0,10"
+                        Click="FeedbackButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE939;"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,3,0" />
+                        <TextBlock x:Uid="GiveFeedback" Text="Leave a feedback" />
+                    </StackPanel>
+                </Button>
+
                 <Button x:Uid="RateThisApp"
                         Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
                         Command="{Binding RateAppCommand}"
-                        Content="Rate this App" />
+                        Content="Rate this app" />
                 <TextBlock x:Uid="OpenSourceNote"
                            Margin="0,12,0,0"
                            HorizontalAlignment="Left"
@@ -130,7 +145,7 @@
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Top"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Translation Note"
+                           Text="Translation note"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"

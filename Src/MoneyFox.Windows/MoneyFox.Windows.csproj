@@ -233,7 +233,7 @@
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\ApplyLogo.png" />
+    <Content Include="Assets\applylogo.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-125.png" />
     <Content Include="Assets\BadgeLogo.scale-150.png" />
@@ -242,35 +242,19 @@
     <Content Include="Assets\Close.png" />
     <Content Include="Assets\dark\done.png" />
     <Content Include="Assets\dark\filter.png" />
-    <Content Include="Assets\dark\internet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\dark\mail.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\dark\repeat.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\dark\internet.png" />
+    <Content Include="Assets\dark\mail.png" />
+    <Content Include="Assets\dark\repeat.png" />
     <Content Include="Assets\dark\statistic.png" />
-    <Content Include="Assets\dark\twitter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\dark\twitter.png" />
     <Content Include="Assets\IncomeTileIcon.png" />
     <Content Include="Assets\light\done.png" />
     <Content Include="Assets\light\filter.png" />
-    <Content Include="Assets\light\internet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\light\mail.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\light\repeat.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\light\internet.png" />
+    <Content Include="Assets\light\mail.png" />
+    <Content Include="Assets\light\repeat.png" />
     <Content Include="Assets\light\statistic.png" />
-    <Content Include="Assets\light\twitter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\light\twitter.png" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SpendingTileIcon.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -470,6 +454,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
+      <Name>Microsoft Engagement Framework</Name>
+    </SDKReference>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
@@ -539,6 +526,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.OneDriveSDK">
       <Version>2.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Services.Store.SDK">
+      <Version>10.1705.16001</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>1.5.1</Version>
