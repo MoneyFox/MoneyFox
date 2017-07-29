@@ -20,6 +20,7 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
             <StackPanel MinWidth="300"
+                        Margin="{StaticResource SmallListItemMargin}"
                         Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         RightTapped="CategoryListRightTapped">
@@ -33,7 +34,13 @@
                                         Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Margin="{StaticResource MediumLeftRightMargin}" Text="{x:Bind Name}" />
+                <StackPanel Padding="{StaticResource SmallListItemPadding}"
+                            Margin="{StaticResource MediumLeftRightMargin}">
+                    
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="{x:Bind Name}" />
+
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
 
@@ -43,7 +50,7 @@
                            VerticalAlignment="Center"
                            Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           FontSize="{StaticResource MediumFontSize}"
+                           FontSize="{StaticResource LargeFontSize}"
                            Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
@@ -54,7 +61,7 @@
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource MediumFontSize}"
+                               FontSize="{StaticResource LargeFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>

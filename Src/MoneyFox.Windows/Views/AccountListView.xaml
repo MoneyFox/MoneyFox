@@ -25,8 +25,7 @@
 
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
-            <StackPanel Margin="{StaticResource SmallListItemMargin}"
-                        Padding="{StaticResource SmallListItemPadding}">
+            <StackPanel Margin="{StaticResource SmallListItemMargin}">
                 <StackPanel HorizontalAlignment="Stretch"
                             Background="{StaticResource ListItemBrush}"
                             RightTapped="AccountList_RightTapped">
@@ -41,7 +40,8 @@
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                                Padding="{StaticResource SmallListItemPadding}">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind Name}"
