@@ -220,7 +220,7 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
-            Title = accountService.GetAccountName(AccountId);
+            Title = await accountService.GetAccountName(AccountId);
 
             var paymentQuery = await paymentService.GetPaymentsByAccountId(AccountId);
 
