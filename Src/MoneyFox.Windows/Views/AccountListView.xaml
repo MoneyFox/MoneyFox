@@ -117,7 +117,6 @@
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                            EntranceNavigationTransitionInfo.IsTargetElement="True" />
                     <controls:WarningListView HorizontalAlignment="Stretch"
-                                          Margin="-12,0,-12,0"
                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                                           ItemTemplate="{StaticResource AccountItemTemplate}"
                                           ItemsSource="{Binding ExcludedAccounts}"
