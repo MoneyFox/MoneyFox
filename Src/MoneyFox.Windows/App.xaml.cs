@@ -17,7 +17,6 @@ using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Windows.Tasks;
 using MoneyFox.Windows.Views;
 
 namespace MoneyFox.Windows
@@ -128,7 +127,6 @@ namespace MoneyFox.Windows
 
             deferral.Complete();
         }
-
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved

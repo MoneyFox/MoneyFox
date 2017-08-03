@@ -24,9 +24,7 @@ namespace MoneyFox.Windows
         public void StartBackupSyncTask()
         {
             BackgroundTaskRegistration registered =
-                BackgroundTaskHelper.Register(typeof(SyncBackupTask),
-                                              new TimeTrigger((uint) (settingsManager.BackupSyncRecurrence * 60),
-                                                              true));
+                BackgroundTaskHelper.Register("SyncBackgroundTask", new TimeTrigger((uint) (settingsManager.BackupSyncRecurrence * 60), false));
 
             registered.Completed += RegisteredOnCompleted;
         }
