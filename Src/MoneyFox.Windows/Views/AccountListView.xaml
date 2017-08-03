@@ -81,6 +81,7 @@
             <StackPanel>
                 <TextBlock x:Uid="IncludedAccounts"
                            Text="Included Accounts"
+                           Margin="{StaticResource MediumLeftRightMargin}"
                            Style="{StaticResource HeaderStyle}"
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                            EntranceNavigationTransitionInfo.IsTargetElement="True" />
@@ -111,7 +112,7 @@
 
                 <TextBlock x:Uid="ExcludedAccounts"
                            Text="Excluded Accounts"
-                           Margin="0,15,0,0"
+                           Margin="{StaticResource MediumLeftRightTopMargin}"
                            Style="{StaticResource HeaderStyle}"
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                            EntranceNavigationTransitionInfo.IsTargetElement="True" />

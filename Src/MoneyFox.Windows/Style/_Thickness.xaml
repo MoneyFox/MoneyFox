@@ -12,6 +12,7 @@
     
     <!--Medium size margins-->
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
+    <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
     <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
     <Thickness x:Key="MediumTitleContentMargin">0,12,0,0</Thickness>
