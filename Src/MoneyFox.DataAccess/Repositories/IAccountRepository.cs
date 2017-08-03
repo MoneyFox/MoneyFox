@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess.Repositories
@@ -12,6 +13,6 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         /// <param name="id">Id of the account to load.</param>
         /// <returns>Accountname.</returns>
-        string GetName(int id);
+        Task<string> GetName(int id);
     }
 }
