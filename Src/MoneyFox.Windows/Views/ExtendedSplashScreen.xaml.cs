@@ -74,10 +74,6 @@ namespace MoneyFox.Windows.Views
                     var registeredClearPaymentTask = BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                     var registeredRecurringJob = BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
-                    registeredClearPaymentTask.Completed += RegisteredClearPaymentTaskOnCompleted;
-                    registeredRecurringJob.Completed += RegisteredRecurringPaymentTaskOnCompleted;
-
-
                     shell.ViewModel = Mvx.Resolve<ShellViewModel>();
 
                     //If Jump Lists are supported, add them
@@ -89,39 +85,6 @@ namespace MoneyFox.Windows.Views
                     await CallRateReminder();
                 });
             }
-        }
-
-        private void RegisteredClearPaymentTaskOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
-        {
-            var messageDict = new Dictionary<string, string>();
-            try
-            {
-                args.CheckResult();
-                messageDict.Add("Successful", "true");
-            }
-            catch(Exception ex)
-            {
-                messageDict.Add("Successful", "false");
-                messageDict.Add("Exception", ex.ToString());
-            }
-            Analytics.TrackEvent("Clear Payment Task finished", messageDict);
-        }
-
-        private void RegisteredRecurringPaymentTaskOnCompleted(BackgroundTaskRegistration sender,
-                                                               BackgroundTaskCompletedEventArgs args)
-        {
-            var messageDict = new Dictionary<string, string>();
-            try
-            {
-                args.CheckResult();
-                messageDict.Add("Successful", "true");
-            }
-            catch (Exception ex)
-            {
-                messageDict.Add("Successful", "false");
-                messageDict.Add("Exception", ex.ToString());
-            }
-            Analytics.TrackEvent("Create Recurring Payments Task finished", messageDict);
         }
 
         private async Task SetJumplist()
