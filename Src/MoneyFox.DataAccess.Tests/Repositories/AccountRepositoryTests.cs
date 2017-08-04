@@ -497,7 +497,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             await unitOfWork.Commit();
 
             // Act
-            var result = repository.GetName(testEntry.Id);
+            var result = await repository.GetName(testEntry.Id);
 
             // Assert
             Assert.NotNull(result);
