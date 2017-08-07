@@ -25,6 +25,8 @@ namespace MoneyFox.Windows.Views.UserControls
         {
             if (await MicrosoftPassportHelper.TestPassportAvailable())
             {
+                PassportSwitch.IsEnabled = true;
+                PassportStatus.Text = string.Empty;
             }
             else
             {

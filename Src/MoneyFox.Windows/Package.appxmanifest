@@ -31,13 +31,7 @@
           <uap:Rotation Preference="landscapeFlipped" />
         </uap:InitialRotationPreference>
       </uap:VisualElements>
-      <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.SyncBackupTask">
-          <BackgroundTasks>
-            <Task Type="systemEvent" />
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
+      <Extensions>        
         <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.RecurringPaymentTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />

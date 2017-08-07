@@ -83,12 +83,12 @@
                            Text="Included Accounts"
                            Margin="{StaticResource MediumLeftRightMargin}"
                            Style="{StaticResource HeaderStyle}"
-                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
-                           EntranceNavigationTransitionInfo.IsTargetElement="True" />
+                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
                 <controls:WarningListView HorizontalAlignment="Stretch"
                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                                           ItemTemplate="{StaticResource AccountItemTemplate}"
                                           ItemsSource="{Binding IncludedAccounts}"
+                                          Margin="{StaticResource MediumBottomMargin}"
                                           ShowsScrollingPlaceholders="False"
                                           Background="Transparent"
                                           WarningBackground="{StaticResource WarningBrush}">
@@ -114,8 +114,7 @@
                            Text="Excluded Accounts"
                            Margin="{StaticResource MediumLeftRightTopMargin}"
                            Style="{StaticResource HeaderStyle}"
-                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
-                           EntranceNavigationTransitionInfo.IsTargetElement="True" />
+                           Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
                     <controls:WarningListView HorizontalAlignment="Stretch"
                                           EntranceNavigationTransitionInfo.IsTargetElement="True"
                                           ItemTemplate="{StaticResource AccountItemTemplate}"

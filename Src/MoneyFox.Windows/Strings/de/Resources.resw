@@ -340,9 +340,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Letzte Sicherung wurde erstellt am:</value>
   </data>
-  <data name="GeneralSettingsHeader.Header" xml:space="preserve">
-    <value>Allgemein</value>
-  </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Letzte Datenbankänderung:</value>
   </data>
@@ -406,5 +403,20 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="ThemeSettingsHeader.Header" xml:space="preserve">
     <value>Design</value>
+  </data>
+  <data name="BackupSettingsHeader.Header" xml:space="preserve">
+    <value>Sicherung</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
+    <value>Lege fest wie oft die Sicherung synchronisiert werden soll.</value>
+  </data>
+  <data name="ExcludedAccounts.Text" xml:space="preserve">
+    <value>Ausgeschlossene Konten</value>
+  </data>
+  <data name="IncludedAccounts.Text" xml:space="preserve">
+    <value>Einbezogene Konten</value>
+  </data>
+  <data name="FilterLabel.Label" xml:space="preserve">
+    <value></value>
   </data>
 </root>

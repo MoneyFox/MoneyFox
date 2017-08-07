@@ -115,7 +115,7 @@
                 
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
-                <GridView Margin="{StaticResource MediumTitleContentMargin}"
+                <GridView Margin="{StaticResource MediumTopMargin}"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           ItemTemplate="{StaticResource JumpTemplate}"

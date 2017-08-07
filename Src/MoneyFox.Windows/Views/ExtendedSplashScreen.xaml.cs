@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
@@ -10,7 +10,6 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
@@ -55,34 +54,43 @@ namespace MoneyFox.Windows.Views
             if (!Dismissed)
             {
                 Dismissed = true;
+
                 var task = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => 
                 {
-                    Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
-                    ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
-
-                    var shell = (ShellPage) Window.Current.Content;
-
-                    // When the navigation stack isn't restored, navigate to the first page
-                    // suppressing the initial entrance animation.
-                    var setup = new Setup(shell.Frame);
-                    setup.Initialize();
-
-                    var start = Mvx.Resolve<IMvxAppStart>();
-                    start.Start();
-
-
-                    var registeredClearPaymentTask = BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-                    var registeredRecurringJob = BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-
-                    shell.ViewModel = Mvx.Resolve<ShellViewModel>();
-
-                    //If Jump Lists are supported, add them
-                    if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+                    try
                     {
-                        await SetJumplist();
-                    }
+                        Window.Current.Content = new ShellPage {Language = ApplicationLanguages.Languages[0]};
+                        ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-                    await CallRateReminder();
+                        var shell = (ShellPage) Window.Current.Content;
+
+                        // When the navigation stack isn't restored, navigate to the first page
+                        // suppressing the initial entrance animation.
+                        var setup = new Setup(shell.Frame);
+                        setup.Initialize();
+
+                        var start = Mvx.Resolve<IMvxAppStart>();
+                        start.Start();
+
+                        var registeredClearPaymentTask =
+                            BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                        var registeredRecurringJob =
+                            BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+
+                        shell.ViewModel = Mvx.Resolve<ShellViewModel>();
+
+                        //If Jump Lists are supported, add them
+                        if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+                        {
+                            await SetJumplist();
+                        }
+
+                        await CallRateReminder();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Write(ex);
+                    }
                 });
             }
         }
