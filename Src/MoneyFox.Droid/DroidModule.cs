@@ -6,8 +6,15 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Droid
 {
+    /// <summary>
+    ///     Registers the dependencies for the android project
+    /// </summary>
     public class DroidModule : Module
     {
+        /// <summary>
+        ///     Registers the dependencies for the android project
+        /// </summary>
+        /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<DialogService>().As<IDialogService>();

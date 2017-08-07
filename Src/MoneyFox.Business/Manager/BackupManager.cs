@@ -148,8 +148,6 @@ namespace MoneyFox.Business.Manager
                 var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
-
-                await dbFactory.Reinit();
             }
             else if (backups.Contains(DatabaseConstants.BACKUP_NAME_OLD))
             {

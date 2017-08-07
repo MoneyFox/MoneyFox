@@ -154,7 +154,7 @@
       <Version>5.3.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>5.1.0</Version>
+      <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>

@@ -637,6 +637,6 @@ WARNING: Local changes you made meanwhile we be lost!</value>
     <value>Access denied</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device.\nPlease go to settings and enable it!</value>
+    <value>Microsoft Passport is not enabled on this device. \n Please go to settings and enable it!</value>
   </data>
 </root>

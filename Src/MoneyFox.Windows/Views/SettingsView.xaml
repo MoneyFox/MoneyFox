@@ -7,33 +7,74 @@
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Pivot Style="{StaticResource CustomPivotStyle}">
+    <Grid >
+        <Pivot>
             <!--  General  -->
-            <PivotItem Header="Backup"
-                       x:Uid="BackupSettingsHeader"
-                       EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <PivotItem >
+                <PivotItem.Header>
+                    <TextBlock Text="Backup"
+                               x:Uid="SettingsHeaderBackup"
+                               Style="{StaticResource PageTitleStyle}"
+                               x:Name="FirstHeader"
+                               Margin="0,0,-10,0"/>
+                </PivotItem.Header>
                 <userControls:SettingsGeneralUserControl DataContext="{Binding SettingsGeneralViewModel}" />
             </PivotItem>
 
             <!--  Tiles  -->
-            <PivotItem Header="Tiles"
-                       x:Uid="TilesSettingsHeader">
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="Tiles"
+                               x:Uid="SettingsHeaderTiles"
+                               Style="{StaticResource PageTitleStyle}"
+                               Margin="0,0,-10,0"/>
+                </PivotItem.Header>
                 <userControls:SettingsShortcutsUserControl DataContext="{Binding SettingsShortcutsViewModel}" />
             </PivotItem>
 
             <!--  Password Settings  -->
-            <PivotItem Header="Password"
-                       x:Uid="SecuritySettingsHeader">
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="Security"
+                               x:Uid="SettingsHeaderSecurity"
+                               Style="{StaticResource PageTitleStyle}"
+                               Margin="0,0,-10,0" />
+                </PivotItem.Header>
                 <userControls:SettingsSecurityUserControl DataContext="{Binding SettingsSecurityViewModel}" />
             </PivotItem>
 
             <!--  Personalization Settings  -->
-            <PivotItem Header="Theme"
-                       x:Uid="ThemeSettingsHeader">
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="Personalization"
+                               x:Uid="SettingsHeaderPersonalization"
+                               Style="{StaticResource PageTitleStyle}"
+                               Margin="0,0,-10,0"/>
+                </PivotItem.Header>
                 <userControls:SettingsPersonalizationUserControl DataContext="{Binding SettingsPersonalizationViewModel}" />
             </PivotItem>
         </Pivot>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FirstHeader.Margin"
+                                Value="48,0,-10,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
     </Grid>
 </views:MvxWindowsPage>
