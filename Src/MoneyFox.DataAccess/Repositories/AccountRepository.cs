@@ -20,9 +20,9 @@ namespace MoneyFox.DataAccess.Repositories
         }
 
         /// <inheritdoc />
-        public string GetName(int id)
+        public async Task<string> GetName(int id)
         {
-            return DbSet.Select(x => x.Name).First();
+            return await DbSet.Select(x => x.Name).FirstAsync();
         }
 
         /// <summary>

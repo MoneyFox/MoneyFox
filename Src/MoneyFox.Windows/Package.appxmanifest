@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="57598ApplySolutionsSoftwa.MoneyFox" Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C" Version="3.1.8.0" />
-  <mp:PhoneIdentity PhoneProductId="646b15f2-211b-49d8-91a6-ab8a19ae8b79" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="57598ApplySolutionsSoftwa.MoneyFox" Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C" Version="3.1.12.0" />
+  <mp:PhoneIdentity PhoneProductId="11811727-e8fc-4c42-89ab-b8c66eb77b4f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Money Fox</DisplayName>
     <PublisherDisplayName>Apply Solutions Software</PublisherDisplayName>
@@ -31,13 +31,7 @@
           <uap:Rotation Preference="landscapeFlipped" />
         </uap:InitialRotationPreference>
       </uap:VisualElements>
-      <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.SyncBackupTask">
-          <BackgroundTasks>
-            <Task Type="systemEvent" />
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
+      <Extensions>        
         <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.RecurringPaymentTask">
           <BackgroundTasks>
             <Task Type="systemEvent" />

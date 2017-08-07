@@ -9,7 +9,7 @@ using MvvmCross.Plugins.ResxLocalization;
 namespace MoneyFox.Business
 {
     /// <summary>
-    ///     Registers the dependencies for the business module
+    ///     Registers the dependencies for the business project
     /// </summary>
     public class BusinessModule : Module
     {

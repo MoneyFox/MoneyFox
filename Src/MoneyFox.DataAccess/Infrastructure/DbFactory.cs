@@ -3,10 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.EntityOld;
 using MoneyFox.Foundation;
-using MvvmCross.Platform;
-using MvvmCross.Plugins.File;
 
 namespace MoneyFox.DataAccess.Infrastructure
 {
@@ -20,11 +17,6 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// </summary>
         /// <returns>Singleton Application Context</returns>
         Task<ApplicationContext> Init();
-
-        /// <summary>
-        ///     Disposes the current DB context and creates a new one
-        /// </summary>
-        Task Reinit();
 
         /// <summary>
         ///     Migras the data from the old database to the new.
@@ -46,13 +38,6 @@ namespace MoneyFox.DataAccess.Infrastructure
             }
             await dbContext.Database.MigrateAsync();
             return dbContext;
-        }
-
-        /// <inheritdoc />
-        public async Task Reinit()
-        {
-            dbContext.Dispose();
-            await Init();
         }
 
         /// <inheritdoc />

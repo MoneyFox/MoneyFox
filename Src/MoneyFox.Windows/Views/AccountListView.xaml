@@ -112,7 +112,7 @@
 
                 <TextBlock x:Uid="ExcludedAccounts"
                            Text="Excluded Accounts"
-                           Margin="{StaticResource MediumLeftRightMargin}"
+                           Margin="{StaticResource MediumLeftRightTopMargin}"
                            Style="{StaticResource HeaderStyle}"
                            Visibility="{Binding IsExcludedAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
                     <controls:WarningListView HorizontalAlignment="Stretch"
