@@ -26,7 +26,7 @@ build:
 test_script:
 - cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Service.Tests\bin\Debug\net47\MoneyFox.Service.Tests.dll" -appveyor'
 - cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Business.Tests\bin\Debug\net47\MoneyFox.Business.Tests.dll" -appveyor'
-- cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Foundation.Tests\bin\Debug\net4\MoneyFox.Foundation.Tests.dll" -appveyor'
+- cmd: '%xunit20%\xunit.console.x86 "C:\projects\moneyfox\Src\MoneyFox.Foundation.Tests\bin\Debug\net47\MoneyFox.Foundation.Tests.dll" -appveyor'
 - cmd: dotnet test C:\projects\moneyfox\Src\MoneyFox.DataAccess.Tests\MoneyFox.DataAccess.Tests.csproj --no-build
 
 environment:
