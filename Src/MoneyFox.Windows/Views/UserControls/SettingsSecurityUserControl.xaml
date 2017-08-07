@@ -58,9 +58,10 @@
             <TextBlock x:Name="PassportStatus"
                        Margin="0,0,0,15"
                        HorizontalAlignment="Center"
+                       TextWrapping="WrapWholeWords"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                        TextAlignment="center"
-                       Text=" " />
+                       Text="Text" />
         </StackPanel>
     </Grid>
 </UserControl>

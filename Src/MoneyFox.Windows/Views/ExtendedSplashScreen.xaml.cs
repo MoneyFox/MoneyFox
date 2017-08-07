@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
@@ -11,7 +10,6 @@ using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
