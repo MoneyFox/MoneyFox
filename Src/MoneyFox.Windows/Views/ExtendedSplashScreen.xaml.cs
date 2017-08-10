@@ -72,10 +72,10 @@ namespace MoneyFox.Windows.Views
                         var start = Mvx.Resolve<IMvxAppStart>();
                         start.Start();
 
-                        var registeredClearPaymentTask =
-                            BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-                        var registeredRecurringJob =
-                            BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+                        BackgroundTaskHelper.Unregister(typeof(ClearPaymentsTask));
+                        BackgroundTaskHelper.Unregister(typeof(RecurringPaymentTask));
+                        BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(15, false));
+                        BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(15, false));
 
                         shell.ViewModel = Mvx.Resolve<ShellViewModel>();
 

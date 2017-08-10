@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Windows.ApplicationModel.Background;
-using Microsoft.Azure.Mobile.Analytics;
+﻿using Windows.ApplicationModel.Background;
 using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Interfaces;
 
@@ -10,21 +7,10 @@ namespace MoneyFox.Windows
     /// <inheritdoc />
     public class BackgroundTaskManager : IBackgroundTaskManager
     {
-        private readonly ISettingsManager settingsManager;
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        public BackgroundTaskManager(ISettingsManager settingsManager)
-        {
-            this.settingsManager = settingsManager;
-        }
-
         /// <inheritdoc />
-        public void StartBackupSyncTask()
+        public void StartBackupSyncTask(int interval)
         {
-            BackgroundTaskRegistration registered =
-                BackgroundTaskHelper.Register("SyncBackgroundTask", new TimeTrigger((uint) (settingsManager.BackupSyncRecurrence * 60), false));
+            BackgroundTaskHelper.Register("SyncBackgroundTask", new TimeTrigger((uint)interval, false));
         }
 
         /// <inheritdoc />

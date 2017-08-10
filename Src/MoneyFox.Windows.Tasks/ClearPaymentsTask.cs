@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using MoneyFox.Business.Extensions;
-using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
@@ -19,8 +15,6 @@ namespace MoneyFox.Windows.Tasks
     /// </summary>
     public sealed class ClearPaymentsTask : IBackgroundTask
     {
-        private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
-
         private IPaymentService paymentService;
 
         public async void Run(IBackgroundTaskInstance taskInstance)

@@ -1,5 +1,4 @@
 using Android.App;
-using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
@@ -34,12 +33,12 @@ namespace MoneyFox.Droid
         }
 
         /// <inheritdoc />
-        public void StartBackupSyncTask()
+        public void StartBackupSyncTask(int interval)
         {
-            handler = new Handler((Message msg) =>
+            handler = new Handler(msg =>
             {
                 var syncBackupJob = (SyncBackupJob) msg.Obj;
-                syncBackupJob.ScheduleTask();
+                syncBackupJob.ScheduleTask(interval);
             });
 
             var startServiceIntentSyncBackup = new Intent(currentActivity, typeof(SyncBackupJob));
