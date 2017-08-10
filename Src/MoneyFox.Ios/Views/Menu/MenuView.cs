@@ -2,7 +2,6 @@
 using CoreGraphics;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.iOS.Support.XamarinSidebar;
 using MvvmCross.iOS.Views;
 using UIKit;
 
