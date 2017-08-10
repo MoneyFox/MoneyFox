@@ -12,7 +12,8 @@
         /// <summary>
         ///     Starts the backup sync task.
         /// </summary>
-        void StartBackupSyncTask();
+        /// <param name="interval">Amount of minutes for task to repeat the task.</param>
+        void StartBackupSyncTask(int interval);
 
         /// <summary>
         ///     Stops the background sync task.

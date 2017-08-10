@@ -42,7 +42,7 @@ namespace MoneyFox.Business.ViewModels
                 } 
                 else
                 {
-                    backgroundTaskManager.StartBackupSyncTask();
+                    backgroundTaskManager.StartBackupSyncTask(settingsManager.BackupSyncRecurrence * 60);
                 }
                 settingsManager.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
@@ -60,7 +60,7 @@ namespace MoneyFox.Business.ViewModels
                 if(settingsManager.BackupSyncRecurrence == value) return;
                 settingsManager.BackupSyncRecurrence = value < 1 ? 1 : value;
                 backgroundTaskManager.StopBackupSyncTask();
-                backgroundTaskManager.StartBackupSyncTask();
+                backgroundTaskManager.StartBackupSyncTask(settingsManager.BackupSyncRecurrence * 60);
                 RaisePropertyChanged();
             }
         }

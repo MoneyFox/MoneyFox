@@ -78,18 +78,16 @@ namespace MoneyFox.Droid.Jobs
             }
         }
 
-        public void ScheduleTask()
+        public void ScheduleTask(int interval)
         {
-            var settingsManager = Mvx.Resolve<ISettingsManager>();
-
-            if (!settingsManager.IsBackupAutouploadEnabled) return;
+            if (!Mvx.Resolve<ISettingsManager>().IsBackupAutouploadEnabled) return;
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(
                                                   this, Java.Lang.Class.FromType(typeof(SyncBackupJob))));
 
-            // Execute all 30 Minutes
-            builder.SetPeriodic(60 * 60 * 1000 * settingsManager.BackupSyncRecurrence);
+            // convert hours into millisecond
+            builder.SetPeriodic(60 * 60 * 1000 * interval);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.NotRoaming);
             builder.SetRequiresDeviceIdle(false);

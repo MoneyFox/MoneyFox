@@ -117,7 +117,7 @@ namespace MoneyFox.Droid.Activities
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask();
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
 
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,

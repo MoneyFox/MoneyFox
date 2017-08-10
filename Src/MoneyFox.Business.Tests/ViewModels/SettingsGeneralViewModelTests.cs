@@ -21,7 +21,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var taskStarted = false;
             var backgroundTaskManager = new Mock<IBackgroundTaskManager>();
-            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback(() => taskStarted = true);
+            backgroundTaskManager.Setup(x => x.StartBackupSyncTask(60)).Callback(() => taskStarted = true);
 
             // Act
             var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
@@ -41,7 +41,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var taskStarted = false;
             var backgroundTaskManager = new Mock<IBackgroundTaskManager>();
-            backgroundTaskManager.Setup(x => x.StartBackupSyncTask()).Callback(() => taskStarted = true);
+            backgroundTaskManager.Setup(x => x.StartBackupSyncTask(60)).Callback(() => taskStarted = true);
 
             // Act
             var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
