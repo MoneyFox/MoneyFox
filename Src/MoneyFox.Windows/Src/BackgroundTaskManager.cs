@@ -10,7 +10,7 @@ namespace MoneyFox.Windows
         /// <inheritdoc />
         public void StartBackupSyncTask(int interval)
         {
-            BackgroundTaskHelper.Register("SyncBackgroundTask", new TimeTrigger((uint)interval, false));
+            BackgroundTaskHelper.Register("SyncBackgroundTask", new TimeTrigger((uint)interval, false), true, false, new SystemCondition(SystemConditionType.InternetAvailable));
         }
 
         /// <inheritdoc />
