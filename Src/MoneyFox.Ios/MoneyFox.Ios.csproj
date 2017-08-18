@@ -114,8 +114,8 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Views\AccountList\AccountListView.cs" />
-    <Compile Include="Views\AccountList\AccountListView.designer.cs">
+    <Compile Include="Views\AccountListView.cs" />
+    <Compile Include="Views\AccountListView.Designer.cs">
       <DependentUpon>AccountListView.cs</DependentUpon>
     </Compile>
     <None Include="app.config" />
@@ -123,37 +123,14 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="Views\AccountList\AccountListView.xib">
-      <IncludeInPackage>false</IncludeInPackage>
-    </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\AccountList\AccountViewCell.xib" />
-    <Compile Include="Views\AccountList\AccountTableCell.cs" />
-    <Compile Include="Views\AccountList\AccountTableCell.designer.cs">
-      <DependentUpon>AccountTableCell.cs</DependentUpon>
-    </Compile>
     <None Include="project.json" />
     <InterfaceDefinition Include="Main.storyboard" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="OneDriveAuth\IosAuthenticationProvider.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Models\MenuModel.cs" />
-    <Compile Include="Views\Menu\MenuTableViewCell.cs" />
-    <Compile Include="Views\Menu\MenuTableViewCell.designer.cs">
-      <DependentUpon>MenuTableViewCell.cs</DependentUpon>
-    </Compile>
-    <InterfaceDefinition Include="Views\Menu\MenuTableViewCell.xib" />
-    <Compile Include="Views\Menu\MenuTableViewSource.cs" />
-    <Compile Include="Views\Menu\MenuView.cs" />
-    <Compile Include="Views\Menu\MenuView.designer.cs">
-      <DependentUpon>MenuView.cs</DependentUpon>
-    </Compile>
-    <InterfaceDefinition Include="Views\Menu\MenuView.xib" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <InterfaceDefinition Include="Views\ModifyAccount\ModifyAccountView.xib" />
-    <Compile Include="Views\ModifyAccount\ModifyAccountView.cs" />
-    <Compile Include="Views\ModifyAccount\ModifyAccountView.designer.cs">
-      <DependentUpon>ModifyAccountView.cs</DependentUpon>
-    </Compile>
+    <InterfaceDefinition Include="Views\AccountListView.xib" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
