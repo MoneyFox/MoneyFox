@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Uwp;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Tasks;
 using MvvmCross.Core.ViewModels;
@@ -72,12 +73,11 @@ namespace MoneyFox.Windows.Views
                         var start = Mvx.Resolve<IMvxAppStart>();
                         start.Start();
 
-                        BackgroundTaskHelper.Unregister(typeof(ClearPaymentsTask));
-                        BackgroundTaskHelper.Unregister(typeof(RecurringPaymentTask));
                         BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(15, false));
                         BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(15, false));
 
                         shell.ViewModel = Mvx.Resolve<ShellViewModel>();
+                        await Mvx.Resolve<IBackupManager>().DownloadBackup();
 
                         //If Jump Lists are supported, add them
                         if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
