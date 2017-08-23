@@ -48,6 +48,14 @@ namespace MoneyFox.Service.DataServices
             var payments = new List<Payment>();
             foreach (var recurringPayment in recurringPayments)
             {
+                // Delete Recurring Payments without assosciated payments. 
+                // This can be removed in later versions, since this will be based on old data.
+                if (!recurringPayment.RelatedPayments.Any())
+                {
+                    recurringPaymentRepository.Delete(recurringPayment);
+                    continue;
+                }
+
                 payments.Add(new Payment(
                                  await paymentRepository.GetById(
                                      recurringPayment.RelatedPayments.OrderByDescending(y => y.Date).First().Id)));
