@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Ios.OneDriveAuth;
 using MoneyFox.Ios.Services;
@@ -9,7 +10,9 @@ namespace MoneyFox.Ios
     {
         protected override void Load(ContainerBuilder builder)
         {
-			builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterModule<BusinessModule>();
+
+            builder.RegisterType<DialogService>().As<IDialogService>();
 			//builder.RegisterType<ModifyDialogService>().As<IModifyDialogService>();
 			builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
 			builder.RegisterType<ProtectedData>().As<IProtectedData>();

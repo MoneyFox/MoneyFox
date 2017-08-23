@@ -1,32 +1,32 @@
 ﻿using Foundation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
-using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using UIKit;
 
 namespace MoneyFox.Ios 
 {
-	[Register("AppDelegate")]
-    public class AppDelegate : MvxApplicationDelegate
-	{
-		public override UIWindow Window { get; set; }
+    [Register("AppDelegate")]
+    public partial class AppDelegate : MvxApplicationDelegate {
+        public override UIWindow Window
+        {
+            get;
+            set;
+        }
 
-		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-		{
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+        public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            Window.BackgroundColor = UIColor.FromRGB(236, 239, 241);
 
-			var presenter = new MvxIosViewPresenter(this, Window);
+            var setup = new Setup(this, Window);
+            setup.Initialize();
 
-			var setup = new Setup(this, presenter);
-			setup.Initialize();
+            var startup = Mvx.Resolve<IMvxAppStart>();
+            startup.Start();
 
-			var startup = Mvx.Resolve<IMvxAppStart>();
-			startup.Start();
+            Window.MakeKeyAndVisible();
 
-			Window.MakeKeyAndVisible();
-
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

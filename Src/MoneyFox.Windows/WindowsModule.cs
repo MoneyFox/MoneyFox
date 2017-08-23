@@ -1,6 +1,6 @@
 ﻿using Autofac;
+using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows
 {    
@@ -15,6 +15,8 @@ namespace MoneyFox.Windows
         /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<BusinessModule>();
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Manager"))
                    .AsImplementedInterfaces()

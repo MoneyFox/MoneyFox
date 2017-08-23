@@ -45,8 +45,7 @@ namespace MoneyFox.Ios
 		{
 			var cb = new ContainerBuilder();
 
-			cb.RegisterModule<BusinessModule>();
-			cb.RegisterModule<IosModule>();
+            cb.RegisterModule<IosModule>();
 
 			return new AutofacMvxIocProvider(cb.Build());
 		}

@@ -13,7 +13,6 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Localization;
@@ -48,9 +47,7 @@ namespace MoneyFox.Droid
         protected override IMvxIoCProvider CreateIocProvider()
         {
             var cb = new ContainerBuilder();
-
-            cb.RegisterModule<ServiceModule>();
-            cb.RegisterModule<BusinessModule>();
+            
             cb.RegisterModule<DroidModule>();
 
             return new AutofacMvxIocProvider(cb.Build());
