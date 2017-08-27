@@ -358,13 +358,13 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFoxBeta</MainPackageIdentityName>
+    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFox</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Money Fox Beta</ReservedName>
+      <ReservedName>Money Fox</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
-    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFox</MainPackageIdentityName>
+    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFoxBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH68H8M" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH6CK9D" />
 </StoreAssociation>
