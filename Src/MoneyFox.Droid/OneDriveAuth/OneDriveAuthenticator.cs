@@ -33,9 +33,8 @@ namespace MoneyFox.Droid.OneDriveAuth
         /// </summary>
         public Task LogoutAsync()
         {
-            var tcs = new TaskCompletionSource<bool>();
             new DroidAuthenticationProvider().Logout();
-            return tcs.Task;
+            return Task.CompletedTask
         }
     }
 }
