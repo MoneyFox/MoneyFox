@@ -10,11 +10,10 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows
 {
+    /// <inheritdoc />
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        /// <summary>
-        ///     Perform an async Login Request
-        /// </summary>
+        /// <inheritdoc />
         public async Task<IOneDriveClient> LoginAsync()
         {
             try
@@ -36,9 +35,7 @@ namespace MoneyFox.Windows
             }
         }
 
-        /// <summary>
-        ///     Perform an async Logout Request
-        /// </summary>
+        /// <inheritdoc />
         public async Task LogoutAsync()
         {
             await new MsaAuthenticationProvider(
