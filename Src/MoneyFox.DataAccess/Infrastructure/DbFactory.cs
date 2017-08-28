@@ -98,7 +98,7 @@ namespace MoneyFox.DataAccess.Infrastructure
                         EndDate = recPayment.EndDate,
                         Amount = recPayment.Amount,
                         Type = (PaymentType)recPayment.Type,
-                        Recurrence = (PaymentRecurrence)recPayment.Type,
+                        Recurrence = (PaymentRecurrence)recPayment.Recurrence,
                         IsEndless = recPayment.IsEndless,
                         Note = recPayment.Note,
                     });
