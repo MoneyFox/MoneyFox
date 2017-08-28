@@ -174,9 +174,6 @@
     <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExtendedSplashScreen.xaml.cs">
-      <DependentUpon>ExtendedSplashScreen.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -368,10 +365,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ExtendedSplashScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
