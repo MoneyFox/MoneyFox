@@ -3,6 +3,7 @@ using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Business;
 
 namespace MoneyFox.Droid
 {
@@ -17,6 +18,7 @@ namespace MoneyFox.Droid
         /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<BusinessModule>();
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<ModifyDialogService>().As<IModifyDialogService>();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
