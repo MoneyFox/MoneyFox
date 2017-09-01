@@ -23,22 +23,28 @@ using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Jobs
 {
+    /// <summary>
+    ///     Job to periodically sync backup.
+    /// </summary>
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class SyncBackupJob : JobService
     {
         private const int SYNC_BACK_JOB_ID = 30;
 
+        /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
             Task.Run(async () => await SyncBackups(args));
             return true;
         }
 
+        /// <inheritdoc />
         public override bool OnStopJob(JobParameters args)
         {
             return true;
         }
 
+        /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             var callback = (Messenger)intent.GetParcelableExtra("messenger");
@@ -78,6 +84,9 @@ namespace MoneyFox.Droid.Jobs
             }
         }
 
+        /// <summary>
+        ///     Schedules the task for execution.
+        /// </summary>
         public void ScheduleTask(int interval)
         {
             if (!Mvx.Resolve<ISettingsManager>().IsBackupAutouploadEnabled) return;
