@@ -7,11 +7,10 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Droid.OneDriveAuth
 {
+    /// <inheritdoc />
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        /// <summary>
-        ///     Perform an async Login Request
-        /// </summary>
+        /// <inheritdoc />
         public Task<IOneDriveClient> LoginAsync()
         {
             try
@@ -28,14 +27,11 @@ namespace MoneyFox.Droid.OneDriveAuth
             }
         }
 
-        /// <summary>
-        ///     Perform an async Logout Request
-        /// </summary>
+        /// <inheritdoc />
         public Task LogoutAsync()
         {
-            var tcs = new TaskCompletionSource<bool>();
             new DroidAuthenticationProvider().Logout();
-            return tcs.Task;
+            return Task.CompletedTask;
         }
     }
 }

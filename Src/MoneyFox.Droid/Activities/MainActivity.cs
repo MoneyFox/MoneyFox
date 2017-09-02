@@ -1,6 +1,5 @@
 ﻿using System;
 using Android.App;
-using Android.App.Job;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -22,7 +21,6 @@ using MvvmCross.Droid.Shared.Fragments;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -56,6 +54,7 @@ namespace MoneyFox.Droid.Activities
         private ClearPaymentsJob clearPaymentsJob;
         private RecurringPaymentJob recurringPaymentJob;
 
+        /// <inheritdoc />
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -120,6 +119,7 @@ namespace MoneyFox.Droid.Activities
             Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
 
+        /// <inheritdoc />
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             Android.Support.V4.App.FragmentTransaction transaction)
         {
@@ -137,11 +137,13 @@ namespace MoneyFox.Droid.Activities
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
+        /// <inheritdoc />
         public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
         {
             currentFragmentInfo = fragmentInfo as CustomFragmentInfo;
         }
 
+        /// <inheritdoc />
         public override void OnBackPressed()
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
