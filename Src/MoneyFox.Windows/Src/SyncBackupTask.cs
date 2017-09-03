@@ -8,6 +8,7 @@ using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
+using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.Uwp;
 
 namespace MoneyFox.Windows

@@ -104,7 +104,6 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(15, false));
 
                 shell.ViewModel = Mvx.Resolve<ShellViewModel>();
-                Mvx.Resolve<IBackupManager>().DownloadBackup();
 
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
