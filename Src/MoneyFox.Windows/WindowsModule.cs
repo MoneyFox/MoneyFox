@@ -1,18 +1,17 @@
 ﻿using Autofac;
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows
 {    
+    /// <inheritdoc />
     /// <summary>
     ///     Registers the dependencies for the business module
     /// </summary>
     public class WindowsModule : Module
     {
-        /// <summary>
-        ///     Registers the dependencies for the windows module
-        /// </summary>
-        /// <param name="builder">Containerbuilder</param>
+        /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<BusinessModule>();

@@ -11,8 +11,9 @@ using MoneyFox.Service;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.Uwp;
 
-namespace MoneyFox.Windows
+namespace MoneyFox.Windows.Tasks
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Background task to sync the backup with OneDrive.
     /// </summary>

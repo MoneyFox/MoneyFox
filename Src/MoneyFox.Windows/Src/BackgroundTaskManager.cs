@@ -1,5 +1,5 @@
 ﻿using Windows.ApplicationModel.Background;
-using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Windows

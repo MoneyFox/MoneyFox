@@ -3,22 +3,42 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
-using Microsoft.OneDrive.Sdk.Authentication;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.Windows
+namespace MoneyFox.Windows.Business
 {
     /// <inheritdoc />
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
+        private readonly bool isBackground = false;
+
+        /// <summary>
+        ///     Default Constructor
+        /// </summary>
+        public OneDriveAuthenticator()
+        {
+        }
+
+        /// <summary>
+        ///     Constructor to set if in Background or not.
+        /// </summary>
+        /// <param name="isBackground">Defines if the authenticator is used in Background.</param>
+        public OneDriveAuthenticator(bool isBackground)
+        {
+            this.isBackground = isBackground;
+        }
+
         /// <inheritdoc />
         public async Task<IOneDriveClient> LoginAsync()
         {
             try
             {
-                var msaAuthenticationProvider = new OnlineIdAuthenticationProvider(ServiceConstants.Scopes);
+                var msaAuthenticationProvider = new OnlineIdAuthenticationProvider(ServiceConstants.Scopes,
+                    isBackground
+                        ? OnlineIdAuthenticationProvider.PromptType.DoNotPrompt
+                        : OnlineIdAuthenticationProvider.PromptType.PromptIfNeeded);
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
@@ -38,11 +58,7 @@ namespace MoneyFox.Windows
         /// <inheritdoc />
         public async Task LogoutAsync()
         {
-            await new MsaAuthenticationProvider(
-                    ServiceConstants.MSA_CLIENT_ID,
-                    ServiceConstants.RETURN_URL,
-                    ServiceConstants.Scopes,
-                    new CredentialCache())
+            await new OnlineIdAuthenticationProvider(ServiceConstants.Scopes)
                 .SignOutAsync();
         }
     }
