@@ -30,9 +30,6 @@ namespace MoneyFox.Business
                 filestore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
 
-            await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
-            Mvx.Resolve<IClearPaymentManager>().ClearPayments();
-
             if (Mvx.Resolve<Session>().ValidateSession())
             {
                 await navigationService.Navigate<MenuViewModel>();
