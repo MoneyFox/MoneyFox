@@ -54,7 +54,7 @@ namespace MoneyFox.DataAccess
                         .HasMany(m => m.TargetedPayments)
                         .WithOne(t => t.TargetAccount)
                         .HasForeignKey(m => m.TargetAccountId)
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
             // Set FK from recurring payment to account for charged account with cascade
             modelBuilder.Entity<AccountEntity>()
@@ -68,7 +68,7 @@ namespace MoneyFox.DataAccess
                         .HasMany(m => m.TargetedRecurringPayments)
                         .WithOne(t => t.TargetAccount)
                         .HasForeignKey(m => m.TargetAccountId)
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
             // Set FK from category to payment with cascade with cascade
             modelBuilder.Entity<CategoryEntity>()
