@@ -15,11 +15,6 @@ namespace MoneyFox.DataAccess.Infrastructure
         private readonly IDbFactory dbFactory;
 
         /// <summary>
-        ///     Currenly used DbSet.
-        /// </summary>
-        protected  DbSet<T> DbSet => dbFactory.Init().Result.Set<T>();
-
-        /// <summary>
         ///     Default Constructor
         /// </summary>
         /// <param name="dbFactory">Datacontext to work with.</param>
@@ -27,6 +22,12 @@ namespace MoneyFox.DataAccess.Infrastructure
         {
             this.dbFactory = dbFactory;
         }
+
+        /// <summary>
+        ///     Currenly used DbSet.
+        /// </summary>
+        protected DbSet<T> DbSet => DbContext.Set<T>();
+
 
         /// <summary>
         ///     Current ApplicationContex.
