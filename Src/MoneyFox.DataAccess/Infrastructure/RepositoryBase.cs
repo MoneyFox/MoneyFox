@@ -12,10 +12,7 @@ namespace MoneyFox.DataAccess.Infrastructure
     /// <typeparam name="T"></typeparam>
     public abstract class RepositoryBase<T> where T : class
     {
-        /// <summary>
-        ///     Currenly used DbSet.
-        /// </summary>
-        protected readonly DbSet<T> DbSet;
+        private readonly IDbFactory dbFactory;
 
         /// <summary>
         ///     Default Constructor
@@ -23,14 +20,19 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="dbFactory">Datacontext to work with.</param>
         protected RepositoryBase(IDbFactory dbFactory)
         {
-            DbContext = dbFactory.Init().Result;
-            DbSet = DbContext.Set<T>();
+            this.dbFactory = dbFactory;
         }
+
+        /// <summary>
+        ///     Currenly used DbSet.
+        /// </summary>
+        protected DbSet<T> DbSet => DbContext.Set<T>();
+
 
         /// <summary>
         ///     Current ApplicationContex.
         /// </summary>
-        protected ApplicationContext DbContext { get; }
+        protected ApplicationContext DbContext => dbFactory.Init().Result;
 
         #region Implementation
 

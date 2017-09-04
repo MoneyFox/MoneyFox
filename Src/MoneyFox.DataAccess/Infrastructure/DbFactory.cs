@@ -35,8 +35,8 @@ namespace MoneyFox.DataAccess.Infrastructure
             if (dbContext == null)
             {
                 dbContext = new ApplicationContext();
+                await dbContext.Database.MigrateAsync();
             }
-            await dbContext.Database.MigrateAsync();
             return dbContext;
         }
 
@@ -139,13 +139,11 @@ namespace MoneyFox.DataAccess.Infrastructure
                 await dbContext.SaveChangesAsync();
             }
         }
-
-        /// <summary>
-        ///     Dispose the current DbFactory
-        /// </summary>
+        /// <inheritdoc />
         protected override void DisposeCore()
         {
             dbContext?.Dispose();
+            dbContext = null;
         }
     }
 }
