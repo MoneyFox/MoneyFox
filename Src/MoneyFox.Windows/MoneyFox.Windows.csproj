@@ -148,7 +148,6 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\SyncBackupTask.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\Tile.cs" />
     <Compile Include="Src\TileHelper.cs" />
