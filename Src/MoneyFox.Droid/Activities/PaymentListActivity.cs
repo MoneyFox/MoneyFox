@@ -24,6 +24,7 @@ namespace MoneyFox.Droid.Activities
     {
         private MvxRecyclerView innerPaymentlist;
 
+        /// <inheritdoc />
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -42,6 +43,7 @@ namespace MoneyFox.Droid.Activities
             Title = ViewModel.Title;
         }
 
+        /// <inheritdoc />
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
             if (v.Id == Resource.Id.expandable_payment_list)
@@ -52,6 +54,7 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
+        /// <inheritdoc />
         public override bool OnContextItemSelected(IMenuItem item)
         {
             var selected = (PaymentViewModel)
@@ -84,6 +87,7 @@ namespace MoneyFox.Droid.Activities
                 .Commit();
         }
 
+        /// <inheritdoc />
         protected override async void OnResume()
         {
             base.OnResume();

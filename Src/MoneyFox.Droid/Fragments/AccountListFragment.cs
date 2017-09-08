@@ -16,6 +16,7 @@ namespace MoneyFox.Droid.Fragments
         protected override int FragmentId => Resource.Layout.fragment_account_list;
         protected override string Title => Strings.AccountsLabel;
 
+        /// <inheritdoc />
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -26,6 +27,7 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
+        /// <inheritdoc />
         public override async void OnStart()
         {
             base.OnStart();

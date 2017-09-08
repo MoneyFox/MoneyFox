@@ -20,16 +20,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 local:MvxBind="Text SearchText"
-                local:MvxLang="Hint SearchStringLabel"/>
+                local:MvxLang="Hint SearchStringLabel" />
         </android.support.design.widget.TextInputLayout>
         <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
-          android:id="@+id/category_list"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          local:layout_behavior="@string/appbar_scrolling_view_behavior"
-          local:MvxItemTemplate="@layout/listitem_inner_category_list"
-          local:MvxBind="ItemsSource Source" />
+            android:id="@+id/category_list"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            local:layout_behavior="@string/appbar_scrolling_view_behavior"
+            local:MvxItemTemplate="@layout/listitem_inner_category_list"
+            local:MvxBind="ItemsSource Source" />
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
