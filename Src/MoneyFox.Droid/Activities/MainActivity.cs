@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -15,12 +16,14 @@ using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Jobs;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Shared.Fragments;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
+using Environment = System.Environment;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -58,6 +61,20 @@ namespace MoneyFox.Droid.Activities
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            try
+            {
+                DataAccess.ApplicationContext.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                        DatabaseConstants.DB_NAME);
+                DataAccess.ApplicationContextOld.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                        DatabaseConstants.DB_NAME_OLD);
+            }
+            catch (Exception ex)
+            {
+                await Mvx.Resolve<IDialogService>().ShowMessage("erro", ex.ToString());
+            }
 
             // Handler to create jobs.
             handler = new Handler(msg => {
