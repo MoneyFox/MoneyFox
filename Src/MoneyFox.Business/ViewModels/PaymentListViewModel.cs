@@ -191,13 +191,16 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        /// <summary>
-        ///     Initialize the view. Is called after the constructor.
-        /// </summary>
-        /// <param name="parameter">Parameter object for this View Model.</param>
-        public override async Task Initialize(PaymentListParameter parameter)
+
+        /// <inheritdoc />
+        public override void Prepare(PaymentListParameter parameter)
         {
             AccountId = parameter.AccountId;
+        }
+
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
                                                                      settingsManager,

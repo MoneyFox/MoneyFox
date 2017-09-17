@@ -8,7 +8,7 @@
     <PackageReference Include="AutoFixture" Version="3.50.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="Moq" Version="4.7.99" />
-    <PackageReference Include="MvvmCross.Tests" Version="5.1.1" />
+    <PackageReference Include="MvvmCross.Tests" Version="5.2.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>

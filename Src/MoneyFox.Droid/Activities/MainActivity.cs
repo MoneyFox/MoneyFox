@@ -18,9 +18,6 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Droid.Shared.Caching;
-using MvvmCross.Droid.Shared.Fragments;
-using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using Environment = System.Environment;
@@ -32,9 +29,8 @@ namespace MoneyFox.Droid.Activities
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
         Name = "moneyfox.droid.activities.MainActivity")]
-    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
+    public class MainActivity : MvxAppCompatActivity<MainViewModel>
     {
-        private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
         public CoordinatorLayout MainFrame;
 
@@ -137,30 +133,6 @@ namespace MoneyFox.Droid.Activities
         }
 
         /// <inheritdoc />
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
-            Android.Support.V4.App.FragmentTransaction transaction)
-        {
-            base.OnBeforeFragmentChanging(fragmentInfo, transaction);
-
-            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
-
-            if (currentFrag != null
-                && currentFrag.FindAssociatedViewModelType(typeof(MainActivity)) != fragmentInfo.ViewModelType)
-            {
-                fragmentInfo.AddToBackStack = true;
-            }
-
-            transaction.SetCustomAnimations(Resource.Animation.abc_fade_in,
-                Resource.Animation.abc_fade_out);
-        }
-
-        /// <inheritdoc />
-        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
-        {
-            currentFragmentInfo = fragmentInfo as CustomFragmentInfo;
-        }
-
-        /// <inheritdoc />
         public override void OnBackPressed()
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
@@ -173,44 +145,16 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
-        /// <summary>
-        ///     Handle Clicks in the Toolbar
-        /// </summary>
-        /// <param name="item">Represents the clicked menu item.</param>
-        /// <returns>Returns true if the operation was succesful and false if not.</returns>
+        /// <inheritdoc />
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    return HandleHomeButton();
+                    DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    return true;
             }
             return base.OnOptionsItemSelected(item);
-        }
-
-        private bool HandleHomeButton()
-        {
-            if (currentFragmentInfo != null && currentFragmentInfo.IsRoot)
-            {
-                DrawerLayout.OpenDrawer(GravityCompat.Start);
-            }
-            else
-            {
-                SupportFragmentManager.PopBackStackImmediate();
-            }
-            return true;
-        }
-
-        public class CustomFragmentInfo : MvxCachedFragmentInfo
-        {
-            public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true,
-                bool isRoot = false)
-                : base(tag, fragmentType, viewModelType, cacheFragment, true)
-            {
-                IsRoot = isRoot;
-            }
-
-            public bool IsRoot { get; set; }
         }
     }
 }

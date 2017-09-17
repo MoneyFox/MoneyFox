@@ -8,7 +8,6 @@ using MoneyFox.Business;
 using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
@@ -29,6 +28,7 @@ namespace MoneyFox.Droid
         {
         }
 
+        /// <inheritdoc />
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
             MvxAppCompatSetupHelper.FillTargetFactories(registry);
@@ -37,6 +37,7 @@ namespace MoneyFox.Droid
             base.FillTargetFactories(registry);
         }
 
+        /// <inheritdoc />
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
@@ -44,6 +45,7 @@ namespace MoneyFox.Droid
             Mvx.RegisterSingleton<IConnectivity>(() => new Connectivity());
         }
 
+        /// <inheritdoc />
         protected override IMvxIoCProvider CreateIocProvider()
         {
             var cb = new ContainerBuilder();
@@ -53,25 +55,21 @@ namespace MoneyFox.Droid
             return new AutofacMvxIocProvider(cb.Build());
         }
 
+        /// <inheritdoc />
         protected override void FillValueConverters(IMvxValueConverterRegistry registry)
         {
             base.FillValueConverters(registry);
             registry.AddOrOverwrite("Language", new MvxLanguageConverter());
         }
 
-        protected override IMvxAndroidViewPresenter CreateViewPresenter()
-        {
-            var mvxFragmentsPresenter = new CustomPresenter(AndroidViewAssemblies);
-            Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
-            return mvxFragmentsPresenter;
-        }
-
+        /// <inheritdoc />
         protected override IMvxApplication CreateApp()
         {
             Strings.Culture = new Localize().GetCurrentCultureInfo();
             return new App();
         }
 
+        /// <inheritdoc />
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }
