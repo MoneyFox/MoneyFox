@@ -136,16 +136,6 @@ namespace MoneyFox.Droid.Activities
             Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-
         /// <inheritdoc />
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             Android.Support.V4.App.FragmentTransaction transaction)

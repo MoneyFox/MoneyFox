@@ -35,7 +35,7 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
-    <Debugger>.Net (Xamarin)</Debugger>
+    <Debugger>Xamarin</Debugger>
     <AndroidSupportedAbis />
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
@@ -44,18 +44,18 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
-    <DebugSymbols>false</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <Optimize>True</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1200m</JavaMaximumHeapSize>
-    <Debugger>.Net (Xamarin)</Debugger>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <Debugger>Xamarin</Debugger>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
     <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <JavaMaximumHeapSize>1200m</JavaMaximumHeapSize>
@@ -65,7 +65,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
-    <EnableProguard>true</EnableProguard>
+    <EnableProguard>false</EnableProguard>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
   </PropertyGroup>
