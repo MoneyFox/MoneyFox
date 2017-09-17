@@ -9,39 +9,26 @@ using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Droid.Services
 {
+    /// <inheritdoc />
     public class DialogService : IDialogService 
     {
-        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
-
-        /// <summary>
-        ///     Shows a dialog with title and message. Contains only an OK button.
-        /// </summary>
-        /// <param name="title">Title to display.</param>
-        /// <param name="message">Text to display.</param>
+        private Activity currentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+        
+        /// <inheritdoc />
         public Task ShowMessage(string title, string message)
         {
             // We have to hide the loading dialog first, otherwise it get's stuck.
             HideLoadingDialog();
-            var tcs = new TaskCompletionSource<bool>();
 
-            var builder = new AlertDialog.Builder(CurrentActivity);
+            var builder = new AlertDialog.Builder(currentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.Show();
 
-            return tcs.Task;
+            return Task.CompletedTask;
         }
 
-        /// <summary>
-        ///     Show a dialog with two buttons with customizable Texts. If no message is passed the dialog will have a Yes and No
-        ///     Button
-        /// </summary>
-        /// <param name="title">Title to display.</param>
-        /// <param name="message">Text to display.</param>
-        /// <param name="positiveButtonText">Text for the yes button.</param>
-        /// <param name="negativeButtonText">Text for the no button.</param>
-        /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
-        /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
+        /// <inheritdoc />
         public async Task ShowConfirmMessage(string title, string message, Action positivAction,
             string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
         {
@@ -57,13 +44,7 @@ namespace MoneyFox.Droid.Services
             }
         }
 
-        /// <summary>
-        ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
-        /// </summary>
-        /// <param name="title">Title for the dialog.</param>
-        /// <param name="message">Text for the dialog.</param>
-        /// <param name="positiveButtonText">Text for the yes button.</param>
-        /// <param name="negativeButtonText">Text for the no button.</param>
+        /// <inheritdoc />
         public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null)
         {
@@ -71,7 +52,7 @@ namespace MoneyFox.Droid.Services
             HideLoadingDialog();
             var tcs = new TaskCompletionSource<bool>();
 
-            var builder = new AlertDialog.Builder(CurrentActivity);
+            var builder = new AlertDialog.Builder(currentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.SetPositiveButton(Strings.YesLabel, (s, e) => tcs.SetResult(true));
@@ -81,20 +62,16 @@ namespace MoneyFox.Droid.Services
             return tcs.Task;
         }
 
-        /// <summary>
-        ///     Shows a loading dialog on the whole display.
-        /// </summary>
+        /// <inheritdoc />
         public void ShowLoadingDialog()
         {
-            AndHUD.Shared.Show(CurrentActivity, Strings.LoadingLabel);
+            AndHUD.Shared.Show(currentActivity, Strings.LoadingLabel);
         }
 
-        /// <summary>
-        ///     Closes the Loading Dialog.
-        /// </summary>
+        /// <inheritdoc />
         public void HideLoadingDialog() 
         {
-            AndHUD.Shared.Dismiss(CurrentActivity);
+            AndHUD.Shared.Dismiss(currentActivity);
         }
     }
 }
