@@ -14,6 +14,7 @@ using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Views;
 using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.IoC;
@@ -53,6 +54,12 @@ namespace MoneyFox.Droid
             cb.RegisterModule<DroidModule>();
 
             return new AutofacMvxIocProvider(cb.Build());
+        }
+
+        /// <inheritdoc />
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
+        {
+            return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
         }
 
         /// <inheritdoc />
