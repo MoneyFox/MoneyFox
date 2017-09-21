@@ -185,10 +185,10 @@
     <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Оценить приложение</value>
+    <value>Rate this app</value>
   </data>
-  <data name="SecurityHeader.Label" xml:space="preserve">
-    <value>Безопасность</value>
+  <data name="SecuritySettingsHeader.Text" xml:space="preserve">
+    <value>Security</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Выберите категорию</value>
@@ -205,8 +205,8 @@
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>Расходы</value>
   </data>
-  <data name="TilesHeader.Label" xml:space="preserve">
-    <value>Плитки</value>
+  <data name="TilesSettingsHeader.Text" xml:space="preserve">
+    <value>Tiles</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
     <value>Всего: </value>
@@ -340,9 +340,6 @@
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Последняя резервная копия была создана в:</value>
   </data>
-  <data name="GeneralHeader.Label" xml:space="preserve">
-    <value>Общие параметры</value>
-  </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Последняя модификация базы данных:</value>
   </data>
@@ -402,5 +399,41 @@
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Исключить счета из баланса</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
+  </data>
+  <data name="ExcludedAccounts.Text" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="IncludedAccounts.Text" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
+  <data name="FilterLabel.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GiveFeedback.Text" xml:space="preserve">
+    <value>Leave a Feedback</value>
+  </data>
+  <data name="Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="System.Content" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SettingsHeaderBackup.Text" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="SettingsHeaderTiles.Text" xml:space="preserve">
+    <value>Tiles</value>
   </data>
 </root>

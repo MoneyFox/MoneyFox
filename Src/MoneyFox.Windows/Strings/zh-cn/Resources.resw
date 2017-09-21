@@ -186,10 +186,10 @@
 点击访问资源库</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>评价此应用</value>
+    <value>Rate this app</value>
   </data>
-  <data name="SecuritySettingsHeader.Header" xml:space="preserve">
-    <value>安全</value>
+  <data name="SecuritySettingsHeader.Text" xml:space="preserve">
+    <value>Security</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>选择类别</value>
@@ -206,7 +206,7 @@
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>转移</value>
   </data>
-  <data name="TilesSettingsHeader.Header" xml:space="preserve">
+  <data name="TilesSettingsHeader.Text" xml:space="preserve">
     <value>Tiles</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
@@ -402,12 +402,6 @@ Also if you launch the application there it will check if there are newer backup
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Exclude account from balance</value>
   </data>
-  <data name="ThemeSettingsHeader.Header" xml:space="preserve">
-    <value>主题</value>
-  </data>
-  <data name="BackupSettingsHeader.Header" xml:space="preserve">
-    <value>Backup</value>
-  </data>
   <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
     <value>Set the amount of hours to sync the backup.</value>
   </data>
@@ -416,5 +410,32 @@ Also if you launch the application there it will check if there are newer backup
   </data>
   <data name="IncludedAccounts.Text" xml:space="preserve">
     <value>Included Accounts</value>
+  </data>
+  <data name="FilterLabel.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GiveFeedback.Text" xml:space="preserve">
+    <value>Leave a Feedback</value>
+  </data>
+  <data name="Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="System.Content" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SettingsHeaderBackup.Text" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="SettingsHeaderTiles.Text" xml:space="preserve">
+    <value>Tiles</value>
   </data>
 </root>
