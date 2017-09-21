@@ -17,10 +17,17 @@ namespace MoneyFox.Droid.Activities
     {
         public SplashScreenActivity() : base(Resource.Layout.activity_splash_screen)
         {
-            DataAccess.ApplicationContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
-            DataAccess.ApplicationContextOld.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME_OLD);
+            try
+            {
+                DataAccess.ApplicationContext.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                        DatabaseConstants.DB_NAME);
+                DataAccess.ApplicationContextOld.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                        DatabaseConstants.DB_NAME_OLD);
+            } catch (Exception)
+            {
+            }
         }
     }
 }

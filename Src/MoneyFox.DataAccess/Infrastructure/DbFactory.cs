@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation;
@@ -29,14 +32,33 @@ namespace MoneyFox.DataAccess.Infrastructure
     {
         private ApplicationContext dbContext;
 
+        [DllImport("sqlite3", CallingConvention = CallingConvention.Cdecl)]
+        static extern int sqlite3_extended_result_codes(IntPtr db, int onoff);
+
+
         /// <inheritdoc />
         public async Task<ApplicationContext> Init()
         {
             if (dbContext == null)
             {
-                dbContext = new ApplicationContext();
+                dbContext = new ApplicationContext(new DbContextOptions<ApplicationContext>());
             }
+
+            StateChangeEventHandler handler =
+                (sender, e) =>
+                {
+                    if (e.CurrentState != ConnectionState.Open)
+                        return;
+
+                    var connection = (SqliteConnection)sender;
+
+                    sqlite3_extended_result_codes(connection.Handle, 0);
+                };
+
+            dbContext.Database.GetDbConnection().StateChange += handler;
+            dbContext.Database.OpenConnection();
             await dbContext.Database.MigrateAsync();
+            dbContext.Database.GetDbConnection().StateChange -= handler;
             return dbContext;
         }
 
@@ -98,7 +120,7 @@ namespace MoneyFox.DataAccess.Infrastructure
                         EndDate = recPayment.EndDate,
                         Amount = recPayment.Amount,
                         Type = (PaymentType)recPayment.Type,
-                        Recurrence = (PaymentRecurrence)recPayment.Type,
+                        Recurrence = (PaymentRecurrence)recPayment.Recurrence,
                         IsEndless = recPayment.IsEndless,
                         Note = recPayment.Note,
                     });
@@ -139,13 +161,11 @@ namespace MoneyFox.DataAccess.Infrastructure
                 await dbContext.SaveChangesAsync();
             }
         }
-
-        /// <summary>
-        ///     Dispose the current DbFactory
-        /// </summary>
+        /// <inheritdoc />
         protected override void DisposeCore()
         {
             dbContext?.Dispose();
+            dbContext = null;
         }
     }
 }

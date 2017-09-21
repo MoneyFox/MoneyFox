@@ -9,6 +9,7 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Core;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
 
@@ -162,6 +163,8 @@ namespace MoneyFox.Business.Manager
 
                 fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
+
+            dbFactory.Dispose();
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
         }

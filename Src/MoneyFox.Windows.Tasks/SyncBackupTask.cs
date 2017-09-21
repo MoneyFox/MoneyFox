@@ -8,10 +8,12 @@ using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
+using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.Uwp;
 
-namespace MoneyFox.Windows
+namespace MoneyFox.Windows.Tasks
 {
+    /// <inheritdoc />
     /// <summary>
     ///     Background task to sync the backup with OneDrive.
     /// </summary>
@@ -26,7 +28,7 @@ namespace MoneyFox.Windows
             try
             {
                 var backupManager = new BackupManager(
-                    new OneDriveService(new OneDriveAuthenticator()),
+                    new OneDriveService(new OneDriveAuthenticator(true)),
                     new MvxWindowsCommonFileStore(),
                     new SettingsManager(new WindowsUwpSettings()),
                     new Connectivity(),
