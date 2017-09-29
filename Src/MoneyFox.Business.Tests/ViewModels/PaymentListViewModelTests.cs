@@ -61,7 +61,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               messenger.Object);
 
             // Act
-            await vm.Initialize(new PaymentListParameter(42));
+            vm.Prepare(new PaymentListParameter(42));
+            await vm.Initialize();
 
             // Assert
             Assert.Equal(42, vm.AccountId);
@@ -87,7 +88,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               messenger.Object);
 
             // Act
-            await vm.Initialize(new PaymentListParameter());
+            vm.Prepare(new PaymentListParameter());
+            await vm.Initialize();
 
             // Assert
             Assert.Equal(0, vm.AccountId);

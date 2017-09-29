@@ -41,7 +41,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IMvxNavigationService>().Object);
 
-            await viewmodel.Initialize(new ModifyPaymentParameter(type));
+            viewmodel.Prepare(new ModifyPaymentParameter(type));
+            await viewmodel.Initialize();
 
             // Act / Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -87,7 +88,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewmodel.Initialize(new ModifyPaymentParameter(type, 12));
+            viewmodel.Prepare(new ModifyPaymentParameter(type, 12));
+            await viewmodel.Initialize();
 
             // Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -126,7 +128,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IMvxNavigationService>().Object);
 
-            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Income));
+            viewmodel.Prepare(new ModifyPaymentParameter(PaymentType.Income));
+            await viewmodel.Initialize();
             viewmodel.SelectedPayment.ChargedAccount = new AccountViewModel(new Account());
             viewmodel.SelectedPayment.IsRecurring = true;
             viewmodel.Recurrence = recurrence;
@@ -247,7 +250,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Income, 12));
+            viewmodel.Prepare(new ModifyPaymentParameter(PaymentType.Income, 12));
+            await viewmodel.Initialize();
 
             // Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
@@ -278,7 +282,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<IMvxNavigationService>().Object);
 
             // Act / Assert
-            await viewmodel.Initialize(new ModifyPaymentParameter(PaymentType.Transfer));
+            viewmodel.Prepare(new ModifyPaymentParameter(PaymentType.Transfer));
+            await viewmodel.Initialize();
             viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
