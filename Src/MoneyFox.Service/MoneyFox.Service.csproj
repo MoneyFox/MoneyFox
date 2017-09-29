@@ -21,7 +21,7 @@
     <PackageReference Include="Autofac" Version="4.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.OneDriveSDK" Version="2.0.7" />
-    <PackageReference Include="MvvmCross.Plugin.File" Version="5.2.0" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="5.2.1" />
   </ItemGroup>
 
   <ItemGroup>
