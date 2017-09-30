@@ -8,6 +8,7 @@
   <string name="menu_save">保存</string>
   <string name="menu_delete">删除</string>
   <string name="menu_select">选择</string>
+  <string name="menu_set_filter">Set Filter</string>
   <!--Navigation Drawer-->
   <string name="menu_accounts">账户</string>
   <string name="menu_statistics">统计</string>

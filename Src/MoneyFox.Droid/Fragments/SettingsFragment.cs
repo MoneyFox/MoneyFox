@@ -25,12 +25,12 @@ namespace MoneyFox.Droid.Fragments
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             if (viewPager != null)
             {
-                var fragments = new List<MvxCachingFragmentStatePagerAdapter.FragmentInfo>
+                var fragments = new List<MvxViewPagerFragmentInfo>
                 {
-                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.GeneralTitle,
+                    new MvxViewPagerFragmentInfo(Strings.GeneralTitle,
                         typeof(SettingsGeneralFragment),
                         ViewModel.SettingsGeneralViewModel),
-                    new MvxCachingFragmentStatePagerAdapter.FragmentInfo(Strings.SecurityTitle,
+                    new MvxViewPagerFragmentInfo(Strings.SecurityTitle,
                         typeof(SettingsSecurityFragment),
                         ViewModel.SettingsSecurityViewModel)
                 };

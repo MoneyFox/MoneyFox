@@ -122,16 +122,21 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         #endregion
 
-        /// <summary>
-        ///     Initializes the ViewModel
-        /// </summary>
-        /// <param name="parameter">Parameter object for the view.</param>
-        public override async Task Initialize(ModifyAccountParameter parameter)
+        private int accountId;
+
+        /// <inheritdoc />
+        public override void Prepare(ModifyAccountParameter parameter)
         {
-            if (parameter.AccountId == 0)
+            accountId = parameter.AccountId;
+        }
+
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            if (accountId == 0)
             {
                 IsEdit = false;
                 amount = 0;
@@ -139,7 +144,7 @@ namespace MoneyFox.Business.ViewModels
             } else
             {
                 IsEdit = true;
-                SelectedAccount = new AccountViewModel(await accountService.GetById(parameter.AccountId));
+                SelectedAccount = new AccountViewModel(await accountService.GetById(accountId));
                 amount = SelectedAccount.CurrentBalance;
             }
         }

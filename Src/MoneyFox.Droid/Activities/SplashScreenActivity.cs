@@ -3,9 +3,7 @@ using System.IO;
 using Android.App;
 using Android.Content.PM;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.Views;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Activities
 {

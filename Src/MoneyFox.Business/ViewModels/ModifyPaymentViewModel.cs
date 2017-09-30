@@ -294,27 +294,32 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        /// <summary>
-        ///     Init the view for a new PaymentViewModel. Is executed after the constructor call.
-        /// </summary>
-        /// <param name="parameter">Parameter object</param>
-        public override async Task Initialize(ModifyPaymentParameter parameter)
+        private ModifyPaymentParameter passedParameter;
+
+        /// <inheritdoc />
+        public override void Prepare(ModifyPaymentParameter parameter)
+        {
+            passedParameter = parameter;
+        }
+        
+        /// <inheritdoc />
+        public override async Task Initialize()
         {
             var accounts = await accountService.GetAllAccounts();
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts.Select(x => new AccountViewModel(x)));
             ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
 
-            if (parameter.PaymentId == 0)
+            if (passedParameter.PaymentId == 0)
             {
                 IsEdit = false;
                 IsEndless = true;
 
                 amount = 0;
-                PrepareDefault(parameter.PaymentType);
+                PrepareDefault(passedParameter.PaymentType);
             } else
             {
                 IsEdit = true;
-                PaymentId = parameter.PaymentId;
+                PaymentId = passedParameter.PaymentId;
                 SelectedPayment = new PaymentViewModel(await paymentService.GetById(PaymentId));
                 PrepareEdit();
             }

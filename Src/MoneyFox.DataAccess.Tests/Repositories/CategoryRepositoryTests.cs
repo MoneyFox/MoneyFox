@@ -6,17 +6,22 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
+using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class CategoryRepositoryTests : IDisposable
     {
+        private readonly DbFactory dbFactory;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public CategoryRepositoryTests()
         {
+            dbFactory = new DbFactory();
+
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
@@ -29,6 +34,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
+            dbFactory.DisposeIfDisposable();
+
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -39,10 +46,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_NewEntryWithoutName()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity();
 
@@ -55,10 +61,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity
             {
@@ -78,10 +83,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             // Act
             repository.Add(new CategoryEntity { Name = "TestCategory" });
@@ -97,10 +101,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity
             {
@@ -122,10 +125,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_IdSet()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity
             {
@@ -145,10 +147,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_EntryUpdated()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var newValue = "newText";
             var testEntry = new CategoryEntity
@@ -173,10 +174,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_IdUnchanged()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity
             {
@@ -199,10 +199,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_NoNewEntryAdded()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
 
             var testEntry = new CategoryEntity
             {
@@ -224,10 +223,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             var testEntry = new CategoryEntity { Name = "TestCategory" };
             repository.Add(testEntry);
             await unitOfWork.Commit();
@@ -244,11 +242,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_AssignedPaymentsSetNull()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var categoryRepository = new CategoryRepository(factory);
-            var paymentRepository = new PaymentRepository(factory);
+            var categoryRepository = new CategoryRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(dbFactory);
 
             var category = new CategoryEntity { Name = "TestCategory" };
             var payment = new PaymentEntity
@@ -273,11 +270,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_AssignedRelatedPaymentsSetNull()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var categoryRepository = new CategoryRepository(factory);
-            var paymentRepository = new PaymentRepository(factory);
+            var categoryRepository = new CategoryRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(dbFactory);
 
             var category = new CategoryEntity { Name = "TestCategory" };
             var recurringPayment = new RecurringPaymentEntity
@@ -308,10 +304,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             var testEntry = new CategoryEntity { Name = "TestCategory" };
 
             // Act
@@ -326,11 +321,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryMatchedFilterDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
             var filterText = "Text";
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             var testEntry1 = new CategoryEntity { Name = filterText };
             var testEntry2 = new CategoryEntity { Name = "TestCategory" };
             repository.Add(testEntry1);
@@ -349,7 +343,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public void GetAll_NoData()
         {
             // Arrange
-            var repository = new CategoryRepository(new DbFactory());
+            var repository = new CategoryRepository(dbFactory);
 
             // Act
             var emptyList = repository.GetAll().ToList();
@@ -363,10 +357,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
@@ -384,10 +377,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
@@ -405,10 +397,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             var filterText = "Text";
             repository.Add(new CategoryEntity { Name = filterText });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
@@ -427,10 +418,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
             repository.Add(new CategoryEntity { Name = "TestCategory" });
@@ -447,10 +437,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new CategoryRepository(factory);
+            var repository = new CategoryRepository(dbFactory);
             var filterText = "Text";
             var testEntry = new CategoryEntity { Name = filterText };
             repository.Add(testEntry);

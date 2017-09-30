@@ -20,7 +20,8 @@ namespace MoneyFox.Business.ViewModels
         private readonly ICategoryService categoryService;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
-        protected readonly IMvxNavigationService navigationService;
+
+        protected readonly IMvxNavigationService NavigationService;
 
         private bool isEdit;
 
@@ -39,7 +40,7 @@ namespace MoneyFox.Business.ViewModels
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
-            this.navigationService = navigationService;
+            this.NavigationService = navigationService;
         }
 
         #region Commands
@@ -104,19 +105,25 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        /// <summary>
-        ///     Initialize the ViewModel after MvvmCross finished the navigation.
-        /// </summary>
-        public override async Task Initialize(ModifyCategoryParameter parameter)
+        private int categoryId;
+
+        /// <inheritdoc />
+        public override void Prepare(ModifyCategoryParameter parameter)
         {
-            if (parameter.CategoryId == 0)
+            categoryId = parameter.CategoryId;
+        }
+
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            if (categoryId == 0)
             {
                 IsEdit = false;
                 SelectedCategory = new CategoryViewModel(new Category());
             } else
             {
                 IsEdit = true;
-                SelectedCategory = new CategoryViewModel(await categoryService.GetById(parameter.CategoryId));
+                SelectedCategory = new CategoryViewModel(await categoryService.GetById(categoryId));
             }
         }
 
@@ -141,7 +148,7 @@ namespace MoneyFox.Business.ViewModels
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-            await navigationService.Close(this);
+            await NavigationService.Close(this);
         }
 
         private async Task DeleteCategory()
@@ -154,7 +161,7 @@ namespace MoneyFox.Business.ViewModels
                 backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
 
-                await navigationService.Close(this);
+                await NavigationService.Close(this);
             }
             catch (Exception)
             {
@@ -165,7 +172,7 @@ namespace MoneyFox.Business.ViewModels
         private async Task Cancel()
         {
             SelectedCategory = new CategoryViewModel(await categoryService.GetById(SelectedCategory.Id));
-            await navigationService.Close(this);
+            await NavigationService.Close(this);
         }
     }
 }
