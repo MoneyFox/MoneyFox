@@ -2,6 +2,8 @@
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Business;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Windows
 {    
@@ -31,6 +33,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
             builder.RegisterType<WindowsAppInformation>().As<IAppInformation>();
             builder.RegisterType<MarketplaceOperations>().As<IStoreOperations>();
+            builder.RegisterType<ConnectivityImplementation>().As<IConnectivity>();
         }
     }
 }

@@ -2,16 +2,15 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Cheesebaron.MvxPlugins.Connectivity;
 using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Core;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.Manager
 {

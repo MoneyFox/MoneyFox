@@ -2,13 +2,11 @@ using Android.Content;
 using Android.Widget;
 using Autofac;
 using Autofac.Extras.MvvmCross;
-using Cheesebaron.MvxPlugins.Connectivity;
 using Clans.Fab;
 using MoneyFox.Business;
 using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
@@ -43,7 +41,6 @@ namespace MoneyFox.Droid
         {
             base.LoadPlugins(pluginManager);
             pluginManager.EnsurePluginLoaded<PluginLoader>();
-            Mvx.RegisterSingleton<IConnectivity>(() => new Connectivity());
         }
 
         /// <inheritdoc />

@@ -3,6 +3,8 @@ using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Ios.OneDriveAuth;
 using MoneyFox.Ios.Services;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Ios
 {
@@ -18,11 +20,11 @@ namespace MoneyFox.Ios
 			builder.RegisterType<ProtectedData>().As<IProtectedData>();
 			//builder.RegisterType<NotificationService>().As<INotificationService>();
 			builder.RegisterType<BackgroundTaskManager>().As<IBackgroundTaskManager>();
-			//builder.RegisterType<TileManager>().As<ITileManager>();
+            //builder.RegisterType<TileManager>().As<ITileManager>();
 
-			//builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
-			//builder.RegisterType<PlayStoreOperations>().As<IStoreOperations>();
-
+            //builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
+            //builder.RegisterType<PlayStoreOperations>().As<IStoreOperations>();
+            builder.RegisterType<ConnectivityImplementation>().As<IConnectivity>();
         }
     }
 }
