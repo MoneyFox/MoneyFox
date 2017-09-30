@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
+using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
@@ -19,11 +20,14 @@ namespace MoneyFox.DataAccess.Tests.DataServices
     /// </summary>
     public class PaymentServiceTests : IDisposable
     {
+        private readonly DbFactory dbFactory;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public PaymentServiceTests()
         {
+            dbFactory = new DbFactory();
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
@@ -36,6 +40,7 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         /// </summary>
         public void Dispose()
         {
+            dbFactory.DisposeIfDisposable();
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -47,12 +52,11 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new PaymentRepository(factory);
+            var repository = new PaymentRepository(dbFactory);
 
-            var accountRepository = new AccountRepository(factory);
+            var accountRepository = new AccountRepository(dbFactory);
             var testAccount = new AccountEntity { Name = "testAccount" };
             accountRepository.Add(testAccount);
             await unitOfWork.Commit();

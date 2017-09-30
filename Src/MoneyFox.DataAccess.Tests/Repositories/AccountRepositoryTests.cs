@@ -6,17 +6,21 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
+using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class AccountRepositoryTests : IDisposable
     {
+        private readonly DbFactory dbFactory;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public AccountRepositoryTests()
         {
+            dbFactory = new DbFactory();
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
@@ -29,6 +33,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
+            dbFactory.DisposeIfDisposable();
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -39,10 +44,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_NewEntryWithoutName()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity();
 
@@ -55,10 +59,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity
             {
@@ -78,10 +81,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             // Act
             repository.Add(new AccountEntity { Name = "testAccount" });
@@ -97,10 +99,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity
             {
@@ -122,10 +123,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_IdSet()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity
             {
@@ -145,10 +145,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_EntryUpdated()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var newValue = "newText";
             var testEntry = new AccountEntity
@@ -173,10 +172,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_IdUnchanged()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity
             {
@@ -199,10 +197,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_NoNewEntryAdded()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             var testEntry = new AccountEntity
             {
@@ -224,10 +221,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             var testEntry = new AccountEntity { Name = "testAccount" };
             repository.Add(testEntry);
             await unitOfWork.Commit();
@@ -244,11 +240,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void DeleteAccount_RelatedChargedPaymentsRemoved()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var accountRepository = new AccountRepository(factory);
-            var paymentRepository = new PaymentRepository(factory);
+            var accountRepository = new AccountRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(dbFactory);
 
             var account = new AccountEntity
             {
@@ -281,11 +276,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void DeleteAccount_RelatedTargetPaymentSetNull()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var accountRepository = new AccountRepository(factory);
-            var paymentRepository = new PaymentRepository(factory);
+            var accountRepository = new AccountRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(dbFactory);
 
             var chargedAccount = new AccountEntity
             {
@@ -324,10 +318,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             var testEntry = new AccountEntity { Name = "testAccount" };
 
             // Act
@@ -342,11 +335,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryMatchedFilterDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
             var filterText = "Text";
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             var testEntry1 = new AccountEntity { Name = filterText };
             var testEntry2 = new AccountEntity { Name = "testAccount" };
             repository.Add(testEntry1);
@@ -365,7 +357,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public void GetAll_NoData()
         {
             // Arrange
-            var repository = new AccountRepository(new DbFactory());
+            var repository = new AccountRepository(dbFactory);
 
             // Act
             var emptyList = repository.GetAll().ToList();
@@ -379,10 +371,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
@@ -400,10 +391,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
@@ -421,10 +411,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             var filterText = "Text";
             repository.Add(new AccountEntity { Name = filterText });
             repository.Add(new AccountEntity { Name = "testAccount" });
@@ -443,10 +432,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
             repository.Add(new AccountEntity { Name = "testAccount" });
@@ -463,10 +451,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
             var filterText = "Text";
             var testEntry = new AccountEntity { Name = filterText };
             repository.Add(testEntry);
@@ -486,10 +473,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetName_NameReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new AccountRepository(factory);
+            var repository = new AccountRepository(dbFactory);
 
             const string accountName = "TestAccount";
             var testEntry = new AccountEntity { Name = accountName };

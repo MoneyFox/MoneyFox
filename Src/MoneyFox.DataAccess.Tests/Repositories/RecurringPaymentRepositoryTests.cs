@@ -6,17 +6,21 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
+using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class RecurringRecurringPaymentRepositoryTests : IDisposable
     {
+        private readonly DbFactory dbFactory;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public RecurringRecurringPaymentRepositoryTests()
         {
+            dbFactory = new DbFactory();
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
@@ -29,6 +33,8 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
+            dbFactory.DisposeIfDisposable();
+
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -39,10 +45,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var testEntry = new RecurringPaymentEntity
             {
@@ -63,10 +68,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             // Act
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
@@ -82,10 +86,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var testEntry = new RecurringPaymentEntity
             {
@@ -108,10 +111,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_IdSet()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var testEntry = new RecurringPaymentEntity
             {
@@ -132,10 +134,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_EntryUpdated()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var newValue = "newText";
             var testEntry = new RecurringPaymentEntity
@@ -161,10 +162,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_IdUnchanged()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var testEntry = new RecurringPaymentEntity
             {
@@ -188,10 +188,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_NoNewEntryAdded()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             var testEntry = new RecurringPaymentEntity
             {
@@ -214,10 +213,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             var testEntry = new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } };
             repository.Add(testEntry);
             await unitOfWork.Commit();
@@ -234,11 +232,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_RelatedPaymentSetNull()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var recurringPaymentRepository = new RecurringPaymentRepository(factory);
-            var paymentRepository = new PaymentRepository(factory);
+            var recurringPaymentRepository = new RecurringPaymentRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(dbFactory);
 
             var recurringPaymentEntity = new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } };
             var payment = new PaymentEntity
@@ -263,10 +260,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             var testEntry = new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } };
 
             // Act
@@ -281,11 +277,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryMatchedFilterDeleted()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
             var filterText = "Text";
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             var testEntry1 = new RecurringPaymentEntity
             {
                 ChargedAccount = new AccountEntity { Name = "testAccount" },
@@ -308,7 +303,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public void GetAll_NoData()
         {
             // Arrange
-            var repository = new RecurringPaymentRepository(new DbFactory());
+            var repository = new RecurringPaymentRepository(dbFactory);
 
             // Act
             var emptyList = repository.GetAll().ToList();
@@ -322,10 +317,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
@@ -343,10 +337,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
@@ -364,10 +357,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             var filterText = "Text";
             repository.Add(new RecurringPaymentEntity
             {
@@ -390,10 +382,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_NothingMatched()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
             repository.Add(new RecurringPaymentEntity { ChargedAccount = new AccountEntity { Name = "testAccount" } });
@@ -410,10 +401,9 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var factory = new DbFactory();
-            var unitOfWork = new UnitOfWork(factory);
+            var unitOfWork = new UnitOfWork(dbFactory);
 
-            var repository = new RecurringPaymentRepository(factory);
+            var repository = new RecurringPaymentRepository(dbFactory);
             var filterText = "Text";
             var testEntry = new RecurringPaymentEntity
             {
