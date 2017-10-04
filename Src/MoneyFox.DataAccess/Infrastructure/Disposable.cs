@@ -29,7 +29,9 @@ namespace MoneyFox.DataAccess.Infrastructure
         private void Dispose(bool disposing)
         {
             if (!isDisposed && disposing)
+            {
                 DisposeCore();
+            }
 
             isDisposed = true;
         }

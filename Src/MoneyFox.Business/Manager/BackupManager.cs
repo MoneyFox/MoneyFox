@@ -139,6 +139,9 @@ namespace MoneyFox.Business.Manager
 
             var backups = await backupService.GetFileNames();
 
+            // Dispose dbfactory to release the dbFile.
+            dbFactory.Dispose();
+
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
                 var backupStream =
@@ -155,6 +158,7 @@ namespace MoneyFox.Business.Manager
                     await backupService.Restore(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.BACKUP_NAME_OLD);
                 fileStore.WriteFile(DatabaseConstants.BACKUP_NAME_OLD, backupStream.ReadToEnd());
 
+                // Execute migration
                 await dbFactory.Init();
                 fileStore.TryMove(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD, true);
 
