@@ -1,14 +1,9 @@
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Extras.MvvmCross;
-using Cheesebaron.MvxPlugins.Connectivity;
-using Cheesebaron.MvxPlugins.Connectivity.WindowsUWP;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
-using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Windows.Business;
-using MoneyFox.Windows.Services;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
@@ -34,6 +29,7 @@ namespace MoneyFox.Windows
         {
         }
 
+        /// <inheritdoc />
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
@@ -44,10 +40,10 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
             Mvx.RegisterType<ISettings, WindowsUwpSettings>();
-            Mvx.RegisterType<IConnectivity, Connectivity>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
         }
 
+        /// <inheritdoc />
         protected override IMvxIoCProvider CreateIocProvider()
         {
             var cb = new ContainerBuilder();
@@ -58,21 +54,10 @@ namespace MoneyFox.Windows
             return new AutofacMvxIocProvider(cb.Build());
         }
 
-        protected override void InitializeFirstChance()
-        {
-            base.InitializeFirstChance();
-            Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IModifyDialogService, ModifyDialogService>();
-            Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
-            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
-            Mvx.RegisterType<IProtectedData, ProtectedData>();
-            Mvx.RegisterType<INotificationService, NotificationService>();
-            Mvx.RegisterType<IBackgroundTaskManager, BackgroundTaskManager>();
-            Mvx.RegisterType<ITileManager, TileManager>();
-        }
-
+        /// <inheritdoc />
         protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
 
+        /// <inheritdoc />
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }
