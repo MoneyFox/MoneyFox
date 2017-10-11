@@ -4,6 +4,8 @@ using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Business;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Droid
 {
@@ -29,6 +31,7 @@ namespace MoneyFox.Droid
 
             builder.RegisterType<DroidAppInformation>().As<IAppInformation>();
             builder.RegisterType<PlayStoreOperations>().As<IStoreOperations>();
+            builder.RegisterType<ConnectivityImplementation>().As<IConnectivity>();
         }
     }
 }
