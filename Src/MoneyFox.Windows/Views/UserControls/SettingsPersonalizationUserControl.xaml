@@ -10,7 +10,7 @@
 
     <StackPanel>
         <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
-                   Text="You can change between dark and light theme. To apply this changes please restart the application."
+                   Text="You can change between a dark and light theme. To apply this change please restart the application."
                    TextWrapping="WrapWholeWords"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
         <ComboBox SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
