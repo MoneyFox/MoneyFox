@@ -20,7 +20,7 @@ namespace MoneyFox.Foundation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -397,7 +397,7 @@ namespace MoneyFox.Foundation.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
-        ///WARNING: Local changes you made meanwhile we be lost!.
+        ///WARNING: Local changes you made meanwhile will be lost!.
         /// </summary>
         public static string BackupViewModel_RestoreBackupInformationLabel {
             get {
@@ -451,7 +451,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Income, expenses and gain for the selected time period..
+        ///   Looks up a localized string similar to Income, expenses and gains for the selected time period..
         /// </summary>
         public static string CashflowDescription {
             get {
@@ -1261,7 +1261,8 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Microsoft Passport is not enabled on this device. \n Please go to settings and enable it!.
+        ///   Looks up a localized string similar to Microsoft Passport is not enabled on this device. 
+        ///    Please go to settings and enable it!.
         /// </summary>
         public static string PassportErrorMessage {
             get {

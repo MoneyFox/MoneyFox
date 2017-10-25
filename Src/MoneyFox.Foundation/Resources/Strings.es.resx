@@ -634,6 +634,7 @@
     <value>Access denied</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device. \n Please go to settings and enable it!</value>
+    <value>Microsoft Passport is not enabled on this device. 
+    Please go to settings and enable it!</value>
   </data>
 </root>
