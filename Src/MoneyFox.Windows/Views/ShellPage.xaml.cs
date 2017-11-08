@@ -20,11 +20,7 @@ namespace MoneyFox.Windows.Views
         public ShellViewModel ViewModel
         {
             get => viewModel;
-            set
-            {
-                viewModel = value;
-                viewModel.NavigationService.AfterNavigate += NavigationServiceOnAfterNavigate;
-            }
+            set => viewModel = value;
         }
 
         /// <summary>
