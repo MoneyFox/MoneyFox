@@ -37,6 +37,12 @@ namespace MoneyFox.DataAccess.Repositories
             }
         }
 
+        /// <summary>
+        ///     Attach Foreign-Entities in the DB-Context
+        /// </summary>
+        /// <param name="entity"></param>
+        protected abstract void AttachForeign(T entity);
+
         #region Implementation
 
         /// <summary>
@@ -45,8 +51,8 @@ namespace MoneyFox.DataAccess.Repositories
         /// <param name="entity">Entity to create.</param>
         public virtual void Add(T entity)
         {
-            DbContext.Set<T>().Attach(entity);
-            DbContext.Entry(entity).State = EntityState.Added;
+            AttachForeign(entity);
+            DbContext.Set<T>().Add(entity);
         }
 
         /// <summary>

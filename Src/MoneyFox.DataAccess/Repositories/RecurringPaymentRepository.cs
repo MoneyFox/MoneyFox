@@ -1,4 +1,5 @@
 ﻿using EntityFramework.DbContextScope.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess.Repositories
@@ -14,6 +15,19 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         public RecurringPaymentRepository(IAmbientDbContextLocator ambientDbContextLocator) : base(ambientDbContextLocator)
         {
+        }
+
+        protected override void AttachForeign(RecurringPaymentEntity entity)
+        {
+            DbContext.Attach(entity.ChargedAccount);
+            if (entity.TargetAccount != null)
+            {
+                DbContext.Attach(entity.ChargedAccount);
+            }
+            if (entity.Category != null)
+            {
+                DbContext.Attach(entity.Category);
+            }
         }
     }
 }

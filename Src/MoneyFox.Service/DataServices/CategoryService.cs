@@ -130,11 +130,11 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
-        public Task<bool> CheckIfNameAlreadyTaken(string name)
+        public async Task<bool> CheckIfNameAlreadyTaken(string name)
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return categoryRepository.GetAll()
+                return await categoryRepository.GetAll()
                                          .NameEquals(name)
                                          .AnyAsync();
             }

@@ -25,6 +25,14 @@ namespace MoneyFox.DataAccess.Repositories
             return await DbContext.Set<AccountEntity>().Select(x => x.Name).FirstAsync();
         }
 
+        protected override void AttachForeign(AccountEntity entity)
+        {
+            DbContext.Attach(entity.ChargedPayments);
+            DbContext.Attach(entity.TargetedPayments);
+            DbContext.Attach(entity.ChargedRecurringPayments);
+            DbContext.Attach(entity.TargetedRecurringPayments);
+        }
+
         /// <summary>
         ///     Loads the account and all associated Payments from the database.
         /// </summary>

@@ -32,5 +32,22 @@ namespace MoneyFox.DataAccess.Repositories
                 .Include(x => x.Category)
                 .FirstAsync(x => x.Id == id);
         }
+
+        protected override void AttachForeign(PaymentEntity entity)
+        {
+            DbContext.Attach(entity.ChargedAccount);
+            if (entity.TargetAccount != null)
+            {
+                DbContext.Attach(entity.ChargedAccount);
+            }
+            if (entity.Category != null)
+            {
+                DbContext.Attach(entity.Category);
+            }
+            if (entity.RecurringPayment != null)
+            {
+                DbContext.Attach(entity.RecurringPayment);
+            }
+        }
     }
 }

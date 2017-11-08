@@ -74,15 +74,18 @@ namespace MoneyFox.Service.DataServices
     {
         private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IAccountRepository accountRepository;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
         /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory"/></param>
         /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
-        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository)
+        /// <param name="accountRepository">Instance of <see cref="IAccountRepository" /></param>
+        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository, IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;
+            this.accountRepository = accountRepository;
             this.dbContextScopeFactory = dbContextScopeFactory;
         }
 
@@ -183,6 +186,12 @@ namespace MoneyFox.Service.DataServices
             else
             {
                 paymentRepository.Update(payment.Data);
+            }
+
+            accountRepository.Update(payment.Data.ChargedAccount);
+            if (payment.Data.TargetAccount != null)
+            {
+                accountRepository.Update(payment.Data.TargetAccount);
             }
         }
 
