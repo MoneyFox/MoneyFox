@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
-using MoneyFox.DataAccess.Infrastructure;
+using EntityFramework.DbContextScope;
+using EntityFramework.DbContextScope.Interfaces;
 
 namespace MoneyFox.DataAccess
 {
@@ -17,11 +18,10 @@ namespace MoneyFox.DataAccess
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Repository", StringComparison.OrdinalIgnoreCase))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+                .AsImplementedInterfaces();
 
-            builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerLifetimeScope();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<AmbientDbContextLocator>().As<IAmbientDbContextLocator>();
+            builder.RegisterType<DbContextScopeFactory>().As<IDbContextScopeFactory>();
         }
     }
 }

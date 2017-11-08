@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -14,7 +14,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentRepository(IDbFactory dbFactory) : base(dbFactory)
+        public PaymentRepository(IAmbientDbContextLocator ambientDbContextLocator) : base(ambientDbContextLocator)
         {
         }
 
@@ -25,7 +25,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <returns>Loaded Payment.</returns>
         public override Task<PaymentEntity> GetById(int id)
         {
-            return DbSet
+            return DbContext.Set<PaymentEntity>()
                 .Include(x => x.RecurringPayment)
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)

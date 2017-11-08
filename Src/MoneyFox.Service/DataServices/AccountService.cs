@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyFox.DataAccess;
+using EntityFramework.DbContextScope.Interfaces;
 using MoneyFox.Service.Pocos;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Repositories;
@@ -73,97 +73,126 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class AccountService : IAccountService
     {
+        private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly IAccountRepository accountRepository;
-        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public AccountService(IAccountRepository accountRepository, IUnitOfWork unitOfWork)
+        public AccountService(IDbContextScopeFactory dbContextScopeFactory, IAccountRepository accountRepository)
         {
+            this.dbContextScopeFactory = dbContextScopeFactory;
             this.accountRepository = accountRepository;
-            this.unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetAllAccounts()
         {
-            var list = await accountRepository
-                .GetAll()
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await accountRepository
+                    .GetAll()
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Account(x));
+                return list.Select(x => new Account(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task<Account> GetById(int id)
         {
-            return new Account(await accountRepository.GetById(id));
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return new Account(await accountRepository.GetById(id));
+            }
         }
 
         /// <inheritdoc />
         public async Task<string> GetAccountName(int id)
         {
-            return await accountRepository.GetName(id);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return await accountRepository.GetName(id);
+            }
         }
 
         /// <inheritdoc />
         public Task<int> GetAccountCount()
         {
-            return accountRepository.GetAll().CountAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return accountRepository.GetAll().CountAsync();
+            }
         }
 
         /// <inheritdoc />
         public Task<bool> CheckIfNameAlreadyTaken(string name)
         {
-            return accountRepository.GetAll()
-                                    .NameEquals(name)
-                                    .AnyAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return accountRepository.GetAll()
+                                        .NameEquals(name)
+                                        .AnyAsync();
+            }
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetNotExcludedAccounts()
         {
-            var list = await accountRepository
-                .GetAll()
-                .AreNotExcluded()
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await accountRepository
+                    .GetAll()
+                    .AreNotExcluded()
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Account(x));
+                return list.Select(x => new Account(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Account>> GetExcludedAccounts()
         {
-            var list = await accountRepository
-                .GetAll()
-                .AreExcluded()
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await accountRepository
+                    .GetAll()
+                    .AreExcluded()
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Account(x));
+                return list.Select(x => new Account(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task SaveAccount(Account account)
         {
-            if (account.Data.Id == 0)
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                accountRepository.Add(account.Data);
-            } else
-            {
-                accountRepository.Update(account.Data);
+                if (account.Data.Id == 0)
+                {
+                    accountRepository.Add(account.Data);
+                }
+                else
+                {
+                    accountRepository.Update(account.Data);
+                }
+                await dbContextScope.SaveChangesAsync();
             }
-            await unitOfWork.Commit();
         }
 
         /// <inheritdoc />
         public async Task DeleteAccount(Account account)
         {
-            accountRepository.Delete(account.Data);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+
+                accountRepository.Delete(account.Data);
+                await dbContextScope.SaveChangesAsync();
+            }
         }
     }
 }

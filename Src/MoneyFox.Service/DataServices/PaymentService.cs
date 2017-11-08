@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
@@ -72,86 +72,104 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
+        private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly IPaymentRepository paymentRepository;
-        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
+        /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory"/></param>
         /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
-        /// <param name="unitOfWork">Instance of <see cref="IUnitOfWork" /></param>
-        public PaymentService(IPaymentRepository paymentRepository, IUnitOfWork unitOfWork)
+        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository)
         {
             this.paymentRepository = paymentRepository;
-            this.unitOfWork = unitOfWork;
+            this.dbContextScopeFactory = dbContextScopeFactory;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetUnclearedPayments(DateTime enddate, int accountId = 0)
         {
-            var query = paymentRepository
-                .GetAll()
-                .Include(x => x.ChargedAccount)
-                .Include(x => x.TargetAccount)
-                .AreNotCleared()
-                .HasDateSmallerEqualsThan(enddate);
-
-            if (accountId != 0)
+            using (dbContextScopeFactory.CreateReadOnly())
             {
-                query = query.HasAccountId(accountId);
+                var query = paymentRepository
+                    .GetAll()
+                    .Include(x => x.ChargedAccount)
+                    .Include(x => x.TargetAccount)
+                    .AreNotCleared()
+                    .HasDateSmallerEqualsThan(enddate);
+
+                if (accountId != 0)
+                {
+                    query = query.HasAccountId(accountId);
+                }
+
+                var list = await query
+                    .ToListAsync();
+
+                return list.Select(x => new Payment(x));
             }
-
-            var list = await query
-                .ToListAsync();
-
-            return list.Select(x => new Payment(x));
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(DateTime startdate, DateTime enddate)
         {
-            var list = await paymentRepository
-                .GetAll()
-                .Include(x => x.Category)
-                .WithoutTransfers()
-                .HasDateLargerEqualsThan(startdate.Date)
-                .HasDateSmallerEqualsThan(enddate.Date)
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await paymentRepository
+                    .GetAll()
+                    .Include(x => x.Category)
+                    .WithoutTransfers()
+                    .HasDateLargerEqualsThan(startdate.Date)
+                    .HasDateSmallerEqualsThan(enddate.Date)
+                    .ToListAsync();
 
-            return list.Select(x => new Payment(x));
+                return list.Select(x => new Payment(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Payment>> GetPaymentsByAccountId(int accountId)
         {
-            var list = await paymentRepository
-                .GetAll()
-                .HasAccountId(accountId)
-                .ToListAsync();
-            return list.Select(x => new Payment(x));
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await paymentRepository
+                    .GetAll()
+                    .HasAccountId(accountId)
+                    .ToListAsync();
+                return list.Select(x => new Payment(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task<Payment> GetById(int id)
         {
-            return new Payment(await paymentRepository.GetById(id));
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return new Payment(await paymentRepository.GetById(id));
+            }
         }
 
         /// <inheritdoc />
         public async Task SavePayment(Payment payment)
         {
-            AddPaymentToChangeSet(payment);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                AddPaymentToChangeSet(payment);
+                await dbContextScope.SaveChangesAsync();
+            }
         }
 
         /// <inheritdoc />
         public async Task SavePayments(IEnumerable<Payment> payments)
         {
-            foreach (var payment in payments)
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                AddPaymentToChangeSet(payment);
+                foreach (var payment in payments)
+                {
+                    AddPaymentToChangeSet(payment);
+                }
+                await dbContextScope.SaveChangesAsync();
             }
-            await unitOfWork.Commit();
         }
 
         private void AddPaymentToChangeSet(Payment payment)
@@ -171,19 +189,25 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task DeletePayment(Payment payment)
         {
-            PaymentAmountHelper.RemovePaymentAmount(payment);
-            paymentRepository.Delete(payment.Data);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                PaymentAmountHelper.RemovePaymentAmount(payment);
+                paymentRepository.Delete(payment.Data);
+                await dbContextScope.SaveChangesAsync();
+            }
         }
 
         /// <inheritdoc />
         public async Task DeletePayments(IEnumerable<Payment> payments)
         {
-            foreach (var payment in payments)
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                paymentRepository.Delete(payment.Data);
+                foreach (var payment in payments)
+                {
+                    paymentRepository.Delete(payment.Data);
+                }
+                await dbContextScope.SaveChangesAsync();
             }
-            await unitOfWork.Commit();
         }
     }
 }

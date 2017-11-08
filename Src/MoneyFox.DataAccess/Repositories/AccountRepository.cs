@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -15,14 +15,14 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountRepository(IDbFactory dbFactory) : base(dbFactory)
+        public AccountRepository(IAmbientDbContextLocator ambientDbContextLocator) : base(ambientDbContextLocator)
         {
         }
 
         /// <inheritdoc />
         public async Task<string> GetName(int id)
         {
-            return await DbSet.Select(x => x.Name).FirstAsync();
+            return await DbContext.Set<AccountEntity>().Select(x => x.Name).FirstAsync();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <returns>Loaded Account</returns>
         public override async Task<AccountEntity> GetById(int id)
         {
-            return await DbSet
+            return await DbContext.Set<AccountEntity>()
                 .Include(x => x.ChargedPayments).ThenInclude(p => p.Category)
                 .Include(x => x.ChargedPayments).ThenInclude(p => p.TargetAccount)
                 .Include(x => x.TargetedPayments).ThenInclude(p => p.Category)

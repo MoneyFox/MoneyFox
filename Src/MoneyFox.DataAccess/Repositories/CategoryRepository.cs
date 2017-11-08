@@ -1,5 +1,5 @@
-﻿using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
+﻿using EntityFramework.DbContextScope.Interfaces;
+using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess.Repositories
 {
@@ -12,7 +12,7 @@ namespace MoneyFox.DataAccess.Repositories
         /// <summary>
         ///     Constructor
         /// </summary>
-        public CategoryRepository(IDbFactory dbFactory) : base(dbFactory)
+        public CategoryRepository(IAmbientDbContextLocator ambientDbContextLocator) : base(ambientDbContextLocator)
         {
         }
     }

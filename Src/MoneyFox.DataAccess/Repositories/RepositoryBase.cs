@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace MoneyFox.DataAccess.Infrastructure
+namespace MoneyFox.DataAccess.Repositories
 {
     /// <summary>
     ///     Provides base operations who are used on all repositories
@@ -12,27 +13,29 @@ namespace MoneyFox.DataAccess.Infrastructure
     /// <typeparam name="T"></typeparam>
     public abstract class RepositoryBase<T> where T : class
     {
-        private readonly IDbFactory dbFactory;
+        private readonly IAmbientDbContextLocator ambientDbContextLocator;
 
         /// <summary>
         ///     Default Constructor
         /// </summary>
-        /// <param name="dbFactory">Datacontext to work with.</param>
-        protected RepositoryBase(IDbFactory dbFactory)
+        /// <param name="ambientDbContextLocator">Locator to load the db context.</param>
+        protected RepositoryBase(IAmbientDbContextLocator ambientDbContextLocator)
         {
-            this.dbFactory = dbFactory;
+            this.ambientDbContextLocator = ambientDbContextLocator;
         }
 
-        /// <summary>
-        ///     Currenly used DbSet.
-        /// </summary>
-        protected DbSet<T> DbSet => DbContext.Set<T>();
+        protected ApplicationContext DbContext
+        {
+            get
+            {
+                var dbContext = ambientDbContextLocator.Get<ApplicationContext>();
 
+                if (dbContext == null)
+                    throw new InvalidOperationException("No ambient DbContext of type ApplicationContext found. This means that this repository method has been called outside of the scope of a DbContextScope. A repository must only be accessed within the scope of a DbContextScope, which takes care of creating the DbContext instances that the repositories need and making them available as ambient contexts. This is what ensures that, for any given DbContext-derived type, the same instance is used throughout the duration of a business transaction. To fix this issue, use IDbContextScopeFactory in your top-level business logic service method to create a DbContextScope that wraps the entire business transaction that your service method implements. Then access this repository within that scope. Refer to the comments in the IDbContextScope.cs file for more details.");
 
-        /// <summary>
-        ///     Current ApplicationContex.
-        /// </summary>
-        protected ApplicationContext DbContext => dbFactory.Init().Result;
+                return dbContext;
+            }
+        }
 
         #region Implementation
 
@@ -42,7 +45,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to create.</param>
         public virtual void Add(T entity)
         {
-            DbSet.Add(entity);
+            DbContext.Set<T>().Add(entity);
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to update.</param>
         public virtual void Update(T entity)
         {
-            DbSet.Attach(entity);
+            DbContext.Set<T>().Attach(entity);
             DbContext.Entry(entity).State = EntityState.Modified;
         }
 
@@ -61,7 +64,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="entity">Entity to delete.</param>
         public virtual void Delete(T entity)
         {
-            DbSet.Remove(entity);
+            DbContext.Set<T>().Remove(entity);
         }
 
         /// <summary>
@@ -70,9 +73,12 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <param name="where">Filter for items to delete.</param>
         public virtual void Delete(Expression<Func<T, bool>> where)
         {
-            var objects = DbSet.Where(where).AsEnumerable();
+            var dbSet = DbContext.Set<T>();
+            var objects = dbSet.Where(where).AsEnumerable();
             foreach (var obj in objects)
-                DbSet.Remove(obj);
+            {
+                dbSet.Remove(obj);
+            }
         }
 
         /// <summary>
@@ -82,7 +88,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>selected Item.</returns>
         public virtual async Task<T> GetById(int id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbContext.Set<T>().FindAsync(id);
         }
 
         /// <summary>
@@ -93,7 +99,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>First item that matched.</returns>
         public async Task<T> Get(Expression<Func<T, bool>> where)
         {
-            return await DbSet.Where(where).FirstOrDefaultAsync();
+            return await DbContext.Set<T>().Where(where).FirstOrDefaultAsync();
         }
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns></returns>
         public virtual IQueryable<T> GetAll()
         {
-            return DbSet;
+            return DbContext.Set<T>();
         }
 
         /// <summary>
@@ -112,7 +118,7 @@ namespace MoneyFox.DataAccess.Infrastructure
         /// <returns>Selected Items.</returns>
         public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return DbSet.Where(where);
+            return DbContext.Set<T>().Where(where);
         }
 
         #endregion

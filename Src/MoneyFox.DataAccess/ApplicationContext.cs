@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFramework.DbContextScope.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 
@@ -7,7 +8,7 @@ namespace MoneyFox.DataAccess
     /// <summary>
     ///     Represents the datacontext of the application
     /// </summary>
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IDbContext
     {
         public ApplicationContext()
         {

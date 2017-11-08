@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using Windows.ApplicationModel.Background;
+using EntityFramework.DbContextScope;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
@@ -27,7 +28,7 @@ namespace MoneyFox.Windows.Tasks
             {
                 var dbFactory = new DbFactory();
 
-                paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
+                paymentService = new PaymentService(new DbContextScopeFactory(),  new PaymentRepository(new AmbientDbContextLocator()));
 
                 var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
                 var unclearedPayments = payments.ToList();
