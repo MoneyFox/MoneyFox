@@ -3,7 +3,6 @@ using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
@@ -24,8 +23,6 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                var dbFactory = new DbFactory();
-
                 var dbContextScopeFactory = new DbContextScopeFactory();
                 var ambientDbContextLocator = new AmbientDbContextLocator();
 

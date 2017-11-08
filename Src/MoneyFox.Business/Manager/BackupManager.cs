@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Business.Extensions;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
@@ -22,7 +21,6 @@ namespace MoneyFox.Business.Manager
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
         private readonly IConnectivity connectivity;
-        private readonly IDbFactory dbFactory;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -30,14 +28,12 @@ namespace MoneyFox.Business.Manager
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
             ISettingsManager settingsManager,
-            IConnectivity connectivity,
-            IDbFactory dbFactory)
+            IConnectivity connectivity)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
             this.settingsManager = settingsManager;
             this.connectivity = connectivity;
-            this.dbFactory = dbFactory;
         }
 
         /// <inheritdoc />
@@ -139,9 +135,6 @@ namespace MoneyFox.Business.Manager
 
             var backups = await backupService.GetFileNames();
 
-            // Dispose dbfactory to release the dbFile.
-            dbFactory.Dispose();
-
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
                 var backupStream =
@@ -151,25 +144,8 @@ namespace MoneyFox.Business.Manager
                 var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+                settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
-            else if (backups.Contains(DatabaseConstants.BACKUP_NAME_OLD))
-            {
-                var backupStream =
-                    await backupService.Restore(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.BACKUP_NAME_OLD);
-                fileStore.WriteFile(DatabaseConstants.BACKUP_NAME_OLD, backupStream.ReadToEnd());
-
-                // Execute migration
-                await dbFactory.Init();
-                fileStore.TryMove(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD, true);
-
-                await dbFactory.MigrateOldDatabase();
-
-                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
-            }
-
-            dbFactory.Dispose();
-
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
         }
     }
 }
