@@ -39,15 +39,7 @@ namespace MoneyFox.Windows.Views
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
-
-        private void NavigationServiceOnAfterNavigate(object sender, NavigateEventArgs navigateEventArgs)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                Frame.CanGoBack ?
-                    AppViewBackButtonVisibility.Visible :
-                    AppViewBackButtonVisibility.Collapsed;
-        }
-
+        
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
         {
             var handled = e.Handled;
