@@ -1,5 +1,8 @@
-﻿using MoneyFox.Business.Authentication;
+﻿using EntityFramework.DbContextScope;
+using Microsoft.EntityFrameworkCore;
+using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -17,7 +20,15 @@ namespace MoneyFox.Business
         /// <param name="hint">parameter for the launch of the app.</param>
         public async void Start(object hint = null)
         {
-            var navigationService = Mvx.Resolve<IMvxNavigationService>();            
+            var navigationService = Mvx.Resolve<IMvxNavigationService>();
+
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+            
+            using (dbContextScopeFactory.Create())
+            {
+                await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
+            }
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
