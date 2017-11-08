@@ -45,7 +45,8 @@ namespace MoneyFox.DataAccess.Repositories
         /// <param name="entity">Entity to create.</param>
         public virtual void Add(T entity)
         {
-            DbContext.Set<T>().Add(entity);
+            DbContext.Set<T>().Attach(entity);
+            DbContext.Entry(entity).State = EntityState.Added;
         }
 
         /// <summary>
