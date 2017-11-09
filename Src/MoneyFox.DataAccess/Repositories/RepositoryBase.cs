@@ -61,7 +61,6 @@ namespace MoneyFox.DataAccess.Repositories
         /// <param name="entity">Entity to update.</param>
         public virtual void Update(T entity)
         {
-            AttachForeign(entity);
             DbContext.Set<T>().Attach(entity);
             DbContext.Entry(entity).State = EntityState.Modified;
         }

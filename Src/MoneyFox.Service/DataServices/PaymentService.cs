@@ -187,6 +187,12 @@ namespace MoneyFox.Service.DataServices
             {
                 paymentRepository.Update(payment.Data);
             }
+
+            accountRepository.Update(payment.Data.ChargedAccount);
+            if (payment.Data.TargetAccount != null)
+            {
+                accountRepository.Update(payment.Data.TargetAccount);
+            }
         }
 
         /// <inheritdoc />
