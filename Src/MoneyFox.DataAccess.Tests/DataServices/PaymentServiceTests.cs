@@ -1,16 +1,15 @@
 ﻿using System;
 using System.IO;
+using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
-using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
@@ -20,14 +19,11 @@ namespace MoneyFox.DataAccess.Tests.DataServices
     /// </summary>
     public class PaymentServiceTests : IDisposable
     {
-        private readonly DbFactory dbFactory;
-
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public PaymentServiceTests()
         {
-            dbFactory = new DbFactory();
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
@@ -40,7 +36,6 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         /// </summary>
         public void Dispose()
         {
-            dbFactory.DisposeIfDisposable();
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -52,14 +47,14 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
 
-            var repository = new PaymentRepository(dbFactory);
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var accountRepository = new AccountRepository(dbFactory);
-            var testAccount = new AccountEntity { Name = "testAccount" };
+            var testAccount = new AccountEntity {Name = "testAccount"};
             accountRepository.Add(testAccount);
-            await unitOfWork.Commit();
 
             var testEntry = new PaymentViewModel(new Payment
             {
@@ -77,11 +72,10 @@ namespace MoneyFox.DataAccess.Tests.DataServices
                                                                PaymentRecurrence.Bimonthly,
                                                                DateTime.Now));
 
-            var paymentService = new PaymentService(repository, unitOfWork);
+            var paymentService = new PaymentService(dbContextScopeFactory, paymentRepository, accountRepository);
 
             // Act
             await paymentService.SavePayment(testEntry.Payment);
-            await unitOfWork.Commit();
             var payment = await paymentService.GetById(testEntry.Payment.Data.Id);
 
             // Assert
