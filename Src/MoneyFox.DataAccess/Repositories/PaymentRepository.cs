@@ -23,9 +23,9 @@ namespace MoneyFox.DataAccess.Repositories
         /// </summary>
         /// <param name="id">Payment ID to lookup</param>
         /// <returns>Loaded Payment.</returns>
-        public override Task<PaymentEntity> GetById(int id)
+        public override async Task<PaymentEntity> GetById(int id)
         {
-            return DbContext.Set<PaymentEntity>()
+            return await DbContext.Set<PaymentEntity>()
                 .Include(x => x.RecurringPayment)
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
@@ -33,17 +33,28 @@ namespace MoneyFox.DataAccess.Repositories
                 .FirstAsync(x => x.Id == id);
         }
 
+        public override void Update(PaymentEntity entity)
+        {
+            DbContext.Set<PaymentEntity>().Attach(entity);
+            DbContext.Entry(entity).State = EntityState.Modified;
+
+            DbContext.Set<RecurringPaymentEntity>().Attach(entity.RecurringPayment);
+            DbContext.Entry(entity).State = EntityState.Modified;
+        }
+
         protected override void AttachForeign(PaymentEntity entity)
         {
             DbContext.Attach(entity.ChargedAccount);
             if (entity.TargetAccount != null)
             {
-                DbContext.Attach(entity.ChargedAccount);
+                DbContext.Attach(entity.TargetAccount);
             }
+
             if (entity.Category != null)
             {
                 DbContext.Attach(entity.Category);
             }
+
             if (entity.RecurringPayment != null)
             {
                 DbContext.Attach(entity.RecurringPayment);

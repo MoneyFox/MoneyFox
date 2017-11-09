@@ -445,11 +445,10 @@ namespace MoneyFox.Business.ViewModels
                                                           Strings.UpdateAllLabel, Strings.JustThisLabel)
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
-                SelectedPayment.RecurringPayment = new RecurringPaymentViewModel(
-                    RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
+                SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
                                                                    IsEndless,
                                                                    Recurrence,
-                                                                   EndDate));
+                                                                   EndDate).Data;
             }
         }
 

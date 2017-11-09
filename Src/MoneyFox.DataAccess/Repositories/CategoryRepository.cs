@@ -1,4 +1,5 @@
-﻿using EntityFramework.DbContextScope.Interfaces;
+﻿using System.Linq;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 
@@ -19,11 +20,11 @@ namespace MoneyFox.DataAccess.Repositories
 
         protected override void AttachForeign(CategoryEntity entity)
         {
-            if (entity.Payments != null)
+            if (entity.Payments != null && entity.Payments.Any())
             {
                 DbContext.Attach(entity.Payments);
             }
-            if (entity.RecurringPayments != null)
+            if (entity.RecurringPayments != null && entity.RecurringPayments.Any())
             {
                 DbContext.Attach(entity.RecurringPayments);
             }

@@ -27,10 +27,22 @@ namespace MoneyFox.DataAccess.Repositories
 
         protected override void AttachForeign(AccountEntity entity)
         {
-            DbContext.Attach(entity.ChargedPayments);
-            DbContext.Attach(entity.TargetedPayments);
-            DbContext.Attach(entity.ChargedRecurringPayments);
-            DbContext.Attach(entity.TargetedRecurringPayments);
+            if (entity.ChargedPayments != null && entity.ChargedPayments.Any())
+            {
+                DbContext.Attach(entity.ChargedPayments);
+            }
+            if (entity.TargetedPayments != null && entity.TargetedPayments.Any())
+            {
+                DbContext.Attach(entity.TargetedPayments);
+            }
+            if (entity.ChargedRecurringPayments != null && entity.ChargedRecurringPayments.Any())
+            {
+                DbContext.Attach(entity.ChargedRecurringPayments);
+            }
+            if (entity.TargetedRecurringPayments != null && entity.TargetedRecurringPayments.Any())
+            {
+                DbContext.Attach(entity.TargetedRecurringPayments);
+            }
         }
 
         /// <summary>
