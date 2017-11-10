@@ -67,8 +67,11 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             }
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(testEntry.Name, loadedEntry.Name);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await repository.GetById(testEntry.Id);
+                Assert.Equal(testEntry.Name, loadedEntry.Name);
+            }
         }
 
         [Fact]
@@ -87,7 +90,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             }
 
             // Assert
-            Assert.Equal(3, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(3, repository.GetAll().Count());
+            }
         }
 
         [Fact]
@@ -100,19 +106,25 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             {
                 Name = "Testtext"
             };
-
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 repository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
+            }
+
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 testEntry.Id = 0;
                 repository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(2, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(2, repository.GetAll().Count());
+            }
         }
 
         [Fact]
@@ -159,29 +171,44 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         {
             // Arrange
             var categoryRepository = new CategoryRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
             var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
             var category = new CategoryEntity {Name = "TestCategory"};
+            var account = new AccountEntity { Name = "testAccount" };
+            
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Add(category);
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Category = category
             };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Add(payment);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                categoryRepository.Add(category);
-                paymentRepository.Add(payment);
-                await dbContextScope.SaveChangesAsync();
 
                 categoryRepository.Delete(category);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Null(payment.Category);
-            Assert.Null(paymentRepository.GetById(payment.Id).Result.Category);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Null(payment.Category);
+                Assert.Null(paymentRepository.GetById(payment.Id).Result.Category);
+            }
         }
 
         [Fact]
@@ -189,36 +216,51 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         {
             // Arrange
             var categoryRepository = new CategoryRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
             var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
             var category = new CategoryEntity {Name = "TestCategory"};
+            var account = new AccountEntity { Name = "testAccount" };
             var recurringPayment = new RecurringPaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Category = category
             };
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Add(category);
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Category = category,
                 RecurringPayment = recurringPayment
             };
 
-
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 categoryRepository.Add(category);
                 paymentRepository.Add(payment);
                 await dbContextScope.SaveChangesAsync();
+            }
 
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 categoryRepository.Delete(category);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Null(recurringPayment.Category);
-            Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment.Category);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Null(recurringPayment.Category);
+                Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment.Category);
+            }
         }
 
         [Fact]
@@ -226,21 +268,27 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         {
             // Arrange
             var repository = new CategoryRepository(ambientDbContextLocator);
+            CategoryEntity testEntry;
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                testEntry = new CategoryEntity {Name = "TestCategory"};
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                var testEntry = new CategoryEntity {Name = "TestCategory"};
-                repository.Add(testEntry);
-                await dbContextScope.SaveChangesAsync();
-
                 repository.Delete(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
             // Assert
-            Assert.Equal(0, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(0, repository.GetAll().Count());
+            }
         }
-
 
         [Fact]
         public async void Delete_EntryMatchedFilterDeleted()
@@ -250,20 +298,25 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var repository = new CategoryRepository(ambientDbContextLocator);
             var testEntry1 = new CategoryEntity {Name = filterText};
             var testEntry2 = new CategoryEntity {Name = "TestCategory"};
-
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 repository.Add(testEntry1);
                 repository.Add(testEntry2);
                 await dbContextScope.SaveChangesAsync();
+            }
 
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 repository.Delete(x => x.Name == filterText);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, repository.GetAll().Count());
+            }
         }
 
         [Fact]
@@ -431,20 +484,26 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 Name = "Testtext"
             };
 
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 repository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
+            }
 
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 testEntry.Name = newValue;
                 repository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(newValue, loadedEntry.Name);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await repository.GetById(testEntry.Id);
+                Assert.Equal(newValue, loadedEntry.Name);
+            }
         }
 
         [Fact]
@@ -458,14 +517,17 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 Name = "Testtext"
             };
 
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             int idBeforeUpdate;
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
-                await dbContextScope.SaveChangesAsync();
-
                 idBeforeUpdate = testEntry.Id;
                 repository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
@@ -486,18 +548,24 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 Name = "Testtext"
             };
 
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 repository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
+            }
 
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 repository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, repository.GetAll().Count());
+            }
         }
     }
 }

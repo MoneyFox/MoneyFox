@@ -6,7 +6,6 @@ using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using Xunit;
 

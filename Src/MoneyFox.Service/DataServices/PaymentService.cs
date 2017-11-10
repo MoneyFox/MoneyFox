@@ -74,6 +74,7 @@ namespace MoneyFox.Service.DataServices
     {
         private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IRecurringPaymentRepository recurringPaymentRepository;
         private readonly IAccountRepository accountRepository;
 
         /// <summary>
@@ -81,10 +82,12 @@ namespace MoneyFox.Service.DataServices
         /// </summary>
         /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory"/></param>
         /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
+        /// <param name="recurringPaymentRepository">Instance of <see cref="IRecurringPaymentRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IAccountRepository" /></param>
-        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository, IAccountRepository accountRepository)
+        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository, IRecurringPaymentRepository recurringPaymentRepository, IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;
+            this.recurringPaymentRepository = recurringPaymentRepository;
             this.accountRepository = accountRepository;
             this.dbContextScopeFactory = dbContextScopeFactory;
         }
@@ -179,19 +182,38 @@ namespace MoneyFox.Service.DataServices
         {
             payment.ClearPayment();
             PaymentAmountHelper.AddPaymentAmount(payment);
-            if (payment.Data.Id == 0)
-            {
-                paymentRepository.Add(payment.Data);
-            } 
-            else
-            {
-                paymentRepository.Update(payment.Data);
-            }
+
+            SaveOrUpdateRecurringPayment(payment);
+            SaveOrUpdatePayment(payment);
 
             accountRepository.Update(payment.Data.ChargedAccount);
             if (payment.Data.TargetAccount != null)
             {
                 accountRepository.Update(payment.Data.TargetAccount);
+            }
+        }
+
+        private void SaveOrUpdatePayment(Payment payment)
+        {
+            if (payment.Data.Id == 0)
+            {
+                paymentRepository.Add(payment.Data);
+            }
+            else
+            {
+                paymentRepository.Update(payment.Data);
+            }
+        }
+
+        private void SaveOrUpdateRecurringPayment(Payment payment)
+        {
+            if (payment.Data.RecurringPayment.Id == 0)
+            {
+                recurringPaymentRepository.Add(payment.Data.RecurringPayment);
+            }
+            else
+            {
+                recurringPaymentRepository.Update(payment.Data.RecurringPayment);
             }
         }
 

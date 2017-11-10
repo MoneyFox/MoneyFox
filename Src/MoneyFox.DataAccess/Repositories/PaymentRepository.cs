@@ -54,11 +54,6 @@ namespace MoneyFox.DataAccess.Repositories
             {
                 DbContext.Attach(entity.Category);
             }
-
-            if (entity.RecurringPayment != null)
-            {
-                DbContext.Attach(entity.RecurringPayment);
-            }
         }
     }
 }
