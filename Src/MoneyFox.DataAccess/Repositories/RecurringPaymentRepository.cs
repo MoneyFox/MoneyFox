@@ -1,5 +1,4 @@
 ﻿using EntityFramework.DbContextScope.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess.Repositories

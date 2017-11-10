@@ -14,19 +14,23 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class PaymentRepositoryTests : IDisposable
     {
+        private DbContextScopeFactory dbContextScopeFactory;
+        private AmbientDbContextLocator ambientDbContextLocator;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public PaymentRepositoryTests()
         {
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+
+            dbContextScopeFactory = new DbContextScopeFactory();
+            ambientDbContextLocator = new AmbientDbContextLocator();
 
             using (dbContextScopeFactory.Create())
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -48,99 +52,134 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            AccountEntity account;
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                account = new AccountEntity {Name = "testAccount"};
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Note = "Testtext"
             };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(testEntry.Note, loadedEntry.Note);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await paymentRepository.GetById(testEntry.Id);
+                Assert.Equal(testEntry.Note, loadedEntry.Note);
+            }
         }
 
         [Fact]
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            AccountEntity account;
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                account = new AccountEntity {Name = "testAccount"};
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = account });
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = account });
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = account });
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(3, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(3, paymentRepository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var account = new AccountEntity {Name = "testAccount"};
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Note = "Testtext"
             };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 testEntry.Id = 0;
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(2, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(2, paymentRepository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Add_IdSet()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var account = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = account,
                 Note = "Testtext"
             };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
@@ -148,114 +187,104 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             Assert.NotNull(testEntry.Id);
             Assert.NotEqual(0, testEntry.Id);
         }
-
-        [Fact]
-        public async void Add_WithRecurringPayment()
-        {
-            // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
-            var repository = new PaymentRepository(ambientDbContextLocator);
-
-            var testAccount = new AccountEntity {Name = "testAccount"};
-            var testEntry = new PaymentEntity
-            {
-                ChargedAccount = testAccount,
-                RecurringPayment = new RecurringPaymentEntity
-                {
-                    ChargedAccount = testAccount,
-                    Recurrence = PaymentRecurrence.Bimonthly,
-                    IsEndless = true
-                },
-                IsRecurring = true,
-                Note = "Testtext"
-            };
-
-            // Act
-            using (var dbContextScope = dbContextScopeFactory.Create())
-            {
-                repository.Add(testEntry);
-                await dbContextScope.SaveChangesAsync();
-            }
-
-            // Assert
-            Assert.NotNull(testEntry.Id);
-            Assert.NotEqual(0, testEntry.Id);
-            Assert.NotEqual(0, testEntry.RecurringPayment.Id);
-            Assert.NotEqual(0, testEntry.RecurringPaymentId);
-        }
-
+        
         [Fact]
         public async void Delete_EntryDeleted()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
-            var testEntry = new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}};
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
 
+            var testEntry = new PaymentEntity {ChargedAccount = testAccount };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
-
-                repository.Delete(testEntry);
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Delete(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(0, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(0, paymentRepository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Delete_EntryMatchedFilterDeleted()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var filterText = "Text";
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
+
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             var testEntry1 = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = testAccount,
                 Note = filterText
             };
-            var testEntry2 = new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}};
-
-
+            var testEntry2 = new PaymentEntity {ChargedAccount = testAccount};
+            
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry1);
-                repository.Add(testEntry2);
+                paymentRepository.Add(testEntry1);
+                paymentRepository.Add(testEntry2);
                 await dbContextScope.SaveChangesAsync();
-                repository.Delete(x => x.Note == filterText);
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Delete(x => x.Note == filterText);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, paymentRepository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
-            var testEntry = new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}};
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            var testEntry = new PaymentEntity {ChargedAccount = testAccount};
 
             // Act / Assert
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Delete(testEntry);
+                paymentRepository.Delete(testEntry);
                 await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await dbContextScope.SaveChangesAsync());
             }
         }
@@ -264,14 +293,20 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             var filterText = "Text";
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = testAccount,
                 Note = filterText
             };
 
@@ -280,12 +315,12 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(testEntry);
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount });
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount });
                 await dbContextScope.SaveChangesAsync();
 
-                result = await repository.Get(x => x.Note == filterText);
+                result = await paymentRepository.Get(x => x.Note == filterText);
             }
 
             // Assert
@@ -297,20 +332,26 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_NothingMatched()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             PaymentEntity result;
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
                 await dbContextScope.SaveChangesAsync();
-                result = await repository.Get(x => x.Note == "text");
+                result = await paymentRepository.Get(x => x.Note == "text");
             }
 
             // Assert
@@ -321,20 +362,26 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             List<PaymentEntity> resultList;
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
                 await dbContextScope.SaveChangesAsync();
-                resultList = repository.GetAll().ToList();
+                resultList = paymentRepository.GetAll().ToList();
             }
             // Assert
             Assert.NotNull(resultList);
@@ -345,14 +392,11 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public void GetAll_NoData()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new PaymentRepository(ambientDbContextLocator);
             List<PaymentEntity> resultList;
 
             // Act
-            using (var dbContextScope = dbContextScopeFactory.Create())
+            using (dbContextScopeFactory.CreateReadOnly())
             {
                 resultList = repository.GetAll().ToList();
             }
@@ -365,26 +409,36 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
-            var filterText = "Text";
-            repository.Add(new PaymentEntity
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
-                Note = filterText
-            });
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            var filterText = "Text";
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Add(new PaymentEntity
+                {
+                    ChargedAccount = testAccount,
+                    Note = filterText
+                });
+                await dbContextScope.SaveChangesAsync();
+            }
             List<PaymentEntity> resultList;
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
                 await dbContextScope.SaveChangesAsync();
 
-                resultList = repository.GetMany(x => x.Note == filterText).ToList();
+                resultList = paymentRepository.GetMany(x => x.Note == filterText).ToList();
             }
 
             // Assert
@@ -396,20 +450,25 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_NothingMatched()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
             List<PaymentEntity> resultList;
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
-                repository.Add(new PaymentEntity {ChargedAccount = new AccountEntity {Name = "testAccount"}});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
+                paymentRepository.Add(new PaymentEntity {ChargedAccount = testAccount});
                 await dbContextScope.SaveChangesAsync();
-                resultList = repository.GetMany(x => x.Note == "text").ToList();
+                resultList = paymentRepository.GetMany(x => x.Note == "text").ToList();
             }
 
             // Assert
@@ -421,46 +480,61 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_EntryUpdated()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var newValue = "newText";
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = testAccount,
                 Note = "Testtext"
             };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
-
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 testEntry.Note = newValue;
-                repository.Update(testEntry);
+                paymentRepository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(newValue, loadedEntry.Note);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await paymentRepository.GetById(testEntry.Id);
+                Assert.Equal(newValue, loadedEntry.Note);
+            }
         }
 
         [Fact]
         public async void Update_IdUnchanged()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = testAccount,
                 Note = "Testtext"
             };
             int idBeforeUpdate;
@@ -468,11 +542,13 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
-
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
                 idBeforeUpdate = testEntry.Id;
-                repository.Update(testEntry);
+                paymentRepository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
@@ -484,29 +560,39 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_NoNewEntryAdded()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(ambientDbContextLocator);
+            var testAccount = new AccountEntity { Name = "testAccount" };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity {Name = "testAccount"},
+                ChargedAccount = testAccount,
                 Note = "Testtext"
             };
 
             // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Add(testEntry);
+                paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
-
-                repository.Update(testEntry);
+            }
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Update(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, paymentRepository.GetAll().Count());
+            }
         }
     }
 }

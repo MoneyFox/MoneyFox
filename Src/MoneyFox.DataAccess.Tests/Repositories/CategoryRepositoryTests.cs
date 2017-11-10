@@ -13,20 +13,24 @@ namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class CategoryRepositoryTests : IDisposable
     {
+        private DbContextScopeFactory dbContextScopeFactory;
+        private AmbientDbContextLocator ambientDbContextLocator;
+
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public CategoryRepositoryTests()
         {
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+
+            dbContextScopeFactory = new DbContextScopeFactory();
+            ambientDbContextLocator = new AmbientDbContextLocator();
 
             using (dbContextScopeFactory.Create())
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
 
-            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -48,9 +52,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
@@ -74,9 +75,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             // Act
@@ -96,9 +94,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
@@ -124,9 +119,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_IdSet()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
@@ -150,9 +142,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Add_NewEntryWithoutName()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity();
@@ -169,9 +158,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_AssignedPaymentsSetNull()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var categoryRepository = new CategoryRepository(ambientDbContextLocator);
             var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
@@ -202,9 +188,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_AssignedRelatedPaymentsSetNull()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var categoryRepository = new CategoryRepository(ambientDbContextLocator);
             var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
@@ -242,9 +225,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryDeleted()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             // Act
@@ -266,9 +246,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryMatchedFilterDeleted()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var filterText = "Text";
             var repository = new CategoryRepository(ambientDbContextLocator);
             var testEntry1 = new CategoryEntity {Name = filterText};
@@ -293,9 +270,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
             var testEntry = new CategoryEntity {Name = "TestCategory"};
 
@@ -311,9 +285,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
             var filterText = "Text";
             var testEntry = new CategoryEntity {Name = filterText};
@@ -340,9 +311,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Get_NothingMatched()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             CategoryEntity result;
 
             // Act
@@ -364,9 +332,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             List<CategoryEntity> resultList;
@@ -391,9 +356,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public void GetAll_NoData()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             List<CategoryEntity> resultList;
@@ -413,9 +375,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
             var filterText = "Text";
 
@@ -441,9 +400,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_NothingMatched()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             List<CategoryEntity> resultList;
@@ -467,9 +423,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_EntryUpdated()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var newValue = "newText";
@@ -498,9 +451,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_IdUnchanged()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
@@ -529,9 +479,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void Update_NoNewEntryAdded()
         {
             // Arrange
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
             var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
