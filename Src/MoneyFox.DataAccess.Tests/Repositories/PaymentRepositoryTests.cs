@@ -496,12 +496,14 @@ namespace MoneyFox.DataAccess.Tests.Repositories
                 Note = "Testtext"
             };
 
-            // Act
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 paymentRepository.Add(testEntry);
                 await dbContextScope.SaveChangesAsync();
             }
+
+            // Act
+
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
                 testEntry.Note = newValue;
