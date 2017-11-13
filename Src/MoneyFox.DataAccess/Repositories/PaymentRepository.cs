@@ -33,15 +33,6 @@ namespace MoneyFox.DataAccess.Repositories
                 .FirstAsync(x => x.Id == id);
         }
 
-        public override void Update(PaymentEntity entity)
-        {
-            DbContext.Set<PaymentEntity>().Attach(entity);
-            DbContext.Entry(entity).State = EntityState.Modified;
-
-            DbContext.Set<RecurringPaymentEntity>().Attach(entity.RecurringPayment);
-            DbContext.Entry(entity).State = EntityState.Modified;
-        }
-
         protected override void AttachForeign(PaymentEntity entity)
         {
             DbContext.Attach(entity.ChargedAccount);
