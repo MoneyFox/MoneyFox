@@ -18,11 +18,11 @@ namespace MoneyFox.DataAccess.Repositories
 
         protected override void AttachForeign(RecurringPaymentEntity entity)
         {
-            DbContext.Attach(entity.ChargedAccount);
-            if (entity.TargetAccount != null)
-            {
-                DbContext.Attach(entity.ChargedAccount);
-            }
+            //DbContext.Attach(entity.ChargedAccount);
+            //if (entity.TargetAccount != null)
+            //{
+            //    DbContext.Attach(entity.TargetAccount);
+            //}
             if (entity.Category != null)
             {
                 DbContext.Attach(entity.Category);

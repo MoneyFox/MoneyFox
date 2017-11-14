@@ -183,9 +183,13 @@ namespace MoneyFox.Service.DataServices
             payment.ClearPayment();
             PaymentAmountHelper.AddPaymentAmount(payment);
 
+            UpdateAccount(payment);
             SaveOrUpdateRecurringPayment(payment);
             SaveOrUpdatePayment(payment);
+        }
 
+        private void UpdateAccount(Payment payment)
+        {
             accountRepository.Update(payment.Data.ChargedAccount);
             if (payment.Data.TargetAccount != null)
             {

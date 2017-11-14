@@ -445,10 +445,13 @@ namespace MoneyFox.Business.ViewModels
                                                           Strings.UpdateAllLabel, Strings.JustThisLabel)
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
+                // We save the ID of the recurring payment who was already saved and assign it afterwards again.
+                var oldId = SelectedPayment.Payment.Data.RecurringPayment.Id;
                 SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
                                                                    IsEndless,
                                                                    Recurrence,
                                                                    EndDate).Data;
+                SelectedPayment.Payment.Data.RecurringPayment.Id = oldId;
             }
         }
 
