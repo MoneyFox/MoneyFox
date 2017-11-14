@@ -64,6 +64,7 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AndHUD, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
