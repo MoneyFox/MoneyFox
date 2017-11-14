@@ -7,8 +7,7 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Infrastructure;
+using EntityFramework.DbContextScope;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Foundation.Constants;
@@ -64,8 +63,11 @@ namespace MoneyFox.Droid.Jobs
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
-            var dbFactory = new DbFactory();
-            var paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
+            var ambientDbCOntextLocator = new AmbientDbContextLocator();
+            var paymentService = new PaymentService(new DbContextScopeFactory(),
+                                                    new PaymentRepository(ambientDbCOntextLocator),
+                                                    new RecurringPaymentRepository(ambientDbCOntextLocator),
+                                                    new AccountRepository(ambientDbCOntextLocator));
 
             var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
             var unclearedPayments = payments.ToList();

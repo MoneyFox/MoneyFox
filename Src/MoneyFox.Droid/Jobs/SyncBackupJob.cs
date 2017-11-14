@@ -8,7 +8,6 @@ using Android.OS;
 using Android.Widget;
 using Cheesebaron.MvxPlugins.Settings.Droid;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
@@ -73,8 +72,7 @@ namespace MoneyFox.Droid.Jobs
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.Resolve<IMvxFileStore>(),
                                         new SettingsManager(new Settings()),
-                                        new ConnectivityImplementation(), 
-                                        new DbFactory())
+                                        new ConnectivityImplementation())
                     .DownloadBackup();
 
                 Toast.MakeText(this, Strings.BackupSyncedSuccessfullyMessage, ToastLength.Long);
