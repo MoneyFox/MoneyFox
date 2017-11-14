@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
@@ -14,6 +14,15 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class AccountServiceTests
     {
+        private readonly AmbientDbContextLocator ambientDbContextLocator;
+        private readonly DbContextScopeFactory dbContextScopeFactory;
+
+        public AccountServiceTests()
+        {
+            ambientDbContextLocator = new AmbientDbContextLocator();
+            dbContextScopeFactory = new DbContextScopeFactory();
+        }
+
         #region GetAllAccounts
 
         [Fact]
@@ -40,12 +49,8 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var contactDataService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
             var result = await contactDataService.GetAllAccounts();
@@ -84,15 +89,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.GetAllAccounts();
+            var result = await accountService.GetAllAccounts();
             var resultList = result.ToList();
 
             // Assert
@@ -130,12 +131,8 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var accountService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
             var result = await accountService.GetById(3);
@@ -176,15 +173,12 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
 
             // Act
-            var result = await contactDataService.GetById(id);
+            var result = await accountService.GetById(id);
 
             // Assert
             Assert.NotNull(result);
@@ -219,15 +213,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.GetAccountCount();
+            var result = await accountService.GetAccountCount();
 
             // Assert
             Assert.Equal(0, result);
@@ -262,15 +252,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.GetAccountCount();
+            var result = await accountService.GetAccountCount();
 
             // Assert
             Assert.Equal(3, result);
@@ -304,15 +290,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.CheckIfNameAlreadyTaken("Name");
+            var result = await accountService.CheckIfNameAlreadyTaken("Name");
 
             // Assert
             Assert.False(result);
@@ -347,15 +329,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.CheckIfNameAlreadyTaken(nameToCheck);
+            var result = await accountService.CheckIfNameAlreadyTaken(nameToCheck);
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -389,15 +367,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object); 
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.GetExcludedAccounts();
+            var result = await accountService.GetExcludedAccounts();
             var resultList = result.ToList();
 
             // Assert
@@ -432,15 +406,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var dbFactory = new Mock<IDbFactory>();
-            dbFactory.Setup(x => x.Init()).ReturnsAsync(mockContext.Object);
-
-            var repository = new AccountRepository(dbFactory.Object);
-
-            var contactDataService = new AccountService(repository, new Mock<IUnitOfWork>().Object);
+            var repository = new AccountRepository(ambientDbContextLocator);
+            var accountService = new AccountService(dbContextScopeFactory, repository);
 
             // Act
-            var result = await contactDataService.GetNotExcludedAccounts();
+            var result = await accountService.GetNotExcludedAccounts();
             var resultList = result.ToList();
 
             // Assert

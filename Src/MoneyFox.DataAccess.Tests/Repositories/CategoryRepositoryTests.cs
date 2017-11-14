@@ -1,28 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Repositories
 {
     public class CategoryRepositoryTests : IDisposable
     {
-        private readonly DbFactory dbFactory;
+        private DbContextScopeFactory dbContextScopeFactory;
+        private AmbientDbContextLocator ambientDbContextLocator;
 
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public CategoryRepositoryTests()
         {
-            dbFactory = new DbFactory();
-
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+
+            dbContextScopeFactory = new DbContextScopeFactory();
+            ambientDbContextLocator = new AmbientDbContextLocator();
+
+            using (dbContextScopeFactory.Create())
+            {
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
+            }
+
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -34,8 +42,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         /// </summary>
         public void Dispose()
         {
-            dbFactory.DisposeIfDisposable();
-
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
@@ -43,27 +49,10 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void Add_NewEntryWithoutName()
-        {
-            // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
-
-            var testEntry = new CategoryEntity();
-
-            // Act // Assert
-            repository.Add(testEntry);
-            await Assert.ThrowsAsync<DbUpdateException>(async () => await unitOfWork.Commit());
-        }
-
-        [Fact]
         public async void Add_AddedAndRead()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
             {
@@ -71,63 +60,78 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(testEntry.Name, loadedEntry.Name);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await repository.GetById(testEntry.Id);
+                Assert.Equal(testEntry.Name, loadedEntry.Name);
+            }
         }
 
         [Fact]
         public async void Add_AddMultipleEntries()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
             // Act
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            Assert.Equal(3, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(3, repository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Add_AddNewEntryOnEveryCall()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
             {
                 Name = "Testtext"
             };
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
-            testEntry.Id = 0;
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                testEntry.Id = 0;
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            Assert.Equal(2, repository.GetAll().Count());
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(2, repository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Add_IdSet()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
             var testEntry = new CategoryEntity
             {
@@ -135,8 +139,11 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             };
 
             // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
             Assert.NotNull(testEntry.Id);
@@ -144,229 +151,254 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void Update_EntryUpdated()
+        public async void Add_NewEntryWithoutName()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
-            var repository = new CategoryRepository(dbFactory);
+            var testEntry = new CategoryEntity();
 
-            var newValue = "newText";
-            var testEntry = new CategoryEntity
+            // Act // Assert
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                Name = "Testtext"
-            };
-
-            // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
-
-            testEntry.Name = newValue;
-            repository.Update(testEntry);
-            await unitOfWork.Commit();
-
-            // Assert
-            var loadedEntry = await repository.GetById(testEntry.Id);
-            Assert.Equal(newValue, loadedEntry.Name);
-        }
-
-        [Fact]
-        public async void Update_IdUnchanged()
-        {
-            // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
-
-            var testEntry = new CategoryEntity
-            {
-                Name = "Testtext"
-            };
-
-            // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
-
-            var idBeforeUpdate = testEntry.Id;
-            repository.Update(testEntry);
-            await unitOfWork.Commit();
-
-            // Assert
-            Assert.Equal(idBeforeUpdate, testEntry.Id);
-        }
-
-        [Fact]
-        public async void Update_NoNewEntryAdded()
-        {
-            // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
-
-            var testEntry = new CategoryEntity
-            {
-                Name = "Testtext"
-            };
-
-            // Act
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
-
-            repository.Update(testEntry);
-            await unitOfWork.Commit();
-
-            // Assert
-            Assert.Equal(1, repository.GetAll().Count());
-        }
-
-        [Fact]
-        public async void Delete_EntryDeleted()
-        {
-            // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
-            var testEntry = new CategoryEntity { Name = "TestCategory" };
-            repository.Add(testEntry);
-            await unitOfWork.Commit();
-
-            // Act
-            repository.Delete(testEntry);
-            await unitOfWork.Commit();
-
-            // Assert
-            Assert.Equal(0, repository.GetAll().Count());
+                repository.Add(testEntry);
+                await Assert.ThrowsAsync<DbUpdateException>(async () => await dbContextScope.SaveChangesAsync());
+            }
         }
 
         [Fact]
         public async void Delete_AssignedPaymentsSetNull()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var categoryRepository = new CategoryRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
-            var categoryRepository = new CategoryRepository(dbFactory);
-            var paymentRepository = new PaymentRepository(dbFactory);
+            var category = new CategoryEntity {Name = "TestCategory"};
+            var account = new AccountEntity { Name = "testAccount" };
+            
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Add(category);
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
 
-            var category = new CategoryEntity { Name = "TestCategory" };
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity { Name = "testAccount" },
+                ChargedAccount = account,
                 Category = category
             };
-            categoryRepository.Add(category);
-            paymentRepository.Add(payment);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                paymentRepository.Add(payment);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
-            categoryRepository.Delete(category);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+
+                categoryRepository.Delete(category);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            Assert.Null(payment.Category);
-            Assert.Null(paymentRepository.GetById(payment.Id).Result.Category);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Null(payment.Category);
+                Assert.Null(paymentRepository.GetById(payment.Id).Result.Category);
+            }
         }
 
         [Fact]
         public async void Delete_AssignedRelatedPaymentsSetNull()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var categoryRepository = new CategoryRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
-            var categoryRepository = new CategoryRepository(dbFactory);
-            var paymentRepository = new PaymentRepository(dbFactory);
-
-            var category = new CategoryEntity { Name = "TestCategory" };
+            var category = new CategoryEntity {Name = "TestCategory"};
+            var account = new AccountEntity { Name = "testAccount" };
             var recurringPayment = new RecurringPaymentEntity
             {
-                ChargedAccount = new AccountEntity { Name = "testAccount" },
+                ChargedAccount = account,
                 Category = category
             };
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Add(category);
+                accountRepository.Add(account);
+                await dbContextScope.SaveChangesAsync();
+            }
+
             var payment = new PaymentEntity
             {
-                ChargedAccount = new AccountEntity { Name = "testAccount" },
+                ChargedAccount = account,
                 Category = category,
                 RecurringPayment = recurringPayment
             };
-            categoryRepository.Add(category);
-            paymentRepository.Add(payment);
-            await unitOfWork.Commit();
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Add(category);
+                paymentRepository.Add(payment);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
-            categoryRepository.Delete(category);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Delete(category);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            Assert.Null(recurringPayment.Category);
-            Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment.Category);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Null(recurringPayment.Category);
+                Assert.Null(paymentRepository.GetById(payment.Id).Result.RecurringPayment.Category);
+            }
+        }
+
+        [Fact]
+        public async void Delete_EntryDeleted()
+        {
+            // Arrange
+            var repository = new CategoryRepository(ambientDbContextLocator);
+            CategoryEntity testEntry;
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                testEntry = new CategoryEntity {Name = "TestCategory"};
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Delete(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+            // Assert
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(0, repository.GetAll().Count());
+            }
+        }
+
+        [Fact]
+        public async void Delete_EntryMatchedFilterDeleted()
+        {
+            // Arrange
+            var filterText = "Text";
+            var repository = new CategoryRepository(ambientDbContextLocator);
+            var testEntry1 = new CategoryEntity {Name = filterText};
+            var testEntry2 = new CategoryEntity {Name = "TestCategory"};
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry1);
+                repository.Add(testEntry2);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Delete(x => x.Name == filterText);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Assert
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, repository.GetAll().Count());
+            }
         }
 
         [Fact]
         public async void Delete_EntryNotFound()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
+            var testEntry = new CategoryEntity {Name = "TestCategory"};
 
-            var repository = new CategoryRepository(dbFactory);
-            var testEntry = new CategoryEntity { Name = "TestCategory" };
-
-            // Act
-            repository.Delete(testEntry);
-
-            // Assert
-            await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await unitOfWork.Commit());
+            // Act / Assert
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Delete(testEntry);
+                await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await dbContextScope.SaveChangesAsync());
+            }
         }
 
-
         [Fact]
-        public async void Delete_EntryMatchedFilterDeleted()
+        public async void Get_MatchedDataReturned()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
+            var repository = new CategoryRepository(ambientDbContextLocator);
             var filterText = "Text";
-            var repository = new CategoryRepository(dbFactory);
-            var testEntry1 = new CategoryEntity { Name = filterText };
-            var testEntry2 = new CategoryEntity { Name = "TestCategory" };
-            repository.Add(testEntry1);
-            repository.Add(testEntry2);
-            await unitOfWork.Commit();
+            var testEntry = new CategoryEntity {Name = filterText};
+
+            CategoryEntity result;
 
             // Act
-            repository.Delete(x => x.Name == filterText);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+
+                result = await repository.Get(x => x.Name == filterText);
+            }
 
             // Assert
-            Assert.Equal(1, repository.GetAll().Count());
+            Assert.NotNull(result);
+            Assert.Equal(testEntry.Id, result.Id);
         }
 
         [Fact]
-        public void GetAll_NoData()
+        public async void Get_NothingMatched()
         {
             // Arrange
-            var repository = new CategoryRepository(dbFactory);
+            CategoryEntity result;
 
             // Act
-            var emptyList = repository.GetAll().ToList();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                var repository = new CategoryRepository(ambientDbContextLocator);
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+                result = await repository.Get(x => x.Name == "text");
+            }
 
             // Assert
-            Assert.NotNull(emptyList);
-            Assert.False(emptyList.Any());
+            Assert.Null(result);
         }
 
         [Fact]
         public async void GetAll_AllDataReturned()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
-            var repository = new CategoryRepository(dbFactory);
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+            List<CategoryEntity> resultList;
 
             // Act
-            var resultList = repository.GetAll().ToList();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+
+                resultList = repository.GetAll().ToList();
+            }
 
             // Assert
             Assert.NotNull(resultList);
@@ -374,19 +406,18 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void GetMany_NothingMatched()
+        public void GetAll_NoData()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
-            var repository = new CategoryRepository(dbFactory);
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+            List<CategoryEntity> resultList;
 
             // Act
-            var resultList = repository.GetMany(x => x.Name == "text").ToList();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                resultList = repository.GetAll().ToList();
+            }
 
             // Assert
             Assert.NotNull(resultList);
@@ -397,17 +428,21 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         public async void GetMany_MatchedDataReturned()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
-
-            var repository = new CategoryRepository(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
             var filterText = "Text";
-            repository.Add(new CategoryEntity { Name = filterText });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+
+            List<CategoryEntity> resultList;
 
             // Act
-            var resultList = repository.GetMany(x => x.Name == filterText).ToList();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(new CategoryEntity {Name = filterText});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+
+                resultList = repository.GetMany(x => x.Name == filterText).ToList();
+            }
 
             // Assert
             Assert.NotNull(resultList);
@@ -415,44 +450,122 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void Get_NothingMatched()
+        public async void GetMany_NothingMatched()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
-            var repository = new CategoryRepository(dbFactory);
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+            List<CategoryEntity> resultList;
 
             // Act
-            var result = await repository.Get(x => x.Name == "text");
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                repository.Add(new CategoryEntity {Name = "TestCategory"});
+                await dbContextScope.SaveChangesAsync();
+                resultList = repository.GetMany(x => x.Name == "text").ToList();
+            }
 
             // Assert
-            Assert.Null(result);
+            Assert.NotNull(resultList);
+            Assert.False(resultList.Any());
         }
 
         [Fact]
-        public async void Get_MatchedDataReturned()
+        public async void Update_EntryUpdated()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var repository = new CategoryRepository(ambientDbContextLocator);
 
-            var repository = new CategoryRepository(dbFactory);
-            var filterText = "Text";
-            var testEntry = new CategoryEntity { Name = filterText };
-            repository.Add(testEntry);
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            repository.Add(new CategoryEntity { Name = "TestCategory" });
-            await unitOfWork.Commit();
+            var newValue = "newText";
+            var testEntry = new CategoryEntity
+            {
+                Name = "Testtext"
+            };
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Act
-            var result = await repository.Get(x => x.Name == filterText);
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                testEntry.Name = newValue;
+                repository.Update(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(testEntry.Id, result.Id);
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var loadedEntry = await repository.GetById(testEntry.Id);
+                Assert.Equal(newValue, loadedEntry.Name);
+            }
+        }
+
+        [Fact]
+        public async void Update_IdUnchanged()
+        {
+            // Arrange
+            var repository = new CategoryRepository(ambientDbContextLocator);
+
+            var testEntry = new CategoryEntity
+            {
+                Name = "Testtext"
+            };
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            int idBeforeUpdate;
+
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                idBeforeUpdate = testEntry.Id;
+                repository.Update(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Assert
+            Assert.Equal(idBeforeUpdate, testEntry.Id);
+        }
+
+        [Fact]
+        public async void Update_NoNewEntryAdded()
+        {
+            // Arrange
+            var repository = new CategoryRepository(ambientDbContextLocator);
+
+            var testEntry = new CategoryEntity
+            {
+                Name = "Testtext"
+            };
+
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Add(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Act
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                repository.Update(testEntry);
+                await dbContextScope.SaveChangesAsync();
+            }
+
+            // Assert
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                Assert.Equal(1, repository.GetAll().Count());
+            }
         }
     }
 }

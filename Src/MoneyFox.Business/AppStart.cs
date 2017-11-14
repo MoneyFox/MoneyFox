@@ -1,11 +1,11 @@
-﻿using MoneyFox.Business.Authentication;
+﻿using EntityFramework.DbContextScope;
+using Microsoft.EntityFrameworkCore;
+using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.Foundation.Constants;
+using MoneyFox.DataAccess;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Plugins.File;
 
 namespace MoneyFox.Business
 {
@@ -21,11 +21,13 @@ namespace MoneyFox.Business
         public async void Start(object hint = null)
         {
             var navigationService = Mvx.Resolve<IMvxNavigationService>();
-            var filestore = Mvx.Resolve<IMvxFileStore>();
-            if (filestore.Exists(DatabaseConstants.DB_NAME_OLD))
+
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+            
+            using (dbContextScopeFactory.Create())
             {
-                await Mvx.Resolve<IDbFactory>().MigrateOldDatabase(true);
-                filestore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
+                await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
 
             if (Mvx.Resolve<Session>().ValidateSession())

@@ -4,7 +4,6 @@ using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MoneyFox.Windows.Business;
@@ -31,8 +30,7 @@ namespace MoneyFox.Windows.Tasks
                     new OneDriveService(new OneDriveAuthenticator(true)),
                     new MvxWindowsCommonFileStore(),
                     new SettingsManager(new WindowsUwpSettings()),
-                    new ConnectivityImplementation(), 
-                    new DbFactory());
+                    new ConnectivityImplementation());
 
                 await backupManager.DownloadBackup();
             }

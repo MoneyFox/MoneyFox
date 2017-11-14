@@ -1,16 +1,15 @@
 ﻿using System;
 using System.IO;
+using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Infrastructure;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Pocos;
-using MvvmCross.Platform.Core;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
@@ -20,15 +19,20 @@ namespace MoneyFox.DataAccess.Tests.DataServices
     /// </summary>
     public class PaymentServiceTests : IDisposable
     {
-        private readonly DbFactory dbFactory;
-
         /// <summary>
         ///     Setup Logic who is executed before every test
         /// </summary>
         public PaymentServiceTests()
         {
-            dbFactory = new DbFactory();
             ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+
+            dbContextScopeFactory = new DbContextScopeFactory();
+            ambientDbContextLocator = new AmbientDbContextLocator();
+
+            using (dbContextScopeFactory.Create())
+            {
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
+            }
             using (var db = new ApplicationContext())
             {
                 db.Database.Migrate();
@@ -40,52 +44,57 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         /// </summary>
         public void Dispose()
         {
-            dbFactory.DisposeIfDisposable();
             if (File.Exists(ApplicationContext.DbPath))
             {
                 File.Delete(ApplicationContext.DbPath);
             }
         }
 
+        private readonly DbContextScopeFactory dbContextScopeFactory;
+        private readonly AmbientDbContextLocator ambientDbContextLocator;
+
         [Fact]
         [Trait("Category", "Integration")]
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
+            var recurringPaymentRepository = new RecurringPaymentRepository(ambientDbContextLocator);
+            var accountRepository = new AccountRepository(ambientDbContextLocator);
 
-            var repository = new PaymentRepository(dbFactory);
+            AccountEntity testAccount;
 
-            var accountRepository = new AccountRepository(dbFactory);
-            var testAccount = new AccountEntity { Name = "testAccount" };
-            accountRepository.Add(testAccount);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                testAccount = new AccountEntity {Name = "testAccount"};
+                accountRepository.Add(testAccount);
+                await dbContextScope.SaveChangesAsync();
+            }
 
             var testEntry = new PaymentViewModel(new Payment
-            {
-                Data =
                 {
-                    ChargedAccount = testAccount,
-                    Date = DateTime.Now,
-                    IsRecurring = true,
-                    Note = "Testtext"
-                }
-            });
-            testEntry.RecurringPayment = new RecurringPaymentViewModel(
-                RecurringPaymentHelper.GetRecurringFromPayment(testEntry.Payment,
-                                                               true,
-                                                               PaymentRecurrence.Bimonthly,
-                                                               DateTime.Now));
+                    Data =
+                    {
+                        ChargedAccount = testAccount,
+                        Date = DateTime.Now,
+                        IsRecurring = true,
+                        Note = "Testtext"
+                    }
+                });
+                testEntry.RecurringPayment = new RecurringPaymentViewModel(
+                    RecurringPaymentHelper.GetRecurringFromPayment(testEntry.Payment,
+                                                                   true,
+                                                                   PaymentRecurrence.Bimonthly,
+                                                                   DateTime.Now));
 
-            var paymentService = new PaymentService(repository, unitOfWork);
+                var paymentService = new PaymentService(dbContextScopeFactory, paymentRepository, recurringPaymentRepository, accountRepository);
 
-            // Act
-            await paymentService.SavePayment(testEntry.Payment);
-            await unitOfWork.Commit();
-            var payment = await paymentService.GetById(testEntry.Payment.Data.Id);
+                // Act
+                await paymentService.SavePayment(testEntry.Payment);
+                var payment = await paymentService.GetById(testEntry.Payment.Data.Id);
 
-            // Assert
-            Assert.NotNull(payment);
+                // Assert
+                Assert.NotNull(payment);
+            }
         }
     }
-}

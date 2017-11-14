@@ -49,7 +49,6 @@ namespace MoneyFox.Windows
             Suspending += OnSuspending;
 
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
-            ApplicationContextOld.DbPath = DatabaseConstants.DB_NAME_OLD;
         }
 
         private void SetTheme()

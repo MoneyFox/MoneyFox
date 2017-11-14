@@ -18,9 +18,8 @@ namespace MoneyFox.Service
             builder.RegisterModule<DataAccessModule>();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+                   .Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
+                   .AsImplementedInterfaces();
         }
     }
 }

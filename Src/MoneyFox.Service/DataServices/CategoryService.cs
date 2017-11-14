@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
@@ -66,39 +66,45 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class CategoryService : ICategoryService
     {
+        private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly ICategoryRepository categoryRepository;
-        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public CategoryService(IDbContextScopeFactory dbContextScopeFactory, ICategoryRepository categoryRepository)
         {
+            this.dbContextScopeFactory = dbContextScopeFactory;
             this.categoryRepository = categoryRepository;
-            this.unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> GetAllCategories()
         {
-            var list = await categoryRepository
-                .GetAll()
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await categoryRepository
+                    .GetAll()
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Category(x));
+                return list.Select(x => new Category(x));
+            }
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> GetAllCategoriesWithPayments()
         {
-            var list = await categoryRepository
-                .GetAll()
-                .Include(x => x.Payments)
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await categoryRepository
+                    .GetAll()
+                    .Include(x => x.Payments)
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Category(x));
+                return list.Select(x => new Category(x));
+            }
         }
 
         /// <inheritdoc />
@@ -110,42 +116,55 @@ namespace MoneyFox.Service.DataServices
         /// <inheritdoc />
         public async Task<IEnumerable<Category>> SearchByName(string searchTerm)
         {
-            var list = await categoryRepository
-                .GetAll()
-                .NameNotNull()
-                .NameContains(searchTerm)
-                .OrderByName()
-                .ToListAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                var list = await categoryRepository
+                    .GetAll()
+                    .NameNotNull()
+                    .NameContains(searchTerm)
+                    .OrderByName()
+                    .ToListAsync();
 
-            return list.Select(x => new Category(x));
+                return list.Select(x => new Category(x));
+            }
         }
 
         /// <inheritdoc />
-        public Task<bool> CheckIfNameAlreadyTaken(string name)
+        public async Task<bool> CheckIfNameAlreadyTaken(string name)
         {
-            return categoryRepository.GetAll()
-                                    .NameEquals(name)
-                                    .AnyAsync();
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                return await categoryRepository.GetAll()
+                                         .NameEquals(name)
+                                         .AnyAsync();
+            }
         }
 
         /// <inheritdoc />
         public async Task SaveCategory(Category category)
         {
-            if (category.Data.Id == 0)
+            using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                categoryRepository.Add(category.Data);
-            } else
-            {
-                categoryRepository.Update(category.Data);
+                if (category.Data.Id == 0)
+                {
+                    categoryRepository.Add(category.Data);
+                }
+                else
+                {
+                    categoryRepository.Update(category.Data);
+                }
+                await dbContextScope.SaveChangesAsync();
             }
-            await unitOfWork.Commit();
         }
 
         /// <inheritdoc />
         public async Task DeleteCategory(Category category)
         {
-            categoryRepository.Delete(category.Data);
-            await unitOfWork.Commit();
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                categoryRepository.Delete(category.Data);
+                await dbContextScope.SaveChangesAsync();
+            }
         }
     }
 }
