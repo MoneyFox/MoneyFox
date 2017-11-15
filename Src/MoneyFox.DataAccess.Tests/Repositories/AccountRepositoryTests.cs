@@ -207,7 +207,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
         }
 
         [Fact]
-        public async void Delete_EntryNotFound()
+        public void Delete_EntryNotFound()
         {
             // Arrange
             var repository = new AccountRepository(ambientDbContextLocator);
@@ -216,8 +216,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Act / Assert
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                repository.Delete(testEntry);
-                await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await dbContextScope.SaveChangesAsync());
+                Assert.Throws<InvalidOperationException>(() => repository.Delete(testEntry));
             }
         }
 
