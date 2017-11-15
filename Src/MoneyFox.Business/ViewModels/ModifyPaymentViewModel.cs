@@ -415,7 +415,7 @@ namespace MoneyFox.Business.ViewModels
                 await PrepareRecurringPayment();
 
                 // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-                await paymentService.SavePayment(SelectedPayment.Payment);
+                await paymentService.SavePayments(SelectedPayment.Payment);
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
                 backupManager.EnqueueBackupTask();

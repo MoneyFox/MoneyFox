@@ -116,7 +116,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             settingsManagerMock.SetupAllProperties();
 
             var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment>()))
                               .Callback((Payment payment) => testPayment = payment)
                               .Returns(Task.CompletedTask);
 
@@ -295,7 +295,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             bool saveCalled = false;
             var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment>()))
                               .Callback(() => saveCalled = true)
                               .Returns(Task.CompletedTask);
 
@@ -403,7 +403,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(selectedPayment);
-            paymentServiceMock.Setup(x => x.SavePayment(selectedPayment)).Returns(Task.CompletedTask);
+            paymentServiceMock.Setup(x => x.SavePayments(selectedPayment)).Returns(Task.CompletedTask);
 
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock.Setup(x => x.GetAllAccounts())

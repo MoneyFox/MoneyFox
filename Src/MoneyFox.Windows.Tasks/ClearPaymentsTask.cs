@@ -37,7 +37,7 @@ namespace MoneyFox.Windows.Tasks
                 var unclearedPayments = payments.ToList();
                 if (unclearedPayments.Any())
                 {
-                    await paymentService.SavePayments(unclearedPayments);
+                    await paymentService.SavePayments(unclearedPayments.ToArray());
                 }
             }
             finally

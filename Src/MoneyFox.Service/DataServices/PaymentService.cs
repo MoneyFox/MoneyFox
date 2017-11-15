@@ -48,16 +48,10 @@ namespace MoneyFox.Service.DataServices
         Task<Payment> GetById(int id);
 
         /// <summary>
-        ///     Saves or updates a payment.
-        /// </summary>
-        /// <param name="payment">Payment to save or update.</param>
-        Task SavePayment(Payment payment);
-
-        /// <summary>
-        ///     Saves or updates a list of payments.
+        ///     Saves or updates a one or more payments to the database.
         /// </summary>
         /// <param name="payments">Payments to save or update.</param>
-        Task SavePayments(IEnumerable<Payment> payments);
+        Task SavePayments(params Payment[] payments);
 
         /// <summary>
         ///     Deletes a payment from the dataabase.
@@ -90,7 +84,8 @@ namespace MoneyFox.Service.DataServices
         /// <param name="accountRepository">Instance of <see cref="IAccountRepository" /></param>
         public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository,
                               IRecurringPaymentRepository recurringPaymentRepository,
-                              IAccountRepository accountRepository, IAmbientDbContextLocator ambientDbContextLocator)
+                              IAccountRepository accountRepository,
+                              IAmbientDbContextLocator ambientDbContextLocator)
         {
             this.paymentRepository = paymentRepository;
             this.recurringPaymentRepository = recurringPaymentRepository;
@@ -164,20 +159,7 @@ namespace MoneyFox.Service.DataServices
         }
 
         /// <inheritdoc />
-        public async Task SavePayment(Payment payment)
-        {
-            using (var dbContextScope = dbContextScopeFactory.Create())
-            {
-                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
-                {
-                    AddPaymentToChangeSet(dbContext, payment);
-                    await dbContextScope.SaveChangesAsync();
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        public async Task SavePayments(IEnumerable<Payment> payments)
+        public async Task SavePayments(params Payment[] payments)
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
