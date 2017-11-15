@@ -290,8 +290,7 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             // Act / Assert
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                recurringPaymentRepository.Delete(testEntry);
-                await Assert.ThrowsAsync<DbUpdateConcurrencyException>(async () => await dbContextScope.SaveChangesAsync());
+                Assert.Throws<InvalidOperationException>(() => recurringPaymentRepository.Delete(testEntry));
             }
         }
 
