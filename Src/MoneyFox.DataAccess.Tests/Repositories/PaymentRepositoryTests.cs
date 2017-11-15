@@ -30,10 +30,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-            using (var db = new ApplicationContext())
-            {
-                db.Database.Migrate();
-            }
         }
 
         /// <summary>

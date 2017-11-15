@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
@@ -6,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
 using Moq;
@@ -15,6 +18,19 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class CategoryServiceTests
     {
+        public CategoryServiceTests()
+        {
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+
+            using (dbContextScopeFactory.Create())
+            {
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
+            }
+        }
+
         #region GetAllCategories
 
         [Fact]
@@ -53,7 +69,7 @@ namespace MoneyFox.Service.Tests.DataServices
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         [Fact]
