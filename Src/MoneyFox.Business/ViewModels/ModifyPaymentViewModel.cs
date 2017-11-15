@@ -189,6 +189,7 @@ namespace MoneyFox.Business.ViewModels
                 {
                     amount = convertedValue;
                 }
+                RaisePropertyChanged();
             }
         }
 
@@ -355,7 +356,7 @@ namespace MoneyFox.Business.ViewModels
 
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
-            amount = SelectedPayment.Amount;
+            AmountString = SelectedPayment.Amount.ToString(CultureInfo.InvariantCulture);
             Recurrence = SelectedPayment.IsRecurring 
                 ? SelectedPayment.RecurringPayment.Recurrence
                 : PaymentRecurrence.Daily;

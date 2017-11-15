@@ -140,6 +140,7 @@ namespace MoneyFox.Service.DataServices
             {
                 var list = await paymentRepository
                     .GetAll()
+                    .Include(x => x.Category)
                     .HasAccountId(accountId)
                     .ToListAsync();
                 return list.Select(x => new Payment(x));
@@ -184,7 +185,10 @@ namespace MoneyFox.Service.DataServices
             PaymentAmountHelper.AddPaymentAmount(payment);
 
             UpdateAccount(payment);
-            SaveOrUpdateRecurringPayment(payment);
+            if (payment.Data.IsRecurring)
+            {
+                SaveOrUpdateRecurringPayment(payment);
+            }
             SaveOrUpdatePayment(payment);
         }
 
