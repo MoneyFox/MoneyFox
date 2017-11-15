@@ -16,10 +16,10 @@ namespace MoneyFox.DataAccess
 
         public ApplicationContext(DbContextOptions options) : base(options) { }
 
-        internal DbSet<AccountEntity> Accounts { get; set; }
-        internal DbSet<PaymentEntity> Payments { get; set; }
-        internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
-        internal DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<AccountEntity> Accounts { get; set; }
+        public DbSet<PaymentEntity> Payments { get; set; }
+        public DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
 
         /// <summary>
         ///     The Path to the db who shall be opened

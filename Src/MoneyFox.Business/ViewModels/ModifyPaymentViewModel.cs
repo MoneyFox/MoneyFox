@@ -440,19 +440,20 @@ namespace MoneyFox.Business.ViewModels
         private async Task PrepareRecurringPayment()
         {
             if (IsEdit
-                && selectedPayment.IsRecurring
+                && SelectedPayment.IsRecurring
+                && SelectedPayment.Payment.Data.RecurringPayment != null
                 && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                                                           Strings.ChangeSubsequentPaymentMessage,
                                                           Strings.UpdateAllLabel, Strings.JustThisLabel)
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
                 // We save the ID of the recurring payment who was already saved and assign it afterwards again.
-                var oldId = SelectedPayment.Payment.Data.RecurringPayment.Id;
+                var oldId = SelectedPayment.Payment.Data.RecurringPayment?.Id;
                 SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
                                                                    IsEndless,
                                                                    Recurrence,
                                                                    EndDate).Data;
-                SelectedPayment.Payment.Data.RecurringPayment.Id = oldId;
+                SelectedPayment.Payment.Data.RecurringPayment.Id = oldId ?? 0;
             }
         }
 

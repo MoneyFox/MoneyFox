@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Repositories;
+using MoneyFox.Foundation;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -72,24 +75,28 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
+        private readonly IAccountRepository accountRepository;
+        private readonly IAmbientDbContextLocator ambientDbContextLocator;
         private readonly IDbContextScopeFactory dbContextScopeFactory;
         private readonly IPaymentRepository paymentRepository;
         private readonly IRecurringPaymentRepository recurringPaymentRepository;
-        private readonly IAccountRepository accountRepository;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
-        /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory"/></param>
+        /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory" /></param>
         /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
         /// <param name="recurringPaymentRepository">Instance of <see cref="IRecurringPaymentRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IAccountRepository" /></param>
-        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository, IRecurringPaymentRepository recurringPaymentRepository, IAccountRepository accountRepository)
+        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository,
+                              IRecurringPaymentRepository recurringPaymentRepository,
+                              IAccountRepository accountRepository, IAmbientDbContextLocator ambientDbContextLocator)
         {
             this.paymentRepository = paymentRepository;
             this.recurringPaymentRepository = recurringPaymentRepository;
             this.accountRepository = accountRepository;
             this.dbContextScopeFactory = dbContextScopeFactory;
+            this.ambientDbContextLocator = ambientDbContextLocator;
         }
 
         /// <inheritdoc />
@@ -161,8 +168,11 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                AddPaymentToChangeSet(payment);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    AddPaymentToChangeSet(dbContext, payment);
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
         }
 
@@ -171,57 +181,14 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                foreach (var payment in payments)
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    AddPaymentToChangeSet(payment);
+                    foreach (var payment in payments)
+                    {
+                        AddPaymentToChangeSet(dbContext, payment);
+                    }
+                    await dbContextScope.SaveChangesAsync();
                 }
-                await dbContextScope.SaveChangesAsync();
-            }
-        }
-
-        private void AddPaymentToChangeSet(Payment payment)
-        {
-            payment.ClearPayment();
-            PaymentAmountHelper.AddPaymentAmount(payment);
-
-            UpdateAccount(payment);
-            if (payment.Data.IsRecurring)
-            {
-                SaveOrUpdateRecurringPayment(payment);
-            }
-            SaveOrUpdatePayment(payment);
-        }
-
-        private void UpdateAccount(Payment payment)
-        {
-            accountRepository.Update(payment.Data.ChargedAccount);
-            if (payment.Data.TargetAccount != null)
-            {
-                accountRepository.Update(payment.Data.TargetAccount);
-            }
-        }
-
-        private void SaveOrUpdatePayment(Payment payment)
-        {
-            if (payment.Data.Id == 0)
-            {
-                paymentRepository.Add(payment.Data);
-            }
-            else
-            {
-                paymentRepository.Update(payment.Data);
-            }
-        }
-
-        private void SaveOrUpdateRecurringPayment(Payment payment)
-        {
-            if (payment.Data.RecurringPayment.Id == 0)
-            {
-                recurringPaymentRepository.Add(payment.Data.RecurringPayment);
-            }
-            else
-            {
-                recurringPaymentRepository.Update(payment.Data.RecurringPayment);
             }
         }
 
@@ -247,6 +214,42 @@ namespace MoneyFox.Service.DataServices
                 }
                 await dbContextScope.SaveChangesAsync();
             }
+        }
+
+        private void AddPaymentToChangeSet(ApplicationContext dbContext, Payment payment)
+        {
+            payment.ClearPayment();
+            PaymentAmountHelper.AddPaymentAmount(payment);
+
+            if (payment.Data.IsRecurring)
+            {
+                SaveOrUpdateRecurringPayment(dbContext, payment.Data.RecurringPayment);
+            }
+            SaveOrUpdatePayment(dbContext, payment.Data);
+            SaveOrUpdateAccount(dbContext, payment.Data.ChargedAccount);
+
+            if (payment.Data.Type == PaymentType.Transfer)
+            {
+                SaveOrUpdateAccount(dbContext, payment.Data.TargetAccount);
+            }
+        }
+
+        private void SaveOrUpdateRecurringPayment(ApplicationContext dbContext, RecurringPaymentEntity recurringPayment)
+        {
+            var recurringPaymentEntry = dbContext.Entry(recurringPayment);
+            recurringPaymentEntry.State = recurringPayment.Id == 0 ? EntityState.Added : EntityState.Modified;
+        }
+
+        private void SaveOrUpdatePayment(ApplicationContext dbContext, PaymentEntity payment)
+        {
+            var paymentEntry = dbContext.Entry(payment);
+            paymentEntry.State = payment.Id == 0 ? EntityState.Added : EntityState.Modified;
+        }
+
+        private void SaveOrUpdateAccount(ApplicationContext dbContext, AccountEntity account)
+        {
+            var paymentEntry = dbContext.Entry(account);
+            paymentEntry.State = account.Id == 0 ? EntityState.Added : EntityState.Modified;
         }
     }
 }
