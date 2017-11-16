@@ -36,7 +36,7 @@ namespace MoneyFox.Business.Manager
                 payment.ClearPayment();
             }
 
-            await paymentService.SavePayments(paymentList);
+            await paymentService.SavePayments(paymentList.ToArray());
         }
     }
 }

@@ -415,7 +415,7 @@ namespace MoneyFox.Business.ViewModels
                 await PrepareRecurringPayment();
 
                 // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-                await paymentService.SavePayment(SelectedPayment.Payment);
+                await paymentService.SavePayments(SelectedPayment.Payment);
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
                 backupManager.EnqueueBackupTask();
@@ -440,19 +440,20 @@ namespace MoneyFox.Business.ViewModels
         private async Task PrepareRecurringPayment()
         {
             if (IsEdit
-                && selectedPayment.IsRecurring
+                && SelectedPayment.IsRecurring
+                && SelectedPayment.Payment.Data.RecurringPayment != null
                 && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                                                           Strings.ChangeSubsequentPaymentMessage,
                                                           Strings.UpdateAllLabel, Strings.JustThisLabel)
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
                 // We save the ID of the recurring payment who was already saved and assign it afterwards again.
-                var oldId = SelectedPayment.Payment.Data.RecurringPayment.Id;
+                var oldId = SelectedPayment.Payment.Data.RecurringPayment?.Id;
                 SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
                                                                    IsEndless,
                                                                    Recurrence,
                                                                    EndDate).Data;
-                SelectedPayment.Payment.Data.RecurringPayment.Id = oldId;
+                SelectedPayment.Payment.Data.RecurringPayment.Id = oldId ?? 0;
             }
         }
 

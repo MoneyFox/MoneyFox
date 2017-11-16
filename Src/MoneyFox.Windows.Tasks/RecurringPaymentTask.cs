@@ -32,7 +32,8 @@ namespace MoneyFox.Windows.Tasks
                                                     new PaymentRepository(ambientDbContextLocator)),
                         new PaymentService(dbContextScopeFactory, new PaymentRepository(ambientDbContextLocator),
                                            new RecurringPaymentRepository(ambientDbContextLocator),
-                                           new AccountRepository(new AmbientDbContextLocator())))
+                                           new AccountRepository(ambientDbContextLocator), 
+                                           ambientDbContextLocator))
                     .CreatePaymentsUpToRecur();
             }
             finally

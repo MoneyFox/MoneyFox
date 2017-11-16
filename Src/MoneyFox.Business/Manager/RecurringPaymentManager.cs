@@ -25,7 +25,7 @@ namespace MoneyFox.Business.Manager
         public async Task CreatePaymentsUpToRecur()
         {
             var newPayments = await recurringPaymentService.GetPaymentsToRecur();
-            await paymentService.SavePayments(newPayments.Select(RecurringPaymentHelper.GetPaymentFromRecurring));
+            await paymentService.SavePayments(newPayments.Select(RecurringPaymentHelper.GetPaymentFromRecurring).ToArray());
         }
     }
 }

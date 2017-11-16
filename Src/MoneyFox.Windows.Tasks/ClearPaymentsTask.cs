@@ -25,17 +25,19 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
+                var ambientDbContextLocator = new AmbientDbContextLocator();
                 paymentService = new PaymentService(
                     new DbContextScopeFactory(), 
-                    new PaymentRepository(new AmbientDbContextLocator()),
-                    new RecurringPaymentRepository(new AmbientDbContextLocator()),
-                    new AccountRepository(new AmbientDbContextLocator()));
+                    new PaymentRepository(ambientDbContextLocator),
+                    new RecurringPaymentRepository(ambientDbContextLocator),
+                    new AccountRepository(ambientDbContextLocator),
+                    ambientDbContextLocator);
 
                 var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
                 var unclearedPayments = payments.ToList();
                 if (unclearedPayments.Any())
                 {
-                    await paymentService.SavePayments(unclearedPayments);
+                    await paymentService.SavePayments(unclearedPayments.ToArray());
                 }
             }
             finally

@@ -2,7 +2,6 @@
 using System.IO;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;

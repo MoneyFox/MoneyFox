@@ -67,7 +67,8 @@ namespace MoneyFox.Droid.Jobs
             var paymentService = new PaymentService(new DbContextScopeFactory(),
                                                     new PaymentRepository(ambientDbCOntextLocator),
                                                     new RecurringPaymentRepository(ambientDbCOntextLocator),
-                                                    new AccountRepository(ambientDbCOntextLocator));
+                                                    new AccountRepository(ambientDbCOntextLocator),
+                                                    ambientDbCOntextLocator);
 
             var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
             var unclearedPayments = payments.ToList();
