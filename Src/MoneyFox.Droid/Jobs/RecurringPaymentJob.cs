@@ -71,7 +71,8 @@ namespace MoneyFox.Droid.Jobs
                                                 new PaymentRepository(ambientDbContextLocator)),
                     new PaymentService(dbContextScopeFactory, new PaymentRepository(ambientDbContextLocator),
                                        new RecurringPaymentRepository(ambientDbContextLocator),
-                                       new AccountRepository(ambientDbContextLocator)))
+                                       new AccountRepository(ambientDbContextLocator),
+                                       ambientDbContextLocator))
                 .CreatePaymentsUpToRecur();
 
             Debug.WriteLine("RecurringPayment Job finished.");

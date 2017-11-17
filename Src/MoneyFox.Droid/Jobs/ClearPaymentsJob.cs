@@ -41,7 +41,7 @@ namespace MoneyFox.Droid.Jobs
         }
 
         /// <inheritdoc />
-        public override StartCommandResult OnStartCommand(Intent intent, Android.App.StartCommandFlags flags, int startId)
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             var callback = (Messenger)intent.GetParcelableExtra("messenger");
             var m = Message.Obtain();
@@ -76,7 +76,7 @@ namespace MoneyFox.Droid.Jobs
             if (unclearedPayments.Any())
             {
                 Debug.WriteLine("Payments for clearing found.");
-                await paymentService.SavePayments(unclearedPayments);
+                await paymentService.SavePayments(unclearedPayments.ToArray());
             }
 
             Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);
