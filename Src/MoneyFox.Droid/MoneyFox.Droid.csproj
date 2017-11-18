@@ -76,11 +76,11 @@
     <Reference Include="Autofac.Extras.MvvmCross, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Extras.MvvmCross.4.0.2\lib\portable45-net45+win8+wpa81\Autofac.Extras.MvvmCross.dll</HintPath>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.2.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.1.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.3.2.0\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.DbContextScope, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.DbContextScope.1.0.0\lib\netstandard1.3\EntityFramework.DbContextScope.dll</HintPath>
@@ -90,22 +90,22 @@
     </Reference>
     <Reference Include="Java.Interop" />
     <Reference Include="Microsoft.Azure.Mobile, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Analytics, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Analytics.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Analytics.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.Analytics.Android.Bindings.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Android.Bindings.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.Android.Bindings.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Crashes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile.Crashes.Android.Bindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.16.0\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Crashes.0.17.1\lib\MonoAndroid403\Microsoft.Azure.Mobile.Crashes.Android.Bindings.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Sqlite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -157,86 +157,86 @@
     <Reference Include="MPAndroidChart, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MPAndroidChart.3.0.2\lib\MonoAndroid\MPAndroidChart.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Binding, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.0\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
+    <Reference Include="MvvmCross.Binding, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Binding.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.0\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Binding.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Core, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.5.3.0\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
+    <Reference Include="MvvmCross.Core, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.5.3.0\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.Core.UI, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.Core.UI.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.UI.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.Core.UI, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Core.UI.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.UI.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.Core.Utils, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.Core.Utils.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.Utils.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.Core.Utils, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Core.Utils.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.Design, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.Design.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Design.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.Design, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Design.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.Design.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.Fragment, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.Fragment.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Fragment.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.Fragment, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Fragment.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.Fragment.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.V7.AppCompat, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V7.AppCompat.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.V7.AppCompat, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.AppCompat.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.V7.Preference, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V7.Preference.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.Preference.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.V7.Preference, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.Preference.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.Preference.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Support.V7.RecyclerView, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Droid.Support.V7.RecyclerView.5.3.0\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.RecyclerView.dll</HintPath>
+    <Reference Include="MvvmCross.Droid.Support.V7.RecyclerView, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.RecyclerView.5.4.2\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.RecyclerView.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Localization, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.0\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
+    <Reference Include="MvvmCross.Localization, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Platform, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.5.3.0\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
+    <Reference Include="MvvmCross.Platform, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platform.5.4.2\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Platform.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.5.3.0\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Platform.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platform.5.4.2\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Color, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Color, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Color.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Color.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Email, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Email.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Email, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Email.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Email.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Email.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Email.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Email.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.File, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.File.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.File.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.File, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.File.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.File.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.File.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.File.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.File.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.File.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Json, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Json.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Json.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Json, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Json.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Json.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.ResxLocalization, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.ResxLocalization.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.ResxLocalization.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.ResxLocalization, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.ResxLocalization.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.ResxLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Visibility, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Visibility.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Visibility, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Visibility.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.Visibility.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.Visibility.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Visibility.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.WebBrowser, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.WebBrowser, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.WebBrowser.Droid, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.3.0\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
+    <Reference Include="MvvmCross.Plugins.WebBrowser.Droid, Version=5.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.5.4.2\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>

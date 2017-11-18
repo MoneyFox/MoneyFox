@@ -2,6 +2,7 @@
 using System.IO;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
@@ -86,10 +87,10 @@ namespace MoneyFox.DataAccess.Tests.DataServices
                                                                    PaymentRecurrence.Bimonthly,
                                                                    DateTime.Now));
 
-                var paymentService = new PaymentService(dbContextScopeFactory, paymentRepository, recurringPaymentRepository, accountRepository);
+                var paymentService = new PaymentService(dbContextScopeFactory, paymentRepository, recurringPaymentRepository, accountRepository, new AmbientDbContextLocator());
 
                 // Act
-                await paymentService.SavePayment(testEntry.Payment);
+                await paymentService.SavePayments(testEntry.Payment);
                 var payment = await paymentService.GetById(testEntry.Payment.Data.Id);
 
                 // Assert

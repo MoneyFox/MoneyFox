@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -119,6 +120,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.OneDriveSDK.Authentication">
       <Version>1.0.10</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Platform">
+      <Version>5.4.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
