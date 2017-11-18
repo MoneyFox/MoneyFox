@@ -6,7 +6,6 @@ using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
@@ -58,38 +57,20 @@ namespace MoneyFox.Service.DataServices
         /// </summary>
         /// <param name="payment">Payment to delete.</param>
         Task DeletePayment(Payment payment);
-
-        /// <summary>
-        ///     Deletes a list of payments from the dataabase.
-        /// </summary>
-        /// <param name="payments">Payments to delete.</param>
-        Task DeletePayments(IEnumerable<Payment> payments);
     }
 
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
-        private readonly IAccountRepository accountRepository;
         private readonly IAmbientDbContextLocator ambientDbContextLocator;
         private readonly IDbContextScopeFactory dbContextScopeFactory;
-        private readonly IPaymentRepository paymentRepository;
-        private readonly IRecurringPaymentRepository recurringPaymentRepository;
 
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
-        /// <param name="dbContextScopeFactory">Instance of <see cref="IDbContextScopeFactory" /></param>
-        /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
-        /// <param name="recurringPaymentRepository">Instance of <see cref="IRecurringPaymentRepository" /></param>
-        /// <param name="accountRepository">Instance of <see cref="IAccountRepository" /></param>
-        public PaymentService(IDbContextScopeFactory dbContextScopeFactory, IPaymentRepository paymentRepository,
-                              IRecurringPaymentRepository recurringPaymentRepository,
-                              IAccountRepository accountRepository,
+        public PaymentService(IDbContextScopeFactory dbContextScopeFactory,
                               IAmbientDbContextLocator ambientDbContextLocator)
         {
-            this.paymentRepository = paymentRepository;
-            this.recurringPaymentRepository = recurringPaymentRepository;
-            this.accountRepository = accountRepository;
             this.dbContextScopeFactory = dbContextScopeFactory;
             this.ambientDbContextLocator = ambientDbContextLocator;
         }
@@ -99,22 +80,24 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var query = paymentRepository
-                    .GetAll()
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AreNotCleared()
-                    .HasDateSmallerEqualsThan(enddate);
-
-                if (accountId != 0)
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    query = query.HasAccountId(accountId);
+                    var query = dbContext.Payments
+                        .Include(x => x.ChargedAccount)
+                        .Include(x => x.TargetAccount)
+                        .AreNotCleared()
+                        .HasDateSmallerEqualsThan(enddate);
+
+                    if (accountId != 0)
+                    {
+                        query = query.HasAccountId(accountId);
+                    }
+
+                    var list = await query
+                        .ToListAsync();
+
+                    return list.Select(x => new Payment(x));
                 }
-
-                var list = await query
-                    .ToListAsync();
-
-                return list.Select(x => new Payment(x));
             }
         }
 
@@ -123,15 +106,17 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await paymentRepository
-                    .GetAll()
-                    .Include(x => x.Category)
-                    .WithoutTransfers()
-                    .HasDateLargerEqualsThan(startdate.Date)
-                    .HasDateSmallerEqualsThan(enddate.Date)
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Payments
+                                              .Include(x => x.Category)
+                                              .WithoutTransfers()
+                                              .HasDateLargerEqualsThan(startdate.Date)
+                                              .HasDateSmallerEqualsThan(enddate.Date)
+                                              .ToListAsync();
 
-                return list.Select(x => new Payment(x));
+                    return list.Select(x => new Payment(x));
+                }
             }
         }
 
@@ -140,12 +125,14 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await paymentRepository
-                    .GetAll()
-                    .Include(x => x.Category)
-                    .HasAccountId(accountId)
-                    .ToListAsync();
-                return list.Select(x => new Payment(x));
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Payments
+                        .Include(x => x.Category)
+                        .HasAccountId(accountId)
+                        .ToListAsync();
+                    return list.Select(x => new Payment(x));
+                }
             }
         }
 
@@ -154,7 +141,14 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return new Payment(await paymentRepository.GetById(id));
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return new Payment(await dbContext.Payments.Include(x => x.RecurringPayment)
+                                                      .Include(x => x.ChargedAccount)
+                                                      .Include(x => x.TargetAccount)
+                                                      .Include(x => x.Category)
+                                                      .FirstAsync(x => x.Id == id));
+                }
             }
         }
 
@@ -197,19 +191,6 @@ namespace MoneyFox.Service.DataServices
 
                     await dbContextScope.SaveChangesAsync();
                 }
-            }
-        }
-
-        /// <inheritdoc />
-        public async Task DeletePayments(IEnumerable<Payment> payments)
-        {
-            using (var dbContextScope = dbContextScopeFactory.Create())
-            {
-                foreach (var payment in payments)
-                {
-                    paymentRepository.Delete(payment.Data);
-                }
-                await dbContextScope.SaveChangesAsync();
             }
         }
 
