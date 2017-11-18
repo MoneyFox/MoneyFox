@@ -296,7 +296,9 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            await paymentService.DeletePayment(payment.Payment);
+            var paymentWithAttachedRelations = await paymentService.GetById(payment.Id);
+
+            await paymentService.DeletePayment(paymentWithAttachedRelations);
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014

@@ -3,7 +3,6 @@ using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 
@@ -27,13 +26,8 @@ namespace MoneyFox.Windows.Tasks
                 var ambientDbContextLocator = new AmbientDbContextLocator();
 
                 await new RecurringPaymentManager(
-                        new RecurringPaymentService(dbContextScopeFactory,
-                                                    new RecurringPaymentRepository(ambientDbContextLocator),
-                                                    new PaymentRepository(ambientDbContextLocator)),
-                        new PaymentService(dbContextScopeFactory, new PaymentRepository(ambientDbContextLocator),
-                                           new RecurringPaymentRepository(ambientDbContextLocator),
-                                           new AccountRepository(ambientDbContextLocator), 
-                                           ambientDbContextLocator))
+                        new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
+                        new PaymentService(dbContextScopeFactory, ambientDbContextLocator))
                     .CreatePaymentsUpToRecur();
             }
             finally

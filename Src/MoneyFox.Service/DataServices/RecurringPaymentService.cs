@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess;
 using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Service.DataServices
@@ -24,18 +24,16 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class RecurringPaymentService : IRecurringPaymentService
     {
+        private readonly IAmbientDbContextLocator ambientDbContextLocator;
         private readonly IDbContextScopeFactory dbContextScopeFactory;
-        private readonly IRecurringPaymentRepository recurringPaymentRepository;
-        private readonly IPaymentRepository paymentRepository;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public RecurringPaymentService(IDbContextScopeFactory dbContextScopeFactory, IRecurringPaymentRepository recurringPaymentRepository, IPaymentRepository paymentRepository)
+        public RecurringPaymentService(IDbContextScopeFactory dbContextScopeFactory, IAmbientDbContextLocator ambientDbContextLocator)
         {
             this.dbContextScopeFactory = dbContextScopeFactory;
-            this.recurringPaymentRepository = recurringPaymentRepository;
-            this.paymentRepository = paymentRepository;
+            this.ambientDbContextLocator = ambientDbContextLocator;
         }
 
         /// <inheritdoc />
@@ -43,33 +41,41 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var recurringPayments = recurringPaymentRepository
-                    .GetMany(x => x.IsEndless ||
-                                  x.EndDate >= DateTime.Now.Date)
-                    .Include(x => x.RelatedPayments)
-                    .Where(x => x.ChargedAccount != null)
-                    .ToList();
-
-                var payments = new List<Payment>();
-                foreach (var recurringPayment in recurringPayments)
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    // Delete Recurring Payments without assosciated payments. 
-                    // This can be removed in later versions, since this will be based on old data.
-                    if (!recurringPayment.RelatedPayments.Any())
+                    var recurringPayments = dbContext.RecurringPayments
+                        .Where(x => x.IsEndless ||
+                                      x.EndDate >= DateTime.Now.Date)
+                        .Include(x => x.RelatedPayments)
+                        .Where(x => x.ChargedAccount != null)
+                        .ToList();
+
+                    var payments = new List<Payment>();
+                    foreach (var recurringPayment in recurringPayments)
                     {
-                        recurringPaymentRepository.Delete(recurringPayment);
-                        continue;
+                        // Delete Recurring Payments without assosciated payments. 
+                        // This can be removed in later versions, since this will be based on old data.
+                        if (!recurringPayment.RelatedPayments.Any())
+                        {
+                            var recurringPaymentEntry = dbContext.Entry(recurringPayment);
+                            recurringPaymentEntry.State = EntityState.Deleted;
+                            continue;
+                        }
+
+                        payments.Add(new Payment(
+                                         await dbContext.Payments.FindAsync(recurringPayment
+                                                                                .RelatedPayments
+                                                                                .OrderByDescending(y => y.Date).First()
+                                                                                .Id)));
                     }
 
-                    payments.Add(new Payment(
-                                     await paymentRepository.GetById(
-                                         recurringPayment.RelatedPayments.OrderByDescending(y => y.Date).First().Id)));
-                }
+                    await dbContext.SaveChangesAsync();
 
-                return payments
-                    .Where(RecurringPaymentHelper.CheckIfRepeatable)
-                    .Select(x => new RecurringPayment(x.Data.RecurringPayment))
-                    .ToList();
+                    return payments
+                        .Where(RecurringPaymentHelper.CheckIfRepeatable)
+                        .Select(x => new RecurringPayment(x.Data.RecurringPayment))
+                        .ToList();
+                }
             }
         }
     }

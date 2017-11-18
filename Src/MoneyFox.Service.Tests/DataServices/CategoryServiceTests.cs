@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
 using Moq;
@@ -18,19 +14,6 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class CategoryServiceTests
     {
-        public CategoryServiceTests()
-        {
-            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
-
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
-            using (dbContextScopeFactory.Create())
-            {
-                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
-            }
-        }
-
         #region GetAllCategories
 
         [Fact]
@@ -61,15 +44,14 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                    .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
             var resultList = result.ToList();
 
             // Assert
-            Assert.Empty(resultList);
+            Assert.Equal(0, resultList.Count);
         }
 
         [Fact]
@@ -106,8 +88,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
@@ -149,8 +130,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategoriesWithPayments();
@@ -197,8 +177,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
@@ -243,8 +222,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetById(3);

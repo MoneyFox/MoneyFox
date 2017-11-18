@@ -4,7 +4,6 @@ using System.Linq;
 using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service.DataServices;
 
@@ -25,13 +24,7 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                var ambientDbContextLocator = new AmbientDbContextLocator();
-                paymentService = new PaymentService(
-                    new DbContextScopeFactory(), 
-                    new PaymentRepository(ambientDbContextLocator),
-                    new RecurringPaymentRepository(ambientDbContextLocator),
-                    new AccountRepository(ambientDbContextLocator),
-                    ambientDbContextLocator);
+                paymentService = new PaymentService(new DbContextScopeFactory(), new AmbientDbContextLocator());
 
                 var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
                 var unclearedPayments = payments.ToList();
