@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Manager
 {

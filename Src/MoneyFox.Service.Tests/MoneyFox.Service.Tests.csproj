@@ -20,7 +20,6 @@
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj" />
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

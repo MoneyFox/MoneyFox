@@ -1,8 +1,8 @@
 ﻿using MoneyFox.Business.Converter;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Tests;
-using MoneyFox.Service.Pocos;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter

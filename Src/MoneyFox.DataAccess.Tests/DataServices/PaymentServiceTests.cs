@@ -4,11 +4,11 @@ using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices

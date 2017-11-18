@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Tests;
-using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Test.Core;
 using Xunit;

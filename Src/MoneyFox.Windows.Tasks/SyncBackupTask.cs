@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.Business;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.Uwp;
 using Plugin.Connectivity;

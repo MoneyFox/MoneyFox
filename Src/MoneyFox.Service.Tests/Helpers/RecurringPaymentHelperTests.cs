@@ -1,8 +1,9 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
+using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
-using MoneyFox.Service.Pocos;
 using Xunit;
 
 namespace MoneyFox.Service.Tests.Helpers

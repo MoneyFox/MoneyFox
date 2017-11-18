@@ -476,10 +476,6 @@
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
-      <Project>{41637575-df70-48b4-a99c-46299a7d2e8f}</Project>
-      <Name>MoneyFox.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-bg\strings.xml" />

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service;
 using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.Manager

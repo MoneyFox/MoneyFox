@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.QueryExtensions;
 using MoneyFox.Foundation;
-using MoneyFox.Service.QueryExtensions;
 using Xunit;
 
 namespace MoneyFox.Service.Tests.QueryExtensions
