@@ -7,7 +7,6 @@ using Android.OS;
 using Android.Widget;
 using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
@@ -66,13 +65,8 @@ namespace MoneyFox.Droid.Jobs
             var dbContextScopeFactory = new DbContextScopeFactory();
 
             await new RecurringPaymentManager(
-                    new RecurringPaymentService(dbContextScopeFactory,
-                                                new RecurringPaymentRepository(ambientDbContextLocator),
-                                                new PaymentRepository(ambientDbContextLocator)),
-                    new PaymentService(dbContextScopeFactory, new PaymentRepository(ambientDbContextLocator),
-                                       new RecurringPaymentRepository(ambientDbContextLocator),
-                                       new AccountRepository(ambientDbContextLocator),
-                                       ambientDbContextLocator))
+                    new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
+                    new PaymentService(dbContextScopeFactory, ambientDbContextLocator))
                 .CreatePaymentsUpToRecur();
 
             Debug.WriteLine("RecurringPayment Job finished.");
