@@ -191,7 +191,7 @@ namespace MoneyFox.Service.DataServices
 
                     if (payment.Data.TargetAccount != null)
                     {
-                        var targetAccountEntry = dbContext.Entry(payment.Data.ChargedAccount);
+                        var targetAccountEntry = dbContext.Entry(payment.Data.TargetAccount);
                         targetAccountEntry.State = EntityState.Modified;
                     }
 
