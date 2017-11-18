@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
-using MoneyFox.Service.Pocos;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.Entities;
+using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.Service.DataServices
@@ -73,16 +74,13 @@ namespace MoneyFox.Service.DataServices
     /// <inheritdoc />
     public class AccountService : IAccountService
     {
+        private readonly IAmbientDbContextLocator ambientDbContextLocator;
         private readonly IDbContextScopeFactory dbContextScopeFactory;
-        private readonly IAccountRepository accountRepository;
 
-        /// <summary>
-        ///     Default constructor
-        /// </summary>
-        public AccountService(IDbContextScopeFactory dbContextScopeFactory, IAccountRepository accountRepository)
+        public AccountService(IAmbientDbContextLocator ambientDbContextLocator, IDbContextScopeFactory dbContextScopeFactory)
         {
+            this.ambientDbContextLocator = ambientDbContextLocator;
             this.dbContextScopeFactory = dbContextScopeFactory;
-            this.accountRepository = accountRepository;
         }
 
         /// <inheritdoc />
@@ -90,12 +88,14 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await accountRepository
-                    .GetAll()
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Accounts
+                                              .OrderByName()
+                                              .ToListAsync();
 
-                return list.Select(x => new Account(x));
+                    return list.Select(x => new Account(x));
+                }
             }
         }
 
@@ -104,7 +104,24 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return new Account(await accountRepository.GetById(id));
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return new Account(await dbContext.Accounts
+                                                      .Include(x => x.ChargedPayments).ThenInclude(p => p.Category)
+                                                      .Include(x => x.ChargedPayments).ThenInclude(p => p.TargetAccount)
+                                                      .Include(x => x.TargetedPayments).ThenInclude(p => p.Category)
+                                                      .Include(x => x.TargetedPayments)
+                                                      .ThenInclude(p => p.ChargedAccount)
+                                                      .Include(x => x.ChargedRecurringPayments)
+                                                      .ThenInclude(p => p.Category)
+                                                      .Include(x => x.ChargedRecurringPayments)
+                                                      .ThenInclude(p => p.TargetAccount)
+                                                      .Include(x => x.TargetedRecurringPayments)
+                                                      .ThenInclude(p => p.Category)
+                                                      .Include(x => x.TargetedRecurringPayments)
+                                                      .ThenInclude(p => p.ChargedAccount)
+                                                      .FirstOrDefaultAsync(x => x.Id == id));
+                }
             }
         }
 
@@ -113,7 +130,10 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return await accountRepository.GetName(id);
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return await dbContext.Accounts.Where(x => x.Id == id).Select(x => x.Name).SingleAsync();
+                }
             }
         }
 
@@ -122,7 +142,10 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return accountRepository.GetAll().CountAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return dbContext.Accounts.CountAsync();
+                }
             }
         }
 
@@ -131,9 +154,12 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return await accountRepository.GetAll()
-                                        .NameEquals(name)
-                                        .AnyAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return await dbContext.Accounts
+                                                  .NameEquals(name)
+                                                  .AnyAsync();
+                }
             }
         }
 
@@ -142,13 +168,15 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await accountRepository
-                    .GetAll()
-                    .AreNotExcluded()
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Accounts
+                        .AreNotExcluded()
+                        .OrderByName()
+                        .ToListAsync();
 
-                return list.Select(x => new Account(x));
+                    return list.Select(x => new Account(x));
+                }
             }
         }
 
@@ -157,13 +185,15 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await accountRepository
-                    .GetAll()
-                    .AreExcluded()
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Accounts
+                        .AreExcluded()
+                        .OrderByName()
+                        .ToListAsync();
 
-                return list.Select(x => new Account(x));
+                    return list.Select(x => new Account(x));
+                }
             }
         }
 
@@ -172,15 +202,13 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                if (account.Data.Id == 0)
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    accountRepository.Add(account.Data);
+                    dbContext.Entry(account.Data).State = account.Data.Id == 0
+                        ? EntityState.Added
+                        : EntityState.Modified;
+                    await dbContextScope.SaveChangesAsync();
                 }
-                else
-                {
-                    accountRepository.Update(account.Data);
-                }
-                await dbContextScope.SaveChangesAsync();
             }
         }
 
@@ -189,9 +217,11 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-
-                accountRepository.Delete(account.Data);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    dbContext.Entry(account.Data).State = EntityState.Deleted;
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
         }
     }

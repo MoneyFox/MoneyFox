@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess;
 using MoneyFox.Service.Pocos;
 using MoneyFox.Service.QueryExtensions;
 
@@ -66,16 +66,16 @@ namespace MoneyFox.Service.DataServices
     /// </summary>
     public class CategoryService : ICategoryService
     {
+        private readonly IAmbientDbContextLocator ambientDbContextLocator;
         private readonly IDbContextScopeFactory dbContextScopeFactory;
-        private readonly ICategoryRepository categoryRepository;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public CategoryService(IDbContextScopeFactory dbContextScopeFactory, ICategoryRepository categoryRepository)
+        public CategoryService(IAmbientDbContextLocator ambientDbContextLocator, IDbContextScopeFactory dbContextScopeFactory)
         {
+            this.ambientDbContextLocator = ambientDbContextLocator;
             this.dbContextScopeFactory = dbContextScopeFactory;
-            this.categoryRepository = categoryRepository;
         }
 
         /// <inheritdoc />
@@ -83,12 +83,14 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await categoryRepository
-                    .GetAll()
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Categories
+                                              .OrderByName()
+                                              .ToListAsync();
 
-                return list.Select(x => new Category(x));
+                    return list.Select(x => new Category(x));
+                }
             }
         }
 
@@ -97,20 +99,28 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await categoryRepository
-                    .GetAll()
-                    .Include(x => x.Payments)
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Categories
+                        .Include(x => x.Payments)
+                        .OrderByName()
+                        .ToListAsync();
 
-                return list.Select(x => new Category(x));
+                    return list.Select(x => new Category(x));
+                }
             }
         }
 
         /// <inheritdoc />
         public async Task<Category> GetById(int id)
         {
-            return new Category(await categoryRepository.GetById(id));
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return new Category(await dbContext.Categories.FindAsync(id));
+                }
+            }
         }
 
         /// <inheritdoc />
@@ -118,14 +128,16 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                var list = await categoryRepository
-                    .GetAll()
-                    .NameNotNull()
-                    .NameContains(searchTerm)
-                    .OrderByName()
-                    .ToListAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Categories
+                        .NameNotNull()
+                        .NameContains(searchTerm)
+                        .OrderByName()
+                        .ToListAsync();
 
-                return list.Select(x => new Category(x));
+                    return list.Select(x => new Category(x));
+                }
             }
         }
 
@@ -134,9 +146,12 @@ namespace MoneyFox.Service.DataServices
         {
             using (dbContextScopeFactory.CreateReadOnly())
             {
-                return await categoryRepository.GetAll()
-                                         .NameEquals(name)
-                                         .AnyAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    return await dbContext.Categories
+                                          .NameEquals(name)
+                                          .AnyAsync();
+                }
             }
         }
 
@@ -145,15 +160,18 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                if (category.Data.Id == 0)
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    categoryRepository.Add(category.Data);
+                    if (category.Data.Id == 0)
+                    {
+                        dbContext.Entry(category.Data).State = EntityState.Added;
+                    }
+                    else
+                    {
+                        dbContext.Entry(category.Data).State = EntityState.Modified;
+                    }
+                    await dbContextScope.SaveChangesAsync();
                 }
-                else
-                {
-                    categoryRepository.Update(category.Data);
-                }
-                await dbContextScope.SaveChangesAsync();
             }
         }
 
@@ -162,8 +180,11 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                categoryRepository.Delete(category.Data);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    dbContext.Entry(category.Data).State = EntityState.Deleted;
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
         }
     }

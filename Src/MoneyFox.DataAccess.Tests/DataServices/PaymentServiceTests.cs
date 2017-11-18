@@ -4,7 +4,6 @@ using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Service;
@@ -58,15 +57,16 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var accountRepository = new AccountRepository(ambientDbContextLocator);
-
             AccountEntity testAccount;
 
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                testAccount = new AccountEntity {Name = "testAccount"};
-                accountRepository.Add(testAccount);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    testAccount = new AccountEntity {Name = "testAccount"};
+                    dbContext.Accounts.Add(testAccount);
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
 
             var testEntry = new PaymentViewModel(new Payment
