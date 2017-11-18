@@ -56,8 +56,5 @@ namespace MoneyFox.Windows
 
         /// <inheritdoc />
         protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
-
-        /// <inheritdoc />
-        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }
