@@ -58,7 +58,6 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var recurringPaymentRepository = new RecurringPaymentRepository(ambientDbContextLocator);
             var accountRepository = new AccountRepository(ambientDbContextLocator);
 
             AccountEntity testAccount;
