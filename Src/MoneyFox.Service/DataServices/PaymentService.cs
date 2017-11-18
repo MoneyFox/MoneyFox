@@ -179,9 +179,24 @@ namespace MoneyFox.Service.DataServices
         {
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                PaymentAmountHelper.RemovePaymentAmount(payment);
-                paymentRepository.Delete(payment.Data);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    PaymentAmountHelper.RemovePaymentAmount(payment);
+
+                    var paymentEntry = dbContext.Entry(payment.Data);
+                    paymentEntry.State = EntityState.Deleted;
+
+                    var chargedAccountEntry = dbContext.Entry(payment.Data.ChargedAccount);
+                    chargedAccountEntry.State = EntityState.Modified;
+
+                    if (payment.Data.TargetAccount != null)
+                    {
+                        var targetAccountEntry = dbContext.Entry(payment.Data.ChargedAccount);
+                        targetAccountEntry.State = EntityState.Modified;
+                    }
+
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
         }
 
