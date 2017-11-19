@@ -16,7 +16,6 @@ namespace MoneyFox.Windows.Views
 
             CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
             titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
-            
         }
 
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
@@ -62,6 +61,22 @@ namespace MoneyFox.Windows.Views
 
                 }
             }
+        }
+
+        /// <summary>
+        ///     Adjusts the view for login.
+        /// </summary>
+        public void SetLoginView()
+        {
+            NavView.OpenPaneLength = 0;
+        }
+
+        /// <summary>
+        ///     Adjusts the view for the general usage.
+        /// </summary>
+        public void SetLoggedInView()
+        {
+            NavView.OpenPaneLength = 200;
         }
     }
 }

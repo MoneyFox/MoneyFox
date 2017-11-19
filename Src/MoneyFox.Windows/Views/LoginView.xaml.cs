@@ -15,7 +15,7 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class LoginView
     {
-        private readonly ShellPage shell;
+        private readonly MainView MainView;
 
         /// <summary>
         ///     Constructor
@@ -23,8 +23,8 @@ namespace MoneyFox.Windows.Views
         public LoginView()
         {
             InitializeComponent();
-            shell = Window.Current.Content as ShellPage;
-            shell?.SetLoginView();
+            MainView = Window.Current.Content as MainView;
+            MainView?.SetLoginView();
             Loaded += HideUnusedButtons;
         }
 
@@ -68,7 +68,7 @@ namespace MoneyFox.Windows.Views
                 return;
             }
 
-            shell?.SetLoggedInView();
+            MainView?.SetLoggedInView();
             (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
         }
 
@@ -94,7 +94,7 @@ namespace MoneyFox.Windows.Views
             {
                 if (await MicrosoftPassportHelper.CreatePassportKeyAsync())
                 {
-                    shell?.SetLoggedInView();
+                    MainView?.SetLoggedInView();
                     (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
                 }
             }
