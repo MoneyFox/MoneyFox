@@ -14,6 +14,7 @@ using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.WebBrowser;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.Logging;
 using MvvmCross.Plugins.Email.Uwp;
 using MvvmCross.Plugins.File.Uwp;
 using MvvmCross.Plugins.Visibility.Uwp;
@@ -56,5 +57,10 @@ namespace MoneyFox.Windows
 
         /// <inheritdoc />
         protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
+
+        protected override MvxLogProviderType GetDefaultLogProviderType()
+        {
+            return MvxLogProviderType.None;
+        }
     }
 }

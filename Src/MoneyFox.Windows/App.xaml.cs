@@ -20,6 +20,7 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
@@ -86,14 +87,14 @@ namespace MoneyFox.Windows
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
-                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+                var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
 
-                var shell = (ShellPage)Window.Current.Content;
+                Window.Current.Content = mainView;
+                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(shell.Frame);
+                var setup = new Setup(mainView.MainFrame);
                 setup.Initialize();
 
                 var start = Mvx.Resolve<IMvxAppStart>();
@@ -103,7 +104,7 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
-                shell.ViewModel = Mvx.Resolve<ShellViewModel>();
+                mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
 
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
