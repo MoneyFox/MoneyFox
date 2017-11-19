@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
-using MoneyFox.Service.DataServices;
 using Moq;
 using Xunit;
 

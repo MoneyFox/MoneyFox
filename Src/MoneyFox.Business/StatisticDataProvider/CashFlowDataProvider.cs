@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {

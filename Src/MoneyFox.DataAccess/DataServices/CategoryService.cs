@@ -3,11 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.DataAccess.QueryExtensions;
 
-namespace MoneyFox.Service.DataServices
+namespace MoneyFox.DataAccess.DataServices
 {
     /// <summary>
     ///     Offers service methods to access and modify category data.

@@ -3,12 +3,11 @@ using System.IO;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service;
-using MoneyFox.Service.DataServices;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
