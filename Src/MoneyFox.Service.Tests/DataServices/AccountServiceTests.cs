@@ -4,8 +4,8 @@ using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
 using Moq;
 using Xunit;
@@ -14,12 +14,10 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class AccountServiceTests
     {
-        private readonly AmbientDbContextLocator ambientDbContextLocator;
         private readonly DbContextScopeFactory dbContextScopeFactory;
 
         public AccountServiceTests()
         {
-            ambientDbContextLocator = new AmbientDbContextLocator();
             dbContextScopeFactory = new DbContextScopeFactory();
         }
 
@@ -60,9 +58,10 @@ namespace MoneyFox.Service.Tests.DataServices
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
+        [Fact]
         public async void GetAllAccounts_AllDataReturned()
         {
             // Arrange
@@ -402,7 +401,7 @@ namespace MoneyFox.Service.Tests.DataServices
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         #endregion
@@ -444,7 +443,7 @@ namespace MoneyFox.Service.Tests.DataServices
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         #endregion
