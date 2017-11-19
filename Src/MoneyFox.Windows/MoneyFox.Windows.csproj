@@ -146,7 +146,6 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="ShellNavigationItem.cs" />
-    <Compile Include="ShellViewModel.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
@@ -196,9 +195,6 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShellPage.xaml.cs">
-      <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
@@ -399,10 +395,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
