@@ -1,6 +1,7 @@
 ﻿using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using MoneyFox.Business.ViewModels;
 
 namespace MoneyFox.Windows.Views
 {
@@ -15,6 +16,7 @@ namespace MoneyFox.Windows.Views
 
             CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
             titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            
         }
 
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
@@ -24,13 +26,42 @@ namespace MoneyFox.Windows.Views
 
         public Frame MainFrame => ContentFrame;
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            
-        }
+            if (args.IsSettingsInvoked)
+            {
+                await ((MenuViewModel) ViewModel).ShowSettingsCommand.ExecuteAsync();
+            } 
+            else
+            {
+                switch (args.InvokedItem)
+                {
+                    case "Accounts":
+                        await ((MenuViewModel) ViewModel).ShowAccountListCommand.ExecuteAsync();
+                        break;
 
-        private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-        {
+                    case "Statistics":
+                        await ((MenuViewModel) ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
+                        break;
+
+                    case "Categories":
+                        await ((MenuViewModel) ViewModel).ShowCategoryListCommand.ExecuteAsync();
+                        break;
+
+                    case "Backup":
+                        await ((MenuViewModel) ViewModel).ShowBackupViewCommand.ExecuteAsync();
+                        break;
+
+                    case "Settings":
+                        await ((MenuViewModel) ViewModel).ShowSettingsCommand.ExecuteAsync();
+                        break;
+
+                    case "About":
+                        await ((MenuViewModel) ViewModel).ShowAboutCommand.ExecuteAsync();
+                        break;
+
+                }
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -157,30 +158,13 @@ namespace MoneyFox.Windows
 
         private void OverrideTitleBarColor()
         {
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            //draw into the title bar
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
-            // set up our brushes
-            var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
-            var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
-
-            // override colors!
-            if (bkgColor != null && appForegroundColor != null)
-            {
-                // If on a mobile device set the status bar
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-                    StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
-                    StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-                }
-
-                titleBar.BackgroundColor = backgroundColor?.Color;
-                titleBar.ButtonBackgroundColor = backgroundColor?.Color;
-
-                titleBar.ForegroundColor = Colors.White;
-                titleBar.ButtonForegroundColor = Colors.White;
-            }
+            //remove the solid-colored backgrounds behind the caption controls and system back button
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         /// <summary>
