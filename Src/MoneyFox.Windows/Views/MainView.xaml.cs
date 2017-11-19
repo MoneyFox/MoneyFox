@@ -23,6 +23,9 @@ namespace MoneyFox.Windows.Views
             AppTitle.Margin = new Thickness(CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset + 12, 8, 0, 0);
         }
 
+        /// <summary>
+        ///     The current Frame for content.
+        /// </summary>
         public Frame MainFrame => ContentFrame;
 
         private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

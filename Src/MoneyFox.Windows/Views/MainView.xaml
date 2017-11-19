@@ -14,7 +14,8 @@
         <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
-                    IsSettingsVisible="False">
+                    IsSettingsVisible="False"
+                    AlwaysShowHeader="False">
 
             <NavigationView.MenuItems>
 
