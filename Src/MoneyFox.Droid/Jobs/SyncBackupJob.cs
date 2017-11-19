@@ -14,7 +14,6 @@ using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 using Plugin.Connectivity;

@@ -1,9 +1,9 @@
 ﻿using MoneyFox.Business.Manager;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service.DataServices;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Plugins.Messenger;

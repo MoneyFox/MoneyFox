@@ -3,8 +3,8 @@ using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
 {
