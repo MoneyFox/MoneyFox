@@ -1,7 +1,5 @@
 ﻿using System.Resources;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -9,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MoneyFox.Foundation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Swiss Post")]
+[assembly: AssemblyCompany("Apply Solutions")]
 [assembly: AssemblyProduct("MoneyFox.Foundation")]
-[assembly: AssemblyCopyright("Copyright © Swiss Post 2016")]
+[assembly: AssemblyCopyright("Copyright © Apply Solution 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
