@@ -4,9 +4,8 @@ using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
 using Moq;
 using Xunit;
@@ -15,8 +14,6 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class CategoryServiceTests
     {
-        #region GetAllCategories
-
         [Fact]
         public async void GetAllCategories_NoData_NoException()
         {
@@ -45,8 +42,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                    .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
@@ -90,8 +86,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
@@ -101,9 +96,6 @@ namespace MoneyFox.Service.Tests.DataServices
             Assert.Equal(4, resultList.Count);
         }
 
-        #endregion
-
-        #region GetAllCategoriesWithPayments
 
         [Fact]
         public async void GetAllCategoriesWithPayments_NoData_NoException()
@@ -133,15 +125,14 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategoriesWithPayments();
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         [Fact]
@@ -181,8 +172,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetAllCategories();
@@ -190,15 +180,11 @@ namespace MoneyFox.Service.Tests.DataServices
 
             // Assert
             Assert.Equal(3, resultList.Count);
-            Assert.Equal(1, resultList[0].Data.Payments.Count);
+            Assert.Single(resultList[0].Data.Payments);
             Assert.Null(resultList[1].Data.Payments);
             Assert.Equal(2, resultList[2].Data.Payments.Count);
         }
 
-        #endregion
-
-        #region GetById
-        
         [Fact]
         public async void GetById_NoData_NoException()
         {
@@ -227,8 +213,7 @@ namespace MoneyFox.Service.Tests.DataServices
             ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
                                        .Returns(mockContext.Object);
 
-            var repository = new CategoryRepository(ambientDbContextLocatorMock.Object);
-            var contactDataService = new CategoryService(new DbContextScopeFactory(), repository);
+            var contactDataService = new CategoryService(ambientDbContextLocatorMock.Object, new DbContextScopeFactory());
 
             // Act
             var result = await contactDataService.GetById(3);
@@ -236,8 +221,5 @@ namespace MoneyFox.Service.Tests.DataServices
             // Assert
             Assert.Null(result.Data);
         }
-
-        #endregion
-
     }
 }

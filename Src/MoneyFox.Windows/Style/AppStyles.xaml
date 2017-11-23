@@ -22,12 +22,6 @@
 
     <SolidColorBrush x:Key="AppBarBrush" Color="{StaticResource ColorAppBar}" />
 
-    <SolidColorBrush x:Key="SplitViewToggleButtonForeground"
-                     Color="{StaticResource ColorHamburgerButton}" />
-    
-    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundStaticWhite"
-                     Color="white" />
-
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource ColorCustomBackground}" />
 
@@ -61,4 +55,9 @@
     <SolidColorBrush x:Key="SystemControlHyperlinkTextBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
+
+    <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemAccentColor}" TintOpacity=".6"/>
+    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+                  BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}"  TintOpacity=".6"/>
 </ResourceDictionary>

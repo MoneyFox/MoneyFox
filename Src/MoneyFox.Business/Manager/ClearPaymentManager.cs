@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using MoneyFox.Service.DataServices;
+using MoneyFox.DataAccess.DataServices;
 
 namespace MoneyFox.Business.Manager
 {
@@ -36,7 +36,7 @@ namespace MoneyFox.Business.Manager
                 payment.ClearPayment();
             }
 
-            await paymentService.SavePayments(paymentList);
+            await paymentService.SavePayments(paymentList.ToArray());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.Messages;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;

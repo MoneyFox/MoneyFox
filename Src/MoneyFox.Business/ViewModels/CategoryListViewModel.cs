@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Localization;
 

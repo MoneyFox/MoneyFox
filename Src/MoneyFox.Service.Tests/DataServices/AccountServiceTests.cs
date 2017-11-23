@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EntityFramework.DbContextScope;
+using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Service.DataServices;
 using MoneyFox.Service.Tests.TestHelper;
 using Moq;
 using Xunit;
@@ -14,12 +14,10 @@ namespace MoneyFox.Service.Tests.DataServices
 {
     public class AccountServiceTests
     {
-        private readonly AmbientDbContextLocator ambientDbContextLocator;
         private readonly DbContextScopeFactory dbContextScopeFactory;
 
         public AccountServiceTests()
         {
-            ambientDbContextLocator = new AmbientDbContextLocator();
             dbContextScopeFactory = new DbContextScopeFactory();
         }
 
@@ -49,17 +47,21 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var contactDataService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
-            var result = await contactDataService.GetAllAccounts();
+            var result = await accountService.GetAllAccounts();
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
+        [Fact]
         public async void GetAllAccounts_AllDataReturned()
         {
             // Arrange
@@ -89,8 +91,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetAllAccounts();
@@ -131,8 +136,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetById(3);
@@ -173,8 +181,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
 
             // Act
@@ -212,9 +223,12 @@ namespace MoneyFox.Service.Tests.DataServices
             var contextOptions = new DbContextOptions<ApplicationContext>();
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
+            
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetAccountCount();
@@ -252,8 +266,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetAccountCount();
@@ -290,8 +307,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.CheckIfNameAlreadyTaken("Name");
@@ -329,8 +349,11 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.CheckIfNameAlreadyTaken(nameToCheck);
@@ -367,15 +390,18 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetExcludedAccounts();
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         #endregion
@@ -406,15 +432,18 @@ namespace MoneyFox.Service.Tests.DataServices
             var mockContext = new Mock<ApplicationContext>(contextOptions);
             mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
 
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var ambientDbContextLocatorMock = new Mock<IAmbientDbContextLocator>();
+            ambientDbContextLocatorMock.Setup(x => x.Get<ApplicationContext>())
+                                       .Returns(mockContext.Object);
+
+            var accountService = new AccountService(ambientDbContextLocatorMock.Object, dbContextScopeFactory);
 
             // Act
             var result = await accountService.GetNotExcludedAccounts();
             var resultList = result.ToList();
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Empty(resultList);
         }
 
         #endregion

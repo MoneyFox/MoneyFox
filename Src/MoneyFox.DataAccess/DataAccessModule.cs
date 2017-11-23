@@ -17,8 +17,8 @@ namespace MoneyFox.DataAccess
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Repository", StringComparison.OrdinalIgnoreCase))
-                .AsImplementedInterfaces();
+                    .Where(t => t.Name.EndsWith("Service", StringComparison.OrdinalIgnoreCase))
+                    .AsImplementedInterfaces();
 
             builder.RegisterType<AmbientDbContextLocator>().As<IAmbientDbContextLocator>();
             builder.RegisterType<DbContextScopeFactory>().As<IDbContextScopeFactory>();

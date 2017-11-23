@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Service.Pocos;
+using MoneyFox.DataAccess.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 

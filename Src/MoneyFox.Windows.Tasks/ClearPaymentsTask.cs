@@ -4,9 +4,8 @@ using System.Linq;
 using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -25,17 +24,13 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                paymentService = new PaymentService(
-                    new DbContextScopeFactory(), 
-                    new PaymentRepository(new AmbientDbContextLocator()),
-                    new RecurringPaymentRepository(new AmbientDbContextLocator()),
-                    new AccountRepository(new AmbientDbContextLocator()));
+                paymentService = new PaymentService(new DbContextScopeFactory(), new AmbientDbContextLocator());
 
                 var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
                 var unclearedPayments = payments.ToList();
                 if (unclearedPayments.Any())
                 {
-                    await paymentService.SavePayments(unclearedPayments);
+                    await paymentService.SavePayments(unclearedPayments.ToArray());
                 }
             }
             finally

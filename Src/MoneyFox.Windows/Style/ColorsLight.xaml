@@ -11,9 +11,6 @@
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
-    <Color x:Key="ColorAppBar">#111632</Color>
-    <Color x:Key="ColorHamburgerButton">Black</Color>
-
     <Color x:Key="AppForegroundColorPrimary">#FF2B343D</Color>
     <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
 

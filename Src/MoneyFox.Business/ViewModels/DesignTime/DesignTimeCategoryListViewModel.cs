@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {

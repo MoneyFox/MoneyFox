@@ -1,4 +1,4 @@
-﻿using MoneyFox.Service.Pocos;
+﻿using MoneyFox.DataAccess.Pocos;
 using Xunit;
 
 namespace MoneyFox.Service.Tests.Pocos

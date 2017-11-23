@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -20,6 +21,7 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
@@ -86,14 +88,14 @@ namespace MoneyFox.Windows
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
-                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+                var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
 
-                var shell = (ShellPage)Window.Current.Content;
+                Window.Current.Content = mainView;
+                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(shell.Frame);
+                var setup = new Setup(mainView.MainFrame);
                 setup.Initialize();
 
                 var start = Mvx.Resolve<IMvxAppStart>();
@@ -103,7 +105,7 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
-                shell.ViewModel = Mvx.Resolve<ShellViewModel>();
+                mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
 
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
@@ -156,30 +158,13 @@ namespace MoneyFox.Windows
 
         private void OverrideTitleBarColor()
         {
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            //draw into the title bar
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
-            // set up our brushes
-            var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
-            var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
-
-            // override colors!
-            if (bkgColor != null && appForegroundColor != null)
-            {
-                // If on a mobile device set the status bar
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-                    StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
-                    StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-                }
-
-                titleBar.BackgroundColor = backgroundColor?.Color;
-                titleBar.ButtonBackgroundColor = backgroundColor?.Color;
-
-                titleBar.ForegroundColor = Colors.White;
-                titleBar.ButtonForegroundColor = Colors.White;
-            }
+            //remove the solid-colored backgrounds behind the caption controls and system back button
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         /// <summary>
