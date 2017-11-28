@@ -475,10 +475,6 @@
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
-      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
-      <Name>MoneyFox.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
       <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
       <Name>MoneyFox.Windows.Business</Name>

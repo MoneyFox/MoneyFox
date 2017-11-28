@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service;
-using MoneyFox.Service.DataServices;
 
 namespace MoneyFox.Business.Manager
 {
@@ -25,7 +25,7 @@ namespace MoneyFox.Business.Manager
         public async Task CreatePaymentsUpToRecur()
         {
             var newPayments = await recurringPaymentService.GetPaymentsToRecur();
-            await paymentService.SavePayments(newPayments.Select(RecurringPaymentHelper.GetPaymentFromRecurring));
+            await paymentService.SavePayments(newPayments.Select(RecurringPaymentHelper.GetPaymentFromRecurring).ToArray());
         }
     }
 }

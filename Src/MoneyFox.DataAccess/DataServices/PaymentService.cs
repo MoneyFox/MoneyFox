@@ -8,9 +8,6 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.DataAccess.QueryExtensions;
 using MoneyFox.Foundation;
-using MoneyFox.Service;
-using MoneyFox.Service.Pocos;
-using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.DataAccess.DataServices
 {

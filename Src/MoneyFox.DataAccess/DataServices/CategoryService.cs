@@ -5,8 +5,6 @@ using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.DataAccess.QueryExtensions;
-using MoneyFox.Service.Pocos;
-using MoneyFox.Service.QueryExtensions;
 
 namespace MoneyFox.DataAccess.DataServices
 {
