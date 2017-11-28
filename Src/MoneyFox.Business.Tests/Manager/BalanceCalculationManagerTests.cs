@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
+using MoneyFox.DataAccess.DataServices;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using Moq;
 using Xunit;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 
 namespace MoneyFox.Business.Tests.Manager
 {

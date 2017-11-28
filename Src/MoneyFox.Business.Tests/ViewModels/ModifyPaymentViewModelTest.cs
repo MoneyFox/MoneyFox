@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Foundation.Tests;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Plugins.Messenger;
@@ -116,8 +116,8 @@ namespace MoneyFox.Business.Tests.ViewModels
             settingsManagerMock.SetupAllProperties();
 
             var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
-                              .Callback((Payment payment) => testPayment = payment)
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment[]>()))
+                              .Callback((Payment[] payment) => testPayment = payment.First())
                               .Returns(Task.CompletedTask);
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
@@ -295,7 +295,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             bool saveCalled = false;
             var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<Payment>()))
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment>()))
                               .Callback(() => saveCalled = true)
                               .Returns(Task.CompletedTask);
 
@@ -403,7 +403,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.GetById(It.IsAny<int>())).ReturnsAsync(selectedPayment);
-            paymentServiceMock.Setup(x => x.SavePayment(selectedPayment)).Returns(Task.CompletedTask);
+            paymentServiceMock.Setup(x => x.SavePayments(selectedPayment)).Returns(Task.CompletedTask);
 
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock.Setup(x => x.GetAllAccounts())
