@@ -39,7 +39,7 @@
                    Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
+              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <userControls:PaymentListUserControl />
         </Grid>

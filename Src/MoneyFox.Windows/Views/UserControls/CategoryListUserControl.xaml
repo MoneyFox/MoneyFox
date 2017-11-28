@@ -81,6 +81,7 @@
         <TextBox x:Uid="SearchHeader"
                  Grid.Row="0"
                  Header="search"
+                 Margin="{StaticResource MediumLeftRightMargin}"
                  Text="{Binding SearchText,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}" />
@@ -90,7 +91,6 @@
 
                 <ListView IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
-                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                           ItemTemplate="{StaticResource CategoryTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
                     

@@ -57,20 +57,20 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" 
+                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" Margin="{StaticResource MediumLeftRightMargin}" />
 
-        <SemanticZoom Grid.Row="1"
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
-                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
+
                           SelectionMode="None"
                           Background="Transparent">
 

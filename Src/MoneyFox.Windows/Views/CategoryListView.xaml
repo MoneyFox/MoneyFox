@@ -28,10 +28,10 @@
                    Text="Categories"
                    Style="{StaticResource PageTitleStyle}" />
 
-        <userControls:CategoryListUserControl Grid.Row="1" />
+        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightMargin}" />
 
         <CommandBar Grid.Row="2"
-                    Margin="{StaticResource NegativeLargeLeftRightMargin}">
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}" >
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Command="{Binding CreateNewCategoryCommand}"
