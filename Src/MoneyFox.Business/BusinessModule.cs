@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using MoneyFox.Business.Authentication;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
@@ -23,6 +24,11 @@ namespace MoneyFox.Business
 
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
             builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Service"))
+                   .AsImplementedInterfaces();
+
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))

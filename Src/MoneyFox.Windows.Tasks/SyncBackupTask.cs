@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business;
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Windows.Business;

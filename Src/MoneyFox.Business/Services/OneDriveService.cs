@@ -10,7 +10,7 @@ using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 
-namespace MoneyFox.Business
+namespace MoneyFox.Business.Services
 {
     /// <inheritdoc />
     public class OneDriveService : IBackupService
