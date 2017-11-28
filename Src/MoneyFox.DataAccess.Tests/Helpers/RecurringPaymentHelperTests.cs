@@ -1,11 +1,11 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
-using MoneyFox.Service.Pocos;
 using Xunit;
 
-namespace MoneyFox.Service.Tests
+namespace MoneyFox.DataAccess.Tests.Helpers
 {
     public class RecurringPaymentHelperTests
     {
