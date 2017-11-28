@@ -63,9 +63,6 @@ namespace MoneyFox.Droid.Activities
                 DataAccess.ApplicationContext.DbPath =
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                         DatabaseConstants.DB_NAME);
-                DataAccess.ApplicationContextOld.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                        DatabaseConstants.DB_NAME_OLD);
             }
             catch (Exception ex)
             {
