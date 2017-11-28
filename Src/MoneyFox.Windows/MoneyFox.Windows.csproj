@@ -493,7 +493,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>4.6.1</Version>
+      <Version>4.6.2</Version>
     </PackageReference>
     <PackageReference Include="Autofac.Extras.MvvmCross">
       <Version>4.0.2</Version>
@@ -505,13 +505,13 @@
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics">
-      <Version>0.16.0</Version>
+      <Version>0.17.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Crashes">
-      <Version>0.16.0</Version>
+      <Version>0.17.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>1.1.1</Version>
+      <Version>1.1.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.3.4</Version>
@@ -568,7 +568,7 @@
       <Version>14332.0.2</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.0.6</Version>
+      <Version>1.0.0.7</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>
