@@ -4,11 +4,11 @@
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:MoneyFox.Business.ViewModels"
-             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel,
+             xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
+             d:DataContext="{d:DesignInstance designTime1:DesignTimeCategoryListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"

@@ -2,7 +2,7 @@
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.Windows.DesignTime
 {
     public class DesignTimeStatisticCategorySummaryViewModel: IStatisticCategorySummaryViewModel
     {

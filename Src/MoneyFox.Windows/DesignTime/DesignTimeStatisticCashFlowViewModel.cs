@@ -2,7 +2,7 @@
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.Windows.DesignTime
 {
     public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
     {

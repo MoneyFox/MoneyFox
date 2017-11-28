@@ -124,6 +124,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Controls\WarningListView.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />

@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Business.ViewModels.DesignTime;
+using MoneyFox.Windows.DesignTime;
 
 namespace MoneyFox.Windows.Views
 {

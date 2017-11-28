@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Pocos;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.Windows.DesignTime
 {
     /// <inheritdoc />
     public class DesignTimeAccountListViewModel : MvxViewModel, IAccountListViewModel

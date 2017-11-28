@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.Windows.DesignTime
 {
     public class DesignTimeCategoryListViewModel : ICategoryListViewModel
     {

@@ -7,8 +7,8 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:views="using:MvvmCross.Uwp.Views"
+                      xmlns:designTime="using:MoneyFox.Windows.DesignTime"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
