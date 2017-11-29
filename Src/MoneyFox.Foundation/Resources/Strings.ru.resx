@@ -117,284 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutTitle" xml:space="preserve">
+  <data name="AboutLabel" xml:space="preserve">
     <value>О приложении</value>
   </data>
-  <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Выберите счёт.</value>
-  </data>
-  <data name="AccountsLabel" xml:space="preserve">
-    <value>Счета</value>
-  </data>
-  <data name="AddAccountTitle" xml:space="preserve">
-    <value>Добавить счёт</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Доход</value>
-  </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Добавить расход</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Перевод</value>
-  </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Money Fox</value>
-  </data>
-  <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>There where an error while create your backup. Please try again later.</value>
-  </data>
-  <data name="BackupLabel" xml:space="preserve">
-    <value>Резервная копия</value>
-  </data>
-  <data name="CashflowLabel" xml:space="preserve">
-    <value>Баланс</value>
-  </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
-  </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Обновить повторения?</value>
-  </data>
-  <data name="DailyLabel" xml:space="preserve">
-    <value>Ежедневно</value>
-  </data>
-  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Ежедневно без выходных</value>
-  </data>
-  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить этот счёт?</value>
-  </data>
-  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить эту категорию?</value>
-  </data>
-  <data name="DeleteLabel" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="SecurityTitle" xml:space="preserve">
-    <value>Безопасность</value>
-  </data>
-  <data name="DeleteTitle" xml:space="preserve">
-    <value>Удалить?</value>
-  </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Вы действительно хотите удалить эту операцию?</value>
-  </data>
-  <data name="EditLabel" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="ExpenseLabel" xml:space="preserve">
-    <value>Расход</value>
-  </data>
-  <data name="FeedbackSubject" xml:space="preserve">
-    <value>Обратная связь Money Fox</value>
-  </data>
-  <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Редактировать доход</value>
-  </data>
-  <data name="IncreaseLabel" xml:space="preserve">
-    <value>Прирост</value>
-  </data>
-  <data name="JustThisLabel" xml:space="preserve">
-    <value>Нет, только это</value>
-  </data>
-  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Обязательные поля</value>
-  </data>
-  <data name="MonthlyLabel" xml:space="preserve">
-    <value>Ежемесячно</value>
-  </data>
-  <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Пожалуйста, введите имя.</value>
-  </data>
-  <data name="NoLabel" xml:space="preserve">
-    <value>Нет</value>
-  </data>
-  <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
-  </data>
-  <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Будут перезаписаны существующие резервные копии. Вы хотите продолжить?</value>
-  </data>
-  <data name="OverwriteTitle" xml:space="preserve">
-    <value>Перезаписать?</value>
-  </data>
-  <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Да, обновить все</value>
-  </data>
-  <data name="RevenueLabel" xml:space="preserve">
-    <value>Прибыль</value>
-  </data>
-  <data name="SelectDateTitle" xml:space="preserve">
-    <value>Выбрать дату</value>
-  </data>
-  <data name="SelectOperationLabel" xml:space="preserve">
-    <value>Выберите операцию</value>
-  </data>
-  <data name="SettingsLabel" xml:space="preserve">
-    <value>Параметры</value>
-  </data>
-  <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Изменения расходов</value>
-  </data>
-  <data name="StatisticsLabel" xml:space="preserve">
-    <value>Статистика</value>
-  </data>
-  <data name="StatisticTitle" xml:space="preserve">
-    <value>Статистика</value>
-  </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Выполнено!</value>
-  </data>
-  <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Задача успешно выполнена.</value>
-  </data>
-  <data name="EditTransferTitle" xml:space="preserve">
-    <value>Изменить перевод</value>
-  </data>
-  <data name="WeeklyLabel" xml:space="preserve">
-    <value>Еженедельно</value>
-  </data>
-  <data name="YearlyLabel" xml:space="preserve">
-    <value>Ежегодно</value>
-  </data>
-  <data name="YesLabel" xml:space="preserve">
-    <value>Да</value>
-  </data>
-  <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Локальные данные будут удалены. Вы уверены, что хотите продолжить?</value>
-  </data>
-  <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Доход</value>
-  </data>
-  <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Добавить расход</value>
-  </data>
-  <data name="AddTransferTitle" xml:space="preserve">
-    <value>Перевод</value>
-  </data>
-  <data name="EditAccountTitle" xml:space="preserve">
-    <value>Редактировать {0}</value>
-  </data>
-  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>Пароль и подтверждение пароля не совпадают.</value>
-  </data>
-  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Подтвердите пароль</value>
-  </data>
-  <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Пароль успешно сохранен.</value>
-  </data>
-  <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Пароль сохранен</value>
-  </data>
-  <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>Введенный пароль неправильный. Пожалуйста, попробуйте еще раз.</value>
-  </data>
-  <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Неправильный пароль</value>
-  </data>
-  <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Категории</value>
-  </data>
-  <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Распределение категорий</value>
-  </data>
-  <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Исходный счёт</value>
-  </data>
-  <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Целевой счет</value>
-  </data>
-  <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Дата окончания повторений должна быть в будущем. Проверьте введенные данные.</value>
-  </data>
-  <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Недопустимая дата окончания</value>
-  </data>
-  <data name="NotNowLabel" xml:space="preserve">
-    <value>Не сейчас</value>
-  </data>
-  <data name="RateReminderText" xml:space="preserve">
-    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине. Перейти в магазин для оценки?</value>
-  </data>
-  <data name="RateReminderTitle" xml:space="preserve">
-    <value>Оценить приложение</value>
-  </data>
-  <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Раз в две недели</value>
-  </data>
-  <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Добавить категорию </value>
-  </data>
-  <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Изменить категорию</value>
-  </data>
-  <data name="CategoriesLabel" xml:space="preserve">
-    <value>Категории</value>
-  </data>
-  <data name="CashflowDescription" xml:space="preserve">
-    <value>Доходы, расходы и выгоды для выбранного периода времени.</value>
-  </data>
-  <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Распространение расходов к категории.</value>
-  </data>
-  <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Краткое описание категорий с оплатой.</value>
-  </data>
-  <data name="CancelLabel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="ChooseLabel" xml:space="preserve">
-    <value>Выбрать</value>
-  </data>
-  <data name="ExpenseHeader" xml:space="preserve">
-    <value>Добавить расход</value>
-  </data>
-  <data name="IncomeHeader" xml:space="preserve">
-    <value>Добавить доход</value>
-  </data>
-  <data name="TransferHeader" xml:space="preserve">
-    <value>Добавить перевод</value>
-  </data>
-  <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Ошибка при удалении.</value>
-  </data>
-  <data name="ErrorMessageSave" xml:space="preserve">
-    <value>Произошла ошибка при сохранении элемента.</value>
-  </data>
-  <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Ошибка при удалении</value>
-  </data>
-  <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Выбрать категорию</value>
-  </data>
-  <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Вы не подключены к Интернету. Проверьте подключение и повторите попытку.</value>
-  </data>
-  <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Нет подключения к Интернету</value>
-  </data>
-  <data name="GeneralTitle" xml:space="preserve">
-    <value>Общие параметры</value>
-  </data>
-  <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Счет с таким названием уже существует.</value>
-  </data>
-  <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Категория с таким названием уже существует.</value>
-  </data>
-  <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Имя уже используется</value>
-  </data>
-  <data name="LoadingLabel" xml:space="preserve">
-    <value>Загрузка...</value>
-  </data>
-  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
-  </data>
-  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>версия</value>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>О приложении</value>
   </data>
   <data name="AboutViewModel.ContactLabel" xml:space="preserve">
     <value>Связаться с нами</value>
@@ -414,17 +141,77 @@
   <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
     <value>Что-то переведено не должным образом или не переведено совсем? Помогите нам! Следите за crowdin и помогите улучшить Money Fox:</value>
   </data>
-  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Войти</value>
-  </data>
-  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>Пароль</value>
-  </data>
-  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>Добро пожаловать!</value>
+  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
+    <value>версия</value>
   </data>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>У вас нет счетов. Добавьте один, нажав на кнопку «плюс» в нижней части.</value>
+  </data>
+  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
+  <data name="AccountRequiredMessage" xml:space="preserve">
+    <value>Выберите счёт.</value>
+  </data>
+  <data name="AccountsLabel" xml:space="preserve">
+    <value>Счета</value>
+  </data>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>Добавить счёт</value>
+  </data>
+  <data name="AddCategoryTitle" xml:space="preserve">
+    <value>Добавить категорию </value>
+  </data>
+  <data name="AddExpenseLabel" xml:space="preserve">
+    <value>Добавить расход</value>
+  </data>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Добавить расход</value>
+  </data>
+  <data name="AddIncomeLabel" xml:space="preserve">
+    <value>Доход</value>
+  </data>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Доход</value>
+  </data>
+  <data name="AddTransferLabel" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Перевод</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Authentication failed</value>
+  </data>
+  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
+    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
+    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
+  </data>
+  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Backup failed!</value>
+  </data>
+  <data name="BackupLabel" xml:space="preserve">
+    <value>Резервная копия</value>
+  </data>
+  <data name="BackupRestoreFailedTitle" xml:space="preserve">
+    <value>Restore backup failed!</value>
+  </data>
+  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
+    <value>You backup was synced successfully.</value>
+  </data>
+  <data name="BackupSyncFailedMessage" xml:space="preserve">
+    <value>Failed to sync the backup</value>
   </data>
   <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
     <value>Ваши данные сохранены в OneDrive. Вы можете найти их в папке "MoneyFoxBackupManager".</value>
@@ -448,6 +235,219 @@
   <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
     <value>Восстановить резервную копию</value>
   </data>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Biannually</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>Два раза в месяц</value>
+  </data>
+  <data name="BiweeklyLabel" xml:space="preserve">
+    <value>Раз в две недели</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Доходы, расходы и выгоды для выбранного периода времени.</value>
+  </data>
+  <data name="CashflowLabel" xml:space="preserve">
+    <value>Баланс</value>
+  </data>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Распространение расходов к категории.</value>
+  </data>
+  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>У вас нет категорий. Добавьте один, нажав на кнопку «плюс» в нижней.</value>
+  </data>
+  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
+    <value>Строка поиска</value>
+  </data>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Распределение категорий</value>
+  </data>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Краткое описание категорий с оплатой.</value>
+  </data>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
+  </data>
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+    <value>Обновить повторения?</value>
+  </data>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Исходный счёт</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Выбрать категорию</value>
+  </data>
+  <data name="ChooseLabel" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
+    <value>Finished clearing your payments.</value>
+  </data>
+  <data name="DailyLabel" xml:space="preserve">
+    <value>Каждый день</value>
+  </data>
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+    <value>Каждый день без выходных</value>
+  </data>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить этот счёт?</value>
+  </data>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить эту категорию?</value>
+  </data>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить эту операцию?</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Удалить повторения?</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Удалить?</value>
+  </data>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Закончил</value>
+  </data>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>Счет с таким названием уже существует.</value>
+  </data>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>Категория с таким названием уже существует.</value>
+  </data>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Имя уже используется</value>
+  </data>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Редактировать {0}</value>
+  </data>
+  <data name="EditCategoryTitle" xml:space="preserve">
+    <value>Изменить категорию</value>
+  </data>
+  <data name="EditIncomeTitle" xml:space="preserve">
+    <value>Редактировать доход</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Изменения расходов</value>
+  </data>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Изменить перевод</value>
+  </data>
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+    <value>There was an error during the authentication. Please try again later.</value>
+  </data>
+  <data name="ErrorMessageBackupFailed" xml:space="preserve">
+    <value>There where an error while create your backup. Please try again later.</value>
+  </data>
+  <data name="ErrorMessageDelete" xml:space="preserve">
+    <value>Ошибка при удалении.</value>
+  </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+  </data>
+  <data name="ErrorMessageSave" xml:space="preserve">
+    <value>Произошла ошибка при сохранении элемента.</value>
+  </data>
+  <data name="ErrorTitleDelete" xml:space="preserve">
+    <value>Ошибка при удалении</value>
+  </data>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Добавить расход</value>
+  </data>
+  <data name="ExpenseLabel" xml:space="preserve">
+    <value>Расход</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>Обратная связь Money Fox</value>
+  </data>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>An error occured</value>
+  </data>
+  <data name="GeneralTitle" xml:space="preserve">
+    <value>Общие параметры</value>
+  </data>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Добавить доход</value>
+  </data>
+  <data name="IncreaseLabel" xml:space="preserve">
+    <value>Прирост</value>
+  </data>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>Дата окончания повторений должна быть в будущем. Проверьте введенные данные.</value>
+  </data>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Недопустимая дата окончания</value>
+  </data>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Is Recurring</value>
+  </data>
+  <data name="JustThisLabel" xml:space="preserve">
+    <value>Нет, только это</value>
+  </data>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
+    <value>Добро пожаловать!</value>
+  </data>
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
+    <value>Обязательные поля</value>
+  </data>
+  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
+    <value>О приложении</value>
+  </data>
+  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
+    <value>Счета</value>
+  </data>
+  <data name="MenuViewModel.AddLabel" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
+    <value>Резервная копия</value>
+  </data>
+  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
+    <value>Способ легко вести бюджет.</value>
+  </data>
+  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
     <value>Имя учетной записи</value>
   </data>
@@ -456,6 +456,9 @@
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
     <value>ибанский</value>
+  </data>
+  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+    <value>Исключить счета из баланса</value>
   </data>
   <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
     <value>Примечание</value>
@@ -484,26 +487,114 @@
   <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
     <value>Повторяется</value>
   </data>
+  <data name="MonthlyLabel" xml:space="preserve">
+    <value>Ежемесячно</value>
+  </data>
+  <data name="NameRequiredMessage" xml:space="preserve">
+    <value>Пожалуйста, введите имя.</value>
+  </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>Вы не подключены к Интернету. Проверьте подключение и повторите попытку.</value>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>Нет подключения к Интернету</value>
+  </data>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Не сейчас</value>
+  </data>
+  <data name="OkLabel" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>Будут перезаписаны существующие резервные копии. Вы хотите продолжить?</value>
+  </data>
+  <data name="OverwriteDataMessage" xml:space="preserve">
+    <value>Локальные данные будут удалены. Вы уверены, что хотите продолжить?</value>
+  </data>
+  <data name="OverwriteTitle" xml:space="preserve">
+    <value>Перезаписать?</value>
+  </data>
+  <data name="PassportErrorMessage" xml:space="preserve">
+    <value>Microsoft Passport is not enabled on this device. 
+    Please go to settings and enable it!</value>
+  </data>
+  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
+    <value>Пароль и подтверждение пароля не совпадают.</value>
+  </data>
+  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
+  <data name="PasswordSavedMessage" xml:space="preserve">
+    <value>Пароль успешно сохранен.</value>
+  </data>
+  <data name="PasswordSavedTitle" xml:space="preserve">
+    <value>Пароль сохранен</value>
+  </data>
+  <data name="PasswordWrongMessage" xml:space="preserve">
+    <value>Введенный пароль неправильный. Пожалуйста, попробуйте еще раз.</value>
+  </data>
+  <data name="PasswordWrongTitle" xml:space="preserve">
+    <value>Неправильный пароль</value>
+  </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>У вас нет платежей. Добавьте один, нажав на кнопку «плюс» в нижней части.</value>
+  </data>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Quarterly</value>
+  </data>
+  <data name="RateReminderText" xml:space="preserve">
+    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине. Перейти в магазин для оценки?</value>
+  </data>
+  <data name="RateReminderTitle" xml:space="preserve">
+    <value>Оценить приложение</value>
+  </data>
+  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
+    <value>Recurring payments where created.</value>
+  </data>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Прибыль</value>
+  </data>
+  <data name="SecurityTitle" xml:space="preserve">
+    <value>Безопасность</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Строка поиска</value>
   </data>
-  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>У вас нет категорий. Добавьте один, нажав на кнопку «плюс» в нижней.</value>
+  <data name="SelectDateTitle" xml:space="preserve">
+    <value>Выбрать дату</value>
   </data>
-  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Строка поиска</value>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Select Filter</value>
   </data>
-  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>Способ легко вести бюджет.</value>
+  <data name="SelectOperationLabel" xml:space="preserve">
+    <value>Выберите операцию</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
     <value>Если активировать этот параметр, после каждого изменения в базе данных, создается резервная копия в OneDrive. Также, если вы запускаете приложение, будет восстановлена последняя версия резервной копии.</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
     <value>Автоматически загружать и скачивать резервные копии</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
+  </data>
+  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Backup Recurrence</value>
+  </data>
+  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+    <value>Час(ы)</value>
+  </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Параметры</value>
   </data>
   <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
     <value>Готово</value>
@@ -517,124 +608,34 @@
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
     <value>Пароль</value>
   </data>
-  <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Добавить</value>
-  </data>
-  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Удалить</value>
-  </data>
-  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Сохранить</value>
-  </data>
-  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>О приложении</value>
-  </data>
-  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Счета</value>
-  </data>
-  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Резервная копия</value>
-  </data>
-  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Категории</value>
-  </data>
-  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Параметры</value>
-  </data>
-  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
+  <data name="StatisticsLabel" xml:space="preserve">
     <value>Статистика</value>
   </data>
-  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
+  <data name="StatisticTitle" xml:space="preserve">
+    <value>Статистика</value>
   </data>
-  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Удалить повторения?</value>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Выполнено!</value>
   </data>
-  <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Два раза в месяц</value>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Целевой счет</value>
   </data>
-  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Исключить счета из баланса</value>
+  <data name="TaskSuccessfulMessage" xml:space="preserve">
+    <value>Задача успешно выполнена.</value>
   </data>
-  <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Добавить перевод</value>
   </data>
-  <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Password is empty</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Да, обновить все</value>
   </data>
-  <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+  <data name="WeeklyLabel" xml:space="preserve">
+    <value>Еженедельно</value>
   </data>
-  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+  <data name="YearlyLabel" xml:space="preserve">
+    <value>Ежегодно</value>
   </data>
-  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
-  </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
-  </data>
-  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
-    <value>Hour(s)</value>
-  </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Backup Recurrence</value>
-  </data>
-  <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
-  </data>
-  <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
-  </data>
-  <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
-  </data>
-  <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
-  </data>
-  <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Restore backup failed!</value>
-  </data>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>О приложении</value>
-  </data>
-  <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>An error occured</value>
-  </data>
-  <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
-  </data>
-  <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
-  </data>
-  <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
-  </data>
-  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Finished clearing your payments.</value>
-  </data>
-  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>You backup was synced successfully.</value>
-  </data>
-  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Recurring payments where created.</value>
-  </data>
-  <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Failed to sync the backup</value>
-  </data>
-  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
-  </data>
-  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
-  </data>
-  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Access denied</value>
-  </data>
-  <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device. \n Please go to settings and enable it!</value>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Да</value>
   </data>
 </root>
