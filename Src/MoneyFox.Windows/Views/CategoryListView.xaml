@@ -28,7 +28,7 @@
                    Text="Categories"
                    Style="{StaticResource PageTitleStyle}" />
 
-        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightMargin}" />
+        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
         <CommandBar Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}" >
