@@ -118,93 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>Informazioni aggiuntive</value>
+    <value>Sobre</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Conti</value>
+    <value>Contas</value>
   </data>
   <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Aggiungi conto</value>
+    <value>Adicionar conta</value>
   </data>
   <data name="AddAccountText.Text" xml:space="preserve">
-    <value>Aggiungi conto</value>
+    <value>Adicione uma conta</value>
   </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Aggiungi conto</value>
+    <value>Adicione uma conta</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>Nuova categoria</value>
+    <value>Nova Categoria</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>Aggiungi guadagno</value>
+    <value>Adicionar renda</value>
   </data>
   <data name="AddExpenseLabel.Label" xml:space="preserve">
-    <value>Aggiungi spesa</value>
+    <value>Adicionar despesa</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Aggiungi trasferimento</value>
+    <value>Adicionar transferência</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>I dati verranno salvati su OneDrive. Li troverete in una nuova cartella denominata "MoneyFoxBackupManager".</value>
+    <value>Seus dados serão salvos em sua conta OneDrive. Você vai encontrá-los em uma nova pasta chamada "MoneyFoxBackupManager".</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Scarica il backup del database precedentemente caricato e sostituisce i tuoi dati locali.
-ATTENZIONE: modifiche locali effettuate nel frattempo saranno perse.</value>
+    <value>Baixe a cópia de segurança do banco de dados inserido anteriormente e substitua seus dados locais com ele. AVISO: Alterações locais feitas durante isso será perdido.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
-    <value>Flusso di liquidi</value>
+    <value>Fluxo de caixa</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Categorias</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Categoria Riepilogo</value>
+    <value>Resumo de categoria</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
-    <value>Contatto:</value>
+    <value>Contato:</value>
   </data>
   <data name="Delete.Text" xml:space="preserve">
-    <value>Elimina</value>
+    <value>Apagar</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Cancella account</value>
+    <value>Deletar conta</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
-    <value>Sviluppatore</value>
+    <value>Desenvolvedor</value>
   </data>
   <data name="Edit.Text" xml:space="preserve">
-    <value>Modifica</value>
+    <value>Editar</value>
   </data>
   <data name="InfoLabel.Text" xml:space="preserve">
     <value>Info</value>
   </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Este é um projeto open-source – e nós adoraríamos trabalhar com você! Sinta-se livre para contribuir. Fique à vontade para visitar o repositório:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Classifique esse app</value>
   </data>
   <data name="SecuritySettingsHeader.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>Segurança</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Selecionar categoria</value>
   </data>
   <data name="SetDate.Label" xml:space="preserve">
-    <value>Set Date</value>
+    <value>Definir Data</value>
   </data>
   <data name="SavePassword.Content" xml:space="preserve">
-    <value>Save Password</value>
+    <value>Salvar Senha</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Impostazioni</value>
+    <value>Preferências</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Spreading</value>
+    <value>Propagação</value>
   </data>
   <data name="TilesSettingsHeader.Text" xml:space="preserve">
     <value>Tiles</value>
@@ -213,227 +211,226 @@ Tap to visit the Repository:</value>
     <value>Total: </value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Version: </value>
+    <value>Versão: </value>
   </data>
   <data name="Password.Header" xml:space="preserve">
-    <value>Password</value>
+    <value>Senha</value>
   </data>
   <data name="PasswordConfirmation.Header" xml:space="preserve">
-    <value>Confirm password</value>
+    <value>Confirme a Senha</value>
   </data>
   <data name="PasswordSettingSwitch.OffContent" xml:space="preserve">
-    <value>Password protection inactive</value>
+    <value>Proteção de senha inativa</value>
   </data>
   <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
-    <value>Password protection active</value>
+    <value>Senha de proteção ativa</value>
   </data>
   <data name="Login.Content" xml:space="preserve">
-    <value>Login</value>
+    <value>Entrar</value>
   </data>
   <data name="PleaseLogin.Text" xml:space="preserve">
-    <value>Si prega di inserire la password per effettuare il login.</value>
+    <value>Por favor, digite sua senha para o login.</value>
   </data>
   <data name="Willkommen.Text" xml:space="preserve">
-    <value>Benvenuto!</value>
+    <value>Bem vindo!</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Create Income Tile</value>
+    <value>Criar tiles de renda</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Create Expense Tile</value>
+    <value>Criar tile de despesa</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Create Transfer Tile</value>
+    <value>Criar tile de transferência</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>Pronto</value>
   </data>
   <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Adicionar categoria</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Criar cópia de segurança</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Remove Income Tile</value>
+    <value>Remover tile de renda</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remove Expense Tile</value>
+    <value>Remover tile de despesa</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Remove Transfer Tile</value>
+    <value>Remover tile de transferência</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Restaurar cópia de segurança</value>
   </data>
   <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>Pronto</value>
   </data>
   <data name="SelectDateRangeDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>Select Daterange</value>
+    <value>Selecionar Intervalo de datas</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
-    <value>Show Cashflow on Maintile</value>
+    <value>Visualizar o fluxo de caixa na Tile principal</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
-    <value>Search</value>
+    <value>Buscar</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
-    <value>No</value>
+    <value>Não</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
-    <value>Yes</value>
+    <value>Sim</value>
   </data>
   <data name="AmountTextBox.Header" xml:space="preserve">
-    <value>Amount</value>
+    <value>Quantidade</value>
   </data>
   <data name="CategoryTextBox.Header" xml:space="preserve">
-    <value>Category</value>
+    <value>Categoria</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>É interminável</value>
   </data>
   <data name="NoteTextBox.Header" xml:space="preserve">
-    <value>Note</value>
+    <value>Nota</value>
   </data>
   <data name="RecurrenceComboBox.Header" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Recorrente</value>
   </data>
   <data name="RepeatSwitch.Header" xml:space="preserve">
-    <value>Repeat</value>
+    <value>Repetir</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Conta de Destino</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
+    <value>Para melhorar ainda mais este app coletamos dados pessoais sobre ocorrência de erros e problemas.</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
-    <value>Delete</value>
+    <value>Apagar</value>
   </data>
   <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>Pronto</value>
   </data>
   <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>Nome</value>
   </data>
   <data name="EndDateHeader.Header" xml:space="preserve">
-    <value>End Date</value>
+    <value>Data Final</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>Start Date</value>
+    <value>Data de Início</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Selecionar estatística</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
-    <value>Last Backup was created at:</value>
+    <value>Último Backup foi criado em:</value>
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
-    <value>Last database modification:</value>
+    <value>Última modificação de banco de dados:</value>
   </data>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
-    <value>Monthly Expenses</value>
+    <value>Despesas mensais</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>A conta não existe. Clique sobre os três pontos abaixo.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>A categoria não existe. Clique sobre o "mais" abaixo.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>Não há nenhum pagamento. Clique sobre os três símbolos abaixo.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>Você pode altenar entre os temas claro e escuro. Para aplicar essas mudanças, por favor, reinicie a aplicação.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Carregando...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
-Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+    <value>Se você ativar esta configuração, um backup será realizado no OneDrive após cada mudança no banco de dados. Ao ser iniciada, a aplicação também checará se existem backups mais novos e, neste caso, irá restaurá-los.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Há algo não devidamente traduzido ou não em todo traduzido? Ajude-nos! Vá ao Crowdin e ajude a melhorar o Money Fox:</value>
   </data>
   <data name="CancelLabel.Label" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="DoneLabel.Label" xml:space="preserve">
-    <value>Done</value>
+    <value>Ok</value>
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Balanço atual</value>
   </data>
   <data name="Logout.Content" xml:space="preserve">
-    <value>Logout</value>
+    <value>Sair</value>
   </data>
   <data name="Iban.Header" xml:space="preserve">
     <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Backup Manually</value>
+    <value>Backup Manual</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
-    <value>Backup Automatically</value>
+    <value>Backup Automático</value>
   </data>
   <data name="DesignerContribution.Text" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>O ícone do aplicativo foi criado por:</value>
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Para ver todas as contribuições vá ao GitHub:</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
+    <value>Faça upload e download dos backups automaticamente</value>
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Excluir conta do balanço</value>
   </data>
   <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
+    <value>Alterar quantidade de horas para sincronizar o becape.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Contas excluídas</value>
   </data>
   <data name="IncludedAccounts.Text" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Contas Inclusas</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
     <value></value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
-    <value>Leave a Feedback</value>
+    <value>Deixe um comentário</value>
   </data>
   <data name="Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>Escuro</value>
   </data>
   <data name="Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="System.Content" xml:space="preserve">
-    <value>System</value>
+    <value>Sistema</value>
   </data>
   <data name="SettingsHeaderBackup.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
-    <value>Theme</value>
+    <value>Tema</value>
   </data>
   <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>Segurança</value>
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Tiles</value>
