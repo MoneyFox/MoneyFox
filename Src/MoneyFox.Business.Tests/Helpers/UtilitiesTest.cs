@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
-using MoneyFox.Foundation.Tests;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Helpers

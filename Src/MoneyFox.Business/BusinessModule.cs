@@ -1,8 +1,9 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using MoneyFox.Business.Authentication;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service;
 using MvvmCross.Localization;
 using MvvmCross.Plugins.ResxLocalization;
 
@@ -19,10 +20,15 @@ namespace MoneyFox.Business
         /// <param name="builder">Containerbuilder</param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<DataAccessModule>();
 
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
             builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Service"))
+                   .AsImplementedInterfaces();
+
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))

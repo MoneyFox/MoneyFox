@@ -7,14 +7,14 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Cheesebaron.MvxPlugins.Settings.Droid;
+using MoneyFox.Business;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.Infrastructure;
+using MoneyFox.Business.Services;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.File;
 using Plugin.Connectivity;
@@ -55,7 +55,8 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 callback.Send(m);
-            } catch (RemoteException e)
+            }
+            catch (RemoteException e)
             {
                 Debug.WriteLine(e);
             }
@@ -73,13 +74,13 @@ namespace MoneyFox.Droid.Jobs
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.Resolve<IMvxFileStore>(),
                                         new SettingsManager(new Settings()),
-                                        new ConnectivityImplementation(), 
-                                        new DbFactory())
+                                        new ConnectivityImplementation())
                     .DownloadBackup();
 
                 Toast.MakeText(this, Strings.BackupSyncedSuccessfullyMessage, ToastLength.Long);
                 JobFinished(args, false);
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 Toast.MakeText(this, Strings.BackupSyncFailedMessage, ToastLength.Long);
             }

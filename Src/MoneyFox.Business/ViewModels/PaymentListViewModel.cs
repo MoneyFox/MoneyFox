@@ -7,11 +7,11 @@ using MoneyFox.Business.Manager;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -296,7 +296,7 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            await paymentService.DeletePayment(payment.Payment);
+            await paymentService.DeletePayment(await paymentService.GetById(payment.Id));
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014

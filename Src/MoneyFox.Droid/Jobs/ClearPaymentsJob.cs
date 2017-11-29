@@ -7,13 +7,11 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
+using EntityFramework.DbContextScope;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service.DataServices;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -42,7 +40,7 @@ namespace MoneyFox.Droid.Jobs
         }
 
         /// <inheritdoc />
-        public override StartCommandResult OnStartCommand(Intent intent, Android.App.StartCommandFlags flags, int startId)
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
             var callback = (Messenger)intent.GetParcelableExtra("messenger");
             var m = Message.Obtain();
@@ -51,7 +49,8 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 callback.Send(m);
-            } catch (RemoteException e)
+            }
+            catch (RemoteException e)
             {
                 Debug.WriteLine(e);
             }
@@ -64,8 +63,8 @@ namespace MoneyFox.Droid.Jobs
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
-            var dbFactory = new DbFactory();
-            var paymentService = new PaymentService(new PaymentRepository(dbFactory), new UnitOfWork(dbFactory));
+            var paymentService = new PaymentService(new DbContextScopeFactory(),
+                                                    new AmbientDbContextLocator());
 
             var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
             var unclearedPayments = payments.ToList();
@@ -73,7 +72,7 @@ namespace MoneyFox.Droid.Jobs
             if (unclearedPayments.Any())
             {
                 Debug.WriteLine("Payments for clearing found.");
-                await paymentService.SavePayments(unclearedPayments);
+                await paymentService.SavePayments(unclearedPayments.ToArray());
             }
 
             Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);

@@ -124,6 +124,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Controls\WarningListView.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
@@ -475,10 +482,6 @@
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj">
-      <Project>{41637575-DF70-48B4-A99C-46299A7D2E8F}</Project>
-      <Name>MoneyFox.Service</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
       <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
       <Name>MoneyFox.Windows.Business</Name>
@@ -490,7 +493,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>4.6.1</Version>
+      <Version>4.6.2</Version>
     </PackageReference>
     <PackageReference Include="Autofac.Extras.MvvmCross">
       <Version>4.0.2</Version>
@@ -502,16 +505,16 @@
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics">
-      <Version>0.16.0</Version>
+      <Version>0.17.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Crashes">
-      <Version>0.16.0</Version>
+      <Version>0.17.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>1.1.1</Version>
+      <Version>1.1.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.4.0</Version>
+      <Version>5.3.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETNative.Analyzer">
       <Version>1.0.0</Version>
@@ -565,7 +568,7 @@
       <Version>14332.0.2</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.0.6</Version>
+      <Version>1.0.0.7</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>

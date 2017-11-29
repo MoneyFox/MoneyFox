@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MoneyFox.Service.Pocos;
+using MoneyFox.DataAccess.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {

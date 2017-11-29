@@ -2,7 +2,6 @@
 using MoneyFox.Business.Converter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Foundation.Tests;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter

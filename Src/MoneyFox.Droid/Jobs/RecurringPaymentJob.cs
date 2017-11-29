@@ -5,14 +5,12 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.Infrastructure;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service.DataServices;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -50,7 +48,8 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 callback.Send(m);
-            } catch (RemoteException e)
+            }
+            catch (RemoteException e)
             {
                 Debug.WriteLine(e);
             }
@@ -63,11 +62,12 @@ namespace MoneyFox.Droid.Jobs
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
-            var dbFactory = new DbFactory();
-            var unitOfWork = new UnitOfWork(dbFactory);
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+            var dbContextScopeFactory = new DbContextScopeFactory();
+
             await new RecurringPaymentManager(
-                new RecurringPaymentService(new RecurringPaymentRepository(dbFactory), new PaymentRepository(dbFactory)),
-                new PaymentService(new PaymentRepository(dbFactory),  unitOfWork))
+                    new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
+                    new PaymentService(dbContextScopeFactory, ambientDbContextLocator))
                 .CreatePaymentsUpToRecur();
 
             Debug.WriteLine("RecurringPayment Job finished.");
@@ -90,7 +90,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
-            
+
             var tm = (JobSchedulerType)GetSystemService(Context.JobSchedulerService);
             var status = tm.Schedule(builder.Build());
         }

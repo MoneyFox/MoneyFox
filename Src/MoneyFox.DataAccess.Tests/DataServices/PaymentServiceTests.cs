@@ -3,13 +3,11 @@ using System.IO;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
@@ -58,17 +56,16 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         public async void Save_WithRecurringPayment_GetRecurringPaymentFromHelper()
         {
             // Arrange
-            var paymentRepository = new PaymentRepository(ambientDbContextLocator);
-            var recurringPaymentRepository = new RecurringPaymentRepository(ambientDbContextLocator);
-            var accountRepository = new AccountRepository(ambientDbContextLocator);
-
             AccountEntity testAccount;
 
             using (var dbContextScope = dbContextScopeFactory.Create())
             {
-                testAccount = new AccountEntity {Name = "testAccount"};
-                accountRepository.Add(testAccount);
-                await dbContextScope.SaveChangesAsync();
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    testAccount = new AccountEntity {Name = "testAccount"};
+                    dbContext.Accounts.Add(testAccount);
+                    await dbContextScope.SaveChangesAsync();
+                }
             }
 
             var testEntry = new PaymentViewModel(new Payment
@@ -87,10 +84,10 @@ namespace MoneyFox.DataAccess.Tests.DataServices
                                                                    PaymentRecurrence.Bimonthly,
                                                                    DateTime.Now));
 
-                var paymentService = new PaymentService(dbContextScopeFactory, paymentRepository, recurringPaymentRepository, accountRepository);
+                var paymentService = new PaymentService(dbContextScopeFactory, ambientDbContextLocator);
 
                 // Act
-                await paymentService.SavePayment(testEntry.Payment);
+                await paymentService.SavePayments(testEntry.Payment);
                 var payment = await paymentService.GetById(testEntry.Payment.Data.Id);
 
                 // Assert

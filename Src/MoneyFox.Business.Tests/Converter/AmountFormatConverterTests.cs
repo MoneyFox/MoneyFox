@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Business.Converter;
 using System.Globalization;
-using MoneyFox.Foundation.Tests;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter

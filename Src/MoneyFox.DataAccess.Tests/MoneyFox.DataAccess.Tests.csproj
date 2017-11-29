@@ -1,17 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>MoneyFox.DataAccess.Tests</AssemblyName>
     <PackageId>MoneyFox.DataAccess.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net45+win8</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Repositories\**" />
+    <Compile Remove="TestHelper\**" />
+    <EmbeddedResource Remove="Repositories\**" />
+    <EmbeddedResource Remove="TestHelper\**" />
+    <None Remove="Repositories\**" />
+    <None Remove="TestHelper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataServices\AccountServiceTests.cs" />
+    <Compile Remove="DataServices\CategoryServiceTests.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="xunit.runner.json">
@@ -20,16 +31,15 @@
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj" />
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
-    <ProjectReference Include="..\MoneyFox.Service\MoneyFox.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="Moq" Version="4.7.127" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Moq" Version="4.7.145" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.2" />
-    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>

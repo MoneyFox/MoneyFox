@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Tests;
 using Moq;
 using MvvmCross.Test.Core;
 using Plugin.Connectivity.Abstractions;

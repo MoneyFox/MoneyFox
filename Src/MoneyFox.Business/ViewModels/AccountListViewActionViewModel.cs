@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
-using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 

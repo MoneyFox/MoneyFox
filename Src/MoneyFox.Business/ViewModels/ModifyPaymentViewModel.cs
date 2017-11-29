@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
+using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Service;
-using MoneyFox.Service.DataServices;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -414,7 +414,7 @@ namespace MoneyFox.Business.ViewModels
                 await PrepareRecurringPayment();
 
                 // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-                await paymentService.SavePayment(SelectedPayment.Payment);
+                await paymentService.SavePayments(SelectedPayment.Payment);
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
                 backupManager.EnqueueBackupTask();
@@ -446,7 +446,7 @@ namespace MoneyFox.Business.ViewModels
                 || !IsEdit && SelectedPayment.IsRecurring)
             {
                 // We save the ID of the recurring payment who was already saved and assign it afterwards again.
-                var oldId = SelectedPayment.Payment.Data.RecurringPayment.Id;
+                var oldId = SelectedPayment.Payment.Data.RecurringPayment?.Id ?? 0;
                 SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(SelectedPayment.Payment,
                                                                    IsEndless,
                                                                    Recurrence,

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MoneyFox.Business.StatisticDataProvider;
+using MoneyFox.DataAccess.DataServices;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Tests;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Moq;
 using Xunit;
+using MoneyFox.Business.StatisticDataProvider;
 
 namespace MoneyFox.Business.Tests.StatisticProvider
 {

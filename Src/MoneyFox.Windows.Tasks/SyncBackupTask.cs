@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.Business;
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Service;
 using MoneyFox.Windows.Business;
 using MvvmCross.Plugins.File.Uwp;
 using Plugin.Connectivity;
@@ -39,7 +40,8 @@ namespace MoneyFox.Windows.Tasks
                 Debug.WriteLine("Sync Backup failed.");
                 Debug.WriteLine(ex);
 
-            } finally
+            }
+            finally
             {
                 Debug.WriteLine("Sync Backup stopped.");
 

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess.DataServices;
+using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Pocos;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;

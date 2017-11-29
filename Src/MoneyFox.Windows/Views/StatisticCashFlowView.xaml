@@ -7,9 +7,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:views="using:MvvmCross.Uwp.Views"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCashFlowViewModel,
+                      xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCashFlowViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 

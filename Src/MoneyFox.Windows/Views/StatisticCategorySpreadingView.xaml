@@ -5,11 +5,11 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       xmlns:views="using:MvvmCross.Uwp.Views"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySpreadingViewModel,
+                      xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySpreadingViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
