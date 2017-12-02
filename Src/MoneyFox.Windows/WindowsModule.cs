@@ -28,7 +28,6 @@ namespace MoneyFox.Windows
                    .AsImplementedInterfaces()
                    .SingleInstance();
 
-            builder.RegisterType<ShellViewModel>().AsSelf();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
             builder.RegisterType<WindowsAppInformation>().As<IAppInformation>();
