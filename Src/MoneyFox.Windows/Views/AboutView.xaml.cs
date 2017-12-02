@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using MoneyFox.Business.ViewModels;
 using MvvmCross.Platform;
-//using Microsoft.Services.Store.Engagement;
+using Microsoft.Services.Store.Engagement;
 
 namespace MoneyFox.Windows.Views
 {
@@ -19,16 +19,16 @@ namespace MoneyFox.Windows.Views
             InitializeComponent();
             DataContext = Mvx.Resolve<AboutViewModel>();
 
-            //if (StoreServicesFeedbackLauncher.IsSupported())
-            //{
-            //    FeedbackButton.Visibility = Visibility.Visible;
-            //}
+            if (StoreServicesFeedbackLauncher.IsSupported())
+            {
+                FeedbackButton.Visibility = Visibility.Visible;
+            }
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            //var launcher = StoreServicesFeedbackLauncher.GetDefault();
-            //await launcher.LaunchAsync();
+            var launcher = StoreServicesFeedbackLauncher.GetDefault();
+            await launcher.LaunchAsync();
         }
     }
 }

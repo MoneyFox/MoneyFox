@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -16,13 +10,12 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+#if !DEBUG
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
+#endif
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
@@ -33,7 +26,6 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
-using StatusBar = Microsoft.Toolkit.Uwp.UI.Extensions.StatusBar;
 
 namespace MoneyFox.Windows
 {
