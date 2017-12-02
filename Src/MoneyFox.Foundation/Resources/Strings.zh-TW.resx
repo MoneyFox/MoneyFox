@@ -118,35 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutLabel" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>关于</value>
+    <value>關於</value>
   </data>
   <data name="AboutViewModel.ContactLabel" xml:space="preserve">
-    <value>联系</value>
+    <value>Contact</value>
   </data>
   <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
-    <value>完整的贡献者名单在 GitHub：</value>
+    <value>To see all contributions head over to GitHub:</value>
   </data>
   <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
-    <value>本应用图标的创作者：</value>
+    <value>The app icon was created by:</value>
   </data>
   <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
-    <value>这是一个开源项目，我们期待着与你合作！欢迎做出贡献。
-点击访问资源库：</value>
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
   </data>
   <data name="AboutViewModel.RateLabel" xml:space="preserve">
-    <value>评价我们！</value>
+    <value>Rate us!</value>
   </data>
   <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
-    <value>有些东西没有被翻译或者翻译有误？帮助我们，在 crowdin 上改善 Money Fox 的翻译：</value>
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>版本</value>
+    <value>Version</value>
   </data>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>没有任何账户。点击在底部的加号按钮添加一个。</value>
+    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
     <value>Excluded Accounts</value>
@@ -155,34 +155,34 @@
     <value>Included Accounts</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>请选择一个账户</value>
+    <value>請選擇一個帳戶。</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>账户</value>
+    <value>帳戶</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>添加账户</value>
+    <value>新增帳戶</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>添加类别 </value>
+    <value>Add Category</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>添加支出</value>
+    <value>Add Expense</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>添加支出</value>
+    <value>Add Expense</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>添加收入</value>
+    <value>Add Income</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>添加收入</value>
+    <value>Add Income</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>添加转账</value>
+    <value>Add Transfer</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>添加转账</value>
+    <value>Add Transfer</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
@@ -203,7 +203,7 @@
     <value>Backup failed!</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>备份</value>
+    <value>Backup</value>
   </data>
   <data name="BackupRestoreFailedTitle" xml:space="preserve">
     <value>Restore backup failed!</value>
@@ -215,26 +215,26 @@
     <value>Failed to sync the backup</value>
   </data>
   <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
-    <value>您的数据将被保存到您的 OneDrive 账户。您可以在叫做“MoneyFoxBackupManager"的文件夹里找到它们。</value>
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
   </data>
   <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
-    <value>创建备份</value>
+    <value>Create Backup</value>
   </data>
   <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
-    <value>最新的备份创建于：</value>
+    <value>Last Backup created at:</value>
   </data>
   <data name="BackupViewModel.LoginLabel" xml:space="preserve">
-    <value>登录</value>
+    <value>Login</value>
   </data>
   <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
-    <value>退出登录</value>
+    <value>Logout</value>
   </data>
   <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
-    <value>下载过去上传的数据库备份并代替现存的本地数据。
-【警告】：未备份的本地更改将被丢失！</value>
+    <value>Download the previous uploaded database backup and replace your local data with it.
+WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
-    <value>还原备份</value>
+    <value>Restore Backup</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
@@ -243,52 +243,52 @@
     <value>Bimonthly</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>每两周</value>
+    <value>Biweekly</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>取消</value>
+    <value>Cancel</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>收入、支出以及在选定时间内的收益</value>
+    <value>Income, expenses and gains for the selected time period.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>现金流</value>
+    <value>Cashflow</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
-    <value>类别</value>
+    <value>Categories</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>支出在类别间的转移</value>
+    <value>Spreading of the expenses to the categories.</value>
   </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>没有任何类别。点击在底部的加号按钮添加一个。</value>
+    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>搜索字符串</value>
+    <value>Search</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>类别传播</value>
+    <value>Category Spreading</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>有款项的类别的摘要</value>
+    <value>Summary of the categories with a Payment.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>类别摘要</value>
+    <value>Category Summary</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
     <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>应用到将来的重复？</value>
+    <value>Update Recurrence?</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>原账户</value>
+    <value>Charged Account</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>选择类别</value>
+    <value>Choose Categorie</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
-    <value>选择</value>
+    <value>Choose</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -297,22 +297,22 @@
     <value>Finished clearing your payments.</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>每天</value>
+    <value>Daily</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>工作日</value>
+    <value>Daily without weekend</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>您真的要删除此账户吗？</value>
+    <value>Do you really want to delete this Account?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>您真的要删除此类别吗？</value>
+    <value>Do you really want to delete this Category?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>删除</value>
+    <value>Delete</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>您真的要删除此笔支付吗？</value>
+    <value>Do you really want to delete this Payment?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
@@ -321,37 +321,37 @@
     <value>Delete Recurrence?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>删除？</value>
+    <value>Delete?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
     <value>Done</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>已存在账号使用此名称。</value>
+    <value>An Account with that name already exists.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>具有此名称的类别已经存在。</value>
+    <value>A Category with that name already exists.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>名称已被使用</value>
+    <value>Name already used</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>编辑 {0}</value>
+    <value>Edit {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>编辑类别</value>
+    <value>Edit Category</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>编辑收入</value>
+    <value>Edit Income</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>编辑</value>
+    <value>Edit</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>编辑支出</value>
+    <value>Edit Expense</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>编辑转账</value>
+    <value>Edit Transfer</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>There was an error during the authentication. Please try again later.</value>
@@ -360,100 +360,100 @@
     <value>There where an error while create your backup. Please try again later.</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>删除项目时发生错误。</value>
+    <value>An error occured while deleting the item.</value>
   </data>
   <data name="ErrorMessageRestore" xml:space="preserve">
     <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
-    <value>保存该项目时出现错误。</value>
+    <value>An error occured while saving the item.</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>删除时出错</value>
+    <value>Error on delete</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>添加支出</value>
+    <value>Add expense</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>支出</value>
+    <value>Expenses</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>向Money Fox反馈</value>
+    <value>Feedback Money Fox</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>An error occured</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
-    <value>通用</value>
+    <value>General</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>添加收入</value>
+    <value>Add income</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>收益</value>
+    <value>Gains</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>重复付款的终止日期必须在未来，请检查您的输入。</value>
+    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>无效的结束时间</value>
+    <value>Invalid End Date</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>不，只是这个</value>
+    <value>No, just this</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>正在加载...</value>
+    <value>Loading...</value>
   </data>
   <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>登录</value>
+    <value>Login</value>
   </data>
   <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>密码</value>
+    <value>Password</value>
   </data>
   <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>欢迎使用！</value>
+    <value>Welcome!</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>此段必填</value>
+    <value>Mandatory field</value>
   </data>
   <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>关于</value>
+    <value>About</value>
   </data>
   <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>账户</value>
+    <value>Accounts</value>
   </data>
   <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>添加</value>
+    <value>Add</value>
   </data>
   <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>备份</value>
+    <value>Backup</value>
   </data>
   <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>类别</value>
+    <value>Categories</value>
   </data>
   <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>删除</value>
+    <value>Delete</value>
   </data>
   <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>保存</value>
+    <value>Save</value>
   </data>
   <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>设置</value>
+    <value>Settings</value>
   </data>
   <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>使制作预算更加轻松。</value>
+    <value>A way to make budgeting easy.</value>
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>统计</value>
+    <value>Statistics</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>账户名称</value>
+    <value>Account Name</value>
   </data>
   <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
-    <value>当前余额</value>
+    <value>Current Balance</value>
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
     <value>Iban</value>
@@ -462,71 +462,71 @@
     <value>Exclude account from balance</value>
   </data>
   <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
-    <value>备注</value>
+    <value>Note</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
     <value>Category Name</value>
   </data>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>备注</value>
+    <value>Note</value>
   </data>
   <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
-    <value>金额</value>
+    <value>Amount</value>
   </data>
   <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
-    <value>类别</value>
+    <value>Category</value>
   </data>
   <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
-    <value>日期</value>
+    <value>Date</value>
   </data>
   <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
-    <value>不会终止</value>
+    <value>Is Endless</value>
   </data>
   <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>备注</value>
+    <value>Note</value>
   </data>
   <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
-    <value>重复性</value>
+    <value>Is Recurring</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>每月</value>
+    <value>Monthly</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>请输入名称。</value>
+    <value>Please insert a name.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>不</value>
+    <value>No</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>您没有连接到互联网。请检查您的连接，然后重试。</value>
+    <value>You are not connected to the internet. Please check your connection and try again.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>无互联网连接</value>
+    <value>No Internet Connection</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>不是现在</value>
+    <value>Not Now</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>确定</value>
+    <value>Ok</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>现存备份将被覆盖。您想要继续吗？</value>
+    <value>Existing backups will be overwritten. Do you wanna continue?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>你的本地数据将被清除。您确定要继续吗？</value>
+    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>是否覆盖?</value>
+    <value>Overwrite?</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
     <value>Microsoft Passport is not enabled on this device. 
     Please go to settings and enable it!</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>密码和确认密码不相符，请检查您的输入。</value>
+    <value>The passwod and the password confirmation didn't match. Please check your input.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>确认密码</value>
+    <value>Password confirmation</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
     <value>The password you've entered is empty. Please enter a password first and try again.</value>
@@ -535,55 +535,56 @@
     <value>Password is empty</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>密码已成功保存。</value>
+    <value>Password was saved succesfully.</value>
   </data>
   <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>密码已保存。</value>
+    <value>Password saved</value>
   </data>
   <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>您输入的密码不正确，请重试。</value>
+    <value>The password you entered was not correct. Please try again.</value>
   </data>
   <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>密码错误</value>
+    <value>Password wrong</value>
   </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>没有任何款项。点击在底部的加号按钮添加一个。</value>
+    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>Quarterly</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>我们希望你能喜欢我们的应用。请在商店评五星以支持我们。您想去商店评分吗？</value>
+    <value>We hope you like our app. Support us with a rating in the store.
+Do you want to go the the store to rate?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>点个赞</value>
+    <value>Rate this app</value>
   </data>
   <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
     <value>Recurring payments where created.</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>收入</value>
+    <value>Revenue</value>
   </data>
   <data name="SecurityTitle" xml:space="preserve">
-    <value>安全</value>
+    <value>Security</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>搜索字符串</value>
+    <value>Search</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>选择日期</value>
+    <value>Select Date</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Select Filter</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>选择操作</value>
+    <value>select operation</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
-    <value>自动上传和下载备份</value>
+    <value>Automatically upload and download backups</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
     <value>Set the amount of hours to sync the backup.</value>
@@ -595,48 +596,48 @@
     <value>Hour(s)</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>设置</value>
+    <value>Settings</value>
   </data>
   <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>完成</value>
+    <value>Done</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
-    <value>密码保护</value>
+    <value>Password protection</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
-    <value>确认密码</value>
+    <value>Password Confirmation</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>密码</value>
+    <value>Password</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>统计</value>
+    <value>Statistics</value>
   </data>
   <data name="StatisticTitle" xml:space="preserve">
-    <value>统计</value>
+    <value>Statistic</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>成功!</value>
+    <value>Success!</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>目标帐户</value>
+    <value>Target Account</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>任务已成功完成</value>
+    <value>Task was successful completed.</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>添加转账</value>
+    <value>Add transfer</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>是，更新全部</value>
+    <value>Yes, update All</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>每周</value>
+    <value>Weekly</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>每年</value>
+    <value>Yearly</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>是</value>
+    <value>Yes</value>
   </data>
 </root>

@@ -148,7 +148,7 @@
     <value>Seus dados serão salvos em sua conta OneDrive. Você vai encontrá-los em uma nova pasta chamada "MoneyFoxBackupManager".</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Baixe a cópia de segurança do banco de dados inserido anteriormente e substitua seus dados locais com ele. AVISO: Alterações locais feitas durante isso será perdido.</value>
+    <value>Baixe o backup de banco de dados inserido anterior e substitua seus dados locais com ele. Aviso: Alterações locais feitas enquanto isso estaremos perdidos.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
@@ -184,10 +184,10 @@
     <value>Este é um projeto open-source – e nós adoraríamos trabalhar com você! Sinta-se livre para contribuir. Fique à vontade para visitar o repositório:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Avalie este aplicativo</value>
+    <value>Rate this app</value>
   </data>
-  <data name="SecurityHeader.Label" xml:space="preserve">
-    <value>Seguro</value>
+  <data name="SecuritySettingsHeader.Text" xml:space="preserve">
+    <value>Security</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Selecionar categoria</value>
@@ -202,9 +202,9 @@
     <value>Preferências</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Propagação</value>
+    <value>Se espalhando</value>
   </data>
-  <data name="TilesHeader.Label" xml:space="preserve">
+  <data name="TilesSettingsHeader.Text" xml:space="preserve">
     <value>Tiles</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
@@ -235,13 +235,13 @@
     <value>Bem vindo!</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Criar tiles de renda</value>
+    <value>Criar renda telha</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Criar tile de despesa</value>
+    <value>Criar despesa telha</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Criar tile de transferência</value>
+    <value>Criar telha de transferência</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
     <value>Pronto</value>
@@ -256,13 +256,13 @@
     <value>Criar cópia de segurança</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Remover tile de renda</value>
+    <value>Remover o rendimento da telha</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remover tile de despesa</value>
+    <value>Remover a telha de despesa</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Remover tile de transferência</value>
+    <value>Remover a telha de transferência</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
     <value>Restaurar cópia de segurança</value>
@@ -339,9 +339,6 @@
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Último Backup foi criado em:</value>
   </data>
-  <data name="GeneralHeader.Label" xml:space="preserve">
-    <value>Geral</value>
-  </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Última modificação de banco de dados:</value>
   </data>
@@ -358,7 +355,7 @@
     <value>Não há nenhum pagamento. Clique sobre os três símbolos abaixo.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>Você pode altenar entre os temas claro e escuro. Para aplicar essas mudanças, por favor, reinicie a aplicação.</value>
+    <value>Você pode mudar entre os temas claro e escuro. Para aplicar essas mudanças, por favor, reinicie a aplicação.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Carregando...</value>
@@ -397,9 +394,45 @@
     <value>Para ver todas as contribuições vá ao GitHub:</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Faça upload e download dos backups automaticamente</value>
+    <value>Upload and download backup manually</value>
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Exclude account from balance</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
+    <value>Set the amount of hours to sync the backup.</value>
+  </data>
+  <data name="ExcludedAccounts.Text" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="IncludedAccounts.Text" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
+  <data name="FilterLabel.Label" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="GiveFeedback.Text" xml:space="preserve">
+    <value>Leave a Feedback</value>
+  </data>
+  <data name="Dark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="System.Content" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SettingsHeaderBackup.Text" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="SettingsHeaderTiles.Text" xml:space="preserve">
+    <value>Tiles</value>
   </data>
 </root>
