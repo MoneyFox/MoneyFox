@@ -136,7 +136,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
-      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
+      <Project>{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}</Project>
       <Name>MoneyFox.Windows</Name>
     </ProjectReference>
   </ItemGroup>
