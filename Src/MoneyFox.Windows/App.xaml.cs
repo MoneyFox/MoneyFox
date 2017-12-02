@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -11,6 +12,7 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using Microsoft.Toolkit.Uwp.Helpers;
 #if !DEBUG
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
@@ -26,6 +28,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Tasks;
 
 namespace MoneyFox.Windows
 {
@@ -95,8 +98,8 @@ namespace MoneyFox.Windows
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
 
-                //BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-                //BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+                BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
                 shell.ViewModel = Mvx.Resolve<ShellViewModel>();

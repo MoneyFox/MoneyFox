@@ -547,6 +547,10 @@
       <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
       <Name>MoneyFox.Windows.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
+      <Project>{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}</Project>
+      <Name>MoneyFox.Windows.Tasks</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
