@@ -94,25 +94,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="MoneyFox.Windows_StoreKey.pfx" />
-    <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
-    <PRIResource Include="Strings\zh-tw\Resources.resw" />
-    <PRIResource Include="Strings\tr\Resources.resw" />
-    <PRIResource Include="Strings\pt-br\Resources.resw" />
-    <PRIResource Include="Strings\nl\Resources.resw" />
-    <PRIResource Include="Strings\bg\Resources.resw" />
-    <PRIResource Include="Strings\fr\Resources.resw" />
-    <PRIResource Include="Strings\it\Resources.resw" />
-    <PRIResource Include="Strings\es\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\zh-cn\Resources.resw" />
-    <PRIResource Include="Strings\ru\Resources.resw" />
-    <PRIResource Include="Strings\pt\Resources.resw" />
-    <PRIResource Include="Strings\de\Resources.resw" />
-    <PRIResource Include="Strings\en\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -151,11 +132,6 @@
     <Compile Include="Src\TileManager.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
-    <Compile Include="Strings\de\de\Strings.de.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.de.resx</DependentUpon>
-    </Compile>
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -238,18 +214,20 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
-    <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
-    <PRIResource Include="Strings\zh-cn\Resources.resw" />
-    <PRIResource Include="Strings\ru\Resources.resw" />
-    <PRIResource Include="Strings\pt\Resources.resw" />
-    <PRIResource Include="Strings\it\Resources.resw" />
-    <PRIResource Include="Strings\fr\Resources.resw" />
-    <PRIResource Include="Strings\es\Resources.resw" />
+    <PRIResource Include="Strings\bg\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
-    <PRIResource Include="Strings\de\de\Resources.resw" />
-    <PRIResource Include="Strings\de\Resources.resw" />
-    <PRIResource Include="Strings\bg\Resources.resw" />
+    <PRIResource Include="Strings\es\Resources.resw" />
+    <PRIResource Include="Strings\fr\Resources.resw" />
+    <PRIResource Include="Strings\it\Resources.resw" />
+    <PRIResource Include="Strings\nl\Resources.resw" />
+    <PRIResource Include="Strings\pt-br\Resources.resw" />
+    <PRIResource Include="Strings\pt\Resources.resw" />
+    <PRIResource Include="Strings\ru\Resources.resw" />
+    <PRIResource Include="Strings\tr\Resources.resw" />
+    <PRIResource Include="Strings\zh-cn\Resources.resw" />
+    <PRIResource Include="Strings\zh-tw\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
@@ -318,8 +296,6 @@
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Strings\de\de\Description.txt" />
-    <Content Include="Strings\de\de\strings.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -540,12 +516,6 @@
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.0.3</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Strings\de\de\Strings.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
