@@ -185,9 +185,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Dieses Programm ist Open Source. Wir freuen uns über jeden Beitrag!</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Bewerte diese App</value>
+    <value>Bewerte dieses App</value>
   </data>
-  <data name="SecuritySettingsHeader.Header" xml:space="preserve">
+  <data name="SecuritySettingsHeader.Text" xml:space="preserve">
     <value>Sicherheit</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
@@ -205,7 +205,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>Verteilung</value>
   </data>
-  <data name="TilesSettingsHeader.Header" xml:space="preserve">
+  <data name="TilesSettingsHeader.Text" xml:space="preserve">
     <value>Tiles</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
@@ -401,12 +401,6 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Konto von Monatsbilanz ausschliessen</value>
   </data>
-  <data name="ThemeSettingsHeader.Header" xml:space="preserve">
-    <value>Design</value>
-  </data>
-  <data name="BackupSettingsHeader.Header" xml:space="preserve">
-    <value>Sicherung</value>
-  </data>
   <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
     <value>Lege fest wie oft die Sicherung synchronisiert werden soll.</value>
   </data>
@@ -418,5 +412,29 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
     <value></value>
+  </data>
+  <data name="GiveFeedback.Text" xml:space="preserve">
+    <value>Feedback hinterlassen</value>
+  </data>
+  <data name="Dark.Content" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Light.Content" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="System.Content" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SettingsHeaderBackup.Text" xml:space="preserve">
+    <value>Sicherung</value>
+  </data>
+  <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
+  <data name="SettingsHeaderTiles.Text" xml:space="preserve">
+    <value>Tiles</value>
   </data>
 </root>

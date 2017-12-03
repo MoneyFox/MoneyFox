@@ -351,13 +351,13 @@ Tap to visit the Repository:</value>
     <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at the bottom.</value>
+    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between a dark and light theme. To apply this change please restart the application.</value>
+    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>

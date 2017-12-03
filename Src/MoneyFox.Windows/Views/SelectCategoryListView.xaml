@@ -38,11 +38,7 @@
                    Text="Select Category"
                    Style="{StaticResource PageTitleStyle}" />
 
-        <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:CategoryListUserControl />
-        </Grid>
+        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"/>
 
         <CommandBar Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">

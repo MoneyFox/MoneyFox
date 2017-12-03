@@ -6,7 +6,6 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       xmlns:designTime="using:MoneyFox.Windows.DesignTime"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
@@ -25,22 +24,19 @@
             <Grid HorizontalAlignment="Stretch"
                   Background="{StaticResource ListItemBrush}"
                   Margin="{StaticResource SmallListItemMargin}">
-                <StackPanel Margin="{StaticResource NegativeMediumLeftRightMargin}">
-                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-                    <StackPanel HorizontalAlignment="Right"
-                                Orientation="Horizontal"
-                                VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Right"
-                                   Text="{Binding Value,
-                                                  Converter={StaticResource AmountFormatConverter}}"
-                                   TextAlignment="Right" />
-                    </StackPanel>
-                </StackPanel>
+                <Grid Margin="{StaticResource MediumLeftRightMargin}">
+                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Left"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}"
+                               TextAlignment="Right" />
+                </Grid>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -50,6 +46,7 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="CategorySummaryStatisticTitle"
                    Text="Category Summary"
+                   Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1">
@@ -59,16 +56,17 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0"
+                       Margin="{StaticResource MediumLeftRightMargin}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                        Text="{Binding Title}" />
 
             <ScrollViewer Grid.Row="1"
                           EntranceNavigationTransitionInfo.IsTargetElement="True"
-                          VerticalScrollBarVisibility="Auto">
-                <ListView Background="Transparent"   
-                          Margin="{StaticResource NegativeMediumLeftRightMargin}"
-                    ItemTemplate="{StaticResource CategoryTemplate}"
-                    ItemsSource="{Binding CategorySummary}">
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
+                <ListView Background="Transparent"
+                          ItemTemplate="{StaticResource CategoryTemplate}"
+                          ItemsSource="{Binding CategorySummary}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
