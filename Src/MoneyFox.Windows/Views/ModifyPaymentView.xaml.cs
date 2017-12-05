@@ -1,7 +1,9 @@
-﻿using Windows.UI.ViewManagement;
+﻿using System.Collections.Generic;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels;
@@ -71,6 +73,18 @@ namespace MoneyFox.Windows.Views
         private void SetVisibiltyInitialy(object sender, RoutedEventArgs e)
         {
             var viewModel = (ModifyPaymentViewModel)ViewModel;
+
+            if (viewModel == null)
+            {
+                Analytics.TrackEvent("Error: viewModel is null on SetVisibiltyInitialy");
+                return;
+            }
+            if (viewModel.SelectedPayment == null)
+            {
+                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibiltyInitialy");
+                return;
+            }
+
             if (!viewModel.SelectedPayment.IsRecurring)
             {
                 ToggleRecurringVisibility(this, null);
