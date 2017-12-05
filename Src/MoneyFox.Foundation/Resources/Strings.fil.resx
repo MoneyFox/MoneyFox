@@ -118,526 +118,522 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutLabel" xml:space="preserve">
-    <value>Hakkında</value>
+    <value>Tungkol sa</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Hakkında</value>
+    <value>Tungkol sa</value>
   </data>
   <data name="AboutViewModel.ContactLabel" xml:space="preserve">
-    <value>İletişim</value>
+    <value>Contact</value>
   </data>
   <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
-    <value>Bütün katkıları github üstünde gör:</value>
+    <value>Upang makita ang lahat ng pinuno ng mga kontribusyon pumunta sa GitHub:</value>
   </data>
   <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
-    <value>Uygulama simgesini oluşturan:</value>
+    <value>Ang icon ng app ay nilikha ni:</value>
   </data>
   <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
-    <value>Bu açık kaynaklı bir projedir - Katkıda bulunmaktan çekinmeyin! Sizinle çalışmayı çok isteriz. 
-Depoyu ziyaret etmek için dokunun:</value>
+    <value>Ito ay isang open source na proyekto – at nais naming makipagtulungan sa inyo! Huwag mag-atubiling mag-ambag. I-tap upang bisitahin ang pinagkukunan:</value>
   </data>
   <data name="AboutViewModel.RateLabel" xml:space="preserve">
-    <value>Bize puan verin!</value>
+    <value>I-rate kami!</value>
   </data>
   <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
-    <value>Birşey düzgün çevrilmedi veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve Money Fox'un gelişmesine yardımcı ol:</value>
+    <value>May hindi ba wastong pagsasalin o hindi naisalin? Tulungan ninyo kami! Pumunta sa crowdin at makatulong sa amin na mapagbuti ang Money Fox:</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>Sürüm</value>
+    <value>Bersyon</value>
   </data>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Hesap bulunamadı. Aşşağıda ki artı butonuna tıklayarak bir tane ekleyin.</value>
+    <value>Walang Accounts. Magdagdag ng isa sa pamamagitan ng pag-tap sa plus button sa ibaba.</value>
   </data>
   <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
-    <value>Hariç tutulan hesaplar</value>
+    <value>Hindi isinamang mga Account</value>
   </data>
   <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
-    <value>Dahil edilmiş hesaplar</value>
+    <value>Mga Account na Isinali</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Lütfen bir hesap seçin.</value>
+    <value>Pumili ng isang Account.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Hesaplar</value>
+    <value>Mga Account</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Hesap ekle</value>
+    <value>Magdagdag ng Account</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Kategori Ekle</value>
+    <value>Magdagdag ng kategorya</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Gider ekle</value>
+    <value>Magdagdag ng gastos</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Gider ekle</value>
+    <value>Magdagdag ng Gastos</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Gelir ekle</value>
+    <value>Magdagdag ng Kita</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Gelir ekle</value>
+    <value>Magdagdag ng Kita</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer ekle</value>
+    <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Transfer ekle</value>
+    <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Kimlik doğrulama başarısız</value>
+    <value>Bigo ang authentication</value>
   </data>
   <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>Sistem ilkeleri MoneyFox'un arka planda çalışmasını engelledi. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
+    <value>Pinagkaitan ng isang patakaran ng sistema ang pahintulot para sa mga MoneyFox na tumakbo sa likuran. Ilang mga function ay maaaring hindi gumana tulad ng inaasahan.</value>
   </data>
   <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>MoneyFox'un arka planda çalışmasını engellediniz. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
+    <value>Tinanggihan mo ang mga pahintulot para sa mga MoneyFox na tumakbo sa likuran. Ilang mga function ay maaaring hindi gumana tulad ng inaasahan.</value>
   </data>
   <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Erişim engellendi</value>
+    <value>Hindi pinayagan ang Access</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Yedekleme başarısız!</value>
+    <value>Nabigo ang backup!</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Yedekleme</value>
+    <value>Backup</value>
   </data>
   <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Yedek geri yükleme başarısız oldu!</value>
+    <value>Nabigo ang pag-restore ng backup!</value>
   </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>Yedeklemeniz başarıyla senkronize edildi.</value>
+    <value>Ang iyong backup ay naka-sync ng matagumpay.</value>
   </data>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Yedek senkronlama başarısız oldu</value>
+    <value>Hindi nai-sync ang backup</value>
   </data>
   <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
-    <value>Verileriniz OneDrive hesabınıza kaydedilecektir. Verilerinizi, "MoneyFoxBackupManager" isimli yeni klasörde bulabilirsiniz.</value>
+    <value>Ang iyong data ay mai-sasave iyong OneDrive Account. Makikita mo sila sa isang bagong folder na pinangalanang "MoneyFoxBackupManager".</value>
   </data>
   <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
-    <value>Yedek Oluştur</value>
+    <value>Lumikha ng Backup</value>
   </data>
   <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
-    <value>Son yedekleme tarihi:</value>
+    <value>Huling Backup na nilikha nuong:</value>
   </data>
   <data name="BackupViewModel.LoginLabel" xml:space="preserve">
-    <value>Giriş</value>
+    <value>Mag-Login</value>
   </data>
   <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
-    <value>Çıkış</value>
+    <value>Logout</value>
   </data>
   <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Bir önceki yedeklemenizi indirip, lokal verilerinizle değiştirin.
-UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</value>
+    <value>I-download ang nakaraang na-upload na database backup at ipalit ito sa iyong lokal na data. Babala: Ang mga Lokal na pagbabago na ginawa mo samantala ay mawawala!</value>
   </data>
   <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
-    <value>Yedeklemeyi geri yükle</value>
+    <value>Ibalik ang Backup</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Yılda iki defa</value>
+    <value>Dalawang beses isang taon</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>İki ayda bir</value>
+    <value>Dalawang beses isang buwan</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>İki haftada bir</value>
+    <value>Dalawang beses isang linggo</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>İptal</value>
+    <value>Kanselahin</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Gelir, gider ve kazançlar için belirlenen zaman dilimi.</value>
+    <value>Kita, gastos at pakinabang para sa mga napiling oras.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Nakit Akışı</value>
+    <value>Cashflow</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
-    <value>Kategoriler</value>
+    <value>Mga kategorya</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Masrafları kategorilere dağıt.</value>
+    <value>Paghahati-hati ng mga gastusin sa mga kategorya.</value>
   </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Kategori bulunamadı. Aşşağıda ki artı butonuna dokunarak bir tane ekleyin.</value>
+    <value>Walang mga kategorya. Magdagdag ng isa sa pamamagitan ng pag-tap sa plus button sa ibaba.</value>
   </data>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Ara</value>
+    <value>Hanapin</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Kategori dağılımı</value>
+    <value>Paghahati-hati ng Kategorya</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Ödeme kategorilerinin özeti.</value>
+    <value>Buod ng ang mga kategorya na may pagbabayad.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Kategori Özeti</value>
+    <value>Buod ng kategorya</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Yinelenen bir ödemeyi güncellediniz. Gelecek ödemeleri de güncellemek ister misiniz?</value>
+    <value>In-update mo ang isang umuulit na pagbabayad. Gusto mo bang i-update din ang pagbabayad sa hinaharap?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Yinelemeleri Düzenle?</value>
+    <value>I-update ang pag-uulit?</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Hedef hesap</value>
+    <value>Pinangbayad na Account</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Kategori seç</value>
+    <value>Pumili ng kategorya</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
-    <value>Seç</value>
+    <value>Pumuli</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Temizlendi</value>
+    <value>Cleared</value>
   </data>
   <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Ödemelerinizi temizleme tamamlandı.</value>
+    <value>Natapos na ang iyong pagbabayad.</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Günlük</value>
+    <value>Araw-araw</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Haftasonu hariç günlük</value>
+    <value>Araw-araw maliban sa Sabado at Linggo</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Bu hesabı silmek gerçekten silmek istiyor musunuz?</value>
+    <value>Gusto mo ba talagang i-delete ang Account na ito?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Bu kategoriyi gerçekten silmek istiyor musunuz?</value>
+    <value>Gusto mo ba talagang i-delete ang Kategoryang ito?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Sil</value>
+    <value>Burahin</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Bu ödemeyi gerçekten silmeyi istiyor musunuz?</value>
+    <value>Gusto mo ba talagang i-delete ang Pagbabayad na ito?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Yinelenen bir ödeme sildiniz. Yinelemeyi de silmek istiyor musunuz?</value>
+    <value>Binura mo ang isang umuulit na pagbabayad. Gusto mo bang burahin din ang pagbabayad sa hinaharap?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Yinelemeleri sil?</value>
+    <value>Burahin ang pag-uulit?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Sil?</value>
+    <value>Burahin?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Bitti</value>
+    <value>Tapos</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Bu ada sahip kullanıcı hesabı zaten var.</value>
+    <value>Meron nang Account na may gayong pangalan.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Bu isimde zaten bir kategori var.</value>
+    <value>Meron nang Kategorya na may gayong pangalan.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Bu isim kullanılıyor</value>
+    <value>Ang Pangalan ay ginamit na</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>{0} düzenle</value>
+    <value>I-edit {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Kategori Düzenle</value>
+    <value>I-edit ang Kategorya</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Gelir ekle</value>
+    <value>I-edit ang Kita</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Düzenle</value>
+    <value>I-edit</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Gider ekle</value>
+    <value>I-edit ang Gastos</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Transfer ekle</value>
+    <value>I-edit ang Paglilipat</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Doğrulama sırasında hata oluştu. Lütfen daha sonra deneyin.</value>
+    <value>Nagkaroon ng error sa panahon ng pagpapatunay. Mangyaring subukan ulit mamaya.</value>
   </data>
   <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>Yedeklemenizi oluştururken bir hata oldu. Lütfen yeniden deneyin.</value>
+    <value>Nagkaroon ng error sa paggawa. Mangyaring subukan ulit mamaya.</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Nesne silinirken bir hata oluştu.</value>
+    <value>Nagkaroon ng error sa panahon ng pagbubura ng bagay.</value>
   </data>
   <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>Yedeklemeyi geri yüklerken bir hata oluştu. Bu hata devam ederse lütfen bizimle iletişime geçin.</value>
+    <value>Nagkaroon ng isyu sa panahon ng pagpapanumbalik ng iyong backup. Mangyaring makipag-ugnay sa amin kung ang error na ito magpatuloy.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
-    <value>Kayıt edilirken bir hata oluştu.</value>
+    <value>May naganap na error habang nagse-save.</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Hatalı ise sil</value>
+    <value>Mali sa pagbura</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Gider ekle</value>
+    <value>Magdagdag ng gastos</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Giderler</value>
+    <value>Mga Gastusin</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Money Fox'a geri bildirim</value>
+    <value>Tugon sa Money Fox</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Bir hata oluştu</value>
+    <value>May naganap na error</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
-    <value>Genel</value>
+    <value>Pangkalahatan</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Gelir ekle</value>
+    <value>Magdagdag ng Kita</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Kazançlar</value>
+    <value>Mga nadagdag</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Yinelenecek ödemenin bitiş tarihi gelecekte olmalıdır. Lütfen girdiyi kontrol ediniz.</value>
+    <value>Ang enddate ng isang umuulit na pagbabayad ay dapat na sa hinaharap. Mangyaring suriin ang iyong input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Geçersiz bitiş tarihi</value>
+    <value>Petsa ng katapusan ay di katanggap-tanggap</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Yinelenen</value>
+    <value>Ay umuulit</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Hayır, sadece bu</value>
+    <value>Hindi, ito lamang</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Yükleniyor...</value>
+    <value>Naglo-load...</value>
   </data>
   <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Giriş</value>
+    <value>Mag-Login</value>
   </data>
   <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>Şifre</value>
+    <value>Password</value>
   </data>
   <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>Hoşgeldiniz!</value>
+    <value>Maligayang Pagdating!</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Zorunlu Alanlar</value>
+    <value>Kinakailangang field</value>
   </data>
   <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>Hakkında</value>
+    <value>Tungkol</value>
   </data>
   <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Hesaplar</value>
+    <value>Mga Account</value>
   </data>
   <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Ekle</value>
+    <value>Idagdag</value>
   </data>
   <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Yedekleme</value>
+    <value>Backup</value>
   </data>
   <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Kategoriler</value>
+    <value>Mga kategorya</value>
   </data>
   <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Sil</value>
+    <value>Burahin</value>
   </data>
   <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Kaydet</value>
+    <value>I-save</value>
   </data>
   <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Mga setting</value>
   </data>
   <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>Bütçelemeyi yapmanın kolay yolu.</value>
+    <value>Isang paraan upang gawing madali ang pagbabadyet.</value>
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>İstatistikler</value>
+    <value>Mga Istatistika</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>Hesap adı</value>
+    <value>Pangalan ng Account</value>
   </data>
   <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
-    <value>Mevcut bakiye</value>
+    <value>Kasalukuyang balanse</value>
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
     <value>Iban</value>
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Hesabı bakiyeden çıkart</value>
+    <value>Huwag bilangin ang account sa balanse</value>
   </data>
   <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
+    <value>Paalala</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Kategori Adı</value>
+    <value>Pangalan nang kategorya</value>
   </data>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
+    <value>Paalala</value>
   </data>
   <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
-    <value>Miktar</value>
+    <value>Halaga</value>
   </data>
   <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
-    <value>Kategori</value>
+    <value>Kategorya</value>
   </data>
   <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
-    <value>Tarih</value>
+    <value>Petsa</value>
   </data>
   <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
-    <value>Sonsuz</value>
+    <value>Walang hanggan</value>
   </data>
   <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
+    <value>Paalala</value>
   </data>
   <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
-    <value>Yinelenen</value>
+    <value>Ay umuulit</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Aylık</value>
+    <value>Buwanan</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Lütfen bir ad girin.</value>
+    <value>Pakilagay ang pangalan.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>Hayır</value>
+    <value>Hindi</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Internet'e bağlı değilsiniz. Lütfen bağlantınızı kontrol edip tekrar deneyin.</value>
+    <value>Hindi ka konektado sa Internet. Kumonekta at subukang muli.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>İnternet Bağlantısı Yok</value>
+    <value>Walang koneksyon sa internet</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Henüz değil</value>
+    <value>Hindi Ngayon</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Tamam</value>
+    <value>Sige</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Varolan yedeklemelerin üzerine yazılacaktır. Devam etmek istiyor musunuz?</value>
+    <value>Kasalukuyang backup ay mapapatungan. Gusto mo bang magpatuloy?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Lokal verilerinizi silinecektir. Devam etmek istiyor musunuz?</value>
+    <value>Iyong lokal na data ay mabubura. Tiyak ka bang gusto mong magpatuloy?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Üzerine yaz?</value>
+    <value>Patungan?</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft pasaport bu cihaz için etkin değil.
-Lütfen ayarlara gidip etkinleştirin!</value>
+    <value>Hindi pinagagana ang Microsoft Passport sa device na ito.      Mangyaring pumunta sa mga setting at paganahin ang mga ito!</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>Parola ve parola onayı eşleşmiyor. Lütfen yazdığınızı kontrol edin.</value>
+    <value>Hindi tugma ang passwod at ang password confirmation. Mangyaring suriin ang iyong input.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Parola Onayı</value>
+    <value>Kumpirmasyon ng pasword</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>Girdiğiniz parola boş. Lütfen önce parola girip tekrar deneyin.</value>
+    <value>Ang mga pasword na naipasok mo ay walang laman. Mangyaring magpasok ng isang password at subukang muli.</value>
   </data>
   <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Parola boş</value>
+    <value>Ang password ay walang laman</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Şifre başarıyla kaydedildi.</value>
+    <value>Ang password ay nai-save na.</value>
   </data>
   <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Parola kaydedildi -</value>
+    <value>Ang password na naka-save na</value>
   </data>
   <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>Girdiğiniz parola doğru değil. Lütfen yeniden deneyin.</value>
+    <value>Ang password na iyong ipinasok ay hindi tama. Pakisubukang muli.</value>
   </data>
   <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Parola yanlış</value>
+    <value>Mali ang password</value>
   </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Hiçbir ödeme yok. Aşşağıda ki butona dokunarak bir tane ekleyin.</value>
+    <value>Walang mga pagbabayad. Magdagdag ng isa sa pamamagitan ng pag-tap sa plus button sa ibaba.</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Üç Aylık</value>
+    <value>Kada tatlong buwan</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Umarız uygulamamızı beğenmişsinizdir. Mağazada bize puan vererek destekleyebilirsiniz.
-Puan vermek için mağazaya gitmek ister misiniz?</value>
+    <value>Sana ay magustuhan mo ang aming app. Suportahan kami ng rating sa store. Gusto mo bang pumunta sa store upang mag-rate?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Bu uygulamayı puanla</value>
+    <value>I-rate ang App na ito</value>
   </data>
   <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Yinelenen ödemelerin oluşturulduğu yer.</value>
+    <value>Ang umuulit na pagbabayad ay nilikha.</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Hasılat</value>
+    <value>Kita</value>
   </data>
   <data name="SecurityTitle" xml:space="preserve">
-    <value>Güvenlik</value>
+    <value>Seguridad</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Ara</value>
+    <value>Hanapin</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>Tarih Seç</value>
+    <value>Pumili ng petsa</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Filtre seçin</value>
+    <value>Pumili ng Filter</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>işlem seçin</value>
+    <value>pumili ng operasyon</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
-    <value>Veritabanı üzerinde her değişiklikten sonra bu ayarı etkinleştirirseniz bir yedek OneDrive için yapılır. Ayrıca uygulamayı çalıştırırsanız, yeni yedekler var ise yedekler ve geri yükler.</value>
+    <value>Kung iyong i-activate ang setting na ito pagkatapos ng bawat pagbabago sa database ang isang backup ay gagawin sa OneDrive. Kung ilunsad mo ang application na ito mula duon, suriin kung mayroong mas bagong backup at ibalik ang mga ito kung gayon.</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
-    <value>Otomatik olarak yedeklemeleri gönder ve al</value>
+    <value>Awtomatikong mag-upload at i-download ang mga backup</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Yedekleme senkronizasyonu süresini ayarla.</value>
+    <value>Itakda ang bilang ng oras upang i-sync ang backup.</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Yedek yineleme</value>
+    <value>Backup ang pag-uulit</value>
   </data>
   <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
-    <value>Saat(ler)</value>
+    <value>Hour(s)</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Ayarlar</value>
+    <value>Mga setting</value>
   </data>
   <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>Bitti</value>
+    <value>Tapos</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
-    <value>Parola Koruması</value>
+    <value>Proteksyon ng password</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
-    <value>Parola Onayı</value>
+    <value>Kompirmasyon ng Password</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>Şifre</value>
+    <value>Password</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>İstatistikler</value>
+    <value>Mga Istatistika</value>
   </data>
   <data name="StatisticTitle" xml:space="preserve">
-    <value>İstatistik</value>
+    <value>Estatistika</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>Başarılı!</value>
+    <value>Tagumpay!</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Hedef hesap</value>
+    <value>Target na account</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Görev başarılı tamamlandı.</value>
+    <value>Ang gawain ay matagumpay natapos.</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Transfer ekle</value>
+    <value>Magdagdag ng Paglipat</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Evet, hepsini güncelle</value>
+    <value>Oo, i-update lahat</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Haftalık</value>
+    <value>Lingguhan</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yıllık</value>
+    <value>Taon-taon</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Evet</value>
+    <value>Oo</value>
   </data>
 </root>
