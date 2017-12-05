@@ -46,6 +46,8 @@ namespace MoneyFox.DataAccess.DataServices
                         .Where(x => x.IsEndless ||
                                       x.EndDate >= DateTime.Now.Date)
                         .Include(x => x.RelatedPayments)
+                        .Include(x => x.ChargedAccount)
+                        .Include(x => x.TargetAccount)
                         .Where(x => x.ChargedAccount != null)
                         .ToList();
 
