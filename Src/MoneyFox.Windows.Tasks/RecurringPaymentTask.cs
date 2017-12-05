@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
 using MoneyFox.Business.Manager;
@@ -30,9 +31,15 @@ namespace MoneyFox.Windows.Tasks
                         new PaymentService(dbContextScopeFactory, ambientDbContextLocator))
                     .CreatePaymentsUpToRecur();
             }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                Debug.WriteLine("RecurringPaymentTask stopped due to an error.");
+
+            } 
             finally
             {
-                Debug.WriteLine("RecurringPaymentTask stopped.");
+                Debug.WriteLine("RecurringPaymentTask finished.");
                 deferral.Complete();
             }
         }

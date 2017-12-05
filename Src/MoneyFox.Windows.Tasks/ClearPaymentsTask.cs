@@ -32,10 +32,15 @@ namespace MoneyFox.Windows.Tasks
                 {
                     await paymentService.SavePayments(unclearedPayments.ToArray());
                 }
-            }
-            finally
+            } 
+            catch (Exception ex)
             {
-                Debug.WriteLine("ClearPayment stopped.");
+                Debug.Write(ex);
+                Debug.WriteLine("ClearPaymentTask stopped due to an error.");
+
+            } finally
+            {
+                Debug.WriteLine("ClearPaymentTask finished.");
                 deferral.Complete();
             }
         }

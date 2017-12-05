@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using MoneyFox.Business;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
@@ -37,14 +36,12 @@ namespace MoneyFox.Windows.Tasks
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Sync Backup failed.");
                 Debug.WriteLine(ex);
-
+                Debug.WriteLine("Sync Backup failed.");
             }
             finally
             {
-                Debug.WriteLine("Sync Backup stopped.");
-
+                Debug.WriteLine("Sync Backup finished.");
                 deferral.Complete();
             }
         }
