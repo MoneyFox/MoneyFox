@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Azure.Mobile.Analytics;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
 
@@ -31,8 +34,20 @@ namespace MoneyFox.Business.ViewModels
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<double> GetTotalBalance()
         {
-            var account = await accountService.GetById(accountId);
-            return account.Data.CurrentBalance;
+            try
+            {
+                var account = await accountService.GetById(accountId);
+                return account.Data.CurrentBalance;
+            }
+            catch (Exception ex)
+            {
+                Analytics.TrackEvent("Exception: On Token refresh", new Dictionary<string, string>
+                {
+                    {"Message", ex.Message},
+                    {"Stacktrace", ex.StackTrace}
+                });
+            }
+            return 0;
         }
 
         /// <summary>
