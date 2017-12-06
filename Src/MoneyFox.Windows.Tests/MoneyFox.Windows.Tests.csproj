@@ -136,7 +136,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
-      <Project>{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}</Project>
+      <Project>{99a1c63a-cdf8-43a9-bdc1-835526ce6b1f}</Project>
       <Name>MoneyFox.Windows</Name>
     </ProjectReference>
   </ItemGroup>
@@ -151,7 +151,7 @@
       <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.2</Version>
+      <Version>6.0.4</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>5.3.0</Version>
