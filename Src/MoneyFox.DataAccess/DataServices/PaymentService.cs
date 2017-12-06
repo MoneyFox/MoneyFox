@@ -213,12 +213,27 @@ namespace MoneyFox.DataAccess.DataServices
 
         private void SaveOrUpdateRecurringPayment(ApplicationContext dbContext, RecurringPaymentEntity recurringPayment)
         {
+            if (recurringPayment.Id != 0)
+            {
+                recurringPayment.ChargedAccountId = recurringPayment.ChargedAccount.Id;
+                recurringPayment.TargetAccountId = recurringPayment.TargetAccount?.Id;
+                recurringPayment.CategoryId = recurringPayment.Category?.Id;
+            }
+
             var recurringPaymentEntry = dbContext.Entry(recurringPayment);
             recurringPaymentEntry.State = recurringPayment.Id == 0 ? EntityState.Added : EntityState.Modified;
         }
 
         private void SaveOrUpdatePayment(ApplicationContext dbContext, PaymentEntity payment)
         {
+            if (payment.Id != 0)
+            {
+                payment.ChargedAccountId = payment.ChargedAccount.Id;
+                payment.TargetAccountId = payment.TargetAccount?.Id;
+                payment.CategoryId = payment.Category?.Id;
+                payment.RecurringPaymentId = payment.RecurringPayment?.Id;
+            }
+
             var paymentEntry = dbContext.Entry(payment);
             paymentEntry.State = payment.Id == 0 ? EntityState.Added : EntityState.Modified;
         }
