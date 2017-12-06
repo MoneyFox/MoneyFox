@@ -48,6 +48,7 @@ namespace MoneyFox.DataAccess.DataServices
                         .Include(x => x.RelatedPayments)
                         .Include(x => x.ChargedAccount)
                         .Include(x => x.TargetAccount)
+                        .Include(x => x.Category)
                         .Where(x => x.ChargedAccount != null)
                         .ToList();
 
