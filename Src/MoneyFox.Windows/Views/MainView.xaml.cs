@@ -2,12 +2,16 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Uwp.Attributes;
 
 namespace MoneyFox.Windows.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    [MvxPagePresentation]
+    [MvxViewFor(typeof(MenuViewModel))]
     public sealed partial class MainView
     {
         public MainView()
