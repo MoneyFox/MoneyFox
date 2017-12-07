@@ -117,7 +117,8 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    return new Category(await dbContext.Categories.FindAsync(id));
+                    var category = await dbContext.Categories.FindAsync(id);
+                    return category == null ? null : new Category(category);
                 }
             }
         }

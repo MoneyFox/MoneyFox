@@ -24,7 +24,7 @@ namespace MoneyFox.Windows.Tasks
 
             try
             {
-                paymentService = new PaymentService(new DbContextScopeFactory(), new AmbientDbContextLocator());
+                paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 
                 var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
                 var unclearedPayments = payments.ToList();

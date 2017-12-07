@@ -104,21 +104,23 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    return new Account(await dbContext.Accounts
-                                                      .Include(x => x.ChargedPayments).ThenInclude(p => p.Category)
-                                                      .Include(x => x.ChargedPayments).ThenInclude(p => p.TargetAccount)
-                                                      .Include(x => x.TargetedPayments).ThenInclude(p => p.Category)
-                                                      .Include(x => x.TargetedPayments)
-                                                      .ThenInclude(p => p.ChargedAccount)
-                                                      .Include(x => x.ChargedRecurringPayments)
-                                                      .ThenInclude(p => p.Category)
-                                                      .Include(x => x.ChargedRecurringPayments)
-                                                      .ThenInclude(p => p.TargetAccount)
-                                                      .Include(x => x.TargetedRecurringPayments)
-                                                      .ThenInclude(p => p.Category)
-                                                      .Include(x => x.TargetedRecurringPayments)
-                                                      .ThenInclude(p => p.ChargedAccount)
-                                                      .FirstOrDefaultAsync(x => x.Id == id));
+                    var account = await dbContext.Accounts
+                                                 .Include(x => x.ChargedPayments).ThenInclude(p => p.Category)
+                                                 .Include(x => x.ChargedPayments).ThenInclude(p => p.TargetAccount)
+                                                 .Include(x => x.TargetedPayments).ThenInclude(p => p.Category)
+                                                 .Include(x => x.TargetedPayments)
+                                                 .ThenInclude(p => p.ChargedAccount)
+                                                 .Include(x => x.ChargedRecurringPayments)
+                                                 .ThenInclude(p => p.Category)
+                                                 .Include(x => x.ChargedRecurringPayments)
+                                                 .ThenInclude(p => p.TargetAccount)
+                                                 .Include(x => x.TargetedRecurringPayments)
+                                                 .ThenInclude(p => p.Category)
+                                                 .Include(x => x.TargetedRecurringPayments)
+                                                 .ThenInclude(p => p.ChargedAccount)
+                                                 .FirstOrDefaultAsync(x => x.Id == id);
+
+                    return account == null ? null : new Account(account);
                 }
             }
         }
