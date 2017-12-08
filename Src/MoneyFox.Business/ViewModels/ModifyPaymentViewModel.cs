@@ -267,7 +267,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 if (!IsEdit && (SelectedPayment.Date == DateTime.MinValue))
                 {
-                    SelectedPayment.Date = DateTime.Now;
+                    SelectedPayment.Date = DateTime.Now.Date;
                 }
                 return SelectedPayment.Date;
             }

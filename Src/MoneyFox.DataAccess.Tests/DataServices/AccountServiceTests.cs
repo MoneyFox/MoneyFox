@@ -1,423 +1,239 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using System.Linq;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Repositories;
-using MoneyFox.Service.DataServices;
-using MoneyFox.Service.Tests.TestHelper;
-using Moq;
+using MoneyFox.DataAccess.Pocos;
+using MoneyFox.Foundation.Constants;
+using MvvmCross.Binding.ExtensionMethods;
 using Xunit;
 
-namespace MoneyFox.Service.Tests.DataServices
+namespace MoneyFox.DataAccess.Tests.DataServices
 {
     public class AccountServiceTests
     {
-        private readonly AmbientDbContextLocator ambientDbContextLocator;
         private readonly DbContextScopeFactory dbContextScopeFactory;
+        private readonly AmbientDbContextLocator ambientDbContextLocator;
 
+        /// <summary>
+        ///     Setup Logic who is executed before every test
+        /// </summary>
         public AccountServiceTests()
         {
-            ambientDbContextLocator = new AmbientDbContextLocator();
+            ApplicationContext.DbPath = Path.Combine(AppContext.BaseDirectory, DatabaseConstants.DB_NAME);
+            Dispose();
+
             dbContextScopeFactory = new DbContextScopeFactory();
-        }
+            ambientDbContextLocator = new AmbientDbContextLocator();
 
-        #region GetAllAccounts
-
-        [Fact]
-        public async void GetAllAccounts_NoData_NoException()
-        {
-            // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var contactDataService = new AccountService(dbContextScopeFactory, repository);
-
-            // Act
-            var result = await contactDataService.GetAllAccounts();
-            var resultList = result.ToList();
-
-            // Assert
-            Assert.Equal(0, resultList.Count);
-        }
-
-        public async void GetAllAccounts_AllDataReturned()
-        {
-            // Arrange
-            var data = new List<AccountEntity>
+            using (dbContextScopeFactory.Create())
             {
-                new AccountEntity(),
-                new AccountEntity{IsExcluded = true},
-                new AccountEntity{IsOverdrawn = true},
-                new AccountEntity{Name = "Income"}
-            }.AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
-
-            // Act
-            var result = await accountService.GetAllAccounts();
-            var resultList = result.ToList();
-
-            // Assert
-            Assert.Equal(4, resultList.Count);
-            Assert.True(resultList[1].Data.IsExcluded);
-            Assert.True(resultList[2].Data.IsOverdrawn);
-            Assert.Equal("Income", resultList[3].Data.Name);
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
+            }
         }
 
-        #endregion
-
-        #region GetById
-
-        [Fact]
-        public async void GetById_NoData_NoException()
+        /// <summary>
+        ///     Cleanup logic who is executed after executign every test.
+        /// </summary>
+        public void Dispose()
         {
-            // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
-
-            // Act
-            var result = await accountService.GetById(3);
-
-            // Assert
-            Assert.Null(result.Data);
-        }
-
-        [Theory]
-        [InlineData(1, "Account1")]
-        [InlineData(2, "Account2")]
-        [InlineData(3, "Account3")]
-        public async void GetById_ReturnedCorrectly(int id, string expectedName)
-        {
-            // Arrange
-            var data = new List<AccountEntity>
+            if (File.Exists(ApplicationContext.DbPath))
             {
-                new AccountEntity{Id = 1, Name = "Account1"},
-                new AccountEntity{Id = 2, Name = "Account2"},
-                new AccountEntity{Id = 3, Name = "Account3"}
-            }.AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
-
-
-            // Act
-            var result = await accountService.GetById(id);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.Equal(expectedName, result.Data.Name);
+                File.Delete(ApplicationContext.DbPath);
+            }
         }
-
-        #endregion
-
-        #region GetAccountCount
-
+        
         [Fact]
-        public async void GetAccountCount_NoData_NoException()
+        public async void SaveAccount_AccountSavedAndLoaded()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
 
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
-
-            // Act
-            var result = await accountService.GetAccountCount();
-
-            // Assert
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public async void GetAccountCount_CorrectAmount()
-        {
-            // Arrange
-            var data = new List<AccountEntity>
+            var testEntry = new AccountEntity
             {
-                new AccountEntity(),
-                new AccountEntity(),
-                new AccountEntity()
-            }.AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+                Name = "Testtext"
+            };
 
             // Act
-            var result = await accountService.GetAccountCount();
+            await accountService.SaveAccount(new Account(testEntry));
 
             // Assert
-            Assert.Equal(3, result);
+            var loadedEntry = await accountService.GetById(testEntry.Id);
+            Assert.Equal(testEntry.Name, loadedEntry.Data.Name);
         }
-
-        #endregion
-
-        #region CheckIfNameAlreadyTaken
 
         [Fact]
-        public async void CheckIfNameAlreadyTaken_NoData_NoException()
+        public async void SaveAccount_AccountSavedIdSet()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
 
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
-
-            // Act
-            var result = await accountService.CheckIfNameAlreadyTaken("Name");
-
-            // Assert
-            Assert.False(result);
-        }
-
-        [Theory]
-        [InlineData("Income", true)]
-        [InlineData("Foo", false)]
-        public async void CheckIfNameAlreadyTaken_CorrectlyEvaluated(string nameToCheck, bool expectedResult)
-        {
-            // Arrange
-            var data = new List<AccountEntity>
+            var testEntry = new AccountEntity
             {
-                new AccountEntity{Name = "Income"}
-            }.AsQueryable();
-
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+                Name = "Testtext"
+            };
 
             // Act
-            var result = await accountService.CheckIfNameAlreadyTaken(nameToCheck);
+            await accountService.SaveAccount(new Account(testEntry));
 
             // Assert
-            Assert.Equal(expectedResult, result);
+            Assert.NotEqual(0, testEntry.Id);
         }
-
-        #endregion
-
-        #region GetExcludedAccounts
 
         [Fact]
-        public async void GetExcludedAccounts_NoData_NoException()
+        public async void SaveAccount_MultipleAccountSavedAndLoaded()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
 
-            var mockSet = new Mock<DbSet<AccountEntity>>();
-
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            var testEntry1 = new AccountEntity
+            {
+                Name = "Testtext"
+            };
+            var testEntry2 = new AccountEntity
+            {
+                Name = "aasdf"
+            };
 
             // Act
-            var result = await accountService.GetExcludedAccounts();
-            var resultList = result.ToList();
+            await accountService.SaveAccount(new Account(testEntry1));
+            await accountService.SaveAccount(new Account(testEntry2));
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            Assert.Equal(testEntry1.Name, (await accountService.GetById(testEntry1.Id)).Data.Name);
+            Assert.Equal(testEntry2.Name, (await accountService.GetById(testEntry2.Id)).Data.Name);
         }
-
-        #endregion
-
-        #region GetExcludedAccounts
 
         [Fact]
-        public async void GetNotExcludedAccounts_NoData_NoException()
+        public async void SaveAccount_AccountUpdatedCorrectly()
         {
             // Arrange
-            var data = new List<AccountEntity>().AsQueryable();
+            const string udpatedString = "new Account Name";
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
 
-            var mockSet = new Mock<DbSet<AccountEntity>>();
+            var testEntry = new AccountEntity
+            {
+                Name = "Testtext"
+            };
 
-            mockSet.As<IAsyncEnumerable<AccountEntity>>()
-                   .Setup(m => m.GetEnumerator())
-                   .Returns(new TestAsyncEnumerator<AccountEntity>(data.GetEnumerator()));
-
-            mockSet.As<IQueryable<AccountEntity>>()
-                   .Setup(m => m.Provider)
-                   .Returns(new TestAsyncQueryProvider<AccountEntity>(data.Provider));
-
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<AccountEntity>>().Setup(m => m.GetEnumerator()).Returns(() => data.GetEnumerator());
-
-            var contextOptions = new DbContextOptions<ApplicationContext>();
-            var mockContext = new Mock<ApplicationContext>(contextOptions);
-            mockContext.Setup(c => c.Set<AccountEntity>()).Returns(mockSet.Object);
-
-            var repository = new AccountRepository(ambientDbContextLocator);
-            var accountService = new AccountService(dbContextScopeFactory, repository);
+            await accountService.SaveAccount(new Account(testEntry));
+            testEntry.Name = udpatedString;
 
             // Act
-            var result = await accountService.GetNotExcludedAccounts();
-            var resultList = result.ToList();
+            await accountService.SaveAccount(new Account(testEntry));
 
             // Assert
-            Assert.Equal(0, resultList.Count);
+            var loadedEntry = await accountService.GetById(testEntry.Id);
+            Assert.Equal(udpatedString, loadedEntry.Data.Name);
+        }
+        
+        [Fact]
+        public async void Add_NewEntryWithoutName()
+        {
+            // Arrange
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
+
+            // Act // Assert
+            await Assert.ThrowsAsync<DbUpdateException>(async () => await accountService.SaveAccount(new Account(new AccountEntity())));
+            
         }
 
-        #endregion
+        [Fact]
+        public async void DeleteAccount_AccountDeleted()
+        {
+            // Arrange
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
+
+            var testEntry = new AccountEntity
+            {
+                Name = "Testtext"
+            };
+
+            await accountService.SaveAccount(new Account(testEntry));
+
+            // Act
+            await accountService.DeleteAccount(new Account(testEntry));
+
+            // Assert
+            Assert.Null(await accountService.GetById(testEntry.Id));
+        }
+
+
+        [Fact]
+        public async void DeleteAccount_RelatedChargedPaymentsRemoved()
+        {
+            // Arrange
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
+            var paymentService = new PaymentService(ambientDbContextLocator, dbContextScopeFactory);
+
+            var account = new Account(new AccountEntity
+            {
+                Name = "Testtext"
+            });
+
+            await accountService.SaveAccount(account);
+
+            var payment = new Payment(new PaymentEntity
+            {
+                Note = "Foo",
+                ChargedAccount = account.Data
+            });
+
+            // Act
+            await paymentService.SavePayments(payment);
+
+            Assert.Equal(1, MvxEnumerableExtensions.Count((await accountService.GetAllAccounts())));
+            Assert.Equal(1, MvxEnumerableExtensions.Count((await paymentService.GetPaymentsByAccountId(account.Data.Id))));
+           
+            await accountService.DeleteAccount(account);
+            
+            // Assert
+            Assert.False((await accountService.GetAllAccounts()).Any());
+            Assert.False((await paymentService.GetPaymentsByAccountId(account.Data.Id)).Any());
+        }
+
+
+        [Fact]
+        public async void DeleteAccount_RelatedTargetPaymentSetNull()
+        {
+            // Arrange
+            var accountService = new AccountService(ambientDbContextLocator, dbContextScopeFactory);
+            var paymentService = new PaymentService(ambientDbContextLocator, dbContextScopeFactory);
+
+            var chargedAccount = new Account(new AccountEntity
+            {
+                Name = "Charged"
+            });
+            var targetAccount = new Account(new AccountEntity
+            {
+                Name = "Target"
+            });
+
+            await accountService.SaveAccount(chargedAccount);
+            await accountService.SaveAccount(targetAccount);
+
+            var payment = new Payment(new PaymentEntity
+            {
+                Note = "Foo",
+                ChargedAccount = chargedAccount.Data,
+                TargetAccount = targetAccount.Data
+            });
+
+            // Act
+
+            await paymentService.SavePayments(payment);
+            
+            Assert.Equal(2, (await accountService.GetAllAccounts()).Count());
+            Assert.Single((await paymentService.GetPaymentsByAccountId(chargedAccount.Data.Id)));
+
+            await accountService.DeleteAccount(targetAccount);
+            
+            // Assert
+            var loadedPayment = await paymentService.GetById(payment.Data.Id);
+            Assert.Null(loadedPayment.Data.TargetAccount);
+            Assert.NotNull(loadedPayment.Data.ChargedAccount);
+        }
     }
 }

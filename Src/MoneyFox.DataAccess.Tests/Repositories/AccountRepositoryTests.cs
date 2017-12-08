@@ -233,7 +233,6 @@ namespace MoneyFox.DataAccess.Tests.Repositories
             var accountRepository = new AccountRepository(ambientDbContextLocator);
             var paymentRepository = new PaymentRepository(ambientDbContextLocator);
 
-
             var account = new AccountEntity
             {
                 Name = "Testtext"

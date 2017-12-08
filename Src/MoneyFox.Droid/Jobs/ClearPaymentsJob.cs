@@ -63,8 +63,7 @@ namespace MoneyFox.Droid.Jobs
             DataAccess.ApplicationContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
 
-            var paymentService = new PaymentService(new DbContextScopeFactory(),
-                                                    new AmbientDbContextLocator());
+            var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 
             var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
             var unclearedPayments = payments.ToList();
