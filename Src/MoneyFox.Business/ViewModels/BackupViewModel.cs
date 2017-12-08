@@ -34,6 +34,17 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
         }
 
+        #region Localizations
+
+        public string CreateBackupText => Strings.BackupViewModel_CreateBackupInformationLabel;
+        public string RestoreBackupText => Strings.BackupViewModel_RestoreBackupInformationLabel;
+
+        public string LoginButtonLabel => Strings.BackupViewModel_LoginLabel;
+        public string CreateBackupButtonLabel => Strings.BackupViewModel_CreateBackupLabel;
+        public string RestoreBackupButtonlabel => Strings.BackupViewModel_RestoreBackupLabel;
+
+        #endregion
+
         /// <summary>
         ///     Prepares the View when loaded.
         /// </summary>

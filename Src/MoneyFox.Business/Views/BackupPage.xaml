@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyFox.Business.Views.BackupPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="{Binding LoginButtonLabel}"  Command="{Binding LoginCommand}" />
+
+            <Label Text="{Binding CreateBackupText}"
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
+
+            <Label Text="{Binding RestoreBackupText}"
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="{Binding RestoreBackupButtonlabel}"  Command="{Binding RestoreCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

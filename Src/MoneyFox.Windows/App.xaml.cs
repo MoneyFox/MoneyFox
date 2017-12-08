@@ -99,6 +99,8 @@ namespace MoneyFox.Windows
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
 
+                Xamarin.Forms.Forms.Init(e);
+
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);

@@ -128,7 +128,6 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
-    <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
   </ItemGroup>
@@ -477,6 +476,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Auth">
       <Version>1.5.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>2.5.0.121934</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
