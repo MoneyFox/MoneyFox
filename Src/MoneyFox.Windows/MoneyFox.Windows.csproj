@@ -118,7 +118,6 @@
     <PRIResource Include="Strings\fr\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
     <PRIResource Include="Strings\es\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
