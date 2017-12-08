@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="DataServices\AccountServiceTests.cs" />
-    <Compile Remove="DataServices\CategoryServiceTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

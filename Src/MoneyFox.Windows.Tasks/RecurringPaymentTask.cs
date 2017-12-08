@@ -28,7 +28,7 @@ namespace MoneyFox.Windows.Tasks
 
                 await new RecurringPaymentManager(
                         new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
-                        new PaymentService(dbContextScopeFactory, ambientDbContextLocator))
+                        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
                     .CreatePaymentsUpToRecur();
             }
             catch (Exception ex)
