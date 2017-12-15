@@ -29,13 +29,6 @@
                          Text="{Binding SelectedAccount.Name,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox x:Uid="Iban"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         VerticalAlignment="Top"
-                         Header="IBAN"
-                         Text="{Binding SelectedAccount.Iban,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" />
                 <TextBox x:Uid="CurrentBalanceTextBox"
                          x:Name="TextBoxCurrentBalance"
                          Margin="{StaticResource SmallTitleContentMargin}"

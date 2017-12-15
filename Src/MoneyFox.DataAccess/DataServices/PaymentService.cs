@@ -67,8 +67,7 @@ namespace MoneyFox.DataAccess.DataServices
         /// <summary>
         ///     Creates a PaymentService object.
         /// </summary>
-        public PaymentService(IDbContextScopeFactory dbContextScopeFactory,
-                              IAmbientDbContextLocator ambientDbContextLocator)
+        public PaymentService(IAmbientDbContextLocator ambientDbContextLocator, IDbContextScopeFactory dbContextScopeFactory)
         {
             this.dbContextScopeFactory = dbContextScopeFactory;
             this.ambientDbContextLocator = ambientDbContextLocator;
@@ -142,11 +141,12 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    return new Payment(await dbContext.Payments.Include(x => x.RecurringPayment)
-                                                      .Include(x => x.ChargedAccount)
-                                                      .Include(x => x.TargetAccount)
-                                                      .Include(x => x.Category)
-                                                      .FirstAsync(x => x.Id == id));
+                    var payment = await dbContext.Payments.Include(x => x.RecurringPayment)
+                                                 .Include(x => x.ChargedAccount)
+                                                 .Include(x => x.TargetAccount)
+                                                 .Include(x => x.Category)
+                                                 .FirstAsync(x => x.Id == id);
+                    return payment == null ? null : new Payment(payment);
                 }
             }
         }

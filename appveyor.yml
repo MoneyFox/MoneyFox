@@ -9,11 +9,6 @@ init:
 
 install:
 - '"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"'
-- ps: |
-    $vsixPath = "$($env:USERPROFILE)\sqlite-uwp-3180000.vsix"
-    (New-Object Net.WebClient).DownloadFile('https://visualstudiogallery.msdn.microsoft.com/4913e7d5-96c9-4dde-a1a1-69820d615936/file/161586/16/sqlite-uwp-3180000.vsix', $vsixPath)
-    "`"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\VSIXInstaller.exe`" /q /a $vsixPath" | out-file ".\install-vsix.cmd" -Encoding ASCII
-    & .\install-vsix.cmd
 - ps: (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/appveyor/ci/master/scripts/hot-fixes/vs2017-uwp-scale-100-fix/Microsoft.AppxPackage.Targets', "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0\AppxPackage\Microsoft.AppxPackage.Targets")
     
 before_build:
@@ -29,3 +24,4 @@ test_script:
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
+  msbuild: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe

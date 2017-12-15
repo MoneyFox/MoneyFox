@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
@@ -11,7 +12,6 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
 #if !DEBUG
@@ -20,27 +20,28 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.Windows.Tasks;
 using MoneyFox.Windows.Views;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Tasks;
 
 namespace MoneyFox.Windows
 {
     /// <summary>
-    ///     Provides application-specific behavior to supplement the default Application class.
+    /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    public sealed partial class App
+    sealed partial class App : Application
     {
         /// <summary>
-        ///     Initializes the singleton application object.  This is the first line of authored code
-        ///     executed, and as such is the logical equivalent of main() or WinMain().
+        /// Initializes the singleton application object.  This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
@@ -56,21 +57,21 @@ namespace MoneyFox.Windows
             switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.System))
             {
                 case AppTheme.Dark:
-                RequestedTheme = ApplicationTheme.Dark;
-                break;
+                    RequestedTheme = ApplicationTheme.Dark;
+                    break;
 
                 case AppTheme.Light:
-                RequestedTheme = ApplicationTheme.Light;
-                break;
+                    RequestedTheme = ApplicationTheme.Light;
+                    break;
 
                 case AppTheme.System:
-                var uiSettings = new UISettings();
-                var color = uiSettings.GetColorValue(UIColorType.Background);
+                    var uiSettings = new UISettings();
+                    var color = uiSettings.GetColorValue(UIColorType.Background);
 
-                RequestedTheme = color == Color.FromArgb(255, 255, 255, 255)
-                    ? ApplicationTheme.Light
-                    : ApplicationTheme.Dark;
-                break;
+                    RequestedTheme = color == Color.FromArgb(255, 255, 255, 255)
+                        ? ApplicationTheme.Light
+                        : ApplicationTheme.Dark;
+                    break;
             }
         }
 
@@ -86,14 +87,14 @@ namespace MoneyFox.Windows
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                Window.Current.Content = new ShellPage { Language = ApplicationLanguages.Languages[0] };
-                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+                var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
 
-                var shell = (ShellPage)Window.Current.Content;
+                Window.Current.Content = mainView;
+                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(shell.Frame);
+                var setup = new Setup(mainView.MainFrame);
                 setup.Initialize();
 
                 var start = Mvx.Resolve<IMvxAppStart>();
@@ -105,7 +106,9 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
-                shell.ViewModel = Mvx.Resolve<ShellViewModel>();
+                mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
+
+                OverrideTitleBarColor();
 
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
@@ -116,10 +119,21 @@ namespace MoneyFox.Windows
                 await CallRateReminder();
             }
 
-            OverrideTitleBarColor();
-            
+            //OverrideTitleBarColor();
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private void OverrideTitleBarColor()
+        {
+            //draw into the title bar
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
+            //remove the solid-colored backgrounds behind the caption controls and system back button
+            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
         private async Task SetJumplist()
@@ -156,33 +170,33 @@ namespace MoneyFox.Windows
             await RatePopup.CheckRateReminderAsync();
         }
 
-        private void OverrideTitleBarColor()
-        {
-            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+        //private void OverrideTitleBarColor()
+        //{
+        //    var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
-            // set up our brushes
-            var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
-            var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
+        //    // set up our brushes
+        //    var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
+        //    var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
+        //    var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
 
-            // override colors!
-            if (bkgColor != null && appForegroundColor != null)
-            {
-                // If on a mobile device set the status bar
-                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-                {
-                    StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-                    StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
-                    StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-                }
+        //    // override colors!
+        //    if (bkgColor != null && appForegroundColor != null)
+        //    {
+        //        // If on a mobile device set the status bar
+        //        if (StatusBar.i)
+        //        {
+        //            StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
+        //            StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
+        //            StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
+        //        }
 
-                titleBar.BackgroundColor = backgroundColor?.Color;
-                titleBar.ButtonBackgroundColor = backgroundColor?.Color;
+        //        titleBar.BackgroundColor = backgroundColor?.Color;
+        //        titleBar.ButtonBackgroundColor = backgroundColor?.Color;
 
-                titleBar.ForegroundColor = Colors.White;
-                titleBar.ButtonForegroundColor = Colors.White;
-            }
-        }
+        //        titleBar.ForegroundColor = Colors.White;
+        //        titleBar.ButtonForegroundColor = Colors.White;
+        //    }
+        //}
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved

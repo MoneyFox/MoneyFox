@@ -1,34 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</ProjectGuid>
+    <ProjectGuid>{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoneyFox.Windows</RootNamespace>
     <AssemblyName>MoneyFox.Windows</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>MoneyFox.Windows_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>52DC80CF604610980500125140D2EC79B01A4AAF</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>MoneyFox.Windows_StoreKey.pfx</PackageCertificateKeyFile>
-    <ApplicationInsightsResourceId>/subscriptions/38a487ea-9b81-4df6-98c2-51f6ae419311/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MoneyManager.Windows</ApplicationInsightsResourceId>
+    <PackageCertificateThumbprint>5DB499ECE8173BE8C99FFC8DC5E8EA09CB3FB9FF</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>2BD393557073ED01CE890EA7BCA8FC74A2047C79</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>19B65101B5775C3CDCDF415C9CE5C0362B58683D</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
-    <UseDotNetNativeSharedAssemblyFrameworkPackage>true</UseDotNetNativeSharedAssemblyFrameworkPackage>
-    <ReleaseVersion>0.12.0.0</ReleaseVersion>
-    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -40,8 +33,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <DocumentationFile>bin\x86\Debug\MoneyFox.Windows.XML</DocumentationFile>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -54,7 +46,6 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -89,9 +80,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <DocumentationFile>bin\x64\Debug\MoneyFox.Windows.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>..\..\Settings\MoneyFox.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -105,10 +93,11 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="MoneyFox.Windows_StoreKey.pfx" />
-    <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <PRIResource Include="Strings\fil\Resources.resw" />
     <PRIResource Include="Strings\zh-tw\Resources.resw" />
     <PRIResource Include="Strings\tr\Resources.resw" />
@@ -118,7 +107,6 @@
     <PRIResource Include="Strings\fr\Resources.resw" />
     <PRIResource Include="Strings\it\Resources.resw" />
     <PRIResource Include="Strings\es\Resources.resw" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
@@ -129,6 +117,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NavMenuListView.cs" />
+    <Compile Include="Controls\WarningListView.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
+    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
+    <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
+    <Compile Include="Converter\PaymentHeaderConverter.cs" />
+    <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\SelectedAccountConverter.cs" />
+    <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeCategoryListViewModel.cs" />
@@ -136,36 +137,21 @@
     <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="Src\BackgroundTaskManager.cs" />
-    <Compile Include="Controls\WarningListView.cs" />
-    <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
-    <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
-    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
-    <Compile Include="Converter\PaymentHeaderConverter.cs" />
-    <Compile Include="Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="Converter\SelectedAccountConverter.cs" />
-    <Compile Include="Converter\SelectedConverter.cs" />
-    <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
     <Compile Include="Services\ModifyDialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="ShellNavigationItem.cs" />
-    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\Tile.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\TileManager.cs" />
-    <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
+    <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -187,6 +173,9 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
     </Compile>
@@ -204,9 +193,6 @@
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ShellPage.xaml.cs">
-      <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
@@ -244,13 +230,25 @@
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\applylogo.png" />
-    <Content Include="Assets\BadgeLogo.scale-100.png" />
-    <Content Include="Assets\BadgeLogo.scale-125.png" />
-    <Content Include="Assets\BadgeLogo.scale-150.png" />
-    <Content Include="Assets\BadgeLogo.scale-200.png" />
-    <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\Close.png" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <PRIResource Include="Strings\bg\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\es\Resources.resw" />
+    <PRIResource Include="Strings\fr\Resources.resw" />
+    <PRIResource Include="Strings\it\Resources.resw" />
+    <PRIResource Include="Strings\nl\Resources.resw" />
+    <PRIResource Include="Strings\pt-br\Resources.resw" />
+    <PRIResource Include="Strings\pt\Resources.resw" />
+    <PRIResource Include="Strings\ru\Resources.resw" />
+    <PRIResource Include="Strings\tr\Resources.resw" />
+    <PRIResource Include="Strings\zh-cn\Resources.resw" />
+    <PRIResource Include="Strings\zh-tw\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\ApplyLogo.png" />
     <Content Include="Assets\dark\done.png" />
     <Content Include="Assets\dark\filter.png" />
     <Content Include="Assets\dark\internet.png" />
@@ -259,6 +257,11 @@
     <Content Include="Assets\dark\statistic.png" />
     <Content Include="Assets\dark\twitter.png" />
     <Content Include="Assets\IncomeTileIcon.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\light\done.png" />
     <Content Include="Assets\light\filter.png" />
     <Content Include="Assets\light\internet.png" />
@@ -266,36 +269,38 @@
     <Content Include="Assets\light\repeat.png" />
     <Content Include="Assets\light\statistic.png" />
     <Content Include="Assets\light\twitter.png" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
     <Content Include="Assets\SpendingTileIcon.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-125.png" />
     <Content Include="Assets\Square150x150Logo.scale-150.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-400.png" />
     <Content Include="Assets\Square310x310Logo.scale-100.png" />
     <Content Include="Assets\Square310x310Logo.scale-125.png" />
     <Content Include="Assets\Square310x310Logo.scale-150.png" />
     <Content Include="Assets\Square310x310Logo.scale-200.png" />
     <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
     <Content Include="Assets\Square44x44Logo.scale-100.png" />
     <Content Include="Assets\Square44x44Logo.scale-125.png" />
     <Content Include="Assets\Square44x44Logo.scale-150.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-400.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
     <Content Include="Assets\Square71x71Logo.scale-100.png" />
     <Content Include="Assets\Square71x71Logo.scale-125.png" />
     <Content Include="Assets\Square71x71Logo.scale-150.png" />
@@ -310,20 +315,22 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="MoneyFox.Windows_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Properties\DesignTimeResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Style\AppStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -339,12 +346,10 @@
     <Page Include="Style\ControlStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Style\TextStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Style\_FontSizes.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -382,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ModifyAccountView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -403,10 +412,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -456,47 +461,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
-      <Name>Microsoft Engagement Framework</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
-      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsDesktop, Version=10.0.15063.0">
-      <Name>Windows Desktop Extensions for the UWP</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
-      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
-      <Name>MoneyFox.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600fc746-6968-489f-9471-a37a6d312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
-      <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
-      <Name>MoneyFox.Windows.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
-      <Project>{2b1c7af2-7208-4d84-9bd8-93c13fe373da}</Project>
-      <Name>MoneyFox.Windows.Tasks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.6.2</Version>
     </PackageReference>
@@ -516,10 +480,10 @@
       <Version>0.17.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>1.1.4</Version>
+      <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.4</Version>
+      <Version>6.0.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETNative.Analyzer">
       <Version>1.0.0</Version>
@@ -536,35 +500,35 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
       <Version>2.0.0</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>2.0.0</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Core">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Platform">
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Color">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.ResxLocalization">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
-      <Version>5.3.0</Version>
+      <Version>5.5.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>
@@ -582,8 +546,45 @@
       <Version>3.0.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+      <Project>{600fc746-6968-489f-9471-a37a6d312812}</Project>
+      <Name>MoneyFox.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
+      <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
+      <Name>MoneyFox.Windows.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
+      <Project>{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}</Project>
+      <Name>MoneyFox.Windows.Tasks</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
+      <Name>Microsoft Engagement Framework</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

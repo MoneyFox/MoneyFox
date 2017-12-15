@@ -11,8 +11,8 @@
     <AssemblyName>MoneyFox.Windows.Tests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -136,7 +136,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
-      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
+      <Project>{99a1c63a-cdf8-43a9-bdc1-835526ce6b1f}</Project>
       <Name>MoneyFox.Windows</Name>
     </ProjectReference>
   </ItemGroup>
@@ -151,7 +151,7 @@
       <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.4</Version>
+      <Version>6.0.4</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>5.3.0</Version>
