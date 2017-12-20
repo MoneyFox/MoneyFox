@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
     
     <!--Common texts-->
-    <Style x:Key="PageTitleStyle"
+    <Style x:Key="UwpPageTitleStyle"
            TargetType="TextBlock">
         <Setter Property="VerticalAlignment"
                 Value="Center" />

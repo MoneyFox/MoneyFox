@@ -47,7 +47,7 @@
                    x:Uid="CategorySummaryStatisticTitle"
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
