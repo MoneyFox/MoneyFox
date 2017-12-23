@@ -36,7 +36,7 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="SelectCategoryTitle"
                    Text="Select Category"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"/>
 

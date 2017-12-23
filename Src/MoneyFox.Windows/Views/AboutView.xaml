@@ -19,7 +19,7 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="AboutTitle"
                    Text="About"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"
                       HorizontalAlignment="Center"

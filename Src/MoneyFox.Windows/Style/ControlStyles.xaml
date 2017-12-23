@@ -4,7 +4,7 @@
 
   <DataTemplate x:Key="MyHeader">
     <TextBlock Text="{Binding}"
-               Style="{StaticResource PageTitleStyle}"
+               Style="{StaticResource UwpPageTitleStyle}"
                Padding="0,10,0,10"
                Margin="0,0,-10,0"/>
   </DataTemplate>

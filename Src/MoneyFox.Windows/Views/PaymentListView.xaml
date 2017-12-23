@@ -36,7 +36,7 @@
 
         <TextBlock x:Name="TitlePage"
                    Text="{Binding Title}"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1"
               Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"
