@@ -43,7 +43,7 @@ namespace MoneyFox.Droid.Dialogs
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
-            EnsureBindingContextSet(savedInstanceState);
+            //EnsureBindingContextSet(savedInstanceState);
 
             var dialog = new Dialog(Activity);
             dialog.SetContentView(Resource.Layout.dialog_select_date_range);

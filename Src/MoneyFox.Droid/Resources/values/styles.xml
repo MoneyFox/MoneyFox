@@ -1,9 +1,4 @@
 ﻿<resources>
-
-  <!-- Application theme -->
-  <style name="AppTheme" parent="AppTheme.Base">
-  </style>
-
   <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -20,6 +15,12 @@
     <item name="android:windowBackground">@color/light_gray</item>
 
     <item name="android:textCursorDrawable">@null</item>
+  </style>
+
+
+  <!-- Application theme -->
+  <style name="AppTheme" parent="AppTheme.Base">
+
   </style>
 
   <style name="AppTheme.Login" parent="AppTheme.Base">
