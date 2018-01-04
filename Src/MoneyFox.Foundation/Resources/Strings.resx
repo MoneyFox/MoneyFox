@@ -646,4 +646,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login failed!</value>
   </data>
+  <data name="ClearPaymentFailedMessage" xml:space="preserve">
+    <value>Clearing payments failed!</value>
+  </data>
+  <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
+    <value>Failed to create recurring payments!</value>
+  </data>
 </root>

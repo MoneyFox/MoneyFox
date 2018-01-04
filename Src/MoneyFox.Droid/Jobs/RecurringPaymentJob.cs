@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Android.App;
@@ -58,21 +59,28 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task CheckRecurringPayments(JobParameters args)
         {
-            Debug.WriteLine("RecurringPayment Job started.");
-            DataAccess.ApplicationContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
+            try
+            {
+                Debug.WriteLine("RecurringPayment Job started.");
+                DataAccess.ApplicationContext.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                                 DatabaseConstants.DB_NAME);
 
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-            var dbContextScopeFactory = new DbContextScopeFactory();
+                var ambientDbContextLocator = new AmbientDbContextLocator();
+                var dbContextScopeFactory = new DbContextScopeFactory();
 
-            await new RecurringPaymentManager(
-                    new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
-                    new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
-                .CreatePaymentsUpToRecur();
+                await new RecurringPaymentManager(
+                        new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
+                        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
+                    .CreatePaymentsUpToRecur();
 
-            Debug.WriteLine("RecurringPayment Job finished.");
-            Toast.MakeText(this, Strings.RecurringPaymentsCreatedMessages, ToastLength.Long);
-            JobFinished(args, false);
+                Debug.WriteLine("RecurringPayment Job finished.");
+                JobFinished(args, false);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+            }
         }
 
         /// <summary>
