@@ -70,8 +70,9 @@
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
-
+                          x:Name="PaymentListView"
                           SelectionMode="None"
+                          Loaded="PaymentListView_OnLoaded"
                           Background="Transparent">
 
                     <ListView.GroupStyle>
