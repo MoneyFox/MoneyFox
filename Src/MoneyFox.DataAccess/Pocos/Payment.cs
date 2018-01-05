@@ -37,7 +37,7 @@ namespace MoneyFox.DataAccess.Pocos
         public void ClearPayment()
         {
             if (Data.IsCleared) return;
-            Data.IsCleared = Data.Date <= DateTime.Now;
+            Data.IsCleared = Data.Date.Date <= DateTime.Now.Date;
         }
     }
 }
