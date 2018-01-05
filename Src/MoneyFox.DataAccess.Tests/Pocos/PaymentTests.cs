@@ -10,7 +10,7 @@ namespace MoneyFox.DataAccess.Tests.Pocos
         [InlineData(-1, true)]
         [InlineData(0, true)]
         [InlineData(1, false)]
-        public void ClearPayment(int days, bool expectedResult)
+        public void ClearPayment_WithoutTimestamps(int days, bool expectedResult)
         {
             // Arrange 
             var payment = new Payment {Data = {Date = DateTime.Now.AddDays(days)}};
@@ -20,6 +20,22 @@ namespace MoneyFox.DataAccess.Tests.Pocos
 
             // Assert
             Assert.Equal(expectedResult, payment.Data.IsCleared);
+        }
+
+        [Theory]
+        [InlineData(-120)]
+        [InlineData(0)]
+        [InlineData(120)]
+        public void ClearPayment_WithDifferentTimeStamps(int minutes)
+        {
+            // Arrange 
+            var payment = new Payment { Data = { Date = DateTime.Now.AddMinutes(minutes) } };
+
+            // Act
+            payment.ClearPayment();
+
+            // Assert
+            Assert.True(payment.Data.IsCleared);
         }
 
         [Fact]
