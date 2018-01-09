@@ -66,7 +66,7 @@ namespace MoneyFox.Droid.Jobs
             var dbContextScopeFactory = new DbContextScopeFactory();
 
             await new RecurringPaymentManager(
-                    new RecurringPaymentService(dbContextScopeFactory, ambientDbContextLocator),
+                    new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
                     new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
                 .CreatePaymentsUpToRecur();
 
