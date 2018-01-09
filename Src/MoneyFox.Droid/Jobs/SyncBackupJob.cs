@@ -7,7 +7,6 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Cheesebaron.MvxPlugins.Settings.Droid;
-using MoneyFox.Business;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.Droid.Activities;
@@ -77,12 +76,11 @@ namespace MoneyFox.Droid.Jobs
                                         new ConnectivityImplementation())
                     .DownloadBackup();
 
-                Toast.MakeText(this, Strings.BackupSyncedSuccessfullyMessage, ToastLength.Long);
                 JobFinished(args, false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(this, Strings.BackupSyncFailedMessage, ToastLength.Long);
+                Debug.Write(ex);
             }
         }
 

@@ -220,9 +220,6 @@
     <AndroidResource Include="Resources\values-ru\strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values-v21\styles.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\values-zh-rCN\strings.xml" />
   </ItemGroup>
   <ItemGroup>
