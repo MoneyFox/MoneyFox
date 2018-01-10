@@ -395,58 +395,58 @@
       <Version>3.0.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Binding">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Core">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.Core.UI">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.Core.Utils">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.Design">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.Fragment">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.V7.Preference">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platform">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Color">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.ResxLocalization">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
-      <Version>5.5.2</Version>
+      <Version>5.6.3</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>
