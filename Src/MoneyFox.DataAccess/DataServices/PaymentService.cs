@@ -83,6 +83,7 @@ namespace MoneyFox.DataAccess.DataServices
                     var query = dbContext.Payments
                         .Include(x => x.ChargedAccount)
                         .Include(x => x.TargetAccount)
+                        .Include(x => x.RecurringPayment)
                         .AreNotCleared()
                         .HasDateSmallerEqualsThan(enddate);
 

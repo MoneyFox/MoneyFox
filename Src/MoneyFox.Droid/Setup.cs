@@ -7,7 +7,6 @@ using MoneyFox.Business;
 using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.Bindings.Target.Construction;
@@ -72,8 +71,5 @@ namespace MoneyFox.Droid
             Strings.Culture = new Localize().GetCurrentCultureInfo();
             return new App();
         }
-
-        /// <inheritdoc />
-        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }

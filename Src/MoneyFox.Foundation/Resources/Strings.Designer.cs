@@ -10,7 +10,6 @@
 
 namespace MoneyFox.Foundation.Resources {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -40,7 +39,7 @@ namespace MoneyFox.Foundation.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Foundation.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyFox.Foundation.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -586,11 +585,29 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clearing payments failed!.
+        /// </summary>
+        public static string ClearPaymentFailedMessage {
+            get {
+                return ResourceManager.GetString("ClearPaymentFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finished clearing your payments..
         /// </summary>
         public static string ClearPaymentFinishedMessage {
             get {
                 return ResourceManager.GetString("ClearPaymentFinishedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create recurring payments!.
+        /// </summary>
+        public static string CreateRecurringPaymentFailedMessage {
+            get {
+                return ResourceManager.GetString("CreateRecurringPaymentFailedMessage", resourceCulture);
             }
         }
         
@@ -924,6 +941,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string LoadingLabel {
             get {
                 return ResourceManager.GetString("LoadingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t log you in. Please contact us if this issue persists..
+        /// </summary>
+        public static string LoginFailedMessage {
+            get {
+                return ResourceManager.GetString("LoginFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed!.
+        /// </summary>
+        public static string LoginFailedTitle {
+            get {
+                return ResourceManager.GetString("LoginFailedTitle", resourceCulture);
             }
         }
         
