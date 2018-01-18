@@ -15,7 +15,7 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class LoginView
     {
-        private readonly ShellPage shell;
+        private readonly MainView shell;
 
         /// <summary>
         ///     Constructor
@@ -23,7 +23,7 @@ namespace MoneyFox.Windows.Views
         public LoginView()
         {
             InitializeComponent();
-            shell = Window.Current.Content as ShellPage;
+            shell = Window.Current.Content as MainView;
             shell?.SetLoginView();
             Loaded += HideUnusedButtons;
         }

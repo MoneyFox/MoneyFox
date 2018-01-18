@@ -162,6 +162,12 @@ namespace MoneyFox.Business.ViewModels
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
+            catch (Exception)
+            {
+                await dialogService.ShowMessage(Strings.LoginFailedTitle,
+                                                Strings.LoginFailedMessage);
+
+            }
             await Loaded();
         }
 
