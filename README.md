@@ -25,7 +25,7 @@ Windows (please send me your Microsoft Account that I can give you access to the
 
 ### Contribution
 
-Head over [here](https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
+Head over [here](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
 
 ### Translations
 
