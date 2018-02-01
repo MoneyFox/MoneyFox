@@ -23,14 +23,14 @@ Windows (please send me your Microsoft Account that I can give you access to the
 
 ### Contribution
 
-Head over [here](https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
+Head over [here](https://github.com/MoneyFox/MoneyFox/blob/master/CONTRIBUTING.md)
 
 ### Translations
 
 Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
 ### Code of conduct
-We act under the [Contributor Covenant](http://contributor-covenant.org/version/1/4/)
+We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
 
 ### Tools
 We use Visual Studio 2017 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
