@@ -81,6 +81,7 @@ namespace MoneyFox.DataAccess.DataServices
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
                     var query = dbContext.Payments
+                        .Include(x => x.Category)
                         .Include(x => x.ChargedAccount)
                         .Include(x => x.TargetAccount)
                         .Include(x => x.RecurringPayment)
