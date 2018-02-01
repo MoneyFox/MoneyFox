@@ -1,5 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/kvde5325bat7e8bu/branch/master?svg=true)](https://ci.appveyor.com/project/NPadrutt/moneyfox/branch/master)
-
 ## Money Fox
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
