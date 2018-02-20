@@ -18,17 +18,11 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             local:MvxLang="Text WelcomeLabel" />
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <EditText
-                android:id="@+id/edit_text_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                local:MvxLang="Text PasswordLabel" />
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textPassword" />
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
