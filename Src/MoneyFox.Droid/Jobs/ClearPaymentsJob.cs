@@ -59,24 +59,31 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task ClearPayments(JobParameters args)
         {
-            Debug.WriteLine("ClearPayments Job started");
-            DataAccess.ApplicationContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DatabaseConstants.DB_NAME);
-
-            var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-
-            var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-            var unclearedPayments = payments.ToList();
-
-            if (unclearedPayments.Any())
+            try
             {
-                Debug.WriteLine("Payments for clearing found.");
-                await paymentService.SavePayments(unclearedPayments.ToArray());
-            }
+                Debug.WriteLine("ClearPayments Job started");
+                DataAccess.ApplicationContext.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                                 DatabaseConstants.DB_NAME);
 
-            Toast.MakeText(this, Strings.ClearPaymentFinishedMessage, ToastLength.Long);
-            Debug.WriteLine("ClearPayments Job finished.");
-            JobFinished(args, false);
+                var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+
+                var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+                var unclearedPayments = payments.ToList();
+
+                if (unclearedPayments.Any())
+                {
+                    Debug.WriteLine("Payments for clearing found.");
+                    await paymentService.SavePayments(unclearedPayments.ToArray());
+                }
+
+                Debug.WriteLine("ClearPayments Job finished.");
+                JobFinished(args, false);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+            }
         }
 
         /// <summary>

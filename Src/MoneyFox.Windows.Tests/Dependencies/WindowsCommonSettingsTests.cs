@@ -1,25 +1,24 @@
 ﻿using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Xunit;
 
 namespace MoneyFox.Windows.Tests.Dependencies
 {
-    [TestClass]
     public class WindowsCommonSettingsTests
     {
-        [TestMethod]
+        [Fact]
         public void Ctor()
         {
             var settings = new WindowsUwpSettings();
-            Assert.IsNotNull(settings);
+            Assert.NotNull(settings);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_NoValue_ReturnDefault()
         {
-            Assert.AreEqual(true, new WindowsUwpSettings().GetValue("Fooo", true));
+            Assert.True(new WindowsUwpSettings().GetValue("Fooo", true));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetValues_HasValue_ReturnValue()
         {
             var key = "Foo";
@@ -28,7 +27,7 @@ namespace MoneyFox.Windows.Tests.Dependencies
             var settings = new WindowsUwpSettings();
             settings.AddOrUpdateValue(key, value);
 
-            Assert.AreEqual(value, settings.GetValue(key, "123"));
+            Assert.Equal(value, settings.GetValue(key, "123"));
         }
     }
 }

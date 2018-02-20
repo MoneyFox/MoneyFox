@@ -640,4 +640,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Microsoft Passport is not enabled on this device. 
     Please go to settings and enable it!</value>
   </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>We couldn't log you in. Please contact us if this issue persists.</value>
+  </data>
+  <data name="LoginFailedTitle" xml:space="preserve">
+    <value>Login failed!</value>
+  </data>
+  <data name="ClearPaymentFailedMessage" xml:space="preserve">
+    <value>Clearing payments failed!</value>
+  </data>
+  <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
+    <value>Failed to create recurring payments!</value>
+  </data>
 </root>
