@@ -17,6 +17,6 @@ namespace MoneyFox.Windows.Converter
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
-            => (bool) value ? Visibility.Collapsed : Visibility.Visible;
+            => throw new NotImplementedException();
     }
 }

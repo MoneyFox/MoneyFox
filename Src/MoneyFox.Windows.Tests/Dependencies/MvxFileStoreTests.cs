@@ -1,12 +1,11 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MvvmCross.Plugins.File.Uwp;
+﻿using MvvmCross.Plugins.File.Uwp;
+using Xunit;
 
 namespace MoneyFox.Windows.Tests.Dependencies
 {
-    [TestClass]
     public class MvxFileStoreTests
     {
-        [TestMethod]
+        [Fact]
         public void CreateDeleteFile_FileCreatedAndDeleted()
         {
             const string filename = "TestFile";
@@ -14,11 +13,11 @@ namespace MoneyFox.Windows.Tests.Dependencies
             var fileStore = new MvxWindowsCommonFileStore();
             fileStore.WriteFile(filename, "hatschi");
 
-            Assert.IsTrue(fileStore.Exists(filename));
+            Assert.True(fileStore.Exists(filename));
 
             fileStore.DeleteFile(filename);
 
-            Assert.IsFalse(fileStore.Exists(filename));
+            Assert.False(fileStore.Exists(filename));
         }
     }
 }
