@@ -29,10 +29,10 @@ namespace MoneyFox.DataAccess.DataServices
         /// <summary>
         ///     Constructor
         /// </summary>
-        public RecurringPaymentService(IDbContextScopeFactory dbContextScopeFactory, IAmbientDbContextLocator ambientDbContextLocator)
+        public RecurringPaymentService(IAmbientDbContextLocator ambientDbContextLocator, IDbContextScopeFactory dbContextScopeFactory)
         {
-            this.dbContextScopeFactory = dbContextScopeFactory;
             this.ambientDbContextLocator = ambientDbContextLocator;
+            this.dbContextScopeFactory = dbContextScopeFactory;
         }
 
         /// <inheritdoc />

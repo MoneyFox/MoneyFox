@@ -24,4 +24,3 @@ test_script:
 
 environment:
   JavaSdkDirectory: C:\Program Files (x86)\Java\jdk1.8.0
-  msbuild: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe

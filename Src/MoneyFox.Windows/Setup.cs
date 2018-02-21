@@ -49,7 +49,6 @@ namespace MoneyFox.Windows
         {
             var cb = new ContainerBuilder();
 
-            cb.RegisterModule<BusinessModule>();
             cb.RegisterModule<WindowsModule>();
 
             return new AutofacMvxIocProvider(cb.Build());

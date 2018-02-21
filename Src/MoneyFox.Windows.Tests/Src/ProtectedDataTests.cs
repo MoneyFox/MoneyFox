@@ -1,11 +1,10 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Xunit;
 
 namespace MoneyFox.Windows.Tests
 {
-    [TestClass]
     public class ProtectedDataTests
     {
-        [TestMethod]
+        [Fact]
         public void ProtectUnprotect_TestString_CorrectlyWrittenAndRead()
         {
             const string key = "TestKey";
@@ -14,10 +13,10 @@ namespace MoneyFox.Windows.Tests
             var protectedData = new ProtectedData();
             protectedData.Protect(key, value);
 
-            Assert.AreEqual(value, protectedData.Unprotect(key));
+            Assert.Equal(value, protectedData.Unprotect(key));
         }
 
-        [TestMethod]
+        [Fact]
         public void ProtectUnprotect_TestStringSpecialChars_CorrectlyWrittenAndRead()
         {
             const string key = "TestKey";
@@ -26,10 +25,10 @@ namespace MoneyFox.Windows.Tests
             var protectedData = new ProtectedData();
             protectedData.Protect(key, value);
 
-            Assert.AreEqual(value, protectedData.Unprotect(key));
+            Assert.Equal(value, protectedData.Unprotect(key));
         }
 
-        [TestMethod]
+        [Fact]
         public void ProtectUnprotect_KeySpecialChars_CorrectlyWrittenAndRead()
         {
             const string key = "/*ç%\"*%&/";
@@ -38,10 +37,10 @@ namespace MoneyFox.Windows.Tests
             var protectedData = new ProtectedData();
             protectedData.Protect(key, value);
 
-            Assert.AreEqual(value, protectedData.Unprotect(key));
+            Assert.Equal(value, protectedData.Unprotect(key));
         }
 
-        [TestMethod]
+        [Fact]
         public void ProtectDelete_TestString_CorrectlyWrittenAndDeleted()
         {
             const string key = "TestKey";
@@ -50,11 +49,11 @@ namespace MoneyFox.Windows.Tests
             var protectedData = new ProtectedData();
             protectedData.Protect(key, value);
 
-            Assert.AreEqual(value, protectedData.Unprotect(key));
+            Assert.Equal(value, protectedData.Unprotect(key));
 
             protectedData.Remove(key);
             
-            Assert.IsNull(protectedData.Unprotect(key));
+            Assert.Null(protectedData.Unprotect(key));
         }
     }
 }
