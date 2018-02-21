@@ -3,16 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Business.Views.BackupPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="MainLayout">
             <Button Text="{Binding LoginButtonLabel}"  Command="{Binding LoginCommand}" />
 
             <Label Text="{Binding CreateBackupText}"
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
+            <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
 
-            <Label Text="{Binding RestoreBackupText}"
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="{Binding RestoreBackupButtonlabel}"  Command="{Binding RestoreCommand}" />
+            <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
+
+            <Grid HeightRequest="38">
+                <Button  Text="{Binding RestoreBackupButtonlabel}" Command="{Binding RestoreCommand}" />
+                <ActivityIndicator Color="LightBlue" IsRunning="{Binding IsLoadingBackupAvailability}" WidthRequest="50" VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding LastBackupTimeStamp}" HorizontalOptions="Start" />
+                <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
