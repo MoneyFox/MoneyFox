@@ -13,7 +13,7 @@ namespace MoneyFox.Droid
                 var netLanguage = androidLocale.ToString().Replace("_", "-"); // turns pt_BR into pt-BR
                 return new CultureInfo(netLanguage);
             }
-            catch(FormatNotFoundException ex)
+            catch(CultureNotFoundException)
             {
                 return new CultureInfo("en");
             }
