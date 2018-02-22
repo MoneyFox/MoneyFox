@@ -7,9 +7,16 @@ namespace MoneyFox.Droid
     {
         public CultureInfo GetCurrentCultureInfo()
         {
-            var androidLocale = Locale.Default;
-            var netLanguage = androidLocale.ToString().Replace("_", "-"); // turns pt_BR into pt-BR
-            return new CultureInfo(netLanguage);
+            try
+            {
+                var androidLocale = Locale.Default;
+                var netLanguage = androidLocale.ToString().Replace("_", "-"); // turns pt_BR into pt-BR
+                return new CultureInfo(netLanguage);
+            }
+            catch(FormatNotFoundException ex)
+            {
+                return new CultureInfo("en");
+            }
         }
     }
 }
