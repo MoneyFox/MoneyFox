@@ -350,70 +350,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
-        /// </summary>
-        public static string BackupViewModel_CreateBackupInformationLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.CreateBackupInformationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create Backup.
-        /// </summary>
-        public static string BackupViewModel_CreateBackupLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.CreateBackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last Backup created at:.
-        /// </summary>
-        public static string BackupViewModel_LastBackupDateLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.LastBackupDateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Login.
-        /// </summary>
-        public static string BackupViewModel_LoginLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.LoginLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Logout.
-        /// </summary>
-        public static string BackupViewModel_LogoutLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.LogoutLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
-        ///WARNING: Local changes you made meanwhile will be lost!.
-        /// </summary>
-        public static string BackupViewModel_RestoreBackupInformationLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.RestoreBackupInformationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restore Backup.
-        /// </summary>
-        public static string BackupViewModel_RestoreBackupLabel {
-            get {
-                return ResourceManager.GetString("BackupViewModel.RestoreBackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
@@ -599,6 +535,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string ClearPaymentFinishedMessage {
             get {
                 return ResourceManager.GetString("ClearPaymentFinishedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
+        /// </summary>
+        public static string CreateBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("CreateBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Backup.
+        /// </summary>
+        public static string CreateBackupLabel {
+            get {
+                return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
             }
         }
         
@@ -936,6 +890,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Backup created at:.
+        /// </summary>
+        public static string LastBackupDateLabel {
+            get {
+                return ResourceManager.GetString("LastBackupDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string LoadingLabel {
@@ -965,6 +928,15 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
+        public static string LoginLabel {
+            get {
+                return ResourceManager.GetString("LoginLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
         public static string LoginViewModel_LoginLabel {
             get {
                 return ResourceManager.GetString("LoginViewModel.LoginLabel", resourceCulture);
@@ -986,6 +958,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string LoginViewModel_WelcomeLabel {
             get {
                 return ResourceManager.GetString("LoginViewModel.WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string LogoutLabel {
+            get {
+                return ResourceManager.GetString("LogoutLabel", resourceCulture);
             }
         }
         
@@ -1420,6 +1401,25 @@ namespace MoneyFox.Foundation.Resources {
         public static string RecurringPaymentsCreatedMessages {
             get {
                 return ResourceManager.GetString("RecurringPaymentsCreatedMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
+        ///WARNING: Local changes you made meanwhile will be lost!.
+        /// </summary>
+        public static string RestoreBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("RestoreBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Backup.
+        /// </summary>
+        public static string RestoreBackupLabel {
+            get {
+                return ResourceManager.GetString("RestoreBackupLabel", resourceCulture);
             }
         }
         

@@ -8,7 +8,6 @@ using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Platform.Plugins;
-using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
@@ -68,7 +67,6 @@ namespace MoneyFox.Droid
         /// <inheritdoc />
         protected override IMvxApplication CreateApp()
         {
-            Strings.Culture = new Localize().GetCurrentCultureInfo();
             return new App();
         }
     }

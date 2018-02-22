@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
@@ -10,7 +11,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Core.Navigation;
-using Ploeh.AutoFixture;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -38,12 +38,12 @@ namespace MoneyFox.Business.Tests.ViewModels
                 Data =
                 {
                     Id = 1,
-                    Name = "Test AccountViewModel"
+                    Name = name1
                 }
             };
             var accountViewModel = new AccountViewModel(account)
             {
-                Name = "Test AccountViewModel"
+                Name = name2
             };
 
             accountList.Add(account);
@@ -62,7 +62,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.SaveCommand.Execute();
 
             // Assert
-            Assert.Equal(1, accountList.Count);
+            Assert.Single(accountList);
         }
 
         [Theory]
@@ -206,7 +206,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.SaveCommand.Execute();
 
             // Assert
-            Assert.Equal(1, accountList.Count);
+            Assert.Single(accountList);
         }
 
         [Fact]

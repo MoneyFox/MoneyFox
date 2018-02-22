@@ -36,12 +36,14 @@ namespace MoneyFox.Business.ViewModels
 
         #region Localizations
 
-        public string CreateBackupText => Strings.BackupViewModel_CreateBackupInformationLabel;
-        public string RestoreBackupText => Strings.BackupViewModel_RestoreBackupInformationLabel;
+        public string CreateBackupText => Strings.CreateBackupInformationLabel;
+        public string RestoreBackupText => Strings.RestoreBackupInformationLabel;
 
-        public string LoginButtonLabel => Strings.BackupViewModel_LoginLabel;
-        public string CreateBackupButtonLabel => Strings.BackupViewModel_CreateBackupLabel;
-        public string RestoreBackupButtonlabel => Strings.BackupViewModel_RestoreBackupLabel;
+        public string LoginButtonLabel => Strings.LoginLabel;
+        public string CreateBackupButtonLabel => Strings.CreateBackupLabel;
+        public string RestoreBackupButtonlabel => Strings.RestoreBackupLabel;
+
+        public string LastBackupTimeStamp => Strings.LastBackupDateLabel;
 
         #endregion
 
