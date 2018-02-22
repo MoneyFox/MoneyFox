@@ -118,324 +118,322 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>Over</value>
+    <value>Tentang</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Akun</value>
   </data>
   <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Tambahkan Akun</value>
   </data>
   <data name="AddAccountText.Text" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Tambahkan Akun</value>
   </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Tambahkan Akun</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>New Category</value>
+    <value>Kategori Baru</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>Inkomsten toevoegen</value>
+    <value>Tambahkan Pendapatan</value>
   </data>
   <data name="AddExpenseLabel.Label" xml:space="preserve">
-    <value>Voeg uitgave toe</value>
+    <value>Tambahkan Biaya</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Overdracht toevoegen</value>
+    <value>Tambahkan Transfer</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Uw gegevens worden opgeslagen in uw OneDrive-account. Je vindt ze in een nieuwe map genaamd "MoneyFoxBackupManager".</value>
+    <value>Data Anda akan disimpan dalam Akun OneDrive Anda. Anda akan menemukannya di folder baru yang disebut "MoneyFoxBackupManager".</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Download de vorige ingevoegde databaseback-up en vervang uw lokale gegevens ermee. 
-WAARSCHUWING: Lokale wijzigingen die in de tussentijd worden aangebracht, gaan verloren.</value>
+    <value>Unduh backup database yang diunggah sebelumnya dan ganti data lokal Anda dengan itu. PERINGATAN: Perubahan lokal yang Anda buat sementara kami akan hilang.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>Backup</value>
+    <value>Cadangan</value>
   </data>
   <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Arus Tunai</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
-    <value>Categorieën</value>
+    <value>Kategori</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Ringkasan Kategori</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
-    <value>Contact:</value>
+    <value>Kontak:</value>
   </data>
   <data name="Delete.Text" xml:space="preserve">
-    <value>Verwijder</value>
+    <value>Hapus</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Account verwijderen</value>
+    <value>Hapus Akun</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
-    <value>Developer</value>
+    <value>Pengembang</value>
   </data>
   <data name="Edit.Text" xml:space="preserve">
-    <value>Bewerken</value>
+    <value>Sunting</value>
   </data>
   <data name="InfoLabel.Text" xml:space="preserve">
-    <value>Info</value>
+    <value>Informasi</value>
   </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>Dit is een open source project - en we willen graag met u samenwerken! Aarzel niet om bij te dragen. 
-Druk op om de Repository te bezoeken:</value>
+    <value>Ini adalah proyek sumber terbuka dan kami akan senang bekerja dengan Anda! Bebas untuk berkontribusi. Ketuk untuk mengunjungi repositori:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Beri nilai aplikasi ini</value>
   </data>
   <data name="SecuritySettingsHeader.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>Keamanan</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Pilih Kategori</value>
   </data>
   <data name="SetDate.Label" xml:space="preserve">
-    <value>Set Date</value>
+    <value>Atur Tanggal</value>
   </data>
   <data name="SavePassword.Content" xml:space="preserve">
-    <value>Save Password</value>
+    <value>Simpan Kata Sandi</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Pengaturan</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Spreading</value>
+    <value>Penjalaran</value>
   </data>
   <data name="TilesSettingsHeader.Text" xml:space="preserve">
-    <value>Tiles</value>
+    <value>Menu</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
-    <value>Total: </value>
+    <value>Jumlah: </value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Versie: </value>
+    <value>Versi: </value>
   </data>
   <data name="Password.Header" xml:space="preserve">
-    <value>Wachtwoord</value>
+    <value>Kata Sandi</value>
   </data>
   <data name="PasswordConfirmation.Header" xml:space="preserve">
-    <value>Confirm password</value>
+    <value>Konfirmasi Kata Sandi</value>
   </data>
   <data name="PasswordSettingSwitch.OffContent" xml:space="preserve">
-    <value>Password protection inactive</value>
+    <value>Perlindungan kata sandi tidak aktif</value>
   </data>
   <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
-    <value>Password protection active</value>
+    <value>Perlindungan kata sandi aktif</value>
   </data>
   <data name="Login.Content" xml:space="preserve">
-    <value>Aanmelden</value>
+    <value>Masuk</value>
   </data>
   <data name="PleaseLogin.Text" xml:space="preserve">
-    <value>Please enter your password to login.</value>
+    <value>Silahkan masukkan kata sandi untuk masuk.</value>
   </data>
   <data name="Willkommen.Text" xml:space="preserve">
-    <value>Welkom!</value>
+    <value>Selamat Datang!</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Create Income Tile</value>
+    <value>Buat Menu Pendapatan</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Create Expense Tile</value>
+    <value>Buat Menu Pengeluaran</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Create Transfer Tile</value>
+    <value>Buat Menu Transfer</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Selesai</value>
   </data>
   <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Annuleer</value>
+    <value>Batal</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>Categorie Toevoegen</value>
+    <value>Tambah Kategori</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
-    <value>Backup maken</value>
+    <value>Buat Cadangan</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Remove Income Tile</value>
+    <value>Menghapus Menu Pendapatan</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remove Expense Tile</value>
+    <value>Menghapus Menu Pengeluaran</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Remove Transfer Tile</value>
+    <value>Menghapus Menu Transfer</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Mengembalikan Cadangan</value>
   </data>
   <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Selesai</value>
   </data>
   <data name="SelectDateRangeDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Annuleer</value>
+    <value>Batal</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>Select Daterange</value>
+    <value>Pilih rentang tanggal</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
-    <value>Show Cashflow on Maintile</value>
+    <value>Tampilkan Arus Tunai di Menu Utama</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
-    <value>Search</value>
+    <value>Pencarian</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
-    <value>Nee</value>
+    <value>Tidak</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
-    <value>Ja</value>
+    <value>Iya</value>
   </data>
   <data name="AmountTextBox.Header" xml:space="preserve">
-    <value>Bedrag</value>
+    <value>Nominal</value>
   </data>
   <data name="CategoryTextBox.Header" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Kategori</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
-    <value>Datum</value>
+    <value>Tanggal</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Tidak ada habisnya</value>
   </data>
   <data name="NoteTextBox.Header" xml:space="preserve">
-    <value>Note</value>
+    <value>Catatan</value>
   </data>
   <data name="RecurrenceComboBox.Header" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Perulangan</value>
   </data>
   <data name="RepeatSwitch.Header" xml:space="preserve">
-    <value>Repeat</value>
+    <value>Ulangi</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Akun Tujuan</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
+    <value>Untuk lebih meningkatkan aplikasi ini, kami mengumpulkan data impersonal tentang kesalahan dan masalah.</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
-    <value>Verwijder</value>
+    <value>Hapus</value>
   </data>
   <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Selesai</value>
   </data>
   <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Annuleer</value>
+    <value>Batal</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
-    <value>Naam</value>
+    <value>Nama</value>
   </data>
   <data name="EndDateHeader.Header" xml:space="preserve">
-    <value>Einddatum</value>
+    <value>Tanggal Berakhir</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>Start Date</value>
+    <value>Tanggal Mulai</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Pilih Statistik</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
-    <value>Last Backup was created at:</value>
+    <value>Cadangan terakhir telah dibuat pada:</value>
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
-    <value>Last database modification:</value>
+    <value>Database modifikasi terakhir:</value>
   </data>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
-    <value>Monthly Expenses</value>
+    <value>Biaya Bulanan</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>Tidak ada Akun. Tambah satu dengan mengetuk tiga titik di bawah.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>Tidak ada kategori. Tambah satu dengan mengetuk simbol tambah di bagian bawah.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>Tidak ada pembayaran. Tambah satu dengan mengetuk salah satu dari tiga simbol di bagian bawah.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>Anda bisa mengubah antara tema gelap dan terang. untuk menerapkan perubahan ini silahkan restart aplikasi.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Memuat...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>Als u deze instelling inschakelt, wordt na elke wijziging in de database een back-up gemaakt naar OneDrive.
-Ook als u de toepassing uitvoert die controleert of er nieuwe back-upkopieën zijn en deze herstelt als dit zo is.</value>
+    <value>Jika Anda mengaktifkan pengaturan ini setelah setiap perubahan pada data base, cadangan dibuat ke OneDrive.
+Juga jika Anda menjalankan aplikasi tidak akan memeriksa apakah ada cadangan baru dan mengembalikannya jika demikian.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Is er iets verkeerd vertaald of helemaal niet vertaald? Help ons! Ga naar crowdin en help Money Fox te verbeteren:</value>
+    <value>Apakah ada sesuatu yang tidak diterjemahkan atau tidak diterjemahkan sama sekali? Bantu kami! Pergilah ke Crowdin dan bantu meningkatkan MoneyFox:</value>
   </data>
   <data name="CancelLabel.Label" xml:space="preserve">
-    <value>Annuleer</value>
+    <value>Batal</value>
   </data>
   <data name="DoneLabel.Label" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Selesai</value>
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Saldo Saat ini</value>
   </data>
   <data name="Logout.Content" xml:space="preserve">
-    <value>Afmelden</value>
+    <value>Keluar</value>
   </data>
   <data name="Iban.Header" xml:space="preserve">
     <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Backup Manually</value>
+    <value>Cadangan Manual</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
-    <value>Backup Automatically</value>
+    <value>Cadangan Otomatis</value>
   </data>
   <data name="DesignerContribution.Text" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Ikon aplikasi dibuat oleh:</value>
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Untuk melihat semua kontribusi ke Github:</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
+    <value>Unggah dan unduh cadangan manual</value>
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Kecualikan akun dari saldo</value>
   </data>
   <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
+    <value>Tetapkan jumlah jam untuk menyinkronkan cadangan.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Akun Dikecualikan</value>
   </data>
   <data name="IncludedAccounts.Text" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Termasuk Akun</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
     <value></value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
-    <value>Leave a Feedback</value>
+    <value>Tinggalkan Umpan balik</value>
   </data>
   <data name="Dark.Content" xml:space="preserve">
-    <value>Donker</value>
+    <value>Gelap</value>
   </data>
   <data name="Light.Content" xml:space="preserve">
-    <value>Licht</value>
+    <value>Terang</value>
   </data>
   <data name="System.Content" xml:space="preserve">
-    <value>Systeem</value>
+    <value>Sistem</value>
   </data>
   <data name="SettingsHeaderBackup.Text" xml:space="preserve">
-    <value>Backup</value>
+    <value>Cadangan</value>
   </data>
   <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
-    <value>Thema</value>
+    <value>Tema</value>
   </data>
   <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>Keamanan</value>
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
-    <value>Tiles</value>
+    <value>Menu</value>
   </data>
 </root>
