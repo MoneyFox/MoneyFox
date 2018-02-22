@@ -67,6 +67,7 @@ namespace MoneyFox.Droid
         /// <inheritdoc />
         protected override IMvxApplication CreateApp()
         {
+            Strings.Culture = new Localize().GetCurrentCultureInfo();
             return new App();
         }
     }
