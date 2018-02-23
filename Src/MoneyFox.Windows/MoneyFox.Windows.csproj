@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>MoneyFox.Windows_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>C93BAD290F5591D457AD87B2864A0842145ECEF4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>B905DA53314EC2D7876789E3EF57544A0E551957</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -306,6 +306,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
+    <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
