@@ -1460,6 +1460,33 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleared.
+        /// </summary>
+        public static string SelectFilterDialogViewModel_IsClearedLabel {
+            get {
+                return ResourceManager.GetString("SelectFilterDialogViewModel.IsClearedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurring.
+        /// </summary>
+        public static string SelectFilterDialogViewModel_IsRecurringLabel {
+            get {
+                return ResourceManager.GetString("SelectFilterDialogViewModel.IsRecurringLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Filter.
+        /// </summary>
+        public static string SelectFilterDialogViewModel_SelectFilterLabel {
+            get {
+                return ResourceManager.GetString("SelectFilterDialogViewModel.SelectFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Filter.
         /// </summary>
         public static string SelectFilterTitle {

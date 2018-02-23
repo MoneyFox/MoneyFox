@@ -1,14 +1,12 @@
-using System;
 using Android.App;
-using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Clans.Fab;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Droid.Dialogs;
 using MoneyFox.Droid.Fragments;
-using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using MoneyFox.Foundation.Resources;
@@ -126,32 +124,10 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
-        readonly string[] filters = {
-            Strings.ClearedFilterLabel,
-            Strings.IsRecurringFilterLabel
-        };
-
         private void ShowFilterDialog()
         {
-            var builder = new AlertDialog.Builder(this);
-            builder.SetMultiChoiceItems(filters, new bool[filters.Length], (sender, args) =>
-            {
-                switch (args.Which)
-                {
-                    case 0:
-                        ViewModel.ViewActionViewModel.IsClearedFilterActive = args.IsChecked;
-                        break;
-
-                    case 1:
-                        ViewModel.ViewActionViewModel.IsRecurringFilterActive = args.IsChecked;
-                        break;
-                }
-            });
-            builder.SetTitle(Strings.SelectFilterTitle);
-            builder.SetPositiveButton(Strings.DoneLabel, (sender, args) => { });
-
-            var dialog = builder.Create();
-            dialog.Show();
+            var dialog = new SelectFilterDialog();
+            dialog.Show(SupportFragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
     }
 }
