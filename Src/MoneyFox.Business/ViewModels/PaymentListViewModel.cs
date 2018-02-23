@@ -236,6 +236,9 @@ namespace MoneyFox.Business.ViewModels
                 paymentQuery = paymentQuery.Where(x => x.Data.IsRecurring);
             }
 
+            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeEnd);
+
             RelatedPayments = new ObservableCollection<PaymentViewModel>(
                 paymentQuery
                     .OrderByDescending(x => x.Data.Date)
