@@ -29,6 +29,8 @@ Head over [here](https://github.com/MoneyFox/MoneyFox/blob/master/CONTRIBUTING.m
 
 Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/money-fox/localized.svg)](https://crowdin.com/project/money-fox)
+
 ### Code of conduct
 We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
 

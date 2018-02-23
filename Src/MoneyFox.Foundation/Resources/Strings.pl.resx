@@ -118,526 +118,524 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutLabel" xml:space="preserve">
-    <value>Over</value>
+    <value>O</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Over</value>
+    <value>O</value>
   </data>
   <data name="AboutViewModel.ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Kontakt</value>
   </data>
   <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
-    <value>Ga naar GitHub om all bijdragen te zien</value>
+    <value>Aby zobaczyć wszystkie kontrybucje przejdź do GitHub:</value>
   </data>
   <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
-    <value>Het icoon van de app is gemaakt door:</value>
+    <value>Ta ikona aplikacji została stworzona przez:</value>
   </data>
   <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
-    <value>Dit is een open source project - en we willen graag met u samenwerken! Aarzel niet om bij te dragen. 
-Druk op om de Repository te bezoeken:</value>
+    <value>To jest projekt Open-Source - i bardzo chcielibyśmy pracować z tobą! Zapraszamy do kontrybuowania. Naciśnij, aby odwiedzić repozytorium:</value>
   </data>
   <data name="AboutViewModel.RateLabel" xml:space="preserve">
-    <value>Rate us!</value>
+    <value>Oceń nas!</value>
   </data>
   <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
-    <value>Is er iets verkeerd vertaald of helemaal niet vertaald? Help ons! Ga naar crowdin en help Money Fox te verbeteren:</value>
+    <value>Coś jest przetłumaczone niepoprawnie, lub w ogóle? Pomóż nam! Udaj się do Crowdin i pomóż w poprawie Money Fox:</value>
   </data>
   <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>Versie</value>
+    <value>Wersja</value>
   </data>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+    <value>Nie ma żadnych Kont. Dodaj jedno naciskając przycisk plusa poniżej.</value>
   </data>
   <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Wykluczone Konta</value>
   </data>
   <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Uwzględnione Konta</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Proszę wybrać Konto.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Konta</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Voeg account toe</value>
+    <value>Dodaj Konto</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Voeg categorie toe</value>
+    <value>Dodaj Kategorie</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Voeg uitgave toe</value>
+    <value>Dodaj Wydatek</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Voeg uitgave toe</value>
+    <value>Dodaj Wydatek</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Inkomsten toevoegen</value>
+    <value>Dodaj dochód</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Inkomsten toevoegen</value>
+    <value>Dodaj dochód</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Overdracht toevoegen</value>
+    <value>Dodaj Przelew</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Overdracht toevoegen</value>
+    <value>Dodaj Przelew</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authenticatie mislukt</value>
+    <value>Uwierzytelnianie nie powiodło się</value>
   </data>
   <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>Het systeembeleid heeft de toegang tot MoneyFox op de achtergrond geweigerd. Sommige functies werken mogelijk niet zoals verwacht.</value>
+    <value>Zasady systemowe odrzuciły uprawnienie dotyczące działania MoneyFox w tle. Kilka funkcji może nie działać jak powinny.</value>
   </data>
   <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>U heeft de toegang tot MoneyFox op de achtergrond geweigerd. Sommige functies werken mogelijk niet zoals verwacht.</value>
+    <value>Uprawnienia dotyczące działania MoneyFox w tle zostały odrzucone. Kilka funkcji może nie działać jak powinny.</value>
   </data>
   <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Toegang geweigerd</value>
+    <value>Odmowa dostępu</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup mislukt!</value>
+    <value>Tworzenie kopii zapasowej nie powiodło się!</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Backup</value>
+    <value>Kopia Zapasowa</value>
   </data>
   <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Restore backup failed!</value>
+    <value>Przywracanie kopi zapasowej nie powiodło się!</value>
   </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>You backup was synced successfully.</value>
+    <value>Twoja kopia zapasowa została pomyślnie zsynchronizowana.</value>
   </data>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Failed to sync the backup</value>
+    <value>Nie udało się zsynchronizować kopii zapasowej</value>
   </data>
   <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
-    <value>Uw gegevens worden opgeslagen in uw OneDrive-account. Je vindt ze in een nieuwe map genaamd "MoneyFoxBackupManager".</value>
+    <value>Twoje dane będą zapisywane na twoim koncie OneDrive. Znajdziesz je w nowym folderze o nazwie "MoneyFoxBackupManager".</value>
   </data>
   <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
-    <value>Backup maken</value>
+    <value>Utwórz kopię zapasową</value>
   </data>
   <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Ostatnia Kopia zapasowa utworzona:</value>
   </data>
   <data name="BackupViewModel.LoginLabel" xml:space="preserve">
-    <value>Log in</value>
+    <value>Zaloguj się</value>
   </data>
   <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
-    <value>Log uit</value>
+    <value>Wyloguj się</value>
   </data>
   <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download de vorige ingevoegde databaseback-up en vervang uw lokale gegevens ermee. 
-WAARSCHUWING: Lokale wijzigingen die in de tussentijd worden aangebracht, gaan verloren!</value>
+    <value>Pobierz poprzednią kopie zapasową bazy danych i zastąp nią bieżące dane lokalne. Uwaga: Zmiany lokalne wprowadzone w międzyczasie zostaną utracone!</value>
   </data>
   <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
-    <value>Herstel backup</value>
+    <value>Przywróć kopie zapasową</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Dwa razy w roku</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>Dwa razy w miesiącu</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Dwa razy w tygodniu</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Annuleer</value>
+    <value>Anuluj</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Przychody, wydatki i zyski dla wybranego okresu.</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>Przypływ pieniężny</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
-    <value>Categorieën</value>
+    <value>Kategorie</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Rozprzestrzenianie wydatków do kategorii.</value>
   </data>
   <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
+    <value>Nie ma żadnych kategorii. Dodaj jedną nasciskając na przycisk plusa poniżej.</value>
   </data>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Zoeken</value>
+    <value>Wyszukaj</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Rozprzestrzenianie Kategorii</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Podsumowanie kategorii z płatnością.</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Categoriesamenvatting</value>
+    <value>Podsumowanie Kategorii</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
+    <value>Płatność cykliczna została zaktualizowana. Czy chcesz również zaktualizować przyszłe płatności?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Update Recurrence?</value>
+    <value>Zaktualizować powtórzenie?</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Pobrane Konto</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Kies Categorie</value>
+    <value>Wybierz kategorię</value>
   </data>
   <data name="ChooseLabel" xml:space="preserve">
-    <value>Kies</value>
+    <value>Wybierz</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Wyczyszczono</value>
   </data>
   <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Finished clearing your payments.</value>
+    <value>Zakończono czyszczenie twoich płatności.</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Dagelijks</value>
+    <value>Dziennie</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Dziennie bez weekendu</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Weet u zeker dat u deze account wilt verwijderen?</value>
+    <value>Czy na pewno chcesz usunąć to Konto?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Weet u zeker dat u deze categorie wilt verwijderen?</value>
+    <value>Czy na pewno chcesz usunąć tę kategorię?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Verwijder</value>
+    <value>Usuń</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Wilt u deze betaling verwijderen?</value>
+    <value>Czy na pewno chcesz usunąć tą płatność?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Płatność cykliczna została usunięta. Czy także chcesz usunąć powtórzenie?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>Usunąć powtórzenie?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Verwijderen?</value>
+    <value>Usunąć?</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Zrobiono</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>Konto o tej nazwie już istnieje.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Kategoria o tej nazwie już istnieje.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Nazwa jest w użyciu</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Wijzig {0}</value>
+    <value>Edytuj {0}</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Categorie bewerken</value>
+    <value>Edytuj Kategorię</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Edytuj dochód</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Bewerk</value>
+    <value>Edytuj</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Edytuj Wydatek</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Edytuj Przelew</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Wystąpił błąd podczas uwierzytelniania. Proszę spróbuj ponownie.</value>
   </data>
   <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>There where an error while create your backup. Please try again later.</value>
+    <value>Wystąpił błąd podczas tworzenia kopii zapasowej. Proszę spróbować później.</value>
   </data>
   <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>An error occured while deleting the item.</value>
+    <value>Wystąpił błąd podczas usuwania elementu.</value>
   </data>
   <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+    <value>Wystąpił błąd podczas przywracania kopii zapasowej. Jeśli ten błąd nadal będzie występował, proszę skontaktować się z nami.</value>
   </data>
   <data name="ErrorMessageSave" xml:space="preserve">
-    <value>An error occured while saving the item.</value>
+    <value>Wystąpił błąd podczas zapisywania tego elementu.</value>
   </data>
   <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Error on delete</value>
+    <value>Błąd przy usuwaniu</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Voeg uitgave toe</value>
+    <value>Dodaj wydatek</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Wydatki</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Opinie zwrotne na temat Money Fox</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Er is een fout opgetreden</value>
+    <value>Wystąpił błąd</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
-    <value>Algemeen</value>
+    <value>Główne</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Inkomsten toevoegen</value>
+    <value>Dodaj dochód</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Zyski</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>Data zakończenia płatności cyklicznych musi być w przyszłości. Sprawdź wprowadzone dane.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Nieprawidłowa Data Zakończenia</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Powtarzający/a się</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>No, just this</value>
+    <value>Nie, tylko to</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Laden...</value>
+    <value>Ładowanie...</value>
   </data>
   <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Zaloguj się</value>
   </data>
   <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>Wachtwoord</value>
+    <value>Hasło</value>
   </data>
   <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>Welkom!</value>
+    <value>Witaj!</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Pole obowiązkowe</value>
   </data>
   <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>Over</value>
+    <value>O</value>
   </data>
   <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Konta</value>
   </data>
   <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Voeg toe</value>
+    <value>Dodaj</value>
   </data>
   <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Backup</value>
+    <value>Kopia zapasowa</value>
   </data>
   <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Categorieën</value>
+    <value>Kategorie</value>
   </data>
   <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Verwijder</value>
+    <value>Usuń</value>
   </data>
   <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Opslaan</value>
+    <value>Zapisz</value>
   </data>
   <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Ustawienia</value>
   </data>
   <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>A way to make budgeting easy.</value>
+    <value>Sposób, aby sprawić budżetowanie łatwym.</value>
   </data>
   <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statystyki</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>Account naam</value>
+    <value>Nazwa Konta</value>
   </data>
   <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Bieżące Saldo</value>
   </data>
   <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
     <value>Iban</value>
   </data>
   <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Wyklucz konto z salda</value>
   </data>
   <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Notka</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Categorienaam</value>
+    <value>Nazwa Kategorii</value>
   </data>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Notka</value>
   </data>
   <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
-    <value>Bedrag</value>
+    <value>Kwota</value>
   </data>
   <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Kategoria</value>
   </data>
   <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
-    <value>Datum</value>
+    <value>Data</value>
   </data>
   <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Jest nieskończone/a</value>
   </data>
   <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Notka</value>
   </data>
   <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Powtarzający/e się</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Maandelijks</value>
+    <value>Miesięcznie</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Geef een naam op aub.</value>
+    <value>Proszę wprowadzić nazwę.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>Nee</value>
+    <value>Nie</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Jeśli nie jesteś połączony/a z internetem. Proszę sprawdź swoje połączenie i spróbuj ponownie.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>Geen internetverbinding</value>
+    <value>Brak Połączenia z Internetem</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Nie Teraz</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Istniejęce kopie zapasowe zostaną nadpisane. Czy chcesz kontynuować?</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Twoje dane lokalne zostaną usunięte. Czy na pewno chcesz kontynuować?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overschrijven</value>
+    <value>Nadpisać?</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device. 
-    Please go to settings and enable it!</value>
+    <value>Paszport Miscrosoft nie jest włączony na tym urządzeniu. 
+    Przejdź do ustawień i włącz go!</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>The passwod and the password confirmation didn't match. Please check your input.</value>
+    <value>Hasło i potwierdzenie hasła nie pasują do siebie. Sprawdź wprowadzone dane.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Password confirmation</value>
+    <value>Potwierdzenie hasła</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+    <value>Wprowadzone hasło jest puste. Proszę najpierw wprowadzić hasło i spróbować ponownie.</value>
   </data>
   <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Password is empty</value>
+    <value>Hasło jest puste</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Password was saved succesfully.</value>
+    <value>Hasło zostało pomyślnie zapisane.</value>
   </data>
   <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Password saved</value>
+    <value>Hasło zapisane</value>
   </data>
   <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>The password you entered was not correct. Please try again.</value>
+    <value>Hasło które zostało wprowadzone jest niepoprawne. Proszę spróbować ponownie.</value>
   </data>
   <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Password wrong</value>
+    <value>Złe hasło</value>
   </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
+    <value>Nie ma żadnych płatności. Dodaj jedno naciskając na przycisk plusa poniżej.</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>Kwartalnie</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>Mamy nadzieje że lubisz naszą aplikacje. Wesprzyj nas oceniając ją w sklepie.
+Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Oceń tę aplikację</value>
   </data>
   <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Recurring payments where created.</value>
+    <value>Płatności cykliczne zostały utworzone.</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Przychód</value>
   </data>
   <data name="SecurityTitle" xml:space="preserve">
-    <value>Beveiliging</value>
+    <value>Zabezpieczenia</value>
   </data>
   <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Wyszukaj</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>Selecteer datum</value>
+    <value>Wybierz Datę</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Wybierz Filtr</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>select operation</value>
+    <value>wybierz operację</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
-    <value>Als u deze instelling inschakelt, wordt na elke wijziging in de database een back-up gemaakt naar OneDrive. Ook als u de toepassing uitvoert die controleert of er nieuwe back-upkopieën zijn en deze herstelt als dit zo is.</value>
+    <value>Jeżeli aktywujesz to ustawienie, po każdej zmianie w bazie danych, kopia zapasowa zostanie wykonana do OneDrive. Również jeśli uruchomisz aplikacje tam, sprawdzi ona czy istnieją nowsze kopie zapasowe i przywróci je, jeżeli są.</value>
   </data>
   <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Automatycznie przesyłaj i pobieraj kopie zapasowe</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
+    <value>Ustaw ilość godzin do synchronizacji kopi zapasowej.</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Backup Recurrence</value>
+    <value>Ponowne tworzenie kopii zapasowych</value>
   </data>
   <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
-    <value>Uur/Uren</value>
+    <value>Godzina(y)</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Ustawienia</value>
   </data>
   <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>Klaar</value>
+    <value>Zrobiono</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
-    <value>Password protection</value>
+    <value>Ochrona hasłem</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
-    <value>Password Confirmation</value>
+    <value>Potwierdzenie hasła</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>Wachtwoord</value>
+    <value>Hasło</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statystyki</value>
   </data>
   <data name="StatisticTitle" xml:space="preserve">
-    <value>Statistic</value>
+    <value>Statystyka</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>Success!</value>
+    <value>Sukcess!</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Konto Docelowe</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Task was successful completed.</value>
+    <value>Zadanie zostało pomyślnie ukończone.</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Overdracht toevoegen</value>
+    <value>Dodaj przelew</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Yes, update All</value>
+    <value>Tak, aktualizuj wszystko</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Wekelijks</value>
+    <value>Tygodniowo</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Jaarlijks</value>
+    <value>Rocznie</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Ja</value>
+    <value>Tak</value>
   </data>
 </root>

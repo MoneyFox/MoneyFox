@@ -15,6 +15,7 @@ using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.IoC;
 using PluginLoader = MvvmCross.Plugins.Email.PluginLoader;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Droid
 {
@@ -67,6 +68,7 @@ namespace MoneyFox.Droid
         /// <inheritdoc />
         protected override IMvxApplication CreateApp()
         {
+            Strings.Culture = new Localize().GetCurrentCultureInfo();
             return new App();
         }
     }
