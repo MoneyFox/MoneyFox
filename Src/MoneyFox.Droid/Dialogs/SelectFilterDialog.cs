@@ -12,30 +12,32 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Dialogs
 {
-    public class SelectDateRangeDialog : MvxDialogFragment<SelectDateRangeDialogViewModel>,
+    public class SelectFilterDialog : MvxDialogFragment<SelectFilterDialogViewModel>,
         DatePickerDialog.IOnDateSetListener
     {
         private Button callerButton;
-        private TextView doneTextView;
+        private CheckBox checkBoxIsCleared;
+        private CheckBox checkBoxIsRecurring;
         private Button selectEndDateButton;
         private Button selectStartDateButton;
+        private TextView doneTextView;
 
-        public SelectDateRangeDialog()
+        public SelectFilterDialog()
         {
-            ViewModel = Mvx.Resolve<SelectDateRangeDialogViewModel>();
+            ViewModel = Mvx.Resolve<SelectFilterDialogViewModel>();
         }
 
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
         {
             var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-
+            
             if (callerButton == selectStartDateButton)
             {
-                ViewModel.StartDate = date;
+                ViewModel.TimeRangeStart = date;
             }
             else if (callerButton == selectEndDateButton)
             {
-                ViewModel.EndDate = date;
+                ViewModel.TimeRangeEnd = date;
             }
             AssignDateToButtons();
         }
@@ -43,9 +45,17 @@ namespace MoneyFox.Droid.Dialogs
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
             var dialog = new Dialog(Activity);
-            dialog.SetContentView(Resource.Layout.dialog_select_date_range);
+            dialog.SetContentView(Resource.Layout.dialog_select_filter);
 
             // Handle select start date button click
+            checkBoxIsCleared = dialog.FindViewById<CheckBox>(Resource.Id.checkbox_is_cleared);
+            checkBoxIsCleared.Click += (sender, args) => ViewModel.IsClearedFilterActive = !ViewModel.IsClearedFilterActive; 
+
+            // Handle select start date button click
+            checkBoxIsRecurring = dialog.FindViewById<CheckBox>(Resource.Id.checkbox_is_recurring);
+            checkBoxIsRecurring.Click += (sender, args) => ViewModel.IsRecurringFilterActive = !ViewModel.IsRecurringFilterActive;
+
+            // Handle select end date button click
             selectStartDateButton = dialog.FindViewById<Button>(Resource.Id.button_start_date);
             selectStartDateButton.Click += SelectStartDate;
 
@@ -78,14 +88,13 @@ namespace MoneyFox.Droid.Dialogs
 
         private void DoneButtonClick(object sender, EventArgs e)
         {
-            ViewModel.DoneCommand.Execute();
             Dismiss();
         }
 
         private void AssignDateToButtons()
         {
-            selectStartDateButton.Hint = ViewModel.StartDate.ToString("d");
-            selectEndDateButton.Hint = ViewModel.EndDate.ToString("d");
+            selectStartDateButton.Hint = ViewModel.TimeRangeStart.ToString("d");
+            selectEndDateButton.Hint = ViewModel.TimeRangeEnd.ToString("d");
         }
 
         public override void OnDismiss(IDialogInterface dialog)

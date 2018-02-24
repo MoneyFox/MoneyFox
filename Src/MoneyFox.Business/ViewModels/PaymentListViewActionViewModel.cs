@@ -25,6 +25,8 @@ namespace MoneyFox.Business.ViewModels
         private readonly int accountId;
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
+        private DateTime timeRangeStart = DateTime.Now.AddMonths(6);
+        private DateTime timeRangeEnd = DateTime.Now.AddMonths(-2);
 
         /// <summary>
         ///     Constructor
@@ -69,31 +71,6 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);
 
-        /// <inheritdoc />
-        public bool IsClearedFilterActive
-        {
-            get => isClearedFilterActive;
-            set
-            {
-                if (isClearedFilterActive == value) return;
-                isClearedFilterActive = value;
-                RaisePropertyChanged();
-                UpdateList();
-            }
-        }
-
-        /// <inheritdoc />
-        public bool IsRecurringFilterActive
-        {
-            get => isRecurringFilterActive;
-            set
-            {
-                if(isRecurringFilterActive == value) return;
-                isRecurringFilterActive = value;
-                RaisePropertyChanged();
-                UpdateList();
-            }
-        }
 
         #endregion
 
@@ -113,7 +90,59 @@ namespace MoneyFox.Business.ViewModels
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
         public bool IsAddExpenseAvailable => accountService.GetAccountCount().Result > 0;
-        
+
+        /// <inheritdoc />
+        public bool IsClearedFilterActive
+        {
+            get => isClearedFilterActive;
+            set
+            {
+                if (isClearedFilterActive == value) return;
+                isClearedFilterActive = value;
+                RaisePropertyChanged();
+                UpdateList();
+            }
+        }
+
+        /// <inheritdoc />
+        public bool IsRecurringFilterActive
+        {
+            get => isRecurringFilterActive;
+            set
+            {
+                if (isRecurringFilterActive == value) return;
+                isRecurringFilterActive = value;
+                RaisePropertyChanged();
+                UpdateList();
+            }
+        }
+
+        /// <inheritdoc />
+        public DateTime TimeRangeStart
+        {
+            get => timeRangeStart;
+            set
+            {
+                if (timeRangeStart == value) return;
+                timeRangeStart = value;
+                RaisePropertyChanged();
+                UpdateList();
+            }
+        }
+
+        /// <inheritdoc />
+        public DateTime TimeRangeEnd
+        {
+            get => timeRangeEnd;
+            set
+            {
+                if (timeRangeEnd == value) return;
+                timeRangeEnd = value;
+                RaisePropertyChanged();
+                UpdateList();
+            }
+        }
+
         #endregion
 
         private async Task DeleteAccount()
@@ -129,7 +158,13 @@ namespace MoneyFox.Business.ViewModels
 
         private void UpdateList()
         {
-            messenger.Publish(new PaymentListFilterChangedMessage(this, IsClearedFilterActive, IsRecurringFilterActive));
+            messenger.Publish(new PaymentListFilterChangedMessage(this)
+            {
+                IsClearedFilterActive = IsClearedFilterActive,
+                IsRecurringFilterActive = IsRecurringFilterActive,
+                TimeRangeStart = this.TimeRangeStart,
+                TimeRangeEnd = this.TimeRangeEnd
+            });
         }
     }
 }

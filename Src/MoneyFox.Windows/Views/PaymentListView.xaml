@@ -6,6 +6,7 @@
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
+                      xmlns:converter="using:MoneyFox.Windows.Converter"
                       d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                                        IsDesignTimeCreatable=True}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -13,15 +14,25 @@
                       mc:Ignorable="d">
 
     <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <Flyout x:Key="FilterFlyout"
                 Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
-                    <CheckBox Content="Cleared" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <CheckBox Content="Cleared" x:Uid="ClearedLabel"
+                              IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox Content="Recurring"
+                    <CheckBox Content="Recurring" x:Uid="RecurringLabel"
                               IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <DatePicker Header="Time Range Start" x:Uid="TimeRangeStart" 
+                                Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <DatePicker Header="Time Range End" x:Uid="TimeRangeEnd"
+                                Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
                 </ListBoxItem>
             </ListBox>
         </Flyout>
@@ -50,7 +61,7 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="FilterLabel"
                               Icon="Filter"
-                              Label="filter"
+                              Label="Filter"
                               FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
                               Click="AppBarToggleButton_Click" />
                 <AppBarButton x:Uid="AddIncomeLabel"

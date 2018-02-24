@@ -102,6 +102,7 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="CustomBinding\FloatingActionButtonClickBinding.cs" />
     <Compile Include="CustomBinding\WarningBackgroundShapeBinding.cs" />
+    <Compile Include="Dialogs\SelectFilterDialog.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="DroidModule.cs" />
     <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
@@ -153,7 +154,9 @@
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
-    <AndroidResource Include="Resources\layout\activity_modify_account.axml" />
+    <AndroidResource Include="Resources\layout\activity_modify_account.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_category.axml" />
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\activity_payment_list.axml" />
@@ -183,6 +186,9 @@
     <AndroidResource Include="Resources\layout\listitem_monthly_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_payment.axml" />
     <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml" />
+    <AndroidResource Include="Resources\layout\dialog_select_filter.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
