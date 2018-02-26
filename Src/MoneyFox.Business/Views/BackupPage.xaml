@@ -5,7 +5,9 @@
              x:Class="MoneyFox.Business.Views.BackupPage">
 
     <ContentView.Resources>
-        <converter:InverseBoolConverter x:Key="inverter" />
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="inverter" />
+        </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentPage.Content>
