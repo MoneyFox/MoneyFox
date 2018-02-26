@@ -58,17 +58,6 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            try
-            {
-                DataAccess.ApplicationContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                        DatabaseConstants.DB_NAME);
-            }
-            catch (Exception ex)
-            {
-                await Mvx.Resolve<IDialogService>().ShowMessage("erro", ex.ToString());
-            }
-
             // Handler to create jobs.
             handler = new Handler(msg => {
                 switch (msg.What)
@@ -85,6 +74,8 @@ namespace MoneyFox.Droid.Activities
             });
 
             SetContentView(Resource.Layout.activity_main);
+
+            Xamarin.Forms.Forms.Init(this, null);
 
 #if !DEBUG
             MobileCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
