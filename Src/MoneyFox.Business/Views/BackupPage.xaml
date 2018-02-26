@@ -25,7 +25,7 @@
 
                 <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
 
-                <Grid IsVisible="{Binding IsLoggedIn}" >
+                <Grid>
                     <Grid.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS" Value="37"/>
@@ -35,7 +35,7 @@
                     </Grid.HeightRequest>
 
                     <Button Text="{Binding RestoreBackupButtonlabel}" Command="{Binding RestoreCommand}" />
-                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" Margin="0,2,0,2" />
+                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
                 </Grid>
 
                 <StackLayout Orientation="Horizontal" >

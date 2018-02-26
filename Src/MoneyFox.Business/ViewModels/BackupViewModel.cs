@@ -96,7 +96,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
-            get => isLoadingBackupAvailability;
+            get => true;
             private set
             {
                 if (isLoadingBackupAvailability == value) return;
@@ -104,6 +104,7 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
+
 
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
@@ -125,15 +126,10 @@ namespace MoneyFox.Business.ViewModels
         }
 
         #endregion
-
-        public override async Task Initialize()
+        
+        public override async void ViewAppeared()
         {
             await Loaded();
-        }
-
-        public override void Prepare()
-        {
-            base.Prepare();
         }
 
         private async Task Loaded()
