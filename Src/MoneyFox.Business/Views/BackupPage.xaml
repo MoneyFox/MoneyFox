@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:MoneyFox.Business.Converter"
-             x:Class="MoneyFox.Business.Views.BackupPage">
+             xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
+             x:Class="MoneyFox.Business.Views.BackupPage"
+             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:InverseBoolConverter x:Key="inverter" />
-            <converter:DateVisibilityConverter x:Key="dateVisibilityConverter" />
+            <converter:InverseBoolConverter x:Key="Inverter" />
+            <converter:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -15,7 +17,7 @@
 
         <StackLayout x:Name="MainLayout">
 
-            <Button Text="{Binding LoginButtonLabel}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource inverter}}" Command="{Binding LoginCommand}" />
+            <Button Text="{Binding LoginButtonLabel}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}" Command="{Binding LoginCommand}" />
 
             <Button Text="{Binding LogoutButtonLabel}" IsVisible="{Binding IsLoggedIn}"  Command="{Binding LogoutCommand}" />
 
@@ -39,7 +41,7 @@
                     <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
                 </Grid>
 
-                <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource dateVisibilityConverter}}">
+                <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                     <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
                     <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
                 </StackLayout>

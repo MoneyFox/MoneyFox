@@ -9,6 +9,27 @@ using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface IBackupViewModel
+    {
+        string CreateBackupText { get; }
+        string RestoreBackupText { get; }
+        string LoginButtonLabel { get; }
+        string LogoutButtonLabel { get; }
+        string CreateBackupButtonLabel { get; }
+        string RestoreBackupButtonlabel { get; }
+        string LastBackupTimeStampLabel { get; }
+
+        MvxAsyncCommand LoginCommand { get; }
+        MvxAsyncCommand LogoutCommand { get; }
+        MvxAsyncCommand BackupCommand { get; }
+        MvxAsyncCommand RestoreCommand { get; }
+
+        DateTime BackupLastModified { get; }
+        bool IsLoadingBackupAvailability { get; }
+        bool IsLoggedIn { get; }
+        bool BackupAvailable { get; }
+    }
+
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
@@ -18,10 +39,10 @@ namespace MoneyFox.Business.ViewModels
         private readonly IConnectivity connectivity;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
+        private bool backupAvailable;
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
-        private bool backupAvailable;
 
         public BackupViewModel(IBackupManager backupManager,
                                IDialogService dialogService,
@@ -38,12 +59,10 @@ namespace MoneyFox.Business.ViewModels
 
         public string CreateBackupText => Strings.CreateBackupInformationLabel;
         public string RestoreBackupText => Strings.RestoreBackupInformationLabel;
-
         public string LoginButtonLabel => Strings.LoginLabel;
         public string LogoutButtonLabel => Strings.LogoutLabel;
         public string CreateBackupButtonLabel => Strings.CreateBackupLabel;
         public string RestoreBackupButtonlabel => Strings.RestoreBackupLabel;
-
         public string LastBackupTimeStampLabel => Strings.LastBackupDateLabel;
 
         #endregion
@@ -104,8 +123,7 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-
+        
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
@@ -160,6 +178,7 @@ namespace MoneyFox.Business.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
                                                 ex.ToString());
             }
+
             IsLoadingBackupAvailability = false;
         }
 
@@ -169,13 +188,14 @@ namespace MoneyFox.Business.ViewModels
             {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
+
             try
             {
                 await backupManager.Login();
                 settingsManager.IsLoggedInToBackupService = true;
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsLoggedIn));
-            } 
+            }
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
@@ -185,8 +205,8 @@ namespace MoneyFox.Business.ViewModels
             {
                 await dialogService.ShowMessage(Strings.LoginFailedTitle,
                                                 Strings.LoginFailedMessage);
-
             }
+
             await Loaded();
         }
 
@@ -220,8 +240,8 @@ namespace MoneyFox.Business.ViewModels
             {
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
                                                 Strings.ErrorMessageBackupFailed);
-
             }
+
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
         }
