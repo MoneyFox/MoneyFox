@@ -14,6 +14,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.Business.Converter;
 #if !DEBUG
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
@@ -99,6 +100,8 @@ namespace MoneyFox.Windows
 
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
+
+                Xamarin.Forms.Forms.Init(e);
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));

@@ -1,26 +1,12 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.BackupView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:converter="using:MoneyFox.Windows.Converter"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                      SizeChanged="BackupView_OnSizeChanged"
                       mc:Ignorable="d">
-
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
-    <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:NativeBackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
-    </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}"
           EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -32,87 +18,8 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="BackupTitle"
                    Text="Backup"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
-        <StackPanel Grid.Row="1"
-                    EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <Button x:Uid="Login"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding LoginCommand}"
-                    Visibility="{Binding IsLoggedIn,
-                                         Converter={StaticResource BooleanVisibilityConverter},
-                                         ConverterParameter=revert}" />
-            <Button x:Uid="Logout"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding LogoutCommand}"
-                    Visibility="{Binding IsLoggedIn,
-                                         Converter={StaticResource BooleanVisibilityConverter}}" />
-            <TextBlock x:Uid="BackupInformation"
-                       Margin="-5,12,0,7"
-                       Text="BackupInformation"
-                       TextWrapping="WrapWholeWords" />
-            <Button x:Uid="CreateBackup"
-                    Margin="0,0,0,7"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding BackupCommand}"
-                    Content="Create Backup" />
-            <TextBlock x:Uid="RestoreInformation"
-                       Margin="-5,5,0,7"
-                       Text="RestoreInformation"
-                       TextWrapping="WrapWholeWords" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="41*" />
-                    <ColumnDefinition Width="4*" />
-                </Grid.ColumnDefinitions>
-
-                <Button x:Uid="RestoreBackup"
-                        Grid.ColumnSpan="2"
-                        HorizontalAlignment="Stretch"
-                        Command="{Binding RestoreCommand}"
-                        Content="Restore Backup"
-                        IsEnabled="{Binding BackupAvailable}" />
-
-                <ProgressRing Grid.Column="1"
-                              Margin="0,3,0,3"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              Background="Transparent"
-                              IsActive="{Binding IsLoadingBackupAvailability}" />
-            </Grid>
-
-            <StackPanel Margin="0,15,0,7"
-                        Orientation="Horizontal"
-                        Visibility="{Binding BackupLastModified,
-                                             Converter={StaticResource BackupDateVisibilityConverter}}">
-                <TextBlock x:Uid="BackupLastModifiedText"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="Last Backup created at:" />
-                <TextBlock Margin="5,0,0,0"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="{Binding BackupLastModified}"
-                           TextWrapping="WrapWholeWords" />
-            </StackPanel>
-        </StackPanel>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin"
-                                Value="48,0,12,7" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        <Grid Grid.Row="1" x:Name="ContentGrid" />
     </Grid>
 </views:MvxWindowsPage>

@@ -428,26 +428,26 @@ Tap to visit the Repository:</value>
   <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
     <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
-  <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
+  <data name="CreateBackupInformationLabel" xml:space="preserve">
     <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
   </data>
-  <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
+  <data name="CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
   </data>
-  <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
+  <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Last Backup created at:</value>
   </data>
-  <data name="BackupViewModel.LoginLabel" xml:space="preserve">
+  <data name="LoginLabel" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
+  <data name="LogoutLabel" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
     <value>Download the previous uploaded database backup and replace your local data with it.
 WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
-  <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
+  <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Restore Backup</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">

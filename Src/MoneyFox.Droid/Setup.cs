@@ -8,7 +8,6 @@ using MoneyFox.Droid.CustomBinding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Platform.Plugins;
-using MoneyFox.Foundation.Resources;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
@@ -16,6 +15,7 @@ using MvvmCross.Localization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.IoC;
 using PluginLoader = MvvmCross.Plugins.Email.PluginLoader;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Droid
 {

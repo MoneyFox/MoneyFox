@@ -112,7 +112,8 @@ namespace MoneyFox.DataAccess
                     return DateTime.Now.Month != payment.Data.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
-                    return payment.Data.Date.Month <= DateTime.Now.AddMonths(-2).Month;
+                    var date = DateTime.Now.AddMonths(-2);
+                    return payment.Data.Date.Month <= date.Month && payment.Data.Date.Year == date.Year;
 
                 case PaymentRecurrence.Quarterly:
                     return CheckQuarterly(payment);

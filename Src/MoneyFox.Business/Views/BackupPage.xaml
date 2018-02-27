@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:MoneyFox.Business.Converter"
+             x:Class="MoneyFox.Business.Views.BackupPage">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="inverter" />
+            <converter:DateVisibilityConverter x:Key="dateVisibilityConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout x:Name="MainLayout">
+
+            <Button Text="{Binding LoginButtonLabel}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource inverter}}" Command="{Binding LoginCommand}" />
+
+            <Button Text="{Binding LogoutButtonLabel}" IsVisible="{Binding IsLoggedIn}"  Command="{Binding LogoutCommand}" />
+
+            <StackLayout IsVisible="{Binding IsLoggedIn}">
+                <Label Text="{Binding CreateBackupText}"
+                HorizontalOptions="CenterAndExpand" />
+                <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
+
+                <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
+
+                <Grid>
+                    <Grid.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="37"/>
+                            <On Platform="UWP" Value="36"/>
+                            <On Platform="Android" Value="48"/>
+                        </OnPlatform>
+                    </Grid.HeightRequest>
+
+                    <Button Text="{Binding RestoreBackupButtonlabel}" Command="{Binding RestoreCommand}" />
+                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
+                </Grid>
+
+                <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource dateVisibilityConverter}}">
+                    <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
+                    <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

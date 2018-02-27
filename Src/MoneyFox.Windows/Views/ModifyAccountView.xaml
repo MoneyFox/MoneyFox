@@ -16,7 +16,7 @@
 
         <TextBlock x:Name="TitlePage"
                    Text="{Binding Title}"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollMode="Auto"

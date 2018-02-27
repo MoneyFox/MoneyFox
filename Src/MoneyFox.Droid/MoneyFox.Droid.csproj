@@ -153,6 +153,10 @@
     <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
+    <AndroidResource Include="Resources\layout\activity_main.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_modify_account.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_modify_account.axml">
       <SubType>Designer</SubType>
@@ -167,7 +171,6 @@
     <AndroidResource Include="Resources\layout\dialog_select_date_range.axml" />
     <AndroidResource Include="Resources\layout\fragment_about.axml" />
     <AndroidResource Include="Resources\layout\fragment_account_list.axml" />
-    <AndroidResource Include="Resources\layout\fragment_backup.axml" />
     <AndroidResource Include="Resources\layout\fragment_balance.axml" />
     <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
     <AndroidResource Include="Resources\layout\fragment_navigation.axml" />
@@ -489,6 +492,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Auth">
       <Version>1.5.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>2.5.0.280555</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

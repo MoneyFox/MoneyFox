@@ -14,7 +14,7 @@
                 <PivotItem.Header>
                     <TextBlock Text="Backup"
                                x:Uid="SettingsHeaderBackup"
-                               Style="{StaticResource PageTitleStyle}"
+                               Style="{StaticResource UwpPageTitleStyle}"
                                x:Name="FirstHeader"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
@@ -26,7 +26,7 @@
                 <PivotItem.Header>
                     <TextBlock Text="Tiles"
                                x:Uid="SettingsHeaderTiles"
-                               Style="{StaticResource PageTitleStyle}"
+                               Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
                 <userControls:SettingsShortcutsUserControl DataContext="{Binding SettingsShortcutsViewModel}" />
@@ -37,7 +37,7 @@
                 <PivotItem.Header>
                     <TextBlock Text="Security"
                                x:Uid="SettingsHeaderSecurity"
-                               Style="{StaticResource PageTitleStyle}"
+                               Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>
                 <userControls:SettingsSecurityUserControl DataContext="{Binding SettingsSecurityViewModel}" />
@@ -48,7 +48,7 @@
                 <PivotItem.Header>
                     <TextBlock Text="Personalization"
                                x:Uid="SettingsHeaderPersonalization"
-                               Style="{StaticResource PageTitleStyle}"
+                               Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
                 <userControls:SettingsPersonalizationUserControl DataContext="{Binding SettingsPersonalizationViewModel}" />

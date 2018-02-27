@@ -32,7 +32,7 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="SpreadingStatisticTitle"
                    Text="Spreading"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1">
             <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

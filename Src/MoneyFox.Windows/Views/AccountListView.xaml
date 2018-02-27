@@ -71,7 +71,7 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="AccountTitle"
                    Text="Accounts"
-                   Style="{StaticResource PageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 

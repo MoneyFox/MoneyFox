@@ -13,7 +13,7 @@ namespace MoneyFox.Business.Tests.ViewModels
     public class BackupViewModelTests : MvxIoCSupportingTest
     {
         [Fact]
-        public void Loaded_NoConnectivity_NothingCalled()
+        public async void Loaded_NoConnectivity_NothingCalled()
         {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
@@ -31,7 +31,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
-            vm.LoadedCommand.Execute();
+            await vm.Initialize();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
@@ -40,7 +40,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
+        public async void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
@@ -57,7 +57,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
-            vm.LoadedCommand.Execute();
+            await vm.Initialize();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
@@ -66,7 +66,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public void Loaded_ConnectivityLoggedIn_MethodsCalled() {
+        public async void Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivity>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
@@ -82,7 +82,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             //execute
             var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
-            vm.LoadedCommand.Execute();
+            await vm.Initialize();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
