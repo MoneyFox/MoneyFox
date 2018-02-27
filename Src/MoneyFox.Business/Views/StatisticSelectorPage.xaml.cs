@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using MoneyFox.Business.ViewModels.Statistic;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Business.Views
@@ -9,6 +10,12 @@ namespace MoneyFox.Business.Views
 		public StatisticSelectorPage ()
 		{
 			InitializeComponent ();
+
+		    StatisticSelectorList.ItemTapped += (sender, args) =>
+		    {
+		        StatisticSelectorList.SelectedItem = null;
+                ((IStatisticSelectorViewModel) BindingContext).GoToStatisticCommand.Execute(args.Item);
+		    };
 		}
 	}
 }

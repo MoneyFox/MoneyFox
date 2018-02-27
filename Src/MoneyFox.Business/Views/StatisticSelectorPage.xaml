@@ -3,17 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
              x:Class="MoneyFox.Business.Views.StatisticSelectorPage"
+             xmlns:local="clr-namespace:MoneyFox.Business"
+             xmlns:controls="clr-namespace:MoneyFox.Business.Controls"
              BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:MyResourceDictionary />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding StatisticItems}" ItemTapped="{Binding GoToStatisticCommand}">
+
+            <ListView x:Name="StatisticSelectorList"  ItemsSource="{Binding StatisticItems}" RowHeight="60" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" FontSize="Medium" />
-                                <Label Text="{Binding Description}" FontSize="Small" />
-                            </StackLayout>
+                            <controls:CardView BackgroundColor="{StaticResource ListItemColor}" Margin="3,3,3,0">
+                                <StackLayout Orientation="Vertical" Padding="3">
+                                    <Label Text="{Binding Name}" FontSize="Medium" />
+                                    <Label Text="{Binding Description}" FontSize="Small" />
+                                </StackLayout>
+                            </controls:CardView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

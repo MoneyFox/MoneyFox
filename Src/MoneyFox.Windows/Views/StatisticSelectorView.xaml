@@ -1,44 +1,24 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticSelectorView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:converter="using:MoneyFox.Windows.Converter"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:views="using:MvvmCross.Uwp.Views"
                       SizeChanged="StatisticSelectorView_OnSizeChanged"
                       mc:Ignorable="d">
 
-    <Page.Resources>
-        <converter:SelectedConverter x:Key="SelectedConverter" />
-    </Page.Resources>
-
-    <Grid x:Name="ContentGrid" Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin"
-                                Value="48,0,12,7" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        <TextBlock x:Name="TitlePage"
+                   x:Uid="StatisticSelectorViewTitle"
+                   Text="Select Statistic"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
+        <Grid Grid.Row="1" x:Name="ContentGrid" />
     </Grid>
 </views:MvxWindowsPage>

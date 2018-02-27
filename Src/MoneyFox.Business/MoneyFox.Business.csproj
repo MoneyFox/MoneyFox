@@ -42,6 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="MyResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
