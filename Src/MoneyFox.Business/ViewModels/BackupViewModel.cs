@@ -96,7 +96,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
-            get => true;
+            get => isLoadingBackupAvailability;
             private set
             {
                 if (isLoadingBackupAvailability == value) return;
@@ -126,8 +126,8 @@ namespace MoneyFox.Business.ViewModels
         }
 
         #endregion
-        
-        public override async void ViewAppeared()
+
+        public override async Task Initialize()
         {
             await Loaded();
         }
