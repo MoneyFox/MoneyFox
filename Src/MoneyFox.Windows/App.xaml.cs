@@ -14,6 +14,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.Business.Converter;
 #if !DEBUG
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;

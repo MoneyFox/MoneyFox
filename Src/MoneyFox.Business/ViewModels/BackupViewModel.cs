@@ -40,17 +40,15 @@ namespace MoneyFox.Business.ViewModels
         public string RestoreBackupText => Strings.RestoreBackupInformationLabel;
 
         public string LoginButtonLabel => Strings.LoginLabel;
+        public string LogoutButtonLabel => Strings.LogoutLabel;
         public string CreateBackupButtonLabel => Strings.CreateBackupLabel;
         public string RestoreBackupButtonlabel => Strings.RestoreBackupLabel;
 
-        public string LastBackupTimeStamp => Strings.LastBackupDateLabel;
+        public string LastBackupTimeStampLabel => Strings.LastBackupDateLabel;
 
         #endregion
 
-        /// <summary>
-        ///     Prepares the View when loaded.
-        /// </summary>
-        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
+        #region Properties
 
         /// <summary>
         ///     Makes the first login and sets the setting for the future navigations to this page.
@@ -107,6 +105,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
@@ -124,6 +123,13 @@ namespace MoneyFox.Business.ViewModels
                 backupAvailable = value;
                 RaisePropertyChanged();
             }
+        }
+
+        #endregion
+
+        public override async Task Initialize()
+        {
+            await Loaded();
         }
 
         private async Task Loaded()
