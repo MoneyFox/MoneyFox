@@ -435,4 +435,16 @@ Also if you launch the application there it will check if there are newer backup
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Tiles</value>
   </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>Recurring</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
 </root>

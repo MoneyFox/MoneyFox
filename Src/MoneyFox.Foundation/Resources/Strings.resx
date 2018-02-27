@@ -652,4 +652,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
     <value>Failed to create recurring payments!</value>
   </data>
+  <data name="SelectFilterDialogViewModel.IsClearedLabel" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="SelectFilterDialogViewModel.IsRecurringLabel" xml:space="preserve">
+    <value>Recurring</value>
+  </data>
+  <data name="SelectFilterDialogViewModel.SelectFilterLabel" xml:space="preserve">
+    <value>Select Filter</value>
+  </data>
 </root>
