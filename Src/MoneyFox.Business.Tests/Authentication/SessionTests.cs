@@ -4,6 +4,7 @@ using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Authentication

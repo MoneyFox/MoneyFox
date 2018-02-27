@@ -6,6 +6,7 @@ using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels

@@ -5,6 +5,7 @@ using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Test.Core;
 using Plugin.Connectivity.Abstractions;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -87,7 +88,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
             vm.BackupAvailable.ShouldBeTrue();
-            vm.BackupLastModified.ShouldBe(returnDate);
+            vm.BackupLastModified.ShouldEqual(returnDate);
         }
 
         [Fact]

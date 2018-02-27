@@ -9,6 +9,7 @@ using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Test.Core;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -250,9 +251,9 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewModel.LoadedCommand.Execute();
 
             // Assert
-            viewModel.IncludedAccounts.Count.ShouldBe(2);
-            viewModel.IncludedAccounts[0].Id.ShouldBe(22);
-            viewModel.IncludedAccounts[1].Id.ShouldBe(33);
+            viewModel.IncludedAccounts.Count.ShouldEqual(2);
+            viewModel.IncludedAccounts[0].Id.ShouldEqual(22);
+            viewModel.IncludedAccounts[1].Id.ShouldEqual(33);
         }
 
         [Fact]
@@ -280,9 +281,9 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewModel.LoadedCommand.Execute();
 
             // Assert
-            viewModel.ExcludedAccounts.Count.ShouldBe(2);
-            viewModel.ExcludedAccounts[0].Id.ShouldBe(22);
-            viewModel.ExcludedAccounts[1].Id.ShouldBe(33);
+            viewModel.ExcludedAccounts.Count.ShouldEqual(2);
+            viewModel.ExcludedAccounts[0].Id.ShouldEqual(22);
+            viewModel.ExcludedAccounts[1].Id.ShouldEqual(33);
         }
     }
 }

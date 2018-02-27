@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Core.Navigation;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -45,7 +46,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.CancelCommand.Execute();
 
             // Assert
-            viewmodel.SelectedCategory.Name.ShouldBe(name);
+            viewmodel.SelectedCategory.Name.ShouldEqual(name);
         }
 
         [Fact]
@@ -229,7 +230,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.SaveCommand.Execute();
 
             // Assert
-            categoryList.Count.ShouldBe(1);
+            categoryList.Count.ShouldEqual(1);
         }
 
         [Fact]
@@ -246,7 +247,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             };
 
             // Act / Assert
-            viewmodel.Title.ShouldBe(Strings.AddCategoryTitle);
+            viewmodel.Title.ShouldEqual(Strings.AddCategoryTitle);
         }
 
         [Fact]
@@ -266,7 +267,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             };
 
             // Act / Assert
-            viewmodel.Title.ShouldBe(string.Format(Strings.EditCategoryTitle, categoryName));
+            viewmodel.Title.ShouldEqual(string.Format(Strings.EditCategoryTitle, categoryName));
         }
     }
 }

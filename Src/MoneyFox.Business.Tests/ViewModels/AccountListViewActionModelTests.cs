@@ -7,6 +7,7 @@ using MoneyFox.Foundation;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels

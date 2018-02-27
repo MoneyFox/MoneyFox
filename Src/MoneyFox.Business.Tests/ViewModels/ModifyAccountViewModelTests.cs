@@ -11,6 +11,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Core.Navigation;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -136,7 +137,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.AmountString = amount;
 
             // Assert
-            viewmodel.AmountString.ShouldBe(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
+            viewmodel.AmountString.ShouldEqual(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
         }
 
         [Fact]
@@ -221,7 +222,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 {IsEdit = false};
 
             // Act / Assert
-            viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
+            viewmodel.Title.ShouldEqual(Strings.AddAccountTitle);
         }
 
         [Fact]
@@ -241,7 +242,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             };
 
             // Act / Assert
-            viewmodel.Title.ShouldBe(string.Format(Strings.EditAccountTitle, accountname));
+            viewmodel.Title.ShouldEqual(string.Format(Strings.EditAccountTitle, accountname));
         }
     }
 }
