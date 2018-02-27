@@ -44,7 +44,7 @@ namespace MoneyFox.Business.ViewModels
         public string CreateBackupButtonLabel => Strings.CreateBackupLabel;
         public string RestoreBackupButtonlabel => Strings.RestoreBackupLabel;
 
-        public string LastBackupTimeStamp => Strings.LastBackupDateLabel;
+        public string LastBackupTimeStampLabel => Strings.LastBackupDateLabel;
 
         #endregion
 

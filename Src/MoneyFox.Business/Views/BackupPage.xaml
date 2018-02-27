@@ -7,6 +7,7 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="inverter" />
+            <converter:DateVisibilityConverter x:Key="dateVisibilityConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -38,8 +39,8 @@
                     <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
                 </Grid>
 
-                <StackLayout Orientation="Horizontal" >
-                    <Label Text="{Binding LastBackupTimeStamp}" HorizontalOptions="Start" />
+                <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource dateVisibilityConverter}}">
+                    <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
                     <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
                 </StackLayout>
             </StackLayout>
