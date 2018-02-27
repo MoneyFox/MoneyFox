@@ -41,4 +41,10 @@
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

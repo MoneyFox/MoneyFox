@@ -7,68 +7,19 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Uwp.Views"
-                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      SizeChanged="StatisticSelectorView_OnSizeChanged"
                       mc:Ignorable="d">
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
-
-        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <StackPanel Background="{StaticResource ListItemBrush}"
-                        HorizontalAlignment="Stretch"
-                        Margin="{StaticResource SmallListItemMargin}"
-                        Padding="{StaticResource SmallListItemPadding}">
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind Name}"
-                               TextTrimming="CharacterEllipsis" />
-                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind Description}"
-                               TextWrapping="WrapWholeWords" />
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentGrid" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="StatisticSelectorViewTitle"
-                   Text="Select Statistic"
-                   Style="{StaticResource UwpPageTitleStyle}" />
-
-        <ScrollViewer Grid.Row="1"
-                      Margin="{StaticResource NegativeLargeLeftRightMargin}"
-                      HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      VerticalScrollBarVisibility="Disabled">
-
-            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
-                      ItemsSource="{Binding StatisticItems}"
-                      Background="Transparent">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </ScrollViewer>
 
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>

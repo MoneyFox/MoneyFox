@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
+             x:Class="MoneyFox.Business.Views.StatisticSelectorPage"
+             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding StatisticItems}" ItemTapped="{Binding GoToStatisticCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" FontSize="Medium" />
+                                <Label Text="{Binding Description}" FontSize="Small" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
