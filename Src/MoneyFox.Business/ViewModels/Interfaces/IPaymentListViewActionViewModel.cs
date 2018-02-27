@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using System;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {
@@ -23,5 +24,15 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         ///      Indicates wether the filter to only display recurring Payments is active or not.
         /// </summary>
         bool IsRecurringFilterActive { get; set; }
+
+        /// <summary>
+        ///     Start of the time range to load payments.
+        /// </summary>
+        DateTime TimeRangeStart { get; set; }
+
+        /// <summary>
+        ///     End of the time range to load payments.
+        /// </summary>
+        DateTime TimeRangeEnd { get; set; }
     }
 }

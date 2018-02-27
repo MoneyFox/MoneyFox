@@ -281,7 +281,6 @@ namespace MoneyFox.Business.ViewModels
 
         private AccountViewModel AccountViewModelBeforeEdit { get; set; }
 
-
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>

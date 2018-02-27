@@ -44,6 +44,7 @@
             <Border>
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
+                               Width="120"
                                VerticalAlignment="Center"
                                FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"

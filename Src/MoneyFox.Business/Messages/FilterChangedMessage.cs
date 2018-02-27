@@ -1,4 +1,5 @@
-﻿using MvvmCross.Plugins.Messenger;
+﻿using System;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.Messages
 {
@@ -11,12 +12,8 @@ namespace MoneyFox.Business.Messages
         ///     Constructor
         /// </summary>
         /// <param name="sender">sender object</param>
-        /// <param name="isClearedFilterActive">Value who shall be passed.</param>
-        /// <param name="isRecurringFilterActive">Value who shall be passed.</param>
-        public PaymentListFilterChangedMessage(object sender, bool isClearedFilterActive = false, bool isRecurringFilterActive = false) : base(sender)
+        public PaymentListFilterChangedMessage(object sender) : base(sender)
         {
-            IsClearedFilterActive = isClearedFilterActive;
-            IsRecurringFilterActive = isRecurringFilterActive;
         }
 
         /// <summary>
@@ -28,5 +25,15 @@ namespace MoneyFox.Business.Messages
         ///     Indicates if only recurring payments should be displayed.
         /// </summary>
         public bool IsRecurringFilterActive { get; set; }
+
+        /// <summary>
+        ///     Start of the time range to load payments.
+        /// </summary>
+        public DateTime TimeRangeStart { get; set; } = DateTime.MaxValue;
+
+        /// <summary>
+        ///     End of the time range to load payments.
+        /// </summary>
+        public DateTime TimeRangeEnd { get; set; } = DateTime.Now.AddMonths(-2);
     }
 }
