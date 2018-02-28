@@ -30,7 +30,7 @@ namespace MoneyFox.Business.Manager
         private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
 
         public const string THEME_KEYNAME = "Theme";
-        private const AppTheme THEME_KEYDEFAULT = AppTheme.Dark;
+        private const AppTheme THEME_KEYDEFAULT = AppTheme.Light;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
         
