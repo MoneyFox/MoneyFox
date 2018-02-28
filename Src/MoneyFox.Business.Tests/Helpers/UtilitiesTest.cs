@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Helpers
@@ -34,16 +35,16 @@ namespace MoneyFox.Business.Tests.Helpers
                 }
             };
             var result = Utilities.RoundStatisticItems(statisticItems).ToList();
-            result[0].Value.ShouldBe(3.23);
-            result[1].Value.ShouldBe(6.59);
-            result[2].Value.ShouldBe(55.39);
-            result[3].Value.ShouldBe(9);
+            result[0].Value.ShouldEqual(3.23);
+            result[1].Value.ShouldEqual(6.59);
+            result[2].Value.ShouldEqual(55.39);
+            result[3].Value.ShouldEqual(9);
         }
 
         [Fact]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof(DateTime));
+            Utilities.GetEndOfMonth().ShouldBeType(typeof(DateTime));
         }
 
         [Theory]
@@ -52,7 +53,7 @@ namespace MoneyFox.Business.Tests.Helpers
         [InlineData(6000000.4567)]
         public void FormatLargeNumbers_ValidString(double amount)
         {
-            Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
+            Utilities.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N"));
         }
 
         [Theory]

@@ -38,17 +38,7 @@ namespace MoneyFox.Foundation.Interfaces
         /// </summary>
         /// <value>The last database update.</value>
         DateTime LastDatabaseUpdate { get; set; }
-
-        /// <summary>
-        ///     Indicates if the dark theme is enabled.
-        /// </summary>
-        bool IsDarkThemeSelected { get; set; }
-
-        /// <summary>
-        ///     Indicate if the system theme is used.
-        /// </summary>
-        bool UseSystemTheme { get; set; }
-
+        
         /// <summary>
         ///     Currently selected theme.
         /// </summary>

@@ -2,6 +2,7 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter
@@ -14,7 +15,7 @@ namespace MoneyFox.Business.Tests.Converter
         {
             new PaymentAmountConverter()
                 .Convert(new PaymentViewModel(new Payment()) {Amount = 80, Type = PaymentType.Expense}, null, null, null)
-                .ShouldBe("- " + 80.ToString("C"));
+                .ShouldEqual("- " + 80.ToString("C"));
         }
 
         [Fact]
@@ -22,7 +23,7 @@ namespace MoneyFox.Business.Tests.Converter
         {
             new PaymentAmountConverter()
                 .Convert(new PaymentViewModel(new Payment()) {Amount = 80, Type = PaymentType.Income}, null, null, null)
-                .ShouldBe("+ " + 80.ToString("C"));
+                .ShouldEqual("+ " + 80.ToString("C"));
         }
 
         [Fact]
@@ -43,7 +44,7 @@ namespace MoneyFox.Business.Tests.Converter
                     ChargedAccount = account,
                     CurrentAccountId = account.Id
                 }, null, account, null)
-                .ShouldBe("- " + 80.ToString("C"));
+                .ShouldEqual("- " + 80.ToString("C"));
         }
 
         [Fact]
@@ -63,7 +64,7 @@ namespace MoneyFox.Business.Tests.Converter
                     ChargedAccount = new AccountViewModel(new Account()),
                     CurrentAccountId = account.Id
                 }, null, new AccountViewModel(new Account()), null)
-                .ShouldBe("+ " + 80.ToString("C"));
+                .ShouldEqual("+ " + 80.ToString("C"));
         }
     }
 }

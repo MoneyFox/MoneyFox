@@ -178,7 +178,6 @@
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_general.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
-    <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
     <AndroidResource Include="Resources\layout\header_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_account.axml" />
     <AndroidResource Include="Resources\layout\listitem_category.axml" />
@@ -188,7 +187,9 @@
     <AndroidResource Include="Resources\layout\listitem_legend_item.axml" />
     <AndroidResource Include="Resources\layout\listitem_monthly_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_payment.axml" />
-    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml" />
+    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_filter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

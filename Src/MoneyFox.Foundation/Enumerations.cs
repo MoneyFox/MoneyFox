@@ -43,7 +43,6 @@
 
     public enum AppTheme
     {
-        System,
         Dark,
         Light
     }

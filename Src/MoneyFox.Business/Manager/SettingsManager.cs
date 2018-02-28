@@ -30,20 +30,10 @@ namespace MoneyFox.Business.Manager
         private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
 
         public const string THEME_KEYNAME = "Theme";
-        private const AppTheme THEME_KEYDEFAULT = AppTheme.System;
+        private const AppTheme THEME_KEYDEFAULT = AppTheme.Light;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
-
-        /// <summary>
-        ///     Constant for the Theme Setting
-        ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
-        /// </summary>
-        public const string DARK_THEME_SELECTED_KEYNAME = "dark_theme_selected";
-        private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
-
-        public const string USE_SYSTEM_THEME_KEYNAME = "use_system_theme";
-        private const bool USE_SYSTEM_THEME_KEYDEFAULT = true;
-
+        
         private readonly ISettings settings;
 
         public SettingsManager(ISettings settings)
@@ -56,16 +46,14 @@ namespace MoneyFox.Business.Manager
         /// <inheritdoc />
         public bool ShowCashFlowOnMainTile
         {
-            get => settings.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,
-                                     SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
+            get => settings.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
             set => settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
-            get => settings.GetValue(AUTOUPLOAD_BACKUP_KEYNAME,
-                                     AUTOUPLOAD_BACKUP_KEYDEFAULT);
+            get => settings.GetValue(AUTOUPLOAD_BACKUP_KEYNAME, AUTOUPLOAD_BACKUP_KEYDEFAULT);
             set => settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value);
         }
 
@@ -96,24 +84,10 @@ namespace MoneyFox.Business.Manager
             set => settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value);
         }
 
-        /// <inheritdoc />
-        public bool IsDarkThemeSelected
-        {
-            get => settings.GetValue(DARK_THEME_SELECTED_KEYNAME, DARK_THEME_SELECTED_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(DARK_THEME_SELECTED_KEYNAME, value);
-        }
-
-        /// <inheritdoc />
-        public bool UseSystemTheme
-        {
-            get => settings.GetValue(USE_SYSTEM_THEME_KEYNAME, USE_SYSTEM_THEME_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(USE_SYSTEM_THEME_KEYNAME, value);
-        }
-
         public AppTheme Theme
         {
-            get { return settings.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT); }
-            set { settings.AddOrUpdateValue(THEME_KEYNAME, value); }
+            get => settings.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT);
+            set => settings.AddOrUpdateValue(THEME_KEYNAME, value);
         }
 
         /// <inheritdoc />

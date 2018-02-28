@@ -125,7 +125,6 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />

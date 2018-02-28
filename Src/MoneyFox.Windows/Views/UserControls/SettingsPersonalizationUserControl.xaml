@@ -14,7 +14,6 @@
                    TextWrapping="WrapWholeWords"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
         <ComboBox SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
-            <ComboBoxItem x:Uid="System" Content="System" />
             <ComboBoxItem x:Uid="Dark" Content="Dark" />
             <ComboBoxItem x:Uid="Light" Content="Light" />
         </ComboBox>
