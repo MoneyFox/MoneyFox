@@ -13,6 +13,7 @@ namespace MoneyFox.Business.Views
 	{
 		public StatisticSelectorPage ()
 		{
+		    ApplyRessources();
 			InitializeComponent ();
 
 		    StatisticSelectorList.ItemTapped += (sender, args) =>
@@ -20,15 +21,20 @@ namespace MoneyFox.Business.Views
 		        StatisticSelectorList.SelectedItem = null;
                 ((IStatisticSelectorViewModel) BindingContext).GoToStatisticCommand.Execute(args.Item);
 		    };
-
-		    if (Mvx.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
-		    {
-		        Resources = new AppStylesDark();
-		    }
-		    else
-		    {
-		        Resources = new AppStylesLight();
-		    }
 		}
+
+	    private void ApplyRessources()
+	    {
+            if (Mvx.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
+	        {
+	            Resources = new AppStylesDark();
+	        }
+	        else
+            {
+                Resources = new AppStylesLight();
+	        }
+
+            Resources.MergedDictionaries.Add(new AppStyles());
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
@@ -10,16 +10,22 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ListView x:Name="StatisticSelectorList"  ItemsSource="{Binding StatisticItems}" RowHeight="60" SeparatorVisibility="None">
+            <ListView x:Name="StatisticSelectorList"
+                      ItemsSource="{Binding StatisticItems}" 
+                      RowHeight="60" 
+                      Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                      SeparatorVisibility="None" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <controls:CardView BackgroundColor="{StaticResource ListItemColor}" Margin="3,3,3,0">
-                                <StackLayout Orientation="Vertical" Padding="3">
-                                    <Label Text="{Binding Name}" FontSize="Medium" />
-                                    <Label Text="{Binding Description}" FontSize="Small" />
-                                </StackLayout>
-                            </controls:CardView>
+                            <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                                         Orientation="Vertical"
+                                         Padding="3"
+                                         Spacing="{StaticResource DefaultSpacing}"
+                                         Margin="{StaticResource DefaultListItemsMargin}">
+                                    <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                                    <Label Text="{Binding Description}" Style="{StaticResource DeemphasizedLabelStyle}" />
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

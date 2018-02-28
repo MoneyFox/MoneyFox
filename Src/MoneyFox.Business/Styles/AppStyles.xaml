@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MoneyFox.Business.Styles.AppStylesDark">
-
-    <!-- Colors -->
-    <Color x:Key="PrimaryFontColor">White</Color>
-    <Color x:Key="DeemphasizedColor">#5A6570</Color>
-
-    <Color x:Key="ListItemColor">#FF171717</Color>
-
-
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MoneyFox.Business.Styles.AppStyles">
 
     <!-- Styles -->
     <Style x:Key="ListItemHeaderStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource MediumTextSize}" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryFontColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
     </Style>
 
     <Style x:Key="DeemphasizedLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
-        <Setter Property="TextColor" Value="{StaticResource DeemphasizedColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource DeemphasizedColor}" />
     </Style>
 
     <!-- Font Sizes -->
@@ -38,6 +30,7 @@
     <Thickness x:Key="SmallListItemPadding">0,4,0,4</Thickness>
 
     <!--Medium size margins-->
+    <Thickness x:Key="DefaultListItemsMargin">12,0,12,3</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
     <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
