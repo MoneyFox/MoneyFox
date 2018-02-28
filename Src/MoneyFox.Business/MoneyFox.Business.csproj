@@ -42,7 +42,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="MyResourceDictionary.xaml">
+    <Compile Update="Styles\AppStylesDark.xaml.cs">
+      <DependentUpon>AppStylesDark.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Styles\AppStylesLight.xaml.cs">
+      <DependentUpon>AppStylesLight.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\AppStylesDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\AppStylesLight.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
