@@ -20,13 +20,13 @@
 
             <NavigationView.MenuItems>
 
-                <NavigationViewItem Content="Accounts" Tag="Accounts">
+                <NavigationViewItem Content="Accounts" Tag="Accounts" Foreground="White">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Statistics" Tag="statistics" >
+                <NavigationViewItem Content="Statistics" Tag="statistics" Foreground="White">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
@@ -36,25 +36,25 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemSeparator/>
 
-                <NavigationViewItem Content="Categories" Tag="Categories">
+                <NavigationViewItem Content="Categories" Tag="Categories" Foreground="White">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Backup" Tag="Backup">
+                <NavigationViewItem Content="Backup" Tag="Backup" Foreground="White">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Settings" Tag="Settings">
+                <NavigationViewItem Content="Settings" Tag="Settings" Foreground="White">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Cog" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
-                </NavigationViewItem>                
-                
-                <NavigationViewItem Content="About" Tag="About">
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="About" Tag="About" Foreground="White">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="InfoCircle" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
