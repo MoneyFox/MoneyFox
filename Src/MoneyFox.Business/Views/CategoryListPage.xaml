@@ -1,18 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
-             x:Class="MoneyFox.Business.Views.StatisticSelectorPage"
-             xmlns:local="clr-namespace:MoneyFox.Business"
-             xmlns:controls="clr-namespace:MoneyFox.Business.Controls"
-             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
-
+             xmlns:controls="clr-namespace:MoneyFox.Business.Controls;assembly=MoneyFox.Business"
+             x:Class="MoneyFox.Business.Views.CategoryListPage"
+             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
     <ContentPage.Content>
-        <ListView x:Name="StatisticSelectorList"
-                      ItemsSource="{Binding StatisticItems}" 
-                      RowHeight="60" 
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}"
-                      SeparatorVisibility="None" >
+        <ListView x:Name="CategoryList"
+                  ItemsSource="{Binding CategoryList}" 
+                  RowHeight="60" 
+                  Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                  IsGroupingEnabled="True"
+                  SeparatorVisibility="None" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -23,7 +22,6 @@
                                          Spacing="{StaticResource DefaultSpacing}"
                                          Margin="{StaticResource DefaultListItemsMargin}">
                                 <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-                                <Label Text="{Binding Description}" Style="{StaticResource DeemphasizedLabelStyle}" />
                             </StackLayout>
                         </controls:CardView>
                     </ViewCell>

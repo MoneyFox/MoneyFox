@@ -29,7 +29,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                new Mock<IMvxNavigationService>().Object);
             vm.LoadedCommand.Execute();
 
-            vm.Source.ShouldNotBeNull();
+            vm.CategoryList.ShouldNotBeNull();
         }
     }
 }

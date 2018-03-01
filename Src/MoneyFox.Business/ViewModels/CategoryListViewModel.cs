@@ -1,15 +1,22 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using MoneyFox.DataAccess.DataServices;
+using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface ICategoryListViewModel
+    {
+        ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
+    }
+
     /// <summary>
     ///     Reprensentation of the CategoryListView.
     /// </summary>
-    public class CategoryListViewModel : AbstractCategoryListViewModel
+    public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
     {
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.

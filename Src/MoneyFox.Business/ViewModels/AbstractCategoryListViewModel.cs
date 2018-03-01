@@ -69,7 +69,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> Source
+        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList
         {
             get { return source; }
             set
@@ -162,7 +162,7 @@ namespace MoneyFox.Business.ViewModels
                 Categories =
                     new ObservableCollection<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
             }
-            Source = CreateGroup();
+            CategoryList = CreateGroup();
         }
 
         private async Task Loaded()
