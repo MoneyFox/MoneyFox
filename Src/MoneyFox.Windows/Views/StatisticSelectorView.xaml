@@ -19,7 +19,6 @@
                    Style="{StaticResource UwpPageTitleStyle}" 
                    Margin="{StaticResource MediumLeftRightMargin}"/>
 
-        <Grid Grid.Row="1" x:Name="ContentGrid" 
-              Margin="{StaticResource MediumLeftRightMargin}" />
+        <Grid Grid.Row="1" x:Name="ContentGrid" />
     </Grid>
 </views:MvxWindowsPage>

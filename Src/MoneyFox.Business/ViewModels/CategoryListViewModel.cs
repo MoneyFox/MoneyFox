@@ -13,8 +13,8 @@ namespace MoneyFox.Business.ViewModels
     {
         ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
         MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
-        CategoryViewModel SelectedCategory { get; set; }
-        string SearchText { get; set; }
+        MvxAsyncCommand<string> SearchCommand { get; }
+        bool IsCategoriesEmpty { get; }
     }
 
     /// <summary>

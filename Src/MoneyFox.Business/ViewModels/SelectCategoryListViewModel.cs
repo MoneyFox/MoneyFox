@@ -15,6 +15,7 @@ namespace MoneyFox.Business.ViewModels
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
+        private CategoryViewModel selectedCategory;
 
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
@@ -25,13 +26,27 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         public SelectCategoryListViewModel(ICategoryService categoryService,
-            IModifyDialogService modifyDialogService,
-            IDialogService dialogService,
-            IMvxMessenger messenger,
-            IMvxNavigationService navigationService) 
+                                           IModifyDialogService modifyDialogService,
+                                           IDialogService dialogService,
+                                           IMvxMessenger messenger,
+                                           IMvxNavigationService navigationService)
             : base(categoryService, modifyDialogService, dialogService, navigationService)
         {
             this.messenger = messenger;
+        }
+        
+        /// <summary>
+        ///     CategoryViewModel currently selected in the view.
+        /// </summary>
+        public CategoryViewModel SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                if (selectedCategory == value) return;
+                selectedCategory = value;
+                RaisePropertyChanged();
+            }
         }
 
         /// <summary>

@@ -19,10 +19,8 @@ namespace MoneyFox.Business.ViewModels
         protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
         protected readonly IMvxNavigationService NavigationService;
-
-        private string searchText;
+        
         private ObservableCollection<CategoryViewModel> categories;
-        private CategoryViewModel selectedCategory;
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<CategoryViewModel> Categories
         {
-            get { return categories; }
+            get => categories;
             set
             {
                 if (categories == value) return;
@@ -71,7 +69,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList
         {
-            get { return source; }
+            get => source;
             set
             {
                 if (source == value) return;
@@ -80,35 +78,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <summary>
-        ///     CategoryViewModel currently selected in the view.
-        /// </summary>
-        public CategoryViewModel SelectedCategory
-        {
-            get { return selectedCategory; }
-            set
-            {
-                if (selectedCategory == value) return;
-                selectedCategory = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public bool IsCategoriesEmpty => !Categories?.Any() ?? true;
-
-        /// <summary>
-        ///     Text to search for. Will perform the search when the text changes.
-        /// </summary>
-        public string SearchText
-        {
-            get { return searchText; }
-            set
-            {
-                searchText = value;
-                Search();
-                RaisePropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -135,6 +105,11 @@ namespace MoneyFox.Business.ViewModels
         public MvxAsyncCommand<CategoryViewModel> OpenContextMenuCommand => new MvxAsyncCommand<CategoryViewModel>(OpenContextMenu);
 
         /// <summary>
+        ///     Executes a search for the passed term and updates the displayed list.
+        /// </summary>
+        public MvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
+
+        /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand
@@ -150,9 +125,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public async Task Search()
+        public async Task Search(string searchText = "")
         {
-            if (!string.IsNullOrEmpty(SearchText))
+            if (!string.IsNullOrEmpty(searchText))
             {
                 var searchedCategories = await CategoryService.SearchByName(searchText);
                 Categories = new ObservableCollection<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
@@ -167,7 +142,6 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task Loaded()
         {
-            SearchText = string.Empty;
             await Search();
         }
 

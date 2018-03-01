@@ -8,7 +8,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:MoneyFox.Business.ViewModels"
              xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
-             d:DataContext="{d:DesignInstance designTime1:DesignTimeCategoryListViewModel,
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
