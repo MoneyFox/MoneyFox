@@ -12,7 +12,15 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Margin="{StaticResource MediumLeftRightMargin}">
+            <StackLayout Grid.Row="0">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0"/>
+                        <On Platform="UWP" Value="{StaticResource MediumLeftRightMargin}"/>
+                        <On Platform="Android" Value="0"/>
+                    </OnPlatform>
+                </StackLayout.Margin>
+
                 <Label Style="{StaticResource DefaultTextStyle}">Search</Label>
 
                 <SearchBar x:Name="SearchBar" VerticalOptions="Start" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}">
@@ -44,6 +52,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
+                                          Text="More" />
+                                <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
+                                          Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
                             <StackLayout Margin="{StaticResource NegativeMediumLeftRightMargin}" Spacing="0">
                                 <StackLayout BackgroundColor="{StaticResource ListItemColor}"
                                          Orientation="Vertical"

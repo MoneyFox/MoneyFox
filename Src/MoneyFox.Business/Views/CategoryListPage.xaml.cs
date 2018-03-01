@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.Styles;
+﻿using System;
+using MoneyFox.Business.Styles;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
@@ -40,5 +41,15 @@ namespace MoneyFox.Business.Views
 
 	        Resources.MergedDictionaries.Add(new AppStyles());
 	    }
-    }
+
+	    private void EditCategory(object sender, EventArgs e)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    private void DeleteCategory(object sender, EventArgs e)
+	    {
+	        throw new NotImplementedException();
+	    }
+	}
 }

@@ -41,14 +41,13 @@ namespace MoneyFox.Droid.Activities
         /// <summary>
         ///     Refresh list of categories
         /// </summary>
-        public void RefreshCategories()
+        public async void RefreshCategories()
         {
             // Make an empty search to refresh the list and groups
             var selectCategoryListViewModel = ViewModel;
             if (selectCategoryListViewModel != null)
             {
-                selectCategoryListViewModel.SearchText = string.Empty;
-                selectCategoryListViewModel.Search();
+                await selectCategoryListViewModel.Search();
             }
         }
 
