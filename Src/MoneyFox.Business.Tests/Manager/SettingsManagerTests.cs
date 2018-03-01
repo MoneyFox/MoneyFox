@@ -40,27 +40,9 @@ namespace MoneyFox.Business.Tests.Manager
         }
 
         [Fact]
-        public void IsDarkThemeSelected_DefaultValue()
-        {
-            new SettingsManager(new Settings()).IsDarkThemeSelected.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void IsLoggedInToBackupService_DefaultValue()
-        {
-            new SettingsManager(new Settings()).IsLoggedInToBackupService.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void UseSystemTheme_DefaultValue()
-        {
-            new SettingsManager(new Settings()).UseSystemTheme.ShouldBeTrue();
-        }
-
-        [Fact]
         public void Theme_DefaultValue()
         {
-            Assert.Equal(AppTheme.System, new SettingsManager(new Settings()).Theme);
+            Assert.Equal(AppTheme.Dark, new SettingsManager(new Settings()).Theme);
         }
     }
 }

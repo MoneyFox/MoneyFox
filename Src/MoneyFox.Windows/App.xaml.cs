@@ -14,6 +14,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.Business;
 using MoneyFox.Business.Converter;
 #if !DEBUG
 using Microsoft.Azure.Mobile;
@@ -55,23 +56,14 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.System))
+            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Dark))
             {
-                case AppTheme.Dark:
-                    RequestedTheme = ApplicationTheme.Dark;
-                    break;
-
                 case AppTheme.Light:
                     RequestedTheme = ApplicationTheme.Light;
                     break;
 
-                case AppTheme.System:
-                    var uiSettings = new UISettings();
-                    var color = uiSettings.GetColorValue(UIColorType.Background);
-
-                    RequestedTheme = color == Color.FromArgb(255, 255, 255, 255)
-                        ? ApplicationTheme.Light
-                        : ApplicationTheme.Dark;
+                default:
+                    RequestedTheme = ApplicationTheme.Dark;
                     break;
             }
         }
@@ -93,6 +85,8 @@ namespace MoneyFox.Windows
                 Window.Current.Content = mainView;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
+                Xamarin.Forms.Forms.Init(e);
+
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
                 var setup = new Setup(mainView.MainFrame);
@@ -100,8 +94,6 @@ namespace MoneyFox.Windows
 
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
-
-                Xamarin.Forms.Forms.Init(e);
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));

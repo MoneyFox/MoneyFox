@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core.Navigation;
+﻿using MoneyFox.Business.ViewModels.Statistic;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels

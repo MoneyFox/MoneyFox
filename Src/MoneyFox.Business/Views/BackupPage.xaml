@@ -23,7 +23,7 @@
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding CreateBackupText}"
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
 
                 <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
@@ -32,7 +32,7 @@
                     <Grid.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS" Value="37"/>
-                            <On Platform="UWP" Value="36"/>
+                            <On Platform="UWP" Value="35"/>
                             <On Platform="Android" Value="48"/>
                         </OnPlatform>
                     </Grid.HeightRequest>
