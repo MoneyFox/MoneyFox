@@ -5,8 +5,8 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Uwp.Views"
+                      SizeChanged="CategoryListView_OnSizeChanged"
                       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -15,49 +15,18 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
                    x:Uid="CategoriesTitle"
                    Text="Categories"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" 
+                   Margin="{StaticResource MediumLeftRightMargin}"/>
 
-        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
-
-        <CommandBar Grid.Row="2"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}" >
-            <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddCategoryViewModelLabel"
-                              Command="{Binding CreateNewCategoryCommand}"
-                              Icon="Add"
-                              Label="New Category" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-        
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin"
-                                Value="48,0,12,7" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        <Grid Grid.Row="1" x:Name="ContentGrid" />
     </Grid>
 </views:MvxWindowsPage>

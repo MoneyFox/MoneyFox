@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
              x:Class="MoneyFox.Business.Views.StatisticSelectorPage"
-             xmlns:local="clr-namespace:MoneyFox.Business"
-             xmlns:controls="clr-namespace:MoneyFox.Business.Controls"
              BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
     <ContentPage.Content>
@@ -16,16 +14,14 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView>
-                            <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                        <StackLayout BackgroundColor="{StaticResource ListItemColor}"
                                          Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{StaticResource DefaultSpacing}"
                                          Margin="{StaticResource DefaultListItemsMargin}">
-                                <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-                                <Label Text="{Binding Description}" Style="{StaticResource DeemphasizedLabelStyle}" />
-                            </StackLayout>
-                        </controls:CardView>
+                            <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                            <Label Text="{Binding Description}" Style="{StaticResource DeemphasizedLabelStyle}" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

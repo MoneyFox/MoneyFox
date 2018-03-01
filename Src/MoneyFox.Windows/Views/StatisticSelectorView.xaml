@@ -7,8 +7,7 @@
                       SizeChanged="StatisticSelectorView_OnSizeChanged"
                       mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -17,8 +16,10 @@
         <TextBlock x:Name="TitlePage"
                    x:Uid="StatisticSelectorViewTitle"
                    Text="Select Statistic"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{StaticResource UwpPageTitleStyle}" 
+                   Margin="{StaticResource MediumLeftRightMargin}"/>
 
-        <Grid Grid.Row="1" x:Name="ContentGrid" Margin="{StaticResource NegativeMediumLeftRightMargin}" />
+        <Grid Grid.Row="1" x:Name="ContentGrid" 
+              Margin="{StaticResource MediumLeftRightMargin}" />
     </Grid>
 </views:MvxWindowsPage>

@@ -17,6 +17,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UserControls\**" />
+    <EmbeddedResource Remove="UserControls\**" />
+    <None Remove="UserControls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Cheesebaron.MvxPlugins.Settings" Version="3.2.0" />
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.18.0" />
@@ -69,10 +75,6 @@
     <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UserControls\" />
   </ItemGroup>
 
 </Project>

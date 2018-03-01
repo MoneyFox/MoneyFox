@@ -1,9 +1,11 @@
 ﻿using MoneyFox.Business.Styles;
-using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Platform;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Business.Views
@@ -19,9 +21,12 @@ namespace MoneyFox.Business.Views
 	        CategoryList.ItemTapped += (sender, args) =>
 	        {
 	            CategoryList.SelectedItem = null;
-	            ((IStatisticSelectorViewModel)BindingContext).GoToStatisticCommand.Execute(args.Item);
+	            ((ICategoryListViewModel) BindingContext).ItemClickCommand.Execute(args.Item);
 	        };
-	    }
+
+		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
+
+		}
 
 	    private void ApplyRessources()
 	    {

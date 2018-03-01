@@ -4,6 +4,7 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
@@ -11,6 +12,9 @@ namespace MoneyFox.Business.ViewModels
     public interface ICategoryListViewModel
     {
         ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
+        MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+        CategoryViewModel SelectedCategory { get; set; }
+        string SearchText { get; set; }
     }
 
     /// <summary>

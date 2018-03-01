@@ -17,14 +17,7 @@ namespace MoneyFox.Droid.Activities
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class SelectCategoryListActivity : MvxAppCompatActivity<SelectCategoryListViewModel>
-        
     {
-        protected override void OnStart()
-        {
-            ViewModel.LoadedCommand.Execute();
-            base.OnStart();
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

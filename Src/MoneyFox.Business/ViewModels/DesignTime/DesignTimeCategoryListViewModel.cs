@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
@@ -21,5 +19,10 @@ namespace MoneyFox.Business.ViewModels.DesignTime
                     new CategoryViewModel(new Category()) {Name = "Einkaufen"}
                 }
             };
+
+        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+
+        public CategoryViewModel SelectedCategory { get; set; }
+        public string SearchText { get; set; }
     }
 }

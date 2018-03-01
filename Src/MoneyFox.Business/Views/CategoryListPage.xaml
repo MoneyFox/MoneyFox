@@ -2,20 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
-             xmlns:controls="clr-namespace:MoneyFox.Business.Controls;assembly=MoneyFox.Business"
              x:Class="MoneyFox.Business.Views.CategoryListPage"
              BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
     <ContentPage.Content>
         <ListView x:Name="CategoryList"
                   ItemsSource="{Binding CategoryList}" 
-                  RowHeight="60" 
-                  Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                  HasUnevenRows="True"
+                  CachingStrategy="RecycleElement"
                   IsGroupingEnabled="True"
+                  GroupShortNameBinding="{Binding Key}"
+                  GroupDisplayBinding="{Binding Key}"
                   SeparatorVisibility="None" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView>
+                        <StackLayout Margin="{StaticResource NegativeMediumLeftRightMargin}" Spacing="0">
                             <StackLayout BackgroundColor="{StaticResource ListItemColor}"
                                          Orientation="Vertical"
                                          Padding="3"
@@ -23,7 +24,7 @@
                                          Margin="{StaticResource DefaultListItemsMargin}">
                                 <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
                             </StackLayout>
-                        </controls:CardView>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

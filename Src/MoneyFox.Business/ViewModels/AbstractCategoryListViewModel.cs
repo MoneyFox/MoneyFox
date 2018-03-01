@@ -115,11 +115,6 @@ namespace MoneyFox.Business.ViewModels
         #region Commands
 
         /// <summary>
-        ///     Prepares everthing after the view is loaded.
-        /// </summary>
-        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
-
-        /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel> DeleteCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(DeleteCategory);
@@ -132,7 +127,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel>ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Opens a option dialog to select the modify operation
@@ -146,6 +141,11 @@ namespace MoneyFox.Business.ViewModels
             => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
 
         #endregion
+
+        public override async Task Initialize()
+        {
+            await Loaded();
+        }
 
         /// <summary>
         ///     Performs a search with the text in the searchtext property
