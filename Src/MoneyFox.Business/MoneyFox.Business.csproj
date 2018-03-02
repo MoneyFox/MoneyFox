@@ -47,4 +47,34 @@
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Styles\AppStyles.xaml.cs">
+      <DependentUpon>AppStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Styles\AppStylesDark.xaml.cs">
+      <DependentUpon>AppStylesDark.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Styles\AppStylesLight.xaml.cs">
+      <DependentUpon>AppStylesLight.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\AppStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\AppStylesDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\AppStylesLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CategoryListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

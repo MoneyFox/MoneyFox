@@ -9,7 +9,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Business.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryListPage : ContentPage
@@ -22,7 +22,7 @@ namespace MoneyFox.Views
 	        CategoryList.ItemTapped += (sender, args) =>
 	        {
 	            CategoryList.SelectedItem = null;
-	            ((ICategoryListViewModel) BindingContext).ItemClickCommand.Execute((CategoryViewModel) args.Item);
+	            ((ICategoryListViewModel) BindingContext).ItemClickCommand.Execute(args.Item);
 	        };
 
 		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);

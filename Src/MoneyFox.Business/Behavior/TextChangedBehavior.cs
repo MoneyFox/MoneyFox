@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MoneyFox.Behavior
+namespace MoneyFox.Business.Behavior
 {
     /// <summary>
     ///     Executes the search command on text change

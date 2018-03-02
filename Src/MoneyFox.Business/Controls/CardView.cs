@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MoneyFox.Controls
+namespace MoneyFox.Business.Controls
 {
     public class CardView : Frame
     {

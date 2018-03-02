@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Business.Converter
 {
     public class InverseBoolConverter: IValueConverter
     {

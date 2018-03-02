@@ -2,7 +2,7 @@
 using MoneyFox.Business.ViewModels.DesignTime;
 using MoneyFox.Business.ViewModels.Statistic;
 
-namespace MoneyFox
+namespace MoneyFox.Business
 {
     /// <summary>
     ///     Locator to provide Design Time ViewModels for the Xamarin Forms Designer.

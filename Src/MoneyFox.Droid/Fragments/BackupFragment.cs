@@ -2,7 +2,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Views;
+using MoneyFox.Business.Views;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Views.Attributes;

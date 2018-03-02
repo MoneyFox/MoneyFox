@@ -2,7 +2,7 @@
 using System.Globalization;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Business.Converter
 {
     /// <summary>
     ///     Converts DateTime values to a nicer representation.
