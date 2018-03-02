@@ -90,12 +90,6 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>5.6.3</Version>
     </PackageReference>
-    <PackageReference Include="Naxam.BottomTabbedPage">
-      <Version>0.2.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Naxam.Ittianyu.BottomNavExtension">
-      <Version>1.2.4</Version>
-    </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
     </PackageReference>
@@ -171,13 +165,17 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\Toolbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Tabbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Tabbar.axml" />
-    <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

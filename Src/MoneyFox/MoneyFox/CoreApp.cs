@@ -30,10 +30,8 @@ namespace MoneyFox
                 await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
 
-
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                //await navigationService.Navigate<MenuViewModel>();
                 RegisterNavigationServiceAppStart<MainViewModel>();
             }
             else

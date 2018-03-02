@@ -34,6 +34,11 @@
                 <Setter Property="TextColor" Value="{DynamicResource SystemAccentColor}" />
             </Style>
 
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource SystemAccentColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
             <!-- Font Sizes -->
             <x:Double x:Key="DefaultTextSize">14</x:Double>
             <x:Double x:Key="MediumTextSize">20</x:Double>
