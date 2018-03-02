@@ -51,7 +51,7 @@
                 </ListView.GroupHeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell >
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
                                           Text="More" />

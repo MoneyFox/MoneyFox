@@ -26,8 +26,7 @@ namespace MoneyFox.Business.Views
 	        };
 
 		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
-
-		}
+        }
 
 	    private void ApplyRessources()
 	    {

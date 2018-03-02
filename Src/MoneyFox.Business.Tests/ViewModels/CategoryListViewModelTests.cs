@@ -27,7 +27,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var vm = new CategoryListViewModel(categoryRepoSetup.Object, new Mock<IModifyDialogService>().Object,
                                                new Mock<IDialogService>().Object,
                                                new Mock<IMvxNavigationService>().Object);
-            vm.LoadedCommand.Execute();
 
             vm.CategoryList.ShouldNotBeNull();
         }

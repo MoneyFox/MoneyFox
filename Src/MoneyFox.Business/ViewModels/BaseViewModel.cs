@@ -10,7 +10,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///      Constructor
         /// </summary>
-        protected ViewModelBase()
+        protected BaseViewModel()
         {
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
