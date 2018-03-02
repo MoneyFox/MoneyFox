@@ -4,8 +4,7 @@
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
              xmlns:behavior="clr-namespace:MoneyFox.Business.Behavior;assembly=MoneyFox.Business"
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             x:Class="MoneyFox.Business.Views.CategoryListPage"
-             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
+             x:Class="MoneyFox.Business.Views.CategoryListPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -82,4 +81,4 @@
                    IsVisible="{Binding IsCategoriesEmpty}" />
         </Grid>
     </ContentPage.Content>
-</MvxContentPage>
+</d:MvxContentPage>

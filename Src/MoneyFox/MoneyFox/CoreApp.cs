@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
+using MoneyFox.Views;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -29,10 +30,11 @@ namespace MoneyFox
                 await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
 
+
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                await navigationService.Navigate<MenuViewModel>();
-                await navigationService.Navigate<AccountListViewModel>();
+                //await navigationService.Navigate<MenuViewModel>();
+                RegisterNavigationServiceAppStart<MainViewModel>();
             }
             else
             {

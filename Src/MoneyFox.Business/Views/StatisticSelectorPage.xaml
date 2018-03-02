@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<d:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business" 
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             x:Class="MoneyFox.Business.Views.StatisticSelectorPage"
-             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+             x:Class="MoneyFox.Business.Views.StatisticSelectorPage">
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
@@ -28,4 +27,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</MvxContentPage>
+</d:MvxContentPage>

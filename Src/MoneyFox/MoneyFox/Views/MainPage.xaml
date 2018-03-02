@@ -1,10 +1,32 @@
-﻿<forms:BottomTabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<xf:MvxTabbedPage x:TypeArguments="viewModels:MainViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:view="clr-namespace:MoneyFox.Views;assembly=MoneyFox"
+                  xmlns:xf="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:forms="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.BottomTabbedPage.Forms"
-                  xmlns:views="clr-namespace:MoneyFox.Business.Views;assembly=MoneyFox.Business"
+                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                  xmlns:views="clr-namespace:MoneyFox.Views;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.MainPage">
+    <xf:MvxTabbedPage.Children>
+        <NavigationPage Title="Browse">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:AccountListPage />
+            </x:Arguments>
+        </NavigationPage>
 
-    <views:StatisticSelectorPage Title="Favorites" Icon="ic_show_chart.png" />
-
-</forms:BottomTabbedPage>
+        <NavigationPage Title="Browse">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:AccountListPage />
+            </x:Arguments>
+        </NavigationPage>
+    </xf:MvxTabbedPage.Children>
+</xf:MvxTabbedPage>
