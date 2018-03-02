@@ -2,7 +2,7 @@
 using System.Globalization;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Business.Converter
+namespace MoneyFox.Converter
 {
     /// <summary>
     ///     Displays the amount as currency of the current culture.

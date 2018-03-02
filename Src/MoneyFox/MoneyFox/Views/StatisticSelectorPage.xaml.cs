@@ -2,11 +2,12 @@
 using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Models;
 using MvvmCross.Platform;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Business.Views
+namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatisticSelectorPage : ContentPage
@@ -19,7 +20,7 @@ namespace MoneyFox.Business.Views
 		    StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {
 		        StatisticSelectorList.SelectedItem = null;
-                ((IStatisticSelectorViewModel) BindingContext).GoToStatisticCommand.Execute(args.Item);
+                ((IStatisticSelectorViewModel) BindingContext).GoToStatisticCommand.Execute((StatisticSelectorType) args.Item);
 		    };
 		}
 
