@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MoneyFox.Business.ViewModels.Statistic;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
@@ -16,10 +17,12 @@ namespace MoneyFox.Business.ViewModels
             this.navigationService = navigationService;
         }
 
-        public async Task ShowMenuAndFirstDetail()
+        public MvxAsyncCommand ShowInitialViewModelsCommand => new MvxAsyncCommand(ShowInitialViewModels);
+
+        private async Task ShowInitialViewModels()
         {
-            await navigationService.Navigate<MenuViewModel>();
             await navigationService.Navigate<AccountListViewModel>();
+            await navigationService.Navigate<StatisticSelectorViewModel>();
         }
     }
 }

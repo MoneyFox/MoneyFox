@@ -4,7 +4,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Business.Converter
+namespace MoneyFox.Converter
 {
     /// <summary>
     ///     Converts a PaymentViewModel for displaying on the GUI.

@@ -1,12 +1,12 @@
 ﻿using System;
-using MoneyFox.Business.ViewModels;
-using MvvmCross.Forms.Views;
+using MvvmCross.Forms.Views.Attributes;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AccountListPage : MvxContentPage<AccountListViewModel>
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false)]
+    public partial class AccountListPage
 	{
 		public AccountListPage ()
 		{

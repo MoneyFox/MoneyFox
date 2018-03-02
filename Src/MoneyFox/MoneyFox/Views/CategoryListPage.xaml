@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <d:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
-             xmlns:behavior="clr-namespace:MoneyFox.Business.Behavior;assembly=MoneyFox.Business"
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             x:Class="MoneyFox.Business.Views.CategoryListPage">
+             xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
+             x:Class="MoneyFox.Views.CategoryListPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

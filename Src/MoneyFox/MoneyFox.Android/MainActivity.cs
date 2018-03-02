@@ -30,10 +30,10 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
-
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            base.OnCreate(bundle);
 
             // Handler to create jobs.
             handler = new Handler(msg => {

@@ -1,22 +1,16 @@
 ﻿using System;
-using MoneyFox.Business.Styles;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Forms.Views;
-using MvvmCross.Platform;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Business.Views
+namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CategoryListPage : MvxContentPage
+    public partial class CategoryListPage
 	{
 		public CategoryListPage ()
 		{
-	        ApplyRessources();
 	        InitializeComponent();
 
 	        CategoryList.ItemTapped += (sender, args) =>
@@ -27,19 +21,6 @@ namespace MoneyFox.Business.Views
 
 		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
         }
-
-	    private void ApplyRessources()
-	    {
-	        if (Mvx.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
-	        {
-	            Resources = new AppStylesDark();
-	        } else
-	        {
-	            Resources = new AppStylesLight();
-	        }
-
-	        Resources.MergedDictionaries.Add(new AppStyles());
-	    }
 
 	    private void EditCategory(object sender, EventArgs e)
 	    {

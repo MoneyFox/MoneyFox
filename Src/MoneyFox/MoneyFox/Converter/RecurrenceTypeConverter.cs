@@ -4,7 +4,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyFox.Business.Converter
+namespace MoneyFox.Converter
 {
     /// <summary>
     ///     Converts the RecurrenceType to a string.

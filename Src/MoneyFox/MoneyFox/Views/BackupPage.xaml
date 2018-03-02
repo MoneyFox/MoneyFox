@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <d:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converter="clr-namespace:MoneyFox.Business.Converter"
-             xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             x:Class="MoneyFox.Business.Views.BackupPage">
+             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             x:Class="MoneyFox.Views.BackupPage"
+             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:InverseBoolConverter x:Key="Inverter" />
-            <converter:DateVisibilityConverter x:Key="DateVisibilityConverter" />
+            <converter1:InverseBoolConverter x:Key="Inverter" />
+            <converter1:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
