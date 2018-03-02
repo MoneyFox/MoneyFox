@@ -7,24 +7,23 @@ using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Business
+namespace MoneyFox
 {
     /// <summary>
-    ///     Helper to start the app on all plattforms.
+    ///     Entry piont to the Application for MvvmCross.
     /// </summary>
-    public class AppStart : MvxNavigatingObject, IMvxAppStart
+    public class CoreApp : MvxApplication
     {
         /// <summary>
-        ///     Execute code on start up.
+        ///     Initializes this instance.
         /// </summary>
-        /// <param name="hint">parameter for the launch of the app.</param>
-        public async void Start(object hint = null)
+        public override async void Initialize()
         {
             var navigationService = Mvx.Resolve<IMvxNavigationService>();
 
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
-            
+
             using (dbContextScopeFactory.Create())
             {
                 await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();

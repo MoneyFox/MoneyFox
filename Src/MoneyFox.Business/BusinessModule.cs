@@ -24,11 +24,11 @@ namespace MoneyFox.Business
 
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
             builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
+            builder.RegisterType<Session>();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service"))
                    .AsImplementedInterfaces();
-
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
@@ -65,8 +65,6 @@ namespace MoneyFox.Business
                 .Where(t => t.Name.EndsWith("ViewModel"))
                 .AsSelf()
                 .SingleInstance();
-
-            builder.RegisterType<Session>();
         }
     }
 }

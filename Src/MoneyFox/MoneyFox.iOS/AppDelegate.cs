@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MoneyFox.Droid;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -22,10 +25,19 @@ namespace MoneyFox.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            return base.FinishedLaunching(app, options);
+            var setup = new Setup(this, Window);
+            setup.Initialize();
+
+            var startup = Mvx.Resolve<IMvxAppStart>();
+            startup.Start();
+
+            LoadApplication(setup.FormsApplication);
+
+            Window.MakeKeyAndVisible();
+
+            return true;
         }
     }
 }

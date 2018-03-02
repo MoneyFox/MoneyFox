@@ -1,19 +1,37 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Graphics;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using MoneyFox.Droid.Jobs;
+using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Platform;
 using Naxam.Controls.Platform.Droid;
 
 namespace MoneyFox.Droid
 {
-    [Activity(Label = "MoneyFox", Icon = "@drawable/logo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
-    {
+    {        
+        /// <summary>
+        ///     Constant for the ClearPayment Service.
+        /// </summary>
+        public const int MESSAGE_SERVICE_CLEAR_PAYMENTS = 1;
+
+        /// <summary>
+        ///     Constant for the recurring payment Service.
+        /// </summary>
+        public const int MESSAGE_SERVICE_RECURRING_PAYMENTS = 2;
+
+        /// <summary>
+        ///     Constant for the sync backup Service.
+        /// </summary>
+        public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
+
+        Handler handler;
+        private ClearPaymentsJob clearPaymentsJob;
+        private RecurringPaymentJob recurringPaymentJob;
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -23,8 +41,31 @@ namespace MoneyFox.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            // Handler to create jobs.
+            handler = new Handler(msg => {
+                switch (msg.What)
+                {
+                    case MESSAGE_SERVICE_CLEAR_PAYMENTS:
+                        clearPaymentsJob = (ClearPaymentsJob)msg.Obj;
+                        clearPaymentsJob.ScheduleTask();
+                        break;
+                    case MESSAGE_SERVICE_RECURRING_PAYMENTS:
+                        recurringPaymentJob = (RecurringPaymentJob)msg.Obj;
+                        recurringPaymentJob.ScheduleTask();
+                        break;
+                }
+            });
+
+            // Start services and provide it a way to communicate with us.
+            var startServiceIntentClearPayment = new Intent(this, typeof(ClearPaymentsJob));
+            startServiceIntentClearPayment.PutExtra("messenger", new Messenger(handler));
+            StartService(startServiceIntentClearPayment);
+
+            var startServiceIntentRecurringPayment = new Intent(this, typeof(RecurringPaymentJob));
+            startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
+            StartService(startServiceIntentRecurringPayment);
+
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
 
         void SetupBottomTabs()

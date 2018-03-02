@@ -1,17 +1,14 @@
-﻿using System;
-
-using MoneyFox.Views;
-using Xamarin.Forms;
+﻿using MoneyFox.Views;
+using MvvmCross.Forms.Platform;
 
 namespace MoneyFox
 {
-	public partial class App : Application
-	{
+	public partial class App : MvxFormsApplication
+    {
 
 		public App ()
 		{
 			InitializeComponent();
-
 
             MainPage = new MainPage();
         }

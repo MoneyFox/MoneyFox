@@ -88,8 +88,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="IosModule.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Setup.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +122,24 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac.Extras.MvvmCross">
+      <Version>4.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross">
+      <Version>5.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Platform">
+      <Version>5.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Email">
+      <Version>5.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Messenger">
+      <Version>5.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser">
+      <Version>5.6.3</Version>
+    </PackageReference>
     <PackageReference Include="Naxam.BottomTabbedPage">
       <Version>0.2.0.1</Version>
     </PackageReference>
@@ -152,6 +173,14 @@
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
       <Project>{A379D85B-DA30-42EA-9122-35F4A950AD22}</Project>
       <Name>MoneyFox</Name>

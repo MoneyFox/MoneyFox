@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
+<platform:MvxFormsApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:platform="clr-namespace:MvvmCross.Forms.Platform;assembly=MvvmCross.Forms"
              x:Class="MoneyFox.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -64,4 +65,4 @@
             <Thickness x:Key="NegativeLargeLeftRightMargin">-24,0,-24,0</Thickness>
         </ResourceDictionary>
     </Application.Resources>
-</Application>
+</platform:MvxFormsApplication>
