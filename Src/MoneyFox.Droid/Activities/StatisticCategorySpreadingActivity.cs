@@ -12,6 +12,7 @@ using MikePhil.Charting.Components;
 using MikePhil.Charting.Data;
 using MikePhil.Charting.Formatter;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;

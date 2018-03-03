@@ -3,7 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;

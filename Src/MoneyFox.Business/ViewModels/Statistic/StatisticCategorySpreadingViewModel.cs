@@ -5,7 +5,7 @@ using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.Business.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the category Spreading View

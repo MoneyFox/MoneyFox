@@ -6,7 +6,7 @@ using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.Business.ViewModels.Statistic
 {
     /// <inheritdoc />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
@@ -15,7 +15,7 @@ namespace MoneyFox.Business.ViewModels
 
         /// <summary>
         ///     Initializes a new instance of the
-        ///     <see cref="T:MoneyFox.Business.ViewModels.StatisticCategorySummaryViewModel"/> class.
+        ///     <see cref="T:MoneyFox.Business.ViewModels.Statistic.StatisticCategorySummaryViewModel"/> class.
         /// </summary>
         /// <param name="categorySummaryDataDataProvider">Category summary data data provider.</param>
         /// <param name="messenger">Messenger.</param>

@@ -148,7 +148,6 @@
     <AndroidResource Include="Resources\menu\menu_select.axml" />
     <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
-    <AndroidResource Include="Resources\layout\activity_cash_flow.axml" />
     <AndroidResource Include="Resources\layout\activity_category_spreading.axml" />
     <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
@@ -382,6 +381,9 @@
     </PackageReference>
     <PackageReference Include="FAB.XamarinAndroid">
       <Version>1.6.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.7.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics">
       <Version>0.18.0</Version>

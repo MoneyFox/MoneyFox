@@ -6,7 +6,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.Business.ViewModels.Statistic
 {
     /// <summary>
     ///     Reprsents the statistic view.
@@ -33,6 +33,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         /// <param name="startDate">Start date to select data from.</param>
         /// <param name="endDate">End date to select date from.</param>
+        /// <param name="messenger">Messenger Instance</param>
         protected StatisticViewModel(DateTime startDate, DateTime endDate, IMvxMessenger messenger)
         {
             StartDate = startDate;

@@ -7,8 +7,6 @@
 
     <Color x:Key="ListItemColor">#FF171717</Color>
 
-
-
     <!-- Styles -->
     <Style x:Key="ListItemHeaderStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource MediumTextSize}" />
