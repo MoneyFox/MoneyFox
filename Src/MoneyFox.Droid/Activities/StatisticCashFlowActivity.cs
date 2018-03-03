@@ -4,7 +4,6 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Dialogs;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MoneyFox.Business.ViewModels.Statistic;
@@ -17,13 +16,8 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticCashFlowActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDialogCloseListener
+    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>
     {
-        public void HandleDialogClose()
-        {
-            CreateFragment();
-        }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,9 +27,13 @@ namespace MoneyFox.Droid.Activities
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            CreateFragment();
-        }
 
+            var fragment = new StatisticCashFlowPage { BindingContext = ViewModel }.CreateFragment(this);
+            FragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
+        }
+        
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);
@@ -62,14 +60,6 @@ namespace MoneyFox.Droid.Activities
                 default:
                     return false;
             }
-        }
-
-        private void CreateFragment()
-        {
-            var fragment = new StatisticCashFlowPage{ BindingContext = ViewModel }.CreateFragment(this);
-            FragmentManager.BeginTransaction()
-                           .Replace(Resource.Id.content_frame, fragment)
-                           .Commit();
         }
     }
 }

@@ -2,10 +2,8 @@
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugins.Messenger;
-using SkiaSharp;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
@@ -19,19 +17,14 @@ namespace MoneyFox.Business.ViewModels.Statistic
         private BarChart chart;
 
         public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager) 
-            : base(messenger)
+            : base(messenger, settingsManager)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
             this.settingsManager = settingsManager;
 
             Chart = new BarChart();
         }
-
-        public override async Task Initialize()
-        {
-            await Load();
-        }
-
+        
         /// <summary>
         ///     Chart to render.
         /// </summary>
@@ -46,15 +39,19 @@ namespace MoneyFox.Business.ViewModels.Statistic
             }
         }
 
+        public override async Task Initialize()
+        {
+            await Load();
+        }
+
         protected override async Task Load()
         {
             var entries = await cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
             Chart = new BarChart
             {
                 Entries = entries,
-                BackgroundColor = settingsManager.Theme == AppTheme.Dark
-                    ? new SKColor(0, 0, 0)
-                    : new SKColor(255, 255, 255) 
+                BackgroundColor = BackgroundColor,
+                Margin = 12
             };
         }
     }

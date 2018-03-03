@@ -661,4 +661,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectFilterDialogViewModel.SelectFilterLabel" xml:space="preserve">
     <value>Select Filter</value>
   </data>
+  <data name="OthersLabel" xml:space="preserve">
+    <value>Others</value>
+  </data>
 </root>

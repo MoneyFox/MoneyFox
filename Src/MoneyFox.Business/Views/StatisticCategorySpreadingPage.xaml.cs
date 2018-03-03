@@ -4,11 +4,11 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Business.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StatisticCashFlowPage : ContentPage
+	public partial class StatisticCategorySpreadingPage : ContentPage
 	{
-		public StatisticCashFlowPage ()
+		public StatisticCategorySpreadingPage ()
 		{
-            InitializeComponent ();
-        }
+			InitializeComponent ();
+		}
     }
 }

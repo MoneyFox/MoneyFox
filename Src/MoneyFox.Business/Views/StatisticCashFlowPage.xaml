@@ -4,6 +4,6 @@
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
     x:Class="MoneyFox.Business.Views.StatisticCashFlowPage">
 
-    <microcharts:ChartView x:Name="ChartView" />
+    <microcharts:ChartView Chart="{Binding Chart}" />
 
 </ContentPage>

@@ -19,8 +19,6 @@ namespace MoneyFox.Business
         /// </summary>
         public override async void Initialize()
         {
-            var navigationService = Mvx.Resolve<IMvxNavigationService>();
-
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 
@@ -28,6 +26,16 @@ namespace MoneyFox.Business
             {
                 await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
+
+            RegisterAppStart(new AppStart());
+        }
+    }
+
+    public class AppStart : IMvxAppStart
+    {
+        public async void Start(object hint = null)
+        {
+            var navigationService = Mvx.Resolve<IMvxNavigationService>();
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
