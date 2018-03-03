@@ -1,4 +1,11 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using EntityFramework.DbContextScope;
+using Microsoft.EntityFrameworkCore;
+using MoneyFox.Business.Authentication;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.DataAccess;
+using MvvmCross.Core.Navigation;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Business
 {
@@ -10,10 +17,27 @@ namespace MoneyFox.Business
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
-        public override void Initialize()
+        public override async void Initialize()
         {
-            // Start the app.
-            RegisterAppStart(new AppStart());
+            var navigationService = Mvx.Resolve<IMvxNavigationService>();
+
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+
+            using (dbContextScopeFactory.Create())
+            {
+                await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
+            }
+
+            if (Mvx.Resolve<Session>().ValidateSession())
+            {
+                await navigationService.Navigate<MenuViewModel>();
+                await navigationService.Navigate<AccountListViewModel>();
+            }
+            else
+            {
+                await navigationService.Navigate<LoginViewModel>();
+            }
         }
     }
 }
