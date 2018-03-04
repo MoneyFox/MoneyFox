@@ -31,10 +31,9 @@
                        VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="2" x:Name="ContentGrid" />
+        <Grid Grid.Row="2" x:Name="ContentGrid" Margin="0,20,0,20" />
 
         <CommandBar Grid.Row="3"
-                    Height="24"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="SetDate"
