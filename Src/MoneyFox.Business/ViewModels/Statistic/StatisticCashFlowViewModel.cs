@@ -1,55 +1,58 @@
 ﻿using System.Threading.Tasks;
+using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.Business.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
+        private readonly ISettingsManager settingsManager;
         private readonly CashFlowDataProvider cashFlowDataProvider;
+        private BarChart chart;
 
-        public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider) 
-            : base(messenger)
+        public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager) 
+            : base(messenger, settingsManager)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
+            this.settingsManager = settingsManager;
 
-            StatisticItems = new MvxObservableCollection<StatisticItem>();
+            Chart = new BarChart();
+        }
+        
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public BarChart Chart
+        {
+            get => chart;
+            set
+            {
+                if (chart == value) return;
+                chart = value;
+                RaisePropertyChanged();
+            }
         }
 
-        /// <summary>
-        ///     Loads the cashflow with the current start and end date.
-        /// </summary>
+        public override async Task Initialize()
+        {
+            await Load();
+        }
+
         protected override async Task Load()
         {
-            await LoadCashFlowData();
-        }
-
-        /// <summary>
-        ///     Contains the Statistic items to display
-        /// </summary>
-        public MvxObservableCollection<StatisticItem> StatisticItems { get; set; }
-
-        /// <summary>
-        ///     Set a custom CashFlowModel with the set Start and Enddate
-        /// </summary>
-        private async Task LoadCashFlowData()
-        {
-            //TODO: Unit Test for order!
-            //TODO: Unit Test for selection.
-            StatisticItems.Clear();
-
-            var statisticData = await cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
-
-            foreach (var statisticItem in statisticData)
+            var entries = await cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
+            Chart = new BarChart
             {
-                StatisticItems.Add(statisticItem);
-            }
+                Entries = entries,
+                BackgroundColor = BackgroundColor,
+                Margin = 12
+            };
         }
     }
 }

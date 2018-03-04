@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -16,11 +14,9 @@ using Microsoft.Azure.Mobile.Crashes;
 #endif
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
-using Environment = System.Environment;
 
 namespace MoneyFox.Droid.Activities
 {

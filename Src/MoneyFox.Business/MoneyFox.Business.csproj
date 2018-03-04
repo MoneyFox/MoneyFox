@@ -19,6 +19,8 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="Cheesebaron.MvxPlugins.Settings" Version="3.2.0" />
+    <PackageReference Include="Microcharts" Version="0.7.1" />
+    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics" Version="0.18.0" />
     <PackageReference Include="Microsoft.OneDriveSDK" Version="2.0.7" />
     <PackageReference Include="MvvmCross.Plugin.Email" Version="5.5.2" />
@@ -42,6 +44,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="MPAndroidChart">
+      <HintPath>C:\Users\ninop\.nuget\packages\mpandroidchart\3.0.2\lib\MonoAndroid\MPAndroidChart.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Styles\AppStyles.xaml.cs">
       <DependentUpon>AppStyles.xaml</DependentUpon>
     </Compile>
@@ -62,6 +70,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Styles\AppStylesLight.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StatisticCashFlowPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StatisticCategorySpreadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\StatisticSelectorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
