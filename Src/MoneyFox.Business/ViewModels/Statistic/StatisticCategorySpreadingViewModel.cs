@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Binding.ExtensionMethods;
 using MvvmCross.Plugins.Messenger;
 using SkiaSharp;
 
