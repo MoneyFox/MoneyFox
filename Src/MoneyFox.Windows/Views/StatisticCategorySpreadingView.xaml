@@ -34,7 +34,6 @@
         <Grid Grid.Row="2" x:Name="ContentGrid" />
 
         <CommandBar Grid.Row="3"
-                    Height="24"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="SetDate"

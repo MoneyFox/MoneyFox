@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
+             xmlns:converter="clr-namespace:MoneyFox.Business.Converter;assembly=MoneyFox.Business"
+             x:Class="MoneyFox.Business.Views.StatisticCategorySummaryPage"
+             BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:AmountValueConverter x:Key="AmountValueConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="MainLayout">
+            <ListView x:Name="CategorySummaryList"
+                  ItemsSource="{Binding CategorySummary}" 
+                  HasUnevenRows="True"
+                  CachingStrategy="RecycleElement"
+                  Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                  SeparatorVisibility="None" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="{StaticResource ListItemColor}"
+                                     Padding="3"
+                                     HorizontalOptions="FillAndExpand"
+                                     Margin="{StaticResource DefaultListItemsMargin}">
+                                <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemTextStyle}" />
+                                <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{StaticResource DefaultTextStyle}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

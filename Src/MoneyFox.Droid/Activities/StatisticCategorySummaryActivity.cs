@@ -4,9 +4,11 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Business.Views;
 using MoneyFox.Droid.Dialogs;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Xamarin.Forms.Platform.Android;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -16,18 +18,20 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class StatisticCategorySummaryActivity : MvxAppCompatActivity<StatisticCategorySummaryViewModel>
     {
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_category_summary);
+            SetContentView(Resource.Layout.activity_frame);
+            Title = Strings.CategorySummaryLabel;
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-			await ViewModel.LoadCommand.ExecuteAsync();
-
-            Title = Strings.CategorySummaryLabel;
+            var fragment = new StatisticCategorySummaryPage { BindingContext = ViewModel }.CreateFragment(this);
+            FragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

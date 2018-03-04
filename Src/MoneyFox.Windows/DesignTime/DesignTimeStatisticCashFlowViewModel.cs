@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microcharts;
 using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.Business.ViewModels.Statistic;
 
 namespace MoneyFox.Windows.DesignTime
 {

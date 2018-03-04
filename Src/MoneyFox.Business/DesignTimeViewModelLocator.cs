@@ -11,6 +11,7 @@ namespace MoneyFox.Business
     {
         private static IBackupViewModel BACKUP_VIEW_MODEL;
         private static IStatisticSelectorViewModel STATISTIC_SELECTOR_VIEW_MODEL;
+        private static IStatisticCategorySummaryViewModel STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -23,5 +24,11 @@ namespace MoneyFox.Business
         /// </summary>
         public static IStatisticSelectorViewModel DesignTimeStatisticSelectorViewModel =>
             STATISTIC_SELECTOR_VIEW_MODEL ?? (STATISTIC_SELECTOR_VIEW_MODEL = new DesignTimeStatisticSelectorViewModel());
+
+        /// <summary>
+        ///     Implementation for IStatisticCategorySummaryViewModel for design time.
+        /// </summary>
+        public static IStatisticCategorySummaryViewModel DesignTimeStatisticCategorySummaryViewModel =>
+            STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL ?? (STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL = new DesignTimeStatisticCategorySummaryViewModel());
     }
 }
