@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:MoneyFox.Business;assembly=MoneyFox.Business"
              xmlns:behavior="clr-namespace:MoneyFox.Business.Behavior;assembly=MoneyFox.Business"
+             xmlns:controls="clr-namespace:MoneyFox.Business.Controls;assembly=MoneyFox.Business"
+             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              x:Class="MoneyFox.Business.Views.CategoryListPage"
              BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
     <ContentPage.Content>
@@ -59,13 +61,15 @@
                                           Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <StackLayout Margin="{StaticResource NegativeMediumLeftRightMargin}" Spacing="0">
-                                <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                                <controls:CardView HasShadow="True" OutlineColor="DarkGray" androidSpecific:Elevation.Elevation="60">
+                                    <StackLayout BackgroundColor="{StaticResource ListItemColor}"
                                          Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{StaticResource DefaultSpacing}"
                                          Margin="{StaticResource DefaultListItemsMargin}">
-                                    <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-                                </StackLayout>
+                                        <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                                    </StackLayout>
+                                </controls:CardView>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

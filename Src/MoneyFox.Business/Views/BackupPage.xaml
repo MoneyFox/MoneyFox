@@ -6,12 +6,12 @@
              x:Class="MoneyFox.Business.Views.BackupPage"
              BindingContext="{x:Static design:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
-    <ContentView.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
             <converter:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
-    </ContentView.Resources>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
 
