@@ -1,18 +1,14 @@
-using System.Collections.Generic;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Dialogs;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MikePhil.Charting.Data;
-using MikePhil.Charting.Charts;
-using MikePhil.Charting.Components;
-using System.Linq;
+using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Business.Views;
+using Xamarin.Forms.Platform.Android;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -20,69 +16,24 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticCashFlowActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDialogCloseListener
+    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>
     {
-        public void HandleDialogClose()
-        {
-            SetChartData();
-        }
-
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_cash_flow);
+            SetContentView(Resource.Layout.activity_frame);
             Title = Strings.CashflowLabel;
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            await ViewModel.LoadCommand.ExecuteAsync();
-
-            SetChartData();
+            var fragment = new StatisticCashFlowPage { BindingContext = ViewModel }.CreateFragment(this);
+            FragmentManager.BeginTransaction()
+                           .Replace(Resource.Id.content_frame, fragment)
+                           .Commit();
         }
-
-        private void SetChartData()
-        {
-            if (!ViewModel.StatisticItems.Any()) return;
-
-            var chart = FindViewById<BarChart>(Resource.Id.chart);
-
-            var dataSetdExpenses = new BarDataSet(new List<BarEntry> { new BarEntry(0, (float)ViewModel.StatisticItems[0].Value) }, ViewModel.StatisticItems[0].Label);
-            dataSetdExpenses.SetColors(Resources.GetColor(Resource.Color.color_income, Theme));
-
-            var dataSetIncome = new BarDataSet(new List<BarEntry> { new BarEntry(1, (float)ViewModel.StatisticItems[1].Value) }, ViewModel.StatisticItems[1].Label);
-            dataSetIncome.SetColors(Resources.GetColor(Resource.Color.color_expense, Theme));
-
-            var dataSetRevenue = new BarDataSet(new List<BarEntry> { new BarEntry(2, (float)ViewModel.StatisticItems[2].Value) }, ViewModel.StatisticItems[2].Label);
-            dataSetRevenue.SetColors(Resources.GetColor(Resource.Color.color_revenue, Theme));
-
-            var barData = new BarData(dataSetdExpenses, dataSetIncome, dataSetRevenue) {BarWidth = 0.9f};
-
-            chart.Data = barData;
-            chart.Description.Enabled = false;
-            chart.SetPinchZoom(false);
-            chart.SetFitBars(true);
-
-            var legend = chart.Legend;
-            legend.TextSize = 12f;
-            legend.Orientation = Legend.LegendOrientation.Horizontal;
-            legend.SetDrawInside(true);
-            legend.VerticalAlignment = Legend.LegendVerticalAlignment.Bottom;
-            legend.HorizontalAlignment = Legend.LegendHorizontalAlignment.Left;
-            legend.XEntrySpace = 7f;
-            legend.YEntrySpace = 0;
-            legend.YOffset = 0f;
-
-            chart.Invalidate();
-        }
-
-        protected override void OnStart()
-        {
-            base.OnStart();
-            ViewModel.LoadCommand.Execute();
-        }
-
+        
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);

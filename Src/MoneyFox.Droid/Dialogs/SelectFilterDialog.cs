@@ -96,12 +96,5 @@ namespace MoneyFox.Droid.Dialogs
             selectStartDateButton.Hint = ViewModel.TimeRangeStart.ToString("d");
             selectEndDateButton.Hint = ViewModel.TimeRangeEnd.ToString("d");
         }
-
-        public override void OnDismiss(IDialogInterface dialog)
-        {
-            (Context as IDialogCloseListener)?.HandleDialogClose();
-
-            base.OnDismiss(dialog);
-        }
     }
 }

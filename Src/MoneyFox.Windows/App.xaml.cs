@@ -56,14 +56,14 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Dark))
+            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
             {
-                case AppTheme.Light:
-                    RequestedTheme = ApplicationTheme.Light;
+                case AppTheme.Dark:
+                    RequestedTheme = ApplicationTheme.Dark;
                     break;
 
-                default:
-                    RequestedTheme = ApplicationTheme.Dark;
+                case AppTheme.Light:
+                    RequestedTheme = ApplicationTheme.Light;
                     break;
             }
         }

@@ -63,6 +63,7 @@ namespace MoneyFox.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::MoneyFox.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::MoneyFox.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::MoneyFox.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::Microcharts.Droid.Resource.String.library_name = global::MoneyFox.Droid.Resource.String.library_name;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;

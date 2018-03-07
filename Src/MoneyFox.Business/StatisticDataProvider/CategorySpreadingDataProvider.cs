@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microcharts;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
@@ -25,69 +27,66 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
-        public async Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<Entry>> GetValues(DateTime startDate, DateTime endDate)
         {
             var paymentEnumerable = await paymentService.GetPaymentsWithoutTransfer(startDate, endDate);
-            return GetSpreadingStatisticItems(paymentEnumerable.ToList());
+            var statisticData = SelectRelevantDataFromList(paymentEnumerable.ToList());
+            return AggregateData(statisticData);
         }
 
-        private IEnumerable<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
+        private List<(float Value, string Label)> SelectRelevantDataFromList(List<Payment> payments)
         {
-            var tempStatisticList = (from payment in payments
+            return (from payment in payments
                     group payment by new
                     {
                         category = payment.Data.Category != null ? payment.Data.Category.Name : string.Empty
                     }
                     into temp
-                    select new StatisticItem
-                    {
-                        Label = temp.Key.category,
-                        // we subtract income payments here so that we have all expenses without presign
-                        Value = temp.Sum(x => x.Data.Type == PaymentType.Income ? -x.Data.Amount : x.Data.Amount)
-                    })
-                .Where(x => x.Value > 0)
-                .OrderByDescending(x => x.Value)
-                .ToList();
+                    select (
+                        (float) temp.Sum(x => x.Data.Type == PaymentType.Income ? -x.Data.Amount : x.Data.Amount),
+                        temp.Key.category))
+                   .Where(x => x.Item1 > 0)
+                   .OrderByDescending(x => x.Item1)
+                   .ToList();
+        }
 
-            var statisticList = tempStatisticList.Take(6).ToList();
+        private IEnumerable<Entry> AggregateData(List<(float Value, string Label)> statisticData)
+        {
+            var statisticList = statisticData
+                                .Take(6)
+                                .Select(x => new Entry((float) x.Value) {ValueLabel = x.Value.ToString("C"), Label = x.Label})
+                                .ToList();
 
-            AddOtherItem(tempStatisticList, statisticList);
+            AddOtherItem(statisticData, statisticList);
             SetLabel(statisticList);
 
             return statisticList;
         }
 
-        private static void SetLabel(List<StatisticItem> statisticList)
+        private static void SetLabel(List<Entry> statisticList)
         {
-            var totAmount = statisticList.Sum(x => x.Value);
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Label = statisticItem.Label
-                                      + ": "
-                                      + statisticItem.Value.ToString("C")
-                                      + " ("
-                                      + Math.Round(statisticItem.Value/totAmount*100, 2)
-                                      + "%)";
+                statisticItem.Label = statisticItem.Label;
             }
         }
 
-        private void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
-            ICollection<StatisticItem> statisticList)
+        private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<Entry> statisticList)
         {
             if (statisticList.Count < 6)
             {
                 return;
             }
 
-            var othersItem = new StatisticItem
-            {
-                Label = "Others",
-                Value = tempStatisticList
-                    .Where(x => !statisticList.Contains(x))
-                    .Sum(x => x.Value)
-            };
+            var otherValue = statisticData
+                             .Where(x => statisticList.All(y => x.Label != y.Label))
+                             .Sum(x => x.Value);
 
-            othersItem.Label = othersItem.Label + ": " + othersItem.Value;
+            var othersItem = new Entry(otherValue)
+            {
+                Label = Strings.OthersLabel,
+                ValueLabel = otherValue.ToString("C")
+            };
 
             if (othersItem.Value > 0)
             {

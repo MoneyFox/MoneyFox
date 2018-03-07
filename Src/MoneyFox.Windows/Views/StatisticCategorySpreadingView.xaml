@@ -1,31 +1,22 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
-                      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       xmlns:views="using:MvvmCross.Uwp.Views"
+                      SizeChanged="StatisticCategorySpreadingView_OnSizeChanged"
                       xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
                       d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySpreadingViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -40,55 +31,16 @@
                        VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="2">
-            <chart:RadPieChart PaletteName="DefaultDark" x:Name="chart">
-                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
-                                 RadiusFactor="0.6">
-                    <chart:DoughnutSeries.ValueBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
-                    </chart:DoughnutSeries.ValueBinding>
-                    <chart:PieSeries.LegendTitleBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
-                    </chart:PieSeries.LegendTitleBinding>
-                </chart:DoughnutSeries>
-            </chart:RadPieChart>
-        </Grid>
+        <Grid Grid.Row="2" x:Name="ContentGrid" Margin="0,20,0,20" />
 
-        <Grid Grid.Row="3">
-            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
-                <primitives:RadLegendControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </primitives:RadLegendControl.ItemsPanel>
-                <primitives:RadLegendControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Fill="{Binding Fill}"
-                                     Stroke="{Binding Stroke}"
-                                     StrokeThickness="1"
-                                     Width="10"
-                                     Height="10" />
-                            <TextBlock Text="{Binding Title}"
-                                       Foreground="{Binding Fill}"
-                                       Margin="10"
-                                       FontStyle="Italic" />
-                        </StackPanel>
-                    </DataTemplate>
-                </primitives:RadLegendControl.ItemTemplate>
-            </primitives:RadLegendControl>
-        </Grid>
-
-        <CommandBar Grid.Row="4"
-                    Height="24"
-                    ClosedDisplayMode="Minimal"
+        <CommandBar Grid.Row="3"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.SecondaryCommands>
+            <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
                               Icon="Calendar"
                               Label="Set Date" />
-            </CommandBar.SecondaryCommands>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
 
         <!--  Adaptive triggers  -->
