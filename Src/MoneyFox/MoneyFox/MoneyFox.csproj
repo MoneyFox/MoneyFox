@@ -24,6 +24,12 @@
     <Compile Update="Views\MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\StatisticCashFlowPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StatisticCategorySpreadingPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Views\StatisticSelectorPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
