@@ -1,10 +1,11 @@
-﻿using MoneyFox.Business.ViewModels.Interfaces;
+﻿using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Windows.DesignTime
 {
-    public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
+    public class DesignTimeStatisticCashFlowViewModel : BaseViewModel, IStatisticCashFlowViewModel
     {
         public string Title => "I AM A MIGHTY TITLE";
 

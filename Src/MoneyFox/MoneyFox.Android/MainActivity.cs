@@ -4,6 +4,7 @@ using Android.Graphics;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Droid.Views;
 
 namespace MoneyFox.Droid
@@ -76,11 +77,11 @@ namespace MoneyFox.Droid
                     }
                 },
                 new int[] {
-                    Color.DarkRed, //Selected
-                    Color.White //Normal
+                    Color.DarkGray, //Selected
+                    Color.LightGray //Normal
                 });
 
-            BottomTabbedRenderer.BackgroundColor = new Color(0x9C, 0x27, 0xB0);
+            BottomTabbedRenderer.BackgroundColor = Color.WhiteSmoke;
             BottomTabbedRenderer.FontSize = 12f;
             BottomTabbedRenderer.IconSize = 16;
             BottomTabbedRenderer.ItemTextColor = stateList;
@@ -91,11 +92,13 @@ namespace MoneyFox.Droid
             //BottomTabbedRenderer.ItemPadding = new Xamarin.Forms.Thickness(6);
             BottomTabbedRenderer.BottomBarHeight = 56;
             BottomTabbedRenderer.ItemAlign = ItemAlignFlags.Center;
-            //BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) => {
-            //    var resId = Resources.GetIdentifier(iconSource.File, "drawable", PackageName);
-
-            //    menuItem.SetIcon(resId);
-            //};
+            BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
+            {
+                if (menuItem.TitleFormatted.ToString() == Strings.AccountsTitle)
+                {
+                    menuItem.SetIcon(Resource.Drawable.ic_account_black);
+                }
+            };
         }
     }
 }

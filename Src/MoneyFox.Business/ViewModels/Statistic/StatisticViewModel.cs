@@ -84,7 +84,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
+        public string Title => Strings.StatisticsRangeTitle + " " + StartDate.ToString("d") +
                                " - " +
                                EndDate.ToString("d");
 

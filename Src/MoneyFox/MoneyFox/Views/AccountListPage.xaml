@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
              x:Class="MoneyFox.Views.AccountListPage"
-             Title="Accounts">
+             Title="{Binding Resources[AccountsTitle]}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
