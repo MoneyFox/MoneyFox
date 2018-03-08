@@ -1,6 +1,5 @@
 ﻿using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.Views;
 using MoneyFox.Foundation.Resources;
@@ -14,22 +13,18 @@ namespace MoneyFox.Droid.Fragments
     [Register("moneyfox.droid.fragments.CategoriesFragment")]
     public class CategoriesFragment : MvxFragment<CategoryListViewModel> 
     {
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            base.OnCreate(savedInstanceState);
+
             Activity.Title = Strings.CategoriesLabel;
+
+            HasOptionsMenu = true;
 
             var fragment = new CategoryListPage { BindingContext = ViewModel }.CreateSupportFragment(Activity);
             FragmentManager.BeginTransaction()
                            .Replace(Resource.Id.content_frame, fragment)
                            .Commit();
-
-            //view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category).Click += (s, e) =>
-            //{
-            //    ViewModel.CreateNewCategoryCommand.Execute();
-            //};
-
-            return view;
         }
     }
 }
