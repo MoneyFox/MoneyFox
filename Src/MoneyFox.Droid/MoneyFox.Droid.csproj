@@ -150,11 +150,7 @@
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
-    <AndroidResource Include="Resources\layout\activity_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_account.axml" />
-    <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_modify_account.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -181,16 +177,12 @@
     <AndroidResource Include="Resources\layout\listitem_category_summary.axml" />
     <AndroidResource Include="Resources\layout\listitem_inner_category_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_inner_payment_list.axml" />
-    <AndroidResource Include="Resources\layout\listitem_legend_item.axml" />
     <AndroidResource Include="Resources\layout\listitem_monthly_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_payment.axml" />
-    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_filter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
+    <AndroidResource Include="Resources\layout\activity_main.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

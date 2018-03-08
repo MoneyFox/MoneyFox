@@ -1,6 +1,6 @@
 ﻿using Microcharts;
 
-namespace MoneyFox.Business.ViewModels.Interfaces
+namespace MoneyFox.Business.ViewModels.Statistic
 {
     public interface IStatisticCashFlowViewModel
     {
