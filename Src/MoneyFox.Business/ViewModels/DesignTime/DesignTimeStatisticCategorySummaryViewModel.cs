@@ -4,7 +4,7 @@ using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
+    public class DesignTimeStatisticCategorySummaryViewModel : BaseViewModel, IStatisticCategorySummaryViewModel
     {
         public ObservableCollection<StatisticItem> CategorySummary => new ObservableCollection<StatisticItem>
         {

@@ -30,6 +30,9 @@
     <Compile Update="Views\StatisticCategorySpreadingPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+    <Compile Update="Views\StatisticCategorySummaryPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Views\StatisticSelectorPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
