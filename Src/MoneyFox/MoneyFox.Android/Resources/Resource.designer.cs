@@ -6167,13 +6167,13 @@ namespace MoneyFox.Droid
 			public const int design_snackbar_background = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_account_balance_black = 2130837595;
+			public const int ic_account_black = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_account_black = 2130837596;
+			public const int ic_account_white = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_account_white = 2130837597;
+			public const int ic_accounts_black = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
 			public const int ic_add = 2130837598;
@@ -6746,7 +6746,7 @@ namespace MoneyFox.Droid
 			public const int ic_show_chart = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int ic_show_chart_black = 2130837788;
+			public const int ic_statistics_black = 2130837788;
 			
 			// aapt resource value: 0x7f02011d
 			public const int ic_successstatus = 2130837789;
