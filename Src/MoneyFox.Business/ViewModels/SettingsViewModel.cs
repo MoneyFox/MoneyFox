@@ -1,28 +1,69 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Models;
+using MoneyFox.Foundation.Resources;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface ISettingsViewModel
+    {
+        /// <summary>
+        ///     Contains all available Settingsitems.
+        /// </summary>
+        MvxObservableCollection<SettingsSelectorType> SettingsList { get; }
+
+        /// <summary>
+        ///     Navigate to a concrete settings page.
+        /// </summary>
+        MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
+    }
+
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class SettingsViewModel : MvxViewModel
+    public class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
-        public SettingsViewModel(ISettingsManager settingsManager,
-            IPasswordStorage passwordStorage,
-            ITileManager tileManager,
-            IBackgroundTaskManager backgroundTaskManager,
-            IDialogService dialogService)
+        private readonly IMvxNavigationService navigationService;
+
+        public SettingsViewModel(IMvxNavigationService navigationService)
         {
-            SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager, backgroundTaskManager);
-            SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
-            SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
-            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
+            this.navigationService = navigationService;
         }
 
-        public SettingsGeneralViewModel SettingsGeneralViewModel { get; }
-        public SettingsSecurityViewModel SettingsSecurityViewModel { get; }
-        public SettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
-        public SettingsPersonalizationViewModel SettingsPersonalizationViewModel { get; }
+        /// <inheritdoc />
+        public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
+        {
+            new SettingsSelectorType
+            {
+                Name = Strings.CategoriesLabel,
+                Description = Strings.CategoriesSettingsDescription,
+                Type = SettingsType.Categories
+            },
+            new SettingsSelectorType
+            {
+                Name = Strings.BackupLabel,
+                Description = Strings.BackupSettingsDescription,
+                Type = SettingsType.Backup
+            },
+        };
+
+        /// <inheritdoc />
+        public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand => new MvxAsyncCommand<SettingsSelectorType>(GoToSettings);
+
+        private async Task GoToSettings(SettingsSelectorType item)
+        {
+            switch (item.Type)
+            {
+                case SettingsType.Categories:
+                    await navigationService.Navigate<CategoryListViewModel>();
+                    break;
+
+                case SettingsType.Backup:
+                    await navigationService.Navigate<BackupViewModel>();
+                    break;
+            }
+        }
     }
 }

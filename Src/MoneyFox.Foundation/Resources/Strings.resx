@@ -652,4 +652,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>There are no statistic items.</value>
   </data>
+  <data name="BackupSettingsDescription" xml:space="preserve">
+    <value>Create and restore backups.</value>
+  </data>
+  <data name="CategoriesSettingsDescription" xml:space="preserve">
+    <value>Add and modify categories.</value>
+  </data>
 </root>

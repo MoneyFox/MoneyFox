@@ -27,6 +27,12 @@
         CategorySummary,
         CashflowHistory
     }
+    public enum SettingsType
+    {
+        Categories,
+        Backup,
+        About
+    }
 
     public enum TyleType
     {

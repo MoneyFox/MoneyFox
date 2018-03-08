@@ -341,6 +341,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create and restore backups..
+        /// </summary>
+        public static string BackupSettingsDescription {
+            get {
+                return ResourceManager.GetString("BackupSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You backup was synced successfully..
         /// </summary>
         public static string BackupSyncedSuccessfullyMessage {
@@ -427,6 +436,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string CategorieSpreadingDescription {
             get {
                 return ResourceManager.GetString("CategorieSpreadingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add and modify categories..
+        /// </summary>
+        public static string CategoriesSettingsDescription {
+            get {
+                return ResourceManager.GetString("CategoriesSettingsDescription", resourceCulture);
             }
         }
         

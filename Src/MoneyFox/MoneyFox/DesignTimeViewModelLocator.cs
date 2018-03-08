@@ -13,6 +13,7 @@ namespace MoneyFox
         private static IStatisticSelectorViewModel STATISTIC_SELECTOR_VIEW_MODEL;
         private static IStatisticCategorySummaryViewModel STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL;
         private static ICategoryListViewModel CATEGORY_LIST_VIEW_MODEL;
+        private static ISettingsViewModel SETTINGS_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -37,5 +38,11 @@ namespace MoneyFox
         /// </summary>
         public static ICategoryListViewModel DesignTimeCategoryListViewModel =>
             CATEGORY_LIST_VIEW_MODEL ?? (CATEGORY_LIST_VIEW_MODEL = new DesignTimeCategoryListViewModel());
+
+        /// <summary>
+        ///     Implementation for ICategoryListViewModel for design time.
+        /// </summary>
+        public static ISettingsViewModel DesignTimeSettingsViewModel =>
+            SETTINGS_VIEW_MODEL ?? (SETTINGS_VIEW_MODEL = new DesignTimeSettingsViewModel());
     }
 }
