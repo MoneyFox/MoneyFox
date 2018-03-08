@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Icon = "ic_settings")]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Settings", Icon = "ic_settings")]
     public partial class SettingsPage 
 	{
 		public SettingsPage ()

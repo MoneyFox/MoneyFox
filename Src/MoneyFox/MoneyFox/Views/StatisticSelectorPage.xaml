@@ -5,7 +5,6 @@
              xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              x:Class="MoneyFox.Views.StatisticSelectorPage"
-             Title="{Binding Resources[StatisticsTitle]}"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
     <ContentPage.Content>

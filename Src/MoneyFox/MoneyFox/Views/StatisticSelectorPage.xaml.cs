@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Icon = "ic_statistics")]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics")]
     public partial class StatisticSelectorPage
     {
 		public StatisticSelectorPage ()

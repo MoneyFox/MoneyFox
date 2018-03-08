@@ -92,17 +92,17 @@ namespace MoneyFox.Droid
             BottomTabbedRenderer.ItemAlign = ItemAlignFlags.Center;
             BottomTabbedRenderer.MenuItemIconSetter = (menuItem, iconSource, selected) =>
             {
-                if (menuItem.TitleFormatted.ToString() == Strings.AccountsTitle)
+                if (menuItem.TitleFormatted.ToString() == "Accounts")
                 {
                     menuItem.SetIcon(Resource.Drawable.ic_accounts_black);
                 }
-                else if (menuItem.TitleFormatted.ToString() == Strings.StatisticsTitle)
+                else if (menuItem.TitleFormatted.ToString() == "Statistics")
                 {
                     menuItem.SetIcon(Resource.Drawable.ic_statistics_black);
                 }
-                else if (menuItem.TitleFormatted.ToString() == Strings.SettingsTitle)
+                else if (menuItem.TitleFormatted.ToString() == "Settings")
                 {
-                    menuItem.SetIcon(Resource.Drawable.ic_account_black);
+                    menuItem.SetIcon(Resource.Drawable.ic_settings_black);
                 }
             };
         }

@@ -9,7 +9,7 @@ namespace MoneyFox.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryListPage
 	{
-		public CategoryListPage ()
+		public CategoryListPage()
 		{
 	        InitializeComponent();
 
