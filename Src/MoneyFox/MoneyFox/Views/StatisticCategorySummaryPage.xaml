@@ -5,37 +5,48 @@
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
+             xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              x:Class="MoneyFox.Views.StatisticCategorySummaryPage"
-             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}">
+             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
+             Title="{Binding Resources[CategorySummaryTitle]}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountValueConverter x:Key="AmountValueConverter" />
+            <converter1:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout x:Name="MainLayout">
+        <Grid x:Name="MainLayout">
             <ListView x:Name="CategorySummaryList"
                   ItemsSource="{Binding CategorySummary}" 
                   HasUnevenRows="True"
                   CachingStrategy="RecycleElement"
-                  Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                  Margin="{DynamicResource NegativeMediumLeftRightMargin}"
                   SeparatorVisibility="None" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid BackgroundColor="{StaticResource ListItemColor}"
+                            <Grid BackgroundColor="{DynamicResource ListItemColor}"
                                      Padding="3"
                                      HorizontalOptions="FillAndExpand"
-                                     Margin="{StaticResource DefaultListItemsMargin}">
+                                     Margin="{DynamicResource DefaultListItemsMargin}">
                                 <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemTextStyle}" />
-                                <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{StaticResource DefaultTextStyle}" />
+                                <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{DynamicResource DefaultTextStyle}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+
+            <Label Margin="6"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Style="{DynamicResource DeemphasizedLabelStyle}"
+                   LineBreakMode="WordWrap"
+                   IsVisible="{Binding HasData, Converter={StaticResource InverseBoolConverter}}"
+                   Text="{Binding Resources[NoStatisticItemsMessage]}"/>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using MoneyFox.Foundation.Models;
+﻿using MoneyFox.Foundation.Models;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
@@ -9,8 +9,13 @@ namespace MoneyFox.Business.ViewModels.Statistic
     public interface IStatisticCategorySummaryViewModel
     {
         /// <summary>
-        ///     the statistic items to display.
+        ///     The statistic items to display.
         /// </summary>
-        ObservableCollection<StatisticItem> CategorySummary { get; }
+        MvxObservableCollection<StatisticItem> CategorySummary { get; }
+
+        /// <summary>
+        ///     Indicates if there are data to display.
+        /// </summary>
+        bool HasData { get; }
     }
 }

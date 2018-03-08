@@ -11,18 +11,18 @@
         <ListView x:Name="StatisticSelectorList"
                       ItemsSource="{Binding StatisticItems}" 
                       RowHeight="60" 
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                      Margin="{DynamicResource NegativeMediumLeftRightMargin}"
                       SeparatorVisibility="None" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                        <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
                                          Orientation="Vertical"
                                          Padding="3"
-                                         Spacing="{StaticResource DefaultSpacing}"
-                                         Margin="{StaticResource DefaultListItemsMargin}">
-                            <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-                            <Label Text="{Binding Description}" Style="{StaticResource DeemphasizedLabelStyle}" />
+                                         Spacing="{DynamicResource DefaultSpacing}"
+                                         Margin="{DynamicResource DefaultListItemsMargin}">
+                            <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                            <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

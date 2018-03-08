@@ -1,12 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using MoneyFox.Business.ViewModels.Statistic;
+﻿using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation.Models;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCategorySummaryViewModel : BaseViewModel, IStatisticCategorySummaryViewModel
     {
-        public ObservableCollection<StatisticItem> CategorySummary => new ObservableCollection<StatisticItem>
+        public MvxObservableCollection<StatisticItem> CategorySummary => new MvxObservableCollection<StatisticItem>
         {
             new StatisticItem
             {
@@ -19,5 +19,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
                 Value = 666
             }
         };
+
+        public bool HasData { get; }
     }
 }

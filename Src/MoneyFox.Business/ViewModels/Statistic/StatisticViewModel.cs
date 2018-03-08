@@ -5,7 +5,6 @@ using MoneyFox.Business.Messages;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using SkiaSharp;
 
@@ -14,7 +13,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// <summary>
     ///     Reprsents the statistic view.
     /// </summary>
-    public abstract class StatisticViewModel : MvxViewModel
+    public abstract class StatisticViewModel : BaseViewModel
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -57,10 +56,11 @@ namespace MoneyFox.Business.ViewModels.Statistic
             });
         }
 
-        /// <summary>
-        ///     Loads the data with the current start and end date.
-        /// </summary>
-        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(Load);
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            await Load();
+        }
 
         /// <summary>
         ///     Startdate for a custom statistic

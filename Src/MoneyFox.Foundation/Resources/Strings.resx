@@ -643,4 +643,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="StatisticsRangeTitle" xml:space="preserve">
     <value>Statistic Range:</value>
   </data>
+  <data name="CategorySummaryTitle" xml:space="preserve">
+    <value>Category Summary</value>
+  </data>
+  <data name="NoCategoriesMessage" xml:space="preserve">
+    <value>There are no categories to display. Tap the plus button to add one.</value>
+  </data>
+  <data name="NoStatisticItemsMessage" xml:space="preserve">
+    <value>There are no statistic items.</value>
+  </data>
 </root>

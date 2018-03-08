@@ -476,6 +476,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Summary.
+        /// </summary>
+        public static string CategorySummaryTitle {
+            get {
+                return ResourceManager.GetString("CategorySummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You updated a recurring payment. Do you want to update the future Payments aswell?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
@@ -1124,6 +1133,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no categories to display. Tap the plus button to add one..
+        /// </summary>
+        public static string NoCategoriesMessage {
+            get {
+                return ResourceManager.GetString("NoCategoriesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoLabel {
@@ -1147,6 +1165,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string NoNetworkTitle {
             get {
                 return ResourceManager.GetString("NoNetworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no statistic items..
+        /// </summary>
+        public static string NoStatisticItemsMessage {
+            get {
+                return ResourceManager.GetString("NoStatisticItemsMessage", resourceCulture);
             }
         }
         

@@ -80,7 +80,8 @@
                    VerticalOptions="Center"
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
-                   IsVisible="{Binding IsCategoriesEmpty}" />
+                   IsVisible="{Binding IsCategoriesEmpty}"
+                   Text="{Binding Resources[NoCategoriesMessage]}"/>
         </Grid>
     </ContentPage.Content>
 </d:MvxContentPage>
