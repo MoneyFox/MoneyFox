@@ -1,14 +1,13 @@
-﻿using MvvmCross.Forms.Views;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BackupPage : MvxContentPage
+	public partial class BackupPage
     {
 		public BackupPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }

@@ -23,6 +23,7 @@ namespace MoneyFox.Business.ViewModels
         {
             await navigationService.Navigate<AccountListViewModel>();
             await navigationService.Navigate<StatisticSelectorViewModel>();
+            await navigationService.Navigate<SettingsViewModel>();
         }
     }
 }

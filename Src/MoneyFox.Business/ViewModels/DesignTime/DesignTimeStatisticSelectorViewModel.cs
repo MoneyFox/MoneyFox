@@ -7,7 +7,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
+    public class DesignTimeStatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
     {
         public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
         {

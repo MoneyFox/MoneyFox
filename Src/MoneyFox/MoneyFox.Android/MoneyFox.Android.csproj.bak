@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MoneyFox.Droid</RootNamespace>
     <AssemblyName>MoneyFox.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -90,9 +90,6 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>5.6.3</Version>
     </PackageReference>
-    <PackageReference Include="Naxam.Ittianyu.BottomNavExtension">
-      <Version>1.2.4</Version>
-    </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
     </PackageReference>
@@ -146,10 +143,6 @@
     <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.Tabs.cs" />
-    <Compile Include="Utils\ResourceManagerEx.cs" />
-    <Compile Include="Utils\SizeUtils.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
@@ -165,7 +158,6 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="Utils\MeasureSpecFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -205,6 +197,9 @@
       <Project>{A379D85B-DA30-42EA-9122-35F4A950AD22}</Project>
       <Name>MoneyFox</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_account_black.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_account_white.png" />
@@ -250,6 +245,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_show_chart.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_transfer.png" />
@@ -397,15 +398,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v21\ic_accounts_black.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v21\ic_settings_black.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v21\ic_statistics_black.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

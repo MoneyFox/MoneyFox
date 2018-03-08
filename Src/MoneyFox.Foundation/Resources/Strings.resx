@@ -240,8 +240,8 @@
   <data name="StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="StatisticTitle" xml:space="preserve">
-    <value>Statistic</value>
+  <data name="StatisticsTitle" xml:space="preserve">
+    <value>Statistics</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
     <value>Success!</value>
@@ -498,9 +498,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>A way to make budgeting easy.</value>
-  </data>
   <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
   </data>
@@ -518,33 +515,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
     <value>Password</value>
-  </data>
-  <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
-  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Backup</value>
-  </data>
-  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Categories</value>
-  </data>
-  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>Statistics</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
@@ -663,5 +633,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Others</value>
+  </data>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="StatisticsRangeTitle" xml:space="preserve">
+    <value>Statistic Range:</value>
   </data>
 </root>

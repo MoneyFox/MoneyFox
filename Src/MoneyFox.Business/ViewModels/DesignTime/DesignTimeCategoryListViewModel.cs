@@ -5,7 +5,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeCategoryListViewModel : ICategoryListViewModel
+    public class DesignTimeCategoryListViewModel : BaseViewModel, ICategoryListViewModel
     {
         public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList =>
             new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>

@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              x:Class="MoneyFox.Views.BackupPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
-    <ContentView.Resources>
+    <d:MvxContentPage.Resources>
         <ResourceDictionary>
             <converter1:InverseBoolConverter x:Key="Inverter" />
             <converter1:DateVisibilityConverter x:Key="DateVisibilityConverter" />
         </ResourceDictionary>
-    </ContentView.Resources>
+    </d:MvxContentPage.Resources>
 
     <ContentPage.Content>
 
@@ -24,7 +24,7 @@
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding CreateBackupText}"
-                HorizontalOptions="StartAndExpand" />
+                       HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
 
                 <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />

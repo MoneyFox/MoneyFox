@@ -5,12 +5,12 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false)]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics")]
     public partial class StatisticSelectorPage
     {
 		public StatisticSelectorPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
 		    StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {

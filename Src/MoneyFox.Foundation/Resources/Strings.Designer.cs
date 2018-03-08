@@ -188,6 +188,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string AccountsTitle {
+            get {
+                return ResourceManager.GetString("AccountsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountTitle {
@@ -980,96 +989,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
-        /// </summary>
-        public static string MenuViewModel_AboutLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.AboutLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accounts.
-        /// </summary>
-        public static string MenuViewModel_AccountsLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.AccountsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string MenuViewModel_AddLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.AddLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup.
-        /// </summary>
-        public static string MenuViewModel_BackupLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.BackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Categories.
-        /// </summary>
-        public static string MenuViewModel_CategoriesLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.CategoriesLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string MenuViewModel_DeleteLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.DeleteLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        public static string MenuViewModel_SaveLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.SaveLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        public static string MenuViewModel_SettingsLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.SettingsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A way to make budgeting easy..
-        /// </summary>
-        public static string MenuViewModel_SloganLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.SloganLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Statistics.
-        /// </summary>
-        public static string MenuViewModel_StatisticsLabel {
-            get {
-                return ResourceManager.GetString("MenuViewModel.StatisticsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string ModifyAccountViewModel_AccountNameLabel {
@@ -1604,6 +1523,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string StatisticsLabel {
@@ -1613,11 +1541,20 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statistic.
+        ///   Looks up a localized string similar to Statistic Range:.
         /// </summary>
-        public static string StatisticTitle {
+        public static string StatisticsRangeTitle {
             get {
-                return ResourceManager.GetString("StatisticTitle", resourceCulture);
+                return ResourceManager.GetString("StatisticsRangeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string StatisticsTitle {
+            get {
+                return ResourceManager.GetString("StatisticsTitle", resourceCulture);
             }
         }
         

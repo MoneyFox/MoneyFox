@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false)]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts")]
     public partial class AccountListPage
 	{
 		public AccountListPage ()
