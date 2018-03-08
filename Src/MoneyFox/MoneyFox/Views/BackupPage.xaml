@@ -24,7 +24,7 @@
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding CreateBackupText}"
-                HorizontalOptions="StartAndExpand" />
+                       HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
 
                 <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
