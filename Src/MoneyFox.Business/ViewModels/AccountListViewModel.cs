@@ -6,7 +6,6 @@ using MoneyFox.Business.Manager;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.DataServices;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -16,8 +15,8 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    /// <inheritdoc />
-    public class AccountListViewModel : MvxViewModel, IAccountListViewModel
+    /// <inheritdoc cref="IAccountListViewModel" />
+    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
@@ -42,6 +41,8 @@ namespace MoneyFox.Business.ViewModels
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
             ViewActionViewModel = new AccountListViewActionViewModel(accountService, navigationService);
+
+            Accounts = new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
         #region Properties
@@ -105,8 +106,8 @@ namespace MoneyFox.Business.ViewModels
             {
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-                var includedAccountList = await accountService.GetNotExcludedAccounts();
-                var excludedAccountList = await accountService.GetExcludedAccounts();
+                var includedAccountList = (await accountService.GetNotExcludedAccounts()).ToList();
+                var excludedAccountList = (await accountService.GetExcludedAccounts()).ToList();
                 
                 var includedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(includedAccountList.Select(x => new AccountViewModel(x)));
@@ -114,9 +115,17 @@ namespace MoneyFox.Business.ViewModels
                 var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 includedAlphaGroup.AddRange(excludedAccountList.Select(x => new AccountViewModel(x)));
 
-                Accounts.Add(includedAlphaGroup);
-                Accounts.Add(excludedAlphaGroup);
+                if (includedAccountList.Any())
+                {
+                    Accounts.Add(includedAlphaGroup);
+                }
 
+                if (excludedAccountList.Any())
+                {
+                    Accounts.Add(excludedAlphaGroup);
+                }
+
+                RaisePropertyChanged(nameof(HasAccounts));
             }
             catch(Exception ex)
             {

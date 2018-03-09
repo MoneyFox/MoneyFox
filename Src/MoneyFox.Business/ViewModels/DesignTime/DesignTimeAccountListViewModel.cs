@@ -23,7 +23,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 
         public bool HasAccounts { get; }
         public IBalanceViewModel BalanceViewModel { get; }
-        public IViewActionViewModel ViewActionViewModel { get; }
+        public IAccountListViewActionViewModel ViewActionViewModel { get; }
         public IMvxLanguageBinder TextSource { get; }
         public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand { get; }
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
