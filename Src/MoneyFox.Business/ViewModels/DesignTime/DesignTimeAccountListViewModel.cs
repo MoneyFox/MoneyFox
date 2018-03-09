@@ -7,7 +7,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeAccountListViewModel : IAccountListViewModel
+    public class DesignTimeAccountListViewModel : BaseViewModel, IAccountListViewModel
     {
         public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts => new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>
         {

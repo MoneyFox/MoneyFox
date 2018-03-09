@@ -17,5 +17,15 @@ namespace MoneyFox.Views
 	    {
 	        throw new NotImplementedException();
 	    }
+
+	    private void EditAccount(object sender, EventArgs e)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    private void DeleteAccount(object sender, EventArgs e)
+	    {
+	        throw new NotImplementedException();
+	    }
 	}
 }
