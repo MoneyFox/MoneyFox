@@ -112,8 +112,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand
-            => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
+        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
 
         #endregion
 

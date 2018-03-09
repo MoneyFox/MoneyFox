@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<d:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<d:MvxContentPage x:TypeArguments="viewModels:CategoryListViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   x:Class="MoneyFox.Views.CategoryListPage"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -24,8 +27,9 @@
 
                 <Label Style="{StaticResource DefaultTextStyle}">Search</Label>
 
-                <SearchBar x:Name="SearchBar" VerticalOptions="Start" SearchCommand="{Binding SearchCommand}"
-                           SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}">
+                <SearchBar x:Name="SearchBar" VerticalOptions="Start" 
+                           SearchCommand="{Binding SearchCommand}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" >
                     <SearchBar.Behaviors>
                         <behavior:TextChangedBehavior />
                     </SearchBar.Behaviors>
@@ -73,6 +77,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <controls:FloatingActionButton Grid.Row="1" 
+                                           x:Name="FAB" 
+                                           HorizontalOptions="EndAndExpand" 
+                                           WidthRequest="50" 
+                                           HeightRequest="50"  
+                                           VerticalOptions="EndAndExpand"
+                                           Image="ic_add.png" 
+                                           ButtonColor="{StaticResource AccentColor}" 
+                                           Clicked="AddCategoryClick"/>
 
             <Label Grid.Row="1"
                    Margin="6"

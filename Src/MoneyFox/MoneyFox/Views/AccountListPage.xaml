@@ -4,17 +4,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-             x:Class="MoneyFox.Views.AccountListPage">
+             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+             x:Class="MoneyFox.Views.AccountListPage"
+                      DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+            <Label Margin="6"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Style="{StaticResource DeemphasizedLabelStyle}"
+                   LineBreakMode="WordWrap"
+                   IsVisible="{Binding IsCategoriesEmpty}"
+                   Text="{Binding Resources[NoAccountsMessage]}"/>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

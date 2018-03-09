@@ -1,5 +1,4 @@
 ﻿using System;
-using MoneyFox.Business.ViewModels;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -16,7 +15,7 @@ namespace MoneyFox.Views
 	        CategoryList.ItemTapped += (sender, args) =>
 	        {
 	            CategoryList.SelectedItem = null;
-	            ((ICategoryListViewModel) BindingContext).ItemClickCommand.Execute(args.Item);
+	            ViewModel.ItemClickCommand.Execute(args.Item);
 	        };
 
 		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
@@ -24,12 +23,17 @@ namespace MoneyFox.Views
 
 	    private void EditCategory(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
+	        ViewModel.EditCategoryCommand.Execute(CategoryList.SelectedItem);
 	    }
 
 	    private void DeleteCategory(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
+	        ViewModel.DeleteCategoryCommand.Execute(CategoryList.SelectedItem);
 	    }
-	}
+
+        private void AddCategoryClick(object sender, EventArgs e)
+	    {
+            ViewModel.CreateNewCategoryCommand.Execute();
+	    }
+    }
 }

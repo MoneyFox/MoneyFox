@@ -425,7 +425,7 @@ Tap to visit the Repository:</value>
   <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
-  <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+  <data name="NoAccountsMessage" xml:space="preserve">
     <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="CreateBackupInformationLabel" xml:space="preserve">
@@ -537,10 +537,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ErrorMessageRestore" xml:space="preserve">
     <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
   </data>
-  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Excluded Accounts</value>
   </data>
-  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+  <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Included Accounts</value>
   </data>
   <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">

@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="5.6.3" />
     <PackageReference Include="MvvmCross.Forms" Version="5.6.3" />
+    <PackageReference Include="SuaveControls.FloatingActionButton" Version="2017.10.17" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
 

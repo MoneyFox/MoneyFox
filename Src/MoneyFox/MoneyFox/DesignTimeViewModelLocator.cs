@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.DesignTime;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Business.ViewModels.Statistic;
 
 namespace MoneyFox
@@ -13,6 +14,7 @@ namespace MoneyFox
         private static IStatisticSelectorViewModel STATISTIC_SELECTOR_VIEW_MODEL;
         private static IStatisticCategorySummaryViewModel STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL;
         private static ICategoryListViewModel CATEGORY_LIST_VIEW_MODEL;
+        private static IAccountListViewModel ACCOUNT_LIST_VIEW_MODEL;
         private static ISettingsViewModel SETTINGS_VIEW_MODEL;
 
         /// <summary>
@@ -38,6 +40,12 @@ namespace MoneyFox
         /// </summary>
         public static ICategoryListViewModel DesignTimeCategoryListViewModel =>
             CATEGORY_LIST_VIEW_MODEL ?? (CATEGORY_LIST_VIEW_MODEL = new DesignTimeCategoryListViewModel());
+
+        /// <summary>
+        ///     Implementation for IAccountListViewModel for design time.
+        /// </summary>
+        public static IAccountListViewModel DesignTimeAccountListViewModel =>
+            ACCOUNT_LIST_VIEW_MODEL ?? (ACCOUNT_LIST_VIEW_MODEL = new DesignTimeAccountListViewModel());
 
         /// <summary>
         ///     Implementation for ICategoryListViewModel for design time.

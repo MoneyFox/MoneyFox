@@ -143,33 +143,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no Accounts. Add one by tapping on the plus button at the bottom..
-        /// </summary>
-        public static string AccountListViewModel_EmptyListPlaceholderLabel {
-            get {
-                return ResourceManager.GetString("AccountListViewModel.EmptyListPlaceholderLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Excluded Accounts.
-        /// </summary>
-        public static string AccountListViewModel_ExcludedAccountsHeader {
-            get {
-                return ResourceManager.GetString("AccountListViewModel.ExcludedAccountsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Included Accounts.
-        /// </summary>
-        public static string AccountListViewModel_IncludedAccountsHeader {
-            get {
-                return ResourceManager.GetString("AccountListViewModel.IncludedAccountsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please select an Account..
         /// </summary>
         public static string AccountRequiredMessage {
@@ -827,6 +800,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excluded Accounts.
+        /// </summary>
+        public static string ExcludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("ExcludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add expense.
         /// </summary>
         public static string ExpenseHeader {
@@ -868,6 +850,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string GeneralTitle {
             get {
                 return ResourceManager.GetString("GeneralTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Included Accounts.
+        /// </summary>
+        public static string IncludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("IncludedAccountsHeader", resourceCulture);
             }
         }
         
@@ -1147,6 +1138,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string NameRequiredMessage {
             get {
                 return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no Accounts. Add one by tapping on the plus button at the bottom..
+        /// </summary>
+        public static string NoAccountsMessage {
+            get {
+                return ResourceManager.GetString("NoAccountsMessage", resourceCulture);
             }
         }
         

@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using MoneyFox.Foundation.Groups;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
@@ -11,24 +10,14 @@ namespace MoneyFox.Business.ViewModels.Interfaces
     public interface IAccountListViewModel
     {        
         /// <summary>
-        ///     All existing accounts who are included to the balance calculation.
+        ///     All existing accounts
         /// </summary>
-        ObservableCollection<AccountViewModel> IncludedAccounts { get; set; }
+        MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts { get; }
 
         /// <summary>
-        ///     All existing accounts who are exluded from the balance calculation.
+        ///     Indicates if there are accounts to display.
         /// </summary>
-        ObservableCollection<AccountViewModel> ExcludedAccounts { get; set; }
-
-        /// <summary>
-        ///     Returns if the IncludedAccounts Collection is emtpy or not.
-        /// </summary>
-        bool IsAllAccountsEmpty { get; }
-
-        /// <summary>
-        ///     Returns if the ExcludedAccounts Collection is emtpy or not.
-        /// </summary>
-        bool IsExcludedAccountsEmpty { get; }
+        bool HasAccounts { get; }
 
         /// <summary>
         ///     View Model for the balance view integrated in the account list view
@@ -44,12 +33,7 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         ///     Provides an TextSource for the translation binding on this page.
         /// </summary>
         IMvxLanguageBinder TextSource { get; }
-
-        /// <summary>
-        ///     Prepares the Account list
-        /// </summary>
-        MvxAsyncCommand LoadedCommand { get; }
-
+        
         /// <summary>
         ///     Open the payment overview for this Account.
         /// </summary>
@@ -69,15 +53,5 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
         MvxAsyncCommand GoToAddAccountCommand { get; }
-
-        /// <summary>
-        ///     Opens the Context Menu for a list or a recycler view
-        /// </summary>
-        MvxAsyncCommand<AccountViewModel> OpenContextMenuCommand { get; }
-
-        /// <summary>
-        ///     Used on Ios to load the menus
-        /// </summary>
-        Task ShowMenu();
     }
 }
