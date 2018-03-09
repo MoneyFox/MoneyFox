@@ -130,13 +130,13 @@
     <value>Add Account</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Income</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Transfer</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
@@ -657,5 +657,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="CategoriesSettingsDescription" xml:space="preserve">
     <value>Add and modify categories.</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Account</value>
   </data>
 </root>

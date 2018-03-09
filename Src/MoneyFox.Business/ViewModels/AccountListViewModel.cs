@@ -50,7 +50,7 @@ namespace MoneyFox.Business.ViewModels
         public IBalanceViewModel BalanceViewModel { get; }
 
         /// <inheritdoc />
-        public IViewActionViewModel ViewActionViewModel { get; }
+        public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         /// <inheritdoc />
         public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);

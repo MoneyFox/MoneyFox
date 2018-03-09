@@ -27,7 +27,7 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         /// <summary>
         ///     View Mdoel for the actions associated with the account list.
         /// </summary>
-        IViewActionViewModel ViewActionViewModel { get; }
+        IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         /// <summary>
         ///     Provides an TextSource for the translation binding on this page.

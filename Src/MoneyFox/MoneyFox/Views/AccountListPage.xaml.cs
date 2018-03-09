@@ -1,4 +1,6 @@
 ﻿using System;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Views.Attributes;
 using Xamarin.Forms.Xaml;
 
@@ -11,21 +13,43 @@ namespace MoneyFox.Views
 		public AccountListPage ()
 		{
 			InitializeComponent ();
-		}
+		    AccountsList.ItemTapped += (sender, args) =>
+		    {
+		        AccountsList.SelectedItem = null;
+		        ViewModel.OpenOverviewCommand.Execute(args.Item);
+		    };
+        }
 
-	    private void AddItem_Clicked(object sender, EventArgs e)
+	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
-	    }
+	        var action = await DisplayActionSheet(Strings.AddTitle, Strings.CancelLabel, null, Strings.AddAccountLabel, Strings.AddExpenseLabel, Strings.AddIncomeLabel, Strings.AddTransferLabel);
+
+	        if (action == Strings.AddAccountLabel)
+	        {
+	            await ViewModel.ViewActionViewModel.GoToAddAccountCommand.ExecuteAsync();
+	        }
+            else if (action == Strings.AddExpenseLabel)
+	        {
+	            await ViewModel.ViewActionViewModel.GoToAddExpenseCommand.ExecuteAsync();
+	        }
+            else if (action == Strings.AddIncomeLabel)
+	        {
+	            await ViewModel.ViewActionViewModel.GoToAddIncomeCommand.ExecuteAsync();
+	        }
+            else if (action == Strings.AddTransferLabel)
+	        {
+	            await ViewModel.ViewActionViewModel.GoToAddTransferCommand.ExecuteAsync();
+	        }
+        }
 
 	    private void EditAccount(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
+	        ViewModel.EditAccountCommand.ExecuteAsync((AccountViewModel)AccountsList.SelectedItem);
 	    }
 
 	    private void DeleteAccount(object sender, EventArgs e)
 	    {
-	        throw new NotImplementedException();
+	        ViewModel.DeleteAccountCommand.ExecuteAsync((AccountViewModel)AccountsList.SelectedItem);
 	    }
-	}
+    }
 }

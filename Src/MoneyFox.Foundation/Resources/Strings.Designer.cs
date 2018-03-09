@@ -170,6 +170,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string AddAccountLabel {
+            get {
+                return ResourceManager.GetString("AddAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountTitle {
@@ -188,7 +197,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Expense.
+        ///   Looks up a localized string similar to Expense.
         /// </summary>
         public static string AddExpenseLabel {
             get {
@@ -206,7 +215,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Income.
+        ///   Looks up a localized string similar to Income.
         /// </summary>
         public static string AddIncomeLabel {
             get {
@@ -224,7 +233,16 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Transfer.
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddTitle {
+            get {
+                return ResourceManager.GetString("AddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
         /// </summary>
         public static string AddTransferLabel {
             get {
