@@ -13,7 +13,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class ModifyAccountViewModel : MvxViewModel<ModifyAccountParameter>
+    public class ModifyAccountViewModel : BaseViewModel<ModifyAccountParameter>
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;

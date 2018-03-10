@@ -20,4 +20,9 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public LocalizedResources Resources { get; }
     }
+
+    public abstract class BaseViewModel<TParameter> : BaseViewModel, IMvxViewModel<TParameter>
+    {
+        public abstract void Prepare(TParameter parameter);
+    }
 }
