@@ -122,6 +122,20 @@ namespace MoneyFox.Windows
 
             //OverrideTitleBarColor();
 
+            //When jumplist is selected navigate to appropriate tile
+            var tileHelper = Mvx.Resolve<TileHelper>();
+            if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+            }
+            else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+            }
+            else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+            }
             // Ensure the current window is active
             Window.Current.Activate();
         }
