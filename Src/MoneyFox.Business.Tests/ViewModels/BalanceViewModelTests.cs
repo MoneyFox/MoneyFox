@@ -3,6 +3,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Pocos;
 using Moq;
 using MvvmCross.Test.Core;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -20,8 +21,8 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             vm.UpdateBalanceCommand.Execute();
 
-            vm.TotalBalance.ShouldBe(0);
-            vm.EndOfMonthBalance.ShouldBe(0);
+            vm.TotalBalance.ShouldEqual(0);
+            vm.EndOfMonthBalance.ShouldEqual(0);
         }
 
         [Fact]
@@ -30,7 +31,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var vm = new BalanceViewModel(new Mock<IBalanceCalculationManager>().Object);
             vm.UpdateBalanceCommand.Execute();
 
-            vm.TotalBalance.ShouldBe(0);
+            vm.TotalBalance.ShouldEqual(0);
         }
 
         [Fact]
@@ -43,7 +44,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var vm = new BalanceViewModel(balanceCalculationManager.Object);
             vm.UpdateBalanceCommand.Execute();
 
-            vm.TotalBalance.ShouldBe(700);
+            vm.TotalBalance.ShouldEqual(700);
         }
     }
 }

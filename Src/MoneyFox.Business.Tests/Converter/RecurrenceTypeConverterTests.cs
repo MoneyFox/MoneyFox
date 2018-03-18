@@ -2,6 +2,7 @@
 using MoneyFox.Business.Converter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.Converter
@@ -26,7 +27,7 @@ namespace MoneyFox.Business.Tests.Converter
         [MemberData(nameof(TestRecurrences))]
         public void Convert_CorrectValue(PaymentRecurrence type, string result)
         {
-            new RecurrenceTypeConverter().Convert(type, null, null, null).ShouldBe(result);
+            new RecurrenceTypeConverter().Convert(type, null, null, null).ShouldEqual(result);
         }
     }
 }

@@ -8,6 +8,7 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using Moq;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.StatisticProvider
@@ -73,8 +74,8 @@ namespace MoneyFox.Business.Tests.StatisticProvider
                                                                            .Result.ToList();
 
             // Assert
-            result.Count.ShouldBe(1);
-            result.First().Value.ShouldBe(-30);
+            result.Count.ShouldEqual(1);
+            result.First().Value.ShouldEqual(-30);
         }
     }
 }

@@ -7,6 +7,7 @@ using MoneyFox.Foundation;
 using Moq;
 using Xunit;
 using MoneyFox.Business.StatisticDataProvider;
+using Should;
 
 namespace MoneyFox.Business.Tests.StatisticProvider
 {
@@ -74,9 +75,9 @@ namespace MoneyFox.Business.Tests.StatisticProvider
                 .GetCashFlow(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
 
             // Assert
-            result[0].Value.ShouldBe(130);
-            result[1].Value.ShouldBe(90);
-            result[2].Value.ShouldBe(40);
+            result[0].Value.ShouldEqual(130);
+            result[1].Value.ShouldEqual(90);
+            result[2].Value.ShouldEqual(40);
         }
     }
 }

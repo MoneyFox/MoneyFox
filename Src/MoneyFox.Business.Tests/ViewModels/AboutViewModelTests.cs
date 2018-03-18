@@ -6,6 +6,7 @@ using Moq;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -43,7 +44,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreOperations>().Object)
-                .SupportMail.ShouldBe(Constants.SUPPORT_MAIL);
+                .SupportMail.ShouldEqual(Constants.SUPPORT_MAIL);
         }
 
         [Fact]
@@ -53,7 +54,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreOperations>().Object)
-                .Website.ShouldBe(Constants.WEBSITE_URL);
+                .Website.ShouldEqual(Constants.WEBSITE_URL);
         }
 
         [Fact]
@@ -66,7 +67,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreOperations>().Object)
-                .Version.ShouldBe("42");
+                .Version.ShouldEqual("42");
         }
 
         [Fact]

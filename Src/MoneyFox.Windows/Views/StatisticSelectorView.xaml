@@ -1,93 +1,24 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticSelectorView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:converter="using:MoneyFox.Windows.Converter"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Uwp.Views"
-                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      SizeChanged="StatisticSelectorView_OnSizeChanged"
                       mc:Ignorable="d">
 
-    <Page.Resources>
-        <converter:SelectedConverter x:Key="SelectedConverter" />
-
-        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <StackPanel Background="{StaticResource ListItemBrush}"
-                        HorizontalAlignment="Stretch"
-                        Margin="{StaticResource SmallListItemMargin}"
-                        Padding="{StaticResource SmallListItemPadding}">
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind Name}"
-                               TextTrimming="CharacterEllipsis" />
-                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind Description}"
-                               TextWrapping="WrapWholeWords" />
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-    </Page.Resources>
-
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <TextBlock x:Name="TitlePage"
                    x:Uid="StatisticSelectorViewTitle"
                    Text="Select Statistic"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <ScrollViewer Grid.Row="1"
-                      Margin="{StaticResource NegativeLargeLeftRightMargin}"
-                      HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      VerticalScrollBarVisibility="Disabled">
-
-            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
-                      ItemsSource="{Binding StatisticItems}"
-                      Background="Transparent">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </ScrollViewer>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin"
-                                Value="48,0,12,7" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        <Grid Grid.Row="1" x:Name="ContentGrid" Margin="{StaticResource NegativeMediumLeftRightMargin}" />
     </Grid>
 </views:MvxWindowsPage>

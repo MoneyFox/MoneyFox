@@ -381,9 +381,6 @@ Also if you launch the application there it will check if there are newer backup
   <data name="Logout.Content" xml:space="preserve">
     <value>退出登录</value>
   </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
     <value>手动备份</value>
   </data>

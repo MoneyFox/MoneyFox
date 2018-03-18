@@ -15,6 +15,7 @@ using MoneyFox.Foundation.Resources;
 using Moq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Plugins.Messenger;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -46,7 +47,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Act / Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe(type);
+            viewmodel.SelectedPayment.Type.ShouldEqual(type);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
@@ -93,10 +94,10 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe(type);
+            viewmodel.SelectedPayment.Type.ShouldEqual(type);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
-            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
+            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldEqual(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
         }
 
@@ -139,7 +140,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Assert
             testPayment.Data.RecurringPayment.ShouldNotBeNull();
-            testPayment.Data.RecurringPayment.Recurrence.ShouldBe(recurrence);
+            testPayment.Data.RecurringPayment.Recurrence.ShouldEqual(recurrence);
         }
 
         [Theory]
@@ -212,7 +213,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             viewmodel.AmountString = amount;
 
             // Assert
-            viewmodel.AmountString.ShouldBe(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
+            viewmodel.AmountString.ShouldEqual(convertedAmount.ToString("N", CultureInfo.CurrentCulture));
         }
 
         [Fact]
@@ -255,10 +256,10 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Assert
             viewmodel.SelectedPayment.ShouldNotBeNull();
-            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
+            viewmodel.SelectedPayment.Type.ShouldEqual(PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
-            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
+            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldEqual(testEndDate);
             viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
         }
 
@@ -284,7 +285,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Act / Assert
             viewmodel.Prepare(new ModifyPaymentParameter(PaymentType.Transfer));
             await viewmodel.Initialize();
-            viewmodel.SelectedPayment.Type.ShouldBe(PaymentType.Transfer);
+            viewmodel.SelectedPayment.Type.ShouldEqual(PaymentType.Transfer);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeTrue();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }

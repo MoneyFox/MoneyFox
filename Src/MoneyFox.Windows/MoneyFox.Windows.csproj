@@ -125,7 +125,6 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativeBackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
@@ -463,6 +462,9 @@
     </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.7.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics">
       <Version>0.18.0</Version>

@@ -1,6 +1,6 @@
-﻿using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
+﻿using System.Collections.Generic;
+using Microcharts;
+using MoneyFox.Business.ViewModels.Interfaces;
 
 namespace MoneyFox.Windows.DesignTime
 {
@@ -8,14 +8,17 @@ namespace MoneyFox.Windows.DesignTime
     {
         public string Title => "I AM A MIGHTY TITLE";
 
-        public MvxObservableCollection<StatisticItem> StatisticItems => new MvxObservableCollection<StatisticItem>
+        public DonutChart Chart => new DonutChart
         {
-            new StatisticItem {Label = "Essen", Value = 1234},
-            new StatisticItem {Label = "Bier", Value = 1465},
-            new StatisticItem {Label = "Boooze", Value = 543},
-            new StatisticItem {Label = "Rent", Value = 462},
-            new StatisticItem {Label = "Clothes", Value = 1112},
-            new StatisticItem {Label = "Eating or so?", Value = 512},
+            Entries = new List<Entry>
+            {
+                new Entry(1234) {Label = "Essen"},
+                new Entry(1465) {Label = "Bier"},
+                new Entry(543) {Label = "Boooze"},
+                new Entry(462) {Label = "Rent"},
+                new Entry(1112) {Label = "Clothes"},
+                new Entry(512) {Label = "Eating or so?"},
+            }
         };
     }
 }

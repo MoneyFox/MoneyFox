@@ -1250,6 +1250,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        public static string OthersLabel {
+            get {
+                return ResourceManager.GetString("OthersLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Existing backups will be overwritten. Do you wanna continue?.
         /// </summary>
         public static string OverwriteBackupMessage {

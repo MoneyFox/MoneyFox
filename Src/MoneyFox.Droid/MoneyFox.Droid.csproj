@@ -148,9 +148,6 @@
     <AndroidResource Include="Resources\menu\menu_select.axml" />
     <AndroidResource Include="Resources\menu\navigation_drawer.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
-    <AndroidResource Include="Resources\layout\activity_cash_flow.axml" />
-    <AndroidResource Include="Resources\layout\activity_category_spreading.axml" />
-    <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
     <AndroidResource Include="Resources\layout\activity_frame.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml">
@@ -178,7 +175,6 @@
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_general.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
-    <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
     <AndroidResource Include="Resources\layout\header_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_account.axml" />
     <AndroidResource Include="Resources\layout\listitem_category.axml" />
@@ -188,10 +184,13 @@
     <AndroidResource Include="Resources\layout\listitem_legend_item.axml" />
     <AndroidResource Include="Resources\layout\listitem_monthly_payment_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_payment.axml" />
-    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml" />
+    <AndroidResource Include="Resources\layout\listitem_statistic_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_filter.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_category_summary.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -382,6 +381,9 @@
     <PackageReference Include="FAB.XamarinAndroid">
       <Version>1.6.4</Version>
     </PackageReference>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.7.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Azure.Mobile.Analytics">
       <Version>0.18.0</Version>
     </PackageReference>
@@ -396,9 +398,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
       <Version>2.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="MPAndroidChart">
-      <Version>3.0.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
       <Version>5.6.3</Version>
