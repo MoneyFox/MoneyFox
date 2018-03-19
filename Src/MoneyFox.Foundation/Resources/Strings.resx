@@ -450,16 +450,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Restore Backup</value>
   </data>
-  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
+  <data name="AccountNameLabel" xml:space="preserve">
     <value>Account Name</value>
   </data>
-  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
+  <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Current Balance</value>
   </data>
-  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
-    <value>Iban</value>
-  </data>
-  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
+  <data name="NoteLabel" xml:space="preserve">
     <value>Note</value>
   </data>
   <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
@@ -525,7 +522,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Bimonthly</value>
   </data>
-  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+  <data name="IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
@@ -663,5 +660,8 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Account</value>
+  </data>
+  <data name="SaveAccountLabel" xml:space="preserve">
+    <value>Save Account</value>
   </data>
 </root>

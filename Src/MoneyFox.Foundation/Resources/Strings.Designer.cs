@@ -143,6 +143,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Name.
+        /// </summary>
+        public static string AccountNameLabel {
+            get {
+                return ResourceManager.GetString("AccountNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select an Account..
         /// </summary>
         public static string AccountRequiredMessage {
@@ -593,6 +602,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Balance.
+        /// </summary>
+        public static string CurrentBalanceLabel {
+            get {
+                return ResourceManager.GetString("CurrentBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {
@@ -917,6 +935,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude account from balance.
+        /// </summary>
+        public static string IsExcludedLabel {
+            get {
+                return ResourceManager.GetString("IsExcludedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Recurring.
         /// </summary>
         public static string IsRecurringFilterLabel {
@@ -1021,51 +1048,6 @@ namespace MoneyFox.Foundation.Resources {
         public static string MandatoryFieldEmptyTitle {
             get {
                 return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account Name.
-        /// </summary>
-        public static string ModifyAccountViewModel_AccountNameLabel {
-            get {
-                return ResourceManager.GetString("ModifyAccountViewModel.AccountNameLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Balance.
-        /// </summary>
-        public static string ModifyAccountViewModel_CurrentBalanceLabel {
-            get {
-                return ResourceManager.GetString("ModifyAccountViewModel.CurrentBalanceLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Iban.
-        /// </summary>
-        public static string ModifyAccountViewModel_IbanLabel {
-            get {
-                return ResourceManager.GetString("ModifyAccountViewModel.IbanLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exclude account from balance.
-        /// </summary>
-        public static string ModifyAccountViewModel_IsExcludedLabel {
-            get {
-                return ResourceManager.GetString("ModifyAccountViewModel.IsExcludedLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Note.
-        /// </summary>
-        public static string ModifyAccountViewModel_NoteLabel {
-            get {
-                return ResourceManager.GetString("ModifyAccountViewModel.NoteLabel", resourceCulture);
             }
         }
         
@@ -1210,6 +1192,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string NoStatisticItemsMessage {
             get {
                 return ResourceManager.GetString("NoStatisticItemsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string NoteLabel {
+            get {
+                return ResourceManager.GetString("NoteLabel", resourceCulture);
             }
         }
         
@@ -1420,6 +1411,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string RevenueLabel {
             get {
                 return ResourceManager.GetString("RevenueLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Account.
+        /// </summary>
+        public static string SaveAccountLabel {
+            get {
+                return ResourceManager.GetString("SaveAccountLabel", resourceCulture);
             }
         }
         
