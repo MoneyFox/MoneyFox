@@ -149,11 +149,11 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MoneyFox.Business\MoneyFox.Business.csproj">
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
       <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
