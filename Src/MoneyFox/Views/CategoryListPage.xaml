@@ -9,8 +9,8 @@
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
 
     <ContentPage.Content>
-        <StackLayout>
-            <views:CategoryListUserControl />
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <views:CategoryListUserControl VerticalOptions="FillAndExpand"  />
         </StackLayout>
     </ContentPage.Content>
 </d:MvxContentPage>

@@ -8206,7 +8206,7 @@ namespace MoneyFox.Droid
 			public const int ic_backup = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_cancel = 2130837604;
+			public const int ic_cancel_black = 2130837604;
 			
 			// aapt resource value: 0x7f020065
 			public const int ic_delete = 2130837605;

@@ -18,7 +18,7 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >
-            <views:BalanceUserControl BindingContext="{Binding BalanceUserControlModel}" />
+            <views:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
 
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"

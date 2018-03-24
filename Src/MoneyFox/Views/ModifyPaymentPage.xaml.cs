@@ -21,6 +21,16 @@ namespace MoneyFox.Views
 		    };
 
 		    ToolbarItems.Add(savePaymentItem);
+
+		    ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
+		    {
+                Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
+		    });
         }
+
+	    private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
+	    {
+	        ViewModel.GoToSelectCategorydialogCommand.Execute();
+	    }
 	}
 }

@@ -9,10 +9,15 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface ISelectCategoryListViewModel
+    {
+        CategoryViewModel SelectedCategory { get; }
+    }
+
     /// <summary>
     ///     Represents the SelectCategoryListView
     /// </summary>
-    public class SelectCategoryListViewModel : AbstractCategoryListViewModel
+    public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
         private CategoryViewModel selectedCategory;

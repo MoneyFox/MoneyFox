@@ -6,7 +6,7 @@
              x:Class="MoneyFox.UserControls.CategoryListUserControl">
 
   <ContentView.Content>
-        <Grid>
+        <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="240*" />

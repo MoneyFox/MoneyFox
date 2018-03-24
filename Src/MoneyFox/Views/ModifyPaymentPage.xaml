@@ -38,17 +38,28 @@
 
             <Label Text="{Binding Resources[AmountLabel]}"
                    Margin="0,5,0,0" />
-            <Entry Text="{Binding AmountString}" Keyboard="Numeric" />
+            <Entry Text="{Binding AmountString}" Keyboard="Numeric" HorizontalTextAlignment="End" />
 
             <Label Text="{Binding Resources[CategoryLabel]}"
                    Margin="0,5,0,0" />
             <Grid>
-                <Button Text="{Binding SelectedPayment.Category.Name}"
-                        Command="{Binding GoToSelectCategorydialogCommand}"/>
-                <Image VerticalOptions="EndAndExpand"
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding SelectedPayment.Category.Name}"
+                       Focused="CategoryFieldGotFocus" />
+                <Image Grid.Column="1"
+                       x:Name="ResetIcon"
+                       VerticalOptions="End"
+                       HorizontalOptions="Start"
                        Source="{StaticResource ImageResetField}"
-                       HeightRequest="20"
-                       WidthRequest="20" />
+                       HeightRequest="30"
+                       WidthRequest="30" />
             </Grid>
 
             <Label Text="{Binding Resources[DateLabel]}"

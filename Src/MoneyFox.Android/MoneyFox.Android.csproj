@@ -151,6 +151,7 @@
     <Compile Include="Manager\BackgroundTaskManager.cs" />
     <Compile Include="Renderer\BottomTabbedRenderer.cs" />
     <Compile Include="Renderer\BottomTabbedRenderer.Tabs.cs" />
+    <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Utils\ResourceManagerEx.cs" />
     <Compile Include="Utils\SizeUtils.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
@@ -205,7 +206,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{A379D85B-DA30-42EA-9122-35F4A950AD22}</Project>
+      <Project>{bb5381e5-433d-4cb8-b9ee-933839e4189a}</Project>
       <Name>MoneyFox</Name>
     </ProjectReference>
   </ItemGroup>
@@ -408,7 +409,7 @@
     <AndroidResource Include="Resources\drawable-v21\ic_accounts_black.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-v21\ic_cancel.xml" />
+    <AndroidResource Include="Resources\drawable-v21\ic_cancel_black.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
