@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;

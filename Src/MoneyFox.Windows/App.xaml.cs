@@ -17,9 +17,9 @@ using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Business;
 using MoneyFox.Business.Converter;
 #if !DEBUG
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
@@ -76,7 +76,7 @@ namespace MoneyFox.Windows
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if !DEBUG
-            MobileCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {

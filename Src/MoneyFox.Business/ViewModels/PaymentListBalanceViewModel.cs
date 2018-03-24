@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
 
@@ -41,11 +40,7 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (Exception ex)
             {
-                Analytics.TrackEvent("Exception: On Token refresh", new Dictionary<string, string>
-                {
-                    {"Message", ex.Message},
-                    {"Stacktrace", ex.StackTrace}
-                });
+                Crashes.TrackError(ex);
             }
             return 0;
         }

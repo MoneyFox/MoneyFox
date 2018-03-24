@@ -8,9 +8,9 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
 using Android.Views;
 #if !DEBUG
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Droid.Jobs;
@@ -74,7 +74,7 @@ namespace MoneyFox.Droid.Activities
             Xamarin.Forms.Forms.Init(this, null);
 
 #if !DEBUG
-            MobileCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
+            AppCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
                                typeof(Analytics), typeof(Crashes));
 #endif
 

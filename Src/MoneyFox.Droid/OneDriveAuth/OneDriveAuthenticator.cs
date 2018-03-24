@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
@@ -21,8 +22,9 @@ namespace MoneyFox.Droid.OneDriveAuth
 
                 return tcs.Task;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 throw new BackupException("Authentication Failed");
             }
         }
