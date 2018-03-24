@@ -5,6 +5,14 @@
              x:Class="MoneyFox.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Image -->
+
+            <OnPlatform x:Key="ImageSave"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="ic_save" />
+                <On Platform="iOS" Value="IconSave" />
+            </OnPlatform>
+
             <!-- Colors -->
             <Color x:Key="AccentColor">#314a9b</Color>
             <Color x:Key="PrimaryColor">#263873</Color>

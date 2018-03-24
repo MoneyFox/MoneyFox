@@ -43,7 +43,7 @@
             <Label Text="{Binding Resources[CategoryLabel]}"
                    Margin="0,5,0,0" />
             <Grid>
-                <Entry x:Name="CategoryEntry" Text="{Binding SelectedPayment.Category.Name}" InputTransparent="True" />
+                <Entry x:Name="CategoryEntry" Text="{Binding SelectedPayment.Category.Name}" />
                 <Image Source="{StaticResource ImageResetField}" />
             </Grid>
 

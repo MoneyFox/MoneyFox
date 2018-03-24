@@ -249,7 +249,7 @@
     <AndroidResource Include="Resources\drawable\ic_recurring.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_save.png" />
+    <AndroidResource Include="Resources\drawable\IconSave.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_transfer.png" />
