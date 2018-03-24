@@ -33,6 +33,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<WindowsAppInformation>().As<IAppInformation>();
             builder.RegisterType<MarketplaceOperations>().As<IStoreOperations>();
             builder.RegisterType<ConnectivityImplementation>().As<IConnectivity>();
+            builder.RegisterType<TileHelper>().AsSelf();
         }
     }
 }
