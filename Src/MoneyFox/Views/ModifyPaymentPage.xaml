@@ -43,8 +43,12 @@
             <Label Text="{Binding Resources[CategoryLabel]}"
                    Margin="0,5,0,0" />
             <Grid>
-                <Entry x:Name="CategoryEntry" Text="{Binding SelectedPayment.Category.Name}" />
-                <Image Source="{StaticResource ImageResetField}" />
+                <Button Text="{Binding SelectedPayment.Category.Name}"
+                        Command="{Binding GoToSelectCategorydialogCommand}"/>
+                <Image VerticalOptions="EndAndExpand"
+                       Source="{StaticResource ImageResetField}"
+                       HeightRequest="20"
+                       WidthRequest="20" />
             </Grid>
 
             <Label Text="{Binding Resources[DateLabel]}"

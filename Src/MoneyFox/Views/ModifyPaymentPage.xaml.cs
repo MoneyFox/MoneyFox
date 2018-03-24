@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Foundation.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using TapGestureRecognizer = Xamarin.Forms.TapGestureRecognizer;
 
 namespace MoneyFox.Views
 {
@@ -22,13 +21,6 @@ namespace MoneyFox.Views
 		    };
 
 		    ToolbarItems.Add(savePaymentItem);
-
-            var tapGestureRecognizer = new TapGestureRecognizer();
-		    tapGestureRecognizer.Tapped += (s, e) => {
-		        ViewModel.GoToSelectCategorydialogCommand.Execute();
-		    };
-
-            CategoryEntry.GestureRecognizers.Add(tapGestureRecognizer);
         }
 	}
 }
