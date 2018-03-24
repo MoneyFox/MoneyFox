@@ -112,8 +112,6 @@ namespace MoneyFox.Windows
                 await CallRateReminder();
             }
 
-            //OverrideTitleBarColor();
-
             //When jumplist is selected navigate to appropriate tile
             var tileHelper = Mvx.Resolve<TileHelper>();
             if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
@@ -176,34 +174,6 @@ namespace MoneyFox.Windows
 
             await RatePopup.CheckRateReminderAsync();
         }
-
-        //private void OverrideTitleBarColor()
-        //{
-        //    var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-
-        //    // set up our brushes
-        //    var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-        //    var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
-        //    var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
-
-        //    // override colors!
-        //    if (bkgColor != null && appForegroundColor != null)
-        //    {
-        //        // If on a mobile device set the status bar
-        //        if (StatusBar.i)
-        //        {
-        //            StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-        //            StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
-        //            StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-        //        }
-
-        //        titleBar.BackgroundColor = backgroundColor?.Color;
-        //        titleBar.ButtonBackgroundColor = backgroundColor?.Color;
-
-        //        titleBar.ForegroundColor = Colors.White;
-        //        titleBar.ButtonForegroundColor = Colors.White;
-        //    }
-        //}
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved
