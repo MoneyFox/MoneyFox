@@ -664,4 +664,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SaveAccountLabel" xml:space="preserve">
     <value>Save Account</value>
   </data>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

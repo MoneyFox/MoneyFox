@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-             x:Class="MoneyFox.UserControls.BalanceView"
+             x:Class="MoneyFox.UserControls.BalanceUserControl"
              BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBalanceViewViewModel}">
 
   <ContentView.Content>
