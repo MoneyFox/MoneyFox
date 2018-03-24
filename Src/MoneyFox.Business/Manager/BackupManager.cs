@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
 using Plugin.Connectivity.Abstractions;
 
@@ -71,10 +70,11 @@ namespace MoneyFox.Business.Manager
                         cancellationTokenSource.Cancel();
                     }
                 }
-                catch (OperationCanceledException)
+                catch (OperationCanceledException ex)
                 {
                     await Task.Delay(ServiceConstants.BackupRepeatDelay);
                     await EnqueueBackupTask(attempts + 1);
+                    Crashes.TrackError(ex);
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace MoneyFox.Business.Manager
             }
             catch (Exception ex)
             {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
+                Crashes.TrackError(ex);
             }
         }
 

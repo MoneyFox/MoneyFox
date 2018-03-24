@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Windows.UI.ViewManagement;
+﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels;

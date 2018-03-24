@@ -7,6 +7,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using EntityFramework.DbContextScope;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Droid.Activities;
@@ -50,9 +51,10 @@ namespace MoneyFox.Droid.Jobs
             {
                 callback.Send(m);
             }
-            catch (RemoteException e)
+            catch (RemoteException ex)
             {
-                Debug.WriteLine(e);
+                Crashes.TrackError(ex);
+                Debug.WriteLine(ex);
             }
             return StartCommandResult.NotSticky;
         }
@@ -79,6 +81,7 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 Debug.Write(ex);
             }
         }

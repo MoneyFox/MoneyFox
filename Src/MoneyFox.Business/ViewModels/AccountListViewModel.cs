@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
@@ -128,6 +129,7 @@ namespace MoneyFox.Business.ViewModels
             }
             catch(Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
             }
         }

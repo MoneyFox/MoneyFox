@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -168,13 +169,15 @@ namespace MoneyFox.Business.ViewModels
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
             }
-            catch (BackupAuthenticationFailedException)
+            catch (BackupAuthenticationFailedException ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
             catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
                                                 ex.ToString());
             }
@@ -201,8 +204,9 @@ namespace MoneyFox.Business.ViewModels
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle,
                                                 Strings.LoginFailedMessage);
             }
@@ -236,8 +240,9 @@ namespace MoneyFox.Business.ViewModels
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
                                                 Strings.ErrorMessageBackupFailed);
             }
@@ -258,8 +263,9 @@ namespace MoneyFox.Business.ViewModels
             {
                 await backupManager.RestoreBackup();
             }
-            catch (BackupAuthenticationFailedException)
+            catch (BackupAuthenticationFailedException ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }

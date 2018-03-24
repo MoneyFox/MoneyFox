@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
@@ -423,6 +424,7 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
@@ -474,8 +476,9 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning restore 4014
                 await navigationService.Close(this);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
         }
