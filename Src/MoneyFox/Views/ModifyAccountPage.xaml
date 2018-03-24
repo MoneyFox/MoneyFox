@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
 
-        <StackLayout Spacing="0" Margin="3,0,3,0">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
             <Label Text="{Binding Resources[AccountNameLabel]}" />
             <Entry Text="{Binding SelectedAccount.Name}" />

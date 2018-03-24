@@ -243,6 +243,7 @@
     <Content Include="Assets\dark\repeat.png" />
     <Content Include="Assets\dark\statistic.png" />
     <Content Include="Assets\dark\twitter.png" />
+    <Content Include="Assets\IconCancel.png" />
     <Content Include="Assets\IncomeTileIcon.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />

@@ -54,6 +54,7 @@
             <Thickness x:Key="PageTitleMargin">0,7,12,7</Thickness>
 
             <!-- Small size Margin -->
+            <Thickness x:Key="DefaultMargin">3,0,3,0</Thickness>
             <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
             <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
             <Thickness x:Key="SmallListItemPadding">0,4,0,4</Thickness>

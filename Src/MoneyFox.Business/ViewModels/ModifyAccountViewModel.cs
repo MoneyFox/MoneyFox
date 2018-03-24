@@ -14,7 +14,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface IModifyAccountViewModel
+    public interface IModifyAccountViewModel : IBaseViewModel
     {
         /// <summary>
         ///     indicates if the AccountViewModel already exists and shall

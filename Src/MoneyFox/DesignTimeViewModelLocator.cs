@@ -18,6 +18,7 @@ namespace MoneyFox
         private static ISettingsViewModel SETTINGS_VIEW_MODEL;
         private static IModifyAccountViewModel MODIFY_ACCOUNT_VIEW_MODEL;
         private static IBalanceViewModel BALANCE_VIEW_MODEL;
+        private static IModifyPaymentViewModel MODIFY_PAYMENT_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -60,11 +61,17 @@ namespace MoneyFox
         /// </summary>
         public static IModifyAccountViewModel DesignTimeModifyAccountViewModel =>
             MODIFY_ACCOUNT_VIEW_MODEL ?? (MODIFY_ACCOUNT_VIEW_MODEL = new DesignTimeModifyAccountViewModel());
-        
+
         /// <summary>
-        ///     Implementation for IModifyAccountViewModel for design time.
+        ///     Implementation for IBalanceViewModel for design time.
         /// </summary>
         public static IBalanceViewModel DesignTimeBalanceViewViewModel =>
             BALANCE_VIEW_MODEL ?? (BALANCE_VIEW_MODEL = new DesignTimeBalanceViewViewModel());
+
+        /// <summary>
+        ///     Implementation for IModifyPaymentViewModel for design time.
+        /// </summary>
+        public static IModifyPaymentViewModel DesignTimeModifyPaymentViewModel =>
+            MODIFY_PAYMENT_VIEW_MODEL ?? (MODIFY_PAYMENT_VIEW_MODEL = new DesignTimeModifyPaymentViewModel());
     }
 }

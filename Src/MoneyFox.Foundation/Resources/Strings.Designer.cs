@@ -269,6 +269,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string AmountLabel {
+            get {
+                return ResourceManager.GetString("AmountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Money Fox.
         /// </summary>
         public static string ApplicationTitle {
@@ -445,6 +454,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string CategoriesSettingsDescription {
             get {
                 return ResourceManager.GetString("CategoriesSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string CategoryLabel {
+            get {
+                return ResourceManager.GetString("CategoryLabel", resourceCulture);
             }
         }
         
@@ -629,6 +647,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string DateLabel {
+            get {
+                return ResourceManager.GetString("DateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Account?.
         /// </summary>
         public static string DeleteAccountConfirmationMessage {
@@ -778,6 +805,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string EditTransferTitle {
             get {
                 return ResourceManager.GetString("EditTransferTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enddate.
+        /// </summary>
+        public static string EnddateLabel {
+            get {
+                return ResourceManager.GetString("EnddateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Endless.
+        /// </summary>
+        public static string EndlessLabel {
+            get {
+                return ResourceManager.GetString("EndlessLabel", resourceCulture);
             }
         }
         
@@ -1070,60 +1115,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount.
-        /// </summary>
-        public static string ModifyPaymentViewModel_AmountLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.AmountLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        public static string ModifyPaymentViewModel_CategoryLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.CategoryLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date.
-        /// </summary>
-        public static string ModifyPaymentViewModel_DateLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.DateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is Endless.
-        /// </summary>
-        public static string ModifyPaymentViewModel_EndlessLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.EndlessLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Note.
-        /// </summary>
-        public static string ModifyPaymentViewModel_NoteLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.NoteLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is Recurring.
-        /// </summary>
-        public static string ModifyPaymentViewModel_RecurringLabel {
-            get {
-                return ResourceManager.GetString("ModifyPaymentViewModel.RecurringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlyLabel {
@@ -1378,6 +1369,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recurrence.
+        /// </summary>
+        public static string RecurrenceLabel {
+            get {
+                return ResourceManager.GetString("RecurrenceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Recurring.
+        /// </summary>
+        public static string RecurringLabel {
+            get {
+                return ResourceManager.GetString("RecurringLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recurring payments where created..
         /// </summary>
         public static string RecurringPaymentsCreatedMessages {
@@ -1420,6 +1429,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string SaveAccountLabel {
             get {
                 return ResourceManager.GetString("SaveAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Payment.
+        /// </summary>
+        public static string SavePaymentLabel {
+            get {
+                return ResourceManager.GetString("SavePaymentLabel", resourceCulture);
             }
         }
         
