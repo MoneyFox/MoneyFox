@@ -1,7 +1,7 @@
-﻿using MoneyFox.Business.ViewModels;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
+﻿using System.Collections.Generic;
+using Microcharts;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 
 namespace MoneyFox.Windows.DesignTime
 {

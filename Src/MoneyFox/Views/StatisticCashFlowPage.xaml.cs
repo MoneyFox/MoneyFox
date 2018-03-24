@@ -1,14 +1,13 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StatisticCashFlowPage : ContentPage
+	public partial class StatisticCashFlowPage
 	{
 		public StatisticCashFlowPage ()
 		{
-            InitializeComponent ();
+            InitializeComponent();
         }
     }
 }

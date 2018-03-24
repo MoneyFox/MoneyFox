@@ -3,10 +3,8 @@ using Autofac;
 using Autofac.Extras.MvvmCross;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using MoneyFox.Business;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Email;
@@ -55,7 +53,7 @@ namespace MoneyFox.Windows
         }
 
         /// <inheritdoc />
-        protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
+        protected override IMvxApplication CreateApp() => new MoneyFox.App();
 
         /// <inheritdoc />
         protected override MvxLogProviderType GetDefaultLogProviderType()
