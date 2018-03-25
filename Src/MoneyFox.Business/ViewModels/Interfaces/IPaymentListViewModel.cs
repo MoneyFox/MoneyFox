@@ -9,17 +9,17 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         IBalanceViewModel BalanceViewModel { get; }
 
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
-
-        MvxAsyncCommand LoadCommand { get; }
-
+        
         MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
 
         MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
 
-        ObservableCollection<PaymentViewModel> RelatedPayments { get; }
-
         ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source { get; }
 
+        ObservableCollection<DateListGroup<PaymentViewModel>> DailyList { get; }
+
         string Title { get; }
+
+        bool IsPaymentsEmtpy { get; }
     }
 }

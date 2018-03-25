@@ -7,7 +7,8 @@
                   xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
                   xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.AccountListPage">
+                  x:Class="MoneyFox.Views.AccountListPage"
+                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -1178,6 +1178,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button at the bottom..
+        /// </summary>
+        public static string NoPaymentsMessage {
+            get {
+                return ResourceManager.GetString("NoPaymentsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no statistic items..
         /// </summary>
         public static string NoStatisticItemsMessage {
