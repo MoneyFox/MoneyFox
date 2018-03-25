@@ -10,7 +10,7 @@ namespace MoneyFox.Business.ViewModels
         LocalizedResources Resources { get; }
     }
 
-    public class BaseViewModel : MvxViewModel, IBaseViewModel
+    public abstract class BaseViewModel : MvxViewModel, IBaseViewModel
     {
         /// <summary>
         ///      Constructor

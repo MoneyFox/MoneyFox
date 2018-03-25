@@ -7,12 +7,12 @@
                   xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
                   xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.AccountListPage"
-                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
+                  x:Class="MoneyFox.Views.AccountListPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
+            <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -58,8 +58,14 @@
                                             <ColumnDefinition Width="30*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-                                        <Label Grid.Column="1" Text="{Binding CurrentBalance}" Style="{StaticResource ListItemHeaderStyle}" />
+                                        <Label Grid.Column="0" 
+                                               Text="{Binding Name}" 
+                                               Style="{StaticResource ListItemHeaderStyle}" />
+
+                                        <Label Grid.Column="1" 
+                                               HorizontalTextAlignment="End"
+                                               Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" 
+                                               Style="{StaticResource ListItemHeaderStyle}" />
                                     </Grid>
                                 </StackLayout>
                             </ViewCell>
@@ -68,22 +74,23 @@
                 </ListView>
 
                 <suave:FloatingActionButton x:Name="FAB"
-                                        HorizontalOptions="EndAndExpand"
-                                        WidthRequest="50"
-                                        HeightRequest="50"
-                                        Margin="12"
-                                        VerticalOptions="EndAndExpand"
-                                        Image="ic_add.png"
-                                        ButtonColor="{StaticResource AccentColor}"
-                                        Clicked="AddItem_Clicked" />
+                                            HorizontalOptions="EndAndExpand"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            Margin="12"
+                                            VerticalOptions="EndAndExpand"
+                                            Image="ic_add.png"
+                                            ButtonColor="{StaticResource AccentColor}"
+                                            Clicked="AddItem_Clicked" />
 
                 <Label Margin="6"
-                   HorizontalOptions="CenterAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   Style="{StaticResource DeemphasizedLabelStyle}"
-                   LineBreakMode="WordWrap"
-                   IsVisible="{Binding HasAccounts, Converter{StaticResource Inverter}}"
-                   Text="{Binding Resources[NoAccountsMessage]}" />
+                       x:Name="PlaceHolderLabel"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       LineBreakMode="WordWrap"
+                       IsVisible="{Binding HasNoAccounts}"
+                       Text="{Binding Resources[NoAccountsMessage]}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

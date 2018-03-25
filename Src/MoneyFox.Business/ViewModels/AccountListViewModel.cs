@@ -65,13 +65,13 @@ namespace MoneyFox.Business.ViewModels
                 if (accounts == value) return;
                 accounts = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(HasNoAccounts));
             }
         }
 
         /// <inheritdoc />
-        public bool HasAccounts => Accounts.Any();
-
-
+        public bool HasNoAccounts => !Accounts.Any();
+        
         #endregion
 
         #region Commands
@@ -90,7 +90,7 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        public override async Task Initialize()
+        public override async void ViewAppearing()
         {
             await Loaded();
         }
@@ -115,6 +115,8 @@ namespace MoneyFox.Business.ViewModels
                 var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 includedAlphaGroup.AddRange(excludedAccountList.Select(x => new AccountViewModel(x)));
 
+                Accounts.Clear();
+
                 if (includedAccountList.Any())
                 {
                     Accounts.Add(includedAlphaGroup);
@@ -125,7 +127,7 @@ namespace MoneyFox.Business.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                RaisePropertyChanged(nameof(HasAccounts));
+                RaisePropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {

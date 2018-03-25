@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.Android;
 namespace MoneyFox.Droid.Utils
 {
     using RelativeLayout = Android.Widget.RelativeLayout;
-    using Platform = Xamarin.Forms.Platform.Android.Platform;
+    using Platform = Platform;
 
     public static class BottomTabbedRendererUtils
     {
@@ -273,9 +273,9 @@ namespace MoneyFox.Droid.Utils
 
             if (Platform.GetRenderer(page) == null)
             {
-                Platform.SetRenderer(page, Platform.CreateRenderer(page));
+                Platform.SetRenderer(page, Platform.CreateRendererWithContext(page, renderer.Context));
             }
-            var pageContent = Platform.GetRenderer(page).ViewGroup;
+            var pageContent = Platform.GetRenderer(page).View;
             pageContainer.AddView(pageContent);
             if (pageContainer.ChildCount > 1)
             {
