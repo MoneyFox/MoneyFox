@@ -7,6 +7,8 @@ namespace MoneyFox.Controls
         public CardView()
         {
             Padding = 0;
+            OutlineColor = Color.LightGray;
+
             if (Device.RuntimePlatform == Device.iOS)
             {
                 HasShadow = false;

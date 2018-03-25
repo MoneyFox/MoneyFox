@@ -27,13 +27,16 @@
 
             <Label Text="{Binding AccountHeader}" />
             <Picker ItemsSource="{Binding ChargedAccounts}"
-                    SelectedItem="{Binding SelectedPayment.ChargedAccount}" />
+                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                    ItemDisplayBinding="{Binding Name}" >
+            </Picker>
 
             <StackLayout Spacing="{StaticResource DefaultSpacing}"
                          IsVisible="{Binding IsTransfer}">
                 <Label Text="{Binding Resources[TargetAccountLabel]}" />
                 <Picker ItemsSource="{Binding TargetAccounts}"
-                        SelectedItem="{Binding SelectedPayment.TargetAccount}" />
+                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                        ItemDisplayBinding="{Binding Name}" />
             </StackLayout>
 
             <Label Text="{Binding Resources[AmountLabel]}"

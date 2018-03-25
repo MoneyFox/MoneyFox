@@ -7,6 +7,7 @@
                   xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
                   xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.AccountListPage"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
@@ -49,26 +50,28 @@
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
                                           Text="Delete" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <StackLayout Margin="{StaticResource NegativeMediumLeftRightMargin}" Spacing="0">
-                                    <Grid BackgroundColor="{StaticResource ListItemColor}"
+                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
+                                    <StackLayout Spacing="0">
+                                        <Grid BackgroundColor="{StaticResource ListItemColor}"
                                       Padding="3"
                                       Margin="{StaticResource DefaultListItemsMargin}">
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
-                                            <ColumnDefinition Width="30*" />
-                                        </Grid.ColumnDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70*" />
+                                                <ColumnDefinition Width="30*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" 
+                                            <Label Grid.Column="0" 
                                                Text="{Binding Name}" 
                                                Style="{StaticResource ListItemHeaderStyle}" />
 
-                                        <Label Grid.Column="1" 
+                                            <Label Grid.Column="1" 
                                                HorizontalTextAlignment="End"
                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" 
                                                Style="{StaticResource ListItemHeaderStyle}" />
-                                    </Grid>
-                                </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </controls:CardView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

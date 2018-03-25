@@ -16,6 +16,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
+using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
@@ -324,10 +325,7 @@ namespace MoneyFox.Business.ViewModels
             get => selectedPayment;
             set
             {
-                if (value == null)
-                {
-                    return;
-                }
+                if (selectedPayment == value) return;
                 selectedPayment = value;
                 RaisePropertyChanged();
             }
@@ -473,6 +471,12 @@ namespace MoneyFox.Business.ViewModels
                     : DateTime.Now;
             }
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
+        }
+
+        /// <inheritdoc />
+        public override void ViewDisappearing()
+        {
+            SelectedPayment = null;
         }
 
         /// <summary>
