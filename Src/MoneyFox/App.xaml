@@ -73,6 +73,7 @@
             <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
             <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
             <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
+            <Thickness x:Key="NegativeMediumLeftRightTopMargin">-12,12,-12,0</Thickness>
             <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
             <Thickness x:Key="MediumTopMargin">0,12,0,0</Thickness>
             <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>

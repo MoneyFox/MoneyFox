@@ -113,7 +113,7 @@ namespace MoneyFox.Business.ViewModels
                 includedAlphaGroup.AddRange(includedAccountList.Select(x => new AccountViewModel(x)));
 
                 var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                includedAlphaGroup.AddRange(excludedAccountList.Select(x => new AccountViewModel(x)));
+                excludedAlphaGroup.AddRange(excludedAccountList.Select(x => new AccountViewModel(x)));
 
                 Accounts.Clear();
 

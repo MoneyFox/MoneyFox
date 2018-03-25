@@ -69,7 +69,7 @@
                                     <MenuItem Clicked="DeletePayment" CommandParameter="{Binding .}"
                                           Text="Delete" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <StackLayout Margin="{StaticResource NegativeMediumLeftRightMargin}" Spacing="0"
+                                <StackLayout Margin="{StaticResource NegativeMediumLeftRightTopMargin}" Spacing="0"
                                              BackgroundColor="{StaticResource ListItemColor}">
                                     <Grid Padding="3"
                                           Margin="{StaticResource DefaultListItemsMargin}">

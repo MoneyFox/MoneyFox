@@ -1,5 +1,7 @@
 ﻿using System;
 using MoneyFox.Foundation.Resources;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -16,6 +18,8 @@ namespace MoneyFox.Views
                 PaymentList.SelectedItem = null;
                 ViewModel.EditPaymentCommand.Execute(args.Item);
             };
+
+            PaymentList.On<Android>().SetIsFastScrollEnabled(true);
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)
