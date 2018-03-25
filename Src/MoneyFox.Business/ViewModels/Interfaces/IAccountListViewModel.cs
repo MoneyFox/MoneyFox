@@ -17,7 +17,7 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         /// <summary>
         ///     Indicates if there are accounts to display.
         /// </summary>
-        bool HasAccounts { get; }
+        bool HasNoAccounts { get; }
 
         /// <summary>
         ///     View Model for the balance view integrated in the account list view

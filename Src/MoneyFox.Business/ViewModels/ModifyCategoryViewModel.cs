@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Parameters;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
@@ -163,8 +164,9 @@ namespace MoneyFox.Business.ViewModels
 
                 await NavigationService.Close(this);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
         }

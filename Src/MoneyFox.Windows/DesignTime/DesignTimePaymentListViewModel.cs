@@ -29,6 +29,9 @@ namespace MoneyFox.Windows.DesignTime
             }
         };
 
+        public ObservableCollection<DateListGroup<PaymentViewModel>> DailyList { get; }
+
         public string Title => "Sparkonto";
+        public bool IsPaymentsEmtpy { get; }
     }
 }
