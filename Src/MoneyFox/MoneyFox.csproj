@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MoneyFox.Business\MoneyFox.Business.csproj" />
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj" />
   </ItemGroup>
 
   <ItemGroup>
