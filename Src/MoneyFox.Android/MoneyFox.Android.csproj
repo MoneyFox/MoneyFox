@@ -192,15 +192,15 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MoneyFox.Business\MoneyFox.Business.csproj">
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
       <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
       <Name>MoneyFox.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
+    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
       <Project>{600fc746-6968-489f-9471-a37a6d312812}</Project>
       <Name>MoneyFox.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
