@@ -9,14 +9,16 @@
 
     <ContentPage.Content>
 
-        <StackLayout Spacing="0" Margin="3,0,3,0">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
             <Label Text="{Binding Resources[AccountNameLabel]}" />
             <Entry Text="{Binding SelectedAccount.Name}" />
 
             <Label Text="{Binding Resources[CurrentBalanceLabel]}"
                    Margin="0,5,0,0" />
-            <Entry Text="{Binding SelectedAccount.CurrentBalance}" Keyboard="Numeric" />
+            <Entry Text="{Binding AmountString}" 
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="End" />
 
             <Label Text="{Binding Resources[NoteLabel]}"
                    Margin="0,5,0,0"/>
@@ -36,5 +38,4 @@
         </StackLayout>
 
     </ContentPage.Content>
-
 </d:MvxContentPage>

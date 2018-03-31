@@ -5,17 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="5.6.3" />
-    <PackageReference Include="MvvmCross.Forms" Version="5.6.3" />
+    <PackageReference Include="MvvmCross" Version="5.7.0" />
+    <PackageReference Include="MvvmCross.Forms" Version="5.7.0" />
     <PackageReference Include="SuaveControls.FloatingActionButton" Version="2017.10.17" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj" />
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="UserControls\BalanceUserControl.xaml.cs">
+      <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\BackupPage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
@@ -40,10 +44,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="UserControls\BalanceUserControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserControls\CategoryListUserControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\AccountListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ModifyAccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ModifyPaymentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PaymentListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SelectCategoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">

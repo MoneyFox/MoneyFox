@@ -13,12 +13,14 @@ namespace MoneyFox.Views
 
             var saveAccountItem = new ToolbarItem
             {
+                Command = new Command(() => ViewModel.SaveCommand.Execute()),
                 Text = Strings.SaveAccountLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
+                Icon = Icon = "IconSave.png"
             };
 
             ToolbarItems.Add(saveAccountItem);
         }
-	}
+    }
 }

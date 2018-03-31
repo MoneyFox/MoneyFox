@@ -17,9 +17,9 @@ using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Business;
 using MoneyFox.Business.Converter;
 #if !DEBUG
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
@@ -76,7 +76,7 @@ namespace MoneyFox.Windows
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if !DEBUG
-            MobileCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
@@ -112,8 +112,20 @@ namespace MoneyFox.Windows
                 await CallRateReminder();
             }
 
-            //OverrideTitleBarColor();
-
+            //When jumplist is selected navigate to appropriate tile
+            var tileHelper = Mvx.Resolve<TileHelper>();
+            if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+            }
+            else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+            }
+            else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
+            {
+                await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+            }
             // Ensure the current window is active
             Window.Current.Activate();
         }
@@ -162,34 +174,6 @@ namespace MoneyFox.Windows
 
             await RatePopup.CheckRateReminderAsync();
         }
-
-        //private void OverrideTitleBarColor()
-        //{
-        //    var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-
-        //    // set up our brushes
-        //    var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-        //    var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
-        //    var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
-
-        //    // override colors!
-        //    if (bkgColor != null && appForegroundColor != null)
-        //    {
-        //        // If on a mobile device set the status bar
-        //        if (StatusBar.i)
-        //        {
-        //            StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-        //            StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
-        //            StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-        //        }
-
-        //        titleBar.BackgroundColor = backgroundColor?.Color;
-        //        titleBar.ButtonBackgroundColor = backgroundColor?.Color;
-
-        //        titleBar.ForegroundColor = Colors.White;
-        //        titleBar.ButtonForegroundColor = Colors.White;
-        //    }
-        //}
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved

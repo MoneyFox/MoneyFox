@@ -21,7 +21,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             }
         };
 
-        public bool HasAccounts { get; }
+        public bool HasNoAccounts { get; } = true;
         public IBalanceViewModel BalanceViewModel { get; }
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
         public IMvxLanguageBinder TextSource { get; }

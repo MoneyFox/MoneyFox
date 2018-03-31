@@ -3,6 +3,7 @@
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.StatisticSelectorPage"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
@@ -15,14 +16,15 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
+                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
+                            <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
                                      Orientation="Vertical"
                                      Padding="3"
-                                     Spacing="{DynamicResource DefaultSpacing}"
-                                     Margin="{DynamicResource DefaultListItemsMargin}">
-                            <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
-                            <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
-                        </StackLayout>
+                                     Spacing="{DynamicResource DefaultSpacing}">
+                                <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                            </StackLayout>
+                        </controls:CardView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

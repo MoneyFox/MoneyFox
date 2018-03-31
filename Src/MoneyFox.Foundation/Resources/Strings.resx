@@ -465,22 +465,19 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
     <value>Note</value>
   </data>
-  <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
+  <data name="AmountLabel" xml:space="preserve">
     <value>Amount</value>
   </data>
-  <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
+  <data name="CategoryLabel" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
+  <data name="DateLabel" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
+  <data name="EndlessLabel" xml:space="preserve">
     <value>Is Endless</value>
   </data>
-  <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
+  <data name="RecurringLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
   <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
@@ -663,5 +660,20 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SaveAccountLabel" xml:space="preserve">
     <value>Save Account</value>
+  </data>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="EnddateLabel" xml:space="preserve">
+    <value>Enddate</value>
+  </data>
+  <data name="RecurrenceLabel" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="SavePaymentLabel" xml:space="preserve">
+    <value>Save Payment</value>
+  </data>
+  <data name="NoPaymentsMessage" xml:space="preserve">
+    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
 </root>

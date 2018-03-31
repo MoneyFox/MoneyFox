@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:MvxContentPage x:TypeArguments="viewModels:SelectCategoryListViewModel" 
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
+                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  x:Class="MoneyFox.Views.SelectCategoryPage"
+                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectCategoryListViewModel}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <views:CategoryListUserControl  VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</d:MvxContentPage>

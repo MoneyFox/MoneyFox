@@ -1,0 +1,118 @@
+﻿<d:MvxContentPage x:TypeArguments="viewModels:ModifyPaymentViewModel"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                  xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                  x:Class="MoneyFox.Views.ModifyPaymentPage"
+                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyPaymentViewModel}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="Inverter" />
+
+            <OnPlatform x:Key="ImageResetField"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="ic_cancel_black" />
+                <On Platform="iOS" Value="ic_cancel" />
+                <On Platform="UWP" Value="IconCancel" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="{StaticResource DefaultSpacing}"
+                     Margin="{StaticResource DefaultMargin}">
+
+            <Label Text="{Binding AccountHeader}" />
+            <Picker ItemsSource="{Binding ChargedAccounts}"
+                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                    ItemDisplayBinding="{Binding Name}" >
+            </Picker>
+
+            <StackLayout Spacing="{StaticResource DefaultSpacing}"
+                         IsVisible="{Binding IsTransfer}">
+                <Label Text="{Binding Resources[TargetAccountLabel]}" />
+                <Picker ItemsSource="{Binding TargetAccounts}"
+                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                        ItemDisplayBinding="{Binding Name}" />
+            </StackLayout>
+
+            <Label Text="{Binding Resources[AmountLabel]}"
+                   Margin="0,5,0,0" />
+            <Entry Text="{Binding AmountString}" Keyboard="Numeric" HorizontalTextAlignment="End" />
+
+            <Label Text="{Binding Resources[CategoryLabel]}"
+                   Margin="0,5,0,0" />
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding SelectedPayment.Category.Name}"
+                       Focused="CategoryFieldGotFocus" />
+                <Image Grid.Column="1"
+                       x:Name="ResetIcon"
+                       VerticalOptions="End"
+                       HorizontalOptions="Start"
+                       Source="{StaticResource ImageResetField}"
+                       HeightRequest="30"
+                       WidthRequest="30" />
+            </Grid>
+
+            <Label Text="{Binding Resources[DateLabel]}"
+                   Margin="0,5,0,0" />
+            <DatePicker Date="{Binding Date}" />
+
+            <Label Text="{Binding Resources[NoteLabel]}"
+                   Margin="0,5,0,0" />
+            <Entry Text="{Binding SelectedPayment.Note}" />
+
+            <Grid HorizontalOptions="FillAndExpand"
+                  Margin="0,5,0,0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="{Binding Resources[RecurringLabel]}" />
+                <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.IsRecurring}" />
+            </Grid>
+
+            <StackLayout Spacing="{StaticResource DefaultSpacing}"
+                         IsVisible="{Binding SelectedPayment.IsRecurring}">
+                <Label Text="{Binding Resources[RecurrenceLabel]}"
+                       Margin="0,5,0,0" />
+                <Picker ItemsSource="{Binding RecurrenceList}"
+                        SelectedItem="{Binding Recurrence}" />
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      Margin="0,5,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="30*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="{Binding Resources[EndlessLabel]}" />
+                    <Switch Grid.Column="1" IsToggled="{Binding IsEndless}" />
+                </Grid>
+
+                <StackLayout IsVisible="{Binding IsEndless, Converter={StaticResource Inverter}}"
+                             Spacing="{StaticResource DefaultSpacing}">
+                    <Label Text="{Binding Resources[DateLEnddateLabelabel]}"
+                           Margin="0,5,0,0" />
+                    <DatePicker Date="{Binding EndDate}" />
+                </StackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</d:MvxContentPage>

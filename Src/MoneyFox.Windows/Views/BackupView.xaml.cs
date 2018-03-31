@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
-using MoneyFox.Business.Views;
 using Xamarin.Forms.Platform.UWP;
+using MoneyFox.Views;
 
 namespace MoneyFox.Windows.Views
 {
@@ -14,7 +14,7 @@ namespace MoneyFox.Windows.Views
         private void BackupView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new BackupPage { BindingContext = ViewModel }.CreateFrameworkElement());
+            ContentGrid.Children.Add(new BackupPage { DataContext = ViewModel }.CreateFrameworkElement());
         }
     }
 }

@@ -5,7 +5,12 @@ using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class BaseViewModel : MvxViewModel
+    public interface IBaseViewModel
+    {
+        LocalizedResources Resources { get; }
+    }
+
+    public abstract class BaseViewModel : MvxViewModel, IBaseViewModel
     {
         /// <summary>
         ///      Constructor

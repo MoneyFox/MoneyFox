@@ -1,0 +1,147 @@
+﻿<d:MvxContentPage  x:TypeArguments="viewModels:PaymentListViewModel"
+                   xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:views="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                   xmlns:userControls="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
+                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                   x:Class="MoneyFox.Views.PaymentListPage"
+                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converter:AmountFormatConverter  x:Key="AmountFormatConverter" />
+
+            <OnPlatform x:Key="IconCleared"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="IconCleared" />
+                <On Platform="iOS" Value="IconCleared" />
+                <On Platform="UWP" Value="IconCleared" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconRecurring"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="IconRecurring" />
+                <On Platform="iOS" Value="IconRecurring" />
+                <On Platform="UWP" Value="IconRecurring" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconTransfer"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="IconTransfer" />
+                <On Platform="iOS" Value="IconTransfer" />
+                <On Platform="UWP" Value="IconTransfer" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <userControls:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
+
+            <Grid VerticalOptions="FillAndExpand">
+                <ListView x:Name="PaymentList"
+                      ItemsSource="{Binding DailyList}"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElement"
+                      IsGroupingEnabled="True"
+                      GroupShortNameBinding="{Binding Key}"
+                      GroupDisplayBinding="{Binding Key}"
+                      SeparatorVisibility="None">
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Key}" Style="{StaticResource GroupHeaderStyle}" />
+                                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="LightGray" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="EditPayment" CommandParameter="{Binding .}"
+                                          Text="More" />
+                                    <MenuItem Clicked="DeletePayment" CommandParameter="{Binding .}"
+                                          Text="Delete" IsDestructive="True" />
+                                </ViewCell.ContextActions>
+                                <StackLayout Margin="{StaticResource NegativeMediumLeftRightTopMargin}" Spacing="0"
+                                             BackgroundColor="{StaticResource ListItemColor}">
+                                    <Grid Padding="3"
+                                          Margin="{StaticResource DefaultListItemsMargin}">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="30*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0" 
+                                               Text="{Binding Category.Name}" 
+                                               Style="{StaticResource ListItemHeaderStyle}" />
+
+                                        <Label Grid.Column="1" 
+                                               HorizontalTextAlignment="End"
+                                               Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" 
+                                               Style="{StaticResource ListItemHeaderStyle}" />
+                                    </Grid>
+                                    <Grid Padding="3"
+                                          Margin="{StaticResource DefaultListItemsMargin}">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="30*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                               Text="{Binding Note}" 
+                                               Style="{StaticResource DeemphasizedLabelStyle}" />
+
+                                        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+
+                                            <Image Source="{StaticResource IconTransfer}" 
+                                                   IsVisible="{Binding IsTransfer}" 
+                                                   HeightRequest="20"
+                                                   WidthRequest="20" />
+                                            <Image Source="{StaticResource IconRecurring}" 
+                                                   IsVisible="{Binding IsRecurring}" 
+                                                   HeightRequest="20"
+                                                   WidthRequest="20" />
+                                            <Image Source="{StaticResource IconCleared}"
+                                                   IsVisible="{Binding IsCleared}"
+                                                   HeightRequest="20"
+                                                   WidthRequest="20" />
+
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <views:FloatingActionButton x:Name="FAB"
+                                            HorizontalOptions="EndAndExpand"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            Margin="12"
+                                            VerticalOptions="EndAndExpand"
+                                            Image="ic_add.png"
+                                            ButtonColor="{StaticResource AccentColor}"
+                                            Clicked="AddItem_Clicked" />
+
+                <Label Margin="6"
+                       x:Name="PlaceHolderLabel"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       LineBreakMode="WordWrap"
+                       IsVisible="{Binding IsPaymentsEmtpy}"
+                       Text="{Binding Resources[NoPaymentsMessage]}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</d:MvxContentPage>

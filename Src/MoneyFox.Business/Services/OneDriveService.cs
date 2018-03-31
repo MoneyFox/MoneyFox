@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
@@ -112,7 +113,7 @@ namespace MoneyFox.Business.Services
             }
             catch (Exception ex)
             {
-                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
+                Crashes.TrackError(ex);
             }
 
             return DateTime.MinValue;

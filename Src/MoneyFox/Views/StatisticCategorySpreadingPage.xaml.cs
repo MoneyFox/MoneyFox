@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StatisticCategorySpreadingPage : ContentPage
+	public partial class StatisticCategorySpreadingPage
 	{
 		public StatisticCategorySpreadingPage ()
 		{

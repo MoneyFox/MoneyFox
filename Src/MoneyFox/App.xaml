@@ -5,6 +5,14 @@
              x:Class="MoneyFox.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Image -->
+
+            <OnPlatform x:Key="ImageSave"
+                        x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="ic_save" />
+                <On Platform="iOS" Value="IconSave" />
+            </OnPlatform>
+
             <!-- Colors -->
             <Color x:Key="AccentColor">#314a9b</Color>
             <Color x:Key="PrimaryColor">#263873</Color>
@@ -54,6 +62,7 @@
             <Thickness x:Key="PageTitleMargin">0,7,12,7</Thickness>
 
             <!-- Small size Margin -->
+            <Thickness x:Key="DefaultMargin">3,0,3,0</Thickness>
             <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
             <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
             <Thickness x:Key="SmallListItemPadding">0,4,0,4</Thickness>
@@ -61,9 +70,12 @@
             <!--Medium size margins-->
             <Thickness x:Key="DefaultListItemsMargin">12,0,12,3</Thickness>
             <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
+            <Thickness x:Key="MediumLeftRightBottomMargin">12,0,12,6</Thickness>
             <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
             <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
             <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
+            <Thickness x:Key="NegativeMediumLeftRightBottomMargin">-12,0,-12,6</Thickness>
+            <Thickness x:Key="NegativeMediumLeftRightTopMargin">-12,12,-12,0</Thickness>
             <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
             <Thickness x:Key="MediumTopMargin">0,12,0,0</Thickness>
             <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>
