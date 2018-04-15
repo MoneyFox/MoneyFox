@@ -1,15 +1,13 @@
 using Autofac;
 using Autofac.Extras.MvvmCross;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.iOS;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform.IoC;
 using MvvmCross.Forms.iOS;
 using MvvmCross.Forms.Platform;
 using MvvmCross.iOS.Platform;
+using MvvmCross.Platform.IoC;
 using UIKit;
 
-namespace MoneyFox.Droid
+namespace MoneyFox.iOS
 {
     public class Setup : MvxFormsIosSetup
     {

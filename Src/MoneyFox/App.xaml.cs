@@ -1,10 +1,7 @@
-﻿using MvvmCross.Forms.Platform;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
-	public partial class App : MvxFormsApplication
+	public partial class App
     {
-
 		public App ()
 		{
 			InitializeComponent();

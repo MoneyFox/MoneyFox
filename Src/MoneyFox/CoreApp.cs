@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
-using MoneyFox.Views;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;

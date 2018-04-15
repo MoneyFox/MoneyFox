@@ -11,6 +11,5 @@ namespace MoneyFox.Controls
     public class BottomTabbedPage<TViewModel> : BottomTabbedPage, IMvxPage<TViewModel> where TViewModel : class, IMvxViewModel
     {
         public TViewModel ViewModel { get; set; }
-
     }
 }
