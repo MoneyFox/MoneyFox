@@ -1,4 +1,4 @@
-﻿using MoneyFox.Business.Converter;
+﻿using MoneyFox.Converter;
 using Should;
 using Xunit;
 

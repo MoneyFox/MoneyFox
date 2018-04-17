@@ -43,7 +43,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 dialogServiceSetup.Object, 
                 new Mock<IMvxNavigationService>().Object);
 
@@ -69,7 +68,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 dialogServiceSetup.Object,
                 new Mock<IMvxNavigationService>().Object);
 
@@ -96,7 +94,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 dialogServiceSetup.Object, 
                 new Mock<IMvxNavigationService>().Object);
 
@@ -108,7 +105,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_AccountsEmpty_True()
+        public async void IsAllAccountsEmpty_AccountsEmpty_True()
         {
             // Arrange
             accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -119,19 +116,18 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewModel.LoadedCommand.Execute();
+            await viewModel.Initialize();
 
             // Assert
-            viewModel.IsAllAccountsEmpty.ShouldBeTrue();
+            viewModel.HasNoAccounts.ShouldBeTrue();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_OneAccountInExcluded_False()
+        public async void IsAllAccountsEmpty_OneAccountInExcluded_False()
         {
             // Arrange
             accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -143,19 +139,18 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewModel.LoadedCommand.Execute();
+            await viewModel.Initialize();
 
             // Assert
-            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
+            viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_OneAccountInNotExcluded_False()
+        public async void IsAllAccountsEmpty_OneAccountInNotExcluded_False()
         {
             // Arrange
             accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -167,20 +162,20 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewModel.LoadedCommand.Execute();
+            await viewModel.Initialize();
 
             // Assert
-            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
+            viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_TwoAccountNotExcluded_False()
+        public async void IsAllAccountsEmpty_TwoAccountNotExcluded_False()
         {
+            // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -194,17 +189,20 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
-            viewModel.LoadedCommand.Execute();
-            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
+            // Act
+            await viewModel.Initialize();
+
+            // Assert
+            viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public void IsAllAccountsEmpty_TwoAccountExcluded_False()
+        public async void IsAllAccountsEmpty_TwoAccountExcluded_False()
         {
+            // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -218,16 +216,18 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
-            viewModel.LoadedCommand.Execute();
-            viewModel.IsAllAccountsEmpty.ShouldBeFalse();
+            // Act
+            await viewModel.Initialize();
+
+            // Assert
+            viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public void IncludedAccounts_AccountsAvailable_MatchesRepository()
+        public async void IncludedAccounts_AccountsAvailable_MatchesRepository()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -243,21 +243,20 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewModel.LoadedCommand.Execute();
+            await viewModel.Initialize();
 
             // Assert
-            viewModel.IncludedAccounts.Count.ShouldEqual(2);
-            viewModel.IncludedAccounts[0].Id.ShouldEqual(22);
-            viewModel.IncludedAccounts[1].Id.ShouldEqual(33);
+            viewModel.Accounts.Count.ShouldEqual(2);
+            viewModel.Accounts[0][0].Id.ShouldEqual(22);
+            viewModel.Accounts[0][1].Id.ShouldEqual(33);
         }
 
         [Fact]
-        public void ExcludedAccounts_AccountsAvailable_MatchesRepository()
+        public async void ExcludedAccounts_AccountsAvailable_MatchesRepository()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -273,17 +272,16 @@ namespace MoneyFox.Business.Tests.ViewModels
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
                 balanceCalculationManager.Object,
                 new Mock<ISettingsManager>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object, 
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            viewModel.LoadedCommand.Execute();
+            await viewModel.Initialize();
 
             // Assert
-            viewModel.ExcludedAccounts.Count.ShouldEqual(2);
-            viewModel.ExcludedAccounts[0].Id.ShouldEqual(22);
-            viewModel.ExcludedAccounts[1].Id.ShouldEqual(33);
+            viewModel.Accounts.Count.ShouldEqual(2);
+            viewModel.Accounts[1][0].Id.ShouldEqual(22);
+            viewModel.Accounts[1][0].Id.ShouldEqual(33);
         }
     }
 }
