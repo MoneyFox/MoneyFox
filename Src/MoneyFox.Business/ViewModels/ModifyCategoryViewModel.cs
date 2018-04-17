@@ -12,7 +12,7 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface IModifyCategoryViewModel
+    public interface IModifyCategoryViewModel : IBaseViewModel
     {
         /// <summary>
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
