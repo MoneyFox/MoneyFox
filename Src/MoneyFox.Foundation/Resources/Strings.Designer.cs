@@ -1442,6 +1442,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Category.
+        /// </summary>
+        public static string SaveCategoryLabel {
+            get {
+                return ResourceManager.GetString("SaveCategoryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Payment.
         /// </summary>
         public static string SavePaymentLabel {

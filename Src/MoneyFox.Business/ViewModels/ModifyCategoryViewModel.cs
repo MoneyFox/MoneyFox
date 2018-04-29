@@ -12,10 +12,33 @@ using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface IModifyCategoryViewModel : IBaseViewModel
+    {
+        /// <summary>
+        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
+        ///     a new CategoryViewModel.
+        /// </summary>
+        MvxAsyncCommand SaveCommand { get; }
+    
+        /// <summary>
+        ///     Cancel the current operation
+        /// </summary>
+        MvxAsyncCommand CancelCommand { get; }
+
+        /// <summary>
+        ///     Delete the selected CategoryViewModel from the database
+        /// </summary>
+        MvxAsyncCommand DeleteCommand { get; }
+
+        CategoryViewModel SelectedCategory { get; }
+
+        bool IsEdit { get; }
+    }
+
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public class ModifyCategoryViewModel : MvxViewModel<ModifyCategoryParameter>
+    public class ModifyCategoryViewModel : MvxViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly ICategoryService categoryService;

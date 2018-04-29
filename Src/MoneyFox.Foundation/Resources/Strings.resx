@@ -676,4 +676,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
+  <data name="SaveCategoryLabel" xml:space="preserve">
+    <value>Save Category</value>
+  </data>
 </root>
