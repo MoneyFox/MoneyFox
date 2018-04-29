@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Specialized;
 using System.Windows.Input;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
@@ -15,7 +11,6 @@ namespace MoneyFox.iOS
 {
     // This class is never actually executed, but when Xamarin linking is enabled it does ensure types and properties
     // are preserved in the deployed app
-    [Foundation.Preserve(AllMembers = true)]
     public class LinkerPleaseInclude
     {
         public void Include(MvxTaskBasedBindingContext c)

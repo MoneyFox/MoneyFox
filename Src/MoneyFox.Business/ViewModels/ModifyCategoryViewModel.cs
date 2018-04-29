@@ -38,7 +38,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public class ModifyCategoryViewModel : MvxViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
+    public class ModifyCategoryViewModel : BaseViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly ICategoryService categoryService;
