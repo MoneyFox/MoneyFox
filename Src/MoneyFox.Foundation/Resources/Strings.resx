@@ -394,26 +394,26 @@ Do you want to go the the store to rate?</value>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>There was an error during the authentication. Please try again later.</value>
   </data>
-  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
+  <data name="VersionLabel" xml:space="preserve">
     <value>Version</value>
   </data>
-  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
+  <data name="ContactLabel" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
+  <data name="ContributerLabel" xml:space="preserve">
     <value>To see all contributions head over to GitHub:</value>
   </data>
-  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
+  <data name="IconDesignerLabel" xml:space="preserve">
     <value>The app icon was created by:</value>
   </data>
-  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
+  <data name="InfoOpenSource" xml:space="preserve">
     <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
 Tap to visit the Repository:</value>
   </data>
-  <data name="AboutViewModel.RateLabel" xml:space="preserve">
+  <data name="RateLabel" xml:space="preserve">
     <value>Rate us!</value>
   </data>
-  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
+  <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
   <data name="LoginViewModel.LoginLabel" xml:space="preserve">
@@ -678,5 +678,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SaveCategoryLabel" xml:space="preserve">
     <value>Save Category</value>
+  </data>
+  <data name="AboutSettingsDescription" xml:space="preserve">
+    <value>General and support information about this app.</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="WebsiteLabel" xml:space="preserve">
+    <value>Website</value>
   </data>
 </root>

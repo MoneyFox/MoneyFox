@@ -2,13 +2,70 @@
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class AboutViewModel : MvxViewModel
+    public interface IAboutViewModel : IBaseViewModel
+    {
+        /// <summary>
+        ///     Opens the webbrowser and loads to the apply solutions
+        ///     website
+        /// </summary>
+        MvxCommand GoToWebsiteCommand { get; }
+
+        /// <summary>
+        ///     Sends a feedback mail to the apply solutions support
+        ///     mail address
+        /// </summary>
+        MvxCommand SendMailCommand { get; }
+
+        /// <summary>
+        ///     Opens the store to rate the app.
+        /// </summary>
+        MvxCommand RateAppCommand { get; }
+
+        /// <summary>
+        ///     Opens the webbrowser and loads repository page
+        ///     on GitHub
+        /// </summary>
+        MvxCommand GoToRepositoryCommand { get; }
+
+        /// <summary>
+        ///     Opens the webbrowser and loads the project on crowdin.
+        /// </summary>
+        MvxCommand GoToTranslationProjectCommand { get; }
+
+        /// <summary>
+        ///     Opens the webbrowser and loads the project on crowdin.
+        /// </summary>
+        MvxCommand GoToDesignerTwitterAccountCommand { get; }
+
+        /// <summary>
+        ///     Opens the webbrowser loads the contribution page on Github.
+        /// </summary>
+        MvxCommand GoToContributionPageCommand { get; }
+
+        /// <summary>
+        ///     Returns the Version of App
+        /// </summary>
+        string Version { get; }
+
+        /// <summary>
+        ///     Returns the apply solutions webite url from the
+        ///     ressource file
+        /// </summary>
+        string Website { get; }
+
+        /// <summary>
+        ///     Returns the mailaddress for support cases from the
+        ///     ressource file
+        /// </summary>
+        string SupportMail { get; }
+    }
+
+    public class AboutViewModel : BaseViewModel, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
@@ -70,11 +127,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
         public MvxCommand GoToContributionPageCommand => new MvxCommand(GoToContributionPage);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Returns the Version of App

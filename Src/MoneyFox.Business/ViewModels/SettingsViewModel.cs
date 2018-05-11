@@ -47,6 +47,12 @@ namespace MoneyFox.Business.ViewModels
                 Description = Strings.BackupSettingsDescription,
                 Type = SettingsType.Backup
             },
+            new SettingsSelectorType
+            {
+                Name = Strings.AboutLabel,
+                Description = Strings.AboutSettingsDescription,
+                Type = SettingsType.About
+            }
         };
 
         /// <inheritdoc />
@@ -62,6 +68,10 @@ namespace MoneyFox.Business.ViewModels
 
                 case SettingsType.Backup:
                     await navigationService.Navigate<BackupViewModel>();
+                    break;
+
+                case SettingsType.About:
+                    await navigationService.Navigate<AboutViewModel>();
                     break;
             }
         }

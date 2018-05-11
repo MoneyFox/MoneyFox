@@ -70,75 +70,20 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to General and support information about this app..
+        /// </summary>
+        public static string AboutSettingsDescription {
+            get {
+                return ResourceManager.GetString("AboutSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contact.
-        /// </summary>
-        public static string AboutViewModel_ContactLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.ContactLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To see all contributions head over to GitHub:.
-        /// </summary>
-        public static string AboutViewModel_ContributerLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.ContributerLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The app icon was created by:.
-        /// </summary>
-        public static string AboutViewModel_IconDesignerLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.IconDesignerLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
-        ///Tap to visit the Repository:.
-        /// </summary>
-        public static string AboutViewModel_InfoOpenSource {
-            get {
-                return ResourceManager.GetString("AboutViewModel.InfoOpenSource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rate us!.
-        /// </summary>
-        public static string AboutViewModel_RateLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.RateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:.
-        /// </summary>
-        public static string AboutViewModel_TranslationLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.TranslationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Version.
-        /// </summary>
-        public static string AboutViewModel_VersionLabel {
-            get {
-                return ResourceManager.GetString("AboutViewModel.VersionLabel", resourceCulture);
             }
         }
         
@@ -593,6 +538,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string ContactLabel {
+            get {
+                return ResourceManager.GetString("ContactLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To see all contributions head over to GitHub:.
+        /// </summary>
+        public static string ContributerLabel {
+            get {
+                return ResourceManager.GetString("ContributerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string CreateBackupInformationLabel {
@@ -809,6 +772,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string EmailLabel {
+            get {
+                return ResourceManager.GetString("EmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enddate.
         /// </summary>
         public static string EnddateLabel {
@@ -935,6 +907,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The app icon was created by:.
+        /// </summary>
+        public static string IconDesignerLabel {
+            get {
+                return ResourceManager.GetString("IconDesignerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Included Accounts.
         /// </summary>
         public static string IncludedAccountsHeader {
@@ -958,6 +939,16 @@ namespace MoneyFox.Foundation.Resources {
         public static string IncreaseLabel {
             get {
                 return ResourceManager.GetString("IncreaseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
+        ///Tap to visit the Repository:.
+        /// </summary>
+        public static string InfoOpenSource {
+            get {
+                return ResourceManager.GetString("InfoOpenSource", resourceCulture);
             }
         }
         
@@ -1359,6 +1350,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rate us!.
+        /// </summary>
+        public static string RateLabel {
+            get {
+                return ResourceManager.GetString("RateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We hope you like our app. Support us with a rating in the store.
         ///Do you want to go the the store to rate?.
         /// </summary>
@@ -1703,11 +1703,38 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:.
+        /// </summary>
+        public static string TranslationLabel {
+            get {
+                return ResourceManager.GetString("TranslationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes, update All.
         /// </summary>
         public static string UpdateAllLabel {
             get {
                 return ResourceManager.GetString("UpdateAllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string VersionLabel {
+            get {
+                return ResourceManager.GetString("VersionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string WebsiteLabel {
+            get {
+                return ResourceManager.GetString("WebsiteLabel", resourceCulture);
             }
         }
         
