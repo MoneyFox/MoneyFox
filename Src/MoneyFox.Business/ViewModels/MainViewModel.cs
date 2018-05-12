@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Statistic;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Representation of the MainView
     /// </summary>
-    public class MainViewModel : MvxViewModel
+    public class MainViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService navigationService;
 

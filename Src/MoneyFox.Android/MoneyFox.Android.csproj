@@ -47,6 +47,7 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
+    <Reference Include="Mono.Android.Export" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -54,12 +55,6 @@
   <ItemGroup>
     <PackageReference Include="AndHUD">
       <Version>1.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac.Extras.MvvmCross">
-      <Version>4.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="Cheesebaron.MvxPlugins.Settings">
-      <Version>3.2.0</Version>
     </PackageReference>
     <PackageReference Include="EntityFramework.DbContextScope">
       <Version>1.0.0</Version>
@@ -137,13 +132,6 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
-    <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
-    <Compile Include="DroidModule.cs" />
     <Compile Include="Extensions\OAuth2AuthenticatorExtensions.cs" />
     <Compile Include="Jobs\ClearPaymentsJob.cs" />
     <Compile Include="Jobs\RecurringPaymentJob.cs" />
@@ -153,6 +141,7 @@
     <Compile Include="Renderer\BottomTabbedRenderer.cs" />
     <Compile Include="Renderer\BottomTabbedRenderer.Tabs.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
+    <Compile Include="Src\Settings.cs" />
     <Compile Include="Utils\ResourceManagerEx.cs" />
     <Compile Include="Utils\SizeUtils.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
@@ -207,7 +196,7 @@
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{bb5381e5-433d-4cb8-b9ee-933839e4189a}</Project>
+      <Project>{abbb1314-b512-4748-9054-888565e25b5a}</Project>
       <Name>MoneyFox</Name>
     </ProjectReference>
   </ItemGroup>

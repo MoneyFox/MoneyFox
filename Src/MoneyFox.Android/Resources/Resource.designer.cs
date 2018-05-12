@@ -64,27 +64,24 @@ namespace MoneyFox.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::MoneyFox.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::MoneyFox.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Microcharts.Droid.Resource.String.library_name = global::MoneyFox.Droid.Resource.String.library_name;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Id.MvvmCrossTagId = global::MoneyFox.Droid.Resource.Id.MvvmCrossTagId;
-			global::MvvmCross.Binding.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyFox.Droid.Resource.Id.MvxBindingTagUnique;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding = global::MoneyFox.Droid.Resource.Styleable.MvxBinding;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxBind;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxLang;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl = global::MoneyFox.Droid.Resource.Styleable.MvxControl;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Resource.Id.MvvmCrossTagId = global::MoneyFox.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Resource.Id.MvxBindingTagUnique = global::MoneyFox.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Resource.Styleable.MvxBinding = global::MoneyFox.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Resource.Styleable.MvxBinding_MvxBind = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Resource.Styleable.MvxBinding_MvxLang = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Resource.Styleable.MvxControl = global::MoneyFox.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_fade_in = global::MoneyFox.Droid.Resource.Animation.abc_fade_in;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_fade_out = global::MoneyFox.Droid.Resource.Animation.abc_fade_out;
 			global::MvvmCross.Droid.Support.Design.Resource.Animation.abc_grow_fade_in_from_bottom = global::MoneyFox.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -107,7 +104,6 @@ namespace MoneyFox.Droid
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Droid.Support.Design.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.actionBarDivider = global::MoneyFox.Droid.Resource.Attribute.actionBarDivider;
 			global::MvvmCross.Droid.Support.Design.Resource.Attribute.actionBarItemBackground = global::MoneyFox.Droid.Resource.Attribute.actionBarItemBackground;
@@ -1865,8 +1861,6 @@ namespace MoneyFox.Droid
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MvvmCross.Droid.Support.Design.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
@@ -2067,7 +2061,6 @@ namespace MoneyFox.Droid
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.actionBarDivider = global::MoneyFox.Droid.Resource.Attribute.actionBarDivider;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Attribute.actionBarItemBackground = global::MoneyFox.Droid.Resource.Attribute.actionBarItemBackground;
@@ -3826,8 +3819,6 @@ namespace MoneyFox.Droid
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
@@ -5864,9 +5855,6 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f010174
 			public const int MvxLang = 2130772340;
 			
-			// aapt resource value: 0x7f010179
-			public const int MvxSource = 2130772345;
-			
 			// aapt resource value: 0x7f010175
 			public const int MvxTemplate = 2130772341;
 			
@@ -5972,41 +5960,41 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f01008e
 			public const int activityChooserViewStyle = 2130772110;
 			
-			// aapt resource value: 0x7f01017d
-			public const int ahBarColor = 2130772349;
-			
-			// aapt resource value: 0x7f010185
-			public const int ahBarLength = 2130772357;
+			// aapt resource value: 0x7f01017c
+			public const int ahBarColor = 2130772348;
 			
 			// aapt resource value: 0x7f010184
-			public const int ahBarWidth = 2130772356;
-			
-			// aapt resource value: 0x7f010182
-			public const int ahCircleColor = 2130772354;
-			
-			// aapt resource value: 0x7f010181
-			public const int ahDelayMillis = 2130772353;
+			public const int ahBarLength = 2130772356;
 			
 			// aapt resource value: 0x7f010183
-			public const int ahRadius = 2130772355;
+			public const int ahBarWidth = 2130772355;
 			
-			// aapt resource value: 0x7f01017e
-			public const int ahRimColor = 2130772350;
-			
-			// aapt resource value: 0x7f01017f
-			public const int ahRimWidth = 2130772351;
+			// aapt resource value: 0x7f010181
+			public const int ahCircleColor = 2130772353;
 			
 			// aapt resource value: 0x7f010180
-			public const int ahSpinSpeed = 2130772352;
+			public const int ahDelayMillis = 2130772352;
+			
+			// aapt resource value: 0x7f010182
+			public const int ahRadius = 2130772354;
+			
+			// aapt resource value: 0x7f01017d
+			public const int ahRimColor = 2130772349;
+			
+			// aapt resource value: 0x7f01017e
+			public const int ahRimWidth = 2130772350;
+			
+			// aapt resource value: 0x7f01017f
+			public const int ahSpinSpeed = 2130772351;
+			
+			// aapt resource value: 0x7f010179
+			public const int ahText = 2130772345;
 			
 			// aapt resource value: 0x7f01017a
-			public const int ahText = 2130772346;
+			public const int ahTextColor = 2130772346;
 			
 			// aapt resource value: 0x7f01017b
-			public const int ahTextColor = 2130772347;
-			
-			// aapt resource value: 0x7f01017c
-			public const int ahTextSize = 2130772348;
+			public const int ahTextSize = 2130772347;
 			
 			// aapt resource value: 0x7f0100b3
 			public const int alertDialogButtonGroupStyle = 2130772147;
@@ -12803,12 +12791,6 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0
 			public const int MvxExpandableListView_MvxGroupItemTemplate = 0;
 			
-			public static int[] MvxImageView = new int[] {
-					2130772345};
-			
-			// aapt resource value: 0
-			public const int MvxImageView_MvxSource = 0;
-			
 			public static int[] MvxListView = new int[] {
 					2130772342,
 					2130772343};
@@ -12882,6 +12864,7 @@ namespace MoneyFox.Droid
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] ProgressWheel = new int[] {
+					2130772345,
 					2130772346,
 					2130772347,
 					2130772348,
@@ -12892,8 +12875,7 @@ namespace MoneyFox.Droid
 					2130772353,
 					2130772354,
 					2130772355,
-					2130772356,
-					2130772357};
+					2130772356};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;

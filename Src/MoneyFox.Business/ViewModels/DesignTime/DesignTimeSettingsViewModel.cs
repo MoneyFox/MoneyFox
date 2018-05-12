@@ -1,7 +1,9 @@
-﻿using MoneyFox.Foundation;
+﻿using MoneyFox.Business.Helpers;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
@@ -26,5 +28,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 
         /// <inheritdoc />
         public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
+
+        public LocalizedResources Resources { get; }
     }
 }

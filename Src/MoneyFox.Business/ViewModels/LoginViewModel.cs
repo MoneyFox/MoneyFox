@@ -1,22 +1,25 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
+﻿using MvvmCross.Localization;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Representation of the LoginView.
     /// </summary>
-    public class LoginViewModel : MvxViewModel
+    public class LoginViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
+        private readonly IMvxNavigationService navigationService;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public LoginViewModel(ISettingsManager settingsManager)
+        public LoginViewModel(ISettingsManager settingsManager, IMvxNavigationService navigationService)
         {
             this.settingsManager = settingsManager;
+            this.navigationService = navigationService;
         }
 
 
@@ -37,9 +40,9 @@ namespace MoneyFox.Business.ViewModels
 
         private void LoginNavigation()
         {
-            ShowViewModel<MainViewModel>();
-            ShowViewModel<AccountListViewModel>();
-            ShowViewModel<MenuViewModel>();
+            navigationService.Navigate<MainViewModel>();
+            navigationService.Navigate<AccountListViewModel>();
+            navigationService.Navigate<MenuViewModel>();
         }
     }
 }

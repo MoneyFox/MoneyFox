@@ -7,7 +7,7 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Plugins.File;
+using MvvmCross.Plugin.File;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.Manager

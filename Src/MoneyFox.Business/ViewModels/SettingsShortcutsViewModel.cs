@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
@@ -9,7 +9,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class SettingsShortcutsViewModel : MvxViewModel
+    public class SettingsShortcutsViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly ITileManager tileManager;

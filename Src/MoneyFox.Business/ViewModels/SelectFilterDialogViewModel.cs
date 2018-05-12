@@ -1,8 +1,8 @@
 ﻿using System;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
-using MvvmCross.Plugins.Messenger;
 using MoneyFox.Business.Messages;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {

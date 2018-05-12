@@ -1,13 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using EntityFramework.DbContextScope;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Binding.ExtensionMethods;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices

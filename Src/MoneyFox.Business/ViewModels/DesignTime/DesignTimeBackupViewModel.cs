@@ -1,6 +1,6 @@
 ﻿using System;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {

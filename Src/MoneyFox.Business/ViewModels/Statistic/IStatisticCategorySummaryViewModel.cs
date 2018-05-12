@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {

@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.2" />
-    <PackageReference Include="Cheesebaron.MvxPlugins.Settings" Version="3.2.0" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />

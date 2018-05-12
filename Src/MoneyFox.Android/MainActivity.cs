@@ -4,8 +4,7 @@ using Android.Graphics;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
-using MoneyFox.Foundation.Resources;
-using MvvmCross.Forms.Droid.Views;
+using MvvmCross.Forms.Platforms.Android.Views;
 
 namespace MoneyFox.Droid
 {

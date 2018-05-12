@@ -2,7 +2,7 @@
 using System.Globalization;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
-using MvvmCross.Platform.Converters;
+using MvvmCross.Converters;
 
 namespace MoneyFox.Business.Converter
 {

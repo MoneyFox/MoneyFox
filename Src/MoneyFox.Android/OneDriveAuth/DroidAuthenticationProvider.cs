@@ -9,8 +9,8 @@ using MoneyFox.Droid.Extensions;
 using MoneyFox.Droid.Src;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
+using MvvmCross;
+using MvvmCross.Platforms.Android;
 using Xamarin.Auth;
 
 namespace MoneyFox.Droid.OneDriveAuth

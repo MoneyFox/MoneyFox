@@ -1,5 +1,5 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Forms.Views;
+﻿using MvvmCross.Forms.Views;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Controls
 {

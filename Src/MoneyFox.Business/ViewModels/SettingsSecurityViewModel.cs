@@ -1,11 +1,11 @@
 ﻿using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : MvxViewModel
+    public class SettingsSecurityViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
