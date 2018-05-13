@@ -142,7 +142,8 @@ namespace MoneyFox.Business.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        // This has to be static in order to keep the value even if you leave the page to select a CategoryViewModel.
+        private bool preventNullingSelected = false;
+        
         private double amount;
         private PaymentViewModel selectedPayment;
         private PaymentRecurrence recurrence;
@@ -476,7 +477,10 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public override void ViewDisappearing()
         {
-            SelectedPayment = null;
+            if (!preventNullingSelected)
+            {
+                SelectedPayment = null;
+            }
         }
 
         /// <summary>
@@ -486,8 +490,8 @@ namespace MoneyFox.Business.ViewModels
         private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
-
             SelectedPayment.Category = message.SelectedCategory;
+            preventNullingSelected = false;
         }
 
         private async Task Save()
@@ -568,7 +572,7 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            //TODO: use return value here.
+            preventNullingSelected = true;
             await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 

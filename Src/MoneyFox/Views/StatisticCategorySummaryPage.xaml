@@ -32,7 +32,7 @@
                                      Padding="3"
                                      HorizontalOptions="FillAndExpand"
                                      Margin="{DynamicResource DefaultListItemsMargin}">
-                                <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemTextStyle}" />
+                                <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemHeaderStyle}" />
                                 <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{DynamicResource DefaultTextStyle}" />
                             </Grid>
                         </ViewCell>
