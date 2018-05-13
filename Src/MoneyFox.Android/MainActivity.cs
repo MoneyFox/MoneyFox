@@ -1,11 +1,14 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Droid.Views;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Droid
 {
@@ -55,7 +58,7 @@ namespace MoneyFox.Droid
             });
 
             // Start services and provide it a way to communicate with us.
-            /*var startServiceIntentClearPayment = new Intent(this, typeof(ClearPaymentsJob));
+            var startServiceIntentClearPayment = new Intent(this, typeof(ClearPaymentsJob));
             startServiceIntentClearPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentClearPayment);
 
@@ -64,7 +67,6 @@ namespace MoneyFox.Droid
             StartService(startServiceIntentRecurringPayment);
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
-            */
         }
 
         void SetupBottomTabs()
