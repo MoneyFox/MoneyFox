@@ -4,7 +4,7 @@ using MoneyFox.DataAccess.Pocos;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class CategoryViewModel : INotifyPropertyChanged
+    public class CategoryViewModel : BaseViewModel
     {
         public CategoryViewModel(Category category)
         {
@@ -48,13 +48,6 @@ namespace MoneyFox.Business.ViewModels
                 Category.Data.Note = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -33,14 +33,12 @@
     <PackageReference Include="MvvmCross.Forms" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Plugin.Email" Version="5.5.2" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="5.5.2" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="5.5.2" />
     <PackageReference Include="MvvmCross.Plugin.Visibility" Version="5.5.2" />
     <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="5.5.2" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
     <PackageReference Include="MvvmCross.Plugin.Email" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="5.7.0" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Plugin.Visibility" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="5.7.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />

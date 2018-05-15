@@ -7,7 +7,6 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Binding.ExtensionMethods;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices
@@ -184,8 +183,8 @@ namespace MoneyFox.DataAccess.Tests.DataServices
             // Act
             await paymentService.SavePayments(payment);
 
-            Assert.Equal(1, MvxEnumerableExtensions.Count((await accountService.GetAllAccounts())));
-            Assert.Equal(1, MvxEnumerableExtensions.Count((await paymentService.GetPaymentsByAccountId(account.Data.Id))));
+            Assert.Single(await accountService.GetAllAccounts());
+            Assert.Single(await paymentService.GetPaymentsByAccountId(account.Data.Id));
            
             await accountService.DeleteAccount(account);
             

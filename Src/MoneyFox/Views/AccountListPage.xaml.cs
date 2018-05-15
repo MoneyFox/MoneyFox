@@ -2,6 +2,7 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Views.Attributes;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -18,7 +19,8 @@ namespace MoneyFox.Views
 		        AccountsList.SelectedItem = null;
 		        ViewModel.OpenOverviewCommand.Execute(args.Item);
 		    };
-        }
+		    Title = Strings.AccountsTitle;
+		}
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
@@ -44,12 +46,16 @@ namespace MoneyFox.Views
 
 	    private void EditAccount(object sender, EventArgs e)
 	    {
-	        ViewModel.EditAccountCommand.ExecuteAsync((AccountViewModel)AccountsList.SelectedItem);
+            if (!(sender is MenuItem menuItem)) return;
+
+            ViewModel.EditAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
 	    }
 
 	    private void DeleteAccount(object sender, EventArgs e)
 	    {
-	        ViewModel.DeleteAccountCommand.ExecuteAsync((AccountViewModel)AccountsList.SelectedItem);
+            if (!(sender is MenuItem menuItem)) return;
+
+            ViewModel.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
 	    }
     }
 }

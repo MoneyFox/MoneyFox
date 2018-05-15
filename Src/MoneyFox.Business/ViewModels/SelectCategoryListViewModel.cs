@@ -4,19 +4,19 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Represents the SelectCategoryListView
+    /// </summary>
     public interface ISelectCategoryListViewModel
     {
         CategoryViewModel SelectedCategory { get; }
     }
 
-    /// <summary>
-    ///     Represents the SelectCategoryListView
-    /// </summary>
+    /// <inheritdoc cref="ISelectCategoryListViewModel"/>
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
@@ -58,11 +58,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Closes this activity without selecting something.
         /// </summary>
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Post selected CategoryViewModel to message hub

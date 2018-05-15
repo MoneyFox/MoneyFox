@@ -26,11 +26,22 @@ namespace MoneyFox.Views
 		    {
                 Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
 		    });
-        }
+		}
 
-	    private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
+	    protected override void OnAppearing()
+	    {
+	        Title = ViewModel.Title;
+	        base.OnAppearing();
+	    }
+
+        private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
 	    {
 	        ViewModel.GoToSelectCategorydialogCommand.Execute();
+	    }
+
+	    private void AmountFieldGotFocus(object sender, FocusEventArgs e)
+	    {
+	        AmountEntry.Text = string.Empty;
 	    }
 	}
 }

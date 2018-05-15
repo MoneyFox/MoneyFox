@@ -1,6 +1,5 @@
 ﻿using System;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
 using MoneyFox.Business.Messages;
 
@@ -79,11 +78,6 @@ namespace MoneyFox.Business.ViewModels
                 UpdateList();
             }
         }
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         private void UpdateList()
         {

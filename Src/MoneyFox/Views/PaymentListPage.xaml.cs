@@ -1,5 +1,7 @@
 ﻿using System;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -20,6 +22,12 @@ namespace MoneyFox.Views
             };
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
+        }
+
+        protected override void OnAppearing()
+        {
+            Title = ViewModel.Title;
+            base.OnAppearing();
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)
@@ -47,12 +55,14 @@ namespace MoneyFox.Views
 
         private void EditPayment(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!(sender is MenuItem menuItem)) return;
+            ViewModel.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
 
         private void DeletePayment(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!(sender is MenuItem menuItem)) return;
+            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
     }
 }

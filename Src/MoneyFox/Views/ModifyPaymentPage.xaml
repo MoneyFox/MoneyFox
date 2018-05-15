@@ -41,7 +41,11 @@
 
             <Label Text="{Binding Resources[AmountLabel]}"
                    Margin="0,5,0,0" />
-            <Entry Text="{Binding AmountString}" Keyboard="Numeric" HorizontalTextAlignment="End" />
+            <Entry x:Name="AmountEntry"
+                   Text="{Binding AmountString}" 
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="End"
+                   Focused="AmountFieldGotFocus"/>
 
             <Label Text="{Binding Resources[CategoryLabel]}"
                    Margin="0,5,0,0" />

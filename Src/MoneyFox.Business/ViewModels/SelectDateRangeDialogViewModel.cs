@@ -1,7 +1,6 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MvvmCross.Plugins.Messenger;
 using MoneyFox.Business.Messages;
 
@@ -51,11 +50,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public MvxCommand DoneCommand => new MvxCommand(Done);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         private void Done()
         {

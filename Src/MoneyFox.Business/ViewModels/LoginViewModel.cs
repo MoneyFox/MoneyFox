@@ -1,5 +1,4 @@
 ﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.ViewModels
@@ -18,12 +17,6 @@ namespace MoneyFox.Business.ViewModels
         {
             this.settingsManager = settingsManager;
         }
-
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Navigates after the login was successful

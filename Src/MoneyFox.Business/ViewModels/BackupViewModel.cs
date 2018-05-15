@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
@@ -91,11 +90,6 @@ namespace MoneyFox.Business.ViewModels
         ///     All datamodels are then reloaded.
         /// </summary>
         public MvxAsyncCommand RestoreCommand => new MvxAsyncCommand(RestoreBackup);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.

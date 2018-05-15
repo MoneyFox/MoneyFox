@@ -322,6 +322,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string BackupTitle {
+            get {
+                return ResourceManager.GetString("BackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
@@ -376,6 +385,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cash Flow.
+        /// </summary>
+        public static string CashFlowStatisticTitle {
+            get {
+                return ResourceManager.GetString("CashFlowStatisticTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string CategoriesLabel {
@@ -399,6 +417,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string CategoriesSettingsDescription {
             get {
                 return ResourceManager.GetString("CategoriesSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string CategoriesTitle {
+            get {
+                return ResourceManager.GetString("CategoriesTitle", resourceCulture);
             }
         }
         
@@ -430,11 +457,29 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Name.
+        /// </summary>
+        public static string CategoryNameLabel {
+            get {
+                return ResourceManager.GetString("CategoryNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
         public static string CategorySpreadingLabel {
             get {
                 return ResourceManager.GetString("CategorySpreadingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Spreading.
+        /// </summary>
+        public static string CategorySpreadingTitle {
+            get {
+                return ResourceManager.GetString("CategorySpreadingTitle", resourceCulture);
             }
         }
         
@@ -1487,6 +1532,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Category.
+        /// </summary>
+        public static string SelectCategoryTitle {
+            get {
+                return ResourceManager.GetString("SelectCategoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Date.
         /// </summary>
         public static string SelectDateTitle {
@@ -1537,6 +1591,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string SelectOperationLabel {
             get {
                 return ResourceManager.GetString("SelectOperationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Statistic.
+        /// </summary>
+        public static string SelectStatisticTitle {
+            get {
+                return ResourceManager.GetString("SelectStatisticTitle", resourceCulture);
             }
         }
         

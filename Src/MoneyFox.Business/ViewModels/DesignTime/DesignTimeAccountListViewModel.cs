@@ -3,7 +3,6 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
@@ -24,7 +23,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public bool HasNoAccounts { get; } = true;
         public IBalanceViewModel BalanceViewModel { get; }
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
-        public IMvxLanguageBinder TextSource { get; }
         public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand { get; }
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
         public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand { get; }

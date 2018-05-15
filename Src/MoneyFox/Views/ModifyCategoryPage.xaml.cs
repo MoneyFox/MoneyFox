@@ -21,6 +21,12 @@ namespace MoneyFox.Views
 		    };
 
 		    ToolbarItems.Add(saveCategoryItem);
-        }
+		}
+
+	    protected override void OnAppearing()
+	    {
+	        Title = ViewModel.Title;
+            base.OnAppearing();
+	    }
 	}
 }

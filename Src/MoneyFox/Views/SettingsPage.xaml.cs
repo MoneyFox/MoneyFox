@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Views.Attributes;
+﻿using MoneyFox.Foundation.Resources;
+using MvvmCross.Forms.Views.Attributes;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -16,6 +17,7 @@ namespace MoneyFox.Views
 		        SettingsList.SelectedItem = null;
 		        ViewModel.GoToSettingCommand.Execute(args.Item);
 		    };
-        }
+		    Title = Strings.SettingsTitle;
+		}
 	}
 }

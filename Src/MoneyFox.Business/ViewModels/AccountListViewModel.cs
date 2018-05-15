@@ -11,7 +11,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -52,9 +51,6 @@ namespace MoneyFox.Business.ViewModels
 
         /// <inheritdoc />
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
-
-        /// <inheritdoc />
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <inheritdoc />
         public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
