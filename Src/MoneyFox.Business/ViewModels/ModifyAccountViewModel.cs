@@ -10,7 +10,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -93,11 +92,6 @@ namespace MoneyFox.Business.ViewModels
 
         /// <inheritdoc />
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <inheritdoc />
         public bool IsEdit

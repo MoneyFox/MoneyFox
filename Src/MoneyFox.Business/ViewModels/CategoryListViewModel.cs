@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -34,11 +33,6 @@ namespace MoneyFox.Business.ViewModels
         {
         }
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
-        
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>

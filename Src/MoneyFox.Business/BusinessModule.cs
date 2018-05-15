@@ -1,11 +1,7 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using MoneyFox.Business.Authentication;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Resources;
-using MvvmCross.Localization;
-using MvvmCross.Plugins.ResxLocalization;
 
 namespace MoneyFox.Business
 {
@@ -23,7 +19,6 @@ namespace MoneyFox.Business
             builder.RegisterModule<DataAccessModule>();
 
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
-            builder.RegisterInstance(new MvxResxTextProvider(Strings.ResourceManager)).As<IMvxTextProvider>();
             builder.RegisterType<Session>();
 
             builder.RegisterAssemblyTypes(ThisAssembly)

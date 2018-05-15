@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Foundation.Groups;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {    
@@ -29,11 +28,6 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         /// </summary>
         IAccountListViewActionViewModel ViewActionViewModel { get; }
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        IMvxLanguageBinder TextSource { get; }
-        
         /// <summary>
         ///     Open the payment overview for this Account.
         /// </summary>
