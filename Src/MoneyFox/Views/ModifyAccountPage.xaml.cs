@@ -31,7 +31,7 @@ namespace MoneyFox.Views
 
 	    private void AmountFieldGotFocused(object sender, FocusEventArgs e)
 	    {
-	        AmountEntry.Text = 0;
+	        AmountEntry.Text = string.Empty;
 	    }
 	}
 }
