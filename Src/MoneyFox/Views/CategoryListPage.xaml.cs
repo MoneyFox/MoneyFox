@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using MoneyFox.Foundation.Resources;
+using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
@@ -8,6 +9,7 @@ namespace MoneyFox.Views
 		public CategoryListPage()
 		{
 	        InitializeComponent();
-        }
+		    Title = Strings.CategoriesTitle;
+		}
     }
 }

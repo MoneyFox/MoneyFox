@@ -20,6 +20,7 @@ namespace MoneyFox.Views
             };
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
+            Title = ViewModel.Title;
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)

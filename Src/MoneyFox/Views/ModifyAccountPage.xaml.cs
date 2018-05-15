@@ -21,6 +21,7 @@ namespace MoneyFox.Views
             };
 
             ToolbarItems.Add(saveAccountItem);
-        }
+		    Title = ViewModel.Title;
+		}
     }
 }

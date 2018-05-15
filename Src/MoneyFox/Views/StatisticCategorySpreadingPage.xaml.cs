@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms;
+﻿using MoneyFox.Foundation.Resources;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -9,6 +9,7 @@ namespace MoneyFox.Views
 		public StatisticCategorySpreadingPage ()
 		{
 			InitializeComponent ();
+		    Title = Strings.CategorySpreadingTitle;
 		}
     }
 }

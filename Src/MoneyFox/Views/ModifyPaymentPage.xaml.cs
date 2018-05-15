@@ -26,7 +26,9 @@ namespace MoneyFox.Views
 		    {
                 Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
 		    });
-        }
+
+		    Title = ViewModel.Title;
+		}
 
 	    private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
 	    {

@@ -18,7 +18,8 @@ namespace MoneyFox.Views
 		        AccountsList.SelectedItem = null;
 		        ViewModel.OpenOverviewCommand.Execute(args.Item);
 		    };
-        }
+		    Title = Strings.AccountsTitle;
+		}
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
