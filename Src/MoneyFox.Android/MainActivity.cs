@@ -6,7 +6,6 @@ using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Droid.Views;
 using MvvmCross.Platform;
 
