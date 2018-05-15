@@ -21,7 +21,17 @@ namespace MoneyFox.Views
             };
 
             ToolbarItems.Add(saveAccountItem);
-		    Title = ViewModel.Title;
 		}
-    }
+
+	    protected override void OnAppearing()
+	    {
+	        Title = ViewModel.Title;
+	        base.OnAppearing();
+	    }
+
+	    private void AmountFieldGotFocused(object sender, FocusEventArgs e)
+	    {
+	        AmountEntry.Text = 0;
+	    }
+	}
 }

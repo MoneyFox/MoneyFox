@@ -116,7 +116,8 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        public override async Task Initialize()
+        /// <inheritdoc />
+        public override async void ViewAppearing()
         {
             await Loaded();
         }

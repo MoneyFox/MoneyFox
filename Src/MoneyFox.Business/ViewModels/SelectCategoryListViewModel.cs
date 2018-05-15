@@ -8,14 +8,15 @@ using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    /// <summary>
+    ///     Represents the SelectCategoryListView
+    /// </summary>
     public interface ISelectCategoryListViewModel
     {
         CategoryViewModel SelectedCategory { get; }
     }
 
-    /// <summary>
-    ///     Represents the SelectCategoryListView
-    /// </summary>
+    /// <inheritdoc cref="ISelectCategoryListViewModel"/>
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;

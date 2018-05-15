@@ -48,9 +48,10 @@
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
-                                          Text="More" />
+                                          Text="{Binding Resources[EditLabel]}" />
                                 <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
-                                          Text="Delete" IsDestructive="True" />
+                                          Text="{Binding Resources[DeleteLabel]}" 
+                                          IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
                                 <StackLayout BackgroundColor="{StaticResource ListItemColor}"
