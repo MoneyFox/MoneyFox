@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>O</value>
+    <value>O aplikacji</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
     <value>Konta</value>
@@ -331,7 +331,7 @@
     <value>Data zakończenia</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>Data rozpoczecia</value>
+    <value>Data rozpoczęcia</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Wybierz Statystyki</value>
@@ -349,7 +349,7 @@
     <value>Nie ma żadnych kont. Dodaj jedno naciskając trzy kropki poniżej.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>Nie ma żadnych kategorii. Dodaj jedną nasciskając na symbol plusa poniżej.</value>
+    <value>Nie ma żadnych kategorii. Dodaj jedną naciskając na symbol plusa poniżej.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>Nie ma żadnych płatności. Dodaj jedno naciskając jeden z trzech symboli poniżej.</value>
@@ -378,11 +378,8 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>Wyloguj się</value>
   </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Wykonuj kopie zapasową recznie</value>
+    <value>Wykonuj kopie zapasową ręcznie</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
     <value>Wykonuj kopię zapasową automatycznie</value>

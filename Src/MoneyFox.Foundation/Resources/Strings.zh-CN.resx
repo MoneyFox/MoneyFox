@@ -428,26 +428,26 @@
     <value>没有任何账户。点击在底部的加号按钮添加一个。</value>
   </data>
   <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
+    <value>您的数据将被保存到您的 OneDrive 账户。您可以在叫做“MoneyFoxBackupManager"的文件夹里找到它们。</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>创建备份</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>最新的备份创建于：</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>登录</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>退出登录</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>下载过去上传的数据库备份并代替现存的本地数据。
+【警告】：未备份的本地更改将被丢失！</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>还原备份</value>
   </data>
   <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
     <value>账户名称</value>
@@ -640,24 +640,24 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     Please go to settings and enable it!</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
-    <value>We couldn't log you in. Please contact us if this issue persists.</value>
+    <value>未能帮您登录。如果此问题持续存在，请与我们联系。</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>登录失败！</value>
   </data>
   <data name="ClearPaymentFailedMessage" xml:space="preserve">
-    <value>Clearing payments failed!</value>
+    <value>结算付款失败！</value>
   </data>
   <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
-    <value>Failed to create recurring payments!</value>
+    <value>未能创建定期付款！</value>
   </data>
   <data name="SelectFilterDialogViewModel.IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>已清除</value>
   </data>
   <data name="SelectFilterDialogViewModel.IsRecurringLabel" xml:space="preserve">
-    <value>Recurring</value>
+    <value>定期</value>
   </data>
   <data name="SelectFilterDialogViewModel.SelectFilterLabel" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>选择过滤器</value>
   </data>
 </root>
