@@ -1595,15 +1595,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Statistic.
-        /// </summary>
-        public static string SelectStatisticTitle {
-            get {
-                return ResourceManager.GetString("SelectStatisticTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so..
         /// </summary>
         public static string SettingsGeneralViewModel_AutobackupInformationLabel {

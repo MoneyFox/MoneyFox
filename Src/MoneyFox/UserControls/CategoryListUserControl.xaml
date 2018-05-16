@@ -2,7 +2,6 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-             xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
              xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
              x:Class="MoneyFox.UserControls.CategoryListUserControl">
 
@@ -17,12 +16,7 @@
                        Grid.Row="0"
                        VerticalOptions="Start" 
                        Placeholder="{Binding Resources[SearchLabel]}"
-                       SearchCommand="{Binding SearchCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" >
-                <SearchBar.Behaviors>
-                    <behavior:TextChangedBehavior />
-                </SearchBar.Behaviors>
-            </SearchBar>
+                       TextChanged="SearchTermChanged" />
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"

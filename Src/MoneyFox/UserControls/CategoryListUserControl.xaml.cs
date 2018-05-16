@@ -45,5 +45,10 @@ namespace MoneyFox.UserControls
 	    {
 	        ViewModel.CreateNewCategoryCommand.Execute();
 	    }
+
+	    private void SearchTermChanged(object sender, TextChangedEventArgs e)
+	    {
+	        ViewModel.SearchCommand.Execute(e.NewTextValue);
+        }
     }
 }

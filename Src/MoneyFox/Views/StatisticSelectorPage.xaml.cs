@@ -18,7 +18,7 @@ namespace MoneyFox.Views
                 ViewModel.GoToStatisticCommand.Execute(args.Item);
 		    };
 
-		    Title = Strings.SelectStatisticTitle;
+		    Title = Strings.StatisticsTitle;
 		}
     }
 }
