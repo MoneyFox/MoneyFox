@@ -14,8 +14,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.Business;
-using MoneyFox.Business.Converter;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -100,6 +98,7 @@ namespace MoneyFox.Windows
                 Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
                 mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
+                (mainView.ViewModel as MenuViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 

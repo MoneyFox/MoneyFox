@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Extras.MvvmCross;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using MoneyFox.Business.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Plugins;
@@ -52,8 +56,17 @@ namespace MoneyFox.Windows
             return new AutofacMvxIocProvider(cb.Build());
         }
 
+
+        protected override IEnumerable<Assembly> GetViewModelAssemblies()
+        {
+            var result = GetViewAssemblies();
+            var assemblyList = result.ToList();
+            assemblyList.Add(typeof(MainViewModel).Assembly);
+            return assemblyList;
+        }
+
         /// <inheritdoc />
-        protected override IMvxApplication CreateApp() => new MoneyFox.App();
+        protected override IMvxApplication CreateApp() => new CoreApp();
 
         /// <inheritdoc />
         protected override MvxLogProviderType GetDefaultLogProviderType()
