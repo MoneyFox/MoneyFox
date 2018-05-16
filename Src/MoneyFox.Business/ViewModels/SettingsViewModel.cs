@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Core.Navigation;
@@ -16,6 +17,7 @@ namespace MoneyFox.Business.ViewModels
 
         /// <summary>
         ///     Navigate to a concrete settings page.
+        ///     Used in Xamarin Forms.
         /// </summary>
         MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
     }
@@ -27,10 +29,28 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-        public SettingsViewModel(IMvxNavigationService navigationService)
+        public SettingsViewModel(ISettingsManager settingsManager,
+                                 IPasswordStorage passwordStorage,
+                                 ITileManager tileManager,
+                                 IBackgroundTaskManager backgroundTaskManager,
+                                 IDialogService dialogService,
+                                 IMvxNavigationService navigationService)
         {
             this.navigationService = navigationService;
+
+            SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager, backgroundTaskManager);
+            SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
+            SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
+            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
         }
+
+        public SettingsGeneralViewModel SettingsGeneralViewModel { get; }
+
+        public SettingsSecurityViewModel SettingsSecurityViewModel { get; }
+
+        public SettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
+
+        public SettingsPersonalizationViewModel SettingsPersonalizationViewModel { get; }
 
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
