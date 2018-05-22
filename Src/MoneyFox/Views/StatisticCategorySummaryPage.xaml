@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
              xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
              x:Class="MoneyFox.Views.StatisticCategorySummaryPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
              Title="{Binding Resources[CategorySummaryTitle]}">
@@ -23,18 +24,19 @@
                   ItemsSource="{Binding CategorySummary}" 
                   HasUnevenRows="True"
                   CachingStrategy="RecycleElement"
-                  Margin="{DynamicResource NegativeMediumLeftRightMargin}"
                   SeparatorVisibility="None" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid BackgroundColor="{DynamicResource ListItemColor}"
+                            <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
+                                <Grid BackgroundColor="{DynamicResource ListItemColor}"
                                      Padding="3"
                                      HorizontalOptions="FillAndExpand"
                                      Margin="{DynamicResource DefaultListItemsMargin}">
-                                <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemHeaderStyle}" />
-                                <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{DynamicResource DefaultTextStyle}" />
-                            </Grid>
+                                    <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemHeaderStyle}" />
+                                    <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{DynamicResource DefaultTextStyle}" />
+                                </Grid>
+                            </controls:CardView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
