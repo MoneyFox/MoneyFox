@@ -8,9 +8,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
              xmlns:viewModels="using:MoneyFox.Business.ViewModels"
-             xmlns:designTime="using:MoneyFox.Windows.DesignTime"
+             xmlns:designTime1="using:MoneyFox.Business.ViewModels.DesignTime"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"

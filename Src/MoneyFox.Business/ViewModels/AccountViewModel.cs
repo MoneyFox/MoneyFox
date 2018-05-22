@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using MoneyFox.DataAccess.Pocos;
 
 namespace MoneyFox.Business.ViewModels
@@ -8,7 +6,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : INotifyPropertyChanged
+    public class AccountViewModel : BaseViewModel
     {
         /// <summary>
         ///     Default constructor.
@@ -120,20 +118,6 @@ namespace MoneyFox.Business.ViewModels
                 Account.Data.IsExcluded = value;
                 RaisePropertyChanged();
             }
-        }
-
-        /// <summary>
-        ///     Invoked when the value of a property changed
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        ///     Update observer after a property changed
-        /// </summary>
-        /// <param name="propertyName">Name of the cahnged property.</param>
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

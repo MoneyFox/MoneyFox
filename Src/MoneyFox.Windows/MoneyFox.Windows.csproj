@@ -136,7 +136,6 @@
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimePaymentListViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
