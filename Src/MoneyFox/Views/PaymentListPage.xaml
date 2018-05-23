@@ -1,12 +1,12 @@
 ﻿<d:MvxContentPage  x:TypeArguments="viewModels:PaymentListViewModel"
                    xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                   xmlns:views="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                    xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                    xmlns:userControls="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
-                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                    xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                    xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                    x:Class="MoneyFox.Views.PaymentListPage"
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
@@ -123,15 +123,27 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <views:FloatingActionButton x:Name="FAB"
+                <controls:FloatingActionButton x:Name="FAB"
                                             HorizontalOptions="EndAndExpand"
-                                            WidthRequest="50"
-                                            HeightRequest="50"
                                             Margin="12"
                                             VerticalOptions="EndAndExpand"
                                             Image="ic_add.png"
                                             ButtonColor="{StaticResource AccentColor}"
-                                            Clicked="AddItem_Clicked" />
+                                            Clicked="AddItem_Clicked" >
+                    <controls:FloatingActionButton.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS">50</On>
+                            <On Platform="Android">80</On>
+                        </OnPlatform>
+                    </controls:FloatingActionButton.WidthRequest>
+
+                    <controls:FloatingActionButton.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS">50</On>
+                            <On Platform="Android">90</On>
+                        </OnPlatform>
+                    </controls:FloatingActionButton.HeightRequest>
+                </controls:FloatingActionButton>
 
                 <Label Margin="6"
                        x:Name="PlaceHolderLabel"

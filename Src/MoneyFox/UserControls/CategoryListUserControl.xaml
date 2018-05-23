@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
              xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
              x:Class="MoneyFox.UserControls.CategoryListUserControl">
@@ -66,16 +65,28 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <suave:FloatingActionButton Grid.Row="1" 
+            <controls:FloatingActionButton Grid.Row="1" 
                                            x:Name="FAB" 
                                            HorizontalOptions="EndAndExpand" 
-                                           WidthRequest="50" 
-                                           HeightRequest="50"
                                            Margin="12"
                                            VerticalOptions="EndAndExpand"
                                            Image="ic_add.png" 
                                            ButtonColor="{StaticResource AccentColor}" 
-                                           Clicked="AddCategoryClick"/>
+                                           Clicked="AddCategoryClick">
+                <controls:FloatingActionButton.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS">50</On>
+                        <On Platform="Android">80</On>
+                    </OnPlatform>
+                </controls:FloatingActionButton.WidthRequest>
+
+                <controls:FloatingActionButton.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS">50</On>
+                        <On Platform="Android">90</On>
+                    </OnPlatform>
+                </controls:FloatingActionButton.HeightRequest>
+            </controls:FloatingActionButton>
 
             <Label Grid.Row="1"
                    Margin="6"
