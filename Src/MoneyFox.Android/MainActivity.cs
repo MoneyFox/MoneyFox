@@ -35,8 +35,8 @@ namespace MoneyFox.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            SetupBottomTabs();
             base.OnCreate(bundle);
+            SetupBottomTabs();
 
             // Handler to create jobs.
             handler = new Handler(msg => {
@@ -93,7 +93,7 @@ namespace MoneyFox.Droid
             {
                 if (menuItem.TitleFormatted.ToString() == "Accounts")
                 {
-                    menuItem.SetIcon(Resource.Drawable.ic_accounts_black);
+                    //menuItem.SetIcon(Resource.Drawable.ic_accounts_black);
                 }
                 else if (menuItem.TitleFormatted.ToString() == "Statistics")
                 {

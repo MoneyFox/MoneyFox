@@ -5,9 +5,9 @@
                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                   xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
-                  xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+                  xmlns:suave="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
                   x:Class="MoneyFox.Views.AccountListPage"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
