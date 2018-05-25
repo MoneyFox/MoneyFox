@@ -20,6 +20,8 @@ namespace MoneyFox.Business.ViewModels.Interfaces
 
         string Title { get; }
 
+        int AccountId { get; }
+
         bool IsPaymentsEmtpy { get; }
     }
 }

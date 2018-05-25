@@ -7,12 +7,15 @@
                    xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                    xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                    xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                    x:Class="MoneyFox.Views.PaymentListPage"
+                   x:Key="PaymentListPage"
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
 
             <converter:AmountFormatConverter  x:Key="AmountFormatConverter" />
+            <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />
 
             <OnPlatform x:Key="IconCleared"
                         x:TypeArguments="ImageSource">
@@ -65,59 +68,61 @@
                             <ViewCell>
                                 <ViewCell.ContextActions>
                                     <MenuItem Clicked="EditPayment" CommandParameter="{Binding .}"
-                                          Text="More" />
+                                          Text="{Binding Resources[EditLabel]}" />
                                     <MenuItem Clicked="DeletePayment" CommandParameter="{Binding .}"
-                                          Text="Delete" IsDestructive="True" />
+                                          Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <StackLayout Margin="{StaticResource NegativeMediumLeftRightTopMargin}" Spacing="0"
-                                             BackgroundColor="{StaticResource ListItemColor}">
-                                    <Grid Padding="3"
-                                          Margin="{StaticResource DefaultListItemsMargin}">
+                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
+                                    <StackLayout Spacing="0" 
+                                                 BackgroundColor="{StaticResource ListItemColor}">
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
-                                            <ColumnDefinition Width="30*" />
-                                        </Grid.ColumnDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70*" />
+                                                <ColumnDefinition Width="30*" />
+                                            </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0" 
+                                            <Label Grid.Column="0" 
                                                Text="{Binding Category.Name}" 
                                                Style="{StaticResource ListItemHeaderStyle}" />
 
-                                        <Label Grid.Column="1" 
+                                            <Label Grid.Column="1"
+                                               HorizontalOptions="End"
                                                HorizontalTextAlignment="End"
-                                               Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" 
+                                               Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"
                                                Style="{StaticResource ListItemHeaderStyle}" />
-                                    </Grid>
-                                    <Grid Padding="3"
-                                          Margin="{StaticResource DefaultListItemsMargin}">
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
-                                            <ColumnDefinition Width="30*" />
-                                        </Grid.ColumnDefinitions>
+                                        </Grid>
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
-                                        <Label Grid.Column="0"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70*" />
+                                                <ColumnDefinition Width="30*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0"
                                                Text="{Binding Note}" 
                                                Style="{StaticResource DeemphasizedLabelStyle}" />
 
-                                        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
-                                            <Image Source="{StaticResource IconTransfer}" 
+                                                <Image Source="{StaticResource IconTransfer}" 
                                                    IsVisible="{Binding IsTransfer}" 
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
-                                            <Image Source="{StaticResource IconRecurring}" 
+                                                <Image Source="{StaticResource IconRecurring}" 
                                                    IsVisible="{Binding IsRecurring}" 
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
-                                            <Image Source="{StaticResource IconCleared}"
+                                                <Image Source="{StaticResource IconCleared}"
                                                    IsVisible="{Binding IsCleared}"
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
 
-                                        </StackLayout>
-                                    </Grid>
-                                </StackLayout>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </controls:CardView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -33,10 +33,10 @@
                         <MenuFlyout>
                             <MenuFlyoutItem x:Uid="Edit"
                                             Click="Edit_OnClick"
-                                            Text="Edit" />
+                                            Text="{Binding Resources[EditLabel]}" />
                             <MenuFlyoutItem x:Uid="Delete"
                                             Click="Delete_OnClick"
-                                            Text="Delete" />
+                                            Text="{Binding Resources[DeleteLabel]}" />
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
 
