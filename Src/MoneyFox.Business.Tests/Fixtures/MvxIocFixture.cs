@@ -1,7 +1,7 @@
 ﻿using System;
-using MvvmCross.Platform.Core;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
+using MvvmCross.Base;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.Tests;
 
 namespace MoneyFox.Business.Tests.Fixtures
 {

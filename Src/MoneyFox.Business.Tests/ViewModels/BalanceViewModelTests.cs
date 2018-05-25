@@ -2,7 +2,7 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Pocos;
 using Moq;
-using MvvmCross.Test.Core;
+using MvvmCross.Tests;
 using Should;
 using Xunit;
 

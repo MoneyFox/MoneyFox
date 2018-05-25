@@ -1,3 +1,4 @@
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 

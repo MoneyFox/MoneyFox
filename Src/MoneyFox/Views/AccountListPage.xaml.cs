@@ -2,6 +2,7 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Presenters.Attributes;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
