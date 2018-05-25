@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 using MoneyFox.Foundation.Groups;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {

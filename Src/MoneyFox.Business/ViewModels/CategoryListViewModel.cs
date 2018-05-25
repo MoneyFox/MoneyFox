@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Localization;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface ICategoryListViewModel
+    public interface ICategoryListViewModel : IBaseViewModel
     {
         ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
         MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }

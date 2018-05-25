@@ -8,8 +8,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Business.Services
 {

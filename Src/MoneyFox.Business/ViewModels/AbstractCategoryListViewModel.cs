@@ -7,13 +7,13 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
-using MvvmCross.Core.Navigation;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : MvxViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;

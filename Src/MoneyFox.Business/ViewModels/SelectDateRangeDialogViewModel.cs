@@ -1,12 +1,13 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Localization;
 using MoneyFox.Business.Messages;
+using MvvmCross.Commands;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SelectDateRangeDialogViewModel : MvxViewModel
+    public class SelectDateRangeDialogViewModel : BaseViewModel
     {
         private readonly IMvxMessenger messenger;
 

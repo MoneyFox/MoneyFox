@@ -1,5 +1,4 @@
 ﻿﻿using System;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
  using MoneyFox.Foundation;
  using MoneyFox.Foundation.Interfaces;
 

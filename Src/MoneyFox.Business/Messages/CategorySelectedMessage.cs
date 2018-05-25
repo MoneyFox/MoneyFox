@@ -1,5 +1,5 @@
 using MoneyFox.Business.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.Messages
 {

@@ -1,12 +1,14 @@
 ﻿using MoneyFox.Foundation.Groups;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Localization;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {    
     /// <summary>
     ///     Representation of the AccountListView.
     /// </summary>
-    public interface IAccountListViewModel
+    public interface IAccountListViewModel : IBaseViewModel
     {        
         /// <summary>
         ///     All existing accounts

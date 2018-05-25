@@ -2,13 +2,13 @@
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <inheritdoc />
-    public class AccountListViewActionViewModel : MvxViewModel, IAccountListViewActionViewModel
+    public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
     {
         private readonly IAccountService accountService;
         private readonly IMvxNavigationService navigationService;

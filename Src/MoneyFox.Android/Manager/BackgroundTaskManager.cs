@@ -3,7 +3,7 @@ using Android.Content;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform.Droid.Platform;
+using MvvmCross.Platforms.Android;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Manager

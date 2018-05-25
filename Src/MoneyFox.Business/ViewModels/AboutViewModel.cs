@@ -1,9 +1,9 @@
 ﻿using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.WebBrowser;
+using MvvmCross.Commands;
+using MvvmCross.Plugin.Email;
+using MvvmCross.Plugin.WebBrowser;
 
 namespace MoneyFox.Business.ViewModels
 {

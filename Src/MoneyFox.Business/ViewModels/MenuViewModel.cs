@@ -1,13 +1,13 @@
 ﻿using MoneyFox.Business.ViewModels.Statistic;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Represents the side menu
     /// </summary>
-    public class MenuViewModel : MvxViewModel
+    public class MenuViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService navigationService;
 

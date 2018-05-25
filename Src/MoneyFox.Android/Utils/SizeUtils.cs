@@ -5,16 +5,17 @@ using Android.Views;
 using Android.Widget;
 using Com.Ittianyu.Bottomnavigationviewex;
 using MoneyFox.Droid.Renderer;
+using MvvmCross;
+using MvvmCross.Platforms.Android;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 namespace MoneyFox.Droid.Utils
 {
     using RelativeLayout = Android.Widget.RelativeLayout;
-    using Platform = Platform;
+    using Platform = Xamarin.Forms.Platform.Android.Platform;
 
-    public static class BottomTabbedRendererUtils
-    {
+    public static class BottomTabbedRendererUtils {
         public static Rectangle CreateRect(this Context context, int width, int height)
         {
             return new Rectangle(
@@ -61,7 +62,8 @@ namespace MoneyFox.Droid.Utils
                         BottomTabbedRenderer.MenuItemIconSetter?.Invoke(lastSelectedMenuItem, lastSelectedPage.Icon, false);
                         renderer.LastSelectedIndex = pageIndex;
                     }
-                } else if (renderer.LastSelectedIndex != pageIndex)
+                }
+                else if (renderer.LastSelectedIndex != pageIndex)
                 {
                     renderer.LastSelectedIndex = pageIndex;
                 }
@@ -126,8 +128,36 @@ namespace MoneyFox.Droid.Utils
 
                 var imgView = bottomNav.GetIconAt(i);
                 var baselayout = frame.GetChildAt(1);
+                if (BottomTabbedRenderer.VisibleTitle == false)
+                {
+                    baselayout.Visibility = ViewStates.Gone;
+                    //Icon Height
+                    int imgH = imgView.LayoutParameters.Height;
+                    //Icon Width
+                    int imgW = Math.Min(imgView.LayoutParameters.Width, item_w - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Left) - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Right));
+
+                    int imgTop = (tabsHeight - imgH - (int)Context.ToPixels(BottomTabbedRenderer.ItemSpacing)) / 2;
+                    int imgLeft = (item_w - imgW) / 2;
+
+                    switch (BottomTabbedRenderer.ItemAlign)
+                    {
+                        case ItemAlignFlags.Default:
+                        case ItemAlignFlags.Top:
+                            imgTop = (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Top);
+                            break;
+                        case ItemAlignFlags.Bottom:
+                            imgTop = tabsHeight - imgH - (int)Context.ToPixels(BottomTabbedRenderer.ItemPadding.Bottom);
+                            break;
+                    }
+                    //layout icon
+                    imgView.Measure(MeasureSpecFactory.MakeMeasureSpec(imgW, MeasureSpecMode.Exactly), MeasureSpecFactory.MakeMeasureSpec(imgH, MeasureSpecMode.Exactly));
+                    imgView.Layout(imgLeft, imgTop, imgW + imgLeft, imgH + imgTop);
+                    continue;
+                }
+
                 if (baselayout != null)
                 {
+                    baselayout.Visibility = ViewStates.Visible;
                     if (baselayout.GetType() == typeof(BaselineLayout))
                     {
                         //Container text
@@ -204,7 +234,7 @@ namespace MoneyFox.Droid.Utils
                 bottomNav.EnableShiftingMode(false);//remove shifting mode
                 bottomNav.EnableItemShiftingMode(false);//remove shifting mode
                 bottomNav.EnableAnimation(false);//remove animation
-
+                bottomNav.SetTextVisibility(BottomTabbedRenderer.VisibleTitle.HasValue ? BottomTabbedRenderer.VisibleTitle.Value : true);
                 if (BottomTabbedRenderer.Typeface != null)
                 {
                     bottomNav.SetTypeface(BottomTabbedRenderer.Typeface);
@@ -234,7 +264,7 @@ namespace MoneyFox.Droid.Utils
                 ViewGroup.LayoutParams.MatchParent,
                 BottomTabbedRenderer.BottomBarHeight.HasValue ? (int)rootLayout.Context.ToPixels(BottomTabbedRenderer.BottomBarHeight.Value) : ViewGroup.LayoutParams.WrapContent);
             barParams.AddRule(LayoutRules.AlignParentBottom);
-            bottomNav = new BottomNavigationViewEx(rootLayout.Context)
+            bottomNav = new BottomNavigationViewEx(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity)
             {
                 LayoutParameters = barParams,
                 Id = barId
@@ -275,7 +305,7 @@ namespace MoneyFox.Droid.Utils
             {
                 Platform.SetRenderer(page, Platform.CreateRendererWithContext(page, renderer.Context));
             }
-            var pageContent = Platform.GetRenderer(page).View;
+            var pageContent = Platform.CreateRendererWithContext(page, renderer.Context).View;
             pageContainer.AddView(pageContent);
             if (pageContainer.ChildCount > 1)
             {

@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Platform.IoC;
+using MvvmCross.IoC;
 
 namespace MoneyFox.Droid
 {
