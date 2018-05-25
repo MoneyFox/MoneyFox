@@ -289,7 +289,7 @@ namespace MoneyFox.Business.ViewModels
             set
             { 
                 // we remove all separator chars to ensure that it works in all regions
-                string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
+                string amountstring = Utilities.RemoveGroupingSeparators(value);
 
                 double convertedValue;
                 if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))

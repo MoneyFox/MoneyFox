@@ -46,9 +46,9 @@
                             <ViewCell>
                                 <ViewCell.ContextActions>
                                     <MenuItem Clicked="EditAccount" CommandParameter="{Binding .}"
-                                          Text="More" />
+                                          Text="{Binding Resources[EditLabel]}" />
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
-                                          Text="Delete" IsDestructive="True" />
+                                          Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
                                 <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
                                     <StackLayout Spacing="0">

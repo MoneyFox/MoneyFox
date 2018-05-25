@@ -123,8 +123,6 @@ namespace MoneyFox.Business.ViewModels
                 {
                     amount = convertedValue;
                 }
-
-                RaisePropertyChanged();
             }
         }
 
