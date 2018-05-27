@@ -16,7 +16,7 @@ namespace MoneyFox.Droid
     {
         public Setup()
         {
-            Strings.Culture = new Src.Localize().GetCurrentCultureInfo();
+            Strings.Culture = new Localize().GetCurrentCultureInfo();
         }
 
         protected override void InitializeFirstChance()

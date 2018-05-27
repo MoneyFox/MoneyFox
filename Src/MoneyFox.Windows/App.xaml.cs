@@ -30,6 +30,7 @@ using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows
 {
@@ -84,7 +85,7 @@ namespace MoneyFox.Windows
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-                
+
                 Window.Current.Content = mainView;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
@@ -96,8 +97,6 @@ namespace MoneyFox.Windows
                 mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
                 (mainView.ViewModel as MenuViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
-                RootFrame = mainView.MainFrame;
-
                 OverrideTitleBarColor();
 
                 //If Jump Lists are supported, add them
@@ -107,6 +106,7 @@ namespace MoneyFox.Windows
                 }
 
                 await CallRateReminder();
+                RootFrame = mainView.MainFrame;
             }
 
             //When jumplist is selected navigate to appropriate tile
