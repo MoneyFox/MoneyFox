@@ -1,9 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Android.App;
 using Android.Content.PM;
+using Android.OS;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Droid.Views;
+using MvvmCross.Forms.Platforms.Android.Views;
+using Environment = System.Environment;
 
 namespace MoneyFox.Droid
 {
@@ -14,7 +15,7 @@ namespace MoneyFox.Droid
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
         , ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SplashScreen : MvxSplashScreenActivity
+    public class SplashScreen : MvxFormsSplashScreenActivity<Setup, CoreApp, App>
     {
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
@@ -24,10 +25,10 @@ namespace MoneyFox.Droid
                              DatabaseConstants.DB_NAME);
         }
 
-        protected override void TriggerFirstNavigate()
+        protected override void RunAppStart(Bundle bundle)
         {
             StartActivity(typeof(MainActivity));
-            base.TriggerFirstNavigate();
+            base.RunAppStart(bundle);
         }
     }
 }

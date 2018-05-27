@@ -1,11 +1,11 @@
-﻿using MoneyFox.Foundation.Resources;
-using MvvmCross.Forms.Views.Attributes;
+using MoneyFox.Foundation.Resources;
+using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics")]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics_black")]
     public partial class StatisticSelectorPage
     {
 		public StatisticSelectorPage ()

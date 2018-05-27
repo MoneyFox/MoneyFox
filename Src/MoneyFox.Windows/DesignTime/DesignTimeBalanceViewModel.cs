@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Business.ViewModels.Interfaces;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Windows.DesignTime
 {

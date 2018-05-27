@@ -2,9 +2,10 @@
 using MoneyFox.Business.Messages;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Commands;
+using MvvmCross.Localization;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {

@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels.Interfaces;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Representation of the BalanceView
     /// </summary>
-    public class BalanceViewModel : MvxViewModel, IBalanceViewModel
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IBalanceCalculationManager balanceCalculationManager;
 

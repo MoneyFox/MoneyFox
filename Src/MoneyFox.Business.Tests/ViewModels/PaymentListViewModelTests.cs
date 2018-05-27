@@ -5,9 +5,9 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.Tests;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels

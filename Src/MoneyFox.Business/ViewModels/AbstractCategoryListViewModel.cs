@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,13 +8,13 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
-using MvvmCross.Core.Navigation;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : MvxViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IModifyDialogService ModifyDialogService;
@@ -51,18 +52,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Collection with all categories
         /// </summary>
-        public ObservableCollection<CategoryViewModel> Categories
-        {
-            get => categories;
-            set
-            {
-                if (categories == value) return;
-                categories = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsCategoriesEmpty));
-            }
-        }
+        private List<CategoryViewModel> Categories { get; set; }
 
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
@@ -130,12 +120,11 @@ namespace MoneyFox.Business.ViewModels
             if (!string.IsNullOrEmpty(searchText))
             {
                 var searchedCategories = await CategoryService.SearchByName(searchText);
-                Categories = new ObservableCollection<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
+                Categories = new List<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
             } else
             {
                 var selectedCategories = await CategoryService.GetAllCategories();
-                Categories =
-                    new ObservableCollection<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
+                Categories = new List<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
             }
             CategoryList = CreateGroup();
         }
@@ -190,7 +179,7 @@ namespace MoneyFox.Business.ViewModels
                 }
 
                 await CategoryService.DeleteCategory(categoryToDelete.Category);
-                Search();
+                await Search();
             }
         }
     }

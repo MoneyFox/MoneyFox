@@ -3,7 +3,7 @@ using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Core.Navigation;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Windows
 {

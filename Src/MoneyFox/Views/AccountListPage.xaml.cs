@@ -1,14 +1,14 @@
 ﻿using System;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Forms.Views.Attributes;
+using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts")]
+	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts_black")]
     public partial class AccountListPage
 	{
 		public AccountListPage ()

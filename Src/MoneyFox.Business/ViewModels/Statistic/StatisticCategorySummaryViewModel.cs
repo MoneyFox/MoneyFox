@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {

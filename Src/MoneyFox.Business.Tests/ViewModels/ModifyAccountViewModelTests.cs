@@ -10,7 +10,7 @@ using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
-using MvvmCross.Core.Navigation;
+using MvvmCross.Navigation;
 using Should;
 using Xunit;
 

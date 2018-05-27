@@ -3,12 +3,13 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface ISettingsViewModel
+    public interface ISettingsViewModel : IBaseViewModel
     {
         /// <summary>
         ///     Contains all available Settingsitems.

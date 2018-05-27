@@ -5,7 +5,7 @@ using MoneyFox.Business.Messages;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
 namespace MoneyFox.Business.ViewModels.Statistic

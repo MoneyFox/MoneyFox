@@ -6,8 +6,8 @@ using Android.OS;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Forms.Droid.Views;
-using MvvmCross.Platform;
+using MvvmCross;
+using MvvmCross.Forms.Platforms.Android.Views;
 
 namespace MoneyFox.Droid
 {
@@ -38,8 +38,8 @@ namespace MoneyFox.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            SetupBottomTabs();
             base.OnCreate(bundle);
+            SetupBottomTabs();
 
             // Handler to create jobs.
             handler = new Handler(msg => {

@@ -1,10 +1,11 @@
 ﻿using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : MvxViewModel
+    public class SettingsSecurityViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
@@ -43,6 +44,11 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        ///     Provides an TextSource for the translation binding on this page.
+        /// </summary>
+        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The password that the user set.

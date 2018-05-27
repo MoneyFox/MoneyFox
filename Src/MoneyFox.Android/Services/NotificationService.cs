@@ -4,8 +4,8 @@ using Android.Content;
 using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
+using MvvmCross;
+using MvvmCross.Platforms.Android;
 
 namespace MoneyFox.Droid.Services
 {

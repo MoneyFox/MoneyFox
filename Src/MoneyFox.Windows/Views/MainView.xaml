@@ -1,14 +1,13 @@
-﻿<views:MvxWindowsPage
-    x:Class="MoneyFox.Windows.Views.MainView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:uwp="using:FontAwesome.UWP"
-    xmlns:views="using:MvvmCross.Uwp.Views"
-    xmlns:appmodel="using:Windows.ApplicationModel" 
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    mc:Ignorable="d">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.MainView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:uwp="using:FontAwesome.UWP"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
+                      xmlns:appmodel="using:Windows.ApplicationModel"
+                      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -90,3 +89,6 @@
         <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
     </Grid>
 </views:MvxWindowsPage>
+
+
+

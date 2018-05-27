@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Droid.Platform;
 using AndroidHUD;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MvvmCross;
+using MvvmCross.Platforms.Android;
 
 namespace MoneyFox.Droid.Services
 {

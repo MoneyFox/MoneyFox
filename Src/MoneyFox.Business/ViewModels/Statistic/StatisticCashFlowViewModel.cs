@@ -2,7 +2,7 @@
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {

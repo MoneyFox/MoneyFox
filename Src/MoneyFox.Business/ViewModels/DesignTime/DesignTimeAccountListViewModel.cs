@@ -2,7 +2,9 @@
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
+using MvvmCross.Localization;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {

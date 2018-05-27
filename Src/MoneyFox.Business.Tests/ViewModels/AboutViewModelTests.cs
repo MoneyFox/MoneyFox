@@ -3,9 +3,9 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.WebBrowser;
-using MvvmCross.Test.Core;
+using MvvmCross.Plugin.Email;
+using MvvmCross.Plugin.WebBrowser;
+using MvvmCross.Tests;
 using Should;
 using Xunit;
 

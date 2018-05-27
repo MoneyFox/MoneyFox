@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Test.Core;
+using MvvmCross.Tests;
 using Plugin.Connectivity.Abstractions;
 using Should;
 using Xunit;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
@@ -7,8 +6,8 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Test.Core;
+using MvvmCross.Navigation;
+using MvvmCross.Tests;
 using Should;
 using Xunit;
 

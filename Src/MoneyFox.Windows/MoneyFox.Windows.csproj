@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>MoneyFox.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>F69D60C54B4D72436467805343DB5565176B11BE</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>B905DA53314EC2D7876789E3EF57544A0E551957</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>2A259603C6BD50F9B1A9733F06126D997750B162</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -229,7 +229,6 @@
     <Compile Include="Views\UserControls\SettingsShortcutsUserControl.xaml.cs">
       <DependentUpon>SettingsShortcutsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -453,12 +452,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac">
-      <Version>4.6.2</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac.Extras.MvvmCross">
-      <Version>4.0.2</Version>
-    </PackageReference>
     <PackageReference Include="Cheesebaron.MvxPlugins.Settings">
       <Version>3.2.0</Version>
     </PackageReference>
@@ -498,29 +491,23 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross.Core">
-      <Version>5.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Platform">
-      <Version>5.7.0</Version>
-    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Color">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.1</Version>
@@ -560,7 +547,7 @@
       <Name>MoneyFox.Windows.Tasks</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{bb5381e5-433d-4cb8-b9ee-933839e4189a}</Project>
+      <Project>{abbb1314-b512-4748-9054-888565e25b5a}</Project>
       <Name>MoneyFox</Name>
     </ProjectReference>
   </ItemGroup>
