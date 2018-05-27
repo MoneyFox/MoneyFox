@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Business.Converter;
-using MvvmCross.Platform.Uwp.Converters;
+using MvvmCross.Platforms.Uap.Converters;
 
 namespace MoneyFox.Windows.Converter
 {

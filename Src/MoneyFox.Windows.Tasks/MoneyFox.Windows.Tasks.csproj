@@ -153,7 +153,7 @@
       <Version>6.0.8</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>5.7.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="NotificationsExtensions.Win10">
       <Version>14332.0.2</Version>

@@ -4,7 +4,6 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels

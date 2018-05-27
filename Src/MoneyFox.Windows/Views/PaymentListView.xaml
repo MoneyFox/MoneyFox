@@ -4,10 +4,10 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.Uwp.Views"
-                      xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
                       xmlns:converter="using:MoneyFox.Windows.Converter"
-                      d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                                        IsDesignTimeCreatable=True}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Disabled"

@@ -7,6 +7,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
+using MvvmCross.Logging;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 

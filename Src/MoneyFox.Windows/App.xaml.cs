@@ -12,7 +12,6 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using Microsoft.Toolkit.Uwp.Helpers;
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -26,11 +25,12 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows
 {
@@ -54,7 +54,7 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
+            switch (new Settings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
             {
                 case AppTheme.Dark:
                     RequestedTheme = ApplicationTheme.Dark;
@@ -87,8 +87,8 @@ namespace MoneyFox.Windows
 
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(mainView.MainFrame);
-                setup.Initialize();
+                var setup = new Setup();
+                //setup.Initialize();
 
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
@@ -185,7 +185,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            new SettingsManager(new WindowsUwpSettings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new Settings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }

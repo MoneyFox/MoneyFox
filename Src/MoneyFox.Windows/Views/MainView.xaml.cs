@@ -2,8 +2,6 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Uwp.Attributes;
 
 namespace MoneyFox.Windows.Views
 {
@@ -38,27 +36,27 @@ namespace MoneyFox.Windows.Views
                 switch (args.InvokedItem)
                 {
                     case "Accounts":
-                        await ((MenuViewModel) ViewModel).ShowAccountListCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowAccountListCommand.ExecuteAsync();
                         break;
 
                     case "Statistics":
-                        await ((MenuViewModel) ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
                         break;
 
                     case "Categories":
-                        await ((MenuViewModel) ViewModel).ShowCategoryListCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
                         break;
 
                     case "Backup":
-                        await ((MenuViewModel) ViewModel).ShowBackupViewCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
                         break;
 
                     case "Settings":
-                        await ((MenuViewModel) ViewModel).ShowSettingsCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
                         break;
 
                     case "About":
-                        await ((MenuViewModel) ViewModel).ShowAboutCommand.ExecuteAsync();
+                        await ((MenuViewModel)ViewModel).ShowAboutCommand.ExecuteAsync();
                         break;
 
                 }

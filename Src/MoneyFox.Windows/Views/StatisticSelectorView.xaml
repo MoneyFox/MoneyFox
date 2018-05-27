@@ -7,9 +7,8 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
-                      xmlns:views="using:MvvmCross.Uwp.Views"
                       xmlns:statistic="using:MoneyFox.Business.ViewModels.Statistic"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       d:DataContext="{d:DesignInstance statistic:StatisticSelectorViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">

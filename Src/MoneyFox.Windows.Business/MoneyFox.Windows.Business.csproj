@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="OneDriveAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Windows.Business.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +123,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
+      <Project>{15ACA206-DC79-429C-A4A5-D947D62481B5}</Project>
+      <Name>MoneyFox.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>

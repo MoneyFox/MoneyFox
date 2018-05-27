@@ -21,7 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.2" />
     <PackageReference Include="EntityFramework.DbContextScope" Version="1.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.0" />
