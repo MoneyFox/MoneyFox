@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
+using MvvmCross;
 
 namespace MoneyFox.Windows.Views
 {
@@ -16,6 +17,8 @@ namespace MoneyFox.Windows.Views
 
             CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
             titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+
+            ViewModel = Mvx.Resolve<MenuViewModel>();
         }
 
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)

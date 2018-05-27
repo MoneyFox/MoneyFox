@@ -85,8 +85,9 @@ namespace MoneyFox.Windows
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-
                 Window.Current.Content = mainView;
+
+                RootFrame = mainView.MainFrame;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
@@ -106,7 +107,6 @@ namespace MoneyFox.Windows
                 }
 
                 await CallRateReminder();
-                RootFrame = mainView.MainFrame;
             }
 
             //When jumplist is selected navigate to appropriate tile
