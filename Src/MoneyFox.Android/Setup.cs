@@ -7,7 +7,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
-using MvvmCross.Logging;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 
@@ -22,6 +21,8 @@ namespace MoneyFox.Droid
 
         protected override void InitializeFirstChance()
         {
+            base.InitializeFirstChance();
+
             Mvx.ConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.ConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.ConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
@@ -32,8 +33,9 @@ namespace MoneyFox.Droid
             Mvx.ConstructAndRegisterSingleton<IAppInformation, DroidAppInformation>();
             Mvx.ConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
             Mvx.ConstructAndRegisterSingleton<ISettings, Settings>();
+            Mvx.ConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
 
-            base.InitializeFirstChance();
+            DependencyRegistrator.RegisterDependencies();
         }
 
         //public override MvxLogProviderType GetDefaultLogProviderType()

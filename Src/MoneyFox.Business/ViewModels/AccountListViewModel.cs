@@ -10,7 +10,6 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 

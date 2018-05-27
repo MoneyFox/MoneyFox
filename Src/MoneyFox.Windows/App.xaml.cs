@@ -23,15 +23,13 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
-using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
+using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows
 {
@@ -79,24 +77,26 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            base.OnLaunched(e);
 #if !DEBUG
             AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-
+                
                 Window.Current.Content = mainView;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
 
-                //BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-                //BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-                //Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
+                BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
                 mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
                 (mainView.ViewModel as MenuViewModel)?.ShowAccountListCommand.ExecuteAsync();
+
+                RootFrame = mainView.MainFrame;
 
                 OverrideTitleBarColor();
 
@@ -110,19 +110,19 @@ namespace MoneyFox.Windows
             }
 
             //When jumplist is selected navigate to appropriate tile
-            var tileHelper = Mvx.Resolve<TileHelper>();
-            if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
-            {
-                await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
-            }
-            else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
-            {
-                await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-            }
-            else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
-            {
-                await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-            }
+            //var tileHelper = Mvx.Resolve<TileHelper>();
+            //if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
+            //{
+            //    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+            //}
+            //else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
+            //{
+            //    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+            //}
+            //else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
+            //{
+            //    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+            //}
             // Ensure the current window is active
             Window.Current.Activate();
         }
