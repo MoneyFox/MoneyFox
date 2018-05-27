@@ -30,14 +30,20 @@ using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
+using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows
 {
+
+    public abstract class MoneyFoxApp : MvxApplication<Setup, CoreApp>
+    {
+    }
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -85,17 +91,9 @@ namespace MoneyFox.Windows
 
                 Xamarin.Forms.Forms.Init(e);
 
-                // When the navigation stack isn't restored, navigate to the first page
-                // suppressing the initial entrance animation.
-                var setup = new Setup();
-                //setup.Initialize();
-
-                var start = Mvx.Resolve<IMvxAppStart>();
-                start.Start();
-
-                BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-                BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-                Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
+                //BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                //BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+                //Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
                 mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
                 (mainView.ViewModel as MenuViewModel)?.ShowAccountListCommand.ExecuteAsync();

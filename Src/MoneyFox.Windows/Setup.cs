@@ -6,7 +6,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Services;
 using MvvmCross.Platforms.Uap.Core;
-using MvvmCross.ViewModels;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using ISettings = MoneyFox.Business.ISettings;
@@ -14,7 +13,7 @@ using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Windows
 {
-    public class Setup : MvxWindowsSetup
+    public class Setup : MvxWindowsSetup<CoreApp>
     {
         protected override void InitializeFirstChance()
         {
@@ -39,8 +38,5 @@ namespace MoneyFox.Windows
             assemblyList.Add(typeof(MainViewModel).Assembly);
             return assemblyList;
         }
-
-        /// <inheritdoc />
-        protected override IMvxApplication CreateApp() => new CoreApp();
     }
 }
