@@ -12,6 +12,7 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Uwp.Helpers;
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -42,7 +43,7 @@ namespace MoneyFox.Windows
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App
+    public sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -71,6 +72,8 @@ namespace MoneyFox.Windows
             }
         }
 
+        private MainView mainView;
+
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used such as when the application is launched to open a specific file.
@@ -78,16 +81,13 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+
             base.OnLaunched(e);
 #if !DEBUG
             AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-                Window.Current.Content = mainView;
-
-                RootFrame = mainView.MainFrame;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
@@ -95,15 +95,15 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
-                mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
-                (mainView.ViewModel as MenuViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                mainView.ViewModel = Mvx.Resolve<MainViewModel>();
+                (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
                 {
-                    await SetJumplist();
+                    //await SetJumplist();
                 }
 
                 await CallRateReminder();
@@ -124,7 +124,21 @@ namespace MoneyFox.Windows
             //    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
             //}
             // Ensure the current window is active
-            Window.Current.Activate();
+        }
+
+        protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
+        {
+            mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
+            Window.Current.Content = mainView;
+            mainView.MainFrame.NavigationFailed += OnNavigationFailed;
+
+            RootFrame = mainView.MainFrame;
+            return RootFrame;
+        }
+
+        protected override Frame CreateFrame()
+        {
+            return mainView.MainFrame;
         }
 
         private void OverrideTitleBarColor()
@@ -134,8 +148,8 @@ namespace MoneyFox.Windows
 
             //remove the solid-colored backgrounds behind the caption controls and system back button
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titleBar.ButtonBackgroundColor = Colors.DarkSlateBlue;
+            titleBar.ButtonInactiveBackgroundColor = Colors.DarkSlateBlue;
         }
 
         private async Task SetJumplist()

@@ -5,7 +5,6 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox
@@ -20,8 +19,6 @@ namespace MoneyFox
         /// </summary>
         public override async void Initialize()
         {
-            var navigationService = Mvx.Resolve<IMvxNavigationService>();
-
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 

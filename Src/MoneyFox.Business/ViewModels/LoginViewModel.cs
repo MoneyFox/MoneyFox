@@ -36,7 +36,6 @@ namespace MoneyFox.Business.ViewModels
         {
             navigationService.Navigate<MainViewModel>();
             navigationService.Navigate<AccountListViewModel>();
-            navigationService.Navigate<MenuViewModel>();
         }
     }
 }

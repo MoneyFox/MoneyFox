@@ -6,6 +6,8 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Services;
 using MvvmCross.Platforms.Uap.Core;
+using MvvmCross.Platforms.Uap.Presenters;
+using MvvmCross.Platforms.Uap.Views;
 using MvvmCross.Plugin;
 using MvvmCross.Plugin.Email;
 using MvvmCross.Plugin.Email.Platforms.Uap;
@@ -15,6 +17,7 @@ using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.Plugin.WebBrowser;
 using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
 using MvvmCross.UI;
+using MvvmCross.ViewModels;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using ISettings = MoneyFox.Business.ISettings;
@@ -54,6 +57,11 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsFileStore>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
+        }
+
+        protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
+        {
+            return base.CreateViewPresenter(rootFrame);
         }
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()
