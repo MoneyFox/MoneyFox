@@ -31,23 +31,22 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
 
-            Mvx.ConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
-            Mvx.ConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.ConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
-            Mvx.ConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
-            Mvx.ConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            Mvx.ConstructAndRegisterSingleton<INotificationService, NotificationService>();
-            Mvx.ConstructAndRegisterSingleton<ITileManager, TileManager>();
-            Mvx.ConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
-            Mvx.ConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
-            Mvx.ConstructAndRegisterSingleton<ISettings, Settings>();
-            Mvx.ConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
+            Mvx.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
+            Mvx.LazyConstructAndRegisterSingleton<INotificationService, NotificationService>();
+            Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
+            Mvx.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
+            Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
+            Mvx.LazyConstructAndRegisterSingleton<ISettings, Settings>();
+            Mvx.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
 
             DependencyRegistrator.RegisterDependencies();
         }
 
         /// <inheritdoc />
-
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
@@ -57,11 +56,6 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsFileStore>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
-        }
-
-        protected override IMvxWindowsViewPresenter CreateViewPresenter(IMvxWindowsFrame rootFrame)
-        {
-            return base.CreateViewPresenter(rootFrame);
         }
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()

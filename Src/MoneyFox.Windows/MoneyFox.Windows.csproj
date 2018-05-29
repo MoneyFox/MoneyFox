@@ -150,7 +150,6 @@
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\Tile.cs" />
-    <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\TileManager.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />

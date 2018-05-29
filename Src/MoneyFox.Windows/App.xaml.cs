@@ -24,6 +24,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
@@ -103,27 +104,26 @@ namespace MoneyFox.Windows
                 //If Jump Lists are supported, add them
                 if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
                 {
-                    //await SetJumplist();
+                    await SetJumplist();
                 }
 
                 await CallRateReminder();
             }
 
             //When jumplist is selected navigate to appropriate tile
-            //var tileHelper = Mvx.Resolve<TileHelper>();
-            //if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
-            //{
-            //    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
-            //}
-            //else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
-            //{
-            //    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-            //}
-            //else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
-            //{
-            //    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-            //}
-            // Ensure the current window is active
+            var tileHelper = Mvx.Resolve<ITileManager>();
+            switch (e.Arguments)
+            {
+                case Constants.ADD_INCOME_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+                    break;
+                case Constants.ADD_EXPENSE_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+                    break;
+                case Constants.ADD_TRANSFER_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+                    break;
+            }
         }
 
         protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
