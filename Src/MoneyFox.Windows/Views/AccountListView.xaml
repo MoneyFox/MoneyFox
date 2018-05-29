@@ -70,7 +70,7 @@
                                VerticalAlignment="Center"
                                FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               Text="{Binding Key}" />
+                               Text="{Binding Group.Key}" />
                 </Border>
             </Border>
         </DataTemplate>
@@ -83,7 +83,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
