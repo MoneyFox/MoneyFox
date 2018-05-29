@@ -3,6 +3,7 @@ using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Services;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
@@ -36,9 +37,9 @@ namespace MoneyFox
 
             Mvx.RegisterType(() => new Session(Mvx.Resolve<ISettingsManager>()));
 
-            typeof(MainViewModel).Assembly.CreatableTypes()
+            typeof(CashFlowDataProvider).Assembly.CreatableTypes()
                                  .EndingWith("Provider")
-                                 .AsInterfaces()
+                                 .AsTypes()
                                  .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()

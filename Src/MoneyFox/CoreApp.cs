@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.ViewModels;
@@ -14,6 +15,8 @@ namespace MoneyFox
     /// </summary>
     public class CoreApp : MvxApplication
     {
+        public static AppPlatform CurrentPlatform { get; set; }
+
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
@@ -29,7 +32,14 @@ namespace MoneyFox
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                RegisterAppStart<MainViewModel>();
+                if (CurrentPlatform == AppPlatform.UWP)
+                {
+                    RegisterAppStart<AccountListViewModel>();
+                }
+                else
+                {
+                    RegisterAppStart<MainViewModel>();
+                }
             } else
             {
                 RegisterAppStart<LoginViewModel>();

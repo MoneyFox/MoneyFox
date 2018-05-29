@@ -11,6 +11,7 @@ using MvvmCross.Plugin.Email;
 using MvvmCross.Plugin.Email.Platforms.Uap;
 using MvvmCross.Plugin.File;
 using MvvmCross.Plugin.File.Platforms.Uap;
+using MvvmCross.Plugin.Messenger;
 using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.Plugin.WebBrowser;
 using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
@@ -53,6 +54,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsFileStore>();
             Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
+            Mvx.RegisterType<IMvxMessenger, MvxMessengerHub>();
         }
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()

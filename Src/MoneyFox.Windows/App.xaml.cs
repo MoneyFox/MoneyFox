@@ -20,8 +20,11 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
@@ -32,7 +35,6 @@ using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows
 {
@@ -82,7 +84,7 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            CoreApp.CurrentPlatform = AppPlatform.UWP;
             base.OnLaunched(e);
 #if !DEBUG
             AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));

@@ -79,12 +79,11 @@
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
         <TextBox x:Uid="SearchHeader"
+                 x:Name="SearchTextBox"
                  Grid.Row="0"
                  Header="search"
                  Margin="{StaticResource MediumLeftRightMargin}"
-                 Text="{Binding SearchText,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged}" />
+                 TextChanged="SearchTextBox_OnTextChanged" />
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>
