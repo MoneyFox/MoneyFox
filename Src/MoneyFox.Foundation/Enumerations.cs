@@ -52,4 +52,10 @@
         Dark,
         Light
     }
+
+    public enum AppPlatform
+    {
+        XamarinForms,
+        UWP
+    }
 }

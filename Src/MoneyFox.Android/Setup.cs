@@ -3,6 +3,7 @@ using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MoneyFox.Droid.Src;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross;
@@ -23,21 +24,21 @@ namespace MoneyFox.Droid
         {
             base.InitializeFirstChance();
 
-            Mvx.ConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
-            Mvx.ConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.ConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
-            Mvx.ConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
-            Mvx.ConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            Mvx.ConstructAndRegisterSingleton<INotificationService, NotificationService>();
-            Mvx.ConstructAndRegisterSingleton<ITileManager, TileManager>();
-            Mvx.ConstructAndRegisterSingleton<IAppInformation, DroidAppInformation>();
-            Mvx.ConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
-            Mvx.ConstructAndRegisterSingleton<ISettings, Settings>();
-            Mvx.ConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
+            Mvx.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
+            Mvx.LazyConstructAndRegisterSingleton<INotificationService, NotificationService>();
+            Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
+            Mvx.LazyConstructAndRegisterSingleton<IAppInformation, DroidAppInformation>();
+            Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
+            Mvx.LazyConstructAndRegisterSingleton<ISettings, Settings>();
+            Mvx.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
 
             DependencyRegistrator.RegisterDependencies();
         }
-
+        
         //public override MvxLogProviderType GetDefaultLogProviderType()
         //    => MvxLogProviderType.Serilog;
 
@@ -49,11 +50,5 @@ namespace MoneyFox.Droid
         //                 .CreateLogger();
         //    return base.CreateLogProvider();
         //}
-
-        protected override void InitializeLastChance()
-        {
-            Mvx.ConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
-            base.InitializeLastChance();
-        }
     }
 }

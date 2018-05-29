@@ -64,6 +64,8 @@ namespace MoneyFox.Droid
             var startServiceIntentRecurringPayment = new Intent(this, typeof(RecurringPaymentJob));
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
+
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
         }
 
         void SetupBottomTabs()
