@@ -57,7 +57,7 @@
                            VerticalAlignment="Center"
                            Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           FontSize="{StaticResource LargeFontSize}"
+                           FontSize="{StaticResource MediumFontSize}"
                            Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
@@ -68,9 +68,9 @@
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource LargeFontSize}"
+                               FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               Text="{Binding Group.Key}" />
+                               Text="{Binding Key}" />
                 </Border>
             </Border>
         </DataTemplate>
@@ -80,8 +80,7 @@
                               Source="{Binding Accounts}" />
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -97,7 +96,7 @@
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1"
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
+                      Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
             <SemanticZoom.ZoomedInView>
 
                 <ListView IsItemClickEnabled="True"
@@ -200,4 +199,4 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
-</views:MvxWindowsPage> 
+</views:MvxWindowsPage>   

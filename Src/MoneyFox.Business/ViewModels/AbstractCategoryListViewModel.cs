@@ -21,7 +21,6 @@ namespace MoneyFox.Business.ViewModels
         protected readonly IDialogService DialogService;
         protected readonly IMvxNavigationService NavigationService;
         
-        private ObservableCollection<CategoryViewModel> categories;
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
@@ -48,12 +47,6 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
-
-        /// <summary>
-        ///     Collection with all categories
-        /// </summary>
-        private List<CategoryViewModel> Categories { get; set; }
-
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
@@ -65,10 +58,11 @@ namespace MoneyFox.Business.ViewModels
                 if (source == value) return;
                 source = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(IsCategoriesEmpty));
             }
         }
 
-        public bool IsCategoriesEmpty => !Categories?.Any() ?? true;
+        public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
         #endregion
 
@@ -117,16 +111,17 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public async Task Search(string searchText = "")
         {
+            List<CategoryViewModel> categories;
             if (!string.IsNullOrEmpty(searchText))
             {
                 var searchedCategories = await CategoryService.SearchByName(searchText);
-                Categories = new List<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
+                categories = new List<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
             } else
             {
                 var selectedCategories = await CategoryService.GetAllCategories();
-                Categories = new List<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
+                categories = new List<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
             }
-            CategoryList = CreateGroup();
+            CategoryList = CreateGroup(categories);
         }
 
         private async Task Loaded()
@@ -144,9 +139,9 @@ namespace MoneyFox.Business.ViewModels
             await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
             new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
-                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(Categories,
+                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(categories,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
@@ -173,11 +168,6 @@ namespace MoneyFox.Business.ViewModels
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                if (Categories.Contains(categoryToDelete))
-                {
-                    Categories.Remove(categoryToDelete);
-                }
-
                 await CategoryService.DeleteCategory(categoryToDelete.Category);
                 await Search();
             }
