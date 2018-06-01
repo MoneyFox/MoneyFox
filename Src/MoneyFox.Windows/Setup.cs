@@ -47,8 +47,6 @@ namespace MoneyFox.Windows
         /// <inheritdoc />
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            base.LoadPlugins(pluginManager);
-
             //We have to do this here, since the loading via bootloader won't work for UWP projects
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
