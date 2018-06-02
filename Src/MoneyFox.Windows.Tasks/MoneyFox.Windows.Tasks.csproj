@@ -150,7 +150,7 @@
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.0.8</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>6.0.1</Version>
