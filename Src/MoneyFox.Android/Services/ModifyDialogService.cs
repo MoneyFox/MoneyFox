@@ -31,7 +31,7 @@ namespace MoneyFox.Droid.Services
             var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
             builder.SetTitle(Strings.ChooseLabel);
             builder.SetItems(itemsForEditList.ToArray(), OnSelectItemForCreation);
-            builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
+            builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Android.App.Dialog).Dismiss());
             builder.Show();
 
             return tcs.Task;

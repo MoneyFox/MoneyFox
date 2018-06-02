@@ -8,6 +8,7 @@ using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
+using Rg.Plugins.Popup;
 
 namespace MoneyFox.Droid
 {
@@ -40,6 +41,8 @@ namespace MoneyFox.Droid
 
             base.OnCreate(bundle);
             SetupBottomTabs();
+
+            //Popup.Init(this, bundle);
 
             // Handler to create jobs.
             handler = new Handler(msg => {
@@ -106,6 +109,11 @@ namespace MoneyFox.Droid
                     menuItem.SetIcon(Resource.Drawable.ic_settings_black);
                 }
             };
+        }
+
+        public override void OnBackPressed()
+        {
+            Popup.SendBackPressed(base.OnBackPressed);
         }
     }
 }

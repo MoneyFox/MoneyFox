@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
     <PackageReference Include="MvvmCross.Forms" Version="6.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.158-pre" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
   </ItemGroup>
 
@@ -44,6 +45,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Controls\FloatingActionButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialog\DateSelectionDialog.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UserControls\BalanceUserControl.xaml">
