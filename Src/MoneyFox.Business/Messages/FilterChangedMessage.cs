@@ -29,11 +29,11 @@ namespace MoneyFox.Business.Messages
         /// <summary>
         ///     Start of the time range to load payments.
         /// </summary>
-        public DateTime TimeRangeStart { get; set; } = DateTime.MaxValue;
+        public DateTime TimeRangeStart { get; set; } = DateTime.Now.AddMonths(-2);
 
         /// <summary>
         ///     End of the time range to load payments.
         /// </summary>
-        public DateTime TimeRangeEnd { get; set; } = DateTime.Now.AddMonths(-2);
+        public DateTime TimeRangeEnd { get; set; } = DateTime.MaxValue;
     }
 }
