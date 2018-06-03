@@ -48,7 +48,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
                 ? new SKColor(0, 0, 0)
                 : SKColor.Parse("#EFF2F5");
 
-            token = messenger.Subscribe<DateSelectedMessage>(message =>
+            token = messenger.SubscribeOnMainThread<DateSelectedMessage>(message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;

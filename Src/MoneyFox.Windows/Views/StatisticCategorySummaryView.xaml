@@ -77,8 +77,7 @@
             </ScrollViewer>
         </Grid>
         <CommandBar Grid.Row="2"
-                    ClosedDisplayMode="Minimal"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+                    ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
