@@ -23,6 +23,8 @@ namespace MoneyFox
         private static ISelectCategoryListViewModel SELECT_CATEGORY_LIST_VIEW_MODEL;
         private static IPaymentListViewModel PAYMENT_LIST_VIEW_MODEL;
         private static IAboutViewModel ABOUT_VIEW_MODEL;
+        private static ISelectFilterDialogViewModel SELECT_FILTER_DIALOG_VIEW_MODEL;
+        private static ISelectDateRangeDialogViewModel SELECT_DATE_RANGE_DIALOG_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -95,10 +97,23 @@ namespace MoneyFox
         /// </summary>
         public static IPaymentListViewModel DesignTimePaymentListViewModel =>
             PAYMENT_LIST_VIEW_MODEL ?? (PAYMENT_LIST_VIEW_MODEL = new DesignTimePaymentListViewModel());
+
         /// <summary>
         ///     Implementation for IAboutViewModel for design time.
         /// </summary>
         public static IAboutViewModel DesignTimeAboutViewModel =>
             ABOUT_VIEW_MODEL ?? (ABOUT_VIEW_MODEL = new DesignTimeAboutViewModel());
+
+        /// <summary>
+        ///     Implementation for ISelectFilterDialogViewModel for design time.
+        /// </summary>
+        public static ISelectFilterDialogViewModel DesignTimeSelectFilterDialogViewModel =>
+            SELECT_FILTER_DIALOG_VIEW_MODEL ?? (SELECT_FILTER_DIALOG_VIEW_MODEL = new DesignTimeSelectFilterDialogViewModel());
+
+        /// <summary>
+        ///     Implementation for ISelectDateRangeDialogViewModel for design time.
+        /// </summary>
+        public static ISelectDateRangeDialogViewModel DesignTimeSelectDateRangeDialogViewModel =>
+            SELECT_DATE_RANGE_DIALOG_VIEW_MODEL ?? (SELECT_DATE_RANGE_DIALOG_VIEW_MODEL = new DesignTimeSelectDateRangeDialogViewModel());
     }
 }

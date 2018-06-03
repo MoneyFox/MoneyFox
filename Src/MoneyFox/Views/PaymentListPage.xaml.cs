@@ -1,7 +1,8 @@
 ﻿using System;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Dialog;
+using MoneyFox.Dialogs;
 using MoneyFox.Foundation.Resources;
+using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -27,11 +28,10 @@ namespace MoneyFox.Views
 
             var filterItem = new ToolbarItem
             {
-                Command = new Command(() => OpenDialog()),
-                Text = Strings.SaveCategoryLabel,
+                Command = new Command(OpenDialog),
+                Text = Strings.FilterLabel,
                 Priority = 0,
-                Order = ToolbarItemOrder.Primary,
-                Icon = Icon = "IconSave.png"
+                Order = ToolbarItemOrder.Primary
             };
 
             ToolbarItems.Add(filterItem);
@@ -39,7 +39,7 @@ namespace MoneyFox.Views
 
         private async void OpenDialog()
         {
-            await Navigation.PushPopupAsync(new DateSelectionDialog());
+            await Navigation.PushPopupAsync(new FilterDialog{BindingContext = Mvx.Resolve<SelectFilterDialogViewModel>()});
         }
 
         protected override void OnAppearing()

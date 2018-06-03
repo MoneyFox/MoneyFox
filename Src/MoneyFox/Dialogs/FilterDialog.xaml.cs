@@ -1,12 +1,12 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Dialog
+namespace MoneyFox.Dialogs
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DateSelectionDialog : PopupPage
+	public partial class FilterDialog : PopupPage
     {
-        public DateSelectionDialog ()
+        public FilterDialog ()
 		{
 			InitializeComponent ();
 		}

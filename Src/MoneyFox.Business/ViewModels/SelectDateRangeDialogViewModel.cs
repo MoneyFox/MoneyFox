@@ -6,6 +6,12 @@ using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface ISelectDateRangeDialogViewModel : IBaseViewModel
+    {
+        DateTime StartDate { get; set; }
+        DateTime EndDate { get; set; }
+    }
+
     public class SelectDateRangeDialogViewModel : BaseViewModel
     {
         private readonly IMvxMessenger messenger;

@@ -1,4 +1,9 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Business.ViewModels;
+using MoneyFox.Dialogs;
+using MoneyFox.Foundation.Resources;
+using MvvmCross;
+using Rg.Plugins.Popup.Extensions;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -10,6 +15,21 @@ namespace MoneyFox.Views
 		{
             InitializeComponent();
 		    Title = Strings.CashFlowStatisticTitle;
-		}
+
+		    var filterItem = new ToolbarItem
+		    {
+		        Command = new Command(OpenDialog),
+		        Text = Strings.SelectDateLabel,
+		        Priority = 0,
+		        Order = ToolbarItemOrder.Primary
+		    };
+
+		    ToolbarItems.Add(filterItem);
+        }
+
+	    private async void OpenDialog()
+	    {
+	        await Navigation.PushPopupAsync(new DateSelectionDialog { BindingContext = Mvx.Resolve<SelectDateRangeDialogViewModel>() });
+	    }
     }
 }

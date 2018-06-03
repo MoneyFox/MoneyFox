@@ -934,6 +934,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string FilterLabel {
+            get {
+                return ResourceManager.GetString("FilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured.
         /// </summary>
         public static string GeneralErrorTitle {
@@ -1016,6 +1025,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleared.
+        /// </summary>
+        public static string IsClearedLabel {
+            get {
+                return ResourceManager.GetString("IsClearedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclude account from balance.
         /// </summary>
         public static string IsExcludedLabel {
@@ -1030,6 +1048,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string IsRecurringFilterLabel {
             get {
                 return ResourceManager.GetString("IsRecurringFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recurring.
+        /// </summary>
+        public static string IsRecurringLabel {
+            get {
+                return ResourceManager.GetString("IsRecurringLabel", resourceCulture);
             }
         }
         
@@ -1543,36 +1570,18 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Select Date.
         /// </summary>
+        public static string SelectDateLabel {
+            get {
+                return ResourceManager.GetString("SelectDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Date.
+        /// </summary>
         public static string SelectDateTitle {
             get {
                 return ResourceManager.GetString("SelectDateTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cleared.
-        /// </summary>
-        public static string SelectFilterDialogViewModel_IsClearedLabel {
-            get {
-                return ResourceManager.GetString("SelectFilterDialogViewModel.IsClearedLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recurring.
-        /// </summary>
-        public static string SelectFilterDialogViewModel_IsRecurringLabel {
-            get {
-                return ResourceManager.GetString("SelectFilterDialogViewModel.IsRecurringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Filter.
-        /// </summary>
-        public static string SelectFilterDialogViewModel_SelectFilterLabel {
-            get {
-                return ResourceManager.GetString("SelectFilterDialogViewModel.SelectFilterLabel", resourceCulture);
             }
         }
         
@@ -1744,6 +1753,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Range End.
+        /// </summary>
+        public static string TimeRangeEndLabel {
+            get {
+                return ResourceManager.GetString("TimeRangeEndLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Range Start.
+        /// </summary>
+        public static string TimeRangeStartLabel {
+            get {
+                return ResourceManager.GetString("TimeRangeStartLabel", resourceCulture);
             }
         }
         

@@ -616,14 +616,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
     <value>Failed to create recurring payments!</value>
   </data>
-  <data name="SelectFilterDialogViewModel.IsClearedLabel" xml:space="preserve">
+  <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
   </data>
-  <data name="SelectFilterDialogViewModel.IsRecurringLabel" xml:space="preserve">
+  <data name="IsRecurringLabel" xml:space="preserve">
     <value>Recurring</value>
-  </data>
-  <data name="SelectFilterDialogViewModel.SelectFilterLabel" xml:space="preserve">
-    <value>Select Filter</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Others</value>
@@ -705,5 +702,17 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
     <value>Category Name</value>
+  </data>
+  <data name="FilterLabel" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TimeRangeEndLabel" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStartLabel" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
+  <data name="SelectDateLabel" xml:space="preserve">
+    <value>Select Date</value>
   </data>
 </root>

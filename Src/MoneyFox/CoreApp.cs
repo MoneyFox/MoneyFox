@@ -44,8 +44,6 @@ namespace MoneyFox
             {
                 RegisterAppStart<LoginViewModel>();
             }
-
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
         }
     }
 }

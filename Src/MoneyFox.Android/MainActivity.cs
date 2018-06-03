@@ -42,7 +42,7 @@ namespace MoneyFox.Droid
             base.OnCreate(bundle);
             SetupBottomTabs();
 
-            //Popup.Init(this, bundle);
+            Popup.Init(this, bundle);
 
             // Handler to create jobs.
             handler = new Handler(msg => {

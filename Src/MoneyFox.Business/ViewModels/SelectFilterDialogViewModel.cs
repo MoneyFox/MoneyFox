@@ -1,12 +1,18 @@
 ﻿using System;
-using MvvmCross.Localization;
 using MoneyFox.Business.Messages;
 using MvvmCross.Plugin.Messenger;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SelectFilterDialogViewModel : MvxViewModel
+    public interface ISelectFilterDialogViewModel : IBaseViewModel
+    {
+        bool IsClearedFilterActive { get; set; }
+        bool IsRecurringFilterActive { get; set; }
+        DateTime TimeRangeStart { get; set; }
+        DateTime TimeRangeEnd { get; set; }
+    }
+
+    public class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
     {
         private readonly IMvxMessenger messenger;
 
