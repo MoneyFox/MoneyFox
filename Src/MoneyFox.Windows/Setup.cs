@@ -48,11 +48,11 @@ namespace MoneyFox.Windows
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             //We have to do this here, since the loading via bootloader won't work for UWP projects
-            Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
-            Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
-            Mvx.RegisterType<IMvxFileStore, MvxWindowsFileStore>();
-            Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
-            Mvx.RegisterType<IMvxMessenger, MvxMessengerHub>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxComposeEmailTask, MvxComposeEmailTask>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, MvxWebBrowserTask>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxFileStore, MvxWindowsFileStore>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxNativeVisibility, MvxWinRTVisibility>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
         }
 
         public override IEnumerable<Assembly> GetViewModelAssemblies()

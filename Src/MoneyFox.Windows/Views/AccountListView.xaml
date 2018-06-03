@@ -80,11 +80,11 @@
                               Source="{Binding Accounts}" />
     </Page.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -96,7 +96,7 @@
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1"
-                      Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
+                      Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
             <SemanticZoom.ZoomedInView>
 
                 <ListView IsItemClickEnabled="True"
@@ -142,7 +142,7 @@
 
 
         <TextBlock x:Uid="AccountsPlaceholder"
-                   Grid.Row="2"
+                   Grid.Row="1"
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
@@ -151,7 +151,7 @@
                    Visibility="{Binding HasNoAccounts,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-        <CommandBar Grid.Row="3"
+        <CommandBar Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>

@@ -1,6 +1,5 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
-using MvvmCross.Localization;
 using MoneyFox.Business.Messages;
 using MvvmCross.Commands;
 using MvvmCross.Plugin.Messenger;
