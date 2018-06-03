@@ -3,6 +3,8 @@ using Windows.UI.Xaml;
 using MoneyFox.Views;
 using MoneyFox.Windows.Views.Dialogs;
 using Xamarin.Forms.Platform.UWP;
+using MvvmCross;
+using MoneyFox.Business.ViewModels;
 
 namespace MoneyFox.Windows.Views
 {
@@ -15,7 +17,7 @@ namespace MoneyFox.Windows.Views
 
         private async void SetDate(object sender, RoutedEventArgs e)
         {
-            await new SelectDateRangeDialog().ShowAsync();
+            await new SelectDateRangeDialog { DataContext = Mvx.Resolve<SelectDateRangeDialogViewModel>() }.ShowAsync();
         }
 
         private void StatisticCashFlowView_OnSizeChanged(object sender, SizeChangedEventArgs e)
