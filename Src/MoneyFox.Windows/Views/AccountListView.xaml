@@ -80,7 +80,8 @@
                               Source="{Binding Accounts}" />
     </Page.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -95,7 +96,7 @@
         <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1"
-                      Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
+                      Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
             <SemanticZoom.ZoomedInView>
 
                 <ListView IsItemClickEnabled="True"
