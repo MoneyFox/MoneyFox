@@ -18,8 +18,8 @@ namespace MoneyFox.Business.ViewModels
 
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
-        private DateTime timeRangeStart = DateTime.Now.AddMonths(6);
-        private DateTime timeRangeEnd = DateTime.Now.AddMonths(-2);
+        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
+        private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
         public SelectFilterDialogViewModel(IMvxMessenger messenger)
         {
