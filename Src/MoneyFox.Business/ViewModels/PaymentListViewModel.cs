@@ -224,8 +224,8 @@ namespace MoneyFox.Business.ViewModels
                 paymentQuery = paymentQuery.Where(x => x.Data.IsRecurring);
             }
 
-            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeEnd);
+            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeEnd);
 
             var loadedPayments = new ObservableCollection<PaymentViewModel>(
                 paymentQuery
