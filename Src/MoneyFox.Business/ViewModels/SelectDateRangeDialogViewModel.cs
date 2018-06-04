@@ -10,6 +10,8 @@ namespace MoneyFox.Business.ViewModels
     {
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
+
+        MvxCommand DoneCommand { get; set; }
     }
 
     public class SelectDateRangeDialogViewModel : BaseViewModel

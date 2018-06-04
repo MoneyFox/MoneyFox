@@ -29,14 +29,19 @@
         Padding="20, 20, 20, 20"
         BackgroundColor="White">
 
-        <Label Text="{Binding Resources[SelectDateLabel]}" 
+        <Label Text="{Binding Resources[SelectDateLabel]}"
                Style ="{StaticResource ListItemHeaderStyle}"/>
 
-        <Label Text="{Binding Resources[TimeRangeStartLabel]}"/>
+        <Grid>
+            <Label Text="{Binding Resources[TimeRangeStartLabel]}"
+                   HorizontalOptions="StartAndExpand"/>
+        </Grid>
         <DatePicker Date="{Binding StartDate}" />
 
         <Label Text="{Binding Resources[TimeRangeEndLabel]}"/>
         <DatePicker Date="{Binding EndDate}" />
+
+        <Button Text="{Binding Resources[DoneLabel]}" Clicked="Button_OnClicked"/>
 
     </StackLayout>
 </pages:PopupPage>

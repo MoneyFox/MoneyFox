@@ -2,6 +2,7 @@
 using System.Globalization;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Resources;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
@@ -15,5 +16,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public LocalizedResources Resources { get; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public MvxCommand DoneCommand { get; set; }
     }
 }
