@@ -72,8 +72,7 @@
                                 <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
                                     <StackLayout Spacing="0"
                                                  BackgroundColor="{StaticResource ListItemColor}">
-                                        <Grid Padding="3"
-                                          Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
@@ -89,8 +88,7 @@
                                                Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" 
                                                Style="{StaticResource ListItemHeaderStyle}" />
                                         </Grid>
-                                        <Grid Padding="3"
-                                          Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />

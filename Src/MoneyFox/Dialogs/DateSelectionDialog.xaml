@@ -25,7 +25,7 @@
     <!--You can use any elements here which are extended from Xamarin.Forms.View-->
     <StackLayout 
         VerticalOptions="Center" 
-        HorizontalOptions="Center" 
+        HorizontalOptions="CenterAndExpand" 
         Padding="20, 20, 20, 20"
         BackgroundColor="White">
 
