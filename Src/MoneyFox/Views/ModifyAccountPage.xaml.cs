@@ -26,7 +26,19 @@ namespace MoneyFox.Views
 	    protected override void OnAppearing()
 	    {
 	        Title = ViewModel.Title;
-	        base.OnAppearing();
+
+	        if (ViewModel.IsEdit)
+	        {
+	            ToolbarItems.Add(new ToolbarItem
+	            {
+	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                Text = Strings.DeleteLabel,
+	                Priority = 1,
+	                Order = ToolbarItemOrder.Secondary
+	            });
+	        }
+
+            base.OnAppearing();
 	    }
 
 	    private void AmountFieldGotFocused(object sender, FocusEventArgs e)

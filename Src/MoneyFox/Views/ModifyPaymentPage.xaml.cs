@@ -11,16 +11,14 @@ namespace MoneyFox.Views
 		{
 			InitializeComponent ();
 
-		    var savePaymentItem = new ToolbarItem
+		    ToolbarItems.Add(new ToolbarItem
 		    {
 		        Command = new Command(() => ViewModel.SaveCommand.Execute()),
 		        Text = Strings.SavePaymentLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary,
-                Icon = "IconSave.png"
-		    };
-
-		    ToolbarItems.Add(savePaymentItem);
+		        Icon = "IconSave.png"
+		    });
 
 		    ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
 		    {
@@ -31,7 +29,18 @@ namespace MoneyFox.Views
 	    protected override void OnAppearing()
 	    {
 	        Title = ViewModel.Title;
-	        base.OnAppearing();
+	        if (ViewModel.IsEdit)
+	        {
+	            ToolbarItems.Add(new ToolbarItem
+	            {
+	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                Text = Strings.DeleteLabel,
+	                Priority = 1,
+	                Order = ToolbarItemOrder.Secondary
+	            });
+	        }
+
+            base.OnAppearing();
 	    }
 
         private void CategoryFieldGotFocus(object sender, FocusEventArgs e)

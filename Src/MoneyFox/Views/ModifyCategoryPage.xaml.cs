@@ -11,21 +11,31 @@ namespace MoneyFox.Views
 		{
 			InitializeComponent ();
 
-		    var saveCategoryItem = new ToolbarItem
+		    ToolbarItems.Add(new ToolbarItem
 		    {
 		        Command = new Command(() => ViewModel.SaveCommand.Execute()),
 		        Text = Strings.SaveCategoryLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary,
 		        Icon = Icon = "IconSave.png"
-		    };
-
-		    ToolbarItems.Add(saveCategoryItem);
-		}
+		    });
+        }
 
 	    protected override void OnAppearing()
 	    {
 	        Title = ViewModel.Title;
+
+	        if (ViewModel.IsEdit)
+	        {
+	            ToolbarItems.Add(new ToolbarItem
+	            {
+	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                Text = Strings.DeleteLabel,
+	                Priority = 1,
+	                Order = ToolbarItemOrder.Secondary
+	            });
+	        }
+
             base.OnAppearing();
 	    }
 	}
