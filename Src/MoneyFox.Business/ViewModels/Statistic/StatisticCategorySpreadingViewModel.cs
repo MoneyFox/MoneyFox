@@ -75,7 +75,6 @@ namespace MoneyFox.Business.ViewModels.Statistic
             {
                 Entries = items,
                 BackgroundColor = BackgroundColor,
-                Margin = 20,
                 LabelTextSize = 26f
             };
         }

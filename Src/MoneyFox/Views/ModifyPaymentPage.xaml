@@ -11,6 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
+            <converter:AccountNameConverter x:Key="AccountNameConverter" />
 
             <OnPlatform x:Key="ImageResetField"
                         x:TypeArguments="ImageSource">
@@ -28,7 +29,7 @@
             <Label Text="{Binding AccountHeader}" />
             <Picker ItemsSource="{Binding ChargedAccounts}"
                     SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                    ItemDisplayBinding="{Binding Name}" >
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" >
             </Picker>
 
             <StackLayout Spacing="{StaticResource DefaultSpacing}"
@@ -36,7 +37,7 @@
                 <Label Text="{Binding Resources[TargetAccountLabel]}" />
                 <Picker ItemsSource="{Binding TargetAccounts}"
                         SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                        ItemDisplayBinding="{Binding Name}" />
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
             </StackLayout>
 
             <Label Text="{Binding Resources[AmountLabel]}"
