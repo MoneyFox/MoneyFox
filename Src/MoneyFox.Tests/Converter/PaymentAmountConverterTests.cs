@@ -1,12 +1,11 @@
-﻿using MoneyFox.Business.Converter;
-using MoneyFox.Business.ViewModels;
+﻿using MoneyFox.Business.ViewModels;
 using MoneyFox.Converter;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.Converter
+namespace MoneyFox.Tests.Converter
 {
     [Collection("MvxIocCollection")]
     public class PaymentAmountConverterTests 

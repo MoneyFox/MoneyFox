@@ -3,13 +3,14 @@ using System.Globalization;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Converters;
+using Xamarin.Forms;
 
-namespace MoneyFox.Business.Converter
+namespace MoneyFox.Converter
 {
     /// <summary>
     ///     Converts the RecurrenceType to a string.
     /// </summary>
-    public class RecurrenceTypeConverter : IMvxValueConverter
+    public class RecurrenceTypeConverter : IMvxValueConverter, IValueConverter
     {
         /// <summary>
         ///     Converts the passed recurrencetype to a string.

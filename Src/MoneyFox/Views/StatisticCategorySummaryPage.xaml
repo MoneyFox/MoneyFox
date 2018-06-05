@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:MvxContentPage x:TypeArguments="statistic:StatisticCategorySummaryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converter="clr-namespace:MoneyFox.Business.Converter;assembly=MoneyFox.Business"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
-             xmlns:converter1="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
              x:Class="MoneyFox.Views.StatisticCategorySummaryPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
@@ -14,7 +13,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountValueConverter x:Key="AmountValueConverter" />
-            <converter1:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

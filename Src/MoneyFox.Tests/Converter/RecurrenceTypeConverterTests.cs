@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using MoneyFox.Business.Converter;
+using MoneyFox.Converter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.Converter
+namespace MoneyFox.Tests.Converter
 {
     public class RecurrenceTypeConverterTests
     {

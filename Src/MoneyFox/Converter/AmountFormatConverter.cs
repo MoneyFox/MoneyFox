@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MvvmCross.Converters;
 using Xamarin.Forms;
 
 namespace MoneyFox.Converter
@@ -7,7 +8,7 @@ namespace MoneyFox.Converter
     /// <summary>
     ///     Displays the amount as currency of the current culture.
     /// </summary>
-    public class AmountFormatConverter : IValueConverter
+    public class AmountFormatConverter : MvxValueConverter, IValueConverter
     {
         /// <summary>
         ///     Converts the passed value to a currency string.

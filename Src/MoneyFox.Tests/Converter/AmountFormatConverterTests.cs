@@ -1,5 +1,5 @@
-﻿using MoneyFox.Business.Converter;
-using System.Globalization;
+﻿using System.Globalization;
+using MoneyFox.Converter;
 using Should;
 using Xunit;
 

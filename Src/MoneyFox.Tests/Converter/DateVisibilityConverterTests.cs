@@ -3,7 +3,7 @@ using MoneyFox.Converter;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.Converter
+namespace MoneyFox.Tests.Converter
 {
     public class DateVisibilityConverterTests
     {

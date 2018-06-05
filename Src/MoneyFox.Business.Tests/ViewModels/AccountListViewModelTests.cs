@@ -126,7 +126,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public async void IsAllAccountsEmpty_OneAccountInExcluded_False()
+        public void IsAllAccountsEmpty_OneAccountInExcluded_False()
         {
             // Arrange
             accountServiceMock.Setup(x => x.GetNotExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -142,14 +142,14 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
             viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public async void IsAllAccountsEmpty_OneAccountInNotExcluded_False()
+        public void IsAllAccountsEmpty_OneAccountInNotExcluded_False()
         {
             // Arrange
             accountServiceMock.Setup(x => x.GetExcludedAccounts()).ReturnsAsync(new List<Account>());
@@ -165,14 +165,14 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
             viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public async void IsAllAccountsEmpty_TwoAccountNotExcluded_False()
+        public void IsAllAccountsEmpty_TwoAccountNotExcluded_False()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -192,14 +192,14 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
             viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public async void IsAllAccountsEmpty_TwoAccountExcluded_False()
+        public void IsAllAccountsEmpty_TwoAccountExcluded_False()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -219,14 +219,14 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
             viewModel.HasNoAccounts.ShouldBeFalse();
         }
 
         [Fact]
-        public async void IncludedAccounts_AccountsAvailable_MatchesRepository()
+        public void IncludedAccounts_AccountsAvailable_MatchesRepository()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -246,16 +246,17 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
-            viewModel.Accounts.Count.ShouldEqual(2);
+            viewModel.Accounts.Count.ShouldEqual(1);
+            viewModel.Accounts[0].Count.ShouldEqual(2);
             viewModel.Accounts[0][0].Id.ShouldEqual(22);
             viewModel.Accounts[0][1].Id.ShouldEqual(33);
         }
 
         [Fact]
-        public async void ExcludedAccounts_AccountsAvailable_MatchesRepository()
+        public void ExcludedAccounts_AccountsAvailable_MatchesRepository()
         {
             // Arrange
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
@@ -275,12 +276,13 @@ namespace MoneyFox.Business.Tests.ViewModels
                 new Mock<IMvxNavigationService>().Object);
 
             // Act
-            await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
-            viewModel.Accounts.Count.ShouldEqual(2);
-            viewModel.Accounts[1][0].Id.ShouldEqual(22);
-            viewModel.Accounts[1][0].Id.ShouldEqual(33);
+            viewModel.Accounts.Count.ShouldEqual(1);
+            viewModel.Accounts[0].Count.ShouldEqual(2);
+            viewModel.Accounts[0][0].Id.ShouldEqual(22);
+            viewModel.Accounts[0][1].Id.ShouldEqual(33);
         }
     }
 }
