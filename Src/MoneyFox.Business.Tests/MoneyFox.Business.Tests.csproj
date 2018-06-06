@@ -10,7 +10,7 @@
     <PackageReference Include="AutoFixture" Version="4.4.0" />
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.4.0" />
     <PackageReference Include="AutoFixture.Xunit" Version="4.4.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
     <PackageReference Include="Moq" Version="4.8.2" />
     <PackageReference Include="MvvmCross.Tests" Version="6.0.1" />
     <PackageReference Include="Should" Version="1.1.20" />
