@@ -1,5 +1,9 @@
-﻿using Foundation;
-using MvvmCross.Forms.iOS;
+﻿using System;
+using System.IO;
+using Foundation;
+using MoneyFox.DataAccess;
+using MoneyFox.Foundation.Constants;
+using MvvmCross.Forms.Platforms.Ios.Core;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -8,7 +12,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : MvxFormsApplicationDelegate
+    public partial class AppDelegate : MvxFormsApplicationDelegate<Setup, CoreApp, App>
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -19,11 +23,23 @@ namespace MoneyFox.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            
-            Window.MakeKeyAndVisible();
+            ApplicationContext.DbPath = GetLocalFilePath();
+            SQLitePCL.Batteries.Init();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        private string GetLocalFilePath()
+        {
+            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
+
+            if (!Directory.Exists(libFolder))
+            {
+                Directory.CreateDirectory(libFolder);
+            }
+
+            return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
     }
 }
