@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using AutoFixture;
+﻿using AutoFixture;
 using AutoFixture.AutoMoq;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Navigation;
@@ -18,24 +16,21 @@ namespace MoneyFox.Business.Tests.ViewModels
     {
 
         [Fact]
-        public void ViewAppearing_PropertiesSet() {
+        public void ViewAppearing_PropertiesSet()
+        {
+            // Arrange
             var fixture = new Fixture();
             fixture.Customize(new AutoMoqCustomization { ConfigureMembers = true });
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
-            //var categoryRepoSetup = new Mock<ICategoryService>();
-            //categoryRepoSetup.Setup(x => x.GetAllCategories()).ReturnsAsync(() => new List<Category>
-            //{
-            //    new Category {Data = {Name = string.Empty}}
-            //});
-
-            var vm = new CategoryListViewModel(fixture.Create<ICategoryService>(), new Mock<IModifyDialogService>().Object,
+            var vm = new CategoryListViewModel(fixture.Create<ICategoryService>(),
                                                new Mock<IDialogService>().Object,
                                                new Mock<IMvxNavigationService>().Object);
 
             // Act
             vm.ViewAppearing();
 
+            // Assert
             vm.CategoryList.ShouldNotBeNull();
         }
     }

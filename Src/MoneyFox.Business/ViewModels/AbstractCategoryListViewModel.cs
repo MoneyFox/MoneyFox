@@ -17,7 +17,6 @@ namespace MoneyFox.Business.ViewModels
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly ICategoryService CategoryService;
-        protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
         protected readonly IMvxNavigationService NavigationService;
         
@@ -27,15 +26,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
         /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         protected AbstractCategoryListViewModel(ICategoryService categoryService,
-           IModifyDialogService modifyDialogService, IDialogService dialogService, 
+           IDialogService dialogService, 
            IMvxNavigationService navigationService)
         {
             CategoryService = categoryService;
-            ModifyDialogService = modifyDialogService;
             DialogService = dialogService;
             this.NavigationService = navigationService;
         }
@@ -82,11 +79,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel>ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
-
-        /// <summary>
-        ///     Opens a option dialog to select the modify operation
-        /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> OpenContextMenuCommand => new MvxAsyncCommand<CategoryViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
@@ -145,24 +137,7 @@ namespace MoneyFox.Business.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand,
-                    itemLongClickCommand:OpenContextMenuCommand));
-
-        private async Task OpenContextMenu(CategoryViewModel category)
-        {
-            var result = await ModifyDialogService.ShowEditSelectionDialog();
-
-            switch (result)
-            {
-                case ModifyOperation.Edit:
-                    EditCategoryCommand.Execute(category);
-                    break;
-
-                case ModifyOperation.Delete:
-                    DeleteCategoryCommand.Execute(category);
-                    break;
-            }
-        }
+                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand));
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {

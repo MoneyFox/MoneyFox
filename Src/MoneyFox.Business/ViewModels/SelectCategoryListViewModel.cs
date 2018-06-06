@@ -3,7 +3,6 @@ using MoneyFox.Business.Messages;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
@@ -27,16 +26,14 @@ namespace MoneyFox.Business.ViewModels
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
         /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         public SelectCategoryListViewModel(ICategoryService categoryService,
-                                           IModifyDialogService modifyDialogService,
                                            IDialogService dialogService,
                                            IMvxMessenger messenger,
                                            IMvxNavigationService navigationService)
-            : base(categoryService, modifyDialogService, dialogService, navigationService)
+            : base(categoryService, dialogService, navigationService)
         {
             this.messenger = messenger;
         }

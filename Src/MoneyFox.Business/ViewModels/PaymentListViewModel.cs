@@ -30,7 +30,6 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IBackupManager backupManager;
-        private readonly IModifyDialogService modifyDialogService;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
 
@@ -53,7 +52,6 @@ namespace MoneyFox.Business.ViewModels
             ISettingsManager settingsManager,
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
-            IModifyDialogService modifyDialogService, 
             IMvxNavigationService navigationService,
             IMvxMessenger messenger)
         {
@@ -63,7 +61,6 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.balanceCalculationManager = balanceCalculationManager;
             this.backupManager = backupManager;
-            this.modifyDialogService = modifyDialogService;
             this.navigationService = navigationService;
             this.messenger = messenger;
 
@@ -170,11 +167,6 @@ namespace MoneyFox.Business.ViewModels
         public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
 
         /// <summary>
-        ///     Opens a option dialog to select the modify operation
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> OpenContextMenuCommand => new MvxAsyncCommand<PaymentViewModel>(OpenContextMenu);
-
-        /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
         public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
@@ -243,7 +235,7 @@ namespace MoneyFox.Business.ViewModels
                               CultureInfo.CurrentUICulture,
                               s => s.Date.ToString("D", CultureInfo.InvariantCulture),
                               s => s.Date,
-                              itemClickCommand: EditPaymentCommand, itemLongClickCommand: OpenContextMenuCommand);
+                              itemClickCommand: EditPaymentCommand);
 
             DailyList = new ObservableCollection<DateListGroup<PaymentViewModel>>(dailyItems);
 
@@ -262,22 +254,6 @@ namespace MoneyFox.Business.ViewModels
         {
             await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
                 new ModifyPaymentParameter(payment.Id));
-        }
-
-        private async Task OpenContextMenu(PaymentViewModel payment)
-        {
-            var result = await modifyDialogService.ShowEditSelectionDialog();
-
-            switch (result)
-            {
-                case ModifyOperation.Edit:
-                    EditPaymentCommand.Execute(payment);
-                    break;
-
-                case ModifyOperation.Delete:
-                    DeletePaymentCommand.Execute(payment);
-                    break;
-            }
         }
 
         private async Task DeletePayment(PaymentViewModel payment)

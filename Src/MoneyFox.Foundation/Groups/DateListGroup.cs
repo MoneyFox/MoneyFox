@@ -23,11 +23,10 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
         /// <param name="itemLongClickCommand">The command to execute on a long click</param>
-        public DateListGroup(string key, MvxAsyncCommand<T> itemClickCommand = null, MvxAsyncCommand<T> itemLongClickCommand = null)
+        public DateListGroup(string key, MvxAsyncCommand<T> itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
-            ItemLongClickCommand = itemLongClickCommand;
         }
 
         /// <summary>
@@ -41,11 +40,6 @@ namespace MoneyFox.Foundation.Groups
         public MvxAsyncCommand<T> ItemClickCommand { get; }
 
         /// <summary>
-        ///     The command to execute on along  click.
-        /// </summary>
-        public MvxAsyncCommand<T> ItemLongClickCommand { get; }
-
-        /// <summary>
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
@@ -54,10 +48,9 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="getSortKey">A delegate to get the key for sorting from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
         /// <param name="itemClickCommand">The command to execute on a click.</param>
-        /// <param name="itemLongClickCommand">The command to execute on a long click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null, MvxAsyncCommand<T> itemLongClickCommand = null)
+            GetSortKeyDelegate getSortKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null)
         {
             var list = new List<DateListGroup<T>>();
 
@@ -67,7 +60,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new DateListGroup<T>(index, itemClickCommand, itemLongClickCommand));
+                    list.Add(new DateListGroup<T>(index, itemClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))

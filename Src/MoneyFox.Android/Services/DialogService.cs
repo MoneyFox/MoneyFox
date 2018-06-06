@@ -61,11 +61,10 @@ namespace MoneyFox.Droid.Services
 
             return tcs.Task;
         }
-
         /// <inheritdoc />
-        public void ShowLoadingDialog()
+        public void ShowLoadingDialog(string message = null)
         {
-            AndHUD.Shared.Show(currentActivity, Strings.LoadingLabel);
+            AndHUD.Shared.Show(currentActivity, message ?? Strings.LoadingLabel);
         }
 
         /// <inheritdoc />

@@ -155,7 +155,7 @@
     <PackageReference Include="SuaveControls.FloatingActionButton">
       <Version>2017.10.17</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.530893" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">

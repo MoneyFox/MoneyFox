@@ -32,7 +32,6 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object,
                 messengerMock.Object,
                 navigationMock.Object );
@@ -60,7 +59,6 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
-                new Mock<IModifyDialogService>().Object,
                 new Mock<IDialogService>().Object,
                 new Mock<IMvxMessenger>().Object,
                 navigationMock.Object );

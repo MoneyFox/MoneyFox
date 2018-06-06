@@ -29,9 +29,7 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
     <PackageReference Include="Microsoft.OneDriveSDK" Version="2.0.7" />
     <PackageReference Include="MvvmCross.Forms" Version="6.0.1" />
-    <PackageReference Include="sameerIOTApps.Plugin.SecureStorage" Version="2.5.0" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.530893" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
     <PackageReference Include="MvvmCross.Plugin.Email" Version="6.0.1" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.0.1" />
     <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.0.1" />
@@ -48,9 +46,6 @@
   <ItemGroup>
     <Reference Include="MvvmCross.Forms">
       <HintPath>C:\Users\ninop\.nuget\packages\mvvmcross.forms\5.6.3\lib\dotnet\MvvmCross.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="MPAndroidChart">
-      <HintPath>C:\Users\ninop\.nuget\packages\mpandroidchart\3.0.2\lib\MonoAndroid\MPAndroidChart.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.SecureStorage">
       <HintPath>..\..\..\..\..\.nuget\packages\sameeriotapps.plugin.securestorage\2.5.0\lib\MonoAndroid10\Plugin.SecureStorage.dll</HintPath>

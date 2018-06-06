@@ -28,7 +28,6 @@ namespace MoneyFox.Droid
 
             Mvx.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.LazyConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
             Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
