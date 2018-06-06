@@ -224,5 +224,41 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_add%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_done.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_done_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_done_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconCleared2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconCleared3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconCleared.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconRecurring3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconRecurring.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconRecurring2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconTransfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconTransfer2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconTransfer3x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ namespace MoneyFox.Effects
     /// </summary>
     public class ButtonEffect : RoutingEffect
     {
-        public ButtonEffect(string effectId) : base("MoneyFox.ButtonEffect") {
+        public ButtonEffect() : base("MoneyFox.ButtonEffect") {
         }
     }
 }
