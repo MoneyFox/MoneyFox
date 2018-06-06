@@ -4,6 +4,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                       xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                      xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
                       x:Class="MoneyFox.Views.AboutPage"
                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAboutViewModel}">
 
@@ -20,13 +21,25 @@
                    HorizontalOptions="Start" />
 
             <Button Text="{Binding Resources[WebsiteLabel]}"
-                        Command="{Binding GoToWebsiteCommand}"/>
+                        Command="{Binding GoToWebsiteCommand}">
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
 
             <Button Text="{Binding Resources[EmailLabel]}"
-                        Command="{Binding SendMailCommand}"/>
+                        Command="{Binding SendMailCommand}">
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
 
             <Button Text="{Binding Resources[RateLabel]}"
-                    Command="{Binding RateAppCommand}"/>
+                    Command="{Binding RateAppCommand}">
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
 
             <Label Text="{Binding Resources[TranslationLabel]}"/>
             <Label Text="www.crowdin.com" 

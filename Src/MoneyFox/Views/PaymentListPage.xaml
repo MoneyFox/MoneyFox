@@ -47,9 +47,15 @@
                       HasUnevenRows="True"
                       CachingStrategy="RecycleElement"
                       IsGroupingEnabled="True"
-                      GroupShortNameBinding="{Binding Key}"
-                      GroupDisplayBinding="{Binding Key}"
-                      SeparatorVisibility="None">
+                      GroupDisplayBinding="{Binding Key}">
+
+                    <ListView.SeparatorVisibility>
+                        <OnPlatform x:TypeArguments="SeparatorVisibility">
+                            <On Platform="iOS" Value="Default" />
+                            <On Platform="Android" Value="None" />
+                        </OnPlatform>
+                    </ListView.SeparatorVisibility>
+
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>

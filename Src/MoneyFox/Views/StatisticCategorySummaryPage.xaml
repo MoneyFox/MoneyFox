@@ -22,8 +22,15 @@
             <ListView x:Name="CategorySummaryList"
                   ItemsSource="{Binding CategorySummary}" 
                   HasUnevenRows="True"
-                  CachingStrategy="RecycleElement"
-                  SeparatorVisibility="None" >
+                  CachingStrategy="RecycleElement" >
+
+                <ListView.SeparatorVisibility>
+                    <OnPlatform x:TypeArguments="SeparatorVisibility">
+                        <On Platform="iOS" Value="Default" />
+                        <On Platform="Android" Value="None" />
+                    </OnPlatform>
+                </ListView.SeparatorVisibility>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

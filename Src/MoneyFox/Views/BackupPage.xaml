@@ -5,6 +5,7 @@
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
              x:Class="MoneyFox.Views.BackupPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
@@ -19,14 +20,32 @@
 
         <StackLayout x:Name="MainLayout">
 
-            <Button Text="{Binding LoginButtonLabel}" IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}" Command="{Binding LoginCommand}" />
+            <Button Text="{Binding LoginButtonLabel}"
+                    IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
+                    Command="{Binding LoginCommand}" >
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
 
-            <Button Text="{Binding LogoutButtonLabel}" IsVisible="{Binding IsLoggedIn}"  Command="{Binding LogoutCommand}" />
+            <Button Text="{Binding LogoutButtonLabel}" 
+                    IsVisible="{Binding IsLoggedIn}"  
+                    Command="{Binding LogoutCommand}">
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding CreateBackupText}"
                        HorizontalOptions="StartAndExpand" />
-                <Button x:Name="ButtonRestoreBackup" Text="{Binding CreateBackupButtonLabel}" Command="{Binding BackupCommand}" />
+                <Button x:Name="ButtonRestoreBackup"
+                        Text="{Binding CreateBackupButtonLabel}" 
+                        Command="{Binding BackupCommand}">
+                    <Button.Effects>
+                        <effects:ButtonEffect />
+                    </Button.Effects>
+                </Button>
 
                 <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
 
@@ -39,7 +58,13 @@
                         </OnPlatform>
                     </Grid.HeightRequest>
 
-                    <Button Text="{Binding RestoreBackupButtonlabel}" Command="{Binding RestoreCommand}" />
+                    <Button Text="{Binding RestoreBackupButtonlabel}" 
+                            Command="{Binding RestoreCommand}" >
+                        <Button.Effects>
+                            <effects:ButtonEffect />
+                        </Button.Effects>
+                    </Button>
+
                     <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
                 </Grid>
 
