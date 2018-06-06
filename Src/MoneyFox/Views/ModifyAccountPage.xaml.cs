@@ -17,7 +17,7 @@ namespace MoneyFox.Views
                 Text = Strings.SaveAccountLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
-                Icon = Icon = "IconSave.png"
+                Icon = "IconSave.png"
             };
 
             ToolbarItems.Add(saveAccountItem);

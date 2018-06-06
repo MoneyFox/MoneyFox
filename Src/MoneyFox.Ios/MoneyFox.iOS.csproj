@@ -183,13 +183,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_accounts.png" />
+    <BundleResource Include="Resources\ic_accounts_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_accounts%402x.png" />
+    <BundleResource Include="Resources\ic_accounts_black%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_accounts%403x.png" />
+    <BundleResource Include="Resources\ic_accounts_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_settings.png" />
@@ -201,13 +201,13 @@
     <BundleResource Include="Resources\ic_settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_statistics.png" />
+    <BundleResource Include="Resources\ic_statistics_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_statistics%402x.png" />
+    <BundleResource Include="Resources\ic_statistics_black%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_statistics%403x.png" />
+    <BundleResource Include="Resources\ic_statistics_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_cancel.png" />
@@ -218,7 +218,11 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_cancel_3x.png" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add%402x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
