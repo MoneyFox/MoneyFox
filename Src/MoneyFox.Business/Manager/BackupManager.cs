@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Extensions;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
@@ -141,7 +142,7 @@ namespace MoneyFox.Business.Manager
                     await backupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
                 fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
 
-                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME, true);
+                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, ApplicationContext.DbPath, true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
                 settingsManager.LastDatabaseUpdate = DateTime.Now;

@@ -27,7 +27,6 @@
                       HasUnevenRows="True"
                       CachingStrategy="RecycleElement"
                       IsGroupingEnabled="True"
-                      GroupShortNameBinding="{Binding Key}"
                       GroupDisplayBinding="{Binding Key}">
 
                     <ListView.SeparatorVisibility>
