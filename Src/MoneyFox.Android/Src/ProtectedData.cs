@@ -1,8 +1,9 @@
 using Android.App;
 using Android.Content;
 using MoneyFox.Foundation.Interfaces;
+using Plugin.SecureStorage;
 
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     /// <inheritdoc />
     public class ProtectedData : IProtectedData
@@ -21,9 +22,7 @@ namespace MoneyFox.Droid.Src
         /// <inheritdoc />
         public void Protect(string key, string value)
         {
-            var editor = preferences.Edit();
-            editor.PutString(key, value);
-            editor.Commit();
+            CrossSecureStorage.Current.SetValue(key, value);
         }
 
         /// <inheritdoc />
@@ -31,8 +30,19 @@ namespace MoneyFox.Droid.Src
         {
             try
             {
-                return preferences.GetString(key, null);
-            }
+                if (preferences.Contains(key))
+                {
+                    var value = preferences.GetString(key, null);
+                    if (value != null)
+                    {
+                        Protect(key, value);
+                        var editor = preferences.Edit();
+                        editor.Remove(key);
+                        editor.Commit();
+                    }
+                }
+                return CrossSecureStorage.Current.GetValue(key);
+            } 
             catch
             {
                 return null;
@@ -42,12 +52,7 @@ namespace MoneyFox.Droid.Src
         /// <inheritdoc />
         public void Remove(string key)
         {
-            if (preferences.Contains(key))
-            {
-                var editor = preferences.Edit();
-                editor.Remove(key);
-                editor.Commit();
-            }
+            CrossSecureStorage.Current.DeleteKey(key);
         }
     }
 }

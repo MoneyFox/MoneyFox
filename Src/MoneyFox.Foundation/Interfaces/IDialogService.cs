@@ -37,7 +37,8 @@ namespace MoneyFox.Foundation.Interfaces
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        void ShowLoadingDialog();
+        /// <param name="message">Message to display.</param>
+        void ShowLoadingDialog(string message = null);
 
         /// <summary>
         ///     Hides the previously opened Loading Dialog.

@@ -3,13 +3,13 @@ using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MoneyFox.Droid.Src;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
+using Plugin.SecureStorage;
 
 namespace MoneyFox.Droid
 {
@@ -24,12 +24,13 @@ namespace MoneyFox.Droid
         {
             base.InitializeFirstChance();
 
+            SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
+
             Mvx.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.LazyConstructAndRegisterSingleton<IModifyDialogService, ModifyDialogService>();
             Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            Mvx.LazyConstructAndRegisterSingleton<INotificationService, NotificationService>();
             Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
             Mvx.LazyConstructAndRegisterSingleton<IAppInformation, DroidAppInformation>();
             Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
