@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MoneyFox.Foundation.Constants;
 using Xamarin.Auth;
 
-namespace MoneyFox.Droid.Extensions
+namespace MoneyFox.Business.Extensions
 {
     public static class OAuth2AuthenticatorExtensions
     {

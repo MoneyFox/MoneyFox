@@ -1,36 +1,33 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.iOS.Authentication;
 
-namespace MoneyFox.Droid.OneDriveAuth
+namespace MoneyFox.iOS.Authentication
 {
-    /// <inheritdoc />
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        /// <inheritdoc />
         public Task<IGraphServiceClient> LoginAsync()
         {
             try
             {
                 var tcs = new TaskCompletionSource<IGraphServiceClient>();
 
-                tcs.SetResult(new GraphServiceClient(ServiceConstants.BASE_URL, new DroidAuthenticationProvider()));
+                tcs.SetResult(new GraphServiceClient(ServiceConstants.BASE_URL, new IosAuthenticationProvider()));
 
                 return tcs.Task;
-            }
-            catch (Exception)
+            } catch (Exception)
             {
                 throw new BackupException("Authentication Failed");
             }
         }
 
-        /// <inheritdoc />
         public Task LogoutAsync()
         {
-            new DroidAuthenticationProvider().Logout();
+            new IosAuthenticationProvider().Logout();
             return Task.CompletedTask;
         }
     }

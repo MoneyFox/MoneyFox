@@ -1,25 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
+using Microsoft.Graph;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
+using UIKit;
 using Xamarin.Auth;
 
-namespace MoneyFox.Droid.OneDriveAuth
-{
-    public class DroidAuthenticationProvider : ICustomAuthenticationProvider
+namespace MoneyFox.iOS.Authentication {
+    public class IosAuthenticationProvider : IAuthenticationProvider
     {
         private OAuth2Authenticator authenticator;
 
-        /// <summary>
-        ///     Authenticates the user with the service and saves the refresh token.
-        /// </summary>
-        /// <param name="request">Http request message</param>
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
             authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
@@ -39,12 +33,11 @@ namespace MoneyFox.Droid.OneDriveAuth
                 {
                     // pass access_token to the onedrive sdk
                     accessToken = result[ServiceConstants.ACCESS_TOKEN];
-                    
+
                     // add refresh token to the password vault to enable future silent login
                     new ProtectedData().Protect(ServiceConstants.REFRESH_TOKEN, result[ServiceConstants.REFRESH_TOKEN]);
                 }
-            }
-            else
+            } else
             {
                 accessToken = await authenticator.RequestRefreshTokenAsync(refreshToken);
             }
@@ -56,15 +49,14 @@ namespace MoneyFox.Droid.OneDriveAuth
         {
             var tcs = new TaskCompletionSource<IDictionary<string, string>>();
 
-            authenticator.Completed += (sender, eventArgs) => 
-            {
-                tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
-            };
+            authenticator.Completed +=
+                (sender, eventArgs) =>
+                {
+                    tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
+                };
 
-            var intent = authenticator.GetUI(Application.Context);
-            intent.SetFlags(ActivityFlags.NewTask);
-
-            Application.Context.StartActivity(intent);
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentedViewController.PresentViewController(
+                authenticator.GetUI(), true, null);
 
             return tcs.Task;
         }

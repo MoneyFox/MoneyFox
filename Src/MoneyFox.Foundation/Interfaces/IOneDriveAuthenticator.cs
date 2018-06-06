@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
+using Microsoft.Graph;
 using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.Foundation.Interfaces
@@ -13,7 +13,7 @@ namespace MoneyFox.Foundation.Interfaces
         ///     Perform an async Login Request
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<IOneDriveClient> LoginAsync();
+        Task<IGraphServiceClient> LoginAsync();
 
         /// <summary>
         ///     Perform an async Logout Request
