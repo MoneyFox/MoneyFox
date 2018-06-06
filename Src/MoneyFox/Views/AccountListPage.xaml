@@ -1,4 +1,4 @@
-﻿<d:MvxContentPage x:TypeArguments="viewModels:AccountListViewModel"
+<d:MvxContentPage x:TypeArguments="viewModels:AccountListViewModel"
                   xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
@@ -27,7 +27,6 @@
                       HasUnevenRows="True"
                       CachingStrategy="RecycleElement"
                       IsGroupingEnabled="True"
-                      GroupShortNameBinding="{Binding Key}"
                       GroupDisplayBinding="{Binding Key}"
                       SeparatorVisibility="None">
                     <ListView.GroupHeaderTemplate>

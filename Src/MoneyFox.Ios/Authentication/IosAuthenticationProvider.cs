@@ -31,11 +31,12 @@ namespace MoneyFox.iOS.Authentication {
                 var result = await ShowWebView();
                 if (result != null)
                 {
+                    UIApplication.SharedApplication.KeyWindow.RootViewController.DismissViewController(true, null);
                     // pass access_token to the onedrive sdk
                     accessToken = result[ServiceConstants.ACCESS_TOKEN];
 
                     // add refresh token to the password vault to enable future silent login
-                    new ProtectedData().Protect(ServiceConstants.REFRESH_TOKEN, result[ServiceConstants.REFRESH_TOKEN]);
+                    protectedData.Protect(ServiceConstants.REFRESH_TOKEN, result[ServiceConstants.REFRESH_TOKEN]);
                 }
             } else
             {
@@ -55,8 +56,7 @@ namespace MoneyFox.iOS.Authentication {
                     tcs.SetResult(eventArgs.IsAuthenticated ? eventArgs.Account.Properties : null);
                 };
 
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentedViewController.PresentViewController(
-                authenticator.GetUI(), true, null);
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(authenticator.GetUI(), true, null);
 
             return tcs.Task;
         }
