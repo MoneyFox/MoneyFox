@@ -12,7 +12,7 @@
                           Height="100"
                           IsActive="True" />
             <TextBlock x:Uid="Loading"
-                       Text="Loading..."
+                       x:Name="LoadingText"
                        TextAlignment="Center" />
         </StackPanel>
     </Grid>

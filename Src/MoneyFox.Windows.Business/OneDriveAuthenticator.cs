@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Constants;
@@ -32,7 +31,7 @@ namespace MoneyFox.Windows.Business
         }
 
         /// <inheritdoc />
-        public async Task<IOneDriveClient> LoginAsync()
+        public async Task<IGraphServiceClient> LoginAsync()
         {
             try
             {
@@ -42,7 +41,7 @@ namespace MoneyFox.Windows.Business
                         : OnlineIdAuthenticationProvider.PromptType.PromptIfNeeded);
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
-                return new OneDriveClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
+                return new GraphServiceClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
             catch (ServiceException serviceException)
             {
