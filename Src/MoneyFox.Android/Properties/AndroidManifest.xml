@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="201607032" android:versionName="4.0.11" package="com.applysolutions.moneyfox" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="201607034" android:versionName="4.0.13" package="com.applysolutions.moneyfox" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
