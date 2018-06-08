@@ -1,19 +1,25 @@
 ﻿using System;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
-using MvvmCross.Plugins.Messenger;
 using MoneyFox.Business.Messages;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SelectFilterDialogViewModel : MvxViewModel
+    public interface ISelectFilterDialogViewModel : IBaseViewModel
+    {
+        bool IsClearedFilterActive { get; set; }
+        bool IsRecurringFilterActive { get; set; }
+        DateTime TimeRangeStart { get; set; }
+        DateTime TimeRangeEnd { get; set; }
+    }
+
+    public class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
     {
         private readonly IMvxMessenger messenger;
 
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
-        private DateTime timeRangeStart = DateTime.Now.AddMonths(6);
-        private DateTime timeRangeEnd = DateTime.Now.AddMonths(-2);
+        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
+        private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
         public SelectFilterDialogViewModel(IMvxMessenger messenger)
         {
@@ -79,11 +85,6 @@ namespace MoneyFox.Business.ViewModels
                 UpdateList();
             }
         }
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         private void UpdateList()
         {

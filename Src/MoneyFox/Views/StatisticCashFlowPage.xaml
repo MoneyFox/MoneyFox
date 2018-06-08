@@ -1,0 +1,11 @@
+﻿<d:MvxContentPage  x:TypeArguments="viewModels:StatisticCashFlowViewModel"
+                   xmlns="http://xamarin.com/schemas/2014/forms" 
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
+                   xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
+                   x:Class="MoneyFox.Views.StatisticCashFlowPage">
+
+    <microcharts:ChartView Chart="{Binding Chart}" />
+
+</d:MvxContentPage>

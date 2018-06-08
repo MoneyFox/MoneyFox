@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
+             xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+             x:Class="MoneyFox.UserControls.CategoryListUserControl">
+
+  <ContentView.Content>
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="240*" />
+            </Grid.RowDefinitions>
+
+            <SearchBar x:Name="SearchBar" 
+                       Grid.Row="0"
+                       VerticalOptions="Start" 
+                       Placeholder="{Binding Resources[SearchLabel]}"
+                       TextChanged="SearchTermChanged" />
+
+            <ListView x:Name="CategoryList"
+                      Grid.Row="1"
+                      ItemsSource="{Binding CategoryList}"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElement"
+                      IsGroupingEnabled="True"
+                      GroupShortNameBinding="{Binding Key}"
+                      GroupDisplayBinding="{Binding Key}">
+
+                <ListView.SeparatorVisibility>
+                    <OnPlatform x:TypeArguments="SeparatorVisibility">
+                        <On Platform="iOS" Value="Default" />
+                        <On Platform="Android" Value="None" />
+                    </OnPlatform>
+                </ListView.SeparatorVisibility>
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="{StaticResource DefaultSpacing}">
+                                <Label Text="{Binding Key}" Style="{StaticResource GroupHeaderStyle}" />
+                                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="LightGray" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
+                                          Text="{Binding Resources[EditLabel]}" />
+                                <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
+                                          Text="{Binding Resources[DeleteLabel]}" 
+                                          IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
+                                <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                                             Orientation="Vertical"
+                                             Padding="3"
+                                             Spacing="{StaticResource DefaultSpacing}"
+                                             Margin="{StaticResource DefaultListItemsMargin}">
+                                    <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                                </StackLayout>
+                            </controls:CardView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <controls:FloatingActionButton Grid.Row="1" 
+                                           x:Name="FAB" 
+                                           HorizontalOptions="EndAndExpand" 
+                                           Margin="12"
+                                           VerticalOptions="EndAndExpand"
+                                           Image="ic_add.png" 
+                                           ButtonColor="{StaticResource AccentColor}" 
+                                           Clicked="AddCategoryClick">
+                <controls:FloatingActionButton.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS">50</On>
+                        <On Platform="Android">80</On>
+                    </OnPlatform>
+                </controls:FloatingActionButton.WidthRequest>
+
+                <controls:FloatingActionButton.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS">50</On>
+                        <On Platform="Android">90</On>
+                    </OnPlatform>
+                </controls:FloatingActionButton.HeightRequest>
+            </controls:FloatingActionButton>
+
+            <Label Grid.Row="1"
+                   Margin="6"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Style="{StaticResource DeemphasizedLabelStyle}"
+                   LineBreakMode="WordWrap"
+                   IsVisible="{Binding IsCategoriesEmpty}"
+                   Text="{Binding Resources[NoCategoriesMessage]}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -1,10 +1,10 @@
 ﻿using System;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeBackupViewModel : IBackupViewModel
+    public class DesignTimeBackupViewModel : BaseViewModel, IBackupViewModel
     {
         public string CreateBackupText => Strings.CreateBackupInformationLabel;
         public string RestoreBackupText => Strings.RestoreBackupInformationLabel;

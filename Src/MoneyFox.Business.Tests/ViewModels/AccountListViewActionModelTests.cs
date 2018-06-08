@@ -5,8 +5,8 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using Moq;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Should;
 using Xunit;
 

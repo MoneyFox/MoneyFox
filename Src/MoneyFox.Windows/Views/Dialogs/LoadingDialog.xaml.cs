@@ -8,5 +8,11 @@ namespace MoneyFox.Windows.Views.Dialogs
         {
             InitializeComponent();
         }
+
+        public string Text
+        {
+            get => LoadingText.Text;
+            set => LoadingText.Text = value;
+        }
     }
 }

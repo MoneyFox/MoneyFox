@@ -12,34 +12,41 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.Business;
-using MoneyFox.Business.Converter;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.Manager;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.DataAccess;
+using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
+using MvvmCross;
+using MvvmCross.Platforms.Uap.Views;
 
 namespace MoneyFox.Windows
 {
+
+    public abstract class MoneyFoxApp : MvxApplication<Setup, CoreApp>
+    {
+    }
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -56,7 +63,7 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new WindowsUwpSettings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
+            switch (new Settings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
             {
                 case AppTheme.Dark:
                     RequestedTheme = ApplicationTheme.Dark;
@@ -68,6 +75,8 @@ namespace MoneyFox.Windows
             }
         }
 
+        private MainView mainView;
+
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used such as when the application is launched to open a specific file.
@@ -75,31 +84,22 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            CoreApp.CurrentPlatform = AppPlatform.UWP;
+            base.OnLaunched(e);
 #if !DEBUG
             AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                var mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-
-                Window.Current.Content = mainView;
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
 
-                // When the navigation stack isn't restored, navigate to the first page
-                // suppressing the initial entrance animation.
-                var setup = new Setup(mainView.MainFrame);
-                setup.Initialize();
-
-                var start = Mvx.Resolve<IMvxAppStart>();
-                start.Start();
-
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-                Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
 
-                mainView.ViewModel = Mvx.Resolve<MenuViewModel>();
+                mainView.ViewModel = Mvx.Resolve<MainViewModel>();
+                (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 
@@ -113,21 +113,34 @@ namespace MoneyFox.Windows
             }
 
             //When jumplist is selected navigate to appropriate tile
-            var tileHelper = Mvx.Resolve<TileHelper>();
-            if (e.Arguments == Constants.ADD_INCOME_TILE_ID)
+            var tileHelper = Mvx.Resolve<ITileManager>();
+            switch (e.Arguments)
             {
-                await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+                case Constants.ADD_INCOME_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+                    break;
+                case Constants.ADD_EXPENSE_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+                    break;
+                case Constants.ADD_TRANSFER_TILE_ID:
+                    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+                    break;
             }
-            else if (e.Arguments == Constants.ADD_EXPENSE_TILE_ID)
-            {
-                await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-            }
-            else if (e.Arguments == Constants.ADD_TRANSFER_TILE_ID)
-            {
-                await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-            }
-            // Ensure the current window is active
-            Window.Current.Activate();
+        }
+
+        protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
+        {
+            mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
+            Window.Current.Content = mainView;
+            mainView.MainFrame.NavigationFailed += OnNavigationFailed;
+
+            RootFrame = mainView.MainFrame;
+            return RootFrame;
+        }
+
+        protected override Frame CreateFrame()
+        {
+            return mainView.MainFrame;
         }
 
         private void OverrideTitleBarColor()
@@ -137,8 +150,8 @@ namespace MoneyFox.Windows
 
             //remove the solid-colored backgrounds behind the caption controls and system back button
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.Transparent;
-            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titleBar.ButtonBackgroundColor = Colors.DarkSlateBlue;
+            titleBar.ButtonInactiveBackgroundColor = Colors.DarkSlateBlue;
         }
 
         private async Task SetJumplist()
@@ -186,7 +199,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            new SettingsManager(new WindowsUwpSettings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new Settings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }

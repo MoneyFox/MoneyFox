@@ -1,7 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyFox.Business.ViewModels;
-using MvvmCross.Platform;
 using Microsoft.Services.Store.Engagement;
 
 namespace MoneyFox.Windows.Views
@@ -17,7 +15,6 @@ namespace MoneyFox.Windows.Views
         public AboutView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<AboutViewModel>();
 
             if (StoreServicesFeedbackLauncher.IsSupported())
             {

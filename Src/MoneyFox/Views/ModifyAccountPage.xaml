@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:MvxContentPage x:TypeArguments="viewModels:ModifyAccountViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+             xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+             x:Class="MoneyFox.Views.ModifyAccountPage"
+             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
+
+    <ContentPage.Content>
+
+        <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
+
+            <Label Text="{Binding Resources[AccountNameLabel]}" />
+            <Entry Text="{Binding SelectedAccount.Name}" />
+
+            <Label Text="{Binding Resources[CurrentBalanceLabel]}"
+                   Margin="0,5,0,0" />
+            <Entry x:Name="AmountEntry"
+                   Text="{Binding AmountString}" 
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="End"
+                   Focused="AmountFieldGotFocused"/>
+
+            <Label Text="{Binding Resources[NoteLabel]}"
+                   Margin="0,5,0,0"/>
+            <Entry Text="{Binding SelectedAccount.Note}" />
+
+            <Grid HorizontalOptions="FillAndExpand"
+                  Margin="0,5,0,0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="{Binding Resources[IsExcludedLabel]}" />
+                <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
+            </Grid>
+        </StackLayout>
+
+    </ContentPage.Content>
+</d:MvxContentPage>

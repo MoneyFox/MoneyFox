@@ -24,7 +24,9 @@ namespace MoneyFox.Business.Authentication
         }
 
         /// <inheritdoc />
-        public string LoadPassword() => protectedData.Unprotect(PASSWORD_KEY);
+        public string LoadPassword() {
+            return protectedData.Unprotect(PASSWORD_KEY);
+        }
 
         /// <inheritdoc />
         public void RemovePassword()

@@ -7,8 +7,8 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:MoneyFox.Business.ViewModels"
-             xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
-             d:DataContext="{d:DesignInstance designTime1:DesignTimeCategoryListViewModel,
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -50,7 +50,7 @@
                            VerticalAlignment="Center"
                            Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           FontSize="{StaticResource LargeFontSize}"
+                           FontSize="{StaticResource MediumFontSize}"
                            Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
@@ -61,7 +61,7 @@
                 <Border Margin="5" HorizontalAlignment="Left">
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource LargeFontSize}"
+                               FontSize="{StaticResource MediumFontSize}"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>
@@ -70,7 +70,7 @@
 
         <CollectionViewSource x:Key="Groups"
                               IsSourceGrouped="True"
-                              Source="{Binding Source}" />
+                              Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
@@ -79,12 +79,11 @@
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
         <TextBox x:Uid="SearchHeader"
+                 x:Name="SearchTextBox"
                  Grid.Row="0"
                  Header="search"
                  Margin="{StaticResource MediumLeftRightMargin}"
-                 Text="{Binding SearchText,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged}" />
+                 TextChanged="SearchTextBox_OnTextChanged" />
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>

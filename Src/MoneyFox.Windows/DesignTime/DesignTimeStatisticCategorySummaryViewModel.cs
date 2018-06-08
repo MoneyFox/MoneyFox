@@ -1,12 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using MoneyFox.Business.ViewModels.Interfaces;
+﻿using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation.Models;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Windows.DesignTime
 {
     public class DesignTimeStatisticCategorySummaryViewModel: IStatisticCategorySummaryViewModel
     {
-        public ObservableCollection<StatisticItem> CategorySummary => new ObservableCollection<StatisticItem>
+        public MvxObservableCollection<StatisticItem> CategorySummary => new MvxObservableCollection<StatisticItem>
             {
                 new StatisticItem{ Value = 300, Label = "Foo"},
                 new StatisticItem{ Value = 123, Label = "beer"},
@@ -19,5 +19,7 @@ namespace MoneyFox.Windows.DesignTime
                 new StatisticItem{ Value = 84654, Label = "A lot of Fooo"},
                 new StatisticItem{ Value = 2135, Label = "Something else"}
             };
+
+        public bool HasData { get; }
     }
 }

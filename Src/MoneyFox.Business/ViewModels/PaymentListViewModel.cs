@@ -12,10 +12,10 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -30,12 +30,11 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IBalanceCalculationManager balanceCalculationManager;
         private readonly IBackupManager backupManager;
-        private readonly IModifyDialogService modifyDialogService;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
 
-        private ObservableCollection<PaymentViewModel> relatedPayments;
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
+        private ObservableCollection<DateListGroup<PaymentViewModel>> dailyList;
         private IBalanceViewModel balanceViewModel;
         private int accountId;
         private string title;
@@ -53,7 +52,6 @@ namespace MoneyFox.Business.ViewModels
             ISettingsManager settingsManager,
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
-            IModifyDialogService modifyDialogService, 
             IMvxNavigationService navigationService,
             IMvxMessenger messenger)
         {
@@ -63,7 +61,6 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.balanceCalculationManager = balanceCalculationManager;
             this.backupManager = backupManager;
-            this.modifyDialogService = modifyDialogService;
             this.navigationService = navigationService;
             this.messenger = messenger;
 
@@ -75,7 +72,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Indicator if there are payments or not.
         /// </summary>
-        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
+        public bool IsPaymentsEmtpy => Source != null && !Source.Any();
 
         /// <summary>
         ///     Id for the current account.
@@ -89,11 +86,6 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///      View Model for the balance subview.
@@ -120,22 +112,7 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        /// <summary>
-        ///     Returns all PaymentViewModel who are assigned to this repository
-        ///     Currently only used for Android to get the selected PaymentViewModel.
-        /// </summary>
-        public ObservableCollection<PaymentViewModel> RelatedPayments
-        {
-            get => relatedPayments;
-            set
-            {
-                if (relatedPayments == value) return;
-                relatedPayments = value;
-                RaisePropertyChanged();
-            }
-        }
-
+        
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
@@ -145,6 +122,21 @@ namespace MoneyFox.Business.ViewModels
             set
             {
                 source = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
+            }
+        }
+
+        /// <summary>
+        ///     Returns daily groupped related payments
+        /// </summary>
+        public ObservableCollection<DateListGroup<PaymentViewModel>> DailyList
+        {
+            get => dailyList;
+            set
+            {
+                dailyList = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsPaymentsEmtpy));
@@ -170,19 +162,9 @@ namespace MoneyFox.Business.ViewModels
         #region Commands
 
         /// <summary>
-        ///     Loads the data for this view.
-        /// </summary>
-        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(Load);
-
-        /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
         public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
-
-        /// <summary>
-        ///     Opens a option dialog to select the modify operation
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> OpenContextMenuCommand => new MvxAsyncCommand<PaymentViewModel>(OpenContextMenu);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
@@ -190,7 +172,6 @@ namespace MoneyFox.Business.ViewModels
         public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
         #endregion
-
 
         /// <inheritdoc />
         public override void Prepare(PaymentListParameter parameter)
@@ -209,8 +190,7 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
-
-            await Task.CompletedTask;
+            await Load();
         }
 
         private async Task Load()
@@ -236,38 +216,36 @@ namespace MoneyFox.Business.ViewModels
                 paymentQuery = paymentQuery.Where(x => x.Data.IsRecurring);
             }
 
-            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeEnd);
+            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeEnd);
 
-            RelatedPayments = new ObservableCollection<PaymentViewModel>(
+            var loadedPayments = new ObservableCollection<PaymentViewModel>(
                 paymentQuery
                     .OrderByDescending(x => x.Data.Date)
                     .Select(x => new PaymentViewModel(x)));
 
-            CreateNestedLists();
-        }
 
-        private void CreateNestedLists()
-        {
-            foreach (var payment in RelatedPayments)
+            foreach (var payment in loadedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }
 
-            var dailyList = DateListGroup<PaymentViewModel>
-                .CreateGroups(RelatedPayments,
+            var dailyItems = DateListGroup<PaymentViewModel>
+                .CreateGroups(loadedPayments,
                               CultureInfo.CurrentUICulture,
                               s => s.Date.ToString("D", CultureInfo.InvariantCulture),
                               s => s.Date,
-                              itemClickCommand: EditPaymentCommand, itemLongClickCommand: OpenContextMenuCommand);
+                              itemClickCommand: EditPaymentCommand);
+
+            DailyList = new ObservableCollection<DateListGroup<PaymentViewModel>>(dailyItems);
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
                 DateListGroup<DateListGroup<PaymentViewModel>>
-                    .CreateGroups(dailyList, CultureInfo.CurrentUICulture,
+                    .CreateGroups(dailyItems, CultureInfo.CurrentUICulture,
                                   s =>
                                   {
                                       var date = Convert.ToDateTime(s.Key);
-                                      return date.ToString("MMMM",CultureInfo.InvariantCulture) +" " + date.Year;
+                                      return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
                                   },
                                   s => Convert.ToDateTime(s.Key)));
         }
@@ -276,22 +254,6 @@ namespace MoneyFox.Business.ViewModels
         {
             await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
                 new ModifyPaymentParameter(payment.Id));
-        }
-
-        private async Task OpenContextMenu(PaymentViewModel payment)
-        {
-            var result = await modifyDialogService.ShowEditSelectionDialog();
-
-            switch (result)
-            {
-                case ModifyOperation.Edit:
-                    EditPaymentCommand.Execute(payment);
-                    break;
-
-                case ModifyOperation.Delete:
-                    DeletePaymentCommand.Execute(payment);
-                    break;
-            }
         }
 
         private async Task DeletePayment(PaymentViewModel payment)
@@ -305,7 +267,7 @@ namespace MoneyFox.Business.ViewModels
 #pragma warning disable 4014
             backupManager.EnqueueBackupTask();
 #pragma warning restore 4014
-            await LoadCommand.ExecuteAsync();
+            await Load();
         }
     }
 }

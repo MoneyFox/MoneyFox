@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Foundation.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace MoneyFox.Foundation.Interfaces
 {
     public interface ITileManager
     {
@@ -7,5 +9,7 @@
         void CreateTile(TyleType type);
 
         void RemoveTile(TyleType type);
+
+        Task<bool> DoNavigation(string tileId);
     }
 }

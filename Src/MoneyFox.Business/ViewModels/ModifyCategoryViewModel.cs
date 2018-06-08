@@ -6,16 +6,39 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 using MvvmCross.Localization;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface IModifyCategoryViewModel : IBaseViewModel
+    {
+        /// <summary>
+        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
+        ///     a new CategoryViewModel.
+        /// </summary>
+        MvxAsyncCommand SaveCommand { get; }
+    
+        /// <summary>
+        ///     Cancel the current operation
+        /// </summary>
+        MvxAsyncCommand CancelCommand { get; }
+
+        /// <summary>
+        ///     Delete the selected CategoryViewModel from the database
+        /// </summary>
+        MvxAsyncCommand DeleteCommand { get; }
+
+        CategoryViewModel SelectedCategory { get; }
+
+        bool IsEdit { get; }
+    }
+
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public class ModifyCategoryViewModel : MvxViewModel<ModifyCategoryParameter>
+    public class ModifyCategoryViewModel : BaseViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly ICategoryService categoryService;
@@ -65,11 +88,6 @@ namespace MoneyFox.Business.ViewModels
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The currently selected CategoryViewModel

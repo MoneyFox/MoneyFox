@@ -5,9 +5,9 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.Tests;
 using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
@@ -21,7 +21,6 @@ namespace MoneyFox.Business.Tests.ViewModels
         private readonly Mock<ISettingsManager> settingsManager;
         private readonly Mock<IBalanceCalculationManager> balanceCalculatorManager;
         private readonly Mock<IBackupManager> backupManager;
-        private readonly Mock<IModifyDialogService> modifyDialogService;
         private readonly Mock<IMvxNavigationService> navigationService;
         private readonly Mock<IMvxMessenger> messenger;
 
@@ -33,7 +32,6 @@ namespace MoneyFox.Business.Tests.ViewModels
             settingsManager = new Mock<ISettingsManager>();
             balanceCalculatorManager = new Mock<IBalanceCalculationManager>();
             backupManager = new Mock<IBackupManager>();
-            modifyDialogService = new Mock<IModifyDialogService>();
             navigationService = new Mock<IMvxNavigationService>();
             messenger = new Mock<IMvxMessenger>();
 
@@ -56,7 +54,6 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object,
                                               navigationService.Object,
                                               messenger.Object);
 
@@ -83,7 +80,6 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
-                                              modifyDialogService.Object,
                                               navigationService.Object,
                                               messenger.Object);
 

@@ -4,12 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.OneDrive.Sdk;
+using Microsoft.Graph;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Business.Services
 {
@@ -26,10 +24,10 @@ namespace MoneyFox.Business.Services
             this.oneDriveAuthenticator = oneDriveAuthenticator;
         }
 
-        private IOneDriveClient OneDriveClient { get; set; }
+        private IGraphServiceClient OneDriveClient { get; set; }
 
-        private Item BackupFolder { get; set; }
-        private Item ArchiveFolder { get; set; }
+        private DriveItem BackupFolder { get; set; }
+        private DriveItem ArchiveFolder { get; set; }
 
         /// <summary>
         ///     Login User to OneDrive.
@@ -68,7 +66,7 @@ namespace MoneyFox.Business.Services
                                            DatabaseConstants.BACKUP_NAME))
                 .Content
                 .Request()
-                .PutAsync<Item>(dataToUpload);
+                .PutAsync<DriveItem>(dataToUpload);
 
             return uploadedItem != null;
         }
@@ -150,7 +148,7 @@ namespace MoneyFox.Business.Services
 
             if (currentBackup == null) return;
 
-            var updateItem = new Item
+            var updateItem = new DriveItem
             {
                 ParentReference = new ItemReference {Id = ArchiveFolder.Id},
                 Name = string.Format(DatabaseConstants.BACKUP_ARCHIVE_NAME,
@@ -180,7 +178,7 @@ namespace MoneyFox.Business.Services
 
         private async Task CreateBackupFolder()
         {
-            var folderToCreate = new Item
+            var folderToCreate = new DriveItem
             {
                 Name = DatabaseConstants.BACKUP_FOLDER_NAME,
                 Folder = new Folder()
@@ -208,7 +206,7 @@ namespace MoneyFox.Business.Services
 
         private async Task CreateArchiveFolder()
         {
-            var folderToCreate = new Item
+            var folderToCreate = new DriveItem
             {
                 Name = DatabaseConstants.ARCHIVE_FOLDER_NAME,
                 Folder = new Folder()

@@ -4,13 +4,13 @@ using Microsoft.AppCenter.Crashes;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 using MvvmCross.Localization;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface IBackupViewModel
+    public interface IBackupViewModel : IBaseViewModel
     {
         string CreateBackupText { get; }
         string RestoreBackupText { get; }
@@ -34,7 +34,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : MvxViewModel
+    public class BackupViewModel : BaseViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
@@ -91,11 +91,6 @@ namespace MoneyFox.Business.ViewModels
         ///     All datamodels are then reloaded.
         /// </summary>
         public MvxAsyncCommand RestoreCommand => new MvxAsyncCommand(RestoreBackup);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.

@@ -1,13 +1,20 @@
 ﻿using System;
 using MoneyFox.Business.Extensions;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Localization;
-using MvvmCross.Plugins.Messenger;
 using MoneyFox.Business.Messages;
+using MvvmCross.Commands;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SelectDateRangeDialogViewModel : MvxViewModel
+    public interface ISelectDateRangeDialogViewModel : IBaseViewModel
+    {
+        DateTime StartDate { get; set; }
+        DateTime EndDate { get; set; }
+
+        MvxCommand DoneCommand { get; set; }
+    }
+
+    public class SelectDateRangeDialogViewModel : BaseViewModel
     {
         private readonly IMvxMessenger messenger;
 
@@ -51,11 +58,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public MvxCommand DoneCommand => new MvxCommand(Done);
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         private void Done()
         {

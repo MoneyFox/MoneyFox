@@ -5,8 +5,7 @@ using MoneyFox.Business.Messages;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
 namespace MoneyFox.Business.ViewModels.Statistic
@@ -14,7 +13,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// <summary>
     ///     Reprsents the statistic view.
     /// </summary>
-    public abstract class StatisticViewModel : MvxViewModel
+    public abstract class StatisticViewModel : BaseViewModel
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
@@ -49,7 +48,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
                 ? new SKColor(0, 0, 0)
                 : SKColor.Parse("#EFF2F5");
 
-            token = messenger.Subscribe<DateSelectedMessage>(message =>
+            token = messenger.SubscribeOnMainThread<DateSelectedMessage>(message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
@@ -57,10 +56,11 @@ namespace MoneyFox.Business.ViewModels.Statistic
             });
         }
 
-        /// <summary>
-        ///     Loads the data with the current start and end date.
-        /// </summary>
-        public MvxAsyncCommand LoadCommand => new MvxAsyncCommand(Load);
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            await Load();
+        }
 
         /// <summary>
         ///     Startdate for a custom statistic
@@ -95,7 +95,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <summary>
         ///     Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
+        public string Title => Strings.StatisticsRangeTitle + " " + StartDate.ToString("d") +
                                " - " +
                                EndDate.ToString("d");
 

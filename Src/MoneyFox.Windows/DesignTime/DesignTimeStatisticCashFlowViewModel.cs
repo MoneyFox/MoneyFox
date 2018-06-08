@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microcharts;
-using MoneyFox.Business.ViewModels.Interfaces;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.ViewModels.Statistic;
 
 namespace MoneyFox.Windows.DesignTime
 {
-    public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
+    public class DesignTimeStatisticCashFlowViewModel : BaseViewModel, IStatisticCashFlowViewModel
     {
         public string Title => "I AM A MIGHTY TITLE";
 

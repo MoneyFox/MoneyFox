@@ -13,17 +13,123 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 using MvvmCross.Localization;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
+    public interface IModifyPaymentViewModel : IBaseViewModel
+    {        
+        /// <summary>
+        ///     Indicates if the view is in Edit mode.
+        /// </summary>
+        bool IsEdit { get; }    
+        
+        /// <summary>
+        ///     Indicates if the PaymentViewModel is a transfer.
+        /// </summary>
+        bool IsTransfer { get; }
+
+        /// <summary>
+        ///     Indicates if the reminder is endless
+        /// </summary>
+        bool IsEndless { get; }
+
+        /// <summary>
+        ///     The Enddate for recurring PaymentViewModel
+        /// </summary>
+        DateTime EndDate { get; }
+
+        /// <summary>
+        ///     The selected recurrence
+        /// </summary>
+        PaymentRecurrence Recurrence { get; }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        string AmountString { get; }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        ///     This has to have the same order as the enum
+        /// </summary>
+        List<PaymentRecurrence> RecurrenceList { get; }
+
+        /// <summary>
+        ///     The selected PaymentViewModel
+        /// </summary>
+        PaymentViewModel SelectedPayment { get; }
+
+        /// <summary>
+        ///     Gives access to all accounts for Charged Dropdown list
+        /// </summary>
+        ObservableCollection<AccountViewModel> ChargedAccounts { get; }
+
+        /// <summary>
+        ///     Gives access to all accounts for Target Dropdown list
+        /// </summary>
+        ObservableCollection<AccountViewModel> TargetAccounts { get; }
+
+        /// <summary>
+        ///     Returns the Title for the page
+        /// </summary>
+        string Title { get; }
+
+        /// <summary>
+        ///     Returns the Header for the AccountViewModel field
+        /// </summary>
+        string AccountHeader { get; }
+
+        /// <summary>
+        ///     The PaymentViewModel date
+        /// </summary>
+        DateTime Date { get; }
+
+        /// <summary>
+        ///     Id of the current payment.
+        /// </summary>
+        int PaymentId { get; }
+
+        /// <summary>
+        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
+        /// </summary>
+        IMvxCommand SelectedItemChangedCommand { get; }
+
+        /// <summary>
+        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        IMvxAsyncCommand SaveCommand { get; }
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        IMvxAsyncCommand GoToSelectCategorydialogCommand { get; }
+
+        /// <summary>
+        ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        IMvxAsyncCommand DeleteCommand { get; }
+
+        /// <summary>
+        ///     Cancels the operations.
+        /// </summary>
+        IMvxAsyncCommand CancelCommand { get; }
+
+        /// <summary>
+        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
+        /// </summary>
+        IMvxCommand ResetCategoryCommand { get; }
+    }
+
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public class ModifyPaymentViewModel : MvxViewModel<ModifyPaymentParameter>
+    public class ModifyPaymentViewModel : BaseViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentService paymentService;
@@ -35,7 +141,8 @@ namespace MoneyFox.Business.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        // This has to be static in order to keep the value even if you leave the page to select a CategoryViewModel.
+        private bool preventNullingSelected = false;
+        
         private double amount;
         private PaymentViewModel selectedPayment;
         private PaymentRecurrence recurrence;
@@ -76,22 +183,22 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand SaveCommand => new MvxAsyncCommand(Save);
+        public IMvxAsyncCommand SaveCommand => new MvxAsyncCommand(Save);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxAsyncCommand(OpenSelectCategoryList);
+        public IMvxAsyncCommand GoToSelectCategorydialogCommand => new MvxAsyncCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand DeleteCommand => new MvxAsyncCommand(Delete);
+        public IMvxAsyncCommand DeleteCommand => new MvxAsyncCommand(Delete);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public IMvxCommand CancelCommand => new MvxAsyncCommand(Cancel);
+        public IMvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
@@ -183,7 +290,7 @@ namespace MoneyFox.Business.ViewModels
             set
             { 
                 // we remove all separator chars to ensure that it works in all regions
-                string amountstring = Utilities.RemoveGroupingSeparators(value.ToString());
+                string amountstring = Utilities.RemoveGroupingSeparators(value);
 
                 double convertedValue;
                 if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
@@ -218,10 +325,7 @@ namespace MoneyFox.Business.ViewModels
             get => selectedPayment;
             set
             {
-                if (value == null)
-                {
-                    return;
-                }
+                if (selectedPayment == value) return;
                 selectedPayment = value;
                 RaisePropertyChanged();
             }
@@ -281,11 +385,6 @@ namespace MoneyFox.Business.ViewModels
         }
 
         private AccountViewModel AccountViewModelBeforeEdit { get; set; }
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Id of the current payment.
@@ -369,6 +468,15 @@ namespace MoneyFox.Business.ViewModels
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
         }
 
+        /// <inheritdoc />
+        public override void ViewDisappearing()
+        {
+            if (!preventNullingSelected)
+            {
+                SelectedPayment = null;
+            }
+        }
+
         /// <summary>
         ///     Moved to own method for debugg reasons
         /// </summary>
@@ -376,8 +484,8 @@ namespace MoneyFox.Business.ViewModels
         private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
-
             SelectedPayment.Category = message.SelectedCategory;
+            preventNullingSelected = false;
         }
 
         private async Task Save()
@@ -458,7 +566,7 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            //TODO: use return value here.
+            preventNullingSelected = true;
             await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 

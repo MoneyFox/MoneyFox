@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Views.Dialogs;
@@ -73,9 +72,9 @@ namespace MoneyFox.Windows.Services
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async void ShowLoadingDialog()
+        public async void ShowLoadingDialog(string message = null)
         {
-            loadingDialog = new LoadingDialog();
+            loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
             await loadingDialog.ShowAsync();
         }
 

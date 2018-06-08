@@ -1,11 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
-using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
@@ -30,20 +29,22 @@ namespace MoneyFox.Business.ViewModels.Statistic
         }
 
         /// <inheritdoc />
-        public ObservableCollection<StatisticItem> CategorySummary { get; set; }
+        public MvxObservableCollection<StatisticItem> CategorySummary { get; set; }
+
+        /// <inheritdoc />
+        public bool HasData => CategorySummary.Any();
 
         /// <summary>
         ///     Overrides the load method to load the category summary data.
         /// </summary>
         protected override async Task Load()
         {
-            var items = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate);
-            CategorySummary.Clear();
+            var items = (await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)).ToList();
 
-            foreach (var statisticItem in items)
-            {
-                CategorySummary.Add(statisticItem);
-            }
+            CategorySummary.Clear();
+            CategorySummary.AddRange(items);
+
+            RaisePropertyChanged(nameof(HasData));
         }
     }
 }

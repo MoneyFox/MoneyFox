@@ -1,0 +1,33 @@
+﻿<d:MvxContentPage x:TypeArguments="statistic:StatisticSelectorViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                  xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
+                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
+                  x:Class="MoneyFox.Views.StatisticSelectorPage"
+                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+
+    <ContentPage.Content>
+        <ListView x:Name="StatisticSelectorList"
+                  ItemsSource="{Binding StatisticItems}"
+                  RowHeight="60"
+                  Margin="{DynamicResource NegativeMediumLeftRightMargin}"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
+                            <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
+                                     Orientation="Vertical"
+                                     Padding="3"
+                                     Spacing="{DynamicResource DefaultSpacing}">
+                                <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                            </StackLayout>
+                        </controls:CardView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</d:MvxContentPage>

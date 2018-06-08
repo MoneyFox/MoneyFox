@@ -8,13 +8,57 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.Navigation;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 using MvvmCross.Localization;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class ModifyAccountViewModel : MvxViewModel<ModifyAccountParameter>
+    public interface IModifyAccountViewModel : IBaseViewModel
+    {
+        /// <summary>
+        ///     indicates if the AccountViewModel already exists and shall
+        ///     be updated or new created
+        /// </summary>
+        bool IsEdit { get; }
+        
+        /// <summary>
+        ///     Returns the Title based on if the view is in edit mode or not.
+        /// </summary>
+        string Title { get; }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        string AmountString { get; }
+
+        /// <summary>
+        ///     The currently selected AccountViewModel
+        /// </summary>
+        AccountViewModel SelectedAccount { get; }
+
+        /// <summary>
+        ///     Saves all changes to the database
+        ///     or creates a new AccountViewModel depending on
+        ///     the <see cref="IsEdit" /> property
+        /// </summary>
+        /// 
+        MvxAsyncCommand SaveCommand { get; }
+        /// <summary>
+        ///     Deletes the selected AccountViewModel from the database
+        /// </summary>
+        /// 
+        MvxAsyncCommand DeleteCommand { get; }
+
+        /// <summary>
+        ///     Cancels the operation and will revert the changes
+        /// </summary>
+        MvxAsyncCommand CancelCommand { get; }
+    }
+
+    public class  ModifyAccountViewModel : BaseViewModel<ModifyAccountParameter>, IModifyAccountViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
@@ -39,38 +83,18 @@ namespace MoneyFox.Business.ViewModels
             this.accountService = accountService;
         }
 
-        #region Commands
-        
-        /// <summary>
-        ///     Saves all changes to the database
-        ///     or creates a new AccountViewModel depending on
-        ///     the <see cref="IsEdit" /> property
-        /// </summary>
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
-
-        /// <summary>
-        ///     Deletes the selected AccountViewModel from the database
-        /// </summary>
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
-
-        /// <summary>
-        ///     Cancels the operation and will revert the changes
-        /// </summary>
-        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        #endregion
-
         #region Properties
 
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
+        /// <inheritdoc />
+        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
 
-        /// <summary>
-        ///     indicates if the AccountViewModel already exists and shall
-        ///     be updated or new created
-        /// </summary>
+        /// <inheritdoc />
+        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
+
+        /// <inheritdoc />
+        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+
+        /// <inheritdoc />
         public bool IsEdit
         {
             get => isEdit;
@@ -81,18 +105,12 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Returns the Title based on if the view is in edit mode or not.
-        /// </summary>
+        /// <inheritdoc />
         public string Title => IsEdit
             ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
             : Strings.AddAccountTitle;
 
-        /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
-        /// </summary>
+        /// <inheritdoc />
         public string AmountString
         {
             get => Utilities.FormatLargeNumbers(amount);
@@ -106,14 +124,10 @@ namespace MoneyFox.Business.ViewModels
                 {
                     amount = convertedValue;
                 }
-
-                RaisePropertyChanged();
             }
         }
 
-        /// <summary>
-        ///     The currently selected AccountViewModel
-        /// </summary>
+        /// <inheritdoc />
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;

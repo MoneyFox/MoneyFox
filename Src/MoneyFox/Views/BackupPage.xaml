@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:MvxContentPage x:TypeArguments="viewModels:BackupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+             xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+             xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
+             x:Class="MoneyFox.Views.BackupPage"
+             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
+
+    <d:MvxContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="Inverter" />
+            <converter:DateVisibilityConverter x:Key="DateVisibilityConverter" />
+        </ResourceDictionary>
+    </d:MvxContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout x:Name="MainLayout">
+
+            <Button Text="{Binding LoginButtonLabel}"
+                    IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
+                    Command="{Binding LoginCommand}" >
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
+
+            <Button Text="{Binding LogoutButtonLabel}" 
+                    IsVisible="{Binding IsLoggedIn}"  
+                    Command="{Binding LogoutCommand}">
+                <Button.Effects>
+                    <effects:ButtonEffect />
+                </Button.Effects>
+            </Button>
+
+            <StackLayout IsVisible="{Binding IsLoggedIn}">
+                <Label Text="{Binding CreateBackupText}"
+                       HorizontalOptions="StartAndExpand" />
+                <Button x:Name="ButtonRestoreBackup"
+                        Text="{Binding CreateBackupButtonLabel}" 
+                        Command="{Binding BackupCommand}">
+                    <Button.Effects>
+                        <effects:ButtonEffect />
+                    </Button.Effects>
+                </Button>
+
+                <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
+
+                <Grid>
+                    <Grid.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="37"/>
+                            <On Platform="UWP" Value="35"/>
+                            <On Platform="Android" Value="48"/>
+                        </OnPlatform>
+                    </Grid.HeightRequest>
+
+                    <Button Text="{Binding RestoreBackupButtonlabel}" 
+                            Command="{Binding RestoreCommand}" >
+                        <Button.Effects>
+                            <effects:ButtonEffect />
+                        </Button.Effects>
+                    </Button>
+
+                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
+                </Grid>
+
+                <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
+                    <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
+                    <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</d:MvxContentPage>

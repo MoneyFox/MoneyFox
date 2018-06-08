@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,37 +8,31 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
 using MoneyFox.Foundation;
-using MvvmCross.Core.Navigation;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : MvxViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly ICategoryService CategoryService;
-        protected readonly IModifyDialogService ModifyDialogService;
         protected readonly IDialogService DialogService;
         protected readonly IMvxNavigationService NavigationService;
-
-        private string searchText;
-        private ObservableCollection<CategoryViewModel> categories;
-        private CategoryViewModel selectedCategory;
+        
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
         ///     Baseclass for the categorylist usercontrol
         /// </summary>
         /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="modifyDialogService">An instance of <see cref="IModifyDialogService"/> to display a context dialog.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         protected AbstractCategoryListViewModel(ICategoryService categoryService,
-           IModifyDialogService modifyDialogService, IDialogService dialogService, 
+           IDialogService dialogService, 
            IMvxNavigationService navigationService)
         {
             CategoryService = categoryService;
-            ModifyDialogService = modifyDialogService;
             DialogService = dialogService;
             this.NavigationService = navigationService;
         }
@@ -49,75 +44,26 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
-
-        /// <summary>
-        ///     Collection with all categories
-        /// </summary>
-        public ObservableCollection<CategoryViewModel> Categories
-        {
-            get { return categories; }
-            set
-            {
-                if (categories == value) return;
-                categories = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsCategoriesEmpty));
-            }
-        }
-
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> Source
+        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList
         {
-            get { return source; }
+            get => source;
             set
             {
                 if (source == value) return;
                 source = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(IsCategoriesEmpty));
             }
         }
 
-        /// <summary>
-        ///     CategoryViewModel currently selected in the view.
-        /// </summary>
-        public CategoryViewModel SelectedCategory
-        {
-            get { return selectedCategory; }
-            set
-            {
-                if (selectedCategory == value) return;
-                selectedCategory = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public bool IsCategoriesEmpty => !Categories?.Any() ?? true;
-
-        /// <summary>
-        ///     Text to search for. Will perform the search when the text changes.
-        /// </summary>
-        public string SearchText
-        {
-            get { return searchText; }
-            set
-            {
-                searchText = value;
-                Search();
-                RaisePropertyChanged();
-            }
-        }
+        public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
         #endregion
 
         #region Commands
-
-        /// <summary>
-        ///     Prepares everthing after the view is loaded.
-        /// </summary>
-        public MvxAsyncCommand LoadedCommand => new MvxAsyncCommand(Loaded);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
@@ -132,42 +78,46 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel>ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
-        ///     Opens a option dialog to select the modify operation
+        ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> OpenContextMenuCommand => new MvxAsyncCommand<CategoryViewModel>(OpenContextMenu);
+        public MvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand
-            => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
+        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
 
         #endregion
+
+        /// <inheritdoc />
+        public override async void ViewAppearing()
+        {
+            await Loaded();
+        }
 
         /// <summary>
         ///     Performs a search with the text in the searchtext property
         /// </summary>
-        public async Task Search()
+        public async Task Search(string searchText = "")
         {
-            if (!string.IsNullOrEmpty(SearchText))
+            List<CategoryViewModel> categories;
+            if (!string.IsNullOrEmpty(searchText))
             {
                 var searchedCategories = await CategoryService.SearchByName(searchText);
-                Categories = new ObservableCollection<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
+                categories = new List<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
             } else
             {
                 var selectedCategories = await CategoryService.GetAllCategories();
-                Categories =
-                    new ObservableCollection<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
+                categories = new List<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
             }
-            Source = CreateGroup();
+            CategoryList = CreateGroup(categories);
         }
 
         private async Task Loaded()
         {
-            SearchText = string.Empty;
             await Search();
         }
 
@@ -181,42 +131,20 @@ namespace MoneyFox.Business.ViewModels
             await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup() =>
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
             new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
-                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(Categories,
+                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(categories,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand,
-                    itemLongClickCommand:OpenContextMenuCommand));
-
-        private async Task OpenContextMenu(CategoryViewModel category)
-        {
-            var result = await ModifyDialogService.ShowEditSelectionDialog();
-
-            switch (result)
-            {
-                case ModifyOperation.Edit:
-                    EditCategoryCommand.Execute(category);
-                    break;
-
-                case ModifyOperation.Delete:
-                    DeleteCategoryCommand.Execute(category);
-                    break;
-            }
-        }
+                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand));
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                if (Categories.Contains(categoryToDelete))
-                {
-                    Categories.Remove(categoryToDelete);
-                }
-
                 await CategoryService.DeleteCategory(categoryToDelete.Category);
-                Search();
+                await Search();
             }
         }
     }

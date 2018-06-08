@@ -149,7 +149,7 @@
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
     <value>Download the previous uploaded database backup and replace your local data with it. 
-WARNING: Local changes you made meanwhile we be lost.</value>
+WARNING: Local changes you made meanwhile will be lost.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
@@ -348,16 +348,16 @@ Tap to visit the Repository:</value>
     <value>Monthly Expenses</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>There are no accounts. Add one by tapping on the three dots at the bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>There are no categories. Add one by tapping on the plus symbol at the bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>You can change between a dark and light theme. To apply this change please restart the application.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>
@@ -380,9 +380,6 @@ Also if you launch the application there it will check if there are newer backup
   </data>
   <data name="Logout.Content" xml:space="preserve">
     <value>Logout</value>
-  </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
     <value>Backup Manually</value>

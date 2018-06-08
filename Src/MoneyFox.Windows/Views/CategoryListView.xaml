@@ -1,19 +1,11 @@
 ﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.CategoryListView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.Uwp.Views"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       mc:Ignorable="d">
-
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}"
           EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -39,7 +31,7 @@
                               Label="New Category" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-        
+
         <!--  Adaptive triggers  -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">

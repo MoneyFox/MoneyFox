@@ -3,11 +3,11 @@ using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Core.ViewModels;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
+    public class DesignTimeStatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
     {
         public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
         {

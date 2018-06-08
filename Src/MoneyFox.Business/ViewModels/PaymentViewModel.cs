@@ -9,7 +9,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : INotifyPropertyChanged
+    public class PaymentViewModel : BaseViewModel
     {
         /// <summary>
         ///     Default constructor. Will create a new <see cref="Payment"/>
@@ -273,16 +273,6 @@ namespace MoneyFox.Business.ViewModels
                 currentAccountId = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        ///     Advices the controls to update to get changes.
-        /// </summary>
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

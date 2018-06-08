@@ -1,11 +1,10 @@
 ﻿using System;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsPersonalizationViewModel : MvxViewModel
+    public class SettingsPersonalizationViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
 

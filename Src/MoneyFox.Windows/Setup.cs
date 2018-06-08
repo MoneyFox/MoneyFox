@@ -1,66 +1,64 @@
-using Windows.UI.Xaml.Controls;
-using Autofac;
-using Autofac.Extras.MvvmCross;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
-using MoneyFox.Business;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Platform.Plugins;
-using MvvmCross.Platform.UI;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.File;
-using MvvmCross.Plugins.WebBrowser;
-using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
-using MvvmCross.Platform.IoC;
-using MvvmCross.Platform.Logging;
-using MvvmCross.Plugins.Email.Uwp;
-using MvvmCross.Plugins.File.Uwp;
-using MvvmCross.Plugins.Visibility.Uwp;
-using MvvmCross.Plugins.WebBrowser.Uwp;
-using MvvmCross.Uwp.Platform;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Windows.Business;
+using MoneyFox.Windows.Services;
+using MvvmCross.Platforms.Uap.Core;
+using MvvmCross.Plugin;
+using MvvmCross.Plugin.Email;
+using MvvmCross.Plugin.Email.Platforms.Uap;
+using MvvmCross.Plugin.File;
+using MvvmCross.Plugin.File.Platforms.Uap;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.Plugin.Visibility.Platforms.Uap;
+using MvvmCross.Plugin.WebBrowser;
+using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
+using MvvmCross.UI;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
+using ISettings = MoneyFox.Business.ISettings;
+using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Windows
 {
-    public class Setup : MvxWindowsSetup
+    public class Setup : MvxWindowsSetup<CoreApp>
     {
-        public Setup(Frame frame)
-            : base(frame)
+        protected override void InitializeFirstChance()
         {
+            base.InitializeFirstChance();
+
+            Mvx.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
+            Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
+            Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
+            Mvx.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
+            Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
+            Mvx.LazyConstructAndRegisterSingleton<ISettings, Settings>();
+            Mvx.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
+
+            DependencyRegistrator.RegisterDependencies();
         }
 
         /// <inheritdoc />
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            base.LoadPlugins(pluginManager);
-            pluginManager.EnsurePluginLoaded<PluginLoader>();
-
             //We have to do this here, since the loading via bootloader won't work for UWP projects
-            Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
-            Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
-            Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
-            Mvx.RegisterType<ISettings, WindowsUwpSettings>();
-            Mvx.RegisterType<IMvxNativeVisibility, MvxWinRTVisibility>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxComposeEmailTask, MvxComposeEmailTask>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, MvxWebBrowserTask>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxFileStore, MvxWindowsFileStore>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxNativeVisibility, MvxWinRTVisibility>();
+            Mvx.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
         }
 
-        /// <inheritdoc />
-        protected override IMvxIoCProvider CreateIocProvider()
+        public override IEnumerable<Assembly> GetViewModelAssemblies()
         {
-            var cb = new ContainerBuilder();
-
-            cb.RegisterModule<WindowsModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
-        }
-
-        /// <inheritdoc />
-        protected override IMvxApplication CreateApp() => new MoneyFox.Business.App();
-
-        /// <inheritdoc />
-        protected override MvxLogProviderType GetDefaultLogProviderType()
-        {
-            return MvxLogProviderType.None;
+            var result = GetViewAssemblies();
+            var assemblyList = result.ToList();
+            assemblyList.Add(typeof(MainViewModel).Assembly);
+            return assemblyList;
         }
     }
 }

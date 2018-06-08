@@ -1,5 +1,4 @@
 ﻿using System;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Interfaces;

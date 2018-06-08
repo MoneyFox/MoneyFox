@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
@@ -7,7 +6,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the general settings view.
     /// </summary>
-    public class SettingsGeneralViewModel : MvxViewModel
+    public class SettingsGeneralViewModel : BaseViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;
@@ -20,11 +19,6 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
             this.backgroundTaskManager = backgroundTaskManager;
         }
-
-        /// <summary>
-        ///     Provides an TextSource for the translation binding on this page.
-        /// </summary>
-        public IMvxLanguageBinder TextSource => new MvxLanguageBinder("", GetType().Name);
 
         /// <summary>
         ///     Indicates if the autobackup is enabled or disabled.

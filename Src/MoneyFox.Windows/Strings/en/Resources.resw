@@ -409,7 +409,7 @@ Also if you launch the application there it will check if there are newer backup
     <value>Included Accounts</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value />
+    <value>Filter</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Leave a Feedback</value>
