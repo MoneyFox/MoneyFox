@@ -63,7 +63,13 @@
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
 
     <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
-                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemAccentColor}" TintOpacity=".6"/>
+                  BackgroundSource="Backdrop" 
+                  TintColor="{ThemeResource SystemAccentColor}" 
+                  TintOpacity=".6" 
+                  FallbackColor="{ThemeResource SystemAccentColor}"/>
     <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
-                  BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemAccentColor}"  TintOpacity=".6"/>
+                  BackgroundSource="HostBackdrop"
+                  TintColor="{ThemeResource SystemAccentColor}" 
+                  TintOpacity=".6"
+                  FallbackColor="{ThemeResource SystemAccentColor}"/>
 </ResourceDictionary>
