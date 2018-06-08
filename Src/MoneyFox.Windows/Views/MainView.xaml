@@ -35,25 +35,25 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemSeparator/>
 
-                <NavigationViewItem Content="Categories" Tag="Categories" Foreground="White">
+                <NavigationViewItem Content="Categories" Tag="Categories" >
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Backup" Tag="Backup" Foreground="White">
+                <NavigationViewItem Content="Backup" Tag="Backup" >
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="Settings" Tag="Settings" Foreground="White">
+                <NavigationViewItem Content="Settings" Tag="Settings">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Cog" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="About" Tag="About" Foreground="White">
+                <NavigationViewItem Content="About" Tag="About">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="InfoCircle" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
