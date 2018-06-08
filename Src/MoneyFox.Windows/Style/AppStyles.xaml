@@ -62,6 +62,13 @@
     <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
 
+    <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
+
     <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
                   BackgroundSource="Backdrop" 
                   TintColor="{ThemeResource SystemAccentColor}" 
