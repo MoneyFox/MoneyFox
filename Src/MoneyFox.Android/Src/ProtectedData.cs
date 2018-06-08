@@ -28,25 +28,7 @@ namespace MoneyFox.Droid
         /// <inheritdoc />
         public string Unprotect(string key)
         {
-            try
-            {
-                if (preferences.Contains(key))
-                {
-                    var value = preferences.GetString(key, null);
-                    if (value != null)
-                    {
-                        Protect(key, value);
-                        var editor = preferences.Edit();
-                        editor.Remove(key);
-                        editor.Commit();
-                    }
-                }
-                return CrossSecureStorage.Current.GetValue(key);
-            } 
-            catch
-            {
-                return null;
-            }
+            return CrossSecureStorage.Current.GetValue(key);
         }
 
         /// <inheritdoc />
