@@ -210,52 +210,61 @@
     <BundleResource Include="Resources\ic_cancel.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cancel_2x.png" />
+    <BundleResource Include="Resources\ic_cancel%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cancel_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_add%402x.png" />
+    <BundleResource Include="Resources\ic_cancel%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_done.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_done_2x.png" />
+    <BundleResource Include="Resources\ic_done%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_done_3x.png" />
+    <BundleResource Include="Resources\ic_done%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconCleared2x.png" />
+    <BundleResource Include="Resources\IconCleared%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconCleared3x.png" />
+    <BundleResource Include="Resources\IconCleared%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\IconCleared.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconRecurring3x.png" />
+    <BundleResource Include="Resources\IconRecurring%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\IconRecurring.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconRecurring2x.png" />
+    <BundleResource Include="Resources\IconRecurring%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\IconTransfer.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconTransfer2x.png" />
+    <BundleResource Include="Resources\IconTransfer%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconTransfer3x.png" />
+    <BundleResource Include="Resources\IconTransfer%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_add%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconSave%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconSave%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
