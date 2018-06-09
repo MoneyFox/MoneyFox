@@ -2,21 +2,13 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:converter="using:MoneyFox.Windows.Converter"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:designTime="using:MoneyFox.Windows.DesignTime"
                       xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
-
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
@@ -27,10 +19,14 @@
                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
                     <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Left"
                                TextTrimming="CharacterEllipsis" />
-                    <TextBlock HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}"
-                               TextAlignment="Right" />
+                    <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
+
+                        <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
+
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding Percentage}" />
+                        <TextBlock Text="%)" />
+                    </StackPanel>
                 </Grid>
             </Grid>
         </DataTemplate>
