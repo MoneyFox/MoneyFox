@@ -45,7 +45,7 @@ namespace MoneyFox.DataAccess.Tests.QueryExtensions
 
             // Assert
             Assert.Single(resultList);
-            Assert.Equal(1, resultList[0].Id);
+            Assert.Equal(2, resultList[0].Id);
         }
 
         [Fact]
@@ -74,8 +74,9 @@ namespace MoneyFox.DataAccess.Tests.QueryExtensions
             // Arrange
             var groupQuery = new List<CategoryGroupEntity>
                 {
-                    new CategoryGroupEntity {Id = 1},
-                    new CategoryGroupEntity {Id = 2}
+                    new CategoryGroupEntity {Id = 1, Name = "Cola"},
+                    new CategoryGroupEntity {Id = 2, Name = "Alpha"},
+                    new CategoryGroupEntity {Id = 3, Name = "Books"}
                 }
                 .AsQueryable();
 
@@ -84,9 +85,9 @@ namespace MoneyFox.DataAccess.Tests.QueryExtensions
 
             // Assert
             Assert.Equal(3, resultList.Count);
-            Assert.Equal(3, resultList[0].Id);
-            Assert.Equal(1, resultList[1].Id);
-            Assert.Equal(2, resultList[2].Id);
+            Assert.Equal(2, resultList[0].Id);
+            Assert.Equal(3, resultList[1].Id);
+            Assert.Equal(1, resultList[2].Id);
         }
     }
 }

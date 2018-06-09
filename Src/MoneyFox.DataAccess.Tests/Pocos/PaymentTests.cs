@@ -23,11 +23,14 @@ namespace MoneyFox.DataAccess.Tests.Pocos
             Assert.Equal(expectedResult, payment.Data.IsCleared);
         }
 
+        /// <summary>
+        ///     This test might fail around midnight.
+        /// </summary>
         [Theory]
-        [InlineData(-120, true)]
-        [InlineData(0, true)]
-        [InlineData(120, false)]
-        public void ClearPayment_WithDifferentTimeStamps(int minutes, bool expectedResult)
+        [InlineData(-120)]
+        [InlineData(0)]
+        [InlineData(120)]
+        public void ClearPayment_WithDifferentTimeStamps(int minutes)
         {
             // Arrange 
             var payment = new Payment { Data = { Date = DateTime.Now.AddMinutes(minutes) } };
@@ -36,7 +39,7 @@ namespace MoneyFox.DataAccess.Tests.Pocos
             payment.ClearPayment();
 
             // Assert
-            payment.Data.IsCleared.ShouldEqual(expectedResult);
+            payment.Data.IsCleared.ShouldBeTrue();
         }
 
         [Fact]
