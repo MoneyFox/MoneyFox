@@ -48,6 +48,26 @@ namespace MoneyFox.DataAccess.Tests.QueryExtensions
             Assert.Equal(1, resultList[0].Id);
             Assert.Equal(2, resultList[1].Id);
         }
+        
+        [Fact]
+        public void NameEquals()
+        {
+            // Arrange
+            var categoryQueryList = new List<CategoryEntity>
+                {
+                    new CategoryEntity {Id = 1, Name = "abc123de"},
+                    new CategoryEntity {Id = 2, Name = "123"},
+                    new CategoryEntity {Id = 3, Name = "Rent"}
+                }
+                .AsQueryable();
+
+            // Act
+            var resultList = categoryQueryList.NameEquals("123").ToList();
+
+            // Assert
+            Assert.Single(resultList);
+            Assert.Equal(2, resultList[0].Id);
+        }
 
         [Fact]
         public void SelectCategories()

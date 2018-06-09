@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.DataAccess.Pocos;
+using Should;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Pocos
@@ -23,10 +24,10 @@ namespace MoneyFox.DataAccess.Tests.Pocos
         }
 
         [Theory]
-        [InlineData(-120)]
-        [InlineData(0)]
-        [InlineData(120)]
-        public void ClearPayment_WithDifferentTimeStamps(int minutes)
+        [InlineData(-120, true)]
+        [InlineData(0, true)]
+        [InlineData(120, false)]
+        public void ClearPayment_WithDifferentTimeStamps(int minutes, bool expectedResult)
         {
             // Arrange 
             var payment = new Payment { Data = { Date = DateTime.Now.AddMinutes(minutes) } };
@@ -35,7 +36,7 @@ namespace MoneyFox.DataAccess.Tests.Pocos
             payment.ClearPayment();
 
             // Assert
-            Assert.True(payment.Data.IsCleared);
+            payment.Data.IsCleared.ShouldEqual(expectedResult);
         }
 
         [Fact]
