@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20180609154151_AddCategoryGroup.cs" />
+    <Compile Remove="Migrations\20180609221338_AddCategoryGroup.cs" />
+    <Compile Remove="Migrations\20180609221758_AddCategoryGroup.cs" />
   </ItemGroup>
 
   <ItemGroup>

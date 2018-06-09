@@ -19,7 +19,7 @@ namespace MoneyFox.DataAccess
         internal DbSet<PaymentEntity> Payments { get; set; }
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
         internal DbSet<CategoryEntity> Categories { get; set; }
-        internal DbSet<CategoryGroupEntity> Groups { get; set; }
+        internal DbSet<CategoryGroupEntity> CategoryGroups { get; set; }
 
         /// <summary>
         ///     The Path to the db who shall be opened

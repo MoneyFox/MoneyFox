@@ -62,7 +62,7 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    return await dbContext.Groups
+                    return await dbContext.CategoryGroups
                                           .OrderByName()
                                           .SelectGroup()
                                           .ToListAsync();
@@ -77,7 +77,7 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    var group = await dbContext.Groups.FindAsync(id);
+                    var group = await dbContext.CategoryGroups.FindAsync(id);
                     return group == null ? null : new CategoryGroup(group);
                 }
             }
@@ -90,7 +90,7 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    return await dbContext.Groups
+                    return await dbContext.CategoryGroups
                                           .NameEquals(name)
                                           .AnyAsync();
                 }
