@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Dialogs;
 using MoneyFox.Foundation.Resources;
@@ -45,6 +46,14 @@ namespace MoneyFox.Views
         protected override void OnAppearing()
         {
             Title = ViewModel.Title;
+
+            var group = ViewModel.DailyList.FirstOrDefault(x => x.Any(y => y.IsCleared));
+
+            if (group != null)
+            {
+                PaymentList.ScrollTo(group[0], group, ScrollToPosition.MakeVisible, false);
+            }
+
             base.OnAppearing();
         }
 
