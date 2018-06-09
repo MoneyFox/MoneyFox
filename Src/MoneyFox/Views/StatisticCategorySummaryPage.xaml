@@ -40,7 +40,14 @@
                                      HorizontalOptions="FillAndExpand"
                                      Margin="{DynamicResource DefaultListItemsMargin}">
                                     <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemHeaderStyle}" />
-                                    <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" HorizontalOptions="EndAndExpand" Style="{DynamicResource DefaultTextStyle}" />
+                                    <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Spacing="0">
+                                        <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" Style="{DynamicResource DefaultTextStyle}" />
+                                        
+                                        <Label Text=" (" Style="{DynamicResource DefaultTextStyle}" />
+                                        <Label Text="{Binding Percentage}" Style="{DynamicResource DefaultTextStyle}" />
+                                        <Label Text="%)" Style="{DynamicResource DefaultTextStyle}" />
+
+                                    </StackLayout>
                                 </Grid>
                             </controls:CardView>
                         </ViewCell>

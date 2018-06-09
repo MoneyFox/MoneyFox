@@ -8,17 +8,32 @@ namespace MoneyFox.Foundation.Models
     {
         private string label;
         private double value;
+        private double percentage;
 
         /// <summary>
         ///     Value of this item
         /// </summary>
         public double Value
         {
-            get { return value; }
+            get => value;
             set
             {
                 if (Math.Abs(this.value - value) < 0.01) return;
-                this.value = value;
+                this.value = Math.Round(value, 2); ;
+                RaisePropertyChanged();
+            }
+
+        }
+        /// <summary>
+        ///     Value of this item
+        /// </summary>
+        public double Percentage
+        {
+            get => percentage;
+            set
+            {
+                if (Math.Abs(this.value - value) < 0.01) return;
+                percentage = Math.Round(value, 2);
                 RaisePropertyChanged();
             }
         }
@@ -28,7 +43,7 @@ namespace MoneyFox.Foundation.Models
         /// </summary>
         public string Label
         {
-            get { return label; }
+            get => label;
             set
             {
                 if (label == value) return;

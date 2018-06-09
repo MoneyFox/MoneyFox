@@ -37,7 +37,25 @@ namespace MoneyFox.Business.StatisticDataProvider
                 });
             }
 
+            CalculateAverage(categories);
+
             return categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList();
+        }
+
+        private static void CalculateAverage(List<StatisticItem> categories)
+        {
+            var sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
+            var sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
+
+            foreach (var statisticItem in categories.Where(x => x.Value < 0))
+            {
+                statisticItem.Percentage = statisticItem.Value / sumNegative * 100;
+            }
+
+            foreach (var statisticItem in categories.Where(x => x.Value > 0))
+            {
+                statisticItem.Percentage = statisticItem.Value / sumPositive * 100;
+            }
         }
     }
 }
