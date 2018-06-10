@@ -447,4 +447,10 @@ Also if you launch the application there it will check if there are newer backup
   <data name="TimeRangeStart.Header" xml:space="preserve">
     <value>Time Range Start</value>
   </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Groups</value>
+  </data>
 </root>

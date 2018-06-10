@@ -7,23 +7,37 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="CategoriesTitle"
-                   Text="Categories"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+        <Pivot>
+            <!--  Categories  -->
+            <PivotItem >
+                <PivotItem.Header>
+                    <TextBlock x:Uid="CategoriesTitle"
+                               Text="Categories"
+                               Style="{StaticResource UwpPageTitleStyle}"
+                               Margin="0,0,-10,0"/>
+                </PivotItem.Header>
+                <userControls:CategoryListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+            </PivotItem>            
+            
+            <!--  Groups  -->
+            <PivotItem >
+                <PivotItem.Header>
+                    <TextBlock x:Uid="CategoryGroupTitle"
+                               Text="Groups"
+                               Style="{StaticResource UwpPageTitleStyle}"
+                               Margin="0,0,-10,0"/>
+                </PivotItem.Header>
+                <userControls:CategoryGroupListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+            </PivotItem>
+        </Pivot>
 
-        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
-
-        <CommandBar Grid.Row="2"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}" >
+        <CommandBar Grid.Row="1" >
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Command="{Binding CreateNewCategoryCommand}"

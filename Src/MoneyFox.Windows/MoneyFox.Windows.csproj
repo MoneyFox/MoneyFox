@@ -181,6 +181,9 @@
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ModifyCategoryGroupView.xaml.cs">
+      <DependentUpon>ModifyCategoryGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModifyCategoryView.xaml.cs">
       <DependentUpon>ModifyCategoryView.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,9 @@
     </Compile>
     <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\CategoryGroupListUserControl.xaml.cs">
+      <DependentUpon>CategoryGroupListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
@@ -386,6 +392,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ModifyCategoryGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ModifyCategoryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -425,6 +435,10 @@
     <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\CategoryGroupListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\CategoryListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>

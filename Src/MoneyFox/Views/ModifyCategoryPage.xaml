@@ -6,6 +6,7 @@
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
              x:Class="MoneyFox.Views.ModifyCategoryPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyCategoryViewModel}">
+
     <ContentPage.Content>
         <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 

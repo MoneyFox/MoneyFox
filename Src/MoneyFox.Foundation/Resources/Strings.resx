@@ -715,4 +715,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectDateLabel" xml:space="preserve">
     <value>Select Date</value>
   </data>
+  <data name="AddCategoryGroupTitle" xml:space="preserve">
+    <value>Add Group</value>
+  </data>
+  <data name="EditCategoryGroupTitle" xml:space="preserve">
+    <value>Edit Group</value>
+  </data>
 </root>

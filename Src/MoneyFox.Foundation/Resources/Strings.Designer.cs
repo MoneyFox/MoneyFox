@@ -142,6 +142,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Group.
+        /// </summary>
+        public static string AddCategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("AddCategoryGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
         public static string AddCategoryTitle {
@@ -768,6 +777,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string EditAccountTitle {
             get {
                 return ResourceManager.GetString("EditAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Group.
+        /// </summary>
+        public static string EditCategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("EditCategoryGroupTitle", resourceCulture);
             }
         }
         
