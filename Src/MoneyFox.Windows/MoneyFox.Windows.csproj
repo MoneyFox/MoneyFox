@@ -163,8 +163,8 @@
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CategoryListView.xaml.cs">
-      <DependentUpon>CategoryListView.xaml</DependentUpon>
+    <Compile Include="Views\CategorySettingsView.xaml.cs">
+      <DependentUpon>CategorySettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
@@ -368,7 +368,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CategoryListView.xaml">
+    <Page Include="Views\CategorySettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

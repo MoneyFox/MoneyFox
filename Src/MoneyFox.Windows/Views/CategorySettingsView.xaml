@@ -1,4 +1,4 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.CategoryListView"
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.CategorySettingsView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Pivot>
+        <Pivot x:Name="CategoryPivot">
             <!--  Categories  -->
             <PivotItem >
                 <PivotItem.Header>
@@ -22,7 +22,7 @@
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
-                <userControls:CategoryListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+                <userControls:CategoryListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" DataContext="{Binding CategoryListViewModel}" />
             </PivotItem>            
             
             <!--  Groups  -->
@@ -33,14 +33,14 @@
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
-                <userControls:CategoryGroupListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+                <userControls:CategoryGroupListUserControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" DataContext="{Binding CategoryGroupListViewModel}" />
             </PivotItem>
         </Pivot>
 
         <CommandBar Grid.Row="1" >
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
-                              Command="{Binding CreateNewCategoryCommand}"
+                              Click="AddNew_OnClick"
                               Icon="Add"
                               Label="New Category" />
             </CommandBar.PrimaryCommands>
