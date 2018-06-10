@@ -11,10 +11,10 @@
         <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
             <Label Text="{Binding Resources[CategoryNameLabel]}" />
-            <Entry Text="{Binding SelectedCategory.Name}" />
+            <Entry Text="{Binding SelectedGroup.Name}" />
 
             <Label Text="{Binding Resources[NoteLabel]}" />
-            <Entry Text="{Binding SelectedCategory.Notes}" />
+            <Entry Text="{Binding SelectedGroup.Notes}" />
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

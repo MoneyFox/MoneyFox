@@ -15,5 +15,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 
         public bool IsEdit { get; set; }
         public string Title { get; set; } = "Edit Group";
+        public CategoryGroupViewModel SelectedGroup { get; }
     }
 }
