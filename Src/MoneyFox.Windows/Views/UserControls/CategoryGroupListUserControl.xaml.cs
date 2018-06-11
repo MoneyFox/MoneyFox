@@ -17,7 +17,7 @@ namespace MoneyFox.Windows.Views.UserControls
             throw new NotImplementedException();
         }
 
-        private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void GroupListRightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             throw new NotImplementedException();
         }

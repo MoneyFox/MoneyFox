@@ -1,4 +1,7 @@
-﻿using MvvmCross.Commands;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using MoneyFox.Foundation.Groups;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -9,11 +12,21 @@ namespace MoneyFox.Business.ViewModels
         ///     Navigate to the modify group view.
         /// </summary>
         MvxAsyncCommand CreateNewGroupCommand { get; }
+
+        /// <summary>
+        ///     Collection with categories alphanumeric grouped by
+        /// </summary>
+        ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryGroupList { get; set; }
+
+        bool IsGroupListEmpty { get; }
     }
 
-    public class CategoryGroupListViewModel : ICategoryGroupListViewModel
+    /// <inheritdoc cref="ICategoryGroupListViewModel"/> /> 
+    public class CategoryGroupListViewModel : BaseViewModel, ICategoryGroupListViewModel
     {
         private readonly IMvxNavigationService navigationService;
+
+        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> groupList;
 
         public CategoryGroupListViewModel(IMvxNavigationService navigationService)
         {
@@ -21,5 +34,21 @@ namespace MoneyFox.Business.ViewModels
         }
 
         public MvxAsyncCommand CreateNewGroupCommand => new MvxAsyncCommand(async () => await navigationService.Navigate<ModifyCategoryGroupViewModel>());
+
+        /// <inheritdoc />
+        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryGroupList
+        {
+            get => groupList;
+            set
+            {
+                if (groupList == value) return;
+                groupList = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(IsGroupListEmpty));
+            }
+        }
+
+        /// <inheritdoc />
+        public bool IsGroupListEmpty => !CategoryGroupList.Any();
     }
 }

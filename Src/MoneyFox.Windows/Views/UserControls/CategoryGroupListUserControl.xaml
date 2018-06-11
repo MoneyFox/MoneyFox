@@ -16,12 +16,12 @@
         <converter:ClickConverter x:Key="ClickConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
+        <DataTemplate x:Key="GroupTemplate" x:DataType="viewModels:CategoryGroupViewModel">
             <StackPanel MinWidth="300"
                         Margin="{StaticResource SmallListItemMargin}"
                         Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
-                        RightTapped="CategoryListRightTapped">
+                        RightTapped="GroupListRightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -88,7 +88,7 @@
 
                 <ListView IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
-                          ItemTemplate="{StaticResource CategoryTemplate}"
+                          ItemTemplate="{StaticResource GroupTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
 
                     <interactivity:Interaction.Behaviors>
@@ -134,7 +134,7 @@
                    VerticalAlignment="Center"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
-                   Visibility="{Binding IsGroupsEmpty,
+                   Visibility="{Binding IsGroupListEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>
