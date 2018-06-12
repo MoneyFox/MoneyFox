@@ -8,7 +8,6 @@ using MoneyFox.Business.Messages;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.DataServices;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
