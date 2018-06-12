@@ -70,7 +70,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General and support information about this app..
+        ///   Looks up a localized string similar to Support information about this app..
         /// </summary>
         public static string AboutSettingsDescription {
             get {
@@ -241,6 +241,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device..
+        /// </summary>
+        public static string AutobackupInformationLabel {
+            get {
+                return ResourceManager.GetString("AutobackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically upload and download backups.
+        /// </summary>
+        public static string AutobackupLabel {
+            get {
+                return ResourceManager.GetString("AutobackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected..
         /// </summary>
         public static string BackgroundAccessDeniedByPolicyMessage {
@@ -318,6 +336,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string BackupSyncFailedMessage {
             get {
                 return ResourceManager.GetString("BackupSyncFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the interval to check for changed data..
+        /// </summary>
+        public static string BackupSyncRecurrenceInfoLabel {
+            get {
+                return ResourceManager.GetString("BackupSyncRecurrenceInfoLabel", resourceCulture);
             }
         }
         
@@ -1250,7 +1277,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no statistic items..
+        ///   Looks up a localized string similar to There are no statistic items in the selected time range..
         /// </summary>
         public static string NoStatisticItemsMessage {
             get {
@@ -1604,33 +1631,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so..
-        /// </summary>
-        public static string SettingsGeneralViewModel_AutobackupInformationLabel {
-            get {
-                return ResourceManager.GetString("SettingsGeneralViewModel.AutobackupInformationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically upload and download backups.
-        /// </summary>
-        public static string SettingsGeneralViewModel_AutobackupLabel {
-            get {
-                return ResourceManager.GetString("SettingsGeneralViewModel.AutobackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set the amount of hours to sync the backup..
-        /// </summary>
-        public static string SettingsGeneralViewModel_BackupSyncRecurrenceInfoLabel {
-            get {
-                return ResourceManager.GetString("SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Backup Recurrence.
         /// </summary>
         public static string SettingsGeneralViewModel_BackupSyncRecurrenceLabel {
@@ -1712,11 +1712,11 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statistic Range:.
+        ///   Looks up a localized string similar to Time Range:.
         /// </summary>
-        public static string StatisticsRangeTitle {
+        public static string StatisticsTimeRangeTitle {
             get {
-                return ResourceManager.GetString("StatisticsRangeTitle", resourceCulture);
+                return ResourceManager.GetString("StatisticsTimeRangeTitle", resourceCulture);
             }
         }
         

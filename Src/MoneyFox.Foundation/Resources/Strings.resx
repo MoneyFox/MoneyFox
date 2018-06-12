@@ -492,10 +492,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+  <data name="AutobackupInformationLabel" xml:space="preserve">
+    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
-  <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
+  <data name="AutobackupLabel" xml:space="preserve">
     <value>Automatically upload and download backups</value>
   </data>
   <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
@@ -537,8 +537,8 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Included Accounts</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
+  <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the interval to check for changed data.</value>
   </data>
   <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
     <value>Hour(s)</value>
@@ -631,8 +631,8 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="StatisticsRangeTitle" xml:space="preserve">
-    <value>Statistic Range:</value>
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+    <value>Time Range:</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Category Summary</value>
@@ -641,7 +641,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>There are no categories to display. Tap the plus button to add one.</value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
-    <value>There are no statistic items.</value>
+    <value>There are no statistic items in the selected time range.</value>
   </data>
   <data name="BackupSettingsDescription" xml:space="preserve">
     <value>Create and restore backups.</value>
@@ -677,7 +677,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Save Category</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>General and support information about this app.</value>
+    <value>Support information about this app.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>

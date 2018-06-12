@@ -362,10 +362,6 @@ Tap to visit the Repository:</value>
   <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
-  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
-Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
-  </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
@@ -393,14 +389,8 @@ Also if you launch the application there it will check if there are newer backup
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>To see all contributions head over to GitHub:</value>
   </data>
-  <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
-  </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Exclude account from balance</value>
-  </data>
-  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
     <value>Excluded Accounts</value>
