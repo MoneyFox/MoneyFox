@@ -439,6 +439,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no groups. Add one by tapping on the plus symbol at the bottom..
+        /// </summary>
+        public static string CategoryGroupPlaceholder {
+            get {
+                return ResourceManager.GetString("CategoryGroupPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groups.
+        /// </summary>
+        public static string CategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("CategoryGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CategoryLabel {

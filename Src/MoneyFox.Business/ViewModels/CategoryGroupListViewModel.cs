@@ -6,7 +6,7 @@ using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface ICategoryGroupListViewModel
+    public interface ICategoryGroupListViewModel : IBaseViewModel
     {
         /// <summary>
         ///     Navigate to the modify group view.

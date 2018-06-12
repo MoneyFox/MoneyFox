@@ -8,9 +8,14 @@
     xmlns:viewModels="using:MoneyFox.Business.ViewModels"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    
+    <UserControl.DataContext>
+        <designTime:DesignTimeCategoryGroupListViewModel />
+    </UserControl.DataContext>
 
     <UserControl.Resources>
         <converter:ClickConverter x:Key="ClickConverter" />

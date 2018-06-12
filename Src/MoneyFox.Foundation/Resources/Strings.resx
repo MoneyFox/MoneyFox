@@ -721,4 +721,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="EditCategoryGroupTitle" xml:space="preserve">
     <value>Edit Group</value>
   </data>
+  <data name="CategoryGroupPlaceholder" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle" xml:space="preserve">
+    <value>Groups</value>
+  </data>
 </root>

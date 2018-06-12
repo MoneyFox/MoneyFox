@@ -5,7 +5,13 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       mc:Ignorable="d">
+
+    <views:MvxWindowsPage.DataContext>
+        <viewModels:DesignTimeCategorySettingsViewModel />
+    </views:MvxWindowsPage.DataContext>
+    
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
@@ -17,8 +23,7 @@
             <!--  Categories  -->
             <PivotItem >
                 <PivotItem.Header>
-                    <TextBlock x:Uid="CategoriesTitle"
-                               Text="Categories"
+                    <TextBlock Text="{Binding Resources[CategoriesTitle]}"
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
@@ -28,8 +33,7 @@
             <!--  Groups  -->
             <PivotItem >
                 <PivotItem.Header>
-                    <TextBlock x:Uid="CategoryGroupTitle"
-                               Text="Groups"
+                    <TextBlock Text="{Binding Resources[CategoryGroupTitle]}"
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
