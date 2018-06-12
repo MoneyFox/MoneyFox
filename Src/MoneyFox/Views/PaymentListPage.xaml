@@ -12,7 +12,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <converter:AmountFormatConverter  x:Key="AmountFormatConverter" />
+            <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />
 
             <OnPlatform x:Key="IconCleared"
                         x:TypeArguments="ImageSource">
@@ -91,7 +91,7 @@
 
                                             <Label Grid.Column="1" 
                                                HorizontalTextAlignment="End"
-                                               Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" 
+                                               Text="{Binding Amount, Converter={StaticResource PaymentAmountConverter}}" 
                                                Style="{StaticResource ListItemHeaderStyle}" />
                                         </Grid>
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
