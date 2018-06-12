@@ -416,13 +416,10 @@ Tap to visit the Repository:</value>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
-  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
+  <data name="PasswordLabel" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
+  <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
@@ -459,12 +456,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="NoteLabel" xml:space="preserve">
     <value>Note</value>
   </data>
-  <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
-  </data>
-  <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>Note</value>
-  </data>
   <data name="AmountLabel" xml:space="preserve">
     <value>Amount</value>
   </data>
@@ -480,16 +471,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="RecurringLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
-  <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
-  </data>
-  <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+  <data name="EmptyListPlaceholderLabel" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
-  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
+  <data name="SearchStringLabel" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
@@ -498,17 +483,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Automatically upload and download backups</value>
   </data>
-  <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
+  <data name="PasswordActivatedLabel" xml:space="preserve">
     <value>Password protection</value>
   </data>
-  <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
+  <data name="PasswordConfirmationLabel" xml:space="preserve">
     <value>Password Confirmation</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>Password</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
@@ -540,10 +519,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
     <value>Set the interval to check for changed data.</value>
   </data>
-  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
+  <data name="HourLabel" xml:space="preserve">
     <value>Hour(s)</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
+  <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
     <value>Backup Recurrence</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
