@@ -564,9 +564,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>You backup was synced successfully.</value>
   </data>
-  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Recurring payments where created.</value>
-  </data>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
     <value>Failed to sync the backup</value>
   </data>
@@ -591,9 +588,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="ClearPaymentFailedMessage" xml:space="preserve">
     <value>Clearing payments failed!</value>
-  </data>
-  <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
-    <value>Failed to create recurring payments!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>

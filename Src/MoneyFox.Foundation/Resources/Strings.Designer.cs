@@ -637,15 +637,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to create recurring payments!.
-        /// </summary>
-        public static string CreateRecurringPaymentFailedMessage {
-            get {
-                return ResourceManager.GetString("CreateRecurringPaymentFailedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {
@@ -1473,15 +1464,6 @@ namespace MoneyFox.Foundation.Resources {
         public static string RecurringLabel {
             get {
                 return ResourceManager.GetString("RecurringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recurring payments where created..
-        /// </summary>
-        public static string RecurringPaymentsCreatedMessages {
-            get {
-                return ResourceManager.GetString("RecurringPaymentsCreatedMessages", resourceCulture);
             }
         }
         
