@@ -583,24 +583,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clearing payments failed!.
-        /// </summary>
-        public static string ClearPaymentFailedMessage {
-            get {
-                return ResourceManager.GetString("ClearPaymentFailedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finished clearing your payments..
-        /// </summary>
-        public static string ClearPaymentFinishedMessage {
-            get {
-                return ResourceManager.GetString("ClearPaymentFinishedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string ContactLabel {

@@ -348,16 +348,16 @@ Druk op om de Repository te bezoeken:</value>
     <value>Monthly Expenses</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
+    <value>There are no accounts. Add one by tapping on the three dots at the bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+    <value>There are no categories. Add one by tapping on the plus symbol at the bottom.</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+    <value>You can change between a dark and light theme. To apply this change please restart the application.</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>
@@ -380,9 +380,6 @@ Ook als u de toepassing uitvoert die controleert of er nieuwe back-upkopieën zi
   </data>
   <data name="Logout.Content" xml:space="preserve">
     <value>Afmelden</value>
-  </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
     <value>Backup Manually</value>
@@ -412,7 +409,7 @@ Ook als u de toepassing uitvoert die controleert of er nieuwe back-upkopieën zi
     <value>Included Accounts</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value></value>
+    <value>Filter</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Leave a Feedback</value>
@@ -437,5 +434,23 @@ Ook als u de toepassing uitvoert die controleert of er nieuwe back-upkopieën zi
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Tiles</value>
+  </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>Recurring</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Groups</value>
   </data>
 </root>

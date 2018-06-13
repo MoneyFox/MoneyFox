@@ -117,42 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Hakkında</value>
-  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Hakkında</value>
-  </data>
-  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
-    <value>İletişim</value>
-  </data>
-  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
-    <value>Bütün katkıları github üstünde gör:</value>
-  </data>
-  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
-    <value>Uygulama simgesini oluşturan:</value>
-  </data>
-  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
-    <value>Bu açık kaynaklı bir projedir - Katkıda bulunmaktan çekinmeyin! Sizinle çalışmayı çok isteriz. 
-Depoyu ziyaret etmek için dokunun:</value>
-  </data>
-  <data name="AboutViewModel.RateLabel" xml:space="preserve">
-    <value>Bize puan verin!</value>
-  </data>
-  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
-    <value>Birşey düzgün çevrilmedi veya hiç çevrilmemişse bize yardım et! Crowdin'e yol al ve Money Fox'un gelişmesine yardımcı ol:</value>
-  </data>
-  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
-    <value>Sürüm</value>
-  </data>
-  <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Hesap bulunamadı. Aşşağıda ki artı butonuna tıklayarak bir tane ekleyin.</value>
-  </data>
-  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
-    <value>Hariç tutulan hesaplar</value>
-  </data>
-  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
-    <value>Dahil edilmiş hesaplar</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Lütfen bir hesap seçin.</value>
@@ -163,138 +129,32 @@ Depoyu ziyaret etmek için dokunun:</value>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Hesap ekle</value>
   </data>
-  <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Kategori Ekle</value>
+  <data name="AddIncomeLabel" xml:space="preserve">
+    <value>Income</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Gider ekle</value>
-  </data>
-  <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Gider ekle</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Gelir ekle</value>
-  </data>
-  <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Gelir ekle</value>
+    <value>Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer ekle</value>
-  </data>
-  <data name="AddTransferTitle" xml:space="preserve">
-    <value>Transfer ekle</value>
+    <value>Transfer</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
-  <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Kimlik doğrulama başarısız</value>
-  </data>
-  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>Sistem ilkeleri MoneyFox'un arka planda çalışmasını engelledi. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
-  </data>
-  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>MoneyFox'un arka planda çalışmasını engellediniz. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
-  </data>
-  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Erişim engellendi</value>
-  </data>
-  <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Yedekleme başarısız!</value>
+  <data name="ErrorMessageBackupFailed" xml:space="preserve">
+    <value>Yedeklemenizi oluştururken bir hata oldu. Lütfen yeniden deneyin.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Yedekleme</value>
   </data>
-  <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Yedek geri yükleme başarısız oldu!</value>
-  </data>
-  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>Yedeklemeniz başarıyla senkronize edildi.</value>
-  </data>
-  <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Yedek senkronlama başarısız oldu</value>
-  </data>
-  <data name="BackupViewModel.CreateBackupInformationLabel" xml:space="preserve">
-    <value>Verileriniz OneDrive hesabınıza kaydedilecektir. Verilerinizi, "MoneyFoxBackupManager" isimli yeni klasörde bulabilirsiniz.</value>
-  </data>
-  <data name="BackupViewModel.CreateBackupLabel" xml:space="preserve">
-    <value>Yedek Oluştur</value>
-  </data>
-  <data name="BackupViewModel.LastBackupDateLabel" xml:space="preserve">
-    <value>Son yedekleme tarihi:</value>
-  </data>
-  <data name="BackupViewModel.LoginLabel" xml:space="preserve">
-    <value>Giriş</value>
-  </data>
-  <data name="BackupViewModel.LogoutLabel" xml:space="preserve">
-    <value>Çıkış</value>
-  </data>
-  <data name="BackupViewModel.RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Bir önceki yedeklemenizi indirip, lokal verilerinizle değiştirin.
-UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</value>
-  </data>
-  <data name="BackupViewModel.RestoreBackupLabel" xml:space="preserve">
-    <value>Yedeklemeyi geri yükle</value>
-  </data>
-  <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Yılda iki defa</value>
-  </data>
-  <data name="BimonthlyLabel" xml:space="preserve">
-    <value>İki ayda bir</value>
-  </data>
-  <data name="BiweeklyLabel" xml:space="preserve">
-    <value>İki haftada bir</value>
-  </data>
-  <data name="CancelLabel" xml:space="preserve">
-    <value>İptal</value>
-  </data>
-  <data name="CashflowDescription" xml:space="preserve">
-    <value>Gelir, gider ve kazançlar için belirlenen zaman dilimi.</value>
-  </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Nakit Akışı</value>
-  </data>
-  <data name="CategoriesLabel" xml:space="preserve">
-    <value>Kategoriler</value>
-  </data>
-  <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Masrafları kategorilere dağıt.</value>
-  </data>
-  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Kategori bulunamadı. Aşşağıda ki artı butonuna dokunarak bir tane ekleyin.</value>
-  </data>
-  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Ara</value>
-  </data>
-  <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Kategori dağılımı</value>
-  </data>
-  <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Ödeme kategorilerinin özeti.</value>
-  </data>
-  <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Kategori Özeti</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
     <value>Yinelenen bir ödemeyi güncellediniz. Gelecek ödemeleri de güncellemek ister misiniz?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Yinelemeleri Düzenle?</value>
-  </data>
-  <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Hedef hesap</value>
-  </data>
-  <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Kategori seç</value>
-  </data>
-  <data name="ChooseLabel" xml:space="preserve">
-    <value>Seç</value>
-  </data>
-  <data name="ClearedFilterLabel" xml:space="preserve">
-    <value>Temizlendi</value>
-  </data>
-  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Ödemelerinizi temizleme tamamlandı.</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Günlük</value>
@@ -311,68 +171,17 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
   <data name="DeleteLabel" xml:space="preserve">
     <value>Sil</value>
   </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Bu ödemeyi gerçekten silmeyi istiyor musunuz?</value>
-  </data>
-  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Yinelenen bir ödeme sildiniz. Yinelemeyi de silmek istiyor musunuz?</value>
-  </data>
-  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Yinelemeleri sil?</value>
+  <data name="SecurityTitle" xml:space="preserve">
+    <value>Güvenlik</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Sil?</value>
   </data>
-  <data name="DoneLabel" xml:space="preserve">
-    <value>Bitti</value>
-  </data>
-  <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Bu ada sahip kullanıcı hesabı zaten var.</value>
-  </data>
-  <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>Bu isimde zaten bir kategori var.</value>
-  </data>
-  <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Bu isim kullanılıyor</value>
-  </data>
-  <data name="EditAccountTitle" xml:space="preserve">
-    <value>{0} düzenle</value>
-  </data>
-  <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Kategori Düzenle</value>
-  </data>
-  <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Gelir ekle</value>
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+    <value>Bu ödemeyi gerçekten silmeyi istiyor musunuz?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Düzenle</value>
-  </data>
-  <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Gider ekle</value>
-  </data>
-  <data name="EditTransferTitle" xml:space="preserve">
-    <value>Transfer ekle</value>
-  </data>
-  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>Doğrulama sırasında hata oluştu. Lütfen daha sonra deneyin.</value>
-  </data>
-  <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>Yedeklemenizi oluştururken bir hata oldu. Lütfen yeniden deneyin.</value>
-  </data>
-  <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Nesne silinirken bir hata oluştu.</value>
-  </data>
-  <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>Yedeklemeyi geri yüklerken bir hata oluştu. Bu hata devam ederse lütfen bizimle iletişime geçin.</value>
-  </data>
-  <data name="ErrorMessageSave" xml:space="preserve">
-    <value>Kayıt edilirken bir hata oluştu.</value>
-  </data>
-  <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Hatalı ise sil</value>
-  </data>
-  <data name="ExpenseHeader" xml:space="preserve">
-    <value>Gider ekle</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Giderler</value>
@@ -380,113 +189,17 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Money Fox'a geri bildirim</value>
   </data>
-  <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>Bir hata oluştu</value>
-  </data>
-  <data name="GeneralTitle" xml:space="preserve">
-    <value>Genel</value>
-  </data>
-  <data name="IncomeHeader" xml:space="preserve">
+  <data name="EditIncomeTitle" xml:space="preserve">
     <value>Gelir ekle</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Kazançlar</value>
   </data>
-  <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Yinelenecek ödemenin bitiş tarihi gelecekte olmalıdır. Lütfen girdiyi kontrol ediniz.</value>
-  </data>
-  <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Geçersiz bitiş tarihi</value>
-  </data>
-  <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Yinelenen</value>
-  </data>
   <data name="JustThisLabel" xml:space="preserve">
     <value>Hayır, sadece bu</value>
   </data>
-  <data name="LoadingLabel" xml:space="preserve">
-    <value>Yükleniyor...</value>
-  </data>
-  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Giriş</value>
-  </data>
-  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>Şifre</value>
-  </data>
-  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>Hoşgeldiniz!</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Zorunlu Alanlar</value>
-  </data>
-  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>Hakkında</value>
-  </data>
-  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Hesaplar</value>
-  </data>
-  <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Ekle</value>
-  </data>
-  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Yedekleme</value>
-  </data>
-  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Kategoriler</value>
-  </data>
-  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Sil</value>
-  </data>
-  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Kaydet</value>
-  </data>
-  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Ayarlar</value>
-  </data>
-  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>Bütçelemeyi yapmanın kolay yolu.</value>
-  </data>
-  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>İstatistikler</value>
-  </data>
-  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
-    <value>Hesap adı</value>
-  </data>
-  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
-    <value>Mevcut bakiye</value>
-  </data>
-  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
-    <value>Iban</value>
-  </data>
-  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
-    <value>Hesabı bakiyeden çıkart</value>
-  </data>
-  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
-  </data>
-  <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Kategori Adı</value>
-  </data>
-  <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
-  </data>
-  <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
-    <value>Miktar</value>
-  </data>
-  <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
-    <value>Kategori</value>
-  </data>
-  <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
-    <value>Tarih</value>
-  </data>
-  <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
-    <value>Sonsuz</value>
-  </data>
-  <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>Not</value>
-  </data>
-  <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
-    <value>Yinelenen</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Aylık</value>
@@ -497,42 +210,77 @@ UYARI: Lokal değişiklik yaptığınız sırada verileriniz kaybolabilir!</valu
   <data name="NoLabel" xml:space="preserve">
     <value>Hayır</value>
   </data>
-  <data name="NoNetworkMessage" xml:space="preserve">
-    <value>Internet'e bağlı değilsiniz. Lütfen bağlantınızı kontrol edip tekrar deneyin.</value>
-  </data>
-  <data name="NoNetworkTitle" xml:space="preserve">
-    <value>İnternet Bağlantısı Yok</value>
-  </data>
-  <data name="NotNowLabel" xml:space="preserve">
-    <value>Henüz değil</value>
-  </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Tamam</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Varolan yedeklemelerin üzerine yazılacaktır. Devam etmek istiyor musunuz?</value>
   </data>
-  <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Lokal verilerinizi silinecektir. Devam etmek istiyor musunuz?</value>
-  </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Üzerine yaz?</value>
   </data>
-  <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft pasaport bu cihaz için etkin değil.
-Lütfen ayarlara gidip etkinleştirin!</value>
+  <data name="UpdateAllLabel" xml:space="preserve">
+    <value>Evet, hepsini güncelle</value>
+  </data>
+  <data name="RevenueLabel" xml:space="preserve">
+    <value>Hasılat</value>
+  </data>
+  <data name="SelectDateTitle" xml:space="preserve">
+    <value>Tarih Seç</value>
+  </data>
+  <data name="SelectOperationLabel" xml:space="preserve">
+    <value>işlem seçin</value>
+  </data>
+  <data name="SettingsLabel" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Gider ekle</value>
+  </data>
+  <data name="StatisticsLabel" xml:space="preserve">
+    <value>İstatistikler</value>
+  </data>
+  <data name="StatisticsTitle" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Başarılı!</value>
+  </data>
+  <data name="TaskSuccessfulMessage" xml:space="preserve">
+    <value>Görev başarılı tamamlandı.</value>
+  </data>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Transfer ekle</value>
+  </data>
+  <data name="WeeklyLabel" xml:space="preserve">
+    <value>Haftalık</value>
+  </data>
+  <data name="YearlyLabel" xml:space="preserve">
+    <value>Yıllık</value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="OverwriteDataMessage" xml:space="preserve">
+    <value>Lokal verilerinizi silinecektir. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Gelir ekle</value>
+  </data>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Gider ekle</value>
+  </data>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Transfer ekle</value>
+  </data>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>{0} düzenle</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>Parola ve parola onayı eşleşmiyor. Lütfen yazdığınızı kontrol edin.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
     <value>Parola Onayı</value>
-  </data>
-  <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>Girdiğiniz parola boş. Lütfen önce parola girip tekrar deneyin.</value>
-  </data>
-  <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Parola boş</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
     <value>Şifre başarıyla kaydedildi.</value>
@@ -546,11 +294,26 @@ Lütfen ayarlara gidip etkinleştirin!</value>
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Parola yanlış</value>
   </data>
-  <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Hiçbir ödeme yok. Aşşağıda ki butona dokunarak bir tane ekleyin.</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Kategori Özeti</value>
   </data>
-  <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Üç Aylık</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Kategori dağılımı</value>
+  </data>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Hedef hesap</value>
+  </data>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Hedef hesap</value>
+  </data>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>Yinelenecek ödemenin bitiş tarihi gelecekte olmalıdır. Lütfen girdiyi kontrol ediniz.</value>
+  </data>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Geçersiz bitiş tarihi</value>
+  </data>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Henüz değil</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>Umarız uygulamamızı beğenmişsinizdir. Mağazada bize puan vererek destekleyebilirsiniz.
@@ -559,85 +322,370 @@ Puan vermek için mağazaya gitmek ister misiniz?</value>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Bu uygulamayı puanla</value>
   </data>
-  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Yinelenen ödemelerin oluşturulduğu yer.</value>
+  <data name="BiweeklyLabel" xml:space="preserve">
+    <value>İki haftada bir</value>
   </data>
-  <data name="RevenueLabel" xml:space="preserve">
-    <value>Hasılat</value>
+  <data name="AddCategoryTitle" xml:space="preserve">
+    <value>Kategori Ekle</value>
   </data>
-  <data name="SecurityTitle" xml:space="preserve">
-    <value>Güvenlik</value>
+  <data name="EditCategoryTitle" xml:space="preserve">
+    <value>Kategori Düzenle</value>
   </data>
-  <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Ara</value>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Kategoriler</value>
   </data>
-  <data name="SelectDateTitle" xml:space="preserve">
-    <value>Tarih Seç</value>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Gelir, gider ve kazançlar için belirlenen zaman dilimi.</value>
   </data>
-  <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Filtre seçin</value>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Masrafları kategorilere dağıt.</value>
   </data>
-  <data name="SelectOperationLabel" xml:space="preserve">
-    <value>işlem seçin</value>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Ödeme kategorilerinin özeti.</value>
   </data>
-  <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
-    <value>Veritabanı üzerinde her değişiklikten sonra bu ayarı etkinleştirirseniz bir yedek OneDrive için yapılır. Ayrıca uygulamayı çalıştırırsanız, yeni yedekler var ise yedekler ve geri yükler.</value>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>İptal</value>
   </data>
-  <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
-    <value>Otomatik olarak yedeklemeleri gönder ve al</value>
+  <data name="ChooseLabel" xml:space="preserve">
+    <value>Seç</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Yedekleme senkronizasyonu süresini ayarla.</value>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Gider ekle</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Yedek yineleme</value>
-  </data>
-  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
-    <value>Saat(ler)</value>
-  </data>
-  <data name="SettingsLabel" xml:space="preserve">
-    <value>Ayarlar</value>
-  </data>
-  <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>Bitti</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
-    <value>Parola Koruması</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
-    <value>Parola Onayı</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>Şifre</value>
-  </data>
-  <data name="StatisticsLabel" xml:space="preserve">
-    <value>İstatistikler</value>
-  </data>
-  <data name="StatisticTitle" xml:space="preserve">
-    <value>İstatistik</value>
-  </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Başarılı!</value>
-  </data>
-  <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Hedef hesap</value>
-  </data>
-  <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Görev başarılı tamamlandı.</value>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Gelir ekle</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
     <value>Transfer ekle</value>
   </data>
-  <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Evet, hepsini güncelle</value>
+  <data name="ErrorMessageDelete" xml:space="preserve">
+    <value>Nesne silinirken bir hata oluştu.</value>
   </data>
-  <data name="WeeklyLabel" xml:space="preserve">
-    <value>Haftalık</value>
+  <data name="ErrorMessageSave" xml:space="preserve">
+    <value>Kayıt edilirken bir hata oluştu.</value>
   </data>
-  <data name="YearlyLabel" xml:space="preserve">
-    <value>Yıllık</value>
+  <data name="ErrorTitleDelete" xml:space="preserve">
+    <value>Hatalı ise sil</value>
   </data>
-  <data name="YesLabel" xml:space="preserve">
-    <value>Evet</value>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Kategori seç</value>
+  </data>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>Internet'e bağlı değilsiniz. Lütfen bağlantınızı kontrol edip tekrar deneyin.</value>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>İnternet Bağlantısı Yok</value>
+  </data>
+  <data name="GeneralTitle" xml:space="preserve">
+    <value>Genel</value>
+  </data>
+  <data name="DuplicateAccountMessage" xml:space="preserve">
+    <value>Bu ada sahip kullanıcı hesabı zaten var.</value>
+  </data>
+  <data name="DuplicateCategoryMessage" xml:space="preserve">
+    <value>Bu isimde zaten bir kategori var.</value>
+  </data>
+  <data name="DuplicatedNameTitle" xml:space="preserve">
+    <value>Bu isim kullanılıyor</value>
+  </data>
+  <data name="LoadingLabel" xml:space="preserve">
+    <value>Yükleniyor...</value>
+  </data>
+  <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
+    <value>Doğrulama sırasında hata oluştu. Lütfen daha sonra deneyin.</value>
+  </data>
+  <data name="VersionLabel" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ContactLabel" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ContributerLabel" xml:space="preserve">
+    <value>To see all contributions head over to GitHub:</value>
+  </data>
+  <data name="IconDesignerLabel" xml:space="preserve">
+    <value>The app icon was created by:</value>
+  </data>
+  <data name="InfoOpenSource" xml:space="preserve">
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
+  </data>
+  <data name="RateLabel" xml:space="preserve">
+    <value>Rate us!</value>
+  </data>
+  <data name="TranslationLabel" xml:space="preserve">
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+  </data>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="NoAccountsMessage" xml:space="preserve">
+    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+  </data>
+  <data name="CreateBackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
+  </data>
+  <data name="CreateBackupLabel" xml:space="preserve">
+    <value>Create Backup</value>
+  </data>
+  <data name="LastBackupDateLabel" xml:space="preserve">
+    <value>Last Backup created at:</value>
+  </data>
+  <data name="LoginLabel" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogoutLabel" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="RestoreBackupInformationLabel" xml:space="preserve">
+    <value>Download the previous uploaded database backup and replace your local data with it.
+WARNING: Local changes you made meanwhile will be lost!</value>
+  </data>
+  <data name="RestoreBackupLabel" xml:space="preserve">
+    <value>Restore Backup</value>
+  </data>
+  <data name="AccountNameLabel" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="CurrentBalanceLabel" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="AmountLabel" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="CategoryLabel" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="EndlessLabel" xml:space="preserve">
+    <value>Is Endless</value>
+  </data>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Is Recurring</value>
+  </data>
+  <data name="EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
+  </data>
+  <data name="SearchStringLabel" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="AutobackupInformationLabel" xml:space="preserve">
+    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+  </data>
+  <data name="AutobackupLabel" xml:space="preserve">
+    <value>Automatically upload and download backups</value>
+  </data>
+  <data name="PasswordActivatedLabel" xml:space="preserve">
+    <value>Password protection</value>
+  </data>
+  <data name="PasswordConfirmationLabel" xml:space="preserve">
+    <value>Password Confirmation</value>
+  </data>
+  <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
+    <value>Yinelenen bir ödeme sildiniz. Yinelemeyi de silmek istiyor musunuz?</value>
+  </data>
+  <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
+    <value>Yinelemeleri sil?</value>
+  </data>
+  <data name="BimonthlyLabel" xml:space="preserve">
+    <value>İki ayda bir</value>
+  </data>
+  <data name="IsExcludedLabel" xml:space="preserve">
+    <value>Exclude account from balance</value>
+  </data>
+  <data name="PasswordEmptyMessage" xml:space="preserve">
+    <value>Girdiğiniz parola boş. Lütfen önce parola girip tekrar deneyin.</value>
+  </data>
+  <data name="PasswordEmptyTitle" xml:space="preserve">
+    <value>Parola boş</value>
+  </data>
+  <data name="ErrorMessageRestore" xml:space="preserve">
+    <value>Yedeklemeyi geri yüklerken bir hata oluştu. Bu hata devam ederse lütfen bizimle iletişime geçin.</value>
+  </data>
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
+    <value>Excluded Accounts</value>
+  </data>
+  <data name="IncludedAccountsHeader" xml:space="preserve">
+    <value>Included Accounts</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the interval to check for changed data.</value>
+  </data>
+  <data name="HourLabel" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Backup Recurrence</value>
+  </data>
+  <data name="BiannuallyLabel" xml:space="preserve">
+    <value>Yılda iki defa</value>
+  </data>
+  <data name="QuarterlyLabel" xml:space="preserve">
+    <value>Üç Aylık</value>
+  </data>
+  <data name="AuthenticationFailedTitle" xml:space="preserve">
+    <value>Kimlik doğrulama başarısız</value>
+  </data>
+  <data name="BackupFailedTitle" xml:space="preserve">
+    <value>Yedekleme başarısız!</value>
+  </data>
+  <data name="BackupRestoreFailedTitle" xml:space="preserve">
+    <value>Yedek geri yükleme başarısız oldu!</value>
+  </data>
+  <data name="AboutLabel" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>Bir hata oluştu</value>
+  </data>
+  <data name="ClearedFilterLabel" xml:space="preserve">
+    <value>Temizlendi</value>
+  </data>
+  <data name="DoneLabel" xml:space="preserve">
+    <value>Bitti</value>
+  </data>
+  <data name="IsRecurringFilterLabel" xml:space="preserve">
+    <value>Yinelenen</value>
+  </data>
+  <data name="SelectFilterTitle" xml:space="preserve">
+    <value>Filtre seçin</value>
+  </data>
+  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
+    <value>Ödemelerinizi temizleme tamamlandı.</value>
+  </data>
+  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
+    <value>Yedeklemeniz başarıyla senkronize edildi.</value>
+  </data>
+  <data name="BackupSyncFailedMessage" xml:space="preserve">
+    <value>Yedek senkronlama başarısız oldu</value>
+  </data>
+  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
+    <value>Sistem ilkeleri MoneyFox'un arka planda çalışmasını engelledi. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
+  </data>
+  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
+    <value>MoneyFox'un arka planda çalışmasını engellediniz. Çeşitli fonksiyonlar beklendiği gibi çalışmayabilir.</value>
+  </data>
+  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
+    <value>Erişim engellendi</value>
+  </data>
+  <data name="PassportErrorMessage" xml:space="preserve">
+    <value>Microsoft pasaport bu cihaz için etkin değil.
+Lütfen ayarlara gidip etkinleştirin!</value>
+  </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>We couldn't log you in. Please contact us if this issue persists.</value>
+  </data>
+  <data name="LoginFailedTitle" xml:space="preserve">
+    <value>Login failed!</value>
+  </data>
+  <data name="ClearPaymentFailedMessage" xml:space="preserve">
+    <value>Clearing payments failed!</value>
+  </data>
+  <data name="IsClearedLabel" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="IsRecurringLabel" xml:space="preserve">
+    <value>Recurring</value>
+  </data>
+  <data name="OthersLabel" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+    <value>Time Range:</value>
+  </data>
+  <data name="CategorySummaryTitle" xml:space="preserve">
+    <value>Category Summary</value>
+  </data>
+  <data name="NoCategoriesMessage" xml:space="preserve">
+    <value>There are no categories to display. Tap the plus button to add one.</value>
+  </data>
+  <data name="NoStatisticItemsMessage" xml:space="preserve">
+    <value>There are no statistic items in the selected time range.</value>
+  </data>
+  <data name="BackupSettingsDescription" xml:space="preserve">
+    <value>Create and restore backups.</value>
+  </data>
+  <data name="CategoriesSettingsDescription" xml:space="preserve">
+    <value>Add and modify categories.</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="SaveAccountLabel" xml:space="preserve">
+    <value>Save Account</value>
+  </data>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="EnddateLabel" xml:space="preserve">
+    <value>Enddate</value>
+  </data>
+  <data name="RecurrenceLabel" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="SavePaymentLabel" xml:space="preserve">
+    <value>Save Payment</value>
+  </data>
+  <data name="NoPaymentsMessage" xml:space="preserve">
+    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
+  </data>
+  <data name="SaveCategoryLabel" xml:space="preserve">
+    <value>Save Category</value>
+  </data>
+  <data name="AboutSettingsDescription" xml:space="preserve">
+    <value>Support information about this app.</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="WebsiteLabel" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="CategoriesTitle" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
+    <value>Cash Flow</value>
+  </data>
+  <data name="CategorySpreadingTitle" xml:space="preserve">
+    <value>Category Spreading</value>
+  </data>
+  <data name="CategoryNameLabel" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="FilterLabel" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TimeRangeEndLabel" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStartLabel" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
+  <data name="SelectDateLabel" xml:space="preserve">
+    <value>Select Date</value>
   </data>
 </root>

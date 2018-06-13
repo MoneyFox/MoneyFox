@@ -558,9 +558,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Select Filter</value>
   </data>
-  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Finished clearing your payments.</value>
-  </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>You backup was synced successfully.</value>
   </data>
@@ -585,9 +582,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login failed!</value>
-  </data>
-  <data name="ClearPaymentFailedMessage" xml:space="preserve">
-    <value>Clearing payments failed!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
