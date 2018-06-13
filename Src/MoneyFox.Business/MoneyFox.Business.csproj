@@ -17,12 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="UserControls\**" />
-    <EmbeddedResource Remove="UserControls\**" />
-    <None Remove="UserControls\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
@@ -42,15 +36,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="MvvmCross.Forms">
-      <HintPath>C:\Users\ninop\.nuget\packages\mvvmcross.forms\5.6.3\lib\dotnet\MvvmCross.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.SecureStorage">
-      <HintPath>..\..\..\..\..\.nuget\packages\sameeriotapps.plugin.securestorage\2.5.0\lib\MonoAndroid10\Plugin.SecureStorage.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
