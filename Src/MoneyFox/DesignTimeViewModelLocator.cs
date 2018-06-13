@@ -26,6 +26,7 @@ namespace MoneyFox
         private static ISelectFilterDialogViewModel SELECT_FILTER_DIALOG_VIEW_MODEL;
         private static ISelectDateRangeDialogViewModel SELECT_DATE_RANGE_DIALOG_VIEW_MODEL;
         private static IModifyCategoryGroupViewModel MODIFY_CATEGORY_GROUP_VIEW_MODEL;
+        private static ISettingsBackupViewModel SETTINGS_BACKUP_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -122,5 +123,10 @@ namespace MoneyFox
         /// </summary>
         public static IModifyCategoryGroupViewModel DesignTimeModifyCategoryGroupViewModel =>
             MODIFY_CATEGORY_GROUP_VIEW_MODEL ?? (MODIFY_CATEGORY_GROUP_VIEW_MODEL = new DesignTimeModifyCategoryGroupViewModel());
+
+        ///     Implementation for DesignTimeSettingsBackupViewModel for design time.
+        /// </summary>
+        public static ISettingsBackupViewModel DesignTimeSettingsBackupViewModel =>
+            SETTINGS_BACKUP_VIEW_MODEL ?? (SETTINGS_BACKUP_VIEW_MODEL = new DesignTimeSettingsBackupViewModel());
     }
 }

@@ -1,12 +1,22 @@
 ﻿using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Localization;
 
 namespace MoneyFox.Business.ViewModels
 {
-    /// <summary>
-    ///     Representation of the general settings view.
-    /// </summary>
-    public class SettingsGeneralViewModel : BaseViewModel
+    public interface ISettingsBackupViewModel : IBaseViewModel
+    {        
+        /// <summary>
+        ///     Indicates if the autobackup is enabled or disabled.
+        /// </summary>
+        bool IsAutoBackupEnabled { get; }
+
+        /// <summary>
+        ///     Amount of hours to sync the backup.
+        /// </summary>
+        int BackupSyncRecurrence { get; }
+    }
+    
+    /// <inheritdoc cref="ISettingsBackupViewModel"/>/>
+    public class SettingsGeneralViewModel : BaseViewModel, ISettingsBackupViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;
@@ -20,9 +30,7 @@ namespace MoneyFox.Business.ViewModels
             this.backgroundTaskManager = backgroundTaskManager;
         }
 
-        /// <summary>
-        ///     Indicates if the autobackup is enabled or disabled.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsAutoBackupEnabled
         {
             get => settingsManager.IsBackupAutouploadEnabled;
@@ -43,9 +51,7 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Amount of hours to sync the backup.
-        /// </summary>
+        /// <inheritdoc />
         public int BackupSyncRecurrence
         {
             get => settingsManager.BackupSyncRecurrence;

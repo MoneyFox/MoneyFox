@@ -130,13 +130,13 @@
     <value>Dodaj Konto</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Dodaj dochód</value>
+    <value>Przychód</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Dodaj Wydatek</value>
+    <value>Wydatek</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Dodaj Przelew</value>
+    <value>Przelew</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
@@ -240,8 +240,8 @@
   <data name="StatisticsLabel" xml:space="preserve">
     <value>Statystyki</value>
   </data>
-  <data name="StatisticTitle" xml:space="preserve">
-    <value>Statystyka</value>
+  <data name="StatisticsTitle" xml:space="preserve">
+    <value>Statystyki</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
     <value>Sukcess!</value>
@@ -394,37 +394,34 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>Wystąpił błąd podczas uwierzytelniania. Proszę spróbuj ponownie.</value>
   </data>
-  <data name="AboutViewModel.VersionLabel" xml:space="preserve">
+  <data name="VersionLabel" xml:space="preserve">
     <value>Wersja</value>
   </data>
-  <data name="AboutViewModel.ContactLabel" xml:space="preserve">
+  <data name="ContactLabel" xml:space="preserve">
     <value>Kontakt</value>
   </data>
-  <data name="AboutViewModel.ContributerLabel" xml:space="preserve">
+  <data name="ContributerLabel" xml:space="preserve">
     <value>Aby zobaczyć wszystkie kontrybucje przejdź do GitHub:</value>
   </data>
-  <data name="AboutViewModel.IconDesignerLabel" xml:space="preserve">
-    <value>Ta ikona aplikacji została stworzona przez:</value>
+  <data name="IconDesignerLabel" xml:space="preserve">
+    <value>Ikona aplikacji została stworzona przez:</value>
   </data>
-  <data name="AboutViewModel.InfoOpenSource" xml:space="preserve">
+  <data name="InfoOpenSource" xml:space="preserve">
     <value>To jest projekt Open-Source - i bardzo chcielibyśmy pracować z tobą! Zapraszamy do kontrybuowania. Naciśnij, aby odwiedzić repozytorium:</value>
   </data>
-  <data name="AboutViewModel.RateLabel" xml:space="preserve">
+  <data name="RateLabel" xml:space="preserve">
     <value>Oceń nas!</value>
   </data>
-  <data name="AboutViewModel.TranslationLabel" xml:space="preserve">
-    <value>Coś jest przetłumaczone niepoprawnie, lub w ogóle? Pomóż nam! Udaj się do Crowdin i pomóż w poprawie Money Fox:</value>
+  <data name="TranslationLabel" xml:space="preserve">
+    <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić Money Fox:</value>
   </data>
-  <data name="LoginViewModel.LoginLabel" xml:space="preserve">
-    <value>Zaloguj się</value>
+  <data name="PasswordLabel" xml:space="preserve">
+    <value>Password</value>
   </data>
-  <data name="LoginViewModel.PasswordLabel" xml:space="preserve">
-    <value>Hasło</value>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
   </data>
-  <data name="LoginViewModel.WelcomeLabel" xml:space="preserve">
-    <value>Witaj!</value>
-  </data>
-  <data name="AccountListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
+  <data name="NoAccountsMessage" xml:space="preserve">
     <value>Nie ma żadnych Kont. Dodaj jedno naciskając przycisk plusa poniżej.</value>
   </data>
   <data name="CreateBackupInformationLabel" xml:space="preserve">
@@ -448,101 +445,47 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Przywróć z kopii zapasowej</value>
   </data>
-  <data name="ModifyAccountViewModel.AccountNameLabel" xml:space="preserve">
+  <data name="AccountNameLabel" xml:space="preserve">
     <value>Nazwa Konta</value>
   </data>
-  <data name="ModifyAccountViewModel.CurrentBalanceLabel" xml:space="preserve">
+  <data name="CurrentBalanceLabel" xml:space="preserve">
     <value>Bieżące Saldo</value>
   </data>
-  <data name="ModifyAccountViewModel.IbanLabel" xml:space="preserve">
-    <value>Iban</value>
+  <data name="NoteLabel" xml:space="preserve">
+    <value>Notatka</value>
   </data>
-  <data name="ModifyAccountViewModel.NoteLabel" xml:space="preserve">
-    <value>Notka</value>
+  <data name="AmountLabel" xml:space="preserve">
+    <value>Ilość</value>
   </data>
-  <data name="ModifyCategoryViewModel.CategoryNameLabel" xml:space="preserve">
-    <value>Nazwa Kategorii</value>
-  </data>
-  <data name="ModifyCategoryViewModel.NoteLabel" xml:space="preserve">
-    <value>Notka</value>
-  </data>
-  <data name="ModifyPaymentViewModel.AmountLabel" xml:space="preserve">
-    <value>Kwota</value>
-  </data>
-  <data name="ModifyPaymentViewModel.CategoryLabel" xml:space="preserve">
+  <data name="CategoryLabel" xml:space="preserve">
     <value>Kategoria</value>
   </data>
-  <data name="ModifyPaymentViewModel.DateLabel" xml:space="preserve">
+  <data name="DateLabel" xml:space="preserve">
     <value>Data</value>
   </data>
-  <data name="ModifyPaymentViewModel.EndlessLabel" xml:space="preserve">
-    <value>Jest nieskończone/a</value>
+  <data name="EndlessLabel" xml:space="preserve">
+    <value>Nieskończony</value>
   </data>
-  <data name="ModifyPaymentViewModel.NoteLabel" xml:space="preserve">
-    <value>Notka</value>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Cykliczny</value>
   </data>
-  <data name="ModifyPaymentViewModel.RecurringLabel" xml:space="preserve">
-    <value>Powtarzający/e się</value>
+  <data name="EmptyListPlaceholderLabel" xml:space="preserve">
+    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
-  <data name="PaymentListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Nie ma żadnych płatności. Dodaj jedno naciskając na przycisk plusa poniżej.</value>
+  <data name="SearchStringLabel" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="SelectCategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Wyszukaj</value>
+  <data name="AutobackupInformationLabel" xml:space="preserve">
+    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
-  <data name="CategoryListViewModel.EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Nie ma żadnych kategorii. Dodaj jedną nasciskając na przycisk plusa poniżej.</value>
+  <data name="AutobackupLabel" xml:space="preserve">
+    <value>Automatically upload and download backups</value>
   </data>
-  <data name="CategoryListViewModel.SearchStringLabel" xml:space="preserve">
-    <value>Wyszukaj</value>
+  <data name="PasswordActivatedLabel" xml:space="preserve">
+    <value>Password protection</value>
   </data>
-  <data name="MenuViewModel.SloganLabel" xml:space="preserve">
-    <value>Sposób, aby sprawić budżetowanie łatwym.</value>
-  </data>
-  <data name="SettingsGeneralViewModel.AutobackupInformationLabel" xml:space="preserve">
-    <value>Jeżeli aktywujesz to ustawienie, po każdej zmianie w bazie danych, kopia zapasowa zostanie wykonana do OneDrive. Również jeśli uruchomisz aplikacje tam, sprawdzi ona czy istnieją nowsze kopie zapasowe i przywróci je, jeżeli są.</value>
-  </data>
-  <data name="SettingsGeneralViewModel.AutobackupLabel" xml:space="preserve">
-    <value>Automatycznie przesyłaj i pobieraj kopie zapasowe</value>
-  </data>
-  <data name="SettingsSecurityViewModel.DoneLabel" xml:space="preserve">
-    <value>Zrobiono</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordActivatedLabel" xml:space="preserve">
-    <value>Ochrona hasłem</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordConfirmationLabel" xml:space="preserve">
-    <value>Potwierdzenie hasła</value>
-  </data>
-  <data name="SettingsSecurityViewModel.PasswordLabel" xml:space="preserve">
-    <value>Hasło</value>
-  </data>
-  <data name="MenuViewModel.AddLabel" xml:space="preserve">
-    <value>Dodaj</value>
-  </data>
-  <data name="MenuViewModel.DeleteLabel" xml:space="preserve">
-    <value>Usuń</value>
-  </data>
-  <data name="MenuViewModel.SaveLabel" xml:space="preserve">
-    <value>Zapisz</value>
-  </data>
-  <data name="MenuViewModel.AboutLabel" xml:space="preserve">
-    <value>O</value>
-  </data>
-  <data name="MenuViewModel.AccountsLabel" xml:space="preserve">
-    <value>Konta</value>
-  </data>
-  <data name="MenuViewModel.BackupLabel" xml:space="preserve">
-    <value>Kopia zapasowa</value>
-  </data>
-  <data name="MenuViewModel.CategoriesLabel" xml:space="preserve">
-    <value>Kategorie</value>
-  </data>
-  <data name="MenuViewModel.SettingsLabel" xml:space="preserve">
-    <value>Ustawienia</value>
-  </data>
-  <data name="MenuViewModel.StatisticsLabel" xml:space="preserve">
-    <value>Statystyki</value>
+  <data name="PasswordConfirmationLabel" xml:space="preserve">
+    <value>Password Confirmation</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Płatność cykliczna została usunięta. Czy także chcesz usunąć powtórzenie?</value>
@@ -553,7 +496,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Dwa razy w miesiącu</value>
   </data>
-  <data name="ModifyAccountViewModel.IsExcludedLabel" xml:space="preserve">
+  <data name="IsExcludedLabel" xml:space="preserve">
     <value>Wyklucz konto z salda</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
@@ -565,20 +508,20 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="ErrorMessageRestore" xml:space="preserve">
     <value>Wystąpił błąd podczas przywracania kopii zapasowej. Jeśli ten błąd nadal będzie występował, proszę skontaktować się z nami.</value>
   </data>
-  <data name="AccountListViewModel.ExcludedAccountsHeader" xml:space="preserve">
+  <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Wykluczone Konta</value>
   </data>
-  <data name="AccountListViewModel.IncludedAccountsHeader" xml:space="preserve">
+  <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Uwzględnione Konta</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Ustaw ilość godzin do synchronizacji kopi zapasowej.</value>
+  <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
+    <value>Set the interval to check for changed data.</value>
   </data>
-  <data name="SettingsGeneralViewModel.HourLabel" xml:space="preserve">
-    <value>Godzina(y)</value>
+  <data name="HourLabel" xml:space="preserve">
+    <value>Hour(s)</value>
   </data>
-  <data name="SettingsGeneralViewModel.BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Ponowne tworzenie kopii zapasowych</value>
+  <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
+    <value>Backup Recurrence</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Dwa razy w roku</value>
@@ -619,9 +562,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>Twoja kopia zapasowa została pomyślnie zsynchronizowana.</value>
   </data>
-  <data name="RecurringPaymentsCreatedMessages" xml:space="preserve">
-    <value>Płatności cykliczne zostały utworzone.</value>
-  </data>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
     <value>Nie udało się zsynchronizować kopii zapasowej</value>
   </data>
@@ -647,16 +587,103 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="ClearPaymentFailedMessage" xml:space="preserve">
     <value>Rozliczeń płatności nie powiodło się!</value>
   </data>
-  <data name="CreateRecurringPaymentFailedMessage" xml:space="preserve">
-    <value>Błąd podczas tworzenia płatności cyklicznych!</value>
+  <data name="IsClearedLabel" xml:space="preserve">
+    <value>Cleared</value>
   </data>
-  <data name="SelectFilterDialogViewModel.IsClearedLabel" xml:space="preserve">
-    <value>Zrealizowano</value>
+  <data name="IsRecurringLabel" xml:space="preserve">
+    <value>Recurring</value>
   </data>
-  <data name="SelectFilterDialogViewModel.IsRecurringLabel" xml:space="preserve">
-    <value>Cykliczny</value>
+  <data name="OthersLabel" xml:space="preserve">
+    <value>Inne</value>
   </data>
-  <data name="SelectFilterDialogViewModel.SelectFilterLabel" xml:space="preserve">
-    <value>Wybierz Filtr</value>
+  <data name="AccountsTitle" xml:space="preserve">
+    <value>Konta</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="StatisticsTimeRangeTitle" xml:space="preserve">
+    <value>Time Range:</value>
+  </data>
+  <data name="CategorySummaryTitle" xml:space="preserve">
+    <value>Podsumowanie Kategorii</value>
+  </data>
+  <data name="NoCategoriesMessage" xml:space="preserve">
+    <value>Nie ma żadnych kategorii do wyświetlania. Wciśnij przycisk +, aby dodać.</value>
+  </data>
+  <data name="NoStatisticItemsMessage" xml:space="preserve">
+    <value>Nie ma elementów do pokazania statystyk.</value>
+  </data>
+  <data name="BackupSettingsDescription" xml:space="preserve">
+    <value>Tworzenie i przywracanie kopii zapasowych.</value>
+  </data>
+  <data name="CategoriesSettingsDescription" xml:space="preserve">
+    <value>Dodaj i modyfikuj kategorie.</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Konto</value>
+  </data>
+  <data name="SaveAccountLabel" xml:space="preserve">
+    <value>Zapisz konto</value>
+  </data>
+  <data name="SearchLabel" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="EnddateLabel" xml:space="preserve">
+    <value>Data zakończenia</value>
+  </data>
+  <data name="RecurrenceLabel" xml:space="preserve">
+    <value>Powtarzanie</value>
+  </data>
+  <data name="SavePaymentLabel" xml:space="preserve">
+    <value>Zapisz płatności</value>
+  </data>
+  <data name="NoPaymentsMessage" xml:space="preserve">
+    <value>Nie ma żadnych płatności. Dodaj jedną naciskając na przycisk plusa poniżej.</value>
+  </data>
+  <data name="SaveCategoryLabel" xml:space="preserve">
+    <value>Zapisz kategorię</value>
+  </data>
+  <data name="AboutSettingsDescription" xml:space="preserve">
+    <value>Ogólne informacji o tej aplikacji i obsługa pomoc.</value>
+  </data>
+  <data name="EmailLabel" xml:space="preserve">
+    <value>Adres e-mail</value>
+  </data>
+  <data name="WebsiteLabel" xml:space="preserve">
+    <value>Strona internetowa</value>
+  </data>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>Kopia zapasowa</value>
+  </data>
+  <data name="CategoriesTitle" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="SelectCategoryTitle" xml:space="preserve">
+    <value>Wybierz Kategorie</value>
+  </data>
+  <data name="CashFlowStatisticTitle" xml:space="preserve">
+    <value>Przepływ Pieniędzy</value>
+  </data>
+  <data name="CategorySpreadingTitle" xml:space="preserve">
+    <value>Category Spreading</value>
+  </data>
+  <data name="CategoryNameLabel" xml:space="preserve">
+    <value>Nazwa Kategorii</value>
+  </data>
+  <data name="FilterLabel" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="TimeRangeEndLabel" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStartLabel" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
+  <data name="SelectDateLabel" xml:space="preserve">
+    <value>Select Date</value>
   </data>
 </root>

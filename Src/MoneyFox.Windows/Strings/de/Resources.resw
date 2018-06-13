@@ -380,9 +380,6 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="Logout.Content" xml:space="preserve">
     <value>Ausloggen</value>
   </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
     <value>Manuell Sichern</value>
   </data>
@@ -411,7 +408,7 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
     <value>Einbezogene Konten</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value></value>
+    <value>Filter</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Feedback hinterlassen</value>
@@ -436,5 +433,23 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Tiles</value>
+  </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>Verbucht</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>Wiederkehrend</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>Zeitraum Ende</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>Zeitraum Start</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>Du hast noch keine Gruppe erfasst. Erstelle eine über den Plus Knopf unten.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Gruppen</value>
   </data>
 </root>

@@ -59,6 +59,7 @@ namespace MoneyFox.Windows.Views
         private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
         {
             var viewModel = (ModifyPaymentViewModel)ViewModel;
+            if (viewModel.SelectedPayment == null) return;
             if (viewModel.SelectedPayment.IsRecurring)
             {
                 await RecurringStackPanel.Fade(1).StartAsync();

@@ -379,9 +379,6 @@
   <data name="Logout.Content" xml:space="preserve">
     <value>Выйти</value>
   </data>
-  <data name="Iban.Header" xml:space="preserve">
-    <value>IBAN</value>
-  </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
     <value>Создавать резервную копию вручную</value>
   </data>
@@ -410,7 +407,7 @@
     <value>Included Accounts</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value></value>
+    <value>Filter</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Leave a Feedback</value>
@@ -435,5 +432,23 @@
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Tiles</value>
+  </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>Cleared</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>Recurring</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>Time Range End</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>Time Range Start</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Groups</value>
   </data>
 </root>

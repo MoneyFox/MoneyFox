@@ -118,321 +118,338 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Accounts</value>
+    <value>账户</value>
   </data>
   <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Add Account</value>
+    <value>添加账户</value>
   </data>
   <data name="AddAccountText.Text" xml:space="preserve">
-    <value>Add Account</value>
+    <value>添加账户</value>
   </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Add Account</value>
+    <value>添加账户</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>New Category</value>
+    <value>新建类别</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>Add Income</value>
+    <value>添加收入</value>
   </data>
   <data name="AddExpenseLabel.Label" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>添加支出</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>添加转账</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
+    <value>您的数据将被保存至您的OneDrive账户。您可以在叫做“MoneyFoxBackupManager"的文件夹里找到它们。</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it. 
-WARNING: Local changes you made meanwhile will be lost.</value>
+    <value>将下载过去上传的数据备份并代替现存的本地数据。
+【警告】：未备份的本地更改将被丢失。</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>Backup</value>
+    <value>备份</value>
   </data>
   <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>现金流</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
-    <value>Categories</value>
+    <value>类别</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>类别摘要</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
-    <value>Contact:</value>
+    <value>联系方式：</value>
   </data>
   <data name="Delete.Text" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>删除账户</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
-    <value>Developer</value>
+    <value>开发者</value>
   </data>
   <data name="Edit.Text" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="InfoLabel.Text" xml:space="preserve">
-    <value>Info</value>
+    <value>信息</value>
   </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>这是一个开源的项目，我们期待着与你合作！请随时做出贡献。
+点击访问资源库</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>给应用打分</value>
   </data>
   <data name="SecuritySettingsHeader.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>安全性</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Select Category</value>
+    <value>选择类别</value>
   </data>
   <data name="SetDate.Label" xml:space="preserve">
-    <value>Set Date</value>
+    <value>设置日期</value>
   </data>
   <data name="SavePassword.Content" xml:space="preserve">
-    <value>Save Password</value>
+    <value>保存密码</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Spreading</value>
+    <value>转移</value>
   </data>
   <data name="TilesSettingsHeader.Text" xml:space="preserve">
-    <value>Tiles</value>
+    <value>磁贴</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
-    <value>Total: </value>
+    <value>总计： </value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Version: </value>
+    <value>版本： </value>
   </data>
   <data name="Password.Header" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="PasswordConfirmation.Header" xml:space="preserve">
-    <value>Confirm password</value>
+    <value>确认密码</value>
   </data>
   <data name="PasswordSettingSwitch.OffContent" xml:space="preserve">
-    <value>Password protection inactive</value>
+    <value>密码保护未启用</value>
   </data>
   <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
-    <value>Password protection active</value>
+    <value>密码保护启用</value>
   </data>
   <data name="Login.Content" xml:space="preserve">
-    <value>Login</value>
+    <value>登录</value>
   </data>
   <data name="PleaseLogin.Text" xml:space="preserve">
-    <value>Please enter your password to login.</value>
+    <value>请输入您的密码</value>
   </data>
   <data name="Willkommen.Text" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>欢迎！</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Create Income Tile</value>
+    <value>创建收入磁贴</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Create Expense Tile</value>
+    <value>创建支出磁贴</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Create Transfer Tile</value>
+    <value>创建转账磁贴</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>完成</value>
   </data>
   <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>Add Category</value>
+    <value>增加类别</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>创建备份</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Remove Income Tile</value>
+    <value>移除收入磁铁</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remove Expense Tile</value>
+    <value>移除支出磁贴</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Remove Transfer Tile</value>
+    <value>移除转账磁贴</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>还原备份</value>
   </data>
   <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>完成</value>
   </data>
   <data name="SelectDateRangeDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>Select Daterange</value>
+    <value>选择日期范围</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
-    <value>Show Cashflow on Maintile</value>
+    <value>在主磁贴上展示现金流</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
-    <value>Search</value>
+    <value>搜索</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
-    <value>No</value>
+    <value>不</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
-    <value>Yes</value>
+    <value>是</value>
   </data>
   <data name="AmountTextBox.Header" xml:space="preserve">
-    <value>Amount</value>
+    <value>金额</value>
   </data>
   <data name="CategoryTextBox.Header" xml:space="preserve">
-    <value>Category</value>
+    <value>类别</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
-    <value>Date</value>
+    <value>日期</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>永不停止</value>
   </data>
   <data name="NoteTextBox.Header" xml:space="preserve">
-    <value>Note</value>
+    <value>备注</value>
   </data>
   <data name="RecurrenceComboBox.Header" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>重复</value>
   </data>
   <data name="RepeatSwitch.Header" xml:space="preserve">
-    <value>Repeat</value>
+    <value>重复</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Target Account</value>
+    <value>目标帐户</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
+    <value>为了进一步改进此程序，我们搜集了错误与问题的非个人隐私数据。</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Done</value>
+    <value>完成</value>
   </data>
   <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="EndDateHeader.Header" xml:space="preserve">
-    <value>End Date</value>
+    <value>结束日期</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>Start Date</value>
+    <value>开始日期</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>选择统计</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
-    <value>Last Backup was created at:</value>
+    <value>最新的备份创建于：</value>
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
-    <value>Last database modification:</value>
+    <value>最后一次数据修改：</value>
   </data>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
-    <value>Monthly Expenses</value>
+    <value>每月费用</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at the bottom.</value>
+    <value>没有任何账户。点击在底部的三点符号添加一个。</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus symbol at the bottom.</value>
+    <value>没有任何类别。点击在底部的加号添加一个。</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
-    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+    <value>没有任何款项。点击在底部的三个符号之一添加一个。</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
-    <value>You can change between a dark and light theme. To apply this change please restart the application.</value>
+    <value>您可以更改黑暗与明亮主题。使此更改生效需要重启本应用程序。</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
-    <value>Loading...</value>
+    <value>正在加载...</value>
   </data>
   <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
-Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+    <value>打开这个开关以与OneDrive同步。</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>有些东西没有被翻译或者翻译有误？帮助我们，在 crowdin 上改善 Money Fox 的翻译：</value>
   </data>
   <data name="CancelLabel.Label" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="DoneLabel.Label" xml:space="preserve">
-    <value>Done</value>
+    <value>完成</value>
   </data>
   <data name="CurrentBalanceTextBox.Header" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>当前余额</value>
   </data>
   <data name="Logout.Content" xml:space="preserve">
-    <value>Logout</value>
+    <value>退出登录</value>
   </data>
   <data name="AutoBackupSetting.OffContent" xml:space="preserve">
-    <value>Backup Manually</value>
+    <value>手动备份</value>
   </data>
   <data name="AutoBackupSetting.OnContent" xml:space="preserve">
-    <value>Backup Automatically</value>
+    <value>自动备份</value>
   </data>
   <data name="DesignerContribution.Text" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>本应用图标的创作者：</value>
   </data>
   <data name="GeneralContribution.Text" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>完整的贡献者名单在 GitHub：</value>
   </data>
   <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
+    <value>手动上传和下载备份</value>
   </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>此账户不计入余额</value>
   </data>
   <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
+    <value>每多久下载云端新数据</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>不计入收支</value>
   </data>
   <data name="IncludedAccounts.Text" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>计入收支</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value></value>
+    <value>筛选器</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
-    <value>Leave a Feedback</value>
+    <value>意见反馈</value>
   </data>
   <data name="Dark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>暗黑模式</value>
   </data>
   <data name="Light.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>浅色模式</value>
   </data>
   <data name="System.Content" xml:space="preserve">
-    <value>System</value>
+    <value>系统</value>
   </data>
   <data name="SettingsHeaderBackup.Text" xml:space="preserve">
-    <value>Backup</value>
+    <value>备份</value>
   </data>
   <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
-    <value>Theme</value>
+    <value>主题</value>
   </data>
   <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
-    <value>Security</value>
+    <value>安全性</value>
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
-    <value>Tiles</value>
+    <value>磁贴</value>
+  </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>已清除</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>重复</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>截至时间</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>起始时间</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>没有任何分组。点击在底部的加号添加一个。</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>分组</value>
   </data>
 </root>

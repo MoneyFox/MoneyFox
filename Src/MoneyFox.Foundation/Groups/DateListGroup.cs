@@ -22,7 +22,6 @@ namespace MoneyFox.Foundation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        /// <param name="itemLongClickCommand">The command to execute on a long click</param>
         public DateListGroup(string key, MvxAsyncCommand<T> itemClickCommand = null)
         {
             Key = key;
@@ -43,13 +42,12 @@ namespace MoneyFox.Foundation.Groups
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
-        /// <param name="ci">The CultureInfo to group and sort by.</param>
         /// <param name="getKey">A delegate to get the key from an item.</param>
         /// <param name="getSortKey">A delegate to get the key for sorting from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
-        public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
+        public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
             GetSortKeyDelegate getSortKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null)
         {
             var list = new List<DateListGroup<T>>();

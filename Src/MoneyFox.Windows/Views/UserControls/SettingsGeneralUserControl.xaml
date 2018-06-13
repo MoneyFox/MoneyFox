@@ -4,26 +4,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
+             xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
 
+    <UserControl.DataContext>
+        <designTime:DesignTimeSettingsBackupViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <StackPanel>
-            <TextBlock x:Uid="AutoBackupSettingExplanation"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                       Text="Setting explanation"
+            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="{Binding Resources[AutobackupInformationLabel]}"
                        TextWrapping="WrapWholeWords" />
-            <ToggleSwitch x:Uid="AutoBackupSetting"
-                          VerticalAlignment="Center"
-                          Header="Upload and download backup manually"
+            <ToggleSwitch VerticalAlignment="Center"
+                          Header="{Binding Resources[AutobackupLabel]}"
                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}" />
 
-            <TextBlock x:Uid="BackupSyncRecurrenceInfo"
-                       Margin="0,10,0,0"
+            <TextBlock Margin="0,10,0,3"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                       Text="Setting explanation"
+                       Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
                        TextWrapping="WrapWholeWords" />
             <input:RadNumericBox Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 

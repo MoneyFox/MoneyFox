@@ -548,7 +548,7 @@ namespace MoneyFox.Business.ViewModels
         private async Task PrepareRecurringPayment()
         {
             if (IsEdit
-                && selectedPayment.IsRecurring
+                && SelectedPayment.IsRecurring
                 && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
                                                           Strings.ChangeSubsequentPaymentMessage,
                                                           Strings.UpdateAllLabel, Strings.JustThisLabel)

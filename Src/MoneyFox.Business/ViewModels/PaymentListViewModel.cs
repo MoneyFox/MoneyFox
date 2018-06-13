@@ -179,7 +179,7 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <inheritdoc />
-        public override async Task Initialize()
+        public override Task Initialize()
         {
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
@@ -189,6 +189,12 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
+            return base.Initialize();
+        }
+
+        /// <inheritdoc />
+        public override async void ViewAppearing()
+        {
             await Load();
         }
 
@@ -231,8 +237,7 @@ namespace MoneyFox.Business.ViewModels
 
             var dailyItems = DateListGroup<PaymentViewModel>
                 .CreateGroups(loadedPayments,
-                              CultureInfo.CurrentUICulture,
-                              s => s.Date.ToString("D", CultureInfo.InvariantCulture),
+                              s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
                               s => s.Date,
                               itemClickCommand: EditPaymentCommand);
 
@@ -240,11 +245,11 @@ namespace MoneyFox.Business.ViewModels
 
             Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
                 DateListGroup<DateListGroup<PaymentViewModel>>
-                    .CreateGroups(dailyItems, CultureInfo.CurrentUICulture,
+                    .CreateGroups(dailyItems,
                                   s =>
                                   {
                                       var date = Convert.ToDateTime(s.Key);
-                                      return date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + date.Year;
+                                      return date.ToString("MMMM", CultureInfo.CurrentUICulture) + " " + date.Year;
                                   },
                                   s => Convert.ToDateTime(s.Key)));
         }

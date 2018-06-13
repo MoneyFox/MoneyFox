@@ -406,7 +406,7 @@
     <value>Uwzględnione Konta</value>
   </data>
   <data name="FilterLabel.Label" xml:space="preserve">
-    <value></value>
+    <value>Filter</value>
   </data>
   <data name="GiveFeedback.Text" xml:space="preserve">
     <value>Pozostaw opinie</value>
@@ -431,5 +431,23 @@
   </data>
   <data name="SettingsHeaderTiles.Text" xml:space="preserve">
     <value>Pola</value>
+  </data>
+  <data name="ClearedLabel.Content" xml:space="preserve">
+    <value>Wyczyszczono</value>
+  </data>
+  <data name="RecurringLabel.Content" xml:space="preserve">
+    <value>Cykliczny</value>
+  </data>
+  <data name="TimeRangeEnd.Header" xml:space="preserve">
+    <value>Koniec okresu</value>
+  </data>
+  <data name="TimeRangeStart.Header" xml:space="preserve">
+    <value>Początek okresu</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Groups</value>
   </data>
 </root>
