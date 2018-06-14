@@ -69,7 +69,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                 {
                     Id = 1,
                     Name = "Test CategoryViewModel",
-                    Note = "Notes about the test CategoryViewModel"
+                    Note = "Note about the test CategoryViewModel"
                 }
             };
 

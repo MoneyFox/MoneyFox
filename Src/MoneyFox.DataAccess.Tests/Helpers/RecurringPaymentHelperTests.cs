@@ -3,6 +3,7 @@ using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
+using Should;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Helpers
@@ -62,16 +63,16 @@ namespace MoneyFox.DataAccess.Tests.Helpers
             var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
                                                                            recurrence, enddate);
 
-            recurring.Data.ChargedAccount.Id.ShouldBe(3);
-            recurring.Data.TargetAccount.Id.ShouldBe(8);
-            recurring.Data.StartDate.ShouldBe(startDate);
+            recurring.Data.ChargedAccount.Id.ShouldEqual(3);
+            recurring.Data.TargetAccount.Id.ShouldEqual(8);
+            recurring.Data.StartDate.ShouldEqual(startDate);
             recurring.Data.EndDate.ShouldBeNull();
-            recurring.Data.IsEndless.ShouldBe(true);
-            recurring.Data.Amount.ShouldBe(payment.Data.Amount);
-            recurring.Data.Category.Id.ShouldBe(payment.Data.Category.Id);
-            recurring.Data.Type.ShouldBe(type);
-            recurring.Data.Recurrence.ShouldBe(recurrence);
-            recurring.Data.Note.ShouldBe(payment.Data.Note);
+            recurring.Data.IsEndless.ShouldEqual(true);
+            recurring.Data.Amount.ShouldEqual(payment.Data.Amount);
+            recurring.Data.Category.Id.ShouldEqual(payment.Data.Category.Id);
+            recurring.Data.Type.ShouldEqual(type);
+            recurring.Data.Recurrence.ShouldEqual(recurrence);
+            recurring.Data.Note.ShouldEqual(payment.Data.Note);
         }
 
 
@@ -104,10 +105,10 @@ namespace MoneyFox.DataAccess.Tests.Helpers
 
             var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
-            result.Data.ChargedAccount.ShouldBe(account);
-            result.Data.ChargedAccountId.ShouldBe(account.Id);
-            result.Data.Amount.ShouldBe(105);
-            result.Data.Date.ShouldBe(DateTime.Today);
+            result.Data.ChargedAccount.ShouldEqual(account);
+            result.Data.ChargedAccountId.ShouldEqual(account.Id);
+            result.Data.Amount.ShouldEqual(105);
+            result.Data.Date.ShouldEqual(DateTime.Today);
         }
 
         [Fact]
@@ -131,10 +132,10 @@ namespace MoneyFox.DataAccess.Tests.Helpers
 
             var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
-            result.Data.ChargedAccount.ShouldBe(account);
-            result.Data.ChargedAccountId.ShouldBe(account.Id);
-            result.Data.Amount.ShouldBe(105);
-            result.Data.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
+            result.Data.ChargedAccount.ShouldEqual(account);
+            result.Data.ChargedAccountId.ShouldEqual(account.Id);
+            result.Data.Amount.ShouldEqual(105);
+            result.Data.Date.ShouldEqual(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
         }
 
         [Fact]
@@ -255,7 +256,7 @@ namespace MoneyFox.DataAccess.Tests.Helpers
                                               RecurringPayment = recurringPayment
                                           }
                                       })
-                                  .ShouldBe(expectedResult);
+                                  .ShouldEqual(expectedResult);
         }
 
         [Theory]

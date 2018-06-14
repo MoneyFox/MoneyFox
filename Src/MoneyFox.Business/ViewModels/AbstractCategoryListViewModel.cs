@@ -8,7 +8,6 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Foundation;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 
@@ -88,14 +87,19 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
+        public MvxAsyncCommand CreateNewCategoryCommand => new MvxAsyncCommand(CreateNewCategory);
+
+        /// <summary>
+        ///     Load the categories from the database.
+        /// </summary>
+        public MvxAsyncCommand LoadCategoriesCommand => new MvxAsyncCommand(Load);
 
         #endregion
 
         /// <inheritdoc />
         public override async void ViewAppearing()
         {
-            await Loaded();
+            await Load();
         }
 
         /// <summary>
@@ -116,7 +120,7 @@ namespace MoneyFox.Business.ViewModels
             CategoryList = CreateGroup(categories);
         }
 
-        private async Task Loaded()
+        private async Task Load()
         {
             await Search();
         }
@@ -126,7 +130,7 @@ namespace MoneyFox.Business.ViewModels
             await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
         }
 
-        private async Task CreateNewCategory(CategoryViewModel category)
+        private async Task CreateNewCategory()
         {
             await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }

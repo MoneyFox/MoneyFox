@@ -63,7 +63,7 @@ namespace MoneyFox.DataAccess.Tests.DataServices
         }
 
         [Fact]
-        public async void SaveCategory_AccountSavedIdSet()
+        public async void SaveCategory_SavedIdSet()
         {
             // Arrange
             var categoryService = new CategoryService(ambientDbContextLocator, dbContextScopeFactory);

@@ -1,6 +1,5 @@
 ﻿using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess
@@ -20,6 +19,7 @@ namespace MoneyFox.DataAccess
         internal DbSet<PaymentEntity> Payments { get; set; }
         internal DbSet<RecurringPaymentEntity> RecurringPayments { get; set; }
         internal DbSet<CategoryEntity> Categories { get; set; }
+        internal DbSet<CategoryGroupEntity> CategoryGroups { get; set; }
 
         /// <summary>
         ///     The Path to the db who shall be opened
