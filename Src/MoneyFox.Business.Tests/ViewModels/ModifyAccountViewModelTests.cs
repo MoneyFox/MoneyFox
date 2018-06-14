@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
+using AutoFixture.AutoMoq;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
@@ -116,6 +117,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Arrange
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
             var fixture = new Fixture();
+            fixture.Customize(new AutoMoqCustomization { ConfigureMembers = true });
             fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             var account = fixture.Create<AccountViewModel>();
 

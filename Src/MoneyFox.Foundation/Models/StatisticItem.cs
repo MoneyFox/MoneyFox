@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Models
             set
             {
                 if (Math.Abs(this.value - value) < 0.01) return;
-                this.value = Math.Round(value, 2); ;
+                this.value = value;
                 RaisePropertyChanged();
             }
 
@@ -33,7 +33,7 @@ namespace MoneyFox.Foundation.Models
             set
             {
                 if (Math.Abs(this.value - value) < 0.01) return;
-                percentage = Math.Round(value, 2);
+                percentage = value;
                 RaisePropertyChanged();
             }
         }

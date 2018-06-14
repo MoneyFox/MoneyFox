@@ -1,6 +1,8 @@
 ## Money Fox
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
+[![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index)
+
 ### Talk with us
 We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.
 
@@ -44,3 +46,4 @@ Feel free to contact me. Just write me a mail or even better join our slack chan
 
 ### Sponsoring
 The development of this app is supported by [Apply Solutions](http://www.apply-solutions.ch/).
+
