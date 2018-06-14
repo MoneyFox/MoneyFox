@@ -21,10 +21,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180609154151_AddCategoryGroup.cs" />
+    <Compile Remove="Migrations\20180609221338_AddCategoryGroup.cs" />
+    <Compile Remove="Migrations\20180609221758_AddCategoryGroup.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework.DbContextScope" Version="1.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.1.1" />
   </ItemGroup>
 

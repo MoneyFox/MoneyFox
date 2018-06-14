@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.DataAccess.Entities
 {
-    public class CategoryEntity
+    public class CategoryGroupEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,9 +14,6 @@ namespace MoneyFox.DataAccess.Entities
         public string Name { get; set; }
         public string Note { get; set; }
 
-        public virtual CategoryGroupEntity Group { get; set; }
-
-        public virtual List<PaymentEntity> Payments { get; set; }
-        public virtual List<RecurringPaymentEntity> RecurringPayments { get; set; }
+        public virtual List<CategoryEntity> Categories { get; set; }
     }
 }

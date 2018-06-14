@@ -21,6 +21,8 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             };
 
         public MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+        public MvxAsyncCommand LoadCategoriesCommand { get; }
+        public MvxAsyncCommand CreateNewCategoryCommand { get; }
         public MvxAsyncCommand<string> SearchCommand { get; }
 
         public CategoryViewModel SelectedCategory { get; set; }

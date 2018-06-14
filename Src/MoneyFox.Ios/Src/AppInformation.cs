@@ -1,5 +1,5 @@
-﻿using Foundation;
-using MoneyFox.Foundation.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
+using Xamarin.Essentials;
 
 namespace MoneyFox.iOS
 {
@@ -7,9 +7,5 @@ namespace MoneyFox.iOS
     public class AppInformation : IAppInformation
     {
         /// <inheritdoc />
-        public string GetVersion()
-        {
-            return NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
-        }
+        public string GetVersion() => AppInfo.VersionString;
     }
-}

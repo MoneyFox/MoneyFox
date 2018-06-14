@@ -191,7 +191,7 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task Cancel()
         {
-            SelectedCategory = new CategoryViewModel(await categoryService.GetById(SelectedCategory.Id));
+            SelectedCategory = null;
             await NavigationService.Close(this);
         }
     }

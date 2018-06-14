@@ -12,6 +12,8 @@ namespace MoneyFox.Business.ViewModels
     {
         ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
         MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+        MvxAsyncCommand LoadCategoriesCommand { get; }
+        MvxAsyncCommand CreateNewCategoryCommand { get; }
         MvxAsyncCommand<string> SearchCommand { get; }
         bool IsCategoriesEmpty { get; }
     }
