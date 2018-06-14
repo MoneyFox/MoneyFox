@@ -46,7 +46,7 @@
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Click="AddNew_OnClick"
                               Icon="Add"
-                              Label="New Category" />
+                              Label="{Binding Resources[AddCategoryLabel]}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
