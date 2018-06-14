@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.DataAccess.Pocos;
+using Should;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.Pocos
@@ -22,6 +23,9 @@ namespace MoneyFox.DataAccess.Tests.Pocos
             Assert.Equal(expectedResult, payment.Data.IsCleared);
         }
 
+        /// <summary>
+        ///     This test might fail around midnight.
+        /// </summary>
         [Theory]
         [InlineData(-120)]
         [InlineData(0)]
@@ -35,7 +39,7 @@ namespace MoneyFox.DataAccess.Tests.Pocos
             payment.ClearPayment();
 
             // Assert
-            Assert.True(payment.Data.IsCleared);
+            payment.Data.IsCleared.ShouldBeTrue();
         }
 
         [Fact]

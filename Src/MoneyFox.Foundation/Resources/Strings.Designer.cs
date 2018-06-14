@@ -142,6 +142,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Group.
+        /// </summary>
+        public static string AddCategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("AddCategoryGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
         public static string AddCategoryLabel {
@@ -475,6 +484,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no groups. Add one by tapping on the plus symbol at the bottom..
+        /// </summary>
+        public static string CategoryGroupPlaceholder {
+            get {
+                return ResourceManager.GetString("CategoryGroupPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groups.
+        /// </summary>
+        public static string CategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("CategoryGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string CategoryLabel {
@@ -768,6 +795,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string EditAccountTitle {
             get {
                 return ResourceManager.GetString("EditAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Group.
+        /// </summary>
+        public static string EditCategoryGroupTitle {
+            get {
+                return ResourceManager.GetString("EditCategoryGroupTitle", resourceCulture);
             }
         }
         
