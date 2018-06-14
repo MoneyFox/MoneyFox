@@ -4,7 +4,6 @@ using MoneyFox.Business.Authentication;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.ViewModels;
 
