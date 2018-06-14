@@ -335,9 +335,6 @@ Tap to visit the Repository:</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Start Date</value>
   </data>
-  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Select Statistic</value>
-  </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Last Backup was created at:</value>
   </data>

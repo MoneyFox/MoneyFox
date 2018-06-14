@@ -5,7 +5,13 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       mc:Ignorable="d">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeCategoryListViewModel />
+    </d:MvxWindowsPage.DataContext>
+    
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}"
           EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -15,9 +21,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="CategoriesTitle"
-                   Text="Categories"
+        <TextBlock x:Uid="CategoriesTitle"
+                   Text="{Binding Resources[CategoriesTitle]}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
@@ -28,7 +33,7 @@
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
                               Command="{Binding CreateNewCategoryCommand}"
                               Icon="Add"
-                              Label="New Category" />
+                              Label="{Binding Resources[AddCategoryLabel]}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
