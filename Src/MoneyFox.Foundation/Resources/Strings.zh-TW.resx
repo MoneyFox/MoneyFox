@@ -151,10 +151,10 @@
     <value>现金流</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>您更新了定期收付款。是否要更新将来的收付款</value>
+    <value>您更新了当前款项。是否要更新之后的定期重复款项？</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>应用到将来的定期款项？</value>
+    <value>应用到之后的定期款项？</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>每天</value>
@@ -172,13 +172,13 @@
     <value>删除</value>
   </data>
   <data name="SecurityTitle" xml:space="preserve">
-    <value>安全</value>
+    <value>安全性</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>删除？</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>您真的要删除此笔支付吗？</value>
+    <value>您真的要删除此笔款项吗？</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>编辑</value>
@@ -208,7 +208,7 @@
     <value>请输入名称。</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>不</value>
+    <value>否</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>确定</value>
@@ -217,13 +217,13 @@
     <value>现存备份将被覆盖。您想要继续吗？</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>是否覆盖?</value>
+    <value>是否覆盖？</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>是，更新全部</value>
+    <value>是，更新所有</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>收入</value>
+    <value>利润</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
     <value>选择日期</value>
@@ -262,7 +262,7 @@
     <value>是</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>你的本地数据将被清除。您确定要继续吗？</value>
+    <value>您的本地数据将被清除。确定要继续吗？</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>添加收入</value>
@@ -280,7 +280,7 @@
     <value>密码和确认密码不相符，请检查您的输入。</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>确认密码</value>
+    <value>密码确认</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
     <value>密码已成功保存。</value>
@@ -298,7 +298,7 @@
     <value>分类摘要</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>类别传播</value>
+    <value>类别间转账</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>原账户</value>
@@ -307,13 +307,13 @@
     <value>目标帐户</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>重复付款的终止日期必须在未来，请检查您的输入。</value>
+    <value>重复款项的终止日期有误，请检查您的输入。</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>无效的结束时间</value>
+    <value>无效的截止时间</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>不是现在</value>
+    <value>稍后再提醒我</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>我们希望你能喜欢我们的应用。请在商店评五星以支持我们。您想去商店评分吗？</value>
@@ -331,7 +331,7 @@
     <value>编辑分类</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
-    <value>类别</value>
+    <value>分类</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
     <value>收入、支出以及在选定时间内的收益</value>
@@ -373,19 +373,19 @@
     <value>您没有连接到互联网。请检查您的连接，然后重试。</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>无互联网连接</value>
+    <value>没有网络连接</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
     <value>通用</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>已存在账号使用此名称。</value>
+    <value>已存在同名账号。</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>具有此名称的分类已经存在。</value>
+    <value>已存在同名分类。</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>名称已被使用</value>
+    <value>名称已被占用！</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>正在加载...</value>
@@ -440,7 +440,7 @@
     <value>退出登录</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>下载过去上传的数据库备份并代替现存的本地数据。
+    <value>下载云端数据并覆盖。
 【警告】：未备份的本地更改将被丢失！</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
@@ -468,7 +468,7 @@
     <value>无期限</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>将被反复计算</value>
+    <value>为定期重复</value>
   </data>
   <data name="EmptyListPlaceholderLabel" xml:space="preserve">
     <value>没有任何类别。点击在底部的加号按钮添加一个。</value>
@@ -477,7 +477,7 @@
     <value>搜索</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>如果激活此设置, 我们会自动将数据备份到 OneDrive。另外, 如果其他设备上数据发生变化, 我们会定期检查。</value>
+    <value>如果激活此设置, 我们会自动将数据备份到 OneDrive。如果其他设备上数据发生变化, 我们会定期检查。</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>自动上传和下载备份</value>
@@ -489,7 +489,7 @@
     <value>密码确认</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>您已删除了定期款项。是否也要删除定期循环？</value>
+    <value>您已删除了当前款项。是否也要删除此定期重复款项？</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>删除定期款项？</value>
@@ -552,13 +552,10 @@
     <value>完成</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>重复性</value>
+    <value>为定期重复</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>筛选</value>
-  </data>
-  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Finished clearing your payments.</value>
   </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>同步成功。</value>
@@ -567,7 +564,7 @@
     <value>同步备份失败</value>
   </data>
   <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>系统策略拒绝了 MoneyFox 在后台运行的权限。几个函数可能无法按预期工作。</value>
+    <value>系统策略拒绝了 MoneyFox 在后台运行的权限。一些功能可能无法正常工作。</value>
   </data>
   <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
     <value>MoneyFox不具有在后台运行的权限。一些功能可能无法正常运作。</value>
@@ -584,14 +581,11 @@
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>登录失败！</value>
   </data>
-  <data name="ClearPaymentFailedMessage" xml:space="preserve">
-    <value>结算付款失败！</value>
-  </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>已清除</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>定期</value>
+    <value>定期重复</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>其他</value>
@@ -636,7 +630,7 @@
     <value>截止日期</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>重复</value>
+    <value>定期重复</value>
   </data>
   <data name="SavePaymentLabel" xml:space="preserve">
     <value>保存款项</value>

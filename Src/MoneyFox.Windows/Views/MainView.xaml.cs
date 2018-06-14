@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows.Views
 {
@@ -33,32 +34,31 @@ namespace MoneyFox.Windows.Views
             } 
             else
             {
-                switch (args.InvokedItem)
+                if (args.InvokedItem == null) return;
+
+                if (args.InvokedItem.Equals(Strings.AccountsTitle))
                 {
-                    case "Accounts":
-                        await ((MainViewModel)ViewModel).ShowAccountListCommand.ExecuteAsync();
-                        break;
-
-                    case "Statistics":
-                        await ((MainViewModel)ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
-                        break;
-
-                    case "Categories":
-                        await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
-                        break;
-
-                    case "Backup":
-                        await ((MainViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
-                        break;
-
-                    case "Settings":
-                        await ((MainViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
-                        break;
-
-                    case "About":
-                        await ((MainViewModel)ViewModel).ShowAboutCommand.ExecuteAsync();
-                        break;
-
+                    await ((MainViewModel)ViewModel).ShowAccountListCommand.ExecuteAsync();
+                }
+                else if(args.InvokedItem.Equals(Strings.CategoriesTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
+                }
+                else if(args.InvokedItem.Equals(Strings.StatisticsTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
+                }
+                else if(args.InvokedItem.Equals(Strings.BackupTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
+                } 
+                else if(args.InvokedItem.Equals(Strings.SettingsTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
+                } 
+                else if(args.InvokedItem.Equals(Strings.AboutTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowAboutCommand.ExecuteAsync();
                 }
             }
         }

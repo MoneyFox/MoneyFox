@@ -179,7 +179,7 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <inheritdoc />
-        public override async Task Initialize()
+        public override Task Initialize()
         {
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
@@ -189,6 +189,12 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
+            return base.Initialize();
+        }
+
+        /// <inheritdoc />
+        public override async void ViewAppearing()
+        {
             await Load();
         }
 
