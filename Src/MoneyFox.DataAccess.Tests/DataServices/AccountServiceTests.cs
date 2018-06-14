@@ -7,7 +7,6 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Constants;
-using MvvmCross.Binding.Extensions;
 using Xunit;
 
 namespace MoneyFox.DataAccess.Tests.DataServices

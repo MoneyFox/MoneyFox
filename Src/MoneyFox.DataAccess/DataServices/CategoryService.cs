@@ -84,11 +84,10 @@ namespace MoneyFox.DataAccess.DataServices
             {
                 using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
                 {
-                    var list = await dbContext.Categories
+                    return await dbContext.Categories
                                               .OrderByName()
+                                              .SelectCategories()
                                               .ToListAsync();
-
-                    return list.Select(x => new Category(x));
                 }
             }
         }
