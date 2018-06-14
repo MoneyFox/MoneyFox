@@ -7,11 +7,13 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
-                      xmlns:statistic="using:MoneyFox.Business.ViewModels.Statistic"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      d:DataContext="{d:DesignInstance statistic:StatisticSelectorViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       mc:Ignorable="d">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticSelectorViewModel />
+    </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
@@ -39,9 +41,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="StatisticSelectorViewTitle"
-                   Text="Select Statistic"
+        <TextBlock Text="{Binding Resources[SelectStatisticTitel]}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <ScrollViewer Grid.Row="1"

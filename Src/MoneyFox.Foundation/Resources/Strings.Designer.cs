@@ -144,6 +144,15 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Add Category.
         /// </summary>
+        public static string AddCategoryLabel {
+            get {
+                return ResourceManager.GetString("AddCategoryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Category.
+        /// </summary>
         public static string AddCategoryTitle {
             get {
                 return ResourceManager.GetString("AddCategoryTitle", resourceCulture);
@@ -1573,6 +1582,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string SelectOperationLabel {
             get {
                 return ResourceManager.GetString("SelectOperationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Statistic.
+        /// </summary>
+        public static string SelectStatisticTitel {
+            get {
+                return ResourceManager.GetString("SelectStatisticTitel", resourceCulture);
             }
         }
         
