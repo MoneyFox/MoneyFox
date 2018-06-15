@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Windows.Views.UserControls
 {
-    public sealed partial class SettingsGeneralUserControl
+    public sealed partial class SettingsBackgroundJobUserControl
     {
-        public SettingsGeneralUserControl()
+        public SettingsBackgroundJobUserControl()
         {
             InitializeComponent();
         }

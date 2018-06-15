@@ -304,11 +304,20 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable automatic backup sync and configure execution interval for background task..
+        ///   Looks up a localized string similar to Configure execution interval for background task..
         /// </summary>
         public static string BackgroundJobSettingDescription {
             get {
                 return ResourceManager.GetString("BackgroundJobSettingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background Job.
+        /// </summary>
+        public static string BackgroundJobTitle {
+            get {
+                return ResourceManager.GetString("BackgroundJobTitle", resourceCulture);
             }
         }
         

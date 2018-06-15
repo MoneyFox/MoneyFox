@@ -214,8 +214,8 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\SettingsBackupUserControl.xaml.cs">
-      <DependentUpon>SettingsBackupUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\SettingsBackgroundJobUserControl.xaml.cs">
+      <DependentUpon>SettingsBackgroundJobUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\SettingsPersonalizationUserControl.xaml.cs">
       <DependentUpon>SettingsPersonalizationUserControl.xaml</DependentUpon>
@@ -431,7 +431,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\SettingsBackupUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsBackgroundJobUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

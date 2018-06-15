@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using MoneyFox.Foundation.Resources;
+using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
 {
@@ -9,5 +10,11 @@ namespace MoneyFox.Views
 		{
 			InitializeComponent ();
 		}
+
+	    protected override void OnAppearing()
+	    {
+	        Title = Strings.BackgroundJobTitle;
+            base.OnAppearing();
+	    }
 	}
 }

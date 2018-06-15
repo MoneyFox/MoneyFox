@@ -692,6 +692,9 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Background Job</value>
   </data>
   <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Enable automatic backup sync and configure execution interval for background task.</value>
+    <value>Configure execution interval for background task.</value>
+  </data>
+  <data name="BackgroundJobTitle" xml:space="preserve">
+    <value>Background Job</value>
   </data>
 </root>
