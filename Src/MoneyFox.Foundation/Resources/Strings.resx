@@ -688,4 +688,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectStatisticTitel" xml:space="preserve">
     <value>Select Statistic</value>
   </data>
+  <data name="BackgroundJobLabel" xml:space="preserve">
+    <value>Background Job</value>
+  </data>
+  <data name="BackgroundJobSettingDescription" xml:space="preserve">
+    <value>Enable automatic backup sync and configure execution interval for background task.</value>
+  </data>
 </root>

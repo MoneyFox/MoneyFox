@@ -1,0 +1,31 @@
+﻿<views:MvxContentPage x:TypeArguments="viewModels:SettingsBackgroundJobViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                      xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                      x:Class="MoneyFox.Views.BackgroundJobSettingsPage"
+                      DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
+
+    <ContentPage.Content>
+
+        <StackLayout Spacing="0">
+            <Label Text="{Binding Resources[AutobackupInformationLabel]}"
+                   VerticalOptions="StartAndExpand"
+                   Style="{StaticResource DeemphasizedLabelStyle}" />
+
+            <Label Text="{Binding Resources[AutobackupLabel]}"
+                   VerticalOptions="StartAndExpand" />
+
+            <Switch IsToggled="{Binding IsAutoBackupEnabled}" />
+
+            <Label Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
+                   VerticalOptions="StartAndExpand"
+                   Style="{StaticResource DeemphasizedLabelStyle}" />
+
+            <Entry Text="{Binding BackupSyncRecurrence}" 
+                   Keyboard="Numeric" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

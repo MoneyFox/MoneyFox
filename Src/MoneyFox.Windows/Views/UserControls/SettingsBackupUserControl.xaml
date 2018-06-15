@@ -10,7 +10,7 @@
              mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <designTime:DesignTimeSettingsBackupViewModel />
+        <designTime:DesignTimeSettingsBackgroundJobViewModel />
     </UserControl.DataContext>
 
     <Grid>

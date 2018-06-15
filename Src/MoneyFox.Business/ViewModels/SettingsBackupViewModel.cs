@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Business.ViewModels
 {
-    public interface ISettingsBackupViewModel : IBaseViewModel
+    public interface ISettingsBackgroundJobViewModel : IBaseViewModel
     {        
         /// <summary>
         ///     Indicates if the autobackup is enabled or disabled.
@@ -15,8 +15,8 @@ namespace MoneyFox.Business.ViewModels
         int BackupSyncRecurrence { get; }
     }
     
-    /// <inheritdoc cref="ISettingsBackupViewModel"/>/>
-    public class SettingsGeneralViewModel : BaseViewModel, ISettingsBackupViewModel
+    /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
+    public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;
@@ -24,7 +24,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public SettingsGeneralViewModel(ISettingsManager settingsManager, IBackgroundTaskManager backgroundTaskManager)
+        public SettingsBackgroundJobViewModel(ISettingsManager settingsManager, IBackgroundTaskManager backgroundTaskManager)
         {
             this.settingsManager = settingsManager;
             this.backgroundTaskManager = backgroundTaskManager;

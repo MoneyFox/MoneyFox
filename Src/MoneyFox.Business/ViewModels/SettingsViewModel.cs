@@ -39,13 +39,13 @@ namespace MoneyFox.Business.ViewModels
         {
             this.navigationService = navigationService;
 
-            SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager, backgroundTaskManager);
+            SettingsBackgroundJobViewModel = new SettingsBackgroundJobViewModel(settingsManager, backgroundTaskManager);
             SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
             SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
             SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
         }
 
-        public SettingsGeneralViewModel SettingsGeneralViewModel { get; }
+        public SettingsBackgroundJobViewModel SettingsBackgroundJobViewModel { get; }
 
         public SettingsSecurityViewModel SettingsSecurityViewModel { get; }
 
@@ -61,6 +61,12 @@ namespace MoneyFox.Business.ViewModels
                 Name = Strings.CategoriesLabel,
                 Description = Strings.CategoriesSettingsDescription,
                 Type = SettingsType.Categories
+            },
+            new SettingsSelectorType
+            {
+                Name = Strings.BackgroundJobLabel,
+                Description = Strings.BackgroundJobSettingDescription,
+                Type = SettingsType.BackgroundJob
             },
             new SettingsSelectorType
             {
@@ -85,6 +91,10 @@ namespace MoneyFox.Business.ViewModels
             {
                 case SettingsType.Categories:
                     await navigationService.Navigate<CategoryListViewModel>();
+                    break;
+
+                case SettingsType.BackgroundJob:
+                    await navigationService.Navigate<SettingsBackgroundJobViewModel>();
                     break;
 
                 case SettingsType.Backup:

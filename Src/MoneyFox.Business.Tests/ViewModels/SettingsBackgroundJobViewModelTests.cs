@@ -5,7 +5,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
-    public class SettingsGeneralViewModelTests
+    public class SettingsBackgroundJobViewModelTests
     {
         [Theory]
         [InlineData(5, 5)]
@@ -24,7 +24,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StartBackupSyncTask(It.IsAny<int>())).Callback(() => taskStarted = true);
 
             // Act
-            var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
             vm.BackupSyncRecurrence = passedValue;
 
             // Assert
@@ -44,7 +44,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StartBackupSyncTask(It.IsAny<int>())).Callback(() => taskStarted = true);
 
             // Act
-            var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
             vm.IsAutoBackupEnabled = true;
 
             // Assert
@@ -63,7 +63,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StopBackupSyncTask()).Callback(() => taskStopped = true);
 
             // Act
-            var vm = new SettingsGeneralViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsManagerMock.Object, backgroundTaskManager.Object);
             vm.IsAutoBackupEnabled = false;
 
             // Assert
