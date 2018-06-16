@@ -58,8 +58,8 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" 
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
+    <Grid Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
