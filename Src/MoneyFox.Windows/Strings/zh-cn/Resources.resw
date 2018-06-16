@@ -133,7 +133,7 @@
     <value>添加账户</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>新建类别</value>
+    <value>新建分类</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>添加收入</value>
@@ -158,7 +158,7 @@
     <value>现金流</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
-    <value>类别</value>
+    <value>分类</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
     <value>类别摘要</value>
@@ -335,9 +335,6 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>开始日期</value>
   </data>
-  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>选择统计</value>
-  </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>最新的备份创建于：</value>
   </data>
@@ -351,7 +348,7 @@
     <value>没有任何账户。点击在底部的三点符号添加一个。</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
-    <value>没有任何类别。点击在底部的加号添加一个。</value>
+    <value>没有任何分类。点击在底部的加号添加一个。</value>
   </data>
   <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>没有任何款项。点击在底部的三个符号之一添加一个。</value>
@@ -361,9 +358,6 @@
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>正在加载...</value>
-  </data>
-  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>打开这个开关以与OneDrive同步。</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>有些东西没有被翻译或者翻译有误？帮助我们，在 crowdin 上改善 Money Fox 的翻译：</value>
@@ -392,14 +386,8 @@
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>完整的贡献者名单在 GitHub：</value>
   </data>
-  <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>手动上传和下载备份</value>
-  </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>此账户不计入余额</value>
-  </data>
-  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>每多久下载云端新数据</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
     <value>不计入收支</value>
@@ -445,11 +433,5 @@
   </data>
   <data name="TimeRangeStart.Header" xml:space="preserve">
     <value>起始时间</value>
-  </data>
-  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
-    <value>没有任何分组。点击在底部的加号添加一个。</value>
-  </data>
-  <data name="CategoryGroupTitle.Text" xml:space="preserve">
-    <value>分组</value>
   </data>
 </root>

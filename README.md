@@ -46,3 +46,4 @@ Feel free to contact me. Just write me a mail or even better join our slack chan
 
 ### Sponsoring
 The development of this app is supported by [Apply Solutions](http://www.apply-solutions.ch/).
+
