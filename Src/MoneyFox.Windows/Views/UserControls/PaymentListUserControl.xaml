@@ -58,8 +58,8 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" 
-                      Margin="{StaticResource NegativeMediumLeftRightMargin}">
+    <Grid Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -127,12 +127,12 @@
 
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
-                                                        <MenuFlyoutItem x:Uid="Edit"
+                                                        <MenuFlyoutItem Icon="Edit"
                                                                         Click="EditPaymentViewModel"
-                                                                        Text="Edit" />
-                                                        <MenuFlyoutItem x:Uid="Delete"
+                                                                        Text="{Binding Resources[EditLabel]}" />
+                                                        <MenuFlyoutItem Icon="Delete"
                                                                         Click="DeletePaymentViewModel"
-                                                                        Text="Delete" />
+                                                                        Text="{Binding Resources[DeleteLabel]}" />
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
 
