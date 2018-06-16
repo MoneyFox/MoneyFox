@@ -686,4 +686,13 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="SelectStatisticTitel" xml:space="preserve">
     <value>Wybierz Statystyki</value>
   </data>
+  <data name="BackgroundJobLabel" xml:space="preserve">
+    <value>Background Job</value>
+  </data>
+  <data name="BackgroundJobSettingDescription" xml:space="preserve">
+    <value>Configure execution interval for background task.</value>
+  </data>
+  <data name="BackgroundJobTitle" xml:space="preserve">
+    <value>Background Job</value>
+  </data>
 </root>
