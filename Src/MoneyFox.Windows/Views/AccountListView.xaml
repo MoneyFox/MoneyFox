@@ -10,7 +10,6 @@
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       mc:Ignorable="d">
-
     
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
@@ -25,10 +24,11 @@
                             RightTapped="AccountList_RightTapped">
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem x:Uid="Edit"
+                            <MenuFlyoutItem Icon="Edit"
                                             Click="Edit_OnClick"
                                             Text="{Binding Resources[EditLabel]}" />
-                            <MenuFlyoutItem x:Uid="Delete_OnClick"
+                            <MenuFlyoutItem Icon="Delete"
+                                            Click="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
