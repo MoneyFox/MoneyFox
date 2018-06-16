@@ -18,7 +18,7 @@
                                x:Name="FirstHeader"
                                Margin="0,0,-10,0"/>
                 </PivotItem.Header>
-                <userControls:SettingsBackgroundJobUserControl DataContext="{Binding SettingsGeneralViewModel}" />
+                <userControls:SettingsBackgroundJobUserControl DataContext="{Binding SettingsBackgroundJobViewModel}" />
             </PivotItem>
 
             <!--  Tiles  -->

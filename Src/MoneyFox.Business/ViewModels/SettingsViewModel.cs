@@ -26,7 +26,8 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class SettingsViewModel : BaseViewModel, ISettingsViewModel
+    public class 
+        SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
         private readonly IMvxNavigationService navigationService;
 
