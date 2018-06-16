@@ -295,6 +295,33 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background Job.
+        /// </summary>
+        public static string BackgroundJobLabel {
+            get {
+                return ResourceManager.GetString("BackgroundJobLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure execution interval for background task..
+        /// </summary>
+        public static string BackgroundJobSettingDescription {
+            get {
+                return ResourceManager.GetString("BackgroundJobSettingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background Job.
+        /// </summary>
+        public static string BackgroundJobTitle {
+            get {
+                return ResourceManager.GetString("BackgroundJobTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
         public static string BackupFailedTitle {

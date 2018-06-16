@@ -4,9 +4,9 @@ using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeSettingsBackupViewModel : ISettingsBackupViewModel
+    public class DesignTimeSettingsBackgroundJobViewModel : ISettingsBackgroundJobViewModel
     {
-        public DesignTimeSettingsBackupViewModel()
+        public DesignTimeSettingsBackgroundJobViewModel()
         {
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
