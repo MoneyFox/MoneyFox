@@ -334,9 +334,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
   </data>
-  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Statistik auswählen</value>
-  </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Letzte Sicherung wurde erstellt am:</value>
   </data>
@@ -360,10 +357,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Wird geladen...</value>
-  </data>
-  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>Wenn diese Einstellung aktiv ist, wird nach jeder Änderung auf der Datenbank eine Sicherung auf OneDrive gespeichert.
-Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung vorhanden ist und diese zurückgeladen.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Ist etwas nicht richtig oder nicht übersetzt überhaupt? Helfen Sie uns! Gehen Sie zu crowdin und Hilf uns den Money Fox zu verbessern:</value>
@@ -392,14 +385,8 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Um alle Beiträge zu sehen wechsle zu GitHub:</value>
   </data>
-  <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Backup manuell hoch- und herunterladen</value>
-  </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Konto von Monatsbilanz ausschliessen</value>
-  </data>
-  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Lege fest wie oft die Sicherung synchronisiert werden soll.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
     <value>Ausgeschlossene Konten</value>
@@ -445,11 +432,5 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   </data>
   <data name="TimeRangeStart.Header" xml:space="preserve">
     <value>Zeitraum Start</value>
-  </data>
-  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
-    <value>Du hast noch keine Gruppe erfasst. Erstelle eine über den Plus Knopf unten.</value>
-  </data>
-  <data name="CategoryGroupTitle.Text" xml:space="preserve">
-    <value>Gruppen</value>
   </data>
 </root>

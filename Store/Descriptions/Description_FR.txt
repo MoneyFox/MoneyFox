@@ -1,0 +1,23 @@
+Money Fox a été développé pour vous aider à garder une trace de vos finances. Quels sont vos budgets ? Combien d’argent dépensez vous ? Pour quoi dépensez vous ? Comment pourriez mieux vous investir ? Comment est-ce que vous pourriez économiser plus ?
+
+-Créer des comptes pour garder une trace de vos dépenses courantes ou pour jouer et tester les nouvelles manières d’allouer votre budget
+-Appliquer les transferts d’argent, manuellement ou automatiquement, afin de simuler vos dépenses réelles
+-Voir a quoi ressemblent les statistiques de ce que vous dépensez
+-Sauvegarder tout sur votre OneDrive pour utiliser vos données sur plusieurs périphériques
+-Télécharger des sauvegardes automatiquement
+-Définir un mot de passe pour s’assurer que vos données sont sûres et sécurisées
+-Thème clair et foncé
+-Mises à jour régulières et ajout de nouvelles fonctionnalités
+
+Essayez le, disponible pour Windows et Windows Mobile maintenant.
+
+Etes vous un développeur ? Notre projet est Open-Source, vous pouvez contribuer sur https://github.com/MoneyFox/MoneyFox.Windows - nous serions ravis de partager notre projet avec vous !
+
+
+Tags :
+-Créer des comptes pour garder une trace de vos dépenses courantes ou pour jouer et tester les nouvelles manières d’allouer votre budget
+-Appliquer les transferts d’argent, manuellement ou automatiquement, afin de simuler vos dépenses réelles
+-Voir a quoi ressemblent les statistiques de ce que vous dépensez
+-Sauvegarder tout sur votre OneDrive pour utiliser vos données sur plusieurs périphériques
+-Définir un mot de passe pour s’assurer que vos données sont sûres et sécurisées
+-Mises à jour régulières et ajout de nouvelles fonctionnalités
