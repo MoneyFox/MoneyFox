@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Dialogs\AddPaymentDialog.xaml.cs">
+      <DependentUpon>AddPaymentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Dialogs\FilterDialog.xaml.cs">
       <DependentUpon>FilterDialog.xaml</DependentUpon>
     </Compile>

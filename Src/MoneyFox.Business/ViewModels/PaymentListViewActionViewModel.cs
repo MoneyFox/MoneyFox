@@ -13,7 +13,7 @@ using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
 {
-    /// <inheritdoc />
+    /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
     public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
         private readonly IAccountService accountService;
