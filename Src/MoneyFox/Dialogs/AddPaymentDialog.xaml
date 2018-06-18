@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:designTime="clr-namespace:MoneyFox.Business.ViewModels.DesignTime;assembly=MoneyFox.Business"
+                 x:Class="MoneyFox.Dialogs.AddPaymentDialog">
+
+    <pages:PopupPage.BindingContext>
+        <designTime:DesignTimePaymentListViewActionViewModel />
+    </pages:PopupPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <OnPlatform x:Key="IconExpense"
+                    x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="ic_remove_black" />
+                <On Platform="iOS" Value="ic_remove_black" />
+            </OnPlatform>            
+            
+            <OnPlatform x:Key="IconIncome"
+                    x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="ic_add_black" />
+                <On Platform="iOS" Value="ic_add_black" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="IconTransfer"
+                    x:TypeArguments="ImageSource">
+                <On Platform="Android" Value="IconTransfer" />
+                <On Platform="iOS" Value="IconTransfer" />
+            </OnPlatform>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="Center"
+                     Padding="20, 20, 20, 20"
+                     BackgroundColor="White">
+
+            <Label Text="{Binding Resources[AddTitle]}" 
+                       Style ="{StaticResource ListItemHeaderStyle}"/>
+
+            <Grid x:Name="AddExpenseGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="80*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{StaticResource IconExpense}"  
+                       HeightRequest="30"
+                       WidthRequest="30" />
+
+                <Label Grid.Column="1" 
+                       Text="{Binding Resources[AddExpenseLabel]}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" />
+            </Grid>
+
+            <Grid x:Name="AddIncomeGrid">
+               
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="80*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{StaticResource IconIncome}" 
+                       HeightRequest="30"
+                       WidthRequest="30" />
+
+                <Label Grid.Column="1" 
+                       Text="{Binding Resources[AddIncomeLabel]}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" />
+            </Grid>
+
+            <Grid x:Name="AddTransferGrid">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="80*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{StaticResource IconTransfer}" 
+                       HeightRequest="30"
+                       WidthRequest="30" />
+
+                <Label Grid.Column="1" 
+                       Text="{Binding Resources[AddTransferLabel]}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

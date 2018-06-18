@@ -9,7 +9,9 @@
 
     <ContentPage.Content>
 
-        <StackLayout Spacing="0">
+        <StackLayout Spacing="0" 
+                     Padding="6,6,6,6">
+
             <Label Text="{Binding Resources[AutobackupInformationLabel]}"
                    Style="{StaticResource DeemphasizedLabelStyle}" />
 

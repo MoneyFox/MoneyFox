@@ -12,7 +12,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:InverseBoolConverter x:Key="Inverter" />
             <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
