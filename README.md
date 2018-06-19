@@ -1,7 +1,7 @@
 ## Money Fox
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
-Windows: [![Build Status] (https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/6/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=6&_a=completed)
+Windows: [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/6/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=6&_a=completed)
 
 Android: [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=3&_a=completed)
 
