@@ -22,10 +22,12 @@ First there is a stable version who get regular udpates as soon as they are full
 
 Second there is a beta for all these guys who want get their hands on all the new features who are currently in development. We try to keep this as stable as possible. But nonethless expect some bugs (please report! =) ):
 
-Windows (please send me your Microsoft Account that I can give you access to the beta flights)
+Windows: Please send me your Microsoft Account
 
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 (You can also opt-in for the beta in the play store)
+
+IOS: Pplease send me your Apple ID
 
 ### Contribution
 
