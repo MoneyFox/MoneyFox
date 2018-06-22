@@ -3,6 +3,9 @@ using Android.Content;
 using Android.Content.PM;
 using Android.Graphics;
 using Android.OS;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
@@ -36,6 +39,10 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
+#if !DEBUG
+            AppCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
+                   typeof(Analytics), typeof(Crashes));
+#endif
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
