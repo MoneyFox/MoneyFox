@@ -22,8 +22,8 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework.DbContextScope" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.7.0" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.7.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.1.1" />
   </ItemGroup>
