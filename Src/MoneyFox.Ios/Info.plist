@@ -21,13 +21,11 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>11.2</string>
+	<string>10.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>MoneyFox</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.applysolutions.moneyfox</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-60@2x</string>
@@ -50,5 +48,9 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>MoneyFox</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 </dict>
 </plist>
