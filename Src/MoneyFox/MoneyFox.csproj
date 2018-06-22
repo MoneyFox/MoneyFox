@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Dialogs\AddPaymentDialog.xaml.cs">
+      <DependentUpon>AddPaymentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Dialogs\FilterDialog.xaml.cs">
       <DependentUpon>FilterDialog.xaml</DependentUpon>
     </Compile>
@@ -51,6 +54,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Controls\FloatingActionButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\AddAccountAndPaymentDialog.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Dialogs\DateSelectionDialog.xaml">

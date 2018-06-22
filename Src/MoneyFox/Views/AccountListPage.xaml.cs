@@ -1,7 +1,9 @@
 ﻿using System;
 using MoneyFox.Business.ViewModels;
+using MoneyFox.Dialogs;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Presenters.Attributes;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,27 +26,10 @@ namespace MoneyFox.Views
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        var action = await DisplayActionSheet(Strings.AddTitle, Strings.CancelLabel, null, Strings.AddAccountLabel, Strings.AddExpenseLabel, Strings.AddIncomeLabel, Strings.AddTransferLabel);
-
-	        if (action == Strings.AddAccountLabel)
-	        {
-	            await ViewModel.ViewActionViewModel.GoToAddAccountCommand.ExecuteAsync();
-	        }
-            else if (action == Strings.AddExpenseLabel)
-	        {
-	            await ViewModel.ViewActionViewModel.GoToAddExpenseCommand.ExecuteAsync();
-	        }
-            else if (action == Strings.AddIncomeLabel)
-	        {
-	            await ViewModel.ViewActionViewModel.GoToAddIncomeCommand.ExecuteAsync();
-	        }
-            else if (action == Strings.AddTransferLabel)
-	        {
-	            await ViewModel.ViewActionViewModel.GoToAddTransferCommand.ExecuteAsync();
-	        }
+	        await Navigation.PushPopupAsync(new AddAccountAndPaymentDialog { BindingContext = ViewModel.ViewActionViewModel });
         }
 
-	    private void EditAccount(object sender, EventArgs e)
+        private void EditAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
