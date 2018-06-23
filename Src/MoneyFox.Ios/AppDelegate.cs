@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Crashes;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using Rg.Plugins.Popup;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -32,6 +33,7 @@ namespace MoneyFox.iOS
 
             ApplicationContext.DbPath = GetLocalFilePath();
             SQLitePCL.Batteries.Init();
+            Popup.Init();
 
             return base.FinishedLaunching(app, options);
         }
