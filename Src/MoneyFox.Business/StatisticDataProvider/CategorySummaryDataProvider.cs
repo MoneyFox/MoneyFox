@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Business.Helpers;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
@@ -38,8 +39,11 @@ namespace MoneyFox.Business.StatisticDataProvider
             }
 
             CalculateAverage(categories);
+            Utilities.RoundStatisticItems(categories);
 
-            return categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList();
+            return categories.Where(x => Math.Abs(x.Value) > 0.1)
+                             .OrderBy(x => x.Value)
+                             .ToList();
         }
 
         private static void CalculateAverage(List<StatisticItem> categories)
