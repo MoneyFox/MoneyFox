@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MvvmCross.Forms.Platforms.Ios.Core;
@@ -23,6 +26,10 @@ namespace MoneyFox.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+#if !DEBUG
+            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
+#endif
+
             ApplicationContext.DbPath = GetLocalFilePath();
             SQLitePCL.Batteries.Init();
 
