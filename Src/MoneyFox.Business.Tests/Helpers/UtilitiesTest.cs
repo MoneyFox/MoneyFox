@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
@@ -13,7 +12,7 @@ namespace MoneyFox.Business.Tests.Helpers
     public class UtilitiesTest
     {
         [Fact]
-        public void RoundStatisticItems_ListOfItems_ListWithRoundedItems()
+        public void RoundStatisticItems_ListOfItems_ListWithRoundedValues()
         {
             var statisticItems = new List<StatisticItem>
             {
@@ -34,11 +33,40 @@ namespace MoneyFox.Business.Tests.Helpers
                     Value = 9
                 }
             };
-            var result = Utilities.RoundStatisticItems(statisticItems).ToList();
-            result[0].Value.ShouldEqual(3.23);
-            result[1].Value.ShouldEqual(6.59);
-            result[2].Value.ShouldEqual(55.39);
-            result[3].Value.ShouldEqual(9);
+            Utilities.RoundStatisticItems(statisticItems);
+            statisticItems[0].Value.ShouldEqual(3.23);
+            statisticItems[1].Value.ShouldEqual(6.59);
+            statisticItems[2].Value.ShouldEqual(55.39);
+            statisticItems[3].Value.ShouldEqual(9);
+        }
+
+        [Fact]
+        public void RoundStatisticItems_ListOfItems_ListWithRoundedPercentages()
+        {
+            var statisticItems = new List<StatisticItem>
+            {
+                new StatisticItem
+                {
+                    Percentage = 3.234
+                },
+                new StatisticItem
+                {
+                    Percentage = 6.589
+                },
+                new StatisticItem
+                {
+                    Percentage = 55.385
+                },
+                new StatisticItem
+                {
+                    Percentage = 9
+                }
+            };
+            Utilities.RoundStatisticItems(statisticItems);
+            statisticItems[0].Percentage.ShouldEqual(3.23);
+            statisticItems[1].Percentage.ShouldEqual(6.59);
+            statisticItems[2].Percentage.ShouldEqual(55.39);
+            statisticItems[3].Percentage.ShouldEqual(9);
         }
 
         [Fact]
