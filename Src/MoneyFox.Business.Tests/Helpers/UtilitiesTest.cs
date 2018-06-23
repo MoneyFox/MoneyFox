@@ -11,62 +11,22 @@ namespace MoneyFox.Business.Tests.Helpers
 {
     public class UtilitiesTest
     {
-        [Fact]
-        public void RoundStatisticItems_ListOfItems_ListWithRoundedValues()
+        [Theory]
+        [InlineData(3.234, 3.23)]
+        [InlineData(6.589, 6.59)]
+        [InlineData(55.385, 55.39)]
+        [InlineData(9, 9)]
+        public void RoundStatisticItems_ListOfItems_ListWithRoundedPercentages(double value, double result)
         {
             var statisticItems = new List<StatisticItem>
             {
                 new StatisticItem
                 {
-                    Value = 3.234
-                },
-                new StatisticItem
-                {
-                    Value = 6.589
-                },
-                new StatisticItem
-                {
-                    Value = 55.385
-                },
-                new StatisticItem
-                {
-                    Value = 9
+                    Percentage = value
                 }
             };
             Utilities.RoundStatisticItems(statisticItems);
-            statisticItems[0].Value.ShouldEqual(3.23);
-            statisticItems[1].Value.ShouldEqual(6.59);
-            statisticItems[2].Value.ShouldEqual(55.39);
-            statisticItems[3].Value.ShouldEqual(9);
-        }
-
-        [Fact]
-        public void RoundStatisticItems_ListOfItems_ListWithRoundedPercentages()
-        {
-            var statisticItems = new List<StatisticItem>
-            {
-                new StatisticItem
-                {
-                    Percentage = 3.234
-                },
-                new StatisticItem
-                {
-                    Percentage = 6.589
-                },
-                new StatisticItem
-                {
-                    Percentage = 55.385
-                },
-                new StatisticItem
-                {
-                    Percentage = 9
-                }
-            };
-            Utilities.RoundStatisticItems(statisticItems);
-            statisticItems[0].Percentage.ShouldEqual(3.23);
-            statisticItems[1].Percentage.ShouldEqual(6.59);
-            statisticItems[2].Percentage.ShouldEqual(55.39);
-            statisticItems[3].Percentage.ShouldEqual(9);
+            statisticItems[0].Percentage.ShouldEqual(result);
         }
 
         [Fact]

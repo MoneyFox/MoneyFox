@@ -27,8 +27,11 @@ namespace MoneyFox.Business.Helpers
         /// <param name="items">List of statistic items.</param>
         public static void RoundStatisticItems(List<StatisticItem> items)
         {
-            items.ForEach(x => x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero));
-            items.ForEach(x => x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero));
+            items.ForEach(x =>
+            {
+                x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero);
+                x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero);
+            });
         }
 
         /// <summary>
