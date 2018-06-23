@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.Graph;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
@@ -166,13 +167,24 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                Crashes.TrackError(ex);
+                Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Issue during Login process." } });
+                await backupManager.Logout();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
+            catch (Microsoft.Graph.ServiceException ex)
+            {
+                if (ex.Error.Code == "4f37.717b")
+                {
+                    Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Graph Login Exception" } });
+                    await backupManager.Logout();
+                    await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
+                                                    Strings.ErrorMessageAuthenticationFailed);
+                }
+            }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                Crashes.TrackError(ex, new Dictionary<string, string>{{ "Info", "Unknown Issue"}});
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
                                                 ex.ToString());
             }

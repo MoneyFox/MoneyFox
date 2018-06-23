@@ -31,10 +31,20 @@
 	<key>CFBundleName</key>
 	<string>MoneyFox</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.3</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.3</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSContactsUsageDescription</key>
+	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>We need to use this data in order to ensure the best user experience.</string>
 </dict>
 </plist>
