@@ -20,7 +20,7 @@
 
         <StackLayout x:Name="MainLayout">
 
-            <Button Text="{Binding LoginButtonLabel}"
+            <Button Text="{Binding Resources[LoginLabel]}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
                 <Button.Effects>
@@ -28,7 +28,7 @@
                 </Button.Effects>
             </Button>
 
-            <Button Text="{Binding LogoutButtonLabel}" 
+            <Button Text="{Binding Resources[LogoutLabel]}" 
                     IsVisible="{Binding IsLoggedIn}"  
                     Command="{Binding LogoutCommand}">
                 <Button.Effects>
@@ -37,7 +37,7 @@
             </Button>
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
-                <Label Text="{Binding CreateBackupText}"
+                <Label Text="{Binding Resources[CreateBackupLabel]}"
                        HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup"
                         Text="{Binding CreateBackupButtonLabel}" 
@@ -47,7 +47,7 @@
                     </Button.Effects>
                 </Button>
 
-                <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" HorizontalOptions="StartAndExpand" />
 
                 <Grid>
                     <Grid.HeightRequest>
@@ -58,7 +58,7 @@
                         </OnPlatform>
                     </Grid.HeightRequest>
 
-                    <Button Text="{Binding RestoreBackupButtonlabel}" 
+                    <Button Text="{Binding Resources[RestoreBackupLabel]}" 
                             Command="{Binding RestoreCommand}" >
                         <Button.Effects>
                             <effects:ButtonEffect />
@@ -69,7 +69,7 @@
                 </Grid>
 
                 <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                    <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
+                    <Label Text="{Binding Resources[LastBackupDateLabel]}" HorizontalOptions="Start" />
                     <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
                 </StackLayout>
             </StackLayout>
