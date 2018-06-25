@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Models;
@@ -12,33 +11,22 @@ namespace MoneyFox.Business.Tests.Helpers
 {
     public class UtilitiesTest
     {
-        [Fact]
-        public void RoundStatisticItems_ListOfItems_ListWithRoundedItems()
+        [Theory]
+        [InlineData(3.234, 3.23)]
+        [InlineData(6.589, 6.59)]
+        [InlineData(55.385, 55.39)]
+        [InlineData(9, 9)]
+        public void RoundStatisticItems_ListOfItems_ListWithRoundedPercentages(double value, double result)
         {
             var statisticItems = new List<StatisticItem>
             {
                 new StatisticItem
                 {
-                    Value = 3.234
-                },
-                new StatisticItem
-                {
-                    Value = 6.589
-                },
-                new StatisticItem
-                {
-                    Value = 55.385
-                },
-                new StatisticItem
-                {
-                    Value = 9
+                    Percentage = value
                 }
             };
-            var result = Utilities.RoundStatisticItems(statisticItems).ToList();
-            result[0].Value.ShouldEqual(3.23);
-            result[1].Value.ShouldEqual(6.59);
-            result[2].Value.ShouldEqual(55.39);
-            result[3].Value.ShouldEqual(9);
+            Utilities.RoundStatisticItems(statisticItems);
+            statisticItems[0].Percentage.ShouldEqual(result);
         }
 
         [Fact]

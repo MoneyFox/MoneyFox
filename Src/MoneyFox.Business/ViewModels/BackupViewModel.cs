@@ -56,7 +56,7 @@ namespace MoneyFox.Business.ViewModels
             this.connectivity = connectivity;
             this.settingsManager = settingsManager;
         }
-res
+
         #region Properties
 
         /// <summary>
