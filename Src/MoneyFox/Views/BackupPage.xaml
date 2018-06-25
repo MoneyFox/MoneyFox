@@ -37,10 +37,10 @@
             </Button>
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
-                <Label Text="{Binding Resources[CreateBackupLabel]}"
+                <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
                        HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup"
-                        Text="{Binding CreateBackupButtonLabel}" 
+                        Text="{Binding Resources[CreateBackupLabel]}" 
                         Command="{Binding BackupCommand}">
                     <Button.Effects>
                         <effects:ButtonEffect />

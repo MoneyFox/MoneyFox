@@ -13,14 +13,6 @@ namespace MoneyFox.Business.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {
-        string CreateBackupText { get; }
-        string RestoreBackupText { get; }
-        string LoginButtonLabel { get; }
-        string LogoutButtonLabel { get; }
-        string CreateBackupButtonLabel { get; }
-        string RestoreBackupButtonlabel { get; }
-        string LastBackupTimeStampLabel { get; }
-
         MvxAsyncCommand LoginCommand { get; }
         MvxAsyncCommand LogoutCommand { get; }
         MvxAsyncCommand BackupCommand { get; }
@@ -35,7 +27,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : BaseViewModel
+    public class BackupViewModel : BaseViewModel, IBackupViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
