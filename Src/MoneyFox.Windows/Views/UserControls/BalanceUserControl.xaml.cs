@@ -1,5 +1,5 @@
 ﻿using Windows.ApplicationModel;
-using MoneyFox.Windows.DesignTime;
+using MoneyFox.Business.ViewModels.DesignTime;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -10,7 +10,7 @@ namespace MoneyFox.Windows.Views.UserControls
             InitializeComponent();
             if (DesignMode.DesignModeEnabled)
             {
-                DataContext = new DesignTimeBalanceViewModel();
+                DataContext = new DesignTimeBalanceViewViewModel();
             }
         }
     }

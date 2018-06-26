@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microcharts;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using SkiaSharp;
 
 namespace MoneyFox.Business.StatisticDataProvider
 {
@@ -31,39 +29,39 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given timeframe</returns>
-        public async Task<List<Entry>> GetCashFlow(DateTime startDate, DateTime endDate)
+        public async Task<List<StatisticEntry>> GetCashFlow(DateTime startDate, DateTime endDate)
         {
             var paymentEnumerable = await paymentService.GetPaymentsWithoutTransfer(startDate, endDate);
             return GetCashFlowStatisticItems(paymentEnumerable.ToList());
         }
 
-        private List<Entry> GetCashFlowStatisticItems(List<Payment> payments)
+        private List<StatisticEntry> GetCashFlowStatisticItems(List<Payment> payments)
         {
             var incomeAmount = (float) payments.Where(x => x.Data.Type == PaymentType.Income).Sum(x => x.Data.Amount);
-            var income = new Entry(incomeAmount)
+            var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,
                 ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero).ToString("C"),
-                Color = SKColor.Parse(GREEN_HEX_CODE)
+                Color = GREEN_HEX_CODE
             };
 
             var expenseAmount = (float) payments.Where(x => x.Data.Type == PaymentType.Expense).Sum(x => x.Data.Amount);
-            var spent = new Entry(expenseAmount)
+            var spent = new StatisticEntry(expenseAmount)
             {
                 Label = Strings.ExpenseLabel ,
                 ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero).ToString("C"),
-                Color = SKColor.Parse(RED_HEX_CODE)
+                Color = RED_HEX_CODE
             };
 
             var valueIncreased = incomeAmount - expenseAmount;
-            var increased = new Entry(valueIncreased)
+            var increased = new StatisticEntry(valueIncreased)
             {
                 Label = Strings.IncreaseLabel,
                 ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero).ToString("C"),
-                Color = SKColor.Parse(BLUE_HEX_CODE)
+                Color = BLUE_HEX_CODE
             };
 
-            return new List<Entry> {income, spent, increased};
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
 }

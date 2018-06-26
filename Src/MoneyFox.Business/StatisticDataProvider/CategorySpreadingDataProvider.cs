@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microcharts;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Business.StatisticDataProvider
@@ -27,7 +25,7 @@ namespace MoneyFox.Business.StatisticDataProvider
         /// <param name="startDate">Startpoint form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
-        public async Task<IEnumerable<Entry>> GetValues(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<StatisticEntry>> GetValues(DateTime startDate, DateTime endDate)
         {
             var paymentEnumerable = await paymentService.GetPaymentsWithoutTransfer(startDate, endDate);
             var statisticData = SelectRelevantDataFromList(paymentEnumerable.ToList());
@@ -50,11 +48,11 @@ namespace MoneyFox.Business.StatisticDataProvider
                    .ToList();
         }
 
-        private IEnumerable<Entry> AggregateData(List<(float Value, string Label)> statisticData)
+        private IEnumerable<StatisticEntry> AggregateData(List<(float Value, string Label)> statisticData)
         {
             var statisticList = statisticData
                                 .Take(6)
-                                .Select(x => new Entry((float) x.Value) {ValueLabel = x.Value.ToString("C"), Label = x.Label})
+                                .Select(x => new StatisticEntry( x.Value) {ValueLabel = x.Value.ToString("C"), Label = x.Label})
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
@@ -63,7 +61,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             return statisticList;
         }
 
-        private static void SetLabel(List<Entry> statisticList)
+        private static void SetLabel(List<StatisticEntry> statisticList)
         {
             foreach (var statisticItem in statisticList)
             {
@@ -71,7 +69,7 @@ namespace MoneyFox.Business.StatisticDataProvider
             }
         }
 
-        private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<Entry> statisticList)
+        private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if (statisticList.Count < 6)
             {
@@ -82,7 +80,7 @@ namespace MoneyFox.Business.StatisticDataProvider
                              .Where(x => statisticList.All(y => x.Label != y.Label))
                              .Sum(x => x.Value);
 
-            var othersItem = new Entry(otherValue)
+            var othersItem = new StatisticEntry(otherValue)
             {
                 Label = Strings.OthersLabel,
                 ValueLabel = otherValue.ToString("C")

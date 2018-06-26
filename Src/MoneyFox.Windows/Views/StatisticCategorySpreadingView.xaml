@@ -3,27 +3,28 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      SizeChanged="StatisticCategorySpreadingView_OnSizeChanged"
-                      xmlns:designTime1="using:MoneyFox.Windows.DesignTime"
+                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySpreadingViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
+    </d:MvxWindowsPage.DataContext>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="SpreadingStatisticTitle"
-                   Text="Spreading"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+        <TextBlock Text="{Binding Resources[CategorySpreadingTitle]}"
+                   Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1">
             <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
@@ -31,16 +32,55 @@
                        VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="2" x:Name="ContentGrid" Margin="0,20,0,20" />
+        <Grid Grid.Row="2">
+            <chart:RadPieChart PaletteName="DefaultDark" x:Name="chart">
+                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
+                                 RadiusFactor="0.6">
+                    <chart:DoughnutSeries.ValueBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                    </chart:DoughnutSeries.ValueBinding>
+                    <chart:PieSeries.LegendTitleBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:PieSeries.LegendTitleBinding>
+                </chart:DoughnutSeries>
+            </chart:RadPieChart>
+        </Grid>
 
-        <CommandBar Grid.Row="3"
+        <Grid Grid.Row="3">
+            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
+                <primitives:RadLegendControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </primitives:RadLegendControl.ItemsPanel>
+                <primitives:RadLegendControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Fill="{Binding Fill}"
+                                     Stroke="{Binding Stroke}"
+                                     StrokeThickness="1"
+                                     Width="10"
+                                     Height="10" />
+                            <TextBlock Text="{Binding Title}"
+                                       Foreground="{Binding Fill}"
+                                       Margin="10"
+                                       FontStyle="Italic" />
+                        </StackPanel>
+                    </DataTemplate>
+                </primitives:RadLegendControl.ItemTemplate>
+            </primitives:RadLegendControl>
+        </Grid>
+
+        <CommandBar Grid.Row="4"
+                    Height="24"
+                    ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
                               Icon="Calendar"
                               Label="Set Date" />
-            </CommandBar.PrimaryCommands>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
 
         <!--  Adaptive triggers  -->

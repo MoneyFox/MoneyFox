@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
@@ -54,6 +55,11 @@ namespace MoneyFox.Business.ViewModels.Statistic
             }
         }
 
+        /// <summary>
+        ///     Statistic items to display.
+        /// </summary>
+        public ObservableCollection<StatisticEntry> StatisticItems { get; set; }
+
         public override async Task Initialize()
         {
             await Load();
@@ -66,14 +72,19 @@ namespace MoneyFox.Business.ViewModels.Statistic
         {
             var items = (await spreadingDataProvider.GetValues(StartDate, EndDate)).ToList();
 
-            for (int i = 0; i < items.Count; i++)
+
+            var microChartItems = items
+                                  .Select(x => new Entry(x.Value) {Label = x.Label, ValueLabel = x.ValueLabel})
+                                  .ToList();
+
+            for (int i = 0; i < microChartItems.Count; i++)
             {
-                items[i].Color = Colors[i];
+                microChartItems[i].Color = Colors[i];
             }
 
             Chart = new DonutChart
             {
-                Entries = items,
+                Entries = microChartItems,
                 BackgroundColor = BackgroundColor,
                 LabelTextSize = 26f
             };

@@ -135,10 +135,6 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
