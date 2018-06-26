@@ -60,6 +60,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         public ObservableCollection<StatisticEntry> StatisticItems { get; set; }
 
+        /// <inheritdoc />
         public override async Task Initialize()
         {
             await Load();
@@ -70,10 +71,9 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            var items = (await spreadingDataProvider.GetValues(StartDate, EndDate)).ToList();
+            StatisticItems = new ObservableCollection<StatisticEntry>(await spreadingDataProvider.GetValues(StartDate, EndDate));
 
-
-            var microChartItems = items
+            var microChartItems = StatisticItems
                                   .Select(x => new Entry(x.Value) {Label = x.Label, ValueLabel = x.ValueLabel})
                                   .ToList();
 
