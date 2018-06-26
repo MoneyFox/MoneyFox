@@ -1,14 +1,16 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCashFlowView"
+﻿<views1:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCashFlowView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:designTime="using:MoneyFox.Windows.DesignTime"
-                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCashFlowViewModel,
-                                                       IsDesignTimeCreatable=True}"
-                      SizeChanged="StatisticCashFlowView_OnSizeChanged"
+                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
                       mc:Ignorable="d">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticCashFlowViewModel />
+    </d:MvxWindowsPage.DataContext>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
@@ -18,9 +20,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="CashFlowStatisticTitle"
-                   Text="Cash Flow"
+        <TextBlock Text="{Binding Resources[CashFlowStatisticTitle]}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1">
@@ -29,16 +29,34 @@
                        VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid Grid.Row="2" x:Name="ContentGrid" />
+        <Grid Grid.Row="2">
+            <chart:RadCartesianChart>
+                <chart:RadCartesianChart.HorizontalAxis>
+                    <chart:CategoricalAxis />
+                </chart:RadCartesianChart.HorizontalAxis>
+                <chart:RadCartesianChart.VerticalAxis>
+                    <chart:LinearAxis />
+                </chart:RadCartesianChart.VerticalAxis>
 
+                <chart:BarSeries ItemsSource="{Binding StatisticItems}">
+                    <chart:BarSeries.CategoryBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:BarSeries.CategoryBinding>
+                    <chart:BarSeries.ValueBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                    </chart:BarSeries.ValueBinding>
+                </chart:BarSeries>
+            </chart:RadCartesianChart>
+        </Grid>
         <CommandBar Grid.Row="3"
+                    ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
                               Click="SetDate"
                               Icon="Calendar"
                               Label="Set Date" />
-            </CommandBar.PrimaryCommands>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
 
         <!--  Adaptive triggers  -->
@@ -61,4 +79,4 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
     </Grid>
-</views:MvxWindowsPage>
+</views1:MvxWindowsPage>

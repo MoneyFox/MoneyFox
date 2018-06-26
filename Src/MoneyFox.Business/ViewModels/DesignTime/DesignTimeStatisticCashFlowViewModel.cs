@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Microcharts;
-using MoneyFox.Business.ViewModels;
+using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Statistic;
 
-namespace MoneyFox.Windows.DesignTime
+namespace MoneyFox.Business.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCashFlowViewModel : BaseViewModel, IStatisticCashFlowViewModel
     {
@@ -18,5 +19,12 @@ namespace MoneyFox.Windows.DesignTime
                 new Entry(543) {Label = "Revenue"}
             }
         };
+
+        public ObservableCollection<StatisticEntry> StatisticItems => new ObservableCollection<StatisticEntry>(new List<StatisticEntry>
+        {
+            new StatisticEntry(1234) {Label = "Expense"},
+            new StatisticEntry(1465) {Label = "Income"},
+            new StatisticEntry(543) {Label = "Revenue"}
+        });
     }
 }

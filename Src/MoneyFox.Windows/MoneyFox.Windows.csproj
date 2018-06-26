@@ -135,10 +135,6 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="DesignTime\DesignTimeBalanceViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
@@ -513,7 +509,7 @@
       <Version>14332.0.2</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.0.9</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>
