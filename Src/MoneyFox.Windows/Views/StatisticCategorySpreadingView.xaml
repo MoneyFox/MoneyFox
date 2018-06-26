@@ -63,8 +63,7 @@
                                      Height="10" />
                             <TextBlock Text="{Binding Title}"
                                        Foreground="{Binding Fill}"
-                                       Margin="10"
-                                       FontStyle="Italic" />
+                                       Margin="5" />
                         </StackPanel>
                     </DataTemplate>
                 </primitives:RadLegendControl.ItemTemplate>
