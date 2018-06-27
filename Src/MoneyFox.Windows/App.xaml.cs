@@ -152,7 +152,7 @@ namespace MoneyFox.Windows
             ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
             viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
             viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            viewTitleBar.ButtonForegroundColor = (Color)Resources["AppMenuForeground"];
+            viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
         private async Task SetJumplist()
