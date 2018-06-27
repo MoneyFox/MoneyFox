@@ -10,12 +10,10 @@
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
-    <Color x:Key="ColorAppBar">#111632</Color>
-
-    <Color x:Key="ColorHamburgerButton">White</Color>
-
     <Color x:Key="AppForegroundColorPrimary">White</Color>
     <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
+
+    <Color x:Key="AppMenuForeground">White</Color>
 
     <Color x:Key="ListItemColor">#FF171717</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>

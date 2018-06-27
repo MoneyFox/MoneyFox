@@ -149,9 +149,10 @@ namespace MoneyFox.Windows
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
             //remove the solid-colored backgrounds behind the caption controls and system back button
-            ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ButtonBackgroundColor = Colors.DarkSlateBlue;
-            titleBar.ButtonInactiveBackgroundColor = Colors.DarkSlateBlue;
+            ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+            viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
+            viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
         private async Task SetJumplist()

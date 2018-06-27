@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:uwp="using:FontAwesome.UWP"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       mc:Ignorable="d">
 
@@ -14,8 +13,9 @@
         <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
+                    CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
-                    IsSettingsVisible="False">
+                    IsSettingsVisible="False"  >
 
             <NavigationView.MenuItems>
 
@@ -72,12 +72,12 @@
                                    FontSize="28"
                                    VerticalAlignment="Center"
                                    Margin="12,0"
-                                   Text="Welcome"/>
+                                   Text=""/>
                     </Grid>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
 
-            <Frame x:Name="ContentFrame" Margin="0,17,0,0">
+            <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>
@@ -86,7 +86,7 @@
             </Frame>
             
         </NavigationView>
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+        <TextBlock x:Name="AppTitle" Style="{StaticResource CustomCaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
     </Grid>
 </views:MvxWindowsPage>
 
