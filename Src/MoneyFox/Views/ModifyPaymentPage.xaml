@@ -12,6 +12,7 @@
         <ResourceDictionary>
             <converter:InverseBoolConverter x:Key="Inverter" />
             <converter:AccountNameConverter x:Key="AccountNameConverter" />
+            <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
 
             <OnPlatform x:Key="ImageResetField"
                         x:TypeArguments="ImageSource">
@@ -57,17 +58,18 @@
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
 
-                <Entry Grid.Column="0"
+                <Button Grid.Column="0"
                        Grid.ColumnSpan="2"
-                       Text="{Binding SelectedPayment.Category.Name}"
-                       Focused="CategoryFieldGotFocus" />
+                       Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                       Command="{Binding GoToSelectCategorydialogCommand}" />
                 <Image Grid.Column="1"
                        x:Name="ResetIcon"
-                       VerticalOptions="End"
+                       VerticalOptions="CenterAndExpand"
                        HorizontalOptions="Start"
                        Source="{StaticResource ImageResetField}"
                        HeightRequest="30"
-                       WidthRequest="30" />
+                       WidthRequest="30"
+                       Margin="0,0,3,0"/>
             </Grid>
 
             <Label Text="{Binding Resources[DateLabel]}"

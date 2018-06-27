@@ -24,7 +24,7 @@ namespace MoneyFox.Views
 		    {
                 Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
 		    });
-		}
+        }
 
 	    protected override void OnAppearing()
 	    {
@@ -43,12 +43,7 @@ namespace MoneyFox.Views
             base.OnAppearing();
 	    }
 
-        private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
-	    {
-	        ViewModel.GoToSelectCategorydialogCommand.Execute();
-	    }
-
-	    private void AmountFieldGotFocus(object sender, FocusEventArgs e)
+        private void AmountFieldGotFocus(object sender, FocusEventArgs e)
 	    {
 	        AmountEntry.Text = string.Empty;
 	    }
