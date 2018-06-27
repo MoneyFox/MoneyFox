@@ -13,6 +13,7 @@
         <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
+                    CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
                     IsSettingsVisible="False"  >
 
