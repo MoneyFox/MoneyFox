@@ -2,7 +2,6 @@
 using MoneyFox.Business.Messages;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
-using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
@@ -17,7 +16,8 @@ namespace MoneyFox.Business.ViewModels
     }
 
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>
-    public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
+    public class 
+        SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
         private CategoryViewModel selectedCategory;
@@ -37,7 +37,7 @@ namespace MoneyFox.Business.ViewModels
         {
             this.messenger = messenger;
         }
-        
+
         /// <summary>
         ///     CategoryViewModel currently selected in the view.
         /// </summary>
@@ -53,21 +53,11 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <summary>
-        ///     Closes this activity without selecting something.
-        /// </summary>
-        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
         protected override async Task ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
-            await NavigationService.Close(this);
-        }
-
-        private async Task Cancel()
-        {
             await NavigationService.Close(this);
         }
     }
