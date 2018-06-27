@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:uwp="using:FontAwesome.UWP"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       mc:Ignorable="d">
 
