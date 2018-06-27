@@ -72,7 +72,7 @@
                                    FontSize="28"
                                    VerticalAlignment="Center"
                                    Margin="12,0"
-                                   Text="Welcome"/>
+                                   Text=""/>
                     </Grid>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
