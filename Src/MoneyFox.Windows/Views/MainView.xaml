@@ -86,7 +86,7 @@
             </Frame>
             
         </NavigationView>
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+        <TextBlock x:Name="AppTitle" Style="{StaticResource CustomCaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
     </Grid>
 </views:MvxWindowsPage>
 
