@@ -5,6 +5,7 @@
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
+                  xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.ModifyPaymentPage"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyPaymentViewModel}">
 
@@ -61,7 +62,12 @@
                 <Button Grid.Column="0"
                        Grid.ColumnSpan="2"
                        Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                       Command="{Binding GoToSelectCategorydialogCommand}" />
+                       Command="{Binding GoToSelectCategorydialogCommand}" >
+                    <Button.Effects>
+                        <effects:PrimaryButtonEffect />
+                    </Button.Effects>
+                </Button>
+
                 <Image Grid.Column="1"
                        x:Name="ResetIcon"
                        VerticalOptions="CenterAndExpand"
