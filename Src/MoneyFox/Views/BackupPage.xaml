@@ -18,13 +18,14 @@
 
     <ContentPage.Content>
 
-        <StackLayout x:Name="MainLayout">
+        <StackLayout x:Name="MainLayout"
+                     Padding="7">
 
             <Button Text="{Binding Resources[LoginLabel]}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
@@ -32,22 +33,25 @@
                     IsVisible="{Binding IsLoggedIn}"  
                     Command="{Binding LogoutCommand}">
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup"
                         Text="{Binding Resources[CreateBackupLabel]}" 
                         Command="{Binding BackupCommand}">
                     <Button.Effects>
-                        <effects:ButtonEffect />
+                        <effects:PrimaryButtonEffect />
                     </Button.Effects>
                 </Button>
 
-                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" 
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="StartAndExpand" />
 
                 <Grid>
                     <Grid.HeightRequest>
@@ -61,7 +65,7 @@
                     <Button Text="{Binding Resources[RestoreBackupLabel]}" 
                             Command="{Binding RestoreCommand}" >
                         <Button.Effects>
-                            <effects:ButtonEffect />
+                            <effects:PrimaryButtonEffect />
                         </Button.Effects>
                     </Button>
 

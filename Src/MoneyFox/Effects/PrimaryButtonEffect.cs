@@ -5,9 +5,9 @@ namespace MoneyFox.Effects
     /// <summary>
     ///     Routing for the the button effect.
     /// </summary>
-    public class ButtonEffect : RoutingEffect
+    public class PrimaryButtonEffect : RoutingEffect
     {
-        public ButtonEffect() : base("MoneyFox.ButtonEffect") {
+        public PrimaryButtonEffect() : base("MoneyFox.PrimaryButtonEffect") {
         }
     }
 }

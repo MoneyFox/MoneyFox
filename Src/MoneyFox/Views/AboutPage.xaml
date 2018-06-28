@@ -23,21 +23,21 @@
             <Button Text="{Binding Resources[WebsiteLabel]}"
                         Command="{Binding GoToWebsiteCommand}">
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
             <Button Text="{Binding Resources[EmailLabel]}"
                         Command="{Binding SendMailCommand}">
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
             <Button Text="{Binding Resources[RateLabel]}"
                     Command="{Binding RateAppCommand}">
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 

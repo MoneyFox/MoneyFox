@@ -31,11 +31,11 @@
 	<key>CFBundleName</key>
 	<string>MoneyFox</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.6</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.6</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+  <string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -46,5 +46,9 @@
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSSiriUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>XSLaunchImageAssets</key>
+  <string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
+  <key>ITSAppUsesNonExemptEncryption </key>
+  <boolean>NO</boolean>
 </dict>
 </plist>

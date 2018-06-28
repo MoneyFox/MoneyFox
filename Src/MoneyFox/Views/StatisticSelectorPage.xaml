@@ -11,8 +11,15 @@
         <ListView x:Name="StatisticSelectorList"
                   ItemsSource="{Binding StatisticItems}"
                   RowHeight="60"
-                  Margin="{DynamicResource NegativeMediumLeftRightMargin}"
-                  SeparatorVisibility="None">
+                  Margin="{DynamicResource NegativeMediumLeftRightMargin}">
+
+            <ListView.SeparatorVisibility>
+                <OnPlatform x:TypeArguments="SeparatorVisibility">
+                    <On Platform="iOS" Value="Default" />
+                    <On Platform="Android" Value="None" />
+                </OnPlatform>
+            </ListView.SeparatorVisibility>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
