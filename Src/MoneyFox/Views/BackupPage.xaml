@@ -18,7 +18,8 @@
 
     <ContentPage.Content>
 
-        <StackLayout x:Name="MainLayout">
+        <StackLayout x:Name="MainLayout"
+                     Padding="7">
 
             <Button Text="{Binding Resources[LoginLabel]}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
@@ -38,6 +39,7 @@
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup"
                         Text="{Binding Resources[CreateBackupLabel]}" 
@@ -47,7 +49,9 @@
                     </Button.Effects>
                 </Button>
 
-                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" 
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="StartAndExpand" />
 
                 <Grid>
                     <Grid.HeightRequest>
