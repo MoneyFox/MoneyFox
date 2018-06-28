@@ -35,7 +35,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.6</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Resources/Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -46,5 +46,7 @@
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSSiriUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 </dict>
 </plist>
