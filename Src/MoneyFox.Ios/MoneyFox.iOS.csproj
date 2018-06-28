@@ -99,7 +99,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Effects\ButtonEffect.cs" />
+    <Compile Include="Effects\PrimaryButtonEffect.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

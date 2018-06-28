@@ -24,7 +24,7 @@
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
@@ -32,7 +32,7 @@
                     IsVisible="{Binding IsLoggedIn}"  
                     Command="{Binding LogoutCommand}">
                 <Button.Effects>
-                    <effects:ButtonEffect />
+                    <effects:PrimaryButtonEffect />
                 </Button.Effects>
             </Button>
 
@@ -43,7 +43,7 @@
                         Text="{Binding Resources[CreateBackupLabel]}" 
                         Command="{Binding BackupCommand}">
                     <Button.Effects>
-                        <effects:ButtonEffect />
+                        <effects:PrimaryButtonEffect />
                     </Button.Effects>
                 </Button>
 
@@ -61,7 +61,7 @@
                     <Button Text="{Binding Resources[RestoreBackupLabel]}" 
                             Command="{Binding RestoreCommand}" >
                         <Button.Effects>
-                            <effects:ButtonEffect />
+                            <effects:PrimaryButtonEffect />
                         </Button.Effects>
                     </Button>
 

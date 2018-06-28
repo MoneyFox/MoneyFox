@@ -1,19 +1,19 @@
 ﻿using System;
 using CoreGraphics;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Effects;
+using MoneyFox.iOS.Effects;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName("MoneyFox")]
-[assembly: ExportEffect(typeof(ButtonEffect), "ButtonEffect")]
+[assembly: ExportEffect(typeof(PrimaryButtonEffect), "PrimaryButtonEffect")]
 namespace MoneyFox.iOS.Effects
 {
     /// <summary>
     ///     Applies a custom button effect for buttons on IOS.
     /// </summary>
-    public class ButtonEffect : PlatformEffect
+    public class PrimaryButtonEffect : PlatformEffect
     {
         protected override void OnAttached() {
             try
