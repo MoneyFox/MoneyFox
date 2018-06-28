@@ -56,7 +56,7 @@
                 <Grid>
                     <Grid.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="iOS" Value="37"/>
+                            <On Platform="iOS" Value="39"/>
                             <On Platform="UWP" Value="35"/>
                             <On Platform="Android" Value="48"/>
                         </OnPlatform>
@@ -73,8 +73,14 @@
                 </Grid>
 
                 <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                    <Label Text="{Binding Resources[LastBackupDateLabel]}" HorizontalOptions="Start" />
-                    <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
+                    <Label Text="{Binding Resources[LastBackupDateLabel]}" 
+                           Style="{StaticResource DeemphasizedLabelStyle}"
+                           HorizontalOptions="Start" />
+                    <Label Text="{Binding BackupLastModified}" 
+                           Style="{StaticResource DeemphasizedLabelStyle}"
+                           HorizontalOptions="Start"
+                           Margin="3,0,0,0"
+                           LineBreakMode="WordWrap" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>
