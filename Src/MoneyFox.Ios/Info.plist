@@ -49,6 +49,6 @@
 	<key>XSLaunchImageAssets</key>
   <string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
   <key>ITSAppUsesNonExemptEncryption </key>
-  <boolean>NO</boolean>
+  <false/>
 </dict>
 </plist>
