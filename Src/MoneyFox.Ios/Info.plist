@@ -47,6 +47,8 @@
 	<key>NSSiriUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>XSLaunchImageAssets</key>
-	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
+  <string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
+  <key>ITSAppUsesNonExemptEncryption </key>
+  <boolean>NO</boolean>
 </dict>
 </plist>
