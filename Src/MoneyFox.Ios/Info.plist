@@ -35,7 +35,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.6</string>
 	<key>XSAppIconAssets</key>
-	<string>Resources/Assets.xcassets/AppIcon.appiconset</string>
+  <string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSCalendarsUsageDescription</key>
