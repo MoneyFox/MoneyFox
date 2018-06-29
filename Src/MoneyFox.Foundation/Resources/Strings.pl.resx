@@ -521,7 +521,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Godzin(a/y)</value>
   </data>
   <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Backup Recurrence</value>
+    <value>Ponowne tworzenie kopii zapasowych</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Dwa razy w roku</value>
@@ -663,7 +663,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Przepływ Pieniędzy</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Rozprzestrzenianie Kategorii</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
     <value>Nazwa Kategorii</value>
@@ -687,12 +687,12 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Wybierz Statystyki</value>
   </data>
   <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Background Job</value>
+    <value>Zadanie w tle</value>
   </data>
   <data name="BackgroundJobSettingDescription" xml:space="preserve">
     <value>Configure execution interval for background task.</value>
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Background Job</value>
+    <value>Zadanie w tle</value>
   </data>
 </root>
