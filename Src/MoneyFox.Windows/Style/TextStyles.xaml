@@ -41,6 +41,23 @@
                 Value="{StaticResource AppForegroundColorSecondary}" />
     </Style>
 
+    <Style x:Key="DeemphasizedLabelStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="TextWrapping"
+                Value="NoWrap" />
+        <Setter Property="CharacterSpacing"
+                Value="75" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="Foreground"
+                Value="{StaticResource AppForegroundColorSecondary}" />
+    </Style>
+
     <Style x:Key="HeaderStyle"
            TargetType="TextBlock"
            BasedOn="{StaticResource DeemphasizedBodyTextBlockStyle}">

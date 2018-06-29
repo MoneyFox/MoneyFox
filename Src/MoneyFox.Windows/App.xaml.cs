@@ -94,6 +94,7 @@ namespace MoneyFox.Windows
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
+                new MoneyFox.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
