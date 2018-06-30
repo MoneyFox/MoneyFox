@@ -27,15 +27,20 @@ namespace MoneyFox.Views
 	    {
 	        Title = ViewModel.Title;
 
-	        if (ViewModel.IsEdit)
+	        if (Device.RuntimePlatform == Device.Android)
 	        {
-	            ToolbarItems.Add(new ToolbarItem
+	            DeleteAccountButton.IsVisible = false;
+
+                if (ViewModel.IsEdit)
 	            {
-	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
-	                Text = Strings.DeleteLabel,
-	                Priority = 1,
-	                Order = ToolbarItemOrder.Secondary
-	            });
+	                ToolbarItems.Add(new ToolbarItem
+	                {
+	                    Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                    Text = Strings.DeleteLabel,
+	                    Priority = 1,
+	                    Order = ToolbarItemOrder.Secondary
+	                });
+	            }
 	        }
 
             base.OnAppearing();

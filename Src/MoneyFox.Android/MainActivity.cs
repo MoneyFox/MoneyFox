@@ -16,7 +16,8 @@ using Rg.Plugins.Popup;
 namespace MoneyFox.Droid
 {
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : MvxFormsAppCompatActivity
+    public class 
+        MainActivity : MvxFormsAppCompatActivity
     {        
         /// <summary>
         ///     Constant for the ClearPayment Service.
@@ -75,7 +76,7 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(60);
+            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
 
         void SetupBottomTabs()
