@@ -21,7 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>10.0</string>
+	<string>11.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>MoneyFox</string>
 	<key>CFBundleIdentifier</key>
@@ -35,7 +35,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.6</string>
 	<key>XSAppIconAssets</key>
-  <string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -47,8 +47,8 @@
 	<key>NSSiriUsageDescription</key>
 	<string>We need to use this data in order to ensure the best user experience.</string>
 	<key>XSLaunchImageAssets</key>
-  <string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
-  <key>ITSAppUsesNonExemptEncryption</key>
-  <false/>
+	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
