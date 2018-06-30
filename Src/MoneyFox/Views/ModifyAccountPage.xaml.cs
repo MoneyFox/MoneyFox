@@ -36,6 +36,8 @@ namespace MoneyFox.Views
 	                Priority = 1,
 	                Order = ToolbarItemOrder.Secondary
 	            });
+
+	            DeleteAccountButton.IsVisible = false;
 	        }
 
             base.OnAppearing();

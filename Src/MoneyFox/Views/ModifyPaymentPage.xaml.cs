@@ -38,6 +38,8 @@ namespace MoneyFox.Views
 	                Priority = 1,
 	                Order = ToolbarItemOrder.Secondary
 	            });
+
+	            DeletePaymentButton.IsVisible = false;
 	        }
 
             base.OnAppearing();

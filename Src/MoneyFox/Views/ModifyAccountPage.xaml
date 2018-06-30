@@ -4,6 +4,7 @@
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
              x:Class="MoneyFox.Views.ModifyAccountPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
 
@@ -37,6 +38,17 @@
                 <Label Grid.Column="0" Text="{Binding Resources[IsExcludedLabel]}" />
                 <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
             </Grid>
+
+            <Button x:Name="DeleteAccountButton"
+                    Text="{Binding Resources[DeleteLabel]}"
+                    Command="{Binding DeleteCommand}"
+                    Margin="0,12,0,0" >
+
+                <Button.Effects>
+                    <effects:DeleteButtonEffect />
+                </Button.Effects>
+
+            </Button>
         </StackLayout>
 
     </ContentPage.Content>

@@ -34,6 +34,8 @@ namespace MoneyFox.Views
 	                Priority = 1,
 	                Order = ToolbarItemOrder.Secondary
 	            });
+
+	            DeleteCategoryButton.IsVisible = false;
 	        }
 
             base.OnAppearing();

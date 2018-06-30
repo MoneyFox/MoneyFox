@@ -4,6 +4,7 @@
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
              x:Class="MoneyFox.Views.ModifyCategoryPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyCategoryViewModel}">
     <ContentPage.Content>
@@ -14,6 +15,17 @@
 
             <Label Text="{Binding Resources[NoteLabel]}" />
             <Entry Text="{Binding SelectedCategory.Notes}" />
+
+            <Button x:Name="DeleteCategoryButton"
+                    Text="{Binding Resources[DeleteLabel]}"
+                    Command="{Binding DeleteCommand}"
+                    Margin="0,12,0,0" >
+
+                <Button.Effects>
+                    <effects:DeleteButtonEffect />
+                </Button.Effects>
+
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>
