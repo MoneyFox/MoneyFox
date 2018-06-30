@@ -27,7 +27,7 @@ namespace MoneyFox.Views
 	    {
 	        Title = ViewModel.Title;
 
-	        if (ViewModel.IsEdit)
+	        if (Device.RuntimePlatform == Device.Android && ViewModel.IsEdit)
 	        {
 	            ToolbarItems.Add(new ToolbarItem
 	            {
