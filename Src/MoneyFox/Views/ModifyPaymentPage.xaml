@@ -126,6 +126,7 @@
 
             </StackLayout>
 
+            <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeletePaymentButton"
                     Text="{Binding Resources[DeleteLabel]}"
                     Command="{Binding DeleteCommand}"
@@ -136,7 +137,6 @@
                 </Button.Effects>
 
             </Button>
-
         </StackLayout>
     </ContentPage.Content>
 </d:MvxContentPage>

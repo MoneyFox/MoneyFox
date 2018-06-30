@@ -29,17 +29,20 @@ namespace MoneyFox.Views
 	    protected override void OnAppearing()
 	    {
 	        Title = ViewModel.Title;
-	        if (Device.RuntimePlatform == Device.Android && ViewModel.IsEdit)
+	        if (Device.RuntimePlatform == Device.Android)
 	        {
-	            ToolbarItems.Add(new ToolbarItem
+                DeletePaymentButton.IsVisible = false;
+                
+                if (ViewModel.IsEdit)
 	            {
-	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
-	                Text = Strings.DeleteLabel,
-	                Priority = 1,
-	                Order = ToolbarItemOrder.Secondary
-	            });
-
-	            DeletePaymentButton.IsVisible = false;
+	                ToolbarItems.Add(new ToolbarItem
+	                {
+	                    Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                    Text = Strings.DeleteLabel,
+	                    Priority = 1,
+	                    Order = ToolbarItemOrder.Secondary
+	                });
+	            }
 	        }
 
             base.OnAppearing();

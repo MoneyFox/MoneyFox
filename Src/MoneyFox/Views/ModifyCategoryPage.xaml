@@ -16,6 +16,7 @@
             <Label Text="{Binding Resources[NoteLabel]}" />
             <Entry Text="{Binding SelectedCategory.Notes}" />
 
+            <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeleteCategoryButton"
                     Text="{Binding Resources[DeleteLabel]}"
                     Command="{Binding DeleteCommand}"

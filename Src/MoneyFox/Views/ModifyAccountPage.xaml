@@ -39,6 +39,7 @@
                 <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
             </Grid>
 
+            <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeleteAccountButton"
                     Text="{Binding Resources[DeleteLabel]}"
                     Command="{Binding DeleteCommand}"
