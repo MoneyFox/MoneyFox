@@ -42,7 +42,8 @@
                     </Button.Effects>
                 </Button>
 
-                <Label Text="{Binding Resources[TranslationLabel]}"/>
+                <Label Text="{Binding Resources[TranslationLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
                 <Label Text="www.crowdin.com"
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="CenterAndExpand" >
@@ -51,7 +52,8 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[InfoOpenSource]}"/>
+                <Label Text="{Binding Resources[InfoOpenSource]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
                 <Label Text="www.github.com"
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="CenterAndExpand" >
@@ -60,7 +62,8 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[ContributerLabel]}"/>
+                <Label Text="{Binding Resources[ContributerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
                 <Label Text="GitHub Contribution"
                        HorizontalOptions="CenterAndExpand" 
                        Style="{StaticResource DeemphasizedLabelStyle}">
@@ -69,7 +72,8 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[IconDesignerLabel]}"/>
+                <Label Text="{Binding Resources[IconDesignerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
                 <Label Text="@Toledo Vanderson"
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource DeemphasizedLabelStyle}">
