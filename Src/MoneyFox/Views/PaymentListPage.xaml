@@ -80,9 +80,10 @@
                                                Style="{StaticResource ListItemHeaderStyle}" />
 
                                             <Label Grid.Column="1" 
-                                               HorizontalTextAlignment="End"
-                                               Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" 
-                                               Style="{StaticResource ListItemHeaderStyle}" />
+                                                   HorizontalTextAlignment="End"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   Style="{StaticResource SmallTextStyle}"
+                                                   Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}"  />
                                         </Grid>
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
