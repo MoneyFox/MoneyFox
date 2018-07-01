@@ -43,8 +43,9 @@
                 </Button>
 
                 <Label Text="{Binding Resources[TranslationLabel]}"/>
-                <Label Text="www.crowdin.com" 
-                   HorizontalOptions="CenterAndExpand" >
+                <Label Text="www.crowdin.com"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
                     </Label.GestureRecognizers>
@@ -52,8 +53,8 @@
 
                 <Label Text="{Binding Resources[InfoOpenSource]}"/>
                 <Label Text="www.github.com"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
                     </Label.GestureRecognizers>
@@ -61,8 +62,8 @@
 
                 <Label Text="{Binding Resources[ContributerLabel]}"/>
                 <Label Text="GitHub Contribution"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
+                       HorizontalOptions="CenterAndExpand" 
+                       Style="{StaticResource DeemphasizedLabelStyle}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
                     </Label.GestureRecognizers>
@@ -70,8 +71,8 @@
 
                 <Label Text="{Binding Resources[IconDesignerLabel]}"/>
                 <Label Text="@Toledo Vanderson"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
                     </Label.GestureRecognizers>
