@@ -149,6 +149,9 @@
     <PackageReference Include="MvvmCross">
       <Version>6.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Forms">
+      <Version>6.1.2</Version>
+    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Email">
       <Version>6.1.2</Version>
     </PackageReference>
