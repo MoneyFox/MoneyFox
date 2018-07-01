@@ -5,6 +5,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+    xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
     x:Class="MoneyFox.Dialogs.DateSelectionDialog"
     BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectDateRangeDialogViewModel}">
 
@@ -33,15 +34,21 @@
                Style ="{StaticResource ListItemHeaderStyle}"/>
 
         <Grid>
-            <Label Text="{Binding Resources[TimeRangeStartLabel]}"
+            <Label Style="{StaticResource DeemphasizedLabelStyle}" 
+                   Text="{Binding Resources[TimeRangeStartLabel]}"
                    HorizontalOptions="StartAndExpand"/>
         </Grid>
         <DatePicker Date="{Binding StartDate}" />
 
-        <Label Text="{Binding Resources[TimeRangeEndLabel]}"/>
+        <Label Style="{StaticResource DeemphasizedLabelStyle}" 
+               Text="{Binding Resources[TimeRangeEndLabel]}"/>
         <DatePicker Date="{Binding EndDate}" />
 
-        <Button Text="{Binding Resources[DoneLabel]}" Clicked="Button_OnClicked"/>
-
+        <Button Text="{Binding Resources[DoneLabel]}"
+                Clicked="Button_OnClicked">
+            <Button.Effects>
+                <effects:PrimaryButtonEffect />
+            </Button.Effects>
+        </Button>
     </StackLayout>
 </pages:PopupPage>

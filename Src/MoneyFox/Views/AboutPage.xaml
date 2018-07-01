@@ -9,72 +9,79 @@
                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAboutViewModel}">
 
     <ContentPage.Content>
-        <StackLayout Padding="6">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding Resources[VersionLabel]}" 
+        <ScrollView>
+            <StackLayout Padding="6">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Resources[VersionLabel]}" 
                        Style="{StaticResource DefaultTextStyle}"/>
-                <Label Text="{Binding Version}"
+                    <Label Text="{Binding Version}"
                        Style="{StaticResource DefaultTextStyle}"/>
-            </StackLayout>
-            
-            <Label Text="{Binding Resources[ContactLabel]}"
+                </StackLayout>
+
+                <Label Text="{Binding Resources[ContactLabel]}"
                    HorizontalOptions="Start" />
 
-            <Button Text="{Binding Resources[WebsiteLabel]}"
+                <Button Text="{Binding Resources[WebsiteLabel]}"
                         Command="{Binding GoToWebsiteCommand}">
-                <Button.Effects>
-                    <effects:PrimaryButtonEffect />
-                </Button.Effects>
-            </Button>
+                    <Button.Effects>
+                        <effects:PrimaryButtonEffect />
+                    </Button.Effects>
+                </Button>
 
-            <Button Text="{Binding Resources[EmailLabel]}"
+                <Button Text="{Binding Resources[EmailLabel]}"
                         Command="{Binding SendMailCommand}">
-                <Button.Effects>
-                    <effects:PrimaryButtonEffect />
-                </Button.Effects>
-            </Button>
+                    <Button.Effects>
+                        <effects:PrimaryButtonEffect />
+                    </Button.Effects>
+                </Button>
 
-            <Button Text="{Binding Resources[RateLabel]}"
+                <Button Text="{Binding Resources[RateLabel]}"
                     Command="{Binding RateAppCommand}">
-                <Button.Effects>
-                    <effects:PrimaryButtonEffect />
-                </Button.Effects>
-            </Button>
+                    <Button.Effects>
+                        <effects:PrimaryButtonEffect />
+                    </Button.Effects>
+                </Button>
 
-            <Label Text="{Binding Resources[TranslationLabel]}"/>
-            <Label Text="www.crowdin.com" 
-                   HorizontalOptions="CenterAndExpand" >
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Text="{Binding Resources[TranslationLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
+                <Label Text="www.crowdin.com"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Text="{Binding Resources[InfoOpenSource]}"/>
-            <Label Text="www.github.com"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Text="{Binding Resources[InfoOpenSource]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
+                <Label Text="www.github.com"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Text="{Binding Resources[ContributerLabel]}"/>
-            <Label Text="GitHub Contribution"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
+                <Label Text="{Binding Resources[ContributerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
+                <Label Text="GitHub Contribution"
+                       HorizontalOptions="CenterAndExpand" 
+                       Style="{StaticResource DeemphasizedLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-            <Label Text="{Binding Resources[IconDesignerLabel]}"/>
-            <Label Text="@Toledo Vanderson"
-                   HorizontalOptions="CenterAndExpand"
-                   Style="{StaticResource ListItemHeaderStyle}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
+                <Label Text="{Binding Resources[IconDesignerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"/>
+                <Label Text="@Toledo Vanderson"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

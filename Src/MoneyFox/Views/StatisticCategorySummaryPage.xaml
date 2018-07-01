@@ -39,13 +39,31 @@
                                      Padding="3"
                                      HorizontalOptions="FillAndExpand"
                                      Margin="{DynamicResource DefaultListItemsMargin}">
-                                    <Label Text="{Binding Label}" HorizontalOptions="StartAndExpand" Style="{StaticResource ListItemHeaderStyle}" />
-                                    <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Spacing="0">
-                                        <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" Style="{DynamicResource DefaultTextStyle}" />
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Label}" 
+                                           HorizontalOptions="StartAndExpand" 
+                                           Style="{StaticResource ListItemHeaderStyle}" />
+
+                                    <StackLayout Grid.Column="1" 
+                                                 HorizontalOptions="EndAndExpand" 
+                                                 Orientation="Horizontal"
+                                                 Spacing="0" 
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
                                         
-                                        <Label Text=" (" Style="{DynamicResource DefaultTextStyle}" />
-                                        <Label Text="{Binding Percentage}" Style="{DynamicResource DefaultTextStyle}" />
-                                        <Label Text="%)" Style="{DynamicResource DefaultTextStyle}" />
+                                        <Label Text=" (" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
+                                        <Label Text="{Binding Percentage}" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
+                                        <Label Text="%)" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
 
                                     </StackLayout>
                                 </Grid>
