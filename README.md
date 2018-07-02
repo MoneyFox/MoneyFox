@@ -27,7 +27,7 @@ Windows: Please send me your Microsoft Account
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 (You can also opt-in for the beta in the play store)
 
-IOS: Pplease send me your Apple ID
+IOS: Please send me your Apple ID via Email or Slack that I can sign you up for the TestFlight
 
 ### Contribution
 
