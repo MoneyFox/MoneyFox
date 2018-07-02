@@ -17,4 +17,9 @@
 
     <Color x:Key="ListItemColor">#FF171717</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
+    
+    <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
+                 Color="Transparent" />
+    <SolidColorBrush Color="#33FFFFFF" x:Key="NavigationViewItemBackgroundSelected"/>
+    
 </ResourceDictionary>

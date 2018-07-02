@@ -102,7 +102,8 @@
                 <ListView IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource AccountItemTemplate}"
-                          ItemsSource="{Binding Source={StaticResource Groups}}">
+                          ItemsSource="{Binding Source={StaticResource Groups}}"
+                          x:Name="accountList">
 
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
@@ -121,6 +122,8 @@
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
                     </ListView.GroupStyle>
+                    
+                   
                 </ListView>
 
             </SemanticZoom.ZoomedInView>

@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Blend for Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{609FE014-9C31-4E4C-9A1A-3E0F79F89938}"
@@ -8,15 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{F704D8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{0C5D39CB-8298-4258-8752-09A4D2F29840}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.DataAccess", "MoneyFox.DataAccess\MoneyFox.DataAccess.csproj", "{600FC746-6968-489F-9471-A37A6D312812}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.DataAccess", "MoneyFox.DataAccess\MoneyFox.DataAccess.csproj", "{600FC746-6968-489F-9471-A37A6D312812}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Foundation", "MoneyFox.Foundation\MoneyFox.Foundation.csproj", "{3040FFCD-98E4-4C02-867C-725C93AD38E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Foundation", "MoneyFox.Foundation\MoneyFox.Foundation.csproj", "{3040FFCD-98E4-4C02-867C-725C93AD38E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Business", "MoneyFox.Business\MoneyFox.Business.csproj", "{15ACA206-DC79-429C-A4A5-D947D62481B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Business", "MoneyFox.Business\MoneyFox.Business.csproj", "{15ACA206-DC79-429C-A4A5-D947D62481B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0B31DE2D-1855-479A-977B-8A7AC3E1F8C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.DataAccess.Tests", "MoneyFox.DataAccess.Tests\MoneyFox.DataAccess.Tests.csproj", "{A163AB36-0E37-44BA-9125-63D2D27CE894}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.DataAccess.Tests", "MoneyFox.DataAccess.Tests\MoneyFox.DataAccess.Tests.csproj", "{A163AB36-0E37-44BA-9125-63D2D27CE894}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Windows", "MoneyFox.Windows\MoneyFox.Windows.csproj", "{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}"
 EndProject
@@ -24,15 +24,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Windows.Business",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Windows.Tasks", "MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj", "{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox", "MoneyFox\MoneyFox.csproj", "{ABBB1314-B512-4748-9054-888565E25B5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox", "MoneyFox\MoneyFox.csproj", "{ABBB1314-B512-4748-9054-888565E25B5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Android", "MoneyFox.Android\MoneyFox.Android.csproj", "{CFC9597A-6965-4550-93A3-92A2CA9E48C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.iOS", "MoneyFox.Ios\MoneyFox.iOS.csproj", "{F68BCA5A-D029-4981-99A7-14BC968D12CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Business.Tests", "MoneyFox.Business.Tests\MoneyFox.Business.Tests.csproj", "{D8C199AB-218A-4545-BACD-800EA2296016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Business.Tests", "MoneyFox.Business.Tests\MoneyFox.Business.Tests.csproj", "{D8C199AB-218A-4545-BACD-800EA2296016}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Tests", "MoneyFox.Tests\MoneyFox.Tests.csproj", "{47646239-333F-4332-91F0-990E84573545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Tests", "MoneyFox.Tests\MoneyFox.Tests.csproj", "{47646239-333F-4332-91F0-990E84573545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

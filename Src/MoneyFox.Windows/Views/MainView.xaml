@@ -1,4 +1,4 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.MainView"
+﻿<views:MvxWindowsPage
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,16 +6,51 @@
                       xmlns:uwp="using:FontAwesome.UWP"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:appmodel="using:Windows.ApplicationModel"
+                      xmlns:Custom="using:MoneyFox.Windows.Views.UserControls" x:Class="MoneyFox.Windows.Views.MainView"
+                      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+                      xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
                       mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <Storyboard x:Name="ShowAbout">
+            <DoubleAnimation Duration="0:0:0.3" To="-250" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransAbout" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HideAbout">
+            <DoubleAnimation 
+                Duration="0:0:0.5" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransAbout" 
+                d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ShowSettings">
+            <DoubleAnimation Duration="0:0:0.3" To="-250" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransSettings" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HideSettings">
+            <DoubleAnimation 
+                Duration="0:0:0.5" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransSettings" 
+                d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="Visible">
         <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
-                    CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
-                    IsSettingsVisible="False"  >
+                    IsSettingsVisible="False"
+                    >
 
             <NavigationView.MenuItems>
 
@@ -31,21 +66,13 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemSeparator/>
-
-                <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
+                <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories">
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[BackupTitle]}" Tag="Backup" >
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                <NavigationViewItemSeparator Height="{x:Bind Monitor.Spacer, Mode=OneWay}"/>
 
                 <NavigationViewItem Content="{Binding Resources[SettingsTitle]}" Tag="Settings">
                     <NavigationViewItem.Icon>
@@ -61,33 +88,37 @@
 
             </NavigationView.MenuItems>
 
+
             <NavigationView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
-                                   FontSize="28"
-                                   VerticalAlignment="Center"
-                                   Margin="12,0"
-                                   Text=""/>
-                    </Grid>
-                </DataTemplate>
+                <DataTemplate />
             </NavigationView.HeaderTemplate>
 
-            <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
+            <Frame x:Name="ContentFrame" Margin="0,17,0,0">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>
                     </TransitionCollection>
                 </Frame.ContentTransitions>
             </Frame>
-            
+
         </NavigationView>
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CustomCaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+
+        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Path=appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+        <Custom:BalanceUserControl HorizontalAlignment="Left" Margin="744,-71,0,0" VerticalAlignment="Top"/>
+        <Custom:AboutUserControl x:Name="about" HorizontalAlignment="Right" Margin="0,31,-250,0" Width="250" VerticalAlignment="Stretch" 
+                                 LostFocus="AboutUserControl_LostFocus" IsTabStop="True">
+            <Custom:AboutUserControl.RenderTransform>
+                <TranslateTransform  x:Name="panelTransAbout" X="0" />
+            </Custom:AboutUserControl.RenderTransform>
+        </Custom:AboutUserControl>
+        <Custom:SettingsUserControl x:Name="settings" HorizontalAlignment="Right" Margin="0,31,-250,0" Width="250" VerticalAlignment="Stretch"
+                                    LostFocus="Settings_LostFocus" IsTabStop="True">
+            <Custom:SettingsUserControl.RenderTransform>
+                <TranslateTransform  x:Name="panelTransSettings" X="0" />
+            </Custom:SettingsUserControl.RenderTransform>
+        </Custom:SettingsUserControl>
     </Grid>
+
 </views:MvxWindowsPage>
 
 

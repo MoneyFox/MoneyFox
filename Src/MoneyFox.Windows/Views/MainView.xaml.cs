@@ -3,6 +3,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
+using System;
+using System.Linq;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Input;
+using MoneyFox.Windows.Views.UserControls;
 
 namespace MoneyFox.Windows.Views
 {
@@ -11,13 +17,29 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class MainView
     {
+        private bool aboutStateEnabled;
+        private bool settingStateEnabled;
+
         public MainView()
         {
             this.InitializeComponent();
 
             CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
             titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+
+            // Dynamic change
+            this.Monitor = new PropertyMonitor();
+            this.SizeChanged += new SizeChangedEventHandler(ChangeSpacerSize);
+
+
         }
+
+        private void ChangeSpacerSize(object sender, SizeChangedEventArgs args)
+        {
+            this.Monitor.Spacer = Convert.ToInt32(args.NewSize.Height) - 230 - 88;
+        }
+
+        public PropertyMonitor Monitor { get; set; }
 
         public Frame MainFrame => ContentFrame;
 
@@ -28,37 +50,51 @@ namespace MoneyFox.Windows.Views
 
         private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
+
             if (args.IsSettingsInvoked)
             {
-                await ((MainViewModel) ViewModel).ShowSettingsCommand.ExecuteAsync();
-            } 
+                await ((MainViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
+            }
             else
             {
-                if (args.InvokedItem == null) return;
+                if (args.InvokedItem == null)
+                {
+                    return;
+                }
 
                 if (args.InvokedItem.Equals(Strings.AccountsTitle))
                 {
                     await ((MainViewModel)ViewModel).ShowAccountListCommand.ExecuteAsync();
                 }
-                else if(args.InvokedItem.Equals(Strings.CategoriesTitle))
-                {
-                    await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
-                }
-                else if(args.InvokedItem.Equals(Strings.StatisticsTitle))
+                else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
                 {
                     await ((MainViewModel)ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
                 }
-                else if(args.InvokedItem.Equals(Strings.BackupTitle))
+                else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
+                {
+                    await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
+                }
+                else if (args.InvokedItem.Equals(Strings.BackupTitle))
                 {
                     await ((MainViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
-                } 
-                else if(args.InvokedItem.Equals(Strings.SettingsTitle))
+                }
+                else if (args.InvokedItem.Equals(Strings.SettingsTitle))
                 {
-                    await ((MainViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
-                } 
-                else if(args.InvokedItem.Equals(Strings.AboutTitle))
+                    if (!settingStateEnabled)
+                    {
+                        ShowSettings.Begin();
+                        settingStateEnabled = true;
+                        settings.Focus(FocusState.Programmatic);
+                    }
+                }
+                else if (args.InvokedItem.Equals(Strings.AboutTitle))
                 {
-                    await ((MainViewModel)ViewModel).ShowAboutCommand.ExecuteAsync();
+                    if(!aboutStateEnabled)
+                    {
+                        ShowAbout.Begin();
+                        aboutStateEnabled = true;
+                        about.Focus(FocusState.Programmatic);
+                    }
                 }
             }
         }
@@ -77,6 +113,29 @@ namespace MoneyFox.Windows.Views
         public void SetLoggedInView()
         {
             NavView.OpenPaneLength = 200;
+        }
+
+        private void AboutUserControl_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var tempFocus = FocusManager.GetFocusedElement();
+            if (aboutStateEnabled && (sender != tempFocus) && (about.MailButton != tempFocus))
+            {
+                HideAbout.Begin();
+                aboutStateEnabled = false;
+            }
+            
+        }
+
+        private void Settings_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var tempFocus = FocusManager.GetFocusedElement();
+            if (settingStateEnabled && (settings != tempFocus)
+                && settings.Security.Password != tempFocus && settings.Security.PasswordConfirmation != tempFocus
+                 && (settings.Personalization.ToggleSwitch != tempFocus))
+            {
+                HideSettings.Begin();
+                settingStateEnabled = false;
+            }
         }
     }
 }

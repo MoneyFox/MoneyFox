@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Services;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -9,6 +10,9 @@ namespace MoneyFox.Windows.Views.UserControls
     /// </summary>
     public sealed partial class SettingsSecurityUserControl
     {
+
+        public PasswordBox Password;
+        public PasswordBox PasswordConfirmation;
         /// <summary>
         ///     Constructor
         /// </summary>
@@ -16,6 +20,8 @@ namespace MoneyFox.Windows.Views.UserControls
         {
             InitializeComponent();
             Loaded += DisablePassportSwitch;
+            Password = password;
+            PasswordConfirmation = passwordConfirmation;
         }
 
         /// <summary>

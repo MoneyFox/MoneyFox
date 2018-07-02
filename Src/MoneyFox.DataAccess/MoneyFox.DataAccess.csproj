@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>MoneyFox.DataAccess</AssemblyName>
@@ -13,13 +12,16 @@
     <GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="EntityFramework.DbContextScope" Version="1.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
@@ -27,9 +29,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.3" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.1.2" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
-
 </Project>
