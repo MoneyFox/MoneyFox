@@ -9,13 +9,31 @@
     d:DesignWidth="400">
 
     <StackPanel>
-        <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
-                   Text="You can change between a dark and light theme. To apply this change please restart the application."
-                   TextWrapping="WrapWholeWords"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-        <ComboBox SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
-            <ComboBoxItem x:Uid="Dark" Content="Dark" />
-            <ComboBoxItem x:Uid="Light" Content="Light" />
-        </ComboBox>
+        <StackPanel.Resources>
+            <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
+        </StackPanel.Resources>
+        <TextBlock Text="Appearance" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+        <ToggleSwitch Header="Dark Theme" x:Name="ThemeSwitch" AllowFocusOnInteraction="False"
+                      Toggled="ThemeSwitch_Toggled" Margin="10, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}">
+            <ToggleSwitch.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#d3d3e9"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#d3d3e9"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </ToggleSwitch.Resources>
+        </ToggleSwitch>
     </StackPanel>
 </UserControl>

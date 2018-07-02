@@ -25,38 +25,88 @@
 
     <Grid>
         <StackPanel>
-            <ToggleSwitch x:Name="toggleSwitch"
+            <StackPanel.Resources>
+                <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
+            </StackPanel.Resources>
+            <TextBlock Text="Security" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <ToggleSwitch x:Name="toggleSwitch" Header="Password Protection" Margin="10, 0, 0, 10"
                           IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          x:Uid="PasswordSettingSwitch"
-                          OnContent="Password protection active"
-                          OffContent="Password protection inactive" />
+                          AllowFocusOnInteraction="False" Foreground="{StaticResource FlyoverTextColor}"
+                          >
+                <ToggleSwitch.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </ToggleSwitch.Resources>
+            </ToggleSwitch>
 
-            <StackPanel
-                Visibility="{Binding IsOn, ElementName=toggleSwitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}">
+            <StackPanel Margin="0, 0, 0, 10" Visibility="{Binding IsOn, ElementName=toggleSwitch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}"
+                >
                 <PasswordBox Header="Password"
                              x:Uid="Password"
-                             Margin="0,5,0,0"
+                             x:Name="password"
                              Password="{Binding Password, Mode=TwoWay}"
-                             PasswordRevealMode="Peek" />
+                             Margin="0, 0, 0, 10"
+                             PasswordRevealMode="Peek"
+                             Foreground="{StaticResource FlyoverTextColor}"
+                             />
+
                 <PasswordBox Header="Password Confirmation"
                              x:Uid="PasswordConfirmation"
-                             Margin="0,5,0,0"
+                             x:Name="passwordConfirmation"
                              Password="{Binding PasswordConfirmation, Mode=TwoWay}"
-                             PasswordRevealMode="Peek" />
+                             PasswordRevealMode="Peek" 
+                             Foreground="{StaticResource FlyoverTextColor}"/>
 
                 <Button x:Uid="SavePassword"
-                        Margin="0,12,0,0"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Stretch"
                         Content="Save Password"
-                        Command="{Binding SavePasswordCommand}" />
+                        Command="{Binding SavePasswordCommand}"
+                        AllowFocusOnInteraction="False"
+                        Foreground="{StaticResource FlyoverTextColor}"/>
             </StackPanel>
-            <ToggleSwitch x:Name="PassportSwitch"
+            <ToggleSwitch x:Name="PassportSwitch" Header="Password Login" Margin="10, 0, 0, 0"
                           IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          x:Uid="PassportSettingSwitch"
-                          OnContent="Passport Login Enabled"
-                          OffContent="Enable Passport Login" />
+                          x:Uid="PassportSettingSwitch" AllowFocusOnInteraction="False"
+                          Foreground="{StaticResource FlyoverTextColor}"
+                          >
+                <ToggleSwitch.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </ToggleSwitch.Resources>
+            </ToggleSwitch>
             <TextBlock x:Name="PassportStatus"
-                       Margin="0,0,0,15"
+                       Margin="0,0,0,0"
                        HorizontalAlignment="Center"
                        TextWrapping="WrapWholeWords"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

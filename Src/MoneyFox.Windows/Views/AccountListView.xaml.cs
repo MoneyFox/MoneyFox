@@ -19,11 +19,11 @@ namespace MoneyFox.Windows.Views
         public AccountListView()
         {
             InitializeComponent();
-
             if (DesignMode.DesignModeEnabled)
             {
                 ViewModel = new DesignTimeAccountListViewModel();
             } 
+            
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)

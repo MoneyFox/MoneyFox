@@ -5,6 +5,7 @@
         public SettingsShortcutsUserControl()
         {
             InitializeComponent();
+            
         }
     }
 }
