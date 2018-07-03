@@ -9,6 +9,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Windows.Views.UserControls;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace MoneyFox.Windows.Views
 {
@@ -28,7 +29,6 @@ namespace MoneyFox.Windows.Views
             titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
 
             // Dynamic change
-            this.Monitor = new PropertyMonitor();
             this.SizeChanged += new SizeChangedEventHandler(ChangeSpacerSize);
 
 
@@ -36,10 +36,11 @@ namespace MoneyFox.Windows.Views
 
         private void ChangeSpacerSize(object sender, SizeChangedEventArgs args)
         {
-            this.Monitor.Spacer = Convert.ToInt32(args.NewSize.Height) - 230 - 88;
+            var temp = (DoubleAnimation)SeperatorStoryboard.Children.ElementAt(0);
+            temp.To = Convert.ToInt32(args.NewSize.Height) - 230 - 88;
+            SeperatorStoryboard.Begin();
         }
-
-        public PropertyMonitor Monitor { get; set; }
+       
 
         public Frame MainFrame => ContentFrame;
 

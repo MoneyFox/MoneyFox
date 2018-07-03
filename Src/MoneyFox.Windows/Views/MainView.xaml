@@ -43,6 +43,15 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+        <Storyboard x:Name="SeperatorStoryboard">
+            <DoubleAnimation 
+                Duration="0:0:0.5" To="0" Storyboard.TargetProperty="Height" Storyboard.TargetName="seperator" 
+                d:IsOptimized="True" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="Visible">
         <NavigationView x:Name="NavView"
@@ -72,7 +81,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItemSeparator Height="{x:Bind Monitor.Spacer, Mode=OneWay}"/>
+                <NavigationViewItemSeparator x:Name="seperator" Height="0"/>
 
                 <NavigationViewItem Content="{Binding Resources[SettingsTitle]}" Tag="Settings">
                     <NavigationViewItem.Icon>
