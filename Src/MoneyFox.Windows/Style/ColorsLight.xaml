@@ -25,6 +25,8 @@
     <SolidColorBrush Color="#33FFFFFF" x:Key="NavigationViewItemBackgroundSelected"/>
     <media:AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
             TintOpacity="0.8" TintColor="#6B69B6" FallbackColor="#EDEDED" />
+    <media:AcrylicBrush x:Key="TitleBarAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
+            TintOpacity="0.8" TintColor="White" FallbackColor="Gray" />
     
 
 </ResourceDictionary>
