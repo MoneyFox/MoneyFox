@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Windows.Views.UserControls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.ViewManagement;
 
 namespace MoneyFox.Windows.Views
 {
@@ -24,14 +25,14 @@ namespace MoneyFox.Windows.Views
         public MainView()
         {
             this.InitializeComponent();
-
-            CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
-            titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
-
+            
+            CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
+            coreTitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            
+            Window.Current.SetTitleBar(TitleBar);
+            TitleBar.SizeChanged += (sender, e) => TitleBar.Width = Window.Current.Bounds.Width;
             // Dynamic change
             this.SizeChanged += new SizeChangedEventHandler(ChangeSpacerSize);
-
-
         }
 
         private void ChangeSpacerSize(object sender, SizeChangedEventArgs args)
@@ -47,6 +48,8 @@ namespace MoneyFox.Windows.Views
         private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             AppTitle.Margin = new Thickness(CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset + 12, 8, 0, 0);
+            TitleBar.Height = sender.Height;
+            TitleBar.Width = Window.Current.Bounds.Width;
         }
 
         private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

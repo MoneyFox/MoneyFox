@@ -12,7 +12,7 @@
                       mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="ShowAbout">
-            <DoubleAnimation Duration="0:0:0.3" To="-250" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransAbout" d:IsOptimized="True">
+            <DoubleAnimation Duration="0:0:0.3" To="-260" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransAbout" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -28,7 +28,7 @@
             </DoubleAnimation>
         </Storyboard>
         <Storyboard x:Name="ShowSettings">
-            <DoubleAnimation Duration="0:0:0.3" To="-250" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransSettings" d:IsOptimized="True">
+            <DoubleAnimation Duration="0:0:0.3" To="-260" Storyboard.TargetProperty="X" Storyboard.TargetName="panelTransSettings" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
@@ -54,73 +54,80 @@
         </Storyboard>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="Visible">
-        <NavigationView x:Name="NavView"
+        <Canvas>
+            <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
                     AlwaysShowHeader="False"
                     IsSettingsVisible="False"
                     >
 
-            <NavigationView.MenuItems>
+                <NavigationView.MenuItems>
 
-                <NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts" Foreground="White">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE10F;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts" Foreground="White">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE10F;"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics" Foreground="White">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics" Foreground="White">
+                        <NavigationViewItem.Icon>
+                            <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories">
+                        <NavigationViewItem.Icon>
+                            <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
 
-                <NavigationViewItemSeparator x:Name="seperator" Height="0"/>
+                    <NavigationViewItemSeparator x:Name="seperator" Height="0"/>
 
-                <NavigationViewItem Content="{Binding Resources[SettingsTitle]}" Tag="Settings">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="Cog" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem Content="{Binding Resources[SettingsTitle]}" Tag="Settings">
+                        <NavigationViewItem.Icon>
+                            <uwp:FontAwesome Icon="Cog" FontSize="90" HorizontalAlignment="Center" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[AboutTitle]}" Tag="About">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="InfoCircle" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    <NavigationViewItem Content="{Binding Resources[AboutTitle]}" Tag="About">
+                        <NavigationViewItem.Icon>
+                            <uwp:FontAwesome Icon="InfoCircle" FontSize="90" HorizontalAlignment="Center" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
 
-            </NavigationView.MenuItems>
+                </NavigationView.MenuItems>
 
 
-            <NavigationView.HeaderTemplate>
-                <DataTemplate />
-            </NavigationView.HeaderTemplate>
+                <NavigationView.HeaderTemplate>
+                    <DataTemplate />
+                </NavigationView.HeaderTemplate>
 
-            <Frame x:Name="ContentFrame" Margin="0,17,0,0">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
+                <Frame x:Name="ContentFrame" Margin="0,17,0,0">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
 
-        </NavigationView>
-
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Text="{x:Bind Path=appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+            </NavigationView>
+            <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Margin="40, 0, 0, 0" Foreground="White"
+                           Text="{x:Bind Path=appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+            <Grid Background="{StaticResource CustomAcrylicBackgroundBrush}" HorizontalAlignment="Stretch" x:Name="TitleBar" VerticalAlignment="Top" Canvas.ZIndex="-1">
+                
+            </Grid>
+        </Canvas>
+        
+        
         <Custom:BalanceUserControl HorizontalAlignment="Left" Margin="744,-71,0,0" VerticalAlignment="Top"/>
-        <Custom:AboutUserControl x:Name="about" HorizontalAlignment="Right" Margin="0,31,-250,0" Width="250" VerticalAlignment="Stretch" 
+        <Custom:AboutUserControl x:Name="about" HorizontalAlignment="Right" Margin="0,31,-260,0" Width="250" VerticalAlignment="Stretch" 
                                  LostFocus="AboutUserControl_LostFocus" IsTabStop="True">
             <Custom:AboutUserControl.RenderTransform>
                 <TranslateTransform  x:Name="panelTransAbout" X="0" />
             </Custom:AboutUserControl.RenderTransform>
         </Custom:AboutUserControl>
-        <Custom:SettingsUserControl x:Name="settings" HorizontalAlignment="Right" Margin="0,31,-250,0" Width="250" VerticalAlignment="Stretch"
+        <Custom:SettingsUserControl x:Name="settings" HorizontalAlignment="Right" Margin="0,31,-260,0" Width="250" VerticalAlignment="Stretch"
                                     LostFocus="Settings_LostFocus" IsTabStop="True">
             <Custom:SettingsUserControl.RenderTransform>
                 <TranslateTransform  x:Name="panelTransSettings" X="0" />
