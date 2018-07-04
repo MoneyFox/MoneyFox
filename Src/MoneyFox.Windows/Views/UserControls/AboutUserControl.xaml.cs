@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.System;
+using Microsoft.Services.Store.Engagement;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
@@ -30,6 +31,12 @@ namespace MoneyFox.Windows.Views.UserControls
         private async void mailButton_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri(@"mailto://mobile.support@apply-solutions.ch"));
+        }
+
+        private async void feedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var launcher = StoreServicesFeedbackLauncher.GetDefault();
+            await launcher.LaunchAsync();
         }
     }
 }

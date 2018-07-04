@@ -33,13 +33,13 @@
                                 <TextBlock Text="Email" Margin="12, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}"/>
                             </StackPanel>
                         </Button>
-                        <Button Margin="0, 0, 0, 10" x:Name="feedbackButton" AllowFocusOnInteraction="False">
+                        <Button Margin="0, 0, 0, 10" x:Name="feedbackButton" AllowFocusOnInteraction="False" Click="feedbackButton_Click">
                             <StackPanel Orientation="Horizontal" Width="150">
                                 <TextBlock Text="&#xE939;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
                                 <TextBlock Text="Feedback" Margin="12, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}"/>
                             </StackPanel>
                         </Button>
-                        <Button Margin="0, 0, 0, 10" x:Name="rateButton" AllowFocusOnInteraction="False" >
+                        <Button Margin="0, 0, 0, 10" x:Name="rateButton" AllowFocusOnInteraction="False" Command="{Binding RateAppCommand}">
                             <StackPanel Orientation="Horizontal" Width="150" >
                                 <TextBlock Text="&#xE734;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
                                 <TextBlock Text="Rate This App" Margin="12, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}"/>
