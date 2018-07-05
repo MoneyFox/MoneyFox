@@ -12,6 +12,26 @@
 
     <UserControl.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <Storyboard x:Name="ShowDialog">
+            <DoubleAnimation Duration="0:0:0.3"
+                     Storyboard.TargetName="Dialog"
+                     Storyboard.TargetProperty="Height"
+                     d:IsOptimized="True" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HideDialog">
+            <DoubleAnimation Duration="0:0:0.3"
+                     Storyboard.TargetName="Dialog"
+                     Storyboard.TargetProperty="Height"
+                     To="0" d:IsOptimized="True" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </UserControl.Resources>
 
     <interactivity:Interaction.Behaviors>
@@ -28,11 +48,11 @@
             <StackPanel.Resources>
                 <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
             </StackPanel.Resources>
-            <TextBlock Text="Security" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
-            <ToggleSwitch x:Name="toggleSwitch" Header="Password Protection" Margin="10, 0, 0, 10"
+            <TextBlock Text="Security" Margin="30, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <ToggleSwitch x:Name="toggleSwitch" Header="Password Protection" Margin="40, 0, 0, 10"
                           IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           AllowFocusOnInteraction="False" Foreground="{StaticResource FlyoverTextColor}"
-                          >
+                          Toggled="PasswordProtect_Toggled">
                 <ToggleSwitch.Resources>
                     <ResourceDictionary>
                         <ResourceDictionary.ThemeDictionaries>
@@ -54,38 +74,38 @@
                 </ToggleSwitch.Resources>
             </ToggleSwitch>
 
-            <StackPanel Margin="0, 0, 0, 10" Visibility="{Binding IsOn, ElementName=toggleSwitch, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}"
+            <StackPanel Margin="0, 0, 0, 10" Height="0" x:Name="Dialog"
                 >
-                <PasswordBox x:Uid="Password"
+                <StackPanel.Background>
+                    <SolidColorBrush Color="White" Opacity=".5" />
+                </StackPanel.Background>
+                <PasswordBox Header="Password"
+                             x:Uid="Password"
                              x:Name="password"
                              Password="{Binding Password, Mode=TwoWay}"
-                             Margin="0, 0, 0, 10"
+                             Margin="40, 10, 20, 10"
                              PasswordRevealMode="Peek"
-                             >
-                    <PasswordBox.Header>
-                        <TextBlock Foreground="{StaticResource FlyoverTextColor}" Text="Password"/>
-                    </PasswordBox.Header>
-                </PasswordBox>
+                             />
 
-                <PasswordBox x:Uid="PasswordConfirmation"
+                <PasswordBox Header="Password Confirmation"
+                             x:Uid="PasswordConfirmation"
                              x:Name="passwordConfirmation"
                              Password="{Binding PasswordConfirmation, Mode=TwoWay}"
                              PasswordRevealMode="Peek" 
-                             Foreground="{StaticResource FlyoverTextColor}">
-                    <PasswordBox.Header>
-                        <TextBlock Foreground="{StaticResource FlyoverTextColor}" Text="Password Confirmation"/>
-                    </PasswordBox.Header>
-                </PasswordBox>
+                             Margin="40, 0, 20, 10"
+                             Foreground="{StaticResource FlyoverTextColor}"/>
+
 
                 <Button x:Uid="SavePassword"
-                        Margin="0,10,0,0"
-                        HorizontalAlignment="Stretch"
+                        x:Name="SaveButton"
+                        Margin="0, 10, 0, 10"
                         Content="Save Password"
                         Command="{Binding SavePasswordCommand}"
+                        HorizontalAlignment="Center"
                         AllowFocusOnInteraction="False"
-                        Foreground="{StaticResource FlyoverTextColor}"/>
+                        />
             </StackPanel>
-            <ToggleSwitch x:Name="PassportSwitch" Header="Password Login" Margin="10, 0, 0, 0"
+            <ToggleSwitch x:Name="PassportSwitch" Header="Password Login" Margin="40, 0, 0, 0"
                           IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           x:Uid="PassportSettingSwitch" AllowFocusOnInteraction="False"
                           Foreground="{StaticResource FlyoverTextColor}"
