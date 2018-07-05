@@ -9,6 +9,7 @@
                       xmlns:Custom="using:MoneyFox.Windows.Views.UserControls" x:Class="MoneyFox.Windows.Views.MainView"
                       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                       xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+                      xmlns:viewModels="using:MoneyFox.Business.ViewModels" 
                       mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="ShowAbout">
