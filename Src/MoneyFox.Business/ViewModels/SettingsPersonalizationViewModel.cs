@@ -13,12 +13,30 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
         }
 
-        public int SelectedIndex
+        public bool ThemeToggled
         {
-            get => (int) settingsManager.Theme;
+            get
+            {
+                if(settingsManager.Theme == AppTheme.Dark)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             set
             {
-                var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
+                AppTheme theme;
+                if (value)
+                {
+                    theme = AppTheme.Dark;
+                }
+                else
+                {
+                    theme = AppTheme.Light;
+                }
                 settingsManager.Theme = theme;
                 RaisePropertyChanged();
             }

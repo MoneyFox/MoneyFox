@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
              xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+             xmlns:viewModels="using:MoneyFox.Business.ViewModels" 
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">

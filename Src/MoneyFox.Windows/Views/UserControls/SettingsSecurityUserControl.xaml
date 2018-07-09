@@ -91,7 +91,7 @@
                              x:Uid="PasswordConfirmation"
                              x:Name="passwordConfirmation"
                              Password="{Binding PasswordConfirmation, Mode=TwoWay}"
-                             PasswordRevealMode="Peek" 
+                             PasswordRevealMode="Peek"
                              Margin="40, 0, 20, 10"
                              Foreground="{StaticResource FlyoverTextColor}"/>
 
