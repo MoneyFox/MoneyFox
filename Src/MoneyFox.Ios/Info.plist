@@ -50,5 +50,9 @@
 	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+  <key>UIStatusBarStyle</key>
+  <string>UIStatusBarStyleLightContent</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
 </dict>
 </plist>
