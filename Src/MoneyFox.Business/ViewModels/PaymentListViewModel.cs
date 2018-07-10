@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -179,8 +180,10 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <inheritdoc />
-        public override Task Initialize()
+        public override async Task Initialize()
         {
+            Title = await accountService.GetAccountName(AccountId);
+
             BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
                                                                      settingsManager,
@@ -189,7 +192,6 @@ namespace MoneyFox.Business.ViewModels
                                                                      navigationService,
                                                                      messenger,
                                                                      AccountId);
-            return base.Initialize();
         }
 
         /// <inheritdoc />
@@ -208,8 +210,6 @@ namespace MoneyFox.Business.ViewModels
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
-            Title = await accountService.GetAccountName(AccountId);
-
             var paymentQuery = await paymentService.GetPaymentsByAccountId(AccountId);
 
             if (filterMessage.IsClearedFilterActive)
@@ -224,18 +224,18 @@ namespace MoneyFox.Business.ViewModels
             paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeStart);
             paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeEnd);
 
-            var loadedPayments = new ObservableCollection<PaymentViewModel>(
+            var loadedPayments = new List<PaymentViewModel>(
                 paymentQuery
                     .OrderByDescending(x => x.Data.Date)
                     .Select(x => new PaymentViewModel(x)));
 
 
-            foreach (var payment in loadedPayments)
+            foreach (PaymentViewModel payment in loadedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }
 
-            var dailyItems = DateListGroup<PaymentViewModel>
+            List<DateListGroup<PaymentViewModel>> dailyItems = DateListGroup<PaymentViewModel>
                 .CreateGroups(loadedPayments,
                               s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
                               s => s.Date,

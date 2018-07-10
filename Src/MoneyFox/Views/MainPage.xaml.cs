@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Business.ViewModels;
 using MvvmCross;
 using MvvmCross.Forms.Presenters.Attributes;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -11,7 +12,8 @@ namespace MoneyFox.Views
 	{
 		public MainPage ()
 		{
-			InitializeComponent ();
+		    NavigationPage.SetBackButtonTitle(this, "");
+            InitializeComponent();
 
             // We have to resolve the VM here, since the automagic doesn't yet work the BottomTabbedPage.
 		    ViewModel = Mvx.Resolve<MainViewModel>();
