@@ -38,8 +38,8 @@ namespace MoneyFox.iOS
             AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
 #endif
 
-            app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
+            app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
+            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
 
             ApplicationContext.DbPath = GetLocalFilePath();
             SQLitePCL.Batteries.Init();
@@ -61,8 +61,10 @@ namespace MoneyFox.iOS
             return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
 
+        [Export("application:performFetchWithCompletionHandler:")]
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
+            var successful = false;
             try
             {
                 Analytics.TrackEvent("Start background fetch.");
@@ -76,6 +78,7 @@ namespace MoneyFox.iOS
 
                 await Task.WhenAll(tasks);
 
+                successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
             }
             catch (Exception ex)
@@ -84,7 +87,7 @@ namespace MoneyFox.iOS
                 Crashes.TrackError(ex);
             }
 
-            completionHandler(UIBackgroundFetchResult.NewData);
+            completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
         }
 
         private async Task ClearPayments()
