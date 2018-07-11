@@ -129,7 +129,7 @@
             </Custom:AboutUserControl.RenderTransform>
         </Custom:AboutUserControl>
         <Custom:SettingsUserControl x:Name="settings" HorizontalAlignment="Right" Margin="0,31,-260,0" Width="250" VerticalAlignment="Stretch"
-                                    LostFocus="Settings_LostFocus" IsTabStop="True">
+                                    LostFocus="Settings_LostFocus" IsTabStop="True" DataContext="{Binding SettingsViewModel}">
             <Custom:SettingsUserControl.RenderTransform>
                 <TranslateTransform  x:Name="panelTransSettings" X="0" />
             </Custom:SettingsUserControl.RenderTransform>

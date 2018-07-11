@@ -56,6 +56,8 @@ namespace MoneyFox.Business.ViewModels
             this.settingsManager = settingsManager;
         }
 
+        public string SyncNowButtonText => Strings.SyncNowButtonText;
+
         #region Localizations
 
         public string CreateBackupText => Strings.CreateBackupInformationLabel;
@@ -119,11 +121,14 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
+
         public bool IsLoggedIn => settingsManager.IsLoggedInToBackupService;
+        public bool IsNotLoggedIn => !settingsManager.IsLoggedInToBackupService;
+        
 
         /// <summary>
         ///     Indicates if a backup is available for restore.
@@ -193,6 +198,7 @@ namespace MoneyFox.Business.ViewModels
                 settingsManager.IsLoggedInToBackupService = true;
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsLoggedIn));
+                RaisePropertyChanged(nameof(IsNotLoggedIn));
             }
             catch (BackupAuthenticationFailedException)
             {
@@ -214,6 +220,7 @@ namespace MoneyFox.Business.ViewModels
             await backupManager.Logout();
             settingsManager.IsLoggedInToBackupService = false;
             // ReSharper disable once ExplicitCallerInfoArgument
+            RaisePropertyChanged(nameof(IsNotLoggedIn));
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 

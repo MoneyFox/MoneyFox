@@ -484,7 +484,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Automatically upload and download backups</value>
   </data>
   <data name="PasswordActivatedLabel" xml:space="preserve">
-    <value>Password protection</value>
+    <value>Password Protection</value>
   </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
     <value>Password Confirmation</value>
@@ -687,5 +687,38 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SelectStatisticTitel" xml:space="preserve">
     <value>Select Statistic</value>
+  </data>
+  <data name="AutoSyncHeader" xml:space="preserve">
+    <value>Auto Sync</value>
+  </data>
+  <data name="DarkModeHeader" xml:space="preserve">
+    <value>Dark Mode</value>
+  </data>
+  <data name="OffRestartNeededLabel" xml:space="preserve">
+    <value>Off (Restart needed)</value>
+  </data>
+  <data name="OffToggleLabel" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="OnRestartNeededLabel" xml:space="preserve">
+    <value>On (Restart needed)</value>
+  </data>
+  <data name="OnToggleLabel" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="PassportLoginLabel" xml:space="preserve">
+    <value>Passport Login</value>
+  </data>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="SyncNowButtonText" xml:space="preserve">
+    <value>Sync Now</value>
+  </data>
+  <data name="TileSettingPrompt" xml:space="preserve">
+    <value>You can add custom tiles from individual statistics.</value>
+  </data>
+  <data name="TileTitle" xml:space="preserve">
+    <value>Tiles</value>
   </data>
 </root>

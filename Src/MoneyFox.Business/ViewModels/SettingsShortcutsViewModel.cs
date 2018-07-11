@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 
 // ReSharper disable ExplicitCallerInfoArgument
@@ -33,6 +34,8 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
+        public string Title => Strings.TileTitle;
+        public string Prompt => Strings.TileSettingPrompt;
         /// <summary>
         ///     Creates a Expense Shortcut
         /// </summary>

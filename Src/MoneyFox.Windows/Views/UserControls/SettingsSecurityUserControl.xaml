@@ -48,8 +48,8 @@
             <StackPanel.Resources>
                 <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
             </StackPanel.Resources>
-            <TextBlock Text="Security" Margin="30, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
-            <ToggleSwitch x:Name="toggleSwitch" Header="Password Protection" Margin="40, 0, 0, 10"
+            <TextBlock Text="{Binding Title}" Margin="30, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <ToggleSwitch x:Name="toggleSwitch" Header="{Binding PasswordProtectLabel}" Margin="40, 0, 0, 10"
                           IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           AllowFocusOnInteraction="False" Foreground="{StaticResource FlyoverTextColor}"
                           Toggled="PasswordProtect_Toggled">
@@ -79,7 +79,7 @@
                 <StackPanel.Background>
                     <SolidColorBrush Color="White" Opacity=".5" />
                 </StackPanel.Background>
-                <PasswordBox Header="Password"
+                <PasswordBox Header="{Binding PasswordLabel}"
                              x:Uid="Password"
                              x:Name="password"
                              Password="{Binding Password, Mode=TwoWay}"
@@ -87,7 +87,7 @@
                              PasswordRevealMode="Peek"
                              />
 
-                <PasswordBox Header="Password Confirmation"
+                <PasswordBox Header="{Binding PasswordConfirmLabel}"
                              x:Uid="PasswordConfirmation"
                              x:Name="passwordConfirmation"
                              Password="{Binding PasswordConfirmation, Mode=TwoWay}"
@@ -105,7 +105,7 @@
                         AllowFocusOnInteraction="False"
                         />
             </StackPanel>
-            <ToggleSwitch x:Name="PassportSwitch" Header="Password Login" Margin="40, 0, 0, 0"
+            <ToggleSwitch x:Name="PassportSwitch" Header="{Binding PassportLoginLabel}" Margin="40, 0, 0, 0"
                           IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           x:Uid="PassportSettingSwitch" AllowFocusOnInteraction="False"
                           Foreground="{StaticResource FlyoverTextColor}"

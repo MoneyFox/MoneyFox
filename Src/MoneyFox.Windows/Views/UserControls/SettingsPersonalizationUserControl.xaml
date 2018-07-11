@@ -12,9 +12,9 @@
         <StackPanel.Resources>
             <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
         </StackPanel.Resources>
-        <TextBlock Text="Appearance" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
-        <ToggleSwitch Header="Dark Theme" x:Name="ThemeSwitch" AllowFocusOnInteraction="False" IsOn="{Binding ThemeToggled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Toggled="ThemeSwitch_Toggled" Margin="10, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}">
+        <TextBlock Text="{Binding Title}" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+        <ToggleSwitch Header="{Binding HeaderContent}" x:Name="ThemeSwitch" AllowFocusOnInteraction="False" IsOn="{Binding ThemeToggled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      OnContent="{Binding OnContent, UpdateSourceTrigger=PropertyChanged}" OffContent="{Binding OffContent, UpdateSourceTrigger=PropertyChanged}" Margin="10, 0, 0, 0" Foreground="{StaticResource FlyoverTextColor}">
             <ToggleSwitch.Resources>
                 <ResourceDictionary>
                     <ResourceDictionary.ThemeDictionaries>

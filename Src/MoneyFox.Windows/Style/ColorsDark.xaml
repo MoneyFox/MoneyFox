@@ -1,4 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:media="using:Windows.UI.Xaml.Media">
 
     <!--  Set Accent color manually  -->
     <Color x:Key="SystemAccentColor">#314a9b</Color>
@@ -19,9 +20,13 @@
 
     <Color x:Key="ListItemColor">#FF171717</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
-    
+
     <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
-                 Color="Transparent" />
+                 Color="Transparent"/>
     <SolidColorBrush Color="#33FFFFFF" x:Key="NavigationViewItemBackgroundSelected"/>
-    
+    <media:AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
+            TintOpacity="0.8" TintColor="#6B69B6" FallbackColor="#EDEDED" />
+    <media:AcrylicBrush x:Key="TitleBarAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
+            TintOpacity="0.8" TintColor="White" FallbackColor="Gray" />
+
 </ResourceDictionary>

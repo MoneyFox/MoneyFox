@@ -6,6 +6,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -35,11 +36,13 @@ namespace MoneyFox.Business.ViewModels
                                  ITileManager tileManager,
                                  IBackgroundTaskManager backgroundTaskManager,
                                  IDialogService dialogService,
-                                 IMvxNavigationService navigationService)
+                                 IMvxNavigationService navigationService,
+                                 IBackupManager backupManager,
+                                 IConnectivity connectivity)
         {
             this.navigationService = navigationService;
 
-            SettingsGeneralViewModel = new SettingsGeneralViewModel(settingsManager, backgroundTaskManager);
+            SettingsGeneralViewModel = new SettingsGeneralViewModel(backupManager, dialogService, connectivity, settingsManager);
             SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
             SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
             SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
@@ -52,6 +55,8 @@ namespace MoneyFox.Business.ViewModels
         public SettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
 
         public SettingsPersonalizationViewModel SettingsPersonalizationViewModel { get; }
+
+        public string Title => Strings.SettingsLabel;
 
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>

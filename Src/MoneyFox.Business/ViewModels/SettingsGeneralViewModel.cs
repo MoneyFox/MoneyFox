@@ -1,4 +1,6 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -24,11 +26,21 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public SettingsGeneralViewModel(ISettingsManager settingsManager, IBackgroundTaskManager backgroundTaskManager)
+        public SettingsGeneralViewModel(IBackupManager backupManager,
+                               IDialogService dialogService,
+                               IConnectivity connectivity,
+                               ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
             this.backgroundTaskManager = backgroundTaskManager;
+            BackupViewModel = new BackupViewModel(backupManager, dialogService, connectivity, settingsManager);
         }
+
+        public BackupViewModel BackupViewModel { get; }
+
+
+        public string Title => Strings.BackupLabel;
+        public string AutoSyncHeader => Strings.AutoSyncHeader;
 
         /// <inheritdoc />
         public bool IsAutoBackupEnabled

@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -12,10 +14,22 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-        public MainViewModel(IMvxNavigationService navigationService)
+        public MainViewModel(ISettingsManager settingsManager,
+                                 IPasswordStorage passwordStorage,
+                                 ITileManager tileManager,
+                                 IBackgroundTaskManager backgroundTaskManager,
+                                 IDialogService dialogService,
+                                 IMvxNavigationService navigationService,
+                                 IBackupManager backupManager,
+                                 IConnectivity connectivity)
         {
             this.navigationService = navigationService;
+
+            SettingsViewModel = new SettingsViewModel(settingsManager, passwordStorage, tileManager,backgroundTaskManager,
+                dialogService, navigationService, backupManager, connectivity);
         }
+
+        public SettingsViewModel SettingsViewModel { get; }
 
         public MvxAsyncCommand ShowInitialViewModelsCommand => new MvxAsyncCommand(ShowInitialViewModels);
 

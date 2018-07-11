@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
              xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
-             xmlns:viewModels="using:MoneyFox.Business.ViewModels" 
+             xmlns:viewModels="using:MoneyFox.Business.ViewModels"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
@@ -35,10 +36,10 @@
             <StackPanel.Resources>
                 <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
             </StackPanel.Resources>
-            <TextBlock Text="Back Up" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <TextBlock Text="{Binding Title}" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
             <ToggleSwitch VerticalAlignment="Center" Margin="10, 10, 0, 10"
                           x:Name="autoSyncToggle" Foreground="{StaticResource FlyoverTextColor}"
-                          Header="Auto Sync" AllowFocusOnInteraction="False"
+                          Header="{Binding AutoSyncHeader}" AllowFocusOnInteraction="False"
                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}">
                 <ToggleSwitch.Resources>
@@ -63,8 +64,9 @@
 
             </ToggleSwitch>
 
-            <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 0">
-                <Button Content="Sync now" Click="Sync_Click" AllowFocusOnInteraction="False" Foreground="{StaticResource FlyoverTextColor}"/>
+            <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 10" DataContext="{Binding BackupViewModel}">
+                <Button Content="{Binding SyncNowButtonText}" Click="Sync_Click" AllowFocusOnInteraction="False"
+                        Foreground="{StaticResource FlyoverTextColor}" IsEnabled="{Binding IsLoggedIn}"/>
                 <Grid VerticalAlignment="Stretch" Margin="20, 0, 0, 0">
                     <ProgressBar Width="80" Canvas.ZIndex="0" VerticalAlignment="Center" Opacity="0"
                                  x:Name="Progress" Value="0" ValueChanged="Progress_ValueChanged" Foreground="{StaticResource FlyoverTextColor}"/>
@@ -79,6 +81,16 @@
                     </TextBlock>
                 </Grid>
             </StackPanel>
+
+            <Grid Margin="10, 0, 0, 0" DataContext="{Binding BackupViewModel}">
+                <Grid.Resources>
+                    <converter:BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+                </Grid.Resources>
+                <Button Content="{Binding LoginButtonLabel}" Command="{Binding LoginCommand}" VerticalAlignment="Top"
+                        Visibility="{Binding IsNotLoggedIn, Converter={StaticResource BoolToVisConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" AllowFocusOnInteraction="False"/>
+                <Button Content="{Binding LogoutButtonLabel}" Command="{Binding LogoutCommand}" VerticalAlignment="Top"
+                        Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" AllowFocusOnInteraction="False"/>
+            </Grid>
 
         </StackPanel>
     </Grid>

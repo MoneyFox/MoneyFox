@@ -17,7 +17,7 @@
             <StackPanel.Resources>
                 <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
             </StackPanel.Resources>
-            <TextBlock Text="Tiles" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <TextBlock Text="{Binding Title}" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
             <ToggleSwitch VerticalAlignment="Center" Margin="10, 0, 0, 10" Foreground="{StaticResource FlyoverTextColor}"
                           Header="Dynamic Tile" AllowFocusOnInteraction="False"  IsOn="{Binding ShowInfoOnMainTile, Mode=TwoWay}"
                           x:Uid="ShowInfoOnMainTileHeader">
@@ -41,7 +41,7 @@
                     </ResourceDictionary>
                 </ToggleSwitch.Resources>
             </ToggleSwitch>
-            <TextBlock TextWrapping="WrapWholeWords" Text="You can add custom tiles from individual statistics."
+            <TextBlock TextWrapping="WrapWholeWords" Text="{Binding Prompt}"
                        Foreground="{StaticResource FlyoverTextColor}" Margin="10, 0, 0, 0" FontSize="12"/>
         </StackPanel>
     </Grid>
