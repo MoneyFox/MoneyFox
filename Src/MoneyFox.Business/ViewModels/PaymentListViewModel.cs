@@ -197,7 +197,9 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public override async void ViewAppearing()
         {
-            await Load();
+            dialogService.ShowLoadingDialog();
+            await Task.Run(async () => await Load());
+            dialogService.HideLoadingDialog();
         }
 
         private async Task Load()

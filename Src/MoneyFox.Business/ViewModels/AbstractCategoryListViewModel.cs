@@ -8,7 +8,6 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Foundation;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 
@@ -95,7 +94,9 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public override async void ViewAppearing()
         {
-            await Loaded();
+            DialogService.ShowLoadingDialog();
+            await Task.Run(async () => await Load());
+            DialogService.HideLoadingDialog();
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace MoneyFox.Business.ViewModels
             CategoryList = CreateGroup(categories);
         }
 
-        private async Task Loaded()
+        private async Task Load()
         {
             await Search();
         }
