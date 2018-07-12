@@ -38,8 +38,8 @@ namespace MoneyFox.iOS
             AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
 #endif
 
-            app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
+            app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
+            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             ApplicationContext.DbPath = GetLocalFilePath();
             SQLitePCL.Batteries.Init();
@@ -64,19 +64,24 @@ namespace MoneyFox.iOS
         [Export("application:performFetchWithCompletionHandler:")]
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
+            Debug.Write("Enter Background Task");
             var successful = false;
             try
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                var tasks = new List<Task>
-                {
-                    ClearPayments(),
-                    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
-                    Mvx.Resolve<IBackupManager>().DownloadBackup()
-                };
+                await ClearPayments();
+                await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
+                await Mvx.Resolve<IBackupManager>().DownloadBackup();
 
-                await Task.WhenAll(tasks);
+                //var tasks = new List<Task>
+                //{
+                //    ClearPayments(),
+                //    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
+                //    Mvx.Resolve<IBackupManager>().DownloadBackup()
+                //};
+
+                //await Task.WhenAll(tasks);
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");

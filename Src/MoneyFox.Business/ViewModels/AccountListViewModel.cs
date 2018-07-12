@@ -89,7 +89,9 @@ namespace MoneyFox.Business.ViewModels
 
         public override async void ViewAppearing()
         {
-            await Loaded();
+            dialogService.ShowLoadingDialog();
+            await Task.Run(async () => await Load());
+            dialogService.HideLoadingDialog();
         }
 
         private async Task EditAccount(AccountViewModel accountViewModel)
@@ -97,7 +99,7 @@ namespace MoneyFox.Business.ViewModels
             await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        private async Task Loaded()
+        private async Task Load()
         {
             try
             {
@@ -152,7 +154,7 @@ namespace MoneyFox.Business.ViewModels
                 await accountService.DeleteAccount(accountToDelete.Account);
 
                 Accounts.Clear();
-                await Loaded();
+                await Load();
                 
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
             }
