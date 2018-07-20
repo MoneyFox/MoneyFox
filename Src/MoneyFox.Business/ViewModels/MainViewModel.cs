@@ -25,12 +25,7 @@ namespace MoneyFox.Business.ViewModels
         {
             this.navigationService = navigationService;
 
-            SettingsViewModel = new SettingsViewModel(settingsManager, passwordStorage, tileManager,backgroundTaskManager,
-                dialogService, navigationService, backupManager, connectivity);
         }
-
-        public SettingsViewModel SettingsViewModel { get; }
-
         public MvxAsyncCommand ShowInitialViewModelsCommand => new MvxAsyncCommand(ShowInitialViewModels);
 
         public MvxAsyncCommand ShowAccountListCommand
@@ -42,20 +37,20 @@ namespace MoneyFox.Business.ViewModels
         public MvxAsyncCommand ShowCategoryListCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<CategoryListViewModel>());
 
-        public MvxAsyncCommand ShowBackupViewCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
+        //public MvxAsyncCommand ShowBackupViewCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
 
         public MvxAsyncCommand ShowSettingsCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<SettingsViewModel>());
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<GeneralViewModel>());
 
-        public MvxAsyncCommand ShowAboutCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
+        //public MvxAsyncCommand ShowAboutCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
 
         private async Task ShowInitialViewModels()
         {
             await navigationService.Navigate<AccountListViewModel>();
             await navigationService.Navigate<StatisticSelectorViewModel>();
-            await navigationService.Navigate<SettingsViewModel>();
+            await navigationService.Navigate<GeneralViewModel>();
         }
     }
 }

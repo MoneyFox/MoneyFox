@@ -952,6 +952,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Feedback 的本地化字符串。
+        /// </summary>
+        public static string FeedbackLabel {
+            get {
+                return ResourceManager.GetString("FeedbackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Feedback Money Fox 的本地化字符串。
         /// </summary>
         public static string FeedbackSubject {

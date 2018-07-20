@@ -11,16 +11,12 @@
     mc:Ignorable="d"
     d:DesignHeight="900"
     d:DesignWidth="250">
-    <controls:DropShadowPanel BlurRadius="6.0" ShadowOpacity="0.16"
-                          OffsetX="0" OffsetY="3" Color="Black">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Background="{ThemeResource CustomAcrylicBackgroundBrush}" Width="250">
-                <TextBlock Text="{Binding Title}" FontSize="24" Margin="20, 10, 0, 10" Foreground="White"/>
-                <local:SettingsGeneralUserControl Margin="30, 0, 0, 10" x:Name="autoSync" DataContext="{Binding SettingsGeneralViewModel}"/>
-                <local:SettingsShortcutsUserControl Margin="30, 0, 20, 10" DataContext="{Binding SettingsShortcutsViewModel}"/>
-                <local:SettingsSecurityUserControl Margin="0, 0, 0, 10" x:Name="security" DataContext="{Binding SettingsSecurityViewModel}"/>
-                <local:SettingsPersonalizationUserControl Margin="30, 0, 0, 30" x:Name="personalization" DataContext="{Binding SettingsPersonalizationViewModel}"/>
-            </StackPanel>
-        </ScrollViewer>
-    </controls:DropShadowPanel>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <local:SettingsGeneralUserControl Margin="30, 0, 0, 10" x:Name="autoSync" DataContext="{Binding SettingsGeneralViewModel}"/>
+            <local:SettingsShortcutsUserControl Margin="30, 0, 20, 10" DataContext="{Binding SettingsShortcutsViewModel}"/>
+            <local:SettingsSecurityUserControl Margin="0, 0, 0, 10" x:Name="security" DataContext="{Binding SettingsSecurityViewModel}"/>
+            <local:SettingsPersonalizationUserControl Margin="30, 0, 0, 30" x:Name="personalization" DataContext="{Binding SettingsPersonalizationViewModel}"/>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -11,11 +11,11 @@ namespace MoneyFox.Views
 		{
 			InitializeComponent ();
 
-		    SettingsList.ItemTapped += (sender, args) =>
-		    {
-		        SettingsList.SelectedItem = null;
-		        ViewModel.GoToSettingCommand.Execute(args.Item);
-		    };
+		    //SettingsList.ItemTapped += (sender, args) =>
+		    //{
+		    //    SettingsList.SelectedItem = null;
+		    //    ViewModel.GoToSettingCommand.Execute(args.Item);
+		    //};
         }
 	}
 }

@@ -276,6 +276,11 @@ namespace MoneyFox.Business.ViewModels
             await ShowCompletionNote();
         }
 
+        private async Task Synchronize()
+        {
+            await Loaded();
+        }
+
         private async Task<bool> ShowOverwriteBackupInfo()
             => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
 

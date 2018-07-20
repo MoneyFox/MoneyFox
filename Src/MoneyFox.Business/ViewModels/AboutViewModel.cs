@@ -144,6 +144,12 @@ namespace MoneyFox.Business.ViewModels
         ///     ressource file
         /// </summary>
         public string SupportMail => Constants.SUPPORT_MAIL;
+        public string AboutLabel => Strings.AboutLabel;
+        public string VersionLabel => Strings.VersionLabel;
+        public string ContactText => Strings.ContactLabel;
+        public string MailLabel => Strings.EmailLabel;
+        public string FeedbackLabel => Strings.FeedbackLabel;
+        public string RateLabel => Strings.RateLabel;
 
         private void GoToWebsite()
         {

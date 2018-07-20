@@ -17,11 +17,6 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         MvxObservableCollection<SettingsSelectorType> SettingsList { get; }
 
-        /// <summary>
-        ///     Navigate to a concrete settings page.
-        ///     Used in Xamarin Forms.
-        /// </summary>
-        MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
     }
 
     /// <summary>
@@ -29,20 +24,16 @@ namespace MoneyFox.Business.ViewModels
     /// </summary>
     public class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
-        private readonly IMvxNavigationService navigationService;
 
         public SettingsViewModel(ISettingsManager settingsManager,
                                  IPasswordStorage passwordStorage,
                                  ITileManager tileManager,
                                  IBackgroundTaskManager backgroundTaskManager,
                                  IDialogService dialogService,
-                                 IMvxNavigationService navigationService,
                                  IBackupManager backupManager,
                                  IConnectivity connectivity)
         {
-            this.navigationService = navigationService;
-
-            SettingsGeneralViewModel = new SettingsGeneralViewModel(backupManager, dialogService, connectivity, settingsManager);
+            SettingsGeneralViewModel = new SettingsGeneralViewModel(backupManager, dialogService, connectivity, settingsManager, backgroundTaskManager);
             SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
             SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
             SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
@@ -80,26 +71,5 @@ namespace MoneyFox.Business.ViewModels
                 Type = SettingsType.About
             }
         };
-
-        /// <inheritdoc />
-        public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand => new MvxAsyncCommand<SettingsSelectorType>(GoToSettings);
-
-        private async Task GoToSettings(SettingsSelectorType item)
-        {
-            switch (item.Type)
-            {
-                case SettingsType.Categories:
-                    await navigationService.Navigate<CategoryListViewModel>();
-                    break;
-
-                case SettingsType.Backup:
-                    await navigationService.Navigate<BackupViewModel>();
-                    break;
-
-                case SettingsType.About:
-                    await navigationService.Navigate<AboutViewModel>();
-                    break;
-            }
-        }
     }
 }

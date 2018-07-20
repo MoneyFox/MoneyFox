@@ -33,12 +33,9 @@
 
     <Grid>
         <StackPanel>
-            <StackPanel.Resources>
-                <SolidColorBrush x:Key="FlyoverTextColor">White</SolidColorBrush>
-            </StackPanel.Resources>
-            <TextBlock Text="{Binding Title}" FontSize="20" Foreground="{StaticResource FlyoverTextColor}"/>
+            <TextBlock Text="{Binding Title}" FontSize="20" Foreground="{StaticResource TextColor}"/>
             <ToggleSwitch VerticalAlignment="Center" Margin="10, 10, 0, 10"
-                          x:Name="autoSyncToggle" Foreground="{StaticResource FlyoverTextColor}"
+                          x:Name="autoSyncToggle" Foreground="{StaticResource TextColor}"
                           Header="{Binding AutoSyncHeader}" AllowFocusOnInteraction="False"
                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}">
@@ -46,14 +43,15 @@
                     <ResourceDictionary>
                         <ResourceDictionary.ThemeDictionaries>
                             <ResourceDictionary x:Key="Light">
-                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextColor}"/>
                                 <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
                                 <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
-                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="White"/>
-                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="White"/>
-                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="White"/>
                                 <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
-                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#d3d3e9"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#5e5cb0"/>
                                 <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
                                 <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
                                 <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
@@ -66,11 +64,11 @@
 
             <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 10" DataContext="{Binding BackupViewModel}">
                 <Button Content="{Binding SyncNowButtonText}" Click="Sync_Click" AllowFocusOnInteraction="False"
-                        Foreground="{StaticResource FlyoverTextColor}" IsEnabled="{Binding IsLoggedIn}"/>
+                        Foreground="{StaticResource TextColor}" IsEnabled="{Binding IsLoggedIn}"/>
                 <Grid VerticalAlignment="Stretch" Margin="20, 0, 0, 0">
                     <ProgressBar Width="80" Canvas.ZIndex="0" VerticalAlignment="Center" Opacity="0"
-                                 x:Name="Progress" Value="0" ValueChanged="Progress_ValueChanged" Foreground="{StaticResource FlyoverTextColor}"/>
-                    <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="30" HorizontalAlignment="Center" Foreground="{StaticResource FlyoverTextColor}">
+                                 x:Name="Progress" Value="0" ValueChanged="Progress_ValueChanged" Foreground="{StaticResource TextColor}"/>
+                    <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="30" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}">
                         <TextBlock.Clip>
                             <RectangleGeometry Rect="0, 0, 30 ,30">
                                 <RectangleGeometry.Transform>

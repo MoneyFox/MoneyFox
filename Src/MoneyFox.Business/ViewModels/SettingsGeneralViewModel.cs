@@ -29,7 +29,8 @@ namespace MoneyFox.Business.ViewModels
         public SettingsGeneralViewModel(IBackupManager backupManager,
                                IDialogService dialogService,
                                IConnectivity connectivity,
-                               ISettingsManager settingsManager)
+                               ISettingsManager settingsManager,
+                               IBackgroundTaskManager backgroundTaskManager)
         {
             this.settingsManager = settingsManager;
             this.backgroundTaskManager = backgroundTaskManager;

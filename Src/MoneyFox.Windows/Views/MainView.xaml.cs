@@ -19,8 +19,6 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class MainView
     {
-        private bool aboutStateEnabled;
-        private bool settingStateEnabled;
 
         public MainView()
         {
@@ -28,19 +26,13 @@ namespace MoneyFox.Windows.Views
             
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
-            
+
+            TitleBar.Height = coreTitleBar.Height;
             Window.Current.SetTitleBar(TitleBar);
-            TitleBar.SizeChanged += (sender, e) => TitleBar.Width = Window.Current.Bounds.Width;
-            // Dynamic change
-            this.SizeChanged += new SizeChangedEventHandler(ChangeSpacerSize);
+            this.SizeChanged += (sender, e) => TitleBar.Width = Window.Current.Bounds.Width;
+            
         }
 
-        private void ChangeSpacerSize(object sender, SizeChangedEventArgs args)
-        {
-            var temp = (DoubleAnimation)SeperatorStoryboard.Children.ElementAt(0);
-            temp.To = Convert.ToInt32(args.NewSize.Height) - 230 - 88;
-            SeperatorStoryboard.Begin();
-        }
        
 
         public Frame MainFrame => ContentFrame;
@@ -78,27 +70,13 @@ namespace MoneyFox.Windows.Views
                 {
                     await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
                 }
-                else if (args.InvokedItem.Equals(Strings.BackupTitle))
-                {
-                    await ((MainViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
-                }
+                //else if (args.InvokedItem.Equals(Strings.BackupTitle))
+                //{
+                //    await ((MainViewModel)ViewModel).ShowBackupViewCommand.ExecuteAsync();
+                //}
                 else if (args.InvokedItem.Equals(Strings.SettingsTitle))
                 {
-                    if (!settingStateEnabled)
-                    {
-                        ShowSettings.Begin();
-                        settingStateEnabled = true;
-                        settings.Focus(FocusState.Programmatic);
-                    }
-                }
-                else if (args.InvokedItem.Equals(Strings.AboutTitle))
-                {
-                    if(!aboutStateEnabled)
-                    {
-                        ShowAbout.Begin();
-                        aboutStateEnabled = true;
-                        about.Focus(FocusState.Programmatic);
-                    }
+                    await ((MainViewModel)ViewModel).ShowSettingsCommand.ExecuteAsync();
                 }
             }
         }
@@ -119,27 +97,9 @@ namespace MoneyFox.Windows.Views
             NavView.OpenPaneLength = 200;
         }
 
-        private void AboutUserControl_LostFocus(object sender, RoutedEventArgs e)
+        private void More_Click(object sender, RoutedEventArgs e)
         {
-            var tempFocus = FocusManager.GetFocusedElement();
-            if (aboutStateEnabled && (sender != tempFocus) && (about.MailButton != tempFocus))
-            {
-                HideAbout.Begin();
-                aboutStateEnabled = false;
-            }
-            
-        }
 
-        private void Settings_LostFocus(object sender, RoutedEventArgs e)
-        {
-            var tempFocus = FocusManager.GetFocusedElement();
-            if (settingStateEnabled && (settings != tempFocus)
-                && settings.Security.Password != tempFocus && settings.Security.PasswordConfirmation != tempFocus
-                 && (settings.Personalization.ToggleSwitch != tempFocus))
-            {
-                HideSettings.Begin();
-                settingStateEnabled = false;
-            }
         }
     }
 }
