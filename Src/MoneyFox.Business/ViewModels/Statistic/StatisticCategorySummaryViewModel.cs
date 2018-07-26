@@ -11,6 +11,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
+        private readonly IDialogService dialogService;
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
 
         /// <summary>
@@ -22,9 +23,11 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <param name="settingsManager">Instance of a ISettingsManager</param>
         public StatisticCategorySummaryViewModel(CategorySummaryDataProvider categorySummaryDataDataProvider,
                                                  IMvxMessenger messenger,
-                                                 ISettingsManager settingsManager) : base(messenger, settingsManager)
+                                                 ISettingsManager settingsManager, 
+                                                 IDialogService dialogService) : base(messenger, settingsManager)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
+            this.dialogService = dialogService;
             CategorySummary = new MvxObservableCollection<StatisticItem>();
         }
 
@@ -39,12 +42,18 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
+            dialogService.ShowLoadingDialog();
+            await Task.Run(async () => await LoadData());
+            RaisePropertyChanged(nameof(HasData));
+            dialogService.HideLoadingDialog();
+        }
+
+        private async Task LoadData()
+        {
             var items = (await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)).ToList();
 
             CategorySummary.Clear();
             CategorySummary.AddRange(items);
-
-            RaisePropertyChanged(nameof(HasData));
         }
     }
 }

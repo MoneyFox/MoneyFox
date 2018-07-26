@@ -87,10 +87,12 @@ namespace MoneyFox.Business.ViewModels
 
         #endregion
 
-        public override async void ViewAppearing()
+        /// <inheritdoc />
+        public override async void ViewAppeared()
         {
             dialogService.ShowLoadingDialog();
             await Task.Run(async () => await Load());
+            RaisePropertyChanged(nameof(Accounts));
             dialogService.HideLoadingDialog();
         }
 
