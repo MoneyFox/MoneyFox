@@ -21,12 +21,20 @@
     <Color x:Key="ListItemColor">#FF171717</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 
-    <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
-                 Color="Transparent"/>
-    <SolidColorBrush Color="#33FFFFFF" x:Key="NavigationViewItemBackgroundSelected"/>
+    <Color x:Key="FoxOrange">#F09224</Color>
+
+    <Color x:Key="TextColor">White</Color>
+
+    <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="Transparent"/>
+    <SolidColorBrush Color="#F09224" Opacity="0.5" x:Key="NavItemSelectedFoxColor"/>
+    <SolidColorBrush Color="#F09224" Opacity="0.4" x:Key="NavItemSelectedLightFoxColor"/>
+    <SolidColorBrush Color="#F09224" Opacity="0.8" x:Key="NavItemPointOverFoxColor"/>
     <media:AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
             TintOpacity="0.8" TintColor="#6B69B6" FallbackColor="#EDEDED" />
     <media:AcrylicBrush x:Key="TitleBarAcrylicBackgroundBrush" BackgroundSource="HostBackdrop"
             TintOpacity="0.8" TintColor="White" FallbackColor="Gray" />
+    <media:AcrylicBrush x:Key="NavViewAcrylicBgBrush" BackgroundSource="HostBackdrop"
+            TintOpacity="0.8" TintColor="#263873" FallbackColor="Gray" />
+
 
 </ResourceDictionary>

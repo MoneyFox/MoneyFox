@@ -11,8 +11,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid HorizontalAlignment="Stretch" Background="#EDEDED">
-        <Pivot Margin="10, 10, 0, 0">
+    <Grid HorizontalAlignment="Stretch">
+
+        <Pivot Margin="10, 10, 0, 0" SelectionChanged="Pivot_SelectionChanged" x:Name="GeneralViewPivot">
             <PivotItem>
                 <PivotItem.Header>
                     <TextBlock Text="{Binding SettingsLabel}"
