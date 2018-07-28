@@ -8,6 +8,8 @@
     <Color x:Key="ColorPrimaryDark">#1a264c</Color>
 
     <Color x:Key="ColorCustomBackground">Black</Color>
+    <Color x:Key="ColorTitleBar">Black</Color>
+    <Color x:Key="ColorTitle">White</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 

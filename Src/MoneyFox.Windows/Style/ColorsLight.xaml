@@ -11,6 +11,8 @@
 
     <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
     <Color x:Key="ColorCustomBackground">WhiteSmoke</Color>
+    <Color x:Key="ColorTitleBar">White</Color>
+    <Color x:Key="ColorTitle">Black</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 

@@ -259,6 +259,7 @@
                             AlwaysShowHeader="False"
                             CompactModeThresholdWidth="0"
                             IsSettingsVisible="True"
+                        Canvas.ZIndex="1"
                     >
 
             <NavigationView.MenuItems>
@@ -291,9 +292,9 @@
             </Frame>
 
         </NavigationView>
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Margin="40, 0, 0, 0" Foreground="White"
-                           Text="{x:Bind Path=appmodel:Package.Current.DisplayName}" IsHitTestVisible="False" Canvas.ZIndex="1"/>
-        <Grid Background="{StaticResource CustomAcrylicBackgroundBrush}" HorizontalAlignment="Stretch" 
+        <TextBlock x:Name="AppTitle" Style="{StaticResource CaptionTextBlockStyle}" Margin="40, 0, 0, 0" Foreground="{StaticResource ColorTitle}"
+                           Text="{x:Bind Path=appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+        <Grid Background="{StaticResource ColorTitleBar}" HorizontalAlignment="Stretch" Canvas.ZIndex="-1"
               x:Name="TitleBar" VerticalAlignment="Top"/>
     </Grid>
 
