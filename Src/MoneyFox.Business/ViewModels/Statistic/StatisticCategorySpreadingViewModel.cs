@@ -13,7 +13,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly IDialogService dialogService;
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
         private DonutChart chart;
 
@@ -33,11 +33,12 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
                                                    IMvxMessenger messenger,
-                                                   ISettingsManager settingsManager)
+                                                   ISettingsManager settingsManager, 
+                                                   IDialogService dialogService)
             : base(messenger, settingsManager)
         {
             this.spreadingDataProvider = spreadingDataProvider;
-            this.settingsManager = settingsManager;
+            this.dialogService = dialogService;
         }
 
         /// <summary>

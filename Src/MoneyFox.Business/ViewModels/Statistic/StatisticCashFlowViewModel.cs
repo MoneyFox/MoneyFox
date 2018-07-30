@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
@@ -11,15 +13,15 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly IDialogService dialogService;
         private readonly CashFlowDataProvider cashFlowDataProvider;
         private BarChart chart;
 
-        public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager) 
+        public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager, IDialogService dialogService) 
             : base(messenger, settingsManager)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
-            this.settingsManager = settingsManager;
+            this.dialogService = dialogService;
 
             Chart = new BarChart();
         }

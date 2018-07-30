@@ -48,13 +48,6 @@ namespace MoneyFox.Views
             Title = ViewModel.Title;
 
             base.OnAppearing();
-
-            var group = ViewModel.DailyList.FirstOrDefault(x => x.Any(y => y.IsCleared));
-
-            if (group != null)
-            {
-                PaymentList.ScrollTo(group[0], group, ScrollToPosition.MakeVisible, false);
-            }
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)

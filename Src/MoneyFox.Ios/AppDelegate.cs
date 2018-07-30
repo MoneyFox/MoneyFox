@@ -41,5 +41,52 @@ namespace MoneyFox.iOS
 
             return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
+        [Export("application:performFetchWithCompletionHandler:")]
+        public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            Debug.Write("Enter Background Task");
+            var successful = false;
+            try
+            {
+                Analytics.TrackEvent("Start background fetch.");
+
+                await ClearPayments();
+                await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
+                await Mvx.Resolve<IBackupManager>().DownloadBackup();
+
+                //var tasks = new List<Task>
+                //{
+                //    ClearPayments(),
+                //    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
+                //    Mvx.Resolve<IBackupManager>().DownloadBackup()
+                //};
+
+                //await Task.WhenAll(tasks);
+
+                successful = true;
+                Analytics.TrackEvent("Background fetch finished successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                Crashes.TrackError(ex);
+            }
+
+            completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
+        }
+
+        private async Task ClearPayments()
+        {
+            var paymentService = Mvx.Resolve<IPaymentService>();
+
+            var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+            var unclearedPayments = payments.ToList();
+
+            if (unclearedPayments.Any())
+            {
+                Debug.WriteLine("Payments for clearing found.");
+                await paymentService.SavePayments(unclearedPayments.ToArray());
+            }
+        }
     }
 }
