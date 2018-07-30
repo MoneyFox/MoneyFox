@@ -38,7 +38,7 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-#if DEBUG
+#if !DEBUG
             AppCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
                    typeof(Analytics), typeof(Crashes));
 #endif
