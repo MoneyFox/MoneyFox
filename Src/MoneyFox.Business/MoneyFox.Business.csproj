@@ -22,10 +22,10 @@
   <ItemGroup>
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.6.1" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.6.1" />
-    <PackageReference Include="Microsoft.Graph" Version="1.9.0" />
-    <PackageReference Include="MvvmCross.Forms" Version="6.1.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.8.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.8.0" />
+    <PackageReference Include="Microsoft.Graph" Version="1.10.0" />
+    <PackageReference Include="MvvmCross.Forms" Version="6.1.2" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.637273" />
     <PackageReference Include="MvvmCross.Plugin.Email" Version="6.1.2" />
@@ -33,7 +33,7 @@
     <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.1.2" />
     <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.1.2" />
     <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.1.2" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj" />
