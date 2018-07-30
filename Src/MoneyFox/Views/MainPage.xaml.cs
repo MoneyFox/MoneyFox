@@ -2,6 +2,8 @@
 using MvvmCross;
 using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views
@@ -14,6 +16,8 @@ namespace MoneyFox.Views
 		{
 		    NavigationPage.SetBackButtonTitle(this, "");
             InitializeComponent();
+
+		    On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
             // We have to resolve the VM here, since the automagic doesn't yet work the BottomTabbedPage.
 		    ViewModel = Mvx.Resolve<MainViewModel>();

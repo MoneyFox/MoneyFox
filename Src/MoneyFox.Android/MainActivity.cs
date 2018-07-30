@@ -48,7 +48,7 @@ namespace MoneyFox.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-            SetupBottomTabs();
+            //SetupBottomTabs();
 
             Popup.Init(this, bundle);
 
