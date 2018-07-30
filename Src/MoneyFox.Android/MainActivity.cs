@@ -1,13 +1,11 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.OS;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
@@ -77,6 +75,7 @@ namespace MoneyFox.Droid
 
             Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
         }
+
         public override void OnBackPressed()
         {
             Popup.SendBackPressed(base.OnBackPressed);

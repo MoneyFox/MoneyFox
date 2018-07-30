@@ -71,10 +71,10 @@
       <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>2.0.3</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
-      <Version>1.9.0</Version>
+      <Version>1.10.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
       <Version>6.1.2</Version>
@@ -94,20 +94,20 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.1.2</Version>
     </PackageReference>
-    <PackageReference Include="Naxam.Ittianyu.BottomNavExtension">
-      <Version>1.2.4</Version>
-    </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.1.4.158-pre</Version>
+      <Version>1.1.4.168</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
     </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.0</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
-      <Version>3.1.1</Version>
+      <Version>3.2.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Compat">
       <Version>27.0.2.1</Version>
@@ -148,8 +148,6 @@
     <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
     <Compile Include="Src\Settings.cs" />
-    <Compile Include="Utils\ResourceManagerEx.cs" />
-    <Compile Include="Utils\SizeUtils.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
@@ -163,7 +161,6 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="Utils\MeasureSpecFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
