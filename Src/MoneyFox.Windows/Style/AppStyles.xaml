@@ -4,6 +4,10 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="d">
 
+    <SolidColorBrush x:Key="ListViewBackgroundEvenBrush" Color="{StaticResource ListEvenColor}" />
+
+    <SolidColorBrush x:Key="ListViewBackgroundOddBrush" Color="{StaticResource ListOddColor}" />
+
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
 
     <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimary}" />
@@ -21,6 +25,9 @@
     <SolidColorBrush x:Key="SplitViewToggleButtonForeground"
                      Color="{StaticResource ColorHamburgerButton}" />
     
+    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundStaticWhite"
+                     Color="white" />
+
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource ColorCustomBackground}" />
 
@@ -55,19 +62,18 @@
     <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
 
-    <SolidColorBrush x:Key="NavigationViewItemForeground" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
+    <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
+    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
 
     <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
                   BackgroundSource="Backdrop" 
                   TintColor="{ThemeResource SystemAccentColor}" 
                   TintOpacity=".6" 
                   FallbackColor="{ThemeResource SystemAccentColor}"/>
-
     <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                   BackgroundSource="HostBackdrop"
                   TintColor="{ThemeResource SystemAccentColor}" 

@@ -10,6 +10,6 @@ namespace MoneyFox.Views
 		{
 			InitializeComponent ();
 		    Title = Strings.SelectCategoryTitle;
-        }
+		}
 	}
 }

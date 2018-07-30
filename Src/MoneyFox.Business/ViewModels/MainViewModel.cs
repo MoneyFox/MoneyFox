@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -12,11 +14,18 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-        public MainViewModel(IMvxNavigationService navigationService)
+        public MainViewModel(ISettingsManager settingsManager,
+                                 IPasswordStorage passwordStorage,
+                                 ITileManager tileManager,
+                                 IBackgroundTaskManager backgroundTaskManager,
+                                 IDialogService dialogService,
+                                 IMvxNavigationService navigationService,
+                                 IBackupManager backupManager,
+                                 IConnectivity connectivity)
         {
             this.navigationService = navigationService;
-        }
 
+        }
         public MvxAsyncCommand ShowInitialViewModelsCommand => new MvxAsyncCommand(ShowInitialViewModels);
 
         public MvxAsyncCommand ShowAccountListCommand
@@ -28,20 +37,20 @@ namespace MoneyFox.Business.ViewModels
         public MvxAsyncCommand ShowCategoryListCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<CategoryListViewModel>());
 
-        public MvxAsyncCommand ShowBackupViewCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
+        //public MvxAsyncCommand ShowBackupViewCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
 
         public MvxAsyncCommand ShowSettingsCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<SettingsViewModel>());
+            => new MvxAsyncCommand(async () => await navigationService.Navigate<GeneralViewModel>());
 
-        public MvxAsyncCommand ShowAboutCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
+        //public MvxAsyncCommand ShowAboutCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
 
         private async Task ShowInitialViewModels()
         {
             await navigationService.Navigate<AccountListViewModel>();
             await navigationService.Navigate<StatisticSelectorViewModel>();
-            await navigationService.Navigate<SettingsViewModel>();
+            await navigationService.Navigate<GeneralViewModel>();
         }
     }
 }

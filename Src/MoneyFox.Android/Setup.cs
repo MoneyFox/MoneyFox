@@ -7,7 +7,6 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
-using MvvmCross.Forms.Presenters;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using Plugin.SecureStorage;
@@ -39,14 +38,7 @@ namespace MoneyFox.Droid
 
             DependencyRegistrator.RegisterDependencies();
         }
-
-        protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)
-        {
-            var formsPresenter = base.CreateFormsPagePresenter(viewPresenter);
-            Mvx.RegisterSingleton(formsPresenter);
-            return formsPresenter;
-        }
-
+        
         //public override MvxLogProviderType GetDefaultLogProviderType()
         //    => MvxLogProviderType.Serilog;
 

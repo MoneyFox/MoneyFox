@@ -34,6 +34,16 @@
                     </OnPlatform>
                 </ListView.SeparatorVisibility>
 
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="{StaticResource DefaultSpacing}">
+                                <Label Text="{Binding Key}" Style="{StaticResource GroupHeaderStyle}" />
+                                <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="LightGray" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

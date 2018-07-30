@@ -31,7 +31,6 @@
     {
         Categories,
         Backup,
-        BackgroundJob,
         About
     }
 

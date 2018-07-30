@@ -10,11 +10,12 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
-    public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
+    /// <inheritdoc />
+    public class PaymentListViewActionViewModel : MvxViewModel, IPaymentListViewActionViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;

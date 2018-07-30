@@ -24,15 +24,14 @@
                         Background="{StaticResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         RightTapped="CategoryListRightTapped">
-
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Icon="Edit"
+                        <MenuFlyoutItem x:Uid="Edit"
                                         Click="EditCategory"
-                                        Text="{Binding Resources[EditLabel]}" />
-                        <MenuFlyoutItem Icon="Delete"
+                                        Text="Edit" />
+                        <MenuFlyoutItem x:Uid="Delete"
                                         Click="DeleteCategory"
-                                        Text="{Binding Resources[DeleteLabel]}" />
+                                        Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Padding="{StaticResource SmallListItemPadding}"

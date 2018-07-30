@@ -7,7 +7,7 @@ namespace MoneyFox.Business.ViewModels.Interfaces
     ///     On Windows this is a normaly in the app bar. 
     ///     On Android for example in a floating action button.
     /// </summary>
-    public interface IViewActionViewModel : IBaseViewModel
+    public interface IViewActionViewModel
     {
         MvxAsyncCommand GoToAddIncomeCommand { get; }
         MvxAsyncCommand GoToAddExpenseCommand { get; }

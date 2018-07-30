@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="MoneyFox.Windows.Views.UserControls.SettingsUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Windows.UI.Xaml.Media"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:viewModels="using:MoneyFox.Business.ViewModels" 
+    mc:Ignorable="d"
+    d:DesignHeight="900"
+    d:DesignWidth="250">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <local:SettingsGeneralUserControl Margin="30, 0, 0, 10" x:Name="autoSync" DataContext="{Binding SettingsGeneralViewModel}"/>
+            <local:SettingsShortcutsUserControl Margin="30, 0, 20, 10" DataContext="{Binding SettingsShortcutsViewModel}"/>
+            <local:SettingsSecurityUserControl Margin="0, 0, 0, 10" x:Name="security" DataContext="{Binding SettingsSecurityViewModel}"/>
+            <local:SettingsPersonalizationUserControl Margin="30, 0, 0, 30" x:Name="personalization" DataContext="{Binding SettingsPersonalizationViewModel}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,11 +1,7 @@
 ## Money Fox
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
-| Platform        | Build Status           |
-| ------------- |-------------|
-| Windows | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/6/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=6&_a=completed)|
-| Android | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=3&_a=completed)|
-| IOS | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/8/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=allDefinitions&path=%5C&definitionId=8&_a=completed)|
+[![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index)
 
 ### Talk with us
 We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.
@@ -22,12 +18,10 @@ First there is a stable version who get regular udpates as soon as they are full
 
 Second there is a beta for all these guys who want get their hands on all the new features who are currently in development. We try to keep this as stable as possible. But nonethless expect some bugs (please report! =) ):
 
-Windows: Please send me your Microsoft Account
+Windows (please send me your Microsoft Account that I can give you access to the beta flights)
 
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 (You can also opt-in for the beta in the play store)
-
-IOS: Please send me your Apple ID via Email or Slack that I can sign you up for the TestFlight
 
 ### Contribution
 

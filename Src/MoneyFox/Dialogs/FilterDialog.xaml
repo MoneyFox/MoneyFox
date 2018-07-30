@@ -46,12 +46,10 @@
                     HorizontalOptions="End"/>
         </Grid>
 
-        <Label Style="{StaticResource DeemphasizedLabelStyle}"
-               Text="{Binding Resources[TimeRangeStartLabel]}"/>
+        <Label Text="{Binding Resources[TimeRangeStartLabel]}"/>
         <DatePicker Date="{Binding TimeRangeStart}" />
 
-        <Label Style="{StaticResource DeemphasizedLabelStyle}"
-               Text="{Binding Resources[TimeRangeEndLabel]}"/>
+        <Label Text="{Binding Resources[TimeRangeEndLabel]}"/>
         <DatePicker Date="{Binding TimeRangeEnd}" />
         
     </StackLayout>

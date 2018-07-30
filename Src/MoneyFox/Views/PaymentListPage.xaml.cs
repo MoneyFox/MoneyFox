@@ -40,7 +40,7 @@ namespace MoneyFox.Views
 
         private async void OpenDialog()
         {
-            await Navigation.PushPopupAsync(new FilterDialog {BindingContext = Mvx.Resolve<SelectFilterDialogViewModel>()});
+            await Navigation.PushPopupAsync(new FilterDialog{BindingContext = Mvx.Resolve<SelectFilterDialogViewModel>()});
         }
 
         protected override void OnAppearing()
@@ -52,7 +52,25 @@ namespace MoneyFox.Views
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentDialog { BindingContext = ViewModel.ViewActionViewModel });
+            var action = await DisplayActionSheet(Strings.AddTitle, 
+                                                  Strings.CancelLabel, 
+                                                  null, 
+                                                  Strings.AddExpenseLabel,
+                                                  Strings.AddIncomeLabel,
+                                                  Strings.AddTransferLabel);
+
+            if (action == Strings.AddExpenseLabel)
+            {
+                await ViewModel.ViewActionViewModel.GoToAddExpenseCommand.ExecuteAsync();
+            }
+            else if (action == Strings.AddIncomeLabel)
+            {
+                await ViewModel.ViewActionViewModel.GoToAddIncomeCommand.ExecuteAsync();
+            }
+            else if (action == Strings.AddTransferLabel)
+            {
+                await ViewModel.ViewActionViewModel.GoToAddTransferCommand.ExecuteAsync();
+            }
         }
 
         private void EditPayment(object sender, EventArgs e)

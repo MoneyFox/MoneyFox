@@ -12,6 +12,26 @@
 
     <UserControl.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <Storyboard x:Name="ShowDialog">
+            <DoubleAnimation Duration="0:0:0.3"
+                     Storyboard.TargetName="Dialog"
+                     Storyboard.TargetProperty="Height"
+                     d:IsOptimized="True" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="HideDialog">
+            <DoubleAnimation Duration="0:0:0.3"
+                     Storyboard.TargetName="Dialog"
+                     Storyboard.TargetProperty="Height"
+                     To="0" d:IsOptimized="True" EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </UserControl.Resources>
 
     <interactivity:Interaction.Behaviors>
@@ -25,38 +45,92 @@
 
     <Grid>
         <StackPanel>
-            <ToggleSwitch x:Name="toggleSwitch"
+            <TextBlock Text="{Binding Title}" Margin="30, 0, 0, 10" FontSize="20" Foreground="{StaticResource TextColor}"/>
+            <ToggleSwitch x:Name="toggleSwitch" Header="{Binding PasswordProtectLabel}" Margin="40, 0, 0, 10"
                           IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          x:Uid="PasswordSettingSwitch"
-                          OnContent="Password protection active"
-                          OffContent="Password protection inactive" />
+                          AllowFocusOnInteraction="False" Foreground="{StaticResource TextColor}"
+                          Toggled="PasswordProtect_Toggled">
+                <ToggleSwitch.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </ToggleSwitch.Resources>
+            </ToggleSwitch>
 
-            <StackPanel
-                Visibility="{Binding IsOn, ElementName=toggleSwitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}">
-                <PasswordBox Header="Password"
+            <StackPanel Margin="0, 0, 0, 10" Height="0" x:Name="Dialog"
+                >
+                <StackPanel.Background>
+                    <SolidColorBrush Color="White" Opacity=".5" />
+                </StackPanel.Background>
+                <PasswordBox Header="{Binding PasswordLabel}"
                              x:Uid="Password"
-                             Margin="0,5,0,0"
+                             x:Name="password"
                              Password="{Binding Password, Mode=TwoWay}"
-                             PasswordRevealMode="Peek" />
-                <PasswordBox Header="Password Confirmation"
+                             Margin="40, 10, 20, 10"
+                             PasswordRevealMode="Peek"
+                             />
+
+                <PasswordBox Header="{Binding PasswordConfirmLabel}"
                              x:Uid="PasswordConfirmation"
-                             Margin="0,5,0,0"
+                             x:Name="passwordConfirmation"
                              Password="{Binding PasswordConfirmation, Mode=TwoWay}"
-                             PasswordRevealMode="Peek" />
+                             PasswordRevealMode="Peek"
+                             Margin="40, 0, 20, 10"
+                             Foreground="{StaticResource TextColor}"/>
+
 
                 <Button x:Uid="SavePassword"
-                        Margin="0,12,0,0"
-                        HorizontalAlignment="Stretch"
+                        x:Name="SaveButton"
+                        Margin="0, 10, 0, 10"
                         Content="Save Password"
-                        Command="{Binding SavePasswordCommand}" />
+                        Command="{Binding SavePasswordCommand}"
+                        HorizontalAlignment="Center"
+                        AllowFocusOnInteraction="False"
+                        />
             </StackPanel>
-            <ToggleSwitch x:Name="PassportSwitch"
+            <ToggleSwitch x:Name="PassportSwitch" Header="{Binding PassportLoginLabel}" Margin="40, 0, 0, 0"
                           IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          x:Uid="PassportSettingSwitch"
-                          OnContent="Passport Login Enabled"
-                          OffContent="Enable Passport Login" />
+                          x:Uid="PassportSettingSwitch" AllowFocusOnInteraction="False"
+                          Foreground="{StaticResource TextColor}"
+                          >
+                <ToggleSwitch.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </ToggleSwitch.Resources>
+            </ToggleSwitch>
             <TextBlock x:Name="PassportStatus"
-                       Margin="0,0,0,15"
+                       Margin="0,0,0,0"
                        HorizontalAlignment="Center"
                        TextWrapping="WrapWholeWords"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

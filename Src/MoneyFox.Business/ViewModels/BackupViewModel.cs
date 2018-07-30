@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.Graph;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Localization;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {
+        string CreateBackupText { get; }
+        string RestoreBackupText { get; }
+        string LoginButtonLabel { get; }
+        string LogoutButtonLabel { get; }
+        string CreateBackupButtonLabel { get; }
+        string RestoreBackupButtonlabel { get; }
+        string LastBackupTimeStampLabel { get; }
+
         MvxAsyncCommand LoginCommand { get; }
         MvxAsyncCommand LogoutCommand { get; }
         MvxAsyncCommand BackupCommand { get; }
@@ -27,7 +34,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : BaseViewModel, IBackupViewModel
+    public class BackupViewModel : BaseViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
@@ -48,6 +55,20 @@ namespace MoneyFox.Business.ViewModels
             this.connectivity = connectivity;
             this.settingsManager = settingsManager;
         }
+
+        public string SyncNowButtonText => Strings.SyncNowButtonText;
+
+        #region Localizations
+
+        public string CreateBackupText => Strings.CreateBackupInformationLabel;
+        public string RestoreBackupText => Strings.RestoreBackupInformationLabel;
+        public string LoginButtonLabel => Strings.LoginLabel;
+        public string LogoutButtonLabel => Strings.LogoutLabel;
+        public string CreateBackupButtonLabel => Strings.CreateBackupLabel;
+        public string RestoreBackupButtonlabel => Strings.RestoreBackupLabel;
+        public string LastBackupTimeStampLabel => Strings.LastBackupDateLabel;
+
+        #endregion
 
         #region Properties
 
@@ -100,11 +121,14 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
+
         public bool IsLoggedIn => settingsManager.IsLoggedInToBackupService;
+        public bool IsNotLoggedIn => !settingsManager.IsLoggedInToBackupService;
+        
 
         /// <summary>
         ///     Indicates if a backup is available for restore.
@@ -147,24 +171,13 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Issue during Login process." } });
-                await backupManager.Logout();
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (Microsoft.Graph.ServiceException ex)
-            {
-                if (ex.Error.Code == "4f37.717b")
-                {
-                    Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Graph Login Exception" } });
-                    await backupManager.Logout();
-                    await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                    Strings.ErrorMessageAuthenticationFailed);
-                }
-            }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string>{{ "Info", "Unknown Issue"}});
+                Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
                                                 ex.ToString());
             }
@@ -185,6 +198,7 @@ namespace MoneyFox.Business.ViewModels
                 settingsManager.IsLoggedInToBackupService = true;
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsLoggedIn));
+                RaisePropertyChanged(nameof(IsNotLoggedIn));
             }
             catch (BackupAuthenticationFailedException)
             {
@@ -206,6 +220,7 @@ namespace MoneyFox.Business.ViewModels
             await backupManager.Logout();
             settingsManager.IsLoggedInToBackupService = false;
             // ReSharper disable once ExplicitCallerInfoArgument
+            RaisePropertyChanged(nameof(IsNotLoggedIn));
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
@@ -224,21 +239,15 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (BackupAuthenticationFailedException)
             {
-                await backupManager.Logout();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
-            } 
-            catch (ServiceException ex)
-            {
-                await backupManager.Logout();
-                Crashes.TrackError(ex);
-            } 
+            }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
                                                 Strings.ErrorMessageBackupFailed);
-            } 
+            }
 
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
@@ -258,27 +267,18 @@ namespace MoneyFox.Business.ViewModels
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                await backupManager.Logout();
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (ServiceException ex)
-            {
-                await backupManager.Logout();
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.BackupRestoreFailedTitle,
-                                                Strings.ErrorMessageRestore);
-            } 
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                                                Strings.ErrorMessageBackupFailed);
-            }
 
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
+        }
+
+        private async Task Synchronize()
+        {
+            await Loaded();
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

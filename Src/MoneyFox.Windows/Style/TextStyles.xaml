@@ -41,23 +41,6 @@
                 Value="{StaticResource AppForegroundColorSecondary}" />
     </Style>
 
-    <Style x:Key="DeemphasizedLabelStyle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource BodyTextBlockStyle}">
-        <Setter Property="FontSize"
-                Value="12" />
-        <Setter Property="TextWrapping"
-                Value="NoWrap" />
-        <Setter Property="CharacterSpacing"
-                Value="75" />
-        <Setter Property="HorizontalAlignment"
-                Value="Left" />
-        <Setter Property="VerticalAlignment"
-                Value="Top" />
-        <Setter Property="Foreground"
-                Value="{StaticResource AppForegroundColorSecondary}" />
-    </Style>
-
     <Style x:Key="HeaderStyle"
            TargetType="TextBlock"
            BasedOn="{StaticResource DeemphasizedBodyTextBlockStyle}">
@@ -70,13 +53,5 @@
            BasedOn="{StaticResource SubtitleTextBlockStyle}">
         <Setter Property="Foreground"
                 Value="{StaticResource AppForegroundColorPrimary}" />
-    </Style>
-
-    <Style x:Key="CustomCaptionTextBlockStyle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource CaptionTextBlockStyle}">
-        <Setter Property="Foreground" 
-                Value="DarkGray"/>
-
     </Style>
 </ResourceDictionary>

@@ -416,10 +416,10 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić Money Fox:</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Hasło</value>
+    <value>Password</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Witamy!</value>
+    <value>Welcome!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>Nie ma żadnych Kont. Dodaj jedno naciskając przycisk plusa poniżej.</value>
@@ -470,22 +470,22 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Cykliczny</value>
   </data>
   <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Nie ma żadnych kategorii. Dodaj jedną naciskając na symbol plusa poniżej.</value>
+    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
   </data>
   <data name="SearchStringLabel" xml:space="preserve">
-    <value>Szukaj</value>
+    <value>Search</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatycznie przesyłaj i pobieraj kopie zapasowe</value>
+    <value>Automatically upload and download backups</value>
   </data>
   <data name="PasswordActivatedLabel" xml:space="preserve">
-    <value>Ochrona hasłem</value>
+    <value>Password protection</value>
   </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
-    <value>Potwierdzenie hasła</value>
+    <value>Password Confirmation</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Płatność cykliczna została usunięta. Czy także chcesz usunąć powtórzenie?</value>
@@ -518,10 +518,10 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Set the interval to check for changed data.</value>
   </data>
   <data name="HourLabel" xml:space="preserve">
-    <value>Godzin(a/y)</value>
+    <value>Hour(s)</value>
   </data>
   <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Ponowne tworzenie kopii zapasowych</value>
+    <value>Backup Recurrence</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Dwa razy w roku</value>
@@ -556,6 +556,9 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Wybierz Filtr</value>
   </data>
+  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
+    <value>Zakończono czyszczenie twoich płatności.</value>
+  </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>Twoja kopia zapasowa została pomyślnie zsynchronizowana.</value>
   </data>
@@ -581,11 +584,14 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Błąd logowania!</value>
   </data>
+  <data name="ClearPaymentFailedMessage" xml:space="preserve">
+    <value>Rozliczeń płatności nie powiodło się!</value>
+  </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Cykliczny</value>
+    <value>Recurring</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Inne</value>
@@ -597,7 +603,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Ustawienia</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Zakres czasu:</value>
+    <value>Time Range:</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Podsumowanie Kategorii</value>
@@ -663,13 +669,13 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Przepływ Pieniędzy</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Rozprzestrzenianie Kategorii</value>
+    <value>Category Spreading</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
     <value>Nazwa Kategorii</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filtr</value>
+    <value>Filter</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Time Range End</value>
@@ -678,21 +684,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Time Range Start</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Wybierz datę</value>
-  </data>
-  <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Dodaj Kategorię</value>
-  </data>
-  <data name="SelectStatisticTitel" xml:space="preserve">
-    <value>Wybierz Statystyki</value>
-  </data>
-  <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Zadanie w tle</value>
-  </data>
-  <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configure execution interval for background task.</value>
-  </data>
-  <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Zadanie w tle</value>
+    <value>Select Date</value>
   </data>
 </root>

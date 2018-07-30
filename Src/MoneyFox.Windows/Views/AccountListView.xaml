@@ -10,6 +10,7 @@
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       mc:Ignorable="d">
+
     
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
@@ -24,11 +25,10 @@
                             RightTapped="AccountList_RightTapped">
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Icon="Edit"
+                            <MenuFlyoutItem x:Uid="Edit"
                                             Click="Edit_OnClick"
                                             Text="{Binding Resources[EditLabel]}" />
-                            <MenuFlyoutItem Icon="Delete"
-                                            Click="Delete_OnClick"
+                            <MenuFlyoutItem x:Uid="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
@@ -102,7 +102,8 @@
                 <ListView IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource AccountItemTemplate}"
-                          ItemsSource="{Binding Source={StaticResource Groups}}">
+                          ItemsSource="{Binding Source={StaticResource Groups}}"
+                          x:Name="accountList">
 
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
@@ -121,6 +122,8 @@
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
                     </ListView.GroupStyle>
+                    
+                   
                 </ListView>
 
             </SemanticZoom.ZoomedInView>
@@ -178,5 +181,25 @@
                               Label="Add Account" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin"
+                                Value="48,0,12,7" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </views:MvxWindowsPage>   

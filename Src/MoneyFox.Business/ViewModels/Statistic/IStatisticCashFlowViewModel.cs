@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using Microcharts;
-using MoneyFox.Business.StatisticDataProvider;
+﻿using Microcharts;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
@@ -8,6 +6,5 @@ namespace MoneyFox.Business.ViewModels.Statistic
     {
         string Title { get; }
         BarChart Chart { get; }
-        ObservableCollection<StatisticEntry> StatisticItems { get; }
     }
 }

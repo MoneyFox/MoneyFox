@@ -1,6 +1,7 @@
 using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.iOS.Authentication;
+using MoneyFox.iOS.Src;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using Plugin.Connectivity;

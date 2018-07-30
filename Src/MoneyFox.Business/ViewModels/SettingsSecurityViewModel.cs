@@ -20,6 +20,12 @@ namespace MoneyFox.Business.ViewModels
             this.dialogService = dialogService;
         }
 
+        public string Title => Strings.SecurityTitle;
+        public string PasswordProtectLabel => Strings.PasswordActivatedLabel;
+        public string PasswordLabel => Strings.PasswordLabel;
+        public string PasswordConfirmLabel => Strings.PasswordConfirmationLabel;
+        public string PassportLoginLabel => Strings.PassportLoginLabel;
+
         /// <summary>
         ///     Grants the GUI access to the password setting.
         /// </summary>

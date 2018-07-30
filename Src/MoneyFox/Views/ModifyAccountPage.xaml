@@ -4,54 +4,40 @@
              xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
              xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
              x:Class="MoneyFox.Views.ModifyAccountPage"
              DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-                <Label Text="{Binding Resources[AccountNameLabel]}" />
-                <Entry Text="{Binding SelectedAccount.Name}" />
+        <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-                <Label Text="{Binding Resources[CurrentBalanceLabel]}"
+            <Label Text="{Binding Resources[AccountNameLabel]}" />
+            <Entry Text="{Binding SelectedAccount.Name}" />
+
+            <Label Text="{Binding Resources[CurrentBalanceLabel]}"
                    Margin="0,5,0,0" />
-                <Entry x:Name="AmountEntry"
+            <Entry x:Name="AmountEntry"
                    Text="{Binding AmountString}" 
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
                    Focused="AmountFieldGotFocused"/>
 
-                <Label Text="{Binding Resources[NoteLabel]}"
+            <Label Text="{Binding Resources[NoteLabel]}"
                    Margin="0,5,0,0"/>
-                <Entry Text="{Binding SelectedAccount.Note}" />
+            <Entry Text="{Binding SelectedAccount.Note}" />
 
-                <Grid HorizontalOptions="FillAndExpand"
+            <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
-                    </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="{Binding Resources[IsExcludedLabel]}" />
+                <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
+            </Grid>
+        </StackLayout>
 
-                    <Label Grid.Column="0" Text="{Binding Resources[IsExcludedLabel]}" />
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
-                </Grid>
-
-                <!-- This delete button is only for ios, since there can be only one menu item -->
-                <Button x:Name="DeleteAccountButton"
-                    Text="{Binding Resources[DeleteLabel]}"
-                    Command="{Binding DeleteCommand}"
-                    Margin="0,12,0,0" >
-
-                    <Button.Effects>
-                        <effects:DeleteButtonEffect />
-                    </Button.Effects>
-
-                </Button>
-            </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </d:MvxContentPage>

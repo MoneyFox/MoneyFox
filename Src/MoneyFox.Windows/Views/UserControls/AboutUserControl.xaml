@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="MoneyFox.Windows.Views.UserControls.AboutUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Windows.UI.Xaml.Media"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="250">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+        <StackPanel>
+            <StackPanel Margin="30, 0, 0, 20">
+                <TextBlock Text="{Binding VersionLabel}" FontSize="20" Foreground="{StaticResource TextColor}"/>
+            </StackPanel>
+            <StackPanel Margin="30, 0, 0, 10">
+                <TextBlock Text="{Binding ContactText}" FontSize="20" Foreground="{StaticResource TextColor}"/>
+                <StackPanel Margin="10, 10, 0, 0">
+                    <Button Margin="0, 0, 0, 10" x:Name="mailButton" Click="mailButton_Click">
+                        <StackPanel Orientation="Horizontal" Width="150">
+                            <TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{StaticResource TextColor}"/>
+                            <TextBlock Text="{Binding MailLabel}" Margin="12, 0, 0, 0" Foreground="{StaticResource TextColor}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="0, 0, 0, 10" x:Name="feedbackButton" AllowFocusOnInteraction="False" Click="feedbackButton_Click">
+                        <StackPanel Orientation="Horizontal" Width="150">
+                            <TextBlock Text="&#xE939;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{StaticResource TextColor}"/>
+                            <TextBlock Text="{Binding FeedbackLabel}" Margin="12, 0, 0, 0" Foreground="{StaticResource TextColor}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="0, 0, 0, 10" x:Name="rateButton" AllowFocusOnInteraction="False" Command="{Binding RateAppCommand}">
+                        <StackPanel Orientation="Horizontal" Width="150" >
+                            <TextBlock Text="&#xE734;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{StaticResource TextColor}"/>
+                            <TextBlock Text="{Binding RateLabel}" Margin="12, 0, 0, 0" Foreground="{StaticResource TextColor}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="30, 0, 20, 20">
+                <TextBlock TextWrapping="WrapWholeWords" Foreground="{StaticResource TextColor}" Margin="0, 0, 0, 20" FontSize="12">
+                    <Span xml:space="preserve"><Run>This is an open source project. We look forward to working with you! You can check out the repository </Run><Hyperlink NavigateUri="https://github.com/MoneyFox/MoneyFox">here</Hyperlink><Run>.</Run></Span>
+                </TextBlock>
+                <TextBlock TextWrapping="WrapWholeWords" Foreground="{StaticResource TextColor}" Margin="0, 0, 0, 20" FontSize="12">
+                    <Span xml:space="preserve"><Run>Not in your language?  Inappropriate translations?</Run> <Hyperlink NavigateUri="https://crowdin.com/project/money-fox" >Help us improve them! </Hyperlink></Span>
+                </TextBlock>
+                <TextBlock Text="App Icon Author" Foreground="{StaticResource TextColor}" FontSize="12"/>
+                <TextBlock Text="Toledo Vanderson" FontWeight="Bold" Foreground="{StaticResource TextColor}" Margin="0, 0, 0, 20" FontSize="12"/>
+                <TextBlock TextWrapping="WrapWholeWords" FontWeight="Bold" Foreground="{StaticResource TextColor}" FontSize="12" Margin="0, 0, 0, 30">
+                    <Span xml:space="preserve"><Hyperlink NavigateUri="https://github.com/MoneyFox/MoneyFox/graphs/contributors">See all contributors</Hyperlink></Span>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

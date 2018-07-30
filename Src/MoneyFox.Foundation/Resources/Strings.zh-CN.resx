@@ -681,18 +681,9 @@
     <value>选择日期</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>添加分类</value>
+    <value>Add Category</value>
   </data>
   <data name="SelectStatisticTitel" xml:space="preserve">
-    <value>选择统计项</value>
-  </data>
-  <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Background Job</value>
-  </data>
-  <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configure execution interval for background task.</value>
-  </data>
-  <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Background Job</value>
+    <value>Select Statistic</value>
   </data>
 </root>

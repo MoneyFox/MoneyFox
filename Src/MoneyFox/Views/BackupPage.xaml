@@ -18,54 +18,50 @@
 
     <ContentPage.Content>
 
-        <StackLayout x:Name="MainLayout"
-                     Padding="7">
+        <StackLayout x:Name="MainLayout">
 
-            <Button Text="{Binding Resources[LoginLabel]}"
+            <Button Text="{Binding LoginButtonLabel}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
                 <Button.Effects>
-                    <effects:PrimaryButtonEffect />
+                    <effects:ButtonEffect />
                 </Button.Effects>
             </Button>
 
-            <Button Text="{Binding Resources[LogoutLabel]}" 
+            <Button Text="{Binding LogoutButtonLabel}" 
                     IsVisible="{Binding IsLoggedIn}"  
                     Command="{Binding LogoutCommand}">
                 <Button.Effects>
-                    <effects:PrimaryButtonEffect />
+                    <effects:ButtonEffect />
                 </Button.Effects>
             </Button>
 
             <StackLayout IsVisible="{Binding IsLoggedIn}">
-                <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
-                       Style="{StaticResource DeemphasizedLabelStyle}"
+                <Label Text="{Binding CreateBackupText}"
                        HorizontalOptions="StartAndExpand" />
                 <Button x:Name="ButtonRestoreBackup"
-                        Text="{Binding Resources[CreateBackupLabel]}" 
+                        Text="{Binding CreateBackupButtonLabel}" 
                         Command="{Binding BackupCommand}">
                     <Button.Effects>
-                        <effects:PrimaryButtonEffect />
+                        <effects:ButtonEffect />
                     </Button.Effects>
                 </Button>
 
-                <Label Text="{Binding Resources[RestoreBackupInformationLabel]}" 
-                       Style="{StaticResource DeemphasizedLabelStyle}"
-                       HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding RestoreBackupText}" HorizontalOptions="StartAndExpand" />
 
                 <Grid>
                     <Grid.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="iOS" Value="39"/>
+                            <On Platform="iOS" Value="37"/>
                             <On Platform="UWP" Value="35"/>
                             <On Platform="Android" Value="48"/>
                         </OnPlatform>
                     </Grid.HeightRequest>
 
-                    <Button Text="{Binding Resources[RestoreBackupLabel]}" 
+                    <Button Text="{Binding RestoreBackupButtonlabel}" 
                             Command="{Binding RestoreCommand}" >
                         <Button.Effects>
-                            <effects:PrimaryButtonEffect />
+                            <effects:ButtonEffect />
                         </Button.Effects>
                     </Button>
 
@@ -73,14 +69,8 @@
                 </Grid>
 
                 <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                    <Label Text="{Binding Resources[LastBackupDateLabel]}" 
-                           Style="{StaticResource DeemphasizedLabelStyle}"
-                           HorizontalOptions="Start" />
-                    <Label Text="{Binding BackupLastModified}" 
-                           Style="{StaticResource DeemphasizedLabelStyle}"
-                           HorizontalOptions="Start"
-                           Margin="3,0,0,0"
-                           LineBreakMode="WordWrap" />
+                    <Label Text="{Binding LastBackupTimeStampLabel}" HorizontalOptions="Start" />
+                    <Label Text="{Binding BackupLastModified}" HorizontalOptions="Start" Margin="3,0,0,0" LineBreakMode="WordWrap" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>

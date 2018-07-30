@@ -333,6 +333,9 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Data rozpoczęcia</value>
   </data>
+  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
+    <value>Wybierz Statystyki</value>
+  </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Ostatnia kopia została utworzona:</value>
   </data>
@@ -356,6 +359,9 @@
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Ładowanie...</value>
+  </data>
+  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
+    <value>Jeżeli aktywujesz to ustawienie, po każdej zmianie w bazie danych, kopia zapasowa zostanie wykonana do OneDrive. Również jeśli uruchomisz aplikacje tam, sprawdzi ona czy istnieją nowsze kopie zapasowe i przywróci je, jeżeli są.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Coś jest przetłumaczone niepoprawnie, lub w ogóle? Pomóż nam! Udaj się do Crowdin i pomóż w poprawie Money Fox:</value>
@@ -384,8 +390,14 @@
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Aby zobaczyć wszystkie kontrybucje przejdź do GitHub:</value>
   </data>
+  <data name="AutoBackupSetting.Header" xml:space="preserve">
+    <value>Pobieraj i przesyłaj kopie zapasowe ręcznie</value>
+  </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Kwota wykluczona z salda</value>
+  </data>
+  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
+    <value>Ustaw ilość godzin do synchronizacji kopi zapasowej.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
     <value>Wykluczone Konta</value>
@@ -431,5 +443,11 @@
   </data>
   <data name="TimeRangeStart.Header" xml:space="preserve">
     <value>Początek okresu</value>
+  </data>
+  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
+    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
+  </data>
+  <data name="CategoryGroupTitle.Text" xml:space="preserve">
+    <value>Groups</value>
   </data>
 </root>

@@ -24,31 +24,31 @@ namespace MoneyFox.Views
 		    {
                 Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
 		    });
-        }
+		}
 
 	    protected override void OnAppearing()
 	    {
 	        Title = ViewModel.Title;
-	        if (Device.RuntimePlatform == Device.Android)
+	        if (ViewModel.IsEdit)
 	        {
-                DeletePaymentButton.IsVisible = false;
-                
-                if (ViewModel.IsEdit)
+	            ToolbarItems.Add(new ToolbarItem
 	            {
-	                ToolbarItems.Add(new ToolbarItem
-	                {
-	                    Command = new Command(() => ViewModel.DeleteCommand.Execute()),
-	                    Text = Strings.DeleteLabel,
-	                    Priority = 1,
-	                    Order = ToolbarItemOrder.Secondary
-	                });
-	            }
+	                Command = new Command(() => ViewModel.DeleteCommand.Execute()),
+	                Text = Strings.DeleteLabel,
+	                Priority = 1,
+	                Order = ToolbarItemOrder.Secondary
+	            });
 	        }
 
             base.OnAppearing();
 	    }
 
-        private void AmountFieldGotFocus(object sender, FocusEventArgs e)
+        private void CategoryFieldGotFocus(object sender, FocusEventArgs e)
+	    {
+	        ViewModel.GoToSelectCategorydialogCommand.Execute();
+	    }
+
+	    private void AmountFieldGotFocus(object sender, FocusEventArgs e)
 	    {
 	        AmountEntry.Text = string.Empty;
 	    }

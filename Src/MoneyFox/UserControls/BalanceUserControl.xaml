@@ -16,12 +16,9 @@
 
         <StackLayout HorizontalOptions="CenterAndExpand"
                    Orientation="Horizontal">
-            <Label Text="{Binding TotalBalance, Converter={StaticResource AmountFormatConverter} }"
-                   Style="{StaticResource DeemphasizedLabelStyle}"/>
-            <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                   Text=" / " />
-            <Label Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" 
-                   Style="{StaticResource DeemphasizedLabelStyle}"/>
+            <Label Text="{Binding TotalBalance, Converter={StaticResource AmountFormatConverter} }" />
+            <Label Text=" / " />
+            <Label Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

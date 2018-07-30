@@ -14,113 +14,33 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
-            <ToggleSwitch VerticalAlignment="Center"
-                          Header="Show Cashflow on Maintile"
-                          x:Uid="ShowInfoOnMainTileHeader"
-                          IsOn="{Binding ShowInfoOnMainTile, Mode=TwoWay}"
-                          OnContent="yes" />
-            <Path Data="M9,242 L456,242"
-                  Height="15"
-                  Margin="0,10"
-                  Stretch="Fill"
-                  Stroke="DarkSlateGray"
-                  UseLayoutRounding="False"
-                  StrokeThickness="2" />
-
-            <Grid Margin="0,0,0,12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="301*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch"
-                      Width="50"
-                      Height="50"
-                      Background="{ThemeResource SystemControlHighlightAccentBrush}">
-                    <Image Source="/Assets/incomeTileIcon.png"
-                           VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch" />
-                </Grid>
-                <Button Content="create income tile"
-                        x:Uid="AddIncomeTile"
-                        Grid.Column="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center"
-                        Command="{Binding CreateIncomeShortcutCommand}"
-                        Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
-                        Margin="12,0,0,0" />
-                <Button Content="remove income tile"
-                        x:Uid="RemoveIncomeTile"
-                        Grid.Column="1"
-                        Margin="12,0,0,0"
-                        Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding RemoveIncomeShortcutCommand}"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center" />
-            </Grid>
-
-            <Grid Margin="0,0,0,12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="301*" />
-                </Grid.ColumnDefinitions>
-                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch">
-                    <Image Source="/Assets/spendingTileIcon.png"
-                           Grid.Column="0"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Stretch" />
-                </Grid>
-                <Button Content="create spending tile"
-                        x:Uid="AddExpenseTile"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Stretch"
-                        Command="{Binding CreateSpendingShortcutCommand}"
-                        Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
-                        Margin="12,0,0,0" />
-                <Button Content="remove spending tile"
-                        x:Uid="RemoveExpenseTile"
-                        Grid.Column="1"
-                        Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding RemoveSpendingShortcutCommand}"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Stretch"
-                        Margin="12,0,0,0" />
-            </Grid>
-
-            <Grid Margin="0,0,0,12">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="301*" />
-                </Grid.ColumnDefinitions>
-                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
-                      VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch">
-                    <Image Source="/Assets/transferTileIcon.png"
-                           Grid.Column="0"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Stretch" />
-                </Grid>
-                <Button Content="create transfer tile"
-                        x:Uid="AddTransferTile"
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Stretch"
-                        Command="{Binding CreateTransferShortcutCommand}"
-                        Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
-                        Margin="12,0,0,0" />
-                <Button Content="remove transfer tile"
-                        x:Uid="RemoveTransferTile"
-                        Grid.Column="1"
-                        Command="{Binding RemoveTransferShortcutCommand}"
-                        Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Stretch"
-                        Margin="12,0,0,0" />
-            </Grid>
+            <TextBlock Text="{Binding Title}" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource TextColor}"/>
+            <ToggleSwitch VerticalAlignment="Center" Margin="10, 0, 0, 10" Foreground="{StaticResource TextColor}"
+                          Header="Dynamic Tile" AllowFocusOnInteraction="False"  IsOn="{Binding ShowInfoOnMainTile, Mode=TwoWay}"
+                          x:Uid="ShowInfoOnMainTileHeader">
+                <ToggleSwitch.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.ThemeDictionaries>
+                            <ResourceDictionary x:Key="Light">
+                                <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextColor}"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="White"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#5e5cb0"/>
+                                <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                                <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                            </ResourceDictionary>
+                        </ResourceDictionary.ThemeDictionaries>
+                    </ResourceDictionary>
+                </ToggleSwitch.Resources>
+            </ToggleSwitch>
+            <TextBlock TextWrapping="WrapWholeWords" Text="{Binding Prompt}"
+                       Foreground="{StaticResource TextColor}" Margin="10, 0, 0, 0" FontSize="12"/>
         </StackPanel>
     </Grid>
 </UserControl>

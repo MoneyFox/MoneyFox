@@ -5,16 +5,13 @@ using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugin.Messenger;
-using MvvmCross.ViewModels;
-using SkiaSharp;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
-    public class 
-        StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
+    public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
         private readonly IDialogService dialogService;
         private readonly CashFlowDataProvider cashFlowDataProvider;
@@ -43,11 +40,6 @@ namespace MoneyFox.Business.ViewModels.Statistic
             }
         }
 
-        /// <summary>
-        ///     Statistic items to display.
-        /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems { get; set; }
-
         public override async Task Initialize()
         {
             await Load();
@@ -55,18 +47,10 @@ namespace MoneyFox.Business.ViewModels.Statistic
 
         protected override async Task Load()
         {
-            StatisticItems = new MvxObservableCollection<StatisticEntry>(
-                await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
-
+            var entries = await cashFlowDataProvider.GetCashFlow(StartDate, EndDate);
             Chart = new BarChart
             {
-                Entries = StatisticItems.Select(x => new Entry(x.Value)
-                                        {
-                                            Label = x.Label,
-                                            ValueLabel = x.ValueLabel,
-                                            Color = SKColor.Parse(x.Color)
-                                        })
-                                        .ToList(),
+                Entries = entries,
                 BackgroundColor = BackgroundColor,
                 Margin = 20,
                 LabelTextSize = 26f

@@ -4,18 +4,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:MoneyFox.Business.ViewModels" 
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
     <StackPanel>
-        <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
-                   Text="You can change between a dark and light theme. To apply this change please restart the application."
-                   TextWrapping="WrapWholeWords"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-        <ComboBox SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
-            <ComboBoxItem x:Uid="Dark" Content="Dark" />
-            <ComboBoxItem x:Uid="Light" Content="Light" />
-        </ComboBox>
+        <TextBlock Text="{Binding Title}" Margin="0, 0, 0, 10" FontSize="20" Foreground="{StaticResource TextColor}"/>
+        <ToggleSwitch Header="{Binding HeaderContent}" x:Name="ThemeSwitch" IsOn="{Binding ThemeToggled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      OnContent="{Binding OnContent, UpdateSourceTrigger=PropertyChanged}" OffContent="{Binding OffContent, UpdateSourceTrigger=PropertyChanged}" Margin="10, 0, 0, 0"
+                      Foreground="{StaticResource TextColor}">
+            <ToggleSwitch.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ToggleSwitchHeaderForeground" Color="{StaticResource TextColor}"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOn" Color="#424085"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOn" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource TextColor}"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOff" Color="{StaticResource TextColor}"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOffPointerOver" Color="#5e5cb0"/>
+                            <SolidColorBrush x:Key="ToggleSwitchKnobFillOnPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOnPointerOver" Color="#5e5cb0"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="#5e5cb0"/>
+                            <SolidColorBrush x:Key="ToggleSwitchStrokeOffPressed" Color="#424085"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOnPressed" Color="#5351a7"/>
+                            <SolidColorBrush x:Key="ToggleSwitchFillOffPressed" Color="#424085"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </ToggleSwitch.Resources>
+        </ToggleSwitch>
+
     </StackPanel>
 </UserControl>
