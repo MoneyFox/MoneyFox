@@ -70,18 +70,14 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                await ClearPayments();
-                await Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur();
-                await Mvx.Resolve<IBackupManager>().DownloadBackup();
+                var tasks = new List<Task>
+                {
+                    ClearPayments(),
+                    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
+                    Mvx.Resolve<IBackupManager>().DownloadBackup()
+                };
 
-                //var tasks = new List<Task>
-                //{
-                //    ClearPayments(),
-                //    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
-                //    Mvx.Resolve<IBackupManager>().DownloadBackup()
-                //};
-
-                //await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks);
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
