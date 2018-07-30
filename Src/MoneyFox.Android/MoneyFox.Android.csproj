@@ -94,9 +94,6 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.1.2</Version>
     </PackageReference>
-    <PackageReference Include="Naxam.Ittianyu.BottomNavExtension">
-      <Version>1.2.4</Version>
-    </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
     </PackageReference>
@@ -133,7 +130,7 @@
     <PackageReference Include="Xamarin.Auth">
       <Version>1.6.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.637273" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
@@ -145,13 +142,9 @@
     <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.Tabs.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
     <Compile Include="Src\Settings.cs" />
-    <Compile Include="Utils\ResourceManagerEx.cs" />
-    <Compile Include="Utils\SizeUtils.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
@@ -165,7 +158,6 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="Utils\MeasureSpecFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
