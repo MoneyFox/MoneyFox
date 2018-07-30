@@ -64,9 +64,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
-            dialogService.HideLoadingDialog();
+            await Load();
         }
 
         /// <summary>
