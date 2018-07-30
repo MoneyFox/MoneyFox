@@ -145,8 +145,6 @@
     <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.cs" />
-    <Compile Include="Renderer\BottomTabbedRenderer.Tabs.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
     <Compile Include="Src\Settings.cs" />
