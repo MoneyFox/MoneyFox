@@ -1,13 +1,11 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.OS;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Droid.Renderer;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
@@ -48,7 +46,6 @@ namespace MoneyFox.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-            SetupBottomTabs();
 
             Popup.Init(this, bundle);
 
