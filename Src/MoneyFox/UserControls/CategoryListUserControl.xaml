@@ -61,7 +61,7 @@
             <controls:FloatingActionButton Grid.Row="1" 
                                            x:Name="FAB" 
                                            HorizontalOptions="EndAndExpand" 
-                                           Margin="12"
+                                           Margin="4"
                                            VerticalOptions="EndAndExpand"
                                            Image="ic_add.png" 
                                            ButtonColor="{StaticResource AccentColor}" 

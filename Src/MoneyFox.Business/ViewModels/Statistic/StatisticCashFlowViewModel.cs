@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
@@ -51,9 +50,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
 
         public override async Task Initialize()
         {
-            dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
-            dialogService.HideLoadingDialog();
+            await Load();
         }
 
         protected override async Task Load()
