@@ -461,13 +461,15 @@
       <Version>1.8.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
-      <Version>2.0.3</Version>
+      <Version>2.1.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>1.10.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETNative.Analyzer">
       <Version>1.0.0</Version>
@@ -479,7 +481,7 @@
       <Version>10.1705.16001</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
-      <Version>2.2.0</Version>
+      <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.0</Version>
@@ -506,7 +508,7 @@
       <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>11.0.1</Version>
+      <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="NotificationsExtensions.Win10">
       <Version>14332.0.2</Version>
@@ -521,7 +523,7 @@
       <Version>3.2.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.637273</Version>
+      <Version>3.1.0.697729</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
