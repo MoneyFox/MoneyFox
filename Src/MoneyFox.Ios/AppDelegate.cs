@@ -61,8 +61,11 @@ namespace MoneyFox.iOS
             return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
 
+        [Export("application:performFetchWithCompletionHandler:")]
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
+            Debug.Write("Enter Background Task");
+            var successful = false;
             try
             {
                 Analytics.TrackEvent("Start background fetch.");
@@ -76,6 +79,7 @@ namespace MoneyFox.iOS
 
                 await Task.WhenAll(tasks);
 
+                successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
             }
             catch (Exception ex)
@@ -84,7 +88,7 @@ namespace MoneyFox.iOS
                 Crashes.TrackError(ex);
             }
 
-            completionHandler(UIBackgroundFetchResult.NewData);
+            completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
         }
 
         private async Task ClearPayments()
