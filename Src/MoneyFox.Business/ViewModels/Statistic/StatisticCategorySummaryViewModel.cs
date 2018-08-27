@@ -42,10 +42,8 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            dialogService.ShowLoadingDialog();
             await Task.Run(async () => await LoadData());
             RaisePropertyChanged(nameof(HasData));
-            dialogService.HideLoadingDialog();
         }
 
         private async Task LoadData()
