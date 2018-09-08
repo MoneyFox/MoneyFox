@@ -17,6 +17,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         private readonly IDialogService dialogService;
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
         private DonutChart chart;
+        private ObservableCollection<StatisticEntry> statisticItems;
 
         public static readonly SKColor[] Colors =
         {
@@ -59,7 +60,16 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <summary>
         ///     Statistic items to display.
         /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems { get; set; }
+        public ObservableCollection<StatisticEntry> StatisticItems
+        {
+            get => statisticItems;
+            set
+            {
+                if (statisticItems == value) return;
+                statisticItems = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <inheritdoc />
         public override async Task Initialize()
