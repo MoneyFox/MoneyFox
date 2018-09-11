@@ -5,7 +5,7 @@ A way to make budgeting easy. A basic idea for the community, made even better b
 | ------------- |-------------|
 | Windows | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/6/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=6&_a=completed)|
 | Android | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=3&_a=completed)|
-| IOS | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/8/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=allDefinitions&path=%5C&definitionId=8&_a=completed)|
+| IOS (Beta) | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/8/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=allDefinitions&path=%5C&definitionId=8&_a=completed)|
 
 ### Talk with us
 We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.

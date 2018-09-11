@@ -19,6 +19,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         private readonly IDialogService dialogService;
         private readonly CashFlowDataProvider cashFlowDataProvider;
         private BarChart chart;
+        private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager, IDialogService dialogService) 
             : base(messenger, settingsManager)
@@ -46,7 +47,16 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <summary>
         ///     Statistic items to display.
         /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems { get; set; }
+        public ObservableCollection<StatisticEntry> StatisticItems
+        {
+            get => statisticItems;
+            set
+            {
+                if(statisticItems == value) return;
+                statisticItems = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public override async Task Initialize()
         {

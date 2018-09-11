@@ -74,6 +74,9 @@ namespace MoneyFox.Windows.Services
         /// </summary>
         public async void ShowLoadingDialog(string message = null)
         {
+            // Be sure no other dialog is open.
+            HideLoadingDialog();
+
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
             await loadingDialog.ShowAsync();
         }
@@ -83,7 +86,7 @@ namespace MoneyFox.Windows.Services
         /// </summary>
         public void HideLoadingDialog()
         {
-            loadingDialog.Hide();
+            loadingDialog?.Hide();
         }
     }
 }
