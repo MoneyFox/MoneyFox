@@ -697,4 +697,64 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Background Job</value>
   </data>
+  <data name="CortanaVoiceCommandCommandPrefix" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="CortanaVoiceCommandCommandPrefixExample" xml:space="preserve">
+    <value>Money Fox create a payment</value>
+  </data>
+  <data name="CortanaVoiceCommandCreateAccountExample" xml:space="preserve">
+    <value>Money fox create an account</value>
+  </data>
+  <data name="CortanaVoiceCommandCreateAccountFeedback" xml:space="preserve">
+    <value>Starting payment creation process</value>
+  </data>
+  <data name="CortanaVoiceCommandCreateAccountListenFor" xml:space="preserve">
+    <value>create an account</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountAmountExample" xml:space="preserve">
+    <value>Money Fox Account amount is {dollars} dollars and {cents} cents</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountAmountFeedback" xml:space="preserve">
+    <value>Adding amount to account</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountAmountListenFor" xml:space="preserve">
+    <value>account amount is {dollars} dollars and {cents} cents</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountNameExample" xml:space="preserve">
+    <value>Money Fox Account Name is Checking</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountNameFeedback" xml:space="preserve">
+    <value>Adding name to account</value>
+  </data>
+  <data name="CortanaVoiceCommandAccountNameListenFor" xml:space="preserve">
+    <value>account name is {name}</value>
+  </data>
+  <data name="CortanaVoiceCommandCreatePaymentExample" xml:space="preserve">
+    <value>Money Fox create a payment</value>
+  </data>
+  <data name="CortanaVoiceCommandCreatePaymentFeedback" xml:space="preserve">
+    <value>Starting payment creation process</value>
+  </data>
+  <data name="CortanaVoiceCommandCreatePaymentListenFor" xml:space="preserve">
+    <value>create a payment</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentAmountExample" xml:space="preserve">
+    <value>Money Fox payment amount is 100 dollars and 30 cents</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentAmountFeedback" xml:space="preserve">
+    <value>Adding amount to payment</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentAmountListenFor" xml:space="preserve">
+    <value>[the] payment amount is {dollars} dollars and {cents} cents</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentDateExample" xml:space="preserve">
+    <value>Money Fox payment date is March 26, 1998</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentDateFeedback" xml:space="preserve">
+    <value>Adding Date to payment</value>
+  </data>
+  <data name="CortanaVoiceCommandPaymentDateListFor" xml:space="preserve">
+    <value>[the] payment date is {date}</value>
+  </data>
 </root>

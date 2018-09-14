@@ -637,6 +637,186 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Money Fox Account amount is {dollars} dollars and {cents} cents.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding amount to account.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to account amount is {dollars} dollars and {cents} cents.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox Account Name is Checking.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding name to account.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to account name is {name}.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox.
+        /// </summary>
+        public static string CortanaVoiceCommandCommandPrefix {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCommandPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCommandPrefixExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCommandPrefixExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money fox create an account.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting payment creation process.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create an account.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting payment creation process.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox payment amount is 100 dollars and 30 cents.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding amount to payment.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [the] payment amount is {dollars} dollars and {cents} cents.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox payment date is March 26, 1998.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding Date to payment.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [the] payment date is {date}.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateListFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateListFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string CreateBackupInformationLabel {
