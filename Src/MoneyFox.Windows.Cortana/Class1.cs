@@ -14,6 +14,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Foundation;
 using System.Linq;
 using Newtonsoft.Json;
+using Windows.ApplicationModel.Resources;
 
 namespace MoneyFox.Windows.Cortana
 {
@@ -73,7 +74,7 @@ namespace MoneyFox.Windows.Cortana
         {
             VoiceCommandContentTile vcct = new VoiceCommandContentTile
             {
-                Title = Title ?? Foundation.Resources.Strings.ApplicationTitle,
+                Title = Title ?? Strings.ApplicationTitle,
                 ContentTileType = type,
                 TextLine1 = Text ?? null,
                 Image = file ?? await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-app:///MoneyFox.Windows/Assets/Square44x44Logo.targetsize-48.png"))
@@ -84,8 +85,8 @@ namespace MoneyFox.Windows.Cortana
         {
             VoiceCommandUserMessage vcum = new VoiceCommandUserMessage()
             {
-                DisplayMessage = displaymessage ?? Foundation.Resources.Strings.CortanaDefaultUserMessageText,
-                SpokenMessage = spokenmessage ?? Foundation.Resources.Strings.CortanaDefaultUserMessageSpoken
+                DisplayMessage = displaymessage ?? Strings.CortanaDefaultUserMessageText,
+                SpokenMessage = spokenmessage ?? Strings.CortanaDefaultUserMessageSpoken
             };
 
             return vcum;
@@ -130,7 +131,7 @@ namespace MoneyFox.Windows.Cortana
         {
             poolTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
             {
-                UserMessage = CreateUserMessage(Foundation.Resources.Strings.CortanaContinuationMessageSpoken, Foundation.Resources.Strings.CortanaContinuationMessageText);
+                UserMessage = CreateUserMessage(Strings.CortanaContinuationMessageSpoken, Foundation.Resources.Strings.CortanaContinuationMessageText);
                 await this.connection.ReportProgressAsync(VoiceCommandResponse.CreateResponse(UserMessage));
             },
     timeSpan,
