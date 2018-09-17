@@ -69,7 +69,8 @@
     <CodesignProvision>MoneyFox Distribution</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
