@@ -69,7 +69,8 @@
     <CodesignProvision>MoneyFox Distribution</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -142,6 +143,7 @@
       <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>2.1.3</Version>
       <Version>2.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
@@ -171,7 +173,7 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>0.6.0-preview</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
