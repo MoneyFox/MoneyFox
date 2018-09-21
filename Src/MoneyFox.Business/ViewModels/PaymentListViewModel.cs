@@ -13,6 +13,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
@@ -32,6 +33,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
+        private readonly IMvxLogProvider logProvider;
 
         private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
         private ObservableCollection<DateListGroup<PaymentViewModel>> dailyList;
@@ -53,7 +55,7 @@ namespace MoneyFox.Business.ViewModels
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
             IMvxNavigationService navigationService,
-            IMvxMessenger messenger)
+            IMvxMessenger messenger, IMvxLogProvider logProvider)
         {
             this.accountService = accountService;
             this.paymentService = paymentService;
@@ -63,6 +65,7 @@ namespace MoneyFox.Business.ViewModels
             this.backupManager = backupManager;
             this.navigationService = navigationService;
             this.messenger = messenger;
+            this.logProvider = logProvider;
 
             token = messenger.Subscribe<PaymentListFilterChangedMessage>(async message => await LoadPayments(message));
         }
@@ -184,14 +187,15 @@ namespace MoneyFox.Business.ViewModels
         {
             Title = await accountService.GetAccountName(AccountId);
 
-            BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId, logProvider, navigationService);
             ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
                                                                      settingsManager,
                                                                      dialogService,
                                                                      BalanceViewModel,
-                                                                     navigationService,
                                                                      messenger,
-                                                                     AccountId);
+                                                                     AccountId,
+                                                                     logProvider,
+                                                                     navigationService);
         }
 
         /// <inheritdoc />

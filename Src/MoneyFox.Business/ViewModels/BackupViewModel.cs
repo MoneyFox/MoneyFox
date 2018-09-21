@@ -7,6 +7,8 @@ using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
@@ -41,7 +43,9 @@ namespace MoneyFox.Business.ViewModels
         public BackupViewModel(IBackupManager backupManager,
                                IDialogService dialogService,
                                IConnectivity connectivity,
-                               ISettingsManager settingsManager)
+                               ISettingsManager settingsManager,
+                               IMvxLogProvider logProvider,
+                               IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.backupManager = backupManager;
             this.dialogService = dialogService;

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels.Statistic;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -12,7 +13,8 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-        public MainViewModel(IMvxNavigationService navigationService)
+        public MainViewModel(IMvxLogProvider logProvider,
+                        IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.navigationService = navigationService;
         }

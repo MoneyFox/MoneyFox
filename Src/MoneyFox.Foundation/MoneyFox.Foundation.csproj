@@ -23,8 +23,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.9.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.9.0" />
-    <PackageReference Include="Microsoft.Graph" Version="1.10.0" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.1.2" />
+    <PackageReference Include="Microsoft.Graph" Version="1.11.0" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.2.0" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
   </ItemGroup>
 

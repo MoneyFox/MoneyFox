@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {

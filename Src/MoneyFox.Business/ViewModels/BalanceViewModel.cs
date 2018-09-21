@@ -2,6 +2,8 @@
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -18,7 +20,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Contstructor
         /// </summary>
-        public BalanceViewModel(IBalanceCalculationManager balanceCalculationManager)
+        public BalanceViewModel(IBalanceCalculationManager balanceCalculationManager,
+                                IMvxLogProvider logProvider,
+                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.balanceCalculationManager = balanceCalculationManager;
         }

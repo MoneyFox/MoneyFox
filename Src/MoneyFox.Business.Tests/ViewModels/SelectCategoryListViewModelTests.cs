@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
@@ -27,14 +30,15 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationMock = new Mock<IMvxNavigationService>();
             navigationMock
-                .Setup(x => x.Close(It.IsAny<IMvxViewModel>()))
+                .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
                 .Callback((IMvxViewModel vm) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
-                new Mock<IDialogService>().Object,
-                messengerMock.Object,
-                navigationMock.Object );
+                                                            new Mock<IDialogService>().Object,
+                                                            messengerMock.Object,
+                                                            new Mock<IMvxLogProvider>().Object,
+                                                            navigationMock.Object);
 
             var testCategory = new CategoryViewModel(new Category());
 
@@ -54,13 +58,14 @@ namespace MoneyFox.Business.Tests.ViewModels
             bool closeWasCalled = false;
             var navigationMock = new Mock<IMvxNavigationService>();
             navigationMock
-                .Setup(x => x.Close(It.IsAny<IMvxViewModel>()))
+                .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
                 .Callback((IMvxViewModel vm) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
                 new Mock<IDialogService>().Object,
                 new Mock<IMvxMessenger>().Object,
+                new Mock<IMvxLogProvider>().Object,
                 navigationMock.Object );
 
             // Act

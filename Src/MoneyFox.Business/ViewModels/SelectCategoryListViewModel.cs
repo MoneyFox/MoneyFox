@@ -2,6 +2,7 @@
 using MoneyFox.Business.Messages;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
@@ -32,8 +33,8 @@ namespace MoneyFox.Business.ViewModels
         public SelectCategoryListViewModel(ICategoryService categoryService,
                                            IDialogService dialogService,
                                            IMvxMessenger messenger,
-                                           IMvxNavigationService navigationService)
-            : base(categoryService, dialogService, navigationService)
+                                           IMvxLogProvider logProvider,
+                                           IMvxNavigationService navigationService) : base(categoryService, dialogService, logProvider, navigationService)
         {
             this.messenger = messenger;
         }

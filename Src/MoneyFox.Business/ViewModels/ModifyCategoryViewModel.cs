@@ -7,7 +7,7 @@ using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -57,8 +57,9 @@ namespace MoneyFox.Business.ViewModels
         public ModifyCategoryViewModel(ICategoryService categoryService, 
                                        IDialogService dialogService,
                                        ISettingsManager settingsManager,
-                                       IBackupManager backupManager, 
-                                       IMvxNavigationService navigationService)
+                                       IBackupManager backupManager,
+                                       IMvxLogProvider logProvider,
+                                       IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.categoryService = categoryService;
             this.dialogService = dialogService;

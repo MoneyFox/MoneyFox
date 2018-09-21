@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Tests;
 using Plugin.Connectivity.Abstractions;
 using Should;
@@ -31,7 +33,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object,
+                                         settingsManagerMock.Object,
+                                         new Mock<IMvxLogProvider>().Object,
+                                         new Mock<IMvxNavigationService>().Object);
             await vm.Initialize();
 
             //assert
@@ -57,7 +62,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object,
+                                         settingsManagerMock.Object,
+                                         new Mock<IMvxLogProvider>().Object,
+                                         new Mock<IMvxNavigationService>().Object);
             await vm.Initialize();
 
             //assert
@@ -82,7 +90,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManagerSetup.Setup(x => x.GetBackupDate()).Returns(Task.FromResult(returnDate));
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object,
+                                         settingsManagerMock.Object,
+                                         new Mock<IMvxLogProvider>().Object,
+                                         new Mock<IMvxNavigationService>().Object);
             await vm.Initialize();
 
             //assert
@@ -107,7 +118,10 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManagerSetup.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true).Returns(Task.CompletedTask);
 
             //execute
-            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object, settingsManagerMock.Object);
+            var vm = new BackupViewModel(backupManagerSetup.Object, null, connectivitySetup.Object,
+                                         settingsManagerMock.Object,
+                                         new Mock<IMvxLogProvider>().Object,
+                                         new Mock<IMvxNavigationService>().Object);
             vm.LogoutCommand.Execute();
 
             //assert

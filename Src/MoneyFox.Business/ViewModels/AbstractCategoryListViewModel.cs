@@ -9,6 +9,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -18,6 +19,7 @@ namespace MoneyFox.Business.ViewModels
         protected readonly ICategoryService CategoryService;
         protected readonly IDialogService DialogService;
         protected readonly IMvxNavigationService NavigationService;
+        protected readonly IMvxLogProvider LogProvider;
         
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
@@ -28,11 +30,13 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         protected AbstractCategoryListViewModel(ICategoryService categoryService,
-           IDialogService dialogService, 
-           IMvxNavigationService navigationService)
+                                                IDialogService dialogService,
+                                                IMvxLogProvider logProvider,
+                                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             CategoryService = categoryService;
             DialogService = dialogService;
+            LogProvider = logProvider;
             this.NavigationService = navigationService;
         }
 

@@ -1,15 +1,16 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel
+    public class PaymentViewModel : MvxViewModel
     {
         /// <summary>
         ///     Default constructor. Will create a new <see cref="Payment"/>

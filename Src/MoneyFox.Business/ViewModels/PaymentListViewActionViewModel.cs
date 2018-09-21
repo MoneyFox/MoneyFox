@@ -8,6 +8,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
@@ -35,9 +36,10 @@ namespace MoneyFox.Business.ViewModels
                                               ISettingsManager settingsManager,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
-                                              IMvxNavigationService navigationService,
                                               IMvxMessenger messenger,
-                                              int accountId)
+                                              int accountId,
+                                              IMvxLogProvider logProvider,
+                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.accountService = accountService;
             this.settingsManager = settingsManager;

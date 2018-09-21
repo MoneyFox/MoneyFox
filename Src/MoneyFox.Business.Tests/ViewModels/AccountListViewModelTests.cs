@@ -6,6 +6,7 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Tests;
 using Should;
@@ -40,10 +41,11 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(true));
 
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
-                balanceCalculationManager.Object,
-                new Mock<ISettingsManager>().Object,
-                dialogServiceSetup.Object, 
-                new Mock<IMvxNavigationService>().Object);
+                                                     balanceCalculationManager.Object,
+                                                     new Mock<ISettingsManager>().Object,
+                                                     dialogServiceSetup.Object,
+                                                     new Mock<IMvxLogProvider>().Object,
+                                                     new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
@@ -65,10 +67,11 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(false));
 
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
-                balanceCalculationManager.Object,
-                new Mock<ISettingsManager>().Object,
-                dialogServiceSetup.Object,
-                new Mock<IMvxNavigationService>().Object);
+                                                     balanceCalculationManager.Object,
+                                                     new Mock<ISettingsManager>().Object,
+                                                     dialogServiceSetup.Object,
+                                                     new Mock<IMvxLogProvider>().Object,
+                                                     new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel(new Account {Data = {Id = 3}}));
@@ -91,10 +94,11 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Returns(Task.FromResult(true));
 
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
-                balanceCalculationManager.Object,
-                new Mock<ISettingsManager>().Object,
-                dialogServiceSetup.Object, 
-                new Mock<IMvxNavigationService>().Object);
+                                                     balanceCalculationManager.Object,
+                                                     new Mock<ISettingsManager>().Object,
+                                                     dialogServiceSetup.Object,
+                                                     new Mock<IMvxLogProvider>().Object,
+                                                     new Mock<IMvxNavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(null);
@@ -113,10 +117,11 @@ namespace MoneyFox.Business.Tests.ViewModels
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
 
             var viewModel = new AccountListViewModel(accountServiceMock.Object,
-                balanceCalculationManager.Object,
-                new Mock<ISettingsManager>().Object,
-                new Mock<IDialogService>().Object, 
-                new Mock<IMvxNavigationService>().Object);
+                                                     balanceCalculationManager.Object,
+                                                     new Mock<ISettingsManager>().Object,
+                                                     new Mock<IDialogService>().Object,
+                                                     new Mock<IMvxLogProvider>().Object,
+                                                     new Mock<IMvxNavigationService>().Object);
 
             // Act
             await viewModel.Initialize();

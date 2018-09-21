@@ -1,12 +1,17 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using MoneyFox.Business.Helpers;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeCategoryListViewModel : BaseViewModel, ICategoryListViewModel
+    public class DesignTimeCategoryListViewModel : ICategoryListViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList =>
             new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>
             {

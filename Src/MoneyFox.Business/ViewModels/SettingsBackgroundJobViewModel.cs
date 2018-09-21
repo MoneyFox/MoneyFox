@@ -1,4 +1,6 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -24,7 +26,10 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public SettingsBackgroundJobViewModel(ISettingsManager settingsManager, IBackgroundTaskManager backgroundTaskManager)
+        public SettingsBackgroundJobViewModel(ISettingsManager settingsManager,
+                                              IBackgroundTaskManager backgroundTaskManager,
+                                              IMvxLogProvider logProvider,
+                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsManager = settingsManager;
             this.backgroundTaskManager = backgroundTaskManager;

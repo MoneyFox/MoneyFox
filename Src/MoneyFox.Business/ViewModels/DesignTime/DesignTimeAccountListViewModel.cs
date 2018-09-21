@@ -1,15 +1,19 @@
-﻿using MoneyFox.Business.ViewModels.Interfaces;
+﻿using System.Globalization;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeAccountListViewModel : BaseViewModel, IAccountListViewModel
+    public class DesignTimeAccountListViewModel : MvxViewModel, IAccountListViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts => new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>
         {
             new AlphaGroupListGroup<AccountViewModel>("Included")

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using SkiaSharp;
@@ -21,8 +23,13 @@ namespace MoneyFox.Business.ViewModels.Statistic
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
-        public StatisticCashFlowViewModel(IMvxMessenger messenger, CashFlowDataProvider cashFlowDataProvider, ISettingsManager settingsManager, IDialogService dialogService) 
-            : base(messenger, settingsManager)
+        public StatisticCashFlowViewModel(IMvxMessenger messenger, 
+                                          CashFlowDataProvider cashFlowDataProvider,
+                                          ISettingsManager settingsManager, 
+                                          IDialogService dialogService,
+                                          IMvxNavigationService navigationService, 
+                                          IMvxLogProvider logProvider) 
+            : base(messenger, settingsManager, logProvider, navigationService)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
             this.dialogService = dialogService;
