@@ -9,7 +9,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class SettingsShortcutsViewModel : BaseViewModel
+    public class SettingsShortcutsViewModel : BaseViewModel, ISettingsShortcutsViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly ITileManager tileManager;

@@ -29,6 +29,11 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         /// <inheritdoc />
         public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
 
+        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
+        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
+        public ISettingsSecurityViewModel SettingsSecurityViewModel { get; }
+        public ISettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
+
         public LocalizedResources Resources { get; }
     }
 }

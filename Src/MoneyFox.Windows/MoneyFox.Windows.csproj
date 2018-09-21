@@ -201,6 +201,9 @@
     <Compile Include="Views\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
+      <DependentUpon>AboutUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -414,6 +417,10 @@
     <Page Include="Views\StatisticSelectorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\AboutUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>

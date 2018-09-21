@@ -15,7 +15,7 @@
                     OpenPaneLength="280"
                     CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
-                    IsSettingsVisible="False"  >
+                    IsSettingsVisible="True"  >
 
             <NavigationView.MenuItems>
 

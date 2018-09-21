@@ -4,7 +4,12 @@ using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsPersonalizationViewModel : BaseViewModel
+    public interface ISettingsPersonalizationViewModel
+    {
+        int SelectedIndex { get; set; }
+    }
+
+    public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
     {
         private readonly ISettingsManager settingsManager;
 

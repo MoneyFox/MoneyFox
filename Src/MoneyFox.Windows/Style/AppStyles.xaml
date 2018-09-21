@@ -73,4 +73,8 @@
                   TintColor="{ThemeResource SystemAccentColor}" 
                   TintOpacity=".6"
                   FallbackColor="{ThemeResource SystemAccentColor}"/>
+    
+    <!--Navigation View-->
+    <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
+                     Color="{StaticResource FoxOrange}" />
 </ResourceDictionary>
