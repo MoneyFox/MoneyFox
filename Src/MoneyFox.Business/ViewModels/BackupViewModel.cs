@@ -188,7 +188,7 @@ namespace MoneyFox.Business.ViewModels
                 await backupManager.Login();
                 settingsManager.IsLoggedInToBackupService = true;
                 // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsLoggedIn));
+                await RaisePropertyChanged(nameof(IsLoggedIn));
             }
             catch (BackupAuthenticationFailedException)
             {
@@ -210,7 +210,7 @@ namespace MoneyFox.Business.ViewModels
             await backupManager.Logout();
             settingsManager.IsLoggedInToBackupService = false;
             // ReSharper disable once ExplicitCallerInfoArgument
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            await RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
         private async Task CreateBackup()

@@ -18,8 +18,6 @@ namespace MoneyFox.Business.ViewModels
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IDialogService DialogService;
-        protected readonly IMvxNavigationService NavigationService;
-        protected readonly IMvxLogProvider LogProvider;
         
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
@@ -36,8 +34,6 @@ namespace MoneyFox.Business.ViewModels
         {
             CategoryService = categoryService;
             DialogService = dialogService;
-            LogProvider = logProvider;
-            this.NavigationService = navigationService;
         }
 
         /// <summary>

@@ -15,7 +15,13 @@ namespace MoneyFox.Windows.Views
 
         private async void SetDate(object sender, RoutedEventArgs e)
         {
-            await new SelectDateRangeDialog { DataContext = Mvx.Resolve<SelectDateRangeDialogViewModel>() }.ShowAsync();
+            if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
+            {
+                await new SelectDateRangeDialog
+                {
+                    DataContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
+                }.ShowAsync();
+            }
         }
     }
 }

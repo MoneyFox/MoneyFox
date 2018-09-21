@@ -16,9 +16,9 @@ namespace MoneyFox
     {
         public static void RegisterDependencies()
         {
-            Mvx.ConstructAndRegisterSingleton<IAmbientDbContextLocator, AmbientDbContextLocator>();
-            Mvx.ConstructAndRegisterSingleton<IDbContextScopeFactory, DbContextScopeFactory>();
-            Mvx.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
+            Mvx.IoCProvider.ConstructAndRegisterSingleton<IAmbientDbContextLocator, AmbientDbContextLocator>();
+            Mvx.IoCProvider.ConstructAndRegisterSingleton<IDbContextScopeFactory, DbContextScopeFactory>();
+            Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
 
             typeof(OneDriveService).Assembly.CreatableTypes()
                                   .EndingWith("Service")
@@ -35,7 +35,7 @@ namespace MoneyFox
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 
-            Mvx.RegisterType(() => new Session(Mvx.Resolve<ISettingsManager>()));
+            Mvx.IoCProvider.RegisterType(() => new Session(Mvx.IoCProvider.Resolve<ISettingsManager>()));
 
             typeof(CashFlowDataProvider).Assembly.CreatableTypes()
                                  .EndingWith("Provider")

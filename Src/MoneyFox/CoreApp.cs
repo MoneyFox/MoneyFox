@@ -29,7 +29,9 @@ namespace MoneyFox
                 await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
 
-            if (Mvx.Resolve<Session>().ValidateSession())
+            if(!Mvx.IoCProvider.CanResolve<Session>()) return;
+
+            if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
             {
                 if (CurrentPlatform == AppPlatform.UWP)
                 {

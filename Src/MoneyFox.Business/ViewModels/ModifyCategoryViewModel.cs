@@ -45,8 +45,6 @@ namespace MoneyFox.Business.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
 
-        protected readonly IMvxNavigationService NavigationService;
-
         private bool isEdit;
 
         private CategoryViewModel selectedCategory;
@@ -65,7 +63,6 @@ namespace MoneyFox.Business.ViewModels
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
-            this.NavigationService = navigationService;
         }
 
         #region Commands

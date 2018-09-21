@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
-using Cheesebaron.MvxPlugins.Settings.WindowsUWP;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
