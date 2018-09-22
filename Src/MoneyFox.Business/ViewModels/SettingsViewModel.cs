@@ -42,7 +42,8 @@ namespace MoneyFox.Business.ViewModels
                                  IAboutViewModel aboutViewModel, 
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
                                  ISettingsPersonalizationViewModel settingsPersonalizationViewModel,
-                                 ISettingsSecurityViewModel settingsSecurityViewModel)
+                                 ISettingsSecurityViewModel settingsSecurityViewModel,
+                                 IMvxLogProvider logProvider) : base(logProvider, navigationService)
         {
             this.navigationService = navigationService;
 
