@@ -33,7 +33,6 @@ namespace MoneyFox.Windows
             Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
             Mvx.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
             Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
             Mvx.LazyConstructAndRegisterSingleton<ISettings, Settings>();

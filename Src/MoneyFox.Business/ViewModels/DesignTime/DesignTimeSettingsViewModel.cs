@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.Helpers;
+﻿using System.Globalization;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
@@ -9,6 +10,11 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 {
     public class DesignTimeSettingsViewModel : ISettingsViewModel
     {
+        public DesignTimeSettingsViewModel()
+        {
+            Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+        }
+
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
         {
@@ -32,7 +38,6 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
         public ISettingsSecurityViewModel SettingsSecurityViewModel { get; }
-        public ISettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
 
         public LocalizedResources Resources { get; }
     }

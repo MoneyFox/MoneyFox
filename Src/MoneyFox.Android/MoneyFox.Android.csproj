@@ -152,7 +152,6 @@
     <Compile Include="Src\PlayStoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Manager\TileManager.cs" />
     <Compile Include="OneDriveAuth\DroidAuthenticationProvider.cs" />
     <Compile Include="OneDriveAuth\OneDriveAuthenticator.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

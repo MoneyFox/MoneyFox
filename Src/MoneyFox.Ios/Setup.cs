@@ -18,7 +18,6 @@ namespace MoneyFox.iOS
             Mvx.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            Mvx.LazyConstructAndRegisterSingleton<ITileManager, TileManager>();
             Mvx.LazyConstructAndRegisterSingleton<IAppInformation, AppInformation>();
             Mvx.LazyConstructAndRegisterSingleton<IStoreOperations, StoreOperations>();
             Mvx.LazyConstructAndRegisterSingleton<ISettings, Settings>();

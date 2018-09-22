@@ -31,10 +31,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemSeparator/>
-
                 <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
                     <NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
@@ -46,19 +42,6 @@
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
-                <NavigationViewItem Content="{Binding Resources[SettingsTitle]}" Tag="Settings">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="Cog" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
-                <NavigationViewItem Content="{Binding Resources[AboutTitle]}" Tag="About">
-                    <NavigationViewItem.Icon>
-                        <uwp:FontAwesome Icon="InfoCircle" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
             </NavigationView.MenuItems>
 
             <NavigationView.HeaderTemplate>

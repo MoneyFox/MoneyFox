@@ -28,7 +28,6 @@ namespace MoneyFox.Business.ViewModels
 
         ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
         ISettingsSecurityViewModel SettingsSecurityViewModel { get; }
-        ISettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
     }
 
     /// <summary>
@@ -42,8 +41,7 @@ namespace MoneyFox.Business.ViewModels
                                  IAboutViewModel aboutViewModel, 
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
                                  ISettingsPersonalizationViewModel settingsPersonalizationViewModel,
-                                 ISettingsSecurityViewModel settingsSecurityViewModel,
-                                 ISettingsShortcutsViewModel settingsShortcutsViewModel)
+                                 ISettingsSecurityViewModel settingsSecurityViewModel)
         {
             this.navigationService = navigationService;
 
@@ -51,7 +49,6 @@ namespace MoneyFox.Business.ViewModels
             BackgroundJobViewModel = settingsBackgroundJobViewModel;
             PersonalizationViewModel = settingsPersonalizationViewModel;
             SettingsSecurityViewModel = settingsSecurityViewModel;
-            SettingsShortcutsViewModel = settingsShortcutsViewModel;
         }
 
         public IAboutViewModel AboutViewModel { get; }
@@ -91,7 +88,6 @@ namespace MoneyFox.Business.ViewModels
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; set; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; set; }
         public ISettingsSecurityViewModel SettingsSecurityViewModel { get; set; }
-        public ISettingsShortcutsViewModel SettingsShortcutsViewModel { get; set; }
 
         private async Task GoToSettings(SettingsSelectorType item)
         {
