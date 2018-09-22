@@ -3,6 +3,7 @@ using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -13,7 +14,9 @@ namespace MoneyFox.Business.ViewModels
         private readonly IAccountService accountService;
         private readonly IMvxNavigationService navigationService;
 
-        public AccountListViewActionViewModel(IAccountService accountService, IMvxNavigationService navigationService)
+        public AccountListViewActionViewModel(IAccountService accountService,
+                                              IMvxLogProvider logProvider,
+                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.accountService = accountService;
             this.navigationService = navigationService;

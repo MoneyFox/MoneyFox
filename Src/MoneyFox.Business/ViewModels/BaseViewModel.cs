@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Resources;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
@@ -10,12 +12,12 @@ namespace MoneyFox.Business.ViewModels
         LocalizedResources Resources { get; }
     }
 
-    public abstract class BaseViewModel : MvxViewModel, IBaseViewModel
+    public abstract class BaseViewModel : MvxNavigationViewModel, IBaseViewModel
     {
         /// <summary>
         ///      Constructor
         /// </summary>
-        protected BaseViewModel()
+        protected BaseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
@@ -29,5 +31,9 @@ namespace MoneyFox.Business.ViewModels
     public abstract class BaseViewModel<TParameter> : BaseViewModel, IMvxViewModel<TParameter>
     {
         public abstract void Prepare(TParameter parameter);
+
+        protected BaseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        {
+        }
     }
 }

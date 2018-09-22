@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.Tests.Fixtures;
@@ -5,6 +6,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using Moq;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Should;
@@ -23,12 +25,12 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
-                .Returns(Task.CompletedTask);
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
+                .ReturnsAsync(true);
             
             // Act
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxLogProvider>().Object, navigationService.Object)
                 .GoToAddIncomeCommand.Execute();
 
             // Assert
@@ -45,12 +47,12 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
-                .Returns(Task.CompletedTask);
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
+                .ReturnsAsync(true);
             
             // Act
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxLogProvider>().Object, navigationService.Object)
                 .GoToAddExpenseCommand.Execute();
 
             // Assert
@@ -67,12 +69,13 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
-                .Returns(Task.CompletedTask);
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
+                .ReturnsAsync(true);
             
             // Act
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxLogProvider>().Object, navigationService.Object)
                 .GoToAddTransferCommand.Execute();
 
             // Assert
@@ -89,12 +92,13 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
-                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
-                .Returns(Task.CompletedTask);
+                .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                           It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
+                .ReturnsAsync(true);
             
             // Act
-            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, navigationService.Object)
+            new AccountListViewActionViewModel(new Mock<IAccountService>().Object, new Mock<IMvxLogProvider>().Object, navigationService.Object)
                 .GoToAddTransferCommand.Execute();
 
             // Assert
@@ -110,7 +114,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -120,7 +124,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsAddIncomeAvailable.ShouldBeTrue();
         }
 
         [Fact]
@@ -130,7 +134,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -140,7 +144,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsAddExpenseAvailable.ShouldBeTrue();
         }
 
         [Fact]
@@ -150,7 +154,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(0);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -160,7 +164,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(1);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeFalse();
         }
 
         [Fact]
@@ -170,7 +174,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             accountServiceMock.Setup(x => x.GetAccountCount())
                 .ReturnsAsync(2);
 
-            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeTrue();
+            new AccountListViewActionViewModel(accountServiceMock.Object, new Mock<IMvxLogProvider>().Object, new Mock<IMvxNavigationService>().Object).IsTransferAvailable.ShouldBeTrue();
         }
     }
 }

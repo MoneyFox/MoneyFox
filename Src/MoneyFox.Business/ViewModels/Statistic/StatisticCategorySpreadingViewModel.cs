@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
@@ -14,7 +16,6 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private readonly IDialogService dialogService;
         private readonly CategorySpreadingDataProvider spreadingDataProvider;
         private DonutChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
@@ -35,12 +36,12 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// </summary>
         public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
                                                    IMvxMessenger messenger,
-                                                   ISettingsManager settingsManager, 
-                                                   IDialogService dialogService)
-            : base(messenger, settingsManager)
+                                                   ISettingsManager settingsManager,
+                                                   IMvxLogProvider logProvider,
+                                                   IMvxNavigationService navigationService)
+            : base(messenger, settingsManager, logProvider, navigationService)
         {
             this.spreadingDataProvider = spreadingDataProvider;
-            this.dialogService = dialogService;
         }
 
         /// <summary>

@@ -2,6 +2,8 @@
 using MoneyFox.Business.Extensions;
 using MoneyFox.Business.Messages;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
@@ -21,7 +23,9 @@ namespace MoneyFox.Business.ViewModels
         private DateTime startDate;
         private DateTime endDate;
 
-        public SelectDateRangeDialogViewModel(IMvxMessenger messenger)
+        public SelectDateRangeDialogViewModel(IMvxMessenger messenger,
+                                              IMvxLogProvider logProvider,
+                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.messenger = messenger;
             StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);

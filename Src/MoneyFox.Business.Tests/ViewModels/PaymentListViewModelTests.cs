@@ -5,6 +5,7 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.Tests;
@@ -23,6 +24,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         private readonly Mock<IBackupManager> backupManager;
         private readonly Mock<IMvxNavigationService> navigationService;
         private readonly Mock<IMvxMessenger> messenger;
+        private readonly Mock<IMvxLogProvider> logProvider;
 
         public PaymentListViewModelTests()
         {
@@ -34,6 +36,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             backupManager = new Mock<IBackupManager>();
             navigationService = new Mock<IMvxNavigationService>();
             messenger = new Mock<IMvxMessenger>();
+            logProvider = new Mock<IMvxLogProvider>();
 
             accountService.SetupAllProperties();
             paymentService.SetupAllProperties();
@@ -55,7 +58,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
                                               navigationService.Object,
-                                              messenger.Object);
+                                              messenger.Object,
+                                              logProvider.Object);
 
             // Act
             vm.Prepare(new PaymentListParameter(42));
@@ -81,7 +85,8 @@ namespace MoneyFox.Business.Tests.ViewModels
                                               balanceCalculatorManager.Object,
                                               backupManager.Object,
                                               navigationService.Object,
-                                              messenger.Object);
+                                              messenger.Object,
+                                              logProvider.Object);
 
             // Act
             vm.Prepare(new PaymentListParameter());

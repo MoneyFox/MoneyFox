@@ -1,8 +1,9 @@
 using MoneyFox.DataAccess.Pocos;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class CategoryViewModel : BaseViewModel
+    public class CategoryViewModel : MvxViewModel
     {
         public CategoryViewModel(Category category)
         {

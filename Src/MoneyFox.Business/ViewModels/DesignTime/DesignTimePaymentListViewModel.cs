@@ -1,13 +1,18 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimePaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public IBalanceViewModel BalanceViewModel { get; }
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
         public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }

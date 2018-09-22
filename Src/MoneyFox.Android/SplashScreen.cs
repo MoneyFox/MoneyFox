@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -25,10 +26,10 @@ namespace MoneyFox.Droid
                              DatabaseConstants.DB_NAME);
         }
 
-        protected override void RunAppStart(Bundle bundle)
+        protected override Task RunAppStartAsync(Bundle bundle)
         {
             StartActivity(typeof(MainActivity));
-            base.RunAppStart(bundle);
+            return Task.CompletedTask;
         }
     }
 }

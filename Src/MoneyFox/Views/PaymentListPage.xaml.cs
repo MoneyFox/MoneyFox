@@ -40,7 +40,13 @@ namespace MoneyFox.Views
 
         private async void OpenDialog()
         {
-            await Navigation.PushPopupAsync(new FilterDialog {BindingContext = Mvx.Resolve<SelectFilterDialogViewModel>()});
+            if (Mvx.IoCProvider.CanResolve<SelectFilterDialogViewModel>())
+            {
+                await Navigation.PushPopupAsync(new FilterDialog
+                {
+                    BindingContext = Mvx.IoCProvider.Resolve<SelectFilterDialogViewModel>()
+                });
+            }
         }
 
         protected override void OnAppearing()
