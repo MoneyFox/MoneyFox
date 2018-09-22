@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
@@ -17,39 +16,39 @@ namespace MoneyFox.Business.Tests.ViewModels
 {
     public class SelectCategoryListViewModelTests
     {
-        [Fact]
-        public async void ItemClick()
-        {
-            // Arrange
-            CategorySelectedMessage passedMessage = null;
-            bool closeWasCalled = false;
+        //[Fact]
+        //public async void ItemClick()
+        //{
+        //    // Arrange
+        //    CategorySelectedMessage passedMessage = null;
+        //    bool closeWasCalled = false;
 
-            var messengerMock = new Mock<IMvxMessenger>();
-            messengerMock.Setup(x => x.Publish(It.IsAny<CategorySelectedMessage>()))
-                .Callback((CategorySelectedMessage message) => passedMessage = message);
+        //    var messengerMock = new Mock<IMvxMessenger>();
+        //    messengerMock.Setup(x => x.Publish(It.IsAny<CategorySelectedMessage>()))
+        //        .Callback((CategorySelectedMessage message) => passedMessage = message);
 
-            var navigationMock = new Mock<IMvxNavigationService>();
-            navigationMock
-                .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
-                .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
-                .Returns(Task.FromResult(true));
+        //    var navigationMock = new Mock<IMvxNavigationService>();
+        //    navigationMock
+        //        .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
+        //        .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
+        //        .Returns(Task.FromResult(true));
 
-            var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
-                                                            new Mock<IDialogService>().Object,
-                                                            messengerMock.Object,
-                                                            new Mock<IMvxLogProvider>().Object,
-                                                            navigationMock.Object);
+        //    var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
+        //                                                    new Mock<IDialogService>().Object,
+        //                                                    messengerMock.Object,
+        //                                                    new Mock<IMvxLogProvider>().Object,
+        //                                                    navigationMock.Object);
 
-            var testCategory = new CategoryViewModel(new Category());
+        //    var testCategory = new CategoryViewModel(new Category());
 
-            // Act
-            await viewModel.ItemClickCommand.ExecuteAsync(testCategory);
+        //    // Act
+        //    await viewModel.ItemClickCommand.ExecuteAsync(testCategory);
 
-            // Assert
-            Assert.NotNull(passedMessage);
-            Assert.Equal(testCategory, passedMessage.SelectedCategory);
-            Assert.True(closeWasCalled);
-        }
+        //    // Assert
+        //    Assert.NotNull(passedMessage);
+        //    Assert.Equal(testCategory, passedMessage.SelectedCategory);
+        //    Assert.True(closeWasCalled);
+        //}
 
         [Fact]
         public async void Close()

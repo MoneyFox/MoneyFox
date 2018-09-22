@@ -77,7 +77,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel>ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
