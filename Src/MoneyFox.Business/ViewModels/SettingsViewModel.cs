@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
@@ -22,39 +21,39 @@ namespace MoneyFox.Business.ViewModels
         ///     Used in Xamarin Forms.
         /// </summary>
         MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
+
+        /// <summary>
+        ///     View Model for the Background job part.
+        /// </summary>
+        ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
+
+        ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
+        ISettingsSecurityViewModel SettingsSecurityViewModel { get; }
     }
 
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class 
-        SettingsViewModel : BaseViewModel, ISettingsViewModel
+    public class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
         private readonly IMvxNavigationService navigationService;
 
-        public SettingsViewModel(ISettingsManager settingsManager,
-                                 IPasswordStorage passwordStorage,
-                                 ITileManager tileManager,
-                                 IBackgroundTaskManager backgroundTaskManager,
-                                 IDialogService dialogService,
-                                 IMvxLogProvider logProvider,
-                                 IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SettingsViewModel(IMvxNavigationService navigationService,
+                                 IAboutViewModel aboutViewModel, 
+                                 ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
+                                 ISettingsPersonalizationViewModel settingsPersonalizationViewModel,
+                                 ISettingsSecurityViewModel settingsSecurityViewModel,
+                                 IMvxLogProvider logProvider) : base(logProvider, navigationService)
         {
             this.navigationService = navigationService;
 
-            SettingsBackgroundJobViewModel = new SettingsBackgroundJobViewModel(settingsManager, backgroundTaskManager, logProvider, navigationService);
-            SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService, logProvider, navigationService);
-            SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager, logProvider, navigationService);
-            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager, logProvider, navigationService);
+            AboutViewModel = aboutViewModel;
+            BackgroundJobViewModel = settingsBackgroundJobViewModel;
+            PersonalizationViewModel = settingsPersonalizationViewModel;
+            SettingsSecurityViewModel = settingsSecurityViewModel;
         }
 
-        public SettingsBackgroundJobViewModel SettingsBackgroundJobViewModel { get; }
-
-        public SettingsSecurityViewModel SettingsSecurityViewModel { get; }
-
-        public SettingsShortcutsViewModel SettingsShortcutsViewModel { get; }
-
-        public SettingsPersonalizationViewModel SettingsPersonalizationViewModel { get; }
+        public IAboutViewModel AboutViewModel { get; }
 
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
@@ -87,6 +86,10 @@ namespace MoneyFox.Business.ViewModels
 
         /// <inheritdoc />
         public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand => new MvxAsyncCommand<SettingsSelectorType>(GoToSettings);
+
+        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; set; }
+        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; set; }
+        public ISettingsSecurityViewModel SettingsSecurityViewModel { get; set; }
 
         private async Task GoToSettings(SettingsSelectorType item)
         {

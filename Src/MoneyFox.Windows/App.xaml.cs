@@ -112,24 +112,6 @@ namespace MoneyFox.Windows
 
                 await CallRateReminder();
             }
-
-            //When jumplist is selected navigate to appropriate tile
-            if (Mvx.IoCProvider.CanResolve<ITileManager>())
-            {
-                var tileHelper = Mvx.IoCProvider.Resolve<ITileManager>();
-                switch (e.Arguments)
-                {
-                    case Constants.ADD_INCOME_TILE_ID:
-                        await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
-                        break;
-                    case Constants.ADD_EXPENSE_TILE_ID:
-                        await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-                        break;
-                    case Constants.ADD_TRANSFER_TILE_ID:
-                        await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-                        break;
-                }
-            }
         }
 
         protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)

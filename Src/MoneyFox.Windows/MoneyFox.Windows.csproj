@@ -143,8 +143,6 @@
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
-    <Compile Include="Src\Tile.cs" />
-    <Compile Include="Src\TileManager.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
@@ -201,6 +199,9 @@
     <Compile Include="Views\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
+      <DependentUpon>AboutUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -209,18 +210,6 @@
     </Compile>
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\SettingsBackgroundJobUserControl.xaml.cs">
-      <DependentUpon>SettingsBackgroundJobUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\SettingsPersonalizationUserControl.xaml.cs">
-      <DependentUpon>SettingsPersonalizationUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\SettingsSecurityUserControl.xaml.cs">
-      <DependentUpon>SettingsSecurityUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\SettingsShortcutsUserControl.xaml.cs">
-      <DependentUpon>SettingsShortcutsUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +404,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\UserControls\AboutUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -424,22 +417,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\PaymentListUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SettingsBackgroundJobUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SettingsPersonalizationUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SettingsSecurityUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SettingsShortcutsUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

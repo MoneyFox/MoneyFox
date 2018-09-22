@@ -697,4 +697,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Background Job</value>
   </data>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
 </root>

@@ -1431,6 +1431,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Personalization.
+        /// </summary>
+        public static string PersonalizationTitle {
+            get {
+                return ResourceManager.GetString("PersonalizationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quarterly.
         /// </summary>
         public static string QuarterlyLabel {
@@ -1636,6 +1645,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string SettingsTitle {
             get {
                 return ResourceManager.GetString("SettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcuts.
+        /// </summary>
+        public static string ShortcutsTitle {
+            get {
+                return ResourceManager.GetString("ShortcutsTitle", resourceCulture);
             }
         }
         

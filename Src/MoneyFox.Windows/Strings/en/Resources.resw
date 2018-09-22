@@ -410,18 +410,6 @@ Tap to visit the Repository:</value>
   <data name="System.Content" xml:space="preserve">
     <value>System</value>
   </data>
-  <data name="SettingsHeaderBackup.Text" xml:space="preserve">
-    <value>Backup</value>
-  </data>
-  <data name="SettingsHeaderPersonalization.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="SettingsHeaderSecurity.Text" xml:space="preserve">
-    <value>Security</value>
-  </data>
-  <data name="SettingsHeaderTiles.Text" xml:space="preserve">
-    <value>Tiles</value>
-  </data>
   <data name="ClearedLabel.Content" xml:space="preserve">
     <value>Cleared</value>
   </data>
