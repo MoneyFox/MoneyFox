@@ -4,6 +4,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -36,14 +37,15 @@ namespace MoneyFox.Business.ViewModels
                                  ITileManager tileManager,
                                  IBackgroundTaskManager backgroundTaskManager,
                                  IDialogService dialogService,
-                                 IMvxNavigationService navigationService)
+                                 IMvxLogProvider logProvider,
+                                 IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.navigationService = navigationService;
 
-            SettingsBackgroundJobViewModel = new SettingsBackgroundJobViewModel(settingsManager, backgroundTaskManager);
-            SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService);
-            SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager);
-            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager);
+            SettingsBackgroundJobViewModel = new SettingsBackgroundJobViewModel(settingsManager, backgroundTaskManager, logProvider, navigationService);
+            SettingsSecurityViewModel = new SettingsSecurityViewModel(settingsManager, passwordStorage, dialogService, logProvider, navigationService);
+            SettingsShortcutsViewModel = new SettingsShortcutsViewModel(settingsManager, tileManager, logProvider, navigationService);
+            SettingsPersonalizationViewModel = new SettingsPersonalizationViewModel(settingsManager, logProvider, navigationService);
         }
 
         public SettingsBackgroundJobViewModel SettingsBackgroundJobViewModel { get; }

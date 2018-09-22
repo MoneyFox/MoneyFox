@@ -60,6 +60,8 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task SyncBackups(JobParameters args)
         {
+            if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
+
             try
             {
                 DataAccess.ApplicationContext.DbPath =
@@ -67,7 +69,7 @@ namespace MoneyFox.Droid.Jobs
                                  DatabaseConstants.DB_NAME);
 
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                                        Mvx.Resolve<IMvxFileStore>(),
+                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                                         new SettingsManager(new Settings()),
                                         new ConnectivityImplementation())
                     .DownloadBackup();
@@ -85,7 +87,9 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask(int interval)
         {
-            if (!Mvx.Resolve<ISettingsManager>().IsBackupAutouploadEnabled) return;
+            if(!Mvx.IoCProvider.CanResolve<ISettingsManager>()) return;
+
+            if (!Mvx.IoCProvider.Resolve<ISettingsManager>().IsBackupAutouploadEnabled) return;
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(

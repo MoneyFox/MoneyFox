@@ -16,8 +16,8 @@ namespace MoneyFox.Droid.Renderer {
             /* used only for helping ensure the renderer is not linked out */
         }
 
-        public FloatingActionButtonRenderer(Context context) : base(context) {
-            
+        public FloatingActionButtonRenderer(Context context) : base(context)
+        {
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<FloatingActionButton> e) {
@@ -47,7 +47,7 @@ namespace MoneyFox.Droid.Renderer {
 
 
             if (imageFile != null) {
-                fab.SetImageDrawable(Context.Resources.GetDrawable(imageFile));
+                fab.SetImageDrawable(Context.GetDrawable(imageFile));
             }
 
             fab.Click += Fab_Click;
@@ -77,7 +77,7 @@ namespace MoneyFox.Droid.Renderer {
 
 
                 if (imageFile != null) {
-                    fab.SetImageDrawable(Context.Resources.GetDrawable(imageFile));
+                    fab.SetImageDrawable(Context.GetDrawable(imageFile));
                 }
             }
 

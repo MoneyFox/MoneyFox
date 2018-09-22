@@ -1,6 +1,8 @@
 ﻿using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
@@ -17,7 +19,10 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
-        public SettingsShortcutsViewModel(ISettingsManager settingsManager, ITileManager tileManager)
+        public SettingsShortcutsViewModel(ISettingsManager settingsManager,
+                                          ITileManager tileManager,
+                                          IMvxLogProvider logProvider,
+                                          IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsManager = settingsManager;
             this.tileManager = tileManager;

@@ -29,7 +29,13 @@ namespace MoneyFox.Views
 
 	    private async void OpenDialog()
 	    {
-	        await Navigation.PushPopupAsync(new DateSelectionDialog { BindingContext = Mvx.Resolve<SelectDateRangeDialogViewModel>() });
-        }
+	        if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
+	        {
+	            await Navigation.PushPopupAsync(new DateSelectionDialog
+	            {
+	                BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
+	            });
+	        }
+	    }
     }
 }

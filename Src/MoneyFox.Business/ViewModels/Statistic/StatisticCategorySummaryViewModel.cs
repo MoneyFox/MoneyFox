@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 
@@ -24,7 +26,9 @@ namespace MoneyFox.Business.ViewModels.Statistic
         public StatisticCategorySummaryViewModel(CategorySummaryDataProvider categorySummaryDataDataProvider,
                                                  IMvxMessenger messenger,
                                                  ISettingsManager settingsManager, 
-                                                 IDialogService dialogService) : base(messenger, settingsManager)
+                                                 IDialogService dialogService,
+                                                 IMvxLogProvider logProvider,
+                                                 IMvxNavigationService navigationService) : base(messenger, settingsManager, logProvider, navigationService)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
             this.dialogService = dialogService;
@@ -43,7 +47,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         protected override async Task Load()
         {
             await Task.Run(async () => await LoadData());
-            RaisePropertyChanged(nameof(HasData));
+            await RaisePropertyChanged(nameof(HasData));
         }
 
         private async Task LoadData()

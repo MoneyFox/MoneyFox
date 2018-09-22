@@ -1,6 +1,6 @@
-﻿using MvvmCross.Localization;
-using MoneyFox.Foundation.Interfaces;
+﻿using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -16,7 +16,9 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public LoginViewModel(ISettingsManager settingsManager, IMvxNavigationService navigationService)
+        public LoginViewModel(ISettingsManager settingsManager,
+                              IMvxLogProvider logProvider,
+                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsManager = settingsManager;
             this.navigationService = navigationService;

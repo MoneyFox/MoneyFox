@@ -99,7 +99,7 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
-                mainView.ViewModel = Mvx.Resolve<MainViewModel>();
+                mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
                 (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
@@ -114,18 +114,21 @@ namespace MoneyFox.Windows
             }
 
             //When jumplist is selected navigate to appropriate tile
-            var tileHelper = Mvx.Resolve<ITileManager>();
-            switch (e.Arguments)
+            if (Mvx.IoCProvider.CanResolve<ITileManager>())
             {
-                case Constants.ADD_INCOME_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
-                    break;
-                case Constants.ADD_EXPENSE_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-                    break;
-                case Constants.ADD_TRANSFER_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-                    break;
+                var tileHelper = Mvx.IoCProvider.Resolve<ITileManager>();
+                switch (e.Arguments)
+                {
+                    case Constants.ADD_INCOME_TILE_ID:
+                        await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
+                        break;
+                    case Constants.ADD_EXPENSE_TILE_ID:
+                        await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
+                        break;
+                    case Constants.ADD_TRANSFER_TILE_ID:
+                        await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
+                        break;
+                }
             }
         }
 

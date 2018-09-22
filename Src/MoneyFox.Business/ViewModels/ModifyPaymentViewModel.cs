@@ -14,7 +14,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
@@ -156,12 +156,13 @@ namespace MoneyFox.Business.ViewModels
         ///     Default constructor
         /// </summary>
         public ModifyPaymentViewModel(IPaymentService paymentService,
-            IAccountService accountService,
-            IDialogService dialogService,
-            ISettingsManager settingsManager, 
-            IMvxMessenger messenger, 
-            IBackupManager backupManager, 
-            IMvxNavigationService navigationService)
+                                      IAccountService accountService,
+                                      IDialogService dialogService,
+                                      ISettingsManager settingsManager,
+                                      IMvxMessenger messenger,
+                                      IBackupManager backupManager,
+                                      IMvxLogProvider logProvider,
+                                      IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;

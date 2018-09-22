@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -18,9 +20,12 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListBalanceViewModel(IAccountService accountService, IBalanceCalculationManager balanceCalculationManager,
-            int accountId)
-            : base(balanceCalculationManager)
+        public PaymentListBalanceViewModel(IAccountService accountService,
+                                           IBalanceCalculationManager balanceCalculationManager,
+                                           int accountId,
+                                           IMvxLogProvider logProvider,
+                                           IMvxNavigationService navigationService) : base(
+            balanceCalculationManager, logProvider, navigationService)
         {
             this.accountService = accountService;
             this.balanceCalculationManager = balanceCalculationManager;

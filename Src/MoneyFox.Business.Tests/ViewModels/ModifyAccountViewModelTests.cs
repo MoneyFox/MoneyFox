@@ -11,6 +11,7 @@ using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using Moq;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using Should;
 using Xunit;
@@ -54,6 +55,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
@@ -130,6 +132,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
             {
                 SelectedAccount = account
@@ -162,6 +165,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        settingsManagerMock.Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
@@ -199,6 +203,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = false,
@@ -220,6 +225,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
                 {IsEdit = false};
 
@@ -237,6 +243,7 @@ namespace MoneyFox.Business.Tests.ViewModels
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IBackupManager>().Object,
                                                        new Mock<IDialogService>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
                                                        new Mock<IMvxNavigationService>().Object)
             {
                 IsEdit = true,

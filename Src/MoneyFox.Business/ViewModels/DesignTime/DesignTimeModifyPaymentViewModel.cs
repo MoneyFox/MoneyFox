@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
+    public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public bool IsEdit { get; } = false;
         public bool IsTransfer { get; } = false;
         public bool IsEndless { get; } = true;

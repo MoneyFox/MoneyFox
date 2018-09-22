@@ -1,7 +1,6 @@
-﻿using MoneyFox.Foundation.Groups;
+﻿using System.Collections.ObjectModel;
+using MoneyFox.Foundation.Groups;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.Interfaces
 {    
@@ -13,7 +12,7 @@ namespace MoneyFox.Business.ViewModels.Interfaces
         /// <summary>
         ///     All existing accounts
         /// </summary>
-        MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts { get; }
+        ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts { get; }
 
         /// <summary>
         ///     Indicates if there are accounts to display.

@@ -9,7 +9,7 @@ using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Localization;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -65,22 +65,25 @@ namespace MoneyFox.Business.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
+        private readonly IMvxLogProvider logProvider;
 
         private bool isEdit;
         private double amount;
         private AccountViewModel selectedAccount;
 
         public ModifyAccountViewModel(IAccountService accountService,
-            ISettingsManager settingsManager,
-            IBackupManager backupManager,
-            IDialogService dialogService, 
-            IMvxNavigationService navigationService)
+                                      ISettingsManager settingsManager,
+                                      IBackupManager backupManager,
+                                      IDialogService dialogService,
+                                      IMvxLogProvider logProvider,
+                                      IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.settingsManager = settingsManager;
             this.backupManager = backupManager;
             this.accountService = accountService;
+            this.logProvider = logProvider;
         }
 
         #region Properties

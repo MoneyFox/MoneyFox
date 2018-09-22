@@ -16,7 +16,9 @@ namespace MoneyFox.Droid
         {
             get
             {
-                var context = Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.ApplicationContext;
+                if (!Mvx.IoCProvider.CanResolve<IMvxAndroidCurrentTopActivity>()) return null;
+
+                var context = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.ApplicationContext;
 
                 //If file name is empty use defaults
                 if (string.IsNullOrEmpty(SETTINGS_FILE_NAME))

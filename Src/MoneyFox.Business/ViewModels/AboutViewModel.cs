@@ -2,6 +2,8 @@
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Email;
 using MvvmCross.Plugin.WebBrowser;
 
@@ -80,9 +82,11 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
         /// <param name="storeOperations">Instance of a <see cref="IStoreOperations" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
-            IMvxComposeEmailTask composeEmailTask,
-            IMvxWebBrowserTask webBrowserTask,
-            IStoreOperations storeOperations)
+                              IMvxComposeEmailTask composeEmailTask,
+                              IMvxWebBrowserTask webBrowserTask,
+                              IStoreOperations storeOperations,
+                              IMvxLogProvider logProvider,
+                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.appInformation = appInformation;
             this.composeEmailTask = composeEmailTask;

@@ -9,6 +9,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -17,7 +18,6 @@ namespace MoneyFox.Business.ViewModels
     {
         protected readonly ICategoryService CategoryService;
         protected readonly IDialogService DialogService;
-        protected readonly IMvxNavigationService NavigationService;
         
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
@@ -28,12 +28,12 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
         protected AbstractCategoryListViewModel(ICategoryService categoryService,
-           IDialogService dialogService, 
-           IMvxNavigationService navigationService)
+                                                IDialogService dialogService,
+                                                IMvxLogProvider logProvider,
+                                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             CategoryService = categoryService;
             DialogService = dialogService;
-            this.NavigationService = navigationService;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel>ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
+        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
