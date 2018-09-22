@@ -24,6 +24,11 @@ namespace MoneyFox.Business.Tests.ViewModels
 {
     public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
+        public ModifyPaymentViewModelTest()
+        {
+            base.Setup();
+        }
+
         [Theory]
         [InlineData(PaymentType.Income)]
         [InlineData(PaymentType.Expense)]
