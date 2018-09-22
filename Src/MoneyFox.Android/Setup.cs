@@ -37,8 +37,6 @@ namespace MoneyFox.Droid
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettings, Settings>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
-
-            DependencyRegistrator.RegisterDependencies();
         }
 
         protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)

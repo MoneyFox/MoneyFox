@@ -39,8 +39,6 @@ namespace MoneyFox.Windows
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettings, Settings>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
-
-            DependencyRegistrator.RegisterDependencies();
         }
 
         /// <inheritdoc />
