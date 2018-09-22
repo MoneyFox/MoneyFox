@@ -31,7 +31,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var navigationMock = new Mock<IMvxNavigationService>();
             navigationMock
                 .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
-                .Callback((IMvxViewModel vm) => closeWasCalled = true)
+                .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
@@ -59,7 +59,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var navigationMock = new Mock<IMvxNavigationService>();
             navigationMock
                 .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
-                .Callback((IMvxViewModel vm) => closeWasCalled = true)
+                .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,

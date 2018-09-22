@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.DataAccess.Entities;
@@ -14,7 +15,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts => new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>
+        public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts => new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>
         {
             new AlphaGroupListGroup<AccountViewModel>("Included")
             {

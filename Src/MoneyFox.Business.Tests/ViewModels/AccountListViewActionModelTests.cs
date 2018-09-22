@@ -26,7 +26,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
                 .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
                 .ReturnsAsync(true);
             
             // Act
@@ -48,7 +48,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             var navigationService = new Mock<IMvxNavigationService>();
             navigationService
                 .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
                 .ReturnsAsync(true);
             
             // Act
@@ -71,7 +71,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             navigationService
                 .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
                            It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
                 .ReturnsAsync(true);
             
             // Act
@@ -94,7 +94,7 @@ namespace MoneyFox.Business.Tests.ViewModels
             navigationService
                 .Setup(x => x.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
                            It.IsAny<ModifyPaymentParameter>(), null, CancellationToken.None))
-                .Callback((ModifyPaymentParameter param, IMvxBundle bundle) => parameter = param)
+                .Callback((ModifyPaymentParameter param, IMvxBundle bundle, CancellationToken t) => parameter = param)
                 .ReturnsAsync(true);
             
             // Act

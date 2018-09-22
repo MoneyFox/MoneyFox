@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
@@ -12,7 +13,6 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -25,7 +25,7 @@ namespace MoneyFox.Business.ViewModels
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxLogProvider logProvider;
 
-        private MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
+        private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
 
         /// <summary>
         ///     Constructor
@@ -46,7 +46,7 @@ namespace MoneyFox.Business.ViewModels
             BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
             ViewActionViewModel = new AccountListViewActionViewModel(accountService, logProvider, navigationService);
 
-            Accounts = new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
+            Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
         #region Properties
@@ -58,7 +58,7 @@ namespace MoneyFox.Business.ViewModels
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         /// <inheritdoc />
-        public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
+        public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
         {
             get => accounts;
             set
