@@ -754,7 +754,94 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CortanaVoiceCommandPaymentDateFeedback" xml:space="preserve">
     <value>Adding Date to payment</value>
   </data>
-  <data name="CortanaVoiceCommandPaymentDateListFor" xml:space="preserve">
+  <data name="CortanaVoiceCommandPaymentDateListenFor" xml:space="preserve">
     <value>[the] payment date is {date}</value>
+  </data>
+  <data name="CortanaContentTileReoccuranceText" xml:space="preserve">
+    <value>Payment reoccurs {0}</value>
+  </data>
+  <data name="CortanaUserMessageReoccuranceSpoken" xml:space="preserve">
+    <value>Payment recurs?</value>
+  </data>
+  <data name="CortanaUserMessageReoccuranceText" xml:space="preserve">
+    <value>Which recurrance does the payment have</value>
+  </data>
+  <data name="CortanaContentTileNoRecurranceText" xml:space="preserve">
+    <value>This payment has no recurrance</value>
+  </data>
+  <data name="CortanaContentTileNoRecurranceTitle" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="CortanaContentTilePaymentTypeText" xml:space="preserve">
+    <value>Create {0} payment</value>
+  </data>
+  <data name="CortanaContentTileTransferFromAccount" xml:space="preserve">
+    <value>Transfer payment is coming from account {0}</value>
+  </data>
+  <data name="CortanaContentTileTransferToAccount" xml:space="preserve">
+    <value>Tranfer payment is going to account {0}</value>
+  </data>
+  <data name="CortanaContentTitleExpenseAccount" xml:space="preserve">
+    <value>Apply expense payment to account {0}</value>
+  </data>
+  <data name="CortanaContentTitleIncomeAccount" xml:space="preserve">
+    <value>Apply income payment to accout {0}</value>
+  </data>
+  <data name="CortanaUserMessagePaymentAmountSpoken" xml:space="preserve">
+    <value>How much is the payment for?</value>
+  </data>
+  <data name="CortanaUserMessagePaymentAmountText" xml:space="preserve">
+    <value>How much is this payment for?</value>
+  </data>
+  <data name="CortanaUserMessagePaymentTypeSpoken" xml:space="preserve">
+    <value>Which kind of payment?</value>
+  </data>
+  <data name="CortanaUserMessagePaymentTypeText" xml:space="preserve">
+    <value>What kind of payment to create</value>
+  </data>
+  <data name="CortanaCommandError" xml:space="preserve">
+    <value>Command does not exist currently for Money Fox</value>
+  </data>
+  <data name="CortanaUserMessageAccountAmount" xml:space="preserve">
+    <value>How much does this account hold initially</value>
+  </data>
+  <data name="CortanaUserMessageAccountAmountErrro" xml:space="preserve">
+    <value>Unable to add an amount to the account when no account created</value>
+  </data>
+  <data name="CortanaUserMessageAccountName" xml:space="preserve">
+    <value>What name would you give this account?</value>
+  </data>
+  <data name="CortanaUserMessageAccountNameError" xml:space="preserve">
+    <value>Unable to add an account name when no account was created</value>
+  </data>
+  <data name="CortanaUserMessageDefaultErrorMessage" xml:space="preserve">
+    <value>Error in  Money Fox Cortana Integration. Please retry your last command</value>
+  </data>
+  <data name="CortanaUserMessageIncorrectStepError" xml:space="preserve">
+    <value>Unable to create a new Account or Payment during Account or payment creation</value>
+  </data>
+  <data name="CortanaUserMessageNoAccountsPaymentCreationSpoken" xml:space="preserve">
+    <value>Unable to create payemnt</value>
+  </data>
+  <data name="CortanaUserMessageNoAccountsPaymentCreationText" xml:space="preserve">
+    <value>We need an account created to be able to create a payment</value>
+  </data>
+  <data name="CortanaUserMessagePaymentAmountError" xml:space="preserve">
+    <value>Unable to add a payment amount when no payment was created</value>
+  </data>
+  <data name="CortanaUserMessagePaymentDateError" xml:space="preserve">
+    <value>Unable to add a payment date when no payment was created</value>
+  </data>
+  <data name="CortanaUserMessagePaymentDateSpoken" xml:space="preserve">
+    <value>Date for payment</value>
+  </data>
+  <data name="CortanaUserMessagePaymentDateText" xml:space="preserve">
+    <value>When is this payment</value>
+  </data>
+  <data name="CortanaUserMessagePaymentTypeNoSelected" xml:space="preserve">
+    <value>Payment type was not selected payment creation canceled</value>
+  </data>
+  <data name="CortanaUserMessageWhichAccount" xml:space="preserve">
+    <value>Which account?</value>
   </data>
 </root>

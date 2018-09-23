@@ -20,9 +20,9 @@
     <PackageCertificateKeyFile>MoneyFox.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>F69D60C54B4D72436467805343DB5565176B11BE</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>6185638F54CAC08F45A7B39AF4B82532C7A47AA6</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
@@ -544,6 +544,10 @@
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
       <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
       <Name>MoneyFox.Windows.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows.Cortana\MoneyFox.Windows.Cortana.csproj">
+      <Project>{5cba4050-7f9c-4b69-97b5-43f7b4e87f15}</Project>
+      <Name>MoneyFox.Windows.Cortana</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
       <Project>{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}</Project>

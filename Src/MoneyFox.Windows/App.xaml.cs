@@ -89,6 +89,7 @@ namespace MoneyFox.Windows
 #if !DEBUG
             AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
 #endif
+            await CortanaFunctions.IntializeCortana();
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];

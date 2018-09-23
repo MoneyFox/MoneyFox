@@ -32,16 +32,12 @@ namespace MoneyFox.Windows
         {
             IUICommand Answer;
             MessageDialog Question;
-           var test = LocalSettings.Values;
+            var test = LocalSettings.Values;
             test.Clear();
             object temp;
             test.TryGetValue("vcdinstalled", out temp);
             bool vcdinstalled = (temp!=null)?(bool)temp:false;
-          ///  string vcdreinstall = LocalSettings?.Values["vcdreinstall"].ToString();
-           /// string repromptdate = LocalSettings?.Values["reprompt"].ToString();
-            
-       
-
+        
             if (vcdinstalled)
             {
                 try
@@ -102,16 +98,13 @@ namespace MoneyFox.Windows
             XNamespace xds = "http://schemas.microsoft.com/voicecommands/1.2";
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile dynamciallycreatedfile = await storageFolder.CreateFileAsync("voicecommandsdefinition.xml", CreationCollisionOption.OpenIfExists);
-         ///   XDeclaration xd = new XDeclaration("1.0", "utf-8", "false");
             XDocument xd = new XDocument(new XDeclaration("1.0", "utf-8", null), new XElement(xds + "VoiceCommands"));
-            //XElement VoiceCommand = new XElement("VoiceCommands");
-            //VoiceCommand.SetAttributeValue("xmlns", "http://schemas.microsoft.com/voicecommands/1.2");
             XElement CommandSet = new XElement(xds+"CommandSet");
-             CommandSet.SetAttributeValue(XNamespace.Xml + "lang",System.Globalization.CultureInfo.CurrentCulture.ToString());
+            CommandSet.SetAttributeValue(XNamespace.Xml + "lang",System.Globalization.CultureInfo.CurrentCulture.ToString());
             CommandSet.SetAttributeValue("Name","MoneyFox_" + System.Globalization.CultureInfo.CurrentCulture.ToString());
             XElement CommandPrefix = new XElement(xds+"CommandPrefix");
             CommandPrefix.SetValue($"{Strings.CortanaVoiceCommandCommandPrefix}");
-           XElement Example = new XElement(xds+"Example");
+            XElement Example = new XElement(xds+"Example");
             Example.SetValue($"{Strings.CortanaVoiceCommandCommandPrefixExample}");
             CommandSet.Add(CommandPrefix);
             CommandSet.Add(Example);
@@ -197,7 +190,7 @@ namespace MoneyFox.Windows
             XElement paymentdatefeedback = new XElement(xds+"Feedback");
             paymentdate.SetAttributeValue("Name", "payment-date");
             paymentdateExample.SetValue($"{Strings.CortanaVoiceCommandPaymentDateExample}");
-            paymentdatelistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentDateListFor}");
+            paymentdatelistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentDateListenFor}");
             paymentdatefeedback.SetValue($"{Strings.CortanaVoiceCommandPaymentDateFeedback}");
             paymentdate.Add(paymentdateExample);
             paymentdate.Add(paymentdatelistenfor);
