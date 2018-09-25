@@ -188,7 +188,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            new SettingsManager(new Settings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }
