@@ -27,7 +27,7 @@ namespace MoneyFox.iOS.Renderer
             // remove text from button and set the width/height/radius
             Element.WidthRequest = 50;
             Element.HeightRequest = 50;
-            Element.BorderRadius = 25;
+            Element.CornerRadius = 25;
             Element.BorderWidth = 0;
             Element.Text = null;
 
