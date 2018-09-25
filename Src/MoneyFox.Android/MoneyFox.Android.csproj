@@ -133,6 +133,9 @@
     <PackageReference Include="Xamarin.Auth">
       <Version>1.6.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>0.6.0-preview</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
@@ -147,7 +150,6 @@
     <Compile Include="Manager\BackgroundTaskManager.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
-    <Compile Include="Src\Settings.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />

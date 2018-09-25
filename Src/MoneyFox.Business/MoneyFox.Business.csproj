@@ -39,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\..\..\..\.nuget\packages\xamarin.essentials\0.6.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Styles\AppStyles.xaml.cs">
       <DependentUpon>AppStyles.xaml</DependentUpon>
     </Compile>

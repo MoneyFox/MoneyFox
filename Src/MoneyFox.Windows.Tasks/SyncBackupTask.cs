@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using MoneyFox.Business;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
@@ -28,7 +29,7 @@ namespace MoneyFox.Windows.Tasks
                 var backupManager = new BackupManager(
                     new OneDriveService(new OneDriveAuthenticator(true)),
                     new MvxWindowsFileStore(), 
-                    new SettingsManager(new Settings()),
+                    new SettingsManager(new SettingsAdapter()),
                     new ConnectivityImplementation());
 
                 await backupManager.DownloadBackup();

@@ -14,6 +14,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.Business;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -35,6 +36,7 @@ using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
+using SQLitePCL;
 
 namespace MoneyFox.Windows
 {
@@ -63,7 +65,7 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new Settings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
+            switch (new SettingsManager(new SettingsAdapter()).Theme)
             {
                 case AppTheme.Dark:
                     RequestedTheme = ApplicationTheme.Dark;

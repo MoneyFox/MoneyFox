@@ -112,7 +112,6 @@
     <Compile Include="Authentication\IosAuthenticationProvider.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\Settings.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
