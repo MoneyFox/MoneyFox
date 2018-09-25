@@ -19,7 +19,6 @@ using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
 using MvvmCross.UI;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
-using ISettings = MoneyFox.Business.ISettings;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Windows
@@ -36,7 +35,6 @@ namespace MoneyFox.Windows
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettings, Settings>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         }
 

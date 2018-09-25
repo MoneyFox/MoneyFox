@@ -5,6 +5,7 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using MoneyFox.Business;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.Droid.OneDriveAuth;
@@ -70,7 +71,7 @@ namespace MoneyFox.Droid.Jobs
 
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                                        new SettingsManager(new Settings()),
+                                        new SettingsManager(new SettingsAdapter()),
                                         new ConnectivityImplementation())
                     .DownloadBackup();
 

@@ -44,6 +44,11 @@ namespace MoneyFox
                                  .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
+                                 .EndingWith("Adapter")
+                                 .AsInterfaces()
+                                 .RegisterAsDynamic();
+
+            typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("Manager")
                                  .AsInterfaces()
                                  .RegisterAsDynamic();

@@ -108,7 +108,6 @@
   <ItemGroup>
     <Compile Include="OneDriveAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Windows.Business.rd.xml" />
   </ItemGroup>
   <ItemGroup>

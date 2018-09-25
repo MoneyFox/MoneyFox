@@ -20,8 +20,8 @@ namespace MoneyFox.Business.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
-            var settingsSetup = new Mock<ISettings>();
-            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
+            var settingsSetup = new Mock<ISettingsAdapter>();
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
             Assert.False(new Session(new SettingsManager(settingsSetup.Object)).ValidateSession());
@@ -30,11 +30,11 @@ namespace MoneyFox.Business.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordRequiredSession_SessionInvalid()
         {
-            var settingsSetup = new Mock<ISettings>();
+            var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(
-                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
+                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
                 .Returns(DateTime.Now.AddMinutes(-15).ToString);
-            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeFalse();
@@ -43,11 +43,11 @@ namespace MoneyFox.Business.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordRequiredSession_SessionValid()
         {
-            var settingsSetup = new Mock<ISettings>();
+            var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(
-                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
+                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
                 .Returns(DateTime.Now.AddMinutes(-5).ToString);
-            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
             new Session(new SettingsManager(settingsSetup.Object)).ValidateSession().ShouldBeTrue();
@@ -58,10 +58,10 @@ namespace MoneyFox.Business.Tests.Authentication
         {
             var resultDateTime = DateTime.Today.AddDays(-10);
 
-            var settingsSetup = new Mock<ISettings>();
-            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>(), false))
-                .Callback((string key, string value, bool roam) => resultDateTime = Convert.ToDateTime(value));
-            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
+            var settingsSetup = new Mock<ISettingsAdapter>();
+            settingsSetup.Setup(x => x.AddOrUpdate(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
             new Session(new SettingsManager(settingsSetup.Object)).AddSession();
