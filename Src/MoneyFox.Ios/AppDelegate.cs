@@ -64,6 +64,8 @@ namespace MoneyFox.iOS
         [Export("application:performFetchWithCompletionHandler:")]
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
+            if(!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
+
             Debug.Write("Enter Background Task");
             var successful = false;
             try
@@ -73,8 +75,8 @@ namespace MoneyFox.iOS
                 var tasks = new List<Task>
                 {
                     ClearPayments(),
-                    Mvx.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
-                    Mvx.Resolve<IBackupManager>().DownloadBackup()
+                    Mvx.IoCProvider.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
+                    Mvx.IoCProvider.Resolve<IBackupManager>().DownloadBackup()
                 };
 
                 await Task.WhenAll(tasks);
@@ -93,7 +95,9 @@ namespace MoneyFox.iOS
 
         private async Task ClearPayments()
         {
-            var paymentService = Mvx.Resolve<IPaymentService>();
+            if (!Mvx.IoCProvider.CanResolve<IPaymentService>()) return;
+
+            var paymentService = Mvx.IoCProvider.Resolve<IPaymentService>();
 
             var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
             var unclearedPayments = payments.ToList();

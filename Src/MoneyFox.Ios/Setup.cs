@@ -1,4 +1,3 @@
-using MoneyFox.Business;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.iOS.Authentication;
 using MvvmCross;
@@ -21,7 +20,6 @@ namespace MoneyFox.iOS
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, AppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, StoreOperations>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ISettings, Settings>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         }
     }
