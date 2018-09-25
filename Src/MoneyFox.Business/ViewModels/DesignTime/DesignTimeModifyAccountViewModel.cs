@@ -1,9 +1,14 @@
-﻿using MvvmCross.Commands;
+﻿using System.Globalization;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Foundation.Resources;
+using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeModifyAccountViewModel : BaseViewModel, IModifyAccountViewModel
+    public class DesignTimeModifyAccountViewModel : IModifyAccountViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         /// <inheritdoc />
         public bool IsEdit { get; }
         

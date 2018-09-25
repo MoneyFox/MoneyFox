@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
@@ -10,8 +11,8 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -22,8 +23,9 @@ namespace MoneyFox.Business.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
+        private readonly IMvxLogProvider logProvider;
 
-        private MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
+        private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
 
         /// <summary>
         ///     Constructor
@@ -31,18 +33,20 @@ namespace MoneyFox.Business.ViewModels
         public AccountListViewModel(IAccountService accountService,
                                     IBalanceCalculationManager balanceCalculationManager,
                                     ISettingsManager settingsManager,
-                                    IDialogService dialogService, 
-                                    IMvxNavigationService navigationService)
+                                    IDialogService dialogService,
+                                    IMvxLogProvider logProvider,
+                                    IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.accountService = accountService;
             this.settingsManager = settingsManager;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
+            this.logProvider = logProvider;
 
-            BalanceViewModel = new BalanceViewModel(balanceCalculationManager);
-            ViewActionViewModel = new AccountListViewActionViewModel(accountService, navigationService);
+            BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
+            ViewActionViewModel = new AccountListViewActionViewModel(accountService, logProvider, navigationService);
 
-            Accounts = new MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
+            Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
         #region Properties
@@ -54,7 +58,7 @@ namespace MoneyFox.Business.ViewModels
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         /// <inheritdoc />
-        public MvxObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
+        public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
         {
             get => accounts;
             set
@@ -91,8 +95,8 @@ namespace MoneyFox.Business.ViewModels
         public override async void ViewAppeared()
         {
             dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
-            RaisePropertyChanged(nameof(Accounts));
+            await Load();
+            await RaisePropertyChanged(nameof(Accounts));
             dialogService.HideLoadingDialog();
         }
 
@@ -128,7 +132,7 @@ namespace MoneyFox.Business.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                await RaisePropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {

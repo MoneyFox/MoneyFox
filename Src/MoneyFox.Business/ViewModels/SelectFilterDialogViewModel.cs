@@ -1,5 +1,7 @@
 ﻿using System;
 using MoneyFox.Business.Messages;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Business.ViewModels
@@ -21,7 +23,9 @@ namespace MoneyFox.Business.ViewModels
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
-        public SelectFilterDialogViewModel(IMvxMessenger messenger)
+        public SelectFilterDialogViewModel(IMvxMessenger messenger,
+                                           IMvxLogProvider logProvider,
+                                           IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.messenger = messenger;
         }

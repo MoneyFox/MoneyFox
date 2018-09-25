@@ -14,6 +14,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.Business;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -35,6 +36,7 @@ using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
+using SQLitePCL;
 
 namespace MoneyFox.Windows
 {
@@ -63,7 +65,7 @@ namespace MoneyFox.Windows
 
         private void SetTheme()
         {
-            switch (new Settings().GetValue(SettingsManager.THEME_KEYNAME, AppTheme.Light))
+            switch (new SettingsManager(new SettingsAdapter()).Theme)
             {
                 case AppTheme.Dark:
                     RequestedTheme = ApplicationTheme.Dark;
@@ -99,7 +101,7 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
-                mainView.ViewModel = Mvx.Resolve<MainViewModel>();
+                mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
                 (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
@@ -111,21 +113,6 @@ namespace MoneyFox.Windows
                 }
 
                 await CallRateReminder();
-            }
-
-            //When jumplist is selected navigate to appropriate tile
-            var tileHelper = Mvx.Resolve<ITileManager>();
-            switch (e.Arguments)
-            {
-                case Constants.ADD_INCOME_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_INCOME_TILE_ID);
-                    break;
-                case Constants.ADD_EXPENSE_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_EXPENSE_TILE_ID);
-                    break;
-                case Constants.ADD_TRANSFER_TILE_ID:
-                    await tileHelper.DoNavigation(Constants.ADD_TRANSFER_TILE_ID);
-                    break;
             }
         }
 
@@ -201,7 +188,7 @@ namespace MoneyFox.Windows
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            new SettingsManager(new Settings()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            new SettingsManager(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }

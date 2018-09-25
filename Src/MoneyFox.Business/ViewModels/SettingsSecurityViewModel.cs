@@ -2,10 +2,12 @@
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 using MvvmCross.Localization;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : BaseViewModel
+    public class SettingsSecurityViewModel : BaseViewModel, ISettingsSecurityViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
@@ -13,7 +15,11 @@ namespace MoneyFox.Business.ViewModels
         private string password;
         private string passwordConfirmation;
 
-        public SettingsSecurityViewModel(ISettingsManager settingsManager, IPasswordStorage passwordStorage, IDialogService dialogService)
+        public SettingsSecurityViewModel(ISettingsManager settingsManager, 
+                                         IPasswordStorage passwordStorage, 
+                                         IDialogService dialogService,
+                                         IMvxLogProvider logProvider,
+                                         IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsManager = settingsManager;
             this.passwordStorage = passwordStorage;

@@ -4,6 +4,7 @@ using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
@@ -27,8 +28,9 @@ namespace MoneyFox.Business.ViewModels
         /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
-        public CategoryListViewModel(ICategoryService categoryService, IDialogService dialogService, IMvxNavigationService navigationService)
-            : base(categoryService, dialogService, navigationService)
+        public CategoryListViewModel(ICategoryService categoryService, IDialogService dialogService,
+                                     IMvxLogProvider logProvider,
+                                     IMvxNavigationService navigationService) : base(categoryService, dialogService, logProvider, navigationService)
         {
         }
 

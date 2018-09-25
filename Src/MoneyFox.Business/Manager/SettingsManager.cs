@@ -1,10 +1,10 @@
-﻿﻿using System;
- using MoneyFox.Foundation;
- using MoneyFox.Foundation.Interfaces;
+﻿using System;
+using System.Globalization;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Business.Manager
 {
-    
     public class SettingsManager : ISettingsManager
     {
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
@@ -29,80 +29,88 @@ namespace MoneyFox.Business.Manager
         private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
 
         public const string THEME_KEYNAME = "Theme";
-        private const AppTheme THEME_KEYDEFAULT = AppTheme.Light;
+        private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
-        
-        private readonly ISettings settings;
 
-        public SettingsManager(ISettings settings)
+        private readonly ISettingsAdapter settingsAdapter;
+
+        public SettingsManager(ISettingsAdapter settingsAdapter)
         {
-            this.settings = settings;
+            this.settingsAdapter = settingsAdapter;
         }
-
-        #region Properties
 
         /// <inheritdoc />
         public bool ShowCashFlowOnMainTile
         {
-            get => settings.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
+            get =>
+                settingsAdapter.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
-            get => settings.GetValue(AUTOUPLOAD_BACKUP_KEYNAME, AUTOUPLOAD_BACKUP_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value);
+            get => settingsAdapter.GetValue(AUTOUPLOAD_BACKUP_KEYNAME, AUTOUPLOAD_BACKUP_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(AUTOUPLOAD_BACKUP_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public string SessionTimestamp
         {
-            get => settings.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT);
-            set => settings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value);
+            get => settingsAdapter.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(SESSION_TIMESTAMP_KEY, value);
         }
 
         /// <inheritdoc />
         public bool PasswordRequired
         {
-            get => settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value);
+            get => settingsAdapter.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(PASSWORD_REQUIRED_KEYNAME, value);
         }
 
         /// <inheritdoc />
-        public bool PassportEnabled {
-            get => settings.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(PASSPORT_REQUIRED_KEYNAME, value);
+        public bool PassportEnabled
+        {
+            get => settingsAdapter.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(PASSPORT_REQUIRED_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public DateTime LastDatabaseUpdate
         {
-            get => settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DateTime.MinValue);
-            set => settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value);
+            get
+            {
+                var dateString = settingsAdapter.GetValue(DATABASE_LAST_UPDATE_KEYNAME,
+                                                          DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
+                return Convert.ToDateTime(dateString);
+            }
+            set => settingsAdapter.AddOrUpdate(DATABASE_LAST_UPDATE_KEYNAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         public AppTheme Theme
         {
-            get => settings.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(THEME_KEYNAME, value);
+            get
+            {
+                var themeInt = settingsAdapter.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT);
+                return (AppTheme) Enum.ToObject(typeof(AppTheme), themeInt);
+            }
+            set => settingsAdapter.AddOrUpdate(THEME_KEYNAME, (int) value);
         }
 
         /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
-            get => settings.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(BACKUP_LOGGEDIN_KEYNAME, value);
+            get => settingsAdapter.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(BACKUP_LOGGEDIN_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public int BackupSyncRecurrence
         {
-            get => settings.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT);
-            set => settings.AddOrUpdateValue(BACKUP_SYNC_RECURRENCE_KEYNAME, value);
+            get => settingsAdapter.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(BACKUP_SYNC_RECURRENCE_KEYNAME, value);
         }
-
-        #endregion Properties
     }
 }

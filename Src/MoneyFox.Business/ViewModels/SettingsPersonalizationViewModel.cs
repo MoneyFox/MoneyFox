@@ -1,14 +1,23 @@
 ﻿using System;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsPersonalizationViewModel : BaseViewModel
+    public interface ISettingsPersonalizationViewModel
+    {
+        int SelectedIndex { get; set; }
+    }
+
+    public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
     {
         private readonly ISettingsManager settingsManager;
 
-        public SettingsPersonalizationViewModel(ISettingsManager settingsManager)
+        public SettingsPersonalizationViewModel(ISettingsManager settingsManager,
+                                                IMvxLogProvider logProvider,
+                                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsManager = settingsManager;
         }

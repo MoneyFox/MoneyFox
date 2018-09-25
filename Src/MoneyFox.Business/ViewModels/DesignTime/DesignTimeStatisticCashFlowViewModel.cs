@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using Microcharts;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticCashFlowViewModel : BaseViewModel, IStatisticCashFlowViewModel
+    public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         public string Title => "I AM A MIGHTY TITLE";
 
         public BarChart Chart => new BarChart

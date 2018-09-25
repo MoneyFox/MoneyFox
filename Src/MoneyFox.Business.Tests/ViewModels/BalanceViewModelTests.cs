@@ -2,6 +2,8 @@
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Pocos;
 using Moq;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.Tests;
 using Should;
 using Xunit;
@@ -13,11 +15,14 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GetTotalBalance_Zero()
         {
+            base.Setup();
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
             balanceCalculationManager.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>())).ReturnsAsync(() => 0);
             balanceCalculationManager.Setup(x => x.GetTotalEndOfMonthBalance()).ReturnsAsync(() => 0);
 
-            var vm = new BalanceViewModel(balanceCalculationManager.Object);
+            var vm = new BalanceViewModel(balanceCalculationManager.Object,
+                                          new Mock<IMvxLogProvider>().Object,
+                                          new Mock<IMvxNavigationService>().Object);
 
             vm.UpdateBalanceCommand.Execute();
 
@@ -28,7 +33,10 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
-            var vm = new BalanceViewModel(new Mock<IBalanceCalculationManager>().Object);
+            base.Setup();
+            var vm = new BalanceViewModel(new Mock<IBalanceCalculationManager>().Object,
+                                          new Mock<IMvxLogProvider>().Object,
+                                          new Mock<IMvxNavigationService>().Object);
             vm.UpdateBalanceCommand.Execute();
 
             vm.TotalBalance.ShouldEqual(0);
@@ -37,11 +45,14 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public void GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
+            base.Setup();
             var balanceCalculationManager = new Mock<IBalanceCalculationManager>();
             balanceCalculationManager.Setup(x => x.GetTotalBalance())
                 .ReturnsAsync(() => 700);
 
-            var vm = new BalanceViewModel(balanceCalculationManager.Object);
+            var vm = new BalanceViewModel(balanceCalculationManager.Object,
+                                          new Mock<IMvxLogProvider>().Object,
+                                          new Mock<IMvxNavigationService>().Object);
             vm.UpdateBalanceCommand.Execute();
 
             vm.TotalBalance.ShouldEqual(700);

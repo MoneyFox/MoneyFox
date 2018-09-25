@@ -73,7 +73,11 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            Mvx.Resolve<IBackgroundTaskManager>().StartBackupSyncTask(Mvx.Resolve<ISettingsManager>().BackupSyncRecurrence);
+            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsManager>())
+            {
+                Mvx.IoCProvider.Resolve<IBackgroundTaskManager>()
+                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsManager>().BackupSyncRecurrence);
+            }
         }
 
         public override void OnBackPressed()

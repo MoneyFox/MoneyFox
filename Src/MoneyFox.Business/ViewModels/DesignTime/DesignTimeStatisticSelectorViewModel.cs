@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
@@ -7,8 +9,10 @@ using MvvmCross.Commands;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
+    public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
         {
             new StatisticSelectorType

@@ -4,6 +4,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels.Statistic
@@ -15,7 +16,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <summary>
         ///     Constructor
         /// </summary>
-        public StatisticSelectorViewModel(IMvxNavigationService navigationService)
+        public StatisticSelectorViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base (logProvider, navigationService)
         {
             this.navigationService = navigationService;
         }

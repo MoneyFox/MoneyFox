@@ -20,7 +20,10 @@ namespace MoneyFox.Views
 		    On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 
             // We have to resolve the VM here, since the automagic doesn't yet work the BottomTabbedPage.
-            ViewModel = Mvx.Resolve<MainViewModel>();
+		    if (Mvx.IoCProvider.CanResolve<MainViewModel>())
+		    {
+		        ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
+		    }
 		}
 
 	    private bool firstTime = true;

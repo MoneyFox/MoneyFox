@@ -18,4 +18,7 @@
 
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
+
+    <Color x:Key="FoxOrange">#F09224</Color>
+
 </ResourceDictionary>

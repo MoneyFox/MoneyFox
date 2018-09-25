@@ -12,15 +12,20 @@ namespace MoneyFox.Droid.Services
     /// <inheritdoc />
     public class DialogService : IDialogService 
     {
-        private Activity currentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
-        
+        private Activity CurrentActivity { get; }
+
+        public DialogService(IMvxAndroidCurrentTopActivity currentTopActivity)
+        {
+            CurrentActivity = currentTopActivity.Activity;
+        }
+
         /// <inheritdoc />
         public Task ShowMessage(string title, string message)
         {
             // We have to hide the loading dialog first, otherwise it get's stuck.
             HideLoadingDialog();
 
-            var builder = new AlertDialog.Builder(currentActivity);
+            var builder = new AlertDialog.Builder(CurrentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.Show();
@@ -52,7 +57,7 @@ namespace MoneyFox.Droid.Services
             HideLoadingDialog();
             var tcs = new TaskCompletionSource<bool>();
 
-            var builder = new AlertDialog.Builder(currentActivity);
+            var builder = new AlertDialog.Builder(CurrentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.SetPositiveButton(Strings.YesLabel, (s, e) => tcs.SetResult(true));
@@ -64,13 +69,13 @@ namespace MoneyFox.Droid.Services
         /// <inheritdoc />
         public void ShowLoadingDialog(string message = null)
         {
-            AndHUD.Shared.Show(currentActivity, message ?? Strings.LoadingLabel);
+            AndHUD.Shared.Show(CurrentActivity, message ?? Strings.LoadingLabel);
         }
 
         /// <inheritdoc />
         public void HideLoadingDialog() 
         {
-            AndHUD.Shared.Dismiss(currentActivity);
+            AndHUD.Shared.Dismiss(CurrentActivity);
         }
     }
 }

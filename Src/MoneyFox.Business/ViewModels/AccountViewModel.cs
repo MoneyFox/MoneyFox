@@ -1,12 +1,13 @@
 ﻿using System;
 using MoneyFox.DataAccess.Pocos;
+using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels
 {
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : BaseViewModel
+    public class AccountViewModel : MvxViewModel
     {
         /// <summary>
         ///     Default constructor.

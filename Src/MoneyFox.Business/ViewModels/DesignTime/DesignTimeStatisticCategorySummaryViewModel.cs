@@ -1,11 +1,16 @@
-﻿using MoneyFox.Business.ViewModels.Statistic;
+﻿using System.Globalization;
+using MoneyFox.Business.Helpers;
+using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation.Models;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {
-    public class DesignTimeStatisticCategorySummaryViewModel : BaseViewModel, IStatisticCategorySummaryViewModel
+    public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
+        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+
         public MvxObservableCollection<StatisticItem> CategorySummary => new MvxObservableCollection<StatisticItem>
         {
             new StatisticItem
