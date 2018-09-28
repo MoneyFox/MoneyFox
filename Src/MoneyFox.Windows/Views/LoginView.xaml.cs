@@ -6,7 +6,7 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Services;
-using MvvmCross.Platform;
+using MvvmCross;
 
 namespace MoneyFox.Windows.Views
 {
@@ -33,14 +33,12 @@ namespace MoneyFox.Windows.Views
         /// </summary>
         public void HideUnusedButtons(object sender, RoutedEventArgs e)
         {
-            var loginViewModel = ViewModel as LoginViewModel;
-            if (loginViewModel != null && !loginViewModel.PassportEnabled)
+            if (ViewModel is LoginViewModel loginViewModel && !loginViewModel.PassportEnabled)
             {
                 PassportLogin.Visibility = Visibility.Collapsed;
             }
 
-            var viewModel = ViewModel as LoginViewModel;
-            if (viewModel != null && !viewModel.PasswordEnabled)
+            if (ViewModel is LoginViewModel viewModel && !viewModel.PasswordEnabled)
             {
                 PasswordBox.Visibility = Visibility.Collapsed;
                 LoginButton.Visibility = Visibility.Collapsed;
@@ -62,9 +60,9 @@ namespace MoneyFox.Windows.Views
 
         private void Login()
         {
-            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
+            if (!Mvx.IoCProvider.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
             {
-                Mvx.Resolve<IDialogService>().ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
+                Mvx.IoCProvider.Resolve<IDialogService>().ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
                 return;
             }
 
@@ -90,12 +88,12 @@ namespace MoneyFox.Windows.Views
 
         private async void SignInPassport()
         {
-            if ((ViewModel as LoginViewModel).PassportEnabled)
+            if (((LoginViewModel) ViewModel).PassportEnabled)
             {
                 if (await MicrosoftPassportHelper.CreatePassportKeyAsync())
                 {
                     shell?.SetLoggedInView();
-                    (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
+                    ((LoginViewModel) ViewModel)?.LoginNavigationCommand.Execute();
                 }
             }
             else
