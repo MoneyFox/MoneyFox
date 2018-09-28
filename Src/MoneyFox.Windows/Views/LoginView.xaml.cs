@@ -60,6 +60,7 @@ namespace MoneyFox.Windows.Views
 
         private void Login()
         {
+            if (!Mvx.IoCProvider.CanResolve<IPasswordStorage>()) return;
             if (!Mvx.IoCProvider.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
             {
                 Mvx.IoCProvider.Resolve<IDialogService>().ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);

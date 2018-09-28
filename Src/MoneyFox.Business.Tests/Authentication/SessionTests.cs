@@ -60,7 +60,7 @@ namespace MoneyFox.Business.Tests.Authentication
 
             var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(x => x.AddOrUpdate(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string value, bool roam) => resultDateTime = Convert.ToDateTime(value));
+                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
