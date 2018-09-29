@@ -23,74 +23,46 @@ namespace MoneyFox.Windows
               ///  await win.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-microphone"));
                           
             }
-            catch (Exception)
+            catch (Exception e)
             {
-             
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
         }
         public static async Task IntializeCortana()
         {
-            IUICommand Answer;
-            MessageDialog Question;
-            var test = LocalSettings.Values;
-            test.Clear();
-            object temp;
-            test.TryGetValue("vcdinstalled", out temp);
-            bool vcdinstalled = (temp!=null)?(bool)temp:false;
-        
-            if (vcdinstalled)
-            {
+           
                 try
                 {
-                    await CreateVCDfileAndInstallAsync();
                     await EnableMicrophone();
+                   
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
-                    
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
                 }
-            
-                LocalSettings.Values["vcdinstalled"] = true;
-            }
-            else 
+            try
             {
-                Question = new MessageDialog("Enable Cortana integration by enabling access to microphone?", "Cortana Integration");
-                Question.Commands.Add(new UICommand("yes",null));
-                Question.Commands.Add(new UICommand("no", null));
-                Answer= await Question.ShowAsync();
-                if (Answer.Label == "yes")
-                {
-                    try
-                    {
-                        await CreateVCDfileAndInstallAsync();
-                        await EnableMicrophone();
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
-                else
-                {
-                    Question = new MessageDialog("Would you like to be reminded to enable cortana in 7 days?" + System.Environment.NewLine + "Note you will not be prompted again if no is selected", "Cortana Integration");
-                    Question.Commands.Add(new UICommand("yes", null));
-                    Question.Commands.Add(new UICommand("no", null));
-                    Answer = await Question.ShowAsync();
-                    if (Answer.Label == "yes")
-                    {
-                        LocalSettings.Values["reprompt"] = DateTime.Now.AddDays(7);
-                    }
-                    else
-                    {
-                        LocalSettings.Values["reprompt"] = null;
-                    }
-                }
-               
+                
+                await CreateVCDfileAndInstallAsync();
+
+            }
+            catch (Exception e)
+            {
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
 
 
-           
+
+
 
         }
         static async Task CreateVCDfileAndInstallAsync()
@@ -102,7 +74,7 @@ namespace MoneyFox.Windows
             XElement CommandSet = new XElement(xds+"CommandSet");
             CommandSet.SetAttributeValue(XNamespace.Xml + "lang",System.Globalization.CultureInfo.CurrentCulture.ToString());
             CommandSet.SetAttributeValue("Name","MoneyFox_" + System.Globalization.CultureInfo.CurrentCulture.ToString());
-            XElement CommandPrefix = new XElement(xds+"CommandPrefix");
+            XElement CommandPrefix = new XElement(xds+ "CommandPrefix");
             CommandPrefix.SetValue($"{Strings.CortanaVoiceCommandCommandPrefix}");
             XElement Example = new XElement(xds+"Example");
             Example.SetValue($"{Strings.CortanaVoiceCommandCommandPrefixExample}");
@@ -119,6 +91,7 @@ namespace MoneyFox.Windows
             VoiceCommandService.SetAttributeValue("Target", "MoneyFoxCortanaIntegration");
             Createaccount.SetAttributeValue("Name", "create-account");
             CreateaccountExample.SetValue($"{Strings.CortanaVoiceCommandCreateAccountExample}");
+            ///Createaccountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             Createaccountlistenfor.SetValue($"{Strings.CortanaVoiceCommandCreateAccountListenFor}");
             Createaccountfeedback.SetValue($"{Strings.CortanaVoiceCommandCreateAccountFeedback}");
             Createaccount.Add(CreateaccountExample);
@@ -133,6 +106,7 @@ namespace MoneyFox.Windows
             XElement accountnamefeedback = new XElement(xds+"Feedback");
             accountname.SetAttributeValue("Name", "account-name");
             accountnameExample.SetValue($"{Strings.CortanaVoiceCommandAccountNameExample}");
+            ///accountnamelistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             accountnamelistenfor.SetValue($"{Strings.CortanaVoiceCommandAccountNameListenFor}");
             accountnamefeedback.SetValue($"{Strings.CortanaVoiceCommandAccountNameFeedback}");
             accountname.Add(accountnameExample);
@@ -147,6 +121,7 @@ namespace MoneyFox.Windows
             XElement accountamountfeedback = new XElement(xds+"Feedback");
             accountamount.SetAttributeValue("Name", "account-amount");
             accountamountExample.SetValue($"{Strings.CortanaVoiceCommandAccountAmountExample}");
+            ///accountamountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             accountamountlistenfor.SetValue($"{Strings.CortanaVoiceCommandAccountAmountListenFor}");
             accountamountfeedback.SetValue($"{Strings.CortanaVoiceCommandAccountAmountFeedback}");
             accountamount.Add(accountamountExample);
@@ -162,6 +137,7 @@ namespace MoneyFox.Windows
             XElement createpaymentfeedback = new XElement(xds+"Feedback");
             createpayment.SetAttributeValue("Name", "create-payment");
             createpaymentExample.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentExample}");
+           /// createpaymentlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             createpaymentlistenfor.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentListenFor}");
             createpaymentfeedback.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentFeedback}");
             createpayment.Add(createpaymentExample);
@@ -176,6 +152,7 @@ namespace MoneyFox.Windows
             XElement paymentamountfeedback = new XElement(xds+"Feedback");
             paymentamount.SetAttributeValue("Name", "payment-amount");
             paymentamountExample.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountExample}");
+           /// paymentamountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             paymentamountlistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountListenFor}");
             paymentamountfeedback.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountFeedback}");
             paymentamount.Add(paymentamountExample);
@@ -190,6 +167,7 @@ namespace MoneyFox.Windows
             XElement paymentdatefeedback = new XElement(xds+"Feedback");
             paymentdate.SetAttributeValue("Name", "payment-date");
             paymentdateExample.SetValue($"{Strings.CortanaVoiceCommandPaymentDateExample}");
+            ///paymentdatelistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             paymentdatelistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentDateListenFor}");
             paymentdatefeedback.SetValue($"{Strings.CortanaVoiceCommandPaymentDateFeedback}");
             paymentdate.Add(paymentdateExample);
@@ -232,20 +210,19 @@ namespace MoneyFox.Windows
            
             xd.Save(dynamciallycreatedfile.Path);
             dynamciallycreatedfile = await StorageFile.GetFileFromPathAsync(dynamciallycreatedfile.Path);
+            try
+            {
+                await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(dynamciallycreatedfile);
+            }
+            catch (Exception e)
+            {
+                
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
+            }
           /// await FileIO.WriteTextAsync(dynamciallycreatedfile, xd.ToString());
-           try
-            {
-             await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(dynamciallycreatedfile);
-
-                LocalSettings.Values["vcdinstalled"] = true;
-
-            }
-            catch (Exception)
-            {
-                throw;
-
-
-            }
+          
         }
     }
 }
