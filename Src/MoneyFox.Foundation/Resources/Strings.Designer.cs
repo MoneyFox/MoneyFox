@@ -637,6 +637,582 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command does not exist currently for Money Fox.
+        /// </summary>
+        public static string CortanaCommandError {
+            get {
+                return ResourceManager.GetString("CortanaCommandError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This payment has no recurrance.
+        /// </summary>
+        public static string CortanaContentTileNoRecurranceText {
+            get {
+                return ResourceManager.GetString("CortanaContentTileNoRecurranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        public static string CortanaContentTileNoRecurranceTitle {
+            get {
+                return ResourceManager.GetString("CortanaContentTileNoRecurranceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create {0} payment.
+        /// </summary>
+        public static string CortanaContentTilePaymentTypeText {
+            get {
+                return ResourceManager.GetString("CortanaContentTilePaymentTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment reoccurs {0}.
+        /// </summary>
+        public static string CortanaContentTileReoccuranceText {
+            get {
+                return ResourceManager.GetString("CortanaContentTileReoccuranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer payment is coming from account {0}.
+        /// </summary>
+        public static string CortanaContentTileTransferFromAccount {
+            get {
+                return ResourceManager.GetString("CortanaContentTileTransferFromAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tranfer payment is going to account {0}.
+        /// </summary>
+        public static string CortanaContentTileTransferToAccount {
+            get {
+                return ResourceManager.GetString("CortanaContentTileTransferToAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply expense payment to account {0}.
+        /// </summary>
+        public static string CortanaContentTitleExpenseAccount {
+            get {
+                return ResourceManager.GetString("CortanaContentTitleExpenseAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply income payment to accout {0}.
+        /// </summary>
+        public static string CortanaContentTitleIncomeAccount {
+            get {
+                return ResourceManager.GetString("CortanaContentTitleIncomeAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How much does this account hold initially.
+        /// </summary>
+        public static string CortanaUserMessageAccountAmount {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageAccountAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add an amount to the account when no account created.
+        /// </summary>
+        public static string CortanaUserMessageAccountAmountError {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageAccountAmountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What name would you give this account?.
+        /// </summary>
+        public static string CortanaUserMessageAccountName {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageAccountName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add an account name when no account was created.
+        /// </summary>
+        public static string CortanaUserMessageAccountNameError {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageAccountNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in  Money Fox Cortana Integration. Please retry your last command.
+        /// </summary>
+        public static string CortanaUserMessageDefaultErrorMessage {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageDefaultErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create a new Account or Payment during Account or payment creation.
+        /// </summary>
+        public static string CortanaUserMessageIncorrectStepError {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageIncorrectStepError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create payment.
+        /// </summary>
+        public static string CortanaUserMessageNoAccountsPaymentCreationSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageNoAccountsPaymentCreationSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We need an account created to be able to create a payment.
+        /// </summary>
+        public static string CortanaUserMessageNoAccountsPaymentCreationText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageNoAccountsPaymentCreationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add a payment amount when no payment was created.
+        /// </summary>
+        public static string CortanaUserMessagePaymentAmountError {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentAmountError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How much is the payment for?.
+        /// </summary>
+        public static string CortanaUserMessagePaymentAmountSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentAmountSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How much is this payment for?.
+        /// </summary>
+        public static string CortanaUserMessagePaymentAmountText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentAmountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to add a payment date when no payment was created.
+        /// </summary>
+        public static string CortanaUserMessagePaymentDateError {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentDateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date for payment.
+        /// </summary>
+        public static string CortanaUserMessagePaymentDateSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentDateSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When is this payment.
+        /// </summary>
+        public static string CortanaUserMessagePaymentDateText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentDateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment type was not selected payment creation canceled.
+        /// </summary>
+        public static string CortanaUserMessagePaymentTypeNoSelected {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentTypeNoSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you not want to select a payment type?.
+        /// </summary>
+        public static string CortanaUserMessagePaymentTypeRepromptDisplay {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentTypeRepromptDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a payment Type.
+        /// </summary>
+        public static string CortanaUserMessagePaymentTypeRepromptSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentTypeRepromptSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which kind of payment?.
+        /// </summary>
+        public static string CortanaUserMessagePaymentTypeSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentTypeSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What kind of payment to create.
+        /// </summary>
+        public static string CortanaUserMessagePaymentTypeText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you do not want to select a recurrance we have, none as an option.
+        /// </summary>
+        public static string CortanaUserMessageReccuranceRepromptDisplay {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageReccuranceRepromptDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Selecting a reccurance?.
+        /// </summary>
+        public static string CortanaUserMessageReccuranceRepromptSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageReccuranceRepromptSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment reccurs?.
+        /// </summary>
+        public static string CortanaUserMessageReoccuranceSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageReoccuranceSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which recurrance does the payment have.
+        /// </summary>
+        public static string CortanaUserMessageReoccuranceText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageReoccuranceText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an account.
+        /// </summary>
+        public static string CortanaUserMessageTransferFromAccountRepromptSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferFromAccountRepromptSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an account to transfer the payment from.
+        /// </summary>
+        public static string CortanaUserMessageTransferFromAccountRepromptText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferFromAccountRepromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account to transfer from?.
+        /// </summary>
+        public static string CortanaUserMessageTransferFromAccountSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferFromAccountSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What account should the transfer payment come from?.
+        /// </summary>
+        public static string CortanaUserMessageTransferFromAccountText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferFromAccountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an account.
+        /// </summary>
+        public static string CortanaUserMessageTransferToAccountRepromptSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferToAccountRepromptSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an account to transfer the payment to.
+        /// </summary>
+        public static string CortanaUserMessageTransferToAccountRepromptText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferToAccountRepromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account to transfer to?.
+        /// </summary>
+        public static string CortanaUserMessageTransferToAccountSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferToAccountSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What account should the transfer payment be applied to.
+        /// </summary>
+        public static string CortanaUserMessageTransferToAccountText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageTransferToAccountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Selecting an account?.
+        /// </summary>
+        public static string CortanaUserMessageWhichAccountRepromptSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageWhichAccountRepromptSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to Select an account to apply {0} payment to.
+        /// </summary>
+        public static string CortanaUserMessageWhichAccountRepromptText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageWhichAccountRepromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which account?.
+        /// </summary>
+        public static string CortanaUserMessageWhichAccountSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageWhichAccountSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Which account would you like to apply {0} payment to?.
+        /// </summary>
+        public static string CortanaUserMessageWhichAccountText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageWhichAccountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account amount is {amount}.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding amount to account.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to account amount is {amounts}.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountAmountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountAmountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add account name of Checking.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding name to account.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to account name is {name}.
+        /// </summary>
+        public static string CortanaVoiceCommandAccountNameListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandAccountNameListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox.
+        /// </summary>
+        public static string CortanaVoiceCommandCommandPrefix {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCommandPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Money Fox create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCommandPrefixExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCommandPrefixExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create an account.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting payment creation process.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create an account.
+        /// </summary>
+        public static string CortanaVoiceCommandCreateAccountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreateAccountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting payment creation process.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to create a payment.
+        /// </summary>
+        public static string CortanaVoiceCommandCreatePaymentListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandCreatePaymentListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment amount is 100 dollars and 30 cents.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding amount to payment.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [the] payment amount is {amount}.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentAmountListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentAmountListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment date is March 26, 1998.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateExample {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding Date to payment.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateFeedback {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [the] payment date is {date}.
+        /// </summary>
+        public static string CortanaVoiceCommandPaymentDateListenFor {
+            get {
+                return ResourceManager.GetString("CortanaVoiceCommandPaymentDateListenFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string CreateBackupInformationLabel {
