@@ -54,7 +54,7 @@ namespace MoneyFox.Business.Manager
         }
 
         /// <summary>
-        ///     Deletes all the payments and the recurring payments associated with teh account.
+        ///     Deletes all the payments and the recurring payments associated with the account.
         /// </summary>
         /// <param name="accountViewModel">The associated Account.</param>
         public void DeleteAssociatedPaymentsFromDatabase(AccountViewModel accountViewModel)
