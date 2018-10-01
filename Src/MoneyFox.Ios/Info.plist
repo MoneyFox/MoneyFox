@@ -31,9 +31,7 @@
 	<key>CFBundleName</key>
 	<string>MoneyFox</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.6</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0.6</string>
+	<string>2018260.004</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
@@ -58,5 +56,7 @@
 	<array>
 		<string>fetch</string>
 	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>2018260.004</string>
 </dict>
 </plist>
