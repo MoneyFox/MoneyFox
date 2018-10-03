@@ -842,7 +842,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Adding amount to account</value>
   </data>
   <data name="CortanaVoiceCommandAccountAmountListenFor" xml:space="preserve">
-    <value>account amount is {amounts}</value>
+    <value>account amount is {amount}</value>
   </data>
   <data name="CortanaVoiceCommandAccountNameExample" xml:space="preserve">
     <value>Add account name of Checking</value>
