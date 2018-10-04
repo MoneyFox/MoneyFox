@@ -80,6 +80,13 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
+            var dbContextScopeFactory = new DbContextScopeFactory();
+            var ambientDbContextLocator = new AmbientDbContextLocator();
+
+            using (dbContextScopeFactory.Create())
+            {
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
+            }
 
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
@@ -95,17 +102,6 @@ namespace MoneyFox
             } else
             {
                 RegisterAppStart<LoginViewModel>();
-            }
-        }
-
-        public override async Task Startup()
-        {
-            var dbContextScopeFactory = new DbContextScopeFactory();
-            var ambientDbContextLocator = new AmbientDbContextLocator();
-
-            using (dbContextScopeFactory.Create())
-            {
-                await ambientDbContextLocator.Get<ApplicationContext>().Database.MigrateAsync();
             }
         }
     }
