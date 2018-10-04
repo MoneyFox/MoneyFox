@@ -836,13 +836,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Which account would you like to apply {0} payment to?</value>
   </data>
   <data name="CortanaVoiceCommandAccountAmountExample" xml:space="preserve">
-    <value>Account amount is {amount}</value>
+    <value>Account amount is 100 dollars and 30 cents</value>
   </data>
   <data name="CortanaVoiceCommandAccountAmountFeedback" xml:space="preserve">
     <value>Adding amount to account</value>
   </data>
   <data name="CortanaVoiceCommandAccountAmountListenFor" xml:space="preserve">
-    <value>account amount is {amounts}</value>
+    <value>account amount is {amount}</value>
   </data>
   <data name="CortanaVoiceCommandAccountNameExample" xml:space="preserve">
     <value>Add account name of Checking</value>

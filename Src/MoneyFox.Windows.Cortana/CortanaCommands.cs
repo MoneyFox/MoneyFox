@@ -52,7 +52,7 @@ namespace MoneyFox.Windows.Cortana
                             List<Account> newlistaccounts = new List<Account>();
                             try
                             {
-                                var test = await Accounts.GetAllAccounts();
+                                IEnumerable<Account> test = await Accounts.GetAllAccounts();
                                 newlistaccounts = test.ToList<Account>();
                             }
                             catch (Exception e)

@@ -1033,7 +1033,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account amount is {amount}.
+        ///   Looks up a localized string similar to Account amount is 100 dollars and 30 cents.
         /// </summary>
         public static string CortanaVoiceCommandAccountAmountExample {
             get {
@@ -1051,7 +1051,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to account amount is {amounts}.
+        ///   Looks up a localized string similar to account amount is {amount}.
         /// </summary>
         public static string CortanaVoiceCommandAccountAmountListenFor {
             get {
