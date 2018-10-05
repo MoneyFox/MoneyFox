@@ -115,7 +115,7 @@ namespace MoneyFox.Windows
                 await CallRateReminder();
             }
             await CortanaFunctions.IntializeCortana();
-         MoneyFox }
+         }
 
         protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
         {
