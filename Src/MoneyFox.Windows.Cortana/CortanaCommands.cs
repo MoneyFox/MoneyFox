@@ -18,6 +18,8 @@ using MoneyFox.Foundation;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Resources;
 using stor = Windows.Storage;
+using System.Threading;
+
 namespace MoneyFox.Windows.Cortana
 {
     public sealed class CortanaCommands : IBackgroundTask
@@ -27,10 +29,12 @@ namespace MoneyFox.Windows.Cortana
         AccountEntity account;
         AccountService Accounts;
         PaymentService Payments;
+      
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             serviceDeferral = taskInstance.GetDeferral();
+            taskInstance.Canceled += TaskInstance_Canceled;
             var local_folder = ApplicationData.Current.LocalFolder;
             AppServiceTriggerDetails trigger = taskInstance.TriggerDetails as AppServiceTriggerDetails;
             VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
@@ -46,8 +50,9 @@ namespace MoneyFox.Windows.Cortana
             {
                 case "create-payment":
                     {
+                    
                         string step = await ReadStepFile();
-                        if (!step.Contains("account"))
+                       if (!step.Contains("account"))
                         {
                             List<Account> newlistaccounts = new List<Account>();
                             try
@@ -86,7 +91,7 @@ namespace MoneyFox.Windows.Cortana
                                         IsRecurring = false
                                     };
                                     commandType = "payment";
-                                    await SerializeAsync(payment, "payment");
+                         ///           await SerializeAsync(payment, "payment");
                                     await Updatestepfile("create-payment,payment");
                                 }
                                 else
@@ -100,7 +105,7 @@ namespace MoneyFox.Windows.Cortana
                                     payment.RecurringPayment.Recurrence = (PaymentRecurrence)Enum.Parse(typeof(PaymentRecurrence), vcdr.SelectedItem.Title);
                                     commandType = "reccuring";
 
-                                    await SerializeAsync(payment, "payment");
+                                  ///  await SerializeAsync(payment, "payment");
                                     await Updatestepfile("create-payment,recurring");
                                 }
 
@@ -108,7 +113,7 @@ namespace MoneyFox.Windows.Cortana
                             userMessage = CreateUserMessage(GetResourceString("CortanaUserMessagePaymentTypeSpoken"), GetResourceString("CortanaUserMessagePaymentTypeText"));
                             repromptMessage = CreateUserMessage(GetResourceString("CortanaUserMessagePaymentTypeRepromptSpoken"), GetResourceString("CortanaUserMessagePaymentTypeRepromptDisplay"));
                             Allothercontents.Clear();
-                            Allothercontents.Add(CreateTile(GetResourceString("AddIncomeLabel"), GetResourceString("CortanaContentTilePaymentTypeText")));
+                            Allothercontents.Add(CreateTile(GetResourceString("AddIncomeLabel"),string.Format(GetResourceString("CortanaContentTilePaymentTypeText"),GetResourceString("AddIncomeLabel"))));
                             Allothercontents.Add(CreateTile(GetResourceString("AddExpenseLabel"), GetResourceString("CortanaContentTilePaymentTypeText")));
                             Allothercontents.Add(CreateTile(GetResourceString("AddTransferLabel"), GetResourceString("CortanaContentTilePaymentTypeText")));
 
@@ -122,64 +127,127 @@ namespace MoneyFox.Windows.Cortana
                                 repromptMessage = CreateUserMessage(GetResourceString("CortanaUserMessageWhichAccountRepromptSpoken"), string.Format(GetResourceString("CortanaUserMessageWhichAccountRepromptText"), GetResourceString("AddIncomeLabel")));
 
                                 Allothercontents.Clear();
-                                foreach (Account x in newlistaccounts)
+                                if (newlistaccounts.Count() >= 2)
                                 {
-                                    Allothercontents.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTitleIncomeAccount"), x.Data.Name)));
-                                }
-                                VoiceCommandDisambiguationResult newvcdr;
-                                newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, Allothercontents));
+                                    foreach (Account x in newlistaccounts)
+                                    {
+                                        Allothercontents.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTitleIncomeAccount"), x.Data.Name)));
+                                    }
+                                    VoiceCommandDisambiguationResult newvcdr;
+                                    newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, Allothercontents));
 
-                                switch (commandType)
+                                    switch (commandType)
+                                    {
+                                        case "payment":
+                                            payment.Type = PaymentType.Income;
+                                            if (newvcdr != null)
+                                            {
+                                                payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                            }
+                                            await SerializeAsync(payment, "payment");
+                                            await Updatestepfile("create-payment,recurring");
+                                            break;
+
+                                        case "recurring":
+                                            payment.RecurringPayment.Type = PaymentType.Income;
+                                            payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                            await SerializeAsync(payment, "payment");
+                                            await Updatestepfile("create-payment,recurring");
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+                                }
+                                else
                                 {
-                                    case "payment":
-                                        payment.Type = PaymentType.Income;
-                                        if (newvcdr != null)
+                                    Allothercontents.Add(CreateTile(newlistaccounts[0].Data.Name, string.Format(GetResourceString("CortanaContentTitleIncomeAccount"), newlistaccounts[0].Data.Name)));
+                                    var vcdr2 = await connection.RequestConfirmationAsync(VoiceCommandResponse.CreateResponse(CreateUserMessage(GetResourceString("CortanaUserMessageOnlyOneAccountIncomeSpoken"), string.Format(GetResourceString("CortanaUserMessageOnlyOneAccountIncomeText"), newlistaccounts[0].Data.Name))));
+                                    if (vcdr2.Confirmed == true)
+                                    {
+                                        switch (commandType)
                                         {
-                                            payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                            case "payment":
+                                                payment.Type = PaymentType.Income;
+                                                payment.ChargedAccount = newlistaccounts[0].Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+
+                                            case "recurring":
+                                                payment.RecurringPayment.Type = PaymentType.Income;
+                                                payment.RecurringPayment.ChargedAccount = newlistaccounts[0].Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+
+                                            default:
+                                                break;
                                         }
-                                        await SerializeAsync(payment, "payment");
-                                        await Updatestepfile("create-payment,recurring");
-                                        break;
-
-                                    case "recurring":
-                                        payment.RecurringPayment.Type = PaymentType.Income;
-                                        payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
-                                        await SerializeAsync(payment, "payment");
-                                        await Updatestepfile("create-payment,recurring");
-                                        break;
-
-                                    default:
-                                        break;
+                                    }
+                                    serviceDeferral?.Complete();
                                 }
+
                             }
                             else if (vcdr.SelectedItem.Title == GetResourceString("AddExpenseLabel"))
                             {
                                 userMessage = CreateUserMessage(GetResourceString("CortanaUserMessageWhichAccountSpoken"), string.Format(GetResourceString("CortanaUserMessageWhichAccountText"), GetResourceString("AddExpenseLabel")));
                                 repromptMessage = CreateUserMessage(GetResourceString("CortanaUserMessageWhichAccountRepromptSpoken"), string.Format(GetResourceString("CortanaUserMessageWhichAccountRepromptText"), GetResourceString("AddExpenseLabel")));
                                 Allothercontents.Clear();
-                                foreach (Account x in newlistaccounts)
+                                if (newlistaccounts.Count() >= 2)
                                 {
-                                    Allothercontents.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTitleExpenseAccount"), x.Data.Name)));
-                                }
-                                VoiceCommandDisambiguationResult newvcdr;
-                                newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, Allothercontents));
-                                switch (commandType)
-                                {
-                                    case "payment":
-                                        payment.Type = PaymentType.Expense;
-                                        payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
-                                        await SerializeAsync(payment, "payment");
-                                        await Updatestepfile("create-payment,recurring");
-                                        break;
-                                    case "recurring":
-                                        payment.RecurringPayment.Type = PaymentType.Expense;
-                                        payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
-                                        await SerializeAsync(payment, "payment");
-                                        await Updatestepfile("create-payment,recurring");
-                                        break;
+                                    foreach (Account x in newlistaccounts)
+                                    {
+                                        Allothercontents.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTitleExpenseAccount"), x.Data.Name)));
+                                    }
+                                    VoiceCommandDisambiguationResult newvcdr;
+                                    newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, Allothercontents));
+                                    switch (commandType)
+                                    {
+                                        case "payment":
+                                            payment.Type = PaymentType.Expense;
+                                            payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                            await SerializeAsync(payment, "payment");
+                                            await Updatestepfile("create-payment,recurring");
+                                            break;
+                                        case "recurring":
+                                            payment.RecurringPayment.Type = PaymentType.Expense;
+                                            payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                            await SerializeAsync(payment, "payment");
+                                            await Updatestepfile("create-payment,recurring");
+                                            break;
 
-                                    default:
-                                        break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Allothercontents.Add(CreateTile(newlistaccounts[0].Data.Name, string.Format(GetResourceString("CortanaContentTitleIncomeAccount"), newlistaccounts[0].Data.Name)));
+                                    var vcdr2 = await connection.RequestConfirmationAsync(VoiceCommandResponse.CreateResponse(CreateUserMessage(GetResourceString("CortanaUserMessageOnlyOneAccountExpenseSpoken"), string.Format(GetResourceString("CortanaUserMessageOnlyOneAccountExpenseText"), newlistaccounts[0].Data.Name))));
+                                    if (vcdr2.Confirmed == true)
+                                    {
+                                        switch (commandType)
+                                        {
+                                            case "payment":
+                                                payment.Type = PaymentType.Income;
+                                                payment.ChargedAccount = newlistaccounts[0].Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+
+                                            case "recurring":
+                                                payment.RecurringPayment.Type = PaymentType.Income;
+                                                payment.RecurringPayment.ChargedAccount = newlistaccounts[0].Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    serviceDeferral?.Complete();
                                 }
                             }
                             else if (vcdr.SelectedItem.Title == GetResourceString("AddTransferLabel"))
@@ -192,38 +260,46 @@ namespace MoneyFox.Windows.Cortana
                                 transfertoreprompt = CreateUserMessage(GetResourceString("CortanaUserMessageTransferToAccountRepromptSpoken"), GetResourceString("CortanaUserMessageTransferToAccountRepromptText"));
                                 List<VoiceCommandContentTile> transferfrom = new List<VoiceCommandContentTile>();
                                 List<VoiceCommandContentTile> transfertoaccount = new List<VoiceCommandContentTile>();
-                                foreach (Account x in newlistaccounts)
+                                if (newlistaccounts.Count() >= 2)
                                 {
-                                    transferfrom.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTileTransferFromAccount"), x.Data.Name)));
-                                    transfertoaccount.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTileTransferToAccount"), x.Data.Name)));
-                                }
-                                VoiceCommandDisambiguationResult newvcdr;
-                                VoiceCommandDisambiguationResult anothervcdr;
-                                newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, transferfrom));
-                                anothervcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(transferto, transfertoreprompt, transfertoaccount));
+                                    foreach (Account x in newlistaccounts)
+                                    {
+                                        transferfrom.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTileTransferFromAccount"), x.Data.Name)));
+                                        transfertoaccount.Add(CreateTile(x.Data.Name, string.Format(GetResourceString("CortanaContentTileTransferToAccount"), x.Data.Name)));
+                                    }
+                                    VoiceCommandDisambiguationResult newvcdr;
+                                    VoiceCommandDisambiguationResult anothervcdr;
+                                    newvcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, transferfrom));
+                                    anothervcdr = await connection.RequestDisambiguationAsync(VoiceCommandResponse.CreateResponseForPrompt(transferto, transfertoreprompt, transfertoaccount));
 
-                                switch (commandType)
+                                    switch (commandType)
+                                    {
+                                        case "payment":
+                                            {
+                                                payment.Type = PaymentType.Transfer;
+                                                payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                                payment.TargetAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == anothervcdr.SelectedItem.Title).Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+                                            }
+                                        case "recurring":
+                                            {
+                                                payment.RecurringPayment.Type = PaymentType.Transfer;
+                                                payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
+                                                payment.RecurringPayment.TargetAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == anothervcdr.SelectedItem.Title).Data;
+                                                await SerializeAsync(payment, "payment");
+                                                await Updatestepfile("create-payment,recurring");
+                                                break;
+                                            }
+                                        default:
+                                            break;
+                                    }
+                                }
+                                else
                                 {
-                                    case "payment":
-                                        {
-                                            payment.Type = PaymentType.Transfer;
-                                            payment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
-                                            payment.TargetAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == anothervcdr.SelectedItem.Title).Data;
-                                            await SerializeAsync(payment, "payment");
-                                            await Updatestepfile("create-payment,recurring");
-                                            break;
-                                        }
-                                    case "recurring":
-                                        {
-                                            payment.RecurringPayment.Type = PaymentType.Transfer;
-                                            payment.RecurringPayment.ChargedAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == newvcdr.SelectedItem.Title).Data;
-                                            payment.RecurringPayment.TargetAccount = newlistaccounts.FirstOrDefault<Account>(x => x.Data.Name == anothervcdr.SelectedItem.Title).Data;
-                                            await SerializeAsync(payment, "payment");
-                                            await Updatestepfile("create-payment,recurring");
-                                            break;
-                                        }
-                                    default:
-                                        break;
+                                    await connection.ReportFailureAsync(VoiceCommandResponse.CreateResponse(CreateUserMessage(GetResourceString("CortanaUserMessageOnlyOneAccountTransferSpoken"), GetResourceString("CortanaUserMessageOnlyOneAccountTransferText"))));
+                                    serviceDeferral?.Complete();
                                 }
                             }
 
@@ -467,6 +543,13 @@ namespace MoneyFox.Windows.Cortana
             }
 
         }
+
+        private void TaskInstance_Canceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
+        {
+         
+            serviceDeferral?.Complete();
+        }
+
         private VoiceCommandContentTile CreateTile(string Title, string Text)
         {
             VoiceCommandContentTile vcct = new VoiceCommandContentTile
@@ -576,9 +659,12 @@ namespace MoneyFox.Windows.Cortana
 
         private async Task<string> ReadStepFile()
         {
+            
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await storageFolder.CreateFileAsync("step.txt", CreationCollisionOption.OpenIfExists);
-            return FileIO.ReadTextAsync(storageFile).GetResults();
+            var te = FileIO.ReadTextAsync(storageFile);
+            
+            return te.GetResults();
         }
     }
 }
