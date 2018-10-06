@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Media.Capture;
-using Windows.UI.Popups;
 using Windows.ApplicationModel.VoiceCommands;
 using MoneyFox.Foundation.Resources;
 using System.Xml.Linq;
@@ -18,6 +17,7 @@ namespace MoneyFox.Windows
         {
             try
             {
+
                  mc = new MediaCapture();
                 await mc.InitializeAsync();
               ///  await win.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-microphone"));
@@ -33,22 +33,24 @@ namespace MoneyFox.Windows
         }
         public static async Task IntializeCortana()
         {
-           
-                try
-                {
-                    await EnableMicrophone();
-                   
-                }
-                catch (Exception e)
-                {
+
+
+            try
+            {
+                await EnableMicrophone();
+
+            }
+            catch (Exception e)
+            {
+
                 StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
                 StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
                 await FileIO.AppendTextAsync(file, e.ToString());
                 await FileIO.AppendTextAsync(file, Environment.NewLine);
-                }
+
             try
             {
-                
+
                 await CreateVCDfileAndInstallAsync();
 
             }
@@ -83,6 +85,7 @@ namespace MoneyFox.Windows
             xd.Root.Add(CommandSet);
 
             ///Create account section
+
             XElement Createaccount = new XElement(xds+"Command");
             XElement CreateaccountExample = new XElement(xds+"Example");
             XElement Createaccountlistenfor = new XElement(xds+"ListenFor");
@@ -100,6 +103,7 @@ namespace MoneyFox.Windows
             Createaccount.Add(VoiceCommandService);
             CommandSet.Add(Createaccount);
             /// Account name section
+
             XElement accountname = new XElement(xds+"Command");
             XElement accountnameExample = new XElement(xds+"Example");
             XElement accountnamelistenfor = new XElement(xds+"ListenFor");
@@ -128,6 +132,7 @@ namespace MoneyFox.Windows
             accountamount.Add(accountamountlistenfor);
             accountamount.Add(accountamountfeedback);
             accountamount.Add(VoiceCommandService);
+
            CommandSet.Add(accountamount);
 
             /// Create payment section
@@ -144,6 +149,7 @@ namespace MoneyFox.Windows
             createpayment.Add(createpaymentlistenfor);
             createpayment.Add(createpaymentfeedback);
             createpayment.Add(VoiceCommandService);
+
           CommandSet.Add(createpayment);
             /// payment amount section
             XElement paymentamount = new XElement(xds+"Command");
@@ -183,12 +189,12 @@ namespace MoneyFox.Windows
             dollarssubject.SetValue("Natural Language");
             dollars.Add(dollarssubject);
             CommandSet.Add(dollars);
-                      ///Create date phase topic
+      ///Create date phase topic
             XElement dates = new XElement(xds+"PhraseTopic");
             dates.SetAttributeValue("Scenario", "Natural Language");
             dates.SetAttributeValue("Label", "date");
             XElement datessubject = new XElement(xds+"Subject");
-            datessubject.SetValue("Natural Language");
+           datessubject.SetValue("Natural Language");
             dates.Add(datessubject);
             CommandSet.Add(dates);
             //// Create account name phrase topic
@@ -208,11 +214,11 @@ namespace MoneyFox.Windows
             }
             catch (Exception e)
             {
-                
                 StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
                 await FileIO.AppendTextAsync(file, e.ToString());
                 await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
+
           /// await FileIO.WriteTextAsync(dynamciallycreatedfile, xd.ToString());
           
         }
