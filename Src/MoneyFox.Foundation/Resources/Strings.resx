@@ -895,4 +895,22 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CortanaVoiceCommandPaymentDateListenFor" xml:space="preserve">
     <value>[the] payment date is {date}</value>
   </data>
+  <data name="CortanaUserMessageOnlyOneAccountExpenseSpoken" xml:space="preserve">
+    <value>Only one account for expense</value>
+  </data>
+  <data name="CortanaUserMessageOnlyOneAccountExpenseText" xml:space="preserve">
+    <value>Since you only have one account is it ok to charge the expense payment to {0} account?</value>
+  </data>
+  <data name="CortanaUserMessageOnlyOneAccountIncomeSpoken" xml:space="preserve">
+    <value>Only one account for income</value>
+  </data>
+  <data name="CortanaUserMessageOnlyOneAccountIncomeText" xml:space="preserve">
+    <value>Since you only have one account is it ok to apply the income payment to {0} account?</value>
+  </data>
+  <data name="CortanaUserMessageOnlyOneAccountTransferSpoken" xml:space="preserve">
+    <value>Invalid number of accounts for transfer payment</value>
+  </data>
+  <data name="CortanaUserMessageOnlyOneAccountTransferText" xml:space="preserve">
+    <value>Unable to create a transfer payment with only one account</value>
+  </data>
 </root>

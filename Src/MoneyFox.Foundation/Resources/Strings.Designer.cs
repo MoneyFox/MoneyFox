@@ -790,6 +790,60 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only one account for expense.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountExpenseSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountExpenseSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Since you only have one account is it ok to charge the expense payment to {0} account?.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountExpenseText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountExpenseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one account for income.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountIncomeSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountIncomeSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Since you only have one account is it ok to apply the income payment to {0} account?.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountIncomeText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountIncomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid number of accounts for transfer payment.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountTransferSpoken {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountTransferSpoken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create a transfer payment with only one account.
+        /// </summary>
+        public static string CortanaUserMessageOnlyOneAccountTransferText {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageOnlyOneAccountTransferText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to add a payment amount when no payment was created.
         /// </summary>
         public static string CortanaUserMessagePaymentAmountError {
