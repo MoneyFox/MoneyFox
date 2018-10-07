@@ -5,6 +5,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.DesignTime;
+using win = Windows.UI;
+using Windows.ApplicationModel.AppService;
+using Windows.Foundation.Collections;
 
 namespace MoneyFox.Windows.Views
 {
@@ -13,6 +16,7 @@ namespace MoneyFox.Windows.Views
     /// </summary>
     public sealed partial class AccountListView
     {
+        private AppServiceConnection liveTileService;
         /// <summary>
         ///     Initialize View.
         /// </summary>
@@ -24,6 +28,7 @@ namespace MoneyFox.Windows.Views
             {
                 ViewModel = new DesignTimeAccountListViewModel();
             } 
+         
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -58,5 +63,27 @@ namespace MoneyFox.Windows.Views
 
             (DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
         }
+      private void AddToStartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.liveTileService==null)
+            {
+                this.liveTileService = new AppServiceConnection();
+                this.liveTileService.AppServiceName = "LiveTiles";
+            }
+            var element = (FrameworkElement)sender;
+            var account = element.DataContext as AccountViewModel;
+            if (account==null)
+            {
+                return;
+            }
+           var name = account.Account;
+            int id = name.Data.Id;
+            var sendvalues = new ValueSet();
+
+
+           
+        }
+
+       
     }
 }

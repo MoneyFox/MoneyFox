@@ -9,6 +9,7 @@
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:viewModels="using:MoneyFox.Business.ViewModels"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:inapp="using:Microsoft.Toolkit.Uwp.UI.Controls"
                       mc:Ignorable="d">
     
     <Page.Resources>
@@ -30,6 +31,12 @@
                             <MenuFlyoutItem Icon="Delete"
                                             Click="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
+                            <MenuFlyoutItem Click="AddToStartMenu_Click" Text="Pin account to start menu">
+                                <MenuFlyoutItem.Icon>
+                                    <SymbolIcon Symbol="Pin"/>
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                                
                         </MenuFlyout>
                     </FlyoutBase.AttachedFlyout>
 
@@ -43,9 +50,11 @@
                                        Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                        TextAlignment="Right" />
-                        </Grid>
+                         </Grid>
                         <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                    Text="{x:Bind Iban}" />
+                        
+                        
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -176,7 +185,11 @@
                               Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
                               Label="Add Account" />
-            </CommandBar.SecondaryCommands>
+                      </CommandBar.SecondaryCommands>
         </CommandBar>
+
+        <inapp:InAppNotification Grid.Row="2" x:Name="Update"  />
+
     </Grid>
+    
 </views:MvxWindowsPage>   
