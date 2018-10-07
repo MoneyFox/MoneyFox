@@ -116,6 +116,7 @@ namespace MoneyFox.Windows
             }
             await CortanaFunctions.IntializeCortana();
          }
+
         protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
         {
             mainView = new MainView { Language = ApplicationLanguages.Languages[0] };

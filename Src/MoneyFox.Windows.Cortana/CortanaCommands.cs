@@ -18,6 +18,8 @@ using MoneyFox.Foundation;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.Foundation.Resources;
 using stor = Windows.Storage;
+using System.Threading;
+
 namespace MoneyFox.Windows.Cortana
 {
     public sealed class CortanaCommands : IBackgroundTask
@@ -27,6 +29,7 @@ namespace MoneyFox.Windows.Cortana
         AccountEntity account;
         AccountService Accounts;
         PaymentService Payments;
+      
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
@@ -47,11 +50,9 @@ namespace MoneyFox.Windows.Cortana
             {
                 case "create-payment":
                     {
-
                     
                         string step = await ReadStepFile();
                        if (!step.Contains("account"))
-
                         {
                             List<Account> newlistaccounts = new List<Account>();
                             try
@@ -90,9 +91,7 @@ namespace MoneyFox.Windows.Cortana
                                         IsRecurring = false
                                     };
                                     commandType = "payment";
-
-                         ///           await SerializeAsync(payment, "payment");
-                                    await Updatestepfile("create-payment,payment");
+                              await Updatestepfile("create-payment,payment");
                                 }
                                 else
                                 {
@@ -105,21 +104,16 @@ namespace MoneyFox.Windows.Cortana
                                     payment.RecurringPayment.Recurrence = (PaymentRecurrence)Enum.Parse(typeof(PaymentRecurrence), vcdr.SelectedItem.Title);
                                     commandType = "reccuring";
 
-
-                                  ///  await SerializeAsync(payment, "payment");
-
-                                    await Updatestepfile("create-payment,recurring");
+                                   await Updatestepfile("create-payment,recurring");
                                 }
 
                             }
                             userMessage = CreateUserMessage(GetResourceString("CortanaUserMessagePaymentTypeSpoken"), GetResourceString("CortanaUserMessagePaymentTypeText"));
                             repromptMessage = CreateUserMessage(GetResourceString("CortanaUserMessagePaymentTypeRepromptSpoken"), GetResourceString("CortanaUserMessagePaymentTypeRepromptDisplay"));
                             Allothercontents.Clear();
-
                             Allothercontents.Add(CreateTile(GetResourceString("AddIncomeLabel"),string.Format(GetResourceString("CortanaContentTilePaymentTypeText"),GetResourceString("AddIncomeLabel"))));
-
-                            Allothercontents.Add(CreateTile(GetResourceString("AddExpenseLabel"),string.Format(GetResourceString("CortanaContentTilePaymentTypeText"),GetResourceString("AddExpenseLabel"))));
-                            Allothercontents.Add(CreateTile(GetResourceString("AddTransferLabel"),string.Format(GetResourceString("CortanaContentTilePaymentTypeText"),GetResourceString("AddTransferLabel"))));
+                            Allothercontents.Add(CreateTile(GetResourceString("AddExpenseLabel"), GetResourceString("CortanaContentTilePaymentTypeText")));
+                            Allothercontents.Add(CreateTile(GetResourceString("AddTransferLabel"), GetResourceString("CortanaContentTilePaymentTypeText")));
 
 
 
@@ -191,7 +185,8 @@ namespace MoneyFox.Windows.Cortana
                                     }
                                     serviceDeferral?.Complete();
                                 }
-                           }
+
+                            }
                             else if (vcdr.SelectedItem.Title == GetResourceString("AddExpenseLabel"))
                             {
                                 userMessage = CreateUserMessage(GetResourceString("CortanaUserMessageWhichAccountSpoken"), string.Format(GetResourceString("CortanaUserMessageWhichAccountText"), GetResourceString("AddExpenseLabel")));
@@ -263,7 +258,6 @@ namespace MoneyFox.Windows.Cortana
                                 transfertoreprompt = CreateUserMessage(GetResourceString("CortanaUserMessageTransferToAccountRepromptSpoken"), GetResourceString("CortanaUserMessageTransferToAccountRepromptText"));
                                 List<VoiceCommandContentTile> transferfrom = new List<VoiceCommandContentTile>();
                                 List<VoiceCommandContentTile> transfertoaccount = new List<VoiceCommandContentTile>();
-
                                 if (newlistaccounts.Count() >= 2)
                                 {
                                     foreach (Account x in newlistaccounts)
@@ -554,7 +548,6 @@ namespace MoneyFox.Windows.Cortana
             serviceDeferral?.Complete();
         }
 
-
         private VoiceCommandContentTile CreateTile(string Title, string Text)
         {
             VoiceCommandContentTile vcct = new VoiceCommandContentTile
@@ -664,14 +657,12 @@ namespace MoneyFox.Windows.Cortana
 
         private async Task<string> ReadStepFile()
         {
-
             
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             StorageFile storageFile = await storageFolder.CreateFileAsync("step.txt", CreationCollisionOption.OpenIfExists);
             var te = FileIO.ReadTextAsync(storageFile);
             
             return te.GetResults();
-
         }
     }
 }
