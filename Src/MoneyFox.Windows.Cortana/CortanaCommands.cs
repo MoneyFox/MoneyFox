@@ -91,8 +91,7 @@ namespace MoneyFox.Windows.Cortana
                                         IsRecurring = false
                                     };
                                     commandType = "payment";
-                         ///           await SerializeAsync(payment, "payment");
-                                    await Updatestepfile("create-payment,payment");
+                              await Updatestepfile("create-payment,payment");
                                 }
                                 else
                                 {
@@ -105,8 +104,7 @@ namespace MoneyFox.Windows.Cortana
                                     payment.RecurringPayment.Recurrence = (PaymentRecurrence)Enum.Parse(typeof(PaymentRecurrence), vcdr.SelectedItem.Title);
                                     commandType = "reccuring";
 
-                                  ///  await SerializeAsync(payment, "payment");
-                                    await Updatestepfile("create-payment,recurring");
+                                   await Updatestepfile("create-payment,recurring");
                                 }
 
                             }
