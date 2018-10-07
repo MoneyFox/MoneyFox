@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Media.Capture;
-using Windows.UI.Popups;
 using Windows.ApplicationModel.VoiceCommands;
 using MoneyFox.Foundation.Resources;
 using System.Xml.Linq;
@@ -18,37 +17,49 @@ namespace MoneyFox.Windows
         {
             try
             {
+
                  mc = new MediaCapture();
                 await mc.InitializeAsync();
-                    
+              ///  await win.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-microphone"));
+                          
             }
             catch (Exception e)
             {
-                await LogErrors(e);
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
         }
         public static async Task IntializeCortana()
         {
-           
+
+
             try
             {
                 await EnableMicrophone();
-                   
+
             }
             catch (Exception e)
             {
 
-               await LogErrors(e);
-            }
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
+
             try
             {
-                
+
                 await CreateVCDfileAndInstallAsync();
 
             }
             catch (Exception e)
             {
-                await LogErrors(e);
+                StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
 
 
@@ -73,6 +84,8 @@ namespace MoneyFox.Windows
             CommandSet.Add(Example);
             xd.Root.Add(CommandSet);
 
+            ///Create account section
+
             XElement Createaccount = new XElement(xds+"Command");
             XElement CreateaccountExample = new XElement(xds+"Example");
             XElement Createaccountlistenfor = new XElement(xds+"ListenFor");
@@ -81,6 +94,7 @@ namespace MoneyFox.Windows
             VoiceCommandService.SetAttributeValue("Target", "MoneyFoxCortanaIntegration");
             Createaccount.SetAttributeValue("Name", "create-account");
             CreateaccountExample.SetValue($"{Strings.CortanaVoiceCommandCreateAccountExample}");
+            ///Createaccountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             Createaccountlistenfor.SetValue($"{Strings.CortanaVoiceCommandCreateAccountListenFor}");
             Createaccountfeedback.SetValue($"{Strings.CortanaVoiceCommandCreateAccountFeedback}");
             Createaccount.Add(CreateaccountExample);
@@ -88,13 +102,15 @@ namespace MoneyFox.Windows
             Createaccount.Add(Createaccountfeedback);
             Createaccount.Add(VoiceCommandService);
             CommandSet.Add(Createaccount);
-           
+            /// Account name section
+
             XElement accountname = new XElement(xds+"Command");
             XElement accountnameExample = new XElement(xds+"Example");
             XElement accountnamelistenfor = new XElement(xds+"ListenFor");
             XElement accountnamefeedback = new XElement(xds+"Feedback");
             accountname.SetAttributeValue("Name", "account-name");
             accountnameExample.SetValue($"{Strings.CortanaVoiceCommandAccountNameExample}");
+            ///accountnamelistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             accountnamelistenfor.SetValue($"{Strings.CortanaVoiceCommandAccountNameListenFor}");
             accountnamefeedback.SetValue($"{Strings.CortanaVoiceCommandAccountNameFeedback}");
             accountname.Add(accountnameExample);
@@ -102,41 +118,47 @@ namespace MoneyFox.Windows
             accountname.Add(accountnamefeedback);
             accountname.Add(VoiceCommandService);
             CommandSet.Add(accountname);
-
+            ///Account amount section
             XElement accountamount = new XElement(xds+"Command");
             XElement accountamountExample = new XElement(xds+"Example");
             XElement accountamountlistenfor = new XElement(xds+"ListenFor");
             XElement accountamountfeedback = new XElement(xds+"Feedback");
             accountamount.SetAttributeValue("Name", "account-amount");
             accountamountExample.SetValue($"{Strings.CortanaVoiceCommandAccountAmountExample}");
+            ///accountamountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             accountamountlistenfor.SetValue($"{Strings.CortanaVoiceCommandAccountAmountListenFor}");
             accountamountfeedback.SetValue($"{Strings.CortanaVoiceCommandAccountAmountFeedback}");
             accountamount.Add(accountamountExample);
             accountamount.Add(accountamountlistenfor);
             accountamount.Add(accountamountfeedback);
             accountamount.Add(VoiceCommandService);
-            CommandSet.Add(accountamount);
 
+           CommandSet.Add(accountamount);
+
+            /// Create payment section
             XElement createpayment = new XElement(xds+"Command");
             XElement createpaymentExample = new XElement(xds+"Example");
             XElement createpaymentlistenfor = new XElement(xds+"ListenFor");
             XElement createpaymentfeedback = new XElement(xds+"Feedback");
             createpayment.SetAttributeValue("Name", "create-payment");
             createpaymentExample.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentExample}");
+           /// createpaymentlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             createpaymentlistenfor.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentListenFor}");
             createpaymentfeedback.SetValue($"{Strings.CortanaVoiceCommandCreatePaymentFeedback}");
             createpayment.Add(createpaymentExample);
             createpayment.Add(createpaymentlistenfor);
             createpayment.Add(createpaymentfeedback);
             createpayment.Add(VoiceCommandService);
-            CommandSet.Add(createpayment);
-           
+
+          CommandSet.Add(createpayment);
+            /// payment amount section
             XElement paymentamount = new XElement(xds+"Command");
             XElement paymentamountExample = new XElement(xds+"Example");
             XElement paymentamountlistenfor = new XElement(xds+"ListenFor");
             XElement paymentamountfeedback = new XElement(xds+"Feedback");
             paymentamount.SetAttributeValue("Name", "payment-amount");
             paymentamountExample.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountExample}");
+           /// paymentamountlistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             paymentamountlistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountListenFor}");
             paymentamountfeedback.SetValue($"{Strings.CortanaVoiceCommandPaymentAmountFeedback}");
             paymentamount.Add(paymentamountExample);
@@ -144,22 +166,22 @@ namespace MoneyFox.Windows
             paymentamount.Add(paymentamountfeedback);
             paymentamount.Add(VoiceCommandService);
             CommandSet.Add(paymentamount);
-
+            /// payment date section
             XElement paymentdate = new XElement(xds+"Command");
             XElement paymentdateExample = new XElement(xds+"Example");
             XElement paymentdatelistenfor = new XElement(xds+"ListenFor");
             XElement paymentdatefeedback = new XElement(xds+"Feedback");
             paymentdate.SetAttributeValue("Name", "payment-date");
             paymentdateExample.SetValue($"{Strings.CortanaVoiceCommandPaymentDateExample}");
-            
+            ///paymentdatelistenfor.SetAttributeValue("RequireAppName", "AfterPhrase");
             paymentdatelistenfor.SetValue($"{Strings.CortanaVoiceCommandPaymentDateListenFor}");
             paymentdatefeedback.SetValue($"{Strings.CortanaVoiceCommandPaymentDateFeedback}");
             paymentdate.Add(paymentdateExample);
             paymentdate.Add(paymentdatelistenfor);
             paymentdate.Add(paymentdatefeedback);
             paymentdate.Add(VoiceCommandService);
-            CommandSet.Add(paymentdate);
-            
+           CommandSet.Add(paymentdate);
+            ///create dollars phrase topic
             XElement dollars = new XElement(xds+"PhraseTopic");
             dollars.SetAttributeValue("Scenario", "Natural Language");
             dollars.SetAttributeValue("Label", "amount");
@@ -167,15 +189,15 @@ namespace MoneyFox.Windows
             dollarssubject.SetValue("Natural Language");
             dollars.Add(dollarssubject);
             CommandSet.Add(dollars);
-            
+      ///Create date phase topic
             XElement dates = new XElement(xds+"PhraseTopic");
             dates.SetAttributeValue("Scenario", "Natural Language");
             dates.SetAttributeValue("Label", "date");
             XElement datessubject = new XElement(xds+"Subject");
-            datessubject.SetValue("Natural Language");
+           datessubject.SetValue("Natural Language");
             dates.Add(datessubject);
             CommandSet.Add(dates);
-
+            //// Create account name phrase topic
             XElement accountnametopic = new XElement(xds+"PhraseTopic");
             accountnametopic.SetAttributeValue("Scenario", "Natural Language");
             accountnametopic.SetAttributeValue("Label", "name");
@@ -192,18 +214,13 @@ namespace MoneyFox.Windows
             }
             catch (Exception e)
             {
-                await LogErrors(e);
-               
+                StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
+                await FileIO.AppendTextAsync(file, e.ToString());
+                await FileIO.AppendTextAsync(file, Environment.NewLine);
             }
-        
+
+          /// await FileIO.WriteTextAsync(dynamciallycreatedfile, xd.ToString());
           
-        }
-        static async Task LogErrors(Exception e)
-        {
-            StorageFolder storageFolder = ApplicationData.Current.LocalCacheFolder;
-            StorageFile file = await storageFolder.CreateFileAsync("errors.txt", CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(file, e.ToString());
-            await FileIO.AppendTextAsync(file, Environment.NewLine);
         }
     }
 }
