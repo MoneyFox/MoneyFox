@@ -61,7 +61,6 @@ namespace MoneyFox.iOS
             return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
 
-        [Export("application:performFetchWithCompletionHandler:")]
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
             if(!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
