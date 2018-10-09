@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Manager;
 using MoneyFox.Foundation.Interfaces;
