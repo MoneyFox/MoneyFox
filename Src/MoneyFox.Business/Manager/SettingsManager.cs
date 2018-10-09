@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 

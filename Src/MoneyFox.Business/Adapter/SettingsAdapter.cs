@@ -1,6 +1,7 @@
-﻿using Xamarin.Essentials;
+﻿using System;
+using Xamarin.Essentials;
 
-namespace MoneyFox.Business
+namespace MoneyFox.Business.Adapter
 {
     public interface ISettingsAdapter
     {
@@ -19,7 +20,15 @@ namespace MoneyFox.Business
     {
         public bool GetValue(string key, bool defaultValue)
         {
-            return Preferences.Get(key, defaultValue);
+            try
+            {
+                return Preferences.Get(key, defaultValue);
+            }
+            catch (InvalidCastException)
+            {
+                Preferences.Set(key, false);
+                return false;
+            }
         }
 
         public string GetValue(string key, string defaultValue)
