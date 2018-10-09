@@ -135,7 +135,6 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Src\CortanaFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
@@ -522,10 +521,6 @@
     <ProjectReference Include="..\MoneyFox.Windows.Business\MoneyFox.Windows.Business.csproj">
       <Project>{acd50dcf-b031-4686-bb75-b5a1f354c7eb}</Project>
       <Name>MoneyFox.Windows.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows.Cortana\MoneyFox.Windows.Cortana.csproj">
-      <Project>{c1784ccb-b925-489f-a052-b880c4b8fa35}</Project>
-      <Name>MoneyFox.Windows.Cortana</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Windows.Tasks\MoneyFox.Windows.Tasks.csproj">
       <Project>{2B1C7AF2-7208-4D84-9BD8-93C13FE373DA}</Project>

@@ -106,6 +106,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CortanaCommands.cs" />
+    <Compile Include="CortanaFunctions.cs" />
     <Compile Include="OneDriveAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Windows.Business.rd.xml" />
