@@ -6,6 +6,7 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using MoneyFox.Business;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.Droid.OneDriveAuth;
