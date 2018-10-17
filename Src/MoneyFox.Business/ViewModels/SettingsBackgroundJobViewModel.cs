@@ -18,7 +18,7 @@ namespace MoneyFox.Business.ViewModels
     }
     
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
-    public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
+    public class SettingsBackgroundJobViewModel : BaseNavigationViewModel, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IBackgroundTaskManager backgroundTaskManager;

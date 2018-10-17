@@ -7,7 +7,7 @@ using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels
 {
-    public class SettingsSecurityViewModel : BaseViewModel, ISettingsSecurityViewModel
+    public class SettingsSecurityViewModel : BaseNavigationViewModel, ISettingsSecurityViewModel
     {
         private readonly ISettingsManager settingsManager;
         private readonly IDialogService dialogService;
