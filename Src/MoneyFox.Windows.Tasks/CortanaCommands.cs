@@ -11,7 +11,10 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-
+using MoneyFox.DataAccess.Entities;
+using MoneyFox.DataAccess.DataServices;
+using MoneyFox.DataAccess.Pocos;
+using Windows.Foundation.Collections;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -34,10 +37,12 @@ namespace MoneyFox.Windows.Tasks
             VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
             VoiceCommandUserMessage userMessage;
             VoiceCommandUserMessage repromptMessage;
+            AppServiceConnection newconnection = new AppServiceConnection();
+            newconnection.PackageFamilyName = "57598ApplySolutionsSoftwa.MoneyFox";
+            AppServiceConnectionStatus status;
+            AppServiceResponse response;
             var rule = voiceCommand.SpeechRecognitionResult.RulePath[0];
-            Accounts = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-            Payments = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-            string commandType = "";
+           string commandType = "";
 
             switch (rule)
             {
@@ -45,23 +50,9 @@ namespace MoneyFox.Windows.Tasks
                     {
                     
                         string step = await ReadStepFile();
-                       if (!step.Contains("account"))
+                       if (!step.Contains("account")&&step=="")
                         {
-                            List<Account> newlistaccounts = new List<Account>();
-                            try
-                            {
-                                var test = await Accounts.GetAllAccounts();
-                                newlistaccounts = test.ToList<Account>();
-                            }
-                            catch (Exception e)
-                            {
-                                await Logging(e.ToString());
-                                VoiceCommandUserMessage newmessage = new VoiceCommandUserMessage();
-                                newmessage.SpokenMessage = GetResourceString("CortanaUserMessageNoAccountsPaymentCreationSpoken");
-                                newmessage.DisplayMessage = GetResourceString("CortanaUserMessageNoAccountsPaymentCreationText");
-                                await connection.ReportFailureAsync(VoiceCommandResponse.CreateResponse(newmessage));
-                                serviceDeferral?.Complete();
-                            }
+                            ValueSet vs = new ValueSet();
                             userMessage = CreateUserMessage(GetResourceString("CortanaUserMessageReoccuranceSpoken"), GetResourceString("CortanaUserMessageReoccuranceText"));
                             List<VoiceCommandContentTile> Allothercontents = new List<VoiceCommandContentTile>();
                             var payementreoccurs = Enum.GetNames(typeof(PaymentRecurrence)).Cast<string>().ToList();
@@ -70,7 +61,7 @@ namespace MoneyFox.Windows.Tasks
                                 Allothercontents.Add(CreateTile(payementreoccurs[i], string.Format(GetResourceString("CortanaContentTileReoccuranceText"), GetResourceString(payementreoccurs[i] + "Label"))));
                             }
 
-                            Allothercontents.Add(CreateTile("None", string.Format(GetResourceString("CortanaContentTileReoccuranceText"), GetResourceString("CortanaContentTileNoRecurranceTitle"))));
+                            Allothercontents.Add(CreateTile(GetResourceString("CortanaContentTileNoRecurranceTitle"), GetResourceString("CortanaContentTileNoRecurranceText")));
                             repromptMessage = CreateUserMessage(GetResourceString("CortanaUserMessageReccuranceRepromptSpoken"), GetResourceString("CortanaUserMessageReccuranceRepromptDisplay"));
                             VoiceCommandResponse voiceCommandResponse = VoiceCommandResponse.CreateResponseForPrompt(userMessage, repromptMessage, Allothercontents);
                             VoiceCommandDisambiguationResult vcdr = await connection.RequestDisambiguationAsync(voiceCommandResponse);
@@ -79,25 +70,37 @@ namespace MoneyFox.Windows.Tasks
                                 var reoccur = vcdr.SelectedItem.Title;
                                 if (reoccur == "None" || reoccur == null)
                                 {
-                                    payment = new PaymentEntity
+                                    vs.Add("recurring", "false");
+                                    newconnection.AppServiceName = "CortanaCreatePayment";
+                                    status = await newconnection.OpenAsync();
+                                    if (status == AppServiceConnectionStatus.Success)
                                     {
-                                        IsRecurring = false
-                                    };
-                                    commandType = "payment";
-                              await Updatestepfile("create-payment,payment");
+                                        response = await newconnection.SendMessageAsync(vs);
+                                    }
+                                    else
+                                    {
+                                        await connection.ReportFailureAsync(VoiceCommandResponse.CreateResponse(CortanaFunctions.CreateUserMessage(CortanaFunctions.GetResourceString("CortanaUserMessageDefaultErrorMessage"),CortanaFunctions.GetResourceString("CortanaUserMessageDefaultErrorMessage"))));
+                                        serviceDeferral?.Complete();
+                                    }
+                                    
                                 }
                                 else
                                 {
-                                    payment = new PaymentEntity
+                                 
+                                    vs.Add("recurring", true);
+                                    vs.Add("recurrs",reoccur);
+                                    newconnection.AppServiceName = "CortanaCreateRecurringPayment";
+                                    status = await newconnection.OpenAsync();
+                                    if (status == AppServiceConnectionStatus.Success)
                                     {
-                                        IsRecurring = true,
-                                        RecurringPayment = new RecurringPaymentEntity(),
-
-                                    };
-                                    payment.RecurringPayment.Recurrence = (PaymentRecurrence)Enum.Parse(typeof(PaymentRecurrence), vcdr.SelectedItem.Title);
-                                    commandType = "reccuring";
-
-                                   await Updatestepfile("create-payment,recurring");
+                                        response = await newconnection.SendMessageAsync(vs);
+                                        CortanaFunctions.SerializeAsync(response, "recurring");
+                                    }
+                                    else
+                                    {
+                                        await connection.ReportFailureAsync(VoiceCommandResponse.CreateResponse(CortanaFunctions.CreateUserMessage(CortanaFunctions.GetResourceString("CortanaUserMessageDefaultErrorMessage"), CortanaFunctions.GetResourceString("CortanaUserMessageDefaultErrorMessage"))));
+                                        serviceDeferral?.Complete();
+                                    }
                                 }
 
                             }

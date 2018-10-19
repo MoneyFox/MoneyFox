@@ -113,6 +113,14 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CortanaAccountAmount.cs" />
+    <Compile Include="CortanaAccountName.cs" />
+    <Compile Include="CortanaCommands.cs" />
+    <Compile Include="CortanaCreateAccount.cs" />
+    <Compile Include="CortanaCreatePayment.cs" />
+    <Compile Include="CortanaPaymentAmount.cs" />
+    <Compile Include="CortanaPaymentDate.cs" />
+    <Compile Include="CortanaReccuringPayment.cs" />
     <Compile Include="RecurringPaymentTask.cs" />
     <Compile Include="ClearPaymentsTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

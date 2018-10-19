@@ -731,13 +731,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Apply income payment to accout {0}</value>
   </data>
   <data name="CortanaUserMessageAccountAmount" xml:space="preserve">
-    <value>How much does this account hold initially</value>
+    <value>How much money is in this account?</value>
   </data>
   <data name="CortanaUserMessageAccountAmountError" xml:space="preserve">
     <value>Unable to add an amount to the account when no account created</value>
   </data>
   <data name="CortanaUserMessageAccountName" xml:space="preserve">
-    <value>What name would you give this account?</value>
+    <value>What is the name of this account?</value>
   </data>
   <data name="CortanaUserMessageAccountNameError" xml:space="preserve">
     <value>Unable to add an account name when no account was created</value>
@@ -912,5 +912,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="CortanaUserMessageOnlyOneAccountTransferText" xml:space="preserve">
     <value>Unable to create a transfer payment with only one account</value>
+  </data>
+  <data name="CortanaUserMessageAccountCreated" xml:space="preserve">
+    <value>Account created</value>
+  </data>
+  <data name="CortanaUserMessagePaymentCreated" xml:space="preserve">
+    <value>Payment created</value>
+  </data>
+  <data name="CortanaContentTileNoRecurrance" xml:space="preserve">
+    <value>None</value>
   </data>
 </root>
