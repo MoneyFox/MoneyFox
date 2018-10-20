@@ -15,6 +15,7 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using Windows.Foundation.Collections;
+using MoneyFox.Windows.Business;
 
 namespace MoneyFox.Windows.Tasks
 {

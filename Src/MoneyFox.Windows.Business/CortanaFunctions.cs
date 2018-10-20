@@ -242,24 +242,39 @@ namespace MoneyFox.Windows
              {
 
                 case "payment":
-                    var tes = (PaymentEntity)te;
-
-                    tempinfo = tes.GetType().GetProperties().ToList();
-                    foreach (PropertyInfo x in tempinfo)
                     {
-                        var z = tes.GetType().GetProperty(x.Name);
-                        z.SetValue(tes, LocalSettings.Containers["payment"].Values[x.Name]);
+                        var tes = (PaymentEntity)te;
+
+                        tempinfo = tes.GetType().GetProperties().ToList();
+                        foreach (PropertyInfo x in tempinfo)
+                        {
+                            var z = tes.GetType().GetProperty(x.Name);
+                            z.SetValue(tes, LocalSettings.Containers["payment"].Values[x.Name]);
+                        }
+                        return tes;
                     }
-                    return tes;
+                case "recurring":
+                    {
+                        var tes=(RecurringPaymentEntity)te;
+                        tempinfo = tes.GetType().GetProperties().ToList();
+                        foreach (PropertyInfo x in tempinfo)
+                        {
+                            var z = tes.GetType().GetProperty(x.Name);
+                            z.SetValue(tes, LocalSettings.Containers["recurring"].Values[x.Name]);
+                        }
+                        return tes;
+                    }
                 case "account":
-                    AccountEntity am = new AccountEntity();
-                    foreach (KeyValuePair<string, string> x in test)
                     {
-                        var z = am.GetType().GetProperty(x.Key);
-                        z.SetValue(am, x.Value);
+                        var tes = (AccountEntity)te;
+                        tempinfo = tes.GetType().GetProperties().ToList();
+                        foreach (PropertyInfo x in tempinfo)
+                        {
+                            var z = tes.GetType().GetProperty(x.Name);
+                            z.SetValue(tes, LocalSettings.Containers["account"].Values[x.Name]);
+                        }
+                        return tes;
                     }
-                    return am;
-
                 default:
                     return null;
             }
@@ -342,7 +357,7 @@ namespace MoneyFox.Windows
         }
         public static string ReadStepFile()
         {
-           return (string)LocalSettings.Values["step"]
+            return (string)LocalSettings.Values["step"];
         }
         
     }

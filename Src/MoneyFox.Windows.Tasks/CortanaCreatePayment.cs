@@ -15,6 +15,7 @@ using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Windows.Business;
+using Windows.Foundation.Collections;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -23,18 +24,21 @@ namespace MoneyFox.Windows.Tasks
         BackgroundTaskDeferral serviceDeferral;
         PaymentEntity payment;
         string commandType;
+        ValueSet valueset = new ValueSet(); 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             serviceDeferral = taskInstance.GetDeferral();
             taskInstance.Canceled += TaskInstance_Canceled;
-            var local_folder = ApplicationData.Current.LocalFolder;
+           var local_folder = ApplicationData.Current.LocalFolder;
             AppServiceTriggerDetails trigger = taskInstance.TriggerDetails as AppServiceTriggerDetails;
-            VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
+           VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
+            AppServiceConnection appServiceConnection = trigger.AppServiceConnection;
+            appServiceConnection.RequestReceived += AppServiceConnection_RequestReceived;
             VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
             VoiceCommandUserMessage userMessage;
             VoiceCommandUserMessage repromptMessage;
             AccountService Accounts = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-            string step = await CortanaFunctions.ReadStepFile();
+            string step = CortanaFunctions.ReadStepFile();
             if (!step.Contains("account") && step=="")
             {
                 List<Account> newlistaccounts = new List<Account>();
@@ -296,10 +300,28 @@ namespace MoneyFox.Windows.Tasks
             
         }
 
-      
+        private void AppServiceConnection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         private void TaskInstance_Canceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
             serviceDeferral?.Complete();
         }
     }
+    public sealed class CortanaCreateRecurringPayment : IBackgroundTask
+    
+{
+    }
+    public static class PaymentCommonTasks
+    {
+        public static string ReturnReccurrance()
+        {
+
+        }
+        public static string
+    }
+
+
 }
