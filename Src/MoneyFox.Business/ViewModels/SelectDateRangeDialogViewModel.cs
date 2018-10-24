@@ -16,7 +16,7 @@ namespace MoneyFox.Business.ViewModels
         MvxCommand DoneCommand { get; set; }
     }
 
-    public class SelectDateRangeDialogViewModel : BaseViewModel
+    public class SelectDateRangeDialogViewModel : BaseNavigationViewModel
     {
         private readonly IMvxMessenger messenger;
 

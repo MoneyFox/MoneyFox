@@ -9,7 +9,7 @@ using MvvmCross.Navigation;
 
 namespace MoneyFox.Business.ViewModels.Statistic
 {
-    public class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : BaseNavigationViewModel, IStatisticSelectorViewModel
     {
         private readonly IMvxNavigationService navigationService;
 

@@ -29,7 +29,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : BaseViewModel, IBackupViewModel
+    public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
         private readonly IBackupManager backupManager;
         private readonly IConnectivity connectivity;
