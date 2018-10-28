@@ -615,35 +615,7 @@ namespace MoneyFox.Windows.Tasks
 		{
 			double balance = 0.00;
 			Account account = await accountService.GetById(accountid);
-			var ticks = DateTime.Now.Ticks;
-			if (account != null)
-			{
-
-				List<PaymentEntity> payments = account.Data.ChargedPayments.FindAll(x => x.Date.Month == month);
-				foreach (PaymentEntity item in payments)
-				{
-					if (item.Type == Foundation.PaymentType.Expense)
-					{
-						balance += item.Amount;
-					}
-
-				}
-				List<RecurringPaymentEntity> recurringPaymentEntities = account.Data.ChargedRecurringPayments.FindAll(x => x?.EndDate?.Month >= month && x.StartDate.Month <= month);
-				foreach (RecurringPaymentEntity recurring in recurringPaymentEntities)
-				{
-					if (recurring.Type == Foundation.PaymentType.Expense)
-					{
-						balance += recurring.Amount;
-
-					}
-				}
-				return balance;
-
-			}
-			else
-			{
-				return balance;
-			}
+		
 
 		}
 		private async Task<List<string>> Get9PreviouspaymentsAsync()
@@ -673,7 +645,7 @@ namespace MoneyFox.Windows.Tasks
 			foreach (var item in tet)
 			{
 				Payment p = allpayment[item];
-				returnlist.Add($"Payment {p.Data.Amount} paid on {p.Data.Date}");
+				returnlist.Add(string.Format({p.Data.Amount} amount paid from {p.Data.ChargedAccount.Name} on {p.Data.Date}");
 			}
 			alldates.Clear();
 			allpayment.Clear();
@@ -720,7 +692,7 @@ namespace MoneyFox.Windows.Tasks
 			List<string> returnlist = new List<string>();
 			foreach (var item in tet)
 			{
-				returnlist.Add($"Payment " + item.Amount + " paid on " + item.Date);
+				returnlist.Add($" {item.Amount} amount to be paid from {item.ChargedAccount}  on   {item.Date}";
 			}
 
 			return returnlist;

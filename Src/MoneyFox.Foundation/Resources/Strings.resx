@@ -895,4 +895,28 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="CortanaVoiceCommandPaymentDateListenFor" xml:space="preserve">
     <value>[the] payment date is {date}</value>
   </data>
+  <data name="LiveTileAccountBalance" xml:space="preserve">
+    <value>Balance {0}</value>
+  </data>
+  <data name="LiveTileAccountCurrentMonthsExpenses" xml:space="preserve">
+    <value>This months current expenses: {0}</value>
+  </data>
+  <data name="LiveTileAccountLastMonthsExpenses" xml:space="preserve">
+    <value>Last months expenses: {0}</value>
+  </data>
+  <data name="LiveTileAccountName" xml:space="preserve">
+    <value>Account {0}</value>
+  </data>
+  <data name="LiveTileFuturePaymentText" xml:space="preserve">
+    <value>{0} amount to be paid from {1}  on {2}</value>
+  </data>
+  <data name="LiveTileNextPayments" xml:space="preserve">
+    <value>Upcoming Payments</value>
+  </data>
+  <data name="LiveTilePastPaymentText" xml:space="preserve">
+    <value>{0} amount paid from {1} on {2}</value>
+  </data>
+  <data name="LiveTilePreviousPayments" xml:space="preserve">
+    <value>Past Payments</value>
+  </data>
 </root>
