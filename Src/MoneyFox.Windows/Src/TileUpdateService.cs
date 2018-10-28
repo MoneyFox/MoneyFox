@@ -3,6 +3,11 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
+using Windows.UI.StartScreen;
+using Microsoft.Toolkit.Uwp.Helpers;
+using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Windows.Business
 {
@@ -145,4 +150,35 @@ namespace MoneyFox.Windows.Business
             };
         }
     }
+	public static class LiveTiles
+	{
+		public static bool PrimaryPinned;
+		public static bool SecondaryPinned;
+		public static void CheckPrimary()
+		{
+			AppListEntry entry = Package.Current.GetAppListEntriesAsync().GetResults()[0];
+			PrimaryPinned = StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry).GetResults();
+		}
+		public static void CheckSecondary()
+		{
+			var tiles = SecondaryTile.FindAllForPackageAsync().GetResults();
+			if (tiles != null)
+			{
+				SecondaryPinned = true;
+			}
+			else
+			{
+				SecondaryPinned = false;
+			}
+		}
+		public static void CheckorStartLiveTileService()
+		{
+			CheckPrimary();
+			CheckSecondary();
+			if (PrimaryPinned || SecondaryPinned)
+			{
+				BackgroundTaskHelper.Register(typeof(Tasks.UpdateliveandLockscreenTiles), new TimeTrigger(15, false));
+			}
+		}
+	}
 }

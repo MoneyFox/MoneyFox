@@ -8,6 +8,7 @@ using MoneyFox.Business.ViewModels.DesignTime;
 using win = Windows.UI;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace MoneyFox.Windows.Views
 {
@@ -35,8 +36,7 @@ namespace MoneyFox.Windows.Views
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+			flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
@@ -63,27 +63,32 @@ namespace MoneyFox.Windows.Views
 
             (DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
         }
-      private void AddToStartMenu_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.liveTileService==null)
-            {
-                this.liveTileService = new AppServiceConnection();
-                this.liveTileService.AppServiceName = "LiveTiles";
-            }
-            var element = (FrameworkElement)sender;
-            var account = element.DataContext as AccountViewModel;
-            if (account==null)
-            {
-                return;
-            }
-           var name = account.Account;
-            int id = name.Data.Id;
-            var sendvalues = new ValueSet();
+		private void AddToStartMenu_Click(object sender, RoutedEventArgs e)
+		{
+			if (this.liveTileService == null)
+			{
+				this.liveTileService = new AppServiceConnection();
+				this.liveTileService.AppServiceName = "LiveTiles";
+			}
+			var element = (FrameworkElement)sender;
+			var account = element.DataContext as AccountViewModel;
+			if (account == null)
+			{
+				return;
+			}
+			var name = account.Account;
+			int id = name.Data.Id;
+			var sendvalues = new ValueSet();
+			sendvalues.Add("action", "create");
+			sendvalues.Add("accountid", id.ToString());
+			var te = liveTileService.SendMessageAsync(sendvalues);
+			var tes = te.GetResults();
+			Update.Show("live tile created", 3);
 
 
-           
-        }
 
-       
-    }
+		}
+
+
+	}
 }

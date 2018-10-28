@@ -95,6 +95,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
@@ -188,7 +189,7 @@
                       </CommandBar.SecondaryCommands>
         </CommandBar>
 
-        <inapp:InAppNotification Grid.Row="2" x:Name="Update"  />
+        <inapp:InAppNotification Grid.Row="3" x:Name="Update"  />
 
     </Grid>
     

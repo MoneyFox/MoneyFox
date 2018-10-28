@@ -190,15 +190,47 @@ namespace MoneyFox.Windows.Tasks
 																{
 																	new AdaptiveText()
 																	{
-																		Text = "Balance: " +await GetLatestBalanceAsync(accountid)
+																		Text = (lastrun=="last")?nextpayment:previouspayment,
+																		HintStyle = AdaptiveTextStyle.Caption
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid)
+																		Text = (lastrun=="last")?previous[0]:next[0],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[1]:next[1],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = "This Month Non-Recurring Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.Month,accountid)
+																		Text = (lastrun=="last")?previous[2]:next[2],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[3]:next[3],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text =(lastrun=="last")?previous[4]:next[4],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[5]:next[5],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[6]:next[6],
+																		HintStyle=AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[7]:next[7],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 																}
 															}
@@ -223,15 +255,47 @@ namespace MoneyFox.Windows.Tasks
 																{
 																	new AdaptiveText()
 																	{
-																		Text = "Balance: " +await GetLatestBalanceAsync(accountid)
+																		Text = (lastrun=="last")?nextpayment:previouspayment,
+																		HintStyle = AdaptiveTextStyle.Caption
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = "Last Month Non-Recurring Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid)
+																		Text = (lastrun=="last")?previous[0]:next[0],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[1]:next[1],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = "This Month Non-Recurring Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.Month,accountid)
+																		Text = (lastrun=="last")?previous[2]:next[2],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[3]:next[3],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text =(lastrun=="last")?previous[4]:next[4],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[5]:next[5],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[6]:next[6],
+																		HintStyle=AdaptiveTextStyle.CaptionSubtle
+																	},
+																   new AdaptiveText()
+																	{
+																		Text = (lastrun=="last")?previous[7]:next[7],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 
 																}

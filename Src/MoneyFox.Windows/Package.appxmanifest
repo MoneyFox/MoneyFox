@@ -50,14 +50,9 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.UpdateliveandLockscreenTiles">
-          <uap:AppService Name="LiveTileUpdate" />
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.TasksUpdateliveandLockscreenTiles">
+          <uap:AppService Name="LiveTiles" />
         </uap:Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.UpdateliveandLockscreenTiles">
-          <BackgroundTasks>
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
       </Extensions>
     </Application>
   </Applications>
