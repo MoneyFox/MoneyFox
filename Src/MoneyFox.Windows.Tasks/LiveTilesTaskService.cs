@@ -14,6 +14,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using Windows.Storage;
+using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows.Tasks
 {
@@ -339,24 +340,24 @@ namespace MoneyFox.Windows.Tasks
 										{
 											Children =
 											{
-											new AdaptiveText()
+										new AdaptiveText()
 												{
-													Text = "Account: " + item.TileId,
+													Text = string.Format(GetResourceString("LiveTileAccountName"),item.TileId),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 
@@ -383,25 +384,24 @@ namespace MoneyFox.Windows.Tasks
 											{
 												new AdaptiveText()
 												{
-													Text = "Account: " + item.TileId,
+													Text = string.Format(GetResourceString("LiveTileAccountName"),item.TileId),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
-
 											}
 										}
 									}
@@ -425,25 +425,24 @@ namespace MoneyFox.Windows.Tasks
 											{
 												new AdaptiveText()
 												{
-													Text = "Account: " + item.TileId,
+													Text = string.Format(GetResourceString("LiveTileAccountName"),item.TileId),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId)),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
-
 
 											}
 										}
@@ -491,22 +490,22 @@ namespace MoneyFox.Windows.Tasks
 											{
 											new AdaptiveText()
 												{
-													Text = "Account: " + accountid.ToString(),
+													Text = string.Format(GetResourceString("LiveTileAccountName"),accountid.ToString()),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 
@@ -533,25 +532,24 @@ namespace MoneyFox.Windows.Tasks
 											{
 												new AdaptiveText()
 												{
-													Text = "Account: " + accountid.ToString(),
+													Text = string.Format(GetResourceString("LiveTileAccountName"),accountid.ToString()),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
-
 											}
 										}
 									}
@@ -575,25 +573,24 @@ namespace MoneyFox.Windows.Tasks
 											{
 												new AdaptiveText()
 												{
-													Text = "Account: " + accountid.ToString(),
+													Text = string.Format(GetResourceString("LiveTileAccountName"),accountid.ToString()),
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
-													Text = "Balance: " +await GetLatestBalanceAsync(accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountBalance"),await GetLatestBalanceAsync(accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 												new AdaptiveText()
 												{
-													Text = "Last Month Payment Expenses: " + await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = "This Month Payment Expenses: " + await  GetMonthExpensesAsync(DateTime.Now.Month,accountid),
+													Text = string.Format(GetResourceString("LiveTileAccountCurrentMonthsExpenses"), await  GetMonthExpensesAsync(DateTime.Now.Month,accountid)),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
-
 
 											}
 										}
@@ -613,10 +610,31 @@ namespace MoneyFox.Windows.Tasks
 		}
 		private async Task<double> GetMonthExpensesAsync(int month, int accountid)
 		{
+			var currentmonth = DateTime.Now.Month;
 			double balance = 0.00;
-			Account account = await accountService.GetById(accountid);
-		
-
+			IEnumerable<Payment> payments = await paymentService.GetPaymentsByAccountId(accountid);
+			foreach (Payment item in payments)
+			{
+				if (item.Data.IsRecurring)
+				{
+						GetrecurrancepaymentsMonthly(item, item.Data.RecurringPayment.Recurrence,month);
+				
+				
+				}
+				else
+				{
+					if (item.Data.Date.Month==month && item.Data.Date.Year==DateTime.Now.Year)
+					{
+						allpayment.Add(item.Data.Date, item);
+					}
+				
+				}
+			}
+			foreach (KeyValuePair<DateTime,Payment> item in allpayment)
+			{
+				balance += item.Value.Data.Amount;
+			}
+			return balance;
 		}
 		private async Task<List<string>> Get9PreviouspaymentsAsync()
 		{
@@ -645,7 +663,7 @@ namespace MoneyFox.Windows.Tasks
 			foreach (var item in tet)
 			{
 				Payment p = allpayment[item];
-				returnlist.Add(string.Format({p.Data.Amount} amount paid from {p.Data.ChargedAccount.Name} on {p.Data.Date}");
+				returnlist.Add(string.Format(GetResourceString("LiveTilePastPaymentText"),p.Data.Amount,p.Data.ChargedAccount.Name,p.Data.Date));
 			}
 			alldates.Clear();
 			allpayment.Clear();
@@ -667,7 +685,7 @@ namespace MoneyFox.Windows.Tasks
 			{
 				if (item.Data.IsRecurring)
 				{
-					item.Data.Amount = item.Data.RecurringPayment.Amount;
+					Getrecurancepayments(item, item.Data.RecurringPayment.Recurrence, "next");
 
 				}
 				else
@@ -692,7 +710,7 @@ namespace MoneyFox.Windows.Tasks
 			List<string> returnlist = new List<string>();
 			foreach (var item in tet)
 			{
-				returnlist.Add($" {item.Amount} amount to be paid from {item.ChargedAccount}  on   {item.Date}";
+				returnlist.Add(string.Format(GetResourceString("LiveTileFuturePaymentText"),item.Amount,item.ChargedAccount.Name,item.Date));
 			}
 
 			return returnlist;
@@ -717,6 +735,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -738,6 +757,7 @@ namespace MoneyFox.Windows.Tasks
 									{
 
 										p.Data.Date = td;
+										p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 										p.Data.Amount = p.Data.RecurringPayment.Amount;
 
 										allpayment.Add(td, p);
@@ -753,6 +773,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -767,6 +788,7 @@ namespace MoneyFox.Windows.Tasks
 								{
 									p.Data.Date = td;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
 									td = td.AddDays(14);
@@ -779,6 +801,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -792,6 +815,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -806,6 +830,7 @@ namespace MoneyFox.Windows.Tasks
 								{
 
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount; 
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -819,6 +844,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -832,6 +858,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) >= 0)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -858,6 +885,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i <= 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount; 
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -882,6 +910,7 @@ namespace MoneyFox.Windows.Tasks
 									else
 									{
 										p.Data.Date = td;
+										p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 										p.Data.Amount = p.Data.RecurringPayment.Amount;
 										allpayment.Add(td, p);
 										alldates.Add(td);
@@ -902,6 +931,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -922,6 +952,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -940,6 +971,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -959,6 +991,7 @@ namespace MoneyFox.Windows.Tasks
 								{
 
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount; 
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -976,6 +1009,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -995,6 +1029,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -1014,6 +1049,7 @@ namespace MoneyFox.Windows.Tasks
 								while (DateTime.Compare(dt, td) <= 0 && i < 8)
 								{
 									p.Data.Date = td;
+									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
 									p.Data.Amount = p.Data.RecurringPayment.Amount;
 									allpayment.Add(td, p);
 									alldates.Add(td);
@@ -1029,6 +1065,189 @@ namespace MoneyFox.Windows.Tasks
 					break;
 			}
 		}
+		private void GetrecurrancepaymentsMonthly(Payment p, Foundation.PaymentRecurrence reccur, int month)
+		{
+			DateTime dt = DateTime.Now;
+			int year = DateTime.Now.Year;
+			
+			switch (reccur)
+			{
+				case Foundation.PaymentRecurrence.Daily:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month==month&& p.Data.Date.Year==year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddDays(1);
+							}
+							
+
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.DailyWithoutWeekend:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							if (td.DayOfWeek == DayOfWeek.Saturday || td.DayOfWeek == DayOfWeek.Sunday)
+							{
+								continue;
+							}
+							else
+							{
+
+								p.Data.Date = td;
+								p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+								p.Data.Amount = p.Data.RecurringPayment.Amount;
+
+								if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+								{
+									allpayment.Add(td, p);
+									alldates.Add(td);
+									td = td.AddDays(1);
+								}
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Weekly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddDays(7);
+							}
+						}
+						break;
+					}
+				case Foundation.PaymentRecurrence.Biweekly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddDays(14);
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Monthly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddMonths(1);
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Bimonthly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddMonths(2);
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Quarterly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddMonths(4);
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Biannually:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddMonths(6);
+							}
+						};
+						break;
+					}
+				case Foundation.PaymentRecurrence.Yearly:
+					{
+						DateTime td = p.Data.RecurringPayment.StartDate;
+						while (DateTime.Compare(dt, td) >= 0)
+						{
+							p.Data.Date = td;
+							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
+							p.Data.Amount = p.Data.RecurringPayment.Amount;
+							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
+							{
+								allpayment.Add(td, p);
+								alldates.Add(td);
+								td = td.AddYears(1);
+							}
+						};
+						break;
+					}
+				default:
+					break;
+			}
+
+		}
+		private static string GetResourceString(string resourcekey)
+		{
+			System.Resources.ResourceManager keyValuePairs = Strings.ResourceManager;
+			return keyValuePairs.GetString(resourcekey);
+		}
+
 	}
 }
 
