@@ -17,7 +17,7 @@ using MvvmCross.Navigation;
 namespace MoneyFox.Business.ViewModels
 {
     /// <inheritdoc cref="IAccountListViewModel" />
-    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
+    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
