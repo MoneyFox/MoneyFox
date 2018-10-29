@@ -14,7 +14,7 @@ namespace MoneyFox.Business.ViewModels
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : BaseNavigationViewModel, ISelectFilterDialogViewModel
     {
         private readonly IMvxMessenger messenger;
 

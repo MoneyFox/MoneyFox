@@ -38,8 +38,8 @@
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>
-                <ScrollViewer>
-                    <StackPanel>
+                <ScrollViewer Margin="0,0,-10,0" >
+                    <StackPanel Margin="0,0,20,0">
                         <!-- Background Job -->
                         <StackPanel DataContext="{Binding BackgroundJobViewModel}">
                             <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
