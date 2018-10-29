@@ -8,6 +8,8 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.StartScreen;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.ApplicationModel.Background;
+using System;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Windows.Business
 {
@@ -154,15 +156,15 @@ namespace MoneyFox.Windows.Business
 	{
 		public static bool PrimaryPinned;
 		public static bool SecondaryPinned;
-		public static void CheckPrimary()
+		public static async Task CheckPrimaryAsync()
 		{
-			AppListEntry entry = Package.Current.GetAppListEntriesAsync().GetResults()[0];
-			PrimaryPinned = StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry).GetResults();
+			AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
+			PrimaryPinned = await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
 		}
-		public static void CheckSecondary()
+		public static async Task CheckSecondaryAsync()
 		{
-			var tiles = SecondaryTile.FindAllForPackageAsync().GetResults();
-			if (tiles != null)
+			var tiles = await SecondaryTile.FindAllForPackageAsync();
+			if (tiles.Count>0)
 			{
 				SecondaryPinned = true;
 			}
@@ -171,10 +173,10 @@ namespace MoneyFox.Windows.Business
 				SecondaryPinned = false;
 			}
 		}
-		public static void CheckorStartLiveTileService()
+		public static async void CheckorStartLiveTileServiceAsync()
 		{
-			CheckPrimary();
-			CheckSecondary();
+	     await CheckPrimaryAsync();
+		 await	CheckSecondaryAsync();
 			if (PrimaryPinned || SecondaryPinned)
 			{
 				BackgroundTaskHelper.Register(typeof(Tasks.UpdateliveandLockscreenTiles), new TimeTrigger(15, false));

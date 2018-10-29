@@ -101,7 +101,7 @@ namespace MoneyFox.Windows
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-				LiveTiles.CheckorStartLiveTileService();
+				LiveTiles.CheckorStartLiveTileServiceAsync();
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
                 (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 

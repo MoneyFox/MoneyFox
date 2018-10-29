@@ -9,6 +9,7 @@ using win = Windows.UI;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
 using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 
 namespace MoneyFox.Windows.Views
 {
@@ -63,7 +64,7 @@ namespace MoneyFox.Windows.Views
 
             (DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
         }
-		private void AddToStartMenu_Click(object sender, RoutedEventArgs e)
+		private async System.Threading.Tasks.Task AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
 		{
 			if (this.liveTileService == null)
 			{
@@ -81,8 +82,8 @@ namespace MoneyFox.Windows.Views
 			var sendvalues = new ValueSet();
 			sendvalues.Add("action", "create");
 			sendvalues.Add("accountid", id.ToString());
-			var te = liveTileService.SendMessageAsync(sendvalues);
-			var tes = te.GetResults();
+			var te = await liveTileService.SendMessageAsync(sendvalues);
+			var tes = te.Message;
 			Update.Show("live tile created", 3);
 
 
