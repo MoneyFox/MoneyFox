@@ -27,14 +27,14 @@ namespace MoneyFox.Windows.Tasks
             AppServiceTriggerDetails trigger = taskInstance.TriggerDetails as AppServiceTriggerDetails;
             VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
             VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
-            string step = await CortanaFunctions.ReadStepFile();
+            string step = CortanaFunctions.ReadStepFile();
             if (!step.Contains("payment") && step.Contains("account"))
             {
                 if (step.Contains("create"))
                 {
-                    AccountEntity account = (AccountEntity)await CortanaFunctions.DeserializeAsync("account");
+                    AccountEntity account = (AccountEntity) CortanaFunctions.DeserializeAsync("account");
                     account.CurrentBalance =double.Parse(CortanaFunctions.SemanticInterpretation("amount", voiceCommand));
-                    await CortanaFunctions.SerializeAsync(account, "account");
+                    CortanaFunctions.SerializeAsync(account, "account");
                     CortanaFunctions.Updatestepfile("accountamount");
                     VoiceCommandUserMessage userMessage = CortanaFunctions.CreateUserMessage(CortanaFunctions.GetResourceString("CortanaUserMessageAccountName"), CortanaFunctions.GetResourceString("CortanaUserMessageAccountName"));
                     await connection.ReportSuccessAsync(VoiceCommandResponse.CreateResponse(userMessage));
@@ -42,7 +42,7 @@ namespace MoneyFox.Windows.Tasks
                 }
                 else
                 {
-                    AccountEntity account = (AccountEntity)await CortanaFunctions.DeserializeAsync("account");
+                    AccountEntity account = (AccountEntity)CortanaFunctions.DeserializeAsync("account");
                     account.CurrentBalance = Double.Parse(CortanaFunctions.SemanticInterpretation("amount", voiceCommand));
                     AccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
                     Account saveaccount = new Account(account);

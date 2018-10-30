@@ -28,10 +28,10 @@ namespace MoneyFox.Windows.Tasks
             VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
             VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
             taskInstance.Canceled += TaskInstance_Canceled;
-            string step = await CortanaFunctions.ReadStepFile();
+            string step = CortanaFunctions.ReadStepFile();
             if (step == "")
             {
-                await CortanaFunctions.SerializeAsync(new AccountEntity(), "account");
+                CortanaFunctions.SerializeAsync(new AccountEntity(), "account");
                 CortanaFunctions.Updatestepfile("createaccount");
                 VoiceCommandUserMessage userMessage = CortanaFunctions.CreateUserMessage(CortanaFunctions.GetResourceString("CortanaUserMessageAccountName"), CortanaFunctions.GetResourceString("CortanaUserMessageAccountName"));
                 await connection.ReportSuccessAsync(VoiceCommandResponse.CreateResponse(userMessage));

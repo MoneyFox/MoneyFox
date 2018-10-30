@@ -31,14 +31,14 @@ namespace MoneyFox.Windows.Tasks
             VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
             VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
             taskInstance.Canceled += TaskInstance_Canceled;
-            string step = await CortanaFunctions.ReadStepFile();
+            string step = CortanaFunctions.ReadStepFile();
             if (!step.Contains("payment") && step.Contains("account"))
             {
                 if (step.Contains("create"))
                 {
-                    AccountEntity account = (AccountEntity)await CortanaFunctions.DeserializeAsync("account");
+                    AccountEntity account = (AccountEntity)CortanaFunctions.DeserializeAsync("account");
                     account.Name = CortanaFunctions.SemanticInterpretation("name", voiceCommand);
-                    await CortanaFunctions.SerializeAsync(account, "account");
+                    CortanaFunctions.SerializeAsync(account, "account");
                     CortanaFunctions.Updatestepfile("accountname");
                     VoiceCommandUserMessage userMessage = CortanaFunctions.CreateUserMessage(CortanaFunctions.GetResourceString("CortanaUserMessageAccountAmount"), CortanaFunctions.GetResourceString("CortanaUserMessageAccountAmount"));
                     await connection.ReportSuccessAsync(VoiceCommandResponse.CreateResponse(userMessage));
@@ -46,7 +46,7 @@ namespace MoneyFox.Windows.Tasks
                 }
                 else
                 {
-                    AccountEntity account = (AccountEntity)await CortanaFunctions.DeserializeAsync("account");
+                    AccountEntity account = (AccountEntity)CortanaFunctions.DeserializeAsync("account");
                     account.Name = CortanaFunctions.SemanticInterpretation("name", voiceCommand);
                     AccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
                     Account saveaccount = new Account(account);

@@ -24,7 +24,6 @@ namespace MoneyFox.Windows.Tasks
         BackgroundTaskDeferral serviceDeferral;
         PaymentEntity payment;
         string commandType;
-        ValueSet valueset = new ValueSet(); 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             serviceDeferral = taskInstance.GetDeferral();
@@ -32,9 +31,7 @@ namespace MoneyFox.Windows.Tasks
            var local_folder = ApplicationData.Current.LocalFolder;
             AppServiceTriggerDetails trigger = taskInstance.TriggerDetails as AppServiceTriggerDetails;
            VoiceCommandServiceConnection connection = VoiceCommandServiceConnection.FromAppServiceTriggerDetails(trigger);
-            AppServiceConnection appServiceConnection = trigger.AppServiceConnection;
-            appServiceConnection.RequestReceived += AppServiceConnection_RequestReceived;
-            VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
+           VoiceCommand voiceCommand = await connection.GetVoiceCommandAsync();
             VoiceCommandUserMessage userMessage;
             VoiceCommandUserMessage repromptMessage;
             AccountService Accounts = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
@@ -300,28 +297,12 @@ namespace MoneyFox.Windows.Tasks
             
         }
 
-        private void AppServiceConnection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void TaskInstance_Canceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
+       private void TaskInstance_Canceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
             serviceDeferral?.Complete();
         }
     }
-    public sealed class CortanaCreateRecurringPayment : IBackgroundTask
-    
-{
-    }
-    public static class PaymentCommonTasks
-    {
-        public static string ReturnReccurrance()
-        {
-
-        }
-        public static string
-    }
+ 
 
 
 }
