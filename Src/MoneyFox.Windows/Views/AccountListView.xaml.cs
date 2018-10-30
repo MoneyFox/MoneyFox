@@ -64,7 +64,7 @@ namespace MoneyFox.Windows.Views
 
             (DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
         }
-		private async System.Threading.Tasks.Task AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
+		private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
 		{
 			if (this.liveTileService == null)
 			{
@@ -83,11 +83,6 @@ namespace MoneyFox.Windows.Views
 			sendvalues.Add("action", "create");
 			sendvalues.Add("accountid", id.ToString());
 			var te = await liveTileService.SendMessageAsync(sendvalues);
-			var tes = te.Message;
-			Update.Show("live tile created", 3);
-
-
-
 		}
 
 

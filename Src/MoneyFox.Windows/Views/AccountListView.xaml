@@ -31,7 +31,7 @@
                             <MenuFlyoutItem Icon="Delete"
                                             Click="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
-                            <MenuFlyoutItem Click="AddToStartMenu_Click" Text="Pin account to start menu">
+                            <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="Pin account to start menu">
                                 <MenuFlyoutItem.Icon>
                                     <SymbolIcon Symbol="Pin"/>
                                 </MenuFlyoutItem.Icon>
@@ -95,7 +95,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
@@ -188,9 +187,6 @@
                               Label="Add Account" />
                       </CommandBar.SecondaryCommands>
         </CommandBar>
-
-        <inapp:InAppNotification Grid.Row="3" x:Name="Update"  />
-
-    </Grid>
+ </Grid>
     
 </views:MvxWindowsPage>   
