@@ -67,7 +67,7 @@ namespace MoneyFox.Business.ViewModels
         string SupportMail { get; }
     }
 
-    public class AboutViewModel : BaseViewModel, IAboutViewModel
+    public class AboutViewModel : BaseNavigationViewModel, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;

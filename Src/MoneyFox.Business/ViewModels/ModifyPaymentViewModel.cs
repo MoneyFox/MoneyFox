@@ -129,7 +129,7 @@ namespace MoneyFox.Business.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public class ModifyPaymentViewModel : BaseViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
+    public class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentService paymentService;

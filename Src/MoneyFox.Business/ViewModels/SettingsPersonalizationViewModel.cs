@@ -11,7 +11,7 @@ namespace MoneyFox.Business.ViewModels
         int SelectedIndex { get; set; }
     }
 
-    public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
+    public class SettingsPersonalizationViewModel : BaseNavigationViewModel, ISettingsPersonalizationViewModel
     {
         private readonly ISettingsManager settingsManager;
 
