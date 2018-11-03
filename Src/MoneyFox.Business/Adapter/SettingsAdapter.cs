@@ -26,19 +26,33 @@ namespace MoneyFox.Business.Adapter
             }
             catch (InvalidCastException)
             {
-                Preferences.Set(key, false);
-                return false;
+                Preferences.Set(key, defaultValue);
+                return defaultValue;
             }
         }
 
         public string GetValue(string key, string defaultValue)
         {
-            return Preferences.Get(key, defaultValue);
+            try
+            {
+                return Preferences.Get(key, defaultValue);
+            } catch (InvalidCastException)
+            {
+                Preferences.Set(key, defaultValue);
+                return defaultValue;
+            }
         }
 
         public int GetValue(string key, int defaultValue)
         {
-            return Preferences.Get(key, defaultValue);
+            try
+            {
+                return Preferences.Get(key, defaultValue);
+            } catch (InvalidCastException)
+            {
+                Preferences.Set(key, defaultValue);
+                return defaultValue;
+            }
         }
 
         public void AddOrUpdate(string key, bool value)
