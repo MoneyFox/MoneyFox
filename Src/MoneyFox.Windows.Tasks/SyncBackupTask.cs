@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Business;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;

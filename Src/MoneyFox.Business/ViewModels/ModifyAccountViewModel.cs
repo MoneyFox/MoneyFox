@@ -58,7 +58,7 @@ namespace MoneyFox.Business.ViewModels
         MvxAsyncCommand CancelCommand { get; }
     }
 
-    public class  ModifyAccountViewModel : BaseViewModel<ModifyAccountParameter>, IModifyAccountViewModel
+    public class  ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>, IModifyAccountViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;

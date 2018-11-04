@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Services;

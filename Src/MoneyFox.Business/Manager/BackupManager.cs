@@ -41,6 +41,8 @@ namespace MoneyFox.Business.Manager
         {
             if (!connectivity.IsConnected) return;
             await backupService.Login();
+            settingsManager.IsLoggedInToBackupService = true;
+            settingsManager.IsBackupAutouploadEnabled = true;
         }
 
         /// <inheritdoc />
