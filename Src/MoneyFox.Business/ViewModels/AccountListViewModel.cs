@@ -94,10 +94,8 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public override async void ViewAppeared()
         {
-            dialogService.ShowLoadingDialog();
             await Load();
             await RaisePropertyChanged(nameof(Accounts));
-            dialogService.HideLoadingDialog();
         }
 
         private async Task EditAccount(AccountViewModel accountViewModel)

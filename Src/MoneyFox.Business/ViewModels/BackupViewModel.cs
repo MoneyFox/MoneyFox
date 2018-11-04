@@ -186,7 +186,6 @@ namespace MoneyFox.Business.ViewModels
             try
             {
                 await backupManager.Login();
-                settingsManager.IsLoggedInToBackupService = true;
                 // ReSharper disable once ExplicitCallerInfoArgument
                 await RaisePropertyChanged(nameof(IsLoggedIn));
             }

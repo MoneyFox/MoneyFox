@@ -86,14 +86,7 @@ namespace MoneyFox
 
             using (dbContextScopeFactory.Create())
             {
-                try
-                {
-                    ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    Crashes.TrackError(ex);
-                }
+                ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
 
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
