@@ -18,21 +18,21 @@ using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Windows.Tasks
 {
-/// <summary>
-/// Service and background task to create, and update live tiles	
-/// </summary>
+	/// <summary>
+	/// Service and background task to create, and update live tiles	
+	/// </summary>
 	public sealed class UpdateliveandLockscreenTiles : IBackgroundTask
 	{
 		BackgroundTaskDeferral serviceDeferral;
 		AppServiceConnection connection;
 		AccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 		PaymentService paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-		Dictionary<DateTime, Payment> allpayment = new Dictionary<DateTime, Payment>();
-		List<DateTime> alldates = new List<DateTime>();
+		public List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
 		ApplicationDataContainer appsettings = ApplicationData.Current.LocalSettings;
+		Dictionary<Foundation.PaymentRecurrence, Func<iReccurance>> strategy = new Dictionary<Foundation.PaymentRecurrence, Func<iReccurance>>();
 		public void Run(IBackgroundTaskInstance taskInstance)
 		{
-		
+
 			serviceDeferral = taskInstance.GetDeferral();
 			taskInstance.Canceled += OnTaskCanceled;
 
@@ -42,13 +42,18 @@ namespace MoneyFox.Windows.Tasks
 			serviceDeferral?.Complete();
 
 		}
-
-
-
 		private async void OnRequestReceivedAsync(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
 		{
 			var messageDeferral = args.GetDeferral();
-
+			strategy.Add(Foundation.PaymentRecurrence.Daily, () => new RecurrDaily());
+			strategy.Add(Foundation.PaymentRecurrence.DailyWithoutWeekend, () => new RecurrWeekdays());
+			strategy.Add(Foundation.PaymentRecurrence.Weekly, () => new RecurrWeek());
+			strategy.Add(Foundation.PaymentRecurrence.Biweekly, () => new RecurrBiWeekly());
+			strategy.Add(Foundation.PaymentRecurrence.Monthly, () => new RecurrMonthly());
+			strategy.Add(Foundation.PaymentRecurrence.Bimonthly, () => new RecurrBiMonthly());
+			strategy.Add(Foundation.PaymentRecurrence.Quarterly, () => new RecurrQuarterly());
+			strategy.Add(Foundation.PaymentRecurrence.Yearly, () => new RecurrYearly());
+			strategy.Add(Foundation.PaymentRecurrence.Biannually, () => new RecurrbiYearly());
 			try
 			{
 				var input = args.Request.Message;
@@ -84,6 +89,7 @@ namespace MoneyFox.Windows.Tasks
 			serviceDeferral?.Complete();
 			serviceDeferral = null;
 		}
+
 		private async Task UpdatePrimaryLiveTile()
 		{
 			AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
@@ -97,23 +103,24 @@ namespace MoneyFox.Windows.Tasks
 				if (lastrun == "last")
 				{
 					appsettings.Values["lastrun"] = "next";
+				
 				}
 				else
 				{
 					appsettings.Values["lastrun"] = "last";
 
 				}
-				var next = await Get9NextpaymentsAsync();
-				var previous = await Get9PreviouspaymentsAsync();
-								TileContent content = new TileContent()
-								{
-									Visual = new TileVisual()
-									{
-										TileMedium = new TileBinding()
-										{
-											Content = new TileBindingContentAdaptive()
-											{
-												Children =
+				List<string> next = await GetNextpaymentsAsync();
+				List<string> previous = await GetPreviouspaymentsAsync();
+				TileContent content = new TileContent()
+				{
+					Visual = new TileVisual()
+					{
+						TileMedium = new TileBinding()
+						{
+							Content = new TileBindingContentAdaptive()
+							{
+								Children =
 												{
 													new AdaptiveGroup()
 													{
@@ -173,13 +180,13 @@ namespace MoneyFox.Windows.Tasks
 														}
 													}
 												}
-											}
-										},
-										TileWide = new TileBinding()
-										{
-											Content = new TileBindingContentAdaptive()
-											{
-												Children =
+							}
+						},
+						TileWide = new TileBinding()
+						{
+							Content = new TileBindingContentAdaptive()
+							{
+								Children =
 												{
 													new AdaptiveGroup()
 													{
@@ -238,13 +245,13 @@ namespace MoneyFox.Windows.Tasks
 														}
 													}
 												}
-											}
-										},
-										TileLarge = new TileBinding()
-										{
-											Content = new TileBindingContentAdaptive()
-											{
-												Children =
+							}
+						},
+						TileLarge = new TileBinding()
+						{
+							Content = new TileBindingContentAdaptive()
+							{
+								Children =
 												{
 													new AdaptiveGroup()
 													{
@@ -304,18 +311,19 @@ namespace MoneyFox.Windows.Tasks
 														}
 													}
 												}
-											}
-										}
-									}
-								};
+							}
+						}
+					}
+				};
 				TileNotification tn = new TileNotification(content.GetXml());
 				TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
 
 			}
 		}
+
 		private async Task UpdateSecondaryLiveTiles()
 		{
-			var tiles =await SecondaryTile.FindAllForPackageAsync();
+			var tiles = await SecondaryTile.FindAllForPackageAsync();
 			if (tiles != null)
 			{
 
@@ -460,6 +468,7 @@ namespace MoneyFox.Windows.Tasks
 			}
 
 		}
+
 		private async Task CreateSecondaryLiveTile(int accountid)
 		{
 			bool isPinned = SecondaryTile.Exists(accountid.ToString());
@@ -608,6 +617,7 @@ namespace MoneyFox.Windows.Tasks
 			}
 
 		}
+
 		private async Task<double> GetMonthExpensesAsync(int month, int accountid)
 		{
 			var currentmonth = DateTime.Now.Month;
@@ -617,32 +627,34 @@ namespace MoneyFox.Windows.Tasks
 			{
 				if (item.Data.IsRecurring)
 				{
-						GetrecurrancepaymentsMonthly(item, item.Data.RecurringPayment.Recurrence,month);
-				
-				
+					iReccurance reccurance = strategy[item.Data.RecurringPayment.Recurrence]();
+					reccurance.P = item;
+					reccurance.Prevorfuture = "previous";
+					allpayment.AddRange(reccurance.Getreccurance());
+
 				}
 				else
 				{
-					if (item.Data.Date.Month==month && item.Data.Date.Year==DateTime.Now.Year)
-					{
-						allpayment.Add(item.Data.Date, item);
-					}
-				
-				}
+					
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime=item.Data.Date,
+							P=item
+				};
+		}
 			}
-			foreach (KeyValuePair<DateTime,Payment> item in allpayment)
+			IEnumerable<Recurpaymentitem> all = allpayment.Where(x => x.dateTime.Month == month && x.dateTime.Year == DateTime.Now.Year).ToList();
+			foreach (Recurpaymentitem item in all)
 			{
-				balance += item.Value.Data.Amount;
+				balance += item.P.Data.Amount;
 			}
 			return balance;
 		}
-		private async Task<List<string>> Get9PreviouspaymentsAsync()
+
+		private async Task<List<string>> GetPreviouspaymentsAsync()
 		{
 			var acct = await accountService.GetAllAccounts();
-			DateTime today = DateTime.Now;
 			List<Payment> allpayments = new List<Payment>();
-			List<PaymentEntity> newlst = new List<PaymentEntity>();
-			List<RecurringPaymentEntity> allrecurring = new List<RecurringPaymentEntity>();
 			foreach (Account item in acct)
 			{
 				allpayments.AddRange(await paymentService.GetPaymentsByAccountId(item.Data.Id));
@@ -651,32 +663,40 @@ namespace MoneyFox.Windows.Tasks
 			{
 				if (item.Data.IsRecurring)
 				{
-					Getrecurancepayments(item, item.Data.RecurringPayment.Recurrence, "last");
+					
+					iReccurance reccurance = strategy[item.Data.RecurringPayment.Recurrence]();
+					reccurance.P = item;
+					reccurance.Prevorfuture = "previous";
+					allpayment.AddRange(reccurance.Getreccurance());
+				 	
 				}
 				else
 				{
-					allpayment.Add(item.Data.Date, item);
+					Recurpaymentitem keyValuePair = new Recurpaymentitem
+					{
+						dateTime = item.Data.Date,
+						P = item
+					};
+					allpayment.Add(keyValuePair);
 				}
 			}
-			var tet = alldates.OrderBy(x => x.Date).TakeLast(8);
+			IEnumerable<Recurpaymentitem> tet = allpayment.OrderByDescending(x => x.dateTime).Take(8);
 			List<string> returnlist = new List<string>();
 			foreach (var item in tet)
 			{
-				Payment p = allpayment[item];
-				returnlist.Add(string.Format(GetResourceString("LiveTilePastPaymentText"),p.Data.Amount,p.Data.ChargedAccount.Name,p.Data.Date));
+				Payment p = item.P;
+				returnlist.Add(string.Format(GetResourceString("LiveTilePastPaymentText"), p.Data.Amount, p.Data.ChargedAccount.Name, p.Data.Date));
 			}
-			alldates.Clear();
 			allpayment.Clear();
 			return returnlist;
 
 		}
-		private async Task<List<string>> Get9NextpaymentsAsync()
+
+		private async Task<List<string>> GetNextpaymentsAsync()
 		{
 			var acct = await accountService.GetAllAccounts();
-			DateTime today = DateTime.Now;
 			List<Payment> allpayments = new List<Payment>();
-			List<PaymentEntity> newlst = new List<PaymentEntity>();
-			List<RecurringPaymentEntity> allrecurring = new List<RecurringPaymentEntity>();
+			
 			foreach (Account item in acct)
 			{
 				allpayments.AddRange(await paymentService.GetPaymentsByAccountId(item.Data.Id));
@@ -685,569 +705,501 @@ namespace MoneyFox.Windows.Tasks
 			{
 				if (item.Data.IsRecurring)
 				{
-					Getrecurancepayments(item, item.Data.RecurringPayment.Recurrence, "next");
-
+					iReccurance reccurance = strategy[item.Data.RecurringPayment.Recurrence]();
+					reccurance.P = item;
+					reccurance.Prevorfuture = "next";
+					allpayment.AddRange(reccurance.Getreccurance());
 				}
 				else
 				{
-					newlst.Add(item.Data);
+					Recurpaymentitem pay = new Recurpaymentitem
+					{
+					dateTime = item.Data.Date,
+					P=item
+					};
+					allpayment.Add(pay);
 				}
 			}
-			List<Payment> sortedlist = new List<Payment>();
-			var te = newlst.OrderBy(x => DateTime.Compare(today, x.Date) <= 0).Take(9);
-			var tes = allrecurring.OrderBy(x => DateTime.Compare(today, x.StartDate) <= 0 && DateTime.Compare(today, DateTime.Parse(x.EndDate.HasValue ? x.EndDate.ToString() : null)) <= 0).Take(9);
-			List<PaymentEntity> test = (List<PaymentEntity>)te;
-			foreach (var item in tes)
-			{
-				PaymentEntity payments = new PaymentEntity();
-				payments.RecurringPayment = item;
-				payments.Date = DateTime.Parse(DateTime.Now.Month + "/" + item.StartDate.Day + "/" + DateTime.Now.Year);
-				payments.Amount = item.Amount;
-				test.Add(payments);
-			}
-			var tested = test.OrderBy(x => x.Date);
-			var tet = tested.Take(9);
+			IEnumerable<Recurpaymentitem> tet = allpayment.OrderBy(x => x.dateTime).Take(8);
 			List<string> returnlist = new List<string>();
 			foreach (var item in tet)
 			{
-				returnlist.Add(string.Format(GetResourceString("LiveTileFuturePaymentText"),item.Amount,item.ChargedAccount.Name,item.Date));
+				Payment P = item.P;
+				returnlist.Add(string.Format(GetResourceString("LiveTileFuturePaymentText"), P.Data.Amount, P.Data.ChargedAccount.Name, P.Data.Date));
 			}
-
+			allpayment.Clear();
+			
+ 
 			return returnlist;
 
 		}
+
 		private async Task<double> GetLatestBalanceAsync(int tileid)
 		{
 			var te = await accountService.GetById(tileid);
 			return te.Data.CurrentBalance;
 		}
-		private void Getrecurancepayments(Payment p, Foundation.PaymentRecurrence reccur, string pastorfuture)
-		{
-			DateTime dt = DateTime.Now;
-			switch (pastorfuture)
-			{
-				case "last":
-					switch (reccur)
-					{
-						case Foundation.PaymentRecurrence.Daily:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(1);
 
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.DailyWithoutWeekend:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									if (td.DayOfWeek == DayOfWeek.Saturday || td.DayOfWeek == DayOfWeek.Sunday)
-									{
-										continue;
-									}
-									else
-									{
+	
 
-										p.Data.Date = td;
-										p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-										p.Data.Amount = p.Data.RecurringPayment.Amount;
-
-										allpayment.Add(td, p);
-										alldates.Add(td);
-										td = td.AddDays(1);
-									}
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Weekly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(7);
-								}
-								break;
-							}
-						case Foundation.PaymentRecurrence.Biweekly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(14);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Monthly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(1);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Bimonthly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(2);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Quarterly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount; 
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(4);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Biannually:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(6);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Yearly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddYears(1);
-								};
-								break;
-							}
-						default:
-							break;
-					}
-					break;
-				case "next":
-					int i = 0;
-					switch (reccur)
-					{
-						case Foundation.PaymentRecurrence.Daily:
-							{
-
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-									td = td.AddDays(1);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i <= 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount; 
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(1);
-									i += 1;
-								}
-								break;
-							}
-						case Foundation.PaymentRecurrence.DailyWithoutWeekend:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-									td = td.AddDays(1);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									if (td.DayOfWeek == DayOfWeek.Saturday || td.DayOfWeek == DayOfWeek.Sunday)
-									{
-										continue;
-									}
-									else
-									{
-										p.Data.Date = td;
-										p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-										p.Data.Amount = p.Data.RecurringPayment.Amount;
-										allpayment.Add(td, p);
-										alldates.Add(td);
-										td = td.AddDays(1);
-										i += 1;
-									}
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Weekly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-
-									td = td.AddDays(7);
-								}
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(7);
-									i += 1;
-								}
-								break;
-							}
-						case Foundation.PaymentRecurrence.Biweekly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-
-
-									td = td.AddDays(14);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(14);
-									i += 1;
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Monthly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) >= 0)
-								{
-									td = td.AddMonths(1);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(1);
-									i += 1;
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Bimonthly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-									td = td.AddMonths(2);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount; 
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(2);
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Quarterly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-									td = td.AddMonths(4);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(4);
-									i += 1;
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Biannually:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-
-									td = td.AddMonths(6);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddMonths(6);
-									i += 1;
-								};
-								break;
-							}
-						case Foundation.PaymentRecurrence.Yearly:
-							{
-								DateTime td = p.Data.RecurringPayment.StartDate;
-								while (DateTime.Compare(dt, td) > 0)
-								{
-
-									td = td.AddYears(1);
-								};
-								while (DateTime.Compare(dt, td) <= 0 && i < 8)
-								{
-									p.Data.Date = td;
-									p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-									p.Data.Amount = p.Data.RecurringPayment.Amount;
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddYears(1);
-								};
-								break;
-							}
-						default:
-							break;
-					}
-					break;
-				default:
-					break;
-			}
-		}
-		private void GetrecurrancepaymentsMonthly(Payment p, Foundation.PaymentRecurrence reccur, int month)
-		{
-			DateTime dt = DateTime.Now;
-			int year = DateTime.Now.Year;
-			
-			switch (reccur)
-			{
-				case Foundation.PaymentRecurrence.Daily:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month==month&& p.Data.Date.Year==year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddDays(1);
-							}
-							
-
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.DailyWithoutWeekend:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							if (td.DayOfWeek == DayOfWeek.Saturday || td.DayOfWeek == DayOfWeek.Sunday)
-							{
-								continue;
-							}
-							else
-							{
-
-								p.Data.Date = td;
-								p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-								p.Data.Amount = p.Data.RecurringPayment.Amount;
-
-								if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-								{
-									allpayment.Add(td, p);
-									alldates.Add(td);
-									td = td.AddDays(1);
-								}
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Weekly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddDays(7);
-							}
-						}
-						break;
-					}
-				case Foundation.PaymentRecurrence.Biweekly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddDays(14);
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Monthly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddMonths(1);
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Bimonthly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddMonths(2);
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Quarterly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddMonths(4);
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Biannually:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddMonths(6);
-							}
-						};
-						break;
-					}
-				case Foundation.PaymentRecurrence.Yearly:
-					{
-						DateTime td = p.Data.RecurringPayment.StartDate;
-						while (DateTime.Compare(dt, td) >= 0)
-						{
-							p.Data.Date = td;
-							p.Data.ChargedAccount = p.Data.RecurringPayment.ChargedAccount;
-							p.Data.Amount = p.Data.RecurringPayment.Amount;
-							if (p.Data.Date.Month == month && p.Data.Date.Year == year)
-							{
-								allpayment.Add(td, p);
-								alldates.Add(td);
-								td = td.AddYears(1);
-							}
-						};
-						break;
-					}
-				default:
-					break;
-			}
-
-		}
 		private static string GetResourceString(string resourcekey)
 		{
 			System.Resources.ResourceManager keyValuePairs = Strings.ResourceManager;
 			return keyValuePairs.GetString(resourcekey);
 		}
 
+		public interface iReccurance
+		{
+			string Prevorfuture { get; set; }
+			Payment P { get; set; }
+			List<Recurpaymentitem> Getreccurance();
+		}
+		public class RecurrDaily : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(1);
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(1);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrWeekdays : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				int i = 0;
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						if (P.Data.Date.DayOfWeek != DayOfWeek.Saturday && P.Data.Date.DayOfWeek !=DayOfWeek.Sunday)
+						{
+							Recurpaymentitem pay = new Recurpaymentitem
+							{
+								dateTime = td,
+								P = P
+							};
+							allpayment.Add(pay);
+							td = td.AddDays(1);
+						}
+					
+						td = td.AddDays(1);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						if (P.Data.Date.DayOfWeek != DayOfWeek.Saturday && P.Data.Date.DayOfWeek != DayOfWeek.Sunday)
+						{
+							Recurpaymentitem pay = new Recurpaymentitem
+							{
+								dateTime = td,
+								P=P
+							};
+							allpayment.Add(pay);
+							td = td.AddDays(1);
+							i += 1;
+						}
+
+						td = td.AddDays(1);
+					
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrWeek : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(7);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(7);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrBiWeekly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(14);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddDays(14);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrMonthly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(1);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(1);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrBiMonthly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(2);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(2);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrQuarterly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(4);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						 Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						}; 
+						allpayment.Add(pay);
+						td = td.AddMonths(4);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrYearly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(12);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(12);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+		public class RecurrbiYearly : iReccurance
+		{
+			public string Prevorfuture { get; set; }
+			public Payment P { get; set; }
+
+			public List<Recurpaymentitem> Getreccurance()
+			{
+				int i = 0;
+				DateTime dt = DateTime.Now;
+				DateTime td = P.Data.RecurringPayment.StartDate;
+				List<Recurpaymentitem> allpayment = new List<Recurpaymentitem>();
+				if (Prevorfuture == "previous")
+				{
+					while (DateTime.Compare(dt, td) >= 0)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(24);
+
+					};
+				}
+				else
+				{
+					while (DateTime.Compare(dt, td) <= 0 && i < 9)
+					{
+						P.Data.Date = td;
+						P.Data.ChargedAccount = P.Data.RecurringPayment.ChargedAccount;
+						P.Data.Amount = P.Data.RecurringPayment.Amount;
+						Recurpaymentitem pay = new Recurpaymentitem
+						{
+							dateTime = td,
+							P = P
+						};
+						allpayment.Add(pay);
+						td = td.AddMonths(24);
+						i += 1;
+					};
+				}
+				return allpayment;
+			}
+		}
+	}
+	public struct Recurpaymentitem
+	{
+		public DateTime dateTime;
+		public Payment P;
 	}
 }
-
