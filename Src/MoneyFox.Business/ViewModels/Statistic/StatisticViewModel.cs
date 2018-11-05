@@ -15,7 +15,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
     /// <summary>
     ///     Reprsents the statistic view.
     /// </summary>
-    public abstract class StatisticViewModel : BaseViewModel
+    public abstract class StatisticViewModel : BaseNavigationViewModel
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;

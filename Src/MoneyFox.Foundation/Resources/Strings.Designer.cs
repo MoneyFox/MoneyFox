@@ -646,6 +646,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string CortanaContentTileNoRecurrance {
+            get {
+                return ResourceManager.GetString("CortanaContentTileNoRecurrance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This payment has no recurrance.
         /// </summary>
         public static string CortanaContentTileNoRecurranceText {
@@ -718,7 +727,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How much does this account hold initially.
+        ///   Looks up a localized string similar to How much money is in this account?.
         /// </summary>
         public static string CortanaUserMessageAccountAmount {
             get {
@@ -736,7 +745,16 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What name would you give this account?.
+        ///   Looks up a localized string similar to Account created.
+        /// </summary>
+        public static string CortanaUserMessageAccountCreated {
+            get {
+                return ResourceManager.GetString("CortanaUserMessageAccountCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is the name of this account?.
         /// </summary>
         public static string CortanaUserMessageAccountName {
             get {
@@ -867,6 +885,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string CortanaUserMessagePaymentAmountText {
             get {
                 return ResourceManager.GetString("CortanaUserMessagePaymentAmountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment created.
+        /// </summary>
+        public static string CortanaUserMessagePaymentCreated {
+            get {
+                return ResourceManager.GetString("CortanaUserMessagePaymentCreated", resourceCulture);
             }
         }
         

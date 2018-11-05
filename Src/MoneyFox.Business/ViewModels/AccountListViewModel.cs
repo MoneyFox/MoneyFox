@@ -17,7 +17,7 @@ using MvvmCross.Navigation;
 namespace MoneyFox.Business.ViewModels
 {
     /// <inheritdoc cref="IAccountListViewModel" />
-    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
+    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
     {
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
@@ -94,10 +94,8 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public override async void ViewAppeared()
         {
-            dialogService.ShowLoadingDialog();
             await Load();
             await RaisePropertyChanged(nameof(Accounts));
-            dialogService.HideLoadingDialog();
         }
 
         private async Task EditAccount(AccountViewModel accountViewModel)
