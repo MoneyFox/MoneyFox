@@ -50,8 +50,23 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaCommands">
-          <uap:AppService Name="MoneyFoxCortanaIntegration" />
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaCreateAccount">
+          <uap:AppService Name="CortanaCreateAccount" />
+        </uap:Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaAccountName">
+          <uap:AppService Name="CortanaAccountName" />
+        </uap:Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaAccountAmount">
+          <uap:AppService Name="CortanaAccountAmount" />
+        </uap:Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaCreatePayment">
+          <uap:AppService Name="CortanaCreatePayment" />
+        </uap:Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaPaymentAmount">
+          <uap:AppService Name="CortanaPaymentAmount" />
+        </uap:Extension>
+        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.CortanaPaymentDate">
+          <uap:AppService Name="CortanaPaymentDate" />
         </uap:Extension>
       </Extensions>
     </Application>

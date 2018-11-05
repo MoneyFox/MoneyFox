@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="CortanaAccountAmount.cs" />
     <Compile Include="CortanaAccountName.cs" />
-    <Compile Include="CortanaCommands.cs" />
     <Compile Include="CortanaCreateAccount.cs" />
     <Compile Include="CortanaCreatePayment.cs" />
     <Compile Include="CortanaPaymentAmount.cs" />
