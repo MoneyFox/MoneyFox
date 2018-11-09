@@ -10,6 +10,7 @@ using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Style;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;

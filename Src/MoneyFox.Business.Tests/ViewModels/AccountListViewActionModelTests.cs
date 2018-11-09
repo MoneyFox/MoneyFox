@@ -1,5 +1,4 @@
 using System.Threading;
-using System.Threading.Tasks;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.Tests.Fixtures;
 using MoneyFox.Business.ViewModels;
