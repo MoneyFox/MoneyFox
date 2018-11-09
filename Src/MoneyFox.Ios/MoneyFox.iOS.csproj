@@ -164,6 +164,9 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.2.2</Version>
     </PackageReference>
+    <PackageReference Include="PCLAppConfig">
+      <Version>0.4.1</Version>
+    </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
     </PackageReference>

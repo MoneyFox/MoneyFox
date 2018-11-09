@@ -94,6 +94,9 @@
     <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.2.2</Version>
     </PackageReference>
+    <PackageReference Include="PCLAppConfig">
+      <Version>0.4.1</Version>
+    </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
     </PackageReference>
