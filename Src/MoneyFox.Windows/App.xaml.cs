@@ -115,12 +115,6 @@ namespace MoneyFox.Windows
                     await SetJumplist();
                 }
 
-                var foo1 = ConfigurationManager.AppSettings["MsaClientId"];
-                var foo2 = ConfigurationManager.AppSettings["MsaClientSecret"];
-                var foo3 = ConfigurationManager.AppSettings["WindowsAppcenterSecret"];
-                var foo4 = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
-                var foo5 = ConfigurationManager.AppSettings["IosAppcenterSecret"];
-
                 await CallRateReminder();
             }
         }
