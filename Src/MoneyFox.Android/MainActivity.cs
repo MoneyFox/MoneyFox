@@ -9,6 +9,7 @@ using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
+using PCLAppConfig;
 using Rg.Plugins.Popup;
 
 namespace MoneyFox.Droid
@@ -37,6 +38,8 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif

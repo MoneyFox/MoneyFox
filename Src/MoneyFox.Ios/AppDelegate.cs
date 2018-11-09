@@ -16,6 +16,7 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using PCLAppConfig;
 using Rg.Plugins.Popup;
 using UIKit;
 
@@ -34,6 +35,7 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
