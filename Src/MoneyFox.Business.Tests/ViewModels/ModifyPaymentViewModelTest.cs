@@ -157,6 +157,38 @@ namespace MoneyFox.Business.Tests.ViewModels
             testPayment.Data.RecurringPayment.Recurrence.ShouldEqual(recurrence);
         }
 
+        [Fact]
+        public void Save_CorrectlyCalled()
+        {
+            // Arrange
+            base.Setup();
+            bool saveCalled = false;
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment>()))
+                              .Callback(() => saveCalled = true)
+                              .Returns(Task.CompletedTask);
+
+            var payment = new PaymentViewModel
+            {
+                ChargedAccount = new AccountViewModel(new Account()) { Name = "Konto" }
+            };
+
+            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
+                                                       new Mock<IAccountService>().Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       new Mock<ISettingsManager>().Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+            // Act
+            viewmodel.SelectedPayment = payment;
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            Assert.True(saveCalled);
+        }
+
         [Theory]
         [InlineData("35", 35, "de-CH")]
         [InlineData("35.5", 35.5, "de-CH")]
