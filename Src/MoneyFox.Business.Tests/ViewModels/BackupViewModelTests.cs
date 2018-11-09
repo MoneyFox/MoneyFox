@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
@@ -12,6 +13,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class BackupViewModelTests : MvxIoCSupportingTest
     {
