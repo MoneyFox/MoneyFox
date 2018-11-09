@@ -4,18 +4,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityFramework.DbContextScope;
 using Foundation;
 #if !DEBUG
 using Microsoft.AppCenter;  
 #endif
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Business.Adapter;
+using MoneyFox.Business.Manager;
+using MoneyFox.Business.Services;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.iOS.Authentication;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using MvvmCross.Plugin.File;
+using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
 
@@ -71,14 +78,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                var tasks = new List<Task>
-                {
-                    ClearPayments(),
-                    Mvx.IoCProvider.Resolve<IRecurringPaymentManager>().CreatePaymentsUpToRecur(),
-                    Mvx.IoCProvider.Resolve<IBackupManager>().DownloadBackup()
-                };
-
-                await Task.WhenAll(tasks);
+                await SyncBackup();
+                await CreateRecurringPayments();
+                await ClearPayments();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -94,17 +96,85 @@ namespace MoneyFox.iOS
 
         private async Task ClearPayments()
         {
-            if (!Mvx.IoCProvider.CanResolve<IPaymentService>()) return;
-
-            var paymentService = Mvx.IoCProvider.Resolve<IPaymentService>();
-
-            var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-            var unclearedPayments = payments.ToList();
-
-            if (unclearedPayments.Any())
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+            try
             {
-                Debug.WriteLine("Payments for clearing found.");
-                await paymentService.SavePayments(unclearedPayments.ToArray());
+                Debug.WriteLine("ClearPayments Job started");
+                DataAccess.ApplicationContext.DbPath =
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                                 DatabaseConstants.DB_NAME);
+
+                var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+
+                var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+                var unclearedPayments = payments.ToList();
+
+                if (unclearedPayments.Any())
+                {
+                    Debug.WriteLine("Payments for clearing found.");
+                    await paymentService.SavePayments(unclearedPayments.ToArray());
+                }
+
+                Debug.WriteLine("ClearPayments Job finished.");
+            } catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+
+            }
+            finally
+            {
+                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+            }
+        }
+
+        private async Task CreateRecurringPayments()
+        {
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+
+            try
+            {
+                ApplicationContext.DbPath = GetLocalFilePath();
+
+                var ambientDbContextLocator = new AmbientDbContextLocator();
+                var dbContextScopeFactory = new DbContextScopeFactory();
+
+                await new RecurringPaymentManager(
+                        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
+                        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
+                    .CreatePaymentsUpToRecur();
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            } 
+            finally
+            {
+                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+            }
+        }
+
+        public async Task SyncBackup()
+        {
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+
+            try
+            {
+                ApplicationContext.DbPath = GetLocalFilePath();
+
+                await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
+                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                                        settingsManager,
+                                        new ConnectivityImplementation())
+                    .DownloadBackup();
+
+            } 
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
+            } 
+            finally
+            {
+                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
             }
         }
     }

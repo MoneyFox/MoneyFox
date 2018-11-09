@@ -7,6 +7,9 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using EntityFramework.DbContextScope;
+using Microsoft.AppCenter.Crashes;
+using MoneyFox.Business.Adapter;
+using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
 using Debug = System.Diagnostics.Debug;
@@ -56,6 +59,7 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task ClearPayments(JobParameters args)
         {
+            var settingsManager = new SettingsManager(new SettingsAdapter());
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
@@ -79,7 +83,11 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (Exception ex)
             {
-                Debug.Write(ex);
+                Crashes.TrackError(ex);
+            }
+            finally
+            {
+                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
             }
         }
 
