@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Services;
@@ -16,7 +13,6 @@ using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using PCLAppConfig;
 
 namespace MoneyFox
 {

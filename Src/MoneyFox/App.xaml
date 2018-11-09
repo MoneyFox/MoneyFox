@@ -62,6 +62,7 @@
             <x:Double x:Key="LargeTextSize">26</x:Double>
 
             <!-- Spacing -->
+            <x:Double x:Key="ZeroSpacing">0</x:Double>
             <x:Double x:Key="DefaultSpacing">3</x:Double>
 
             <!-- Thickness -->

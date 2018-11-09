@@ -703,4 +703,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ShortcutsTitle" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
+  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
+    <value>Last Executions:</value>
+  </data>
+  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
+    <value>Paymentclearing:</value>
+  </data>
+  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
+    <value>Create Recurring Payments:</value>
+  </data>
+  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
+    <value>Backup Sync:</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -22,6 +23,8 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
+    [Collection("MvxIocCollection")]
     public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
         public ModifyPaymentViewModelTest()
@@ -152,6 +155,38 @@ namespace MoneyFox.Business.Tests.ViewModels
             // Assert
             testPayment.Data.RecurringPayment.ShouldNotBeNull();
             testPayment.Data.RecurringPayment.Recurrence.ShouldEqual(recurrence);
+        }
+
+        [Fact]
+        public void Save_CorrectlyCalled()
+        {
+            // Arrange
+            base.Setup();
+            bool saveCalled = false;
+            var paymentServiceMock = new Mock<IPaymentService>();
+            paymentServiceMock.Setup(x => x.SavePayments(It.IsAny<Payment>()))
+                              .Callback(() => saveCalled = true)
+                              .Returns(Task.CompletedTask);
+
+            var payment = new PaymentViewModel
+            {
+                ChargedAccount = new AccountViewModel(new Account()) { Name = "Konto" }
+            };
+
+            var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
+                                                       new Mock<IAccountService>().Object,
+                                                       new Mock<IDialogService>().Object,
+                                                       new Mock<ISettingsManager>().Object,
+                                                       new Mock<IMvxMessenger>().Object,
+                                                       new Mock<IBackupManager>().Object,
+                                                       new Mock<IMvxLogProvider>().Object,
+                                                       new Mock<IMvxNavigationService>().Object);
+            // Act
+            viewmodel.SelectedPayment = payment;
+            viewmodel.SaveCommand.Execute();
+
+            //Assert
+            Assert.True(saveCalled);
         }
 
         [Theory]
