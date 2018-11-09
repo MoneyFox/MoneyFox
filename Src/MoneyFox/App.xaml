@@ -7,7 +7,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style/ColorsLight.xaml" />
                 <ResourceDictionary Source="Style/Images.xaml" />
                 <ResourceDictionary Source="Style/TextStyles.xaml" />
                 <ResourceDictionary Source="Style/ControlStyles.xaml" />

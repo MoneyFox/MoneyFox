@@ -128,6 +128,6 @@ namespace MoneyFox
         ///     Implementation for ISettingsPersonalizationViewModel for design time.
         /// </summary>
         public static ISettingsPersonalizationViewModel DesignSettingsPersonalizationViewModel=>
-            SETTINGS_PERSONALIZATION_VIEW_MODEL ?? (SETTINGS_PERSONALIZATION_VIEW_MODEL = new DesignSettingsPersonalizationViewModel());
+            SETTINGS_PERSONALIZATION_VIEW_MODEL ?? (SETTINGS_PERSONALIZATION_VIEW_MODEL = new DesignTimeSettingsPersonalizationViewModel());
     }
 }

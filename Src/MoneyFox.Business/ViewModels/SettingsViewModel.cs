@@ -60,7 +60,7 @@ namespace MoneyFox.Business.ViewModels
         {
             new SettingsSelectorType
             {
-                Name = Strings.CategoriesLabel,
+                Name = Strings.SettingsPersonalizationLabel,
                 Description = Strings.SettingsPersonalizationDescription,
                 Type = SettingsType.Personalization
             },

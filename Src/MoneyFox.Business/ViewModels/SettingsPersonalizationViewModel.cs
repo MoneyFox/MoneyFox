@@ -47,8 +47,8 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public List<string> ThemeItems => new List<string>
         {
-            Strings.ThemeLightLabel,
-            Strings.ThemeDarkLabel
+            Strings.ThemeDarkLabel,
+            Strings.ThemeLightLabel
         };
     }
 }

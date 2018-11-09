@@ -16,7 +16,6 @@
             <ListView.SeparatorVisibility>
                 <OnPlatform x:TypeArguments="SeparatorVisibility">
                     <On Platform="iOS" Value="Default" />
-                    <On Platform="Android" Value="None" />
                 </OnPlatform>
             </ListView.SeparatorVisibility>
 
