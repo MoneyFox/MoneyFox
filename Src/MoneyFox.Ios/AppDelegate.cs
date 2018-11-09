@@ -35,7 +35,7 @@ namespace MoneyFox.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 #if !DEBUG
-            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);

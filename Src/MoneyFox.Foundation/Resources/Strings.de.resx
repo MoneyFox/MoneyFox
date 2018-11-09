@@ -687,4 +687,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SelectStatisticTitel" xml:space="preserve">
     <value>Statistik auswählen</value>
   </data>
+  <data name="BackgroundJobLabel" xml:space="preserve">
+    <value>Hintergrundprozess</value>
+  </data>
+  <data name="BackgroundJobSettingDescription" xml:space="preserve">
+    <value>Konfiguriere den Intervall für die Ausführung der Hintergrundprozesse.</value>
+  </data>
+  <data name="BackgroundJobTitle" xml:space="preserve">
+    <value>Hintergrundprozess</value>
+  </data>
 </root>

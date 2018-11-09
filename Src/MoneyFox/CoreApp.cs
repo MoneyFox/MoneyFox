@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.AppCenter.Crashes;
@@ -15,6 +16,7 @@ using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using PCLAppConfig;
 
 namespace MoneyFox
 {
@@ -81,6 +83,7 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
+
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 
