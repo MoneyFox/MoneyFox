@@ -26,6 +26,7 @@ namespace MoneyFox
         private static ISelectFilterDialogViewModel SELECT_FILTER_DIALOG_VIEW_MODEL;
         private static ISelectDateRangeDialogViewModel SELECT_DATE_RANGE_DIALOG_VIEW_MODEL;
         private static ISettingsBackgroundJobViewModel SETTINGS_BACKGROUND_JOB_VIEW_MODEL;
+        private static ISettingsPersonalizationViewModel SETTINGS_PERSONALIZATION_VIEW_MODEL;
 
         /// <summary>
         ///     Implementation for IBackupViewModel for design time.
@@ -118,9 +119,15 @@ namespace MoneyFox
             SELECT_DATE_RANGE_DIALOG_VIEW_MODEL ?? (SELECT_DATE_RANGE_DIALOG_VIEW_MODEL = new DesignTimeSelectDateRangeDialogViewModel());
 
         /// <summary>
-        ///     Implementation for DesignTimeSettingsBackgroundJobViewModel for design time.
+        ///     Implementation for ISettingsBackgroundJobViewModel for design time.
         /// </summary>
         public static ISettingsBackgroundJobViewModel DesignTimeSettingsBackgroundJobViewModel =>
             SETTINGS_BACKGROUND_JOB_VIEW_MODEL ?? (SETTINGS_BACKGROUND_JOB_VIEW_MODEL = new DesignTimeSettingsBackgroundJobViewModel());
+
+        /// <summary>
+        ///     Implementation for ISettingsPersonalizationViewModel for design time.
+        /// </summary>
+        public static ISettingsPersonalizationViewModel DesignSettingsPersonalizationViewModel=>
+            SETTINGS_PERSONALIZATION_VIEW_MODEL ?? (SETTINGS_PERSONALIZATION_VIEW_MODEL = new DesignSettingsPersonalizationViewModel());
     }
 }

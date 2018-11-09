@@ -89,6 +89,15 @@ namespace MoneyFox
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
 
+            if (Mvx.IoCProvider.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
+            {
+                Application.Current.Resources.Add(new ColorsDark());
+            }
+            else
+            {
+                Application.Current.Resources.Add(new ColorsLight());
+            }
+
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
             if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())

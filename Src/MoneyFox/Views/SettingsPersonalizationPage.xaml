@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             x:Class="MoneyFox.Views.SettingsPersonalizationPage"
+             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Resources[PersonalizationInfoLabel]}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Picker ItemsSource ="{Binding ThemeItems}" SelectedIndex="{Binding SelectedIndex}" />
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

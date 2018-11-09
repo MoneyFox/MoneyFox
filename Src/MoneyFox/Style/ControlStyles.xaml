@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="BarTextColor" Value="White" />
     </Style>
 

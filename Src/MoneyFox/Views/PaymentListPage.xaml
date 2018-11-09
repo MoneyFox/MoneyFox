@@ -68,7 +68,7 @@
                                 </ViewCell.ContextActions>
                                 <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
                                     <StackLayout Spacing="0"
-                                                 BackgroundColor="{StaticResource ListItemColor}">
+                                                 BackgroundColor="{DynamicResource ListItemColor}">
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
@@ -126,7 +126,7 @@
                                             Margin="4"
                                             VerticalOptions="EndAndExpand"
                                             Image="ic_add.png"
-                                            ButtonColor="{StaticResource AccentColor}"
+                                            ButtonColor="{DynamicResource AccentColor}"
                                             Clicked="AddItem_Clicked" >
                     <controls:FloatingActionButton.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">

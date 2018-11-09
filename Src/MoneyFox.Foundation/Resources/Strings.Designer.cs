@@ -1467,6 +1467,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose between a dark or a light theme..
+        /// </summary>
+        public static string PersonalizationInfoLabel {
+            get {
+                return ResourceManager.GetString("PersonalizationInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personalization.
         /// </summary>
         public static string PersonalizationTitle {
@@ -1676,6 +1685,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change your prefered theme..
+        /// </summary>
+        public static string SettingsPersonalizationDescription {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personalization.
+        /// </summary>
+        public static string SettingsPersonalizationLabel {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsTitle {
@@ -1744,6 +1771,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string ThemeDarkLabel {
+            get {
+                return ResourceManager.GetString("ThemeDarkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string ThemeLightLabel {
+            get {
+                return ResourceManager.GetString("ThemeLightLabel", resourceCulture);
             }
         }
         

@@ -61,6 +61,12 @@ namespace MoneyFox.Business.ViewModels
             new SettingsSelectorType
             {
                 Name = Strings.CategoriesLabel,
+                Description = Strings.SettingsPersonalizationDescription,
+                Type = SettingsType.Personalization
+            },
+            new SettingsSelectorType
+            {
+                Name = Strings.CategoriesLabel,
                 Description = Strings.CategoriesSettingsDescription,
                 Type = SettingsType.Categories
             },
@@ -95,6 +101,10 @@ namespace MoneyFox.Business.ViewModels
         {
             switch (item.Type)
             {
+                case SettingsType.Personalization:
+                    await navigationService.Navigate<SettingsPersonalizationViewModel>();
+                    break;
+
                 case SettingsType.Categories:
                     await navigationService.Navigate<CategoryListViewModel>();
                     break;

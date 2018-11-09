@@ -45,7 +45,7 @@
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
-                                <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                                <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
                                              Orientation="Vertical"
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"
@@ -64,7 +64,7 @@
                                            Margin="4"
                                            VerticalOptions="EndAndExpand"
                                            Image="ic_add.png" 
-                                           ButtonColor="{StaticResource AccentColor}" 
+                                           ButtonColor="{DynamicResource AccentColor}" 
                                            Clicked="AddCategoryClick">
                 <controls:FloatingActionButton.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double">
