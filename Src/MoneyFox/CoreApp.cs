@@ -84,9 +84,6 @@ namespace MoneyFox
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
 
-            Assembly assembly = typeof(App).GetTypeInfo().Assembly;
-            ConfigurationManager.Initialise(assembly.GetManifestResourceStream("App.config"));
-
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 

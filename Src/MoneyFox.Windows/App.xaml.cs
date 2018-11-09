@@ -91,13 +91,14 @@ namespace MoneyFox.Windows
             CoreApp.CurrentPlatform = AppPlatform.UWP;
             base.OnLaunched(e);
 #if !DEBUG
-            AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
+                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 new MoneyFox.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));

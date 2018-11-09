@@ -114,6 +114,9 @@
     <Compile Include="Authentication\IosAuthenticationProvider.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
+    <None Include="..\MoneyFox\App.config">
+      <Link>App.config</Link>
+    </None>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
