@@ -84,7 +84,7 @@ namespace MoneyFox.Droid.Jobs
             } 
             finally
             {
-                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+                settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }
         }
 
