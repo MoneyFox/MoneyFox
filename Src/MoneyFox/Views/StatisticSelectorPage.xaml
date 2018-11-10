@@ -5,6 +5,7 @@
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.StatisticSelectorPage"
+                  BackgroundColor="{DynamicResource WindowBackground}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
     <ContentPage.Content>

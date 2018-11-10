@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:MvxContentPage  x:TypeArguments="viewModels:SettingsPersonalizationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-             x:Class="MoneyFox.Views.SettingsPersonalizationPage"
-             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                       xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                       x:Class="MoneyFox.Views.SettingsPersonalizationPage"                       
+                  BackgroundColor="{DynamicResource WindowBackground}"
+                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
 
     <ContentPage.Content>
         <StackLayout>

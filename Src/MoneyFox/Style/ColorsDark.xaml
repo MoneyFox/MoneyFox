@@ -4,14 +4,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-
     <Color x:Key="AccentColor">#314a9b</Color>
     <Color x:Key="PrimaryColor">#263873</Color>
     <Color x:Key="SecondaryColor">#1a264c</Color>
 
+    <Color x:Key="WindowBackground">#2d2d30</Color>
+    <Color x:Key="BottomTabBarColor">#1e1e1e</Color>
+
     <Color x:Key="PrimaryFontColor">White</Color>
     <Color x:Key="DeemphasizedColor">#5A6570</Color>
-    <Color x:Key="ListItemColor">#FF171717</Color>
-
+    <Color x:Key="ListItemColor">Black</Color>
 
 </ResourceDictionary>

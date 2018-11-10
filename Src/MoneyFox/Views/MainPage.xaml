@@ -2,16 +2,10 @@
 <views:MvxTabbedPage x:TypeArguments="viewModels:MainViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                     xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                     xmlns:pages="clr-namespace:MoneyFox.Views;assembly=MoneyFox"
                      xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                      x:Class="MoneyFox.Views.MainPage"
+                     BackgroundColor="{DynamicResource WindowBackground}"
+                     BarBackgroundColor="{DynamicResource BottomTabBarColor}"
                      Title="MoneyFox">
-    
-    <views:MvxTabbedPage.BarBackgroundColor>
-        <OnPlatform x:TypeArguments="Color">
-            <On Platform="Android" Value="WhiteSmoke" />
-        </OnPlatform>
-    </views:MvxTabbedPage.BarBackgroundColor>
 
 </views:MvxTabbedPage>

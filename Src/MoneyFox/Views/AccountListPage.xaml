@@ -8,6 +8,7 @@
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.AccountListPage"
+                  BackgroundColor="{DynamicResource WindowBackground}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.Resources>

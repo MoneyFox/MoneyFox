@@ -7,6 +7,7 @@
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.SelectCategoryPage"
+                  BackgroundColor="{DynamicResource WindowBackground}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectCategoryListViewModel}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >
