@@ -5,8 +5,9 @@
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
+                  xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
                   x:Class="MoneyFox.Views.ModifyAccountPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+                  BackgroundColor="{x:Static helpers:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
 
     <ContentPage.Content>

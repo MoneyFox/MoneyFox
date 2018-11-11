@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -40,6 +41,7 @@ namespace MoneyFox.Business.ViewModels
             {
                 var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
                 settingsManager.Theme = theme;
+                StyleHelper.Init();
                 RaisePropertyChanged();
             }
         }

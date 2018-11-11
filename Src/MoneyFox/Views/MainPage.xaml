@@ -4,9 +4,10 @@
                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                      xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                      xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                     xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
                      x:Class="MoneyFox.Views.MainPage"
-                     BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                     BarBackgroundColor="{x:Static moneyFox:StyleHelper.BottomTabBarColor}"
+                     BackgroundColor="{x:Static helpers:StyleHelper.WindowBackgroundColor}"
+                     BarBackgroundColor="{x:Static helpers:StyleHelper.BottomTabBarColor}"
                      Title="MoneyFox">
 
 </views:MvxTabbedPage>

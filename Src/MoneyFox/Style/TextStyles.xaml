@@ -2,31 +2,31 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox">
+    xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business">
 
     <Style x:Key="SmallTextStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
-        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+        <Setter Property="TextColor" Value="{x:Static helpers:StyleHelper.PrimaryFontColor}" />
     </Style>
 
     <Style x:Key="DefaultTextStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
-        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+        <Setter Property="TextColor" Value="{x:Static helpers:StyleHelper.PrimaryFontColor}" />
     </Style>
 
     <Style x:Key="ListItemHeaderStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource MediumTextSize}" />
-        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+        <Setter Property="TextColor" Value="{x:Static helpers:StyleHelper.PrimaryFontColor}" />
     </Style>
 
     <Style x:Key="DeemphasizedLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
-        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.DeemphasizedColor}" />
+        <Setter Property="TextColor" Value="{x:Static helpers:StyleHelper.DeemphasizedColor}" />
     </Style>
 
     <Style x:Key="GroupHeaderStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource LargeTextSize}" />
-        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.AccentColor}" />
+        <Setter Property="TextColor" Value="{x:Static helpers:StyleHelper.AccentColor}" />
     </Style>
 
     <!-- Font Sizes -->
