@@ -3,6 +3,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:designTime="clr-namespace:MoneyFox.Business.ViewModels.DesignTime;assembly=MoneyFox.Business"
+                 xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
                  x:Class="MoneyFox.Dialogs.AddAccountAndPaymentDialog">
 
     <pages:PopupPage.BindingContext>
@@ -42,7 +43,7 @@
         <StackLayout VerticalOptions="Center" 
                      HorizontalOptions="Center"
                      Padding="20, 20, 20, 20"
-                     BackgroundColor="White">
+                     BackgroundColor="{x:Static helpers:StyleHelper.DialogBackgroundColor}">
 
             <Label Text="{Binding Resources[AddTitle]}" 
                        Style ="{StaticResource ListItemHeaderStyle}"/>

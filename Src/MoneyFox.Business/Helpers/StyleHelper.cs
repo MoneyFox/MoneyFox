@@ -12,6 +12,7 @@ namespace MoneyFox.Business.Helpers
         public static Color SecondaryColor = Color.FromHex("#1a264c");
 
         public static Color WindowBackgroundColor = Color.FromHex("#EFF2F5");
+        public static Color DialogBackgroundColor = Color.White;
         public static Color BottomTabBarColor = Color.WhiteSmoke;
 
         public static Color PrimaryFontColor = Color.Black;
@@ -29,6 +30,7 @@ namespace MoneyFox.Business.Helpers
         private static void SetDarkColors()
         {
             WindowBackgroundColor = Color.FromHex("#2d2d30");
+            DialogBackgroundColor = Color.Black;
             BottomTabBarColor = Color.FromHex("#1e1e1e");
 
             PrimaryFontColor = Color.White;

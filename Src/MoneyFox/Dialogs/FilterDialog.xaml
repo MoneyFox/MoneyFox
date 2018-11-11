@@ -5,6 +5,7 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+    xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
     x:Class="MoneyFox.Dialogs.FilterDialog"
     BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectFilterDialogViewModel}">
 
@@ -27,7 +28,7 @@
         VerticalOptions="Center" 
         HorizontalOptions="Center" 
         Padding="20, 20, 20, 20"
-        BackgroundColor="White">
+        BackgroundColor="{x:Static helpers:StyleHelper.DialogBackgroundColor}">
 
         <Label Text="{Binding Resources[SelectFilterTitle]}" 
                Style ="{StaticResource ListItemHeaderStyle}"/>
