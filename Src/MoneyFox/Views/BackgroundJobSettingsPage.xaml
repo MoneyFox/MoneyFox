@@ -8,9 +8,8 @@
                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
 
     <ContentPage.Content>
-        <Grid>
-            <StackLayout Spacing="0" 
-                     Padding="6,6,6,6">
+        <Grid Padding="7" >
+            <StackLayout Spacing="0" >
 
                 <Label Text="{Binding Resources[AutobackupInformationLabel]}"
                    Style="{StaticResource DeemphasizedLabelStyle}" />
