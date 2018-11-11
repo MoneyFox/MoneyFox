@@ -6,7 +6,7 @@
                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.ModifyAccountPage"
-                  BackgroundColor="{DynamicResource WindowBackground}"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
 
     <ContentPage.Content>

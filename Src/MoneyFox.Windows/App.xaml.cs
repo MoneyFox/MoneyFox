@@ -33,11 +33,9 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
-using SQLitePCL;
 
 namespace MoneyFox.Windows
 {

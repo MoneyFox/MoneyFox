@@ -8,7 +8,7 @@
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.AccountListPage"
-                  BackgroundColor="{DynamicResource WindowBackground}"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.Resources>
@@ -77,7 +77,7 @@
                                             Margin="4"
                                             VerticalOptions="EndAndExpand"
                                             Image="ic_add.png"
-                                            ButtonColor="{DynamicResource AccentColor}"
+                                            ButtonColor="{x:Static moneyFox:StyleHelper.AccentColor}"
                                             Clicked="AddItem_Clicked">
                     <controls:FloatingActionButton.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">

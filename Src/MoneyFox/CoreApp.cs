@@ -10,11 +10,9 @@ using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Style;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using Xamarin.Forms;
 
 namespace MoneyFox
 {
@@ -81,6 +79,7 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
+
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 
@@ -88,16 +87,7 @@ namespace MoneyFox
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-
-            if (Mvx.IoCProvider.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
-            {
-                Application.Current.Resources.Add(new ColorsDark());
-            }
-            else
-            {
-                Application.Current.Resources.Add(new ColorsLight());
-            }
-
+            
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
             if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())

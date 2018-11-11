@@ -5,7 +5,7 @@
                       xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                       xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                       x:Class="MoneyFox.Views.BackgroundJobSettingsPage"
-                      BackgroundColor="{DynamicResource WindowBackground}"
+                      BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
 
     <ContentPage.Content>

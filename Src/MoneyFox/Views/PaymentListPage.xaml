@@ -8,7 +8,7 @@
                    xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                    xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                    x:Class="MoneyFox.Views.PaymentListPage"
-                   BackgroundColor="{DynamicResource WindowBackground}"
+                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>

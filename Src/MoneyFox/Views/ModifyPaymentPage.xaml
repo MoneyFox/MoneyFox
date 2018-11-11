@@ -7,7 +7,7 @@
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                   xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.ModifyPaymentPage"
-                  BackgroundColor="{DynamicResource WindowBackground}"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyPaymentViewModel}">
 
     <ContentPage.Resources>

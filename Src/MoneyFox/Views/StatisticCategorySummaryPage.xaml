@@ -7,7 +7,7 @@
                       xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                       xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                       x:Class="MoneyFox.Views.StatisticCategorySummaryPage"
-                      BackgroundColor="{DynamicResource WindowBackground}"
+                      BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                       DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
                       Title="{Binding Resources[CategorySummaryTitle]}">
 
