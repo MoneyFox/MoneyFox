@@ -9,4 +9,42 @@
         <On Platform="iOS" Value="ic_save" />
     </OnPlatform>
 
+    <OnPlatform x:Key="IconAccount"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_accounts_black" />
+        <On Platform="iOS" Value="ic_accounts_black" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="IconExpense"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_remove_black" />
+        <On Platform="iOS" Value="ic_remove_black" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="IconIncome"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_add_black" />
+        <On Platform="iOS" Value="ic_add_black" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="IconTransfer"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_transfer" />
+        <On Platform="iOS" Value="IconTransfer" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="IconCleared"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_cleared_black" />
+        <On Platform="iOS" Value="IconCleared" />
+        <On Platform="UWP" Value="IconCleared" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="IconRecurring"
+                x:TypeArguments="ImageSource">
+        <On Platform="Android" Value="ic_recurring_black" />
+        <On Platform="iOS" Value="IconRecurring" />
+        <On Platform="UWP" Value="IconRecurring" />
+    </OnPlatform>
+
 </ResourceDictionary>

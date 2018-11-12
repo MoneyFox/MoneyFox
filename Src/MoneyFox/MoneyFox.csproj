@@ -24,12 +24,6 @@
     <Compile Update="Dialogs\FilterDialog.xaml.cs">
       <DependentUpon>FilterDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Style\ColorsDark.xaml.cs">
-      <DependentUpon>ColorsDark.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Style\ColorsLight.xaml.cs">
-      <DependentUpon>ColorsLight.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Style\ControlStyles.xaml.cs">
       <DependentUpon>ControlStyles.xaml</DependentUpon>
     </Compile>
@@ -82,9 +76,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Dialogs\FilterDialog.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Style\ColorsLight.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UserControls\BalanceUserControl.xaml">

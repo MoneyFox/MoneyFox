@@ -12,29 +12,7 @@
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />
-
-            <OnPlatform x:Key="IconCleared"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconCleared" />
-                <On Platform="iOS" Value="IconCleared" />
-                <On Platform="UWP" Value="IconCleared" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="IconRecurring"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconRecurring" />
-                <On Platform="iOS" Value="IconRecurring" />
-                <On Platform="UWP" Value="IconRecurring" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="IconTransfer"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconTransfer" />
-                <On Platform="iOS" Value="IconTransfer" />
-                <On Platform="UWP" Value="IconTransfer" />
-            </OnPlatform>
         </ResourceDictionary>
     </ContentPage.Resources>
 

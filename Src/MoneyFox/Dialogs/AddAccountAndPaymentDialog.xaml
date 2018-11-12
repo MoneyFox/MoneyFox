@@ -8,35 +8,6 @@
     <pages:PopupPage.BindingContext>
         <designTime:DesignTimeAccountListViewActionViewModel />
     </pages:PopupPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-
-            <OnPlatform x:Key="IconAccount"
-                    x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="ic_accounts_black" />
-                <On Platform="iOS" Value="ic_accounts_black" />
-            </OnPlatform>
-            
-            <OnPlatform x:Key="IconExpense"
-                    x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="ic_remove_black" />
-                <On Platform="iOS" Value="ic_remove_black" />
-            </OnPlatform>            
-            
-            <OnPlatform x:Key="IconIncome"
-                    x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="ic_add_black" />
-                <On Platform="iOS" Value="ic_add_black" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="IconTransfer"
-                    x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconTransfer" />
-                <On Platform="iOS" Value="IconTransfer" />
-            </OnPlatform>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
