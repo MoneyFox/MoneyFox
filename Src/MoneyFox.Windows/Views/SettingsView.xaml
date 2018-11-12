@@ -63,7 +63,7 @@
                             <input:RadNumericBox
                                 Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-                            <StackPanel>
+                            <StackPanel Margin="0,12,0,0">
                                 <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
 
                                 <StackPanel Orientation="Horizontal">
