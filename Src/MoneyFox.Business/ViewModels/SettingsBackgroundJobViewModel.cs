@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using System;
+using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -15,6 +16,10 @@ namespace MoneyFox.Business.ViewModels
         ///     Amount of hours to sync the backup.
         /// </summary>
         int BackupSyncRecurrence { get; }
+
+        DateTime LastExecutionSynBackup { get; }
+        DateTime LastExecutionClearPayments { get; }
+        DateTime LastExecutionCreateRecurringPayments { get; }
     }
     
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
@@ -69,5 +74,9 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public DateTime LastExecutionSynBackup => settingsManager.LastExecutionTimeStampSyncBackup;
+        public DateTime LastExecutionClearPayments => settingsManager.LastExecutionTimeStampClearPayments;
+        public DateTime LastExecutionCreateRecurringPayments => settingsManager.LastExecutionTimeStampRecurringPayments;
     }
 }

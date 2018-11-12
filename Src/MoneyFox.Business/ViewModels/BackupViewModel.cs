@@ -41,10 +41,6 @@ namespace MoneyFox.Business.ViewModels
         bool IsLoadingBackupAvailability { get; }
         bool IsLoggedIn { get; }
         bool BackupAvailable { get; }
-
-        DateTime LastExecutionSynBackup { get; }
-        DateTime LastExecutionClearPayments { get; }
-        DateTime LastExecutionCreateRecurringPayments { get; }
     }
 
     /// <summary>
@@ -134,10 +130,6 @@ namespace MoneyFox.Business.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        public DateTime LastExecutionSynBackup => settingsManager.LastExecutionTimeStampSyncBackup;
-        public DateTime LastExecutionClearPayments => settingsManager.LastExecutionTimeStampClearPayments;
-        public DateTime LastExecutionCreateRecurringPayments => settingsManager.LastExecutionTimeStampRecurringPayments;
 
         #endregion
 

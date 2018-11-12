@@ -26,6 +26,7 @@ using PCLAppConfig;
 using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
+using Xamarin.Forms.Platform.iOS;
 
 namespace MoneyFox.iOS
 {
@@ -42,11 +43,15 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
+            UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
@@ -80,9 +85,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
+                await SyncBackup();
                 await ClearPayments();
                 await CreateRecurringPayments();
-                await SyncBackup();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -94,6 +99,15 @@ namespace MoneyFox.iOS
             }
 
             completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
+        }
+
+        public override async void WillEnterForeground(UIApplication uiApplication)
+        {
+            base.WillEnterForeground(uiApplication);
+
+            await SyncBackup();
+            await ClearPayments();
+            await CreateRecurringPayments();
         }
 
         private async Task SyncBackup()

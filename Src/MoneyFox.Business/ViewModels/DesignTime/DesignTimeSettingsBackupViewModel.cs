@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using MoneyFox.Business.Helpers;
 using MoneyFox.Foundation.Resources;
 
@@ -16,5 +17,9 @@ namespace MoneyFox.Business.ViewModels.DesignTime
 
         public bool IsAutoBackupEnabled { get; } = true;
         public int BackupSyncRecurrence { get; } = 3;
+
+        public DateTime LastExecutionSynBackup { get; }
+        public DateTime LastExecutionClearPayments { get; }
+        public DateTime LastExecutionCreateRecurringPayments { get; }
     }
 }

@@ -392,6 +392,12 @@ namespace MoneyFox.Foundation.Resources {
         public static string PasswordWrongMessage {
             get {
                 return ResourceManager.GetString("PasswordWrongMessage", resourceCulture);
+<<<<<<< HEAD
+            }
+        }
+        
+        public static string PasswordWrongTitle {
+=======
             }
         }
         
@@ -401,6 +407,26 @@ namespace MoneyFox.Foundation.Resources {
             }
         }
         
+        public static string CategorySummaryLabel {
+            get {
+                return ResourceManager.GetString("CategorySummaryLabel", resourceCulture);
+            }
+        }
+        
+        public static string CategorySpreadingLabel {
+            get {
+                return ResourceManager.GetString("CategorySpreadingLabel", resourceCulture);
+            }
+        }
+        
+        public static string ChargedAccountLabel {
+>>>>>>> c56a63face91c7b434b70175543d3b5f5823b146
+            get {
+                return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
+            }
+        }
+        
+<<<<<<< HEAD
         public static string CategorySummaryLabel {
             get {
                 return ResourceManager.GetString("CategorySummaryLabel", resourceCulture);
@@ -594,11 +620,225 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         public static string ErrorMessageAuthenticationFailed {
+=======
+        public static string TargetAccountLabel {
+            get {
+                return ResourceManager.GetString("TargetAccountLabel", resourceCulture);
+            }
+        }
+        
+        public static string InvalidEnddateMessage {
+            get {
+                return ResourceManager.GetString("InvalidEnddateMessage", resourceCulture);
+            }
+        }
+        
+        public static string InvalidEnddateTitle {
+            get {
+                return ResourceManager.GetString("InvalidEnddateTitle", resourceCulture);
+            }
+        }
+        
+        public static string NotNowLabel {
+            get {
+                return ResourceManager.GetString("NotNowLabel", resourceCulture);
+            }
+        }
+        
+        public static string RateReminderText {
+            get {
+                return ResourceManager.GetString("RateReminderText", resourceCulture);
+            }
+        }
+        
+        public static string RateReminderTitle {
+            get {
+                return ResourceManager.GetString("RateReminderTitle", resourceCulture);
+            }
+        }
+        
+        public static string BiweeklyLabel {
+            get {
+                return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
+            }
+        }
+        
+        public static string AddCategoryTitle {
+            get {
+                return ResourceManager.GetString("AddCategoryTitle", resourceCulture);
+            }
+        }
+        
+        public static string EditCategoryTitle {
+            get {
+                return ResourceManager.GetString("EditCategoryTitle", resourceCulture);
+            }
+        }
+        
+        public static string CategoriesLabel {
+            get {
+                return ResourceManager.GetString("CategoriesLabel", resourceCulture);
+            }
+        }
+        
+        public static string CashflowDescription {
+            get {
+                return ResourceManager.GetString("CashflowDescription", resourceCulture);
+            }
+        }
+        
+        public static string CategorieSpreadingDescription {
+            get {
+                return ResourceManager.GetString("CategorieSpreadingDescription", resourceCulture);
+            }
+        }
+        
+        public static string CategorySummaryDescription {
+            get {
+                return ResourceManager.GetString("CategorySummaryDescription", resourceCulture);
+            }
+        }
+        
+        public static string CancelLabel {
+            get {
+                return ResourceManager.GetString("CancelLabel", resourceCulture);
+            }
+        }
+        
+        public static string ChooseLabel {
+            get {
+                return ResourceManager.GetString("ChooseLabel", resourceCulture);
+            }
+        }
+        
+        public static string ExpenseHeader {
+            get {
+                return ResourceManager.GetString("ExpenseHeader", resourceCulture);
+            }
+        }
+        
+        public static string IncomeHeader {
+            get {
+                return ResourceManager.GetString("IncomeHeader", resourceCulture);
+            }
+        }
+        
+        public static string TransferHeader {
+            get {
+                return ResourceManager.GetString("TransferHeader", resourceCulture);
+            }
+        }
+        
+        public static string ErrorMessageDelete {
+            get {
+                return ResourceManager.GetString("ErrorMessageDelete", resourceCulture);
+            }
+        }
+        
+        public static string ErrorMessageSave {
+            get {
+                return ResourceManager.GetString("ErrorMessageSave", resourceCulture);
+            }
+        }
+        
+        public static string ErrorTitleDelete {
+            get {
+                return ResourceManager.GetString("ErrorTitleDelete", resourceCulture);
+            }
+        }
+        
+        public static string ChooseCategorieTitle {
+            get {
+                return ResourceManager.GetString("ChooseCategorieTitle", resourceCulture);
+            }
+        }
+        
+        public static string NoNetworkMessage {
+            get {
+                return ResourceManager.GetString("NoNetworkMessage", resourceCulture);
+            }
+        }
+        
+        public static string NoNetworkTitle {
+            get {
+                return ResourceManager.GetString("NoNetworkTitle", resourceCulture);
+            }
+        }
+        
+        public static string GeneralTitle {
+            get {
+                return ResourceManager.GetString("GeneralTitle", resourceCulture);
+            }
+        }
+        
+        public static string DuplicateAccountMessage {
+            get {
+                return ResourceManager.GetString("DuplicateAccountMessage", resourceCulture);
+            }
+        }
+        
+        public static string DuplicateCategoryMessage {
+            get {
+                return ResourceManager.GetString("DuplicateCategoryMessage", resourceCulture);
+            }
+        }
+        
+        public static string DuplicatedNameTitle {
+            get {
+                return ResourceManager.GetString("DuplicatedNameTitle", resourceCulture);
+            }
+        }
+        
+        public static string LoadingLabel {
+            get {
+                return ResourceManager.GetString("LoadingLabel", resourceCulture);
+            }
+        }
+        
+        public static string ErrorMessageAuthenticationFailed {
             get {
                 return ResourceManager.GetString("ErrorMessageAuthenticationFailed", resourceCulture);
             }
         }
         
+        public static string VersionLabel {
+            get {
+                return ResourceManager.GetString("VersionLabel", resourceCulture);
+            }
+        }
+        
+        public static string ContactLabel {
+            get {
+                return ResourceManager.GetString("ContactLabel", resourceCulture);
+            }
+        }
+        
+        public static string ContributerLabel {
+            get {
+                return ResourceManager.GetString("ContributerLabel", resourceCulture);
+            }
+        }
+        
+        public static string IconDesignerLabel {
+            get {
+                return ResourceManager.GetString("IconDesignerLabel", resourceCulture);
+            }
+        }
+        
+        public static string InfoOpenSource {
+            get {
+                return ResourceManager.GetString("InfoOpenSource", resourceCulture);
+            }
+        }
+        
+        public static string RateLabel {
+>>>>>>> c56a63face91c7b434b70175543d3b5f5823b146
+            get {
+                return ResourceManager.GetString("RateLabel", resourceCulture);
+            }
+        }
+        
+<<<<<<< HEAD
         public static string VersionLabel {
             get {
                 return ResourceManager.GetString("VersionLabel", resourceCulture);
@@ -1050,11 +1290,465 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         public static string SaveAccountLabel {
+=======
+        public static string TranslationLabel {
+            get {
+                return ResourceManager.GetString("TranslationLabel", resourceCulture);
+            }
+        }
+        
+        public static string PasswordLabel {
+            get {
+                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+            }
+        }
+        
+        public static string WelcomeLabel {
+            get {
+                return ResourceManager.GetString("WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        public static string NoAccountsMessage {
+            get {
+                return ResourceManager.GetString("NoAccountsMessage", resourceCulture);
+            }
+        }
+        
+        public static string CreateBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("CreateBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        public static string CreateBackupLabel {
+            get {
+                return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastBackupDateLabel {
+            get {
+                return ResourceManager.GetString("LastBackupDateLabel", resourceCulture);
+            }
+        }
+        
+        public static string LoginLabel {
+            get {
+                return ResourceManager.GetString("LoginLabel", resourceCulture);
+            }
+        }
+        
+        public static string LogoutLabel {
+            get {
+                return ResourceManager.GetString("LogoutLabel", resourceCulture);
+            }
+        }
+        
+        public static string RestoreBackupInformationLabel {
+            get {
+                return ResourceManager.GetString("RestoreBackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        public static string RestoreBackupLabel {
+            get {
+                return ResourceManager.GetString("RestoreBackupLabel", resourceCulture);
+            }
+        }
+        
+        public static string AccountNameLabel {
+            get {
+                return ResourceManager.GetString("AccountNameLabel", resourceCulture);
+            }
+        }
+        
+        public static string CurrentBalanceLabel {
+            get {
+                return ResourceManager.GetString("CurrentBalanceLabel", resourceCulture);
+            }
+        }
+        
+        public static string NoteLabel {
+            get {
+                return ResourceManager.GetString("NoteLabel", resourceCulture);
+            }
+        }
+        
+        public static string AmountLabel {
+            get {
+                return ResourceManager.GetString("AmountLabel", resourceCulture);
+            }
+        }
+        
+        public static string CategoryLabel {
+            get {
+                return ResourceManager.GetString("CategoryLabel", resourceCulture);
+            }
+        }
+        
+        public static string DateLabel {
+            get {
+                return ResourceManager.GetString("DateLabel", resourceCulture);
+            }
+        }
+        
+        public static string EndlessLabel {
+            get {
+                return ResourceManager.GetString("EndlessLabel", resourceCulture);
+            }
+        }
+        
+        public static string RecurringLabel {
+            get {
+                return ResourceManager.GetString("RecurringLabel", resourceCulture);
+            }
+        }
+        
+        public static string EmptyListPlaceholderLabel {
+            get {
+                return ResourceManager.GetString("EmptyListPlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        public static string SearchStringLabel {
+            get {
+                return ResourceManager.GetString("SearchStringLabel", resourceCulture);
+            }
+        }
+        
+        public static string AutobackupInformationLabel {
+            get {
+                return ResourceManager.GetString("AutobackupInformationLabel", resourceCulture);
+            }
+        }
+        
+        public static string AutobackupLabel {
+            get {
+                return ResourceManager.GetString("AutobackupLabel", resourceCulture);
+            }
+        }
+        
+        public static string PasswordActivatedLabel {
+            get {
+                return ResourceManager.GetString("PasswordActivatedLabel", resourceCulture);
+            }
+        }
+        
+        public static string PasswordConfirmationLabel {
+            get {
+                return ResourceManager.GetString("PasswordConfirmationLabel", resourceCulture);
+            }
+        }
+        
+        public static string DeleteRecurringPaymentMessage {
+            get {
+                return ResourceManager.GetString("DeleteRecurringPaymentMessage", resourceCulture);
+            }
+        }
+        
+        public static string DeleteRecurringPaymentTitle {
+            get {
+                return ResourceManager.GetString("DeleteRecurringPaymentTitle", resourceCulture);
+            }
+        }
+        
+        public static string BimonthlyLabel {
+            get {
+                return ResourceManager.GetString("BimonthlyLabel", resourceCulture);
+            }
+        }
+        
+        public static string IsExcludedLabel {
+            get {
+                return ResourceManager.GetString("IsExcludedLabel", resourceCulture);
+            }
+        }
+        
+        public static string PasswordEmptyMessage {
+            get {
+                return ResourceManager.GetString("PasswordEmptyMessage", resourceCulture);
+            }
+        }
+        
+        public static string PasswordEmptyTitle {
+            get {
+                return ResourceManager.GetString("PasswordEmptyTitle", resourceCulture);
+            }
+        }
+        
+        public static string ErrorMessageRestore {
+            get {
+                return ResourceManager.GetString("ErrorMessageRestore", resourceCulture);
+            }
+        }
+        
+        public static string ExcludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("ExcludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        public static string IncludedAccountsHeader {
+            get {
+                return ResourceManager.GetString("IncludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        public static string BackupSyncRecurrenceInfoLabel {
+            get {
+                return ResourceManager.GetString("BackupSyncRecurrenceInfoLabel", resourceCulture);
+            }
+        }
+        
+        public static string HourLabel {
+            get {
+                return ResourceManager.GetString("HourLabel", resourceCulture);
+            }
+        }
+        
+        public static string BackupSyncRecurrenceLabel {
+            get {
+                return ResourceManager.GetString("BackupSyncRecurrenceLabel", resourceCulture);
+            }
+        }
+        
+        public static string BiannuallyLabel {
+            get {
+                return ResourceManager.GetString("BiannuallyLabel", resourceCulture);
+            }
+        }
+        
+        public static string QuarterlyLabel {
+            get {
+                return ResourceManager.GetString("QuarterlyLabel", resourceCulture);
+            }
+        }
+        
+        public static string AuthenticationFailedTitle {
+            get {
+                return ResourceManager.GetString("AuthenticationFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string BackupFailedTitle {
+            get {
+                return ResourceManager.GetString("BackupFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string BackupRestoreFailedTitle {
+            get {
+                return ResourceManager.GetString("BackupRestoreFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string AboutLabel {
+            get {
+                return ResourceManager.GetString("AboutLabel", resourceCulture);
+            }
+        }
+        
+        public static string GeneralErrorTitle {
+            get {
+                return ResourceManager.GetString("GeneralErrorTitle", resourceCulture);
+            }
+        }
+        
+        public static string ClearedFilterLabel {
+            get {
+                return ResourceManager.GetString("ClearedFilterLabel", resourceCulture);
+            }
+        }
+        
+        public static string DoneLabel {
+            get {
+                return ResourceManager.GetString("DoneLabel", resourceCulture);
+            }
+        }
+        
+        public static string IsRecurringFilterLabel {
+            get {
+                return ResourceManager.GetString("IsRecurringFilterLabel", resourceCulture);
+            }
+        }
+        
+        public static string SelectFilterTitle {
+            get {
+                return ResourceManager.GetString("SelectFilterTitle", resourceCulture);
+            }
+        }
+        
+        public static string BackupSyncedSuccessfullyMessage {
+            get {
+                return ResourceManager.GetString("BackupSyncedSuccessfullyMessage", resourceCulture);
+            }
+        }
+        
+        public static string BackupSyncFailedMessage {
+            get {
+                return ResourceManager.GetString("BackupSyncFailedMessage", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundAccessDeniedByPolicyMessage {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedByPolicyMessage", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundAccessDeniedByUserMessage {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedByUserMessage", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundAccessDeniedTitle {
+            get {
+                return ResourceManager.GetString("BackgroundAccessDeniedTitle", resourceCulture);
+            }
+        }
+        
+        public static string PassportErrorMessage {
+            get {
+                return ResourceManager.GetString("PassportErrorMessage", resourceCulture);
+            }
+        }
+        
+        public static string LoginFailedMessage {
+            get {
+                return ResourceManager.GetString("LoginFailedMessage", resourceCulture);
+            }
+        }
+        
+        public static string LoginFailedTitle {
+            get {
+                return ResourceManager.GetString("LoginFailedTitle", resourceCulture);
+            }
+        }
+        
+        public static string IsClearedLabel {
+            get {
+                return ResourceManager.GetString("IsClearedLabel", resourceCulture);
+            }
+        }
+        
+        public static string IsRecurringLabel {
+            get {
+                return ResourceManager.GetString("IsRecurringLabel", resourceCulture);
+            }
+        }
+        
+        public static string OthersLabel {
+            get {
+                return ResourceManager.GetString("OthersLabel", resourceCulture);
+            }
+        }
+        
+        public static string AccountsTitle {
+            get {
+                return ResourceManager.GetString("AccountsTitle", resourceCulture);
+            }
+        }
+        
+        public static string SettingsTitle {
+            get {
+                return ResourceManager.GetString("SettingsTitle", resourceCulture);
+            }
+        }
+        
+        public static string StatisticsTimeRangeTitle {
+            get {
+                return ResourceManager.GetString("StatisticsTimeRangeTitle", resourceCulture);
+            }
+        }
+        
+        public static string CategorySummaryTitle {
+            get {
+                return ResourceManager.GetString("CategorySummaryTitle", resourceCulture);
+            }
+        }
+        
+        public static string NoCategoriesMessage {
+            get {
+                return ResourceManager.GetString("NoCategoriesMessage", resourceCulture);
+            }
+        }
+        
+        public static string NoStatisticItemsMessage {
+            get {
+                return ResourceManager.GetString("NoStatisticItemsMessage", resourceCulture);
+            }
+        }
+        
+        public static string BackupSettingsDescription {
+            get {
+                return ResourceManager.GetString("BackupSettingsDescription", resourceCulture);
+            }
+        }
+        
+        public static string CategoriesSettingsDescription {
+            get {
+                return ResourceManager.GetString("CategoriesSettingsDescription", resourceCulture);
+            }
+        }
+        
+        public static string AddTitle {
+            get {
+                return ResourceManager.GetString("AddTitle", resourceCulture);
+            }
+        }
+        
+        public static string AddAccountLabel {
+            get {
+                return ResourceManager.GetString("AddAccountLabel", resourceCulture);
+            }
+        }
+        
+        public static string SaveAccountLabel {
             get {
                 return ResourceManager.GetString("SaveAccountLabel", resourceCulture);
             }
         }
         
+        public static string SearchLabel {
+            get {
+                return ResourceManager.GetString("SearchLabel", resourceCulture);
+            }
+        }
+        
+        public static string EnddateLabel {
+            get {
+                return ResourceManager.GetString("EnddateLabel", resourceCulture);
+            }
+        }
+        
+        public static string RecurrenceLabel {
+            get {
+                return ResourceManager.GetString("RecurrenceLabel", resourceCulture);
+            }
+        }
+        
+        public static string SavePaymentLabel {
+            get {
+                return ResourceManager.GetString("SavePaymentLabel", resourceCulture);
+            }
+        }
+        
+        public static string NoPaymentsMessage {
+            get {
+                return ResourceManager.GetString("NoPaymentsMessage", resourceCulture);
+            }
+        }
+        
+        public static string SaveCategoryLabel {
+>>>>>>> c56a63face91c7b434b70175543d3b5f5823b146
+            get {
+                return ResourceManager.GetString("SaveAccountLabel", resourceCulture);
+            }
+        }
+        
+<<<<<<< HEAD
         public static string SearchLabel {
             get {
                 return ResourceManager.GetString("SearchLabel", resourceCulture);
@@ -1232,6 +1926,179 @@ namespace MoneyFox.Foundation.Resources {
         public static string LastExecutionSyncBackupLabel {
             get {
                 return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+=======
+        public static string AboutSettingsDescription {
+            get {
+                return ResourceManager.GetString("AboutSettingsDescription", resourceCulture);
+            }
+        }
+        
+        public static string EmailLabel {
+            get {
+                return ResourceManager.GetString("EmailLabel", resourceCulture);
+            }
+        }
+        
+        public static string WebsiteLabel {
+            get {
+                return ResourceManager.GetString("WebsiteLabel", resourceCulture);
+            }
+        }
+        
+        public static string BackupTitle {
+            get {
+                return ResourceManager.GetString("BackupTitle", resourceCulture);
+            }
+        }
+        
+        public static string CategoriesTitle {
+            get {
+                return ResourceManager.GetString("CategoriesTitle", resourceCulture);
+            }
+        }
+        
+        public static string SelectCategoryTitle {
+            get {
+                return ResourceManager.GetString("SelectCategoryTitle", resourceCulture);
+            }
+        }
+        
+        public static string CashFlowStatisticTitle {
+            get {
+                return ResourceManager.GetString("CashFlowStatisticTitle", resourceCulture);
+            }
+        }
+        
+        public static string CategorySpreadingTitle {
+            get {
+                return ResourceManager.GetString("CategorySpreadingTitle", resourceCulture);
+            }
+        }
+        
+        public static string CategoryNameLabel {
+            get {
+                return ResourceManager.GetString("CategoryNameLabel", resourceCulture);
+            }
+        }
+        
+        public static string FilterLabel {
+            get {
+                return ResourceManager.GetString("FilterLabel", resourceCulture);
+            }
+        }
+        
+        public static string TimeRangeEndLabel {
+            get {
+                return ResourceManager.GetString("TimeRangeEndLabel", resourceCulture);
+            }
+        }
+        
+        public static string TimeRangeStartLabel {
+            get {
+                return ResourceManager.GetString("TimeRangeStartLabel", resourceCulture);
+            }
+        }
+        
+        public static string SelectDateLabel {
+            get {
+                return ResourceManager.GetString("SelectDateLabel", resourceCulture);
+            }
+        }
+        
+        public static string AddCategoryLabel {
+            get {
+                return ResourceManager.GetString("AddCategoryLabel", resourceCulture);
+            }
+        }
+        
+        public static string SelectStatisticTitel {
+            get {
+                return ResourceManager.GetString("SelectStatisticTitel", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundJobLabel {
+            get {
+                return ResourceManager.GetString("BackgroundJobLabel", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundJobSettingDescription {
+            get {
+                return ResourceManager.GetString("BackgroundJobSettingDescription", resourceCulture);
+            }
+        }
+        
+        public static string BackgroundJobTitle {
+            get {
+                return ResourceManager.GetString("BackgroundJobTitle", resourceCulture);
+            }
+        }
+        
+        public static string PersonalizationTitle {
+            get {
+                return ResourceManager.GetString("PersonalizationTitle", resourceCulture);
+            }
+        }
+        
+        public static string ShortcutsTitle {
+            get {
+                return ResourceManager.GetString("ShortcutsTitle", resourceCulture);
+            }
+        }
+        
+        public static string LastExecutionBackgroundOperationsLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionBackgroundOperationsLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastExecutionClearPaymentLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastExecutionRecurringPaymentLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionRecurringPaymentLabel", resourceCulture);
+            }
+        }
+        
+        public static string LastExecutionSyncBackupLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+            }
+        }
+        
+        public static string PersonalizationInfoLabel {
+            get {
+                return ResourceManager.GetString("PersonalizationInfoLabel", resourceCulture);
+            }
+        }
+        
+        public static string ThemeDarkLabel {
+            get {
+                return ResourceManager.GetString("ThemeDarkLabel", resourceCulture);
+            }
+        }
+        
+        public static string ThemeLightLabel {
+            get {
+                return ResourceManager.GetString("ThemeLightLabel", resourceCulture);
+            }
+        }
+        
+        public static string SettingsPersonalizationDescription {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationDescription", resourceCulture);
+            }
+        }
+        
+        public static string SettingsPersonalizationLabel {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationLabel", resourceCulture);
+>>>>>>> c56a63face91c7b434b70175543d3b5f5823b146
             }
         }
     }

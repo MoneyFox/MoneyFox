@@ -87,7 +87,7 @@ namespace MoneyFox
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-
+            
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
             if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
