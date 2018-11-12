@@ -23,11 +23,11 @@
 
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"
-                      ItemsSource="{Binding Accounts}"
-                      HasUnevenRows="True"
-                      CachingStrategy="RecycleElement"
-                      IsGroupingEnabled="True"
-                      GroupDisplayBinding="{Binding Key}">
+                          ItemsSource="{Binding Accounts}"
+                          HasUnevenRows="True"
+                          CachingStrategy="RecycleElement"
+                          IsGroupingEnabled="True"
+                          GroupDisplayBinding="{Binding Key}">
 
                     <ListView.SeparatorVisibility>
                         <OnPlatform x:TypeArguments="SeparatorVisibility">
@@ -45,8 +45,7 @@
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
                                           Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" 
-                                                   Style="{StaticResource DefaultCardViewStyle}">
+                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
                                     <StackLayout Spacing="0">
                                         <Grid Style="{StaticResource ListItemStyle}"
                                               Padding="3"
