@@ -23,11 +23,11 @@
 
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"
-                      ItemsSource="{Binding Accounts}"
-                      HasUnevenRows="True"
-                      CachingStrategy="RecycleElement"
-                      IsGroupingEnabled="True"
-                      GroupDisplayBinding="{Binding Key}">
+                          ItemsSource="{Binding Accounts}"
+                          HasUnevenRows="True"
+                          CachingStrategy="RecycleElement"
+                          IsGroupingEnabled="True"
+                          GroupDisplayBinding="{Binding Key}">
 
                     <ListView.SeparatorVisibility>
                         <OnPlatform x:TypeArguments="SeparatorVisibility">
