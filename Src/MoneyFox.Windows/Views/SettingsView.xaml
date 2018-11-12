@@ -60,6 +60,7 @@
                                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                        Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
                                        TextWrapping="WrapWholeWords" />
+
                             <input:RadNumericBox
                                 Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
