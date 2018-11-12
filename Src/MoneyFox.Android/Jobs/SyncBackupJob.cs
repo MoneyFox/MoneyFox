@@ -86,7 +86,7 @@ namespace MoneyFox.Droid.Jobs
             }
             finally
             {
-                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
         }
 

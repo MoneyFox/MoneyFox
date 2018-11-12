@@ -22,6 +22,7 @@ using MoneyFox.iOS.Authentication;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
+using PCLAppConfig;
 using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -41,8 +42,9 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
 #if !DEBUG
-            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
@@ -78,9 +80,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                await SyncBackup();
-                await CreateRecurringPayments();
                 await ClearPayments();
+                await CreateRecurringPayments();
+                await SyncBackup();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -94,15 +96,37 @@ namespace MoneyFox.iOS
             completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
         }
 
+        private async Task SyncBackup()
+        {
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+
+            try
+            {
+                ApplicationContext.DbPath = GetLocalFilePath();
+
+                await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
+                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                                        settingsManager,
+                                        new ConnectivityImplementation())
+                    .DownloadBackup();
+            } 
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+            } 
+            finally
+            {
+                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            }
+        }
+
         private async Task ClearPayments()
         {
             var settingsManager = new SettingsManager(new SettingsAdapter());
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                DataAccess.ApplicationContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                                 DatabaseConstants.DB_NAME);
+                ApplicationContext.DbPath = GetLocalFilePath();
 
                 var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 
@@ -116,11 +140,11 @@ namespace MoneyFox.iOS
                 }
 
                 Debug.WriteLine("ClearPayments Job finished.");
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
                 Crashes.TrackError(ex);
-
-            }
+            } 
             finally
             {
                 settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
@@ -133,6 +157,7 @@ namespace MoneyFox.iOS
 
             try
             {
+                Debug.WriteLine("RecurringPayment Job started.");
                 ApplicationContext.DbPath = GetLocalFilePath();
 
                 var ambientDbContextLocator = new AmbientDbContextLocator();
@@ -142,31 +167,8 @@ namespace MoneyFox.iOS
                         new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
                         new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
                     .CreatePaymentsUpToRecur();
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-            } 
-            finally
-            {
-                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
-            }
-        }
 
-        public async Task SyncBackup()
-        {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
-
-            try
-            {
-                ApplicationContext.DbPath = GetLocalFilePath();
-
-                await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                                        settingsManager,
-                                        new ConnectivityImplementation())
-                    .DownloadBackup();
-
+                Debug.WriteLine("RecurringPayment Job finished.");
             } 
             catch (Exception ex)
             {
@@ -174,7 +176,7 @@ namespace MoneyFox.iOS
             } 
             finally
             {
-                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+                settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }
         }
     }

@@ -22,6 +22,7 @@
         <Grid Padding="7">
 
             <StackLayout VerticalOptions="StartAndExpand">
+
                 <Button Text="{Binding Resources[LoginLabel]}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
@@ -58,6 +59,8 @@
                         <Grid.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double">
                                 <On Platform="iOS" Value="39"/>
+                                <On Platform="UWP" Value="35"/>
+                                <On Platform="Android" Value="48"/>
                             </OnPlatform>
                         </Grid.HeightRequest>
 
@@ -82,6 +85,8 @@
                            LineBreakMode="WordWrap" />
                     </StackLayout>
                 </StackLayout>
+
+
             </StackLayout>
 
             <StackLayout Spacing="{StaticResource ZeroSpacing}" 

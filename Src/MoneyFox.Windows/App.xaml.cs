@@ -13,8 +13,8 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+
 using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.Business;
 using MoneyFox.Business.Adapter;
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -22,20 +22,18 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
 using MoneyFox.Business.Manager;
-using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels;
-using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
 using UniversalRateReminder;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
+using PCLAppConfig;
+
 
 namespace MoneyFox.Windows
 {
@@ -88,13 +86,14 @@ namespace MoneyFox.Windows
             CoreApp.CurrentPlatform = AppPlatform.UWP;
             base.OnLaunched(e);
 #if !DEBUG
-            AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
+                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 new MoneyFox.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
