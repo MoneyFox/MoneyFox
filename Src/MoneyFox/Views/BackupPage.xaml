@@ -85,29 +85,6 @@
                            LineBreakMode="WordWrap" />
                     </StackLayout>
                 </StackLayout>
-
-
-            </StackLayout>
-
-            <StackLayout Spacing="{StaticResource ZeroSpacing}" 
-                         VerticalOptions="End" 
-                         IsVisible="{Binding IsLoggedIn}">
-                <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionCreateRecurringPayments}" />
-                </StackLayout>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

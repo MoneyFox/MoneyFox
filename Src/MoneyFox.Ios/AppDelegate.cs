@@ -80,9 +80,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
+                await SyncBackup();
                 await ClearPayments();
                 await CreateRecurringPayments();
-                await SyncBackup();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -94,6 +94,15 @@ namespace MoneyFox.iOS
             }
 
             completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
+        }
+
+        public override async void WillEnterForeground(UIApplication uiApplication)
+        {
+            base.WillEnterForeground(uiApplication);
+
+            await SyncBackup();
+            await ClearPayments();
+            await CreateRecurringPayments();
         }
 
         private async Task SyncBackup()
