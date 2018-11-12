@@ -15,13 +15,6 @@
             <converter:InverseBoolConverter x:Key="Inverter" />
             <converter:AccountNameConverter x:Key="AccountNameConverter" />
             <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
-
-            <OnPlatform x:Key="ImageResetField"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="ic_cancel_black" />
-                <On Platform="iOS" Value="ic_cancel" />
-                <On Platform="UWP" Value="IconCancel" />
-            </OnPlatform>
         </ResourceDictionary>
     </ContentPage.Resources>
 
