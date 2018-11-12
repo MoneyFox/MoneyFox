@@ -41,7 +41,6 @@ namespace MoneyFox.Business.ViewModels
             {
                 var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
                 settingsManager.Theme = theme;
-                StyleHelper.Init();
                 RaisePropertyChanged();
             }
         }

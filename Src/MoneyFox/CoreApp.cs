@@ -3,7 +3,6 @@ using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
-using MoneyFox.Business.Helpers;
 using MoneyFox.Business.Services;
 using MoneyFox.Business.StatisticDataProvider;
 using MoneyFox.Business.ViewModels;
@@ -80,8 +79,6 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
-
-            StyleHelper.Init();
 
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();

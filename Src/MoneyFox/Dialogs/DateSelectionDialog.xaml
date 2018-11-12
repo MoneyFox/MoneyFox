@@ -29,7 +29,7 @@
         VerticalOptions="Center" 
         HorizontalOptions="CenterAndExpand" 
         Padding="20, 20, 20, 20"
-        BackgroundColor="{x:Static helpers:StyleHelper.DialogBackgroundColor}">
+        Style="{StaticResource DialogWindowStyle}">
 
         <Label Text="{Binding Resources[SelectDateLabel]}"
                Style ="{StaticResource ListItemHeaderStyle}"/>

@@ -4,6 +4,7 @@
     {
 		public App ()
         {
+            StyleHelper.Init();
             InitializeComponent();
         }
     }

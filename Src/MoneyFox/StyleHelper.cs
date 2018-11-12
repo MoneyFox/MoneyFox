@@ -1,9 +1,9 @@
-﻿using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
-using MvvmCross;
+﻿using MoneyFox.Business.Adapter;
+using MoneyFox.Business.Manager;
+using MoneyFox.Foundation;
 using Xamarin.Forms;
 
-namespace MoneyFox.Business.Helpers
+namespace MoneyFox
 {
     public static class StyleHelper
     {
@@ -21,7 +21,7 @@ namespace MoneyFox.Business.Helpers
 
         public static void Init()
         {
-            if (Mvx.IoCProvider.Resolve<ISettingsManager>().Theme == AppTheme.Dark)
+            if (new SettingsManager(new SettingsAdapter()).Theme == AppTheme.Dark)
             {
                 SetDarkColors();
             }

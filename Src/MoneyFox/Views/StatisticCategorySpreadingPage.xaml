@@ -5,8 +5,8 @@
                    xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                    xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
                    xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-                   xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
-                   BackgroundColor="{x:Static helpers:StyleHelper.WindowBackgroundColor}"
+                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                    x:Class="MoneyFox.Views.StatisticCategorySpreadingPage">
 
     <forms:ChartView Chart="{Binding Chart}" />

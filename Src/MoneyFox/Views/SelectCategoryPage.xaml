@@ -6,9 +6,8 @@
                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
                   x:Class="MoneyFox.Views.SelectCategoryPage"
-                  BackgroundColor="{x:Static helpers:StyleHelper.WindowBackgroundColor}"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectCategoryListViewModel}">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >

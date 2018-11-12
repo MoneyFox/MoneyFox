@@ -7,9 +7,8 @@
                    xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                    xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                    xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-                   xmlns:helpers="clr-namespace:MoneyFox.Business.Helpers;assembly=MoneyFox.Business"
                    x:Class="MoneyFox.Views.PaymentListPage"
-                   BackgroundColor="{x:Static helpers:StyleHelper.WindowBackgroundColor}"
+                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
