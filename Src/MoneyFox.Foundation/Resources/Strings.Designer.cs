@@ -1467,7 +1467,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose between a dark or a light theme..
+        ///   Looks up a localized string similar to Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection..
         /// </summary>
         public static string PersonalizationInfoLabel {
             get {
