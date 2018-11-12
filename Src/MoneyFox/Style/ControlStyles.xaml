@@ -35,4 +35,8 @@
         <Setter Property="PlaceholderColor" Value="{x:Static moneyFox:StyleHelper.DeemphasizedColor}" />
     </Style>
 
+    <Style x:Key="DefaultCardViewStyle" TargetType="controls:CardView">
+        <Setter Property="BackgroundColor" Value="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}" />
+    </Style>
+
 </ResourceDictionary>

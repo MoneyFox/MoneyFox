@@ -45,7 +45,8 @@
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
                                           Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
+                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" 
+                                                   Style="{StaticResource DefaultCardViewStyle}">
                                     <StackLayout Spacing="0">
                                         <Grid Style="{StaticResource ListItemStyle}"
                                               Padding="3"

@@ -12,11 +12,13 @@
     <ContentPage.Content>
         <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-            <Label Text="{Binding Resources[CategoryNameLabel]}" />
+            <Label Text="{Binding Resources[CategoryNameLabel]}"
+                   Style="{StaticResource DefaultTextStyle}" />
             <Entry Text="{Binding SelectedCategory.Name}"
                    Style="{StaticResource DefaultEntryStyle}" />
 
-            <Label Text="{Binding Resources[NoteLabel]}" />
+            <Label Text="{Binding Resources[NoteLabel]}"
+                   Style="{StaticResource DefaultTextStyle}" />
             <Entry Text="{Binding SelectedCategory.Notes}"
                    Style="{StaticResource DefaultEntryStyle}" />
 
