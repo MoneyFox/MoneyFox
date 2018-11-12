@@ -150,6 +150,7 @@
     <Compile Include="Jobs\RecurringPaymentJob.cs" />
     <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />

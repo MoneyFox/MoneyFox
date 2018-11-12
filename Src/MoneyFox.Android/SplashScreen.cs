@@ -1,11 +1,8 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using MoneyFox.Foundation.Constants;
 using MvvmCross.Forms.Platforms.Android.Views;
-using Environment = System.Environment;
 
 namespace MoneyFox.Droid
 {
@@ -21,9 +18,6 @@ namespace MoneyFox.Droid
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
         {
-            DataAccess.ApplicationContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                             DatabaseConstants.DB_NAME);
         }
 
         protected override Task RunAppStartAsync(Bundle bundle)
