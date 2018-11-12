@@ -1,6 +1,8 @@
 ﻿using MoneyFox.Business.ViewModels;
+using MoneyFox.Foundation.Resources;
 using MvvmCross;
 using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -37,5 +39,24 @@ namespace MoneyFox.Views
                 firstTime = false;
             }
         }
+
+	    protected override void OnChildAdded(Element child)
+        {
+	        if ((child as MvxContentPage)?.Title == "Accounts") {
+	            ((ContentPage) child).Title  = Strings.AccountsTitle;
+	            ((ContentPage) child).Icon  = StyleHelper.AccountImageSource as FileImageSource;
+	        }
+	        else if ((child as MvxContentPage)?.Title == "Statistics")
+	        {
+	            ((ContentPage)child).Title = Strings.StatisticsTitle;
+	            ((ContentPage)child).Icon = StyleHelper.StatisticSelectorImageSource as FileImageSource;
+	        }
+            else if ((child as MvxContentPage)?.Title == "Settings") {
+	            ((ContentPage) child).Title  = Strings.SettingsTitle;
+	            ((ContentPage) child).Icon  = StyleHelper.SettingsImageSource as FileImageSource;
+	        }
+
+            base.OnChildAdded(child);
+	    }
 	}
 }

@@ -20,6 +20,8 @@ namespace MoneyFox
         public static Color ListItemColor = Color.White;
 
         public static ImageSource AccountImageSource = ImageSource.FromFile("ic_accounts_black");
+        public static ImageSource StatisticSelectorImageSource = ImageSource.FromFile("ic_statistics_black");
+        public static ImageSource SettingsImageSource = ImageSource.FromFile("ic_settings_black");
         public static ImageSource ExpenseImageSource = ImageSource.FromFile("ic_remove_black");
         public static ImageSource IncomeImageSource = ImageSource.FromFile("ic_add_black");
         public static ImageSource TransferImageSource = ImageSource.FromFile("ic_transfer_black");
@@ -37,6 +39,8 @@ namespace MoneyFox
         private static void SetDarkColors()
         {
             AccountImageSource = ImageSource.FromFile("ic_accounts_white");
+            StatisticSelectorImageSource = ImageSource.FromFile("ic_statistics_white");
+            SettingsImageSource = ImageSource.FromFile("ic_settings_white");
             ExpenseImageSource = ImageSource.FromFile("ic_remove_white");
             IncomeImageSource = ImageSource.FromFile("ic_add_white");
             TransferImageSource = ImageSource.FromFile("ic_transfer_white");
