@@ -19,6 +19,11 @@ namespace MoneyFox
         public static Color DeemphasizedColor = Color.FromHex("#5A6570");
         public static Color ListItemColor = Color.White;
 
+        public static ImageSource AccountImageSource = ImageSource.FromFile("ic_accounts_black");
+        public static ImageSource ExpenseImageSource = ImageSource.FromFile("ic_remove_black");
+        public static ImageSource IncomeImageSource = ImageSource.FromFile("ic_add_black");
+        public static ImageSource TransferImageSource = ImageSource.FromFile("ic_transfer_black");
+
         public static void Init()
         {
             if (new SettingsManager(new SettingsAdapter()).Theme == AppTheme.Dark)
@@ -29,6 +34,11 @@ namespace MoneyFox
 
         private static void SetDarkColors()
         {
+            AccountImageSource = ImageSource.FromFile("ic_accounts_white");
+            ExpenseImageSource = ImageSource.FromFile("ic_remove_white");
+            IncomeImageSource = ImageSource.FromFile("ic_add_white");
+            TransferImageSource = ImageSource.FromFile("ic_transfer_white");
+
             WindowBackgroundColor = Color.FromHex("#2d2d30");
             DialogBackgroundColor = Color.Black;
             BottomTabBarColor = Color.FromHex("#1e1e1e");

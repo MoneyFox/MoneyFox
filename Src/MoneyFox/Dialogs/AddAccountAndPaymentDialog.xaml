@@ -3,6 +3,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:designTime="clr-namespace:MoneyFox.Business.ViewModels.DesignTime;assembly=MoneyFox.Business"
+                 xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                  x:Class="MoneyFox.Dialogs.AddAccountAndPaymentDialog">
 
     <pages:PopupPage.BindingContext>
@@ -26,7 +27,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{StaticResource IconAccount}" 
+                <Image Source="{x:Static moneyFox:StyleHelper.AccountImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -44,7 +45,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{StaticResource IconExpense}"  
+                <Image Source="{x:Static moneyFox:StyleHelper.ExpenseImageSource}"  
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -62,7 +63,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{StaticResource IconIncome}" 
+                <Image Source="{x:Static moneyFox:StyleHelper.IncomeImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -80,7 +81,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{StaticResource IconTransfer}" 
+                <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 
