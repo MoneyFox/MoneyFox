@@ -20,6 +20,8 @@ namespace MoneyFox.Views
             InitializeComponent();
 
 		    On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+		    On<Android>().SetBarItemColor(StyleHelper.BarItemColor);
+		    On<Android>().SetBarSelectedItemColor(StyleHelper.BarSelectedItemColor);
 
             // We have to resolve the VM here, since the automagic doesn't yet work the BottomTabbedPage.
 		    if (Mvx.IoCProvider.CanResolve<MainViewModel>())

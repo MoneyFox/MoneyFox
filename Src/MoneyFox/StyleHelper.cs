@@ -13,7 +13,10 @@ namespace MoneyFox
 
         public static Color WindowBackgroundColor = Color.FromHex("#EFF2F5");
         public static Color DialogBackgroundColor = Color.White;
+
         public static Color BottomTabBarColor = Color.WhiteSmoke;
+        public static Color BarItemColor = Color.LightGray;
+        public static Color BarSelectedItemColor = AccentColor;
 
         public static Color PrimaryFontColor = Color.Black;
         public static Color DeemphasizedColor = Color.FromHex("#5A6570");
@@ -50,6 +53,9 @@ namespace MoneyFox
             WindowBackgroundColor = Color.FromHex("#2d2d30");
             DialogBackgroundColor = Color.Black;
             BottomTabBarColor = Color.FromHex("#1e1e1e");
+
+            BarItemColor = Color.DarkGray;
+            BarSelectedItemColor = Color.White;
 
             PrimaryFontColor = Color.White;
             DeemphasizedColor = Color.FromHex("#5A6570");

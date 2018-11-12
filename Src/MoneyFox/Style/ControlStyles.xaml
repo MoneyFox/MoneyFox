@@ -32,6 +32,7 @@
 
     <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
         <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+        <Setter Property="PlaceholderColor" Value="{x:Static moneyFox:StyleHelper.DeemphasizedColor}" />
     </Style>
 
 </ResourceDictionary>
