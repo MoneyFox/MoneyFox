@@ -3,8 +3,9 @@
 	public partial class App
     {
 		public App ()
-		{
-			InitializeComponent();
+        {
+            StyleHelper.Init();
+            InitializeComponent();
         }
-	}
+    }
 }

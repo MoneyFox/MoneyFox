@@ -715,4 +715,19 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
     <value>Backup Sync:</value>
   </data>
+  <data name="PersonalizationInfoLabel" xml:space="preserve">
+    <value>Choose between a dark or a light theme.</value>
+  </data>
+  <data name="ThemeDarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsPersonalizationDescription" xml:space="preserve">
+    <value>Change your prefered theme.</value>
+  </data>
+  <data name="SettingsPersonalizationLabel" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
 </root>

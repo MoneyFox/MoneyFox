@@ -2,9 +2,11 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+#if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+#endif
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;

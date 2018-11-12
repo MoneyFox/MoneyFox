@@ -8,6 +8,7 @@
                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.AccountListPage"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.Resources>
@@ -46,9 +47,9 @@
                                 </ViewCell.ContextActions>
                                 <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
                                     <StackLayout Spacing="0">
-                                        <Grid BackgroundColor="{StaticResource ListItemColor}"
-                                      Padding="3"
-                                      Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid Style="{StaticResource ListItemStyle}"
+                                              Padding="3"
+                                              Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
@@ -71,13 +72,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <controls:FloatingActionButton x:Name="FAB"
-                                            HorizontalOptions="EndAndExpand"
-                                            Margin="4"
-                                            VerticalOptions="EndAndExpand"
-                                            Image="ic_add.png"
-                                            ButtonColor="{StaticResource AccentColor}"
-                                            Clicked="AddItem_Clicked">
+                <controls:FloatingActionButton Style="{StaticResource DefaultFloatingActionButton}"
+                                               x:Name="FAB"
+                                               HorizontalOptions="EndAndExpand"
+                                               Margin="4"
+                                               VerticalOptions="EndAndExpand"
+                                               Image="ic_add.png"
+                                               Clicked="AddItem_Clicked">
                     <controls:FloatingActionButton.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS">50</On>

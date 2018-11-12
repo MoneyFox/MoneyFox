@@ -1,6 +1,5 @@
 ﻿using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using MoneyFox.DataAccess.Entities;
 
 namespace MoneyFox.DataAccess

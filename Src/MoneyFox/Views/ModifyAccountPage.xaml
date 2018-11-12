@@ -1,31 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <d:MvxContentPage x:TypeArguments="viewModels:ModifyAccountViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-             xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-             xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
-             x:Class="MoneyFox.Views.ModifyAccountPage"
-             DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
+                  xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
+                  x:Class="MoneyFox.Views.ModifyAccountPage"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeModifyAccountViewModel}">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
                 <Label Text="{Binding Resources[AccountNameLabel]}" />
-                <Entry Text="{Binding SelectedAccount.Name}" />
+                <Entry Text="{Binding SelectedAccount.Name}"
+                       Style="{StaticResource DefaultEntryStyle}" />
 
                 <Label Text="{Binding Resources[CurrentBalanceLabel]}"
                    Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
-                   Text="{Binding AmountString}" 
-                   Keyboard="Numeric"
-                   HorizontalTextAlignment="End"
-                   Focused="AmountFieldGotFocused"/>
+                       Style="{StaticResource DefaultEntryStyle}"
+                       Text="{Binding AmountString}" 
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       Focused="AmountFieldGotFocused"/>
 
                 <Label Text="{Binding Resources[NoteLabel]}"
                    Margin="0,5,0,0"/>
-                <Entry Text="{Binding SelectedAccount.Note}" />
+                <Entry Text="{Binding SelectedAccount.Note}"
+                       Style="{StaticResource DefaultEntryStyle}"/>
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
