@@ -61,6 +61,7 @@
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddAccountLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
             </Grid>
@@ -78,6 +79,7 @@
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddExpenseLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
             </Grid>
@@ -95,6 +97,7 @@
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddIncomeLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
             </Grid>
@@ -112,6 +115,7 @@
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddTransferLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
             </Grid>

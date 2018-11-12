@@ -13,10 +13,12 @@
         <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
             <Label Text="{Binding Resources[CategoryNameLabel]}" />
-            <Entry Text="{Binding SelectedCategory.Name}" />
+            <Entry Text="{Binding SelectedCategory.Name}"
+                   Style="{StaticResource DefaultEntryStyle}" />
 
             <Label Text="{Binding Resources[NoteLabel]}" />
-            <Entry Text="{Binding SelectedCategory.Notes}" />
+            <Entry Text="{Binding SelectedCategory.Notes}"
+                   Style="{StaticResource DefaultEntryStyle}" />
 
             <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeleteCategoryButton"

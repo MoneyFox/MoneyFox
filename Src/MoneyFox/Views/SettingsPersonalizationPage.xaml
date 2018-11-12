@@ -12,8 +12,11 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{Binding Resources[PersonalizationInfoLabel]}"
-                HorizontalOptions="StartAndExpand" />
-            <Picker ItemsSource ="{Binding ThemeItems}" SelectedIndex="{Binding SelectedIndex}" />
+                   Style="{StaticResource DefaultTextStyle}"
+                   HorizontalOptions="StartAndExpand" />
+            <Picker ItemsSource ="{Binding ThemeItems}" 
+                    SelectedIndex="{Binding SelectedIndex}"
+                    Style="{StaticResource DefaultPickerStyle}" />
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -32,26 +32,29 @@
 
                 <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
                 <Picker ItemsSource="{Binding ChargedAccounts}"
-                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" >
+                        Style="{StaticResource DefaultPickerStyle}"
+                        SelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" >
                 </Picker>
 
                 <StackLayout Spacing="{StaticResource DefaultSpacing}"
                          IsVisible="{Binding IsTransfer}">
                     <Label Text="{Binding Resources[TargetAccountLabel]}" Style="{DynamicResource DefaultTextStyle}" />
                     <Picker ItemsSource="{Binding TargetAccounts}"
-                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+                            Style="{StaticResource DefaultPickerStyle}"
+                            SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                            ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
                 </StackLayout>
 
                 <Label Text="{Binding Resources[AmountLabel]}"
                        Style="{DynamicResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
-                   Text="{Binding AmountString}" 
-                   Keyboard="Numeric"
-                   HorizontalTextAlignment="End"
-                   Focused="AmountFieldGotFocus"/>
+                       Style="{StaticResource DefaultEntryStyle}"
+                       Text="{Binding AmountString}" 
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       Focused="AmountFieldGotFocus"/>
 
                 <Label Text="{Binding Resources[CategoryLabel]}"
                        Style="{DynamicResource DefaultTextStyle}"
@@ -90,7 +93,8 @@
                 <Label Text="{Binding Resources[NoteLabel]}"
                        Style="{DynamicResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
-                <Entry Text="{Binding SelectedPayment.Note}" />
+                <Entry Text="{Binding SelectedPayment.Note}"
+                       Style="{StaticResource DefaultEntryStyle}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
@@ -110,7 +114,8 @@
                            Style="{DynamicResource DefaultTextStyle}"
                            Margin="0,5,0,0" />
                     <Picker ItemsSource="{Binding RecurrenceList}"
-                        SelectedItem="{Binding Recurrence}" />
+                            Style="{StaticResource DefaultPickerStyle}"
+                            SelectedItem="{Binding Recurrence}" />
 
                     <Grid HorizontalOptions="FillAndExpand"
                       Margin="0,5,0,0">
@@ -129,7 +134,7 @@
                         <Label Text="{Binding Resources[DateLEnddateLabelabel]}"
                                Style="{DynamicResource DefaultTextStyle}"
                                Margin="0,5,0,0" />
-                        <DatePicker Date="{Binding EndDate}" />
+                        <DatePicker Date="{Binding EndDate}"/>
                     </StackLayout>
 
                 </StackLayout>

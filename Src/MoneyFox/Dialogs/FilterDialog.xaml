@@ -34,6 +34,7 @@
 
         <Grid>
             <Label Text="{Binding Resources[IsClearedLabel]}"
+                   Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="Start"/>
             <Switch IsToggled="{Binding IsClearedFilterActive}" 
                     HorizontalOptions="End"/>
@@ -41,6 +42,7 @@
 
         <Grid>
             <Label Text="{Binding Resources[IsRecurringLabel]}"
+                   Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="Start"/>
             <Switch IsToggled="{Binding IsRecurringFilterActive}"
                     HorizontalOptions="End"/>

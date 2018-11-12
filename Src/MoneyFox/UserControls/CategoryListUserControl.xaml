@@ -11,7 +11,8 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <SearchBar x:Name="SearchBar" 
+            <SearchBar x:Name="SearchBar"
+                       Style="{StaticResource DefaultSearchBarStyle}"
                        Grid.Row="0"
                        VerticalOptions="Start" 
                        Placeholder="{Binding Resources[SearchLabel]}"

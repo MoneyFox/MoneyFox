@@ -22,4 +22,16 @@
         <Setter Property="BackgroundColor" Value="{x:Static moneyFox:StyleHelper.DialogBackgroundColor}" />
     </Style>
 
+    <Style x:Key="DefaultEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
+    <Style x:Key="DefaultPickerStyle" TargetType="Picker">
+        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
+    <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
 </ResourceDictionary>

@@ -36,6 +36,7 @@
                    Margin="0,6,0,0"/>
 
             <Entry Text="{Binding BackupSyncRecurrence}" 
+                   Style="{StaticResource DefaultEntryStyle}"
                    HorizontalTextAlignment="End"
                    Keyboard="Numeric" />
 
