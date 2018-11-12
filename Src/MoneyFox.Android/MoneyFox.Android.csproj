@@ -237,6 +237,11 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <Content Include="Resources\drawable-xhdpi\ic_cleared_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_cleared_white.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_recurring_white.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />

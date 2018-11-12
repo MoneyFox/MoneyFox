@@ -23,6 +23,8 @@ namespace MoneyFox
         public static ImageSource ExpenseImageSource = ImageSource.FromFile("ic_remove_black");
         public static ImageSource IncomeImageSource = ImageSource.FromFile("ic_add_black");
         public static ImageSource TransferImageSource = ImageSource.FromFile("ic_transfer_black");
+        public static ImageSource IsClearedImageSource = ImageSource.FromFile("ic_cleared_black");
+        public static ImageSource IsRecurringImageSource = ImageSource.FromFile("ic_recurring_black");
 
         public static void Init()
         {
@@ -38,6 +40,8 @@ namespace MoneyFox
             ExpenseImageSource = ImageSource.FromFile("ic_remove_white");
             IncomeImageSource = ImageSource.FromFile("ic_add_white");
             TransferImageSource = ImageSource.FromFile("ic_transfer_white");
+            IsClearedImageSource = ImageSource.FromFile("ic_cleared_white");
+            IsRecurringImageSource = ImageSource.FromFile("ic_recurring_white");
 
             WindowBackgroundColor = Color.FromHex("#2d2d30");
             DialogBackgroundColor = Color.Black;
@@ -45,7 +49,7 @@ namespace MoneyFox
 
             PrimaryFontColor = Color.White;
             DeemphasizedColor = Color.FromHex("#5A6570");
-            ListItemColor = Color.Black;
+            ListItemColor = Color.FromHex("#1e1e1e");
         }
     }
 }
