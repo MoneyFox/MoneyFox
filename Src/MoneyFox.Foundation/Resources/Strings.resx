@@ -716,7 +716,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Backup Sync:</value>
   </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Choose between a dark or a light theme.</value>
+    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
   </data>
   <data name="ThemeDarkLabel" xml:space="preserve">
     <value>Dark</value>
