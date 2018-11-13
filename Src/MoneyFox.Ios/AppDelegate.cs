@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope;
 using Foundation;
-#if !DEBUG
-using Microsoft.AppCenter;  
-#endif
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Adapter;
@@ -22,7 +18,6 @@ using MoneyFox.iOS.Authentication;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
-using PCLAppConfig;
 using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -46,13 +41,8 @@ namespace MoneyFox.iOS
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;
 
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
-#if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
-
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
-            app.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
+            app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             ApplicationContext.DbPath = GetLocalFilePath();

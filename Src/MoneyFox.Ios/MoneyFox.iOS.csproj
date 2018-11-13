@@ -331,16 +331,13 @@
     <BundleResource Include="Resources\Icon-167.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_transfer_black.png" />
+    <BundleResource Include="Resources\ic_cleared_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_transfer_black%402x.png" />
+    <BundleResource Include="Resources\ic_cleared_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_transfer_black%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_recurring_black%403x.png" />
+    <BundleResource Include="Resources\ic_cleared_black%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_recurring_black.png" />
@@ -349,13 +346,16 @@
     <BundleResource Include="Resources\ic_recurring_black%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cleared_black%403x.png" />
+    <BundleResource Include="Resources\ic_recurring_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cleared_black%402x.png" />
+    <BundleResource Include="Resources\ic_transfer_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cleared_black.png" />
+    <BundleResource Include="Resources\ic_transfer_black%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_transfer_black%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
