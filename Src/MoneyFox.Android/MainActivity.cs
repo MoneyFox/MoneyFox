@@ -40,8 +40,6 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
-
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif

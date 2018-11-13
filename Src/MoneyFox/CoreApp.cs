@@ -13,6 +13,7 @@ using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using PCLAppConfig;
 
 namespace MoneyFox
 {
@@ -28,6 +29,8 @@ namespace MoneyFox
         /// </summary>
         public override void Initialize()
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IAmbientDbContextLocator, AmbientDbContextLocator>();
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IDbContextScopeFactory, DbContextScopeFactory>();
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();

@@ -91,7 +91,6 @@ namespace MoneyFox.Windows
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
-                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 new MoneyFox.App();
 
 #if !DEBUG
