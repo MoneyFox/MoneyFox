@@ -5,10 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope;
 using Foundation;
-#if !DEBUG
-using Microsoft.AppCenter;
-using PCLAppConfig;
-#endif
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Adapter;
@@ -44,10 +40,6 @@ namespace MoneyFox.iOS
         {
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;
-
-#if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);

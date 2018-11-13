@@ -2,16 +2,10 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-#if !DEBUG
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-#endif
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
-using PCLAppConfig;
 using Rg.Plugins.Popup;
 
 namespace MoneyFox.Droid
@@ -40,9 +34,6 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
-#if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

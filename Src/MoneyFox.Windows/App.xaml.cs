@@ -13,14 +13,8 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
 using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Business.Adapter;
-#if !DEBUG
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-#endif
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess;
@@ -92,10 +86,6 @@ namespace MoneyFox.Windows
 
                 Xamarin.Forms.Forms.Init(e);
                 new MoneyFox.App();
-
-#if !DEBUG
-                AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
