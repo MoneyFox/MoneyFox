@@ -721,6 +721,12 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LiveTileFuturePaymentText" xml:space="preserve">
     <value>Payment amount {0} to be taken from {1} on {2}</value>
   </data>
+  <data name="LiveTileMediumCurrentMonthsExpenses" xml:space="preserve">
+    <value>Currently {0}</value>
+  </data>
+  <data name="LiveTileMediumLastMonthsExpenses" xml:space="preserve">
+    <value>Last Month {0}</value>
+  </data>
   <data name="LiveTilePastIncomePaymentText" xml:space="preserve">
     <value>Payment amount {0} was added from {1} on {2}</value>
   </data>

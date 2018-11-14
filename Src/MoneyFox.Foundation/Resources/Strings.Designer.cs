@@ -1178,6 +1178,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currently {0}.
+        /// </summary>
+        public static string LiveTileMediumCurrentMonthsExpenses {
+            get {
+                return ResourceManager.GetString("LiveTileMediumCurrentMonthsExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Month {0}.
+        /// </summary>
+        public static string LiveTileMediumLastMonthsExpenses {
+            get {
+                return ResourceManager.GetString("LiveTileMediumLastMonthsExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment amount {0} was added from {1} on {2}.
         /// </summary>
         public static string LiveTilePastIncomePaymentText {

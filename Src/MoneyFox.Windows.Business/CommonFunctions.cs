@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EntityFramework.DbContextScope;
 using Microsoft.Toolkit.Uwp.Notifications;
 using MoneyFox.DataAccess.DataServices;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Resources;
 using Windows.ApplicationModel;
@@ -32,41 +33,42 @@ namespace MoneyFox.Windows.Business
 			return keyValuePairs.GetString(keytofind);
 		}
 
-		public static SecondaryTile CreateSecondaryTile(int id)
-		{
-		
-		}
 		public static async Task<double> GetMonthExpensesAsync(int month, int accountid)
 		{
-			var currentmonth = DateTime.Now.Month;
+			
 			double balance = 0.00;
 			IEnumerable<Payment> payments = await paymentService.GetPaymentsByAccountId(accountid);
-			foreach (Payment item in payments)
-			{
-				if (item.Data.IsRecurring)
-				{
-					if (item.Data.RecurringPayment.Type != Foundation.PaymentType.Income)
-					{
-						iReccurance reccurance = strategy[item.Data.RecurringPayment.Recurrence]();
-						allpayment.AddRange(reccurance.GetPastreccurance(item));
-					}
-				}
-				else if(item.Data.Type!= Foundation.PaymentType.Income)
-				{
+			//foreach (Payment item in payments)
+			//{
+			//	if (item.Data.IsRecurring)
+			//	{
+			//		if (item.Data.Type != Foundation.PaymentType.Income)
+			//		{
+			//			RecurringPaymentService rs = new RecurringPaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+			//			RecurringPayment re = rs.GetReccuringPaymentById(item.Data.RecurringPaymentId);
+						
+						
+			//			iReccurance reccurance = strategy[re.Data.Recurrence]();
+			//			allpayment.AddRange(reccurance.GetPastreccurance(item));
+			//		}
+			//	}
+			//	else if(item.Data.Type!= Foundation.PaymentType.Income)
+			//	{
 
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = item.Data.Date,
-						P = item
-					};
-				}
-			}
-			IEnumerable<Paymentitem> all = allpayment.Where(x => x.dateTime.Month == month && x.dateTime.Year == DateTime.Now.Year).ToList();
-			foreach (Paymentitem item in all)
+			//		Paymentitem pay = new Paymentitem
+			//		{
+			//			dateTime = item.Data.Date,
+			//			P = item
+			//		};
+			//		allpayment.Add(pay);
+			//	}
+			//}
+			IEnumerable<Payment> all = payments.Where(x=> x.Data.Date.Month == month && x.Data.Date.Year == DateTime.Now.Year).ToList();
+			foreach (Payment item in all)
 			{
-				balance += item.P.Data.Amount;
+				balance += item.Data.Amount;
 			}
-			allpayment.Clear();
+			//allpayment.Clear();
 			return balance;
 		}
 
@@ -77,43 +79,47 @@ namespace MoneyFox.Windows.Business
 			foreach (Account item in acct)
 			{
 				allpayments.AddRange(await paymentService.GetPaymentsByAccountId(item.Data.Id));
-			}
-			foreach (Payment item in allpayments)
-			{
-				if (item.Data.IsRecurring)
-				{
+			 }
+				//}
+				//foreach (Payment item in allpayments)
+				//{
+				//	if (item.Data.IsRecurring)
+				//	{
+				//		RecurringPaymentService rs = new RecurringPaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+				//		RecurringPayment re = rs.GetReccuringPaymentById(item.Data.RecurringPaymentId);
 
-					
-					
-						iReccurance reccurance = strategy[item.Data.RecurringPayment.Recurrence]();
-						allpayment.AddRange(reccurance.GetPastreccurance(item));
-					
-				}
-				else
-				{
-					Paymentitem keyValuePair = new Paymentitem
-					{
-						dateTime = item.Data.Date,
-						P = item
-					};
-					allpayment.Add(keyValuePair);
-				}
-			}
-			IEnumerable<Paymentitem> tet = allpayment.OrderByDescending(x => x.dateTime).Take(8);
+
+
+
+				//		iReccurance reccurance = strategy[re.Data.Recurrence]();
+				//			allpayment.AddRange(reccurance.GetPastreccurance(item));
+
+				//	}
+				//	else
+				//	{
+				//		Paymentitem keyValuePair = new Paymentitem
+				//		{
+				//			dateTime = item.Data.Date,
+				//			P = item
+				//		};
+				//		allpayment.Add(keyValuePair);
+				//	}
+				//}
+			IEnumerable<Payment> lastmonth = allpayments.OrderByDescending(x=> x.Data.Date);
 			List<string> returnlist = new List<string>();
-			foreach (var item in tet)
+			foreach (var item in lastmonth)
 			{
-				Payment p = item.P;
-				if (p.Data.Type == Foundation.PaymentType.Income)
+			
+				if (item.Data.Type == Foundation.PaymentType.Income)
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePastIncomePaymentText"), p.Data.Amount, p.Data.ChargedAccount.Name, p.Data.Date))
+					returnlist.Add(string.Format(GetResourceKey("LiveTilePastIncomePaymentText"), item.Data.Amount, item.Data.ChargedAccount.Name, item.Data.Date));
 				}
 				else
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePastPaymentText"), p.Data.Amount, p.Data.ChargedAccount.Name, p.Data.Date));
+					returnlist.Add(string.Format(GetResourceKey("LiveTilePastPaymentText"), item.Data.Amount, item.Data.ChargedAccount.Name, item.Data.Date));
 				}
 			}
-			allpayment.Clear();
+			allpayments.Clear();
 			return returnlist;
 
 		}
@@ -153,7 +159,7 @@ namespace MoneyFox.Windows.Business
 				Payment P = item.P;
 				if (P.Data.Type == Foundation.PaymentType.Income)
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTileFutureIncomePaymentText"), P.Data.Amount, P.Data.ChargedAccount.Name, P.Data.Date))
+					returnlist.Add(string.Format(GetResourceKey("LiveTileFutureIncomePaymentText"), P.Data.Amount, P.Data.ChargedAccount.Name, P.Data.Date));
 				}
 				else
 				{
@@ -175,6 +181,16 @@ namespace MoneyFox.Windows.Business
 
 		public static async Task UpdatePrimaryLiveTile()
 		{
+			strategy.Clear();
+			strategy.Add(Foundation.PaymentRecurrence.Daily, () => new RecurrDaily());
+			strategy.Add(Foundation.PaymentRecurrence.DailyWithoutWeekend, () => new RecurrWeekdays());
+			strategy.Add(Foundation.PaymentRecurrence.Weekly, () => new RecurrWeekly());
+			strategy.Add(Foundation.PaymentRecurrence.Biweekly, () => new RecurrBiWeekly());
+			strategy.Add(Foundation.PaymentRecurrence.Monthly, () => new RecurrMonthly());
+			strategy.Add(Foundation.PaymentRecurrence.Bimonthly, () => new RecurrBiMonthly());
+			strategy.Add(Foundation.PaymentRecurrence.Quarterly, () => new RecurrQuarterly());
+			strategy.Add(Foundation.PaymentRecurrence.Yearly, () => new RecurrYearly());
+			strategy.Add(Foundation.PaymentRecurrence.Biannually, () => new RecurrbiYearly());
 			AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
 			bool isPinned = await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
 			if (isPinned)
@@ -406,13 +422,14 @@ namespace MoneyFox.Windows.Business
 
 		public static async Task UpdateSecondaryLiveTiles()
 		{
-			var tiles = await SecondaryTile.FindAllForPackageAsync();
+		var tiles = await SecondaryTile.FindAllForPackageAsync();
 			if (tiles != null)
 			{
 
 
 				foreach (SecondaryTile item in tiles)
 				{
+					Account acct = await accountService.GetById(int.Parse(item.TileId));
 					TileContent content = new TileContent()
 					{
 						Visual = new TileVisual()
@@ -433,7 +450,7 @@ namespace MoneyFox.Windows.Business
 											{
 										new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileAccountName"),item.TileId),
+													Text = acct.Data.Name,
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
@@ -443,12 +460,17 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileAccountLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId))),
+												Text =  GetResourceKey("ExpenseLabel"),
+												HintStyle = AdaptiveTextStyle.Caption
+												},
+												new AdaptiveText()
+												{
+													Text = string.Format(GetResourceKey("LiveTileMediumLastMonthsExpenses"),await GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileAccountCurrentMonthsExpenses"), await GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId))),
+													Text = string.Format(GetResourceKey("LiveTileMediumCurrentMonthsExpenses"), await GetMonthExpensesAsync(DateTime.Now.Month,int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 
@@ -475,13 +497,18 @@ namespace MoneyFox.Windows.Business
 											{
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileAccountName"),item.TileId),
+													Text = acct.Data.Name,
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
 													Text = string.Format(GetResourceKey("LiveTileAccountBalance"),await GetLatestBalanceAsync(int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+												Text =  GetResourceKey("ExpenseLabel"),
+												HintStyle = AdaptiveTextStyle.Caption
 												},
 												new AdaptiveText()
 												{
@@ -516,13 +543,18 @@ namespace MoneyFox.Windows.Business
 											{
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileAccountName"),item.TileId),
+													Text = acct.Data.Name,
 													HintStyle = AdaptiveTextStyle.Caption
 												},
 											new AdaptiveText()
 												{
 													Text = string.Format(GetResourceKey("LiveTileAccountBalance"),await GetLatestBalanceAsync(int.Parse(item.TileId))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+												Text =  GetResourceKey("ExpenseLabel"),
+												HintStyle = AdaptiveTextStyle.Caption
 												},
 												new AdaptiveText()
 												{
@@ -554,7 +586,6 @@ namespace MoneyFox.Windows.Business
 
 		public interface iReccurance
 		{
-			List<Paymentitem> GetPastreccurance(Payment payment);
 			List<Paymentitem> GetFutureReccurance(Payment payment);
 		}
 		public	class RecurrDaily : iReccurance
@@ -563,14 +594,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -587,29 +615,7 @@ namespace MoneyFox.Windows.Business
 				};
 				return allpayment;
 			}
-
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddDays(1);
-				};
-				return allpayment;
-
-			}
+		
 		}
 
 		public class RecurrWeekdays : iReccurance
@@ -617,16 +623,13 @@ namespace MoneyFox.Windows.Business
 			public List<Paymentitem> GetFutureReccurance(Payment payment)
 			{
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				int i = 1;
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					if (payment.Data.Date.DayOfWeek != DayOfWeek.Saturday && payment.Data.Date.DayOfWeek != DayOfWeek.Sunday && DateTime.Compare(dt, td) <= 0)
+				if (payment.Data.Date.DayOfWeek != DayOfWeek.Saturday && payment.Data.Date.DayOfWeek != DayOfWeek.Sunday && DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
 						{
@@ -643,34 +646,6 @@ namespace MoneyFox.Windows.Business
 				};
 				return allpayment;
 			}
-
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					if (payment.Data.Date.DayOfWeek != DayOfWeek.Saturday && payment.Data.Date.DayOfWeek != DayOfWeek.Sunday)
-					{
-						Paymentitem pay = new Paymentitem
-						{
-							dateTime = td,
-							P = payment
-						};
-						allpayment.Add(pay);
-						td = td.AddDays(1);
-					}
-					td = td.AddDays(1);
-				};
-				return allpayment;
-
-			}
-
 
 		}
 
@@ -680,14 +655,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -705,28 +677,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddDays(7);
-
-				};
-				return allpayment;
-			}
+			
 
 		}
 
@@ -736,14 +687,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -760,28 +708,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddDays(14);
-
-				};
-				return allpayment;
-			}
+			
 
 		}
 
@@ -791,14 +718,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -815,28 +739,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddMonths(1);
-
-				};
-				return allpayment;
-			}
+			
 
 		}
 
@@ -846,14 +749,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -871,28 +771,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddMonths(2);
-
-				};
-				return allpayment;
-			}
+		
 		}
 
 		public class RecurrQuarterly : iReccurance
@@ -901,14 +780,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -926,29 +802,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddMonths(4);
-
-				};
-				return allpayment;
-			}
+	
 
 		}
 
@@ -958,14 +812,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -983,29 +834,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddMonths(12);
-
-				};
-				return allpayment;
-			}
+			
 
 		}
 
@@ -1015,14 +844,11 @@ namespace MoneyFox.Windows.Business
 			{
 				int i = 1;
 				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
+				DateTime td = payment.Data.Date;
 				List<Paymentitem> allpayment = new List<Paymentitem>();
 				while (i < 9)
 				{
 					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
 					if (DateTime.Compare(dt, td) <= 0)
 					{
 						Paymentitem pay = new Paymentitem
@@ -1040,29 +866,7 @@ namespace MoneyFox.Windows.Business
 				return allpayment;
 			}
 
-			public List<Paymentitem> GetPastreccurance(Payment payment)
-			{
-
-				DateTime dt = DateTime.Now;
-				DateTime td = payment.Data.RecurringPayment.StartDate;
-				List<Paymentitem> allpayment = new List<Paymentitem>();
-				while (DateTime.Compare(dt, td) >= 0)
-				{
-					payment.Data.Date = td;
-					payment.Data.ChargedAccount = payment.Data.RecurringPayment.ChargedAccount;
-					payment.Data.Amount = payment.Data.RecurringPayment.Amount;
-					payment.Data.Type = payment.Data.RecurringPayment.Type;
-					Paymentitem pay = new Paymentitem
-					{
-						dateTime = td,
-						P = payment
-					};
-					allpayment.Add(pay);
-					td = td.AddMonths(24);
-
-				};
-				return allpayment;
-			}
+		
 		}
 		public struct Paymentitem
 		{

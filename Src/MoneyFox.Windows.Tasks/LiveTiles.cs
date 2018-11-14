@@ -42,7 +42,7 @@ namespace MoneyFox.Windows.Tasks
 			strategy.Add(Foundation.PaymentRecurrence.Yearly, () => new CommonFunctions.RecurrYearly());
 			strategy.Add(Foundation.PaymentRecurrence.Biannually, () => new CommonFunctions.RecurrbiYearly());
 			await CommonFunctions.UpdatePrimaryLiveTile();
-			await UpdateSecondaryLiveTiles();
+			await CommonFunctions.UpdateSecondaryLiveTiles();
 			serviceDeferral?.Complete();
 
 

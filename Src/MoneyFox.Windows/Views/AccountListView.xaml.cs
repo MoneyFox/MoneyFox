@@ -65,7 +65,6 @@ namespace MoneyFox.Windows.Views
 
 			(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
 		}
-		private AppServiceConnection liveTileService;
 		private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
 		{
 			var element = (FrameworkElement)sender;
@@ -81,144 +80,23 @@ namespace MoneyFox.Windows.Views
 			{
 			
 				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","Home",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"),TileSize.Default);
+				tile.VisualElements.ShowNameOnSquare150x150Logo = false;
+				tile.VisualElements.ShowNameOnSquare310x310Logo = true;
+				tile.VisualElements.ShowNameOnWide310x150Logo = true;
+				tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
+				tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
+				tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
+				tile.VisualElements.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.scale-100.png");
 				bool ispinned = await tile.RequestCreateAsync();
 				if (ispinned)
 				{
-					TileContent content = new TileContent()
-					{
-						Visual = new TileVisual()
-						{
-							TileMedium = new TileBinding()
-							{
-								Content = new TileBindingContentAdaptive()
-								{
-									Children =
-							{
-								new AdaptiveGroup()
-								{
-									Children =
-									{
-										new AdaptiveSubgroup()
-										{
-											Children =
-											{
-											new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountName"),id.ToString()),
-													HintStyle = AdaptiveTextStyle.Caption
-												},
-											new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountBalance"),await CommonFunctions.GetLatestBalanceAsync(id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-												new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountLastMonthsExpenses"),await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-											   new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountCurrentMonthsExpenses"), await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												}
-
-											}
-										}
-									}
-								}
-							}
-								}
-							},
-							TileWide = new TileBinding()
-							{
-								Content = new TileBindingContentAdaptive()
-								{
-									Children =
-							{
-								new AdaptiveGroup()
-								{
-									Children =
-									{
-										new AdaptiveSubgroup()
-										{
-											Children =
-											{
-												new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountName"),id.ToString()),
-													HintStyle = AdaptiveTextStyle.Caption
-												},
-											new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountBalance"),await CommonFunctions.GetLatestBalanceAsync(id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-												new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountLastMonthsExpenses"),await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-											   new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountCurrentMonthsExpenses"), await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												}
-											}
-										}
-									}
-								}
-							}
-								}
-							},
-							TileLarge = new TileBinding()
-							{
-								Content = new TileBindingContentAdaptive()
-								{
-									Children =
-							{
-								new AdaptiveGroup()
-								{
-									Children =
-									{
-										new AdaptiveSubgroup()
-										{
-											Children =
-											{
-												new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountName"),id.ToString()),
-													HintStyle = AdaptiveTextStyle.Caption
-												},
-											new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountBalance"),await CommonFunctions.GetLatestBalanceAsync(id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-												new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountLastMonthsExpenses"),await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.AddMonths(-1).Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												},
-											   new AdaptiveText()
-												{
-													Text = string.Format(CommonFunctions.GetResourceKey("LiveTileAccountCurrentMonthsExpenses"), await CommonFunctions.GetMonthExpensesAsync(DateTime.Now.Month,id)),
-													HintStyle = AdaptiveTextStyle.CaptionSubtle
-												}
-
-											}
-										}
-									}
-								}
-							}
-								}
-							}
-						}
-					};
-
-					TileNotification tn = new TileNotification(content.GetXml());
-					TileUpdateManager.CreateTileUpdaterForSecondaryTile(id.ToString()).Update(tn);
+					await CommonFunctions.UpdateSecondaryLiveTiles();
 				}
+			}
+			else
+			{
+				await CommonFunctions.UpdateSecondaryLiveTiles();
+				await CommonFunctions.UpdatePrimaryLiveTile();
 			}
 		}
 	}
