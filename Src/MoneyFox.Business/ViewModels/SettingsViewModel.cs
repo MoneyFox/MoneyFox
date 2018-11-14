@@ -58,12 +58,12 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
         {
-            new SettingsSelectorType
-            {
-                Name = Strings.SettingsPersonalizationLabel,
-                Description = Strings.SettingsPersonalizationDescription,
-                Type = SettingsType.Personalization
-            },
+            //new SettingsSelectorType
+            //{
+            //    Name = Strings.SettingsPersonalizationLabel,
+            //    Description = Strings.SettingsPersonalizationDescription,
+            //    Type = SettingsType.Personalization
+            //},
             new SettingsSelectorType
             {
                 Name = Strings.CategoriesLabel,
