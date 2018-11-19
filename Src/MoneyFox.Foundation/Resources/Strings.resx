@@ -706,37 +706,25 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LiveTileAccountBalance" xml:space="preserve">
     <value>Balance: {0}</value>
   </data>
-  <data name="LiveTileAccountCurrentMonthsExpenses" xml:space="preserve">
-    <value>This months expenses till today: {0}</value>
-  </data>
-  <data name="LiveTileAccountLastMonthsExpenses" xml:space="preserve">
-    <value>Expenses for Last Month: {0}</value>
-  </data>
   <data name="LiveTileAccountName" xml:space="preserve">
     <value>Account: {0}</value>
   </data>
-  <data name="LiveTileFutureIncomePaymentText" xml:space="preserve">
-    <value>Payment amount {0} to be added from {1} on {2}</value>
+  <data name="LiveTilePaymentText" xml:space="preserve">
+    <value>Amount: {0}</value>
   </data>
-  <data name="LiveTileFuturePaymentText" xml:space="preserve">
-    <value>Payment amount {0} to be taken from {1} on {2}</value>
+  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
   </data>
-  <data name="LiveTileMediumCurrentMonthsExpenses" xml:space="preserve">
-    <value>Currently {0}</value>
-  </data>
-  <data name="LiveTileMediumLastMonthsExpenses" xml:space="preserve">
-    <value>Last Month {0}</value>
-  </data>
-  <data name="LiveTilePastIncomePaymentText" xml:space="preserve">
-    <value>Payment amount {0} was added from {1} on {2}</value>
+  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
   </data>
   <data name="LiveTilePastPayments" xml:space="preserve">
     <value>Past Payments</value>
   </data>
-  <data name="LiveTilePastPaymentText" xml:space="preserve">
-    <value>Payment amount {0} was taken from {1} on {2}</value>
-  </data>
   <data name="LiveTileUpcommingPayments" xml:space="preserve">
     <value>Upcoming Payments</value>
+  </data>
+  <data name="BalanceLabel" xml:space="preserve">
+    <value>Balance</value>
   </data>
 </root>

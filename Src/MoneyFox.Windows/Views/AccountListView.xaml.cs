@@ -82,7 +82,7 @@ namespace MoneyFox.Windows.Views
 				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","Home",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"),TileSize.Default);
 				tile.VisualElements.ShowNameOnSquare150x150Logo = false;
 				tile.VisualElements.ShowNameOnSquare310x310Logo = true;
-				tile.VisualElements.ShowNameOnWide310x150Logo = true;
+				tile.VisualElements.ShowNameOnWide310x150Logo = false;
 				tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
 				tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
 				tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
@@ -93,11 +93,11 @@ namespace MoneyFox.Windows.Views
 					await CommonFunctions.UpdateSecondaryLiveTiles();
 				}
 			}
-			else
-			{
-				await CommonFunctions.UpdateSecondaryLiveTiles();
-				await CommonFunctions.UpdatePrimaryLiveTile();
-			}
+			//else
+			//{
+			//	await CommonFunctions.UpdateSecondaryLiveTiles();
+			//	await CommonFunctions.UpdatePrimaryLiveTile();
+			//}
 		}
 	}
 }

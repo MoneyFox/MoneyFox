@@ -403,6 +403,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        public static string BalanceLabel {
+            get {
+                return ResourceManager.GetString("BalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
@@ -1133,24 +1142,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This months expenses till today: {0}.
-        /// </summary>
-        public static string LiveTileAccountCurrentMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileAccountCurrentMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expenses for Last Month: {0}.
-        /// </summary>
-        public static string LiveTileAccountLastMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileAccountLastMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Account: {0}.
         /// </summary>
         public static string LiveTileAccountName {
@@ -1160,47 +1151,20 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment amount {0} to be added from {1} on {2}.
+        ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
-        public static string LiveTileFutureIncomePaymentText {
+        public static string LiveTileCurrentMonthsExpenses {
             get {
-                return ResourceManager.GetString("LiveTileFutureIncomePaymentText", resourceCulture);
+                return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment amount {0} to be taken from {1} on {2}.
+        ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
-        public static string LiveTileFuturePaymentText {
+        public static string LiveTileLastMonthsExpenses {
             get {
-                return ResourceManager.GetString("LiveTileFuturePaymentText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Currently {0}.
-        /// </summary>
-        public static string LiveTileMediumCurrentMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileMediumCurrentMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last Month {0}.
-        /// </summary>
-        public static string LiveTileMediumLastMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileMediumLastMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Payment amount {0} was added from {1} on {2}.
-        /// </summary>
-        public static string LiveTilePastIncomePaymentText {
-            get {
-                return ResourceManager.GetString("LiveTilePastIncomePaymentText", resourceCulture);
+                return ResourceManager.GetString("LiveTileLastMonthsExpenses", resourceCulture);
             }
         }
         
@@ -1214,11 +1178,11 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment amount {0} was taken from {1} on {2}.
+        ///   Looks up a localized string similar to Amount: {0}.
         /// </summary>
-        public static string LiveTilePastPaymentText {
+        public static string LiveTilePaymentText {
             get {
-                return ResourceManager.GetString("LiveTilePastPaymentText", resourceCulture);
+                return ResourceManager.GetString("LiveTilePaymentText", resourceCulture);
             }
         }
         
