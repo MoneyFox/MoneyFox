@@ -8,6 +8,12 @@ using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Rg.Plugins.Popup;
 
+#if !DEBUG
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+#endif
+
 namespace MoneyFox.Droid
 {
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -34,6 +40,11 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle bundle)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+#if !DEBUG
+            AppCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
+                   typeof(Analytics), typeof(Crashes));
+#endif
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
