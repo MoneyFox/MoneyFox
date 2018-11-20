@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
@@ -20,6 +21,7 @@ namespace MoneyFox.Windows.Tasks
             Debug.WriteLine("RecurringPaymentTask started.");
 
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
+            var settingsManager = new SettingsManager(new SettingsAdapter());
 
             try
             {
@@ -39,6 +41,7 @@ namespace MoneyFox.Windows.Tasks
             } 
             finally
             {
+                settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;
                 Debug.WriteLine("RecurringPaymentTask finished.");
                 deferral.Complete();
             }

@@ -3,6 +3,7 @@ using System.Globalization;
 using MoneyFox.Business.Adapter;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
+using Xamarin.Forms;
 
 namespace MoneyFox.Business.Manager
 {
@@ -24,13 +25,23 @@ namespace MoneyFox.Business.Manager
         private const bool PASSPORT_REQUIRED_KEYDEFAULT = false;
 
         private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
-        private const bool BACKUP_LOGGEDIN_KEYDEFAULT = false;
+        private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
 
         private const string BACKUP_SYNC_RECURRENCE_KEYNAME = "BackupSyncRecurrence";
-        private const int BACKUP_SYNC_RECURRENCE_KEYDEFAULT = 3;
+        private const int BACKUP_SYNC_RECURRENCE_KEY_DEFAULT = 3;
 
         public const string THEME_KEYNAME = "Theme";
         private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
+
+        private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
+        private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
+
+        private const string LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME = "LastExecutionTimeStampClearPayments";
+        private const string LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT = "";
+
+        private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME = "LastExecutionTimeStampRecurringPayments";
+        private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT = "";
+
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
@@ -103,15 +114,63 @@ namespace MoneyFox.Business.Manager
         /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
-            get => settingsAdapter.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEYDEFAULT);
+            get => settingsAdapter.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEY_DEFAULT);
             set => settingsAdapter.AddOrUpdate(BACKUP_LOGGEDIN_KEYNAME, value);
         }
 
         /// <inheritdoc />
         public int BackupSyncRecurrence
         {
-            get => settingsAdapter.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEYDEFAULT);
+            get => settingsAdapter.GetValue(BACKUP_SYNC_RECURRENCE_KEYNAME, BACKUP_SYNC_RECURRENCE_KEY_DEFAULT);
             set => settingsAdapter.AddOrUpdate(BACKUP_SYNC_RECURRENCE_KEYNAME, value);
+        }
+
+        /// <inheritdoc />
+        public DateTime LastExecutionTimeStampSyncBackup
+        {
+            get
+            {
+                DateTime outValue;
+                if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                                                               LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT), out outValue))
+                {
+                    return outValue;
+                }
+                return DateTime.MinValue;
+            }
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+        }
+        
+        /// <inheritdoc />
+        public DateTime LastExecutionTimeStampClearPayments
+        {
+            get
+            {
+                DateTime outValue;
+                if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
+                                                               LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT), out outValue))
+                {
+                    return outValue;
+                }
+                return DateTime.MinValue;
+            }
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+        }
+        
+        /// <inheritdoc />
+        public DateTime LastExecutionTimeStampRecurringPayments
+        {
+            get
+            {
+                DateTime outValue;
+                if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
+                                                               LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT), out outValue))
+                {
+                    return outValue;
+                }
+                return DateTime.MinValue;
+            }
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

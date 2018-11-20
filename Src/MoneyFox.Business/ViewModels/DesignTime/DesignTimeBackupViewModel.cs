@@ -17,7 +17,7 @@ namespace MoneyFox.Business.ViewModels.DesignTime
         public DateTime BackupLastModified { get; }
 
         public bool IsLoadingBackupAvailability { get; }
-        public bool IsLoggedIn { get; }
+        public bool IsLoggedIn { get; } = true;
         public bool BackupAvailable { get; }
     }
 }

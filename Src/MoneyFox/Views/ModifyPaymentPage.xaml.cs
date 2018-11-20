@@ -17,8 +17,8 @@ namespace MoneyFox.Views
 		        Text = Strings.SavePaymentLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary,
-		        Icon = "IconSave.png"
-		    });
+		        Icon = "ic_save.png"
+            });
 
 		    ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
 		    {

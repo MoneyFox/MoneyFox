@@ -58,6 +58,12 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
         {
+            //new SettingsSelectorType
+            //{
+            //    Name = Strings.SettingsPersonalizationLabel,
+            //    Description = Strings.SettingsPersonalizationDescription,
+            //    Type = SettingsType.Personalization
+            //},
             new SettingsSelectorType
             {
                 Name = Strings.CategoriesLabel,
@@ -95,6 +101,10 @@ namespace MoneyFox.Business.ViewModels
         {
             switch (item.Type)
             {
+                case SettingsType.Personalization:
+                    await navigationService.Navigate<SettingsPersonalizationViewModel>();
+                    break;
+
                 case SettingsType.Categories:
                     await navigationService.Navigate<CategoryListViewModel>();
                     break;

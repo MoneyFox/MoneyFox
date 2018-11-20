@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class ModifyAccountViewModelTests
     {

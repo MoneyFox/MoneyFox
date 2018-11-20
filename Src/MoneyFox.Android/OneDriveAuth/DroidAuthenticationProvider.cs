@@ -8,6 +8,7 @@ using Android.Content;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
+using PCLAppConfig;
 using Xamarin.Auth;
 
 namespace MoneyFox.Droid.OneDriveAuth
@@ -22,12 +23,12 @@ namespace MoneyFox.Droid.OneDriveAuth
         /// <param name="request">Http request message</param>
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
-            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_SECRET,
-                string.Join(",", ServiceConstants.Scopes),
-                new Uri(ServiceConstants.AUTHENTICATION_URL),
-                new Uri(ServiceConstants.RETURN_URL),
-                new Uri(ServiceConstants.TOKEN_URL));
+            authenticator = new OAuth2Authenticator(ConfigurationManager.AppSettings["MsaClientId"],
+                                                    ConfigurationManager.AppSettings["MsaClientSecret"],
+                                                    string.Join(",", ServiceConstants.Scopes),
+                                                    new Uri(ServiceConstants.AUTHENTICATION_URL),
+                                                    new Uri(ServiceConstants.RETURN_URL),
+                                                    new Uri(ServiceConstants.TOKEN_URL));
 
             var protectedData = new ProtectedData();
             var accessToken = string.Empty;
@@ -76,7 +77,7 @@ namespace MoneyFox.Droid.OneDriveAuth
         {
             new ProtectedData().Remove(ServiceConstants.REFRESH_TOKEN);
 
-            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
+            authenticator = new OAuth2Authenticator(ConfigurationManager.AppSettings["MsaClientId"],
                 string.Empty,
                 new Uri(ServiceConstants.LOGOUT_URL),
                 new Uri(ServiceConstants.RETURN_URL));

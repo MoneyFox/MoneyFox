@@ -6,6 +6,8 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using EntityFramework.DbContextScope;
+using Microsoft.AppCenter.Crashes;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
@@ -56,6 +58,8 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task CheckRecurringPayments(JobParameters args)
         {
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
@@ -76,7 +80,11 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (Exception ex)
             {
-                Debug.Write(ex);
+                Crashes.TrackError(ex);
+            } 
+            finally
+            {
+                settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }
         }
 

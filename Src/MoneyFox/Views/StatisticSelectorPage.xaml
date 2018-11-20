@@ -5,6 +5,7 @@
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                   x:Class="MoneyFox.Views.StatisticSelectorPage"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
     <ContentPage.Content>
@@ -16,7 +17,6 @@
             <ListView.SeparatorVisibility>
                 <OnPlatform x:TypeArguments="SeparatorVisibility">
                     <On Platform="iOS" Value="Default" />
-                    <On Platform="Android" Value="None" />
                 </OnPlatform>
             </ListView.SeparatorVisibility>
 
@@ -24,10 +24,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
-                            <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
-                                     Orientation="Vertical"
-                                     Padding="3"
-                                     Spacing="{DynamicResource DefaultSpacing}">
+                            <StackLayout Style="{StaticResource ListItemStyle}"
+                                         Orientation="Vertical"
+                                         Padding="3"
+                                         Spacing="{DynamicResource DefaultSpacing}">
                                 <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>

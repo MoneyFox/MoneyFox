@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.Manager;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Business.Manager;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.DataServices;
@@ -13,6 +14,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class PaymentListViewModelTests : MvxIoCSupportingTest
     {

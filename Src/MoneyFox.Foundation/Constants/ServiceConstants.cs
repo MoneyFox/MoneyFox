@@ -6,16 +6,6 @@
     public class ServiceConstants
     {
         /// <summary>
-        ///     Client ID for the access to OneDrive
-        /// </summary>
-        public const string MSA_CLIENT_ID = "000000004416B470";
-
-        /// <summary>
-        ///     Client secret for the access to OneDrive
-        /// </summary>
-        public const string MSA_CLIENT_SECRET = "YoWyKydsjQTLEEjklZO049M38BBi8X5k";
-
-        /// <summary>
         ///     Return url for the OneDrive authentication
         /// </summary>
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";

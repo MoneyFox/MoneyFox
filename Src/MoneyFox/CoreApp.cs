@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Services;
@@ -15,6 +13,13 @@ using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using PCLAppConfig;
+
+#if !DEBUG
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+#endif
 
 namespace MoneyFox
 {
@@ -30,6 +35,15 @@ namespace MoneyFox
         /// </summary>
         public override void Initialize()
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
+#if !DEBUG
+            AppCenter.Start($"ios={ConfigurationManager.AppSettings["IosAppcenterSecret"]};" +
+                            $"uwp={ConfigurationManager.AppSettings["WindowsAppcenterSecret"]};" +
+                            $"android={ConfigurationManager.AppSettings["AndroidAppcenterSecret"]}",
+                            typeof(Analytics), typeof(Crashes));
+#endif
+
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IAmbientDbContextLocator, AmbientDbContextLocator>();
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IDbContextScopeFactory, DbContextScopeFactory>();
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
@@ -81,6 +95,7 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
+
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 
@@ -88,7 +103,7 @@ namespace MoneyFox
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-
+            
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
             if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())

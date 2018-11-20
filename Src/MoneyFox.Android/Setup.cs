@@ -1,4 +1,3 @@
-using MoneyFox.Business;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
@@ -43,17 +42,5 @@ namespace MoneyFox.Droid
             Mvx.IoCProvider.RegisterSingleton(formsPresenter);
             return formsPresenter;
         }
-
-        //public override MvxLogProviderType GetDefaultLogProviderType()
-        //    => MvxLogProviderType.Serilog;
-
-        //protected override IMvxLogProvider CreateLogProvider()
-        //{
-        //    Log.Logger = new LoggerConfiguration()
-        //                 .MinimumLevel.Debug()
-        //                 .WriteTo.AndroidLog()
-        //                 .CreateLogger();
-        //    return base.CreateLogProvider();
-        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Business.Manager;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Business.Manager;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.DataAccess.Pocos;
 using Moq;
@@ -10,6 +11,8 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
+    [Collection("MvxIocCollection")]
     public class BalanceViewModelTests : MvxIoCSupportingTest
     {
         public BalanceViewModelTests()

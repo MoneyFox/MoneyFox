@@ -22,15 +22,16 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
     <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
-    <PackageReference Include="MvvmCross.Forms" Version="6.2.1" />
+    <PackageReference Include="MvvmCross.Forms" Version="6.2.2" />
+    <PackageReference Include="PCLAppConfig" Version="0.4.1" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="0.6.0-preview" />
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
-    <PackageReference Include="MvvmCross.Plugin.Email" Version="6.2.1" />
-    <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.1" />
-    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.2.1" />
-    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.2.1" />
-    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.2.1" />
+    <PackageReference Include="MvvmCross.Plugin.Email" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.2.2" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
 
@@ -43,30 +44,6 @@
     <Reference Include="Xamarin.Essentials">
       <HintPath>..\..\..\..\..\.nuget\packages\xamarin.essentials\0.6.0-preview\lib\xamarinios10\Xamarin.Essentials.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Styles\AppStyles.xaml.cs">
-      <DependentUpon>AppStyles.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\AppStylesDark.xaml.cs">
-      <DependentUpon>AppStylesDark.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Styles\AppStylesLight.xaml.cs">
-      <DependentUpon>AppStylesLight.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Styles\AppStyles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Styles\AppStylesDark.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Styles\AppStylesLight.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

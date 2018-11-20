@@ -403,20 +403,19 @@
     <value>To see all contributions head over to GitHub:</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Значок приложения был создан:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate us!</value>
+    <value>Оценить!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Password</value>
+    <value>Пароль</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
@@ -434,47 +433,47 @@ Tap to visit the Repository:</value>
     <value>Last Backup created at:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Войти</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Выйти</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Восстановить ваши данные из OneDrive. 
+Внимание: Ваши локальные данные будут потеряны!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Восстановить из резервной копии</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Имя учетной записи</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Текущий баланс</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Примечание</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Сумма</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Категория</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Дата</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Is Endless</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>Повторяется</value>
   </data>
   <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
+    <value>У вас ещё нет категорий. Добавьте любую, нажав на кнопку «плюс» внизу.</value>
   </data>
   <data name="SearchStringLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Поиск</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
@@ -557,9 +556,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Select Filter</value>
   </data>
-  <data name="ClearPaymentFinishedMessage" xml:space="preserve">
-    <value>Finished clearing your payments.</value>
-  </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
     <value>You backup was synced successfully.</value>
   </data>
@@ -584,9 +580,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login failed!</value>
-  </data>
-  <data name="ClearPaymentFailedMessage" xml:space="preserve">
-    <value>Clearing payments failed!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -686,5 +679,20 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
     <value>Select Date</value>
+  </data>
+  <data name="AddCategoryLabel" xml:space="preserve">
+    <value>Add Category</value>
+  </data>
+  <data name="SelectStatisticTitel" xml:space="preserve">
+    <value>Select Statistic</value>
+  </data>
+  <data name="BackgroundJobLabel" xml:space="preserve">
+    <value>Background Job</value>
+  </data>
+  <data name="BackgroundJobSettingDescription" xml:space="preserve">
+    <value>Configure execution interval for background task.</value>
+  </data>
+  <data name="BackgroundJobTitle" xml:space="preserve">
+    <value>Background Job</value>
   </data>
 </root>
