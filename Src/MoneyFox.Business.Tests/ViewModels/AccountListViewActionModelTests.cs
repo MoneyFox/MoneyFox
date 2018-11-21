@@ -1,5 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using System.Threading.Tasks;
 using MoneyFox.Business.Parameters;
 using MoneyFox.Business.Tests.Fixtures;
 using MoneyFox.Business.ViewModels;
@@ -14,6 +14,7 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class AccountListViewActionModelTests : MvxIocFixture
     {

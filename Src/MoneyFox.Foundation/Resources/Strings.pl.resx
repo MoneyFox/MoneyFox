@@ -515,7 +515,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Uwzględnione Konta</value>
   </data>
   <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Set the interval to check for changed data.</value>
+    <value>Ustaw interwał sprawdzania zmiany danych.</value>
   </data>
   <data name="HourLabel" xml:space="preserve">
     <value>Godzin(a/y)</value>
@@ -672,10 +672,10 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Filtr</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Time Range End</value>
+    <value>Koniec okresu</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Time Range Start</value>
+    <value>Początek okresu</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
     <value>Wybierz datę</value>

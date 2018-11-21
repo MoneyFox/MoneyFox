@@ -703,6 +703,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ShortcutsTitle" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
+
   <data name="LiveTileAccountBalance" xml:space="preserve">
     <value>Bal. : {0}</value>
   </data>
@@ -726,5 +727,32 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Balance</value>
+  </data>
+  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
+    <value>Last Executions:</value>
+  </data>
+  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
+    <value>Paymentclearing:</value>
+  </data>
+  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
+    <value>Create Recurring Payments:</value>
+  </data>
+  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
+    <value>Backup Sync:</value>
+  </data>
+  <data name="PersonalizationInfoLabel" xml:space="preserve">
+    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+  </data>
+  <data name="ThemeDarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsPersonalizationDescription" xml:space="preserve">
+    <value>Change your prefered theme.</value>
+  </data>
+  <data name="SettingsPersonalizationLabel" xml:space="preserve">
+    <value>Personalization</value>
   </data>
 </root>

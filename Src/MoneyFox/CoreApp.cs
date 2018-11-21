@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using EntityFramework.DbContextScope;
 using EntityFramework.DbContextScope.Interfaces;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Business.Authentication;
 using MoneyFox.Business.Services;
@@ -81,6 +79,7 @@ namespace MoneyFox
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
+
             var dbContextScopeFactory = new DbContextScopeFactory();
             var ambientDbContextLocator = new AmbientDbContextLocator();
 
@@ -88,7 +87,7 @@ namespace MoneyFox
             {
                 ambientDbContextLocator.Get<ApplicationContext>().Database.Migrate();
             }
-
+            
             if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
             if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())

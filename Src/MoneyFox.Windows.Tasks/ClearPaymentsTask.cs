@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using Windows.ApplicationModel.Background;
 using EntityFramework.DbContextScope;
+using MoneyFox.Business.Adapter;
+using MoneyFox.Business.Manager;
 using MoneyFox.DataAccess;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.Foundation.Constants;
@@ -21,6 +23,7 @@ namespace MoneyFox.Windows.Tasks
             var deferral = taskInstance.GetDeferral();
             Debug.WriteLine("ClearPayment started");
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
+            var settingsManager = new SettingsManager(new SettingsAdapter());
 
             try
             {
@@ -40,6 +43,7 @@ namespace MoneyFox.Windows.Tasks
 
             } finally
             {
+                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
                 Debug.WriteLine("ClearPaymentTask finished.");
                 deferral.Complete();
             }

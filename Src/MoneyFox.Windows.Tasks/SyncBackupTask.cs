@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Business;
 using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
@@ -24,13 +23,15 @@ namespace MoneyFox.Windows.Tasks
             var deferral = taskInstance.GetDeferral();
             Debug.WriteLine("Sync Backup started.");
             ApplicationContext.DbPath = DatabaseConstants.DB_NAME;
+            var settingsManager = new SettingsManager(new SettingsAdapter());
 
             try
             {
+
                 var backupManager = new BackupManager(
                     new OneDriveService(new OneDriveAuthenticator(true)),
-                    new MvxWindowsFileStore(), 
-                    new SettingsManager(new SettingsAdapter()),
+                    new MvxWindowsFileStore(),
+                    settingsManager,
                     new ConnectivityImplementation());
 
                 await backupManager.DownloadBackup();
@@ -42,6 +43,7 @@ namespace MoneyFox.Windows.Tasks
             }
             finally
             {
+                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 Debug.WriteLine("Sync Backup finished.");
                 deferral.Complete();
             }

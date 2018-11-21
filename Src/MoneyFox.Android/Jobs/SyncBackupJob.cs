@@ -64,6 +64,8 @@ namespace MoneyFox.Droid.Jobs
         {
             if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
 
+            var settingsManager = new SettingsManager(new SettingsAdapter());
+
             try
             {
                 DataAccess.ApplicationContext.DbPath =
@@ -72,7 +74,7 @@ namespace MoneyFox.Droid.Jobs
 
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                                        new SettingsManager(new SettingsAdapter()),
+                                        settingsManager,
                                         new ConnectivityImplementation())
                     .DownloadBackup();
 
@@ -81,6 +83,10 @@ namespace MoneyFox.Droid.Jobs
             catch (Exception ex)
             {
                 Debug.Write(ex);
+            }
+            finally
+            {
+                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
         }
 

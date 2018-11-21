@@ -15,9 +15,26 @@ namespace MoneyFox.Business.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {
+        /// <summary>
+        ///     Makes the first login and sets the setting for the future navigations to this page.
+        /// </summary>
         MvxAsyncCommand LoginCommand { get; }
+
+        /// <summary>
+        ///     Logs the user out from the backup service.
+        /// </summary>
         MvxAsyncCommand LogoutCommand { get; }
+
+        /// <summary>
+        ///     Will create a backup of the database and upload it to onedrive
+        /// </summary>
         MvxAsyncCommand BackupCommand { get; }
+
+        /// <summary>
+        ///     Will download the database backup from onedrive and overwrite the
+        ///     local database with the downloaded.
+        ///     All datamodels are then reloaded.
+        /// </summary>
         MvxAsyncCommand RestoreCommand { get; }
 
         DateTime BackupLastModified { get; }
@@ -55,26 +72,16 @@ namespace MoneyFox.Business.ViewModels
 
         #region Properties
 
-        /// <summary>
-        ///     Makes the first login and sets the setting for the future navigations to this page.
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand LoginCommand => new MvxAsyncCommand(Login);
 
-        /// <summary>
-        ///     Logs the user out from the backup service.
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand LogoutCommand => new MvxAsyncCommand(Logout);
 
-        /// <summary>
-        ///     Will create a backup of the database and upload it to onedrive
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand BackupCommand => new MvxAsyncCommand(CreateBackup);
 
-        /// <summary>
-        ///     Will download the database backup from onedrive and overwrite the
-        ///     local database with the downloaded.
-        ///     All datamodels are then reloaded.
-        /// </summary>
+        /// <inheritdoc />
         public MvxAsyncCommand RestoreCommand => new MvxAsyncCommand(RestoreBackup);
 
         /// <summary>

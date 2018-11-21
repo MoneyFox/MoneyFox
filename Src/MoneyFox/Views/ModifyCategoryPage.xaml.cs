@@ -17,8 +17,8 @@ namespace MoneyFox.Views
 		        Text = Strings.SaveCategoryLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary,
-		        Icon = Icon = "IconSave.png"
-		    });
+		        Icon = "ic_save.png"
+            });
         }
 
 	    protected override void OnAppearing()

@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Business.Messages;
 using MoneyFox.Business.ViewModels;
@@ -15,6 +16,8 @@ using Xunit;
 
 namespace MoneyFox.Business.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
+    [Collection("MvxIocCollection")]
     public class SelectCategoryListViewModelTests : MvxIoCSupportingTest
     {
         [Fact]

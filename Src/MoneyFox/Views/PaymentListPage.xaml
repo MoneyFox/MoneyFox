@@ -8,32 +8,11 @@
                    xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
                    xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
                    x:Class="MoneyFox.Views.PaymentListPage"
+                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                    DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />
-
-            <OnPlatform x:Key="IconCleared"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconCleared" />
-                <On Platform="iOS" Value="IconCleared" />
-                <On Platform="UWP" Value="IconCleared" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="IconRecurring"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconRecurring" />
-                <On Platform="iOS" Value="IconRecurring" />
-                <On Platform="UWP" Value="IconRecurring" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="IconTransfer"
-                        x:TypeArguments="ImageSource">
-                <On Platform="Android" Value="IconTransfer" />
-                <On Platform="iOS" Value="IconTransfer" />
-                <On Platform="UWP" Value="IconTransfer" />
-            </OnPlatform>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -68,7 +47,7 @@
                                 </ViewCell.ContextActions>
                                 <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
                                     <StackLayout Spacing="0"
-                                                 BackgroundColor="{StaticResource ListItemColor}">
+                                                 Style="{StaticResource ListItemStyle}" >
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
@@ -99,15 +78,15 @@
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
-                                                <Image Source="{StaticResource IconTransfer}" 
+                                                <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}" 
                                                    IsVisible="{Binding IsTransfer}" 
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
-                                                <Image Source="{StaticResource IconRecurring}" 
+                                                <Image Source="{x:Static moneyFox:StyleHelper.IsRecurringImageSource}" 
                                                    IsVisible="{Binding IsRecurring}" 
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
-                                                <Image Source="{StaticResource IconCleared}"
+                                                <Image Source="{x:Static moneyFox:StyleHelper.IsClearedImageSource}"
                                                    IsVisible="{Binding IsCleared}"
                                                    HeightRequest="20"
                                                    WidthRequest="20" />
@@ -121,13 +100,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <controls:FloatingActionButton x:Name="FAB"
-                                            HorizontalOptions="EndAndExpand"
-                                            Margin="4"
-                                            VerticalOptions="EndAndExpand"
-                                            Image="ic_add.png"
-                                            ButtonColor="{StaticResource AccentColor}"
-                                            Clicked="AddItem_Clicked" >
+                <controls:FloatingActionButton Style="{StaticResource DefaultFloatingActionButton}"
+                                               x:Name="FAB"
+                                               HorizontalOptions="EndAndExpand"
+                                               Margin="4"
+                                               VerticalOptions="EndAndExpand"
+                                               Image="ic_add.png"
+                                               Clicked="AddItem_Clicked" >
                     <controls:FloatingActionButton.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS">50</On>

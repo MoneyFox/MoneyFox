@@ -29,6 +29,7 @@
     }
     public enum SettingsType
     {
+        Personalization,
         Categories,
         Backup,
         BackgroundJob,

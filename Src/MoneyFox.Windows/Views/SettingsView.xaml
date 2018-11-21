@@ -60,8 +60,28 @@
                                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                        Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
                                        TextWrapping="WrapWholeWords" />
+
                             <input:RadNumericBox
                                 Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                            <StackPanel Margin="0,12,0,0">
+                                <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionCreateRecurringPayments}" />
+                                </StackPanel>
+                            </StackPanel>
 
                         </StackPanel>
 

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behavior="clr-namespace:MoneyFox.Behavior;assembly=MoneyFox"
              xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
              x:Class="MoneyFox.UserControls.CategoryListUserControl">
 
@@ -12,7 +11,8 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <SearchBar x:Name="SearchBar" 
+            <SearchBar x:Name="SearchBar"
+                       Style="{StaticResource DefaultSearchBarStyle}"
                        Grid.Row="0"
                        VerticalOptions="Start" 
                        Placeholder="{Binding Resources[SearchLabel]}"
@@ -45,7 +45,7 @@
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
-                                <StackLayout BackgroundColor="{StaticResource ListItemColor}"
+                                <StackLayout Style="{StaticResource ListItemStyle}"
                                              Orientation="Vertical"
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"
@@ -59,12 +59,12 @@
             </ListView>
 
             <controls:FloatingActionButton Grid.Row="1" 
+                                           Style="{StaticResource DefaultFloatingActionButton}"
                                            x:Name="FAB" 
                                            HorizontalOptions="EndAndExpand" 
                                            Margin="4"
                                            VerticalOptions="EndAndExpand"
                                            Image="ic_add.png" 
-                                           ButtonColor="{StaticResource AccentColor}" 
                                            Clicked="AddCategoryClick">
                 <controls:FloatingActionButton.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double">

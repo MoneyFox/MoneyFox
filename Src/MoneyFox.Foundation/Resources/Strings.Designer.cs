@@ -1133,7 +1133,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bal. : {0}.
+        ///   Looks up a localized string similar to Balance: {0}.
         /// </summary>
         public static string LiveTileAccountBalance {
             get {
@@ -1144,22 +1144,45 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Account: {0}.
         /// </summary>
-        public static string LiveTileAccountName {
+        public static string LiveTileAccountName
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
+			}
+		}
+		/// <summary>
+        ///   Looks up a localized string similar to Paymentclearing:.
+        /// </summary>
+        public static string LastExecutionClearPaymentLabel {
             get {
-                return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
+             return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
             }
         }
         
         /// <summary>
+
         ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
-        public static string LiveTileCurrentMonthsExpenses {
+        public static string LiveTileCurrentMonthsExpenses
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
+			}
+		}
+		/// <summary>
+		///   Looks up a localized string similar to Create Recurring Payments:.
+        /// </summary>
+        public static string LastExecutionRecurringPaymentLabel {
             get {
-                return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
+                return ResourceManager.GetString("LastExecutionRecurringPaymentLabel", resourceCulture);
+
             }
         }
         
         /// <summary>
+
         ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
         public static string LiveTileLastMonthsExpenses {
@@ -1189,9 +1212,20 @@ namespace MoneyFox.Foundation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Upcoming Payments.
         /// </summary>
-        public static string LiveTileUpcommingPayments {
+        public static string LiveTileUpcommingPayments
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
+			}
+		}
+		/// <summary>
+        ///   Looks up a localized string similar to Backup Sync:.
+        /// </summary>
+        public static string LastExecutionSyncBackupLabel {
             get {
-                return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
+                return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+
             }
         }
         
@@ -1503,6 +1537,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection..
+        /// </summary>
+        public static string PersonalizationInfoLabel {
+            get {
+                return ResourceManager.GetString("PersonalizationInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personalization.
         /// </summary>
         public static string PersonalizationTitle {
@@ -1712,6 +1755,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change your prefered theme..
+        /// </summary>
+        public static string SettingsPersonalizationDescription {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personalization.
+        /// </summary>
+        public static string SettingsPersonalizationLabel {
+            get {
+                return ResourceManager.GetString("SettingsPersonalizationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsTitle {
@@ -1780,6 +1841,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string ThemeDarkLabel {
+            get {
+                return ResourceManager.GetString("ThemeDarkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string ThemeLightLabel {
+            get {
+                return ResourceManager.GetString("ThemeLightLabel", resourceCulture);
             }
         }
         

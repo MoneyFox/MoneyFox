@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using MoneyFox.Business.Extensions;
 using MoneyFox.Foundation.Constants;
+using PCLAppConfig;
 using UIKit;
 using Xamarin.Auth;
 
@@ -16,12 +17,12 @@ namespace MoneyFox.iOS.Authentication {
 
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
-            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                ServiceConstants.MSA_CLIENT_SECRET,
-                string.Join(",", ServiceConstants.Scopes),
-                new Uri(ServiceConstants.AUTHENTICATION_URL),
-                new Uri(ServiceConstants.RETURN_URL),
-                new Uri(ServiceConstants.TOKEN_URL));
+            authenticator = new OAuth2Authenticator(ConfigurationManager.AppSettings["MsaClientId"],
+                                                    ConfigurationManager.AppSettings["MsaClientSecret"],
+                                                    string.Join(",", ServiceConstants.Scopes),
+                                                    new Uri(ServiceConstants.AUTHENTICATION_URL),
+                                                    new Uri(ServiceConstants.RETURN_URL),
+                                                    new Uri(ServiceConstants.TOKEN_URL));
 
             var protectedData = new ProtectedData();
             var accessToken = string.Empty;
@@ -68,10 +69,10 @@ namespace MoneyFox.iOS.Authentication {
         {
             new ProtectedData().Remove(ServiceConstants.REFRESH_TOKEN);
 
-            authenticator = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
-                string.Empty,
-                new Uri(ServiceConstants.LOGOUT_URL),
-                new Uri(ServiceConstants.RETURN_URL));
+            authenticator = new OAuth2Authenticator(ConfigurationManager.AppSettings["MsaClientId"],
+                                                    string.Empty,
+                                                    new Uri(ServiceConstants.LOGOUT_URL),
+                                                    new Uri(ServiceConstants.RETURN_URL));
         }
     }
 }
