@@ -6,6 +6,7 @@ using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
+using PCLAppConfig;
 using Rg.Plugins.Popup;
 
 #if !DEBUG
