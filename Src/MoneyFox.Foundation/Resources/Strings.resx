@@ -727,7 +727,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Balance</value>
-
+  </data>
   <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
     <value>Last Executions:</value>
   </data>
