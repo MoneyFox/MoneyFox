@@ -28,6 +28,12 @@ using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
 
+#if !DEBUG
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+#endif
+
 
 namespace MoneyFox.Windows
 {
@@ -80,8 +86,15 @@ namespace MoneyFox.Windows
             CoreApp.CurrentPlatform = AppPlatform.UWP;
             base.OnLaunched(e);
 
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
+#if !DEBUG
+            AppCenter.Start("1fba816a-eea6-42a8-bf46-0c0fcc1589db", typeof(Analytics), typeof(Crashes));
+#endif
+
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
             {
+
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
