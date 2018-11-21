@@ -93,11 +93,11 @@ namespace MoneyFox.Windows.Views
 					await CommonFunctions.UpdateSecondaryLiveTiles();
 				}
 			}
-			//else
-			//{
-			//	await CommonFunctions.UpdateSecondaryLiveTiles();
-			//	await CommonFunctions.UpdatePrimaryLiveTile();
-			//}
+			else
+			{
+				await CommonFunctions.UpdateSecondaryLiveTiles();
+				await CommonFunctions.UpdatePrimaryLiveTile();
+			}
 		}
 	}
 }

@@ -68,9 +68,15 @@ namespace MoneyFox.Windows.Business
 			List<PaymentEntity> allpayments = new List<PaymentEntity>();
 			foreach (Account item in acct)
 			{
-				allpayments.AddRange(item.Data.ChargedPayments);
-				allpayments.AddRange(item.Data.TargetedPayments);
-			 }
+				if (item.Data.ChargedPayments != null)
+				{
+					allpayments.AddRange(item.Data.ChargedPayments);
+				}
+				if (item.Data.TargetedPayments != null)
+				{
+					allpayments.AddRange(item.Data.TargetedPayments);
+				}
+			}
 		IEnumerable<PaymentEntity> lastmonth = allpayments.OrderByDescending(x=> x.Date).Take(takeamount);
 			List<string> returnlist = new List<string>();
 			foreach (var item in lastmonth)
@@ -101,8 +107,15 @@ namespace MoneyFox.Windows.Business
 
 			foreach (Account item in acct)
 			{
-				allpayments.AddRange(item.Data.ChargedPayments);
-				allpayments.AddRange(item.Data.TargetedPayments);
+				if (item.Data.ChargedPayments != null)
+				{
+					allpayments.AddRange(item.Data.ChargedPayments);
+				}
+				if (item.Data.TargetedPayments != null)
+				{
+					allpayments.AddRange(item.Data.TargetedPayments);
+				}
+
 			}
 			foreach (PaymentEntity item in allpayments)
 			{
@@ -198,41 +211,41 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[0]??string.Empty,
+																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[1]??string.Empty,
+																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	 new AdaptiveText()
+																	{
+																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[2]??string.Empty,
-																		HintStyle = AdaptiveTextStyle.CaptionSubtle
-																	},
-																	new AdaptiveText()
-																	{
-																		Text = displaycontent[3]??string.Empty,
+																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text =displaycontent[4]??string.Empty,
+																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = displaycontent[5]??string.Empty,
+																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[6]??string.Empty,
+																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[7]??string.Empty,
+																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 
@@ -264,41 +277,41 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[0]??string.Empty,
+																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[1]??string.Empty,
+																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	 new AdaptiveText()
+																	{
+																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[2]??string.Empty,
-																		HintStyle = AdaptiveTextStyle.CaptionSubtle
-																	},
-																	new AdaptiveText()
-																	{
-																		Text = displaycontent[3]??string.Empty,
+																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text =displaycontent[4]??string.Empty,
+																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = displaycontent[5]??string.Empty,
+																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[6]??string.Empty,
+																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[7]??string.Empty,
+																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 																}
@@ -329,41 +342,41 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[0]??string.Empty,
+																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[1]??string.Empty,
+																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																	},
+																	 new AdaptiveText()
+																	{
+																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[2]??string.Empty,
-																		HintStyle = AdaptiveTextStyle.CaptionSubtle
-																	},
-																	new AdaptiveText()
-																	{
-																		Text = displaycontent[3]??string.Empty,
+																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text =displaycontent[4]??string.Empty,
+																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = displaycontent[5]??string.Empty,
+																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = displaycontent[6]??string.Empty,
+																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = displaycontent[7]??string.Empty,
+																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 
@@ -406,11 +419,11 @@ namespace MoneyFox.Windows.Business
 					{
 						Visual = new TileVisual()
 						{
-						TileSmall = new TileBinding()
-						{
-							Content = new TileBindingContentAdaptive()
+							TileSmall = new TileBinding()
 							{
-								Children =
+								Content = new TileBindingContentAdaptive()
+								{
+									Children =
 									{
 								new AdaptiveGroup()
 								{
@@ -435,8 +448,8 @@ namespace MoneyFox.Windows.Business
 									}
 								}
 								}
-							}
-						},
+								}
+							},
 							TileMedium = new TileBinding()
 							{
 								Content = new TileBindingContentAdaptive()
@@ -468,12 +481,12 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 
@@ -515,12 +528,12 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 											}
@@ -561,12 +574,12 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month),GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 

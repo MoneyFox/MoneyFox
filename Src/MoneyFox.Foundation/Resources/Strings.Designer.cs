@@ -1133,7 +1133,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Balance: {0}.
+        ///   Looks up a localized string similar to Bal. : {0}.
         /// </summary>
         public static string LiveTileAccountBalance {
             get {

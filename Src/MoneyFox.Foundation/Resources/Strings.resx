@@ -704,7 +704,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Shortcuts</value>
   </data>
   <data name="LiveTileAccountBalance" xml:space="preserve">
-    <value>Balance: {0}</value>
+    <value>Bal. : {0}</value>
   </data>
   <data name="LiveTileAccountName" xml:space="preserve">
     <value>Account: {0}</value>
