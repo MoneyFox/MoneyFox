@@ -1133,12 +1133,22 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Balance: {0}.
+        ///   Looks up a localized string similar to Bal. : {0}.
         /// </summary>
-        public static string LiveTileAccountBalance {
+        public static string LiveTileAccountBalance
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
+			}
+		}
+		/// <summary>
+        ///   Looks up a localized string similar to Last Executions:.
+        /// </summary>
+        public static string LastExecutionBackgroundOperationsLabel {
             get {
-                return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
-            }
+                return ResourceManager.GetString("LastExecutionBackgroundOperationsLabel", resourceCulture);
+        }
         }
         
         /// <summary>
@@ -1172,7 +1182,7 @@ namespace MoneyFox.Foundation.Resources {
 			}
 		}
 		/// <summary>
-		///   Looks up a localized string similar to Create Recurring Payments:.
+        ///   Looks up a localized string similar to Create Recurring Payments:.
         /// </summary>
         public static string LastExecutionRecurringPaymentLabel {
             get {
@@ -1219,7 +1229,7 @@ namespace MoneyFox.Foundation.Resources {
 				return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
 			}
 		}
-		/// <summary>
+		///<summary>
         ///   Looks up a localized string similar to Backup Sync:.
         /// </summary>
         public static string LastExecutionSyncBackupLabel {
