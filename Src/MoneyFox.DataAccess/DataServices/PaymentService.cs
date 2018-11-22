@@ -120,22 +120,22 @@ namespace MoneyFox.DataAccess.DataServices
 			}
 		}
 
-		/// <inheritdoc />
-		public async Task<IEnumerable<Payment>> GetPaymentsByAccountId(int accountId)
-		{
-			using (dbContextScopeFactory.CreateReadOnly())
-			{
-				using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
-				{
-					var list = await dbContext.Payments
-						.Include(x => x.Category)
+        /// <inheritdoc />
+        public async Task<IEnumerable<Payment>> GetPaymentsByAccountId(int accountId)
+        {
+            using (dbContextScopeFactory.CreateReadOnly())
+            {
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var list = await dbContext.Payments
+                        .Include(x => x.Category)
 						.Include(x=>x.RecurringPayment)
-						.HasAccountId(accountId)
-						.ToListAsync();
-					return list.Select(x => new Payment(x));
-				}
-			}
-		}
+                        .HasAccountId(accountId)
+                        .ToListAsync();
+                    return list.Select(x => new Payment(x));
+                }
+            }
+        }
 
 		/// <inheritdoc />
 		public async Task<Payment> GetById(int id)
@@ -241,10 +241,10 @@ namespace MoneyFox.DataAccess.DataServices
 			paymentEntry.State = payment.Id == 0 ? EntityState.Added : EntityState.Modified;
 		}
 
-		private void SaveOrUpdateAccount(ApplicationContext dbContext, AccountEntity account)
-		{
-			var paymentEntry = dbContext.Entry(account);
-			paymentEntry.State = account.Id == 0 ? EntityState.Added : EntityState.Modified;
-		}
-	}
+        private void SaveOrUpdateAccount(ApplicationContext dbContext, AccountEntity account)
+        {
+            var paymentEntry = dbContext.Entry(account);
+            paymentEntry.State = account.Id == 0 ? EntityState.Added : EntityState.Modified;
+        }
+    }
 }
