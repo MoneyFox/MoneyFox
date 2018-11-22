@@ -129,7 +129,7 @@ namespace MoneyFox.DataAccess.DataServices
                 {
                     var list = await dbContext.Payments
                         .Include(x => x.Category)
-						.Include(x=>x.RecurringPayment)
+                        .Include(x=>x.RecurringPayment)
                         .HasAccountId(accountId)
                         .ToListAsync();
                     return list.Select(x => new Payment(x));
