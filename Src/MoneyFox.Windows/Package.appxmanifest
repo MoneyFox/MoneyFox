@@ -50,9 +50,6 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <uap:Extension Category="windows.appService" EntryPoint="MoneyFox.Windows.Tasks.LiveTiles">
-          <uap:AppService Name="LiveTiles" />
-        </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Windows.Tasks.LiveTiles">
           <BackgroundTasks>
             <Task Type="timer" />
