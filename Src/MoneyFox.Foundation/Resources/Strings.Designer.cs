@@ -403,6 +403,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        public static string BalanceLabel {
+            get {
+                return ResourceManager.GetString("BalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
@@ -1124,38 +1133,109 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bal. : {0}.
+        /// </summary>
+        public static string LiveTileAccountBalance
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
+			}
+		}
+		/// <summary>
         ///   Looks up a localized string similar to Last Executions:.
         /// </summary>
         public static string LastExecutionBackgroundOperationsLabel {
             get {
                 return ResourceManager.GetString("LastExecutionBackgroundOperationsLabel", resourceCulture);
-            }
+        }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account: {0}.
+        /// </summary>
+        public static string LiveTileAccountName
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
+			}
+		}
+		/// <summary>
         ///   Looks up a localized string similar to Paymentclearing:.
         /// </summary>
         public static string LastExecutionClearPaymentLabel {
             get {
-                return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
+             return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
             }
         }
         
         /// <summary>
+
+        ///   Looks up a localized string similar to {0}: {1}.
+        /// </summary>
+        public static string LiveTileCurrentMonthsExpenses
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
+			}
+		}
+		/// <summary>
         ///   Looks up a localized string similar to Create Recurring Payments:.
         /// </summary>
         public static string LastExecutionRecurringPaymentLabel {
             get {
                 return ResourceManager.GetString("LastExecutionRecurringPaymentLabel", resourceCulture);
+
             }
         }
         
         /// <summary>
+
+        ///   Looks up a localized string similar to {0}: {1}.
+        /// </summary>
+        public static string LiveTileLastMonthsExpenses {
+            get {
+                return ResourceManager.GetString("LiveTileLastMonthsExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Past Payments.
+        /// </summary>
+        public static string LiveTilePastPayments {
+            get {
+                return ResourceManager.GetString("LiveTilePastPayments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount: {0}.
+        /// </summary>
+        public static string LiveTilePaymentText {
+            get {
+                return ResourceManager.GetString("LiveTilePaymentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upcoming Payments.
+        /// </summary>
+        public static string LiveTileUpcommingPayments
+		{
+			get
+			{
+				return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
+			}
+		}
+		///<summary>
         ///   Looks up a localized string similar to Backup Sync:.
         /// </summary>
         public static string LastExecutionSyncBackupLabel {
             get {
                 return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+
             }
         }
         
