@@ -27,6 +27,8 @@ using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
+using MvvmCross.Navigation;
+using MoneyFox.Business.Authentication;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -104,7 +106,17 @@ namespace MoneyFox.Windows
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-                (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+
+                if (!Mvx.IoCProvider.CanResolve<Session>()) return;
+
+                if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+                {
+                    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                }
+                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
+                {
+                    await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<LoginViewModel>();
+                }
 
                 OverrideTitleBarColor();
 
