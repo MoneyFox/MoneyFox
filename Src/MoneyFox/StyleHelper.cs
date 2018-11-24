@@ -50,7 +50,7 @@ namespace MoneyFox
             IsClearedImageSource = ImageSource.FromFile("ic_cleared_white");
             IsRecurringImageSource = ImageSource.FromFile("ic_recurring_white");
 
-            WindowBackgroundColor = Color.FromHex("#2d2d30");
+            WindowBackgroundColor = Color.Black; //Color.FromHex("#2d2d30");
             DialogBackgroundColor = Color.Black;
             BottomTabBarColor = Color.FromHex("#1e1e1e");
 

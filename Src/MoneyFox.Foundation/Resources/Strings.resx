@@ -703,6 +703,31 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ShortcutsTitle" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
+
+  <data name="LiveTileAccountBalance" xml:space="preserve">
+    <value>Bal. : {0}</value>
+  </data>
+  <data name="LiveTileAccountName" xml:space="preserve">
+    <value>Account: {0}</value>
+  </data>
+  <data name="LiveTilePaymentText" xml:space="preserve">
+    <value>Amount: {0}</value>
+  </data>
+  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTilePastPayments" xml:space="preserve">
+    <value>Past Payments</value>
+  </data>
+  <data name="LiveTileUpcommingPayments" xml:space="preserve">
+    <value>Upcoming Payments</value>
+  </data>
+  <data name="BalanceLabel" xml:space="preserve">
+    <value>Balance</value>
+  </data>
   <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
     <value>Last Executions:</value>
   </data>
