@@ -2,7 +2,7 @@
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=071307B1-B0E3-434A-AD0E-FFF714A7245C</Publisher>
   <PublisherDisplayName>Apply Solutions Software</PublisherDisplayName>
-  <DeveloperAccountType>MSA</DeveloperAccountType>
+  <DeveloperAccountType>AAD</DeveloperAccountType>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
