@@ -116,4 +116,94 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Controls\FloatingActionButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Dialogs\AddAccountAndPaymentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Dialogs\AddPaymentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Dialogs\DateSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Dialogs\FilterDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Style\ControlStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Style\Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Style\TextStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Style\Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="UserControls\BalanceUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="UserControls\CategoryListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AccountListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\BackgroundJobSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\BackupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\CategoryListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ModifyAccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ModifyCategoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ModifyPaymentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\PaymentListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SelectCategoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SettingsPersonalizationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StatisticCashFlowPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StatisticCategorySpreadingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StatisticCategorySummaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\StatisticSelectorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
 </Project>

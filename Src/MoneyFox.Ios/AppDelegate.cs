@@ -18,10 +18,15 @@ using MoneyFox.iOS.Authentication;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
+using PCLAppConfig;
 using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
+
+#if !DEBUG
+using Microsoft.AppCenter;
+#endif
 
 namespace MoneyFox.iOS
 {
@@ -38,6 +43,11 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+#if !DEBUG
+            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
+#endif
+
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;
 
