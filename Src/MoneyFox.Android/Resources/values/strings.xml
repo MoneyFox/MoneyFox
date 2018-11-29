@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="shortcut_add_expense">Add Expense</string>
+	<string name="shortcut_add_income">Add Income</string>
+	<string name="shortcut_add_transfer">Add Transfer</string>
+</resources>
