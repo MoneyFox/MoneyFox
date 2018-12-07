@@ -27,7 +27,7 @@ Windows: Please send me your Microsoft Account
 [Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 (You can also opt-in for the beta in the play store)
 
-[IOS] (https://testflight.apple.com/join/ycYtjupl)
+[IOS](https://testflight.apple.com/join/ycYtjupl)
 
 ### Contribution
 
