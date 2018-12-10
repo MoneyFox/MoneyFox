@@ -1268,7 +1268,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} add to {1} on {2}.
+        ///   Looks up a localized string similar to {0} added to {1} on {2}.
         /// </summary>
         public static string LiveTileWideandLargeIncomePastText {
             get {

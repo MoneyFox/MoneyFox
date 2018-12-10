@@ -27,6 +27,31 @@ namespace MoneyFox.Windows.Business
 		private static ApplicationDataContainer Localsettings = ApplicationData.Current.LocalSettings;
 		private static List<int> reccuringPaymentIds = new List<int>();
 
+		public static string TruncateNumber(double num)
+		{
+			if (num>0 && num<1000)
+			{
+				return num.ToString("#,0");
+			}
+			if (num>1000 && num<1000000)
+			{
+				double test = num / 1000;
+				return test.ToString("#.0")+"K";
+			}
+			if (num>1000000 && num<1000000000)
+			{
+				double test = num / 1000000;
+				return test.ToString("#.1") + "M";
+			}
+			if (num>1000000000 & num<1000000000000)
+			{
+				double test = num / 1000000000;
+				return test.ToString("#.0") + "B";
+			}
+			return "Number out of Range";
+
+		}
+		
 		public static string GetResourceKey(string keytofind)
 		{
 			System.Resources.ResourceManager keyValuePairs = Strings.ResourceManager;
@@ -535,7 +560,7 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-												Text =  acct.Data.CurrentBalance.ToString("C2"),
+												Text =  TruncateNumber(acct.Data.CurrentBalance),
 												HintStyle = AdaptiveTextStyle.Caption
 												}
 											}
@@ -576,12 +601,12 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileLastMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), TruncateNumber(GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
 											   new AdaptiveText()
 												{
-													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
+													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),TruncateNumber(GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct))),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 

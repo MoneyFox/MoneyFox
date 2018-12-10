@@ -767,7 +767,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>{0} will recieve {1}  on {2}</value>
   </data>
   <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
-    <value>{0} add to {1} on {2}</value>
+    <value>{0} added to {1} on {2}</value>
   </data>
   <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
     <value>{0} will have {1} removed on {2}</value>
