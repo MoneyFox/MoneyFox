@@ -8,6 +8,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using MoneyFox.DataAccess.DataServices;
 using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
@@ -31,12 +32,12 @@ namespace MoneyFox.Windows.Business
 			System.Resources.ResourceManager keyValuePairs = Strings.ResourceManager;
 			return keyValuePairs.GetString(keytofind);
 		}
-
+	
 		public static double GetMonthExpenses(int month, int year, Account accountid)
 		{
 			reccuringPaymentIds.Clear();
 			double balance = 0.00;
-			List<PaymentEntity> allpayment = new List<PaymentEntity>();
+			List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 			List<PaymentEntity> payments = accountid.Data.ChargedPayments;
 			foreach (PaymentEntity item in payments)
 			{
@@ -45,75 +46,132 @@ namespace MoneyFox.Windows.Business
 					if (item.Type != Foundation.PaymentType.Income)
 					{
 						iReccurance reccurance = strategy[item.RecurringPayment.Recurrence]();
-						allpayment.AddRange(reccurance.GetMonthlyReccurance(item,month,year));
+						allpayment.AddRange(reccurance.GetReccurance(item));
 					}
 				}
-				else if (item.Type != Foundation.PaymentType.Income && item.Date.Month==month && item.Date.Year==year)
+				else if (item.Type != Foundation.PaymentType.Income)
 				{
-				  allpayment.Add(item);
+					LiveTilesPaymentInfo tileinfo = new LiveTilesPaymentInfo();
+					tileinfo.Chargeaccountname = item.ChargedAccount.Name;
+					tileinfo.Myamount = item.Amount;
+					tileinfo.Mydate = item.Date.Date;
+					tileinfo.Type = item.Type;
+					allpayment.Add(tileinfo);
 				}
 			}
-			foreach (PaymentEntity item in allpayment)
+			List<LiveTilesPaymentInfo> tiles = allpayment.Where(x => x.Mydate.Date.Month == month && x.Mydate.Date.Year == year).ToList();
+			foreach (LiveTilesPaymentInfo item in tiles)
 			{
-				balance += item.Amount;
+				balance += item.Myamount;
 			}
-			//allpayment.Clear();
+			allpayment.Clear();
 			return balance;
 		}
 
-		public static async Task<List<string>> GetPreviouspaymentsAsync(int takeamount=8)
+		public static async Task<List<string>> GetPreviouspaymentsAsync(string tilesize,int takeamount=8,int month=0)
 		{
 			reccuringPaymentIds.Clear();
-			var acct = await accountService.GetAllAccounts();
+			DateTime today = DateTime.Now.Date;
+			List<Account> acct = (await  accountService.GetAllAccounts()).ToList();
 			List<PaymentEntity> allpayments = new List<PaymentEntity>();
+			List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 			foreach (Account item in acct)
 			{
-				if (item.Data.ChargedPayments != null)
+				Account accts = await accountService.GetById(item.Data.Id);
+				if (accts.Data.ChargedPayments != null)
 				{
-					allpayments.AddRange(item.Data.ChargedPayments);
+					allpayments.AddRange(accts.Data.ChargedPayments);
 				}
-				if (item.Data.TargetedPayments != null)
+				if (accts.Data.TargetedPayments != null)
 				{
-					allpayments.AddRange(item.Data.TargetedPayments);
+					allpayments.AddRange(accts.Data.TargetedPayments);
 				}
 			}
-		IEnumerable<PaymentEntity> lastmonth = allpayments.OrderByDescending(x=> x.Date).Take(takeamount);
+			foreach (PaymentEntity item in allpayments)
+			{
+				if (item.IsRecurring)
+				{
+						iReccurance reccurance = strategy[item.RecurringPayment.Recurrence]();
+						allpayment.AddRange(reccurance.GetReccurance(item));
+				}
+				else 
+				{
+					LiveTilesPaymentInfo tileinfo = new LiveTilesPaymentInfo();
+					tileinfo.Chargeaccountname = item.ChargedAccount.Name;
+					tileinfo.Myamount = item.Amount;
+					tileinfo.Mydate = item.Date.Date;
+					tileinfo.Type = item.Type;
+					allpayment.Add(tileinfo);
+				}
+			}
 			List<string> returnlist = new List<string>();
+			
+			List<LiveTilesPaymentInfo> lastmonth = allpayment.OrderByDescending(x=>x.Mydate.Date).ThenBy( x=> x.Mydate.Date<= today.Date).Take(takeamount).ToList();
+			int index = 0;
 			foreach (var item in lastmonth)
 			{
-			
+				//{0} from {1}
 				if (item.Type == Foundation.PaymentType.Income)
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePaymentText"), item.Amount.ToString("C2")));
+					switch (tilesize)
+					{
+						case "medium":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileMediumIncomePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
+							break;
+						case "wide":
+						case "large":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname, item.Mydate.Date));
+							break;
+						default:
+							break;
+					}
+
 				}
 				else
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePaymentText"),"-"+ item.Amount.ToString("C2")));
-
+					switch (tilesize)
+					{
+						case "medium":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileMedumExpensePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
+							break;
+						case "wide":
+						case "large":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentPastText"), item.Myamount.ToString("C2"), item.Chargeaccountname, item.Mydate.Date));
+							break;
+						default:
+							break;
+					}
 				}
+				index += 1;
+			}
+			for (int i = index; i < (takeamount-1); i++)
+			{
+				returnlist.Add(string.Empty);
+
 			}
 			allpayments.Clear();
 			return returnlist;
 
 		}
 
-		public static async Task<List<string>> GetNextpaymentsAsync(int takeamount=8)
+		public static async Task<List<string>> GetNextpaymentsAsync(string tilesize,int takeamount=8)
 		{
 			reccuringPaymentIds.Clear();
 			DateTime today = DateTime.Now;
-			var acct = await accountService.GetAllAccounts();
+			List<Account> acct = (await accountService.GetAllAccounts()).ToList();
 			List<PaymentEntity> allpayments = new List<PaymentEntity>();
-			List<PaymentEntity> allpayment = new List<PaymentEntity>();
+			List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 
 			foreach (Account item in acct)
 			{
-				if (item.Data.ChargedPayments != null)
+				Account accts = await accountService.GetById(item.Data.Id);
+				if (accts.Data.ChargedPayments != null)
 				{
-					allpayments.AddRange(item.Data.ChargedPayments);
+					allpayments.AddRange(accts.Data.ChargedPayments);
 				}
-				if (item.Data.TargetedPayments != null)
+				if (accts.Data.TargetedPayments != null)
 				{
-					allpayments.AddRange(item.Data.TargetedPayments);
+					allpayments.AddRange(accts.Data.TargetedPayments);
 				}
 
 			}
@@ -121,36 +179,67 @@ namespace MoneyFox.Windows.Business
 			{
 				if (item.IsRecurring)
 				{
-					
-						iReccurance reccurance = strategy[item.RecurringPayment.Recurrence]();
-						allpayment.AddRange(reccurance.GetFutureReccurance(item));
-					
-				}
-				else if (DateTime.Compare(today,item.Date)<=0)
-				{
-				allpayment.Add(item);
-				}
-			}
-			IEnumerable<PaymentEntity> payments = allpayment.OrderBy(x => x.Date).Take(takeamount);
-			List<string> returnlist = new List<string>();
-			foreach (var item in payments)
-			{
-			
-				if (item.Type == Foundation.PaymentType.Income)
-				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePaymentText"), item.Amount.ToString("C2")));
+
+					iReccurance reccurance = strategy[item.RecurringPayment.Recurrence]();
+					allpayment.AddRange(reccurance.GetReccurance(item));
+
 				}
 				else
 				{
-					returnlist.Add(string.Format(GetResourceKey("LiveTilePaymentText"),"-" +  item.Amount.ToString("C2")));
-
+					LiveTilesPaymentInfo tileinfor = new LiveTilesPaymentInfo();
+					tileinfor.Chargeaccountname = item.ChargedAccount.Name;
+					tileinfor.Myamount = item.Amount;
+					tileinfor.Mydate = item.Date.Date;
+					tileinfor.Type = item.Type;
+					allpayment.Add(tileinfor);
 				}
 			}
+			List<LiveTilesPaymentInfo> payments = allpayment.OrderBy(x=>x.Mydate.Date).ThenBy(x=> x.Mydate.Date>=today).Take(takeamount).ToList();
+			List<string> returnlist = new List<string>();
+			int index = 0;
+			foreach (var item in payments)
+			{
+				if (item.Type == Foundation.PaymentType.Income)
+				{
+					switch (tilesize)
+					{
+						case "medium":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileMediumIncomeFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2")));
+							break;
+						case "wide":
+						case "large":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomeFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2"), item.Mydate.Date));
+							break;
+						default:
+							break;
+					}
+					
+				}
+				else
+				{
+					switch (tilesize)
+					{
+						case "medium":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileMedumExpenseFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2")));
+							break;
+						case "wide":
+						case "large":
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2"),item.Mydate.Date));
+							break;
+						default:
+							break;
+					}
+				}
+				index += 1;
+			}
+		
+				for (int i = index; i < (takeamount-1); i++)
+				{
+					returnlist.Add(string.Empty);
+
+				}
 			
-
-
 			return returnlist;
-
 		}
 
 		public static async Task UpdatePrimaryLiveTile()
@@ -172,18 +261,21 @@ namespace MoneyFox.Windows.Business
 				object b = Localsettings.Values["lastrun"];
 				string lastrun = (string)b;
 				string headertext ="";
-				List<string> displaycontent = new List<string>();
+				List<string> displaycontentmedium = new List<string>();
+				List<string> displaycontentlarge = new List<string>();
 				if (lastrun == "last")
 				{
 					Localsettings.Values["lastrun"] = "next";
 					headertext = GetResourceKey("LiveTileUpcommingPayments");
-					displaycontent = await GetNextpaymentsAsync();
+					displaycontentmedium = await GetNextpaymentsAsync("medium");
+					displaycontentlarge = await GetNextpaymentsAsync("large");
 				}
 				else
 				{
 					Localsettings.Values["lastrun"] = "last";
 					headertext = GetResourceKey("LiveTilePastPayments");
-					displaycontent = await GetPreviouspaymentsAsync();
+					displaycontentmedium = await GetPreviouspaymentsAsync("medium");
+					displaycontentlarge = await GetPreviouspaymentsAsync("large");
 				}
 
 				TileContent content = new TileContent()
@@ -211,41 +303,42 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
+																		Text = displaycontentmedium[0],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		Text = displaycontentmedium[1],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	 new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
-																		HintStyle = AdaptiveTextStyle.CaptionSubtle
+																		Text = displaycontentmedium[2],
+																		HintStyle = AdaptiveTextStyle.CaptionSubtle,
+
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
+																		Text = displaycontentmedium[3],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
+																		Text = displaycontentmedium[4],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
+																		Text = displaycontentmedium[5],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
+																		Text = displaycontentmedium[6],
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
+																		Text = displaycontentmedium[7],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 
@@ -277,41 +370,41 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
+																		Text = displaycontentlarge[0],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		Text = displaycontentlarge[1],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	 new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
+																		Text = displaycontentlarge[2],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
+																		Text = displaycontentlarge[3],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
+																		Text = displaycontentlarge[4],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
+																		Text = displaycontentlarge[5],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
+																		Text = displaycontentlarge[6],
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
+																		Text = displaycontentlarge[7],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 																}
@@ -342,41 +435,41 @@ namespace MoneyFox.Windows.Business
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==1)?displaycontent[0]:string.Empty,
+																		Text = displaycontentlarge[0],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==2)?displaycontent[1]:string.Empty,
+																		Text = displaycontentlarge[1],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	 new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==3)?displaycontent[2]:string.Empty,
+																		Text = displaycontentlarge[2],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==4)?displaycontent[3]:string.Empty,
+																		Text = displaycontentlarge[3],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==5)?displaycontent[4]:string.Empty,
+																		Text = displaycontentlarge[4],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==6)?displaycontent[5]:string.Empty,
+																		Text = displaycontentlarge[5],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	},
 																	new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==7)?displaycontent[6]:string.Empty,
+																		Text = displaycontentlarge[6],
 																		HintStyle=AdaptiveTextStyle.CaptionSubtle
 																	},
 																   new AdaptiveText()
 																	{
-																		Text = (displaycontent.Count()==8)?displaycontent[7]:string.Empty,
+																		Text = displaycontentlarge[7],
 																		HintStyle = AdaptiveTextStyle.CaptionSubtle
 																	}
 
@@ -408,6 +501,8 @@ namespace MoneyFox.Windows.Business
 			strategy.Add(Foundation.PaymentRecurrence.Yearly, () => new RecurrYearly());
 			strategy.Add(Foundation.PaymentRecurrence.Biannually, () => new RecurrbiYearly());
 			var tiles = await SecondaryTile.FindAllForPackageAsync();
+			List<string> displaycontent = new List<string>();
+			displaycontent =await GetPreviouspaymentsAsync("large",3);
 			if (tiles != null)
 			{
 
@@ -433,7 +528,7 @@ namespace MoneyFox.Windows.Business
 										{
 											Children =
 											{
-										new AdaptiveText()
+												new AdaptiveText()
 												{
 													Text = acct.Data.Name,
 													HintStyle = AdaptiveTextStyle.Caption
@@ -581,7 +676,23 @@ namespace MoneyFox.Windows.Business
 												{
 													Text = string.Format(GetResourceKey("LiveTileCurrentMonthsExpenses"),System.Globalization.DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+													Text = displaycontent[0],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												 new AdaptiveText()
+												{
+													Text = displaycontent[1],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+													Text = displaycontent[2],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
+
 
 											}
 										}
@@ -602,18 +713,18 @@ namespace MoneyFox.Windows.Business
 
 		public interface iReccurance
 		{
-			List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year);
-			List<PaymentEntity> GetFutureReccurance(PaymentEntity payment);
+			List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment);
 		}
 
 		public	class RecurrDaily : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -622,18 +733,20 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo tilesPaymentInfo = new LiveTilesPaymentInfo();
+							tilesPaymentInfo.Mydate = startDate.Date;
+							tilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							tilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							tilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(tilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
-							startDate = startDate.AddDays(1);
+							startDate = startDate.AddMonths(1);
 
 						};
 					}
@@ -644,70 +757,12 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-
-							}
-
-							startDate = startDate.AddDays(1);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-				
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddDays(1);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-						
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 							startDate = startDate.AddDays(1);
 
 						};
@@ -719,12 +774,12 @@ namespace MoneyFox.Windows.Business
 
 		public class RecurrWeekdays : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -734,17 +789,27 @@ namespace MoneyFox.Windows.Business
 						while (i < 9)
 						{
 
-							if (DateTime.Compare(today, startDate) <= 0 && startDate.DayOfWeek!=DayOfWeek.Saturday && startDate.DayOfWeek!=DayOfWeek.Sunday)
+							if (startDate.DayOfWeek == DayOfWeek.Saturday || startDate.DayOfWeek == DayOfWeek.Sunday)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
+								startDate = startDate.AddDays(1);
+								continue;
+							}
+							else
+							{
+								LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+								liveTilesPaymentInfo.Mydate = startDate;
+								liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+								liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+								liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+								allpayment.Add(liveTilesPaymentInfo);
+								startDate = startDate.AddDays(1);
+								if (DateTime.Compare(today,startDate)<=0)
+								{
+									i += 1;
+								}
 							}
 
-							startDate = startDate.AddDays(1);
+							
 
 						};
 					}
@@ -755,88 +820,41 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0 && startDate.DayOfWeek != DayOfWeek.Saturday && startDate.DayOfWeek != DayOfWeek.Sunday)
+						
+							if (startDate.DayOfWeek == DayOfWeek.Saturday && startDate.DayOfWeek == DayOfWeek.Sunday)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+								startDate = startDate.AddDays(1);
+								continue;
 
 							}
-
-							startDate = startDate.AddDays(1);
-
+							else
+							{
+								LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+								liveTilesPaymentInfo.Mydate = startDate;
+								liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+								liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+								liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+								allpayment.Add(liveTilesPaymentInfo);
+								startDate = startDate.AddDays(1);
+								
+							}
 						};
 					}
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year )
-						{
-							if (startDate.Month == month && startDate.Year == year && startDate.DayOfWeek != DayOfWeek.Saturday && startDate.DayOfWeek != DayOfWeek.Sunday)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddDays(1);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year && startDate.DayOfWeek != DayOfWeek.Saturday && startDate.DayOfWeek != DayOfWeek.Sunday)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddDays(1);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
+	
 		}
 
 		public 	class RecurrWeekly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -845,14 +863,17 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
+							
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
@@ -867,16 +888,14 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
+							
 
-							}
 
 							startDate = startDate.AddDays(7);
 
@@ -885,66 +904,67 @@ namespace MoneyFox.Windows.Business
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddDays(7);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddDays(7);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
-
+		
 
 		}
 
 		public class RecurrBiWeekly : iReccurance
 		{
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
+			{
+				int i = 1;
+				DateTime today = DateTime.Now;
+
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
+				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
+				{
+					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
+					if (payment.RecurringPayment.IsEndless)
+					{
+						DateTime startDate = payment.RecurringPayment.StartDate;
+						while (i < 9)
+						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
+						
+
+							if (DateTime.Compare(today, startDate) <= 0)
+							{
+
+								i += 1;
+							}
+
+							startDate = startDate.AddDays(14);
+						};
+					}
+					else
+					{
+
+						DateTime startDate = payment.RecurringPayment.StartDate;
+						DateTime endDate = payment.RecurringPayment.EndDate.Value;
+						while (DateTime.Compare(startDate, endDate) <= 0)
+						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
+
+
+
+							startDate = startDate.AddDays (14);
+
+						};
+					}
+				}
+				return allpayment;
+			}
+
 			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
 			{
 				int i = 1;
@@ -1059,12 +1079,13 @@ namespace MoneyFox.Windows.Business
 
 		public class RecurrMonthly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+			
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -1073,14 +1094,16 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
@@ -1095,16 +1118,14 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
-							}
+
 
 							startDate = startDate.AddMonths(1);
 
@@ -1113,71 +1134,18 @@ namespace MoneyFox.Windows.Business
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddMonths(1);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddMonths(1);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
+	
 
 		}
 
 		public class RecurrBiMonthly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -1186,14 +1154,16 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
@@ -1208,16 +1178,14 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
-							}
+
 
 							startDate = startDate.AddMonths(2);
 
@@ -1226,71 +1194,17 @@ namespace MoneyFox.Windows.Business
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddMonths(2);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddMonths(2);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
-
+	
 		}
 
 		public class RecurrQuarterly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -1299,18 +1213,20 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
-							startDate = startDate.AddMonths(4);
+							startDate = startDate.AddMonths(3);
 
 						};
 					}
@@ -1321,90 +1237,33 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
-							}
 
-							startDate = startDate.AddMonths(4);
+
+							startDate = startDate.AddMonths(3);
 
 						};
 					}
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddMonths(4);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddMonths(4);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
-
-
+	
 		}
 
 		public class RecurrYearly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -1413,14 +1272,16 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+
 								i += 1;
 							}
 
@@ -1435,16 +1296,14 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
-							}
+
 
 							startDate = startDate.AddMonths(12);
 
@@ -1453,72 +1312,19 @@ namespace MoneyFox.Windows.Business
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddMonths(12);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddMonths(12);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
-
+	
 
 		}
 
 		public	class RecurrbiYearly : iReccurance
 		{
-			public List<PaymentEntity> GetFutureReccurance(PaymentEntity payment)
+
+			public List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
 			{
 				int i = 1;
 				DateTime today = DateTime.Now;
 
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
+				List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
 				{
 					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
@@ -1527,14 +1333,16 @@ namespace MoneyFox.Windows.Business
 						DateTime startDate = payment.RecurringPayment.StartDate;
 						while (i < 9)
 						{
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
 							if (DateTime.Compare(today, startDate) <= 0)
 							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+								
 								i += 1;
 							}
 
@@ -1549,16 +1357,14 @@ namespace MoneyFox.Windows.Business
 						DateTime endDate = payment.RecurringPayment.EndDate.Value;
 						while (DateTime.Compare(startDate, endDate) <= 0)
 						{
-							payment.Date = startDate;
-							if (DateTime.Compare(today, startDate) <= 0)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
+							LiveTilesPaymentInfo liveTilesPaymentInfo = new LiveTilesPaymentInfo();
+							liveTilesPaymentInfo.Mydate = startDate;
+							liveTilesPaymentInfo.Myamount = payment.RecurringPayment.Amount;
+							liveTilesPaymentInfo.Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name;
+							liveTilesPaymentInfo.Type = payment.RecurringPayment.Type;
+							allpayment.Add(liveTilesPaymentInfo);
 
-							}
+
 
 							startDate = startDate.AddMonths(24);
 
@@ -1567,62 +1373,16 @@ namespace MoneyFox.Windows.Business
 				}
 				return allpayment;
 			}
-
-			public List<PaymentEntity> GetMonthlyReccurance(PaymentEntity payment, int month, int year)
-			{
-
-				DateTime today = DateTime.Now;
-				int i = 1;
-				List<PaymentEntity> allpayment = new List<PaymentEntity>();
-
-				if (!reccuringPaymentIds.Contains(payment.RecurringPaymentId.Value))
-				{
-					reccuringPaymentIds.Add(payment.RecurringPaymentId.Value);
-					if (payment.RecurringPayment.IsEndless)
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						while (startDate.Month <= month && startDate.Year <= year)
-						{
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-								i += 1;
-							}
-
-							startDate = startDate.AddMonths(24);
-
-						};
-					}
-					else
-					{
-						DateTime startDate = payment.RecurringPayment.StartDate;
-						DateTime endDate = payment.RecurringPayment.EndDate.Value;
-						while (DateTime.Compare(startDate, endDate) <= 0)
-						{
-
-							if (startDate.Month == month && startDate.Year == year)
-							{
-								payment.Date = startDate;
-								payment.Amount = payment.RecurringPayment.Amount;
-								payment.Type = payment.RecurringPayment.Type;
-								payment.ChargedAccount = payment.RecurringPayment.ChargedAccount;
-								allpayment.Add(payment);
-							}
-
-							startDate = startDate.AddMonths(24);
-
-						};
-					}
-				}
-				return allpayment;
-			}
-
+		
 
 		}
 	
+	}
+	public class LiveTilesPaymentInfo
+	{
+		public DateTime Mydate { get; set; }
+		public double Myamount { get; set; }
+		public PaymentType Type { get; set; }
+		public string Chargeaccountname { get; set; }
 	}
 }

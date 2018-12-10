@@ -703,15 +703,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ShortcutsTitle" xml:space="preserve">
     <value>Shortcuts</value>
   </data>
-
   <data name="LiveTileAccountBalance" xml:space="preserve">
     <value>Bal. : {0}</value>
   </data>
   <data name="LiveTileAccountName" xml:space="preserve">
     <value>Account: {0}</value>
   </data>
-  <data name="LiveTilePaymentText" xml:space="preserve">
-    <value>Amount: {0}</value>
+  <data name="LiveTileMediumIncomePastText" xml:space="preserve">
+    <value>{0} added to {1}</value>
   </data>
   <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
     <value>{0}: {1}</value>
@@ -754,5 +753,26 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Personalization</value>
+  </data>
+  <data name="LiveTileMediumIncomeFutureText" xml:space="preserve">
+    <value>{0} to recieve {1} </value>
+  </data>
+  <data name="LiveTileMediumPaymentFutureText" xml:space="preserve">
+    <value>{0} will have  {1} removed</value>
+  </data>
+  <data name="LiveTileMedumExpensePastText" xml:space="preserve">
+    <value>{0} taken from {1}</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
+    <value>{0} will recieve {1}  on {2}</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
+    <value>{0} add to {1} on {2}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
+    <value>{0} will have {1} removed on {2}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
+    <value>{0} taken from {1} on {2}</value>
   </data>
 </root>
