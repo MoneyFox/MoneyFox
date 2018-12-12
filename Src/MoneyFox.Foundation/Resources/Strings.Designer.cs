@@ -1133,66 +1133,69 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bal. : {0}.
-        /// </summary>
-        public static string LiveTileAccountBalance
-		{
-			get
-			{
-				return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
-			}
-		}
-		/// <summary>
         ///   Looks up a localized string similar to Last Executions:.
         /// </summary>
         public static string LastExecutionBackgroundOperationsLabel {
             get {
                 return ResourceManager.GetString("LastExecutionBackgroundOperationsLabel", resourceCulture);
-        }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account: {0}.
-        /// </summary>
-        public static string LiveTileAccountName
-		{
-			get
-			{
-				return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
-			}
-		}
-		/// <summary>
-        ///   Looks up a localized string similar to Paymentclearing:.
-        /// </summary>
-        public static string LastExecutionClearPaymentLabel {
-            get {
-             return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
             }
         }
         
         /// <summary>
-
-        ///   Looks up a localized string similar to {0}: {1}.
+        ///   Looks up a localized string similar to Paymentclearing:.
         /// </summary>
-        public static string LiveTileCurrentMonthsExpenses
-		{
-			get
-			{
-				return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
-			}
-		}
-		/// <summary>
+        public static string LastExecutionClearPaymentLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Recurring Payments:.
         /// </summary>
         public static string LastExecutionRecurringPaymentLabel {
             get {
                 return ResourceManager.GetString("LastExecutionRecurringPaymentLabel", resourceCulture);
-
             }
         }
         
         /// <summary>
-
+        ///   Looks up a localized string similar to Backup Sync:.
+        /// </summary>
+        public static string LastExecutionSyncBackupLabel {
+            get {
+                return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bal. : {0}.
+        /// </summary>
+        public static string LiveTileAccountBalance {
+            get {
+                return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account: {0}.
+        /// </summary>
+        public static string LiveTileAccountName {
+            get {
+                return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}: {1}.
+        /// </summary>
+        public static string LiveTileCurrentMonthsExpenses {
+            get {
+                return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}: {1}.
         /// </summary>
         public static string LiveTileLastMonthsExpenses {
@@ -1211,31 +1214,47 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount: {0}.
+        ///   Looks up a localized string similar to Upcoming Payments.
         /// </summary>
-        public static string LiveTilePaymentText {
+        public static string LiveTileUpcommingPayments {
             get {
-                return ResourceManager.GetString("LiveTilePaymentText", resourceCulture);
+                return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upcoming Payments.
+        ///   Looks up a localized string similar to {0} will recieve {1}.
         /// </summary>
-        public static string LiveTileUpcommingPayments
-		{
-			get
-			{
-				return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
-			}
-		}
-		///<summary>
-        ///   Looks up a localized string similar to Backup Sync:.
-        /// </summary>
-        public static string LastExecutionSyncBackupLabel {
+        public static string LiveTileWideandLargeIncomeFutureText {
             get {
-                return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
-
+                return ResourceManager.GetString("LiveTileWideandLargeIncomeFutureText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} to {1}.
+        /// </summary>
+        public static string LiveTileWideandLargeIncomePastText {
+            get {
+                return ResourceManager.GetString("LiveTileWideandLargeIncomePastText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} to be taken from {1}.
+        /// </summary>
+        public static string LiveTileWideandLargePaymentFutureText {
+            get {
+                return ResourceManager.GetString("LiveTileWideandLargePaymentFutureText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} taken from {1}.
+        /// </summary>
+        public static string LiveTileWideandLargePaymentPastText {
+            get {
+                return ResourceManager.GetString("LiveTileWideandLargePaymentPastText", resourceCulture);
             }
         }
         

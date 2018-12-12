@@ -79,7 +79,7 @@ namespace MoneyFox.Windows.Views
 			if (!isPinned)
 			{
 			
-				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","Home",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"),TileSize.Default);
+				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","a",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"),TileSize.Default);
 				tile.VisualElements.ShowNameOnSquare150x150Logo = false;
 				tile.VisualElements.ShowNameOnSquare310x310Logo = true;
 				tile.VisualElements.ShowNameOnWide310x150Logo = false;
