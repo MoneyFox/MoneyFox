@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Interfaces;
+using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -37,7 +38,9 @@ namespace MoneyFox.Business.ViewModels
         private void LoginNavigation()
         {
             navigationService.Navigate<MainViewModel>();
-            navigationService.Navigate<AccountListViewModel>();
+
+            var mainView = Mvx.IoCProvider.Resolve<MainViewModel>();
+            (mainView as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
         }
     }
 }
