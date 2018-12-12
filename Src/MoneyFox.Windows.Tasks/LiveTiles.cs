@@ -12,8 +12,8 @@ namespace MoneyFox.Windows.Tasks
 
 			serviceDeferral = taskInstance.GetDeferral();
 			taskInstance.Canceled += OnTaskCanceled;
-			//await CommonFunctions.UpdatePrimaryLiveTile();
-			//await CommonFunctions.UpdateSecondaryLiveTiles();
+			await CommonFunctions.UpdatePrimaryLiveTile();
+			await CommonFunctions.UpdateSecondaryLiveTiles();
 			serviceDeferral?.Complete();
 
 
