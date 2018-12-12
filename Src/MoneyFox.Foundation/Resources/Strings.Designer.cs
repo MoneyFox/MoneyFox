@@ -1205,42 +1205,6 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} to recieve {1} .
-        /// </summary>
-        public static string LiveTileMediumIncomeFutureText {
-            get {
-                return ResourceManager.GetString("LiveTileMediumIncomeFutureText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} added to {1}.
-        /// </summary>
-        public static string LiveTileMediumIncomePastText {
-            get {
-                return ResourceManager.GetString("LiveTileMediumIncomePastText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} will have  {1} removed.
-        /// </summary>
-        public static string LiveTileMediumPaymentFutureText {
-            get {
-                return ResourceManager.GetString("LiveTileMediumPaymentFutureText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} taken from {1}.
-        /// </summary>
-        public static string LiveTileMedumExpensePastText {
-            get {
-                return ResourceManager.GetString("LiveTileMedumExpensePastText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Past Payments.
         /// </summary>
         public static string LiveTilePastPayments {
@@ -1259,7 +1223,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} will recieve {1}  on {2}.
+        ///   Looks up a localized string similar to {0} will recieve {1}.
         /// </summary>
         public static string LiveTileWideandLargeIncomeFutureText {
             get {
@@ -1268,7 +1232,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} added to {1} on {2}.
+        ///   Looks up a localized string similar to {0} to {1}.
         /// </summary>
         public static string LiveTileWideandLargeIncomePastText {
             get {
@@ -1277,7 +1241,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} will have {1} removed on {2}.
+        ///   Looks up a localized string similar to {0} to be taken from {1}.
         /// </summary>
         public static string LiveTileWideandLargePaymentFutureText {
             get {
@@ -1286,7 +1250,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} taken from {1} on {2}.
+        ///   Looks up a localized string similar to {0} taken from {1}.
         /// </summary>
         public static string LiveTileWideandLargePaymentPastText {
             get {

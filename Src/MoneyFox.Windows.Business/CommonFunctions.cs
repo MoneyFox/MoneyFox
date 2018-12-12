@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope;
 using Microsoft.Toolkit.Uwp.Notifications;
@@ -12,7 +11,6 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
-using Windows.ApplicationModel.VoiceCommands;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
@@ -21,11 +19,13 @@ namespace MoneyFox.Windows.Business
 {
 	public static class CommonFunctions
 	{
+
 		private static AccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 		private static PaymentService paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 		private static Dictionary<Foundation.PaymentRecurrence, Func<CommonFunctions.iReccurance>> strategy = new Dictionary<Foundation.PaymentRecurrence, Func<CommonFunctions.iReccurance>>();
 		private static ApplicationDataContainer Localsettings = ApplicationData.Current.LocalSettings;
 		private static List<int> reccuringPaymentIds = new List<int>();
+		
 
 		public static string TruncateNumber(double num)
 		{
@@ -85,6 +85,7 @@ namespace MoneyFox.Windows.Business
 				}
 			}
 			List<LiveTilesPaymentInfo> tiles = allpayment.Where(x => x.Mydate.Date.Month == month && x.Mydate.Date.Year == year).ToList();
+
 			foreach (LiveTilesPaymentInfo item in tiles)
 			{
 				balance += item.Myamount;
@@ -93,7 +94,7 @@ namespace MoneyFox.Windows.Business
 			return balance;
 		}
 
-		public static async Task<List<string>> GetPreviouspaymentsAsync(string tilesize,int takeamount=8,int month=0)
+		public static async Task<List<string>> GetPreviouspaymentsAsync(string tilesize,int takeamount=8)
 		{
 			reccuringPaymentIds.Clear();
 			DateTime today = DateTime.Now.Date;
@@ -141,7 +142,7 @@ namespace MoneyFox.Windows.Business
 					switch (tilesize)
 					{
 						case "medium":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileMediumIncomePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
+							returnlist.Add(item.Chargeaccountname + " +" + TruncateNumber(item.Myamount));
 							break;
 						case "wide":
 						case "large":
@@ -157,11 +158,11 @@ namespace MoneyFox.Windows.Business
 					switch (tilesize)
 					{
 						case "medium":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileMedumExpensePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
+							returnlist.Add(item.Chargeaccountname + " -" + TruncateNumber(item.Myamount));
 							break;
 						case "wide":
 						case "large":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentPastText"), item.Myamount.ToString("C2"), item.Chargeaccountname, item.Mydate.Date));
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentPastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
 							break;
 						default:
 							break;
@@ -229,11 +230,12 @@ namespace MoneyFox.Windows.Business
 					switch (tilesize)
 					{
 						case "medium":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileMediumIncomeFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2")));
+							returnlist.Add(item.Chargeaccountname + " +" + TruncateNumber(item.Myamount));
 							break;
 						case "wide":
 						case "large":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomeFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2"), item.Mydate.Date));
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomeFutureText"), item.Chargeaccountname,"+"+ item.Myamount.ToString("C2"), item.Mydate.Date));
+
 							break;
 						default:
 							break;
@@ -245,11 +247,12 @@ namespace MoneyFox.Windows.Business
 					switch (tilesize)
 					{
 						case "medium":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileMedumExpenseFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2")));
+							returnlist.Add(item.Chargeaccountname +" -"+ TruncateNumber(item.Myamount));
+
 							break;
 						case "wide":
 						case "large":
-							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentFutureText"), item.Chargeaccountname, item.Myamount.ToString("C2"),item.Mydate.Date));
+							returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentFutureText"), item.Chargeaccountname,"-"+ item.Myamount.ToString("C2")));
 							break;
 						default:
 							break;
@@ -292,15 +295,15 @@ namespace MoneyFox.Windows.Business
 				{
 					Localsettings.Values["lastrun"] = "next";
 					headertext = GetResourceKey("LiveTileUpcommingPayments");
-					displaycontentmedium = await GetNextpaymentsAsync("medium");
-					displaycontentlarge = await GetNextpaymentsAsync("large");
+					displaycontentmedium = await GetNextpaymentsAsync("medium",8);
+					displaycontentlarge = await GetNextpaymentsAsync("large",8);
 				}
 				else
 				{
 					Localsettings.Values["lastrun"] = "last";
 					headertext = GetResourceKey("LiveTilePastPayments");
-					displaycontentmedium = await GetPreviouspaymentsAsync("medium");
-					displaycontentlarge = await GetPreviouspaymentsAsync("large");
+					displaycontentmedium = await GetPreviouspaymentsAsync("medium",8);
+					displaycontentlarge = await GetPreviouspaymentsAsync("large",8);
 				}
 
 				TileContent content = new TileContent()
@@ -509,8 +512,10 @@ namespace MoneyFox.Windows.Business
 				};
 				TileNotification tn = new TileNotification(content.GetXml());
 				TileUpdateManager.CreateTileUpdaterForApplication().Update(tn);
+				
 
 			}
+			
 		}
 
 		public static async Task UpdateSecondaryLiveTiles()
@@ -527,7 +532,7 @@ namespace MoneyFox.Windows.Business
 			strategy.Add(Foundation.PaymentRecurrence.Biannually, () => new RecurrbiYearly());
 			var tiles = await SecondaryTile.FindAllForPackageAsync();
 			List<string> displaycontent = new List<string>();
-			displaycontent =await GetPreviouspaymentsAsync("large",3);
+			displaycontent =await GetPreviouspaymentsAsync("large",6);
 			if (tiles != null)
 			{
 
@@ -704,6 +709,11 @@ namespace MoneyFox.Windows.Business
 												},
 												new AdaptiveText()
 												{
+													Text = GetResourceKey("LiveTilePastPayments"),
+													HintStyle = AdaptiveTextStyle.Caption
+												},
+												new AdaptiveText()
+												{
 													Text = displaycontent[0],
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												},
@@ -715,6 +725,22 @@ namespace MoneyFox.Windows.Business
 												new AdaptiveText()
 												{
 													Text = displaycontent[2],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+													Text = displaycontent[3],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												}
+												,
+												new AdaptiveText()
+												{
+													Text = displaycontent[4],
+													HintStyle = AdaptiveTextStyle.CaptionSubtle
+												},
+												new AdaptiveText()
+												{
+													Text = displaycontent[5],
 													HintStyle = AdaptiveTextStyle.CaptionSubtle
 												}
 
@@ -733,7 +759,7 @@ namespace MoneyFox.Windows.Business
 					TileUpdateManager.CreateTileUpdaterForSecondaryTile(item.TileId).Update(tn);
 				}
 			}
-
+			
 		}
 
 		public interface iReccurance
