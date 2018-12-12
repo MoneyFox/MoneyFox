@@ -27,6 +27,8 @@ using MoneyFox.Windows.Tasks;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
+using MoneyFox.Business.Authentication;
+using MvvmCross.Navigation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -104,10 +106,20 @@ namespace MoneyFox.Windows
 				BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
 				BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
-				mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-				(mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
 
-				OverrideTitleBarColor();
+                if (!Mvx.IoCProvider.CanResolve<Session>()) return;
+
+                if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+                {
+                    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                }
+                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
+                {
+                    await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<LoginViewModel>();
+                }
+
+                OverrideTitleBarColor();
 
 				//If Jump Lists are supported, add them
 				if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
