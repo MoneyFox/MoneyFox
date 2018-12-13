@@ -23,4 +23,4 @@ namespace MoneyFox.iOS
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         }
     }
-}
+} 
