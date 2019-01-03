@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.6.0" />
+    <PackageReference Include="AutoFixture" Version="4.5.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Moq" Version="4.8.2" />
     <PackageReference Include="MvvmCross.Tests" Version="6.1.2" />
