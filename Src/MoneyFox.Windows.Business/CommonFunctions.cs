@@ -20,11 +20,10 @@ namespace MoneyFox.Windows.Business
 {
     public static class CommonFunctions
     {
-        private static AccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+        private static IAccountService accountService = new AccountService(new AmbientDbContextLocator(), new DbContextScopeFactory());
         private static Dictionary<PaymentRecurrence, Func<CommonFunctions.IReccurance>> strategy = new Dictionary<Foundation.PaymentRecurrence, Func<CommonFunctions.IReccurance>>();
         private static ApplicationDataContainer Localsettings = ApplicationData.Current.LocalSettings;
         private static List<int> reccuringPaymentIds = new List<int>();
-
 
         public static string GetResourceKey(string keytofind)
         {
@@ -121,7 +120,7 @@ namespace MoneyFox.Windows.Business
 
                         case "wide":
                         case "large":
-                            returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomePastText"), item.Myamount.ToString("C2"), item.Chargeaccountname, item.Mydate.Date));
+                            returnlist.Add(string.Format(Strings.LiveTileWideandLargeIncomePastText, item.Myamount.ToString("C2"), item.Chargeaccountname, item.Mydate.Date));
                             break;
 
                         default:
@@ -138,7 +137,7 @@ namespace MoneyFox.Windows.Business
 
                         case "wide":
                         case "large":
-                            returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentPastText"), item.Myamount.ToString("C2"), item.Chargeaccountname));
+                            returnlist.Add(string.Format(Strings.LiveTileWideandLargePaymentPastText, item.Myamount.ToString("C2"), item.Chargeaccountname));
                             break;
 
                         default:
@@ -207,7 +206,7 @@ namespace MoneyFox.Windows.Business
 
                         case "wide":
                         case "large":
-                            returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargeIncomeFutureText"), item.Chargeaccountname, "+" + item.Myamount.ToString("C2"), item.Mydate.Date));
+                            returnlist.Add(string.Format(Strings.LiveTileWideandLargeIncomeFutureText, item.Chargeaccountname, "+" + item.Myamount.ToString("C2"), item.Mydate.Date));
 
                             break;
 
@@ -226,7 +225,7 @@ namespace MoneyFox.Windows.Business
 
                         case "wide":
                         case "large":
-                            returnlist.Add(string.Format(GetResourceKey("LiveTileWideandLargePaymentFutureText"), item.Chargeaccountname, "-" + item.Myamount.ToString("C2")));
+                            returnlist.Add(string.Format(Strings.LiveTileWideandLargePaymentFutureText, item.Chargeaccountname, "-" + item.Myamount.ToString("C2")));
                             break;
 
                         default:
