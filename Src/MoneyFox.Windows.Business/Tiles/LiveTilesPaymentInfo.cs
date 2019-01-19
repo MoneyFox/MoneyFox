@@ -5,8 +5,8 @@ namespace MoneyFox.Windows.Business
 {
     public class LiveTilesPaymentInfo
     {
-        public DateTime Mydate { get; set; }
-        public double Myamount { get; set; }
+        public DateTime Date { get; set; }
+        public double Amount { get; set; }
         public PaymentType Type { get; set; }
         public string Chargeaccountname { get; set; }
     }

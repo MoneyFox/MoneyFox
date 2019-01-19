@@ -316,12 +316,12 @@ namespace MoneyFox.Windows.Business.Tiles
             }
 
             List<LiveTilesPaymentInfo> tiles = allpayment
-                .Where(x => x.Mydate.Date.Month == month && x.Mydate.Date.Year == year)
+                .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
                 .ToList();
 
             foreach (LiveTilesPaymentInfo item in tiles)
             {
-                balance += item.Myamount;
+                balance += item.Amount;
             }
             allpayment.Clear();
             return balance;
@@ -423,8 +423,8 @@ namespace MoneyFox.Windows.Business.Tiles
                 {
                     LiveTilesPaymentInfo tileinfo = new LiveTilesPaymentInfo();
                     tileinfo.Chargeaccountname = item.ChargedAccount.Name;
-                    tileinfo.Myamount = item.Amount;
-                    tileinfo.Mydate = item.Date.Date;
+                    tileinfo.Amount = item.Amount;
+                    tileinfo.Date = item.Date.Date;
                     tileinfo.Type = item.Type;
                     allpayment.Add(tileinfo);
                 }
@@ -434,15 +434,15 @@ namespace MoneyFox.Windows.Business.Tiles
 
             if (paymentInformation == PaymentInformation.Previous)
             {
-                payments = allpayment.OrderByDescending(x => x.Mydate.Date)
-                    .ThenBy(x => x.Mydate.Date <= DateTime.Today.Date)
+                payments = allpayment.OrderByDescending(x => x.Date.Date)
+                    .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
                     .Take(numberOfPayments)
                     .ToList();
             }
             else
             {
-                payments = allpayment.OrderBy(x => x.Mydate.Date)
-                    .ThenBy(x => x.Mydate.Date >= DateTime.Today.Date)
+                payments = allpayment.OrderBy(x => x.Date.Date)
+                    .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
                     .Take(numberOfPayments)
                     .ToList();
             }
@@ -486,10 +486,16 @@ namespace MoneyFox.Windows.Business.Tiles
         {
             var liveTilesPaymentInfo = new LiveTilesPaymentInfo
             {
-                Mydate = startDate,
-                Myamount = payment.RecurringPayment.Amount,
-                Chargeaccountname = payment.RecurringPayment.ChargedAccount.Name,
-                Type = payment.RecurringPayment.Type
+                Date = startDate,
+                Amount = payment.RecurringPayment == null
+                    ? payment.Amount
+                    : payment.RecurringPayment.Amount,
+                Chargeaccountname = payment.RecurringPayment == null
+                    ? payment.ChargedAccount.Name 
+                    : payment.RecurringPayment?.ChargedAccount.Name,
+                Type = payment.RecurringPayment == null
+                    ? payment.Type 
+                    : payment.RecurringPayment.Type
             };
             allpayment.Add(liveTilesPaymentInfo);
             return LiveTileHelper.AddDateByRecurrence(payment, startDate);

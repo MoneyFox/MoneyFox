@@ -48,11 +48,11 @@ namespace MoneyFox.Windows.Business.Tiles
                 switch (tilesize)
                 {
                     case TileSizeOptions.Medium:
-                        return liveTileItem.Chargeaccountname + " +" + TruncateNumber(liveTileItem.Myamount);
+                        return liveTileItem.Chargeaccountname + " +" + TruncateNumber(liveTileItem.Amount);
 
                     case TileSizeOptions.Wide:
                     case TileSizeOptions.Large:
-                        return string.Format(Strings.LiveTileWideandLargeIncomePastText, liveTileItem.Myamount.ToString("C2"), liveTileItem.Chargeaccountname, liveTileItem.Mydate.Date);
+                        return string.Format(Strings.LiveTileWideandLargeIncomePastText, liveTileItem.Amount.ToString("C2"), liveTileItem.Chargeaccountname, liveTileItem.Date.Date);
 
                     default:
                         return string.Empty;
@@ -63,11 +63,11 @@ namespace MoneyFox.Windows.Business.Tiles
                 switch (tilesize)
                 {
                     case TileSizeOptions.Medium:
-                        return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Myamount);
+                        return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Amount);
 
                     case TileSizeOptions.Wide:
                     case TileSizeOptions.Large:
-                        return string.Format(Strings.LiveTileWideandLargePaymentPastText, liveTileItem.Myamount.ToString("C2"), liveTileItem.Chargeaccountname);
+                        return string.Format(Strings.LiveTileWideandLargePaymentPastText, liveTileItem.Amount.ToString("C2"), liveTileItem.Chargeaccountname);
 
                     default:
                         return string.Empty;
