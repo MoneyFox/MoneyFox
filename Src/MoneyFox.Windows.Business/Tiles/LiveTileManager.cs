@@ -40,15 +40,15 @@ namespace MoneyFox.Windows.Business.Tiles
                 {
                     Localsettings.Values["lastrun"] = "next";
                     headertext = Strings.LiveTileUpcommingPayments;
-                    displaycontentmedium = await GetPaymentsAsync(TileSize.Medium, PaymentInformation.Next);
-                    displaycontentlarge = await GetPaymentsAsync(TileSize.Large, PaymentInformation.Next);
+                    displaycontentmedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Next);
+                    displaycontentlarge = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Next);
                 }
                 else
                 {
                     Localsettings.Values["lastrun"] = "last";
                     headertext = Strings.LiveTilePastPayments;
-                    displaycontentmedium = await GetPaymentsAsync(TileSize.Medium, PaymentInformation.Previous);
-                    displaycontentlarge = await GetPaymentsAsync(TileSize.Large, PaymentInformation.Previous);
+                    displaycontentmedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Previous);
+                    displaycontentlarge = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous);
                 }
 
                 TileContent content = new TileContent()
@@ -70,7 +70,7 @@ namespace MoneyFox.Windows.Business.Tiles
         {
             var tiles = await SecondaryTile.FindAllForPackageAsync();
             List<string> displaycontent = new List<string>();
-            displaycontent = await GetPaymentsAsync(TileSize.Large, PaymentInformation.Previous);
+            displaycontent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous);
 
             if (tiles == null) return;
 
@@ -395,7 +395,7 @@ namespace MoneyFox.Windows.Business.Tiles
             };
         }
 
-        private async Task<List<string>> GetPaymentsAsync(TileSize tilesize, PaymentInformation paymentInformation)
+        private async Task<List<string>> GetPaymentsAsync(TileSizeOptions tilesize, PaymentInformation paymentInformation)
         {
             List<Account> acct = (await accountService.GetAllAccounts()).ToList();
             List<PaymentEntity> allpayments = new List<PaymentEntity>();

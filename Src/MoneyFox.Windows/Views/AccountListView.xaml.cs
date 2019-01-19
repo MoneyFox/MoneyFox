@@ -7,6 +7,9 @@ using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.DesignTime;
 using System;
 using Windows.UI.StartScreen;
+using MvvmCross;
+using MoneyFox.DataAccess.DataServices;
+using MoneyFox.Windows.Business.Tiles;
 
 namespace MoneyFox.Windows.Views
 {
@@ -60,21 +63,23 @@ namespace MoneyFox.Windows.Views
 
 			(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
 		}
+
 		private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
 		{
 			var element = (FrameworkElement)sender;
 			var account = element.DataContext as AccountViewModel;
-			if (account == null)
-			{
-				return;
-			}
+			if (account == null) return;
+            if (!Mvx.IoCProvider.CanResolve<IAccountService>()) return;
+
+            var liveTileManager = new LiveTileManager(Mvx.IoCProvider.Resolve<IAccountService>());
+
 			var name = account.Account;
 			int id = name.Data.Id;
 			bool isPinned = SecondaryTile.Exists(id.ToString());
 			if (!isPinned)
 			{
-			
-				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","a",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"),TileSize.Default);
+
+				SecondaryTile tile = new SecondaryTile(id.ToString(),"Money Fox","a",new Uri("ms-appx:///Assets/SmallTile.scale-150.png"), TileSize.Default);
 				tile.VisualElements.ShowNameOnSquare150x150Logo = false;
 				tile.VisualElements.ShowNameOnSquare310x310Logo = true;
 				tile.VisualElements.ShowNameOnWide310x150Logo = false;
@@ -85,13 +90,13 @@ namespace MoneyFox.Windows.Views
 				bool ispinned = await tile.RequestCreateAsync();
 				if (ispinned)
 				{
-					await CommonFunctions.UpdateSecondaryLiveTiles();
+					await liveTileManager.UpdateSecondaryLiveTiles();
 				}
 			}
 			else
 			{
-				await CommonFunctions.UpdateSecondaryLiveTiles();
-				await CommonFunctions.UpdatePrimaryLiveTile();
+				await liveTileManager.UpdateSecondaryLiveTiles();
+				await liveTileManager.UpdatePrimaryLiveTile();
 			}
 		}
 	}

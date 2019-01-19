@@ -41,17 +41,17 @@ namespace MoneyFox.Windows.Business.Tiles
             return await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
         }
 
-        public static string GetTileText(TileSize tilesize, LiveTilesPaymentInfo liveTileItem)
+        public static string GetTileText(TileSizeOptions tilesize, LiveTilesPaymentInfo liveTileItem)
         {
             if (liveTileItem.Type == PaymentType.Income)
             {
                 switch (tilesize)
                 {
-                    case TileSize.Medium:
+                    case TileSizeOptions.Medium:
                         return liveTileItem.Chargeaccountname + " +" + TruncateNumber(liveTileItem.Myamount);
 
-                    case TileSize.Wide:
-                    case TileSize.Large:
+                    case TileSizeOptions.Wide:
+                    case TileSizeOptions.Large:
                         return string.Format(Strings.LiveTileWideandLargeIncomePastText, liveTileItem.Myamount.ToString("C2"), liveTileItem.Chargeaccountname, liveTileItem.Mydate.Date);
 
                     default:
@@ -62,11 +62,11 @@ namespace MoneyFox.Windows.Business.Tiles
             {
                 switch (tilesize)
                 {
-                    case TileSize.Medium:
+                    case TileSizeOptions.Medium:
                         return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Myamount);
 
-                    case TileSize.Wide:
-                    case TileSize.Large:
+                    case TileSizeOptions.Wide:
+                    case TileSizeOptions.Large:
                         return string.Format(Strings.LiveTileWideandLargePaymentPastText, liveTileItem.Myamount.ToString("C2"), liveTileItem.Chargeaccountname);
 
                     default:
