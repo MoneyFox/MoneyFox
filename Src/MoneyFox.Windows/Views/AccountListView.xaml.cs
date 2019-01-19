@@ -5,20 +5,15 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Business.ViewModels.DesignTime;
-using Windows.ApplicationModel.AppService;
-using Windows.Foundation.Collections;
 using System;
 using Windows.UI.StartScreen;
-using Microsoft.Toolkit.Uwp.Notifications;
-using MoneyFox.Windows.Business;
-using Windows.UI.Notifications;
 
 namespace MoneyFox.Windows.Views
 {
-	/// <summary>
-	///     View to display an list of accounts.
-	/// </summary>
-	public sealed partial class AccountListView
+    /// <summary>
+    ///     View to display an list of accounts.
+    /// </summary>
+    public sealed partial class AccountListView
 	{
 		/// <summary>
 		///     Initialize View.
