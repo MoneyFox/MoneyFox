@@ -333,9 +333,6 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Date de Début</value>
   </data>
-  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Sélectionnez une statistique</value>
-  </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Dernière sauvegarde créée le :</value>
   </data>
@@ -359,9 +356,6 @@
   </data>
   <data name="Loading.Text" xml:space="preserve">
     <value>Chargement en cours...</value>
-  </data>
-  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
-    <value>Si vous activez ce paramètre, après chaque changement sur la base de données, une sauvegarde sera faite sur OneDrive. Aussi si vous lancez l’application elle vérifiera s’il y a des sauvegardes plus récentes et la restaurera dans l’affirmative.</value>
   </data>
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur crowdin et aider à améliorer Money Fox :</value>
@@ -390,14 +384,8 @@
   <data name="GeneralContribution.Text" xml:space="preserve">
     <value>Voir toutes les contributions sur GitHub :</value>
   </data>
-  <data name="AutoBackupSetting.Header" xml:space="preserve">
-    <value>Télécharger les sauvegardes manuellement</value>
-  </data>
   <data name="AccoutnExcluded.Content" xml:space="preserve">
     <value>Exclure le compte du solde</value>
-  </data>
-  <data name="BackupSyncRecurrenceInfo.Text" xml:space="preserve">
-    <value>Set the amount of hours to sync the backup.</value>
   </data>
   <data name="ExcludedAccounts.Text" xml:space="preserve">
     <value>Excluded Accounts</value>
@@ -443,11 +431,5 @@
   </data>
   <data name="TimeRangeStart.Header" xml:space="preserve">
     <value>Time Range Start</value>
-  </data>
-  <data name="CategoryGroupPlaceholder.Text" xml:space="preserve">
-    <value>There are no groups. Add one by tapping on the plus symbol at the bottom.</value>
-  </data>
-  <data name="CategoryGroupTitle.Text" xml:space="preserve">
-    <value>Groups</value>
   </data>
 </root>
