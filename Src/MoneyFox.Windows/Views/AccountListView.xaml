@@ -30,7 +30,7 @@
                             <MenuFlyoutItem Icon="Delete"
                                             Click="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
-                            <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="Pin account to start menu">
+                            <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="{Binding Resources[PintAccountLabel]}">
                                 <MenuFlyoutItem.Icon>
                                     <SymbolIcon Symbol="Pin"/>
                                 </MenuFlyoutItem.Icon>

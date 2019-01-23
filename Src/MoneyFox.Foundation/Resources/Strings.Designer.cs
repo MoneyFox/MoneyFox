@@ -1584,6 +1584,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pin account to start menu.
+        /// </summary>
+        public static string PintAccountLabel {
+            get {
+                return ResourceManager.GetString("PintAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quarterly.
         /// </summary>
         public static string QuarterlyLabel {
