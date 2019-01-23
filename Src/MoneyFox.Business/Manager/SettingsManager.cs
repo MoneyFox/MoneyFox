@@ -95,7 +95,7 @@ namespace MoneyFox.Business.Manager
             {
                 var dateString = settingsAdapter.GetValue(DATABASE_LAST_UPDATE_KEYNAME,
                                                           DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
-                return Convert.ToDateTime(dateString);
+                return Convert.ToDateTime(dateString, CultureInfo.InvariantCulture);
             }
             set => settingsAdapter.AddOrUpdate(DATABASE_LAST_UPDATE_KEYNAME,
                                                value.ToString(CultureInfo.InvariantCulture));
@@ -132,7 +132,10 @@ namespace MoneyFox.Business.Manager
             {
                 DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
-                                                               LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT), out outValue))
+                                                               LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT),
+                                                               CultureInfo.InvariantCulture,
+                                                               DateTimeStyles.None,
+                                                               out outValue))
                 {
                     return outValue;
                 }
@@ -148,7 +151,10 @@ namespace MoneyFox.Business.Manager
             {
                 DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
-                                                               LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT), out outValue))
+                                                               LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT),
+                                                               CultureInfo.InvariantCulture,
+                                                               DateTimeStyles.None,
+                                                               out outValue))
                 {
                     return outValue;
                 }
@@ -164,7 +170,10 @@ namespace MoneyFox.Business.Manager
             {
                 DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
-                                                               LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT), out outValue))
+                                                               LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT),
+                                                               CultureInfo.InvariantCulture,
+                                                               DateTimeStyles.None,
+                                                               out outValue))
                 {
                     return outValue;
                 }
