@@ -5,7 +5,6 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using MoneyFox.Business;
 using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Manager;
 using MoneyFox.Business.Services;
@@ -14,7 +13,6 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross;
 using MvvmCross.Plugin.File;
-using Plugin.Connectivity;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -75,7 +73,7 @@ namespace MoneyFox.Droid.Jobs
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                                         settingsManager,
-                                        new ConnectivityImplementation())
+                                        new ConnectivtyAdapter())
                     .DownloadBackup();
 
                 JobFinished(args, false);

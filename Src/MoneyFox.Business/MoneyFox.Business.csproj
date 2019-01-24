@@ -32,7 +32,6 @@
     <PackageReference Include="MvvmCross.Plugin.ResxLocalization" Version="6.2.2" />
     <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.2.2" />
     <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.2.2" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
