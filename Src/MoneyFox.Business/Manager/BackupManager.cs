@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Extensions;
@@ -91,10 +93,20 @@ namespace MoneyFox.Business.Manager
             {
                 if (!settingsManager.IsBackupAutouploadEnabled) return;
 
-                if (await GetBackupDate() > settingsManager.LastDatabaseUpdate)
+                bool backupRestored = false;
+                var backupDate = await GetBackupDate().ConfigureAwait(false);
+                if (backupDate > settingsManager.LastDatabaseUpdate)
                 {
-                    await RestoreBackup();
+                    backupRestored = true;
+                    await RestoreBackup().ConfigureAwait(false);
                 }
+
+                Analytics.TrackEvent("Backup Sync", new Dictionary<string, string>
+                    {
+                        { "Backup Restored? " , backupRestored.ToString() },
+                        { "Backupdate: " , backupDate.ToLongDateString()},
+                        { "Last Backupdate: " , settingsManager.LastDatabaseUpdate.ToLongDateString()},
+                    });
             }
             catch (Exception ex)
             {
