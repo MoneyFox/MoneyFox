@@ -73,7 +73,7 @@ namespace MoneyFox.Droid.Jobs
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                                         settingsManager,
-                                        new ConnectivtyAdapter())
+                                        new ConnectivityAdapter())
                     .DownloadBackup();
 
                 JobFinished(args, false);

@@ -31,7 +31,7 @@ namespace MoneyFox.Windows.Tasks
                     new OneDriveService(new OneDriveAuthenticator(true)),
                     new MvxWindowsFileStore(),
                     settingsManager,
-                    new ConnectivtyAdapter());
+                    new ConnectivityAdapter());
 
                 await backupManager.DownloadBackup();
             }

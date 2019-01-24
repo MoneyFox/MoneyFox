@@ -120,7 +120,7 @@ namespace MoneyFox.iOS
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                                         settingsManager,
-                                        new ConnectivtyAdapter())
+                                        new ConnectivityAdapter())
                     .DownloadBackup();
             } 
             catch (Exception ex)

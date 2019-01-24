@@ -49,7 +49,7 @@ namespace MoneyFox.Business.ViewModels
     public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
         private readonly IBackupManager backupManager;
-        private readonly IConnectivtyAdapter connectivity;
+        private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private bool backupAvailable;
@@ -59,7 +59,7 @@ namespace MoneyFox.Business.ViewModels
 
         public BackupViewModel(IBackupManager backupManager,
                                IDialogService dialogService,
-                               IConnectivtyAdapter connectivity,
+                               IConnectivityAdapter connectivity,
                                ISettingsManager settingsManager,
                                IMvxLogProvider logProvider,
                                IMvxNavigationService navigationService) : base(logProvider, navigationService)

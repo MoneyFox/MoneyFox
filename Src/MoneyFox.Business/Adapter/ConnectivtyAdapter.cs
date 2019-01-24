@@ -1,15 +1,24 @@
 ﻿using System;
+using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Business.Adapter
 {
-    public interface IConnectivtyAdapter
+    /// <summary>
+    ///     Provides access to the connectivity state.
+    /// </summary>
+    public interface IConnectivityAdapter
     {
+        /// <summary>
+        ///     returns if the device is connected to the internet.
+        /// </summary>
         bool IsConnected { get; }
     }
 
-    public class ConnectivtyAdapter : IConnectivtyAdapter
+    /// <inheritdoc />
+    public class ConnectivityAdapter : IConnectivityAdapter
     {
+        /// <inheritdoc />
         public bool IsConnected
         {
             get
@@ -20,6 +29,7 @@ namespace MoneyFox.Business.Adapter
                 }
                 catch (Exception ex)
                 {
+                    Crashes.TrackError(ex);
                     return false;
                 }
             }

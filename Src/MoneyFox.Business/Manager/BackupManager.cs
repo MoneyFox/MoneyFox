@@ -20,7 +20,7 @@ namespace MoneyFox.Business.Manager
 
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
-        private readonly IConnectivtyAdapter connectivity;
+        private readonly IConnectivityAdapter connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -28,7 +28,7 @@ namespace MoneyFox.Business.Manager
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
             ISettingsManager settingsManager,
-            IConnectivtyAdapter connectivity)
+            IConnectivityAdapter connectivity)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;
