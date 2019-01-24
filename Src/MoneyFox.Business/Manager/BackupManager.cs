@@ -5,13 +5,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.Extensions;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MvvmCross.Plugin.File;
-using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.Manager
 {
@@ -22,7 +22,7 @@ namespace MoneyFox.Business.Manager
 
         private readonly IMvxFileStore fileStore;
         private readonly ISettingsManager settingsManager;
-        private readonly IConnectivity connectivity;
+        private readonly IConnectivityAdapter connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -30,7 +30,7 @@ namespace MoneyFox.Business.Manager
         public BackupManager(IBackupService backupService,
             IMvxFileStore fileStore,
             ISettingsManager settingsManager,
-            IConnectivity connectivity)
+            IConnectivityAdapter connectivity)
         {
             this.backupService = backupService;
             this.fileStore = fileStore;

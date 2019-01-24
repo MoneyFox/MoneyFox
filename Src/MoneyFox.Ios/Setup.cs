@@ -3,8 +3,6 @@ using MoneyFox.iOS.Authentication;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.IoC;
-using Plugin.Connectivity;
-using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.iOS
 {
@@ -14,7 +12,6 @@ namespace MoneyFox.iOS
         {
             base.InitializeFirstChance();
 
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();

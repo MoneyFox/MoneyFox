@@ -8,8 +8,6 @@ using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.IoC;
-using Plugin.Connectivity;
-using Plugin.Connectivity.Abstractions;
 using Plugin.SecureStorage;
 
 namespace MoneyFox.Droid
@@ -27,7 +25,6 @@ namespace MoneyFox.Droid
 
             SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
 
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();

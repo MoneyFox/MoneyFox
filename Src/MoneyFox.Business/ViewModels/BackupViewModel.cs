@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using Plugin.Connectivity.Abstractions;
 
 namespace MoneyFox.Business.ViewModels
 {
@@ -49,7 +49,7 @@ namespace MoneyFox.Business.ViewModels
     public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
         private readonly IBackupManager backupManager;
-        private readonly IConnectivity connectivity;
+        private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private bool backupAvailable;
@@ -59,7 +59,7 @@ namespace MoneyFox.Business.ViewModels
 
         public BackupViewModel(IBackupManager backupManager,
                                IDialogService dialogService,
-                               IConnectivity connectivity,
+                               IConnectivityAdapter connectivity,
                                ISettingsManager settingsManager,
                                IMvxLogProvider logProvider,
                                IMvxNavigationService navigationService) : base(logProvider, navigationService)

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Business.Adapter;
 using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Tests;
-using Plugin.Connectivity.Abstractions;
 using Should;
 using Xunit;
 
@@ -21,7 +21,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         public async void Loaded_NoConnectivity_NothingCalled()
         {
             // Setup
-            var connectivitySetup = new Mock<IConnectivity>();
+            var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(false);
 
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -50,7 +50,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public async void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
             // Setup
-            var connectivitySetup = new Mock<IConnectivity>();
+            var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -79,7 +79,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         [Fact]
         public async void Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
-            var connectivitySetup = new Mock<IConnectivity>();
+            var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
 
             var settingsManagerMock = new Mock<ISettingsManager>();
@@ -108,7 +108,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         public void Logout_PropertiesSet()
         {
             // Setup
-            var connectivitySetup = new Mock<IConnectivity>();
+            var connectivitySetup = new Mock<IConnectivityAdapter>();
 
             var isLoggedIn = false;
             var settingsManagerMock = new Mock<ISettingsManager>();

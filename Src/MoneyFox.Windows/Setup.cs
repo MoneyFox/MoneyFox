@@ -17,8 +17,6 @@ using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.Plugin.WebBrowser;
 using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
 using MvvmCross.UI;
-using Plugin.Connectivity;
-using Plugin.Connectivity.Abstractions;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Windows
@@ -29,7 +27,6 @@ namespace MoneyFox.Windows
         {
             base.InitializeFirstChance();
 
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IConnectivity, ConnectivityImplementation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();

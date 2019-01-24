@@ -19,7 +19,6 @@ using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
 using PCLAppConfig;
-using Plugin.Connectivity;
 using Rg.Plugins.Popup;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
@@ -121,7 +120,7 @@ namespace MoneyFox.iOS
                 await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
                                         Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                                         settingsManager,
-                                        new ConnectivityImplementation())
+                                        new ConnectivityAdapter())
                     .DownloadBackup();
             } 
             catch (Exception ex)
