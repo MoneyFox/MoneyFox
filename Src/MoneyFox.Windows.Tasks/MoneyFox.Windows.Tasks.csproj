@@ -160,7 +160,7 @@
       <Version>14332.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>0.6.0-preview</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
