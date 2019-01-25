@@ -1,12 +1,12 @@
 ﻿using System;
-using MoneyFox.Business.Extensions;
-using MoneyFox.Business.Messages;
+using MoneyFox.BusinessLogic.Extensions;
+using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface ISelectDateRangeDialogViewModel : IBaseViewModel
     {

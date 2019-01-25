@@ -2,7 +2,7 @@
 using MoneyFox.Foundation.Models;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     public interface IStatisticSelectorViewModel : IBaseViewModel
     {

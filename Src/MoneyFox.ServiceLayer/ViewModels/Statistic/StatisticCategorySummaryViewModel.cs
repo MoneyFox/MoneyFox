@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
 using MvvmCross.Logging;
@@ -7,30 +8,24 @@ using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
-        private readonly IDialogService dialogService;
-        private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
+        private readonly ICategorySummaryDataProvider categorySummaryDataDataProvider;
 
         /// <summary>
         ///     Initializes a new instance of the
-        ///     <see cref="T:MoneyFox.Business.ViewModels.Statistic.StatisticCategorySummaryViewModel" /> class.
+        ///     <see cref="T:MoneyFox.ServiceLayer.ViewModels.Statistic.StatisticCategorySummaryViewModel" /> class.
         /// </summary>
-        /// <param name="categorySummaryDataDataProvider">Category summary data data provider.</param>
-        /// <param name="messenger">Messenger.</param>
-        /// <param name="settingsManager">Instance of a ISettingsManager</param>
-        public StatisticCategorySummaryViewModel(CategorySummaryDataProvider categorySummaryDataDataProvider,
+        public StatisticCategorySummaryViewModel(ICategorySummaryDataProvider categorySummaryDataDataProvider,
                                                  IMvxMessenger messenger,
-                                                 ISettingsManager settingsManager, 
-                                                 IDialogService dialogService,
+                                                 ISettingsManager settingsManager,
                                                  IMvxLogProvider logProvider,
                                                  IMvxNavigationService navigationService) : base(messenger, settingsManager, logProvider, navigationService)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
-            this.dialogService = dialogService;
             CategorySummary = new MvxObservableCollection<StatisticItem>();
         }
 

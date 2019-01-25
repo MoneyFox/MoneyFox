@@ -1,10 +1,10 @@
 ﻿using System;
-using MoneyFox.Business.Messages;
+using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface ISelectFilterDialogViewModel : IBaseViewModel
     {

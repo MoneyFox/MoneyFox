@@ -2,21 +2,21 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.ServiceLayer;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private readonly CategorySpreadingDataProvider spreadingDataProvider;
+        private readonly ICategorySpreadingDataProvider spreadingDataProvider;
         private DonutChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
@@ -34,7 +34,7 @@ namespace MoneyFox.Business.ViewModels.Statistic
         /// <summary>
         ///     Contstructor
         /// </summary>
-        public StatisticCategorySpreadingViewModel(CategorySpreadingDataProvider spreadingDataProvider,
+        public StatisticCategorySpreadingViewModel(ICategorySpreadingDataProvider spreadingDataProvider,
                                                    IMvxMessenger messenger,
                                                    ISettingsManager settingsManager,
                                                    IMvxLogProvider logProvider,

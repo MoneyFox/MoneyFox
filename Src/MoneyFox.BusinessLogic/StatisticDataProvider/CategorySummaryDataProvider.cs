@@ -8,6 +8,11 @@ using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
+    public interface ICategorySummaryDataProvider
+    {
+        Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate);
+    }
+
     public class CategorySummaryDataProvider
     {
         private readonly IStatisticDbAccess statisticDbAccess;

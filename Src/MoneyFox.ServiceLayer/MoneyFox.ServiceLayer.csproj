@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="ViewModels\DesignTime\**" />
-    <Compile Remove="ViewModels\Statistic\**" />
     <EmbeddedResource Remove="ViewModels\DesignTime\**" />
-    <EmbeddedResource Remove="ViewModels\Statistic\**" />
     <None Remove="ViewModels\DesignTime\**" />
-    <None Remove="ViewModels\Statistic\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,8 +17,6 @@
     <Compile Remove="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListViewModel.cs" />
-    <Compile Remove="ViewModels\SelectDateRangeDialogViewModel.cs" />
-    <Compile Remove="ViewModels\SelectFilterDialogViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +30,8 @@
 
   <ItemGroup>
     <PackageReference Include="EfCore.GenericServices" Version="2.0.0" />
+    <PackageReference Include="Microcharts" Version="0.7.1" />
+    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
   </ItemGroup>
 
   <ItemGroup>

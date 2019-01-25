@@ -7,7 +7,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : BaseNavigationViewModel, IStatisticSelectorViewModel
     {

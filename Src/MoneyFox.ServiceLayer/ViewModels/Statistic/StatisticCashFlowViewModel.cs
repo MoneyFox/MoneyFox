@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.ServiceLayer;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using SkiaSharp;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the cash flow view.
@@ -18,21 +18,18 @@ namespace MoneyFox.Business.ViewModels.Statistic
     public class 
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private readonly IDialogService dialogService;
-        private readonly CashFlowDataProvider cashFlowDataProvider;
+        private readonly ICashFlowDataProvider cashFlowDataProvider;
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCashFlowViewModel(IMvxMessenger messenger, 
-                                          CashFlowDataProvider cashFlowDataProvider,
-                                          ISettingsManager settingsManager, 
-                                          IDialogService dialogService,
+                                          ICashFlowDataProvider cashFlowDataProvider,
+                                          ISettingsManager settingsManager,
                                           IMvxNavigationService navigationService, 
                                           IMvxLogProvider logProvider) 
             : base(messenger, settingsManager, logProvider, navigationService)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
-            this.dialogService = dialogService;
 
             Chart = new BarChart();
         }

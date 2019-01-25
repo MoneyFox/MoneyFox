@@ -9,6 +9,11 @@ using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
+    public interface ICashFlowDataProvider
+    {
+        Task<List<StatisticEntry>> GetCashFlow(DateTime startDate, DateTime endDate);
+    }
+
     public class CashFlowDataProvider
     {
         private const string GREEN_HEX_CODE = "#9bcd9b";

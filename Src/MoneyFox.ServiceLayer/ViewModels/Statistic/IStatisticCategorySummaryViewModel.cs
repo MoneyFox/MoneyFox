@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Foundation.Models;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the category summary statistic view

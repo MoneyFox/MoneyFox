@@ -1,16 +1,16 @@
 using System;
 using System.Threading.Tasks;
-using MoneyFox.Business.Extensions;
-using MoneyFox.Business.Messages;
+using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <summary>
     ///     Reprsents the statistic view.

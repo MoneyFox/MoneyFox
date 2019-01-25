@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using Microcharts;
-using MoneyFox.ServiceLayer;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 
-namespace MoneyFox.Business.ViewModels.Statistic
+namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     public interface IStatisticCategorySpreadingViewModel : IBaseViewModel
     {

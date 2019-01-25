@@ -9,7 +9,12 @@ using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
-    public class CategorySpreadingDataProvider
+    public interface ICategorySpreadingDataProvider
+    {
+        Task<IEnumerable<StatisticEntry>> GetValues(DateTime startDate, DateTime endDate);
+    }
+
+    public class CategorySpreadingDataProvider : ICategorySpreadingDataProvider
     {
         private readonly IStatisticDbAccess statisticDbAccess;
 

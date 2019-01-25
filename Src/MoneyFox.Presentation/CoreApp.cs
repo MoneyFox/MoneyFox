@@ -49,12 +49,12 @@ namespace MoneyFox.Presentation
 
             typeof(IStatisticDbAccess).Assembly.CreatableTypes()
                                  .EndingWith("DbAccess")
-                                 .AsTypes()
+                                 .AsInterfaces()
                                  .RegisterAsDynamic();
 
             typeof(CashFlowDataProvider).Assembly.CreatableTypes()
                                  .EndingWith("Provider")
-                                 .AsTypes()
+                                 .AsInterfaces()
                                  .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
