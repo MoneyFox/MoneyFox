@@ -67,7 +67,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
-        //public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
+        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
 
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
 
@@ -123,23 +123,24 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //    await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
         //}
 
-        //private async Task Delete(AccountViewModel accountToDelete)
-        //{
-        //    if (accountToDelete == null)
-        //    {
-        //        return;
-        //    }
+        private async Task Delete(AccountViewModel accountToDelete)
+        {
+            if (accountToDelete == null)
+            {
+                return;
+            }
 
-        //    if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
-        //    {
-        //        await accountService.DeleteAccount(accountToDelete.Account);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                await crudService.DeleteAndSaveAsync<AccountViewModel>(accountToDelete.Id);
 
-        //        Accounts.Clear();
-        //        await Load();
-                
-        //        settingsManager.LastDatabaseUpdate = DateTime.Now;
-        //    }
-        //}
+                Accounts.Clear();
+                await Load();
+
+                // TODO: reactivate.
+                //settingsManager.LastDatabaseUpdate = DateTime.Now;
+            }
+        }
 
         private async Task GoToAddAccount()
         {
