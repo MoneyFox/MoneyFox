@@ -128,6 +128,9 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectCategoryListView.xaml.cs">
+      <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -298,6 +304,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AboutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AccountListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -335,6 +345,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SelectCategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
