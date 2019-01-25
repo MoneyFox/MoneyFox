@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Utilities;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeSettingsPersonalizationViewModel : ISettingsPersonalizationViewModel
     {

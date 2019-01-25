@@ -3,11 +3,10 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeSettingsViewModel : ISettingsViewModel
     {

@@ -25,7 +25,15 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackupViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsPersonalizationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

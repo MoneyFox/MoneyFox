@@ -9,7 +9,7 @@
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:userControls1="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:converter1="using:MoneyFox.Uwp.Converter"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

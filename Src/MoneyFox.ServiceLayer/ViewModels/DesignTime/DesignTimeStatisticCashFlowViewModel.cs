@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Microcharts;
-using MoneyFox.Business.ViewModels.Statistic;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer;
+using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 
 namespace MoneyFox.Business.ViewModels.DesignTime
 {

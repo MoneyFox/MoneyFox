@@ -1,10 +1,11 @@
 ﻿using System.Globalization;
-using MoneyFox.Business.ViewModels.Statistic;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
