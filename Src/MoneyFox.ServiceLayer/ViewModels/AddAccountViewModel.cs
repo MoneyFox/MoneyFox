@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Resources;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -14,7 +15,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AddAccountViewModel(ICrudServicesAsync crudService, 
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(crudService, dialogService, logProvider, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
@@ -31,7 +32,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
             if (!crudService.IsValid)
             {
-                await dialogService.ShowMessage("Errors", crudService.GetAllErrors());
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
             }
 
             await NavigationService.Close(this);

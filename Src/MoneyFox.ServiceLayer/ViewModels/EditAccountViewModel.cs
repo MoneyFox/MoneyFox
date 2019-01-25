@@ -11,37 +11,42 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly ICrudServices crudService;
-        private IDialogService dialogService;
+        private readonly ICrudServicesAsync crudServices;
+        private readonly IDialogService dialogService;
 
-        public EditAccountViewModel(ICrudServices crudService,
+        public EditAccountViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(crudServices, dialogService, logProvider, navigationService)
         {
-            this.crudService = crudService;
+            this.crudServices = crudServices;
             this.dialogService = dialogService;
         }
 
         public override string Title => string.Format(Strings.EditAccountTitle, SelectedAccount.Name);
 
-        //public override void Prepare(ModifyAccountParameter parameter)
-        //{
-        //    base.Prepare(parameter);
-        //    SelectedAccount = crudService.ReadSingle<AccountViewModel>(AccountId);
-        //    Amount = SelectedAccount.CurrentBalance;
-        //}
+        public override async void Prepare(ModifyAccountParameter parameter)
+        {
+            base.Prepare(parameter);
+            SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
+        }
 
         public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
-        protected override Task SaveAccount()
+        protected override async Task SaveAccount()
         {
-            throw new System.NotImplementedException();
+            await crudServices.UpdateAndSaveAsync(SelectedAccount, "ctor(4)");
+            if (!crudServices.IsValid)
+            {
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+            }
+
+            await NavigationService.Close(this);
         }
 
-        protected Task DeleteAccount()
+        protected async Task DeleteAccount()
         {
-            throw new System.NotImplementedException();
+            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
         }
     }
 }

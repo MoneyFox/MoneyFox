@@ -6,6 +6,7 @@ using Microsoft.AppCenter.Crashes;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -58,21 +59,38 @@ namespace MoneyFox.ServiceLayer.ViewModels
    
     public abstract class ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>
     {
+        private readonly ICrudServicesAsync crudServices;
+        private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
 
         private AccountViewModel selectedAccount;
 
-        protected ModifyAccountViewModel(IMvxLogProvider logProvider,
+        protected ModifyAccountViewModel(ICrudServicesAsync crudServices,
+            IDialogService dialogService,
+            IMvxLogProvider logProvider,
             IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
+            this.crudServices = crudServices;
+            this.dialogService = dialogService;
             this.navigationService = navigationService;
         }
 
         protected abstract Task SaveAccount();
-        
+
+        private async Task SaveAccountBase()
+        {
+            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            await SaveAccount();
+        }
+
         public virtual string Title => Strings.AddAccountTitle;
 
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
+        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccountBase);
 
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
 

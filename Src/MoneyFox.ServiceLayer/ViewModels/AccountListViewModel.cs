@@ -65,7 +65,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         
         //public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
-        //public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
+        public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
         //public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
 
@@ -78,27 +78,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await RaisePropertyChanged(nameof(Accounts));
         }
 
-        //private async Task EditAccount(AccountViewModel accountViewModel)
-        //{
-        //    await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
-        //}
+        private async Task EditAccount(AccountViewModel accountViewModel)
+        {
+            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
+        }
 
         private async Task Load()
         {
             try
             {
-                //await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-
-                //var includedAccountList = (await accountService.GetNotExcludedAccounts()).ToList();
-                //var excludedAccountList = (await accountService.GetExcludedAccounts()).ToList();
-
-                List<AccountViewModel> accounts = await crudService.ReadManyNoTracked<AccountViewModel>().ToListAsync();
+                List<AccountViewModel> accountViewModels = await crudService.ReadManyNoTracked<AccountViewModel>().ToListAsync();
 
                 var includedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(accounts.Where(x => !x.IsExcluded));
+                includedAlphaGroup.AddRange(accountViewModels.Where(x => !x.IsExcluded));
 
                 var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(accounts.Where(x => x.IsExcluded));
+                excludedAlphaGroup.AddRange(accountViewModels.Where(x => x.IsExcluded));
 
                 Accounts.Clear();
 
