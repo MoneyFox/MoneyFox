@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataAccess.Entities;
 using MoneyFox.DataAccess.Pocos;
 
 namespace MoneyFox.DataAccess.DataServices
@@ -18,6 +19,12 @@ namespace MoneyFox.DataAccess.DataServices
         /// </summary>
         /// <returns>List of Payments to recur.</returns>
         Task<IEnumerable<RecurringPayment>> GetPaymentsToRecur();
+
+        /// <summary>
+        ///     Deletes a recurring payment from the dataabase.
+        /// </summary>
+        /// <param name="recurringPaymentEntity">Payment to delete.</param>
+        Task DeletePayment(RecurringPaymentEntity recurringPaymentEntity);
     }
 
     /// <inheritdoc />
@@ -33,6 +40,20 @@ namespace MoneyFox.DataAccess.DataServices
         {
             this.ambientDbContextLocator = ambientDbContextLocator;
             this.dbContextScopeFactory = dbContextScopeFactory;
+        }
+
+        /// <inheritdoc />
+        public async Task DeletePayment(RecurringPaymentEntity recurringPaymentEntity)
+        {
+            using (var dbContextScope = dbContextScopeFactory.Create())
+            {
+                using (var dbContext = ambientDbContextLocator.Get<ApplicationContext>())
+                {
+                    var recurringPaymentEntry = dbContext.Entry(recurringPaymentEntity);
+                    recurringPaymentEntry.State = EntityState.Deleted;
+                    await dbContextScope.SaveChangesAsync();
+                }
+            }
         }
 
         /// <inheritdoc />

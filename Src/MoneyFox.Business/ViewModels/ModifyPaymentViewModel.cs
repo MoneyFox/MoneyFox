@@ -133,6 +133,7 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentService paymentService;
+        private readonly IRecurringPaymentService recurringPaymentService;
         private readonly IAccountService accountService;
         private readonly ISettingsManager settingsManager;
         private readonly IBackupManager backupManager;
@@ -157,6 +158,7 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public ModifyPaymentViewModel(IPaymentService paymentService,
                                       IAccountService accountService,
+                                      IRecurringPaymentService recurringPaymentService,
                                       IDialogService dialogService,
                                       ISettingsManager settingsManager,
                                       IMvxMessenger messenger,
@@ -170,6 +172,7 @@ namespace MoneyFox.Business.ViewModels
             this.navigationService = navigationService;
             this.paymentService = paymentService;
             this.accountService = accountService;
+            this.recurringPaymentService = recurringPaymentService;
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
@@ -578,6 +581,13 @@ namespace MoneyFox.Business.ViewModels
 
             try
             {
+                if (SelectedPayment.IsRecurring
+                    && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
+                {
+                    var paymentToDelete = await paymentService.GetById(SelectedPayment.Id);
+                    await recurringPaymentService.DeletePayment(paymentToDelete.Data.RecurringPayment);
+                }
+
                 await paymentService.DeletePayment(SelectedPayment.Payment);
                 settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
