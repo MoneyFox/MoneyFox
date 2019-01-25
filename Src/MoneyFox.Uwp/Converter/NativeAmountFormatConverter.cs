@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Converter;
 using MvvmCross.Platforms.Uap.Converters;
 
-namespace MoneyFox.Windows.Converter
+namespace MoneyFox.Uwp.Converter
 {
     public class NativeAmountFormatConverter : MvxNativeValueConverter<AmountFormatConverter>
     {

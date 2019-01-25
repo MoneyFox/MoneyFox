@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Compile Remove="Converter\AccountNameConverter.cs" />
-    <Compile Remove="Converter\AmountFormatConverter.cs" />
     <Compile Remove="Converter\AmountValueConverter.cs" />
     <Compile Remove="Converter\DateTimeFormatConverter.cs" />
     <Compile Remove="Converter\DateVisibilityConverter.cs" />
@@ -72,10 +71,6 @@
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
     <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Converter\" />
   </ItemGroup>
 
 </Project>

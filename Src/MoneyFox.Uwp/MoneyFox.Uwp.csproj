@@ -11,7 +11,7 @@
     <AssemblyName>MoneyFox.Uwp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -119,11 +119,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\MicrosoftPassportHelper.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\AccountListView.xaml.cs">
+      <DependentUpon>AccountListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddAccountView.xaml.cs">
       <DependentUpon>AddAccountView.xaml</DependentUpon>
     </Compile>
@@ -258,6 +265,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccountListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

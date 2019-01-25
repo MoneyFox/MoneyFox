@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyFox.Windows.Converter
+namespace MoneyFox.Uwp.Converter
 {
     public class BooleanToVisibilityConverter : IValueConverter
     {
