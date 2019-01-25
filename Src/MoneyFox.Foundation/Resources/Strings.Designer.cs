@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -1223,7 +1223,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} will recieve {1}.
+        ///   Looks up a localized string similar to {0} will receive {1}.
         /// </summary>
         public static string LiveTileWideandLargeIncomeFutureText {
             get {
@@ -1793,7 +1793,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change your prefered theme..
+        ///   Looks up a localized string similar to Choose your prefered Theme..
         /// </summary>
         public static string SettingsPersonalizationDescription {
             get {
