@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeCategoryListViewModel : ICategoryListViewModel
     {
@@ -16,11 +16,11 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             {
                 new AlphaGroupListGroup<CategoryViewModel>("A")
                 {
-                    new CategoryViewModel(new Category()) {Name = "Auto"}
+                    new CategoryViewModel {Name = "Auto"}
                 },
                 new AlphaGroupListGroup<CategoryViewModel>("E")
                 {
-                    new CategoryViewModel(new Category()) {Name = "Einkaufen"}
+                    new CategoryViewModel {Name = "Einkaufen"}
                 }
             };
 

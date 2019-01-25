@@ -33,11 +33,6 @@ namespace MoneyFox.Presentation
             //                      .AsInterfaces()
             //                      .RegisterAsDynamic();
 
-            //typeof(AccountService).Assembly.CreatableTypes()
-            //                     .EndingWith("Service")
-            //                     .AsInterfaces()
-            //                     .RegisterAsDynamic();
-
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("Adapter")
                                  .AsInterfaces()
@@ -56,7 +51,7 @@ namespace MoneyFox.Presentation
             //                     .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
-                                 .EndingWith("Repository")
+                                 .EndingWith("Factory")
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
 

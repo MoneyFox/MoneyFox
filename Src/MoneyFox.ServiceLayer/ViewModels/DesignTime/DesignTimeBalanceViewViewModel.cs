@@ -1,7 +1,7 @@
-﻿using MoneyFox.Business.ViewModels.Interfaces;
+﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeBalanceViewViewModel : IBalanceViewModel
     {

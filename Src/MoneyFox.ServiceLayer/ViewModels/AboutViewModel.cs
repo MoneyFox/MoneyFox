@@ -7,7 +7,7 @@ using MvvmCross.Navigation;
 using MvvmCross.Plugin.Email;
 using MvvmCross.Plugin.WebBrowser;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface IAboutViewModel : IBaseViewModel
     {

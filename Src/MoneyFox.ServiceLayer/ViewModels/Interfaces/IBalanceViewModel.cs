@@ -1,6 +1,6 @@
 ﻿using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.Interfaces
+namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
 {
     public interface IBalanceViewModel
     {

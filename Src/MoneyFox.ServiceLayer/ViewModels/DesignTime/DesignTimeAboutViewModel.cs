@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;

@@ -15,11 +15,9 @@
 
   <ItemGroup>
     <Compile Remove="DesignTimeViewModelLocator.cs" />
-    <Compile Remove="ViewModels\AboutViewModel.cs" />
     <Compile Remove="ViewModels\BackupViewModel.cs" />
     <Compile Remove="ViewModels\BalanceViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IAccountListViewModel.cs" />
-    <Compile Remove="ViewModels\Interfaces\IBalanceViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IPaymentListViewModel.cs" />
     <Compile Remove="ViewModels\ISettingsSecurityViewModel.cs" />
@@ -36,6 +34,12 @@
     <Compile Remove="ViewModels\SettingsPersonalizationViewModel.cs" />
     <Compile Remove="ViewModels\SettingsSecurityViewModel.cs" />
     <Compile Remove="ViewModels\SettingsViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

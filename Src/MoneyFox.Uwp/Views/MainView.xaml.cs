@@ -40,11 +40,11 @@ namespace MoneyFox.Uwp.Views
             if (args.InvokedItem.Equals(Strings.AccountsTitle))
             {
                 await ((MainViewModel)ViewModel).ShowAccountListCommand.ExecuteAsync();
+            } 
+            else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
+            {
+                await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
             }
-            //    else if(args.InvokedItem.Equals(Strings.CategoriesTitle))
-            //    {
-            //        await ((MainViewModel)ViewModel).ShowCategoryListCommand.ExecuteAsync();
-            //    }
             //    else if(args.InvokedItem.Equals(Strings.StatisticsTitle))
             //    {
             //        await ((MainViewModel)ViewModel).ShowStatisticSelectorCommand.ExecuteAsync();
