@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="MoneyFox.Uwp.Views.UserControls.ModifyAccountUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <ScrollViewer Grid.Row="1"
+                      HorizontalScrollMode="Auto"
+                      VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="12,0,12,0" EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <TextBox x:Uid="Name"
+                         Margin="{StaticResource SmallTitleContentMargin}"
+                         VerticalAlignment="Top"
+                         Header="Name"
+                         Text="{Binding SelectedAccount.Name,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Uid="CurrentBalanceTextBox"
+                         x:Name="TextBoxCurrentBalance"
+                         Margin="{StaticResource SmallTitleContentMargin}"
+                         GotFocus="TextBoxOnFocus"
+                         Header="Current Balance"
+                         InputScope="Number"
+                         LostFocus="FormatTextBoxOnLostFocus"
+                         Text="{Binding AmountString,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         TextAlignment="Right" />
+            <TextBox x:Uid="NoteTextBox"
+                         Margin="{StaticResource SmallTitleContentMargin}"
+                         VerticalAlignment="Top"
+                         Header="Notes"
+                         Text="{Binding SelectedAccount.Note,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         TextWrapping="Wrap" />
+
+            <CheckBox x:Uid="AccoutnExcluded"
+                          Margin="{StaticResource SmallTitleContentMargin}"
+                          VerticalAlignment="Top"
+                          Content="Exclude account from balance"
+                          IsChecked="{Binding SelectedAccount.IsExcluded,
+                                              Mode=TwoWay,
+                                              UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

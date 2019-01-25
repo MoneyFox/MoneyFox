@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Set Accent color manually  -->
+    <Color x:Key="SystemAccentColor">#314a9b</Color>
+
+    <Color x:Key="ColorPrimary">#263873</Color>
+    <Color x:Key="ColorPrimaryDark">#1a264c</Color>
+
+    <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
+    <Color x:Key="ColorCustomBackground">WhiteSmoke</Color>
+
+    <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
+
+    <Color x:Key="AppForegroundColorPrimary">#FF2B343D</Color>
+    <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
+
+    <Color x:Key="AppMenuForeground">White</Color>
+
+    <Color x:Key="ListItemColor">White</Color>
+    <Color x:Key="WarningColor">#FFFF4500</Color>
+
+    <Color x:Key="FoxOrange">#F09224</Color>
+
+</ResourceDictionary>

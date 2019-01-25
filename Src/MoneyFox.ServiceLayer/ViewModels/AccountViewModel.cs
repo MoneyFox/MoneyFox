@@ -1,37 +1,31 @@
 ﻿using System;
-using MoneyFox.DataAccess.Pocos;
+using GenericServices;
+using MoneyFox.DataLayer.Entities;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : BaseViewModel
+    public class AccountViewModel : BaseViewModel, ILinkToEntity<Account>
     {
-        /// <summary>
-        ///     Default constructor.
-        /// </summary>
-        /// <param name="account">Account wrap</param>
-        public AccountViewModel(Account account)
-        {
-            Account = account;
-        }
-
-        /// <summary>
-        ///     Account Data
-        /// </summary>
-        public Account Account { get; }
+        private int id;
+        private string name;
+        private double currentBalance;
+        private string note;
+        private bool isOverdrawn;
+        private bool isExcluded;
 
         /// <summary>
         ///     Account Id
         /// </summary>
         public int Id
         {
-            get => Account.Data.Id;
+            get => id;
             set
             {
-                if (Account.Data.Id == value) return;
-                Account.Data.Id = value;
+                if (id == value) return;
+                id = value;
                 RaisePropertyChanged();
             }
         }
@@ -41,25 +35,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Name
         {
-            get => Account.Data.Name;
+            get => name;
             set
             {
-                if (Account.Data.Name == value) return;
-                Account.Data.Name = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Account IBAN number or account number.
-        /// </summary>
-        public string Iban
-        {
-            get => Account.Data.Iban;
-            set
-            {
-                if (Account.Data.Iban == value) return;
-                Account.Data.Iban = value;
+                if (name == value) return;
+                name = value;
                 RaisePropertyChanged();
             }
         }
@@ -69,11 +49,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double CurrentBalance
         {
-            get => Account.Data.CurrentBalance;
+            get => currentBalance;
             set
             {
-                if (Math.Abs(Account.Data.CurrentBalance - value) < 0.01) return;
-                Account.Data.CurrentBalance = value;
+                if (Math.Abs(currentBalance - value) < 0.01) return;
+                currentBalance = value;
                 RaisePropertyChanged();
             }
         }
@@ -83,11 +63,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Note
         {
-            get => Account.Data.Note;
+            get => note;
             set
             {
-                if (Account.Data.Note == value) return;
-                Account.Data.Note = value;
+                if (note == value) return;
+                note = value;
                 RaisePropertyChanged();
             }
         }
@@ -97,11 +77,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsOverdrawn
         {
-            get => Account.Data.IsOverdrawn;
+            get => isOverdrawn;
             set
             {
-                if (Account.Data.IsOverdrawn == value) return;
-                Account.Data.IsOverdrawn = value;
+                if (isOverdrawn == value) return;
+                isOverdrawn = value;
                 RaisePropertyChanged();
             }
         }
@@ -111,11 +91,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public bool IsExcluded
         {
-            get => Account.Data.IsExcluded;
+            get => isExcluded;
             set
             {
-                if (Account.Data.IsExcluded == value) return;
-                Account.Data.IsExcluded = value;
+                if (isExcluded == value) return;
+                isExcluded = value;
                 RaisePropertyChanged();
             }
         }

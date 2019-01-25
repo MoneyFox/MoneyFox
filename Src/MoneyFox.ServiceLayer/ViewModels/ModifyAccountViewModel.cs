@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GenericServices;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Parameters;
-using MoneyFox.BusinessLogic.Helpers;
-using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Parameters;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface IModifyAccountViewModel : IBaseViewModel
     {
@@ -58,79 +56,49 @@ namespace MoneyFox.Business.ViewModels
         MvxAsyncCommand CancelCommand { get; }
     }
 
-    public class  ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>, IModifyAccountViewModel
+    public abstract class ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>
     {
-        private readonly IAccountService accountService;
-        private readonly ISettingsManager settingsManager;
-        private readonly IBackupManager backupManager;
-        private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
-        private readonly IMvxLogProvider logProvider;
 
-        private bool isEdit;
-        private double amount;
         private AccountViewModel selectedAccount;
 
-        public ModifyAccountViewModel(IAccountService accountService,
-                                      ISettingsManager settingsManager,
-                                      IBackupManager backupManager,
-                                      IDialogService dialogService,
-                                      IMvxLogProvider logProvider,
-                                      IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected ModifyAccountViewModel(IMvxLogProvider logProvider,
+            IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.dialogService = dialogService;
             this.navigationService = navigationService;
-            this.settingsManager = settingsManager;
-            this.backupManager = backupManager;
-            this.accountService = accountService;
-            this.logProvider = logProvider;
         }
 
-        #region Properties
+        protected abstract Task SaveAccount();
 
-        /// <inheritdoc />
+        protected abstract Task DeleteAccount();
+
+        public virtual string Title => Strings.AddAccountTitle;
+
+        protected double Amount;
+
         public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
 
-        /// <inheritdoc />
         public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
-        /// <inheritdoc />
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+        
 
-        /// <inheritdoc />
-        public bool IsEdit
-        {
-            get => isEdit;
-            set
-            {
-                isEdit = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <inheritdoc />
-        public string Title => IsEdit
-            ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
-            : Strings.AddAccountTitle;
-
-        /// <inheritdoc />
         public string AmountString
         {
-            get => Utilities.FormatLargeNumbers(amount);
+            get => Utilities.Utilities.FormatLargeNumbers(Amount);
             set
             {
                 // we remove all separator chars to ensure that it works in all regions
-                string amountstring = Utilities.RemoveGroupingSeparators(value);
+                string amountstring = Utilities.Utilities.RemoveGroupingSeparators(value);
 
                 double convertedValue;
                 if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
                 {
-                    amount = convertedValue;
+                    Amount = convertedValue;
                 }
             }
         }
 
-        /// <inheritdoc />
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
@@ -141,73 +109,55 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        #endregion
-
-        private int accountId;
+        protected int AccountId;
 
         /// <inheritdoc />
         public override void Prepare(ModifyAccountParameter parameter)
         {
-            accountId = parameter.AccountId;
+            AccountId = parameter.AccountId;
         }
 
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            if (accountId == 0)
-            {
-                IsEdit = false;
-                amount = 0;
-                SelectedAccount = new AccountViewModel(new Account());
-            } else
-            {
-                IsEdit = true;
-                SelectedAccount = new AccountViewModel(await accountService.GetById(accountId));
-                amount = SelectedAccount.CurrentBalance;
-            }
-        }
+//        private async Task SaveAccount()
+//        {
+//            if (string.IsNullOrEmpty(SelectedAccount.Name))
+//            {
+//                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+//                return;
+//            }
 
-        private async Task SaveAccount()
-        {
-            if (string.IsNullOrEmpty(SelectedAccount.Name))
-            {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
+//            if (!IsEdit && await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
+//            {
+//                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
+//                return;
+//            }
 
-            if (!IsEdit && await accountService.CheckIfNameAlreadyTaken(SelectedAccount.Name))
-            {
-                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
-                return;
-            }
+//            SelectedAccount.CurrentBalance = amount;
 
-            SelectedAccount.CurrentBalance = amount;
+//            await accountService.SaveAccount(SelectedAccount.Account);
+//            settingsManager.LastDatabaseUpdate = DateTime.Now;
+//#pragma warning disable 4014
+//            backupManager.EnqueueBackupTask();
+//#pragma warning restore 4014
+//            await navigationService.Close(this);
+//        }
 
-            await accountService.SaveAccount(SelectedAccount.Account);
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
-#pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
-#pragma warning restore 4014
-            await navigationService.Close(this);
-        }
-
-        private async Task DeleteAccount()
-        {
-            try
-            {
-                await accountService.DeleteAccount(SelectedAccount.Account);
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
-#pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
-#pragma warning restore 4014
-                await navigationService.Close(this);
-            } 
-            catch(Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-            }
-        }
+//        private async Task DeleteAccount()
+//        {
+//            try
+//            {
+//                await accountService.DeleteAccount(SelectedAccount.Account);
+//                settingsManager.LastDatabaseUpdate = DateTime.Now;
+//#pragma warning disable 4014
+//                backupManager.EnqueueBackupTask();
+//#pragma warning restore 4014
+//                await navigationService.Close(this);
+//            } 
+//            catch(Exception ex)
+//            {
+//                Crashes.TrackError(ex);
+//                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+//            }
+//        }
 
         private async Task Cancel()
         {

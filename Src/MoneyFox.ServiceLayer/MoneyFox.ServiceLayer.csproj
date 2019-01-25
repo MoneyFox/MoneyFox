@@ -21,15 +21,12 @@
     <Compile Remove="ViewModels\AboutViewModel.cs" />
     <Compile Remove="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Remove="ViewModels\AccountListViewActionViewModel.cs" />
-    <Compile Remove="ViewModels\AccountListViewModel.cs" />
-    <Compile Remove="ViewModels\AccountViewModel.cs" />
     <Compile Remove="ViewModels\BackupViewModel.cs" />
     <Compile Remove="ViewModels\BalanceViewModel.cs" />
     <Compile Remove="ViewModels\CategoryListViewModel.cs" />
     <Compile Remove="ViewModels\CategoryViewModel.cs" />
     <Compile Remove="ViewModels\ISettingsSecurityViewModel.cs" />
     <Compile Remove="ViewModels\LoginViewModel.cs" />
-    <Compile Remove="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Remove="ViewModels\ModifyCategoryViewModel.cs" />
     <Compile Remove="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListBalanceViewModel.cs" />

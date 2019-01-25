@@ -1,8 +1,13 @@
 ﻿using System.Linq;
+using GenericServices;
+using GenericServices.PublicButHidden;
+using GenericServices.Setup;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.ServiceLayer.ViewModels;
+using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 
@@ -21,6 +26,7 @@ namespace MoneyFox.Presentation
         public override void Initialize()
         {
             //Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ICrudServices, CrudServices>();
 
             //typeof(OneDriveService).Assembly.CreatableTypes()
             //                      .EndingWith("Service")
@@ -70,7 +76,8 @@ namespace MoneyFox.Presentation
                                  .AsInterfaces()
                                  .RegisterAsLazySingleton();
 
-            new EfCoreContext().Database.Migrate();
+            SetupContextAndCrudServices();
+
             RegisterAppStart<MainViewModel>();
 
             //if (!Mvx.IoCProvider.CanResolve<Session>()) return;
@@ -88,6 +95,29 @@ namespace MoneyFox.Presentation
             //{
             //    RegisterAppStart<LoginViewModel>();
             //}
+        }
+
+        private void SetupContextAndCrudServices()
+        {
+            var context = SetupEfContext();
+            var crudServices = SetUpCrudServices(context);
+
+            Mvx.IoCProvider.RegisterType<EfCoreContext>(SetupEfContext);
+            Mvx.IoCProvider.RegisterType<ICrudServices>(() => SetUpCrudServices(context));
+        }
+
+        private EfCoreContext SetupEfContext()
+        {
+            var context = new EfCoreContext();
+            context.Database.Migrate();
+
+            return context;
+        }
+
+        private ICrudServices SetUpCrudServices(EfCoreContext context)
+        {
+            var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
+            return new CrudServices<EfCoreContext>(context, utData.ConfigAndMapper);
         }
     }
 }

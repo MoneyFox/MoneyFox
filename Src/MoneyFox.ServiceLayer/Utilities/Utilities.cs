@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Foundation.Models;
 
-namespace MoneyFox.BusinessLogic.Helpers
+namespace MoneyFox.ServiceLayer.Utilities
 {
     /// <summary>
     ///     Utility methods

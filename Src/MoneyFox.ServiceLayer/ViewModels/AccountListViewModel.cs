@@ -1,63 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using GenericServices;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Manager;
-using MoneyFox.Business.Parameters;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.DataAccess.DataServices;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Parameters;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
-    /// <inheritdoc cref="IAccountListViewModel" />
-    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
+    public class AccountListViewModel : BaseNavigationViewModel //, IAccountListViewModel
     {
-        private readonly IAccountService accountService;
-        private readonly ISettingsManager settingsManager;
+        private readonly ICrudServices crudService;
         private readonly IDialogService dialogService;
-        private readonly IMvxNavigationService navigationService;
         private readonly IMvxLogProvider logProvider;
+        private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountListViewModel(IAccountService accountService,
-                                    IBalanceCalculationManager balanceCalculationManager,
-                                    ISettingsManager settingsManager,
+        public AccountListViewModel(ICrudServices crudService,
                                     IDialogService dialogService,
                                     IMvxLogProvider logProvider,
                                     IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.accountService = accountService;
-            this.settingsManager = settingsManager;
+            this.crudService = crudService;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.logProvider = logProvider;
 
-            BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
-            ViewActionViewModel = new AccountListViewActionViewModel(accountService, logProvider, navigationService);
+            //BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
+            //ViewActionViewModel = new AccountListViewActionViewModel(accountService, logProvider, navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
-        #region Properties
+        //public IBalanceViewModel BalanceViewModel { get; }
 
-        /// <inheritdoc />
-        public IBalanceViewModel BalanceViewModel { get; }
+        //public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
-        /// <inheritdoc />
-        public IAccountListViewActionViewModel ViewActionViewModel { get; }
-
-        /// <inheritdoc />
         public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
         {
             get => accounts;
@@ -70,26 +60,15 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        /// <inheritdoc />
         public bool HasNoAccounts => !Accounts.Any();
         
-        #endregion
+        //public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
-        #region Commands
+        //public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
-        /// <inheritdoc />
-        public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
+        //public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
 
-        /// <inheritdoc />
-        public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
-
-        /// <inheritdoc />
-        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
-
-        /// <inheritdoc />
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
-
-        #endregion
 
         /// <inheritdoc />
         public override async void ViewAppeared()
@@ -98,34 +77,36 @@ namespace MoneyFox.Business.ViewModels
             await RaisePropertyChanged(nameof(Accounts));
         }
 
-        private async Task EditAccount(AccountViewModel accountViewModel)
-        {
-            await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
-        }
+        //private async Task EditAccount(AccountViewModel accountViewModel)
+        //{
+        //    await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
+        //}
 
         private async Task Load()
         {
             try
             {
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                //await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-                var includedAccountList = (await accountService.GetNotExcludedAccounts()).ToList();
-                var excludedAccountList = (await accountService.GetExcludedAccounts()).ToList();
-                
+                //var includedAccountList = (await accountService.GetNotExcludedAccounts()).ToList();
+                //var excludedAccountList = (await accountService.GetExcludedAccounts()).ToList();
+
+                List<AccountViewModel> accounts = await crudService.ReadManyNoTracked<AccountViewModel>().ToListAsync();
+
                 var includedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(includedAccountList.Select(x => new AccountViewModel(x)));
+                includedAlphaGroup.AddRange(accounts.Where(x => !x.IsExcluded));
 
                 var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(excludedAccountList.Select(x => new AccountViewModel(x)));
+                excludedAlphaGroup.AddRange(accounts.Where(x => x.IsExcluded));
 
                 Accounts.Clear();
 
-                if (includedAccountList.Any())
+                if (includedAlphaGroup.Any())
                 {
                     Accounts.Add(includedAlphaGroup);
                 }
 
-                if (excludedAccountList.Any())
+                if (excludedAlphaGroup.Any())
                 {
                     Accounts.Add(excludedAlphaGroup);
                 }
@@ -139,34 +120,34 @@ namespace MoneyFox.Business.ViewModels
             }
         }
 
-        private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
-        {
-            if (accountViewModel == null) return;
+        //private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
+        //{
+        //    if (accountViewModel == null) return;
 
-            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
-        }
+        //    await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+        //}
 
-        private async Task Delete(AccountViewModel accountToDelete)
-        {
-            if (accountToDelete == null)
-            {
-                return;
-            }
+        //private async Task Delete(AccountViewModel accountToDelete)
+        //{
+        //    if (accountToDelete == null)
+        //    {
+        //        return;
+        //    }
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
-            {
-                await accountService.DeleteAccount(accountToDelete.Account);
+        //    if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+        //    {
+        //        await accountService.DeleteAccount(accountToDelete.Account);
 
-                Accounts.Clear();
-                await Load();
+        //        Accounts.Clear();
+        //        await Load();
                 
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
-            }
-        }
+        //        settingsManager.LastDatabaseUpdate = DateTime.Now;
+        //    }
+        //}
 
         private async Task GoToAddAccount()
         {
-            await navigationService.Navigate<ModifyAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
+            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
         }
     }
 }
