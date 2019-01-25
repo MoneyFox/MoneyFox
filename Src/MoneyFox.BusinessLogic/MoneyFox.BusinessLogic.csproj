@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Authentication\PasswordStorage.cs" />
+    <Compile Remove="Authentication\Session.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
@@ -13,6 +18,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Authentication\" />
   </ItemGroup>
 
 </Project>

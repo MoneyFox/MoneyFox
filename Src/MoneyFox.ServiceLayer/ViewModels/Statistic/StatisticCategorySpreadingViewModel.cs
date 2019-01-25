@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
@@ -36,10 +37,10 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// </summary>
         public StatisticCategorySpreadingViewModel(ICategorySpreadingDataProvider spreadingDataProvider,
                                                    IMvxMessenger messenger,
-                                                   ISettingsManager settingsManager,
+                                                   ISettingsFacade settingsFacade,
                                                    IMvxLogProvider logProvider,
                                                    IMvxNavigationService navigationService)
-            : base(messenger, settingsManager, logProvider, navigationService)
+            : base(messenger, settingsFacade, logProvider, navigationService)
         {
             this.spreadingDataProvider = spreadingDataProvider;
         }

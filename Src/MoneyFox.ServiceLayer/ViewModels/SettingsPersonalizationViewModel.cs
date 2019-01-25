@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -23,23 +23,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
     public class SettingsPersonalizationViewModel : BaseNavigationViewModel, ISettingsPersonalizationViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
 
-        public SettingsPersonalizationViewModel(ISettingsManager settingsManager,
+        public SettingsPersonalizationViewModel(ISettingsFacade settingsFacade,
                                                 IMvxLogProvider logProvider,
                                                 IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
         }
 
         /// <inheritdoc />
         public int SelectedIndex
         {
-            get => (int) settingsManager.Theme;
+            get => (int) settingsFacade.Theme;
             set
             {
                 var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
-                settingsManager.Theme = theme;
+                settingsFacade.Theme = theme;
                 RaisePropertyChanged();
             }
         }

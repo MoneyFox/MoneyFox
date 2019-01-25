@@ -1,8 +1,9 @@
 ﻿using System;
+using MoneyFox.ServiceLayer.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Dialogs
+namespace MoneyFox.Presentation.Dialogs
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DateSelectionDialog

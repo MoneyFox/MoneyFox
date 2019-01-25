@@ -140,6 +140,9 @@
     <Compile Include="Views\AddCategoryView.xaml.cs">
       <DependentUpon>AddCategoryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddPaymentView.xaml.cs">
+      <DependentUpon>AddPaymentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CategoryListView.xaml.cs">
       <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,9 @@
     </Compile>
     <Compile Include="Views\EditCategoryView.xaml.cs">
       <DependentUpon>EditCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPaymentView.xaml.cs">
+      <DependentUpon>EditPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -181,6 +187,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
       <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
+      <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +329,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddPaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -337,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -373,6 +390,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ModifyCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -477,6 +498,10 @@
     <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
       <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
       <Name>MoneyFox.ServiceLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
+      <Project>{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}</Project>
+      <Name>MoneyFox.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

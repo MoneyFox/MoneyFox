@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GenericServices;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.DataServices;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     This ViewModel is for the usage in the paymentlist when a concret account is selected
@@ -14,21 +14,21 @@ namespace MoneyFox.Business.ViewModels
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
         private readonly int accountId;
-        private readonly IAccountService accountService;
-        private readonly IBalanceCalculationManager balanceCalculationManager;
+        private readonly IBalanceCalculationService balanceCalculationService;
+        private readonly ICrudServicesAsync crudServices;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListBalanceViewModel(IAccountService accountService,
-                                           IBalanceCalculationManager balanceCalculationManager,
-                                           int accountId,
-                                           IMvxLogProvider logProvider,
-                                           IMvxNavigationService navigationService) : base(
-            balanceCalculationManager, logProvider, navigationService)
+        public PaymentListBalanceViewModel(ICrudServicesAsync crudServices,
+            IBalanceCalculationService balanceCalculationService,
+            int accountId,
+            IMvxLogProvider logProvider,
+            IMvxNavigationService navigationService) : base(
+            balanceCalculationService, logProvider, navigationService)
         {
-            this.accountService = accountService;
-            this.balanceCalculationManager = balanceCalculationManager;
+            this.crudServices = crudServices;
+            this.balanceCalculationService = balanceCalculationService;
             this.accountId = accountId;
         }
 
@@ -40,13 +40,14 @@ namespace MoneyFox.Business.ViewModels
         {
             try
             {
-                var account = await accountService.GetById(accountId);
-                return account.Data.CurrentBalance;
+                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+                return account.CurrentBalance;
             }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
             }
+
             return 0;
         }
 
@@ -57,7 +58,8 @@ namespace MoneyFox.Business.ViewModels
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValue()
         {
-            return await balanceCalculationManager.GetEndOfMonthBalanceForAccount(await accountService.GetById(accountId));
+            return balanceCalculationService.GetEndOfMonthBalanceForAccount(
+                await crudServices.ReadSingleAsync<AccountViewModel>(accountId));
         }
     }
 }

@@ -80,7 +80,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
         ///     a new CategoryViewModel.
         /// </summary>
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveCategory);
+        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveCategoryBase);
 
         /// <summary>
         ///     Cancel the current operation

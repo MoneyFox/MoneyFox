@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Models;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
@@ -21,9 +21,9 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// </summary>
         public StatisticCategorySummaryViewModel(ICategorySummaryDataProvider categorySummaryDataDataProvider,
                                                  IMvxMessenger messenger,
-                                                 ISettingsManager settingsManager,
+                                                 ISettingsFacade settingsFacade,
                                                  IMvxLogProvider logProvider,
-                                                 IMvxNavigationService navigationService) : base(messenger, settingsManager, logProvider, navigationService)
+                                                 IMvxNavigationService navigationService) : base(messenger, settingsFacade, logProvider, navigationService)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
             CategorySummary = new MvxObservableCollection<StatisticItem>();

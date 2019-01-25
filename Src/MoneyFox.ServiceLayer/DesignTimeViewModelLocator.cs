@@ -1,7 +1,7 @@
-﻿using MoneyFox.Business.ViewModels.DesignTime;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.Business.ViewModels.Statistic;
+﻿using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.DesignTime;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 
 namespace MoneyFox
 {

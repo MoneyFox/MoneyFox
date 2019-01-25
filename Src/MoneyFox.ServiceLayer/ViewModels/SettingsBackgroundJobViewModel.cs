@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -25,38 +26,38 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
     public class SettingsBackgroundJobViewModel : BaseNavigationViewModel, ISettingsBackgroundJobViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IBackgroundTaskManager backgroundTaskManager;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public SettingsBackgroundJobViewModel(ISettingsManager settingsManager,
+        public SettingsBackgroundJobViewModel(ISettingsFacade settingsFacade,
                                               IBackgroundTaskManager backgroundTaskManager,
                                               IMvxLogProvider logProvider,
                                               IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
             this.backgroundTaskManager = backgroundTaskManager;
         }
 
         /// <inheritdoc />
         public bool IsAutoBackupEnabled
         {
-            get => settingsManager.IsBackupAutouploadEnabled;
+            get => settingsFacade.IsBackupAutouploadEnabled;
             set
             {
-                if (settingsManager.IsBackupAutouploadEnabled == value) return;
+                if (settingsFacade.IsBackupAutouploadEnabled == value) return;
 
-                if (settingsManager.IsBackupAutouploadEnabled)
+                if (settingsFacade.IsBackupAutouploadEnabled)
                 {
                     backgroundTaskManager.StopBackupSyncTask();
                 } 
                 else
                 {
-                    backgroundTaskManager.StartBackupSyncTask(settingsManager.BackupSyncRecurrence * 60);
+                    backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);
                 }
-                settingsManager.IsBackupAutouploadEnabled = value;
+                settingsFacade.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
         }
@@ -64,19 +65,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public int BackupSyncRecurrence
         {
-            get => settingsManager.BackupSyncRecurrence;
+            get => settingsFacade.BackupSyncRecurrence;
             set
             {
-                if(settingsManager.BackupSyncRecurrence == value) return;
-                settingsManager.BackupSyncRecurrence = value < 1 ? 1 : value;
+                if(settingsFacade.BackupSyncRecurrence == value) return;
+                settingsFacade.BackupSyncRecurrence = value < 1 ? 1 : value;
                 backgroundTaskManager.StopBackupSyncTask();
-                backgroundTaskManager.StartBackupSyncTask(settingsManager.BackupSyncRecurrence * 60);
+                backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);
                 RaisePropertyChanged();
             }
         }
 
-        public DateTime LastExecutionSynBackup => settingsManager.LastExecutionTimeStampSyncBackup;
-        public DateTime LastExecutionClearPayments => settingsManager.LastExecutionTimeStampClearPayments;
-        public DateTime LastExecutionCreateRecurringPayments => settingsManager.LastExecutionTimeStampRecurringPayments;
+        public DateTime LastExecutionSynBackup => settingsFacade.LastExecutionTimeStampSyncBackup;
+        public DateTime LastExecutionClearPayments => settingsFacade.LastExecutionTimeStampClearPayments;
+        public DateTime LastExecutionCreateRecurringPayments => settingsFacade.LastExecutionTimeStampRecurringPayments;
     }
 }

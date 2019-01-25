@@ -10,30 +10,32 @@ namespace MoneyFox.DataLayer.Entities
     /// </summary>
     public class Payment
     {
-        public int Id { get; set; }
+        private Payment() { }
+
+        public int Id { get; private set; }
 
         [Required]
-        public int ChargedAccountId { get; set; }
+        public int ChargedAccountId { get; private set; }
 
-        public int? TargetAccountId { get; set; }
+        public int? TargetAccountId { get; private set; }
 
-        public int? CategoryId { get; set; }
+        public int? CategoryId { get; private set; }
 
-        public DateTime Date { get; set; }
-        public double Amount { get; set; }
-        public bool IsCleared { get; set; }
-        public PaymentType Type { get; set; }
-        public string Note { get; set; }
-        public bool IsRecurring { get; set; }
+        public DateTime Date { get; private set; }
+        public double Amount { get; private set; }
+        public bool IsCleared { get; private set; }
+        public PaymentType Type { get; private set; }
+        public string Note { get; private set; }
+        public bool IsRecurring { get; private set; }
 
-        public int? RecurringPaymentId { get; set; }
+        public int? RecurringPaymentId { get; private set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category Category { get; private set; }
 
-        public virtual Account ChargedAccount { get; set; }
+        public virtual Account ChargedAccount { get; private set; }
 
-        public virtual Account TargetAccount { get; set; }
+        public virtual Account TargetAccount { get; private set; }
 
-        public virtual RecurringPayment RecurringPayment { get; set; }
+        public virtual RecurringPayment RecurringPayment { get; private set; }
     }
 }

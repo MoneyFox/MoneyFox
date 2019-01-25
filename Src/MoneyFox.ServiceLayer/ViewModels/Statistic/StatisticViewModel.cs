@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -29,7 +29,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
         /// </summary>
-        protected StatisticViewModel(IMvxMessenger messenger, ISettingsManager settingsManager, IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+        protected StatisticViewModel(IMvxMessenger messenger, ISettingsFacade settingsManager, IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), messenger, settingsManager, logProvider, navigationService)
         {
         }
@@ -43,15 +43,15 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <param name="settingsManager">Instance of a SettingsManager</param>
         protected StatisticViewModel(DateTime startDate, 
                                      DateTime endDate,
-                                     IMvxMessenger messenger, 
-                                     ISettingsManager settingsManager,
+                                     IMvxMessenger messenger,
+                                     ISettingsFacade settingsFacade,
                                      IMvxLogProvider logProvider, 
                                      IMvxNavigationService navigationService) : base (logProvider, navigationService)
         {
             StartDate = startDate;
             EndDate = endDate;
 
-            BackgroundColor = settingsManager.Theme == AppTheme.Dark
+            BackgroundColor = settingsFacade.Theme == AppTheme.Dark
                 ? new SKColor(0, 0, 0)
                 : SKColor.Parse("#EFF2F5");
 

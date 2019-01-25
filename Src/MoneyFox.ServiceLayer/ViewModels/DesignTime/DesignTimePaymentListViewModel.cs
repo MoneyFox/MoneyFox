@@ -1,12 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
@@ -21,8 +21,8 @@ namespace MoneyFox.Business.ViewModels.DesignTime
             new DateListGroup<DateListGroup<PaymentViewModel>>("Januar 1992")
             {
                 new DateListGroup<PaymentViewModel>("31.1.1992") {
-                    new PaymentViewModel(new Payment()) {Amount = 123, Category = new CategoryViewModel(new Category()) {Name = "Beer"}},
-                    new PaymentViewModel(new Payment()) {Amount = 123, Category = new CategoryViewModel(new Category()) {Name = "Beer"}}
+                    new PaymentViewModel{Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
+                    new PaymentViewModel{Amount = 123, Category = new CategoryViewModel{Name = "Beer"}}
                 }
             }
         };

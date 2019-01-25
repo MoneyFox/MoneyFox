@@ -1,9 +1,9 @@
-﻿using MoneyFox.Business.ViewModels.Interfaces;
+﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Dialogs
+namespace MoneyFox.Presentation.Dialogs
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddAccountAndPaymentDialog

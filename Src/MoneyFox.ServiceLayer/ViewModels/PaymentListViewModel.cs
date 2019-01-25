@@ -4,33 +4,32 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using GenericServices;
 using MoneyFox.Business.Manager;
-using MoneyFox.Business.Messages;
-using MoneyFox.Business.Parameters;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.DataAccess.DataServices;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Messages;
+using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
     public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
     {
-        private readonly IAccountService accountService;
-        private readonly IPaymentService paymentService;
-        private readonly IRecurringPaymentService recurringPaymentService;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
-        private readonly IBalanceCalculationManager balanceCalculationManager;
+        private readonly IBalanceCalculationService balanceCalculationService;
         private readonly IBackupManager backupManager;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
@@ -49,23 +48,19 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(IAccountService accountService,
-            IPaymentService paymentService, 
-            IRecurringPaymentService recurringPaymentService,
+        public PaymentListViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsManager settingsManager,
-            IBalanceCalculationManager balanceCalculationManager,
+            IBalanceCalculationService balanceCalculationService,
             IBackupManager backupManager,
             IMvxNavigationService navigationService,
             IMvxMessenger messenger, 
             IMvxLogProvider logProvider)
         {
-            this.accountService = accountService;
-            this.paymentService = paymentService;
-            this.recurringPaymentService = recurringPaymentService;
+            this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
-            this.balanceCalculationManager = balanceCalculationManager;
+            this.balanceCalculationService = balanceCalculationService;
             this.backupManager = backupManager;
             this.navigationService = navigationService;
             this.messenger = messenger;

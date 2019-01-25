@@ -7,6 +7,7 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -51,26 +52,24 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IBackupManager backupManager;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
         private bool backupAvailable;
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
 
         public BackupViewModel(IBackupManager backupManager,
-                               IDialogService dialogService,
-                               IConnectivityAdapter connectivity,
-                               ISettingsManager settingsManager,
-                               IMvxLogProvider logProvider,
-                               IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            IDialogService dialogService,
+            IConnectivityAdapter connectivity,
+            ISettingsFacade settingsFacade,
+            IMvxLogProvider logProvider,
+            IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.backupManager = backupManager;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
         }
-
-        #region Properties
 
         /// <inheritdoc />
         public MvxAsyncCommand LoginCommand => new MvxAsyncCommand(Login);
@@ -111,11 +110,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     Indicator that the user logged in to the backup service.
         /// </summary>
-        public bool IsLoggedIn => settingsManager.IsLoggedInToBackupService;
+        public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
         /// <summary>
         ///     Indicates if a backup is available for restore.
@@ -131,8 +130,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
         }
 
-        #endregion
-
         public override async Task Initialize()
         {
             await Loaded();
@@ -140,15 +137,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Loaded()
         {
-            if (!IsLoggedIn)
-            {
-                return;
-            }
+            if (!IsLoggedIn) return;
 
             if (!connectivity.IsConnected)
-            {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
-            }
 
             IsLoadingBackupAvailability = true;
             try
@@ -158,26 +150,26 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Issue during Login process." } });
+                Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
                 await backupManager.Logout();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.ErrorMessageAuthenticationFailed);
+                    Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (Microsoft.Graph.ServiceException ex)
+            catch (ServiceException ex)
             {
                 if (ex.Error.Code == "4f37.717b")
                 {
-                    Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Graph Login Exception" } });
+                    Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
                     await backupManager.Logout();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                    Strings.ErrorMessageAuthenticationFailed);
+                        Strings.ErrorMessageAuthenticationFailed);
                 }
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string>{{ "Info", "Unknown Issue"}});
+                Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Unknown Issue"}});
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
-                                                ex.ToString());
+                    ex.ToString());
             }
 
             IsLoadingBackupAvailability = false;
@@ -186,9 +178,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task Login()
         {
             if (!connectivity.IsConnected)
-            {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
-            }
 
             try
             {
@@ -199,13 +189,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
             catch (BackupAuthenticationFailedException)
             {
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.ErrorMessageAuthenticationFailed);
+                    Strings.ErrorMessageAuthenticationFailed);
             }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle,
-                                                Strings.LoginFailedMessage);
+                    Strings.LoginFailedMessage);
             }
 
             await Loaded();
@@ -214,17 +204,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task Logout()
         {
             await backupManager.Logout();
-            settingsManager.IsLoggedInToBackupService = false;
+            settingsFacade.IsLoggedInToBackupService = false;
             // ReSharper disable once ExplicitCallerInfoArgument
             await RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
         private async Task CreateBackup()
         {
-            if (!await ShowOverwriteBackupInfo())
-            {
-                return;
-            }
+            if (!await ShowOverwriteBackupInfo()) return;
 
             dialogService.ShowLoadingDialog();
             try
@@ -236,19 +223,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await backupManager.Logout();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.ErrorMessageAuthenticationFailed);
-            } 
+                    Strings.ErrorMessageAuthenticationFailed);
+            }
             catch (ServiceException ex)
             {
                 await backupManager.Logout();
                 Crashes.TrackError(ex);
-            } 
+            }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                                                Strings.ErrorMessageBackupFailed);
-            } 
+                    Strings.ErrorMessageBackupFailed);
+            }
 
             dialogService.HideLoadingDialog();
             await ShowCompletionNote();
@@ -256,10 +243,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task RestoreBackup()
         {
-            if (!await ShowOverwriteDataInfo())
-            {
-                return;
-            }
+            if (!await ShowOverwriteDataInfo()) return;
 
             dialogService.ShowLoadingDialog();
             try
@@ -271,20 +255,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await backupManager.Logout();
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.ErrorMessageAuthenticationFailed);
+                    Strings.ErrorMessageAuthenticationFailed);
             }
             catch (ServiceException ex)
             {
                 await backupManager.Logout();
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.BackupRestoreFailedTitle,
-                                                Strings.ErrorMessageRestore);
-            } 
+                    Strings.ErrorMessageRestore);
+            }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                                                Strings.ErrorMessageBackupFailed);
+                    Strings.ErrorMessageBackupFailed);
             }
 
             dialogService.HideLoadingDialog();
@@ -292,12 +276,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()
-            => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+        {
+            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+        }
 
         private async Task<bool> ShowOverwriteDataInfo()
-            => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+        {
+            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+        }
 
         private async Task ShowCompletionNote()
-            => await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
+        {
+            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
+        }
     }
 }

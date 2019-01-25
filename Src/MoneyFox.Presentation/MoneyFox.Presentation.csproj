@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Dialogs\**" />
-    <Compile Remove="UserControls\**" />
     <EmbeddedResource Remove="Dialogs\**" />
-    <EmbeddedResource Remove="UserControls\**" />
     <None Remove="Dialogs\**" />
-    <None Remove="UserControls\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +68,10 @@
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
     <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dialogs\" />
   </ItemGroup>
 
 </Project>

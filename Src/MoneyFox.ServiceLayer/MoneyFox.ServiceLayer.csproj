@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="DesignTimeViewModelLocator.cs" />
-    <Compile Remove="ViewModels\Interfaces\IPaymentListViewModel.cs" />
-    <Compile Remove="ViewModels\ModifyPaymentViewModel.cs" />
-    <Compile Remove="ViewModels\PaymentListBalanceViewModel.cs" />
-    <Compile Remove="ViewModels\PaymentListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListViewModel.cs" />
   </ItemGroup>
 
@@ -23,8 +18,15 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackupViewModel.cs" />

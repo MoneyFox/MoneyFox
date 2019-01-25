@@ -2,9 +2,9 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:designTime="clr-namespace:MoneyFox.Business.ViewModels.DesignTime;assembly=MoneyFox.Business"
-                 xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                 x:Class="MoneyFox.Dialogs.AddAccountAndPaymentDialog">
+                 xmlns:designTime="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.ServiceLayer"
+                 xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                 x:Class="MoneyFox.Presentation.Dialogs.AddAccountAndPaymentDialog">
 
     <pages:PopupPage.BindingContext>
         <designTime:DesignTimeAccountListViewActionViewModel />
@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static moneyFox:StyleHelper.AccountImageSource}" 
+                <Image Source="{x:Static presentation:StyleHelper.AccountImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -45,7 +45,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static moneyFox:StyleHelper.ExpenseImageSource}"  
+                <Image Source="{x:Static presentation:StyleHelper.ExpenseImageSource}"  
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -63,7 +63,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static moneyFox:StyleHelper.IncomeImageSource}" 
+                <Image Source="{x:Static presentation:StyleHelper.IncomeImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 
@@ -81,7 +81,7 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}" 
+                <Image Source="{x:Static presentation:StyleHelper.TransferImageSource}" 
                        HeightRequest="30"
                        WidthRequest="30" />
 

@@ -1,24 +1,27 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
-using MoneyFox.Business.Messages;
-using MoneyFox.Business.Parameters;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.DataAccess.DataServices;
+using GenericServices;
+using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Messages;
+using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
     public class PaymentListViewActionViewModel : BaseNavigationViewModel, IPaymentListViewActionViewModel
     {
-        private readonly IAccountService accountService;
-        private readonly ISettingsManager settingsManager;
+        private readonly ICrudServicesAsync crudServices;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IMvxNavigationService navigationService;
@@ -32,8 +35,8 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListViewActionViewModel(IAccountService accountService,
-                                              ISettingsManager settingsManager,
+        public PaymentListViewActionViewModel(ICrudServicesAsync crudServices,
+                                              ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
                                               IMvxMessenger messenger,
@@ -41,8 +44,8 @@ namespace MoneyFox.Business.ViewModels
                                               IMvxLogProvider logProvider,
                                               IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.accountService = accountService;
-            this.settingsManager = settingsManager;
+            this.crudServices = crudServices;
+            this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
@@ -55,19 +58,19 @@ namespace MoneyFox.Business.ViewModels
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddIncomeCommand =>
             new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
                                         new ModifyPaymentParameter(PaymentType.Income)));
 
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddExpenseCommand =>
             new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
                                         new ModifyPaymentParameter(PaymentType.Expense)));
         
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddTransferCommand =>
             new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
                                         new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <inheritdoc />
@@ -81,17 +84,17 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => accountService.GetAccountCount().Result > 1;
+        public bool IsTransferAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Count() > 1;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => accountService.GetAccountCount().Result > 0;
+        public bool IsAddIncomeAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => accountService.GetAccountCount().Result > 0;
+        public bool IsAddExpenseAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
 
         /// <inheritdoc />
         public bool IsClearedFilterActive
@@ -151,8 +154,8 @@ namespace MoneyFox.Business.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await accountService.DeleteAccount(await accountService.GetById(accountId));
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
+                await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId);
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 await navigationService.Close(this);
             }
             balanceViewModel.UpdateBalanceCommand.Execute();
