@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
+    <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
   </ItemGroup>

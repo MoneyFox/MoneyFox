@@ -2,7 +2,7 @@
 using MoneyFox.Foundation.Groups;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.Interfaces
+namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
 {    
     /// <summary>
     ///     Representation of the AccountListView.

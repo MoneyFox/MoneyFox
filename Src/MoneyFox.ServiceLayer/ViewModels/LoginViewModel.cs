@@ -4,7 +4,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Representation of the LoginView.
@@ -40,7 +40,7 @@ namespace MoneyFox.Business.ViewModels
             navigationService.Navigate<MainViewModel>();
 
             var mainView = Mvx.IoCProvider.Resolve<MainViewModel>();
-            (mainView as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+            mainView?.ShowAccountListCommand.ExecuteAsync();
         }
     }
 }

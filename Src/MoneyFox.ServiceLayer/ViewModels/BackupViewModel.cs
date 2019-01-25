@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
-using MoneyFox.Business.Adapter;
+using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
@@ -11,7 +11,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {

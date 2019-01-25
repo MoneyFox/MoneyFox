@@ -5,7 +5,7 @@ using MvvmCross.Localization;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class SettingsSecurityViewModel : BaseNavigationViewModel, ISettingsSecurityViewModel
     {

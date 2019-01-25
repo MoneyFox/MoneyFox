@@ -1,41 +1,37 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MoneyFox.DataAccess.Pocos;
+using GenericServices;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class RecurringPaymentViewModel : INotifyPropertyChanged
+    public class RecurringPaymentViewModel : INotifyPropertyChanged, ILinkToEntity<RecurringPayment>
     {
-        /// <summary>
-        ///     Default constructor. Will create a new <see cref="RecurringPayment" />
-        /// </summary>
-        public RecurringPaymentViewModel()
-        {
-            RecurringPayment = new RecurringPayment();
-        }
+        private int id;
+        private int chargedAccountId;
+        private int? targetAccountId;
+        private int? categoryId;
+        private DateTime startDate;
+        private DateTime? endDate;
+        private double amount;
+        private bool isEndless;
+        private PaymentType type;
+        private PaymentRecurrence recurrence;
+        private string note;
 
-        /// <summary>
-        ///     Constructor. Assignes the passed recurring payment to the wrapped payment field.
-        /// </summary>
-        /// <param name="recurringPayment">RecurringPayment to use for further operations.</param>
-        public RecurringPaymentViewModel(RecurringPayment recurringPayment)
-        {
-            RecurringPayment = recurringPayment;
-        }
-
-        public RecurringPayment RecurringPayment { get; set; }
+        private AccountViewModel chargedAccount;
+        private AccountViewModel targetAccount;
+        private CategoryViewModel categoryViewModel;
 
         public int Id
         {
-            get => RecurringPayment.Data.Id;
+            get => id;
             set
             {
-                if (RecurringPayment.Data.Id == value) return;
-                RecurringPayment.Data.Id = value;
+                if (id == value) return;
+                id = value;
                 RaisePropertyChanged();
             }
         }
@@ -46,11 +42,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int ChargedAccountId
         {
-            get => RecurringPayment.Data.ChargedAccountId;
+            get => chargedAccountId;
             set
             {
-                if (RecurringPayment.Data.ChargedAccountId == value) return;
-                RecurringPayment.Data.ChargedAccountId = value;
+                if (chargedAccountId == value) return;
+                chargedAccountId = value;
                 RaisePropertyChanged();
             }
         }
@@ -61,11 +57,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? TargetAccountId
         {
-            get => RecurringPayment.Data.TargetAccountId;
+            get => targetAccountId;
             set
             {
-                if (RecurringPayment.Data.TargetAccountId == value) return;
-                RecurringPayment.Data.TargetAccountId = value;
+                if (targetAccountId == value) return;
+                targetAccountId = value;
                 RaisePropertyChanged();
             }
         }
@@ -75,44 +71,44 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public int? CategoryId
         {
-            get => RecurringPayment.Data.CategoryId;
+            get => categoryId;
             set
             {
-                if (RecurringPayment.Data.CategoryId == value) return;
-                RecurringPayment.Data.CategoryId = value;
+                if (categoryId == value) return;
+                categoryId = value;
                 RaisePropertyChanged();
             }
         }
 
         public DateTime StartDate
         {
-            get => RecurringPayment.Data.StartDate;
+            get => startDate;
             set
             {
-                if (RecurringPayment.Data.StartDate == value) return;
-                RecurringPayment.Data.StartDate = value;
+                if (startDate == value) return;
+                startDate = value;
                 RaisePropertyChanged();
             }
         }
 
         public DateTime? EndDate
         {
-            get => RecurringPayment.Data.EndDate;
+            get => endDate;
             set
             {
-                if (RecurringPayment.Data.EndDate == value) return;
-                RecurringPayment.Data.EndDate = value;
+                if (endDate == value) return;
+                endDate = value;
                 RaisePropertyChanged();
             }
         }
 
         public bool IsEndless
         {
-            get => RecurringPayment.Data.IsEndless;
+            get => isEndless;
             set
             {
-                if (RecurringPayment.Data.IsEndless == value) return;
-                RecurringPayment.Data.IsEndless = value;
+                if (isEndless == value) return;
+                isEndless = value;
                 RaisePropertyChanged();
             }
         }
@@ -122,11 +118,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public double Amount
         {
-            get => RecurringPayment.Data.Amount;
+            get => amount;
             set
             {
-                if (Math.Abs(RecurringPayment.Data.Amount - value) < 0.01) return;
-                RecurringPayment.Data.Amount = value;
+                if (Math.Abs(amount - value) < 0.01) return;
+                amount = value;
                 RaisePropertyChanged();
             }
         }
@@ -136,22 +132,22 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public PaymentType Type
         {
-            get => RecurringPayment.Data.Type;
+            get => type;
             set
             {
-                if (RecurringPayment.Data.Type == value) return;
-                RecurringPayment.Data.Type = value;
+                if (type == value) return;
+                type = value;
                 RaisePropertyChanged();
             }
         }
 
         public PaymentRecurrence Recurrence
         {
-            get => RecurringPayment.Data.Recurrence;
+            get => recurrence;
             set
             {
-                if (RecurringPayment.Data.Recurrence == value) return;
-                RecurringPayment.Data.Recurrence = value;
+                if (recurrence == value) return;
+                recurrence = value;
                 RaisePropertyChanged();
             }
         }
@@ -161,11 +157,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Note
         {
-            get => RecurringPayment.Data.Note;
+            get => note;
             set
             {
-                if (RecurringPayment.Data.Note == value) return;
-                RecurringPayment.Data.Note = value;
+                if (note == value) return;
+                note = value;
                 RaisePropertyChanged();
             }
         }
@@ -176,13 +172,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel ChargedAccount
         {
-            get => RecurringPayment.Data.ChargedAccount != null
-                ? new AccountViewModel(new Account(RecurringPayment.Data.ChargedAccount))
-                : null;
+            get => chargedAccount;
             set
             {
-                RecurringPayment.Data.ChargedAccount = value.Account.Data;
-                ChargedAccount = value;
+                if(chargedAccount == value) return;
+                chargedAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -193,13 +187,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public AccountViewModel TargetAccount
         {
-            get => RecurringPayment.Data.TargetAccount != null
-                ? new AccountViewModel(new Account(RecurringPayment.Data.TargetAccount))
-                : null;
+            get => targetAccount;
             set
             {
-                RecurringPayment.Data.TargetAccount = value.Account.Data;
-                TargetAccount = value;
+                if (targetAccount == value) return;
+                targetAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -209,13 +201,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public CategoryViewModel Category
         {
-            get => RecurringPayment.Data.Category != null
-                ? new CategoryViewModel(new Category(RecurringPayment.Data.Category))
-                : null;
+            get => categoryViewModel;
             set
             {
-                RecurringPayment.Data.Category = value.Category.Data;
-                Category = value;
+                if (categoryViewModel == value) return;
+                categoryViewModel = value;
                 RaisePropertyChanged();
             }
         }

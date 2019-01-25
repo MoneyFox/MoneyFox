@@ -12,6 +12,26 @@ namespace MoneyFox.ServiceLayer.QueryObject
     public static class AccountQueries
     {
         /// <summary>
+        ///     Adds a filter to a query for excluded accounts
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query with a filter for excluded accounts.</returns>
+        public static IQueryable<AccountViewModel> AreNotExcluded(this IQueryable<AccountViewModel> query)
+        {
+            return query.Where(x => !x.IsExcluded);
+        }
+
+        /// <summary>
+        ///     Adds a filter to a query for not excluded accounts
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query with a filter for not excluded accounts.</returns>
+        public static IQueryable<AccountViewModel> AreExcluded(this IQueryable<AccountViewModel> query)
+        {
+            return query.Where(x => x.IsExcluded);
+        }
+
+        /// <summary>
         ///     Checks if there is an account with the passed name.
         /// </summary>
         public static async Task<bool> AnyWithName(this IQueryable<AccountViewModel> query, string name)

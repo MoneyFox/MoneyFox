@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using MoneyFox.Business.ViewModels.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime

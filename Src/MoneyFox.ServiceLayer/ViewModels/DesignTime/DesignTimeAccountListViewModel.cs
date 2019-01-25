@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.Business.ViewModels.Interfaces;
-using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
@@ -19,11 +17,11 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         {
             new AlphaGroupListGroup<AccountViewModel>("Included")
             {
-                new AccountViewModel(new Account{Name =  "Income", CurrentBalance = 1234})
+                new AccountViewModel{Name =  "Income", CurrentBalance = 1234}
             },
             new AlphaGroupListGroup<AccountViewModel>("Excluded")
             {
-                new AccountViewModel(new Account{Name =  "Savings", CurrentBalance = 4325})
+                new AccountViewModel{Name =  "Savings", CurrentBalance = 4325}
             }
         };
 

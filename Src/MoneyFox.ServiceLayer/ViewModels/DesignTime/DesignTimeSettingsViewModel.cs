@@ -2,6 +2,8 @@
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 

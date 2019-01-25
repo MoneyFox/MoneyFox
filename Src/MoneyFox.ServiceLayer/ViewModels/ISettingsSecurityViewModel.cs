@@ -1,7 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Localization;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface ISettingsSecurityViewModel
     {

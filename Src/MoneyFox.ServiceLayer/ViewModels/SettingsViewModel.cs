@@ -7,12 +7,12 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface ISettingsViewModel : IBaseViewModel
     {
         /// <summary>
-        ///     Contains all available Settingsitems.
+        ///     Contains all available Settings items.
         /// </summary>
         MvxObservableCollection<SettingsSelectorType> SettingsList { get; }
 

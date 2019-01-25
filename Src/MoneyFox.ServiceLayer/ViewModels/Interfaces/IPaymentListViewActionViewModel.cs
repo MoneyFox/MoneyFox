@@ -1,7 +1,7 @@
 ﻿using System;
 using MvvmCross.Commands;
 
-namespace MoneyFox.Business.ViewModels.Interfaces
+namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
 {
     /// <summary>
     ///     Represents the Actions for a view.
