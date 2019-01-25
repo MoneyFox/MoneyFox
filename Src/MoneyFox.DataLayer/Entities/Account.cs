@@ -19,6 +19,7 @@ namespace MoneyFox.DataLayer.Entities
             Name = name;
             CurrentBalance = currentBalance;
             Note = note;
+            IsExcluded = isexcluded;
             IsOverdrawn = currentBalance < 0;
         }
 
