@@ -746,13 +746,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Light</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Change your prefered theme.</value>
+    <value>Choose your prefered Theme.</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Personalization</value>
   </data>
   <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
-    <value>{0} will recieve {1}</value>
+    <value>{0} will receive {1}</value>
   </data>
   <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
     <value>{0} to {1}</value>

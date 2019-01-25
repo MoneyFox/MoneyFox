@@ -20,6 +20,7 @@ namespace MoneyFox.Business.Tests.ViewModels
     {
         private readonly Mock<IAccountService> accountService;
         private readonly Mock<IPaymentService> paymentService;
+        private readonly Mock<IRecurringPaymentService> recurringPaymentService;
         private readonly Mock<IDialogService> dialogService;
         private readonly Mock<ISettingsManager> settingsManager;
         private readonly Mock<IBalanceCalculationManager> balanceCalculatorManager;
@@ -32,6 +33,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         {
             accountService = new Mock<IAccountService>();
             paymentService = new Mock<IPaymentService>();
+            recurringPaymentService = new Mock<IRecurringPaymentService>();
             dialogService = new Mock<IDialogService>();
             settingsManager = new Mock<ISettingsManager>();
             balanceCalculatorManager = new Mock<IBalanceCalculationManager>();
@@ -55,6 +57,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var vm = new PaymentListViewModel(accountService.Object,
                                               paymentService.Object,
+                                              recurringPaymentService.Object,
                                               dialogService.Object,
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,
@@ -82,6 +85,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var vm = new PaymentListViewModel(accountService.Object,
                                               paymentService.Object,
+                                              recurringPaymentService.Object,
                                               dialogService.Object,
                                               settingsManager.Object,
                                               balanceCalculatorManager.Object,

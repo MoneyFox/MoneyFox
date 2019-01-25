@@ -27,6 +27,7 @@ namespace MoneyFox.Business.ViewModels
     {
         private readonly IAccountService accountService;
         private readonly IPaymentService paymentService;
+        private readonly IRecurringPaymentService recurringPaymentService;
         private readonly IDialogService dialogService;
         private readonly ISettingsManager settingsManager;
         private readonly IBalanceCalculationManager balanceCalculationManager;
@@ -49,16 +50,19 @@ namespace MoneyFox.Business.ViewModels
         ///     Default constructor
         /// </summary>
         public PaymentListViewModel(IAccountService accountService,
-            IPaymentService paymentService,
+            IPaymentService paymentService, 
+            IRecurringPaymentService recurringPaymentService,
             IDialogService dialogService,
             ISettingsManager settingsManager,
             IBalanceCalculationManager balanceCalculationManager,
             IBackupManager backupManager,
             IMvxNavigationService navigationService,
-            IMvxMessenger messenger, IMvxLogProvider logProvider)
+            IMvxMessenger messenger, 
+            IMvxLogProvider logProvider)
         {
             this.accountService = accountService;
             this.paymentService = paymentService;
+            this.recurringPaymentService = recurringPaymentService;
             this.dialogService = dialogService;
             this.settingsManager = settingsManager;
             this.balanceCalculationManager = balanceCalculationManager;
@@ -271,7 +275,15 @@ namespace MoneyFox.Business.ViewModels
             if (!await dialogService
                 .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            await paymentService.DeletePayment(await paymentService.GetById(payment.Id));
+            var paymentToDelete = await paymentService.GetById(payment.Id);
+
+            if (paymentToDelete.Data.IsRecurring 
+                && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
+            {
+                await recurringPaymentService.DeletePayment(paymentToDelete.Data.RecurringPayment);
+            }
+
+            await paymentService.DeletePayment(paymentToDelete);
 
             settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
