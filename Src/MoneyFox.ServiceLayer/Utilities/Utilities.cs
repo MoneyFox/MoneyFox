@@ -35,14 +35,6 @@ namespace MoneyFox.ServiceLayer.Utilities
         }
 
         /// <summary>
-        ///     Returns the double converted to a string in a proper format for this culture.
-        /// </summary>
-        /// <param name="value">Double who shall be converted</param>
-        /// <returns>Formated string.</returns>
-        public static string FormatLargeNumbers(double value)
-            => value.ToString("N", CultureInfo.CurrentCulture);
-
-        /// <summary>
         ///     Returns the number string with just his culture's decimal separator.
         ///     If it is an Int it will return the same string as entered.
         /// </summary>

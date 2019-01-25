@@ -69,35 +69,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         protected abstract Task SaveAccount();
-
-        protected abstract Task DeleteAccount();
-
+        
         public virtual string Title => Strings.AddAccountTitle;
-
-        protected double Amount;
 
         public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccount);
 
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
-
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-        
-
-        public string AmountString
-        {
-            get => Utilities.Utilities.FormatLargeNumbers(Amount);
-            set
-            {
-                // we remove all separator chars to ensure that it works in all regions
-                string amountstring = Utilities.Utilities.RemoveGroupingSeparators(value);
-
-                double convertedValue;
-                if (double.TryParse(amountstring, NumberStyles.Any, CultureInfo.CurrentCulture, out convertedValue))
-                {
-                    Amount = convertedValue;
-                }
-            }
-        }
 
         public AccountViewModel SelectedAccount
         {

@@ -11,7 +11,7 @@ namespace MoneyFox.DataLayer.Entities
         //used by EF Core
         private Account(){}
 
-        public Account(string name, double currentBalance = 0, string note = "", bool isexcluded = false)
+        public Account(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
@@ -19,7 +19,7 @@ namespace MoneyFox.DataLayer.Entities
             Name = name;
             CurrentBalance = currentBalance;
             Note = note;
-            IsExcluded = isexcluded;
+            IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
         }
 

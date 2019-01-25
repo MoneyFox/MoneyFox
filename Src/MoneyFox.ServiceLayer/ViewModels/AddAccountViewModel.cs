@@ -22,18 +22,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override void Prepare()
         {
-            base.Prepare();
             SelectedAccount = new AccountViewModel();
+            base.Prepare();
         }
 
-        protected override Task SaveAccount()
+        protected override async Task SaveAccount()
         {
-            throw new System.NotImplementedException();
-        }
+            await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
+            if (!crudService.IsValid)
+            {
+                await dialogService.ShowMessage("Errors", crudService.GetAllErrors());
+            }
 
-        protected override Task DeleteAccount()
-        {
-            throw new System.NotImplementedException();
+            await NavigationService.Close(this);
         }
     }
 }

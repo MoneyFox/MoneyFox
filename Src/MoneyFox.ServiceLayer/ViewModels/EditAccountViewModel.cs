@@ -3,6 +3,7 @@ using GenericServices;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Parameters;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -31,12 +32,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //    Amount = SelectedAccount.CurrentBalance;
         //}
 
+        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
+
         protected override Task SaveAccount()
         {
             throw new System.NotImplementedException();
         }
 
-        protected override Task DeleteAccount()
+        protected Task DeleteAccount()
         {
             throw new System.NotImplementedException();
         }

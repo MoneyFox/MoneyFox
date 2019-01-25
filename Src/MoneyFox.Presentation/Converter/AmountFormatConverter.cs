@@ -3,7 +3,7 @@ using System.Globalization;
 using MvvmCross.Converters;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
     ///     Displays the amount as currency of the current culture.

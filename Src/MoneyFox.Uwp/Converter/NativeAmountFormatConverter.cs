@@ -1,4 +1,4 @@
-﻿using MoneyFox.Converter;
+﻿using MoneyFox.Presentation.Converter;
 using MvvmCross.Platforms.Uap.Converters;
 
 namespace MoneyFox.Uwp.Converter
