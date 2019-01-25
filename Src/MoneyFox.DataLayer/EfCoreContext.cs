@@ -1,5 +1,4 @@
-﻿using EntityFramework.DbContextScope.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
 
@@ -8,7 +7,7 @@ namespace MoneyFox.DataLayer
     /// <summary>
     ///     Represents the datacontext of the application
     /// </summary>
-    public class EfCoreContext : DbContext, IDbContext
+    public class EfCoreContext : DbContext
     {
         public EfCoreContext()
         {

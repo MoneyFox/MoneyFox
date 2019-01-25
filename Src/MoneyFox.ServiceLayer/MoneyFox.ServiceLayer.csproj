@@ -1,8 +1,66 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\DesignTime\**" />
+    <Compile Remove="ViewModels\Interfaces\**" />
+    <Compile Remove="ViewModels\Statistic\**" />
+    <EmbeddedResource Remove="ViewModels\DesignTime\**" />
+    <EmbeddedResource Remove="ViewModels\Interfaces\**" />
+    <EmbeddedResource Remove="ViewModels\Statistic\**" />
+    <None Remove="ViewModels\DesignTime\**" />
+    <None Remove="ViewModels\Interfaces\**" />
+    <None Remove="ViewModels\Statistic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DesignTimeViewModelLocator.cs" />
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
+    <Compile Remove="ViewModels\AbstractCategoryListViewModel.cs" />
+    <Compile Remove="ViewModels\AccountListViewActionViewModel.cs" />
+    <Compile Remove="ViewModels\AccountListViewModel.cs" />
+    <Compile Remove="ViewModels\AccountViewModel.cs" />
+    <Compile Remove="ViewModels\BackupViewModel.cs" />
+    <Compile Remove="ViewModels\BalanceViewModel.cs" />
+    <Compile Remove="ViewModels\CategoryListViewModel.cs" />
+    <Compile Remove="ViewModels\CategoryViewModel.cs" />
+    <Compile Remove="ViewModels\ISettingsSecurityViewModel.cs" />
+    <Compile Remove="ViewModels\LoginViewModel.cs" />
+    <Compile Remove="ViewModels\ModifyAccountViewModel.cs" />
+    <Compile Remove="ViewModels\ModifyCategoryViewModel.cs" />
+    <Compile Remove="ViewModels\ModifyPaymentViewModel.cs" />
+    <Compile Remove="ViewModels\PaymentListBalanceViewModel.cs" />
+    <Compile Remove="ViewModels\PaymentListViewActionViewModel.cs" />
+    <Compile Remove="ViewModels\PaymentListViewModel.cs" />
+    <Compile Remove="ViewModels\PaymentViewModel.cs" />
+    <Compile Remove="ViewModels\RecurringPaymentViewModel.cs" />
+    <Compile Remove="ViewModels\SelectCategoryListViewModel.cs" />
+    <Compile Remove="ViewModels\SelectDateRangeDialogViewModel.cs" />
+    <Compile Remove="ViewModels\SelectFilterDialogViewModel.cs" />
+    <Compile Remove="ViewModels\SettingsBackgroundJobViewModel.cs" />
+    <Compile Remove="ViewModels\SettingsPersonalizationViewModel.cs" />
+    <Compile Remove="ViewModels\SettingsSecurityViewModel.cs" />
+    <Compile Remove="ViewModels\SettingsViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EfCore.GenericServices" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.13.0" />
+    <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
+    <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="MvvmCross.Plugin.Email" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.2.2" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj" />

@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dialogs\**" />
+    <Compile Remove="UserControls\**" />
+    <EmbeddedResource Remove="Dialogs\**" />
+    <EmbeddedResource Remove="UserControls\**" />
+    <None Remove="Dialogs\**" />
+    <None Remove="UserControls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Converter\AccountNameConverter.cs" />
+    <Compile Remove="Converter\AmountFormatConverter.cs" />
+    <Compile Remove="Converter\AmountValueConverter.cs" />
+    <Compile Remove="Converter\DateTimeFormatConverter.cs" />
+    <Compile Remove="Converter\DateVisibilityConverter.cs" />
+    <Compile Remove="Converter\EmptyNameConverter.cs" />
+    <Compile Remove="Converter\InverseBoolConverter.cs" />
+    <Compile Remove="Converter\PaymentAmountConverter.cs" />
+    <Compile Remove="Converter\RecurrenceTypeConverter.cs" />
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="Views\AccountListPage.xaml.cs" />
+    <Compile Remove="Views\BackgroundJobSettingsPage.xaml.cs" />
+    <Compile Remove="Views\BackupPage.xaml.cs" />
+    <Compile Remove="Views\CategoryListPage.xaml.cs" />
+    <Compile Remove="Views\ModifyAccountPage.xaml.cs" />
+    <Compile Remove="Views\ModifyCategoryPage.xaml.cs" />
+    <Compile Remove="Views\ModifyPaymentPage.xaml.cs" />
+    <Compile Remove="Views\PaymentListPage.xaml.cs" />
+    <Compile Remove="Views\SelectCategoryPage.xaml.cs" />
+    <Compile Remove="Views\SettingsPage.xaml.cs" />
+    <Compile Remove="Views\SettingsPersonalizationPage.xaml.cs" />
+    <Compile Remove="Views\StatisticCashFlowPage.xaml.cs" />
+    <Compile Remove="Views\StatisticCategorySpreadingPage.xaml.cs" />
+    <Compile Remove="Views\StatisticCategorySummaryPage.xaml.cs" />
+    <Compile Remove="Views\StatisticSelectorPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+    <EmbeddedResource Remove="Views\AccountListPage.xaml" />
+    <EmbeddedResource Remove="Views\BackgroundJobSettingsPage.xaml" />
+    <EmbeddedResource Remove="Views\BackupPage.xaml" />
+    <EmbeddedResource Remove="Views\CategoryListPage.xaml" />
+    <EmbeddedResource Remove="Views\ModifyAccountPage.xaml" />
+    <EmbeddedResource Remove="Views\ModifyCategoryPage.xaml" />
+    <EmbeddedResource Remove="Views\ModifyPaymentPage.xaml" />
+    <EmbeddedResource Remove="Views\PaymentListPage.xaml" />
+    <EmbeddedResource Remove="Views\SelectCategoryPage.xaml" />
+    <EmbeddedResource Remove="Views\SettingsPage.xaml" />
+    <EmbeddedResource Remove="Views\SettingsPersonalizationPage.xaml" />
+    <EmbeddedResource Remove="Views\StatisticCashFlowPage.xaml" />
+    <EmbeddedResource Remove="Views\StatisticCategorySpreadingPage.xaml" />
+    <EmbeddedResource Remove="Views\StatisticCategorySummaryPage.xaml" />
+    <EmbeddedResource Remove="Views\StatisticSelectorPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Forms" Version="6.2.2" />
+    <PackageReference Include="PCLAppConfig" Version="0.4.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
+    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converter\" />
+  </ItemGroup>
+
+</Project>

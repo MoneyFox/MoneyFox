@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<d:MvxContentPage  x:TypeArguments="viewModels:StatisticCategorySpreadingViewModel"
+                   xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
+                   xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
+                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+                   x:Class="MoneyFox.Views.StatisticCategorySpreadingPage">
+
+    <forms:ChartView Chart="{Binding Chart}" />
+
+</d:MvxContentPage>

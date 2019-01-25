@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls1="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+    xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation">
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource helpers:StyleHelper.PrimaryColor}" />
+        <Setter Property="BarTextColor" Value="White" />
+    </Style>
+
+    <Style x:Key="DefaultFloatingActionButton" TargetType="controls1:FloatingActionButton">
+        <Setter Property="ButtonColor" Value="{x:Static presentation:StyleHelper.AccentColor}" />
+    </Style>
+    
+    <Style x:Key="ListItemStyle" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{x:Static presentation:StyleHelper.ListItemColor}" />
+    </Style>
+    
+    <Style x:Key="DialogWindowStyle" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{x:Static presentation:StyleHelper.DialogBackgroundColor}" />
+    </Style>
+
+    <Style x:Key="DefaultEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
+    <Style x:Key="DefaultPickerStyle" TargetType="Picker">
+        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
+    <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+        <Setter Property="PlaceholderColor" Value="{x:Static presentation:StyleHelper.DeemphasizedColor}" />
+    </Style>
+
+</ResourceDictionary>
