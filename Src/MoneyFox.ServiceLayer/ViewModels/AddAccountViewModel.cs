@@ -2,6 +2,7 @@
 using GenericServices;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -12,10 +13,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
 
-        public AddAccountViewModel(ICrudServicesAsync crudService, 
+        public AddAccountViewModel(ICrudServicesAsync crudService,
+            ISettingsFacade settingsFacade,
+            IBackupManager backupManager,
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(crudService, dialogService, logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(crudService, settingsFacade, backupManager, dialogService, logProvider, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;

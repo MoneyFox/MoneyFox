@@ -3,10 +3,13 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyFox.Business.ViewModels;
+using GenericServices;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -15,23 +18,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseNavigationViewModel
     {
-        protected readonly ICategoryService CategoryService;
+        protected readonly ICrudServicesAsync CrudServices;
         protected readonly IDialogService DialogService;
         
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
 
         /// <summary>
-        ///     Baseclass for the categorylist usercontrol
+        ///     Base class for the category list user control
         /// </summary>
-        /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
-        protected AbstractCategoryListViewModel(ICategoryService categoryService,
+        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices,
                                                 IDialogService dialogService,
                                                 IMvxLogProvider logProvider,
                                                 IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            CategoryService = categoryService;
+            CrudServices = crudServices;
             DialogService = dialogService;
         }
 
@@ -39,8 +39,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
         protected abstract Task ItemClick(CategoryViewModel category);
-
-        #region Properties
 
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
@@ -58,10 +56,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
-
-        #endregion
-
-        #region Commands
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
@@ -88,8 +82,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
 
-        #endregion
-
         /// <inheritdoc />
         public override async void ViewAppearing()
         {
@@ -106,12 +98,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
             List<CategoryViewModel> categories;
             if (!string.IsNullOrEmpty(searchText))
             {
-                var searchedCategories = await CategoryService.SearchByName(searchText);
-                categories = new List<CategoryViewModel>(searchedCategories.Select(x => new CategoryViewModel(x)));
-            } else
+                categories = new List<CategoryViewModel>(
+                    await CrudServices
+                        .ReadManyNoTracked<CategoryViewModel>()
+                        .WhereNameEquals(searchText)
+                        .ToListAsync());
+            } 
+            else
             {
-                var selectedCategories = await CategoryService.GetAllCategories();
-                categories = new List<CategoryViewModel>(selectedCategories.Select(x => new CategoryViewModel(x)));
+                categories = new List<CategoryViewModel>(await CrudServices
+                    .ReadManyNoTracked<CategoryViewModel>()
+                    .ToListAsync());
             }
             CategoryList = CreateGroup(categories);
         }
@@ -143,7 +140,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                await CategoryService.DeleteCategory(categoryToDelete.Category);
+                await CrudServices.DeleteAndSaveAsync<CategoryViewModel>(categoryToDelete.Id);
                 await Search();
             }
         }

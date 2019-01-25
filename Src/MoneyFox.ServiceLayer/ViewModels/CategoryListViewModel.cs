@@ -1,37 +1,49 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using MoneyFox.DataAccess.DataServices;
+using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
+    /// <summary>
+    ///     Defines the interface for a category list.
+    /// </summary>
     public interface ICategoryListViewModel : IBaseViewModel
     {
+        /// <summary>
+        ///     List of categories.
+        /// </summary>
         ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
+
+        /// <summary>
+        ///     Command for the item click.
+        /// </summary>
         MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+
+        /// <summary>
+        ///     Search command
+        /// </summary>
         MvxAsyncCommand<string> SearchCommand { get; }
+
+        /// <summary>
+        ///     Indicates if the category list is empty.
+        /// </summary>
         bool IsCategoriesEmpty { get; }
     }
 
-    /// <summary>
-    ///     Reprensentation of the CategoryListView.
-    /// </summary>
     public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
     {
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
-        /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
-        public CategoryListViewModel(ICategoryService categoryService, IDialogService dialogService,
+        public CategoryListViewModel(ICrudServicesAsync curdServicesAsync,
+                                     IDialogService dialogService,
                                      IMvxLogProvider logProvider,
-                                     IMvxNavigationService navigationService) : base(categoryService, dialogService, logProvider, navigationService)
+                                     IMvxNavigationService navigationService) : base(curdServicesAsync, dialogService, logProvider, navigationService)
         {
         }
 

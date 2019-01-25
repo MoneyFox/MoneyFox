@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Parameters;
-using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Pocos;
+using GenericServices;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface IModifyCategoryViewModel : IBaseViewModel
     {
@@ -26,46 +26,55 @@ namespace MoneyFox.Business.ViewModels
         MvxAsyncCommand CancelCommand { get; }
 
         /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
+        ///     Selected category.
         /// </summary>
-        MvxAsyncCommand DeleteCommand { get; }
-
         CategoryViewModel SelectedCategory { get; }
-
-        bool IsEdit { get; }
     }
 
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public class ModifyCategoryViewModel : BaseNavigationViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : BaseNavigationViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
     {
-        private readonly IBackupManager backupManager;
-        private readonly ICategoryService categoryService;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly ISettingsManager settingsManager;
-
-        private bool isEdit;
+        private readonly ISettingsFacade settingsFacade;
+        private readonly IBackupManager backupManager;
 
         private CategoryViewModel selectedCategory;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public ModifyCategoryViewModel(ICategoryService categoryService, 
+        protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
                                        IDialogService dialogService,
-                                       ISettingsManager settingsManager,
+                                       ISettingsFacade settingsFacade,
                                        IBackupManager backupManager,
                                        IMvxLogProvider logProvider,
                                        IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.categoryService = categoryService;
             this.dialogService = dialogService;
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
             this.backupManager = backupManager;
+            this.crudServices = crudServices;
         }
 
-        #region Commands
+
+        protected abstract Task SaveCategory();
+
+        private async Task SaveCategoryBase()
+        {
+            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            await SaveCategory();
+
+            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            await backupManager.EnqueueBackupTask();
+        }
 
         /// <summary>
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
@@ -77,15 +86,6 @@ namespace MoneyFox.Business.ViewModels
         ///     Cancel the current operation
         /// </summary>
         public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
-        /// </summary>
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteCategory);
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -101,95 +101,21 @@ namespace MoneyFox.Business.ViewModels
         }
 
         /// <summary>
-        ///     Indicates if the selected CategoryViewModel shall be edited or a new one created.
-        /// </summary>
-        public bool IsEdit
-        {
-            get => isEdit;
-            set
-            {
-                isEdit = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
-        public string Title => IsEdit
-            ? string.Format(Strings.EditCategoryTitle, SelectedCategory.Name)
-            : Strings.AddCategoryTitle;
+        public virtual string Title => Strings.AddCategoryTitle;
 
-        #endregion
-
-        private int categoryId;
+        protected int CategoryId;
 
         /// <inheritdoc />
         public override void Prepare(ModifyCategoryParameter parameter)
         {
-            categoryId = parameter.CategoryId;
-        }
-
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            if (categoryId == 0)
-            {
-                IsEdit = false;
-                SelectedCategory = new CategoryViewModel(new Category());
-            } else
-            {
-                IsEdit = true;
-                SelectedCategory = new CategoryViewModel(await categoryService.GetById(categoryId));
-            }
-        }
-
-        private async Task SaveCategory()
-        {
-            if (string.IsNullOrEmpty(SelectedCategory.Name))
-            {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
-
-            if (!IsEdit && await categoryService.CheckIfNameAlreadyTaken(SelectedCategory.Name))
-            {
-                await dialogService.ShowMessage(Strings.ErrorMessageSave, Strings.DuplicateCategoryMessage);
-                return;
-            }
-
-            await categoryService.SaveCategory(SelectedCategory.Category);
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
-
-#pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
-#pragma warning restore 4014
-
-            await NavigationService.Close(this);
-        }
-
-        private async Task DeleteCategory()
-        {
-            try
-            {
-                await categoryService.DeleteCategory(SelectedCategory.Category);
-                settingsManager.LastDatabaseUpdate = DateTime.Now;
-#pragma warning disable 4014
-                backupManager.EnqueueBackupTask();
-#pragma warning restore 4014
-
-                await NavigationService.Close(this);
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-            }
+            CategoryId = parameter.CategoryId;
         }
 
         private async Task Cancel()
         {
-            SelectedCategory = new CategoryViewModel(await categoryService.GetById(SelectedCategory.Id));
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
             await NavigationService.Close(this);
         }
     }

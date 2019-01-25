@@ -69,13 +69,13 @@ namespace MoneyFox.Presentation
                                  .EndingWith("ViewModel")
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsTypes()
-                                 .RegisterAsLazySingleton();
+                                 .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("ViewModel")
                                  .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsInterfaces()
-                                 .RegisterAsLazySingleton();
+                                 .RegisterAsDynamic();
 
             SetupContextAndCrudServices();
             RegisterAppStart<MainViewModel>();

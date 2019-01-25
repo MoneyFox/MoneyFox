@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Parameters;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -12,14 +14,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public class EditAccountViewModel : ModifyAccountViewModel
     {
         private readonly ICrudServicesAsync crudServices;
+        private readonly ISettingsFacade settingsFacade;
+        private readonly IBackupManager backupManager;
         private readonly IDialogService dialogService;
 
         public EditAccountViewModel(ICrudServicesAsync crudServices,
+            ISettingsFacade settingsFacade,
+            IBackupManager backupManager,
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(crudServices, dialogService, logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(crudServices, settingsFacade, backupManager, dialogService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
+            this.settingsFacade = settingsFacade;
+            this.backupManager = backupManager;
             this.dialogService = dialogService;
         }
 
@@ -47,6 +55,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected async Task DeleteAccount()
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
+            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            await backupManager.EnqueueBackupTask();
         }
     }
 }

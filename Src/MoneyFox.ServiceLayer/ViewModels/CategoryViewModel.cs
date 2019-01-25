@@ -1,35 +1,33 @@
-using MoneyFox.DataAccess.Pocos;
+using GenericServices;
+using MoneyFox.DataLayer.Entities;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class CategoryViewModel : MvxViewModel
+    public class CategoryViewModel : MvxViewModel, ILinkToEntity<Category>
     {
-        public CategoryViewModel(Category category)
-        {
-            Category = category;
-        }
-
-        public Category Category { get; set; }
+        private int id;
+        private string name;
+        private string note;
 
         public int Id
         {
-            get => Category.Data.Id;
+            get => id;
             set
             {
-                if (Category.Data.Id == value) return;
-                Category.Data.Id = value;
+                if (id == value) return;
+                id = value;
                 RaisePropertyChanged();
             }
         }
 
         public string Name
         {
-            get => Category.Data?.Name;
+            get => name;
             set
             {
-                if (Category.Data.Name == value) return;
-                Category.Data.Name = value;
+                if (name == value) return;
+                name = value;
                 RaisePropertyChanged();
             }
         }
@@ -40,11 +38,11 @@ namespace MoneyFox.Business.ViewModels
         /// </summary>
         public string Notes
         {
-            get => Category.Data?.Note;
+            get => note;
             set
             {
-                if (Category.Data.Note == value) return;
-                Category.Data.Note = value;
+                if (note == value) return;
+                note = value;
                 RaisePropertyChanged();
             }
         }

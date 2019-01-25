@@ -16,25 +16,20 @@
   <ItemGroup>
     <Compile Remove="DesignTimeViewModelLocator.cs" />
     <Compile Remove="ViewModels\AboutViewModel.cs" />
-    <Compile Remove="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Remove="ViewModels\BackupViewModel.cs" />
     <Compile Remove="ViewModels\BalanceViewModel.cs" />
-    <Compile Remove="ViewModels\CategoryListViewModel.cs" />
-    <Compile Remove="ViewModels\CategoryViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IAccountListViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IBalanceViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\Interfaces\IPaymentListViewModel.cs" />
     <Compile Remove="ViewModels\ISettingsSecurityViewModel.cs" />
     <Compile Remove="ViewModels\LoginViewModel.cs" />
-    <Compile Remove="ViewModels\ModifyCategoryViewModel.cs" />
     <Compile Remove="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\PaymentListViewModel.cs" />
     <Compile Remove="ViewModels\PaymentViewModel.cs" />
     <Compile Remove="ViewModels\RecurringPaymentViewModel.cs" />
-    <Compile Remove="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Remove="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Remove="ViewModels\SelectFilterDialogViewModel.cs" />
     <Compile Remove="ViewModels\SettingsBackgroundJobViewModel.cs" />

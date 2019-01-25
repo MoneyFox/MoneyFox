@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
-using MoneyFox.Business.Messages;
-using MoneyFox.DataAccess.DataServices;
+using GenericServices;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.Business.ViewModels
+namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Represents the SelectCategoryListView
@@ -27,15 +26,11 @@ namespace MoneyFox.Business.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
-        /// <param name="categoryService">An instance of <see cref="ICategoryService" />.</param>
-        /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        /// <param name="messenger">An instance of <see cref="IMvxMessenger" /></param>
-        /// <param name="navigationService">An instance of <see cref="IMvxNavigationService" /></param>
-        public SelectCategoryListViewModel(ICategoryService categoryService,
+        public SelectCategoryListViewModel(ICrudServicesAsync crudServicesAsync,
                                            IDialogService dialogService,
                                            IMvxMessenger messenger,
                                            IMvxLogProvider logProvider,
-                                           IMvxNavigationService navigationService) : base(categoryService, dialogService, logProvider, navigationService)
+                                           IMvxNavigationService navigationService) : base(crudServicesAsync, dialogService, logProvider, navigationService)
         {
             this.messenger = messenger;
         }
