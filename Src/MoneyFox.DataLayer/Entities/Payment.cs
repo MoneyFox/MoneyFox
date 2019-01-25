@@ -28,12 +28,12 @@ namespace MoneyFox.DataLayer.Entities
 
         public int? RecurringPaymentId { get; set; }
 
-        public virtual CategoryEntity Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual Account ChargedAccount { get; set; }
 
         public virtual Account TargetAccount { get; set; }
 
-        public virtual RecurringPaymentEntity RecurringPayment { get; set; }
+        public virtual RecurringPayment RecurringPayment { get; set; }
     }
 }

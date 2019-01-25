@@ -27,12 +27,12 @@ namespace MoneyFox.DataLayer.Entities
         public PaymentRecurrence Recurrence { get; set; }
         public string Note { get; set; }
 
-        public virtual CategoryEntity Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual Account ChargedAccount { get; set; }
 
         public virtual Account TargetAccount { get; set; }
 
-        public virtual List<PaymentEntity> RelatedPayments { get; set; }
+        public virtual List<Payment> RelatedPayments { get; set; }
     }
 }

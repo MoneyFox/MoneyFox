@@ -1,14 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MoneyFox.DataAccess;
-using MoneyFox.Foundation;
 
-namespace MoneyFox.DataAccess.Migrations
+namespace MoneyFox.DataLayer.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(EfCoreContext))]
     [Migration("20170506145232_InitMigration")]
     partial class InitMigration
     {
