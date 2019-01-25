@@ -2,8 +2,9 @@
 using GenericServices;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.BusinessDbAccess.StatisticDataProvider;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -16,7 +17,8 @@ namespace MoneyFox.Presentation
     /// <summary>
     ///     Entry point to the Application for MvvmCross.
     /// </summary>
-    public class CoreApp : MvxApplication
+    public class 
+        CoreApp : MvxApplication
     {
         public static AppPlatform CurrentPlatform { get; set; }
 
@@ -45,10 +47,15 @@ namespace MoneyFox.Presentation
 
             //Mvx.IoCProvider.RegisterType(() => new Session(Mvx.IoCProvider.Resolve<ISettingsManager>()));
 
-            //typeof(CashFlowDataProvider).Assembly.CreatableTypes()
-            //                     .EndingWith("Provider")
-            //                     .AsTypes()
-            //                     .RegisterAsDynamic();
+            typeof(IStatisticDbAccess).Assembly.CreatableTypes()
+                                 .EndingWith("DbAccess")
+                                 .AsTypes()
+                                 .RegisterAsDynamic();
+
+            typeof(CashFlowDataProvider).Assembly.CreatableTypes()
+                                 .EndingWith("Provider")
+                                 .AsTypes()
+                                 .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("Factory")

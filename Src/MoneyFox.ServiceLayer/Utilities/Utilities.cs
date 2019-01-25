@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.ServiceLayer.Utilities
 {
@@ -21,18 +19,6 @@ namespace MoneyFox.ServiceLayer.Utilities
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
         }
 
-        /// <summary>
-        ///     Will round all values of the passed statistic item list
-        /// </summary>
-        /// <param name="items">List of statistic items.</param>
-        public static void RoundStatisticItems(List<StatisticItem> items)
-        {
-            items.ForEach(x =>
-            {
-                x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero);
-                x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero);
-            });
-        }
 
         /// <summary>
         ///     Returns the number string with just his culture's decimal separator.
