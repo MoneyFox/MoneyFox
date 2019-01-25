@@ -46,6 +46,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
                                                        accountServiceMock.Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -93,6 +94,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
                                                        accountServiceMock.Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -136,6 +138,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
                                                        new Mock<IAccountService>().Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -175,6 +178,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
                                                        new Mock<IAccountService>().Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -246,6 +250,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
                                                        new Mock<IAccountService>().Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -291,6 +296,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
                                                        accountServiceMock.Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -324,6 +330,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
                                                        accountServiceMock.Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        new Mock<IDialogService>().Object,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -354,6 +361,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
                                                        new Mock<IAccountService>().Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        dialogServiceMock.Object,
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -392,6 +400,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(new Mock<IPaymentService>().Object,
                                                        new Mock<IAccountService>().Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        dialogServiceMock.Object,
                                                        new Mock<ISettingsManager>().Object,
                                                        new Mock<IMvxMessenger>().Object,
@@ -438,6 +447,7 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             var viewmodel = new ModifyPaymentViewModel(paymentServiceMock.Object,
                                                        accountServiceMock.Object,
+                                                       new Mock<IRecurringPaymentService>().Object,
                                                        dialogService,
                                                        settingsManagerMock.Object,
                                                        new Mock<IMvxMessenger>().Object,
