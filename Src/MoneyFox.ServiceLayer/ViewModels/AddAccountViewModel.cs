@@ -8,11 +8,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
-        private readonly ICrudServices crudService;
+        private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
 
-        public AddAccountViewModel(ICrudServices crudService,
-            IDialogService dialogService, 
+        public AddAccountViewModel(ICrudServicesAsync crudService, 
+            IDialogService dialogService,
             IMvxLogProvider logProvider, 
             IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {

@@ -8,6 +8,7 @@ using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -147,12 +148,15 @@ namespace MoneyFox.Uwp
 			//draw into the title bar
 			CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
-			//remove the solid-colored backgrounds behind the caption controls and system back button
-			ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+            //remove the solid-colored backgrounds behind the caption controls and system back button
+            ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
 			viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
 			viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			viewTitleBar.ButtonForegroundColor = Colors.LightGray;
-		}
+
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+        }
 
 		private async Task SetJumplist()
 		{

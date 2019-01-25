@@ -55,7 +55,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         MvxAsyncCommand CancelCommand { get; }
     }
-
+   
     public abstract class ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>
     {
         private readonly IMvxNavigationService navigationService;

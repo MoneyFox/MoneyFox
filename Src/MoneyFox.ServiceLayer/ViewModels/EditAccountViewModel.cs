@@ -24,12 +24,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override string Title => string.Format(Strings.EditAccountTitle, SelectedAccount.Name);
 
-        public override void Prepare(ModifyAccountParameter parameter)
-        {
-            base.Prepare(parameter);
-            SelectedAccount = crudService.ReadSingle<AccountViewModel>(AccountId);
-            Amount = SelectedAccount.CurrentBalance;
-        }
+        //public override void Prepare(ModifyAccountParameter parameter)
+        //{
+        //    base.Prepare(parameter);
+        //    SelectedAccount = crudService.ReadSingle<AccountViewModel>(AccountId);
+        //    Amount = SelectedAccount.CurrentBalance;
+        //}
 
         protected override Task SaveAccount()
         {

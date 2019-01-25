@@ -67,6 +67,7 @@ namespace MoneyFox.Presentation
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("ViewModel")
+                                 .Where(x => !x.Name.StartsWith("DesignTime"))
                                  .AsTypes()
                                  .RegisterAsLazySingleton();
 
@@ -77,7 +78,6 @@ namespace MoneyFox.Presentation
                                  .RegisterAsLazySingleton();
 
             SetupContextAndCrudServices();
-
             RegisterAppStart<MainViewModel>();
 
             //if (!Mvx.IoCProvider.CanResolve<Session>()) return;
@@ -103,7 +103,7 @@ namespace MoneyFox.Presentation
             var crudServices = SetUpCrudServices(context);
 
             Mvx.IoCProvider.RegisterType<EfCoreContext>(SetupEfContext);
-            Mvx.IoCProvider.RegisterType<ICrudServices>(() => SetUpCrudServices(context));
+            Mvx.IoCProvider.RegisterType<ICrudServicesAsync>(() => SetUpCrudServices(context));
         }
 
         private EfCoreContext SetupEfContext()
@@ -114,10 +114,10 @@ namespace MoneyFox.Presentation
             return context;
         }
 
-        private ICrudServices SetUpCrudServices(EfCoreContext context)
+        private ICrudServicesAsync SetUpCrudServices(EfCoreContext context)
         {
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
-            return new CrudServices<EfCoreContext>(context, utData.ConfigAndMapper);
+            return new CrudServicesAsync(context, utData.ConfigAndMapper);
         }
     }
 }

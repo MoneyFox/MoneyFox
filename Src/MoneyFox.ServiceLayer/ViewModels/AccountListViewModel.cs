@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -18,7 +19,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class AccountListViewModel : BaseNavigationViewModel //, IAccountListViewModel
     {
-        private readonly ICrudServices crudService;
+        private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
         private readonly IMvxLogProvider logProvider;
         private readonly IMvxNavigationService navigationService;
@@ -28,7 +29,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountListViewModel(ICrudServices crudService,
+        public AccountListViewModel(ICrudServicesAsync crudService,
                                     IDialogService dialogService,
                                     IMvxLogProvider logProvider,
                                     IMvxNavigationService navigationService) : base(logProvider, navigationService)
@@ -39,14 +40,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.logProvider = logProvider;
 
             //BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
-            //ViewActionViewModel = new AccountListViewActionViewModel(accountService, logProvider, navigationService);
+            ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
         //public IBalanceViewModel BalanceViewModel { get; }
 
-        //public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
         {

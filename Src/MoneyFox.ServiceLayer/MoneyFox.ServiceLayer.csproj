@@ -6,13 +6,10 @@
 
   <ItemGroup>
     <Compile Remove="ViewModels\DesignTime\**" />
-    <Compile Remove="ViewModels\Interfaces\**" />
     <Compile Remove="ViewModels\Statistic\**" />
     <EmbeddedResource Remove="ViewModels\DesignTime\**" />
-    <EmbeddedResource Remove="ViewModels\Interfaces\**" />
     <EmbeddedResource Remove="ViewModels\Statistic\**" />
     <None Remove="ViewModels\DesignTime\**" />
-    <None Remove="ViewModels\Interfaces\**" />
     <None Remove="ViewModels\Statistic\**" />
   </ItemGroup>
 
@@ -20,11 +17,14 @@
     <Compile Remove="DesignTimeViewModelLocator.cs" />
     <Compile Remove="ViewModels\AboutViewModel.cs" />
     <Compile Remove="ViewModels\AbstractCategoryListViewModel.cs" />
-    <Compile Remove="ViewModels\AccountListViewActionViewModel.cs" />
     <Compile Remove="ViewModels\BackupViewModel.cs" />
     <Compile Remove="ViewModels\BalanceViewModel.cs" />
     <Compile Remove="ViewModels\CategoryListViewModel.cs" />
     <Compile Remove="ViewModels\CategoryViewModel.cs" />
+    <Compile Remove="ViewModels\Interfaces\IAccountListViewModel.cs" />
+    <Compile Remove="ViewModels\Interfaces\IBalanceViewModel.cs" />
+    <Compile Remove="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
+    <Compile Remove="ViewModels\Interfaces\IPaymentListViewModel.cs" />
     <Compile Remove="ViewModels\ISettingsSecurityViewModel.cs" />
     <Compile Remove="ViewModels\LoginViewModel.cs" />
     <Compile Remove="ViewModels\ModifyCategoryViewModel.cs" />
