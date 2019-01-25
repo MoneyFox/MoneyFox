@@ -440,7 +440,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
       <Version>2.1.2</Version>
       <Version>2.1.3</Version>
-      <Version>2.2.1</Version>
+      <Version>2.1.4</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
