@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Data;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 
-namespace MoneyFox.Windows.Converter
+namespace MoneyFox.Uwp.Converter
 {
     public class PaymentHeaderConverter : IValueConverter
     {

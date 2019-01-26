@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

@@ -5,7 +5,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Converters;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
     ///     Converts the RecurrenceType to a string.

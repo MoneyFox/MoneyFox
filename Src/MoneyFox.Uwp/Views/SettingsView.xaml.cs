@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Xaml;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.Views
 {

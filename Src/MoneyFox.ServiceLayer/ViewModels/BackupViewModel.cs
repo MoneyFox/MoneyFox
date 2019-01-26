@@ -4,13 +4,16 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.Interfaces;
 using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using IBackupManager = MoneyFox.BusinessLogic.Backup.IBackupManager;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -49,7 +52,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// </summary>
     public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
@@ -58,14 +61,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
 
-        public BackupViewModel(IBackupManager backupManager,
+        public BackupViewModel(IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
             ISettingsFacade settingsFacade,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.backupManager = backupManager;
+            this.backupService = backupService;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
@@ -145,13 +148,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IsLoadingBackupAvailability = true;
             try
             {
-                BackupAvailable = await backupManager.IsBackupExisting();
-                BackupLastModified = await backupManager.GetBackupDate();
+                BackupAvailable = await backupService.IsBackupExisting();
+                BackupLastModified = await backupService.GetBackupDate();
             }
             catch (BackupAuthenticationFailedException ex)
             {
                 Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
-                await backupManager.Logout();
+                await backupService.Logout();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                     Strings.ErrorMessageAuthenticationFailed);
             }
@@ -160,7 +163,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 if (ex.Error.Code == "4f37.717b")
                 {
                     Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
-                    await backupManager.Logout();
+                    await backupService.Logout();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                         Strings.ErrorMessageAuthenticationFailed);
                 }
@@ -178,33 +181,33 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task Login()
         {
             if (!connectivity.IsConnected)
+            {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
-
-            try
-            {
-                await backupManager.Login();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                await RaisePropertyChanged(nameof(IsLoggedIn));
-            }
-            catch (BackupAuthenticationFailedException)
-            {
-                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.LoginFailedTitle,
-                    Strings.LoginFailedMessage);
             }
 
+            var result = await backupService.Login();
+
+            if (!result.Success)
+            {
+                await dialogService
+                    .ShowMessage(Strings.LoginFailedTitle,result.Message);
+            }
+
+            // ReSharper disable once ExplicitCallerInfoArgument
+            await RaisePropertyChanged(nameof(IsLoggedIn));
             await Loaded();
         }
 
         private async Task Logout()
         {
-            await backupManager.Logout();
-            settingsFacade.IsLoggedInToBackupService = false;
+            var result = await backupService.Logout();
+
+            if (!result.Success)
+            {
+                await dialogService
+                    .ShowMessage(Strings.LoginFailedTitle, result.Message);
+            }
+
             // ReSharper disable once ExplicitCallerInfoArgument
             await RaisePropertyChanged(nameof(IsLoggedIn));
         }
@@ -214,27 +217,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (!await ShowOverwriteBackupInfo()) return;
 
             dialogService.ShowLoadingDialog();
-            try
+
+            var operationResult = await backupService.EnqueueBackupTask();
+            if (operationResult.Success)
             {
-                await backupManager.CreateNewBackup();
                 BackupLastModified = DateTime.Now;
             }
-            catch (BackupAuthenticationFailedException)
+            else
             {
-                await backupManager.Logout();
-                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
-            }
-            catch (ServiceException ex)
-            {
-                await backupManager.Logout();
-                Crashes.TrackError(ex);
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                    Strings.ErrorMessageBackupFailed);
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
             }
 
             dialogService.HideLoadingDialog();
@@ -246,33 +237,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (!await ShowOverwriteDataInfo()) return;
 
             dialogService.ShowLoadingDialog();
-            try
-            {
-                await backupManager.RestoreBackup();
-            }
-            catch (BackupAuthenticationFailedException ex)
-            {
-                await backupManager.Logout();
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
-            }
-            catch (ServiceException ex)
-            {
-                await backupManager.Logout();
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.BackupRestoreFailedTitle,
-                    Strings.ErrorMessageRestore);
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.BackupFailedTitle,
-                    Strings.ErrorMessageBackupFailed);
-            }
-
+            var operationResult = await backupService.RestoreBackup();
             dialogService.HideLoadingDialog();
-            await ShowCompletionNote();
+
+            if (!operationResult.Success)
+            {
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
+            }
+            else
+            {
+                await ShowCompletionNote();
+            }
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()

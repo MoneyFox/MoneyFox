@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

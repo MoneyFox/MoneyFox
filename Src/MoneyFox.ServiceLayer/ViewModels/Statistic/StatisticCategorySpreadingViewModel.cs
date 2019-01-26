@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

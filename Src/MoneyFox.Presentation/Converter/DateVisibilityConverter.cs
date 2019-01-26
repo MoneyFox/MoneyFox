@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
     ///     Hides the date if it is equal to the default DateTime Value.

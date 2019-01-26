@@ -1,27 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
+﻿using Windows.UI.Xaml;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.Toolkit.Uwp.UI.Animations;
+using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
-    public sealed partial class ModifyPaymentUserControl : UserControl
+    public sealed partial class ModifyPaymentUserControl 
     {
         public ModifyPaymentUserControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)DataContext;
+            if (viewModel.SelectedPayment == null) return;
+            if (viewModel.SelectedPayment.IsRecurring)
+            {
+                await RecurringStackPanel.Fade(1).StartAsync();
+            } else
+            {
+                await RecurringStackPanel.Fade().StartAsync();
+            }
+        }
+
+        private void SetVisibiltyInitialy(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)DataContext;
+
+            if (viewModel == null)
+            {
+                Analytics.TrackEvent("Error: viewModel is null on SetVisibiltyInitialy");
+                return;
+            }
+            if (viewModel.SelectedPayment == null)
+            {
+                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibiltyInitialy");
+                return;
+            }
+
+            if (!viewModel.SelectedPayment.IsRecurring)
+            {
+                ToggleRecurringVisibility(this, null);
+            }
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.ViewModels;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     public class NoCategorySelectedConverter : IValueConverter
     {

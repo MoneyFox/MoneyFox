@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Foundation.Interfaces
+namespace MoneyFox.ServiceLayer.Interfaces
 {
     public interface IDialogService
     {

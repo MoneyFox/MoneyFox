@@ -11,14 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Converter\AccountNameConverter.cs" />
     <Compile Remove="Converter\AmountValueConverter.cs" />
-    <Compile Remove="Converter\DateTimeFormatConverter.cs" />
-    <Compile Remove="Converter\DateVisibilityConverter.cs" />
-    <Compile Remove="Converter\EmptyNameConverter.cs" />
-    <Compile Remove="Converter\InverseBoolConverter.cs" />
-    <Compile Remove="Converter\PaymentAmountConverter.cs" />
-    <Compile Remove="Converter\RecurrenceTypeConverter.cs" />
     <Compile Remove="Views\AboutPage.xaml.cs" />
     <Compile Remove="Views\AccountListPage.xaml.cs" />
     <Compile Remove="Views\BackgroundJobSettingsPage.xaml.cs" />

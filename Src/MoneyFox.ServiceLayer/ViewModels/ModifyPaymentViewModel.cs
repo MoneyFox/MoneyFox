@@ -4,10 +4,11 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MvvmCross.Commands;
@@ -69,11 +70,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Returns the Header for the AccountViewModel field
         /// </summary>
         string AccountHeader { get; }
-
-        /// <summary>
-        ///     The PaymentViewModel date
-        /// </summary>
-        DateTime Date { get; }
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
@@ -514,25 +510,5 @@ namespace MoneyFox.ServiceLayer.ViewModels
             => SelectedPayment?.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
-
-        /// <summary>
-        ///     The PaymentViewModel date
-        /// </summary>
-        public DateTime Date
-        {
-            get
-            {
-                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue) SelectedPayment.Date = DateTime.Now.Date;
-                return SelectedPayment.Date;
-            }
-            set
-            {
-                if (SelectedPayment.Date == value) return;
-                SelectedPayment.Date = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private AccountViewModel AccountViewModelBeforeEdit { get; set; }
     }
 }

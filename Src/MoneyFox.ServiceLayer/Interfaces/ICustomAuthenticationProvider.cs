@@ -1,6 +1,6 @@
 ﻿using Microsoft.Graph;
 
-namespace MoneyFox.Foundation.Interfaces
+namespace MoneyFox.ServiceLayer.Interfaces
 {
     /// <summary>
     ///     Provides an interface for a custom authentication provider

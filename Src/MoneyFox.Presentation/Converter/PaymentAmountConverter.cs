@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using MoneyFox.Foundation;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Converters;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
     ///     Converts a PaymentViewModel for displaying on the GUI.

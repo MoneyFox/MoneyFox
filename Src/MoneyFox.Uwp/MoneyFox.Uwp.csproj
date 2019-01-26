@@ -11,7 +11,7 @@
     <AssemblyName>MoneyFox.Uwp</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -123,11 +123,23 @@
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
+    <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
+    <Compile Include="Converter\PaymentHeaderConverter.cs" />
+    <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Services\MicrosoftPassportHelper.cs" />
+    <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\MicrosoftPassportHelper.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Src\BackgroundTaskManager.cs" />
+    <Compile Include="Src\MarketplaceOperations.cs" />
+    <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\TileUpdateService.cs" />
+    <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -483,6 +495,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
+      <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
+      <Name>MoneyFox.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
       <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
       <Name>MoneyFox.DataLayer</Name>
@@ -499,9 +515,9 @@
       <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
       <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
-      <Project>{99A1C63A-CDF8-43A9-BDC1-835526CE6B1F}</Project>
-      <Name>MoneyFox.Windows</Name>
+    <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
+      <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>
+      <Name>MoneyFox.Uwp.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

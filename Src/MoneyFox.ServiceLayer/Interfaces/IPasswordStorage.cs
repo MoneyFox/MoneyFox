@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Foundation.Interfaces
+﻿namespace MoneyFox.ServiceLayer.Interfaces
 {
     /// <summary>
     ///     Wrapper object for IMvxProtectedData to provide a nicer access.

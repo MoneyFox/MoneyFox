@@ -1,5 +1,6 @@
-﻿using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Localization;
 using MvvmCross.Logging;
@@ -9,19 +10,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class SettingsSecurityViewModel : BaseNavigationViewModel, ISettingsSecurityViewModel
     {
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
         private string password;
         private string passwordConfirmation;
 
-        public SettingsSecurityViewModel(ISettingsManager settingsManager, 
+        public SettingsSecurityViewModel(ISettingsFacade settingsFacade, 
                                          IPasswordStorage passwordStorage, 
                                          IDialogService dialogService,
                                          IMvxLogProvider logProvider,
                                          IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
         }
@@ -31,10 +32,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public bool IsPasswortActive
         {
-            get => settingsManager.PasswordRequired;
+            get => settingsFacade.PasswordRequired;
             set
             {
-                settingsManager.PasswordRequired = value;
+                settingsFacade.PasswordRequired = value;
                 RaisePropertyChanged();
             }
         }
@@ -42,11 +43,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public bool IsPassportActive
         {
-            get => settingsManager.PassportEnabled;
+            get => settingsFacade.PassportEnabled;
             set
             {
-                
-                settingsManager.PassportEnabled = value;
+
+                settingsFacade.PassportEnabled = value;
                 RaisePropertyChanged();
             }
         }

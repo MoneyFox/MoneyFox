@@ -1,7 +1,4 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
-using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Entities;
-using MoneyFox.DataAccess.Pocos;
 using MoneyFox.Foundation.Resources;
 using System;
 using System.Collections.Generic;
@@ -11,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
+using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Windows.Business.Tiles
 {
@@ -397,10 +395,10 @@ namespace MoneyFox.Windows.Business.Tiles
 
         private async Task<List<string>> GetPaymentsAsync(TileSizeOptions tilesize, PaymentInformation paymentInformation)
         {
-            List<Account> acct = (await accountService.GetAllAccounts()).ToList();
-            List<PaymentEntity> allpayments = new List<PaymentEntity>();
+            List<AccountViewModel> acct = (await accountService.GetAllAccounts()).ToList();
+            List<PaymentViewModel> allpayments = new List<PaymentViewModel>();
             List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
-            foreach (Account item in acct)
+            foreach (AccountViewModel item in acct)
             {
                 Account accts = await accountService.GetById(item.Data.Id);
                 if (accts.Data.ChargedPayments != null)
@@ -458,7 +456,7 @@ namespace MoneyFox.Windows.Business.Tiles
             return returnlist;
         }
 
-        private List<LiveTilesPaymentInfo> GetReccurance(PaymentEntity payment)
+        private List<LiveTilesPaymentInfo> GetReccurance(PaymentViewModel payment)
         {
             List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 
@@ -482,7 +480,7 @@ namespace MoneyFox.Windows.Business.Tiles
             return allpayment;
         }
 
-        private DateTime CreateLiveTileInfos(PaymentEntity payment, List<LiveTilesPaymentInfo> allpayment, DateTime startDate)
+        private DateTime CreateLiveTileInfos(PaymentViewModel payment, List<LiveTilesPaymentInfo> allpayment, DateTime startDate)
         {
             var liveTilesPaymentInfo = new LiveTilesPaymentInfo
             {

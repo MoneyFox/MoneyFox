@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.Uwp.Views.Dialogs;
 
-namespace MoneyFox.Uwp.Services
+namespace MoneyFox.Uwp
 {
     public class DialogService : IDialogService
     {

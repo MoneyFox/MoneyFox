@@ -102,7 +102,6 @@ namespace MoneyFox.Presentation
         private void SetupContextAndCrudServices()
         {
             var context = SetupEfContext();
-            var crudServices = SetUpCrudServices(context);
 
             Mvx.IoCProvider.RegisterType<EfCoreContext>(SetupEfContext);
             Mvx.IoCProvider.RegisterType<ICrudServicesAsync>(() => SetUpCrudServices(context));
@@ -119,6 +118,10 @@ namespace MoneyFox.Presentation
         private ICrudServicesAsync SetUpCrudServices(EfCoreContext context)
         {
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
+            utData.AddSingleDto<CategoryViewModel>();
+            utData.AddSingleDto<PaymentViewModel>();
+            utData.AddSingleDto<RecurringPaymentViewModel>();
+
             return new CrudServicesAsync(context, utData.ConfigAndMapper);
         }
     }

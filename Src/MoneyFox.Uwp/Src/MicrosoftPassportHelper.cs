@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.Security.Credentials;
 
-namespace MoneyFox.Uwp.Services
+namespace MoneyFox.Uwp
 {
     public class MicrosoftPassportHelper
     {

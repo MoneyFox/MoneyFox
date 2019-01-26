@@ -35,7 +35,7 @@ namespace MoneyFox.DataLayer.Entities
         public virtual Account ChargedAccount { get; private set; }
 
         public virtual Account TargetAccount { get; private set; }
-
+        
         public virtual RecurringPayment RecurringPayment { get; private set; }
     }
 }

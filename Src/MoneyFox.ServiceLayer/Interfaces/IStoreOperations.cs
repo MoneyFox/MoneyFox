@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Foundation.Interfaces
+﻿namespace MoneyFox.ServiceLayer.Interfaces
 {
     public interface IStoreOperations
     {

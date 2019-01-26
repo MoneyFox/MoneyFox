@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Presentation;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Business;
+using MoneyFox.Windows.Business;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Plugin;
@@ -28,11 +30,11 @@ namespace MoneyFox.Uwp
             base.InitializeFirstChance();
 
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
-            //Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         }
 
         /// <inheritdoc />

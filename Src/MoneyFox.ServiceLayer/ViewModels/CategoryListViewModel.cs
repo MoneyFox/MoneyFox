@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

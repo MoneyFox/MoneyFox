@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using MoneyFox.ServiceLayer.ViewModels;
 using Xamarin.Forms;
 
-namespace MoneyFox.Converter
+namespace MoneyFox.Presentation.Converter
 {
     public class AccountNameConverter : IValueConverter
 
