@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MoneyFox.Foundation;
@@ -8,6 +7,29 @@ namespace MoneyFox.DataLayer.Entities
 {
     public class RecurringPayment
     {
+        private RecurringPayment() { }
+
+        public RecurringPayment(DateTime startDate, 
+            double amount,
+            PaymentType type,
+            PaymentRecurrence recurrence,
+            string note, 
+            Account chargedAccount, 
+            DateTime? endDate = null,
+            Account targetAccount = null, 
+            Category category = null)
+        {
+            ChargedAccount = chargedAccount;
+            StartDate = startDate;
+            Amount = amount;
+            Type = type;
+            Recurrence = recurrence;
+            Note = note;
+            Category = category;
+            TargetAccount = targetAccount;
+            IsEndless = endDate == null;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -33,6 +55,6 @@ namespace MoneyFox.DataLayer.Entities
 
         public virtual Account TargetAccount { get; set; }
 
-        public virtual List<Payment> RelatedPayments { get; set; }
+        //public virtual List<Payment> RelatedPayments { get; set; }
     }
 }

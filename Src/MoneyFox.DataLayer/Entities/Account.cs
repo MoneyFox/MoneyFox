@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace MoneyFox.DataLayer.Entities
 {
@@ -35,15 +33,15 @@ namespace MoneyFox.DataLayer.Entities
         public bool IsExcluded { get; private set; }
 
         //Use uninitialised backing fields - this means we can detect if the collection was loaded
-        private HashSet<Payment> chargedPayments;
-        private HashSet<Payment> targetedPayments;
-        private HashSet<RecurringPayment> chargedRecurringPayments;
-        private HashSet<RecurringPayment> targetedRecurringPayments;
+        //private HashSet<Payment> chargedPayments;
+        //private HashSet<Payment> targetedPayments;
+        //private HashSet<RecurringPayment> chargedRecurringPayments;
+        //private HashSet<RecurringPayment> targetedRecurringPayments;
 
-        public IEnumerable<Payment> ChargedPayments => chargedPayments?.ToList();
-        public IEnumerable<Payment> TargetedPayments => targetedPayments?.ToList();
+        //public IEnumerable<Payment> ChargedPayments => chargedPayments?.ToList();
+        //public IEnumerable<Payment> TargetedPayments => targetedPayments?.ToList();
 
-        public IEnumerable<RecurringPayment> ChargedRecurringPayments => chargedRecurringPayments?.ToList();
-        public IEnumerable<RecurringPayment> TargetedRecurringPayments => targetedRecurringPayments?.ToList();
+        //public IEnumerable<RecurringPayment> ChargedRecurringPayments => chargedRecurringPayments?.ToList();
+        //public IEnumerable<RecurringPayment> TargetedRecurringPayments => targetedRecurringPayments?.ToList();
     }
 }

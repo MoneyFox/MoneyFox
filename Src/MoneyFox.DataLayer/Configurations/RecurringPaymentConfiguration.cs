@@ -9,11 +9,11 @@ namespace MoneyFox.DataLayer.Configurations
         public void Configure(EntityTypeBuilder<RecurringPayment> recurringPaymentBuilder)
         {
             // Set FK from recurring payment to payment for charged account with cascade
-            recurringPaymentBuilder
-                .HasMany(m => m.RelatedPayments)
-                .WithOne(t => t.RecurringPayment)
-                .HasForeignKey(m => m.RecurringPaymentId)
-                .OnDelete(DeleteBehavior.SetNull);
+            //recurringPaymentBuilder
+            //    .HasMany(m => m.RelatedPayments)
+            //    .WithOne(t => t.RecurringPayment)
+            //    .HasForeignKey(m => m.RecurringPaymentId)
+            //    .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

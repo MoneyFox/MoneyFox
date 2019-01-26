@@ -12,6 +12,23 @@ namespace MoneyFox.DataLayer.Entities
     {
         private Payment() { }
 
+        public Payment(DateTime date, 
+            double amount, 
+            PaymentType type,
+            string note, 
+            Account chargedAccount,
+            Account targetAccount = null,
+            Category category = null)
+        {
+            Date = date;
+            Amount = amount;
+            Type = type;
+            Note = note;
+            ChargedAccount = chargedAccount;
+            TargetAccount = targetAccount;
+            Category = category;
+        }
+
         public int Id { get; private set; }
 
         [Required]
@@ -37,5 +54,11 @@ namespace MoneyFox.DataLayer.Entities
         public virtual Account TargetAccount { get; private set; }
         
         public virtual RecurringPayment RecurringPayment { get; private set; }
+
+        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate)
+        {
+            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, Note, ChargedAccount, endDate, TargetAccount, Category);
+            IsRecurring = true;
+        }
     }
 }
