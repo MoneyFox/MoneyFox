@@ -2,14 +2,15 @@
                    xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                   xmlns:userControls="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
-                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                   xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                   xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                   xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-                   x:Class="MoneyFox.Views.PaymentListPage"
+                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
+                   xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                   xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                   xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                   x:Class="MoneyFox.Presentation.Views.PaymentListPage"
                    BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
+                   DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />

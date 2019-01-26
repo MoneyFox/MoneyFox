@@ -1,11 +1,12 @@
-﻿using MoneyFox.Dialogs;
-using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatisticCategorySummaryPage
@@ -30,7 +31,7 @@ namespace MoneyFox.Views
 	    {
 	        if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
 	        {
-	            await Navigation.PushPopupAsync(new DateSelectionDialog
+	            await Navigation.PushPopupAsync(new DateSelectionPopup
 	            {
 	                BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
 	            });

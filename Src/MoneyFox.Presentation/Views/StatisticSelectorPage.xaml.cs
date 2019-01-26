@@ -2,7 +2,7 @@ using MoneyFox.Foundation.Resources;
 using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics_black")]

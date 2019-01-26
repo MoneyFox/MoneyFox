@@ -1,12 +1,13 @@
 ﻿<d:MvxContentPage x:TypeArguments="viewModels:SettingsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.SettingsPage"
+                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
+                  xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+                  x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
+                  DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"

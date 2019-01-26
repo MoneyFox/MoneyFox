@@ -1,12 +1,13 @@
 ﻿<d:MvxContentPage x:TypeArguments="statistic:StatisticSelectorViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
-                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.StatisticSelectorPage"
+                  xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
+                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                  xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                  x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+                  DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"

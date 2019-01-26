@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Linq;
-using MoneyFox.Dialogs;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ServiceLayer.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Presentation.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaymentListPage
@@ -57,21 +57,19 @@ namespace MoneyFox.Views
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentDialog { BindingContext = ViewModel.ViewActionViewModel });
+            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
         }
 
         private void EditPayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;            
-            //TODO: Reactivate
-            //ViewModel.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            ViewModel.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
 
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            //TODO: Reactivate
-            //ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
     }
 }

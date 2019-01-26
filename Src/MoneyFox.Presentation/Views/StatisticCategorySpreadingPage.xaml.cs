@@ -1,11 +1,8 @@
-﻿using MoneyFox.Dialogs;
-using MoneyFox.Foundation.Resources;
-using MvvmCross;
-using Rg.Plugins.Popup.Extensions;
+﻿using MoneyFox.Foundation.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatisticCategorySpreadingPage

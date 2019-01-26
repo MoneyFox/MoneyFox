@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:MvxContentPage x:TypeArguments="statistic:StatisticCategorySummaryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:statistic="clr-namespace:MoneyFox.Business.ViewModels.Statistic;assembly=MoneyFox.Business"
-                      xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                      xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                      x:Class="MoneyFox.Views.StatisticCategorySummaryPage"
+                      xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
+                      xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                      xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                      xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+                      xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                      x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
                       BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                      DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
+                      DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
                       Title="{Binding Resources[CategorySummaryTitle]}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:AmountValueConverter x:Key="AmountValueConverter" />
+            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
