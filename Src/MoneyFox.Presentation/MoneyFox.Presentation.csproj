@@ -12,9 +12,6 @@
 
   <ItemGroup>
     <Compile Remove="Converter\AmountValueConverter.cs" />
-    <Compile Remove="Views\AboutPage.xaml.cs" />
-    <Compile Remove="Views\AccountListPage.xaml.cs" />
-    <Compile Remove="Views\CategoryListPage.xaml.cs" />
     <Compile Remove="Views\ModifyAccountPage.xaml.cs" />
     <Compile Remove="Views\ModifyCategoryPage.xaml.cs" />
     <Compile Remove="Views\ModifyPaymentPage.xaml.cs" />
@@ -29,9 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Views\AboutPage.xaml" />
-    <EmbeddedResource Remove="Views\AccountListPage.xaml" />
-    <EmbeddedResource Remove="Views\CategoryListPage.xaml" />
     <EmbeddedResource Remove="Views\ModifyAccountPage.xaml" />
     <EmbeddedResource Remove="Views\ModifyCategoryPage.xaml" />
     <EmbeddedResource Remove="Views\ModifyPaymentPage.xaml" />

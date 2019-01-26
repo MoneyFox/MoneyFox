@@ -2,10 +2,10 @@
 <views:MvxContentPage x:TypeArguments="viewModels:AboutViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                      xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
                       xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                       xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox.Presentation"
+                      xmlns:effects="clr-namespace:MoneyFox.Effects"
                       x:Class="MoneyFox.Presentation.Views.AboutPage"
                       BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                       DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeAboutViewModel}">
