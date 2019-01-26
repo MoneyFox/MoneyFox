@@ -189,6 +189,9 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaymentListView.xaml.cs">
+      <DependentUpon>PaymentListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectCategoryListView.xaml.cs">
       <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
+      <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +427,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\PaymentListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SelectCategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -468,6 +478,10 @@
     <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PaymentListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
