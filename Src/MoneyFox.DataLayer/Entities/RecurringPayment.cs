@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.DataLayer.Entities
 {
@@ -19,7 +20,10 @@ namespace MoneyFox.DataLayer.Entities
             Account targetAccount = null, 
             Category category = null)
         {
-            ChargedAccount = chargedAccount;
+            if (endDate != null && endDate < DateTime.Today)
+                throw new MoneyFoxInvalidEndDateException();
+
+            ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             StartDate = startDate;
             Amount = amount;
             Type = type;

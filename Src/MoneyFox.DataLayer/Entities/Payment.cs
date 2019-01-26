@@ -24,7 +24,7 @@ namespace MoneyFox.DataLayer.Entities
             Amount = amount;
             Type = type;
             Note = note;
-            ChargedAccount = chargedAccount;
+            ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             TargetAccount = targetAccount;
             Category = category;
         }
