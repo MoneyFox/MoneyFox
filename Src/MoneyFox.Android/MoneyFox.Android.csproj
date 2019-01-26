@@ -56,6 +56,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="MvvmCross.Plugin.File">
+      <HintPath>C:\Users\ninop\.nuget\packages\mvvmcross.plugin.file\6.2.2\lib\netstandard2.0\MvvmCross.Plugin.File.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="System.Core" />
@@ -92,6 +95,9 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Email">
+      <Version>6.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.File">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger">
@@ -198,21 +204,25 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
-      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
-      <Name>MoneyFox.Business</Name>
+    <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
+      <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
+      <Name>MoneyFox.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600fc746-6968-489f-9471-a37a6d312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
+    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
+      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
+      <Name>MoneyFox.DataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{abbb1314-b512-4748-9054-888565e25b5a}</Project>
-      <Name>MoneyFox</Name>
+    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
+      <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
+      <Name>MoneyFox.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
+      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
+      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

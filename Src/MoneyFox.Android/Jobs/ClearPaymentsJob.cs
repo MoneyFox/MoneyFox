@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
@@ -8,10 +7,10 @@ using Android.Content;
 using Android.OS;
 using EntityFramework.DbContextScope;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Adapter;
-using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.DataServices;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.ServiceLayer.Facades;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -59,24 +58,24 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task ClearPayments(JobParameters args)
         {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsManager = new SettingsFacade(new SettingsAdapter());
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                DataAccess.ApplicationContext.DbPath =
+                EfCoreContext.DbPath =
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
-                var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+                //var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 
-                var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-                var unclearedPayments = payments.ToList();
+                //var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+                //var unclearedPayments = payments.ToList();
 
-                if (unclearedPayments.Any())
-                {
-                    Debug.WriteLine("Payments for clearing found.");
-                    await paymentService.SavePayments(unclearedPayments.ToArray());
-                }
+                //if (unclearedPayments.Any())
+                //{
+                //    Debug.WriteLine("Payments for clearing found.");
+                //    await paymentService.SavePayments(unclearedPayments.ToArray());
+                //}
 
                 Debug.WriteLine("ClearPayments Job finished.");
                 JobFinished(args, false);

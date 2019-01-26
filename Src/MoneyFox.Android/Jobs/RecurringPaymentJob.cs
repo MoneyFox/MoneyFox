@@ -5,12 +5,11 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using EntityFramework.DbContextScope;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Adapter;
-using MoneyFox.Business.Manager;
-using MoneyFox.DataAccess.DataServices;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.ServiceLayer.Facades;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -58,22 +57,19 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task CheckRecurringPayments(JobParameters args)
         {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsManager = new SettingsFacade(new SettingsAdapter());
 
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
-                DataAccess.ApplicationContext.DbPath =
+                EfCoreContext.DbPath =
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
-                var ambientDbContextLocator = new AmbientDbContextLocator();
-                var dbContextScopeFactory = new DbContextScopeFactory();
-
-                await new RecurringPaymentManager(
-                        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
-                        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
-                    .CreatePaymentsUpToRecur();
+                //await new RecurringPaymentManager(
+                //        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
+                //        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
+                //    .CreatePaymentsUpToRecur();
 
                 Debug.WriteLine("RecurringPayment Job finished.");
                 JobFinished(args, false);

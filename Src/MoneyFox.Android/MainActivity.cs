@@ -3,7 +3,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
 using PCLAppConfig;
@@ -77,10 +78,10 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsManager>())
+            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsFacade>())
             {
                 Mvx.IoCProvider.Resolve<IBackgroundTaskManager>()
-                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsManager>().BackupSyncRecurrence);
+                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsFacade>().BackupSyncRecurrence);
             }
         }
 

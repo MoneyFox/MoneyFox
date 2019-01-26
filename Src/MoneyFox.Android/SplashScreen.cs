@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using MoneyFox.Presentation;
 using MvvmCross.Forms.Platforms.Android.Views;
 
 namespace MoneyFox.Droid

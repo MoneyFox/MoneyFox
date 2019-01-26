@@ -1,9 +1,10 @@
+using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
-using MoneyFox.Droid.Src;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Presenters;

@@ -5,8 +5,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Android.Content.Res;
 using System.ComponentModel;
-using MoneyFox.Controls;
 using MoneyFox.Droid.Renderer;
+using MoneyFox.Presentation.Controls;
 
 [assembly: ExportRenderer(typeof(FloatingActionButton), typeof(FloatingActionButtonRenderer))]
 
