@@ -163,11 +163,6 @@
       <Name>MoneyFox.Uwp.Business</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="MoneyFox.Business">
-      <HintPath>..\MoneyFox.Business\bin\Debug\netstandard2.0\MoneyFox.Business.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
