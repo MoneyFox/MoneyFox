@@ -6,7 +6,6 @@ using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Business;
-using MoneyFox.Windows.Business;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Plugin;

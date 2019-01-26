@@ -17,6 +17,7 @@
     <Compile Remove="Views\BackgroundJobSettingsPage.xaml.cs" />
     <Compile Remove="Views\BackupPage.xaml.cs" />
     <Compile Remove="Views\CategoryListPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
     <Compile Remove="Views\ModifyAccountPage.xaml.cs" />
     <Compile Remove="Views\ModifyCategoryPage.xaml.cs" />
     <Compile Remove="Views\ModifyPaymentPage.xaml.cs" />

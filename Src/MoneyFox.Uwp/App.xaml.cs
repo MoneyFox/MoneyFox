@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
@@ -13,17 +14,21 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Uwp.Helpers;
+using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation;
+using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views;
 using MvvmCross;
 using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
 using UniversalRateReminder;
+using MoneyFox.Uwp.Tasks;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -58,18 +63,18 @@ namespace MoneyFox.Uwp
 		}
 
 		private void SetTheme()
-		{
-			//switch (new SettingsManager(new SettingsAdapter()).Theme)
-			//{
-			//	case AppTheme.Dark:
-			//		RequestedTheme = ApplicationTheme.Dark;
-			//		break;
+        {
+            switch (new SettingsFacade(new SettingsAdapter()).Theme)
+            {
+                case AppTheme.Dark:
+                    RequestedTheme = ApplicationTheme.Dark;
+                    break;
 
-			//	case AppTheme.Light:
-			//		RequestedTheme = ApplicationTheme.Light;
-			//		break;
-			//}
-		}
+                case AppTheme.Light:
+                    RequestedTheme = ApplicationTheme.Light;
+                    break;
+            }
+        }
 
 		private MainView mainView;
 
@@ -97,9 +102,9 @@ namespace MoneyFox.Uwp
 				Xamarin.Forms.Forms.Init(e);
 				new Presentation.App();
 
-				//BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
-				//BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-				//BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
+                BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
+                BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
+                BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
 
@@ -155,7 +160,7 @@ namespace MoneyFox.Uwp
 			viewTitleBar.ButtonForegroundColor = Colors.LightGray;
 
             var currentView = SystemNavigationManager.GetForCurrentView();
-            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
+            //currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
         }
 
 		private async Task SetJumplist()
@@ -203,7 +208,7 @@ namespace MoneyFox.Uwp
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
 
-			//new SettingsManager(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+			new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
 			deferral.Complete();
 		}
