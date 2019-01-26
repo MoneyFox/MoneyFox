@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-    xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
-    x:Class="MoneyFox.Presentation.Dialogs.FilterDialog"
-    BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSelectFilterDialogViewModel}">
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="MoneyFox.Presentation.Dialogs.FilterPopup">
 
     <!--You can set an animation in the xaml file or in the csharp code behind-->
     <pages:PopupPage.Animation>
@@ -55,6 +52,6 @@
         <Label Style="{StaticResource DeemphasizedLabelStyle}"
                Text="{Binding Resources[TimeRangeEndLabel]}"/>
         <DatePicker Date="{Binding TimeRangeEnd}" />
-        
+
     </StackLayout>
 </pages:PopupPage>

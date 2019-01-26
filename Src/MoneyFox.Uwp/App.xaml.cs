@@ -31,6 +31,7 @@ using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
+using Rg.Plugins.Popup;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -101,7 +102,7 @@ namespace MoneyFox.Uwp
 
 				ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-				Xamarin.Forms.Forms.Init(e);
+                Xamarin.Forms.Forms.Init(e);
 				new Presentation.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));

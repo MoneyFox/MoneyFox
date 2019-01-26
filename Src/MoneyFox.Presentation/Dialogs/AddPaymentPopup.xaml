@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                 xmlns:designTime="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.ServiceLayer"
-                 x:Class="MoneyFox.Presentation.Dialogs.AddPaymentDialog">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:designTime="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.ServiceLayer"
+             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Dialogs.AddPaymentPopup">
 
     <pages:PopupPage.BindingContext>
         <designTime:DesignTimePaymentListViewActionViewModel />
@@ -38,7 +38,7 @@
             </Grid>
 
             <Grid x:Name="AddIncomeGrid">
-               
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30*" />
                     <ColumnDefinition Width="80*" />

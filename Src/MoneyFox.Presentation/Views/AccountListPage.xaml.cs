@@ -1,12 +1,13 @@
 ﻿using System;
-using MoneyFox.Dialogs;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts_black")]

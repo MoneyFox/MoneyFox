@@ -2,14 +2,15 @@
                   xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:views="clr-namespace:MoneyFox.UserControls;assembly=MoneyFox"
-                  xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                  xmlns:controls="clr-namespace:MoneyFox.Controls;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.AccountListPage"
+                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                  xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                  xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+                  xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                  x:Class="MoneyFox.Presentation.Views.AccountListPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
+                  DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +20,7 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >
-            <views:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
+            <userControls:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
 
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"
