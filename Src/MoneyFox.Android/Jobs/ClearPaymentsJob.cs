@@ -5,7 +5,6 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using EntityFramework.DbContextScope;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.DataLayer;

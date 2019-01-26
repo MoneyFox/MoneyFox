@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using EntityFramework.DbContextScope;
 using Foundation;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -10,13 +9,11 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.iOS.Authentication;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
-using MvvmCross.Plugin.File;
 using PCLAppConfig;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -171,9 +168,6 @@ namespace MoneyFox.iOS
             {
                 Debug.WriteLine("RecurringPayment Job started.");
                 EfCoreContext.DbPath = GetLocalFilePath();
-
-                var ambientDbContextLocator = new AmbientDbContextLocator();
-                var dbContextScopeFactory = new DbContextScopeFactory();
 
                 //await new RecurringPaymentManager(
                 //        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
