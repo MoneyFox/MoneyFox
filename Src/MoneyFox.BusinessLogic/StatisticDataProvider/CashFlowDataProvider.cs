@@ -14,7 +14,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         Task<List<StatisticEntry>> GetCashFlow(DateTime startDate, DateTime endDate);
     }
 
-    public class CashFlowDataProvider
+    public class CashFlowDataProvider : ICashFlowDataProvider
     {
         private const string GREEN_HEX_CODE = "#9bcd9b";
         private const string RED_HEX_CODE = "#cd3700";

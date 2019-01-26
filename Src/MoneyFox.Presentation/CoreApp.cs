@@ -63,20 +63,15 @@ namespace MoneyFox.Presentation
 
             Mvx.IoCProvider.RegisterType(() => new Session(Mvx.IoCProvider.Resolve<ISettingsFacade>()));
 
-            typeof(IStatisticDbAccess).Assembly.CreatableTypes()
+            typeof(StatisticDbAccess).Assembly.CreatableTypes()
                                  .EndingWith("DbAccess")
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 
             typeof(CashFlowDataProvider).Assembly.CreatableTypes()
-                                 .EndingWith("Provider")
+                                 .EndingWith("DataProvider")
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
-
-            typeof(MainViewModel).Assembly.CreatableTypes()
-                                 .EndingWith("Factory")
-                                 .AsInterfaces()
-                                 .RegisterAsLazySingleton();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("ViewModel")

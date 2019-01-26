@@ -1,0 +1,85 @@
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.StatisticCategorySpreadingView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                      xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      mc:Ignorable="d">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
+    </d:MvxWindowsPage.DataContext>
+
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Resources[CategorySpreadingTitle]}"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
+        <Grid Grid.Row="1">
+            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="{Binding Title}"
+                       VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <chart:RadPieChart PaletteName="DefaultDark" x:Name="chart">
+                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
+                                 RadiusFactor="0.6">
+                    <chart:DoughnutSeries.ValueBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                    </chart:DoughnutSeries.ValueBinding>
+                    <chart:PieSeries.LegendTitleBinding>
+                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                    </chart:PieSeries.LegendTitleBinding>
+                </chart:DoughnutSeries>
+            </chart:RadPieChart>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
+                <primitives:RadLegendControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </primitives:RadLegendControl.ItemsPanel>
+                <primitives:RadLegendControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Fill="{Binding Fill}"
+                                     Stroke="{Binding Stroke}"
+                                     StrokeThickness="1"
+                                     Width="10"
+                                     Height="10" />
+                            <TextBlock Text="{Binding Title}"
+                                       Foreground="{Binding Fill}"
+                                       Margin="5" />
+                        </StackPanel>
+                    </DataTemplate>
+                </primitives:RadLegendControl.ItemTemplate>
+            </primitives:RadLegendControl>
+        </Grid>
+
+        <CommandBar Grid.Row="4"
+                    Height="24"
+                    ClosedDisplayMode="Minimal"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="SetDate"
+                              Click="SetDate"
+                              Icon="Calendar"
+                              Label="Set Date" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</views:MvxWindowsPage>

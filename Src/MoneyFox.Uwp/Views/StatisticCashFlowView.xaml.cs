@@ -1,12 +1,14 @@
-﻿using Windows.UI.Xaml;
-using MoneyFox.Windows.Views.Dialogs;
+﻿using System;
+using Windows.UI.Xaml;
+using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Uwp.Views.Dialogs;
 using MvvmCross;
 
-namespace MoneyFox.Windows.Views
+namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class StatisticCategorySummaryView
+    public sealed partial class StatisticCashFlowView
     {
-        public StatisticCategorySummaryView()
+        public StatisticCashFlowView()
         {
             InitializeComponent();
         }

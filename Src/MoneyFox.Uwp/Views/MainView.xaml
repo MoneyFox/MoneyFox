@@ -13,6 +13,8 @@
         <NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
+                    IsBackEnabled="False"
+                    IsBackButtonVisible="Collapsed"
                     CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
                     IsSettingsVisible="True"  >

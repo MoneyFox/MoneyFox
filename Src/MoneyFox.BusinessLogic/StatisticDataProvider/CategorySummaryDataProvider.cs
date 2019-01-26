@@ -13,7 +13,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate);
     }
 
-    public class CategorySummaryDataProvider
+    public class CategorySummaryDataProvider : ICategorySummaryDataProvider
     {
         private readonly IStatisticDbAccess statisticDbAccess;
 

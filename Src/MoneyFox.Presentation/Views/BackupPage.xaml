@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<d:MvxContentPage x:TypeArguments="viewModels:BackupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<d:MvxContentPage x:TypeArguments="viewModels1:BackupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox"
-                  xmlns:converter="clr-namespace:MoneyFox.Converter;assembly=MoneyFox"
-                  xmlns:viewModels="clr-namespace:MoneyFox.Business.ViewModels;assembly=MoneyFox.Business"
-                  xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox"
-                  x:Class="MoneyFox.Views.BackupPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+                  xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                  xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+                  xmlns:viewModels1="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                  xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox.Presentation"
+                  x:Class="MoneyFox.Presentation.Views.BackupPage"
+                  BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
 
     <d:MvxContentPage.Resources>
