@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Graph;
-using MoneyFox.Business.Extensions;
+using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation.Constants;
 using PCLAppConfig;
 using UIKit;

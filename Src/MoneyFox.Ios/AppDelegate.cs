@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.DbContextScope;
 using Foundation;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Adapter;
-using MoneyFox.Business.Manager;
-using MoneyFox.Business.Services;
-using MoneyFox.DataAccess;
-using MoneyFox.DataAccess.DataServices;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.iOS.Authentication;
+using MoneyFox.Presentation;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
@@ -54,7 +53,7 @@ namespace MoneyFox.iOS
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
-            ApplicationContext.DbPath = GetLocalFilePath();
+            EfCoreContext.DbPath = GetLocalFilePath();
             SQLitePCL.Batteries.Init();
             Popup.Init();
 
@@ -111,17 +110,17 @@ namespace MoneyFox.iOS
 
         private async Task SyncBackup()
         {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
-                ApplicationContext.DbPath = GetLocalFilePath();
+                EfCoreContext.DbPath = GetLocalFilePath();
 
-                await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                                        settingsManager,
-                                        new ConnectivityAdapter())
-                    .DownloadBackup();
+                //await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
+                //                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                //                        settingsFacade,
+                //                        new ConnectivityAdapter())
+                //    .DownloadBackup();
             } 
             catch (Exception ex)
             {
@@ -129,28 +128,28 @@ namespace MoneyFox.iOS
             } 
             finally
             {
-                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
         }
 
         private async Task ClearPayments()
         {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                ApplicationContext.DbPath = GetLocalFilePath();
+                EfCoreContext.DbPath = GetLocalFilePath();
 
-                var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
+                //var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
 
-                var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-                var unclearedPayments = payments.ToList();
+                //var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
+                //var unclearedPayments = payments.ToList();
 
-                if (unclearedPayments.Any())
-                {
-                    Debug.WriteLine("Payments for clearing found.");
-                    await paymentService.SavePayments(unclearedPayments.ToArray());
-                }
+                //if (unclearedPayments.Any())
+                //{
+                //    Debug.WriteLine("Payments for clearing found.");
+                //    await paymentService.SavePayments(unclearedPayments.ToArray());
+                //}
 
                 Debug.WriteLine("ClearPayments Job finished.");
             } 
@@ -160,26 +159,26 @@ namespace MoneyFox.iOS
             } 
             finally
             {
-                settingsManager.LastExecutionTimeStampClearPayments = DateTime.Now;
+                settingsFacade.LastExecutionTimeStampClearPayments = DateTime.Now;
             }
         }
 
         private async Task CreateRecurringPayments()
         {
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
-                ApplicationContext.DbPath = GetLocalFilePath();
+                EfCoreContext.DbPath = GetLocalFilePath();
 
                 var ambientDbContextLocator = new AmbientDbContextLocator();
                 var dbContextScopeFactory = new DbContextScopeFactory();
 
-                await new RecurringPaymentManager(
-                        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
-                        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
-                    .CreatePaymentsUpToRecur();
+                //await new RecurringPaymentManager(
+                //        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
+                //        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
+                //    .CreatePaymentsUpToRecur();
 
                 Debug.WriteLine("RecurringPayment Job finished.");
             } 
@@ -189,7 +188,7 @@ namespace MoneyFox.iOS
             } 
             finally
             {
-                settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;
+                settingsFacade.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }
         }
     }

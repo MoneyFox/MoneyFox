@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 
 namespace MoneyFox.iOS
 {
