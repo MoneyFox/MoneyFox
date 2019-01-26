@@ -8,6 +8,7 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:viewModels1="using:MoneyFox.ServiceLayer.ViewModels"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
+                      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       mc:Ignorable="d">
     
     <Page.Resources>
@@ -95,7 +96,7 @@
                    Text="Accounts"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <!--<userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />-->
+        <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
@@ -141,7 +142,6 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
-
 
         <TextBlock x:Uid="AccountsPlaceholder"
                    Grid.Row="1"

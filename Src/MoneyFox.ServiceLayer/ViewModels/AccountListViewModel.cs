@@ -63,7 +63,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public bool HasNoAccounts => !Accounts.Any();
         
-        //public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
+        public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
@@ -116,12 +116,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
         }
 
-        //private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
-        //{
-        //    if (accountViewModel == null) return;
+        private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
+        {
+            if (accountViewModel == null) return;
 
-        //    await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
-        //}
+            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+        }
 
         private async Task Delete(AccountViewModel accountToDelete)
         {

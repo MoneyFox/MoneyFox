@@ -6,12 +6,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Business.Manager;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
+using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -28,9 +30,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
         private readonly IMvxLogProvider logProvider;
@@ -50,23 +52,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public PaymentListViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
-            ISettingsManager settingsManager,
+            ISettingsFacade settingsFacade,
             IBalanceCalculationService balanceCalculationService,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IMvxNavigationService navigationService,
             IMvxMessenger messenger, 
             IMvxLogProvider logProvider)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
             this.navigationService = navigationService;
             this.messenger = messenger;
             this.logProvider = logProvider;
 
-            token = messenger.Subscribe<PaymentListFilterChangedMessage>(async message => await LoadPayments(message));
+            token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
         }
 
         #region Properties
@@ -184,11 +186,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            Title = await accountService.GetAccountName(AccountId);
+            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
-            BalanceViewModel = new PaymentListBalanceViewModel(accountService, balanceCalculationManager, AccountId, logProvider, navigationService);
-            ViewActionViewModel = new PaymentListViewActionViewModel(accountService,
-                                                                     settingsManager,
+            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId, logProvider, navigationService);
+            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
+                                                                     settingsFacade,
                                                                      dialogService,
                                                                      BalanceViewModel,
                                                                      messenger,
@@ -207,33 +209,30 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Load()
         {
-            await LoadPayments(new PaymentListFilterChangedMessage(this));
-
+            LoadPayments(new PaymentListFilterChangedMessage(this));
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
-            var paymentQuery = await paymentService.GetPaymentsByAccountId(AccountId);
+            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
+                .HasAccountId(AccountId);
 
             if (filterMessage.IsClearedFilterActive)
             {
-                paymentQuery = paymentQuery.Where(x => x.Data.IsCleared);
+                paymentQuery = paymentQuery.Where(x => x.IsCleared);
             }
             if (filterMessage.IsRecurringFilterActive)
             {
-                paymentQuery = paymentQuery.Where(x => x.Data.IsRecurring);
+                paymentQuery = paymentQuery.Where(x => x.IsRecurring);
             }
 
-            paymentQuery = paymentQuery.Where(x => x.Data.Date >= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Data.Date <= filterMessage.TimeRangeEnd);
+            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
 
             var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery
-                    .OrderByDescending(x => x.Data.Date)
-                    .Select(x => new PaymentViewModel(x)));
-
+                paymentQuery.OrderByDescending(x => x.Date));
 
             foreach (PaymentViewModel payment in loadedPayments)
             {
@@ -267,22 +266,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeletePayment(PaymentViewModel payment)
         {
-            if (!await dialogService
-                .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
+            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
-            var paymentToDelete = await paymentService.GetById(payment.Id);
+            var paymentToDelete = await crudServices.ReadSingleAsync<PaymentViewModel>(payment.Id);
 
-            if (paymentToDelete.Data.IsRecurring 
+            if (paymentToDelete.IsRecurring 
                 && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
             {
-                await recurringPaymentService.DeletePayment(paymentToDelete.Data.RecurringPayment);
+                await crudServices.DeleteAndSaveAsync<RecurringPaymentViewModel>(paymentToDelete.RecurringPayment.Id);
             }
 
-            await paymentService.DeletePayment(paymentToDelete);
+            await crudServices.DeleteAndSaveAsync<PaymentViewModel>(paymentToDelete.Id);
+            settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
-            settingsManager.LastDatabaseUpdate = DateTime.Now;
 #pragma warning disable 4014
-            backupManager.EnqueueBackupTask();
+            backupService.EnqueueBackupTask();
 #pragma warning restore 4014
             await Load();
         }

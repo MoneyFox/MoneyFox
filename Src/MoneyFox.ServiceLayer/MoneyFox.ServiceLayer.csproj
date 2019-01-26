@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\PaymentListViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
