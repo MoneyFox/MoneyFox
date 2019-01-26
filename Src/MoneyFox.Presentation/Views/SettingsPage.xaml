@@ -5,9 +5,10 @@
                   xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
+                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"

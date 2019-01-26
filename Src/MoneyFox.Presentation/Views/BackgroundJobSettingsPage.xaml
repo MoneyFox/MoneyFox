@@ -4,8 +4,9 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                       xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                       x:Class="MoneyFox.Views.BackgroundJobSettingsPage"
-                      DataContext="{x:Static moneyFox:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
+                      DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
 
     <ContentPage.Content>
         <Grid Padding="7" >

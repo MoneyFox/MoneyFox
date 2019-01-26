@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
@@ -11,6 +12,7 @@ using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
 {
+    [ExcludeFromCodeCoverage]
     public class CashFlowProviderTests
     {
         [Fact]

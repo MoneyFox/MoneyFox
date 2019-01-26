@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
@@ -11,6 +12,7 @@ using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.PaymentActions
 {
+    [ExcludeFromCodeCoverage]
     public class ClearPaymentActionTests
     {
         [Fact]

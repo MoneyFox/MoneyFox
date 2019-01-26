@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Presentation.Converter;
 using Should;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
 {
+    [ExcludeFromCodeCoverage]
     public class DateVisibilityConverterTests
     {
         [Fact]

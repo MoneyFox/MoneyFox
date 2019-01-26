@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Foundation;
 using MoneyFox.Presentation.Converter;
 using MoneyFox.ServiceLayer.ViewModels;
 using Should;
@@ -6,6 +7,7 @@ using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
 {
+    [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class PaymentAmountConverterTests 
     {

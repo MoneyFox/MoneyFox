@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Converter;
@@ -7,6 +8,7 @@ using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
 {
+    [ExcludeFromCodeCoverage]
     public class RecurrenceTypeConverterTests
     {
         public static IEnumerable<object[]> TestRecurrences

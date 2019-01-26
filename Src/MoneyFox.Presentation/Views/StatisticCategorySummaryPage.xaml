@@ -7,9 +7,10 @@
                       xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                       xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
                       xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                       x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
                       BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                      DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
+                      DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
                       Title="{Binding Resources[CategorySummaryTitle]}">
 
     <ContentPage.Resources>

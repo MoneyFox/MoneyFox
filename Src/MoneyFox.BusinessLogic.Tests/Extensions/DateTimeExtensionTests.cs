@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.Extensions;
 using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public class DateTimeExtensionTests
     {
         [Fact]

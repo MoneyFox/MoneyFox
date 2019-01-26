@@ -3,7 +3,7 @@ using MoneyFox.ServiceLayer.ViewModels.DesignTime;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 
-namespace MoneyFox
+namespace MoneyFox.ServiceLayer
 {
     /// <summary>
     ///     Locator to provide Design Time ViewModels for the Xamarin Forms Designer.

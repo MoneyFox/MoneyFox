@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
 {
+    [ExcludeFromCodeCoverage]
     public class CategorySummaryProviderTests
     {
         [Fact]

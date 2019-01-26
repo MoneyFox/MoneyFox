@@ -7,7 +7,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 
-namespace MoneyFox.Business.ViewModels.DesignTime
+namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
     {

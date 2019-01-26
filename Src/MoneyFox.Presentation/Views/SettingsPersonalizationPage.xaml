@@ -5,10 +5,11 @@
                        xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
                        xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                        xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                       xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                        x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
                        Title="{Binding Resources[SettingsPersonalizationLabel]}"
                        BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                       DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
+                       DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
 
     <ContentPage.Content>
         <StackLayout>

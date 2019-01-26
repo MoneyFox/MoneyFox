@@ -8,9 +8,10 @@
                    xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
                    xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                    x:Class="MoneyFox.Presentation.Views.PaymentListPage"
                    BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                   DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
+                   DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />

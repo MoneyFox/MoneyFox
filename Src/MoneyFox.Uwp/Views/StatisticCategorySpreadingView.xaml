@@ -6,7 +6,7 @@
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime="using:MoneyFox.Business.ViewModels.DesignTime"
+                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

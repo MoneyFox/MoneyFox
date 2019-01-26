@@ -1,10 +1,12 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using MoneyFox.Presentation.Converter;
 using Should;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
 {
+    [ExcludeFromCodeCoverage]
     public class AmountFormatConverterTests
     {
         [Theory]              // Currencies: 

@@ -6,9 +6,10 @@
                   xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                   xmlns:userControls="clr-namespace:MoneyFox.UserControls"
+                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   x:Class="MoneyFox.Presentation.Views.CategoryListPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static moneyFox1:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
+                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeCategoryListViewModel}">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >

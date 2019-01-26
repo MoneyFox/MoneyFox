@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
 using Should;
@@ -6,6 +7,7 @@ using Xunit;
 
 namespace MoneyFox.DataLayer.Tests.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentTests
     {
         [Fact]

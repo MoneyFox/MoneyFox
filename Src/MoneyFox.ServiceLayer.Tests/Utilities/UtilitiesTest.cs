@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using Should;
@@ -6,6 +7,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Utilities
 {
+    [ExcludeFromCodeCoverage]
     public class UtilitiesTest
     {
         [Fact]

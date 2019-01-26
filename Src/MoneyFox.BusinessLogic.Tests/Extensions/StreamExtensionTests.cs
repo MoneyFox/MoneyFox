@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using MoneyFox.BusinessLogic.Extensions;
 using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public class StreamExtensionTests
     {
         [Fact]

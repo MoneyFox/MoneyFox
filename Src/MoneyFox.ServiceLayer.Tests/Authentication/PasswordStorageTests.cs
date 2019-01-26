@@ -1,10 +1,12 @@
-﻿using MoneyFox.ServiceLayer.Authentication;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Interfaces;
 using Moq;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Authentication
 {
+    [ExcludeFromCodeCoverage]
     public class PasswordStorageTests
     {
         [Theory]
