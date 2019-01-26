@@ -27,6 +27,8 @@ namespace MoneyFox.DataLayer.Entities
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             TargetAccount = targetAccount;
             Category = category;
+
+            ClearPayment();
         }
 
         public int Id { get; private set; }
@@ -59,6 +61,11 @@ namespace MoneyFox.DataLayer.Entities
         {
             RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, Note, ChargedAccount, endDate, TargetAccount, Category);
             IsRecurring = true;
+        }
+
+        public void ClearPayment()
+        {
+            IsCleared = Date.Date <= DateTime.Today.Date;
         }
     }
 }

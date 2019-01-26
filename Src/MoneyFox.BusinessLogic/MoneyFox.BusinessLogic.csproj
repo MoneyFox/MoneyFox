@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Managers\ClearPaymentManager.cs" />
-    <Compile Remove="Managers\RecurringPaymentManager.cs" />
+    <Compile Remove="PaymentActions\RecurringPaymentManager.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Managers\" />
   </ItemGroup>
 
 </Project>

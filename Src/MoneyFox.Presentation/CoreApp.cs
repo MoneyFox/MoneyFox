@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
@@ -58,6 +59,11 @@ namespace MoneyFox.Presentation
 
             typeof(BackupManager).Assembly.CreatableTypes()
                                  .EndingWith("Manager")
+                                 .AsInterfaces()
+                                 .RegisterAsDynamic();
+
+            typeof(ClearPaymentAction).Assembly.CreatableTypes()
+                                 .EndingWith("Action")
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 

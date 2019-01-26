@@ -6,7 +6,9 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
@@ -65,16 +67,9 @@ namespace MoneyFox.Droid.Jobs
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
-                //var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-
-                //var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-                //var unclearedPayments = payments.ToList();
-
-                //if (unclearedPayments.Any())
-                //{
-                //    Debug.WriteLine("Payments for clearing found.");
-                //    await paymentService.SavePayments(unclearedPayments.ToArray());
-                //}
+                var context = new EfCoreContext();
+                new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
                 JobFinished(args, false);

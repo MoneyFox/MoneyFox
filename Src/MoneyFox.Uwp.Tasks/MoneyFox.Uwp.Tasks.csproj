@@ -142,6 +142,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj">
+      <Project>{58FB652B-1B0E-420F-A380-B1B7699077B2}</Project>
+      <Name>MoneyFox.BusinessDbAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
       <Project>{4b351f9b-d87e-4c23-84bf-2e253801f880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>

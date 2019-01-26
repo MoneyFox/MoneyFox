@@ -2,23 +2,13 @@
 using System.Linq;
 using MoneyFox.DataLayer.Entities;
 
-namespace MoneyFox.DataAccess.QueryExtensions
+namespace MoneyFox.BusinessDbAccess.QueryObjects
 {
     /// <summary>
     ///     Provides Extensions for categories queries.
     /// </summary>
     public static class CategoryQueryObjects
     {
-        /// <summary>
-        ///     Adds a filter for Categories who do not have a Null name.
-        /// </summary>
-        /// <param name="query">Existing query.</param>
-        /// <returns>Query with the added filter.</returns>
-        public static IQueryable<Category> NameNotNull(this IQueryable<Category> query)
-        {
-            return query.Where(category => !string.IsNullOrWhiteSpace(category.Name));
-        }
-
         /// <summary>
         ///     Adds a filter to a query to find all category with the passed name.
         /// </summary>

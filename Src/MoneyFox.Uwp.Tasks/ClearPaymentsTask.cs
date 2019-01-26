@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
@@ -22,12 +24,9 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                //var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-                //var unclearedPayments = payments.ToList();
-                //if (unclearedPayments.Any())
-                //{
-                //    await paymentService.SavePayments(unclearedPayments.ToArray());
-                //}
+                var context = new EfCoreContext();
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                context.SaveChanges();
             } 
             catch (Exception ex)
             {

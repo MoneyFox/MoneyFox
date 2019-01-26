@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Foundation;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
@@ -137,16 +139,9 @@ namespace MoneyFox.iOS
                 Debug.WriteLine("ClearPayments Job started");
                 EfCoreContext.DbPath = GetLocalFilePath();
 
-                //var paymentService = new PaymentService(new AmbientDbContextLocator(), new DbContextScopeFactory());
-
-                //var payments = await paymentService.GetUnclearedPayments(DateTime.Now);
-                //var unclearedPayments = payments.ToList();
-
-                //if (unclearedPayments.Any())
-                //{
-                //    Debug.WriteLine("Payments for clearing found.");
-                //    await paymentService.SavePayments(unclearedPayments.ToArray());
-                //}
+                var context = new EfCoreContext();
+                new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
             } 
