@@ -4,10 +4,9 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.ServiceLayer.QueryObject;
-using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.Business.Manager
+namespace MoneyFox.ServiceLayer.Services
 {
     /// <summary>
     ///     Provides different calculations for the balance at the end of month.
@@ -77,7 +76,7 @@ namespace MoneyFox.Business.Manager
 
             foreach (var payment in crudServices
                 .ReadManyNoTracked<PaymentViewModel>()
-                .HasDateSmallerEqualsThan(Utilities.GetEndOfMonth()))
+                .HasDateSmallerEqualsThan(Utilities.Utilities.GetEndOfMonth()))
 
                 switch (payment.Type)
                 {
@@ -122,7 +121,7 @@ namespace MoneyFox.Business.Manager
 
             foreach (var payment in crudServices.ReadManyNoTracked<PaymentViewModel>()
                 .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(Utilities.GetEndOfMonth()))
+                .HasDateSmallerEqualsThan(Utilities.Utilities.GetEndOfMonth()))
                 switch (payment.Type)
                 {
                     case PaymentType.Expense:

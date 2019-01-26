@@ -1,5 +1,4 @@
-﻿using MoneyFox.DataLayer.Entities;
-using MoneyFox.Foundation;
+﻿using MoneyFox.Foundation;
 using MoneyFox.Presentation.Converter;
 using MoneyFox.ServiceLayer.ViewModels;
 using Should;

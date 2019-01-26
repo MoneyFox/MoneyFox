@@ -43,7 +43,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             }
 
             CalculateAverage(categories);
-            Utilities.RoundStatisticItems(categories);
+            StatisticUtilities.RoundStatisticItems(categories);
 
             return categories.Where(x => Math.Abs(x.Value) > 0.1)
                              .OrderBy(x => x.Value)

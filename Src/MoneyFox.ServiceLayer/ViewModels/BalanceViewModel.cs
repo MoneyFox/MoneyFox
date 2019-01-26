@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using MoneyFox.Business.Manager;
+using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;

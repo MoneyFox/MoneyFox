@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Business.Manager;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 

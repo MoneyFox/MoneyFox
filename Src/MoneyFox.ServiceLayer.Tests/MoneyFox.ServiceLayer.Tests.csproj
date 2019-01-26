@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\AccountListViewModelTests.cs" />
+    <Compile Remove="ViewModels\ModifyAccountViewModelTests.cs" />
+    <Compile Remove="ViewModels\ModifyCategoryViewModelTests.cs" />
+    <Compile Remove="ViewModels\ModifyPaymentViewModelTest.cs" />
+    <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
+    <Compile Remove="ViewModels\SelectCategoryListViewModelTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Moq" Version="4.10.0" />
+    <PackageReference Include="MvvmCross.Tests" Version="6.2.2" />
+    <PackageReference Include="Should-DotNetStandard" Version="1.0.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>

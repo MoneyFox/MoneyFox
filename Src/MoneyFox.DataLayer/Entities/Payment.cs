@@ -15,8 +15,8 @@ namespace MoneyFox.DataLayer.Entities
         public Payment(DateTime date, 
             double amount, 
             PaymentType type,
-            string note, 
             Account chargedAccount,
+            string note = "", 
             Account targetAccount = null,
             Category category = null)
         {
