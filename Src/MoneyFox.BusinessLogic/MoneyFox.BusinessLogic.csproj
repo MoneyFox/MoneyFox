@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Authentication\PasswordStorage.cs" />
-    <Compile Remove="Authentication\Session.cs" />
     <Compile Remove="Managers\ClearPaymentManager.cs" />
     <Compile Remove="Managers\RecurringPaymentManager.cs" />
   </ItemGroup>
@@ -23,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\" />
     <Folder Include="Managers\" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using System;
+using MoneyFox.ServiceLayer.Facades;
 
-namespace MoneyFox.BusinessLogic.Authentication
+namespace MoneyFox.ServiceLayer.Authentication
 {
     /// <summary>
     ///     Represents a user Session.
@@ -12,14 +13,14 @@ namespace MoneyFox.BusinessLogic.Authentication
         /// </summary>
         private const int SESSION_TIMEOUT = 10;
 
-        private readonly ISettingsManager settingsManager;
+        private readonly ISettingsFacade settingsFacade;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public Session(ISettingsManager settingsManager)
+        public Session(ISettingsFacade settingsManager)
         {
-            this.settingsManager = settingsManager;
+            this.settingsFacade = settingsManager;
         }
 
         /// <summary>
@@ -27,23 +28,23 @@ namespace MoneyFox.BusinessLogic.Authentication
         /// </summary>
         public bool ValidateSession()
         {
-            if (!settingsManager.PasswordRequired && !settingsManager.PassportEnabled)
+            if (!settingsFacade.PasswordRequired && !settingsFacade.PassportEnabled)
             {
                 return true;
             }
 
-            return !string.IsNullOrEmpty(settingsManager.SessionTimestamp) && CheckIfSessionExpired();
+            return !string.IsNullOrEmpty(settingsFacade.SessionTimestamp) && CheckIfSessionExpired();
         }
 
         private bool CheckIfSessionExpired()
-            => (DateTime.Now - Convert.ToDateTime(settingsManager.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
+            => (DateTime.Now - Convert.ToDateTime(settingsFacade.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
 
         /// <summary>
         ///     Adds the current time as timestamp to the local settings.
         /// </summary>
         public void AddSession()
         {
-            settingsManager.SessionTimestamp = DateTime.Now.ToString();
+            settingsFacade.SessionTimestamp = DateTime.Now.ToString();
         }
     }
 }

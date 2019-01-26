@@ -21,6 +21,7 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation;
+using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views;
@@ -29,6 +30,7 @@ using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
+using MvvmCross.Navigation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -108,16 +110,16 @@ namespace MoneyFox.Uwp
 
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
 
-                //if (!Mvx.IoCProvider.CanResolve<Session>()) return;
+                if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
-                //if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
-                //{
-                //    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
-                //}
-                //else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
-                //{
-                //    await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<LoginViewModel>();
-                //}
+                if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+                {
+                    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                } 
+                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
+                {
+                    await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<LoginViewModel>();
+                }
 
                 (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
@@ -160,7 +162,7 @@ namespace MoneyFox.Uwp
 			viewTitleBar.ButtonForegroundColor = Colors.LightGray;
 
             var currentView = SystemNavigationManager.GetForCurrentView();
-            //currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
         }
 
 		private async Task SetJumplist()

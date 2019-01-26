@@ -4,7 +4,6 @@ using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 
 namespace MoneyFox.ServiceLayer.Services
 {

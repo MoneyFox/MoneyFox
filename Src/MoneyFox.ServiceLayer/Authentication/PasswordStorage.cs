@@ -1,7 +1,7 @@
 ﻿using System;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 
-namespace MoneyFox.BusinessLogic.Authentication
+namespace MoneyFox.ServiceLayer.Authentication
 {
     /// <inheritdoc />
     public class PasswordStorage : IPasswordStorage
