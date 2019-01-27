@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.DataLayer.Entities
 {
@@ -35,6 +36,36 @@ namespace MoneyFox.DataLayer.Entities
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
+        }
+
+        public void AddPaymentAmount(Payment payment)
+        {
+            switch (payment.Type)
+            {
+                case PaymentType.Expense:
+                    CurrentBalance -= payment.Amount;
+                    break;
+
+                case PaymentType.Income:
+                    CurrentBalance += payment.Amount;
+                    break;
+
+                case PaymentType.Transfer:
+                    if (payment.ChargedAccount.Id == Id)
+                    {
+                        CurrentBalance -= payment.Amount;
+                    }
+                    else
+                    {
+                        CurrentBalance += payment.Amount;
+                    }
+                    break;
+                    
+                default:
+                    break;
+
+            }
+
         }
 
         //Use uninitialised backing fields - this means we can detect if the collection was loaded

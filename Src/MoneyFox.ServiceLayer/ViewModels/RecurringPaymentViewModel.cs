@@ -25,6 +25,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
 
+        public RecurringPaymentViewModel()
+        {
+            Recurrence = PaymentRecurrence.Daily;
+            EndDate = DateTime.Today;
+        }
+
         public int Id
         {
             get => id;
@@ -109,6 +115,16 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 if (isEndless == value) return;
                 isEndless = value;
+
+                if (IsEndless)
+                {
+                    EndDate = null;
+                }
+                else
+                {
+                    EndDate = DateTime.Today;
+                }
+                
                 RaisePropertyChanged();
             }
         }

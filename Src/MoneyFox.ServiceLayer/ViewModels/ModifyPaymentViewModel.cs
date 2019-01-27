@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
@@ -25,16 +24,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         bool IsTransfer { get; }
-
-        /// <summary>
-        ///     Indicates if the reminder is endless
-        /// </summary>
-        bool IsEndless { get; }
-
-        /// <summary>
-        ///     The Enddate for recurring PaymentViewModel
-        /// </summary>
-        DateTime EndDate { get; }
 
         /// <summary>
         ///     The selected recurrence
@@ -112,18 +101,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        private double amount;
         private DateTime endDate;
-        private bool isEdit;
-        private bool isEndless;
-        private bool isTransfer;
 
-        protected ModifyPaymentParameter passedParameter;
+        protected ModifyPaymentParameter PassedParameter;
 
         private bool preventNullingSelected;
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment;
-        private string title;
 
         /// <summary>
         ///     Default constructor
@@ -148,14 +132,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public override void Prepare(ModifyPaymentParameter parameter)
         {
-            passedParameter = parameter;
+            PassedParameter = parameter;
         }
 
         /// <inheritdoc />
         public override async Task Initialize()
         {
             var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>().ToListAsync();
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(TargetAccounts);
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
@@ -408,33 +392,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
         /// <summary>
-        ///     Indicates if the reminder is endless
-        /// </summary>
-        public bool IsEndless
-        {
-            get => isEndless;
-            set
-            {
-                if (isEndless == value) return;
-                isEndless = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     The Enddate for recurring PaymentViewModel
-        /// </summary>
-        public DateTime EndDate
-        {
-            get => endDate;
-            set
-            {
-                endDate = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         ///     The selected recurrence
         /// </summary>
         public PaymentRecurrence Recurrence
@@ -490,19 +447,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
 
-        /// <summary>
-        ///     Returns the Title for the page
-        /// </summary>
-        public string Title
-        {
-            get => title;
-            set
-            {
-                if (title == value) return;
-                title = value;
-                RaisePropertyChanged();
-            }
-        }
+        public virtual string Title => Strings.AddTitle;
 
         /// <summary>
         ///     Returns the Header for the AccountViewModel field

@@ -27,6 +27,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
+        public PaymentViewModel()
+        {
+            Date = DateTime.Today;
+        }
+
         public int Id
         {
             get => id;
@@ -163,7 +168,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 if (isRecurring == value) return;
                 isRecurring = value;
-                RaisePropertyChanged();
+
+                RecurringPayment = isRecurring 
+                    ? new RecurringPaymentViewModel() 
+                    : null;
+
+                RaisePropertyChanged();;
             }
         }
 

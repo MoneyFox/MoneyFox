@@ -137,23 +137,23 @@
                                   Header="Reccurence"
                                   ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
                                   ItemsSource="{Binding RecurrenceList}"
-                                  SelectedItem="{Binding SelectedPayment.RecurringPaymentViewModel.Recurrence,
+                                  SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence,
                                                          Mode=TwoWay,
                                                          UpdateSourceTrigger=PropertyChanged}" />
                     <CheckBox x:Uid="EndlessCheckBox"
                                   Content="Endless"
                                   Margin="{StaticResource SmallTitleContentMargin}"
-                                  IsChecked="{Binding SelectedPayment.RecurringPaymentViewModel.IsEndless,
+                                  IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless,
                                                       Mode=TwoWay,
                                                       UpdateSourceTrigger=PropertyChanged}" />
                     <DatePicker x:Uid="EndDateHeader"
                                     Margin="{StaticResource SmallTitleContentMargin}"
-                                    Date="{Binding SelectedPayment.RecurringPaymentViewModel.EndDate,
+                                    Date="{Binding SelectedPayment.RecurringPayment.EndDate,
                                                    Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                    Mode=TwoWay,
                                                    UpdateSourceTrigger=PropertyChanged}"
                                     Header="enddate"
-                                    Visibility="{Binding IsEndless,
+                                    Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless,
                                                          Converter={StaticResource BooleanVisibilityConverter},
                                                          ConverterParameter=revert}" />
                 </StackPanel>

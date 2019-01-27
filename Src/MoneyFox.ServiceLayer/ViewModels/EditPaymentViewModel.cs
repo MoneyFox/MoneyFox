@@ -34,6 +34,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.backupService = backupService;
         }
 
+        public override string Title => Strings.EditLabel;
+
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
