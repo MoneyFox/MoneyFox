@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -17,10 +17,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AddCategoryViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService) 
-                : base(crudServices, dialogService, settingsFacade, backupManager, logProvider, navigationService)
+                : base(crudServices, dialogService, settingsFacade, backupService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;

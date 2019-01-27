@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -17,21 +17,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
 
         public EditPaymentViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade, 
             IMvxMessenger messenger,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IMvxLogProvider logProvider, 
             IMvxNavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, messenger, backupManager, logProvider, navigationService)
+            : base(crudServices, dialogService, settingsFacade, messenger, backupService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedPayment.Id);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupManager.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
         }
     }
 }

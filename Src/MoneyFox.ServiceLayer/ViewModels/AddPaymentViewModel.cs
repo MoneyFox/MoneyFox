@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
@@ -18,11 +18,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AddPaymentViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            IMvxMessenger messenger, 
-            IBackupManager backupManager,
+            IMvxMessenger messenger,
+            IBackupService backupService,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, messenger, backupManager, logProvider, navigationService)
+            : base(crudServices, dialogService, settingsFacade, messenger, backupService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;

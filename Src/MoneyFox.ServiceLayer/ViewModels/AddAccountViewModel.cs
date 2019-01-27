@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.QueryObject;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
@@ -16,10 +17,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public AddAccountViewModel(ICrudServicesAsync crudService,
             ISettingsFacade settingsFacade,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(crudService, settingsFacade, backupManager, dialogService, logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(settingsFacade, backupService, logProvider, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
@@ -33,6 +34,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveAccount()
         {
+            if (await crudService.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
             await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
             if (!crudService.IsValid)
             {

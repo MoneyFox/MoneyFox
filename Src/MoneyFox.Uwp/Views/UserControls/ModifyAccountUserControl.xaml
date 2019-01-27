@@ -24,7 +24,7 @@
                          GotFocus="TextBoxOnFocus"
                          Header="Current Balance"
                          InputScope="Number"
-                         Text="{Binding SelectedAccount.Amount,
+                         Text="{Binding SelectedAccount.CurrentBalance,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />

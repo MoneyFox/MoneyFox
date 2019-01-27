@@ -11,6 +11,7 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -103,7 +104,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
     {
         private readonly ICrudServicesAsync crudServices;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
@@ -131,14 +132,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IMvxMessenger messenger,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
             this.navigationService = navigationService;
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
@@ -208,7 +209,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupManager.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
         }
 
         /// <inheritdoc />

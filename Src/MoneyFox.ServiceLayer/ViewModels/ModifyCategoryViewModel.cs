@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -40,7 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
 
         private CategoryViewModel selectedCategory;
 
@@ -50,13 +50,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
                                        IDialogService dialogService,
                                        ISettingsFacade settingsFacade,
-                                       IBackupManager backupManager,
+                                       IBackupService backupService,
                                        IMvxLogProvider logProvider,
                                        IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
             this.crudServices = crudServices;
         }
 
@@ -74,7 +74,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupManager.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
         }
 
         /// <summary>

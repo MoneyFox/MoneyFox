@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -16,19 +16,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
 
         public EditAccountViewModel(ICrudServicesAsync crudServices,
             ISettingsFacade settingsFacade,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IDialogService dialogService,
             IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(crudServices, settingsFacade, backupManager, dialogService, logProvider, navigationService)
+            IMvxNavigationService navigationService) : base(settingsFacade, backupService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
             this.dialogService = dialogService;
         }
 
@@ -44,7 +44,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveAccount()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedAccount, "ctor(4)");
+            await crudServices.UpdateAndSaveAsync(SelectedAccount);
             if (!crudServices.IsValid)
             {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
@@ -57,7 +57,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupManager.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
         }
     }
 }

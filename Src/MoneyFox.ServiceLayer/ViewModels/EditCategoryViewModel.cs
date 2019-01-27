@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -17,20 +17,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupManager backupManager;
+        private readonly IBackupService backupService;
 
         public EditCategoryViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            IBackupManager backupManager,
+            IBackupService backupService,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService)
-            : base(crudServices, dialogService, settingsFacade, backupManager, logProvider, navigationService)
+            : base(crudServices, dialogService, settingsFacade, backupService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
-            this.backupManager = backupManager;
+            this.backupService = backupService;
         }
 
         public override string Title => string.Format(Strings.EditCategoryTitle, SelectedCategory.Name);
@@ -60,7 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedCategory.Id);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupManager.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
         }
     }
 }

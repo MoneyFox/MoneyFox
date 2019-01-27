@@ -11,14 +11,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public Account(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name));
-
-            Name = name;
-            CurrentBalance = currentBalance;
-            Note = note;
-            IsExcluded = isExcluded;
-            IsOverdrawn = currentBalance < 0;
+            UpdateAccount(name, currentBalance, note, isExcluded);
         }
 
         [Key]
@@ -31,6 +24,18 @@ namespace MoneyFox.DataLayer.Entities
         public string Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
+
+        public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            Name = name;
+            CurrentBalance = currentBalance;
+            Note = note;
+            IsExcluded = isExcluded;
+            IsOverdrawn = currentBalance < 0;
+        }
 
         //Use uninitialised backing fields - this means we can detect if the collection was loaded
         //private HashSet<Payment> chargedPayments;
