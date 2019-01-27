@@ -22,7 +22,7 @@
                      Margin="0,0,0,12"
                      VerticalAlignment="Top"
                      Header="Notes"
-                     Text="{Binding SelectedCategory.Notes,
+                     Text="{Binding SelectedCategory.Note,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>

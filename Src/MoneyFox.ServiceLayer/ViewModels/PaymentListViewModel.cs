@@ -259,7 +259,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditPayment(PaymentViewModel payment)
         {
-            await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(
+            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
                 new ModifyPaymentParameter(payment.Id));
         }
 

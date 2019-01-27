@@ -17,6 +17,8 @@ using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
+using MvvmCross.Logging;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Presentation

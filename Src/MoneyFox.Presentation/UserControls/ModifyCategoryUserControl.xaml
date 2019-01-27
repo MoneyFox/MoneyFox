@@ -14,7 +14,7 @@
 
           <Label Text="{Binding Resources[NoteLabel]}"
                  Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Notes}"
+          <Entry Text="{Binding SelectedCategory.Note}"
                  Style="{StaticResource DefaultEntryStyle}" />
 
           <!-- This delete button is only for ios, since there can be only one menu item -->

@@ -36,7 +36,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Additional details about the CategoryViewModel
         /// </summary>
-        public string Notes
+        public string Note
         {
             get => note;
             set

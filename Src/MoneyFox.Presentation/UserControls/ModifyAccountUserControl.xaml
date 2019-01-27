@@ -18,7 +18,7 @@
                        Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntryStyle}"
-                       Text="{Binding AmountString}" 
+                       Text="{Binding SelectedAccount.CurrentBalance}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocused"/>

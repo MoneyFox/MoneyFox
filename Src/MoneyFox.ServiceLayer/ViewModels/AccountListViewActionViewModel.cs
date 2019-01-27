@@ -28,15 +28,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddIncomeCommand =>
-                new MvxAsyncCommand(async () => await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Income)));
+                new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Income)));
 
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddExpenseCommand =>
-            new MvxAsyncCommand(async () => await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Expense)));
+            new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Expense)));
 
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddTransferCommand =>
-            new MvxAsyncCommand(async () => await navigationService.Navigate<ModifyPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Transfer)));
+            new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.

@@ -91,7 +91,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///     Performs a search with the text in the searchtext property
+        ///     Performs a search with the text in the search text property
         /// </summary>
         public async Task Search(string searchText = "")
         {
@@ -120,12 +120,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
+            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<ModifyCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
+            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
         private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>

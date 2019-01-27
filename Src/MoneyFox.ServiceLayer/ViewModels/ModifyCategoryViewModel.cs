@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
-using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -38,7 +36,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public abstract class ModifyCategoryViewModel : BaseNavigationViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
     {
         private readonly ICrudServicesAsync crudServices;
-        private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
 
@@ -48,13 +45,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
-                                       IDialogService dialogService,
                                        ISettingsFacade settingsFacade,
                                        IBackupService backupService,
                                        IMvxLogProvider logProvider,
                                        IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
-            this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.crudServices = crudServices;
