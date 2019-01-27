@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MoneyFox.Foundation;
@@ -14,8 +15,8 @@ namespace MoneyFox.DataLayer.Entities
             double amount,
             PaymentType type,
             PaymentRecurrence recurrence,
-            string note, 
             Account chargedAccount, 
+            string note = "", 
             DateTime? endDate = null,
             Account targetAccount = null, 
             Category category = null)
@@ -59,6 +60,6 @@ namespace MoneyFox.DataLayer.Entities
 
         public virtual Account TargetAccount { get; set; }
 
-        //public virtual List<Payment> RelatedPayments { get; set; }
+        public virtual List<Payment> RelatedPayments { get; set; }
     }
 }

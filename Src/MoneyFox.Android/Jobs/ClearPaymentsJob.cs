@@ -68,7 +68,7 @@ namespace MoneyFox.Droid.Jobs
                                  DatabaseConstants.DB_NAME);
 
                 var context = new EfCoreContext();
-                new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");

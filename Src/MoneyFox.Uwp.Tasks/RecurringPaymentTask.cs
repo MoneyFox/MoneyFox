@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
@@ -23,11 +25,9 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                // TODO Reactivate
-                //await new RecurringPaymentManager(
-                //        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
-                //        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
-                //    .CreatePaymentsUpToRecur();
+                var context = new EfCoreContext();
+                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
+                context.SaveChanges();
             }
             catch (Exception ex)
             {

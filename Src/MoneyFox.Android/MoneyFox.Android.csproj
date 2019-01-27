@@ -110,7 +110,7 @@
       <Version>2.0.147</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.1.4.168</Version>
+      <Version>1.1.5.188</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>

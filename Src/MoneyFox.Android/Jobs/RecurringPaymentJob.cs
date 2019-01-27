@@ -6,7 +6,9 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
@@ -65,11 +67,10 @@ namespace MoneyFox.Droid.Jobs
                 EfCoreContext.DbPath =
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
-
-                //await new RecurringPaymentManager(
-                //        new RecurringPaymentService(ambientDbContextLocator, dbContextScopeFactory),
-                //        new PaymentService(ambientDbContextLocator, dbContextScopeFactory))
-                //    .CreatePaymentsUpToRecur();
+                
+                var context = new EfCoreContext();
+                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
+                context.SaveChanges();
 
                 Debug.WriteLine("RecurringPayment Job finished.");
                 JobFinished(args, false);

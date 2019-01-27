@@ -17,7 +17,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, "note", null));
+            Assert.Throws<ArgumentNullException>(() => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, null, "note"));
         }
 
         [Fact]
@@ -26,7 +26,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, "note", new Account("Foo"));
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note" );
 
             // Assert
             recurringPayment.IsEndless.ShouldBeTrue();
@@ -38,7 +38,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, "note", new Account("Foo"), DateTime.MaxValue);
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.MaxValue);
 
             // Assert
             recurringPayment.IsEndless.ShouldBeFalse();
@@ -51,7 +51,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
 
             // Act / Assert
             Assert.Throws<MoneyFoxInvalidEndDateException>(() 
-                => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, "note", new Account("Foo"), DateTime.Today.AddDays(-1)));
+                => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.Today.AddDays(-1)));
         }
     }
 }

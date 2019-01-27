@@ -16,9 +16,9 @@ namespace MoneyFox.DataLayer.Entities
             double amount, 
             PaymentType type,
             Account chargedAccount,
-            string note = "", 
             Account targetAccount = null,
-            Category category = null)
+            Category category = null,
+            string note = "")
         {
             Date = date;
             Amount = amount;
@@ -59,7 +59,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate)
         {
-            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, Note, ChargedAccount, endDate, TargetAccount, Category);
+            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category);
             IsRecurring = true;
         }
 

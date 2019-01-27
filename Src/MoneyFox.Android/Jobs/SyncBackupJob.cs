@@ -6,9 +6,12 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
+using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
 using MvvmCross.Plugin.File;
 using Debug = System.Diagnostics.Debug;
@@ -60,7 +63,7 @@ namespace MoneyFox.Droid.Jobs
         {
             if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
 
-            var settingsManager = new SettingsFacade(new SettingsAdapter());
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
@@ -68,11 +71,13 @@ namespace MoneyFox.Droid.Jobs
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
-                //await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                //                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                //                        settingsManager,
-                //                        new ConnectivityAdapter())
-                //    .DownloadBackup();
+                var backupManager = new BackupManager(
+                    new OneDriveService(new OneDriveAuthenticator()),
+                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    new ConnectivityAdapter());
+
+                var backupService = new BackupService(backupManager, settingsFacade);
+                await backupService.RestoreBackup();
 
                 JobFinished(args, false);
             }
@@ -82,7 +87,7 @@ namespace MoneyFox.Droid.Jobs
             }
             finally
             {
-                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
         }
 

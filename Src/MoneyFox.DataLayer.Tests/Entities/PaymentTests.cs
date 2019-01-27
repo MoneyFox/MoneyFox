@@ -16,7 +16,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, "note"));
+            Assert.Throws<ArgumentNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
         }
 
         [Theory]
