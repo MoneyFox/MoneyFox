@@ -65,12 +65,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveCategoryBase()
         {
-            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name))
-            {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
-
             await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;

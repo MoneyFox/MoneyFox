@@ -3,6 +3,7 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -33,6 +34,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
+            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
             await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
             if (!crudServices.IsValid)
             {

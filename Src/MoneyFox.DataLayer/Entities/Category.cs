@@ -13,11 +13,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public Category(string name, string note = "")
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name));
-
-            Name = name;
-            Note = note;
+            UpdateData(name, note);
         }
 
         [Key]
@@ -35,5 +31,14 @@ namespace MoneyFox.DataLayer.Entities
 
         public IEnumerable<Payment> Payments => payments?.ToList();
         public IEnumerable<RecurringPayment> RecurringPayments => recurringPayments?.ToList();
+
+        public void UpdateData(string name, string note = "")
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            Name = name;
+            Note = note;
+        }
     }
 }

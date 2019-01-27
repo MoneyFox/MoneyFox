@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedCategory, "ctor(2)");
+            await crudServices.UpdateAndSaveAsync(SelectedCategory);
             if (!crudServices.IsValid)
             {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
