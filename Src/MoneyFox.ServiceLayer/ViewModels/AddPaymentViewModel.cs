@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
@@ -36,7 +35,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SavePayment()
         {
-            await crudServices.CreateAndSaveAsync(SelectedPayment, "ctor(2)");
+            await crudServices.CreateAndSaveAsync(SelectedPayment, "ctor(7)");
             if (!crudServices.IsValid)
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
 

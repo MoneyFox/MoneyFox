@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Business.ViewModels;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
