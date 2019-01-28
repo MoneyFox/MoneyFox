@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Effects"
+             xmlns:effects1="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.ModifyAccountUserControl">
 
     <ContentView.Content>
@@ -51,7 +51,7 @@
                     Margin="0,12,0,0" >
 
                     <Button.Effects>
-                        <effects:DeleteButtonEffect />
+                        <effects1:DeleteButtonEffect />
                     </Button.Effects>
                 </Button>
 

@@ -1,13 +1,13 @@
 ﻿using Xamarin.Forms;
 
-namespace MoneyFox.Effects
+namespace MoneyFox.Presentation.Effects
 {
     /// <summary>
     ///     Routing for the the delete button effect.
     /// </summary>
     public class DeleteButtonEffect : RoutingEffect
     {
-        public DeleteButtonEffect() : base("MoneyFox.DeleteButtonEffect")
+        public DeleteButtonEffect() : base("MoneyFox.Presentation.DeleteButtonEffect")
         {
         }
     }

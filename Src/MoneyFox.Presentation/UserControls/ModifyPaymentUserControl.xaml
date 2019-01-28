@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <views:MvxContentView x:TypeArguments="viewModels:ModifyPaymentViewModel" xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Effects"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+                      xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
              x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
     <ContentView.Resources>

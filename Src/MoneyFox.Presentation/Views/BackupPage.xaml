@@ -6,8 +6,8 @@
                   xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                   xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
                   xmlns:viewModels1="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                  xmlns:effects="clr-namespace:MoneyFox.Effects;assembly=MoneyFox.Presentation"
                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+                  xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.BackupPage"
                   BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
                   DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">

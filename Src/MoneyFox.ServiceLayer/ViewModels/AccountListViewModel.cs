@@ -10,6 +10,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -21,7 +22,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
-        private readonly IMvxLogProvider logProvider;
         private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
@@ -30,6 +30,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Constructor
         /// </summary>
         public AccountListViewModel(ICrudServicesAsync crudService,
+                                    IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     IMvxLogProvider logProvider,
                                     IMvxNavigationService navigationService) : base(logProvider, navigationService)
@@ -37,15 +38,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.crudService = crudService;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
-            this.logProvider = logProvider;
 
-            //BalanceViewModel = new BalanceViewModel(balanceCalculationManager, logProvider, navigationService);
+            BalanceViewModel = new BalanceViewModel(balanceCalculationService, logProvider, navigationService);
             ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
         }
         
-        //public IBalanceViewModel BalanceViewModel { get; }
+        public IBalanceViewModel BalanceViewModel { get; }
 
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
