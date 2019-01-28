@@ -4,6 +4,7 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -35,6 +36,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         public override string Title => Strings.EditLabel;
+
+        public override void Prepare(ModifyPaymentParameter parameter)
+        {
+            base.Prepare(parameter);
+            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(PassedParameter.PaymentId).Result;
+        }
 
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database

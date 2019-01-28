@@ -52,8 +52,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.accountId = accountId;
         }
 
-        #region Commands
-
         /// <inheritdoc />
         public MvxAsyncCommand GoToAddIncomeCommand =>
             new MvxAsyncCommand(async () => await navigationService
@@ -75,10 +73,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);
 
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
@@ -146,8 +140,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 UpdateList();
             }
         }
-
-        #endregion
 
         private async Task DeleteAccount()
         {

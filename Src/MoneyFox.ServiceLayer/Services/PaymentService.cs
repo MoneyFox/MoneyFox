@@ -41,7 +41,7 @@ namespace MoneyFox.ServiceLayer.Services
 
             var payment = new Payment(paymentView.Date, paymentView.Amount, paymentView.Type, chargedAccount, targetAccount, category, paymentView.Note);
 
-            if (payment.IsRecurring)
+            if (paymentView.IsRecurring)
             {
                 payment.AddRecurringPayment(paymentView.RecurringPayment.Recurrence, paymentView.RecurringPayment.EndDate);
             }
