@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.PaymentActions;
+using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.ServiceLayer.ViewModels;
 
@@ -14,32 +14,33 @@ namespace MoneyFox.ServiceLayer.Services
 
     public class PaymentService : IPaymentService
     {
+        private readonly EfCoreContext context;
         private readonly ISavePaymentAction savePaymentAction;
-        private readonly ISavePaymentDbAccess savePaymentDbAccess;
 
-        public PaymentService(ISavePaymentAction savePaymentAction, ISavePaymentDbAccess savePaymentDbAccess)
+
+        public PaymentService(EfCoreContext context, ISavePaymentAction savePaymentAction)
         {
             this.savePaymentAction = savePaymentAction;
-            this.savePaymentDbAccess = savePaymentDbAccess;
+            this.context = context;
         }
 
         public async Task<OperationResult> SavePayment(PaymentViewModel paymentView)
         {
-            var chargedAccount = await savePaymentDbAccess.GetAccount(paymentView.ChargedAccount.Id);
+            Account chargedAccount = await context.Accounts.FindAsync(paymentView.ChargedAccount.Id);
 
             Account targetAccount = null;
             if (paymentView.TargetAccount != null)
             {
-                targetAccount = await savePaymentDbAccess.GetAccount(paymentView.TargetAccount.Id);
+                targetAccount = await context.Accounts.FindAsync(paymentView.TargetAccount.Id);
             }
-            var category = await savePaymentDbAccess.GetCategory(paymentView.Category.Id);
+            Category category = await context.Categories.FindAsync(paymentView.Category.Id);
 
             var payment = new Payment(paymentView.Date, paymentView.Amount, paymentView.Type, chargedAccount, targetAccount, category, paymentView.Note);
             payment.AddRecurringPayment(paymentView.RecurringPayment.Recurrence, paymentView.RecurringPayment.EndDate);
 
             var result = await savePaymentAction.SavePayment(payment);
 
-            await savePaymentDbAccess.Save();
+            await context.SaveChangesAsync();
 
             return !result.Success 
                 ? OperationResult.Failed(result.Message) 

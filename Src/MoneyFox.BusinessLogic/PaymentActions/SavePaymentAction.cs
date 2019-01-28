@@ -11,7 +11,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
     public class SavePaymentAction: ISavePaymentAction
     {
-        private ISavePaymentDbAccess savePaymentDbAccess;
+        private readonly ISavePaymentDbAccess savePaymentDbAccess;
 
         public SavePaymentAction(ISavePaymentDbAccess savePaymentDbAccess)
         {
