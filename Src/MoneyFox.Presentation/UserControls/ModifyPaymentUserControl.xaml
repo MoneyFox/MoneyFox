@@ -40,7 +40,7 @@
                        Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntryStyle}"
-                       Text="{Binding AmountString}" 
+                       Text="{Binding SelectedPayment.Amount}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocus"/>
@@ -104,7 +104,7 @@
                            Margin="0,5,0,0" />
                 <Picker ItemsSource="{Binding RecurrenceList}"
                             Style="{StaticResource DefaultPickerStyle}"
-                            SelectedItem="{Binding Recurrence}" />
+                            SelectedItem="{Binding SelectedPayment.Recurringpayment.Recurrence}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
                       Margin="0,5,0,0">
@@ -115,7 +115,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Text="{Binding Resources[EndlessLabel]}" />
-                    <Switch Grid.Column="1" IsToggled="{Binding IsEndless}" />
+                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.Recurringpayment.IsEndless}" />
                 </Grid>
 
                 <StackLayout IsVisible="{Binding IsEndless, Converter={StaticResource Inverter}}"
@@ -123,7 +123,7 @@
                     <Label Text="{Binding Resources[DateLEnddateLabelabel]}"
                                Style="{DynamicResource DefaultTextStyle}"
                                Margin="0,5,0,0" />
-                    <DatePicker Date="{Binding EndDate}"/>
+                    <DatePicker Date="{Binding SelectedPayment.Recurringpayment.EndDate}"/>
                 </StackLayout>
 
             </StackLayout>
@@ -134,6 +134,13 @@
                         Command="{Binding DeleteCommand}"
                         Margin="0,12,0,0" >
 
+                <Button.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="Android" Value="False" />
+                        <On Platform="Ios" Value="True" />
+                    </OnPlatform>
+                </Button.IsVisible>
+                
                 <Button.Effects>
                     <effects:DeleteButtonEffect />
                 </Button.Effects>

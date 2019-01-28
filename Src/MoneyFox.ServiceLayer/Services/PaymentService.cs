@@ -33,7 +33,11 @@ namespace MoneyFox.ServiceLayer.Services
             {
                 targetAccount = await context.Accounts.FindAsync(paymentView.TargetAccount.Id);
             }
-            Category category = await context.Categories.FindAsync(paymentView.Category.Id);
+            Category category;
+            if (paymentView.Category != null)
+            {
+                category = await context.Categories.FindAsync(paymentView.Category.Id);
+            }
 
             var payment = new Payment(paymentView.Date, paymentView.Amount, paymentView.Type, chargedAccount, targetAccount, category, paymentView.Note);
             payment.AddRecurringPayment(paymentView.RecurringPayment.Recurrence, paymentView.RecurringPayment.EndDate);
