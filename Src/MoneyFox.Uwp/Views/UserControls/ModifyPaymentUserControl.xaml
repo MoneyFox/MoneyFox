@@ -78,7 +78,7 @@
                              Margin="{StaticResource SmallTitleContentMargin}"
                              Header="amount"
                              InputScope="Number"
-                             Text="{Binding AmountString,
+                             Text="{Binding SelectedPayment.Amount,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                              TextAlignment="Right" />

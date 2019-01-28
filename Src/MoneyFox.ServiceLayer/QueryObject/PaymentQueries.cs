@@ -57,6 +57,19 @@ namespace MoneyFox.ServiceLayer.QueryObject
         public static IQueryable<PaymentViewModel> HasAccountId(this IQueryable<PaymentViewModel> query, int accountId)
         {
             return query.Where(payment => payment.ChargedAccountId == accountId || payment.TargetAccountId == accountId);
+        }        
+
+        /// <summary>
+        ///     Adds a filter to a query for payments who has a certain id as charged account.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="accountId">AccountId to filter for </param>
+        /// <returns>Query filtered for the account id.</returns>
+        public static IQueryable<PaymentViewModel> HasChargedAccountId(this IQueryable<PaymentViewModel> query, int accountId)
+        {
+            return query.Where(payment => payment.ChargedAccountId == accountId);
         }
+
+
     }
 }

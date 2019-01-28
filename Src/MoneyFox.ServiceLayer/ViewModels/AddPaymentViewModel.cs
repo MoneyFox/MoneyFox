@@ -3,6 +3,7 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -29,19 +30,24 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService;
         }
 
-        public override void Prepare()
+        public override void Prepare(ModifyPaymentParameter parameter)
         {
-            SelectedPayment = new PaymentViewModel();
+            base.Prepare(parameter);
+            SelectedPayment = new PaymentViewModel
+            {
+                Type = PassedParameter.PaymentType
+            };
         }
-
+        
         protected override async Task SavePayment()
         {
-            var result = await paymentService.SavePayment(SelectedPayment);
+            var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);
 
             if(!result.Success)
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message);
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
+                    .ConfigureAwait(true);
 
-            await NavigationService.Close(this);
+            await NavigationService.Close(this).ConfigureAwait(true);
         }
     }
 }

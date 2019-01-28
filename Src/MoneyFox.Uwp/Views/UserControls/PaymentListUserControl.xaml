@@ -16,12 +16,6 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
     <UserControl.Resources>
         <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

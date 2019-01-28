@@ -116,7 +116,7 @@ namespace MoneyFox.Presentation
         {
             var context = SetupEfContext();
 
-            Mvx.IoCProvider.RegisterType<EfCoreContext>(SetupEfContext);
+            Mvx.IoCProvider.RegisterSingleton<EfCoreContext>(SetupEfContext);
             Mvx.IoCProvider.RegisterType<ICrudServicesAsync>(() => SetUpCrudServices(context));
         }
 

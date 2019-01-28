@@ -27,24 +27,24 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// </summary>
     public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
     {
+        private readonly IBackupService backupService;
+        private readonly IBalanceCalculationService balanceCalculationService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly IBackupService backupService;
-        private readonly IMvxNavigationService navigationService;
-        private readonly IMvxMessenger messenger;
         private readonly IMvxLogProvider logProvider;
-
-        private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
-        private ObservableCollection<DateListGroup<PaymentViewModel>> dailyList;
-        private IBalanceViewModel balanceViewModel;
-        private int accountId;
-        private string title;
-        private IPaymentListViewActionViewModel viewActionViewModel;
+        private readonly IMvxMessenger messenger;
+        private readonly IMvxNavigationService navigationService;
+        private readonly ISettingsFacade settingsFacade;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
+        private int accountId;
+        private IBalanceViewModel balanceViewModel;
+        private ObservableCollection<DateListGroup<PaymentViewModel>> dailyList;
+
+        private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
+        private string title;
+        private IPaymentListViewActionViewModel viewActionViewModel;
 
         /// <summary>
         ///     Default constructor
@@ -55,7 +55,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IBalanceCalculationService balanceCalculationService,
             IBackupService backupService,
             IMvxNavigationService navigationService,
-            IMvxMessenger messenger, 
+            IMvxMessenger messenger,
             IMvxLogProvider logProvider)
         {
             this.crudServices = crudServices;
@@ -68,6 +68,109 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.logProvider = logProvider;
 
             token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
+        }
+
+        /// <inheritdoc />
+        public override void Prepare(PaymentListParameter parameter)
+        {
+            AccountId = parameter.AccountId;
+        }
+
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId).ConfigureAwait(true)).Name;
+
+            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId,
+                logProvider, navigationService);
+            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
+                settingsFacade,
+                dialogService,
+                BalanceViewModel,
+                messenger,
+                AccountId,
+                logProvider,
+                navigationService);
+        }
+
+        /// <inheritdoc />
+        public override async void ViewAppearing()
+        {
+            dialogService.ShowLoadingDialog();
+            await Task.Run(async () => await Load().ConfigureAwait(true)).ConfigureAwait(true);
+            dialogService.HideLoadingDialog();
+        }
+
+        private async Task Load()
+        {
+            LoadPayments(new PaymentListFilterChangedMessage(this));
+            //Refresh balance control with the current account
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync().ConfigureAwait(true);
+        }
+
+        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        {
+            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
+                .HasChargedAccountId(AccountId);
+
+            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.Where(x => x.IsCleared);
+            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.Where(x => x.IsRecurring);
+
+            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
+
+            var loadedPayments = new List<PaymentViewModel>(
+                paymentQuery.OrderByDescending(x => x.Date));
+
+            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
+
+            var dailyItems = DateListGroup<PaymentViewModel>
+                .CreateGroups(loadedPayments,
+                    s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
+                    s => s.Date,
+                    itemClickCommand: EditPaymentCommand);
+
+            DailyList = new ObservableCollection<DateListGroup<PaymentViewModel>>(dailyItems);
+
+            Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
+                DateListGroup<DateListGroup<PaymentViewModel>>
+                    .CreateGroups(dailyItems,
+                        s =>
+                        {
+                            var date = Convert.ToDateTime(s.Key);
+                            return date.ToString("MMMM", CultureInfo.CurrentUICulture) + " " + date.Year;
+                        },
+                        s => Convert.ToDateTime(s.Key)));
+        }
+
+        private async Task EditPayment(PaymentViewModel payment)
+        {
+            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
+                new ModifyPaymentParameter(payment.Id))
+                .ConfigureAwait(true);
+        }
+
+        private async Task DeletePayment(PaymentViewModel payment)
+        {
+            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
+                .ConfigureAwait(true)) return;
+
+            var paymentToDelete = await crudServices.ReadSingleAsync<PaymentViewModel>(payment.Id).ConfigureAwait(true);
+
+            if (paymentToDelete.IsRecurring
+                && await dialogService
+                    .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
+                    .ConfigureAwait(true))
+                await crudServices.DeleteAndSaveAsync<RecurringPaymentViewModel>(paymentToDelete.RecurringPayment.Id)
+                    .ConfigureAwait(true);
+
+            await crudServices.DeleteAndSaveAsync<PaymentViewModel>(paymentToDelete.Id).ConfigureAwait(true);
+            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask();
+#pragma warning restore 4014
+            await Load();
         }
 
         #region Properties
@@ -91,7 +194,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///      View Model for the balance subview.
+        ///     View Model for the balance subview.
         /// </summary>
         public IBalanceViewModel BalanceViewModel
         {
@@ -109,13 +212,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public IPaymentListViewActionViewModel ViewActionViewModel
         {
             get => viewActionViewModel;
-            private set {
+            private set
+            {
                 if (viewActionViewModel == value) return;
                 viewActionViewModel = value;
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
@@ -167,121 +271,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
+        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
+            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
+        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
+            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
         #endregion
-
-        /// <inheritdoc />
-        public override void Prepare(PaymentListParameter parameter)
-        {
-            AccountId = parameter.AccountId;
-        }
-
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
-
-            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId, logProvider, navigationService);
-            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
-                                                                     settingsFacade,
-                                                                     dialogService,
-                                                                     BalanceViewModel,
-                                                                     messenger,
-                                                                     AccountId,
-                                                                     logProvider,
-                                                                     navigationService);
-        }
-
-        /// <inheritdoc />
-        public override async void ViewAppearing()
-        {
-            dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
-            dialogService.HideLoadingDialog();
-        }
-
-        private async Task Load()
-        {
-            LoadPayments(new PaymentListFilterChangedMessage(this));
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-        }
-
-        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
-        {
-            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .HasAccountId(AccountId);
-
-            if (filterMessage.IsClearedFilterActive)
-            {
-                paymentQuery = paymentQuery.Where(x => x.IsCleared);
-            }
-            if (filterMessage.IsRecurringFilterActive)
-            {
-                paymentQuery = paymentQuery.Where(x => x.IsRecurring);
-            }
-
-            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
-
-            var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderByDescending(x => x.Date));
-
-            foreach (PaymentViewModel payment in loadedPayments)
-            {
-                payment.CurrentAccountId = AccountId;
-            }
-
-            List<DateListGroup<PaymentViewModel>> dailyItems = DateListGroup<PaymentViewModel>
-                .CreateGroups(loadedPayments,
-                              s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
-                              s => s.Date,
-                              itemClickCommand: EditPaymentCommand);
-
-            DailyList = new ObservableCollection<DateListGroup<PaymentViewModel>>(dailyItems);
-
-            Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
-                DateListGroup<DateListGroup<PaymentViewModel>>
-                    .CreateGroups(dailyItems,
-                                  s =>
-                                  {
-                                      var date = Convert.ToDateTime(s.Key);
-                                      return date.ToString("MMMM", CultureInfo.CurrentUICulture) + " " + date.Year;
-                                  },
-                                  s => Convert.ToDateTime(s.Key)));
-        }
-
-        private async Task EditPayment(PaymentViewModel payment)
-        {
-            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
-                new ModifyPaymentParameter(payment.Id));
-        }
-
-        private async Task DeletePayment(PaymentViewModel payment)
-        {
-            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
-
-            var paymentToDelete = await crudServices.ReadSingleAsync<PaymentViewModel>(payment.Id);
-
-            if (paymentToDelete.IsRecurring 
-                && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
-            {
-                await crudServices.DeleteAndSaveAsync<RecurringPaymentViewModel>(paymentToDelete.RecurringPayment.Id);
-            }
-
-            await crudServices.DeleteAndSaveAsync<PaymentViewModel>(paymentToDelete.Id);
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
-
-#pragma warning disable 4014
-            backupService.EnqueueBackupTask();
-#pragma warning restore 4014
-            await Load();
-        }
     }
 }
