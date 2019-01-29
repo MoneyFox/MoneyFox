@@ -99,5 +99,29 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if(!(obj is AccountViewModel))
+            {
+                return false;
+            }
+
+            return ((AccountViewModel) obj).Id == Id;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = id;
+                hashCode = (hashCode * 397) ^ (name != null ? name.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ currentBalance.GetHashCode();
+                hashCode = (hashCode * 397) ^ (note != null ? note.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ isOverdrawn.GetHashCode();
+                hashCode = (hashCode * 397) ^ isExcluded.GetHashCode();
+                return hashCode;
+            }
+        }
     }
 }

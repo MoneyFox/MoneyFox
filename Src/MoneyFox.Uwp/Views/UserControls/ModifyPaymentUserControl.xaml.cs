@@ -25,18 +25,18 @@ namespace MoneyFox.Uwp.Views.UserControls
             }
         }
 
-        private void SetVisibiltyInitialy(object sender, RoutedEventArgs e)
+        private void SetVisibilityInitialy(object sender, RoutedEventArgs e)
         {
             var viewModel = (ModifyPaymentViewModel)DataContext;
 
             if (viewModel == null)
             {
-                Analytics.TrackEvent("Error: viewModel is null on SetVisibiltyInitialy");
+                Analytics.TrackEvent("Error: viewModel is null on SetVisibilityInitialy");
                 return;
             }
             if (viewModel.SelectedPayment == null)
             {
-                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibiltyInitialy");
+                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibilityInitialy");
                 return;
             }
 

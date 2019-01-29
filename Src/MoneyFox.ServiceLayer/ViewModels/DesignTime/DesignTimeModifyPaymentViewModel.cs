@@ -13,12 +13,9 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public bool IsEdit { get; } = false;
         public bool IsTransfer { get; } = false;
-        public bool IsEndless { get; } = true;
         public DateTime EndDate { get; } = DateTime.Now;
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
-        public string AmountString { get; } = "451,95";
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
@@ -41,7 +38,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         public string Title { get; } = "My Title";
         public string AccountHeader { get; }
         public DateTime Date { get; }
-        public int PaymentId { get; }
 
         public IMvxCommand SelectedItemChangedCommand { get; } = null;
         public IMvxAsyncCommand SaveCommand { get; } = null;
