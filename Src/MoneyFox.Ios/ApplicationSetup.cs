@@ -8,7 +8,7 @@ using MvvmCross.IoC;
 
 namespace MoneyFox.iOS
 {
-    public class Setup : MvxFormsIosSetup<CoreApp, App>
+    public class ApplicationSetup : MvxFormsIosSetup<CoreApp, App>
     {
         protected override void InitializeFirstChance()
         {

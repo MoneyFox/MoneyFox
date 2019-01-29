@@ -34,7 +34,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : MvxFormsApplicationDelegate<Setup, CoreApp, App>
+    public class AppDelegate : MvxFormsApplicationDelegate<ApplicationSetup, CoreApp, App>
     {
         // Minimum number of seconds between a background refresh
         // 15 minutes = 60 * 60 = 3600 seconds

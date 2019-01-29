@@ -43,7 +43,7 @@ using Microsoft.AppCenter.Crashes;
 namespace MoneyFox.Uwp
 {
 
-	public abstract class MoneyFoxApp : MvxApplication<MvxSetup, CoreApp>
+	public abstract class MoneyFoxApp : MvxApplication<ApplicationSetup, CoreApp>
 	{
 	}
 

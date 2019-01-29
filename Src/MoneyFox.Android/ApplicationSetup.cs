@@ -13,9 +13,9 @@ using Plugin.SecureStorage;
 
 namespace MoneyFox.Droid
 {
-    public class Setup : MvxFormsAndroidSetup<CoreApp, App>
+    public class ApplicationSetup : MvxFormsAndroidSetup<CoreApp, App>
     {
-        public Setup()
+        public ApplicationSetup()
         {
             Strings.Culture = new Localize().GetCurrentCultureInfo();
         }

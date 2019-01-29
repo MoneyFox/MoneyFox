@@ -14,7 +14,7 @@ namespace MoneyFox.Droid
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
         , ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SplashScreen : MvxFormsSplashScreenActivity<Setup, CoreApp, App>
+    public class SplashScreen : MvxFormsSplashScreenActivity<ApplicationSetup, CoreApp, App>
     {
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
