@@ -93,7 +93,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
-        public virtual string Title => Strings.AddCategoryTitle;
+        public virtual string Title { get; set; }
 
         protected int CategoryId;
 

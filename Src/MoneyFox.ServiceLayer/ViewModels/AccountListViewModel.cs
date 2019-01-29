@@ -87,7 +87,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             try
             {
-                List<AccountViewModel> accountViewModels = await crudService.ReadManyNoTracked<AccountViewModel>().ToListAsync();
+                List<AccountViewModel> accountViewModels = await crudService.ReadManyNoTracked<AccountViewModel>()
+                                                                            .OrderBy(x => x.Name)
+                                                                            .ToListAsync()
+                                                                            .ConfigureAwait(true);
 
                 var includedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(accountViewModels.Where(x => !x.IsExcluded));

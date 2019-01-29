@@ -97,7 +97,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override async void ViewAppearing()
         {
             dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load().ConfigureAwait(true)).ConfigureAwait(true);
+            await Task.Run(async () => await Load());
             dialogService.HideLoadingDialog();
         }
 

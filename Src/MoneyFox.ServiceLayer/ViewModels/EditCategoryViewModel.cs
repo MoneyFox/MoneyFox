@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -33,11 +34,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.backupService = backupService;
         }
 
-        public override string Title => string.Format(Strings.EditCategoryTitle, SelectedCategory.Name);
+        public override string Title { get; set; }
 
         public override async void Prepare(ModifyCategoryParameter parameter)
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId);
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId)
+                                                 .ConfigureAwait(true);
+            Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
+
+            base.Prepare(parameter);
         }
 
         /// <summary>
@@ -47,20 +52,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedCategory);
+            await crudServices.UpdateAndSaveAsync(SelectedCategory)
+                              .ConfigureAwait(true);
             if (!crudServices.IsValid)
             {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
+                                   .ConfigureAwait(true);
             }
 
-            await NavigationService.Close(this);
+            await NavigationService.Close(this)
+                                   .ConfigureAwait(true);
         }
 
         private async Task DeleteCategory()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedCategory.Id);
+            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedCategory.Id)
+                              .ConfigureAwait(true);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask()
+                               .ConfigureAwait(true);
         }
     }
 }

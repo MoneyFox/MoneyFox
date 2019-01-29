@@ -3,6 +3,7 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
@@ -27,26 +28,35 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService;
         }
 
-        public override void Prepare()
+        public override void Prepare(ModifyCategoryParameter parameter)
         {
             SelectedCategory = new CategoryViewModel();
+            Title = Strings.AddCategoryTitle;
+
+            base.Prepare(parameter);
         }
 
         protected override async Task SaveCategory()
         {
-            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name))
+            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name)
+                                  .ConfigureAwait(true))
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
+                                   .ConfigureAwait(true);
                 return;
             }
 
-            await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
+            await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)")
+                              .ConfigureAwait(true);
+
             if (!crudServices.IsValid)
             {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
+                                   .ConfigureAwait(true);
             }
 
-            await NavigationService.Close(this);
+            await NavigationService.Close(this)
+                                   .ConfigureAwait(true);
         }
     }
 }

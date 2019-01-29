@@ -22,7 +22,7 @@ using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Uwp
 {
-    public class Setup : MvxWindowsSetup<CoreApp>
+    public class MvxSetup : MvxWindowsSetup<CoreApp>
     {
         protected override void InitializeFirstChance()
         {

@@ -58,8 +58,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValue()
         {
-            return balanceCalculationService.GetEndOfMonthBalanceForAccount(
-                await crudServices.ReadSingleAsync<AccountViewModel>(accountId));
+            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+            return balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }
 }

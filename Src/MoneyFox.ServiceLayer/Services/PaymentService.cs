@@ -9,7 +9,9 @@ namespace MoneyFox.ServiceLayer.Services
 {
     public interface IPaymentService
     {
-        Task<OperationResult> SavePayment(PaymentViewModel paymentView);
+        Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel);
+
+        Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel);
     }
 
     public class PaymentService : IPaymentService
@@ -24,35 +26,68 @@ namespace MoneyFox.ServiceLayer.Services
             this.context = context;
         }
 
-        public async Task<OperationResult> SavePayment(PaymentViewModel paymentView)
+        public async Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel)
         {
-            Account chargedAccount = await context.Accounts.FindAsync(paymentView.ChargedAccount.Id);
+            Payment payment = await CreatePaymentFromViewModel(paymentViewModel).ConfigureAwait(false);
 
-            Account targetAccount = null;
-            if (paymentView.TargetAccount != null)
-            {
-                targetAccount = await context.Accounts.FindAsync(paymentView.TargetAccount.Id);
-            }
-            Category category = null;
-            if (paymentView.Category != null)
-            {
-                category = await context.Categories.FindAsync(paymentView.Category.Id);
-            }
+            var result = await savePaymentAction.AddPayment(payment)
+                                                .ConfigureAwait(false);
 
-            var payment = new Payment(paymentView.Date, paymentView.Amount, paymentView.Type, chargedAccount, targetAccount, category, paymentView.Note);
-
-            if (paymentView.IsRecurring)
-            {
-                payment.AddRecurringPayment(paymentView.RecurringPayment.Recurrence, paymentView.RecurringPayment.EndDate);
-            }
-
-            var result = await savePaymentAction.SavePayment(payment);
-
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync()
+                         .ConfigureAwait(false);
 
             return !result.Success 
-                ? OperationResult.Failed(result.Message) 
+                ? OperationResult.Failed(result.Message)
                 : OperationResult.Succeeded();
+        }
+
+        public async Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel)
+        {
+            Payment payment = await CreatePaymentFromViewModel(newPaymentViewModel).ConfigureAwait(false);
+
+            var result = await savePaymentAction.UpdatePayment(newPaymentViewModel.Id, payment)
+                                                .ConfigureAwait(false);
+
+            await context.SaveChangesAsync()
+                         .ConfigureAwait(false);
+
+            return !result.Success
+                ? OperationResult.Failed(result.Message)
+                : OperationResult.Succeeded();
+        }
+
+        private async Task<Payment> CreatePaymentFromViewModel(PaymentViewModel paymentViewModel)
+        {
+            Account chargedAccount = await context.Accounts
+                                                  .FindAsync(paymentViewModel.ChargedAccount.Id)
+                                                  .ConfigureAwait(false);
+
+            Account targetAccount = null;
+            if (paymentViewModel.TargetAccount != null)
+            {
+                targetAccount = await context.Accounts
+                                             .FindAsync(paymentViewModel.TargetAccount.Id)
+                                             .ConfigureAwait(false);
+            }
+
+            Category category = null;
+            if (paymentViewModel.Category != null)
+            {
+                category = await context.Categories
+                                        .FindAsync(paymentViewModel.Category.Id)
+                                        .ConfigureAwait(false);
+            }
+
+            var payment = new Payment(paymentViewModel.Date, paymentViewModel.Amount, paymentViewModel.Type, chargedAccount,
+                                      targetAccount, category, paymentViewModel.Note);
+
+            if (paymentViewModel.IsRecurring)
+            {
+                payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
+                                            paymentViewModel.RecurringPayment.EndDate);
+            }
+
+            return payment;
         }
     }
 }

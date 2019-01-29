@@ -1,4 +1,5 @@
-﻿namespace MoneyFox.Foundation.Constants
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+namespace MoneyFox.Foundation.Constants
 {
     /// <summary>
     ///     Contains constants for the services used in the app.

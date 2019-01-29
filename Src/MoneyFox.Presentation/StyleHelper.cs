@@ -1,5 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Foundation;
+using MoneyFox.ServiceLayer.Facades;
+using Xamarin.Forms;
 
+#pragma warning disable CA2211 // Non-constant fields should not be visible
 namespace MoneyFox.Presentation
 {
     public static class StyleHelper
@@ -30,11 +34,10 @@ namespace MoneyFox.Presentation
 
         public static void Init()
         {
-            // TODO Readd 
-            //if (new SettingsManager(new SettingsAdapter()).Theme == AppTheme.Dark)
-            //{
-            //    SetDarkColors();
-            //}
+            if (new SettingsFacade(new SettingsAdapter()).Theme == AppTheme.Dark)
+            {
+                SetDarkColors();
+            }
         }
 
         private static void SetDarkColors()

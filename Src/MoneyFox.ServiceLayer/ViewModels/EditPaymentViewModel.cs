@@ -16,12 +16,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
+        private readonly IPaymentService paymentService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
 
-        public EditPaymentViewModel(ICrudServicesAsync crudServices,
+        public EditPaymentViewModel(IPaymentService paymentService,
+            ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade, 
             IMvxMessenger messenger,
@@ -30,10 +32,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IMvxNavigationService navigationService) 
             : base(crudServices, dialogService, settingsFacade, messenger, backupService, logProvider, navigationService)
         {
+            this.paymentService = paymentService;
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
+            this.paymentService = paymentService;
         }
 
         public override void Prepare(ModifyPaymentParameter parameter)
@@ -50,9 +54,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         
         protected override async Task SavePayment()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedPayment, "ctor(7)")
-                              .ConfigureAwait(true);
-            if (!crudServices.IsValid)
+            var result = await paymentService.UpdatePayment(SelectedPayment)
+                                .ConfigureAwait(true);
+
+            if (!result.Success)
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
                                    .ConfigureAwait(true);
 
