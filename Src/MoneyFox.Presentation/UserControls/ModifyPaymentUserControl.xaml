@@ -5,7 +5,9 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
-             x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
+             xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+             x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl"
+             DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeModifyPaymentViewModel}">
 
     <ContentView.Resources>
         <ResourceDictionary>

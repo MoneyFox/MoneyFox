@@ -7,6 +7,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
     public interface ISavePaymentAction
     {
         Task<OperationResult> SavePayment(Payment payment);
+        Task<OperationResult> UpdatePayment(Payment newPayment);
     }
 
     public class SavePaymentAction: ISavePaymentAction
@@ -26,6 +27,11 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             await savePaymentDbAccess.AddPayment(payment);
             
             return OperationResult.Succeeded();
+        }
+
+        public Task<OperationResult> UpdatePayment(Payment newPayment)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

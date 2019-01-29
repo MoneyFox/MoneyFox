@@ -40,44 +40,29 @@ namespace MoneyFox.DataLayer.Entities
 
         public void AddPaymentAmount(Payment payment)
         {
-            switch (payment.Type)
-            {
-                case PaymentType.Expense:
-                    CurrentBalance -= payment.Amount;
-                    break;
-
-                case PaymentType.Income:
-                    CurrentBalance += payment.Amount;
-                    break;
-
-                case PaymentType.Transfer:
-                    if (payment.ChargedAccount.Id == Id)
-                    {
-                        CurrentBalance -= payment.Amount;
-                    }
-                    else
-                    {
-                        CurrentBalance += payment.Amount;
-                    }
-                    break;
-                    
-                default:
-                    break;
-
-            }
-
+            ApplyPaymentAmount(payment);
         }
 
-        //Use uninitialised backing fields - this means we can detect if the collection was loaded
-        //private HashSet<Payment> chargedPayments;
-        //private HashSet<Payment> targetedPayments;
-        //private HashSet<RecurringPayment> chargedRecurringPayments;
-        //private HashSet<RecurringPayment> targetedRecurringPayments;
+        public void RemovePaymentAmount(Payment payment)
+        {
+            ApplyPaymentAmount(payment, true);
+        }
 
-        //public IEnumerable<Payment> ChargedPayments => chargedPayments?.ToList();
-        //public IEnumerable<Payment> TargetedPayments => targetedPayments?.ToList();
+        private void ApplyPaymentAmount(Payment payment, bool invert = false)
+        {
+            double amount = invert
+                ? -payment.Amount
+                : payment.Amount;
 
-        //public IEnumerable<RecurringPayment> ChargedRecurringPayments => chargedRecurringPayments?.ToList();
-        //public IEnumerable<RecurringPayment> TargetedRecurringPayments => targetedRecurringPayments?.ToList();
+            if (payment.Type == PaymentType.Expense
+                || payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == Id)
+            {
+                CurrentBalance -= amount;
+            }
+            else
+            {
+                CurrentBalance += amount;
+            }
+        }
     }
 }

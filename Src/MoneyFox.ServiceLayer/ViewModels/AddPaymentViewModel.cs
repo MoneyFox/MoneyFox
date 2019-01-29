@@ -32,11 +32,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override void Prepare(ModifyPaymentParameter parameter)
         {
-            base.Prepare(parameter);
             SelectedPayment = new PaymentViewModel
             {
-                Type = PassedParameter.PaymentType
+                Type = parameter.PaymentType
             };
+            base.Prepare(parameter);
         }
         
         protected override async Task SavePayment()

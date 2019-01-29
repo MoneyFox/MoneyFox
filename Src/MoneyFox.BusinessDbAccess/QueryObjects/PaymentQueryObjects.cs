@@ -53,39 +53,6 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who has a certain id as charged or target account.
-        /// </summary>
-        /// <param name="query">Existing query.</param>
-        /// <param name="accountId">AccountId to filter for </param>
-        /// <returns>Query filtered for the account id.</returns>
-        public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
-        {
-            return query.Where(payment => payment.ChargedAccountId == accountId || payment.TargetAccountId == accountId);
-        }
-
-        /// <summary>
-        ///     Adds a filter to a query for payments who has a certain id as charged account id.
-        /// </summary>
-        /// <param name="query">Existing query.</param>
-        /// <param name="accountId">AccountId to filter for </param>
-        /// <returns>Query filtered for the charged account id.</returns>
-        public static IQueryable<Payment> HasChargedAccountId(this IQueryable<Payment> query, int accountId)
-        {
-            return query.Where(payment => payment.ChargedAccountId == accountId);
-        }
-
-        /// <summary>
-        ///     Adds a filter to a query for payments who has a certain id as target account id.
-        /// </summary>
-        /// <param name="query">Existing query.</param>
-        /// <param name="accountId">AccountId to filter for </param>
-        /// <returns>Query filtered for the charged account id.</returns>
-        public static IQueryable<Payment> HasTargetAccountId(this IQueryable<Payment> query, int accountId)
-        {
-            return query.Where(payment => payment.TargetAccountId == accountId);
-        }
-
-        /// <summary>
         ///     Adds a filter to a query for payments who are not Transfers
         /// </summary>
         /// <param name="query">Existing query.</param>

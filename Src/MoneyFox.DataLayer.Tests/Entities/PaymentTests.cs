@@ -49,5 +49,31 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Assert
             payment.IsCleared.ShouldEqual(expectedIsCleared);
         }
+
+        [Fact]
+        public void UpdatePayment_ChargedAccountNull_ArgumentNullException()
+        {
+            // Arrange
+            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
+        }
+
+        [Theory]
+        [InlineData(1, false)]
+        [InlineData(0, true)]
+        [InlineData(-1, true)]
+        public void UpdatePayment_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
+        {
+            // Arrange
+            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+
+            // Act
+            testPayment.UpdatePayment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
+
+            // Assert
+            testPayment.IsCleared.ShouldEqual(expectedIsCleared);
+        }
     }
 }

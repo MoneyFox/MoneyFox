@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Foundation;
 using Should;
 using Xunit;
 
@@ -140,6 +142,90 @@ namespace MoneyFox.DataLayer.Tests.Entities
             testAccount.Note.ShouldEqual(testnote);
             testAccount.IsExcluded.ShouldEqual(testExcluded);
             testAccount.IsOverdrawn.ShouldBeFalse();
+        }
+
+        [Theory]
+        [InlineData(PaymentType.Expense, 50)]
+        [InlineData(PaymentType.Income, 150)]
+        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, double expectedBalance)
+        {
+            // Arrange
+            var account = new Account("Test", 100);
+            var payment = new Payment(DateTime.Today, 50, paymentType, account);
+
+            // Act
+            account.AddPaymentAmount(payment);
+
+            // Assert
+            account.CurrentBalance.ShouldEqual(expectedBalance);
+        }
+
+
+        [Fact]
+        public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
+        {
+            // Arrange
+            var chargedAccount = new Account("Test", 100);
+            var targetAccount = new Account("Test", 100);
+
+            var chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(chargedAccount, 3);
+
+            var targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(targetAccount, 4);
+
+
+            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+
+            // Act
+            chargedAccount.AddPaymentAmount(payment);
+            targetAccount.AddPaymentAmount(payment);
+
+            // Assert
+            chargedAccount.CurrentBalance.ShouldEqual(50);
+            targetAccount.CurrentBalance.ShouldEqual(150);
+        }
+
+        [Theory]
+        [InlineData(PaymentType.Expense, 150)]
+        [InlineData(PaymentType.Income, 50)]
+        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, double expectedBalance)
+        {
+            // Arrange
+            var account = new Account("Test", 100);
+            var payment = new Payment(DateTime.Today, 50, paymentType, account);
+
+            // Act
+            account.RemovePaymentAmount(payment);
+
+            // Assert
+            account.CurrentBalance.ShouldEqual(expectedBalance);
+        }
+
+
+        [Fact]
+        public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
+        {
+            // Arrange
+            var chargedAccount = new Account("Test", 100);
+            var targetAccount = new Account("Test", 100);
+
+            var chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(chargedAccount, 3);
+
+            var targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(targetAccount, 4);
+
+
+            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+
+            // Act
+            chargedAccount.RemovePaymentAmount(payment);
+            targetAccount.RemovePaymentAmount(payment);
+
+            // Assert
+            chargedAccount.CurrentBalance.ShouldEqual(150);
+            targetAccount.CurrentBalance.ShouldEqual(50);
         }
     }
 }

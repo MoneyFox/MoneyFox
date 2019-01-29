@@ -90,18 +90,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>,
+        IModifyPaymentViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
         private readonly IBackupService backupService;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
-
-        private DateTime endDate;
 
         protected ModifyPaymentParameter PassedParameter;
 
@@ -127,238 +126,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.navigationService = navigationService;
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
-        }
-
-        /// <inheritdoc />
-        public override void Prepare(ModifyPaymentParameter parameter)
-        {
-            PassedParameter = parameter;
-        }
-
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>().ToListAsync();
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        }
-
-        //private void PrepareDefault(PaymentType type)
-        //{
-        //    SelectedPayment = new PaymentViewModel
-        //    {
-        //        Type = type,
-        //        Date = DateTime.Now,
-        //        ChargedAccount = ChargedAccounts.FirstOrDefault()
-        //    };
-        //    IsTransfer = type == PaymentType.Transfer;
-        //    EndDate = DateTime.Now;
-        //}
-
-        //private void PrepareEdit()
-        //{
-        //    // we have to set the AccountViewModel objects here again to ensure that they are identical to the
-        //    // objects in the AccountViewModel collections.
-        //    SelectedPayment.ChargedAccount =
-        //        ChargedAccounts.FirstOrDefault(x => x.Id == selectedPayment.ChargedAccountId);
-
-        //    if (SelectedPayment.Type == PaymentType.Transfer)
-        //        SelectedPayment.TargetAccount =
-        //            TargetAccounts.FirstOrDefault(x => x.Id == selectedPayment.TargetAccountId);
-
-        //    IsTransfer = SelectedPayment.IsTransfer;
-        //    // set the private amount property. This will get properly formatted and then displayed.
-        //    amount = SelectedPayment.Amount;
-        //    Recurrence = SelectedPayment.IsRecurring
-        //        ? SelectedPayment.RecurringPayment.Recurrence
-        //        : PaymentRecurrence.Daily;
-
-        //    if (SelectedPayment.RecurringPayment?.EndDate != null)
-        //        EndDate = SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment.IsEndless
-        //            ? SelectedPayment.RecurringPayment.EndDate.Value
-        //            : DateTime.Now;
-        //    IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-        //}
-
-        protected abstract Task SavePayment();
-
-        private async Task SavePaymentBase()
-        {
-            if (SelectedPayment.ChargedAccount == null)
-            {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
-                return;
-            }
-
-            await SavePayment();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
-        }
-
-        /// <inheritdoc />
-        public override void ViewDisappearing()
-        {
-            if (!preventNullingSelected) SelectedPayment = null;
-        }
-
-        /// <summary>
-        ///     Moved to own method for debugg reasons
-        /// </summary>
-        /// <param name="message">Message stent.</param>
-        private void ReceiveMessage(CategorySelectedMessage message)
-        {
-            if (SelectedPayment == null || message == null) return;
-            SelectedPayment.Category = message.SelectedCategory;
-            preventNullingSelected = false;
-        }
-
-//        private async Task Save()
-//        {
-//            try
-//            {
-//                if (SelectedPayment.ChargedAccount == null)
-//                {
-//                    ShowAccountRequiredMessage();
-//                    return;
-//                }
-
-//                if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
-//                {
-//                    ShowInvalidEndDateMessage();
-//                    return;
-//                }
-
-//                // Make sure that the old amount is removed to not count the amount twice.
-//                RemoveOldAmount();
-//                if (amount < 0) amount *= -1;
-//                SelectedPayment.Amount = amount;
-
-//                // We remove clearance, when the payment is now in the future.
-//                if (SelectedPayment.Date > DateTime.Now) SelectedPayment.IsCleared = false;
-
-//                //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
-//                await PrepareRecurringPayment();
-
-//                // Save item or update the PaymentViewModel and add the amount to the AccountViewModel
-//                await paymentService.SavePayments(SelectedPayment.Payment);
-//                settingsManager.LastDatabaseUpdate = DateTime.Now;
-//#pragma warning disable 4014
-//                backupManager.EnqueueBackupTask();
-//#pragma warning restore 4014
-
-//                await navigationService.Close(this);
-//            }
-//            catch (Exception ex)
-//            {
-//                Crashes.TrackError(ex);
-//                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
-//            }
-//        }
-
-        //private void RemoveOldAmount()
-        //{
-        //    if (IsEdit) PaymentAmountHelper.RemovePaymentAmount(SelectedPayment.Payment);
-        //}
-
-        //private async Task PrepareRecurringPayment()
-        //{
-        //    if (IsEdit
-        //        && SelectedPayment.IsRecurring
-        //        && await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentPaymentTitle,
-        //            Strings.ChangeSubsequentPaymentMessage,
-        //            Strings.UpdateAllLabel, Strings.JustThisLabel)
-        //        || !IsEdit && SelectedPayment.IsRecurring)
-        //    {
-        //        // We save the ID of the recurring payment who was already saved and assign it afterwards again.
-        //        var oldId = SelectedPayment.Payment.Data.RecurringPayment?.Id ?? 0;
-        //        SelectedPayment.Payment.Data.RecurringPayment = RecurringPaymentHelper.GetRecurringFromPayment(
-        //            SelectedPayment.Payment,
-        //            IsEndless,
-        //            Recurrence,
-        //            EndDate).Data;
-        //        SelectedPayment.Payment.Data.RecurringPayment.Id = oldId;
-        //    }
-        //}
-
-        private async Task OpenSelectCategoryList()
-        {
-            preventNullingSelected = true;
-            await navigationService.Navigate<SelectCategoryListViewModel>();
-        }
-
-//        private async Task Delete()
-//        {
-//            if (!await dialogService
-//                .ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
-
-//            try
-//            {
-//                if (SelectedPayment.IsRecurring
-//                    && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle,
-//                        Strings.DeleteRecurringPaymentMessage))
-//                {
-//                    var paymentToDelete = await paymentService.GetById(SelectedPayment.Id);
-//                    await recurringPaymentService.DeletePayment(paymentToDelete.Data.RecurringPayment);
-//                }
-
-//                await paymentService.DeletePayment(SelectedPayment.Payment);
-//                settingsManager.LastDatabaseUpdate = DateTime.Now;
-//#pragma warning disable 4014
-//                backupManager.EnqueueBackupTask();
-//#pragma warning restore 4014
-//                await navigationService.Close(this);
-//            }
-//            catch (Exception ex)
-//            {
-//                Crashes.TrackError(ex);
-//                await dialogService.ShowMessage(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-//            }
-//        }
-
-        //private async void ShowInvalidEndDateMessage()
-        //{
-        //    await dialogService.ShowMessage(Strings.InvalidEnddateTitle,
-        //        Strings.InvalidEnddateMessage);
-        //}
-
-        private void ResetSelection()
-        {
-            SelectedPayment.Category = null;
-        }
-
-        private async Task Cancel()
-        {
-            await navigationService.Close(this);
-        }
-
-        private void UpdateOtherComboBox()
-        {
-            //TODO: Refactor this
-            //var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            //foreach (var account in TargetAccounts)
-            //{
-            //    if (!tempCollection.Contains(account))
-            //    {
-            //        tempCollection.Add(account);
-            //    }
-            //}
-            //foreach (var account in tempCollection)
-            //{
-            //    //fills targetaccounts
-            //    if (!TargetAccounts.Contains(account)) 
-            //    {
-            //        TargetAccounts.Add(account);
-            //    }
-
-            //    //fills chargedaccounts
-            //    if (!ChargedAccounts.Contains(account)) 
-            //    {
-            //        ChargedAccounts.Add(account);
-            //    }
-            //}
-            //ChargedAccounts.Remove(selectedPayment.TargetAccount);
-            //TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
 
         /// <summary>
@@ -405,7 +172,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     List with the different recurrence types.
         ///     This has to have the same order as the enum
@@ -456,5 +223,98 @@ namespace MoneyFox.ServiceLayer.ViewModels
             => SelectedPayment?.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
+
+        /// <inheritdoc />
+        public override void Prepare(ModifyPaymentParameter parameter)
+        {
+            PassedParameter = parameter;
+            RaisePropertyChanged(nameof(AccountHeader));
+        }
+
+        /// <inheritdoc />
+        public override async Task Initialize()
+        {
+            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>().ToListAsync();
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+        }
+
+        protected abstract Task SavePayment();
+
+        private async Task SavePaymentBase()
+        {
+            if (SelectedPayment.ChargedAccount == null)
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+                return;
+            }
+
+            await SavePayment();
+
+            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            await backupService.EnqueueBackupTask();
+        }
+
+        /// <inheritdoc />
+        public override void ViewDisappearing()
+        {
+            if (!preventNullingSelected) SelectedPayment = null;
+        }
+
+        /// <summary>
+        ///     Moved to own method for debugg reasons
+        /// </summary>
+        /// <param name="message">Message stent.</param>
+        private void ReceiveMessage(CategorySelectedMessage message)
+        {
+            if (SelectedPayment == null || message == null) return;
+            SelectedPayment.Category = message.SelectedCategory;
+            preventNullingSelected = false;
+        }
+
+        private async Task OpenSelectCategoryList()
+        {
+            preventNullingSelected = true;
+            await navigationService.Navigate<SelectCategoryListViewModel>();
+        }
+
+        private void ResetSelection()
+        {
+            SelectedPayment.Category = null;
+        }
+
+        private async Task Cancel()
+        {
+            await navigationService.Close(this);
+        }
+
+        private void UpdateOtherComboBox()
+        {
+            //TODO: Refactor this
+            //var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
+            //foreach (var account in TargetAccounts)
+            //{
+            //    if (!tempCollection.Contains(account))
+            //    {
+            //        tempCollection.Add(account);
+            //    }
+            //}
+            //foreach (var account in tempCollection)
+            //{
+            //    //fills targetaccounts
+            //    if (!TargetAccounts.Contains(account)) 
+            //    {
+            //        TargetAccounts.Add(account);
+            //    }
+
+            //    //fills chargedaccounts
+            //    if (!ChargedAccounts.Contains(account)) 
+            //    {
+            //        ChargedAccounts.Add(account);
+            //    }
+            //}
+            //ChargedAccounts.Remove(selectedPayment.TargetAccount);
+            //TargetAccounts.Remove(selectedPayment.ChargedAccount);
+        }
     }
 }

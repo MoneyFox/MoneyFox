@@ -39,8 +39,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override void Prepare(ModifyPaymentParameter parameter)
         {
+            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId).Result;
             base.Prepare(parameter);
-            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(PassedParameter.PaymentId).Result;
         }
 
         /// <summary>
