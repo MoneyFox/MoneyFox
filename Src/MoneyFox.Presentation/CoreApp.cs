@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using GenericServices;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
@@ -17,8 +18,6 @@ using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace MoneyFox.Presentation
@@ -83,13 +82,13 @@ namespace MoneyFox.Presentation
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("ViewModel")
-                                 .Where(x => !x.Name.StartsWith("DesignTime"))
+                                 .Where(x => !x.Name.StartsWith("DesignTime", StringComparison.InvariantCulture))
                                  .AsTypes()
                                  .RegisterAsDynamic();
 
             typeof(MainViewModel).Assembly.CreatableTypes()
                                  .EndingWith("ViewModel")
-                                 .Where(x => !x.Name.StartsWith("DesignTime"))
+                                 .Where(x => !x.Name.StartsWith("DesignTime", StringComparison.InvariantCulture))
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 
@@ -120,7 +119,7 @@ namespace MoneyFox.Presentation
             Mvx.IoCProvider.RegisterType<ICrudServicesAsync>(() => SetUpCrudServices(context));
         }
 
-        private EfCoreContext SetupEfContext()
+        private static EfCoreContext SetupEfContext()
         {
             var context = new EfCoreContext();
             context.Database.Migrate();
@@ -128,7 +127,7 @@ namespace MoneyFox.Presentation
             return context;
         }
 
-        private ICrudServicesAsync SetUpCrudServices(EfCoreContext context)
+        private static ICrudServicesAsync SetUpCrudServices(EfCoreContext context)
         {
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
             utData.AddSingleDto<CategoryViewModel>();

@@ -9,6 +9,7 @@ using Windows.UI.StartScreen;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Uwp.Notifications;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Windows.Business;
@@ -18,10 +19,10 @@ namespace MoneyFox.Uwp.Business.Tiles
 {
     public class LiveTileManager
     {
+        private const int numberOfPayments = 8;
         private readonly ICrudServicesAsync crudService;
 
-        private ApplicationDataContainer localsettings = ApplicationData.Current.LocalSettings;
-        private const int numberOfPayments = 8;
+        private readonly ApplicationDataContainer localsettings = ApplicationData.Current.LocalSettings;
 
         public LiveTileManager(ICrudServicesAsync crudService)
         {
@@ -33,7 +34,7 @@ namespace MoneyFox.Uwp.Business.Tiles
             if (await LiveTileHelper.IsPinned())
             {
                 object b = localsettings.Values["lastrun"];
-                string lastrun = (string)b;
+                string lastrun = (string) b;
                 string headertext = "";
                 List<string> displaycontentmedium = new List<string>();
                 List<string> displaycontentlarge = new List<string>();
@@ -53,13 +54,13 @@ namespace MoneyFox.Uwp.Business.Tiles
                     displaycontentlarge = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous);
                 }
 
-                TileContent content = new TileContent()
+                TileContent content = new TileContent
                 {
-                    Visual = new TileVisual()
+                    Visual = new TileVisual
                     {
                         TileMedium = GetTileBinding(headertext, displaycontentmedium),
                         TileWide = GetTileBinding(headertext, displaycontentlarge),
-                        TileLarge = GetTileBinding(headertext, displaycontentlarge),
+                        TileLarge = GetTileBinding(headertext, displaycontentlarge)
                     }
                 };
 
@@ -79,213 +80,255 @@ namespace MoneyFox.Uwp.Business.Tiles
             foreach (SecondaryTile item in tiles)
             {
                 AccountViewModel acct = await crudService.ReadSingleAsync<AccountViewModel>(item.TileId);
-                TileContent content = new TileContent()
+                TileContent content = new TileContent
                 {
-                    Visual = new TileVisual()
+                    Visual = new TileVisual
                     {
-                        TileSmall = new TileBinding()
+                        TileSmall = new TileBinding
                         {
-                            Content = new TileBindingContentAdaptive()
+                            Content = new TileBindingContentAdaptive
                             {
                                 Children =
                                 {
-                            new AdaptiveGroup()
-                            {
-                                Children =
-                                {
-                                    new AdaptiveSubgroup()
+                                    new AdaptiveGroup
                                     {
                                         Children =
                                         {
-                                            new AdaptiveText()
+                                            new AdaptiveSubgroup
                                             {
-                                                Text = acct.Name,
-                                                HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                            Text =  LiveTileHelper.TruncateNumber(acct.CurrentBalance),
-                                            HintStyle = AdaptiveTextStyle.Caption
+                                                Children =
+                                                {
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = acct.Name,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = LiveTileHelper.TruncateNumber(acct.CurrentBalance),
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                            }
                             }
                         },
-                        TileMedium = new TileBinding()
+                        TileMedium = new TileBinding
                         {
-                            Content = new TileBindingContentAdaptive()
+                            Content = new TileBindingContentAdaptive
                             {
                                 Children =
                                 {
-                            new AdaptiveGroup()
-                            {
-                                Children =
-                                {
-                                    new AdaptiveSubgroup()
+                                    new AdaptiveGroup
                                     {
                                         Children =
                                         {
-                                    new AdaptiveText()
+                                            new AdaptiveSubgroup
                                             {
-                                                Text = acct.Name,
-                                                HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                        new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileAccountBalance,acct.CurrentBalance.ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                            Text =  Strings.ExpenseLabel,
-                                            HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileLastMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), LiveTileHelper.TruncateNumber(GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct))),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileCurrentMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),LiveTileHelper.TruncateNumber(GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct))),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                Children =
+                                                {
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = acct.Name,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileAccountBalance,
+                                                            acct.CurrentBalance.ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = Strings.ExpenseLabel,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileLastMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.AddMonths(-1).Month),
+                                                            LiveTileHelper.TruncateNumber(
+                                                                GetMonthExpenses(
+                                                                    DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                    acct))),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileCurrentMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.Month),
+                                                            LiveTileHelper.TruncateNumber(
+                                                                GetMonthExpenses(
+                                                                    DateTime.Now.Month, DateTime.Now.Year, acct))),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        }
                             }
                         },
-                        TileWide = new TileBinding()
+                        TileWide = new TileBinding
                         {
-                            Content = new TileBindingContentAdaptive()
-                            {
-                                Children =
-                        {
-                            new AdaptiveGroup()
+                            Content = new TileBindingContentAdaptive
                             {
                                 Children =
                                 {
-                                    new AdaptiveSubgroup()
+                                    new AdaptiveGroup
                                     {
                                         Children =
                                         {
-                                            new AdaptiveText()
+                                            new AdaptiveSubgroup
                                             {
-                                                Text = acct.Name,
-                                                HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                        new AdaptiveText
-                                            {
-                                                Text = string.Format(Strings.LiveTileAccountBalance,acct.CurrentBalance.ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText
-                                            {
-                                            Text =  Strings.ExpenseLabel,
-                                            HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                            new AdaptiveText
-                                            {
-                                                Text = string.Format(Strings.LiveTileLastMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month), GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText
-                                            {
-                                                Text = string.Format(Strings.LiveTileCurrentMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                Children =
+                                                {
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = acct.Name,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileAccountBalance,
+                                                            acct.CurrentBalance.ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = Strings.ExpenseLabel,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileLastMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.AddMonths(-1).Month),
+                                                            GetMonthExpenses(
+                                                                DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                acct).ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileCurrentMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.Month),
+                                                            GetMonthExpenses(
+                                                                    DateTime.Now.Month, DateTime.Now.Year, acct)
+                                                                .ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        }
                             }
                         },
-                        TileLarge = new TileBinding()
+                        TileLarge = new TileBinding
                         {
-                            Content = new TileBindingContentAdaptive()
-                            {
-                                Children =
-                        {
-                            new AdaptiveGroup()
+                            Content = new TileBindingContentAdaptive
                             {
                                 Children =
                                 {
-                                    new AdaptiveSubgroup()
+                                    new AdaptiveGroup
                                     {
                                         Children =
                                         {
-                                            new AdaptiveText()
+                                            new AdaptiveSubgroup
                                             {
-                                                Text = acct.Name,
-                                                HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                        new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileAccountBalance, acct.CurrentBalance.ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                            Text =  Strings.ExpenseLabel,
-                                            HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileLastMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.AddMonths(-1).Month),GetMonthExpenses(DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,acct).ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = string.Format(Strings.LiveTileCurrentMonthsExpenses, DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(DateTime.Now.Month),GetMonthExpenses(DateTime.Now.Month,DateTime.Now.Year,acct).ToString("C2")),
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = Strings.LiveTilePastPayments,
-                                                HintStyle = AdaptiveTextStyle.Caption
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = displaycontent[0],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                                new AdaptiveText()
-                                            {
-                                                Text = displaycontent[1],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = displaycontent[2],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = displaycontent[3],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            }
-                                            ,
-                                            new AdaptiveText()
-                                            {
-                                                Text = displaycontent[4],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                            },
-                                            new AdaptiveText()
-                                            {
-                                                Text = displaycontent[5],
-                                                HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                Children =
+                                                {
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = acct.Name,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileAccountBalance,
+                                                            acct.CurrentBalance.ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = Strings.ExpenseLabel,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileLastMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.AddMonths(-1).Month),
+                                                            GetMonthExpenses(
+                                                                DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                acct).ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = string.Format(
+                                                            Strings.LiveTileCurrentMonthsExpenses,
+                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                DateTime.Now.Month),
+                                                            GetMonthExpenses(
+                                                                    DateTime.Now.Month, DateTime.Now.Year, acct)
+                                                                .ToString("C2")),
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = Strings.LiveTilePastPayments,
+                                                        HintStyle = AdaptiveTextStyle.Caption
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[0],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[1],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[2],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[3],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[4],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    },
+                                                    new AdaptiveText
+                                                    {
+                                                        Text = displaycontent[5],
+                                                        HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                    }
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        }
                             }
                         }
                     }
@@ -301,32 +344,33 @@ namespace MoneyFox.Uwp.Business.Tiles
             double balance = 0.00;
             List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
             List<PaymentViewModel> payments = crudService.ReadManyNoTracked<PaymentViewModel>()
-                .Where(x => x.ChargedAccountId == account.Id)
-                .ToList();
+                                                         .Where(x => x.ChargedAccountId == account.Id)
+                                                         .ToList();
 
             foreach (PaymentViewModel item in payments)
             {
                 if (item.IsRecurring)
                 {
-                    if (item.Type != Foundation.PaymentType.Income)
+                    if (item.Type != PaymentType.Income)
                     {
                         allpayment.AddRange(GetReccurance(item));
                     }
                 }
-                else if (item.Type != Foundation.PaymentType.Income)
+                else if (item.Type != PaymentType.Income)
                 {
                     CreateLiveTileInfos(item, allpayment, item.Date.Date);
                 }
             }
 
             List<LiveTilesPaymentInfo> tiles = allpayment
-                .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
-                .ToList();
+                                               .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
+                                               .ToList();
 
             foreach (LiveTilesPaymentInfo item in tiles)
             {
                 balance += item.Amount;
             }
+
             allpayment.Clear();
             return balance;
         }
@@ -337,7 +381,8 @@ namespace MoneyFox.Uwp.Business.Tiles
             {
                 Content = new TileBindingContentAdaptive
                 {
-                    Children = {
+                    Children =
+                    {
                         new AdaptiveGroup
                         {
                             Children =
@@ -361,10 +406,10 @@ namespace MoneyFox.Uwp.Business.Tiles
                                             Text = displaycontentmedium[1],
                                             HintStyle = AdaptiveTextStyle.CaptionSubtle
                                         },
-                                            new AdaptiveText
+                                        new AdaptiveText
                                         {
                                             Text = displaycontentmedium[2],
-                                            HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                            HintStyle = AdaptiveTextStyle.CaptionSubtle
                                         },
                                         new AdaptiveText
                                         {
@@ -384,7 +429,7 @@ namespace MoneyFox.Uwp.Business.Tiles
                                         new AdaptiveText
                                         {
                                             Text = displaycontentmedium[6],
-                                            HintStyle=AdaptiveTextStyle.CaptionSubtle
+                                            HintStyle = AdaptiveTextStyle.CaptionSubtle
                                         },
                                         new AdaptiveText
                                         {
@@ -400,22 +445,23 @@ namespace MoneyFox.Uwp.Business.Tiles
             };
         }
 
-        private async Task<List<string>> GetPaymentsAsync(TileSizeOptions tilesize, PaymentInformation paymentInformation)
+        private async Task<List<string>> GetPaymentsAsync(TileSizeOptions tilesize,
+                                                          PaymentInformation paymentInformation)
         {
             List<AccountViewModel> acct = await crudService.ReadManyNoTracked<AccountViewModel>()
-                .ToListAsync();
+                                                           .ToListAsync();
             List<PaymentViewModel> allpayments = new List<PaymentViewModel>();
             List<LiveTilesPaymentInfo> allpayment = new List<LiveTilesPaymentInfo>();
 
             foreach (AccountViewModel item in acct)
             {
                 allpayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                    .Where(x => x.ChargedAccountId == item.Id)
-                    .ToList());
+                                                .Where(x => x.ChargedAccountId == item.Id)
+                                                .ToList());
 
                 allpayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                    .Where(x => x.TargetAccountId == item.Id)
-                    .ToList());
+                                                .Where(x => x.TargetAccountId == item.Id)
+                                                .ToList());
             }
 
             foreach (PaymentViewModel item in allpayments)
@@ -440,21 +486,21 @@ namespace MoneyFox.Uwp.Business.Tiles
             if (paymentInformation == PaymentInformation.Previous)
             {
                 payments = allpayment.OrderByDescending(x => x.Date.Date)
-                    .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
-                    .Take(numberOfPayments)
-                    .ToList();
+                                     .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
+                                     .Take(numberOfPayments)
+                                     .ToList();
             }
             else
             {
                 payments = allpayment.OrderBy(x => x.Date.Date)
-                    .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
-                    .Take(numberOfPayments)
-                    .ToList();
+                                     .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
+                                     .Take(numberOfPayments)
+                                     .ToList();
             }
 
             List<string> returnlist = payments.Select(x => LiveTileHelper.GetTileText(tilesize, x)).ToList();
 
-            for (int i = returnlist.Count; i < (numberOfPayments - 1); i++)
+            for (int i = returnlist.Count; i < numberOfPayments - 1; i++)
             {
                 returnlist.Add(string.Empty);
             }
@@ -484,17 +530,19 @@ namespace MoneyFox.Uwp.Business.Tiles
                     startDate = CreateLiveTileInfos(payment, allpayment, startDate);
                 }
             }
+
             return allpayment;
         }
 
-        private DateTime CreateLiveTileInfos(PaymentViewModel payment, List<LiveTilesPaymentInfo> allpayment, DateTime startDate)
+        private DateTime CreateLiveTileInfos(PaymentViewModel payment, List<LiveTilesPaymentInfo> allpayment,
+                                             DateTime startDate)
         {
             var liveTilesPaymentInfo = new LiveTilesPaymentInfo
             {
                 Date = startDate,
                 Amount = payment.RecurringPayment?.Amount ?? payment.Amount,
                 Chargeaccountname = payment.RecurringPayment == null
-                    ? payment.ChargedAccount.Name 
+                    ? payment.ChargedAccount.Name
                     : payment.RecurringPayment?.ChargedAccount.Name,
                 Type = payment.RecurringPayment?.Type ?? payment.Type
             };

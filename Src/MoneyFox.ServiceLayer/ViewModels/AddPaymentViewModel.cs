@@ -5,6 +5,7 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
@@ -36,6 +37,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 Type = parameter.PaymentType
             };
+            Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, false);
             base.Prepare(parameter);
         }
         

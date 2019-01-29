@@ -11,6 +11,7 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -214,7 +215,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
 
-        public virtual string Title => Strings.AddTitle;
+        public virtual string Title { get; set; }
 
         /// <summary>
         ///     Returns the Header for the AccountViewModel field
@@ -229,6 +230,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             PassedParameter = parameter;
             RaisePropertyChanged(nameof(AccountHeader));
+            RaisePropertyChanged(nameof(Title));
         }
 
         /// <inheritdoc />

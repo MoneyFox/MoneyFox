@@ -17,7 +17,7 @@ using MvvmCross.Plugin.File;
 namespace MoneyFox.BusinessLogic.Backup
 {
     /// <inheritdoc />
-    public class BackupManager : IBackupManager
+    public class BackupManager : IBackupManager, IDisposable
     {
         private readonly ICloudBackupService cloudBackupService;
 
@@ -96,9 +96,9 @@ namespace MoneyFox.BusinessLogic.Backup
             if (!connectivity.IsConnected)
                 return OperationResult.Failed(new NetworkConnectionException());
 
-            if ( attempts < ServiceConstants.SyncAttempts)
+            if ( attempts < ServiceConstants.SYNC_ATTEMPTS)
             {
-                await semaphoreSlim.WaitAsync(ServiceConstants.BackupOperationTimeout, cancellationTokenSource.Token);
+                await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT, cancellationTokenSource.Token);
                 try
                 {
                     if (await CreateNewBackup())
@@ -112,7 +112,7 @@ namespace MoneyFox.BusinessLogic.Backup
                 }
                 catch (OperationCanceledException ex)
                 {
-                    await Task.Delay(ServiceConstants.BackupRepeatDelay);
+                    await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                     await EnqueueBackupTask(attempts + 1);
                     Crashes.TrackError(ex);
                 }
@@ -203,6 +203,18 @@ namespace MoneyFox.BusinessLogic.Backup
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            cancellationTokenSource.Dispose();
+            semaphoreSlim.Dispose();
         }
     }
 }

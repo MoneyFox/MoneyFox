@@ -8,6 +8,7 @@ using MvvmCross.Platforms.Ios.Views;
 using MvvmCross.ViewModels;
 using UIKit;
 
+#pragma warning disable CA1822 // Mark members as static
 namespace MoneyFox.iOS
 {
     // This class is never actually executed, but when Xamarin linking is enabled it does ensure types and properties

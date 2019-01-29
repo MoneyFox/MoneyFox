@@ -7,7 +7,7 @@ namespace MoneyFox.ServiceLayer.Utilities
     /// <summary>
     ///     A collection of helper methods for handling PaymentTypes
     /// </summary>
-    public class PaymentTypeHelper
+    public static class PaymentTypeHelper
     {
         /// <summary>
         ///     Parse a string to PaymentType

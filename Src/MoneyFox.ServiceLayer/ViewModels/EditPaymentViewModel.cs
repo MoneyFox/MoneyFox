@@ -6,6 +6,7 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -35,11 +36,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.backupService = backupService;
         }
 
-        public override string Title => Strings.EditLabel;
-
         public override void Prepare(ModifyPaymentParameter parameter)
         {
             SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId).Result;
+            Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, true);
             base.Prepare(parameter);
         }
 
@@ -50,19 +50,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
         
         protected override async Task SavePayment()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedPayment, "ctor(7)");
+            await crudServices.UpdateAndSaveAsync(SelectedPayment, "ctor(7)")
+                              .ConfigureAwait(true);
             if (!crudServices.IsValid)
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
+                                   .ConfigureAwait(true);
 
-            await NavigationService.Close(this);
+            await NavigationService.Close(this).ConfigureAwait(true);
         }
 
 
         private async Task DeletePayment()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedPayment.Id);
+            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedPayment.Id)
+                              .ConfigureAwait(true);
+
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask().ConfigureAwait(true);
         }
     }
 }

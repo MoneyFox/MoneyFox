@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.BusinessLogic.Interfaces;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
@@ -13,14 +12,13 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using IBackupManager = MoneyFox.BusinessLogic.Backup.IBackupManager;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {
         /// <summary>
-        ///     Makes the first login and sets the setting for the future navigations to this page.
+        ///     Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
         MvxAsyncCommand LoginCommand { get; }
 
@@ -30,14 +28,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         MvxAsyncCommand LogoutCommand { get; }
 
         /// <summary>
-        ///     Will create a backup of the database and upload it to onedrive
+        ///     Will create a backup of the database and upload it to OneDrive
         /// </summary>
         MvxAsyncCommand BackupCommand { get; }
 
         /// <summary>
-        ///     Will download the database backup from onedrive and overwrite the
+        ///     Will download the database backup from OneDrive and overwrite the
         ///     local database with the downloaded.
-        ///     All datamodels are then reloaded.
+        ///     All data models are then reloaded.
         /// </summary>
         MvxAsyncCommand RestoreCommand { get; }
 
