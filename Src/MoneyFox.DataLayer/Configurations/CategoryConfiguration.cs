@@ -16,11 +16,11 @@ namespace MoneyFox.DataLayer.Configurations
                 .OnDelete(DeleteBehavior.SetNull);
 
             // Set FK from category to recurring payment with cascade
-            categoryBuilder
-                .HasMany(m => m.RecurringPayments)
-                .WithOne(t => t.Category)
-                .HasForeignKey(m => m.CategoryId)
-                .OnDelete(DeleteBehavior.SetNull);
+            //categoryBuilder
+            //    .HasMany(m => m.RecurringPayments)
+            //    .WithOne(t => t.Category)
+            //    .HasForeignKey(m => m.CategoryId)
+            //    .OnDelete(DeleteBehavior.SetNull);
 
             categoryBuilder.HasIndex(b => b.Name);
         }

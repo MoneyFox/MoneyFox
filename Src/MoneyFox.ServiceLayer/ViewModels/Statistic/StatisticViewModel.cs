@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
@@ -13,7 +14,7 @@ using SkiaSharp;
 namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
     /// <summary>
-    ///     Reprsents the statistic view.
+    ///     Represents the statistic view.
     /// </summary>
     public abstract class StatisticViewModel : BaseNavigationViewModel
     {
@@ -37,10 +38,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
-        /// <param name="startDate">Start date to select data from.</param>
-        /// <param name="endDate">End date to select date from.</param>
-        /// <param name="messenger">Messenger Instance</param>
-        /// <param name="settingsManager">Instance of a SettingsManager</param>
         protected StatisticViewModel(DateTime startDate, 
                                      DateTime endDate,
                                      IMvxMessenger messenger,
@@ -70,7 +67,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Startdate for a custom statistic
+        ///     Start date for a custom statistic
         /// </summary>
         public DateTime StartDate
         {
@@ -85,7 +82,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Enddate for a custom statistic
+        ///     End date for a custom statistic
         /// </summary>
         public DateTime EndDate
         {
@@ -102,9 +99,9 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <summary>
         ///     Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title => Strings.StatisticsTimeRangeTitle + " " + StartDate.ToString("d") +
+        public string Title => Strings.StatisticsTimeRangeTitle + " " + StartDate.ToString("d", CultureInfo.InvariantCulture) +
                                " - " +
-                               EndDate.ToString("d");
+                               EndDate.ToString("d", CultureInfo.InvariantCulture);
 
         protected abstract Task Load();
     }

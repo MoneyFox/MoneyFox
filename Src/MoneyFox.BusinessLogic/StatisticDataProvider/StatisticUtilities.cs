@@ -10,7 +10,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         ///     Will round all values of the passed statistic item list
         /// </summary>
         /// <param name="items">List of statistic items.</param>
-        public static void RoundStatisticItems(List<StatisticItem> items)
+        public static void RoundStatisticItems(List<CategoryOverviewItem> items)
         {
             items.ForEach(x =>
             {

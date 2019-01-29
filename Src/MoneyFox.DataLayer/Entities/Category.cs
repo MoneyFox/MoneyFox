@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace MoneyFox.DataLayer.Entities
 {
@@ -25,12 +24,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public string Note { get; private set; }
 
-        //Use uninitialised backing fields - this means we can detect if the collection was loaded
-        private HashSet<Payment> payments;
-        private HashSet<RecurringPayment> recurringPayments;
-
-        public IEnumerable<Payment> Payments => payments?.ToList();
-        public IEnumerable<RecurringPayment> RecurringPayments => recurringPayments?.ToList();
+        public List<Payment> Payments { get; private set; }
 
         public void UpdateData(string name, string note = "")
         {

@@ -17,9 +17,9 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
         [InlineData(9, 9)]
         public void RoundStatisticItems_ListOfItems_ListWithRoundedPercentages(double value, double result)
         {
-            var statisticItems = new List<StatisticItem>
+            var statisticItems = new List<CategoryOverviewItem>
             {
-                new StatisticItem
+                new CategoryOverviewItem
                 {
                     Percentage = value
                 }

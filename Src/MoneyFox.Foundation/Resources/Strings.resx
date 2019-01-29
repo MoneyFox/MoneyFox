@@ -766,4 +766,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="PintAccountLabel" xml:space="preserve">
     <value>Pin account to start menu</value>
   </data>
+  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
+    <value>No statistic items to display. Try to adjust the time range.</value>
+  </data>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Monthly Average: </value>
+  </data>
 </root>

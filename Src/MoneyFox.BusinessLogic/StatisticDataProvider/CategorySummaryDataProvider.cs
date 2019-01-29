@@ -3,67 +3,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
     public interface ICategorySummaryDataProvider
     {
-        Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate);
+        Task<IEnumerable<CategoryOverviewItem>> GetValues(DateTime startDate, DateTime endDate);
     }
 
     public class CategorySummaryDataProvider : ICategorySummaryDataProvider
     {
         private readonly IStatisticDbAccess statisticDbAccess;
 
+        private List<Category> categories = new List<Category>();
+
         public CategorySummaryDataProvider(IStatisticDbAccess statisticDbAccess)
         {
             this.statisticDbAccess = statisticDbAccess;
         }
 
-        public async Task<IEnumerable<StatisticItem>> GetValues(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<CategoryOverviewItem>> GetValues(DateTime startDate, DateTime endDate)
         {
-            var categories = new List<StatisticItem>();
+            var categoryOverviewItems = new List<CategoryOverviewItem>();
+            categories = await statisticDbAccess.GetAllCategoriesWithPayments()
+                                                .ConfigureAwait(false);
 
-            foreach (var category in await statisticDbAccess.GetAllCategoriesWithPayments())
+            foreach (Category category in categories)
             {
                 if (category.Payments == null) continue;
 
-                categories.Add(new StatisticItem
+                var categoryOverViewItem = new CategoryOverviewItem
                 {
                     Label = category.Name,
                     Value = category.Payments
-                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
-                        .Where(x => x.Type != PaymentType.Transfer)
-                        .Sum(x => x.Type == PaymentType.Expense
-                            ? -x.Amount
-                            : x.Amount)
-                });
+                                    .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                                    .Where(x => x.Type != PaymentType.Transfer)
+                                    .Sum(x => x.Type == PaymentType.Expense
+                                             ? -x.Amount
+                                             : x.Amount),
+                    Average = CalculateAverage(category.Id)
+                };
+                categoryOverviewItems.Add(categoryOverViewItem);
             }
+            
+            CalculatePercentage(categoryOverviewItems);
 
-            CalculateAverage(categories);
-            StatisticUtilities.RoundStatisticItems(categories);
+            StatisticUtilities.RoundStatisticItems(categoryOverviewItems);
 
-            return categories.Where(x => Math.Abs(x.Value) > 0.1)
+            return categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1)
                              .OrderBy(x => x.Value)
                              .ToList();
         }
 
-        private static void CalculateAverage(List<StatisticItem> categories)
+        private static void CalculatePercentage(List<CategoryOverviewItem> categories)
         {
-            var sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
-            var sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
+            double sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
+            double sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
 
-            foreach (var statisticItem in categories.Where(x => x.Value < 0))
+            foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
             {
                 statisticItem.Percentage = statisticItem.Value / sumNegative * 100;
             }
 
-            foreach (var statisticItem in categories.Where(x => x.Value > 0))
+            foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
             {
                 statisticItem.Percentage = statisticItem.Value / sumPositive * 100;
             }
+        }
+
+        private double CalculateAverage(int id)
+        {
+            List<Payment> payments = categories
+                                     .First(x => x.Id == id)
+                                     .Payments
+                                     .OrderBy(x => x.Date)
+                                     .ToList();
+
+            if (payments.Count == 0) return 0;
+
+            double sumForCategory = payments.Sum(x => x.Amount);
+            TimeSpan timeDiff = DateTime.Today - payments.Last().Date;
+
+            return sumForCategory / (timeDiff.TotalDays / 30);
         }
     }
 }

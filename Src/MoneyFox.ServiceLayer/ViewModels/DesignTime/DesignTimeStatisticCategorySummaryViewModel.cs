@@ -1,9 +1,9 @@
-﻿using System.Globalization;
-using MoneyFox.Foundation.Models;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
@@ -11,15 +11,15 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public MvxObservableCollection<StatisticItem> CategorySummary => new MvxObservableCollection<StatisticItem>
+        public ObservableCollection<CategoryOverviewItem> CategorySummary => new ObservableCollection<CategoryOverviewItem>
         {
-            new StatisticItem
+            new CategoryOverviewItem
             {
                 Label = "Einkaufen",
                 Value = 745,
                 Percentage = 30
             },
-            new StatisticItem
+            new CategoryOverviewItem
             {
                 Label = "Beeeeer",
                 Value = 666,

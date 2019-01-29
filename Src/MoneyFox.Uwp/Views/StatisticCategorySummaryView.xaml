@@ -1,33 +1,43 @@
-﻿<views1:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.StatisticCategorySummaryView"
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.StatisticCategorySummaryView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime1="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
-                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySummaryViewModel,
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       mc:Ignorable="d">
 
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
                   Background="{StaticResource ListItemBrush}"
                   Margin="{StaticResource SmallListItemMargin}">
-                <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Left"
+
+                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                    <Grid>
+                        <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Left"
                                TextTrimming="CharacterEllipsis" />
-                    <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
+                        <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
 
-                        <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
+                            <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
 
-                        <TextBlock Text=" (" />
-                        <TextBlock Text="{Binding Percentage}" />
-                        <TextBlock Text="%)" />
+                            <TextBlock Text=" (" />
+                            <TextBlock Text="{Binding Percentage}" />
+                            <TextBlock Text="%)" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Resources[MonthlyAverageLabel]}" Style="{StaticResource DeemphasizedLabelStyle}" />
+                        <TextBlock Text="{Binding Average}" Style="{StaticResource DeemphasizedLabelStyle}" />
                     </StackPanel>
-                </Grid>
+                </StackPanel>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -45,7 +55,8 @@
                    Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"
+              Visibility="{Binding HasData, Converter={StaticResource BooleanToVisibilityConverter}}" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -72,6 +83,16 @@
                 </ListView>
             </ScrollViewer>
         </Grid>
+
+        <TextBlock Grid.Row="1"
+                   Margin="6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Text="{Binding Resources[CategorySummaryPlaceHolderLabel]}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding HasData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
+
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
@@ -82,4 +103,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</views1:MvxWindowsPage>
+</views:MvxWindowsPage>

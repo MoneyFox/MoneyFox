@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MoneyFox.Foundation.Models
+namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
-    public class StatisticItem : INotifyPropertyChanged
+    public class CategoryOverviewItem : INotifyPropertyChanged
     {
         private string label;
         private double value;
+        private double average;
         private double percentage;
 
         /// <summary>
@@ -22,8 +23,23 @@ namespace MoneyFox.Foundation.Models
                 this.value = value;
                 RaisePropertyChanged();
             }
+        }   
+        
+        /// <summary>
+        ///     Average of this item
+        /// </summary>
+        public double Average
+        {
+            get => average;
+            set
+            {
+                if (Math.Abs(this.average - value) < 0.01) return;
+                this.average = value;
+                RaisePropertyChanged();
+            }
 
         }
+
         /// <summary>
         ///     Value of this item
         /// </summary>
