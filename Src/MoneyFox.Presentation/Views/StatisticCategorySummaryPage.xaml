@@ -38,38 +38,48 @@
                     <DataTemplate>
                         <ViewCell>
                             <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
-                                <Grid BackgroundColor="{DynamicResource ListItemColor}"
-                                     Padding="3"
-                                     HorizontalOptions="FillAndExpand"
-                                     Margin="{DynamicResource DefaultListItemsMargin}">
+                                <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
+                                    Padding="3"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="{DynamicResource DefaultListItemsMargin}">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Column="0"
+                                        <Label Grid.Column="0"
                                            Text="{Binding Label}" 
                                            HorizontalOptions="StartAndExpand" 
                                            Style="{StaticResource ListItemHeaderStyle}" />
 
-                                    <StackLayout Grid.Column="1" 
+                                        <StackLayout Grid.Column="1" 
                                                  HorizontalOptions="EndAndExpand" 
                                                  Orientation="Horizontal"
                                                  Spacing="0" 
                                                  VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
-                                        
-                                        <Label Text=" (" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
-                                        <Label Text="{Binding Percentage}" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
-                                        <Label Text="%)" 
+                                            <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" 
                                                Style="{DynamicResource DefaultTextStyle}" />
 
+                                            <Label Text=" (" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
+                                            <Label Text="{Binding Percentage}" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
+                                            <Label Text="%)" 
+                                               Style="{DynamicResource DefaultTextStyle}" />
+
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <StackLayout>
+                                        <Label Text="{Binding Resources[MonthlyAverageLabel]}" 
+                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                        <Label Text="{Binding Average}" 
+                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
                                     </StackLayout>
-                                </Grid>
+                                    
+                                </StackLayout>
                             </controls:CardView>
                         </ViewCell>
                     </DataTemplate>
