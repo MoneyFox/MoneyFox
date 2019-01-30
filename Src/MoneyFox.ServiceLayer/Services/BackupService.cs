@@ -61,7 +61,8 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> Login()
         {
-            var result = await backupManager.Login();
+            var result = await backupManager.Login()
+                                            .ConfigureAwait(false);
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = true;
@@ -74,7 +75,8 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> Logout()
         {
-            var result = await backupManager.Logout();
+            var result = await backupManager.Logout()
+                                            .ConfigureAwait(false);
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = false;
@@ -86,17 +88,20 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<bool> IsBackupExisting()
         {
-            return await backupManager.IsBackupExisting();
+            return await backupManager.IsBackupExisting()
+                                      .ConfigureAwait(false);
         }
 
         public async Task<DateTime> GetBackupDate()
         {
-            return await backupManager.GetBackupDate();
+            return await backupManager.GetBackupDate()
+                                      .ConfigureAwait(false);
         }
 
         public async Task<OperationResult> RestoreBackup()
         {
-            var result = await backupManager.RestoreBackup(settingsFacade.LastDatabaseUpdate);
+            var result = await backupManager.RestoreBackup(settingsFacade.LastDatabaseUpdate)
+                                            .ConfigureAwait(false);
 
             if (result.Success)
             {
@@ -112,14 +117,15 @@ namespace MoneyFox.ServiceLayer.Services
 
             if (!settingsFacade.IsLoggedInToBackupService)
             {
-                var loginResult = await Login();
+                var loginResult = await Login().ConfigureAwait(false);
                 if (!loginResult.Success)
                 {
                     return loginResult;
                 }
             }
 
-            var result = await backupManager.EnqueueBackupTask();
+            var result = await backupManager.EnqueueBackupTask()
+                                            .ConfigureAwait(false);
 
             if (result.Success)
             {
