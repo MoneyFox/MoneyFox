@@ -38,7 +38,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override async void Prepare(ModifyCategoryParameter parameter)
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId)
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(parameter.CategoryId)
                                                  .ConfigureAwait(true);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
 

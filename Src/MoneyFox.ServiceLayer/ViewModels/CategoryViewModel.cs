@@ -1,10 +1,9 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class CategoryViewModel : MvxViewModel, ILinkToEntity<Category>
+    public class CategoryViewModel : BaseViewModel, ILinkToEntity<Category>
     {
         private int id;
         private string name;

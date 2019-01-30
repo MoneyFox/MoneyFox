@@ -73,7 +73,7 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
         <TextBox x:Uid="SearchHeader"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ using MvvmCross.Plugin.File;
 
 namespace MoneyFox.BusinessLogic.Backup
 {
-    /// <inheritdoc />
     public class BackupManager : IBackupManager, IDisposable
     {
         private readonly ICloudBackupService cloudBackupService;
@@ -44,7 +44,8 @@ namespace MoneyFox.BusinessLogic.Backup
 
             try
             {
-                await cloudBackupService.Login();
+                await cloudBackupService.Login()
+                                        .ConfigureAwait(false);
             }
             catch (BackupAuthenticationFailedException ex)
             {
@@ -62,7 +63,8 @@ namespace MoneyFox.BusinessLogic.Backup
 
             try
             {
-                await cloudBackupService.Logout();
+                await cloudBackupService.Logout()
+                                        .ConfigureAwait(false);
             } 
             catch (BackupAuthenticationFailedException ex)
             {
@@ -77,7 +79,8 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (!connectivity.IsConnected) return DateTime.MinValue;
 
-            var date = await cloudBackupService.GetBackupDate();
+            var date = await cloudBackupService.GetBackupDate()
+                                               .ConfigureAwait(false);
             return date.ToLocalTime();
         }
 
@@ -86,7 +89,8 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (!connectivity.IsConnected) return false;
 
-            var files = await cloudBackupService.GetFileNames();
+            var files = await cloudBackupService.GetFileNames()
+                                                .ConfigureAwait(false);
             return files != null && files.Any();
         }
 
@@ -98,10 +102,11 @@ namespace MoneyFox.BusinessLogic.Backup
 
             if ( attempts < ServiceConstants.SYNC_ATTEMPTS)
             {
-                await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT, cancellationTokenSource.Token);
+                await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT, cancellationTokenSource.Token)
+                                   .ConfigureAwait(false);
                 try
                 {
-                    if (await CreateNewBackup())
+                    if (await CreateNewBackup().ConfigureAwait(false))
                     {
                         semaphoreSlim.Release();
                     }
@@ -112,19 +117,20 @@ namespace MoneyFox.BusinessLogic.Backup
                 }
                 catch (OperationCanceledException ex)
                 {
-                    await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
-                    await EnqueueBackupTask(attempts + 1);
+                    await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY)
+                              .ConfigureAwait(false);
+                    await EnqueueBackupTask(attempts + 1).ConfigureAwait(false);
                     Crashes.TrackError(ex);
                 }
                 catch (BackupAuthenticationFailedException ex)
                 {
-                    await Logout();
+                    await Logout().ConfigureAwait(false);
                     OperationResult.Failed(ex);
                     Crashes.TrackError(ex);
                 }
                 catch (ServiceException ex)
                 {
-                    await Logout();
+                    await Logout().ConfigureAwait(false);
                     OperationResult.Failed(ex);
                     Crashes.TrackError(ex);
                 }
@@ -155,7 +161,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
                 Analytics.TrackEvent("Backup Sync", new Dictionary<string, string>
                     {
-                        { "Backup Restored? " , backupRestored.ToString() },
+                        { "Backup Restored? " , backupRestored.ToString(CultureInfo.InvariantCulture)},
                         { "Backup Date: " , backupDate.ToLongDateString()},
                     });
             } 
@@ -184,7 +190,8 @@ namespace MoneyFox.BusinessLogic.Backup
 
             using (var dbStream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
             {
-                return await cloudBackupService.Upload(dbStream);
+                return await cloudBackupService.Upload(dbStream)
+                                               .ConfigureAwait(false);
             }
         }
 
@@ -192,11 +199,13 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (!connectivity.IsConnected) return;
 
-            var backups = await cloudBackupService.GetFileNames();
+            var backups = await cloudBackupService.GetFileNames()
+                                                  .ConfigureAwait(false);
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
-                var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
+                var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME)
+                                                           .ConfigureAwait(false);
                 fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
 
                 var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, EfCoreContext.DbPath, true);

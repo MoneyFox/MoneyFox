@@ -109,6 +109,8 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> EnqueueBackupTask(int attempts = 0)
         {
+            if (!settingsFacade.IsBackupAutouploadEnabled) return OperationResult.Succeeded();
+
             if (!settingsFacade.IsLoggedInToBackupService)
             {
                 var loginResult = await Login();
