@@ -16,6 +16,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             // Arrange
             const int categoryId = 99;
             var crudServiceMock = new Mock<ICrudServicesAsync>();
+            crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
 
             var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
 
@@ -32,6 +33,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             // Arrange
             const int categoryId = 99;
             var crudServiceMock = new Mock<ICrudServicesAsync>();
+            crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
 
             var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
 
