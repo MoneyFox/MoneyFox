@@ -31,8 +31,4 @@
     <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

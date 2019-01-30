@@ -11,11 +11,6 @@ namespace MoneyFox.ServiceLayer.Facades
     public interface ISettingsFacade
     {
         /// <summary>
-        ///     Indicates if the cash flow shall be displayed on the main tile or not.
-        /// </summary>
-        bool ShowCashFlowOnMainTile { get; set; }
-
-        /// <summary>
         ///     Indicates if the backup shall be synced automatically.
         /// </summary>
         bool IsBackupAutouploadEnabled { get; set; }
@@ -76,9 +71,6 @@ namespace MoneyFox.ServiceLayer.Facades
 
     public class SettingsFacade : ISettingsFacade
     {
-        private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
-        private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = true;
-
         private const string AUTOUPLOAD_BACKUP_KEYNAME = "AutoUploadBackup";
         private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
 
@@ -117,14 +109,6 @@ namespace MoneyFox.ServiceLayer.Facades
         public SettingsFacade(ISettingsAdapter settingsAdapter)
         {
             this.settingsAdapter = settingsAdapter;
-        }
-
-        /// <inheritdoc />
-        public bool ShowCashFlowOnMainTile
-        {
-            get =>
-                settingsAdapter.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
-            set => settingsAdapter.AddOrUpdate(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
         }
 
         /// <inheritdoc />

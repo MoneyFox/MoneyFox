@@ -46,7 +46,6 @@ namespace MoneyFox.ServiceLayer.Services
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
         Task<OperationResult> EnqueueBackupTask(int attempts = 0);
-
     }
 
     public class BackupService : IBackupService
