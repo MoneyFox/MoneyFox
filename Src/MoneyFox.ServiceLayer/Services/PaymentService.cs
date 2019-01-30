@@ -1,8 +1,11 @@
 ﻿using System.Threading.Tasks;
+using GenericServices;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.ServiceLayer.Services
@@ -20,11 +23,13 @@ namespace MoneyFox.ServiceLayer.Services
     {
         private readonly EfCoreContext context;
         private readonly ISavePaymentAction savePaymentAction;
+        private readonly IDialogService dialogService;
 
 
-        public PaymentService(EfCoreContext context, ISavePaymentAction savePaymentAction)
+        public PaymentService(EfCoreContext context, ISavePaymentAction savePaymentAction, IDialogService dialogService)
         {
             this.savePaymentAction = savePaymentAction;
+            this.dialogService = dialogService;
             this.context = context;
         }
 
@@ -58,9 +63,21 @@ namespace MoneyFox.ServiceLayer.Services
                 : OperationResult.Succeeded();
         }
 
-        public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
+        public async Task<OperationResult> DeletePayment(PaymentViewModel paymentToDelete)
         {
-            var result = await savePaymentAction.DeletePayment(paymentViewModel.Id)
+            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
+                .ConfigureAwait(true)) return OperationResult.Succeeded();
+
+            if (paymentToDelete.IsRecurring
+                && await dialogService
+                    .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
+                    .ConfigureAwait(true))
+            {
+                await savePaymentAction.DeleteRecurringPayment(paymentToDelete.RecurringPayment.Id)
+                    .ConfigureAwait(true);
+            }
+            
+            var result = await savePaymentAction.DeletePayment(paymentToDelete.Id)
                 .ConfigureAwait(false);
 
             await context.SaveChangesAsync()

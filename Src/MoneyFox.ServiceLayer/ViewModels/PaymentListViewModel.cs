@@ -155,20 +155,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeletePayment(PaymentViewModel payment)
         {
-            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
-                .ConfigureAwait(true)) return;
-
-            var paymentToDelete = await crudServices.ReadSingleAsync<PaymentViewModel>(payment.Id).ConfigureAwait(true);
-
-            if (paymentToDelete.IsRecurring
-                && await dialogService
-                    .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
-                    .ConfigureAwait(true))
-            {
-                await crudServices.DeleteAndSaveAsync<RecurringPaymentViewModel>(paymentToDelete.RecurringPayment.Id)
-                    .ConfigureAwait(true);
-            }
-
             await paymentService.DeletePayment(payment).ConfigureAwait(true);
 
 #pragma warning disable 4014

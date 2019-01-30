@@ -30,6 +30,13 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// <param name="id">Id of the payment to delete.</param>
         /// <returns>Result.</returns>
         Task<OperationResult> DeletePayment(int id);
+
+        /// <summary>
+        ///     Delete an existing Recurring Payment.
+        /// </summary>
+        /// <param name="id">Id of the payment to delete.</param>
+        /// <returns>Result.</returns>
+        Task DeleteRecurringPayment(int id);
     }
 
     public class SavePaymentAction : ISavePaymentAction
@@ -85,6 +92,12 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             savePaymentDbAccess.DeletePayment(payment);
 
             return OperationResult.Succeeded();
+        }
+
+        public async Task DeleteRecurringPayment(int id)
+        {
+            await savePaymentDbAccess.DeleteRecurringPayment(id)
+                .ConfigureAwait(false);
         }
     }
 }

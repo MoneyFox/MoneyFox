@@ -11,6 +11,8 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
         Task AddPayment(Payment payment);
         void DeletePayment(Payment payment);
+
+        Task DeleteRecurringPayment(int id);
     }
 
     public class SavePaymentDbAccess : ISavePaymentDbAccess
@@ -41,6 +43,11 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         public void DeletePayment(Payment payment)
         {
             context.Payments.Remove(payment);
+        }
+
+        public async Task DeleteRecurringPayment(int id)
+        {
+            context.RecurringPayments.Remove(await context.RecurringPayments.FindAsync(id).ConfigureAwait(false));
         }
     }
 }

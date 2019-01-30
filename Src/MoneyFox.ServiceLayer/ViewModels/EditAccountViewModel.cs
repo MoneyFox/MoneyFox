@@ -54,7 +54,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
                                    .ConfigureAwait(true);
 
-            await NavigationService.Close(this).ConfigureAwait(true);
+            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
         }
 
         protected async Task DeleteAccount()
@@ -66,6 +66,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask().ConfigureAwait(true);
 #pragma warning restore 4014
+            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
         }
     }
 }

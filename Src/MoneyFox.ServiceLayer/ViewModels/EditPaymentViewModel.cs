@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -69,6 +70,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask().ConfigureAwait(true);
 #pragma warning restore 4014
+            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
         }
     }
 }
