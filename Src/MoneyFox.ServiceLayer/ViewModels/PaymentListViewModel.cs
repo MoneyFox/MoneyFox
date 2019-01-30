@@ -27,9 +27,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// </summary>
     public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
     {
+        private readonly ICrudServicesAsync crudServices;
+        private readonly IPaymentService paymentService;
         private readonly IBackupService backupService;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly IMvxLogProvider logProvider;
         private readonly IMvxMessenger messenger;
@@ -49,7 +50,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(ICrudServicesAsync crudServices,
+        public PaymentListViewModel(ICrudServicesAsync crudServices, 
+            IPaymentService paymentService,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBalanceCalculationService balanceCalculationService,
@@ -59,6 +61,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IMvxLogProvider logProvider)
         {
             this.crudServices = crudServices;
+            this.paymentService = paymentService;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
@@ -161,11 +164,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 && await dialogService
                     .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
                     .ConfigureAwait(true))
+            {
                 await crudServices.DeleteAndSaveAsync<RecurringPaymentViewModel>(paymentToDelete.RecurringPayment.Id)
                     .ConfigureAwait(true);
+            }
 
-            await crudServices.DeleteAndSaveAsync<PaymentViewModel>(paymentToDelete.Id).ConfigureAwait(true);
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            await paymentService.DeletePayment(payment).ConfigureAwait(true);
 
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();

@@ -67,10 +67,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeletePayment()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedPayment.Id)
-                              .ConfigureAwait(true);
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            await paymentService.DeletePayment(SelectedPayment).ConfigureAwait(true);
             await backupService.EnqueueBackupTask().ConfigureAwait(true);
         }
     }

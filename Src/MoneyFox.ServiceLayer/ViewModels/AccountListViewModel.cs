@@ -8,6 +8,7 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
@@ -22,6 +23,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
@@ -32,12 +34,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AccountListViewModel(ICrudServicesAsync crudService,
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
                                     IMvxLogProvider logProvider,
-                                    IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                    IMvxNavigationService navigationService,) : base(logProvider, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
+            this.settingsFacade = settingsFacade;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService, logProvider, navigationService);
             ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
@@ -140,8 +144,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 Accounts.Clear();
                 await Load();
 
-                // TODO: reactivate.
-                //settingsManager.LastDatabaseUpdate = DateTime.Now;
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
         }
 

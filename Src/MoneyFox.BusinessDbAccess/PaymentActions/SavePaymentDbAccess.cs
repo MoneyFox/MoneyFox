@@ -10,6 +10,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         Task<Payment> GetPaymentById(int id);
 
         Task AddPayment(Payment payment);
+        void DeletePayment(Payment payment);
     }
 
     public class SavePaymentDbAccess : ISavePaymentDbAccess
@@ -35,6 +36,11 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             await context.Payments
                          .AddAsync(payment)
                          .ConfigureAwait(false);
+        }
+
+        public void DeletePayment(Payment payment)
+        {
+            context.Payments.Remove(payment);
         }
     }
 }

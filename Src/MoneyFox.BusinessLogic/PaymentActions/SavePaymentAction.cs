@@ -23,6 +23,13 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// <param name="newPayment">new payments.</param>
         /// <returns>Result.</returns>
         Task<OperationResult> UpdatePayment(int id, Payment newPayment);
+
+        /// <summary>
+        ///     Delete an existing Payment.
+        /// </summary>
+        /// <param name="id">Id of the payment to delete.</param>
+        /// <returns>Result.</returns>
+        Task<OperationResult> DeletePayment(int id);
     }
 
     public class SavePaymentAction : ISavePaymentAction
@@ -63,6 +70,19 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                                      newPayment.TargetAccount,
                                      newPayment.Category,
                                      newPayment.Note);
+
+            return OperationResult.Succeeded();
+        }
+
+        public async Task<OperationResult> DeletePayment(int id)
+        {
+            var payment = await savePaymentDbAccess.GetPaymentById(id)
+                                                   .ConfigureAwait(false);
+            
+            payment.ChargedAccount.RemovePaymentAmount(payment);
+            payment.TargetAccount?.RemovePaymentAmount(payment);
+
+            savePaymentDbAccess.DeletePayment(payment);
 
             return OperationResult.Succeeded();
         }
