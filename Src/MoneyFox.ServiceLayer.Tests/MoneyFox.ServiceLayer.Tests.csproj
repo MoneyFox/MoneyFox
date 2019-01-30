@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="MockQueryable.Moq" Version="1.0.4" />
     <PackageReference Include="Moq" Version="4.10.0" />
     <PackageReference Include="MvvmCross.Tests" Version="6.2.2" />
     <PackageReference Include="Should-DotNetStandard" Version="1.0.0" />

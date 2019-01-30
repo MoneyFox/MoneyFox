@@ -14,12 +14,6 @@ namespace MoneyFox.ServiceLayer.Services
     public interface IBalanceCalculationService
     {
         /// <summary>
-        ///     Checks all accounts if the end of month balance is below zero.
-        ///     If yes the IsOverdrawn Property is set to true.
-        /// </summary>
-        Task CheckIfAccountsAreOverdrawn();
-
-        /// <summary>
         ///     Returns the sum of all account balances that are not excluded.
         /// </summary>
         Task<double> GetTotalBalance();
@@ -50,20 +44,14 @@ namespace MoneyFox.ServiceLayer.Services
         {
             this.crudServices = crudServices;
         }
-
-        /// <inheritdoc />
-        public async Task CheckIfAccountsAreOverdrawn()
-        {
-            foreach (var account in await crudServices.ReadManyNoTracked<AccountViewModel>().ToListAsync())
-                account.IsOverdrawn = GetEndOfMonthBalanceForAccount(account) < 0;
-        }
-
+        
         /// <inheritdoc />
         public async Task<double> GetTotalBalance()
         {
             return await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreNotExcluded()
-                .SumAsync(x => x.CurrentBalance);
+                .SumAsync(x => x.CurrentBalance)
+                .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -71,8 +59,10 @@ namespace MoneyFox.ServiceLayer.Services
         {
             var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreNotExcluded()
-                .ToListAsync();
-            var balance = await GetTotalBalance();
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            var balance = await GetTotalBalance().ConfigureAwait(false);
 
             foreach (var payment in crudServices
                 .ReadManyNoTracked<PaymentViewModel>()
@@ -105,7 +95,6 @@ namespace MoneyFox.ServiceLayer.Services
                                 break;
                             }
                         }
-
                         break;
 
                     default:
