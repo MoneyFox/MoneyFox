@@ -12,16 +12,16 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         public void Prepare_AccountLoaded()
         {
             // Arrange
-            const int accoundId = 99;
+            const int accountId = 99;
             var crudServiceMock = new Mock<ICrudServicesAsync>();
 
             var editAccountVm = new EditAccountViewModel(crudServiceMock.Object, null, null, null, null, null);
 
             // Act
-            editAccountVm.Prepare(new ModifyAccountParameter(accoundId));
+            editAccountVm.Prepare(new ModifyAccountParameter(accountId));
 
             // Assert
-            crudServiceMock.Verify(x => x.ReadSingleAsync<AccountViewModel>(accoundId), Times.Once);
+            crudServiceMock.Verify(x => x.ReadSingleAsync<AccountViewModel>(accountId), Times.Once);
         }
     }
 }

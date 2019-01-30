@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -14,17 +15,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
-        private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
+        private readonly ISettingsFacade settingsFacade;
 
         public EditAccountViewModel(ICrudServicesAsync crudServices,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
             IDialogService dialogService,
-            IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) : base(settingsFacade, backupService, logProvider, navigationService)
+            IMvxLogProvider logProvider,
+            IMvxNavigationService navigationService) : base(settingsFacade, backupService, logProvider,
+            navigationService)
         {
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
@@ -32,32 +34,37 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService;
         }
 
-        public override string Title => string.Format(Strings.EditAccountTitle, SelectedAccount.Name);
+        public override string Title =>
+            string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
+
+        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
         public override async void Prepare(ModifyAccountParameter parameter)
         {
             base.Prepare(parameter);
-            SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
+            SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)
+                                                .ConfigureAwait(true);
         }
-
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
         protected override async Task SaveAccount()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedAccount);
+            await crudServices.UpdateAndSaveAsync(SelectedAccount)
+                              .ConfigureAwait(true);
             if (!crudServices.IsValid)
-            {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            }
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
+                                   .ConfigureAwait(true);
 
-            await NavigationService.Close(this);
+            await NavigationService.Close(this).ConfigureAwait(true);
         }
 
         protected async Task DeleteAccount()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
+            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id)
+                              .ConfigureAwait(true);
+
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask()
+                               .ConfigureAwait(true);
         }
     }
 }
