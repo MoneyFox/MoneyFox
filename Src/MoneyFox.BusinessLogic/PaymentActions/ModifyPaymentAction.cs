@@ -7,7 +7,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
     /// <summary>
     ///     Contains actions to save new an updated payments.
     /// </summary>
-    public interface ISavePaymentAction
+    public interface IModifyPaymentAction
     {
         /// <summary>
         ///     Create a new payment on the database.
@@ -39,11 +39,11 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         Task DeleteRecurringPayment(int id);
     }
 
-    public class SavePaymentAction : ISavePaymentAction
+    public class ModifyPaymentAction : IModifyPaymentAction
     {
         private readonly ISavePaymentDbAccess savePaymentDbAccess;
 
-        public SavePaymentAction(ISavePaymentDbAccess savePaymentDbAccess)
+        public ModifyPaymentAction(ISavePaymentDbAccess savePaymentDbAccess)
         {
             this.savePaymentDbAccess = savePaymentDbAccess;
         }

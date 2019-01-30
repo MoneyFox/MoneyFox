@@ -22,13 +22,13 @@ namespace MoneyFox.ServiceLayer.Services
     public class PaymentService : IPaymentService
     {
         private readonly EfCoreContext context;
-        private readonly ISavePaymentAction savePaymentAction;
+        private readonly IModifyPaymentAction modifyPaymentAction;
         private readonly IDialogService dialogService;
 
 
-        public PaymentService(EfCoreContext context, ISavePaymentAction savePaymentAction, IDialogService dialogService)
+        public PaymentService(EfCoreContext context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
         {
-            this.savePaymentAction = savePaymentAction;
+            this.modifyPaymentAction = modifyPaymentAction;
             this.dialogService = dialogService;
             this.context = context;
         }
@@ -37,7 +37,7 @@ namespace MoneyFox.ServiceLayer.Services
         {
             var payment = await CreatePaymentFromViewModel(paymentViewModel).ConfigureAwait(false);
 
-            var result = await savePaymentAction.AddPayment(payment)
+            var result = await modifyPaymentAction.AddPayment(payment)
                 .ConfigureAwait(false);
 
             await context.SaveChangesAsync()
@@ -52,7 +52,7 @@ namespace MoneyFox.ServiceLayer.Services
         {
             var payment = await CreatePaymentFromViewModel(newPaymentViewModel).ConfigureAwait(false);
 
-            var result = await savePaymentAction.UpdatePayment(newPaymentViewModel.Id, payment)
+            var result = await modifyPaymentAction.UpdatePayment(newPaymentViewModel.Id, payment)
                 .ConfigureAwait(false);
 
             await context.SaveChangesAsync()
@@ -73,11 +73,11 @@ namespace MoneyFox.ServiceLayer.Services
                     .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
                     .ConfigureAwait(true))
             {
-                await savePaymentAction.DeleteRecurringPayment(paymentToDelete.RecurringPayment.Id)
+                await modifyPaymentAction.DeleteRecurringPayment(paymentToDelete.RecurringPayment.Id)
                     .ConfigureAwait(true);
             }
             
-            var result = await savePaymentAction.DeletePayment(paymentToDelete.Id)
+            var result = await modifyPaymentAction.DeletePayment(paymentToDelete.Id)
                 .ConfigureAwait(false);
 
             await context.SaveChangesAsync()
