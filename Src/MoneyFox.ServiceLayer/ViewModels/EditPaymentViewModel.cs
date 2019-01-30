@@ -17,10 +17,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IPaymentService paymentService;
+        private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupService backupService;
 
         public EditPaymentViewModel(IPaymentService paymentService,
             ICrudServicesAsync crudServices,
@@ -35,7 +34,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.paymentService = paymentService;
             this.crudServices = crudServices;
             this.dialogService = dialogService;
-            this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.paymentService = paymentService;
         }
@@ -68,7 +66,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task DeletePayment()
         {
             await paymentService.DeletePayment(SelectedPayment).ConfigureAwait(true);
-            await backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning restore 4014
         }
     }
 }

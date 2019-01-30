@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
@@ -60,10 +59,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveCategoryBase()
         {
-            await SaveCategory();
+            await SaveCategory().ConfigureAwait(true);
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning restore 4014
         }
 
         /// <summary>

@@ -69,8 +69,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedCategory.Id)
                               .ConfigureAwait(true);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask()
-                               .ConfigureAwait(true);
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning restore 4014
         }
     }
 }

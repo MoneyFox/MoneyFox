@@ -97,7 +97,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask();
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning restore 4014
         }
 
         /// <inheritdoc />

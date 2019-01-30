@@ -15,8 +15,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
+        private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -63,8 +63,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
                               .ConfigureAwait(true);
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.EnqueueBackupTask()
-                               .ConfigureAwait(true);
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask().ConfigureAwait(true);
+#pragma warning restore 4014
         }
     }
 }

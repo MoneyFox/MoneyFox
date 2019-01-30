@@ -36,7 +36,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IMvxLogProvider logProvider,
-                                    IMvxNavigationService navigationService,) : base(logProvider, navigationService)
+                                    IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
