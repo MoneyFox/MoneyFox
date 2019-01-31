@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Backup;
@@ -13,6 +14,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
     public class BackupServiceTests
     {
         [Fact]
+        [ExcludeFromCodeCoverage]
         public async Task Login_loginFailed_SettingsNotUpdated()
         {
             // Arrange

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation;
 using MoneyFox.ServiceLayer.Facades;
@@ -8,6 +9,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Facades
 {
+    [ExcludeFromCodeCoverage]
     public class SettingsFacadeTests {
         private ISettingsAdapter settingsAdapter;
 

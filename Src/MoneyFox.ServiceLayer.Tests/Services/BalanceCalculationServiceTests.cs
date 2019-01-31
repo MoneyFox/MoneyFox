@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using GenericServices;
 using MockQueryable.Moq;
@@ -14,6 +15,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
     public class BalanceCalculationServiceTests
     {
         [Fact]
+        [ExcludeFromCodeCoverage]
         public async void GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
         {
             // Arrange

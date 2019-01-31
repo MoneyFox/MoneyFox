@@ -1,4 +1,5 @@
-﻿using GenericServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using GenericServices;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
@@ -6,6 +7,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class EditAccountViewModelTests
     {
         [Fact]

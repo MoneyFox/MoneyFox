@@ -10,7 +10,6 @@ using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Should;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels

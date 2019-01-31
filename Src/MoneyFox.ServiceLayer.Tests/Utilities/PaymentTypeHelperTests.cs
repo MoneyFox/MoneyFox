@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
@@ -6,6 +7,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Utilities
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentTypeHelperTests
     {
         [Theory]

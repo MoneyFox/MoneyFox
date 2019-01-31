@@ -1,4 +1,5 @@
-﻿using GenericServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -7,10 +8,14 @@ using MvvmCross.Plugin.Messenger;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels {
-    public class AddPaymentViewModelTests {
+namespace MoneyFox.ServiceLayer.Tests.ViewModels
+{
+    [ExcludeFromCodeCoverage]
+    public class AddPaymentViewModelTests
+    {
         [Fact]
-        public void Prepare_PaymentCreated() {
+        public void Prepare_PaymentCreated()
+        {
             // Arrange
             var crudServiceMock = new Mock<ICrudServicesAsync>();
 
@@ -28,7 +33,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels {
         }
 
         [Fact]
-        public void Prepare_Title_Set() {
+        public void Prepare_Title_Set()
+        {
             // Arrange
             var crudServiceMock = new Mock<ICrudServicesAsync>();
 

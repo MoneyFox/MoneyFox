@@ -1,4 +1,5 @@
-﻿using GenericServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -8,6 +9,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class EditCategoryViewModelTests
     {
         [Fact]

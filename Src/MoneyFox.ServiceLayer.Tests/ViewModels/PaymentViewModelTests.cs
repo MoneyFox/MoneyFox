@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.ServiceLayer.ViewModels;
 using Should;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
+    [ExcludeFromCodeCoverage]
     public class PaymentViewModelTests
     {
         [Fact]
