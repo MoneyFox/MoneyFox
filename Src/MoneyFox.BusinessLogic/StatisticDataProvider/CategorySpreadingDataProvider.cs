@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
@@ -55,7 +56,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         {
             var statisticList = statisticData
                                 .Take(6)
-                                .Select(x => new StatisticEntry( x.Value) {ValueLabel = x.Value.ToString("C"), Label = x.Label})
+                                .Select(x => new StatisticEntry( x.Value) {ValueLabel = x.Value.ToString("C", CultureInfo.InvariantCulture), Label = x.Label})
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
@@ -86,7 +87,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             var othersItem = new StatisticEntry(otherValue)
             {
                 Label = Strings.OthersLabel,
-                ValueLabel = otherValue.ToString("C")
+                ValueLabel = otherValue.ToString("C", CultureInfo.InvariantCulture)
             };
 
             if (othersItem.Value > 0)

@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Converter
         /// <param name="culture">Not used.</param>
         /// <returns>The converted string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => ((DateTime) value).ToString("D");
+            => ((DateTime) value).ToString("D", CultureInfo.InvariantCulture);
 
         /// <summary>
         ///     Converts the passed string back.
@@ -29,6 +29,6 @@ namespace MoneyFox.Presentation.Converter
         /// <param name="culture">Not used.</param>
         /// <returns>The converted string.</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => System.Convert.ToDateTime(value).ToString("d");
+            => System.Convert.ToDateTime(value).ToString("d", CultureInfo.InvariantCulture);
     }
 }
