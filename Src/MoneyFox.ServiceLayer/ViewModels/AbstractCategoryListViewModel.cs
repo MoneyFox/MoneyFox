@@ -81,11 +81,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Create and save a new CategoryViewModel group
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
-        
-        public override async Task Initialize()
+
+        /// <inheritdoc />
+        public override async void ViewAppearing()
         {
             DialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
+            await Task.Run(async () => await Load().ConfigureAwait(true))
+                      .ConfigureAwait(true);
             DialogService.HideLoadingDialog();
         }
 
@@ -101,30 +103,34 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     await CrudServices
                         .ReadManyNoTracked<CategoryViewModel>()
                         .WhereNameEquals(searchText)
-                        .ToListAsync());
+                        .ToListAsync()
+                        .ConfigureAwait(true));
             } 
             else
             {
                 categories = new List<CategoryViewModel>(await CrudServices
-                    .ReadManyNoTracked<CategoryViewModel>()
-                    .ToListAsync());
+                                                             .ReadManyNoTracked<CategoryViewModel>()
+                                                             .ToListAsync()
+                                                             .ConfigureAwait(true));
             }
             CategoryList = CreateGroup(categories);
         }
 
         private async Task Load()
         {
-            await Search();
+            await Search().ConfigureAwait(true);
         }
 
         private async Task EditCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
+            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id))
+                                   .ConfigureAwait(true);
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
+            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter())
+                                   .ConfigureAwait(true);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
@@ -137,10 +143,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
-            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)
+                                   .ConfigureAwait(true))
             {
-                await CrudServices.DeleteAndSaveAsync<CategoryViewModel>(categoryToDelete.Id);
-                await Search();
+                await CrudServices.DeleteAndSaveAsync<CategoryViewModel>(categoryToDelete.Id)
+                                  .ConfigureAwait(true);
+                await Search().ConfigureAwait(true);
             }
         }
     }

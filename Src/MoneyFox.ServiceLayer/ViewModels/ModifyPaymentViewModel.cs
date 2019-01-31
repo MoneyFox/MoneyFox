@@ -42,12 +42,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         PaymentViewModel SelectedPayment { get; }
 
         /// <summary>
-        ///     Gives access to all accounts for Charged Dropdown list
+        ///     Gives access to all accounts for Charged Drop down list
         /// </summary>
         ObservableCollection<AccountViewModel> ChargedAccounts { get; }
 
         /// <summary>
-        ///     Gives access to all accounts for Target Dropdown list
+        ///     Gives access to all accounts for Target Drop down list
         /// </summary>
         ObservableCollection<AccountViewModel> TargetAccounts { get; }
 
@@ -259,6 +259,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
+        public override void ViewAppearing()
+        {
+            base.ViewAppearing();
+            // We have to raise this here so that the UI knows enables the button again.
+            RaisePropertyChanged(nameof(GoToSelectCategorydialogCommand));
+        }
+
         protected abstract Task SavePayment();
 
         private async Task SavePaymentBase()
@@ -290,7 +297,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            await navigationService.Navigate<SelectCategoryListViewModel>().ConfigureAwait(true);
+            await navigationService.Navigate<SelectCategoryListViewModel>()
+                                   .ConfigureAwait(true);
         }
 
         private void ResetSelection()

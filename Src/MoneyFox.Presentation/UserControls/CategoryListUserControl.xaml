@@ -77,14 +77,14 @@
                 <controls:FloatingActionButton.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="iOS">50</On>
-                        <On Platform="Android">50</On>
+                        <On Platform="Android">80</On>
                     </OnPlatform>
                 </controls:FloatingActionButton.WidthRequest>
 
                 <controls:FloatingActionButton.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="iOS">50</On>
-                        <On Platform="Android">50</On>
+                        <On Platform="Android">90</On>
                     </OnPlatform>
                 </controls:FloatingActionButton.HeightRequest>
             </controls:FloatingActionButton>
