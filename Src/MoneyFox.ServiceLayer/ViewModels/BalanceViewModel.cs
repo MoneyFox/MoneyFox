@@ -62,7 +62,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         private async Task UpdateBalance()
         {
-            TotalBalance = await GetTotalBalance();
+            TotalBalance = await CalculateTotalBalance();
             EndOfMonthBalance = await GetEndOfMonthValue();
         }
 
@@ -70,7 +70,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual async Task<double> GetTotalBalance() => await balanceCalculationService.GetTotalBalance();
+        protected virtual async Task<double> CalculateTotalBalance() => await balanceCalculationService.GetTotalBalance();
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.

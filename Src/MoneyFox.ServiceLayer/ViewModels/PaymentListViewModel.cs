@@ -41,9 +41,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly MvxSubscriptionToken token;
         private int accountId;
         private IBalanceViewModel balanceViewModel;
-        private ObservableCollection<DateListGroup<PaymentViewModel>> dailyList;
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
 
-        private ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> source;
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
         private string title;
         private IPaymentListViewActionViewModel viewActionViewModel;
 
@@ -127,16 +127,16 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
 
-            var dailyItems = DateListGroup<PaymentViewModel>
+            var dailyItems = DateListGroupCollection<PaymentViewModel>
                 .CreateGroups(loadedPayments,
                     s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
                     s => s.Date,
                     itemClickCommand: EditPaymentCommand);
 
-            DailyList = new ObservableCollection<DateListGroup<PaymentViewModel>>(dailyItems);
+            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
 
-            Source = new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>(
-                DateListGroup<DateListGroup<PaymentViewModel>>
+            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
+                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
                     .CreateGroups(dailyItems,
                         s =>
                         {
@@ -213,7 +213,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
         {
             get => source;
             set
@@ -228,7 +228,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Returns daily groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<PaymentViewModel>> DailyList
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
         {
             get => dailyList;
             set

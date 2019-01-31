@@ -16,17 +16,17 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
         public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
         public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
-        public ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source => new ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>>
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>
         {
-            new DateListGroup<DateListGroup<PaymentViewModel>>("Januar 1992")
+            new DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>("Januar 1992")
             {
-                new DateListGroup<PaymentViewModel>("31.1.1992") {
+                new DateListGroupCollection<PaymentViewModel>("31.1.1992") {
                     new PaymentViewModel{Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
                     new PaymentViewModel{Amount = 123, Category = new CategoryViewModel{Name = "Beer"}}
                 }
             }
         };
-        public ObservableCollection<DateListGroup<PaymentViewModel>> DailyList { get; }
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
 
         public string Title => "Sparkonto";
         public int AccountId { get; } = 13;

@@ -141,22 +141,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     ressource file
         /// </summary>
-        public string Website => Constants.WEBSITE_URL;
+        public string Website => AppConstants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     ressource file
         /// </summary>
-        public string SupportMail => Constants.SUPPORT_MAIL;
+        public string SupportMail => AppConstants.SUPPORT_MAIL;
 
         private void GoToWebsite()
         {
-            webBrowserTask.ShowWebPage(Constants.WEBSITE_URL);
+            webBrowserTask.ShowWebPage(AppConstants.WEBSITE_URL);
         }
 
         private void SendMail()
         {
-            composeEmailTask.ComposeEmail(Constants.SUPPORT_MAIL,
+            composeEmailTask.ComposeEmail(AppConstants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty,
@@ -170,22 +170,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private void GoToRepository()
         {
-            webBrowserTask.ShowWebPage(Constants.GIT_HUB_REPOSITORY_URL);
+            webBrowserTask.ShowWebPage(AppConstants.GIT_HUB_REPOSITORY_URL);
         }
 
         private void GoToTranslationProject()
         {
-            webBrowserTask.ShowWebPage(Constants.TRANSLATION_PROJECT_URL);
+            webBrowserTask.ShowWebPage(AppConstants.TRANSLATION_PROJECT_URL);
         }
 
         private void GoToDesignerTwitterAccount()
         {
-            webBrowserTask.ShowWebPage(Constants.ICONDESIGNER_TWITTER_URL);
+            webBrowserTask.ShowWebPage(AppConstants.ICONDESIGNER_TWITTER_URL);
         }
 
         private void GoToContributionPage()
         {
-            webBrowserTask.ShowWebPage(Constants.GITHUB_CONTRIBUTION_URL);
+            webBrowserTask.ShowWebPage(AppConstants.GITHUB_CONTRIBUTION_URL);
         }
     }
 }

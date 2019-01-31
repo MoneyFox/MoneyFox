@@ -9,7 +9,7 @@ using MvvmCross.Navigation;
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
-    ///     This ViewModel is for the usage in the paymentlist when a concret account is selected
+    ///     This ViewModel is for the usage in the payment list when a concrete account is selected
     /// </summary>
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
@@ -36,11 +36,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override async Task<double> GetTotalBalance()
+        protected override async Task<double> CalculateTotalBalance()
         {
             try
             {
-                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId).ConfigureAwait(true);
                 return account.CurrentBalance;
             }
             catch (Exception ex)
@@ -55,10 +55,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Calculates the sum of the selected account at the end of the month.
         ///     This includes all payments coming until the end of month.
         /// </summary>
-        /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
+        /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValue()
         {
-            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
+                                            .ConfigureAwait(true);
             return balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

@@ -17,7 +17,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     List of categories.
         /// </summary>
-        ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList { get; }
+        ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList { get; }
 
         /// <summary>
         ///     Command for the item click.

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Foundation.Groups
 {
-    public class DateListGroup<T> : List<T>
+    public class DateListGroupCollection<T> : List<T>
     {
         /// <summary>
         ///     The delegate that is used to get the key information.
@@ -22,7 +21,7 @@ namespace MoneyFox.Foundation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroup(string key, MvxAsyncCommand<T> itemClickCommand = null)
+        public DateListGroupCollection(string key, MvxAsyncCommand<T> itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -47,10 +46,10 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="sort">Will sort the data if true.</param>
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
-        public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
+        public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
             GetSortKeyDelegate getSortKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null)
         {
-            var list = new List<DateListGroup<T>>();
+            var list = new List<DateListGroupCollection<T>>();
 
             foreach (var item in items)
             {
@@ -58,7 +57,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new DateListGroup<T>(index, itemClickCommand));
+                    list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))

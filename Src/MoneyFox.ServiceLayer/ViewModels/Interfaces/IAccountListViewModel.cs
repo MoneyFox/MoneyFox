@@ -12,7 +12,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
         /// <summary>
         ///     All existing accounts
         /// </summary>
-        ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts { get; }
+        ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; }
 
         /// <summary>
         ///     Indicates if there are accounts to display.

@@ -14,9 +14,9 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
 
         MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
 
-        ObservableCollection<DateListGroup<DateListGroup<PaymentViewModel>>> Source { get; }
+        ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
 
-        ObservableCollection<DateListGroup<PaymentViewModel>> DailyList { get; }
+        ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
 
         string Title { get; }
 

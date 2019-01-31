@@ -11,14 +11,14 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList =>
-            new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>
+        public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList =>
+            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
             {
-                new AlphaGroupListGroup<CategoryViewModel>("A")
+                new AlphaGroupListGroupCollection<CategoryViewModel>("A")
                 {
                     new CategoryViewModel {Name = "Auto"}
                 },
-                new AlphaGroupListGroup<CategoryViewModel>("E")
+                new AlphaGroupListGroupCollection<CategoryViewModel>("E")
                 {
                     new CategoryViewModel {Name = "Einkaufen"}
                 }

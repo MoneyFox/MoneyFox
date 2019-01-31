@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Presentation.Style
 {
-	public class Thickness : ResourceDictionary
+	public class ThicknessDictionary : ResourceDictionary
     {
 	}
 }

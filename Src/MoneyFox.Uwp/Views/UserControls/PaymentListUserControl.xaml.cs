@@ -52,13 +52,13 @@ namespace MoneyFox.Uwp.Views.UserControls
             if (PaymentListView.Items == null || !PaymentListView.Items.Any()) return;
 
             // Select first group with a cleared payment in it
-            DateListGroup<PaymentViewModel> selectedGroup = PaymentListView
-                                                            .Items.Select(x => (DateListGroup<PaymentViewModel>)x)
+            DateListGroupCollection<PaymentViewModel> selectedGroupCollection = PaymentListView
+                                                            .Items.Select(x => (DateListGroupCollection<PaymentViewModel>)x)
                                                             .FirstOrDefault(group => group.Any(x => x.IsCleared));
 
-            if (selectedGroup == null) return;
+            if (selectedGroupCollection == null) return;
 
-            PaymentListView.ScrollIntoView(selectedGroup, ScrollIntoViewAlignment.Leading);
+            PaymentListView.ScrollIntoView(selectedGroupCollection, ScrollIntoViewAlignment.Leading);
         }
     }
 }

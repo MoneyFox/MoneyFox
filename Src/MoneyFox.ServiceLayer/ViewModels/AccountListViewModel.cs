@@ -26,7 +26,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ISettingsFacade settingsFacade;
         private readonly IMvxNavigationService navigationService;
 
-        private ObservableCollection<AlphaGroupListGroup<AccountViewModel>> accounts;
+        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
         /// <summary>
         ///     Constructor
@@ -46,14 +46,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             BalanceViewModel = new BalanceViewModel(balanceCalculationService, logProvider, navigationService);
             ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
 
-            Accounts = new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>();
+            Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }
         
         public IBalanceViewModel BalanceViewModel { get; }
 
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
 
-        public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts
+        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
             set
@@ -96,10 +96,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                                                                             .ToListAsync()
                                                                             .ConfigureAwait(true);
 
-                var includedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.IncludedAccountsHeader);
+                var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(accountViewModels.Where(x => !x.IsExcluded));
 
-                var excludedAlphaGroup = new AlphaGroupListGroup<AccountViewModel>(Strings.ExcludedAccountsHeader);
+                var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 excludedAlphaGroup.AddRange(accountViewModels.Where(x => x.IsExcluded));
 
                 Accounts.Clear();

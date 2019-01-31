@@ -21,7 +21,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected readonly ICrudServicesAsync CrudServices;
         protected readonly IDialogService DialogService;
         
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> source;
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
         /// <summary>
         ///     Base class for the category list user control
@@ -43,7 +43,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CategoryList
+        public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
         {
             get => source;
             set
@@ -128,9 +128,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
-        private ObservableCollection<AlphaGroupListGroup<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
-            new ObservableCollection<AlphaGroupListGroup<CategoryViewModel>>(
-                AlphaGroupListGroup<CategoryViewModel>.CreateGroups(categories,
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
+            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
+                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"

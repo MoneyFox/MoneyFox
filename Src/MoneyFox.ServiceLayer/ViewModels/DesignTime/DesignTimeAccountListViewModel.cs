@@ -13,13 +13,13 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public ObservableCollection<AlphaGroupListGroup<AccountViewModel>> Accounts => new ObservableCollection<AlphaGroupListGroup<AccountViewModel>>
+        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts => new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
         {
-            new AlphaGroupListGroup<AccountViewModel>("Included")
+            new AlphaGroupListGroupCollection<AccountViewModel>("Included")
             {
                 new AccountViewModel{Name =  "Income", CurrentBalance = 1234}
             },
-            new AlphaGroupListGroup<AccountViewModel>("Excluded")
+            new AlphaGroupListGroupCollection<AccountViewModel>("Excluded")
             {
                 new AccountViewModel{Name =  "Savings", CurrentBalance = 4325}
             }

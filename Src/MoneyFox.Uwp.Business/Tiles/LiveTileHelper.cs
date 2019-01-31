@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.StartScreen;
-using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.ViewModels;
