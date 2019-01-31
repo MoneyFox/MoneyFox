@@ -9,8 +9,7 @@
                   xmlns:userControls="clr-namespace:MoneyFox.UserControls"
                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   x:Class="MoneyFox.Presentation.Views.SelectCategoryPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSelectCategoryListViewModel}">
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" >

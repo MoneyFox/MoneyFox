@@ -81,9 +81,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Create and save a new CategoryViewModel group
         /// </summary>
         public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
-
-        /// <inheritdoc />
-        public override async void ViewAppearing()
+        
+        public override async Task Initialize()
         {
             DialogService.ShowLoadingDialog();
             await Task.Run(async () => await Load());

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using MoneyFox.ServiceLayer.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.UserControls
@@ -12,7 +13,7 @@ namespace MoneyFox.Presentation.UserControls
             
             ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(() => ViewModel.ResetCategoryCommand.Execute())
+                Command = new Command(() => (BindingContext as ModifyPaymentViewModel)?.ResetCategoryCommand.Execute())
             });
         }
 

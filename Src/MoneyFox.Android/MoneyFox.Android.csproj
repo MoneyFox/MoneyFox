@@ -101,7 +101,7 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
-      <Version>0.4.1</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="PCLCrypto">
       <Version>2.0.147</Version>
@@ -174,9 +174,9 @@
     <Compile Include="SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\MoneyFox.Presentation\App.config">
+    <AndroidAsset Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
-    </Content>
+    </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\SplashScreen.axml">

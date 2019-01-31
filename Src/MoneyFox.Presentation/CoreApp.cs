@@ -19,6 +19,7 @@ using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using PCLAppConfig;
 
 namespace MoneyFox.Presentation
 {
@@ -35,6 +36,8 @@ namespace MoneyFox.Presentation
         /// </summary>
         public override void Initialize()
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ICrudServices, CrudServices>();
 

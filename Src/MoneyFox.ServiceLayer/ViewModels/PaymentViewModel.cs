@@ -169,11 +169,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 if (isRecurring == value) return;
                 isRecurring = value;
 
-                RecurringPayment = isRecurring 
-                    ? new RecurringPaymentViewModel() 
+                RecurringPayment = isRecurring
+                    ? new RecurringPaymentViewModel()
                     : null;
 
-                RaisePropertyChanged();;
+                RaisePropertyChanged();
             }
         }
 

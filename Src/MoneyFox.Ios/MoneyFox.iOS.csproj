@@ -173,7 +173,7 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
-      <Version>0.4.1</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>

@@ -558,7 +558,7 @@
       <Version>14332.0.2</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
-      <Version>0.4.1</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
       <Version>1.0.1.2</Version>

@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<views:MvxContentView x:TypeArguments="viewModels:ModifyPaymentViewModel" xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
-             xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-             x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl"
-             DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeModifyPaymentViewModel}">
+                      xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
+                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+                      x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -23,33 +20,33 @@
 
             <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
             <Picker ItemsSource="{Binding ChargedAccounts}"
-                        Style="{StaticResource DefaultPickerStyle}"
-                        SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" >
+                    Style="{StaticResource DefaultPickerStyle}"
+                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
             </Picker>
 
             <StackLayout Spacing="{StaticResource DefaultSpacing}"
                          IsVisible="{Binding IsTransfer}">
                 <Label Text="{Binding Resources[TargetAccountLabel]}" Style="{DynamicResource DefaultTextStyle}" />
                 <Picker ItemsSource="{Binding TargetAccounts}"
-                            Style="{StaticResource DefaultPickerStyle}"
-                            SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+                        Style="{StaticResource DefaultPickerStyle}"
+                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
             </StackLayout>
 
             <Label Text="{Binding Resources[AmountLabel]}"
-                       Style="{DynamicResource DefaultTextStyle}"
-                       Margin="0,5,0,0" />
+                   Style="{DynamicResource DefaultTextStyle}"
+                   Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
-                       Style="{StaticResource DefaultEntryStyle}"
-                       Text="{Binding SelectedPayment.Amount}" 
-                       Keyboard="Numeric"
-                       HorizontalTextAlignment="End"
-                       Focused="AmountFieldGotFocus"/>
+                   Style="{StaticResource DefaultEntryStyle}"
+                   Text="{Binding SelectedPayment.Amount}"
+                   Keyboard="Numeric"
+                   HorizontalTextAlignment="End"
+                   Focused="AmountFieldGotFocus" />
 
             <Label Text="{Binding Resources[CategoryLabel]}"
-                       Style="{DynamicResource DefaultTextStyle}"
-                       Margin="0,5,0,0" />
+                   Style="{DynamicResource DefaultTextStyle}"
+                   Margin="0,5,0,0" />
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -58,9 +55,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                       Command="{Binding GoToSelectCategorydialogCommand}" >
+                        Grid.ColumnSpan="2"
+                        Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                        Command="{Binding GoToSelectCategorydialogCommand}">
                     <Button.Effects>
                         <effects:PrimaryButtonEffect />
                     </Button.Effects>
@@ -73,19 +70,19 @@
                        Source="{StaticResource ImageResetField}"
                        HeightRequest="30"
                        WidthRequest="30"
-                       Margin="0,0,3,0"/>
+                       Margin="0,0,3,0" />
             </Grid>
 
             <Label Text="{Binding Resources[DateLabel]}"
-                       Style="{DynamicResource DefaultTextStyle}"
-                       Margin="0,5,0,0" />
-            <DatePicker Date="{Binding Date}" />
+                   Style="{DynamicResource DefaultTextStyle}"
+                   Margin="0,5,0,0" />
+            <DatePicker Date="{Binding SelectedPayment.Date}" />
 
             <Label Text="{Binding Resources[NoteLabel]}"
-                       Style="{DynamicResource DefaultTextStyle}"
-                       Margin="0,5,0,0" />
+                   Style="{DynamicResource DefaultTextStyle}"
+                   Margin="0,5,0,0" />
             <Entry Text="{Binding SelectedPayment.Note}"
-                       Style="{StaticResource DefaultEntryStyle}" />
+                   Style="{StaticResource DefaultEntryStyle}" />
 
             <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
@@ -102,11 +99,11 @@
             <StackLayout Spacing="{StaticResource DefaultSpacing}"
                          IsVisible="{Binding SelectedPayment.IsRecurring}">
                 <Label Text="{Binding Resources[RecurrenceLabel]}"
-                           Style="{DynamicResource DefaultTextStyle}"
-                           Margin="0,5,0,0" />
+                       Style="{DynamicResource DefaultTextStyle}"
+                       Margin="0,5,0,0" />
                 <Picker ItemsSource="{Binding RecurrenceList}"
-                            Style="{StaticResource DefaultPickerStyle}"
-                            SelectedItem="{Binding SelectedPayment.Recurringpayment.Recurrence}" />
+                        Style="{StaticResource DefaultPickerStyle}"
+                        SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
                       Margin="0,5,0,0">
@@ -117,24 +114,24 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Text="{Binding Resources[EndlessLabel]}" />
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.Recurringpayment.IsEndless}" />
+                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                 </Grid>
 
-                <StackLayout IsVisible="{Binding IsEndless, Converter={StaticResource Inverter}}"
+                <StackLayout IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"
                              Spacing="{StaticResource DefaultSpacing}">
                     <Label Text="{Binding Resources[DateLEnddateLabelabel]}"
-                               Style="{DynamicResource DefaultTextStyle}"
-                               Margin="0,5,0,0" />
-                    <DatePicker Date="{Binding SelectedPayment.Recurringpayment.EndDate}"/>
+                           Style="{DynamicResource DefaultTextStyle}"
+                           Margin="0,5,0,0" />
+                    <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}" />
                 </StackLayout>
 
             </StackLayout>
 
             <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeletePaymentButton"
-                        Text="{Binding Resources[DeleteLabel]}"
-                        Command="{Binding DeleteCommand}"
-                        Margin="0,12,0,0" >
+                    Text="{Binding Resources[DeleteLabel]}"
+                    Command="{Binding DeleteCommand}"
+                    Margin="0,12,0,0">
 
                 <Button.IsVisible>
                     <OnPlatform x:TypeArguments="x:Boolean">
@@ -142,7 +139,7 @@
                         <On Platform="Ios" Value="True" />
                     </OnPlatform>
                 </Button.IsVisible>
-                
+
                 <Button.Effects>
                     <effects:DeleteButtonEffect />
                 </Button.Effects>
@@ -150,4 +147,4 @@
             </Button>
         </StackLayout>
     </ContentView.Content>
-</views:MvxContentView>
+</ContentView>
