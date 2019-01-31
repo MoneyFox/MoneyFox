@@ -1322,7 +1322,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Monthly Average: .
+        ///   Looks up a localized string similar to Last year monthly average: .
         /// </summary>
         public static string MonthlyAverageLabel {
             get {

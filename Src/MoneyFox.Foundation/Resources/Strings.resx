@@ -770,6 +770,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>No statistic items to display. Try to adjust the time range.</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Monthly Average: </value>
+    <value>Last year monthly average: </value>
   </data>
 </root>

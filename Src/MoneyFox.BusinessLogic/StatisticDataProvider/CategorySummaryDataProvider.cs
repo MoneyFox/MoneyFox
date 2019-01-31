@@ -78,7 +78,8 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             List<Payment> payments = categories
                                      .First(x => x.Id == id)
                                      .Payments
-                                     .OrderBy(x => x.Date)
+                                     .Where(x => x.Date.Date > DateTime.Today.AddYears(-1))
+                                     .OrderByDescending(x => x.Date)
                                      .ToList();
 
             if (payments.Count == 0) return 0;
@@ -86,7 +87,8 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             double sumForCategory = payments.Sum(x => x.Amount);
             TimeSpan timeDiff = DateTime.Today - payments.Last().Date;
 
-            return sumForCategory / (timeDiff.TotalDays / 30);
+            if(timeDiff.Days < 30) return sumForCategory;
+            return Math.Round(sumForCategory / (timeDiff.Days / 30), 2, MidpointRounding.ToEven);
         }
     }
 }

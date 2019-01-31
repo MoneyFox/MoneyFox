@@ -13,7 +13,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
         private readonly ICategorySummaryDataProvider categorySummaryDataDataProvider;
-        private ObservableCollection<CategoryOverviewItem> categorySummary;
+        private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
         public StatisticCategorySummaryViewModel(ICategorySummaryDataProvider categorySummaryDataDataProvider,
                                                  IMvxMessenger messenger,
@@ -22,13 +22,13 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
                                                  IMvxNavigationService navigationService) : base(messenger, settingsFacade, logProvider, navigationService)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
-            CategorySummary = new ObservableCollection<CategoryOverviewItem>();
+            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
         }
 
-        public ObservableCollection<CategoryOverviewItem> CategorySummary
+        public ObservableCollection<CategoryOverviewViewModel> CategorySummary
         {
             get => categorySummary;
-            set
+            private set
             {
                 categorySummary = value;
                 RaisePropertyChanged();
@@ -44,7 +44,16 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            CategorySummary = new ObservableCollection<CategoryOverviewItem>(await categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
+            var summaryItems = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)
+                .ConfigureAwait(true);
+
+            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(summaryItems.Select(x => new CategoryOverviewViewModel
+            {
+                Value = x.Value,
+                Average = x.Average,
+                Label = x.Label,
+                Percentage = x.Percentage
+            }));
         }
     }
 }

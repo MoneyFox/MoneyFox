@@ -34,8 +34,11 @@
                     </Grid>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Resources[MonthlyAverageLabel]}" Style="{StaticResource DeemphasizedLabelStyle}" />
-                        <TextBlock Text="{Binding Average}" Style="{StaticResource DeemphasizedLabelStyle}" />
+                        <TextBlock Text="{Binding Resources[MonthlyAverageLabel]}" 
+                                   Style="{StaticResource DeemphasizedLabelStyle}"
+                                   Margin="0,0,3,0"/>
+                        <TextBlock Text="{Binding Average}" 
+                                   Style="{StaticResource DeemphasizedLabelStyle}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

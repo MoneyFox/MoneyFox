@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.BusinessLogic.StatisticDataProvider;
 
 namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 {
@@ -11,7 +10,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <summary>
         ///     The statistic items to display.
         /// </summary>
-        ObservableCollection<CategoryOverviewItem> CategorySummary { get; }
+        ObservableCollection<CategoryOverviewViewModel> CategorySummary { get; }
 
         /// <summary>
         ///     Indicates if there are data to display.

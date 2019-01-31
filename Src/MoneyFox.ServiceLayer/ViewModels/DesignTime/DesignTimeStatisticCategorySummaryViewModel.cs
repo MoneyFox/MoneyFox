@@ -11,15 +11,15 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public ObservableCollection<CategoryOverviewItem> CategorySummary => new ObservableCollection<CategoryOverviewItem>
+        public ObservableCollection<CategoryOverviewViewModel> CategorySummary => new ObservableCollection<CategoryOverviewViewModel>
         {
-            new CategoryOverviewItem
+            new CategoryOverviewViewModel
             {
                 Label = "Einkaufen",
                 Value = 745,
                 Percentage = 30
             },
-            new CategoryOverviewItem
+            new CategoryOverviewViewModel
             {
                 Label = "Beeeeer",
                 Value = 666,
