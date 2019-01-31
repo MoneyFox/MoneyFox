@@ -10,7 +10,7 @@ namespace MoneyFox.Foundation.Groups
     ///     This can be a single name or a whole word.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AlphaGroupListGroup<T> : List<T>
+    public class AlphaGroupListGroupCollection<T> : List<T>
     {
         /// <summary>
         ///     The delegate that is used to get the key information.
@@ -24,8 +24,7 @@ namespace MoneyFox.Foundation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
-        /// <param name="itemLongClickCommand">The command to execute on a long click.</param>
-        public AlphaGroupListGroup(string key, MvxAsyncCommand<T> itemClickCommand = null)
+        public AlphaGroupListGroupCollection(string key, MvxAsyncCommand<T> itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -50,10 +49,10 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="sort">Will sort the data if true.</param>
         /// <param name="itemClickCommand">The command to execute on a click</param>
         /// <returns>An items source for a LongListSelector</returns>
-        public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
+        public static List<AlphaGroupListGroupCollection<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
             GetKeyDelegate getKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null)
         {
-            var list = new List<AlphaGroupListGroup<T>>();
+            var list = new List<AlphaGroupListGroupCollection<T>>();
 
             foreach (var item in items)
             {
@@ -61,7 +60,7 @@ namespace MoneyFox.Foundation.Groups
 
                 if (list.All(a => a.Key != index))
                 {
-                    list.Add(new AlphaGroupListGroup<T>(index, itemClickCommand));
+                    list.Add(new AlphaGroupListGroupCollection<T>(index, itemClickCommand));
                 }
 
                 if (!string.IsNullOrEmpty(index))

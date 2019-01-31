@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\DesignTime\**" />
+    <EmbeddedResource Remove="ViewModels\DesignTime\**" />
+    <None Remove="ViewModels\DesignTime\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackupViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsPersonalizationViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EfCore.GenericServices" Version="2.0.0" />
+    <PackageReference Include="Microcharts" Version="0.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.13.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Graph" Version="1.12.0" />
+    <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="MvvmCross.Plugin.Email" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.2.2" />
+    <PackageReference Include="MvvmCross.Plugin.WebBrowser" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj" />
+    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
+  </ItemGroup>
+
+</Project>

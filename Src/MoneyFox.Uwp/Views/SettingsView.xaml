@@ -1,0 +1,165 @@
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.SettingsView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+                      xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:userControls1="using:MoneyFox.Uwp.Views.UserControls"
+                      xmlns:converter1="using:MoneyFox.Uwp.Converter"
+                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      mc:Ignorable="d">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeSettingsViewModel />
+    </d:MvxWindowsPage.DataContext>
+
+    <views:MvxWindowsPage.Resources>
+        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+    </views:MvxWindowsPage.Resources>
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding SettingsSecurityViewModel.LoadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+        <core:EventTriggerBehavior EventName="Unloaded">
+            <core:InvokeCommandAction Command="{Binding SettingsSecurityViewModel.UnloadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Grid>
+        <Pivot>
+            <!--  Settings  -->
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="{Binding Resources[SettingsTitle]}"
+                               Style="{StaticResource UwpPageTitleStyle}"
+                               Margin="0,0,-10,0" />
+                </PivotItem.Header>
+                <ScrollViewer Margin="0,0,-10,0" >
+                    <StackPanel Margin="0,0,20,0">
+                        <!-- Background Job -->
+                        <StackPanel DataContext="{Binding BackgroundJobViewModel}">
+                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{Binding Resources[BackupTitle]}"
+                                       TextWrapping="WrapWholeWords" />
+
+                            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                       Text="{Binding Resources[AutobackupInformationLabel]}"
+                                       TextWrapping="WrapWholeWords" />
+
+                            <ToggleSwitch VerticalAlignment="Center"
+                                          Margin="0,6,0,0"
+                                          Header="{Binding Resources[AutobackupLabel]}"
+                                          IsOn="{Binding IsAutoBackupEnabled,
+                                         Mode=TwoWay}" />
+
+                            <TextBlock Margin="0,10,0,3"
+                                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                       Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
+                                       TextWrapping="WrapWholeWords" />
+
+                            <input:RadNumericBox
+                                Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                            <StackPanel Margin="0,12,0,0">
+                                <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionCreateRecurringPayments}" />
+                                </StackPanel>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <!-- Personalizations -->
+                        <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="0,24,0,0">
+                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{Binding Resources[PersonalizationTitle]}"
+                                       TextWrapping="WrapWholeWords" />
+
+                            <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
+                                       Text="You can change between a dark and light theme. To apply this change please restart the application."
+                                       TextWrapping="WrapWholeWords"
+                                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                            <ComboBox
+                                SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <ComboBoxItem x:Uid="Dark" Content="Dark" />
+                                <ComboBoxItem x:Uid="Light" Content="Light" />
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Security -->
+                        <StackPanel DataContext="{Binding SettingsSecurityViewModel}" Margin="0,24,0,0">
+                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{Binding Resources[SecurityTitle]}"
+                                       TextWrapping="WrapWholeWords" />
+
+                            <ToggleSwitch x:Name="toggleSwitch"
+                                          IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          x:Uid="PasswordSettingSwitch"
+                                          OnContent="Password protection active"
+                                          OffContent="Password protection inactive" />
+
+                            <StackPanel
+                                Visibility="{Binding IsOn, ElementName=toggleSwitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}">
+                                <PasswordBox Header="Password"
+                                             x:Uid="Password"
+                                             Margin="0,5,0,0"
+                                             Password="{Binding Password, Mode=TwoWay}"
+                                             PasswordRevealMode="Peek" />
+                                <PasswordBox Header="Password Confirmation"
+                                             x:Uid="PasswordConfirmation"
+                                             Margin="0,5,0,0"
+                                             Password="{Binding PasswordConfirmation, Mode=TwoWay}"
+                                             PasswordRevealMode="Peek" />
+
+                                <Button x:Uid="SavePassword"
+                                        Margin="0,12,0,0"
+                                        HorizontalAlignment="Stretch"
+                                        Content="Save Password"
+                                        Command="{Binding SavePasswordCommand}" />
+                            </StackPanel>
+                            <ToggleSwitch x:Name="PassportSwitch"
+                                          IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          x:Uid="PassportSettingSwitch"
+                                          OnContent="Passport Login Enabled"
+                                          OffContent="Enable Passport Login" />
+                            <TextBlock x:Name="PassportStatus"
+                                       Margin="0,0,0,15"
+                                       HorizontalAlignment="Center"
+                                       TextWrapping="WrapWholeWords"
+                                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                       TextAlignment="center"
+                                       Text="Text" />
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+
+            <!--  About  -->
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="{Binding Resources[AboutTitle]}"
+                               Style="{StaticResource UwpPageTitleStyle}"
+                               Margin="0,0,-10,0" />
+                </PivotItem.Header>
+                <userControls1:AboutUserControl DataContext="{Binding AboutViewModel}" />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</views:MvxWindowsPage>

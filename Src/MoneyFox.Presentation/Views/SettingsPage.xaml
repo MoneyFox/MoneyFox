@@ -1,0 +1,43 @@
+﻿<d:MvxContentPage x:TypeArguments="viewModels:SettingsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
+                  xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
+                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+                  x:Class="MoneyFox.Presentation.Views.SettingsPage"
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
+
+    <ContentPage.Content>
+        <ListView x:Name="SettingsList"
+                  ItemsSource="{Binding SettingsList}" 
+                  RowHeight="60" 
+                  Margin="{DynamicResource NegativeMediumLeftRightMargin}" >
+
+            <ListView.SeparatorVisibility>
+                <OnPlatform x:TypeArguments="SeparatorVisibility">
+                    <On Platform="iOS" Value="Default" />
+                    <On Platform="Android" Value="None" />
+                </OnPlatform>
+            </ListView.SeparatorVisibility>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
+                            <StackLayout Style="{DynamicResource ListItemStyle}"
+                                         Orientation="Vertical"
+                                         Padding="3"
+                                         Spacing="{DynamicResource DefaultSpacing}">
+                                <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                            </StackLayout>
+                        </controls:CardView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</d:MvxContentPage>

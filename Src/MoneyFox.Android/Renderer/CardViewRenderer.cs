@@ -1,7 +1,7 @@
 ﻿using Android.Content;
 using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
-using MoneyFox.Controls;
+using MoneyFox.Presentation.Controls;
 using Xamarin.Forms.Platform.Android;
 using FrameRenderer = Xamarin.Forms.Platform.Android.AppCompat.FrameRenderer;
 

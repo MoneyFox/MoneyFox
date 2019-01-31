@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using MoneyFox.ServiceLayer.Interfaces;
 using Plugin.SecureStorage;
 
 namespace MoneyFox.iOS

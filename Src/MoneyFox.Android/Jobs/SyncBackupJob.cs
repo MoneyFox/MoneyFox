@@ -5,12 +5,13 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using MoneyFox.Business.Adapter;
-using MoneyFox.Business.Manager;
-using MoneyFox.Business.Services;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.DataLayer;
 using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
 using MvvmCross.Plugin.File;
 using Debug = System.Diagnostics.Debug;
@@ -62,19 +63,21 @@ namespace MoneyFox.Droid.Jobs
         {
             if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
 
-            var settingsManager = new SettingsManager(new SettingsAdapter());
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
-                DataAccess.ApplicationContext.DbPath =
+                EfCoreContext.DbPath =
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
-                await new BackupManager(new OneDriveService(new OneDriveAuthenticator()),
-                                        Mvx.IoCProvider.Resolve<IMvxFileStore>(),
-                                        settingsManager,
-                                        new ConnectivityAdapter())
-                    .DownloadBackup();
+                var backupManager = new BackupManager(
+                    new OneDriveService(new OneDriveAuthenticator()),
+                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    new ConnectivityAdapter());
+
+                var backupService = new BackupService(backupManager, settingsFacade);
+                await backupService.RestoreBackup();
 
                 JobFinished(args, false);
             }
@@ -84,7 +87,7 @@ namespace MoneyFox.Droid.Jobs
             }
             finally
             {
-                settingsManager.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
         }
 
@@ -93,9 +96,9 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask(int interval)
         {
-            if(!Mvx.IoCProvider.CanResolve<ISettingsManager>()) return;
+            if(!Mvx.IoCProvider.CanResolve<ISettingsFacade>()) return;
 
-            if (!Mvx.IoCProvider.Resolve<ISettingsManager>().IsBackupAutouploadEnabled) return;
+            if (!Mvx.IoCProvider.Resolve<ISettingsFacade>().IsBackupAutouploadEnabled) return;
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(

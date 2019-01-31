@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using CoreGraphics;
 using Foundation;
-using MoneyFox.Controls;
 using MoneyFox.iOS.Renderer;
+using MoneyFox.Presentation.Controls;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

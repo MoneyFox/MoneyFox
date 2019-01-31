@@ -1,9 +1,9 @@
 using Android.App;
 using Android.Content;
 using Android.Net;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     /// <summary>
     ///     Gives access to the features of google play on android.

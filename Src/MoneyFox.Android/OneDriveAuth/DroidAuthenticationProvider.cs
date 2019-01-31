@@ -5,9 +5,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using MoneyFox.Business.Extensions;
+using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 using PCLAppConfig;
 using Xamarin.Auth;
 

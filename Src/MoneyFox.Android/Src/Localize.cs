@@ -1,7 +1,7 @@
 using System.Globalization;
 using Java.Util;
 
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     public class Localize
     {

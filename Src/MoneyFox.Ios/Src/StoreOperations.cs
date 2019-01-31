@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Interfaces;
+﻿using MoneyFox.ServiceLayer.Interfaces;
 using StoreKit;
 
 namespace MoneyFox.iOS

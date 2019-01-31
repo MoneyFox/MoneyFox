@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using MoneyFox.Presentation;
 using MvvmCross.Forms.Platforms.Android.Views;
 
 namespace MoneyFox.Droid
@@ -13,7 +14,7 @@ namespace MoneyFox.Droid
         , Theme = "@style/Theme.Splash"
         , NoHistory = true
         , ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SplashScreen : MvxFormsSplashScreenActivity<Setup, CoreApp, App>
+    public class SplashScreen : MvxFormsSplashScreenActivity<ApplicationSetup, CoreApp, App>
     {
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)

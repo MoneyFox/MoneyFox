@@ -4,7 +4,7 @@ using System.Globalization;
 namespace MoneyFox.Foundation.Exceptions
 {
     /// <summary>
-    ///     A custom format exception who contains more specific informations.
+    ///     A custom format exception who contains more specific information.
     /// </summary>
     public class ExtendedFormatException : Exception
     {

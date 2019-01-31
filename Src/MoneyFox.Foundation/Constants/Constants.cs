@@ -1,37 +1,38 @@
-﻿namespace MoneyFox.Foundation.Constants
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+namespace MoneyFox.Foundation.Constants
 {
     /// <summary>
     ///     String Constants for usage in the app
     /// </summary>
-    public class Constants
+    public sealed class AppConstants
     {
         /// <summary>
-        ///     Url to the Apply Solutions website
+        ///     URL to the Apply Solutions website
         /// </summary>
         public const string WEBSITE_URL = "http://www.apply-solutions.ch";
 
         /// <summary>
-        ///     Mailaddress for support
+        ///     Mail address for support
         /// </summary>
         public const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
 
         /// <summary>
-        ///     Url to the GitHub repository
+        ///     URL to the GitHub repository
         /// </summary>
         public const string GIT_HUB_REPOSITORY_URL = "https://github.com/Apply-Solutions/MoneyManager";
 
         /// <summary>
-        ///     Url to the GitHub repository
+        ///     URL to the GitHub repository
         /// </summary>
         public const string TRANSLATION_PROJECT_URL = "https://crowdin.com/project/money-fox";
 
         /// <summary>
-        ///     Url to the Twitter AccountViewModel of the icon.
+        ///     URL to the Twitter AccountViewModel of the icon.
         /// </summary>
         public const string ICONDESIGNER_TWITTER_URL = "https://twitter.com/vandert9";
 
         /// <summary>
-        ///     Url to the Twitter AccountViewModel of the icon.
+        ///     URL to the Twitter AccountViewModel of the icon.
         /// </summary>
         public const string GITHUB_CONTRIBUTION_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 

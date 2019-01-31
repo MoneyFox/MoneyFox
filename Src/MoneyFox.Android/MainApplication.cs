@@ -2,6 +2,7 @@
 using System.IO;
 using Android.App;
 using Android.Runtime;
+using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.Droid
@@ -16,7 +17,7 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
-            DataAccess.ApplicationContext.DbPath =
+            EfCoreContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                              DatabaseConstants.DB_NAME);
 

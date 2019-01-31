@@ -108,15 +108,15 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Setup.cs" />
+    <Compile Include="ApplicationSetup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Authentication\IosAuthenticationProvider.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <None Include="..\MoneyFox\App.config">
+    <Content Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
-    </None>
+    </Content>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +145,11 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers">
+      <Version>2.6.3</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <Version>2.1.3</Version>
       <Version>2.1.4</Version>
@@ -168,7 +173,7 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
-      <Version>0.4.1</Version>
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
@@ -182,21 +187,29 @@
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Business\MoneyFox.Business.csproj">
-      <Project>{15aca206-dc79-429c-a4a5-d947d62481b5}</Project>
-      <Name>MoneyFox.Business</Name>
+    <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj">
+      <Project>{58FB652B-1B0E-420F-A380-B1B7699077B2}</Project>
+      <Name>MoneyFox.BusinessDbAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
+      <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
+      <Name>MoneyFox.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
+      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
+      <Name>MoneyFox.DataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
-      <Project>{ABBB1314-B512-4748-9054-888565E25B5A}</Project>
-      <Name>MoneyFox</Name>
+    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
+      <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
+      <Name>MoneyFox.Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{600FC746-6968-489F-9471-A37A6D312812}</Project>
-      <Name>MoneyFox.DataAccess</Name>
+    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
+      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
+      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

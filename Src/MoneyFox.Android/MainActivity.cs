@@ -3,7 +3,8 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
 using PCLAppConfig;
@@ -42,8 +43,9 @@ namespace MoneyFox.Droid
         protected override void OnCreate(Bundle bundle)
         {
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
 #if !DEBUG
-            AppCenter.Start("6d9840ff-d832-4c1b-a2ee-bac7f15d89bd",
+            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
                    typeof(Analytics), typeof(Crashes));
 #endif
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -77,10 +79,10 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsManager>())
+            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsFacade>())
             {
                 Mvx.IoCProvider.Resolve<IBackgroundTaskManager>()
-                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsManager>().BackupSyncRecurrence);
+                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsFacade>().BackupSyncRecurrence);
             }
         }
 

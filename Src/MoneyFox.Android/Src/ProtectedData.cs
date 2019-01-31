@@ -1,6 +1,6 @@
 using Android.App;
 using Android.Content;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.ServiceLayer.Interfaces;
 using Plugin.SecureStorage;
 
 namespace MoneyFox.Droid
