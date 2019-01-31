@@ -4,7 +4,8 @@
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Presentation.Views.EditPaymentPage">
+                      x:Class="MoneyFox.Presentation.Views.EditPaymentPage"
+                      Title="{Binding Title}">
 
     <ContentPage.Content>
         <StackLayout>

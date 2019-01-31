@@ -11,7 +11,6 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -105,9 +104,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected ModifyPaymentParameter PassedParameter;
 
-        private bool preventNullingSelected;
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment;
+        private ObservableCollection<AccountViewModel> chargedAccounts;
+        private ObservableCollection<AccountViewModel> targetAccounts;
 
         /// <summary>
         ///     Default constructor
@@ -202,18 +202,35 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 if (selectedPayment == value) return;
                 selectedPayment = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(AccountHeader));
             }
         }
 
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts { get; private set; }
+        public ObservableCollection<AccountViewModel> ChargedAccounts
+        {
+            get => chargedAccounts;
+            private set
+            {
+                chargedAccounts = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts { get; private set; }
+        public ObservableCollection<AccountViewModel> TargetAccounts
+        {
+            get => targetAccounts;
+            private set
+            {
+                targetAccounts = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public virtual string Title { get; set; }
 
@@ -229,14 +246,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override void Prepare(ModifyPaymentParameter parameter)
         {
             PassedParameter = parameter;
-            RaisePropertyChanged(nameof(AccountHeader));
             RaisePropertyChanged(nameof(Title));
         }
 
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>().ToListAsync();
+            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
+                                             .ToListAsync()
+                                             .ConfigureAwait(true);
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
@@ -247,22 +265,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (SelectedPayment.ChargedAccount == null)
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage)
+                                   .ConfigureAwait(true);
                 return;
             }
 
-            await SavePayment();
+            await SavePayment().ConfigureAwait(true);
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
             backupService.EnqueueBackupTask().ConfigureAwait(true);
 #pragma warning restore 4014
-        }
-
-            /// <inheritdoc />
-        public override void ViewDisappearing()
-        {
-            if (!preventNullingSelected) SelectedPayment = null;
         }
 
         /// <summary>
@@ -273,13 +286,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category = message.SelectedCategory;
-            preventNullingSelected = false;
         }
 
         private async Task OpenSelectCategoryList()
         {
-            preventNullingSelected = true;
-            await navigationService.Navigate<SelectCategoryListViewModel>();
+            await navigationService.Navigate<SelectCategoryListViewModel>().ConfigureAwait(true);
         }
 
         private void ResetSelection()
@@ -289,7 +300,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Cancel()
         {
-            await navigationService.Close(this);
+            await navigationService.Close(this).ConfigureAwait(true);
         }
 
         private void UpdateOtherComboBox()
