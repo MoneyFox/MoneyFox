@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Foundation;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
@@ -19,10 +17,11 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
-using PCLAppConfig;
 using Rg.Plugins.Popup;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Analytics;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -43,9 +42,8 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
 #if !DEBUG
-            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f", typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
