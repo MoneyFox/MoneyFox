@@ -23,6 +23,7 @@ namespace MoneyFox.ServiceLayer.Parameters
         /// <param name="paymentId">Payment Id to edit</param>
         public ModifyPaymentParameter(PaymentType paymentType, int paymentId = 0) : this(paymentId)
         {
+            PaymentId = paymentId;
             PaymentType = paymentType;
         }
 
