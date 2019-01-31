@@ -238,6 +238,7 @@
     </AppxManifest>
     <Content Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="MoneyFox.Uwp_StoreKey.pfx" />
     <None Include="MoneyFox.Uwp_TemporaryKey.pfx" />

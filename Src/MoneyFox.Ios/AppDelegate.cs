@@ -22,6 +22,7 @@ using UIKit;
 using Xamarin.Forms.Platform.iOS;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
+using PCLAppConfig;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -42,6 +43,8 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
@@ -97,21 +98,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public async Task Search(string searchText = "")
         {
             List<CategoryViewModel> categories;
+
+            var categoryQuery = CrudServices
+                .ReadManyNoTracked<CategoryViewModel>()
+                .OrderBy(x => x.Name);
+
             if (!string.IsNullOrEmpty(searchText))
             {
                 categories = new List<CategoryViewModel>(
-                    await CrudServices
-                        .ReadManyNoTracked<CategoryViewModel>()
+                    await categoryQuery
                         .WhereNameEquals(searchText)
                         .ToListAsync()
                         .ConfigureAwait(true));
             } 
             else
             {
-                categories = new List<CategoryViewModel>(await CrudServices
-                                                             .ReadManyNoTracked<CategoryViewModel>()
-                                                             .ToListAsync()
-                                                             .ConfigureAwait(true));
+                categories = new List<CategoryViewModel>(
+                    await categoryQuery
+                        .ToListAsync()
+                        .ConfigureAwait(true));
             }
             CategoryList = CreateGroup(categories);
         }
@@ -146,7 +151,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)
                                    .ConfigureAwait(true))
             {
-                await CrudServices.DeleteAndSaveAsync<CategoryViewModel>(categoryToDelete.Id)
+                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id)
                                   .ConfigureAwait(true);
                 await Search().ConfigureAwait(true);
             }

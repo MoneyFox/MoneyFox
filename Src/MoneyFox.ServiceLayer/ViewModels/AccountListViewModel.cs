@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
@@ -114,12 +115,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                await RaisePropertyChanged(nameof(HasNoAccounts));
+                await RaisePropertyChanged(nameof(HasNoAccounts)).ConfigureAwait(true);
             }
             catch(Exception ex)
             {
                 Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString())
+                    .ConfigureAwait(true);
             }
         }
 
@@ -127,22 +129,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (accountViewModel == null) return;
 
-            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id))
+                .ConfigureAwait(true);
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
         {
-            if (accountToDelete == null)
-            {
-                return;
-            }
+            if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
+                .ConfigureAwait(true))
             {
-                await crudService.DeleteAndSaveAsync<AccountViewModel>(accountToDelete.Id);
+                await crudService.DeleteAndSaveAsync<Account>(5)
+                    .ConfigureAwait(true);
 
                 Accounts.Clear();
-                await Load();
+                await Load().ConfigureAwait(true);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
@@ -150,7 +152,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToAddAccount()
         {
-            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
+            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter())
+                .ConfigureAwait(true);
         }
     }
 }
