@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Controls
         }
 
         public static readonly BindableProperty ShadowRadiusProperty = BindableProperty.Create(
-            propertyName: "ShadowRadius",
+            propertyName: nameof(ShadowRadius),
             returnType: typeof(int),
             declaringType: typeof(CardView),
             defaultValue: 10);

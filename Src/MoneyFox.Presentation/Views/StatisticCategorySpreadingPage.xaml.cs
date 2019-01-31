@@ -1,4 +1,8 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ServiceLayer.ViewModels;
+using MvvmCross;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,14 +29,13 @@ namespace MoneyFox.Presentation.Views
 
 	    private async void OpenDialog()
 	    {
-            // TODO Reactivate.
-	        //if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
-	        //{
-	        //    await Navigation.PushPopupAsync(new DateSelectionDialog
-	        //    {
-	        //        BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
-	        //    });
-	        //}
-	    }
+            if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
+            {
+                await Navigation.PushPopupAsync(new DateSelectionPopup
+                {
+                    BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
+                }).ConfigureAwait(true);
+            }
+        }
     }
 }

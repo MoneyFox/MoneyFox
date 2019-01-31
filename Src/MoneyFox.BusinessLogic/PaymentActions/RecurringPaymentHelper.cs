@@ -10,7 +10,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
-        /// <param name="payment">Last occurence of the recurring payment.</param>
+        /// <param name="payment">Last occurrence of the recurring payment.</param>
         /// <returns>True or False if the payment has to be repeated.</returns>
         public static bool CheckIfRepeatable(Payment payment)
         {

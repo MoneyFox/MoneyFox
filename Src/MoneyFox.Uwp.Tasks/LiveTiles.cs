@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using GenericServices.PublicButHidden;
+using GenericServices.Setup;
+using MoneyFox.DataLayer;
+using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
 
 namespace MoneyFox.Uwp.Tasks
@@ -16,9 +20,17 @@ namespace MoneyFox.Uwp.Tasks
                 serviceDeferral = taskInstance.GetDeferral();
                 taskInstance.Canceled += OnTaskCanceled;
 
-                //var liveTileManager = new LiveTileManager(accountService);
-                //await liveTileManager.UpdatePrimaryLiveTile();
-                //await liveTileManager.UpdateSecondaryLiveTiles();
+                var context = new EfCoreContext();
+                var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
+                utData.AddSingleDto<CategoryViewModel>();
+                utData.AddSingleDto<PaymentViewModel>();
+                utData.AddSingleDto<RecurringPaymentViewModel>();
+
+                var crudService = new CrudServicesAsync(context, utData.ConfigAndMapper);
+
+                var liveTileManager = new LiveTileManager(crudService);
+                await liveTileManager.UpdatePrimaryLiveTile().ConfigureAwait(false);
+                await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(false);
             }
             catch (Exception ex)
             {

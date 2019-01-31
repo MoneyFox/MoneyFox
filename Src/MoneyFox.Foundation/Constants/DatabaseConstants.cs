@@ -1,16 +1,18 @@
-﻿namespace MoneyFox.Foundation.Constants
+﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
+namespace MoneyFox.Foundation.Constants
 {
     /// <summary>
     ///     Contains constant values regarding the database
     /// </summary>
-    public class DatabaseConstants
+    public sealed class DatabaseConstants
     {
         /// <summary>
-        ///     Name of the sqlite database with the old schema
+        ///     Name of the SQLite database with the old schema
         /// </summary>
         public const string DB_NAME_OLD = "moneyfox2.db";
+
         /// <summary>
-        ///     Name of the sqlite database
+        ///     Name of the SQLite database
         /// </summary>
         public const string DB_NAME = "moneyfox3.db";
 

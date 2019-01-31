@@ -2,6 +2,7 @@
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.ServiceLayer.ViewModels;
+using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -38,14 +39,13 @@ namespace MoneyFox.Presentation.Views
 
         private async void OpenDialog()
         {
-            //TODO: Reactivate
-            //if (Mvx.IoCProvider.CanResolve<SelectFilterDialogViewModel>())
-            //{
-            //    await Navigation.PushPopupAsync(new FilterDialog
-            //    {
-            //        BindingContext = Mvx.IoCProvider.Resolve<SelectFilterDialogViewModel>()
-            //    });
-            //}
+            if (Mvx.IoCProvider.CanResolve<SelectFilterDialogViewModel>())
+            {
+                await Navigation.PushPopupAsync(new FilterPopup
+                {
+                    BindingContext = Mvx.IoCProvider.Resolve<SelectFilterDialogViewModel>()
+                }).ConfigureAwait(true);
+            }
         }
 
         protected override void OnAppearing()
@@ -57,7 +57,8 @@ namespace MoneyFox.Presentation.Views
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
+            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel })
+                            .ConfigureAwait(true);
         }
 
         private void EditPayment(object sender, EventArgs e)

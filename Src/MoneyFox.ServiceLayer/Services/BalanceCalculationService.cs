@@ -66,7 +66,7 @@ namespace MoneyFox.ServiceLayer.Services
 
             foreach (var payment in crudServices
                 .ReadManyNoTracked<PaymentViewModel>()
-                .HasDateSmallerEqualsThan(Utilities.Utilities.GetEndOfMonth()))
+                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth()))
 
                 switch (payment.Type)
                 {
@@ -110,7 +110,7 @@ namespace MoneyFox.ServiceLayer.Services
 
             foreach (var payment in crudServices.ReadManyNoTracked<PaymentViewModel>()
                 .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(Utilities.Utilities.GetEndOfMonth()))
+                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth()))
                 switch (payment.Type)
                 {
                     case PaymentType.Expense:
