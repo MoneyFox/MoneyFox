@@ -1,12 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using MoneyFox.Business.Messages;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Pocos;
+using GenericServices;
 using MoneyFox.DataLayer.Entities;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -42,13 +38,13 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
+            var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                                                             new Mock<IDialogService>().Object,
                                                             messengerMock.Object,
                                                             new Mock<IMvxLogProvider>().Object,
                                                             navigationMock.Object);
 
-            var testCategory = new CategoryViewModel(new Category());
+            var testCategory = new CategoryViewModel();
 
             // Act
             await viewModel.ItemClickCommand.ExecuteAsync(testCategory);
@@ -70,14 +66,14 @@ namespace MoneyFox.Business.Tests.ViewModels
                 .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
                 .Returns(Task.FromResult(true));
 
-            var viewModel = new SelectCategoryListViewModel(new Mock<ICategoryService>().Object,
+            var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                 new Mock<IDialogService>().Object,
                 new Mock<IMvxMessenger>().Object,
                 new Mock<IMvxLogProvider>().Object,
                 navigationMock.Object );
 
             // Act
-            await viewModel.ItemClickCommand.ExecuteAsync(new CategoryViewModel(new Category()));
+            await viewModel.ItemClickCommand.ExecuteAsync(new CategoryViewModel());
 
             // Assert
             Assert.True(closeWasCalled);

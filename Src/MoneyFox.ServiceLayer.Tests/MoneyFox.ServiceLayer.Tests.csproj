@@ -7,12 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\AccountListViewModelTests.cs" />
     <Compile Remove="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Remove="ViewModels\ModifyCategoryViewModelTests.cs" />
     <Compile Remove="ViewModels\ModifyPaymentViewModelTest.cs" />
-    <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
-    <Compile Remove="ViewModels\SelectCategoryListViewModelTests.cs" />
   </ItemGroup>
 
   <ItemGroup>

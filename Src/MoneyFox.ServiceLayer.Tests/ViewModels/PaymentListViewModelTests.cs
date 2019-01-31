@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Business.Manager;
-using MoneyFox.Business.Parameters;
-using MoneyFox.Business.ViewModels;
-using MoneyFox.DataAccess.DataServices;
-using MoneyFox.DataAccess.Pocos;
-using MoneyFox.Foundation.Interfaces;
+using GenericServices;
+using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -12,87 +12,57 @@ using MvvmCross.Plugin.Messenger;
 using MvvmCross.Tests;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.ViewModels
+namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
     public class PaymentListViewModelTests : MvxIoCSupportingTest
     {
-        private readonly Mock<IAccountService> accountService;
-        private readonly Mock<IPaymentService> paymentService;
-        private readonly Mock<IRecurringPaymentService> recurringPaymentService;
-        private readonly Mock<IDialogService> dialogService;
-        private readonly Mock<ISettingsManager> settingsManager;
-        private readonly Mock<IBalanceCalculationManager> balanceCalculatorManager;
-        private readonly Mock<IBackupManager> backupManager;
-        private readonly Mock<IMvxNavigationService> navigationService;
-        private readonly Mock<IMvxMessenger> messenger;
-        private readonly Mock<IMvxLogProvider> logProvider;
-
         public PaymentListViewModelTests()
         {
-            accountService = new Mock<IAccountService>();
+            crudService = new Mock<ICrudServicesAsync>();
             paymentService = new Mock<IPaymentService>();
-            recurringPaymentService = new Mock<IRecurringPaymentService>();
             dialogService = new Mock<IDialogService>();
-            settingsManager = new Mock<ISettingsManager>();
-            balanceCalculatorManager = new Mock<IBalanceCalculationManager>();
-            backupManager = new Mock<IBackupManager>();
+            settingsFacade = new Mock<ISettingsFacade>();
+            balanceCalculatorService = new Mock<IBalanceCalculationService>();
+            backupService = new Mock<IBackupService>();
             navigationService = new Mock<IMvxNavigationService>();
             messenger = new Mock<IMvxMessenger>();
             logProvider = new Mock<IMvxLogProvider>();
 
-            accountService.SetupAllProperties();
+            crudService.SetupAllProperties();
             paymentService.SetupAllProperties();
         }
 
-        [Fact]
-        public async void Init_PassAccountId_AccountIdSet()
-        {
-            // Arrange
-            accountService.Setup(x => x.GetById(It.IsAny<int>()))
-                          .ReturnsAsync(new Account());
-            balanceCalculatorManager.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>()))
-                                    .ReturnsAsync(0);
-
-            var vm = new PaymentListViewModel(accountService.Object,
-                                              paymentService.Object,
-                                              recurringPaymentService.Object,
-                                              dialogService.Object,
-                                              settingsManager.Object,
-                                              balanceCalculatorManager.Object,
-                                              backupManager.Object,
-                                              navigationService.Object,
-                                              messenger.Object,
-                                              logProvider.Object);
-
-            // Act
-            vm.Prepare(new PaymentListParameter(42));
-            await vm.Initialize();
-
-            // Assert
-            Assert.Equal(42, vm.AccountId);
-        }
+        private readonly Mock<ICrudServicesAsync> crudService;
+        private readonly Mock<IPaymentService> paymentService;
+        private readonly Mock<IDialogService> dialogService;
+        private readonly Mock<ISettingsFacade> settingsFacade;
+        private readonly Mock<IBalanceCalculationService> balanceCalculatorService;
+        private readonly Mock<IBackupService> backupService;
+        private readonly Mock<IMvxNavigationService> navigationService;
+        private readonly Mock<IMvxMessenger> messenger;
+        private readonly Mock<IMvxLogProvider> logProvider;
 
         [Fact]
         public async void Init_NullPassAccountId_AccountIdSet()
         {
             // Arrange
-            accountService.Setup(x => x.GetById(It.IsAny<int>()))
-                          .ReturnsAsync(new Account());
-            balanceCalculatorManager.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<Account>()))
-                                    .ReturnsAsync(0);
+            crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new AccountViewModel());
 
-            var vm = new PaymentListViewModel(accountService.Object,
-                                              paymentService.Object,
-                                              recurringPaymentService.Object,
-                                              dialogService.Object,
-                                              settingsManager.Object,
-                                              balanceCalculatorManager.Object,
-                                              backupManager.Object,
-                                              navigationService.Object,
-                                              messenger.Object,
-                                              logProvider.Object);
+            balanceCalculatorService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>()))
+                .Returns(0);
+
+            var vm = new PaymentListViewModel(crudService.Object,
+                paymentService.Object,
+                dialogService.Object,
+                settingsFacade.Object,
+                balanceCalculatorService.Object,
+                backupService.Object,
+                navigationService.Object,
+                messenger.Object,
+                logProvider.Object);
 
             // Act
             vm.Prepare(new PaymentListParameter());
@@ -100,6 +70,34 @@ namespace MoneyFox.Business.Tests.ViewModels
 
             // Assert
             Assert.Equal(0, vm.AccountId);
+        }
+
+        [Fact]
+        public async void Init_PassAccountId_AccountIdSet()
+        {
+            // Arrange
+            crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new AccountViewModel());
+
+            balanceCalculatorService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>()))
+                .Returns(0);
+
+            var vm = new PaymentListViewModel(crudService.Object,
+                paymentService.Object,
+                dialogService.Object,
+                settingsFacade.Object,
+                balanceCalculatorService.Object,
+                backupService.Object,
+                navigationService.Object,
+                messenger.Object,
+                logProvider.Object);
+
+            // Act
+            vm.Prepare(new PaymentListParameter(42));
+            await vm.Initialize();
+
+            // Assert
+            Assert.Equal(42, vm.AccountId);
         }
     }
 }
