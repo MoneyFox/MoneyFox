@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer.Entities;
@@ -8,6 +9,7 @@ using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.PaymentActions
 {
+    [ExcludeFromCodeCoverage]
     public class RecurringPaymentHelperTests
     {
         [Fact]

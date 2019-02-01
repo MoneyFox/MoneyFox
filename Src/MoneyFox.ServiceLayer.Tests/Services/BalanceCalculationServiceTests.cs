@@ -12,10 +12,10 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Services
 {
+    [ExcludeFromCodeCoverage]
     public class BalanceCalculationServiceTests
     {
         [Fact]
-        [ExcludeFromCodeCoverage]
         public async void GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
         {
             // Arrange

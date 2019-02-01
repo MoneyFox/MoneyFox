@@ -11,10 +11,10 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Services
 {
+    [ExcludeFromCodeCoverage]
     public class BackupServiceTests
     {
         [Fact]
-        [ExcludeFromCodeCoverage]
         public async Task Login_loginFailed_SettingsNotUpdated()
         {
             // Arrange
