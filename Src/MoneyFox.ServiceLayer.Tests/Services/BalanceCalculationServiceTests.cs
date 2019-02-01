@@ -16,7 +16,6 @@ namespace MoneyFox.ServiceLayer.Tests.Services
     public class BalanceCalculationServiceTests
     {
         [Fact]
-        [ExcludeFromCodeCoverage]
         public async void GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
         {
             // Arrange

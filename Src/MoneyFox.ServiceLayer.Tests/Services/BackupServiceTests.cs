@@ -15,7 +15,6 @@ namespace MoneyFox.ServiceLayer.Tests.Services
     public class BackupServiceTests
     {
         [Fact]
-        [ExcludeFromCodeCoverage]
         public async Task Login_loginFailed_SettingsNotUpdated()
         {
             // Arrange
