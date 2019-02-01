@@ -34,8 +34,7 @@
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    Margin="0,6,0,0"/>
 
-            <Entry Text="{Binding BackupSyncRecurrence}" 
-                   Style="{StaticResource DefaultEntryStyle}"
+            <Entry Text="{Binding BackupSyncRecurrence}"
                    HorizontalTextAlignment="End"
                    Keyboard="Numeric" />
 

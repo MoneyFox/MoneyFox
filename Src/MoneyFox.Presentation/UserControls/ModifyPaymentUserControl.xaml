@@ -38,7 +38,6 @@
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
-                   Style="{StaticResource DefaultEntryStyle}"
                    Text="{Binding SelectedPayment.Amount}"
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
@@ -81,8 +80,7 @@
             <Label Text="{Binding Resources[NoteLabel]}"
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
-            <Entry Text="{Binding SelectedPayment.Note}"
-                   Style="{StaticResource DefaultEntryStyle}" />
+            <Entry Text="{Binding SelectedPayment.Note}"/>
 
             <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">

@@ -10,14 +10,12 @@
 
                 <Label Text="{Binding Resources[AccountNameLabel]}"
                        Style="{StaticResource DefaultTextStyle}" />
-                <Entry Text="{Binding SelectedAccount.Name}"
-                       Style="{StaticResource DefaultEntryStyle}" />
+                <Entry Text="{Binding SelectedAccount.Name}" />
 
                 <Label Text="{Binding Resources[CurrentBalanceLabel]}"
                        Style="{StaticResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
-                       Style="{StaticResource DefaultEntryStyle}"
                        Text="{Binding SelectedAccount.CurrentBalance}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
@@ -26,8 +24,7 @@
                 <Label Text="{Binding Resources[NoteLabel]}"
                        Style="{StaticResource DefaultTextStyle}"
                        Margin="0,5,0,0"/>
-                <Entry Text="{Binding SelectedAccount.Note}"
-                       Style="{StaticResource DefaultEntryStyle}"/>
+                <Entry Text="{Binding SelectedAccount.Note}"/>
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
