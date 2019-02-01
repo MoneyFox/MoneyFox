@@ -12,3 +12,7 @@
 Check it out, available for Windows and Windows Mobile now.
 
 Are you a developer? Our project is Open-Source, you can contribute https://github.com/MoneyFox/MoneyFox.Windows here - we’d love to share our project with you!
+
+
+<Short Description>: 
+A way to make budgeting easy.
