@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
@@ -21,7 +19,7 @@ using MvvmCross.Navigation;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class AccountListViewModel : BaseNavigationViewModel //, IAccountListViewModel
+    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
     {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
@@ -58,7 +56,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
-            set
+            private set
             {
                 if (accounts == value) return;
                 accounts = value;
@@ -77,7 +75,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
 
-        /// <inheritdoc />
         public override async void ViewAppeared()
         {
             await Load().ConfigureAwait(true);
