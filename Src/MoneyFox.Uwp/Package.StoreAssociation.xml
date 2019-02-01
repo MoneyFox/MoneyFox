@@ -359,75 +359,135 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFoxBeta</MainPackageIdentityName>
+    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFox</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Money Fox Beta</ReservedName>
+      <ReservedName>Money Fox</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
-    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFox</MainPackageIdentityName>
+    <MainPackageIdentityName>57598ApplySolutionsSoftwa.MoneyFoxBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH68H8M">
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH6CK9D">
     <BundleInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>X86</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>X64</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.36.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>4.5.1179.0</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>
