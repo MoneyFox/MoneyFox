@@ -39,7 +39,7 @@ namespace MoneyFox.ServiceLayer.Tests.QueryObject
         [Theory]
         [InlineData("Foo3", 1)]
         [InlineData("Foo5", 0)]
-        [InlineData("Foo", 3)]
+        [InlineData("Foo", 0)]
         [InlineData("abc", 0)]
         public void WhereNameEquals(string searchName, int expectedCount)
         {

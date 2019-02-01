@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
@@ -48,7 +49,7 @@ namespace MoneyFox.ServiceLayer.Tests.Authentication
             var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(
                 x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
-                .Returns(DateTime.Now.AddMinutes(-5).ToString);
+                .Returns(DateTime.Now.AddMinutes(-5).ToString(CultureInfo.InvariantCulture));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
@@ -62,7 +63,7 @@ namespace MoneyFox.ServiceLayer.Tests.Authentication
 
             var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(x => x.AddOrUpdate(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
+                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value, CultureInfo.InvariantCulture));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
