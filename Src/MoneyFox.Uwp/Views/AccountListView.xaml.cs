@@ -1,9 +1,16 @@
-﻿using Windows.ApplicationModel;
+﻿using System;
+using System.Globalization;
+using Windows.ApplicationModel;
+using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using GenericServices;
 using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.ServiceLayer.ViewModels.DesignTime;
+using MoneyFox.Uwp.Business.Tiles;
+using MvvmCross;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -21,7 +28,7 @@ namespace MoneyFox.Uwp.Views
 
 			if (DesignMode.DesignModeEnabled)
 			{
-				//ViewModel = new DesignTimeAccountListViewModel();
+				ViewModel = new DesignTimeAccountListViewModel();
 			}
 		}
 
@@ -36,8 +43,7 @@ namespace MoneyFox.Uwp.Views
 		private void Edit_OnClick(object sender, RoutedEventArgs e)
 		{
 			var element = (FrameworkElement)sender;
-			var account = element.DataContext as AccountViewModel;
-			if (account == null)
+		    if (!(element.DataContext is AccountViewModel account))
 			{
 				return;
 			}
@@ -47,10 +53,9 @@ namespace MoneyFox.Uwp.Views
 
 		private void Delete_OnClick(object sender, RoutedEventArgs e)
 		{
-			//this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
+			//this has to be called before the dialog service since otherwise the data context is reseted and the account will be null
 			var element = (FrameworkElement)sender;
-			var account = element.DataContext as AccountViewModel;
-			if (account == null)
+		    if (!(element.DataContext is AccountViewModel account))
 			{
 				return;
 			}
@@ -60,37 +65,35 @@ namespace MoneyFox.Uwp.Views
 
         private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
         {
-            //var element = (FrameworkElement)sender;
-            //var account = element.DataContext as AccountViewModel;
-            //if (account == null) return;
-            //if (!Mvx.IoCProvider.CanResolve<IAccountService>()) return;
+            var element = (FrameworkElement)sender;
+            if (!(element.DataContext is AccountViewModel account)) return;
+            if (!Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()) return;
 
-            //var liveTileManager = new LiveTileManager(Mvx.IoCProvider.Resolve<IAccountService>());
+            var liveTileManager = new LiveTileManager(Mvx.IoCProvider.Resolve<ICrudServicesAsync>());
 
-            //var name = account.Account;
-            //int id = name.Data.Id;
-            //bool isPinned = SecondaryTile.Exists(id.ToString());
-            //if (!isPinned)
-            //{
+            int id = account.Id;
+            bool isPinned = SecondaryTile.Exists(id.ToString(CultureInfo.InvariantCulture));
+            if (!isPinned)
+            {
 
-            //    SecondaryTile tile = new SecondaryTile(id.ToString(), "Money Fox", "a", new Uri("ms-appx:///Assets/SmallTile.scale-150.png"), TileSize.Default);
-            //    tile.VisualElements.ShowNameOnSquare150x150Logo = false;
-            //    tile.VisualElements.ShowNameOnSquare310x310Logo = true;
-            //    tile.VisualElements.ShowNameOnWide310x150Logo = false;
-            //    tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
-            //    tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
-            //    tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
-            //    tile.VisualElements.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.scale-100.png");
-            //    bool ispinned = await tile.RequestCreateAsync();
-            //    if (ispinned)
-            //    {
-            //        await liveTileManager.UpdateSecondaryLiveTiles();
-            //    }
-            //} else
-            //{
-            //    await liveTileManager.UpdateSecondaryLiveTiles();
-            //    await liveTileManager.UpdatePrimaryLiveTile();
-            //}
+                SecondaryTile tile = new SecondaryTile(id.ToString(CultureInfo.InvariantCulture), "Money Fox", "a", new Uri("ms-appx:///Assets/SmallTile.scale-150.png"), TileSize.Default);
+                tile.VisualElements.ShowNameOnSquare150x150Logo = false;
+                tile.VisualElements.ShowNameOnSquare310x310Logo = true;
+                tile.VisualElements.ShowNameOnWide310x150Logo = false;
+                tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
+                tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
+                tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
+                tile.VisualElements.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.scale-100.png");
+                bool ispinned = await tile.RequestCreateAsync();
+                if (ispinned)
+                {
+                    await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(false);
+                }
+            } else
+            {
+                await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(false);
+                await liveTileManager.UpdatePrimaryLiveTile().ConfigureAwait(false);
+            }
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class CategoryOverviewViewModel : BaseViewModel, INotifyPropertyChanged
+    public class CategoryOverviewViewModel : BaseViewModel
     {
         private string label;
         private double value;
@@ -66,13 +66,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 label = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

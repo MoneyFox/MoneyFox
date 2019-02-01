@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.ServiceLayer.Authentication
@@ -37,14 +38,14 @@ namespace MoneyFox.ServiceLayer.Authentication
         }
 
         private bool CheckIfSessionExpired()
-            => (DateTime.Now - Convert.ToDateTime(settingsFacade.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
+            => (DateTime.Now - Convert.ToDateTime(settingsFacade.SessionTimestamp, CultureInfo.InvariantCulture)).TotalMinutes < SESSION_TIMEOUT;
 
         /// <summary>
         ///     Adds the current time as timestamp to the local settings.
         /// </summary>
         public void AddSession()
         {
-            settingsFacade.SessionTimestamp = DateTime.Now.ToString();
+            settingsFacade.SessionTimestamp = DateTime.Now.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
         {
             get => source;
-            set
+            private set
             {
                 if (source == value) return;
                 source = value;

@@ -4,7 +4,7 @@ using Windows.Security.Credentials;
 
 namespace MoneyFox.Uwp
 {
-    public class MicrosoftPassportHelper
+    public sealed class MicrosoftPassportHelper
     {
         public static async Task<bool> TestPassportAvailable()
         {

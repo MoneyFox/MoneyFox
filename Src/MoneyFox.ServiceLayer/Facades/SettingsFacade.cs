@@ -64,7 +64,7 @@ namespace MoneyFox.ServiceLayer.Facades
         DateTime LastExecutionTimeStampClearPayments { get; set; }
 
         /// <summary>
-        ///     Returns the timestamp when the last job to create recurring payments was executed.
+        ///     Returns the time stamp when the last job to create recurring payments was executed.
         /// </summary>
         DateTime LastExecutionTimeStampRecurringPayments { get; set; }
     }
@@ -89,7 +89,7 @@ namespace MoneyFox.ServiceLayer.Facades
         private const string BACKUP_SYNC_RECURRENCE_KEYNAME = "BackupSyncRecurrence";
         private const int BACKUP_SYNC_RECURRENCE_KEY_DEFAULT = 3;
 
-        public const string THEME_KEYNAME = "Theme";
+        private const string THEME_KEYNAME = "Theme";
         private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
