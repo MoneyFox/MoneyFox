@@ -411,7 +411,7 @@ Do you want to go the the store to rate?</value>
 Tap to visit the Repository:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate us!</value>
+    <value>Rate this app!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
@@ -771,5 +771,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
+  </data>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Contributions</value>
+  </data>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="LeaveFeedbackLabel" xml:space="preserve">
+    <value>Leave a feedback!</value>
   </data>
 </root>

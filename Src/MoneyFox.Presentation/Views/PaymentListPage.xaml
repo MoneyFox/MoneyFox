@@ -3,7 +3,6 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                    xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                   xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                    xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
                    xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"

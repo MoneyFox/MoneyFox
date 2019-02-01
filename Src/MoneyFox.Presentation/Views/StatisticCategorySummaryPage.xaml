@@ -4,7 +4,6 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
                       xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                      xmlns:moneyFox1="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                       xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
                       xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
                       xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"

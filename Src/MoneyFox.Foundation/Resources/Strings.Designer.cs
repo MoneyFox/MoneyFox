@@ -655,6 +655,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contributions.
+        /// </summary>
+        public static string ContributionsLabel {
+            get {
+                return ResourceManager.GetString("ContributionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
         /// </summary>
         public static string CreateBackupInformationLabel {
@@ -1060,6 +1069,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Info.
+        /// </summary>
+        public static string InfoLabel {
+            get {
+                return ResourceManager.GetString("InfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is an open-source project – and we’d love to work with you! Feel free to contribute.
         ///Tap to visit the Repository:.
         /// </summary>
@@ -1174,6 +1192,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string LastExecutionSyncBackupLabel {
             get {
                 return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave a feedback!.
+        /// </summary>
+        public static string LeaveFeedbackLabel {
+            get {
+                return ResourceManager.GetString("LeaveFeedbackLabel", resourceCulture);
             }
         }
         
@@ -1620,7 +1647,7 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate us!.
+        ///   Looks up a localized string similar to Rate this app!.
         /// </summary>
         public static string RateLabel {
             get {
