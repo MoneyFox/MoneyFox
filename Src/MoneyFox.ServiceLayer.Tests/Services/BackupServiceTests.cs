@@ -11,6 +11,7 @@ using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Services
 {
+    [ExcludeFromCodeCoverage]
     public class BackupServiceTests
     {
         [Fact]
