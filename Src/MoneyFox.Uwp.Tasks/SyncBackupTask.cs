@@ -34,7 +34,8 @@ namespace MoneyFox.Uwp.Tasks
 
                 var backupService = new BackupService(backupManager,settingsFacade);
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackup()
+                                   .ConfigureAwait(false);
             }
             catch (Exception ex)
             {

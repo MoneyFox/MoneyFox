@@ -79,13 +79,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public override async void ViewAppeared()
         {
-            await Load();
-            await RaisePropertyChanged(nameof(Accounts));
+            await Load().ConfigureAwait(true);
+            await RaisePropertyChanged(nameof(Accounts)).ConfigureAwait(true);
         }
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
-            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
+            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id))
+                                   .ConfigureAwait(true);
         }
 
         private async Task Load()

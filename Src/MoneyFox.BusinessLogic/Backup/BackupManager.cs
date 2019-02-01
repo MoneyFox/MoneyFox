@@ -167,12 +167,12 @@ namespace MoneyFox.BusinessLogic.Backup
             } 
             catch (BackupAuthenticationFailedException ex)
             {
-                await Logout();
+                await Logout().ConfigureAwait(false);
                 OperationResult.Failed(ex);
                 Crashes.TrackError(ex);
             } catch (ServiceException ex)
             {
-                await Logout();
+                await Logout().ConfigureAwait(false);
                 OperationResult.Failed(ex);
                 Crashes.TrackError(ex);
             } 

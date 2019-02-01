@@ -63,7 +63,7 @@ namespace MoneyFox.iOS
             return base.FinishedLaunching(app, options);
         }
 
-        private string GetLocalFilePath()
+        private static string GetLocalFilePath()
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
@@ -86,9 +86,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                await SyncBackup();
-                await ClearPayments();
-                await CreateRecurringPayments();
+                await SyncBackup().ConfigureAwait(false);
+                await ClearPayments().ConfigureAwait(false);
+                await CreateRecurringPayments().ConfigureAwait(false);
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -106,9 +106,9 @@ namespace MoneyFox.iOS
         {
             base.WillEnterForeground(uiApplication);
 
-            await SyncBackup();
-            await ClearPayments();
-            await CreateRecurringPayments();
+            await SyncBackup().ConfigureAwait(false);
+            await ClearPayments().ConfigureAwait(false);
+            await CreateRecurringPayments().ConfigureAwait(false);
         }
 
         private async Task SyncBackup()
@@ -127,7 +127,8 @@ namespace MoneyFox.iOS
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackup()
+                                   .ConfigureAwait(false);
 
             } catch (Exception ex)
             {
@@ -148,7 +149,8 @@ namespace MoneyFox.iOS
                 EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments()
+                                                                               .ConfigureAwait(false);
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
@@ -173,7 +175,9 @@ namespace MoneyFox.iOS
                 EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
-                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
+                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
+                    .CreatePaymentsUpToRecur()
+                    .ConfigureAwait(false);
                 context.SaveChanges();
 
                 Debug.WriteLine("RecurringPayment Job finished.");

@@ -8,6 +8,9 @@ using MoneyFox.DataLayer.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
+    /// <summary>
+    ///     Provides operations to access the database for recurring payment actions
+    /// </summary>
     public interface IRecurringPaymentDbAccess
     {
         Task<List<RecurringPayment>> GetRecurringPayments();
@@ -38,7 +41,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
         public async Task SaveNewPayments(List<Payment> payments)
         {
-            await context.Payments.AddRangeAsync(payments);
+            await context.Payments
+                         .AddRangeAsync(payments)
+                         .ConfigureAwait(false);
         }
     }
 }

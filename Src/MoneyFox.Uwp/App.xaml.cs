@@ -115,9 +115,11 @@ namespace MoneyFox.Uwp
                 {
                     (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
                 } 
-                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
-                {
-                    await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<LoginViewModel>();
+                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()) {
+                    await Mvx.IoCProvider
+                             .Resolve<IMvxNavigationService>()
+                             .Navigate<LoginViewModel>()
+                             .ConfigureAwait(false);
                 }
 
                 (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
@@ -127,10 +129,10 @@ namespace MoneyFox.Uwp
 				//If Jump Lists are supported, add them
 				if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
 				{
-					await SetJumplist();
+					await SetJumplist().ConfigureAwait(false);
 				}
 
-				await CallRateReminder();
+				await CallRateReminder().ConfigureAwait(false);
 			}
 		}
 
