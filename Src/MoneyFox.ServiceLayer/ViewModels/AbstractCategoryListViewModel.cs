@@ -107,7 +107,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 categories = new List<CategoryViewModel>(
                     await categoryQuery
-                        .WhereNameEquals(searchText)
+                        .WhereNameContains(searchText)
                         .ToListAsync()
                         .ConfigureAwait(true));
             } 

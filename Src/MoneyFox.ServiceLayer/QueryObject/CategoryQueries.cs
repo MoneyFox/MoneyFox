@@ -27,5 +27,13 @@ namespace MoneyFox.ServiceLayer.QueryObject
         {
             return query.Where(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
+
+        /// <summary>
+        ///     Checks if there is an account with the passed name.
+        /// </summary>
+        public static IQueryable<CategoryViewModel> WhereNameContains(this IQueryable<CategoryViewModel> query, string searchTerm)
+        {
+            return query.Where(x => x.Name.IndexOf(searchTerm, StringComparison.InvariantCultureIgnoreCase) >= 0);
+        }
     }
 }

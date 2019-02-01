@@ -39,9 +39,9 @@ namespace MoneyFox.ServiceLayer.Tests.QueryObject
         [Theory]
         [InlineData("Foo3", 1)]
         [InlineData("Foo5", 0)]
-        [InlineData("Foo", 0)]
+        [InlineData("Foo", 3)]
         [InlineData("abc", 0)]
-        public void WhereNameEquals(string searchName, int expectedCount)
+        public void WhereNameContains(string searchName, int expectedCount)
         {
             // Arrange
             var categoryQueryList = new List<CategoryViewModel>
@@ -55,7 +55,7 @@ namespace MoneyFox.ServiceLayer.Tests.QueryObject
                 .Object;
 
             // Act
-            var result = categoryQueryList.WhereNameEquals(searchName);
+            var result = categoryQueryList.WhereNameContains(searchName);
 
             // Assert
             result.Count().ShouldEqual(expectedCount);
