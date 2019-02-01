@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.Views
         /// </summary>
         public async void UpdatePassport()
         {
-            if (await MicrosoftPassportHelper.TestPassportAvailable().ConfigureAwait(false))
+            if (await MicrosoftPassportHelper.TestPassportAvailable().ConfigureAwait(true))
             {
                 PassportSwitch.IsEnabled = true;
                 PassportStatus.Text = string.Empty;
