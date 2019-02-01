@@ -32,9 +32,19 @@ namespace MoneyFox.ServiceLayer.QueryObject
         }
 
         /// <summary>
+        ///     Order a query by a name.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query ordered by name.</returns>
+        public static IQueryable<AccountViewModel> OrderByName(this IQueryable<AccountViewModel> query)
+        {
+            return query.OrderBy(x => x.Name);
+        }
+
+        /// <summary>
         ///     Checks if there is an account with the passed name.
         /// </summary>
-        public static async Task<bool> AnyWithName(this IQueryable<AccountViewModel> query, string name)
+        public static async Task<bool> AnyWithNameAsync(this IQueryable<AccountViewModel> query, string name)
         {
             return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                               .ConfigureAwait(false);

@@ -32,7 +32,7 @@ namespace MoneyFox.BusinessDbAccess.Tests.QueryObjects
         }
 
         [Fact]
-        public void NameContainsOrderByName()
+        public void OrderByName()
         {
             // Arrange
             var categoryQueryList = new List<Category>

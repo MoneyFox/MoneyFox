@@ -25,16 +25,15 @@ namespace MoneyFox.ServiceLayer.QueryObject
         {
             return query.Where(payment => !payment.IsCleared);
         }
-
+        
         /// <summary>
-        ///     Adds a filter to a query for payments who has a date larger or equals to the passed date.
+        ///     Adds a filter to a query for recurring payments
         /// </summary>
         /// <param name="query">Existing query.</param>
-        /// <param name="date">Date to filter for.</param>
-        /// <returns>Query filtered for not cleared payments.</returns>
-        public static IQueryable<PaymentViewModel> HasDateLargerEqualsThan(this IQueryable<PaymentViewModel> query, DateTime date)
+        /// <returns>Query filtered for recurring payments.</returns>
+        public static IQueryable<PaymentViewModel> AreRecurring(this IQueryable<PaymentViewModel> query)
         {
-            return query.Where(payment => payment.Date.Date >= date.Date);
+            return query.Where(payment => payment.IsRecurring);
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace MoneyFox.ServiceLayer.QueryObject
         public static IQueryable<PaymentViewModel> HasAccountId(this IQueryable<PaymentViewModel> query, int accountId)
         {
             return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
-        }        
+        }
 
         /// <summary>
         ///     Adds a filter to a query for payments who has a certain id as charged account.
@@ -67,7 +66,17 @@ namespace MoneyFox.ServiceLayer.QueryObject
         /// <returns>Query filtered for the account id.</returns>
         public static IQueryable<PaymentViewModel> HasChargedAccountId(this IQueryable<PaymentViewModel> query, int accountId)
         {
-            return query.Where(payment => payment.ChargedAccountId == accountId);
+            return query.Where(payment => payment.ChargedAccount.Id == accountId);
+        }
+
+        /// <summary>
+        ///     Orders a query descending by the date.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Ordered Query.</returns>
+        public static IQueryable<PaymentViewModel> OrderDescendingByDate(this IQueryable<PaymentViewModel> query)
+        {
+            return query.OrderByDescending(x => x.Date);
         }
 
 

@@ -115,14 +115,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
                 .HasChargedAccountId(AccountId);
 
-            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.Where(x => x.IsCleared);
-            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.Where(x => x.IsRecurring);
+            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
+            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
 
             paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
             paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
 
             var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderByDescending(x => x.Date));
+                paymentQuery.OrderDescendingByDate());
 
             foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
 

@@ -12,6 +12,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
@@ -93,16 +94,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             try
             {
-                List<AccountViewModel> accountViewModels = await crudService.ReadManyNoTracked<AccountViewModel>()
-                                                                            .OrderBy(x => x.Name)
-                                                                            .ToListAsync()
-                                                                            .ConfigureAwait(true);
+                IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
+                                                                                   .OrderBy(x => x.Name);
 
                 var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(accountViewModels.Where(x => !x.IsExcluded));
+                includedAlphaGroup.AddRange(accountViewModels.AreNotExcluded());
 
                 var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(accountViewModels.Where(x => x.IsExcluded));
+                excludedAlphaGroup.AddRange(accountViewModels.AreExcluded());
 
                 Accounts.Clear();
 

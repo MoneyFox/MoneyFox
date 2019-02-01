@@ -14,7 +14,7 @@ namespace MoneyFox.ServiceLayer.QueryObject
         /// <summary>
         ///     Checks if there is an category with the passed name.
         /// </summary>
-        public static async Task<bool> AnyWithName(this IQueryable<CategoryViewModel> query, string name)
+        public static async Task<bool> AnyWithNameAsync(this IQueryable<CategoryViewModel> query, string name)
         {
             return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                               .ConfigureAwait(false);
