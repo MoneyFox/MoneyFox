@@ -22,10 +22,6 @@
         <Setter Property="BackgroundColor" Value="{x:Static presentation:StyleHelper.DialogBackgroundColor}" />
     </Style>
 
-    <Style x:Key="DefaultEntryStyle" TargetType="Entry">
-        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
-    </Style>
-
     <Style x:Key="DefaultPickerStyle" TargetType="Picker">
         <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
     </Style>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
+             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
              x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
 
     <ContentView.Content>
@@ -9,13 +9,11 @@
 
           <Label Text="{Binding Resources[CategoryNameLabel]}"
                  Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Name}"
-                 Style="{StaticResource DefaultEntryStyle}" />
+          <Entry Text="{Binding SelectedCategory.Name}"/>
 
           <Label Text="{Binding Resources[NoteLabel]}"
                  Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Note}"
-                 Style="{StaticResource DefaultEntryStyle}" />
+          <Entry Text="{Binding SelectedCategory.Note}"/>
 
           <!-- This delete button is only for ios, since there can be only one menu item -->
           <Button x:Name="DeleteCategoryButton"

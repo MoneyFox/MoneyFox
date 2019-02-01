@@ -7,7 +7,7 @@
                       xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:userControls1="using:MoneyFox.Uwp.Views.UserControls"
+                      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:converter1="using:MoneyFox.Uwp.Converter"
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       mc:Ignorable="d">
@@ -158,7 +158,7 @@
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>
-                <userControls1:AboutUserControl DataContext="{Binding AboutViewModel}" />
+                <userControls:AboutUserControl DataContext="{Binding AboutViewModel}" />
             </PivotItem>
         </Pivot>
     </Grid>
