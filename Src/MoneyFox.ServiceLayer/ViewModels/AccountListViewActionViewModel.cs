@@ -41,7 +41,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
+        public bool IsTransferAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Count() >= 2;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.

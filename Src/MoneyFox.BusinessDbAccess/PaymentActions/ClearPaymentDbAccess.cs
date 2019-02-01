@@ -8,6 +8,9 @@ using MoneyFox.DataLayer.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
+    /// <summary>
+    ///     Provides operations to access the database for clear payment actions.
+    /// </summary>
     public interface IClearPaymentDbAccess
     {
         Task<List<Payment>> GetUnclearedPayments();
@@ -27,7 +30,8 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             return await context.Payments
                 .AsQueryable()
                 .AreNotCleared()
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
     }
 }

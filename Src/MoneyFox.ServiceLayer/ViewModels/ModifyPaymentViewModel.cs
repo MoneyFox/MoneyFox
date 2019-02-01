@@ -10,6 +10,7 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
+using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -253,8 +254,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override async Task Initialize()
         {
             var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
+                                             .OrderByName()
                                              .ToListAsync()
                                              .ConfigureAwait(true);
+
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }

@@ -28,7 +28,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// <inheritdoc />
         public async Task ClearPayments()
         {
-            var payments = await clearPaymentDbAccess.GetUnclearedPayments();
+            var payments = await clearPaymentDbAccess.GetUnclearedPayments()
+                                                     .ConfigureAwait(false);
 
             foreach (var payment in payments)
             {

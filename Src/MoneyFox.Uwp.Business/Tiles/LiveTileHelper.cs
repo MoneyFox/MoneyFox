@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Core;
 using Windows.UI.StartScreen;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
@@ -15,65 +15,64 @@ namespace MoneyFox.Uwp.Business.Tiles
     {
         public static string TruncateNumber(double num)
         {
-            if (num > 0 && num < 1000)
-            {
-                return num.ToString("#,0");
-            }
+            if (num > 0 && num < 1000) return num.ToString("#,0", CultureInfo.InvariantCulture);
             if (num > 1000 && num < 1000000)
             {
-                double test = num / 1000;
-                return test.ToString("#.0") + "K";
+                var test = num / 1000;
+                return test.ToString("#.0", CultureInfo.InvariantCulture) + "K";
             }
+
             if (num > 1000000 && num < 1000000000)
             {
-                double test = num / 1000000;
-                return test.ToString("#.1") + "M";
+                var test = num / 1000000;
+                return test.ToString("#.1", CultureInfo.InvariantCulture) + "M";
             }
-            if (num > 1000000000 & num < 1000000000000)
+
+            if ((num > 1000000000) & (num < 1000000000000))
             {
-                double test = num / 1000000000;
-                return test.ToString("#.0") + "B";
+                var test = num / 1000000000;
+                return test.ToString("#.0", CultureInfo.InvariantCulture) + "B";
             }
+
             return "Number out of Range";
         }
 
         public static async Task<bool> IsPinned()
         {
-            AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
+            var entry = (await Package.Current.GetAppListEntriesAsync())[0];
             return await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
         }
 
-        public static string GetTileText(TileSizeOptions tilesize, LiveTilesPaymentInfo liveTileItem)
+        public static string GetTileText(TileSizeOptions tileSize, LiveTilesPaymentInfo liveTileItem)
         {
             if (liveTileItem.Type == PaymentType.Income)
-            {
-                switch (tilesize)
+                switch (tileSize)
                 {
                     case TileSizeOptions.Medium:
                         return liveTileItem.Chargeaccountname + " +" + TruncateNumber(liveTileItem.Amount);
 
                     case TileSizeOptions.Wide:
                     case TileSizeOptions.Large:
-                        return string.Format(Strings.LiveTileWideandLargeIncomePastText, liveTileItem.Amount.ToString("C2"), liveTileItem.Chargeaccountname, liveTileItem.Date.Date);
+                        return string.Format(CultureInfo.InvariantCulture, Strings.LiveTileWideandLargeIncomePastText,
+                            liveTileItem.Amount.ToString("C2", CultureInfo.InvariantCulture),
+                            liveTileItem.Chargeaccountname, liveTileItem.Date.Date);
 
                     default:
                         return string.Empty;
                 }
-            }
-            else
+            switch (tileSize)
             {
-                switch (tilesize)
-                {
-                    case TileSizeOptions.Medium:
-                        return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Amount);
+                case TileSizeOptions.Medium:
+                    return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Amount);
 
-                    case TileSizeOptions.Wide:
-                    case TileSizeOptions.Large:
-                        return string.Format(Strings.LiveTileWideandLargePaymentPastText, liveTileItem.Amount.ToString("C2"), liveTileItem.Chargeaccountname);
+                case TileSizeOptions.Wide:
+                case TileSizeOptions.Large:
+                    return string.Format(CultureInfo.InvariantCulture, Strings.LiveTileWideandLargePaymentPastText,
+                        liveTileItem.Amount.ToString("C2", CultureInfo.InvariantCulture),
+                        liveTileItem.Chargeaccountname);
 
-                    default:
-                        return string.Empty;
-                }
+                default:
+                    return string.Empty;
             }
         }
 
@@ -88,9 +87,7 @@ namespace MoneyFox.Uwp.Business.Tiles
 
                 case PaymentRecurrence.DailyWithoutWeekend:
                     if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
-                    {
                         return date.AddDays(1);
-                    }
                     return date;
 
                 case PaymentRecurrence.Weekly:

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class RecurringPaymentViewModel : INotifyPropertyChanged, ILinkToEntity<RecurringPayment>
+    public class RecurringPaymentViewModel : BaseViewModel, ILinkToEntity<RecurringPayment>
     {
         private int id;
         private int chargedAccountId;
@@ -224,13 +222,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 categoryViewModel = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

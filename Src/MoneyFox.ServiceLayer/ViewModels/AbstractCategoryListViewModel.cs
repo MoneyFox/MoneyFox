@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
         {
             get => source;
-            set
+            private set
             {
                 if (source == value) return;
                 source = value;
@@ -107,7 +107,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 categories = new List<CategoryViewModel>(
                     await categoryQuery
-                        .WhereNameEquals(searchText)
+                        .WhereNameContains(searchText)
                         .ToListAsync()
                         .ConfigureAwait(true));
             } 
@@ -144,7 +144,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Name[0].ToString().ToUpper(), itemClickCommand: ItemClickCommand));
+                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand));
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {

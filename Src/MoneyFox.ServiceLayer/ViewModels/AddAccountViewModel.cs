@@ -35,7 +35,7 @@ namespace MoneyFox.ServiceLayer.ViewModels {
         protected override async Task SaveAccount()
         {
             if (await crudService.ReadManyNoTracked<AccountViewModel>()
-                                 .AnyWithName(SelectedAccount.Name)
+                                 .AnyWithNameAsync(SelectedAccount.Name)
                                  .ConfigureAwait(true)) {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
                                    .ConfigureAwait(true);

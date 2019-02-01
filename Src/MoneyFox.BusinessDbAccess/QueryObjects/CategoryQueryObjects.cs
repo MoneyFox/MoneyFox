@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using MoneyFox.DataLayer.Entities;
 
@@ -24,15 +25,15 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         ///      Adds a filter for Categories who have a certain string in the name.
         /// </summary>
         /// <param name="query">Existing query.</param>
-        /// <param name="searchterm">Searchterm to look for.</param>
+        /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
         public static IQueryable<Category> NameContains(this IQueryable<Category> query, string searchterm)
         {
-            return query.Where(category => category.Name.ToLower().Contains(searchterm.ToLower()));
+            return query.Where(category => category.Name.IndexOf(searchterm, StringComparison.InvariantCultureIgnoreCase) >= 0);
         }
 
         /// <summary>
-        ///      Ordery a category query by name.
+        ///      Orders a category query by name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query</returns>

@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<d:MvxContentPage x:TypeArguments="viewModels1:BackupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<d:MvxContentPage x:TypeArguments="viewModels:BackupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                  xmlns:moneyFox="clr-namespace:MoneyFox;assembly=MoneyFox.ServiceLayer"
                   xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-                  xmlns:viewModels1="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.BackupPage"

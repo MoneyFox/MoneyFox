@@ -6,6 +6,9 @@ using MoneyFox.DataLayer.Entities;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {
+    /// <summary>
+    ///     Provides different operations for recurring payment.
+    /// </summary>
     public interface IRecurringPaymentAction
     {
         Task CreatePaymentsUpToRecur();
@@ -22,7 +25,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task CreatePaymentsUpToRecur()
         {
-            var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments();
+            var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments()
+                                                                  .ConfigureAwait(false);
 
             await recurringPaymentDbAccess.SaveNewPayments(recurringPayments.Where(x => RecurringPaymentHelper
                     .CheckIfRepeatable(x.RelatedPayments
@@ -36,7 +40,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                     x.TargetAccount,
                     x.Category,
                     x.Note))
-                .ToList());
+                .ToList())
+                .ConfigureAwait(false);
         }
     }
 }

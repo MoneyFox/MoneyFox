@@ -38,7 +38,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
-            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithName(SelectedCategory.Name)
+            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithNameAsync(SelectedCategory.Name)
                                   .ConfigureAwait(true))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)

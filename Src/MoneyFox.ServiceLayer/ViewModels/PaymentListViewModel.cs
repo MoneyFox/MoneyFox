@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
@@ -116,20 +115,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
             var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
                 .HasChargedAccountId(AccountId);
 
-            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.Where(x => x.IsCleared);
-            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.Where(x => x.IsRecurring);
+            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
+            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
 
             paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
             paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
 
             var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderByDescending(x => x.Date));
+                paymentQuery.OrderDescendingByDate());
 
             foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
 
             var dailyItems = DateListGroupCollection<PaymentViewModel>
                 .CreateGroups(loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentUICulture),
+                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                     s => s.Date,
                     itemClickCommand: EditPaymentCommand);
 
@@ -140,10 +139,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .CreateGroups(dailyItems,
                         s =>
                         {
-                            var date = Convert.ToDateTime(s.Key);
-                            return date.ToString("MMMM", CultureInfo.CurrentUICulture) + " " + date.Year;
+                            var date = Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture);
+                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
                         },
-                        s => Convert.ToDateTime(s.Key)));
+                        s => Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture)));
         }
 
         private async Task EditPayment(PaymentViewModel payment)
@@ -160,7 +159,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await Load();
+            await Load().ConfigureAwait(false);
         }
 
         #region Properties
@@ -211,12 +210,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///     Returns groupped related payments
+        ///     Returns grouped related payments
         /// </summary>
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
         {
             get => source;
-            set
+            private set
             {
                 source = value;
                 RaisePropertyChanged();
@@ -226,12 +225,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///     Returns daily groupped related payments
+        ///     Returns daily grouped related payments
         /// </summary>
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
         {
             get => dailyList;
-            set
+            private set
             {
                 dailyList = value;
                 RaisePropertyChanged();
