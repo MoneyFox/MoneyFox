@@ -37,7 +37,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public async Task Login_loginSuccer_SettingsUpdated()
+        public async Task Login_loginSuccess_SettingsUpdated()
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
@@ -83,7 +83,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public async Task Logout_loginSucces_SettingsUpdated()
+        public async Task Logout_loginSuccess_SettingsUpdated()
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
@@ -268,7 +268,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public async Task EnqueueBackupTask_AutouploadDisabled_NothingCalled()
+        public async Task EnqueueBackupTask_AutoUploadDisabled_NothingCalled()
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
