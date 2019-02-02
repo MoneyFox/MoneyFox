@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Constants
         /// <summary>
         ///     URL to the GitHub repository
         /// </summary>
-        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/Apply-Solutions/MoneyManager";
+        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/MoneyFox/MoneyFox";
 
         /// <summary>
         ///     URL to the GitHub repository

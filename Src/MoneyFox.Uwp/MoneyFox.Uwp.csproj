@@ -506,9 +506,6 @@
     <PackageReference Include="MvvmCross.Plugin.Color">
       <Version>6.2.2</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>6.2.2</Version>
-    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>6.2.2</Version>
     </PackageReference>
@@ -516,9 +513,6 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>6.2.2</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">

@@ -11,8 +11,7 @@
     d:DesignWidth="400">
 
     <Grid>
-        <ScrollViewer Grid.Row="1"
-                      HorizontalAlignment="Center"
+        <ScrollViewer HorizontalAlignment="Center"
                       EntranceNavigationTransitionInfo.IsTargetElement="True"
                       VerticalScrollBarVisibility="Auto">
             <StackPanel>
@@ -33,20 +32,18 @@
                           Stroke="{ThemeResource SystemControlBackgroundAccentBrush}"
                           StrokeThickness="2"
                           UseLayoutRounding="False" />
-                    <TextBlock x:Uid="InfoLabel"
-                               Margin="0,0,0,5"
+                    <TextBlock Margin="0,0,0,5"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                Style="{ThemeResource SubtitleTextBlockStyle}"
-                               Text="info"
+                               Text="{Binding Resources[InfoLabel]}"
                                TextWrapping="Wrap" />
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Uid="VersionLabel"
-                                   Margin="5,0,0,0"
+                        <TextBlock Margin="5,0,0,0"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="Version: "
+                                   Text="{Binding Resources[VersionLabel]}"
                                    TextWrapping="Wrap" />
                         <TextBlock Margin="5,0,0,0"
                                    HorizontalAlignment="Left"
@@ -55,12 +52,11 @@
                                    Text="{Binding Version}"
                                    TextWrapping="Wrap" />
                     </StackPanel>
-                    <TextBlock x:Uid="ContactLabel"
-                               Margin="0,10,0,5"
+                    <TextBlock Margin="0,10,0,5"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                Style="{ThemeResource SubtitleTextBlockStyle}"
-                               Text="contact"
+                               Text="{Binding Resources[ContactLabel]}"
                                TextWrapping="Wrap" />
                     <StackPanel Margin="0,0,0,20"
                                 HorizontalAlignment="Center"
@@ -103,21 +99,19 @@
                                    Text="&#xE939;"
                                    VerticalAlignment="Center"
                                    Margin="0,0,3,0" />
-                        <TextBlock x:Uid="GiveFeedback" Text="Leave a feedback" />
+                        <TextBlock Text="{Binding Resources[LeaveFeedbackLabel]}" />
                     </StackPanel>
                 </Button>
 
-                <Button x:Uid="RateThisApp"
-                        Margin="0,10,0,10"
+                <Button Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
                         Command="{Binding RateAppCommand}"
-                        Content="Rate this app" />
-                <TextBlock x:Uid="OpenSourceNote"
-                           Margin="0,12,0,0"
+                        Content="{Binding Resources[RateLabel]}" />
+                <TextBlock Margin="0,12,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Opensource note"
+                           Text="{Binding Resources[InfoOpenSource]}"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -130,12 +124,11 @@
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
-                <TextBlock x:Uid="TranslationMissingHelpText"
-                           Margin="0,12,0,0"
+                <TextBlock Margin="0,12,0,0"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Top"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Translation note"
+                           Text="{Binding Resources[TranslationLabel]}"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -149,12 +142,11 @@
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
 
-                <TextBlock x:Uid="DesignerContribution"
-                           Margin="0,12,0,0"
+                <TextBlock Margin="0,12,0,0"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Top"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Translation Note"
+                           Text="{Binding Resources[IconDesignerLabel]}"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -168,12 +160,11 @@
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
 
-                <TextBlock x:Uid="GeneralContribution"
-                           Margin="0,12,0,0"
+                <TextBlock Margin="0,12,0,0"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Top"
                            Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="Translation Note"
+                           Text="{Binding Resources[ContributionsLabel]}"
                            TextWrapping="Wrap" />
                 <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"

@@ -9,14 +9,10 @@ using MoneyFox.Uwp.Business;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Plugin;
-using MvvmCross.Plugin.Email;
-using MvvmCross.Plugin.Email.Platforms.Uap;
 using MvvmCross.Plugin.File;
 using MvvmCross.Plugin.File.Platforms.Uap;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.Plugin.Visibility.Platforms.Uap;
-using MvvmCross.Plugin.WebBrowser;
-using MvvmCross.Plugin.WebBrowser.Platforms.Uap;
 using MvvmCross.UI;
 using Mvx = MvvmCross.Mvx;
 
@@ -40,8 +36,6 @@ namespace MoneyFox.Uwp
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             //We have to do this here, since the loading via bootloader won't work for UWP projects
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMvxComposeEmailTask, MvxComposeEmailTask>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMvxFileStore, MvxWindowsFileStore>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMvxNativeVisibility, MvxWinRTVisibility>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
