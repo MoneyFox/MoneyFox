@@ -1,11 +1,13 @@
-﻿using MoneyFox.Foundation.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.Plugin.Email;
-using MvvmCross.Plugin.WebBrowser;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -15,13 +17,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        MvxCommand GoToWebsiteCommand { get; }
+        MvxAsyncCommand GoToWebsiteCommand { get; }
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        MvxCommand SendMailCommand { get; }
+        MvxAsyncCommand SendMailCommand { get; }
 
         /// <summary>
         ///     Opens the store to rate the app.
@@ -32,22 +34,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        MvxCommand GoToRepositoryCommand { get; }
+        MvxAsyncCommand GoToRepositoryCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        MvxCommand GoToTranslationProjectCommand { get; }
+        MvxAsyncCommand GoToTranslationProjectCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        MvxCommand GoToDesignerTwitterAccountCommand { get; }
+        MvxAsyncCommand GoToDesignerTwitterAccountCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        MvxCommand GoToContributionPageCommand { get; }
+        MvxAsyncCommand GoToContributionPageCommand { get; }
 
         /// <summary>
         ///     Returns the Version of App
@@ -56,13 +58,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         /// <summary>
         ///     Returns the apply solutions webite url from the
-        ///     ressource file
+        ///     resource file
         /// </summary>
         string Website { get; }
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
-        ///     ressource file
+        ///     resource file
         /// </summary>
         string SupportMail { get; }
     }
@@ -70,27 +72,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public class AboutViewModel : BaseNavigationViewModel, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
-        private readonly IMvxComposeEmailTask composeEmailTask;
+        private readonly IBrowserAdapter browserAdapter;
+        private readonly IEmailAdapter emailAdapter;
         private readonly IStoreOperations storeFeatures;
-        private readonly IMvxWebBrowserTask webBrowserTask;
 
         /// <summary>
         ///     Creates an AboutViewModel Object
         /// </summary>
-        /// <param name="appInformation">Instance of a <see cref="IAppInformation" /> implementation.</param>
-        /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask" /> implementation.</param>
-        /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
-        /// <param name="storeOperations">Instance of a <see cref="IStoreOperations" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
-                              IMvxComposeEmailTask composeEmailTask,
-                              IMvxWebBrowserTask webBrowserTask,
-                              IStoreOperations storeOperations,
-                              IMvxLogProvider logProvider,
-                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            IEmailAdapter emailAdapter,
+            IBrowserAdapter browserAdapter,
+            IStoreOperations storeOperations,
+            IMvxLogProvider logProvider,
+            IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.appInformation = appInformation;
-            this.composeEmailTask = composeEmailTask;
-            this.webBrowserTask = webBrowserTask;
+            this.emailAdapter = emailAdapter;
+            this.browserAdapter = browserAdapter;
             storeFeatures = storeOperations;
         }
 
@@ -98,13 +96,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        public MvxCommand GoToWebsiteCommand => new MvxCommand(GoToWebsite);
+        public MvxAsyncCommand GoToWebsiteCommand => new MvxAsyncCommand(GoToWebsite);
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        public MvxCommand SendMailCommand => new MvxCommand(SendMail);
+        public MvxAsyncCommand SendMailCommand => new MvxAsyncCommand(SendMail);
 
         /// <summary>
         ///     Opens the store to rate the app.
@@ -115,22 +113,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        public MvxCommand GoToRepositoryCommand => new MvxCommand(GoToRepository);
+        public MvxAsyncCommand GoToRepositoryCommand => new MvxAsyncCommand(GoToRepository);
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public MvxCommand GoToTranslationProjectCommand => new MvxCommand(GoToTranslationProject);
+        public MvxAsyncCommand GoToTranslationProjectCommand => new MvxAsyncCommand(GoToTranslationProject);
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public MvxCommand GoToDesignerTwitterAccountCommand => new MvxCommand(GoToDesignerTwitterAccount);
+        public MvxAsyncCommand GoToDesignerTwitterAccountCommand => new MvxAsyncCommand(GoToDesignerTwitterAccount);
 
         /// <summary>
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        public MvxCommand GoToContributionPageCommand => new MvxCommand(GoToContributionPage);
+        public MvxAsyncCommand GoToContributionPageCommand => new MvxAsyncCommand(GoToContributionPage);
 
         /// <summary>
         ///     Returns the Version of App
@@ -139,28 +137,27 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         /// <summary>
         ///     Returns the apply solutions webite url from the
-        ///     ressource file
+        ///     resource file
         /// </summary>
         public string Website => AppConstants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
-        ///     ressource file
+        ///     resource file
         /// </summary>
         public string SupportMail => AppConstants.SUPPORT_MAIL;
 
-        private void GoToWebsite()
+        private async Task GoToWebsite()
         {
-            webBrowserTask.ShowWebPage(AppConstants.WEBSITE_URL);
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL))
+                .ConfigureAwait(true);
         }
 
-        private void SendMail()
+        private async Task SendMail()
         {
-            composeEmailTask.ComposeEmail(AppConstants.SUPPORT_MAIL,
-                string.Empty,
-                Strings.FeedbackSubject,
-                string.Empty,
-                true);
+            await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
+                    new List<string> {AppConstants.SUPPORT_MAIL})
+                .ConfigureAwait(true);
         }
 
         private void RateApp()
@@ -168,24 +165,28 @@ namespace MoneyFox.ServiceLayer.ViewModels
             storeFeatures.RateApp();
         }
 
-        private void GoToRepository()
+        private async Task GoToRepository()
         {
-            webBrowserTask.ShowWebPage(AppConstants.GIT_HUB_REPOSITORY_URL);
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))
+                .ConfigureAwait(true);
         }
 
-        private void GoToTranslationProject()
+        private async Task GoToTranslationProject()
         {
-            webBrowserTask.ShowWebPage(AppConstants.TRANSLATION_PROJECT_URL);
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL))
+                .ConfigureAwait(true);
         }
 
-        private void GoToDesignerTwitterAccount()
+        private async Task GoToDesignerTwitterAccount()
         {
-            webBrowserTask.ShowWebPage(AppConstants.ICONDESIGNER_TWITTER_URL);
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICONDESIGNER_TWITTER_URL))
+                .ConfigureAwait(true);
         }
 
-        private void GoToContributionPage()
+        private async Task GoToContributionPage()
         {
-            webBrowserTask.ShowWebPage(AppConstants.GITHUB_CONTRIBUTION_URL);
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL))
+                .ConfigureAwait(true);
         }
     }
 }

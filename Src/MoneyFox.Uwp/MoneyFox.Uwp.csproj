@@ -147,9 +147,6 @@
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
-    <Compile Include="Views\AboutView.xaml.cs">
-      <DependentUpon>AboutView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
@@ -221,9 +218,6 @@
     </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
-      <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
@@ -355,10 +349,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AboutView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\AccountListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -455,10 +445,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ModifyCategoryUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -520,9 +506,6 @@
     <PackageReference Include="MvvmCross.Plugin.Color">
       <Version>6.2.2</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>6.2.2</Version>
-    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>6.2.2</Version>
     </PackageReference>
@@ -530,9 +513,6 @@
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
-      <Version>6.2.2</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">

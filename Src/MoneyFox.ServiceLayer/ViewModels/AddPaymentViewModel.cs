@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
@@ -40,7 +41,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
             Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, false);
             base.Prepare(parameter);
         }
-        
+
+        public override async Task Initialize()
+        {
+            await base.Initialize().ConfigureAwait(true);
+            SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
+
+            if (SelectedPayment.IsTransfer)
+            {
+                SelectedItemChangedCommand.Execute();
+                SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
+            }
+        }
+
         protected override async Task SavePayment()
         {
             var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);

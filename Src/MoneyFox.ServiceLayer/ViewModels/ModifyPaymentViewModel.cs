@@ -316,31 +316,30 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private void UpdateOtherComboBox()
         {
-            //TODO: Refactor this
-            //var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            //foreach (var account in TargetAccounts)
-            //{
-            //    if (!tempCollection.Contains(account))
-            //    {
-            //        tempCollection.Add(account);
-            //    }
-            //}
-            //foreach (var account in tempCollection)
-            //{
-            //    //fills targetaccounts
-            //    if (!TargetAccounts.Contains(account)) 
-            //    {
-            //        TargetAccounts.Add(account);
-            //    }
+            var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
+            foreach (var account in TargetAccounts)
+            {
+                if (!tempCollection.Contains(account))
+                {
+                    tempCollection.Add(account);
+                }
+            }
+            foreach (var account in tempCollection)
+            {
+                //fills targetaccounts
+                if (!TargetAccounts.Contains(account))
+                {
+                    TargetAccounts.Add(account);
+                }
 
-            //    //fills chargedaccounts
-            //    if (!ChargedAccounts.Contains(account)) 
-            //    {
-            //        ChargedAccounts.Add(account);
-            //    }
-            //}
-            //ChargedAccounts.Remove(selectedPayment.TargetAccount);
-            //TargetAccounts.Remove(selectedPayment.ChargedAccount);
+                //fills chargedaccounts
+                if (!ChargedAccounts.Contains(account))
+                {
+                    ChargedAccounts.Add(account);
+                }
+            }
+            ChargedAccounts.Remove(selectedPayment.TargetAccount);
+            TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
     }
 }

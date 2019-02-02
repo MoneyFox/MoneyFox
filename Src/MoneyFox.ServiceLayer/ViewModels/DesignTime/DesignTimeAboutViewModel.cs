@@ -14,13 +14,13 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 
         /// <inheritdoc />
         public LocalizedResources Resources { get; }
-        public MvxCommand GoToWebsiteCommand { get; }
-        public MvxCommand SendMailCommand { get; }
+        public MvxAsyncCommand GoToWebsiteCommand { get; }
+        public MvxAsyncCommand SendMailCommand { get; }
         public MvxCommand RateAppCommand { get; }
-        public MvxCommand GoToRepositoryCommand { get; }
-        public MvxCommand GoToTranslationProjectCommand { get; }
-        public MvxCommand GoToDesignerTwitterAccountCommand { get; }
-        public MvxCommand GoToContributionPageCommand { get; }
+        public MvxAsyncCommand GoToRepositoryCommand { get; }
+        public MvxAsyncCommand GoToTranslationProjectCommand { get; }
+        public MvxAsyncCommand GoToDesignerTwitterAccountCommand { get; }
+        public MvxAsyncCommand GoToContributionPageCommand { get; }
         public string Version { get; } = "0.4.5";
         public string Website { get; } = "www.foo.ch";
         public string SupportMail { get; } = "foo@me.ch";

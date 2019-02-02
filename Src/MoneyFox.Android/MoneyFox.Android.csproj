@@ -88,16 +88,10 @@
     <PackageReference Include="MvvmCross.Forms">
       <Version>6.2.2</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.Email">
-      <Version>6.2.2</Version>
-    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.File">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Messenger">
-      <Version>6.2.2</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.WebBrowser">
       <Version>6.2.2</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">

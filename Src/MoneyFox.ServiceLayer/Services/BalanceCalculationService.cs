@@ -58,7 +58,7 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<double> GetTotalEndOfMonthBalance()
         {
             var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreNotExcluded()
+                .AreExcluded()
                 .ToListAsync()
                 .ConfigureAwait(false);
 
@@ -66,6 +66,7 @@ namespace MoneyFox.ServiceLayer.Services
 
             foreach (var payment in crudServices
                 .ReadManyNoTracked<PaymentViewModel>()
+                .AreNotCleared()
                 .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth()))
 
                 switch (payment.Type)
@@ -79,16 +80,16 @@ namespace MoneyFox.ServiceLayer.Services
                         break;
 
                     case PaymentType.Transfer:
-                        foreach (var i in excluded)
+                        foreach (var account in excluded)
                         {
-                            if (Equals(i, payment.ChargedAccount.Id))
+                            if (Equals(account.Id, payment.ChargedAccount.Id))
                             {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
                                 break;
                             }
 
-                            if (Equals(i, payment.TargetAccount.Id))
+                            if (Equals(account.Id, payment.TargetAccount.Id))
                             {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
@@ -108,9 +109,13 @@ namespace MoneyFox.ServiceLayer.Services
         {
             var balance = account.CurrentBalance;
 
-            foreach (var payment in crudServices.ReadManyNoTracked<PaymentViewModel>()
+            var paymentList = crudServices.ReadManyNoTracked<PaymentViewModel>()
+                .AreNotCleared()
                 .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth()))
+                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth());
+
+            foreach (var payment in paymentList)
+
                 switch (payment.Type)
                 {
                     case PaymentType.Expense:
