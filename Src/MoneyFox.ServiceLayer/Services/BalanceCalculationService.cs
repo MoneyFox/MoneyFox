@@ -58,7 +58,7 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<double> GetTotalEndOfMonthBalance()
         {
             var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreNotExcluded()
+                .AreExcluded()
                 .ToListAsync()
                 .ConfigureAwait(false);
 
@@ -82,7 +82,19 @@ namespace MoneyFox.ServiceLayer.Services
                     case PaymentType.Transfer:
                         foreach (var account in excluded)
                         {
-                            balance = HandleTransferAmount(payment, balance, account.Id);
+                            if (Equals(account.Id, payment.ChargedAccount.Id))
+                            {
+                                //Transfer from excluded account
+                                balance += payment.Amount;
+                                break;
+                            }
+
+                            if (Equals(account.Id, payment.TargetAccount.Id))
+                            {
+                                //Transfer to excluded account
+                                balance -= payment.Amount;
+                                break;
+                            }
                         }
                         break;
 

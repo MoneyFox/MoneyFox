@@ -21,7 +21,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         {
             // Arrange
             var account1 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
-            var account2 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
+            var account2 = new AccountViewModel { Id = 2, CurrentBalance = 100 };
 
             var accounts = new List<AccountViewModel>
             {
@@ -42,15 +42,15 @@ namespace MoneyFox.ServiceLayer.Tests.Services
                 },
                 new PaymentViewModel
                 {
-                    Id = 15,
+                    Id = 17,
                     ChargedAccount = account1,
-                    Amount = 200,
+                    Amount = 150,
                     Date = DateTime.Now,
                     Type = PaymentType.Expense
                 },
                 new PaymentViewModel
                 {
-                    Id = 15,
+                    Id = 16,
                     ChargedAccount = account2,
                     Amount = 300,
                     Date = DateTime.Now,
@@ -71,7 +71,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
                 .GetTotalEndOfMonthBalance();
 
             // Assert
-            Assert.Equal(300, result);
+            Assert.Equal(350, result);
         }
 
 
