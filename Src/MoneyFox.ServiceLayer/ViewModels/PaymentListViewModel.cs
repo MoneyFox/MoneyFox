@@ -113,7 +113,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
             var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .HasChargedAccountId(AccountId);
+                .HasAccountId(AccountId);
 
             if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
             if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
