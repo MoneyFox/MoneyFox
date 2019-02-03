@@ -208,7 +208,7 @@
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
-                   Visibility="{Binding IsPaymentsEmtpy,
+                   Visibility="{Binding IsPaymentsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

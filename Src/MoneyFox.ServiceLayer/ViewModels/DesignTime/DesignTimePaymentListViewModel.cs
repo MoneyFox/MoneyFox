@@ -30,6 +30,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 
         public string Title => "Sparkonto";
         public int AccountId { get; } = 13;
-        public bool IsPaymentsEmtpy { get; }
+        public bool IsPaymentsEmpty { get; }
     }
 }

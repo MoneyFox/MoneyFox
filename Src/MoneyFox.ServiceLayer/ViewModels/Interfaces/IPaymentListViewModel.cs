@@ -22,6 +22,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
 
         int AccountId { get; }
 
-        bool IsPaymentsEmtpy { get; }
+        bool IsPaymentsEmpty { get; }
     }
 }

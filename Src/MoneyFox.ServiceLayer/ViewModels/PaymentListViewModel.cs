@@ -103,6 +103,115 @@ namespace MoneyFox.ServiceLayer.ViewModels
             dialogService.HideLoadingDialog();
         }
 
+        #region Properties
+
+        /// <summary>
+        ///     Indicator if there are payments or not.
+        /// </summary>
+        public bool IsPaymentsEmpty => Source != null && !Source.Any();
+
+        /// <summary>
+        ///     Id for the current account.
+        /// </summary>
+        public int AccountId
+        {
+            get => accountId;
+            private set
+            {
+                accountId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     View Model for the balance subview.
+        /// </summary>
+        public IBalanceViewModel BalanceViewModel
+        {
+            get => balanceViewModel;
+            private set
+            {
+                balanceViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     View Model for the global actions on the view.
+        /// </summary>
+        public IPaymentListViewActionViewModel ViewActionViewModel
+        {
+            get => viewActionViewModel;
+            private set
+            {
+                if (viewActionViewModel == value) return;
+                viewActionViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Returns grouped related payments
+        /// </summary>
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+        {
+            get => source;
+            private set
+            {
+                source = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsPaymentsEmpty));
+            }
+        }
+
+        /// <summary>
+        ///     Returns daily grouped related payments
+        /// </summary>
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
+        {
+            get => dailyList;
+            private set
+            {
+                dailyList = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsPaymentsEmpty));
+            }
+        }
+
+        /// <summary>
+        ///     Returns the name of the account title for the current page
+        /// </summary>
+        public string Title
+        {
+            get => title;
+            private set
+            {
+                if (title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        ///     Opens the Edit Dialog for the passed Payment
+        /// </summary>
+        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
+            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
+
+        /// <summary>
+        ///     Deletes the passed PaymentViewModel.
+        /// </summary>
+        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
+            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
+
+        #endregion
+
         private async Task Load()
         {
             LoadPayments(new PaymentListFilterChangedMessage(this));
@@ -161,114 +270,5 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning restore 4014
             await Load().ConfigureAwait(false);
         }
-
-        #region Properties
-
-        /// <summary>
-        ///     Indicator if there are payments or not.
-        /// </summary>
-        public bool IsPaymentsEmtpy => Source != null && !Source.Any();
-
-        /// <summary>
-        ///     Id for the current account.
-        /// </summary>
-        public int AccountId
-        {
-            get => accountId;
-            private set
-            {
-                accountId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     View Model for the balance subview.
-        /// </summary>
-        public IBalanceViewModel BalanceViewModel
-        {
-            get => balanceViewModel;
-            private set
-            {
-                balanceViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     View Model for the global actions on the view.
-        /// </summary>
-        public IPaymentListViewActionViewModel ViewActionViewModel
-        {
-            get => viewActionViewModel;
-            private set
-            {
-                if (viewActionViewModel == value) return;
-                viewActionViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Returns grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
-        {
-            get => source;
-            private set
-            {
-                source = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
-            }
-        }
-
-        /// <summary>
-        ///     Returns daily grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
-        {
-            get => dailyList;
-            private set
-            {
-                dailyList = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
-            }
-        }
-
-        /// <summary>
-        ///     Returns the name of the account title for the current page
-        /// </summary>
-        public string Title
-        {
-            get => title;
-            private set
-            {
-                if (title == value) return;
-                title = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        /// <summary>
-        ///     Opens the Edit Dialog for the passed Payment
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
-
-        /// <summary>
-        ///     Deletes the passed PaymentViewModel.
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
-
-        #endregion
     }
 }
