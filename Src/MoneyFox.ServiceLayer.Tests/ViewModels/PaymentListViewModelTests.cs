@@ -105,7 +105,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         }
 
         [Fact]
-        public void ViewAppearing_DialogShown()
+        public async Task ViewAppearing_DialogShown()
         {
             // Arrange
             dialogService.Setup(x => x.ShowLoadingDialog(It.IsAny<string>()));
@@ -116,6 +116,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                     .AsQueryable()
                     .BuildMock()
                     .Object);
+            crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new AccountViewModel());
 
             var vm = new PaymentListViewModel(crudService.Object,
                 paymentService.Object,
@@ -127,12 +129,13 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 messenger.Object,
                 logProvider.Object);
 
+            await vm.Initialize();
+
             // Act
             vm.ViewAppearing();
 
             // Assert
             dialogService.Verify(x => x.ShowLoadingDialog(It.IsAny<string>()), Times.Once);
-            dialogService.Verify(x => x.HideLoadingDialog(), Times.Once);
         }
     }
 }
