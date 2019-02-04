@@ -36,7 +36,7 @@ namespace MoneyFox.ServiceLayer.Tests.Authentication
             var settingsSetup = new Mock<ISettingsAdapter>();
             settingsSetup.Setup(
                 x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
-                .Returns(DateTime.Now.AddMinutes(-15).ToString);
+                .Returns(DateTime.Now.AddMinutes(-15).ToString(CultureInfo.InvariantCulture));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
