@@ -50,6 +50,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task<OperationResult> AddPayment(Payment payment)
         {
+            payment.ClearPayment();
+
             payment.ChargedAccount.AddPaymentAmount(payment);
             payment.TargetAccount?.AddPaymentAmount(payment);
 
