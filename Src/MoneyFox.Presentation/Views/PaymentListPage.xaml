@@ -129,7 +129,7 @@
                        VerticalOptions="CenterAndExpand"
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        LineBreakMode="WordWrap"
-                       IsVisible="{Binding IsPaymentsEmtpy}"
+                       IsVisible="{Binding IsPaymentsEmpty}"
                        Text="{Binding Resources[NoPaymentsMessage]}" />
             </Grid>
         </StackLayout>

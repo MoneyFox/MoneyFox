@@ -103,71 +103,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             dialogService.HideLoadingDialog();
         }
 
-        private async Task Load()
-        {
-            LoadPayments(new PaymentListFilterChangedMessage(this));
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync().ConfigureAwait(true);
-        }
-
-        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
-        {
-            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .HasChargedAccountId(AccountId);
-
-            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
-            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
-
-            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
-
-            var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderDescendingByDate());
-
-            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
-
-            var dailyItems = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                    s => s.Date,
-                    itemClickCommand: EditPaymentCommand);
-
-            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
-
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
-                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
-                    .CreateGroups(dailyItems,
-                        s =>
-                        {
-                            var date = Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture);
-                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
-                        },
-                        s => Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture)));
-        }
-
-        private async Task EditPayment(PaymentViewModel payment)
-        {
-            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
-                new ModifyPaymentParameter(payment.Id))
-                .ConfigureAwait(true);
-        }
-
-        private async Task DeletePayment(PaymentViewModel payment)
-        {
-            await paymentService.DeletePayment(payment).ConfigureAwait(true);
-
-#pragma warning disable 4014
-            backupService.EnqueueBackupTask();
-#pragma warning restore 4014
-            await Load().ConfigureAwait(false);
-        }
-
         #region Properties
 
         /// <summary>
         ///     Indicator if there are payments or not.
         /// </summary>
-        public bool IsPaymentsEmtpy => Source != null && !Source.Any();
+        public bool IsPaymentsEmpty => Source != null && !Source.Any();
 
         /// <summary>
         ///     Id for the current account.
@@ -220,7 +161,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 source = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
+                RaisePropertyChanged(nameof(IsPaymentsEmpty));
             }
         }
 
@@ -235,7 +176,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 dailyList = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmtpy));
+                RaisePropertyChanged(nameof(IsPaymentsEmpty));
             }
         }
 
@@ -270,5 +211,64 @@ namespace MoneyFox.ServiceLayer.ViewModels
             new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
         #endregion
+
+        private async Task Load()
+        {
+            LoadPayments(new PaymentListFilterChangedMessage(this));
+            //Refresh balance control with the current account
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync().ConfigureAwait(true);
+        }
+
+        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        {
+            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
+                .HasAccountId(AccountId);
+
+            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
+            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
+
+            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
+            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
+
+            var loadedPayments = new List<PaymentViewModel>(
+                paymentQuery.OrderDescendingByDate());
+
+            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
+
+            var dailyItems = DateListGroupCollection<PaymentViewModel>
+                .CreateGroups(loadedPayments,
+                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                    s => s.Date,
+                    itemClickCommand: EditPaymentCommand);
+
+            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+
+            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
+                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
+                    .CreateGroups(dailyItems,
+                        s =>
+                        {
+                            var date = Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture);
+                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
+                        },
+                        s => Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture)));
+        }
+
+        private async Task EditPayment(PaymentViewModel payment)
+        {
+            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
+                new ModifyPaymentParameter(payment.Id))
+                .ConfigureAwait(true);
+        }
+
+        private async Task DeletePayment(PaymentViewModel payment)
+        {
+            await paymentService.DeletePayment(payment).ConfigureAwait(true);
+
+#pragma warning disable 4014
+            backupService.EnqueueBackupTask();
+#pragma warning restore 4014
+            await Load().ConfigureAwait(false);
+        }
     }
 }

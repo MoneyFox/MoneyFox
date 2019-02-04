@@ -1,5 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using GenericServices;
+using MockQueryable.Moq;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
@@ -45,7 +49,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         private readonly Mock<IMvxLogProvider> logProvider;
 
         [Fact]
-        public async void Init_NullPassAccountId_AccountIdSet()
+        public async Task Init_NullPassAccountId_AccountIdSet()
         {
             // Arrange
             crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
@@ -73,7 +77,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         }
 
         [Fact]
-        public async void Init_PassAccountId_AccountIdSet()
+        public async Task Init_PassAccountId_AccountIdSet()
         {
             // Arrange
             crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
@@ -98,6 +102,40 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 
             // Assert
             Assert.Equal(42, vm.AccountId);
+        }
+
+        [Fact]
+        public async Task ViewAppearing_DialogShown()
+        {
+            // Arrange
+            dialogService.Setup(x => x.ShowLoadingDialog(It.IsAny<string>()));
+            dialogService.Setup(x => x.HideLoadingDialog());
+
+            crudService.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
+                .Returns(new List<AccountViewModel>()
+                    .AsQueryable()
+                    .BuildMock()
+                    .Object);
+            crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new AccountViewModel());
+
+            var vm = new PaymentListViewModel(crudService.Object,
+                paymentService.Object,
+                dialogService.Object,
+                settingsFacade.Object,
+                balanceCalculatorService.Object,
+                backupService.Object,
+                navigationService.Object,
+                messenger.Object,
+                logProvider.Object);
+
+            await vm.Initialize();
+
+            // Act
+            vm.ViewAppearing();
+
+            // Assert
+            dialogService.Verify(x => x.ShowLoadingDialog(It.IsAny<string>()), Times.Once);
         }
     }
 }
