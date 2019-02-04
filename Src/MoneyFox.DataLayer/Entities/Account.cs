@@ -50,7 +50,7 @@ namespace MoneyFox.DataLayer.Entities
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if(payment.IsCleared) return;
+            if(!payment.IsCleared) return;
 
             double amount = invert
                 ? -payment.Amount
