@@ -30,6 +30,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private bool isRecurringFilterActive;
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
+        private bool isTransferAvailable;
+        private bool isAddIncomeAvailable;
+        private bool isAddExpenseAvailable;
 
         /// <summary>
         ///     Constructor
@@ -50,6 +53,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.navigationService = navigationService;
             this.messenger = messenger;
             this.accountId = accountId;
+        }
+
+        public override void ViewAppearing()
+        {
+            base.ViewAppearing();
+
+            var accountCount = crudServices.ReadManyNoTracked<AccountViewModel>().Count();
+
+            IsTransferAvailable = accountCount >= 2;
+            IsAddIncomeAvailable = accountCount >= 1;
+            IsAddExpenseAvailable = accountCount >= 1;
         }
 
         /// <inheritdoc />
@@ -77,17 +91,44 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Count() > 1;
+        public bool IsTransferAvailable
+        {
+            get => isTransferAvailable;
+            set
+            {
+                if (isTransferAvailable == value) return;
+                isTransferAvailable = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
+        public bool IsAddIncomeAvailable
+        {
+            get => isAddIncomeAvailable;
+            set
+            {
+                if (isAddIncomeAvailable == value) return;
+                isAddIncomeAvailable = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
+        public bool IsAddExpenseAvailable
+        {
+            get => isAddExpenseAvailable;
+            set
+            {
+                if(IsAddExpenseAvailable == value) return;
+                isAddExpenseAvailable = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <inheritdoc />
         public bool IsClearedFilterActive
