@@ -33,13 +33,14 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                         .OrderByDescending(d => d.Date)
                         .First()))
                 .Select(x => new Payment(
-                    DateTime.Now,
+                    RecurringPaymentHelper.GetPaymentDateFromRecurring(x),
                     x.Amount,
                     x.Type,
                     x.ChargedAccount,
                     x.TargetAccount,
                     x.Category,
-                    x.Note))
+                    x.Note,
+                    x))
                 .ToList())
                 .ConfigureAwait(false);
         }

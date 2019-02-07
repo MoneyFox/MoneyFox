@@ -18,17 +18,19 @@ namespace MoneyFox.DataLayer.Entities
             Account chargedAccount,
             Account targetAccount = null,
             Category category = null,
-            string note = "")
+            string note = "",
+            RecurringPayment recurringPayment = null)
         {
             UpdatePayment(date, amount, type, chargedAccount, targetAccount, category, note);
+
+            if (recurringPayment != null)
+            {
+                RecurringPayment = recurringPayment;
+                IsRecurring = true;
+            }
         }
 
         public int Id { get; private set; }
-
-        //[Required]
-        //public int ChargedAccountId { get; private set; }
-
-        //public int? TargetAccountId { get; private set; }
 
         public int? CategoryId { get; private set; }
 
