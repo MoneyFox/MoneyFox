@@ -160,6 +160,22 @@ namespace MoneyFox.DataLayer.Tests.Entities
             account.CurrentBalance.ShouldEqual(expectedBalance);
         }
 
+        [Theory]
+        [InlineData(PaymentType.Expense)]
+        [InlineData(PaymentType.Income)]
+        public void AddPaymentAmount_IncomeExpenseNotCleared_CurrentBalanceNotAdjusted(PaymentType paymentType)
+        {
+            // Arrange
+            var account = new Account("Test", 100);
+            var payment = new Payment(DateTime.Today.AddDays(2), 50, paymentType, account);
+
+            // Act
+            account.AddPaymentAmount(payment);
+
+            // Assert
+            account.CurrentBalance.ShouldEqual(100);
+        }
+
 
         [Fact]
         public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
