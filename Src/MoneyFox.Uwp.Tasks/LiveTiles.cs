@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Background;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using MoneyFox.DataLayer;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
 
@@ -20,6 +21,7 @@ namespace MoneyFox.Uwp.Tasks
                 serviceDeferral = taskInstance.GetDeferral();
                 taskInstance.Canceled += OnTaskCanceled;
 
+                EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
                 var context = new EfCoreContext();
                 var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
                 utData.AddSingleDto<CategoryViewModel>();
