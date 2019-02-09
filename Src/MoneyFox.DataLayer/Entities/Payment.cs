@@ -21,6 +21,7 @@ namespace MoneyFox.DataLayer.Entities
             string note = "",
             RecurringPayment recurringPayment = null)
         {
+            CreationTime = DateTime.Now;
             UpdatePayment(date, amount, type, chargedAccount, targetAccount, category, note);
 
             if (recurringPayment != null)
@@ -40,6 +41,8 @@ namespace MoneyFox.DataLayer.Entities
         public PaymentType Type { get; private set; }
         public string Note { get; private set; }
         public bool IsRecurring { get; private set; }
+
+        public DateTime CreationTime { get; private set; }
 
         public virtual Category Category { get; private set; }
 

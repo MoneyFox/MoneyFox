@@ -24,6 +24,7 @@ namespace MoneyFox.DataLayer.Entities
             if (!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new MoneyFoxInvalidEndDateException();
 
+            CreationTime = DateTime.Now;
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             StartDate = startDate;
             Amount = amount;
@@ -53,6 +54,8 @@ namespace MoneyFox.DataLayer.Entities
         public PaymentType Type { get; set; }
         public PaymentRecurrence Recurrence { get; set; }
         public string Note { get; set; }
+
+        public DateTime CreationTime { get; private set; }
 
         public virtual Category Category { get; set; }
 

@@ -20,10 +20,4 @@
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="MoneyFox.DataAccess">
-      <HintPath>..\MoneyFox.DataAccess\bin\Debug\netstandard2.0\MoneyFox.DataAccess.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

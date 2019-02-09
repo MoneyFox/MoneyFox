@@ -21,6 +21,18 @@ namespace MoneyFox.DataLayer.Tests.Entities
         }
 
         [Fact]
+        public void Ctor_NoParams_DefaultValuesSet()
+        {
+            // Arrange
+
+            // Act
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note");
+
+            // Assert
+            recurringPayment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+        }
+
+        [Fact]
         public void Ctor_EndDateNull_IsEndlessTrue()
         {
             // Arrange

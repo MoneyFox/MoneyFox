@@ -52,6 +52,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             account.Note.ShouldBeEmpty();
             account.IsOverdrawn.ShouldBeFalse();
             account.IsExcluded.ShouldBeFalse();
+            account.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
 
         [Fact]
