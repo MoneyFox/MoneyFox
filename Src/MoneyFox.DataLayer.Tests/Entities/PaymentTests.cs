@@ -34,6 +34,18 @@ namespace MoneyFox.DataLayer.Tests.Entities
             payment.IsCleared.ShouldEqual(expectedIsCleared);
         }
 
+        [Fact]
+        public void Ctor_NoParams_DefaultValueSet()
+        {
+            // Arrange
+
+            // Act
+            var payment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+
+            // Assert
+            payment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+        }
+
         [Theory]
         [InlineData(1, false)]
         [InlineData(0, true)]

@@ -33,6 +33,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Assert
             category.Name.ShouldEqual(testname);
             category.Note.ShouldBeEmpty();
+            category.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
 
         [Fact]

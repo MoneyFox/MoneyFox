@@ -12,6 +12,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public Category(string name, string note = "")
         {
+            CreationTime = DateTime.Now;
             UpdateData(name, note);
         }
 
@@ -23,6 +24,8 @@ namespace MoneyFox.DataLayer.Entities
         public string Name { get; private set; }
 
         public string Note { get; private set; }
+
+        public DateTime CreationTime { get; private set; }
 
         public List<Payment> Payments { get; private set; }
 
