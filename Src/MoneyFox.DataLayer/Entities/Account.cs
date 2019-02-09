@@ -12,6 +12,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public Account(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
+            CreationTime = DateTime.Now;
             UpdateAccount(name, currentBalance, note, isExcluded);
         }
 
@@ -25,6 +26,7 @@ namespace MoneyFox.DataLayer.Entities
         public string Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
+        public DateTime CreationTime { get; private set; }
 
         public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {

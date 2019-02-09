@@ -53,11 +53,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.navigationService = navigationService;
             this.messenger = messenger;
             this.accountId = accountId;
-        }
-
-        public override void ViewAppearing()
-        {
-            base.ViewAppearing();
 
             var accountCount = crudServices.ReadManyNoTracked<AccountViewModel>().Count();
 
