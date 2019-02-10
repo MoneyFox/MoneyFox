@@ -45,7 +45,7 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -71,7 +71,6 @@
                        Text="{Binding Title}" />
 
             <ScrollViewer Grid.Row="1"
-                          EntranceNavigationTransitionInfo.IsTargetElement="True"
                           VerticalScrollBarVisibility="Auto"
                           Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
                 <ListView Background="Transparent"

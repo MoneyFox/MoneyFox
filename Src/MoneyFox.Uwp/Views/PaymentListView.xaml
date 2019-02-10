@@ -38,7 +38,8 @@
         </Flyout>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -50,8 +51,7 @@
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1"
-              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
+              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
             <userControls:PaymentListUserControl />
         </Grid>
 

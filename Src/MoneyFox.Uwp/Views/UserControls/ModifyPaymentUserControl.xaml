@@ -36,7 +36,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
