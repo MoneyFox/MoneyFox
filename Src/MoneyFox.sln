@@ -40,7 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.BusinessLogic.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.BusinessDbAccess.Tests", "MoneyFox.BusinessDbAccess.Tests\MoneyFox.BusinessDbAccess.Tests.csproj", "{A72469B5-9DE0-4881-8C93-F16B2CFDDED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyFox.Migrations.Startup", "MoneyFox.Migrations.Startup\MoneyFox.Migrations.Startup.csproj", "{EA29B996-13E8-4775-9031-88E05C6288C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Migrations.Startup", "MoneyFox.Migrations.Startup\MoneyFox.Migrations.Startup.csproj", "{EA29B996-13E8-4775-9031-88E05C6288C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Helper", "_Helper", "{B5F4E306-E019-4753-9C8F-4858C7517DA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1354,6 +1356,7 @@ Global
 		{79EFA1EA-2B00-40B1-BF0B-69A77B9D0D3E} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{3BDCDEB1-E0EB-419A-BED0-AF258F27E2F7} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 		{A72469B5-9DE0-4881-8C93-F16B2CFDDED7} = {C34715EF-4059-44BC-A162-5599ACA83C82}
+		{EA29B996-13E8-4775-9031-88E05C6288C4} = {B5F4E306-E019-4753-9C8F-4858C7517DA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B224E843-3B6E-4B4E-86D7-B3A0A635A284}

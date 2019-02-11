@@ -122,7 +122,7 @@ namespace MoneyFox.Uwp
                              .ConfigureAwait(false);
                 }
 
-                (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 
