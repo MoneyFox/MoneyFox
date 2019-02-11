@@ -54,10 +54,10 @@
                                            Style="{StaticResource ListItemHeaderStyle}" />
 
                                         <StackLayout Grid.Column="1" 
-                                                 HorizontalOptions="EndAndExpand" 
-                                                 Orientation="Horizontal"
-                                                 Spacing="0" 
-                                                 VerticalOptions="CenterAndExpand">
+                                                     HorizontalOptions="EndAndExpand" 
+                                                     Orientation="Horizontal"
+                                                     Spacing="0" 
+                                                     VerticalOptions="CenterAndExpand">
                                             <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" 
                                                Style="{DynamicResource DefaultTextStyle}" />
 
@@ -71,13 +71,13 @@
                                         </StackLayout>
                                     </Grid>
 
-                                    <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Resources[MonthlyAverageLabel]}" 
-                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
-                                        <Label Text="{Binding Average}" 
-                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                        <Label Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" 
+                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
                                     </StackLayout>
-                                    
+
                                 </StackLayout>
                             </controls:CardView>
                         </ViewCell>
