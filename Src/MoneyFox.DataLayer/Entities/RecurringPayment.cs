@@ -27,6 +27,7 @@ namespace MoneyFox.DataLayer.Entities
             CreationTime = DateTime.Now;
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             StartDate = startDate;
+            EndDate = endDate;
             Amount = amount;
             Type = type;
             Recurrence = recurrence;
