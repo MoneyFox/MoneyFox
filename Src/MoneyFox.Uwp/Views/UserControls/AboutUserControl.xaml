@@ -12,7 +12,6 @@
 
     <Grid>
         <ScrollViewer HorizontalAlignment="Center"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
                       VerticalScrollBarVisibility="Auto">
             <StackPanel>
 

@@ -6,7 +6,7 @@
                       xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
                       mc:Ignorable="d">
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="65*" />
             <RowDefinition Height="37*" />
