@@ -13,7 +13,8 @@
         <designTime:DesignTimeStatisticCategorySpreadingViewModel />
     </d:MvxWindowsPage.DataContext>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

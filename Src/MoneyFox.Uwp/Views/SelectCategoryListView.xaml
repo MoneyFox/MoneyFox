@@ -26,7 +26,8 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

@@ -71,7 +71,7 @@
                               Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="240*" />
