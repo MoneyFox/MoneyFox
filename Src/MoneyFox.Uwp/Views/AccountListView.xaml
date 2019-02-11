@@ -18,38 +18,37 @@
 
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels1:AccountViewModel">
-            <StackPanel Margin="{StaticResource SmallListItemMargin}">
-                <StackPanel HorizontalAlignment="Stretch"
+            <StackPanel HorizontalAlignment="Stretch"
+                            Margin="{StaticResource SmallListItemMargin}" 
                             Background="{StaticResource ListItemBrush}"
                             RightTapped="AccountList_RightTapped">
-                    <FlyoutBase.AttachedFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Icon="Edit"
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Icon="Edit"
                                             Click="Edit_OnClick"
                                             Text="{Binding Resources[EditLabel]}" />
-                            <MenuFlyoutItem Icon="Delete"
+                        <MenuFlyoutItem Icon="Delete"
                                             Click="Delete_OnClick"
                                             Text="{Binding Resources[DeleteLabel]}" />
-                            <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="{Binding Resources[PintAccountLabel]}">
-                                <MenuFlyoutItem.Icon>
-                                    <SymbolIcon Symbol="Pin"/>
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                        </MenuFlyout>
-                    </FlyoutBase.AttachedFlyout>
+                        <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="{Binding Resources[PintAccountLabel]}">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Pin"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                                 Padding="{StaticResource SmallListItemPadding}">
-                        <Grid HorizontalAlignment="Stretch">
-                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind Name}"
                                        TextTrimming="CharacterEllipsis" />
-                            <TextBlock HorizontalAlignment="Right"
+                        <TextBlock HorizontalAlignment="Right"
                                        Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                        TextAlignment="Right" />
-                        </Grid>
-                    </StackPanel>
+                    </Grid>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
