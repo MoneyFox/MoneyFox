@@ -50,10 +50,11 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.MaxValue);
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.Today);
 
             // Assert
             recurringPayment.IsEndless.ShouldBeFalse();
+            recurringPayment.EndDate.ShouldEqual(DateTime.Today);
         }
 
         [Fact]

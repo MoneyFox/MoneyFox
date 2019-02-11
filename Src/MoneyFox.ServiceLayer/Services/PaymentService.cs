@@ -62,21 +62,21 @@ namespace MoneyFox.ServiceLayer.Services
                 : OperationResult.Succeeded();
         }
 
-        public async Task<OperationResult> DeletePayment(PaymentViewModel paymentToDelete)
+        public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
         {
             if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
                 .ConfigureAwait(true)) return OperationResult.Succeeded();
 
-            if (paymentToDelete.IsRecurring
+            if (paymentViewModel.IsRecurring
                 && await dialogService
                     .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
                     .ConfigureAwait(true))
             {
-                await modifyPaymentAction.DeleteRecurringPayment(paymentToDelete.RecurringPayment.Id)
+                await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id)
                     .ConfigureAwait(true);
             }
             
-            var result = await modifyPaymentAction.DeletePayment(paymentToDelete.Id)
+            var result = await modifyPaymentAction.DeletePayment(paymentViewModel.Id)
                 .ConfigureAwait(false);
 
             await context.SaveChangesAsync()
