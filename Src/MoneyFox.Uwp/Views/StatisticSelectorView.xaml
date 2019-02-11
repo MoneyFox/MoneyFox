@@ -35,7 +35,8 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -47,7 +48,6 @@
         <ScrollViewer Grid.Row="1"
                       Margin="{StaticResource NegativeLargeLeftRightMargin}"
                       HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
                       VerticalScrollBarVisibility="Disabled">
 
             <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"

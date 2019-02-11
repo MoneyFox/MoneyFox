@@ -29,7 +29,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Pivot>
             <!--  Settings  -->
             <PivotItem>

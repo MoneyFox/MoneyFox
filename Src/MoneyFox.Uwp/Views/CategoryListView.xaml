@@ -12,8 +12,8 @@
         <designTime:DesignTimeCategoryListViewModel />
     </d:MvxWindowsPage.DataContext>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
