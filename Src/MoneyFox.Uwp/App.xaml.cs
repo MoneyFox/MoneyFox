@@ -122,17 +122,17 @@ namespace MoneyFox.Uwp
                              .ConfigureAwait(false);
                 }
 
-                (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 
 				//If Jump Lists are supported, add them
 				if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
 				{
-					await SetJumplist().ConfigureAwait(false);
+					await SetJumplist().ConfigureAwait(true);
 				}
 
-				await CallRateReminder().ConfigureAwait(false);
+				await CallRateReminder().ConfigureAwait(true);
 			}
 		}
 

@@ -113,16 +113,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 if (isEndless == value) return;
                 isEndless = value;
-
-                if (IsEndless)
-                {
-                    EndDate = null;
-                }
-                else
-                {
-                    EndDate = DateTime.Today;
-                }
-                
                 RaisePropertyChanged();
             }
         }
