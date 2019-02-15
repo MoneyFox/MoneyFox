@@ -30,18 +30,19 @@
                     <OnPlatform x:TypeArguments="SeparatorVisibility">
                         <On Platform="iOS" Value="Default" />
                         <On Platform="Android" Value="None" />
+                        <On Platform="Uwp" Value="None" />
                     </OnPlatform>
                 </ListView.SeparatorVisibility>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
-                                <StackLayout BackgroundColor="{DynamicResource ListItemColor}"
-                                    Padding="3"
-                                    HorizontalOptions="FillAndExpand"
-                                    Margin="{DynamicResource DefaultListItemsMargin}">
-
+                            <controls:CardView Margin="{StaticResource ListItemMargin}" BackgroundColor="{x:Static moneyFox:StyleHelper.ListItemColor}" >
+                                
+                                <StackLayout Padding="3"
+                                             Spacing="3"
+                                             HorizontalOptions="FillAndExpand"
+                                             Margin="{DynamicResource DefaultListItemsMargin}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="70*" />

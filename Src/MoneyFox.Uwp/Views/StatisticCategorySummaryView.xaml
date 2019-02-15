@@ -8,42 +8,8 @@
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
+                      SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
                       mc:Ignorable="d">
-
-    <Page.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-        <DataTemplate x:Key="CategoryTemplate">
-            <Grid HorizontalAlignment="Stretch"
-                  Background="{StaticResource ListItemBrush}"
-                  Margin="{StaticResource SmallListItemMargin}">
-
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                    <Grid>
-                        <TextBlock Text="{Binding Label}" VerticalAlignment="Center" HorizontalAlignment="Left"
-                               TextTrimming="CharacterEllipsis" />
-                        <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
-
-                            <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}" />
-
-                            <TextBlock Text=" (" />
-                            <TextBlock Text="{Binding Percentage}" />
-                            <TextBlock Text="%)" />
-                        </StackPanel>
-                    </Grid>
-
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Resources[MonthlyAverageLabel]}" 
-                                   Style="{StaticResource DeemphasizedLabelStyle}"
-                                   Margin="0,0,3,0"/>
-                        <TextBlock Text="{Binding Average}" 
-                                   Style="{StaticResource DeemphasizedLabelStyle}" />
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </Page.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
@@ -57,44 +23,9 @@
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{StaticResource UwpPageTitleStyle}" />
-
-        <Grid Grid.Row="1"
-              Visibility="{Binding HasData, Converter={StaticResource BooleanToVisibilityConverter}}" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0"
-                       Margin="{StaticResource MediumLeftRightMargin}"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{Binding Title}" />
-
-            <ScrollViewer Grid.Row="1"
-                          VerticalScrollBarVisibility="Auto"
-                          Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
-                <ListView Background="Transparent"
-                          ItemTemplate="{StaticResource CategoryTemplate}"
-                          ItemsSource="{Binding CategorySummary}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </ScrollViewer>
-        </Grid>
-
-        <TextBlock Grid.Row="1"
-                   Margin="6"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                   Text="{Binding Resources[CategorySummaryPlaceHolderLabel]}"
-                   TextWrapping="Wrap"
-                   Visibility="{Binding HasData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
-
+        
+        <Grid Grid.Row="1" x:Name="ContentGrid" />
+        
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
