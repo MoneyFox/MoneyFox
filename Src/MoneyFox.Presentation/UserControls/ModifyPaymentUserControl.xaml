@@ -22,7 +22,8 @@
             <Picker ItemsSource="{Binding ChargedAccounts}"
                     Style="{StaticResource DefaultPickerStyle}"
                     SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
+                    SelectedIndexChanged="ChargedAccount_OnSelectedIndexChanged" >
             </Picker>
 
             <StackLayout Spacing="{StaticResource DefaultSpacing}"
@@ -31,7 +32,8 @@
                 <Picker ItemsSource="{Binding TargetAccounts}"
                         Style="{StaticResource DefaultPickerStyle}"
                         SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
+                        SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
             </StackLayout>
 
             <Label Text="{Binding Resources[AmountLabel]}"
