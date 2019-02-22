@@ -1,4 +1,5 @@
-﻿using MoneyFox.ServiceLayer.ViewModels;
+﻿using System;
+using MoneyFox.ServiceLayer.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,6 +21,16 @@ namespace MoneyFox.Presentation.UserControls
         private void AmountFieldGotFocus(object sender, FocusEventArgs e)
         {
             AmountEntry.Text = string.Empty;
+        }
+
+        private void ChargedAccount_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            (BindingContext as ModifyPaymentViewModel)?.SelectedItemChangedCommand.Execute();
+        }
+
+        private void TargetAccount_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            (BindingContext as ModifyPaymentViewModel)?.SelectedItemChangedCommand.Execute();
         }
     }
 }

@@ -7,7 +7,6 @@ namespace MoneyFox.Presentation.Controls
         public CardView()
         {
             Padding = 0;
-            BorderColor = Color.LightGray;
 
             if (Device.RuntimePlatform == Device.iOS)
             {

@@ -29,6 +29,13 @@
     <Thickness x:Key="MediumTopMargin">0,12,0,0</Thickness>
     <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>
 
+  <OnPlatform x:Key="ListItemMargin"
+              x:TypeArguments="Thickness">
+    <On Platform="Android" Value="-12,0,-12,6" />
+    <On Platform="iOS" Value="-12,0,-12,6" />
+    <On Platform="UWP" Value="-12,0,-12,2" />
+  </OnPlatform>
+  
     <!--Large size margins-->
     <Thickness x:Key="NegativeLargeLeftRightMargin">-24,0,-24,0</Thickness>
 

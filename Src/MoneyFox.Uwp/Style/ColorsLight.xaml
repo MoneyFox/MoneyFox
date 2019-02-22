@@ -7,7 +7,7 @@
     <Color x:Key="ColorPrimaryDark">#1a264c</Color>
 
     <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
-    <Color x:Key="ColorCustomBackground">WhiteSmoke</Color>
+    <Color x:Key="ColorCustomBackground">#EFF2F5</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
