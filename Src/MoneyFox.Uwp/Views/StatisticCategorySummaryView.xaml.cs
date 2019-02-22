@@ -1,8 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views.Dialogs;
 using MvvmCross;
+using Xamarin.Forms.Platform.UWP;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -22,6 +24,12 @@ namespace MoneyFox.Uwp.Views
                     DataContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
                 }.ShowAsync();
             }
+        }
+
+        private void StatisticCategorySummaryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new StatisticCategorySummaryPage() { DataContext = ViewModel }.CreateFrameworkElement());
         }
     }
 }

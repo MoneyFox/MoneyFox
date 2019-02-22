@@ -118,7 +118,7 @@
                     <controls:FloatingActionButton.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS">50</On>
-                            <On Platform="Android">90</On>
+                            <On Platform="Android">85</On>
                         </OnPlatform>
                     </controls:FloatingActionButton.HeightRequest>
                 </controls:FloatingActionButton>

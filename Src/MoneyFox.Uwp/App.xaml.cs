@@ -90,15 +90,14 @@ namespace MoneyFox.Uwp
 		{
 			CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(e);
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
-#if !DEBUG
-			AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
 
             if (e.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
-
-				ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+#if !DEBUG
+			AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+#endif
+                ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
                 Xamarin.Forms.Forms.Init(e);
 				new Presentation.App();

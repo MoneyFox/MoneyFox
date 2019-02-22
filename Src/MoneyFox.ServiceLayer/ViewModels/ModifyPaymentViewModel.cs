@@ -338,7 +338,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     ChargedAccounts.Add(account);
                 }
             }
-            ChargedAccounts.Remove(selectedPayment.TargetAccount);
             TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
     }

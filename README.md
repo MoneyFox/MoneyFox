@@ -12,22 +12,11 @@ We have a slack team to make communication a bit easier. Write me a mail to nino
 
 ### Try it
 
-There are two versions in the stores available for all devices with Windows 10 or Android:
-
-First there is a stable version who get regular udpates as soon as they are fully tested:
-
-[Windows](https://www.microsoft.com/store/apps/9nblggh6ck9d)
-
-[Android](https://play.google.com/store/apps/details?id=com.applysolutions.moneyfox)
-
-Second there is a beta for all these guys who want get their hands on all the new features who are currently in development. We try to keep this as stable as possible. But nonethless expect some bugs (please report! =) ):
-
-Windows: Please send me your Microsoft Account
-
-[Android](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
-(You can also opt-in for the beta in the play store)
-
-[IOS](https://testflight.apple.com/join/ycYtjupl)
+| Platform        | Production         |Beta |Dev|
+| ------------- |-------------|-------------|-------------|
+|Windows|[Microsoft Store](https://www.microsoft.com/store/apps/9nblggh6ck9d)| Please send me your Microsoft Account | Please send me your Microsoft Account|
+|Android|[Play Store](https://play.google.com/store/apps/details?id=com.applysolutions.moneyfox) | Opt-in via Play Store | Please send me your Google ID|
+|IOS | [Not Ready yet]| [Testflight](https://testflight.apple.com/join/ycYtjupl) |[Testflight](https://testflight.apple.com/join/3RO75JDs)|
 
 ### Contribution
 
