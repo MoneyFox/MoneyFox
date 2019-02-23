@@ -74,6 +74,8 @@ namespace MoneyFox.ServiceLayer.Services
             {
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id)
                     .ConfigureAwait(true);
+
+                paymentViewModel.IsRecurring = false;
             }
             
             var result = await modifyPaymentAction.DeletePayment(paymentViewModel.Id)

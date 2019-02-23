@@ -50,8 +50,6 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task<OperationResult> AddPayment(Payment payment)
         {
-            payment.ChargedAccount.AddPaymentAmount(payment);
-            payment.TargetAccount?.AddPaymentAmount(payment);
 
             await savePaymentDbAccess.AddPayment(payment)
                                      .ConfigureAwait(false);
@@ -66,9 +64,6 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
             paymentFromDatabase.ChargedAccount.RemovePaymentAmount(paymentFromDatabase);
             paymentFromDatabase.TargetAccount?.RemovePaymentAmount(paymentFromDatabase);
-
-            newPayment.ChargedAccount.AddPaymentAmount(newPayment);
-            newPayment.TargetAccount?.AddPaymentAmount(newPayment);
 
             paymentFromDatabase.UpdatePayment(newPayment.Date,
                                      newPayment.Amount,
