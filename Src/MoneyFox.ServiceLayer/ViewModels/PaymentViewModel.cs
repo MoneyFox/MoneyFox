@@ -74,20 +74,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///     Foreign key to the <see cref="Category" /> for this payment
-        /// </summary>
-        public int? CategoryId
-        {
-            get => categoryId;
-            set
-            {
-                if (categoryId == value) return;
-                categoryId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         ///     Date when this payment will be executed.
         /// </summary>
         public DateTime Date
@@ -173,20 +159,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     ? new RecurringPaymentViewModel()
                     : null;
 
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Foreign key to the <see cref="RecurringPayment" /> if it's recurring.
-        /// </summary>
-        public int? RecurringPaymentId
-        {
-            get => recurringPaymentId;
-            set
-            {
-                if (recurringPaymentId == value) return;
-                recurringPaymentId = value;
                 RaisePropertyChanged();
             }
         }

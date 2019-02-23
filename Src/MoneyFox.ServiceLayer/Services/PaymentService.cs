@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
@@ -74,8 +75,6 @@ namespace MoneyFox.ServiceLayer.Services
             {
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id)
                     .ConfigureAwait(true);
-
-                paymentViewModel.IsRecurring = false;
             }
             
             var result = await modifyPaymentAction.DeletePayment(paymentViewModel.Id)
@@ -91,6 +90,7 @@ namespace MoneyFox.ServiceLayer.Services
 
         private async Task<Payment> CreatePaymentFromViewModel(PaymentViewModel paymentViewModel)
         {
+
             var chargedAccount = await context.Accounts
                 .FindAsync(paymentViewModel.ChargedAccount.Id)
                 .ConfigureAwait(false);
@@ -110,12 +110,23 @@ namespace MoneyFox.ServiceLayer.Services
             var payment = new Payment(paymentViewModel.Date, paymentViewModel.Amount, paymentViewModel.Type,
                 chargedAccount,
                 targetAccount, category, paymentViewModel.Note);
+            try
+            {
+                if (paymentViewModel.IsRecurring)
+                    payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
+                        paymentViewModel.RecurringPayment.IsEndless
+                            ? null
+                            : paymentViewModel.RecurringPayment.EndDate);
 
-            if (paymentViewModel.IsRecurring)
-                payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
-                    paymentViewModel.RecurringPayment.EndDate);
+                return payment;
+            }
+            catch (Exception ex)
+            {
+                payment.ChargedAccount.RemovePaymentAmount(payment);
+                payment.TargetAccount?.RemovePaymentAmount(payment);
 
-            return payment;
+                throw;
+            }
         }
     }
 }

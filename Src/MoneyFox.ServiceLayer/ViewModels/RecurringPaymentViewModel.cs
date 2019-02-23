@@ -40,50 +40,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
         }
 
-        /// <summary>
-        ///     In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel" /> who will be charged.
-        ///     In case it's an income the  foreign key to the <see cref="AccountViewModel" /> who will be credited.
-        /// </summary>
-        public int ChargedAccountId
-        {
-            get => chargedAccountId;
-            set
-            {
-                if (chargedAccountId == value) return;
-                chargedAccountId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Foreign key to the account who will be credited by a transfer.
-        ///     Not used for the other payment types.
-        /// </summary>
-        public int? TargetAccountId
-        {
-            get => targetAccountId;
-            set
-            {
-                if (targetAccountId == value) return;
-                targetAccountId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Foreign key to the <see cref="Category" /> for this payment
-        /// </summary>
-        public int? CategoryId
-        {
-            get => categoryId;
-            set
-            {
-                if (categoryId == value) return;
-                categoryId = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public DateTime StartDate
         {
             get => startDate;
@@ -181,21 +137,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 if(chargedAccount == value) return;
                 chargedAccount = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.
-        ///     Not used for the other payment types.
-        /// </summary>
-        public AccountViewModel TargetAccount
-        {
-            get => targetAccount;
-            set
-            {
-                if (targetAccount == value) return;
-                targetAccount = value;
                 RaisePropertyChanged();
             }
         }
