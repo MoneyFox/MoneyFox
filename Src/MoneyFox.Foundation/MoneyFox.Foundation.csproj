@@ -19,6 +19,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <CodeAnalysisRuleSet>MoneyFox.Foundation.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.Foundation.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
