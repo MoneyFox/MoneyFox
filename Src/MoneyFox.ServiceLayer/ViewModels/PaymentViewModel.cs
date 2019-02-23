@@ -13,14 +13,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private int id;
         private int chargedAccountId;
         private int? targetAccountId;
-        private int? categoryId;
         private DateTime date;
         private double amount;
         private bool isCleared;
         private PaymentType type;
         private string note;
         private bool isRecurring;
-        private int? recurringPaymentId;
 
         private AccountViewModel chargedAccount;
         private AccountViewModel targetAccount;

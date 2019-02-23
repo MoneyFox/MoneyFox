@@ -44,7 +44,6 @@ namespace MoneyFox.DataLayer
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new RecurringPaymentConfiguration());
         }
     }
 }
