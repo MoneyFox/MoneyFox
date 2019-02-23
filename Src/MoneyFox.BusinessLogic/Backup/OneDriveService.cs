@@ -192,7 +192,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                      DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
             };
 
-            var itemWithUpdates = await OneDriveClient
+            await OneDriveClient
                 .Drive
                 .Items[currentBackup.Id]
                 .Request()
