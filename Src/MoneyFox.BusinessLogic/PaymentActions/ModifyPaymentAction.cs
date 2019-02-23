@@ -50,11 +50,9 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task<OperationResult> AddPayment(Payment payment)
         {
-            payment.ChargedAccount.AddPaymentAmount(payment);
-            payment.TargetAccount?.AddPaymentAmount(payment);
 
             await savePaymentDbAccess.AddPayment(payment)
-                                     .ConfigureAwait(false);
+                                     .ConfigureAwait(true);
 
             return OperationResult.Succeeded();
         }
@@ -62,13 +60,10 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task<OperationResult> UpdatePayment(int id, Payment newPayment)
         {
             var paymentFromDatabase = await savePaymentDbAccess.GetPaymentById(id)
-                                                      .ConfigureAwait(false);
+                                                      .ConfigureAwait(true);
 
             paymentFromDatabase.ChargedAccount.RemovePaymentAmount(paymentFromDatabase);
             paymentFromDatabase.TargetAccount?.RemovePaymentAmount(paymentFromDatabase);
-
-            newPayment.ChargedAccount.AddPaymentAmount(newPayment);
-            newPayment.TargetAccount?.AddPaymentAmount(newPayment);
 
             paymentFromDatabase.UpdatePayment(newPayment.Date,
                                      newPayment.Amount,
@@ -84,7 +79,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task<OperationResult> DeletePayment(int id)
         {
             var payment = await savePaymentDbAccess.GetPaymentById(id)
-                                                   .ConfigureAwait(false);
+                                                   .ConfigureAwait(true);
             
             payment.ChargedAccount.RemovePaymentAmount(payment);
             payment.TargetAccount?.RemovePaymentAmount(payment);
@@ -96,8 +91,12 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task DeleteRecurringPayment(int id)
         {
+            var payments = await savePaymentDbAccess.GetPaymentsForRecurring(id).ConfigureAwait(true);
+
+            payments.ForEach(x => x.RemoveRecurringPayment());
+
             await savePaymentDbAccess.DeleteRecurringPayment(id)
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

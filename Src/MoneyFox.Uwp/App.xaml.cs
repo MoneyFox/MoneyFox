@@ -118,7 +118,7 @@ namespace MoneyFox.Uwp
                     await Mvx.IoCProvider
                              .Resolve<IMvxNavigationService>()
                              .Navigate<LoginViewModel>()
-                             .ConfigureAwait(false);
+                             .ConfigureAwait(true);
                 }
 
                 ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();

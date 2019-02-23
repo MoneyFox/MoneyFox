@@ -87,12 +87,12 @@ namespace MoneyFox.Uwp.Views
                 bool ispinned = await tile.RequestCreateAsync();
                 if (ispinned)
                 {
-                    await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(false);
+                    await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(true);
                 }
             } else
             {
-                await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(false);
-                await liveTileManager.UpdatePrimaryLiveTile().ConfigureAwait(false);
+                await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(true);
+                await liveTileManager.UpdatePrimaryLiveTile().ConfigureAwait(true);
             }
         }
     }

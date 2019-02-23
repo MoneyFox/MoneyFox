@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.Business
                         : OnlineIdAuthenticationProvider.PromptType.PromptIfNeeded);
 
                 await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync()
-                                               .ConfigureAwait(false);
+                                               .ConfigureAwait(true);
                 return new GraphServiceClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
             catch (ServiceException serviceException)
@@ -61,7 +61,7 @@ namespace MoneyFox.Uwp.Business
         {
             await new OnlineIdAuthenticationProvider(ServiceConstants.Scopes)
                 .SignOutAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

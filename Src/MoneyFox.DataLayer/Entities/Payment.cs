@@ -78,9 +78,21 @@ namespace MoneyFox.DataLayer.Entities
             IsRecurring = true;
         }
 
+        public void RemoveRecurringPayment()
+        {
+            RecurringPayment = null;
+            IsRecurring = false;
+        }
+
         public void ClearPayment()
         {
             IsCleared = Date.Date <= DateTime.Today.Date;
+            ChargedAccount.AddPaymentAmount(this);
+
+            if (Type == PaymentType.Transfer)
+            {
+                TargetAccount.AddPaymentAmount(this);
+            }
         }
     }
 }

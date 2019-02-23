@@ -49,7 +49,7 @@ namespace MoneyFox.Foundation.Constants
         /// <summary>
         ///     Scopes for OneDrive access
         /// </summary>
-        public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin"};
+        public static readonly string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin"};
 
         /// <summary>
         ///     Maximum number of attempts to sync the database

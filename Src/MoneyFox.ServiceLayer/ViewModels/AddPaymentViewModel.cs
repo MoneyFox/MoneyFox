@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
@@ -56,13 +57,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SavePayment()
         {
-            var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);
+            try
+            {
+                var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);
+                
+                if (!result.Success)
+                    await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
+                        .ConfigureAwait(true);
 
-            if(!result.Success)
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
+                await NavigationService.Close(this).ConfigureAwait(true);
+            }
+            catch (MoneyFoxInvalidEndDateException ex)
+            {
+                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage)
                     .ConfigureAwait(true);
-
-            await NavigationService.Close(this).ConfigureAwait(true);
+            }
         }
     }
 }

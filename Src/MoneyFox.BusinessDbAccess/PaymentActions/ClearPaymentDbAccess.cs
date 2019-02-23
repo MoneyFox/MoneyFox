@@ -28,10 +28,12 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         public async Task<List<Payment>> GetUnclearedPayments()
         {
             return await context.Payments
+                .Include(x => x.ChargedAccount)
+                .Include(x => x.TargetAccount)
                 .AsQueryable()
                 .AreNotCleared()
                 .ToListAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

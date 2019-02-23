@@ -152,10 +152,10 @@ namespace MoneyFox.DataLayer.Tests.Entities
         {
             // Arrange
             var account = new Account("Test", 100);
-            var payment = new Payment(DateTime.Today, 50, paymentType, account);
 
             // Act
-            account.AddPaymentAmount(payment);
+            // AddPaymentAmount executed in the clear method
+            var payment = new Payment(DateTime.Today, 50, paymentType, account);
 
             // Assert
             account.CurrentBalance.ShouldEqual(expectedBalance);
@@ -191,12 +191,9 @@ namespace MoneyFox.DataLayer.Tests.Entities
             var targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
 
-
-            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
-
             // Act
-            chargedAccount.AddPaymentAmount(payment);
-            targetAccount.AddPaymentAmount(payment);
+            // AddPaymentAmount executed in the clear method
+            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 
             // Assert
             chargedAccount.CurrentBalance.ShouldEqual(50);
@@ -204,8 +201,8 @@ namespace MoneyFox.DataLayer.Tests.Entities
         }
 
         [Theory]
-        [InlineData(PaymentType.Expense, 150)]
-        [InlineData(PaymentType.Income, 50)]
+        [InlineData(PaymentType.Expense, 100)]
+        [InlineData(PaymentType.Income, 100)]
         public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, double expectedBalance)
         {
             // Arrange
@@ -241,8 +238,8 @@ namespace MoneyFox.DataLayer.Tests.Entities
             targetAccount.RemovePaymentAmount(payment);
 
             // Assert
-            chargedAccount.CurrentBalance.ShouldEqual(150);
-            targetAccount.CurrentBalance.ShouldEqual(50);
+            chargedAccount.CurrentBalance.ShouldEqual(100);
+            targetAccount.CurrentBalance.ShouldEqual(100);
         }
     }
 }

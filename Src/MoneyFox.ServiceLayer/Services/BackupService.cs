@@ -62,7 +62,7 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<OperationResult> Login()
         {
             var result = await backupManager.Login()
-                                            .ConfigureAwait(false);
+                                            .ConfigureAwait(true);
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = true;
@@ -76,7 +76,7 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<OperationResult> Logout()
         {
             var result = await backupManager.Logout()
-                                            .ConfigureAwait(false);
+                                            .ConfigureAwait(true);
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = false;
@@ -89,19 +89,19 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<bool> IsBackupExisting()
         {
             return await backupManager.IsBackupExisting()
-                                      .ConfigureAwait(false);
+                                      .ConfigureAwait(true);
         }
 
         public async Task<DateTime> GetBackupDate()
         {
             return await backupManager.GetBackupDate()
-                                      .ConfigureAwait(false);
+                                      .ConfigureAwait(true);
         }
 
         public async Task<OperationResult> RestoreBackup()
         {
             var result = await backupManager.RestoreBackup(settingsFacade.LastDatabaseUpdate)
-                                            .ConfigureAwait(false);
+                                            .ConfigureAwait(true);
 
             if (result.Success)
             {
@@ -117,7 +117,7 @@ namespace MoneyFox.ServiceLayer.Services
 
             if (!settingsFacade.IsLoggedInToBackupService)
             {
-                var loginResult = await Login().ConfigureAwait(false);
+                var loginResult = await Login().ConfigureAwait(true);
                 if (!loginResult.Success)
                 {
                     return loginResult;
@@ -125,7 +125,7 @@ namespace MoneyFox.ServiceLayer.Services
             }
 
             var result = await backupManager.EnqueueBackupTask()
-                                            .ConfigureAwait(false);
+                                            .ConfigureAwait(true);
 
             if (result.Success)
             {

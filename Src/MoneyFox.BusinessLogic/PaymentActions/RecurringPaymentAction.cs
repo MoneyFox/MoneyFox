@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.DataLayer.Entities;
@@ -26,7 +25,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task CreatePaymentsUpToRecur()
         {
             var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments()
-                                                                  .ConfigureAwait(false);
+                                                                  .ConfigureAwait(true);
 
             await recurringPaymentDbAccess.SaveNewPayments(recurringPayments.Where(x => RecurringPaymentHelper
                     .CheckIfRepeatable(x.RelatedPayments
@@ -42,7 +41,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                     x.Note,
                     x))
                 .ToList())
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

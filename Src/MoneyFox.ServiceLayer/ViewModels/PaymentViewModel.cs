@@ -13,14 +13,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private int id;
         private int chargedAccountId;
         private int? targetAccountId;
-        private int? categoryId;
         private DateTime date;
         private double amount;
         private bool isCleared;
         private PaymentType type;
         private string note;
         private bool isRecurring;
-        private int? recurringPaymentId;
 
         private AccountViewModel chargedAccount;
         private AccountViewModel targetAccount;
@@ -69,20 +67,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 if (targetAccountId == value) return;
                 targetAccountId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Foreign key to the <see cref="Category" /> for this payment
-        /// </summary>
-        public int? CategoryId
-        {
-            get => categoryId;
-            set
-            {
-                if (categoryId == value) return;
-                categoryId = value;
                 RaisePropertyChanged();
             }
         }
@@ -173,20 +157,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     ? new RecurringPaymentViewModel()
                     : null;
 
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Foreign key to the <see cref="RecurringPayment" /> if it's recurring.
-        /// </summary>
-        public int? RecurringPaymentId
-        {
-            get => recurringPaymentId;
-            set
-            {
-                if (recurringPaymentId == value) return;
-                recurringPaymentId = value;
                 RaisePropertyChanged();
             }
         }
