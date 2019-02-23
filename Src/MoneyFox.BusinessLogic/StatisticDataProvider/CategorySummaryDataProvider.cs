@@ -85,7 +85,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             if (payments.Count == 0) return 0;
 
             double sumForCategory = payments.Sum(x => x.Amount);
-            TimeSpan timeDiff = DateTime.Today - payments.Last().Date;
+            TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
             if(timeDiff.Days < 30) return sumForCategory;
             return Math.Round(sumForCategory / (timeDiff.Days / 30), 2, MidpointRounding.ToEven);

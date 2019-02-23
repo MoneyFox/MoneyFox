@@ -1,0 +1,2 @@
+see here for what was done:
+https://github.com/MoneyFox/MoneyFox/issues?q=is%3Aissue+is%3Aclosed
