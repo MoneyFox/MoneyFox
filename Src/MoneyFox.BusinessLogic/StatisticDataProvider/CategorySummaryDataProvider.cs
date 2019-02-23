@@ -28,7 +28,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         {
             var categoryOverviewItems = new List<CategoryOverviewItem>();
             categories = await statisticDbAccess.GetAllCategoriesWithPayments()
-                                                .ConfigureAwait(false);
+                                                .ConfigureAwait(true);
 
             foreach (Category category in categories)
             {

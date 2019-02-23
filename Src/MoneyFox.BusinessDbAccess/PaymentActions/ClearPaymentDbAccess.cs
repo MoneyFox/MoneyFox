@@ -33,7 +33,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
                 .AsQueryable()
                 .AreNotCleared()
                 .ToListAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

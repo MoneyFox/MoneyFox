@@ -34,14 +34,14 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
                                 .Include(x => x.ChargedAccount)
                                 .Include(x => x.ChargedAccount)
                                 .FirstOrDefaultAsync(x => x.Id == id)
-                                .ConfigureAwait(false);
+                                .ConfigureAwait(true);
         }
 
         public async Task AddPayment(Payment payment)
         {
             await context.Payments
                          .AddAsync(payment)
-                         .ConfigureAwait(false);
+                         .ConfigureAwait(true);
         }
 
         public void DeletePayment(Payment payment)
@@ -51,7 +51,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
         public async Task DeleteRecurringPayment(int id)
         {
-            context.RecurringPayments.Remove(await context.RecurringPayments.FindAsync(id).ConfigureAwait(false));
+            context.RecurringPayments.Remove(await context.RecurringPayments.FindAsync(id).ConfigureAwait(true));
         }
 
         public async Task<List<Payment>> GetPaymentsForRecurring(int recurringPaymentId)
@@ -60,7 +60,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
                 .Where(x => x.IsRecurring)
                 .Where(x => x.RecurringPayment.Id == recurringPaymentId)
                 .ToListAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
     }
 }

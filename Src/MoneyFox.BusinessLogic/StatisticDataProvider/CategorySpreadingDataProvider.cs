@@ -34,7 +34,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         public async Task<IEnumerable<StatisticEntry>> GetValues(DateTime startDate, DateTime endDate)
         {
             return AggregateData(SelectRelevantDataFromList(await statisticDbAccess.GetPaymentsWithoutTransfer(startDate, endDate)
-                                                                                   .ConfigureAwait(false)));
+                                                                                   .ConfigureAwait(true)));
         }
 
         private List<(float Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)

@@ -51,7 +51,7 @@ namespace MoneyFox.ServiceLayer.Services
             return await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreNotExcluded()
                 .SumAsync(x => x.CurrentBalance)
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
         }
 
         /// <inheritdoc />
@@ -60,9 +60,9 @@ namespace MoneyFox.ServiceLayer.Services
             var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreExcluded()
                 .ToListAsync()
-                .ConfigureAwait(false);
+                .ConfigureAwait(true);
 
-            var balance = await GetTotalBalance().ConfigureAwait(false);
+            var balance = await GetTotalBalance().ConfigureAwait(true);
 
             foreach (var payment in crudServices
                 .ReadManyNoTracked<PaymentViewModel>()

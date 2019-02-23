@@ -50,9 +50,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             await crudServices.UpdateAndSaveAsync(SelectedAccount)
                               .ConfigureAwait(true);
+
             if (!crudServices.IsValid)
+            {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                                   .ConfigureAwait(true);
+                    .ConfigureAwait(true);
+            }
 
             await CancelCommand.ExecuteAsync().ConfigureAwait(true);
         }
