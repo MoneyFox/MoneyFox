@@ -204,7 +204,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public async void GetTotalBalance_TwoAccounts_SumOfAccounts()
+        public async Task GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             // Arrange
             var accounts = new List<AccountViewModel>

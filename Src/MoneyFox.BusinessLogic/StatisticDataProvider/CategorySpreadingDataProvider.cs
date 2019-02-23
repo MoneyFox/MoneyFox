@@ -61,17 +61,8 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
-            SetLabel(statisticList);
 
             return statisticList;
-        }
-
-        private static void SetLabel(List<StatisticEntry> statisticList)
-        {
-            foreach (var statisticItem in statisticList)
-            {
-                statisticItem.Label = statisticItem.Label;
-            }
         }
 
         private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)

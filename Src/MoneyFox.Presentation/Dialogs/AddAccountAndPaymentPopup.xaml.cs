@@ -20,25 +20,25 @@ namespace MoneyFox.Presentation.Dialogs
 
         private async void AddAccountGridClicked()
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopPopupAsync().ConfigureAwait(true);
             (BindingContext as IAccountListViewActionViewModel)?.GoToAddAccountCommand.ExecuteAsync();
         }
 
         private async void AddExpenseGridClicked()
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopPopupAsync().ConfigureAwait(true); ;
             (BindingContext as IAccountListViewActionViewModel)?.GoToAddExpenseCommand.ExecuteAsync();
         }
 
         private async void AddIncomeGridClicked()
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopPopupAsync().ConfigureAwait(true); ;
             (BindingContext as IAccountListViewActionViewModel)?.GoToAddIncomeCommand.ExecuteAsync();
         }
 
         private async void AddTransferGridClicked()
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopPopupAsync().ConfigureAwait(true); ;
             (BindingContext as IAccountListViewActionViewModel)?.GoToAddTransferCommand.ExecuteAsync();
         }
     }

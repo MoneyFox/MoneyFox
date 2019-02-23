@@ -21,7 +21,7 @@ namespace MoneyFox.Business.Tests.ViewModels
     public class SelectCategoryListViewModelTests : MvxIoCSupportingTest
     {
         [Fact]
-        public async void ItemClick()
+        public async Task ItemClick()
         {
             // Arrange
             base.Setup();
@@ -56,7 +56,7 @@ namespace MoneyFox.Business.Tests.ViewModels
         }
 
         [Fact]
-        public async void Close()
+        public async Task Close()
         {
             // Arrange
             bool closeWasCalled = false;
