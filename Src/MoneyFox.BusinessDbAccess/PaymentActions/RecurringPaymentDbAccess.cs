@@ -27,23 +27,24 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public Task<List<RecurringPayment>> GetRecurringPayments()
+        public async Task<List<RecurringPayment>> GetRecurringPayments()
         {
-            return context.RecurringPayments
+            return await context.RecurringPayments
                 .Include(x => x.ChargedAccount)
                 .Include(x => x.TargetAccount)
                 .Include(x => x.Category)
                 .Include(x => x.RelatedPayments)
                 .AsQueryable()
                 .IsNotExpired()
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
 
         public async Task SaveNewPayments(List<Payment> payments)
         {
             await context.Payments
                          .AddRangeAsync(payments)
-                         .ConfigureAwait(true);
+                         .ConfigureAwait(false);
         }
     }
 }

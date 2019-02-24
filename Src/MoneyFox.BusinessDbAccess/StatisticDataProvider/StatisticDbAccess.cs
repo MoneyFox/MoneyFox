@@ -42,7 +42,7 @@ namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
                 .HasDateLargerEqualsThan(startDate.Date)
                 .HasDateSmallerEqualsThan(endDate.Date)
                 .ToListAsync()
-                .ConfigureAwait(true);
+                .ConfigureAwait(false);
         }
 
         public async Task<List<Category>> GetAllCategoriesWithPayments()
@@ -51,7 +51,7 @@ namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
                 .Include(x => x.Payments)
                 .OrderByName()
                 .ToListAsync()
-                .ConfigureAwait(true);
+                .ConfigureAwait(false);
         }
     }
 }

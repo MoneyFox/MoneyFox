@@ -87,5 +87,34 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Assert
             testPayment.IsCleared.ShouldEqual(expectedIsCleared);
         }
+
+        [Fact]
+        public void AddRecurringPayment_ValuesSetCorrectly()
+        {
+            // Arrange
+            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+
+            // Act
+            testPayment.AddRecurringPayment(PaymentRecurrence.Bimonthly);
+
+            // Assert
+            testPayment.IsRecurring.ShouldBeTrue();
+            testPayment.RecurringPayment.ShouldNotBeNull();
+        }
+
+        [Fact]
+        public void RemoveRecurringPayment_ValuesSetCorrectly()
+        {
+            // Arrange
+            var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
+            testPayment.AddRecurringPayment(PaymentRecurrence.Bimonthly);
+
+            // Act
+            testPayment.RemoveRecurringPayment();
+
+            // Assert
+            testPayment.IsRecurring.ShouldBeFalse();
+            testPayment.RecurringPayment.ShouldBeNull();
+        }
     }
 }

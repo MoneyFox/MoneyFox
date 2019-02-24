@@ -38,7 +38,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         public async Task<List<StatisticEntry>> GetCashFlow(DateTime startDate, DateTime endDate)
         {
             return GetCashFlowStatisticItems(await statisticDbAccess.GetPaymentsWithoutTransfer(startDate, endDate)
-                                                                    .ConfigureAwait(true));
+                                                                    .ConfigureAwait(false));
         }
 
         private List<StatisticEntry> GetCashFlowStatisticItems(IReadOnlyCollection<Payment> payments)

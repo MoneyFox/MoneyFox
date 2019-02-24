@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {

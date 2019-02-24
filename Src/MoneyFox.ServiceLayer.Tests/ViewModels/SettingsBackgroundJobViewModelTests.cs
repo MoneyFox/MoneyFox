@@ -31,9 +31,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 
             // Act
             var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
-                                                        new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
-            vm.BackupSyncRecurrence = passedValue;
+                new Mock<IMvxLogProvider>().Object,
+                new Mock<IMvxNavigationService>().Object) {BackupSyncRecurrence = passedValue};
 
             // Assert
             Assert.True(taskStarted);
@@ -54,8 +53,10 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             // Act
             var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
                                                         new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
-            vm.IsAutoBackupEnabled = true;
+                                                        new Mock<IMvxNavigationService>().Object)
+            {
+                IsAutoBackupEnabled = true
+            };
 
             // Assert
             Assert.True(taskStarted);
@@ -74,9 +75,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 
             // Act
             var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
-                                                        new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
-            vm.IsAutoBackupEnabled = false;
+                new Mock<IMvxLogProvider>().Object,
+                new Mock<IMvxNavigationService>().Object) {IsAutoBackupEnabled = false};
 
             // Assert
             Assert.True(taskStopped);

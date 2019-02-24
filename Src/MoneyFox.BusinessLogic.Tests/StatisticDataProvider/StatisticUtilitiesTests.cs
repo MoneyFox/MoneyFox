@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
-using MoneyFox.Foundation.Models;
 using Should;
 using Xunit;
 

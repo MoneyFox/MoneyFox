@@ -72,7 +72,7 @@ namespace MoneyFox.DataLayer.Entities
             ClearPayment();
         }
 
-        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate)
+        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
             RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category);
             IsRecurring = true;

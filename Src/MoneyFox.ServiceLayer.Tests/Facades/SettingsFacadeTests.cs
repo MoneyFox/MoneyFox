@@ -31,10 +31,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.IsBackupAutouploadEnabled.ShouldBeFalse();
+            settingsFacade.IsBackupAutouploadEnabled.ShouldBeFalse();
         }
 
         [Fact]
@@ -43,10 +43,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.SessionTimestamp.ShouldBeEmpty();
+            settingsFacade.SessionTimestamp.ShouldBeEmpty();
         }
 
         [Fact]
@@ -55,10 +55,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.PasswordRequired.ShouldBeFalse();
+            settingsFacade.PasswordRequired.ShouldBeFalse();
         }
 
         [Fact]
@@ -67,10 +67,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.LastDatabaseUpdate.ShouldEqual(DateTime.MinValue);
+            settingsFacade.LastDatabaseUpdate.ShouldEqual(DateTime.MinValue);
         }
 
         [Fact]
@@ -79,10 +79,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.Theme.ShouldEqual(AppTheme.Light);
+            settingsFacade.Theme.ShouldEqual(AppTheme.Light);
         }
 
         [Fact]
@@ -91,10 +91,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.IsLoggedInToBackupService.ShouldBeFalse();
+            settingsFacade.IsLoggedInToBackupService.ShouldBeFalse();
         }
 
         [Fact]
@@ -103,10 +103,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.BackupSyncRecurrence.ShouldEqual(3);
+            settingsFacade.BackupSyncRecurrence.ShouldEqual(3);
         }
 
         [Fact]
@@ -115,10 +115,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.LastExecutionTimeStampSyncBackup.ShouldEqual(DateTime.MinValue);
+            settingsFacade.LastExecutionTimeStampSyncBackup.ShouldEqual(DateTime.MinValue);
         }
 
         [Fact]
@@ -127,10 +127,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.LastExecutionTimeStampClearPayments.ShouldEqual(DateTime.MinValue);
+            settingsFacade.LastExecutionTimeStampClearPayments.ShouldEqual(DateTime.MinValue);
         }
 
         [Fact]
@@ -139,10 +139,10 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
             // Arrange
             
             // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
+            var settingsFacade = new SettingsFacade(settingsAdapter);
 
             // Assert
-            settingsfacade.LastExecutionTimeStampRecurringPayments.ShouldEqual(DateTime.MinValue);
+            settingsFacade.LastExecutionTimeStampRecurringPayments.ShouldEqual(DateTime.MinValue);
         }
     }
 }

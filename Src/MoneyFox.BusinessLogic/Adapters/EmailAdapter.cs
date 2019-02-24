@@ -21,11 +21,9 @@ namespace MoneyFox.BusinessLogic.Adapters
                 {
                     Subject = subject,
                     Body = body,
-                    To = recipients,
-                    //Cc = ccRecipients,
-                    //Bcc = bccRecipients
+                    To = recipients
                 };
-                await Email.ComposeAsync(message).ConfigureAwait(true);
+                await Email.ComposeAsync(message).ConfigureAwait(false);
             } 
             catch (FeatureNotSupportedException ex)
             {
