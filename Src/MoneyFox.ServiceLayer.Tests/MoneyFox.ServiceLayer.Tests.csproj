@@ -15,8 +15,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MockQueryable.Moq" Version="1.0.4" />
-    <PackageReference Include="Moq" Version="4.10.0" />
-    <PackageReference Include="MvvmCross.Tests" Version="6.2.2" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="MvvmCross.Tests" Version="6.2.3" />
     <PackageReference Include="Should-DotNetStandard" Version="1.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
