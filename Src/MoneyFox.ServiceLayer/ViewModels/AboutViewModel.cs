@@ -179,7 +179,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToDesignerTwitterAccount()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICONDESIGNER_TWITTER_URL))
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL))
                 .ConfigureAwait(true);
         }
 

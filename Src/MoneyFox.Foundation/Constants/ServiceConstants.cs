@@ -4,7 +4,7 @@ namespace MoneyFox.Foundation.Constants
     /// <summary>
     ///     Contains constants for the services used in the app.
     /// </summary>
-    public sealed class ServiceConstants
+    public static class ServiceConstants
     {
         /// <summary>
         ///     Return URL for the OneDrive authentication

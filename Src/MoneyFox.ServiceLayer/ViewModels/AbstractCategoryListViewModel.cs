@@ -19,8 +19,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseNavigationViewModel
     {
-        protected readonly ICrudServicesAsync CrudServices;
-        protected readonly IDialogService DialogService;
+        protected ICrudServicesAsync CrudServices { get;  }
+        protected IDialogService DialogService { get; }
         
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
