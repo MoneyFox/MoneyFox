@@ -55,7 +55,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected override async Task ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
-            await NavigationService.Close(this);
+            await NavigationService.Close(this).ConfigureAwait(true);
         }
     }
 }

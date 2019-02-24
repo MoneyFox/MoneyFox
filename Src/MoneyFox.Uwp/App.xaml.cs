@@ -165,7 +165,12 @@ namespace MoneyFox.Uwp
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
         }
 
-		private async Task SetJumplist()
+        private const string INCOME_TILE_ICON = "ms-appx:///Assets/IncomeTileIcon.png";
+        private const string SPENDING_TILE_ICON = "ms-appx:///Assets/SpendingTileIcon.png";
+        private const string TRANSFER_TILE_ICON = "ms-appx:///Assets/TransferTileIcon.png";
+
+
+        private async Task SetJumplist()
 		{
 			var jumpList = await JumpList.LoadCurrentAsync();
 			jumpList.Items.Clear();
@@ -173,17 +178,17 @@ namespace MoneyFox.Uwp
 
 			var listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.ADD_INCOME_TILE_ID,
 																	 Strings.AddIncomeLabel);
-			listItemAddIncome.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
+			listItemAddIncome.Logo = new Uri(INCOME_TILE_ICON);
 			jumpList.Items.Add(listItemAddIncome);
 
 			var listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.ADD_EXPENSE_TILE_ID,
 																	   Strings.AddExpenseLabel);
-			listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
+			listItemAddSpending.Logo = new Uri(SPENDING_TILE_ICON);
 			jumpList.Items.Add(listItemAddSpending);
 
 			var listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.ADD_TRANSFER_TILE_ID,
 																	   Strings.AddTransferLabel);
-			listItemAddTransfer.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
+			listItemAddTransfer.Logo = new Uri(TRANSFER_TILE_ICON);
 			jumpList.Items.Add(listItemAddTransfer);
 
 			await jumpList.SaveAsync();
@@ -196,7 +201,7 @@ namespace MoneyFox.Uwp
 			RatePopup.Title = Strings.RateReminderTitle;
 			RatePopup.Content = Strings.RateReminderText;
 
-			await RatePopup.CheckRateReminderAsync();
+			await RatePopup.CheckRateReminderAsync().ConfigureAwait(true);
 		}
 
 		/// <summary>

@@ -133,7 +133,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override async Task Initialize()
         {
-            await Loaded();
+            await Loaded().ConfigureAwait(true);
         }
 
         private async Task Loaded()
@@ -141,36 +141,39 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (!IsLoggedIn) return;
 
             if (!connectivity.IsConnected)
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage).ConfigureAwait(true);
 
             IsLoadingBackupAvailability = true;
             try
             {
-                BackupAvailable = await backupService.IsBackupExisting();
-                BackupLastModified = await backupService.GetBackupDate();
+                BackupAvailable = await backupService.IsBackupExisting().ConfigureAwait(true);
+                BackupLastModified = await backupService.GetBackupDate().ConfigureAwait(true);
             }
             catch (BackupAuthenticationFailedException ex)
             {
                 Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
-                await backupService.Logout();
+                await backupService.Logout().ConfigureAwait(true);
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                    Strings.ErrorMessageAuthenticationFailed);
+                        Strings.ErrorMessageAuthenticationFailed)
+                    .ConfigureAwait(true);
             }
             catch (ServiceException ex)
             {
                 if (ex.Error.Code == "4f37.717b")
                 {
                     Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
-                    await backupService.Logout();
+                    await backupService.Logout().ConfigureAwait(true);
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                        Strings.ErrorMessageAuthenticationFailed);
+                        Strings.ErrorMessageAuthenticationFailed)
+                        .ConfigureAwait(true);
                 }
             }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Unknown Issue"}});
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle,
-                    ex.ToString());
+                    ex.ToString())
+                    .ConfigureAwait(true);
             }
 
             IsLoadingBackupAvailability = false;
@@ -180,87 +183,90 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (!connectivity.IsConnected)
             {
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage).ConfigureAwait(true);
             }
 
-            var result = await backupService.Login();
+            var result = await backupService.Login().ConfigureAwait(true);
 
             if (!result.Success)
             {
                 await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle,result.Message);
+                    .ShowMessage(Strings.LoginFailedTitle,result.Message)
+                    .ConfigureAwait(true);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            await RaisePropertyChanged(nameof(IsLoggedIn));
-            await Loaded();
+            await RaisePropertyChanged(nameof(IsLoggedIn)).ConfigureAwait(true);
+            await Loaded().ConfigureAwait(true);
         }
 
         private async Task Logout()
         {
-            var result = await backupService.Logout();
+            var result = await backupService.Logout().ConfigureAwait(true);
 
             if (!result.Success)
             {
                 await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle, result.Message);
+                    .ShowMessage(Strings.LoginFailedTitle, result.Message)
+                    .ConfigureAwait(true);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            await RaisePropertyChanged(nameof(IsLoggedIn));
+            await RaisePropertyChanged(nameof(IsLoggedIn)).ConfigureAwait(true);
         }
 
         private async Task CreateBackup()
         {
-            if (!await ShowOverwriteBackupInfo()) return;
+            if (!await ShowOverwriteBackupInfo().ConfigureAwait(true)) return;
 
             dialogService.ShowLoadingDialog();
 
-            var operationResult = await backupService.EnqueueBackupTask();
+            var operationResult = await backupService.EnqueueBackupTask().ConfigureAwait(true);
             if (operationResult.Success)
             {
                 BackupLastModified = DateTime.Now;
             }
             else
             {
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message)
+                                   .ConfigureAwait(true);
             }
 
             dialogService.HideLoadingDialog();
-            await ShowCompletionNote();
+            await ShowCompletionNote().ConfigureAwait(true);
         }
 
         private async Task RestoreBackup()
         {
-            if (!await ShowOverwriteDataInfo()) return;
+            if (!await ShowOverwriteDataInfo().ConfigureAwait(true)) return;
 
             dialogService.ShowLoadingDialog();
-            var operationResult = await backupService.RestoreBackup();
+            var operationResult = await backupService.RestoreBackup().ConfigureAwait(true);
             dialogService.HideLoadingDialog();
 
             if (!operationResult.Success)
             {
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message).ConfigureAwait(true);
             }
             else
             {
-                await ShowCompletionNote();
+                await ShowCompletionNote().ConfigureAwait(true);
             }
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage).ConfigureAwait(true);
         }
 
         private async Task<bool> ShowOverwriteDataInfo()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage).ConfigureAwait(true);
         }
 
         private async Task ShowCompletionNote()
         {
-            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
+            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage).ConfigureAwait(true);
         }
     }
 }

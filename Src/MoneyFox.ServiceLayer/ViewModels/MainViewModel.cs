@@ -41,9 +41,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task ShowInitialViewModels()
         {
-            await navigationService.Navigate<AccountListViewModel>();
-            await navigationService.Navigate<StatisticSelectorViewModel>();
-            await navigationService.Navigate<SettingsViewModel>();
+            await navigationService.Navigate<AccountListViewModel>().ConfigureAwait(true);
+            await navigationService.Navigate<StatisticSelectorViewModel>().ConfigureAwait(true);
+            await navigationService.Navigate<SettingsViewModel>().ConfigureAwait(true);
         }
     }
 }

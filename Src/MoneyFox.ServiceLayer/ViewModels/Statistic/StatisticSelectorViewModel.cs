@@ -57,15 +57,15 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
             switch (item.Type)
             {
                 case StatisticType.Cashflow:
-                    await navigationService.Navigate<StatisticCashFlowViewModel>();
+                    await navigationService.Navigate<StatisticCashFlowViewModel>().ConfigureAwait(true);
                     break;
 
                 case StatisticType.CategorySpreading:
-                    await navigationService.Navigate<StatisticCategorySpreadingViewModel>();
+                    await navigationService.Navigate<StatisticCategorySpreadingViewModel>().ConfigureAwait(true);
                     break;
 
                 case StatisticType.CategorySummary:
-                    await navigationService.Navigate<StatisticCategorySummaryViewModel>();
+                    await navigationService.Navigate<StatisticCategorySummaryViewModel>().ConfigureAwait(true);
                     break;
             }
         }

@@ -75,7 +75,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            await Load();
+            await Load().ConfigureAwait(true);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await spreadingDataProvider.GetValues(StartDate, EndDate));
+            StatisticItems = new ObservableCollection<StatisticEntry>(await spreadingDataProvider.GetValues(StartDate, EndDate).ConfigureAwait(true));
 
             var microChartItems = StatisticItems
                                   .Select(x => new Entry(x.Value) {Label = x.Label, ValueLabel = x.ValueLabel})

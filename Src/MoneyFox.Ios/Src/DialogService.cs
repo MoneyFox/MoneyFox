@@ -21,7 +21,7 @@ namespace MoneyFox.iOS
         }
 
         /// <inheritdoc />
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
+        public async Task ShowConfirmMessage(string title, string message, Action positiveAction, string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
         {
             HideLoadingDialog();
 
@@ -43,11 +43,11 @@ namespace MoneyFox.iOS
             }
 
             // true if user touches positive button
-            var isPositiveAction = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+            var isPositiveAction = await UserDialogs.Instance.ConfirmAsync(confirmConfig).ConfigureAwait(true);
 
             if (isPositiveAction)
             {
-                positivAction();
+                positiveAction();
             } else
             {
                 negativAction?.Invoke();
@@ -77,7 +77,7 @@ namespace MoneyFox.iOS
                 confirmConfig.CancelText = negativeButtonText;
             }
 
-            var action = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+            var action = await UserDialogs.Instance.ConfirmAsync(confirmConfig).ConfigureAwait(true);
 
             return action;
         }

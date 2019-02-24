@@ -67,7 +67,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
                 await NavigationService.Close(this).ConfigureAwait(true);
             }
-            catch (MoneyFoxInvalidEndDateException ex)
+            catch (MoneyFoxInvalidEndDateException)
             {
                 await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage)
                     .ConfigureAwait(true);

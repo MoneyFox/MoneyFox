@@ -64,13 +64,13 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
 
         public override async Task Initialize()
         {
-            await Load();
+            await Load().ConfigureAwait(true);
         }
 
         protected override async Task Load()
         {
             StatisticItems = new MvxObservableCollection<StatisticEntry>(
-                await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
+                await cashFlowDataProvider.GetCashFlow(StartDate, EndDate).ConfigureAwait(true));
 
             Chart = new BarChart
             {

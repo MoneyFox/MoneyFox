@@ -15,7 +15,7 @@ namespace MoneyFox.Presentation.Dialogs
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopPopupAsync().ConfigureAwait(true);
             (BindingContext as SelectDateRangeDialogViewModel)?.DoneCommand.Execute();
         }
     }

@@ -102,23 +102,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
             switch (item.Type)
             {
                 case SettingsType.Personalization:
-                    await navigationService.Navigate<SettingsPersonalizationViewModel>();
+                    await navigationService.Navigate<SettingsPersonalizationViewModel>().ConfigureAwait(true);
                     break;
 
                 case SettingsType.Categories:
-                    await navigationService.Navigate<CategoryListViewModel>();
+                    await navigationService.Navigate<CategoryListViewModel>().ConfigureAwait(true);
                     break;
 
                 case SettingsType.BackgroundJob:
-                    await navigationService.Navigate<SettingsBackgroundJobViewModel>();
+                    await navigationService.Navigate<SettingsBackgroundJobViewModel>().ConfigureAwait(true);
                     break;
 
                 case SettingsType.Backup:
-                    await navigationService.Navigate<BackupViewModel>();
+                    await navigationService.Navigate<BackupViewModel>().ConfigureAwait(true);
                     break;
 
                 case SettingsType.About:
-                    await navigationService.Navigate<AboutViewModel>();
+                    await navigationService.Navigate<AboutViewModel>().ConfigureAwait(true);
                     break;
             }
         }

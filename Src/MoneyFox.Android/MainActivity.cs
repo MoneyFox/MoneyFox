@@ -36,10 +36,6 @@ namespace MoneyFox.Droid
         /// </summary>
         public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
 
-        Handler handler;
-        private ClearPaymentsJob clearPaymentsJob;
-        private RecurringPaymentJob recurringPaymentJob;
-
         protected override void OnCreate(Bundle bundle)
         {
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
@@ -56,15 +52,15 @@ namespace MoneyFox.Droid
             Popup.Init(this, bundle);
 
             // Handler to create jobs.
-            handler = new Handler(msg => {
+            var handler = new Handler(msg => {
                 switch (msg.What)
                 {
                     case MESSAGE_SERVICE_CLEAR_PAYMENTS:
-                        clearPaymentsJob = (ClearPaymentsJob)msg.Obj;
+                        var clearPaymentsJob = (ClearPaymentsJob)msg.Obj;
                         clearPaymentsJob.ScheduleTask();
                         break;
                     case MESSAGE_SERVICE_RECURRING_PAYMENTS:
-                        recurringPaymentJob = (RecurringPaymentJob)msg.Obj;
+                        var recurringPaymentJob = (RecurringPaymentJob)msg.Obj;
                         recurringPaymentJob.ScheduleTask();
                         break;
                 }

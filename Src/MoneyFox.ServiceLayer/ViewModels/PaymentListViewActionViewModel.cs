@@ -179,11 +179,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
+                .ConfigureAwait(true))
             {
-                await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId);
+                await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId).ConfigureAwait(true);
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await navigationService.Close(this);
+                await navigationService.Close(this).ConfigureAwait(true);
             }
             balanceViewModel.UpdateBalanceCommand.Execute();
         }

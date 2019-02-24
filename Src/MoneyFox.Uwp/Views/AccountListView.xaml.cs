@@ -19,10 +19,15 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AccountListView
 	{
-		/// <summary>
-		///     Initialize View.
-		/// </summary>
-		public AccountListView()
+        private const string SMALL_ICON_URI = "ms-appx:///Assets/SmallTile.scale-150.png";
+        private const string SQUARE_310_ICON_URI = "ms-appx:///Assets/Square310x310Logo.scale-100.png";
+        private const string SQUARE_150_ICON_URI = "ms-appx:///Assets/Wide310x150Logo.scale-100.png";
+        private const string SQUARE_71_ICON_URI = "ms-appx:///Assets/Square71x71Logo.scale-100.png";
+
+        /// <summary>
+        ///     Initialize View.
+        /// </summary>
+        public AccountListView()
 		{
 			InitializeComponent();
 
@@ -76,16 +81,16 @@ namespace MoneyFox.Uwp.Views
             if (!isPinned)
             {
 
-                SecondaryTile tile = new SecondaryTile(id.ToString(CultureInfo.InvariantCulture), "Money Fox", "a", new Uri("ms-appx:///Assets/SmallTile.scale-150.png"), TileSize.Default);
+                SecondaryTile tile = new SecondaryTile(id.ToString(CultureInfo.InvariantCulture), "Money Fox", "a", new Uri(SMALL_ICON_URI), TileSize.Default);
                 tile.VisualElements.ShowNameOnSquare150x150Logo = false;
                 tile.VisualElements.ShowNameOnSquare310x310Logo = true;
                 tile.VisualElements.ShowNameOnWide310x150Logo = false;
-                tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
-                tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
-                tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
-                tile.VisualElements.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.scale-100.png");
-                bool ispinned = await tile.RequestCreateAsync();
-                if (ispinned)
+                tile.VisualElements.Square310x310Logo = new Uri(SQUARE_310_ICON_URI);
+                tile.VisualElements.Square150x150Logo = new Uri(SQUARE_150_ICON_URI);
+                tile.VisualElements.Wide310x150Logo = new Uri(SQUARE_150_ICON_URI);
+                tile.VisualElements.Square71x71Logo = new Uri(SQUARE_71_ICON_URI);
+
+                if (await tile.RequestCreateAsync())
                 {
                     await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(true);
                 }

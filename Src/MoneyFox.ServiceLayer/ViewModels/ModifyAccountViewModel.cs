@@ -60,7 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
-        protected int AccountId;
+        protected int AccountId { get; set; }
 
         private AccountViewModel selectedAccount;
 
@@ -94,7 +94,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveAccountBase()
         {
-            await SaveAccount();
+            await SaveAccount().ConfigureAwait(true);
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
@@ -110,7 +110,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Cancel()
         {
-            await navigationService.Close(this);
+            await navigationService.Close(this).ConfigureAwait(true);
         }
     }
 }

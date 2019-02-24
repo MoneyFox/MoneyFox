@@ -63,7 +63,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            await Load();
+            await Load().ConfigureAwait(true);
         }
 
         /// <summary>

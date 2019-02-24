@@ -96,7 +96,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public virtual string Title { get; set; }
 
-        protected int CategoryId;
+        protected int CategoryId { get; set; }
 
         /// <inheritdoc />
         public override void Prepare(ModifyCategoryParameter parameter)
@@ -106,8 +106,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Cancel()
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
-            await NavigationService.Close(this);
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id).ConfigureAwait(true);
+            await NavigationService.Close(this).ConfigureAwait(true);
         }
     }
 }

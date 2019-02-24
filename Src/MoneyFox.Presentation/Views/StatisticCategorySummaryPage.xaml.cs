@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation.Views
 	            await Navigation.PushPopupAsync(new DateSelectionPopup
 	            {
 	                BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
-	            });
+	            }).ConfigureAwait(true);
 	        }
 	    }
     }

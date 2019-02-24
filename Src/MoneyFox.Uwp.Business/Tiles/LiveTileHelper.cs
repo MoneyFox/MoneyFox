@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.Business.Tiles
                 return test.ToString("#.1", CultureInfo.InvariantCulture) + "M";
             }
 
-            if ((num > 1000000000) & (num < 1000000000000))
+            if ((num > 1000000000) && (num < 1000000000000))
             {
                 var test = num / 1000000000;
                 return test.ToString("#.0", CultureInfo.InvariantCulture) + "B";

@@ -52,7 +52,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected override async Task ItemClick(CategoryViewModel category)
         {
-            await EditCategoryCommand.ExecuteAsync(category);
+            await EditCategoryCommand.ExecuteAsync(category).ConfigureAwait(true);
         }
     }
 }
