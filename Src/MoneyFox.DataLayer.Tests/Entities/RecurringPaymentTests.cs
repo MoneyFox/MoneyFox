@@ -21,15 +21,49 @@ namespace MoneyFox.DataLayer.Tests.Entities
         }
 
         [Fact]
-        public void Ctor_NoParams_DefaultValuesSet()
+        public void Ctor_DefaultValuesSet()
         {
             // Arrange
 
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note");
+            var recurringPayment = new RecurringPayment(DateTime.Now,
+                123, 
+                PaymentType.Expense,
+                PaymentRecurrence.Daily,
+                new Account("Foo"),
+                "note");
 
             // Assert
             recurringPayment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+        }
+
+        [Fact]
+        public void Ctor_Params_ValuesAssigned()
+        {
+            // Arrange
+            var startDate = DateTime.Now;
+            const int amount = 123;
+            const PaymentType type = PaymentType.Expense;
+            const PaymentRecurrence recurrence = PaymentRecurrence.Daily;
+            var account = new Account("foo");
+            const string note = "asdf";
+
+            // Act
+            var recurringPayment = new RecurringPayment(startDate,
+                amount, 
+                type,
+                recurrence,
+                account,
+                note);
+
+            // Assert
+            recurringPayment.StartDate.ShouldEqual(startDate);
+            recurringPayment.IsEndless.ShouldBeTrue();
+            recurringPayment.Amount.ShouldEqual(amount);
+            recurringPayment.Type.ShouldEqual(type);
+            recurringPayment.Recurrence.ShouldEqual(recurrence);
+            recurringPayment.ChargedAccount.ShouldEqual(account);
+            recurringPayment.Note.ShouldEqual(note);
         }
 
         [Fact]
@@ -65,6 +99,74 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Act / Assert
             Assert.Throws<MoneyFoxInvalidEndDateException>(() 
                 => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.Today.AddDays(-1)));
+        }
+
+        [Fact]
+        public void UpdateRecurringPayment_ValuesAssigned()
+        {
+            // Arrange
+            var startDate = DateTime.Now.AddDays(-1);
+            var endDate = DateTime.Now;
+            const int amount = 123;
+            const PaymentType type = PaymentType.Income;
+            const PaymentRecurrence recurrence = PaymentRecurrence.Daily;
+            var account = new Account("foo");
+            const string note = "asdf";
+
+            var recurringPayment = new RecurringPayment(startDate, 
+                65,
+                type,
+                PaymentRecurrence.Monthly,
+                new Account("1111"),
+                "foo");
+            
+            // Act
+            recurringPayment.UpdateRecurringPayment(amount, recurrence, account, note, endDate);
+
+            // Assert
+            recurringPayment.StartDate.ShouldEqual(startDate);
+            recurringPayment.EndDate.ShouldEqual(endDate);
+            recurringPayment.Amount.ShouldEqual(amount);
+            recurringPayment.Type.ShouldEqual(type);
+            recurringPayment.Recurrence.ShouldEqual(recurrence);
+            recurringPayment.ChargedAccount.ShouldEqual(account);
+            recurringPayment.Note.ShouldEqual(note);
+        }
+
+        [Fact]
+        public void UpdateRecurringPayment_EndDateNull_IsEndless()
+        {
+            // Arrange
+            var recurringPayment = new RecurringPayment(DateTime.Now.AddDays(-1), 
+                65,
+                PaymentType.Income,
+                PaymentRecurrence.Monthly,
+                new Account("1111"),
+                "foo");
+            
+            // Act
+            recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"), "", null);
+
+            // Assert
+            recurringPayment.IsEndless.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void UpdateRecurringPayment_EndDateSet_IsEndlessFalse()
+        {
+            // Arrange
+            var recurringPayment = new RecurringPayment(DateTime.Now.AddDays(-1), 
+                65,
+                PaymentType.Income,
+                PaymentRecurrence.Monthly,
+                new Account("1111"),
+                "foo");
+            
+            // Act
+            recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"), "", DateTime.Now);
+
+            // Assert
+            recurringPayment.IsEndless.ShouldBeFalse();
         }
     }
 }
