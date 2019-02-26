@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Foundation.Resources;
@@ -23,12 +23,27 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
     [Collection("MvxIocCollection")]
     public class AddPaymentViewModelTests
     {
+        private readonly Mock<IPaymentService> paymentServiceMock;
+        private readonly Mock<ICrudServicesAsync> crudServiceMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<IDialogService> dialogServiceMock;
+        private readonly Mock<IMvxNavigationService> navigationServiceMock;
+
+        public AddPaymentViewModelTests()
+        {
+            paymentServiceMock = new Mock<IPaymentService>();
+            crudServiceMock = new Mock<ICrudServicesAsync>();
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            backupServiceMock = new Mock<IBackupService>();
+            dialogServiceMock = new Mock<IDialogService>();
+            navigationServiceMock = new Mock<IMvxNavigationService>();
+        }
+
         [Fact]
         public void Prepare_PaymentCreated()
         {
             // Arrange
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-
             var addPaymentVm = new AddPaymentViewModel(null,
                                                        crudServiceMock.Object,
                                                        null, null,
@@ -46,8 +61,6 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         public void Prepare_Title_Set()
         {
             // Arrange
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-
             var addPaymentVm = new AddPaymentViewModel(null,
                                                        crudServiceMock.Object,
                                                        null, null,
@@ -64,15 +77,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         public void SavePayment_NoAccount_DialogShown()
         {
             // Arrange
-            var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Succeeded());
-
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-            var settingsFacadeMock = new Mock<ISettingsFacade>();
-            var backupServiceMock = new Mock<IBackupService>();
-            var dialogServiceMock = new Mock<IDialogService>();
-            var navigationServiceMock = new Mock<IMvxNavigationService>();
 
             var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
                                                        crudServiceMock.Object,
@@ -92,21 +98,16 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Never);
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
             navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
 
         [Fact]
         public void SavePayment_ResultSucceeded_CorrectMethodCalls()
         {
             // Arrange
-            var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Succeeded());
-
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-            var settingsFacadeMock = new Mock<ISettingsFacade>();
-            var backupServiceMock = new Mock<IBackupService>();
-            var dialogServiceMock = new Mock<IDialogService>();
-            var navigationServiceMock = new Mock<IMvxNavigationService>();
 
             var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
                 crudServiceMock.Object,
@@ -127,21 +128,16 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
         }
 
         [Fact]
         public void SavePayment_ResultFailed_CorrectMethodCalls()
         {
             // Arrange
-            var paymentServiceMock = new Mock<IPaymentService>();
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Failed(""));
-
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-            var settingsFacadeMock = new Mock<ISettingsFacade>();
-            var backupServiceMock = new Mock<IBackupService>();
-            var dialogServiceMock = new Mock<IDialogService>();
-            var navigationServiceMock = new Mock<IMvxNavigationService>();
 
             var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
                 crudServiceMock.Object,
@@ -162,6 +158,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
             navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
         }
     }
 }

@@ -64,8 +64,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
                                 .ConfigureAwait(true);
 
             if (!result.Success)
+            {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                                   .ConfigureAwait(true);
+                    .ConfigureAwait(true);
+                return;
+            }
 
             await NavigationService.Close(this).ConfigureAwait(true);
         }
