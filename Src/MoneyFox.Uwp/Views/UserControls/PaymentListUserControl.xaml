@@ -200,8 +200,8 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <TextBlock x:Uid="PaymentViewModelsPlaceholder"
-                   Grid.Row="1"
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Resources[NoPaymentsMessage]}"
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
