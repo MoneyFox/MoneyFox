@@ -17,14 +17,6 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         Task<OperationResult> AddPayment(Payment payment);
 
         /// <summary>
-        ///     Update an existing payment.
-        /// </summary>
-        /// <param name="id">Id of the payment to update.</param>
-        /// <param name="newPayment">new payments.</param>
-        /// <returns>Result.</returns>
-        Task<OperationResult> UpdatePayment(int id, Payment newPayment);
-
-        /// <summary>
         ///     Delete an existing Payment.
         /// </summary>
         /// <param name="id">Id of the payment to delete.</param>
@@ -50,28 +42,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task<OperationResult> AddPayment(Payment payment)
         {
-
             await savePaymentDbAccess.AddPayment(payment)
                                      .ConfigureAwait(true);
-
-            return OperationResult.Succeeded();
-        }
-
-        public async Task<OperationResult> UpdatePayment(int id, Payment newPayment)
-        {
-            var paymentFromDatabase = await savePaymentDbAccess.GetPaymentById(id)
-                                                      .ConfigureAwait(true);
-
-            paymentFromDatabase.ChargedAccount.RemovePaymentAmount(paymentFromDatabase);
-            paymentFromDatabase.TargetAccount?.RemovePaymentAmount(paymentFromDatabase);
-
-            paymentFromDatabase.UpdatePayment(newPayment.Date,
-                                     newPayment.Amount,
-                                     newPayment.Type,
-                                     newPayment.ChargedAccount,
-                                     newPayment.TargetAccount,
-                                     newPayment.Category,
-                                     newPayment.Note);
 
             return OperationResult.Succeeded();
         }
