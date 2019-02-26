@@ -781,4 +781,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Leave a feedback!</value>
   </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Modify Recurrence</value>
+  </data>
 </root>

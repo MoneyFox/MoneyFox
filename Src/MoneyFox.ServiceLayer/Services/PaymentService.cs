@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
@@ -94,7 +95,7 @@ namespace MoneyFox.ServiceLayer.Services
                 targetAccount, category, paymentViewModel.Note);
             try
             {
-                GetRecurringPayment(paymentViewModel, payment);
+                AddRecurringPayment(paymentViewModel, payment);
                 return payment;
             }
             catch (Exception)
@@ -108,7 +109,10 @@ namespace MoneyFox.ServiceLayer.Services
 
         private async Task UpdatePaymentFromViewModel(PaymentViewModel paymentViewModel)
         {
-            var payment = await context.Payments.FindAsync(paymentViewModel.Id).ConfigureAwait(true);
+            var payment = await context.Payments
+                .Include(x => x.RecurringPayment)
+                .FirstAsync(x => x.Id == paymentViewModel.Id)
+                .ConfigureAwait(true);
 
             var chargedAccount = await GetChargedAccount(paymentViewModel);
             var targetAccount = await GetTargetAccount(paymentViewModel);
@@ -121,8 +125,22 @@ namespace MoneyFox.ServiceLayer.Services
                 targetAccount,
                 category,
                 paymentViewModel.Note);
-            
-            GetRecurringPayment(paymentViewModel, payment);
+
+            if (paymentViewModel.IsRecurring 
+                && payment.IsRecurring
+                && await dialogService
+                    .ShowConfirmMessage(Strings.ModifyRecurrenceTitle, Strings.ModifyRecurrenceMessage)
+                    .ConfigureAwait(true))
+            {
+                payment.RecurringPayment.UpdateRecurringPayment(payment.Amount,
+                    paymentViewModel.RecurringPayment.Recurrence, 
+                    payment.ChargedAccount, 
+                    payment.Note, 
+                    paymentViewModel.RecurringPayment.IsEndless 
+                        ? null 
+                        : paymentViewModel.RecurringPayment.EndDate, 
+                    payment.TargetAccount);
+            }
         }
 
         private async Task<Category> GetCategory(PaymentViewModel paymentViewModel)
@@ -153,7 +171,7 @@ namespace MoneyFox.ServiceLayer.Services
             return targetAccount;
         }
 
-        private void GetRecurringPayment(PaymentViewModel paymentViewModel, Payment payment)
+        private static void AddRecurringPayment(PaymentViewModel paymentViewModel, Payment payment)
         {
             if (paymentViewModel.IsRecurring)
                 payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
