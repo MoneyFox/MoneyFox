@@ -142,9 +142,9 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <TextBlock x:Uid="AccountsPlaceholder"
-                   Grid.Row="1"
+        <TextBlock Grid.Row="1"
                    Margin="6"
+                   Text="{Binding Resources[NoAccountsMessage]}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

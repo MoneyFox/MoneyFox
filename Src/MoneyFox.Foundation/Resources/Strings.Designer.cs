@@ -1349,6 +1349,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have modified a recurring payment. Do you want to update the recurrence?.
+        /// </summary>
+        public static string ModifyRecurrenceMessage {
+            get {
+                return ResourceManager.GetString("ModifyRecurrenceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Recurrence.
+        /// </summary>
+        public static string ModifyRecurrenceTitle {
+            get {
+                return ResourceManager.GetString("ModifyRecurrenceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last year monthly average: .
         /// </summary>
         public static string MonthlyAverageLabel {

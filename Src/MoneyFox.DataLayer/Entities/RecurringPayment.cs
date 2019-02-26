@@ -9,16 +9,18 @@ namespace MoneyFox.DataLayer.Entities
 {
     public class RecurringPayment
     {
-        private RecurringPayment() { }
+        private RecurringPayment()
+        {
+        }
 
-        public RecurringPayment(DateTime startDate, 
+        public RecurringPayment(DateTime startDate,
             double amount,
             PaymentType type,
             PaymentRecurrence recurrence,
-            Account chargedAccount, 
-            string note = "", 
+            Account chargedAccount,
+            string note = "",
             DateTime? endDate = null,
-            Account targetAccount = null, 
+            Account targetAccount = null,
             Category category = null)
         {
             if (!IsEndless && endDate != null && endDate < DateTime.Today)
@@ -58,5 +60,27 @@ namespace MoneyFox.DataLayer.Entities
         public virtual Account TargetAccount { get; private set; }
 
         public virtual List<Payment> RelatedPayments { get; private set; }
+
+        public void UpdateRecurringPayment(double amount,
+            PaymentRecurrence recurrence,
+            Account chargedAccount,
+            string note = "",
+            DateTime? endDate = null,
+            Account targetAccount = null,
+            Category category = null)
+        {
+            if (!IsEndless && endDate != null && endDate < DateTime.Today)
+                throw new MoneyFoxInvalidEndDateException();
+
+            CreationTime = DateTime.Now;
+            ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
+            EndDate = endDate;
+            Amount = amount;
+            Recurrence = recurrence;
+            Note = note;
+            Category = category;
+            TargetAccount = targetAccount;
+            IsEndless = endDate == null;
+        }
     }
 }

@@ -5,8 +5,8 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataLayer.Entities
 {
     /// <summary>
-    ///     Databasemodel for payments. Includes expenses, income and transfers.
-    ///     Databasetable: Payments
+    ///     Database model for payments. Includes expenses, income and transfers.
+    ///     Database table: Payments
     /// </summary>
     public class Payment
     {
