@@ -11,15 +11,34 @@ using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.ServiceLayer.Services
 {
+    /// <summary>
+    ///     Service to coordinate with several operations for payments
+    /// </summary>
     public interface IPaymentService
     {
+        /// <summary>
+        ///     Save a new payment
+        /// </summary>
+        /// <param name="paymentViewModel">View model which contains the view data.</param>
+        /// <returns>Result</returns>
         Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel);
 
+        /// <summary>
+        ///     Updates a payment.
+        /// </summary>
+        /// <param name="newPaymentViewModel">View model which contains the view data.</param>
+        /// <returns>Result</returns>
         Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel);
 
+        /// <summary>
+        ///     Deletes a existing payment
+        /// </summary>
+        /// <param name="paymentViewModel">View model which contains the view data.</param>
+        /// <returns>Result</returns>
         Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel);
     }
 
+    /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
         private readonly EfCoreContext context;
@@ -34,6 +53,7 @@ namespace MoneyFox.ServiceLayer.Services
             this.context = context;
         }
 
+        /// <inheritdoc />
         public async Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel)
         {
             var payment = await CreatePaymentFromViewModel(paymentViewModel).ConfigureAwait(true);
@@ -41,14 +61,18 @@ namespace MoneyFox.ServiceLayer.Services
             var result = await modifyPaymentAction.AddPayment(payment)
                 .ConfigureAwait(true);
 
+            if (!result.Success)
+            {
+                return OperationResult.Failed(result.Message);
+            }
+
             await context.SaveChangesAsync()
                 .ConfigureAwait(true);
 
-            return !result.Success
-                ? OperationResult.Failed(result.Message)
-                : OperationResult.Succeeded();
+            return OperationResult.Succeeded();
         }
 
+        /// <inheritdoc />
         public async Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel)
         {
             await UpdatePaymentFromViewModel(newPaymentViewModel).ConfigureAwait(true);
@@ -59,6 +83,7 @@ namespace MoneyFox.ServiceLayer.Services
             return OperationResult.Succeeded();
         }
 
+        /// <inheritdoc />
         public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
         {
             if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)

@@ -5,7 +5,7 @@ using MoneyFox.DataLayer.Entities;
 namespace MoneyFox.DataLayer
 {
     /// <summary>
-    ///     Represents the datacontext of the application
+    ///     Represents the data context of the application
     /// </summary>
     public class EfCoreContext : DbContext
     {
