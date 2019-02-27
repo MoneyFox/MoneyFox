@@ -23,24 +23,24 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             dialogServiceMock = new Mock<IDialogService>();
         }
 
-        [Fact]
-        public async Task SavePayment_AddFailed_ResultFailed()
-        {
-            // Arrange
-            modifyPaymentActionMock.Setup(x => x.AddPayment(It.IsAny<Payment>()))
-                .ReturnsAsync(OperationResult.Failed(""));
+        //[Fact]
+        //public async Task SavePayment_AddFailed_ResultFailed()
+        //{
+        //    // Arrange
+        //    modifyPaymentActionMock.Setup(x => x.AddPayment(It.IsAny<Payment>()))
+        //        .ReturnsAsync(OperationResult.Failed(""));
 
-            var dbOptions = this.CreateUniqueClassOptions<EfCoreContext>();
+        //    var dbOptions = this.CreateUniqueClassOptions<EfCoreContext>();
 
-            using (var context = new EfCoreContext(dbOptions))
-            {
-                var paymentService = new PaymentService(context, modifyPaymentActionMock.Object, dialogServiceMock.Object);
+        //    using (var context = new EfCoreContext(dbOptions))
+        //    {
+        //        var paymentService = new PaymentService(context, modifyPaymentActionMock.Object, dialogServiceMock.Object);
 
-                // Act
-                await paymentService.SavePayment(new PaymentViewModel());
+        //        // Act
+        //        await paymentService.SavePayment(new PaymentViewModel());
 
-                // Assert
-            }
-        }
+        //        // Assert
+        //    }
+        //}
     }
 }
