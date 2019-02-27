@@ -30,7 +30,7 @@ namespace MoneyFox.BusinessLogic
         /// </summary>
         /// <param name="ex">Exception</param>
         /// <returns>Operation Result</returns>
-        public static OperationResult Failed(Exception ex = null) {
+        public static OperationResult Failed(Exception ex) {
             return new OperationResult(false, ex?.ToString() ?? "");
         }
 

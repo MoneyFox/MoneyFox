@@ -60,10 +60,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
             try
             {
                 var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);
-                
+
                 if (!result.Success)
+                {
                     await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
                         .ConfigureAwait(true);
+                    return;
+                }
 
                 await NavigationService.Close(this).ConfigureAwait(true);
             }

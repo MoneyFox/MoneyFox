@@ -127,9 +127,9 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <TextBlock x:Uid="CategoriesPlaceholder"
-                   Grid.Row="1"
+        <TextBlock Grid.Row="1"
                    Margin="6"
+                   Text="{Binding Resources[NoCategoriesMessage]}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

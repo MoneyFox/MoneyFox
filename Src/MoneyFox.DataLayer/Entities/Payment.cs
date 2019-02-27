@@ -5,8 +5,8 @@ using MoneyFox.Foundation;
 namespace MoneyFox.DataLayer.Entities
 {
     /// <summary>
-    ///     Databasemodel for payments. Includes expenses, income and transfers.
-    ///     Databasetable: Payments
+    ///     Database model for payments. Includes expenses, income and transfers.
+    ///     Database table: Payments
     /// </summary>
     public class Payment
     {
@@ -22,7 +22,9 @@ namespace MoneyFox.DataLayer.Entities
             RecurringPayment recurringPayment = null)
         {
             CreationTime = DateTime.Now;
-            UpdatePayment(date, amount, type, chargedAccount, targetAccount, category, note);
+            AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
+
+            ClearPayment();
 
             if (recurringPayment != null)
             {
@@ -61,6 +63,17 @@ namespace MoneyFox.DataLayer.Entities
             Category category = null,
             string note = "")
         {
+            ChargedAccount.RemovePaymentAmount(this);
+            TargetAccount?.RemovePaymentAmount(this);
+
+            AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
+
+            ClearPayment();
+        }
+
+        private void AssignValues(DateTime date, double amount, PaymentType type, Account chargedAccount, Account targetAccount,
+            Category category, string note)
+        {
             Date = date;
             Amount = amount;
             Type = type;
@@ -68,8 +81,6 @@ namespace MoneyFox.DataLayer.Entities
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             TargetAccount = targetAccount;
             Category = category;
-
-            ClearPayment();
         }
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
