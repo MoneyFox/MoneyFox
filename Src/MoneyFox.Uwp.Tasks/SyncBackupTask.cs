@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.Tasks
             try
             {
                 var backupManager = new BackupManager(
-                    new OneDriveService(new OneDriveAuthenticator()),
+                    new OneDriveService(new OneDriveAuthenticator(true)),
                     new MvxWindowsFileStore(), 
                     new ConnectivityAdapter());
 

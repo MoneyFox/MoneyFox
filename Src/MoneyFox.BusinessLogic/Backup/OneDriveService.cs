@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
-using MoneyFox.BusinessLogic.Interfaces;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 

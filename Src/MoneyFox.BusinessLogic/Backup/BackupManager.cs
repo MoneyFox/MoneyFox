@@ -9,7 +9,6 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Extensions;
-using MoneyFox.BusinessLogic.Interfaces;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
