@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MoneyFox.Foundation.Exceptions;
 
-namespace MoneyFox.BusinessLogic.Interfaces
+namespace MoneyFox.BusinessLogic.Backup
 {
     /// <summary>
     ///     Provides Backup and Restore operations.
