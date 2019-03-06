@@ -139,7 +139,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
                 .ConfigureAwait(true))
             {
-                await crudService.DeleteAndSaveAsync<Account>(5)
+                await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id)
                     .ConfigureAwait(true);
 
                 Accounts.Clear();
