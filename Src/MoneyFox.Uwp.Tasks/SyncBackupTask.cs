@@ -44,6 +44,7 @@ namespace MoneyFox.Uwp.Tasks
             }
             finally
             {
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 Debug.WriteLine("Sync Backup finished.");
                 deferral.Complete();
             }
