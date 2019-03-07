@@ -160,9 +160,6 @@ namespace MoneyFox.Uwp
 			viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
 			viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 			viewTitleBar.ButtonForegroundColor = Colors.LightGray;
-
-            var currentView = SystemNavigationManager.GetForCurrentView();
-            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
         }
 
 		private async Task SetJumplist()

@@ -1,6 +1,4 @@
-﻿using Windows.ApplicationModel.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.ViewModels;
 
@@ -14,17 +12,9 @@ namespace MoneyFox.Uwp.Views
         public MainView()
         {
             InitializeComponent();
-
-            CoreApplicationViewTitleBar titleBar = CoreApplication.GetCurrentView().TitleBar;
-            titleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
         }
 
         public Frame MainFrame => ContentFrame;
-
-        private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
-        {
-            AppTitle.Margin = new Thickness(CoreApplication.GetCurrentView().TitleBar.SystemOverlayLeftInset + 12, 8, 0, 0);
-        }
 
         private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
