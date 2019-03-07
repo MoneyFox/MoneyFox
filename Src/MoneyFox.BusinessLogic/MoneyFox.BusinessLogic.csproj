@@ -23,7 +23,7 @@
     </PackageReference>
     <PackageReference Include="MvvmCross" Version="6.2.2" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.2" />
-    <PackageReference Include="Xamarin.Auth" Version="1.6.0.2" />
+    <PackageReference Include="Xamarin.Auth" Version="1.6.0.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
 
