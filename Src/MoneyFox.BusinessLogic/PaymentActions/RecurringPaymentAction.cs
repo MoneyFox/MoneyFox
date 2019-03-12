@@ -27,7 +27,9 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments()
                                                                   .ConfigureAwait(true);
 
-            await recurringPaymentDbAccess.SaveNewPayments(recurringPayments.Where(x => RecurringPaymentHelper
+            var recPaymentsToCreate = recurringPayments
+                .Where(x => x.RelatedPayments.Any())
+                .Where(x => RecurringPaymentHelper
                     .CheckIfRepeatable(x.RelatedPayments
                         .OrderByDescending(d => d.Date)
                         .First()))
@@ -40,7 +42,9 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                     x.Category,
                     x.Note,
                     x))
-                .ToList())
+                .ToList();
+
+            await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate)
                 .ConfigureAwait(true);
         }
     }

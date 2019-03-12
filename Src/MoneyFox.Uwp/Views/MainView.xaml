@@ -20,7 +20,6 @@
                     IsSettingsVisible="True"  >
 
             <NavigationView.MenuItems>
-
                 <NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts" Foreground="White">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
@@ -71,7 +70,11 @@
             </Frame>
             
         </NavigationView>
-        <TextBlock x:Name="AppTitle" Style="{StaticResource CustomCaptionTextBlockStyle}" Text="{x:Bind appmodel:Package.Current.DisplayName}" IsHitTestVisible="False"/>
+        <TextBlock x:Name="AppTitle" 
+                   Style="{StaticResource CustomCaptionTextBlockStyle}" 
+                   Text="{x:Bind appmodel:Package.Current.DisplayName}" 
+                   IsHitTestVisible="False"
+                   Margin="60,8,0,0"/>
     </Grid>
 </views:MvxWindowsPage>
 
