@@ -34,27 +34,27 @@ namespace MoneyFox.Uwp.Business.Tiles
             if (await LiveTileHelper.IsPinned().ConfigureAwait(true))
             {
                 var b = localsettings.Values["lastrun"];
-                var lastrun = (string) b;
-                var headertext = "";
-                var displaycontentmedium = new List<string>();
-                var displaycontentlarge = new List<string>();
+                var lastRun = (string) b;
 
-                if (lastrun == "last")
+                List<string> displayLargeContent;
+                List<string> displayContentMedium;
+                string headerText = "";
+                if (lastRun == "last")
                 {
                     localsettings.Values["lastrun"] = "next";
-                    headertext = Strings.LiveTileUpcommingPayments;
-                    displaycontentmedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Next)
+                    headerText = Strings.LiveTileUpcommingPayments;
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Next)
                         .ConfigureAwait(true);
-                    displaycontentlarge = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Next)
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Next)
                         .ConfigureAwait(true);
                 }
                 else
                 {
                     localsettings.Values["lastrun"] = "last";
-                    headertext = Strings.LiveTilePastPayments;
-                    displaycontentmedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Previous)
+                    headerText = Strings.LiveTilePastPayments;
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Previous)
                         .ConfigureAwait(true);
-                    displaycontentlarge = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
                         .ConfigureAwait(true);
                 }
 
@@ -62,9 +62,9 @@ namespace MoneyFox.Uwp.Business.Tiles
                 {
                     Visual = new TileVisual
                     {
-                        TileMedium = GetTileBinding(headertext, displaycontentmedium),
-                        TileWide = GetTileBinding(headertext, displaycontentlarge),
-                        TileLarge = GetTileBinding(headertext, displaycontentlarge)
+                        TileMedium = GetTileBinding(headerText, displayContentMedium),
+                        TileWide = GetTileBinding(headerText, displayLargeContent),
+                        TileLarge = GetTileBinding(headerText, displayLargeContent)
                     }
                 };
 
@@ -76,8 +76,8 @@ namespace MoneyFox.Uwp.Business.Tiles
         public async Task UpdateSecondaryLiveTiles()
         {
             var tiles = await SecondaryTile.FindAllForPackageAsync();
-            var displaycontent = new List<string>();
-            displaycontent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
+
+            List<string> displayContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
                 .ConfigureAwait(true);
 
             if (tiles == null) return;
@@ -305,32 +305,32 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[0],
+                                                        Text = displayContent[0],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[1],
+                                                        Text = displayContent[1],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[2],
+                                                        Text = displayContent[2],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[3],
+                                                        Text = displayContent[3],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[4],
+                                                        Text = displayContent[4],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
-                                                        Text = displaycontent[5],
+                                                        Text = displayContent[5],
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     }
                                                 }
@@ -452,53 +452,67 @@ namespace MoneyFox.Uwp.Business.Tiles
             var acct = await crudService.ReadManyNoTracked<AccountViewModel>()
                 .ToListAsync()
                 .ConfigureAwait(true);
-            var allpayments = new List<PaymentViewModel>();
-            var allpayment = new List<LiveTilesPaymentInfo>();
+            var allPayments = new List<PaymentViewModel>();
+            var allPayment = new List<LiveTilesPaymentInfo>();
 
             foreach (var item in acct)
             {
-                allpayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
+                allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
                     .Where(x => x.ChargedAccountId == item.Id)
                     .ToList());
 
-                allpayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                    .Where(x => x.TargetAccountId == item.Id)
-                    .ToList());
+                // We have to catch here, since otherwise an Exception is thrown when no payments are there.
+                try
+                {
+                    allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
+                        .Where(x => x.TargetAccountId == item.Id)
+                        .ToList());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
-            foreach (var item in allpayments)
+            foreach (var item in allPayments)
                 if (item.IsRecurring)
                 {
-                    allpayment.AddRange(GetRecurrence(item));
+                    allPayment.AddRange(GetRecurrence(item));
                 }
                 else
                 {
-                    var tileinfo = new LiveTilesPaymentInfo();
-                    tileinfo.Chargeaccountname = item.ChargedAccount.Name;
-                    tileinfo.Amount = item.Amount;
-                    tileinfo.Date = item.Date.Date;
-                    tileinfo.Type = item.Type;
-                    allpayment.Add(tileinfo);
+                    var tileInfo = new LiveTilesPaymentInfo
+                    {
+                        Chargeaccountname = item.ChargedAccount.Name,
+                        Amount = item.Amount,
+                        Date = item.Date.Date,
+                        Type = item.Type
+                    };
+                    allPayment.Add(tileInfo);
                 }
 
             List<LiveTilesPaymentInfo> payments;
 
             if (paymentInformation == PaymentInformation.Previous)
-                payments = allpayment.OrderByDescending(x => x.Date.Date)
+            {
+                payments = allPayment.OrderByDescending(x => x.Date.Date)
                     .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
                     .Take(NUMBER_OF_PAYMENTS)
                     .ToList();
+            }
             else
-                payments = allpayment.OrderBy(x => x.Date.Date)
+            {
+                payments = allPayment.OrderBy(x => x.Date.Date)
                     .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
                     .Take(NUMBER_OF_PAYMENTS)
                     .ToList();
+            }
 
             var returnList = payments.Select(x => LiveTileHelper.GetTileText(tileSize, x)).ToList();
 
             for (var i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++) returnList.Add(string.Empty);
 
-            allpayments.Clear();
+            allPayments.Clear();
             return returnList;
         }
 
