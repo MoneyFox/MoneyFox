@@ -53,7 +53,7 @@
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="SetDate"
+                <AppBarButton x:Uid="SetDateButton"
                               Click="SetDate"
                               Icon="Calendar"
                               Label="Set Date" />
