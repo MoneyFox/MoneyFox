@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp
 	/// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
-	public sealed partial class App
+	public sealed partial class App : IDisposable
 	{
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
@@ -85,13 +85,13 @@ namespace MoneyFox.Uwp
 		///     Invoked when the application is launched normally by the end user.  Other entry points
 		///     will be used such as when the application is launched to open a specific file.
 		/// </summary>
-		/// <param name="e">Details about the launch request and process.</param>
-		protected override async void OnLaunched(LaunchActivatedEventArgs e)
+		/// <param name="activationArgs">Details about the launch request and process.</param>
+		protected override async void OnLaunched(LaunchActivatedEventArgs activationArgs)
 		{
 			CoreApp.CurrentPlatform = AppPlatform.UWP;
-			base.OnLaunched(e);
+			base.OnLaunched(activationArgs);
 
-            if (e.PreviousExecutionState != ApplicationExecutionState.Running)
+            if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
 #if !DEBUG
@@ -99,8 +99,8 @@ namespace MoneyFox.Uwp
 #endif
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-                Xamarin.Forms.Forms.Init(e);
-				new Presentation.App();
+                Xamarin.Forms.Forms.Init(activationArgs);
+				var app = new Presentation.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
@@ -193,7 +193,7 @@ namespace MoneyFox.Uwp
 			RatePopup.Title = Strings.RateReminderTitle;
 			RatePopup.Content = Strings.RateReminderText;
 
-			await RatePopup.CheckRateReminderAsync();
+			await RatePopup.CheckRateReminderAsync().ConfigureAwait(true);
 		}
 
 		/// <summary>
@@ -211,5 +211,10 @@ namespace MoneyFox.Uwp
 
 			deferral.Complete();
 		}
+
+	    public void Dispose()
+	    {
+	        mainView?.Dispose();
+	    }
 	}
 }
