@@ -25,10 +25,10 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         }
 
         /// <summary>
-        ///     Selects payments from the given timeframe and calculates the spreading for the six categories
-        ///     with the highest spendings. All others are summarized in a "other" item.
+        ///     Selects payments from the given time frame and calculates the spreading for the six categories
+        ///     with the highest spending. All others are summarized in a "other" item.
         /// </summary>
-        /// <param name="startDate">Startpoint form which to select data.</param>
+        /// <param name="startDate">Start point form which to select data.</param>
         /// <param name="endDate">Endpoint form which to select data.</param>
         /// <returns>Statistic value for the given time. </returns>
         public async Task<IEnumerable<StatisticEntry>> GetValues(DateTime startDate, DateTime endDate)
@@ -61,17 +61,8 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
-            SetLabel(statisticList);
 
             return statisticList;
-        }
-
-        private static void SetLabel(List<StatisticEntry> statisticList)
-        {
-            foreach (var statisticItem in statisticList)
-            {
-                statisticItem.Label = statisticItem.Label;
-            }
         }
 
         private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
