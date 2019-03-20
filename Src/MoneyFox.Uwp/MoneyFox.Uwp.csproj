@@ -50,6 +50,7 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -607,6 +608,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|ARM'">
     <OutputPath>bin\ARM\ReleaseUWP\</OutputPath>
