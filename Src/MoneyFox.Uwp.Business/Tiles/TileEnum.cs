@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Windows.Business.Tiles
 {
-    public enum TileSizeOptions
+    public enum TileSizeOption
     {
         Medium,
         Wide,
