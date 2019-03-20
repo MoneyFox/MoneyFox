@@ -609,6 +609,7 @@
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>true</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|ARM'">
     <OutputPath>bin\ARM\ReleaseUWP\</OutputPath>
@@ -622,6 +623,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|ARM64'">
     <OutputPath>bin\ARM64\ReleaseUWP\</OutputPath>
@@ -635,6 +638,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <EnableGatekeeperAnalysis>true</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|x64'">
     <OutputPath>bin\x64\ReleaseUWP\</OutputPath>
@@ -648,6 +652,8 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>true</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|AnyCPU'">
     <OutputPath>bin\ReleaseUWP\</OutputPath>
