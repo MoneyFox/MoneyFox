@@ -24,7 +24,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         private DateTime startDate;
         private DateTime endDate;
 
-        protected SKColor BackgroundColor;
+        protected SKColor BackgroundColor { get; }
 
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month

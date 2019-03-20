@@ -60,7 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
-        protected int AccountId;
+        protected int AccountId { get; private set; }
 
         private AccountViewModel selectedAccount;
 
