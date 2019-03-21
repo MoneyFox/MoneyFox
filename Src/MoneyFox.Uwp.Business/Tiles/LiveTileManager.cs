@@ -43,18 +43,18 @@ namespace MoneyFox.Uwp.Business.Tiles
                 {
                     localsettings.Values["lastrun"] = "next";
                     headerText = Strings.LiveTileUpcommingPayments;
-                    displayContentMedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Next)
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Next)
                         .ConfigureAwait(true);
-                    displayLargeContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Next)
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Next)
                         .ConfigureAwait(true);
                 }
                 else
                 {
                     localsettings.Values["lastrun"] = "last";
                     headerText = Strings.LiveTilePastPayments;
-                    displayContentMedium = await GetPaymentsAsync(TileSizeOptions.Medium, PaymentInformation.Previous)
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Previous)
                         .ConfigureAwait(true);
-                    displayLargeContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
                         .ConfigureAwait(true);
                 }
 
@@ -77,7 +77,7 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             var tiles = await SecondaryTile.FindAllForPackageAsync();
 
-            List<string> displayContent = await GetPaymentsAsync(TileSizeOptions.Large, PaymentInformation.Previous)
+            List<string> displayContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
                 .ConfigureAwait(true);
 
             if (tiles == null) return;
@@ -446,7 +446,7 @@ namespace MoneyFox.Uwp.Business.Tiles
             };
         }
 
-        private async Task<List<string>> GetPaymentsAsync(TileSizeOptions tileSize,
+        private async Task<List<string>> GetPaymentsAsync(TileSizeOption tileSize,
             PaymentInformation paymentInformation)
         {
             var acct = await crudService.ReadManyNoTracked<AccountViewModel>()

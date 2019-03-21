@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.Business.Tiles
                 return test.ToString("#.1", CultureInfo.InvariantCulture) + "M";
             }
 
-            if ((num > 1000000000) & (num < 1000000000000))
+            if ((num > 1000000000) && (num < 1000000000000))
             {
                 var test = num / 1000000000;
                 return test.ToString("#.0", CultureInfo.InvariantCulture) + "B";
@@ -43,16 +43,16 @@ namespace MoneyFox.Uwp.Business.Tiles
             return await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
         }
 
-        public static string GetTileText(TileSizeOptions tileSize, LiveTilesPaymentInfo liveTileItem)
+        public static string GetTileText(TileSizeOption tileSize, LiveTilesPaymentInfo liveTileItem)
         {
             if (liveTileItem.Type == PaymentType.Income)
                 switch (tileSize)
                 {
-                    case TileSizeOptions.Medium:
+                    case TileSizeOption.Medium:
                         return liveTileItem.Chargeaccountname + " +" + TruncateNumber(liveTileItem.Amount);
 
-                    case TileSizeOptions.Wide:
-                    case TileSizeOptions.Large:
+                    case TileSizeOption.Wide:
+                    case TileSizeOption.Large:
                         return string.Format(CultureInfo.InvariantCulture, Strings.LiveTileWideandLargeIncomePastText,
                             liveTileItem.Amount.ToString("C2", CultureInfo.InvariantCulture),
                             liveTileItem.Chargeaccountname, liveTileItem.Date.Date);
@@ -62,11 +62,11 @@ namespace MoneyFox.Uwp.Business.Tiles
                 }
             switch (tileSize)
             {
-                case TileSizeOptions.Medium:
+                case TileSizeOption.Medium:
                     return liveTileItem.Chargeaccountname + " -" + TruncateNumber(liveTileItem.Amount);
 
-                case TileSizeOptions.Wide:
-                case TileSizeOptions.Large:
+                case TileSizeOption.Wide:
+                case TileSizeOption.Large:
                     return string.Format(CultureInfo.InvariantCulture, Strings.LiveTileWideandLargePaymentPastText,
                         liveTileItem.Amount.ToString("C2", CultureInfo.InvariantCulture),
                         liveTileItem.Chargeaccountname);

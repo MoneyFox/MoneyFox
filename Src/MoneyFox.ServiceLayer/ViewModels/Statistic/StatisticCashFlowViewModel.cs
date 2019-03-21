@@ -54,7 +54,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         public ObservableCollection<StatisticEntry> StatisticItems
         {
             get => statisticItems;
-            set
+            private set
             {
                 if(statisticItems == value) return;
                 statisticItems = value;

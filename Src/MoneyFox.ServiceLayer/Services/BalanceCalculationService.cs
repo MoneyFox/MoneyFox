@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.ViewModels;
 
@@ -99,7 +99,7 @@ namespace MoneyFox.ServiceLayer.Services
                         break;
 
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new MoneyFoxInvalidPaymentTypeException();
                 }
             return balance;
         }
@@ -130,7 +130,7 @@ namespace MoneyFox.ServiceLayer.Services
                         balance = HandleTransferAmount(payment, balance, account.Id);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new MoneyFoxInvalidPaymentTypeException();
                 }
             return balance;
         }

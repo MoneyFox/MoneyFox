@@ -41,7 +41,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         }
 
         [Fact]
-        public async Task SupportMail_NoParams_ReturnCorrectMail()
+        public void SupportMail_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,

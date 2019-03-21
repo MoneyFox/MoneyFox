@@ -96,7 +96,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public virtual string Title { get; set; }
 
-        protected int CategoryId;
+        protected int CategoryId { get; private set; }
 
         /// <inheritdoc />
         public override void Prepare(ModifyCategoryParameter parameter)

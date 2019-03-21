@@ -26,8 +26,10 @@ namespace MoneyFox.Uwp.Tasks
             try
             {
                 var context = new EfCoreContext();
-                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
-                context.SaveChanges();
+                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
+                    .CreatePaymentsUpToRecur()
+                    .ConfigureAwait(true);
+                await context.SaveChangesAsync().ConfigureAwait(true);
             }
             catch (Exception ex)
             {

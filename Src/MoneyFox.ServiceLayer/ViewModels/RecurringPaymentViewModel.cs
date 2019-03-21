@@ -8,9 +8,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public class RecurringPaymentViewModel : BaseViewModel, ILinkToEntity<RecurringPayment>
     {
         private int id;
-        private int chargedAccountId;
-        private int? targetAccountId;
-        private int? categoryId;
         private DateTime startDate;
         private DateTime? endDate;
         private double amount;
@@ -20,7 +17,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private string note;
 
         private AccountViewModel chargedAccount;
-        private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
 
         public RecurringPaymentViewModel()
