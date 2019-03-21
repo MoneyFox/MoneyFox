@@ -28,7 +28,7 @@ namespace MoneyFox.BusinessLogic.Extensions
             }
 
             return authenticator.RequestAccessTokenAsync(queryValues)
-                                .ContinueWith(result => result.Result[ServiceConstants.ACCESS_TOKEN]);
+                                .ContinueWith(result => result.Result[ServiceConstants.ACCESS_TOKEN], TaskScheduler.Default);
         }
     }
 }
