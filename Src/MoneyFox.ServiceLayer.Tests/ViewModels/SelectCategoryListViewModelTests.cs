@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.DataLayer.Entities;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -14,7 +13,7 @@ using MvvmCross.Tests;
 using MvvmCross.ViewModels;
 using Xunit;
 
-namespace MoneyFox.Business.Tests.ViewModels
+namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
