@@ -36,7 +36,6 @@ namespace MoneyFox.Droid
         /// </summary>
         public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
 
-        Handler handler;
         private ClearPaymentsJob clearPaymentsJob;
         private RecurringPaymentJob recurringPaymentJob;
 
@@ -56,7 +55,7 @@ namespace MoneyFox.Droid
             Popup.Init(this, bundle);
 
             // Handler to create jobs.
-            handler = new Handler(msg => {
+            var handler = new Handler(msg => {
                 switch (msg.What)
                 {
                     case MESSAGE_SERVICE_CLEAR_PAYMENTS:

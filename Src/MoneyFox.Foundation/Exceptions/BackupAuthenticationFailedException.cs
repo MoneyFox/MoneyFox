@@ -5,6 +5,7 @@ namespace MoneyFox.Foundation.Exceptions
     /// <summary>
     ///     This Exception is thrown when the user couldn't authenticate on the backup service.
     /// </summary>
+    [Serializable]
     public class BackupAuthenticationFailedException : Exception
     {
         /// <summary>

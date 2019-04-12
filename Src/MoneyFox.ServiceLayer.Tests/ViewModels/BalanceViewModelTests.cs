@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
@@ -19,17 +20,17 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             Setup();
         }
         [Fact]
-        public void GetTotalBalance_Zero()
+        public async Task GetTotalBalance_Zero()
         {
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
-            balanceCalculationService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>())).Returns(() => 0);
+            balanceCalculationService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>())).ReturnsAsync(() => 0);
             balanceCalculationService.Setup(x => x.GetTotalEndOfMonthBalance()).ReturnsAsync(() => 0);
 
             var vm = new BalanceViewModel(balanceCalculationService.Object,
                                           new Mock<IMvxLogProvider>().Object,
                                           new Mock<IMvxNavigationService>().Object);
 
-            vm.UpdateBalanceCommand.Execute();
+            await vm.UpdateBalanceCommand.ExecuteAsync();
 
             vm.TotalBalance.ShouldEqual(0);
             vm.EndOfMonthBalance.ShouldEqual(0);

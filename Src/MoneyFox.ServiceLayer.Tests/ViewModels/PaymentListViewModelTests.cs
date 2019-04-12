@@ -56,7 +56,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 .ReturnsAsync(new AccountViewModel());
 
             balanceCalculatorService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>()))
-                .Returns(0);
+                .ReturnsAsync(0);
 
             var vm = new PaymentListViewModel(crudService.Object,
                 paymentService.Object,
@@ -84,7 +84,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 .ReturnsAsync(new AccountViewModel());
 
             balanceCalculatorService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>()))
-                .Returns(0);
+                .ReturnsAsync(0);
 
             var vm = new PaymentListViewModel(crudService.Object,
                 paymentService.Object,

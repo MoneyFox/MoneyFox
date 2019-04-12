@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EfCore.GenericServices" Version="2.0.1" />
+    <PackageReference Include="EfCore.GenericServices" Version="2.0.2" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
   </ItemGroup>
 
