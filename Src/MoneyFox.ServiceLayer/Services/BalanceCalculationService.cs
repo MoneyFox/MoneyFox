@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
@@ -29,7 +30,7 @@ namespace MoneyFox.ServiceLayer.Services
         /// </summary>
         /// <param name="account">Account to calculate the balance.</param>
         /// <returns>The end of month balance.</returns>
-        double GetEndOfMonthBalanceForAccount(AccountViewModel account);
+        Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel account);
     }
 
     /// <inheritdoc />
@@ -105,14 +106,16 @@ namespace MoneyFox.ServiceLayer.Services
         }
 
         /// <inheritdoc />
-        public double GetEndOfMonthBalanceForAccount(AccountViewModel account)
+        public async Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel account)
         {
             var balance = account.CurrentBalance;
 
-            var paymentList = crudServices.ReadManyNoTracked<PaymentViewModel>()
+            var paymentList = await crudServices.ReadManyNoTracked<PaymentViewModel>()
                 .AreNotCleared()
                 .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth());
+                .HasDateSmallerEqualsThan(Utilities.HelperFunctions.GetEndOfMonth())
+                .ToListAsync()
+                .ConfigureAwait(true);
 
             foreach (var payment in paymentList)
 
