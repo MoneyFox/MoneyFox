@@ -6,7 +6,6 @@ using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
-using NLog;
 using Serilog;
 using Serilog.Events;
 
@@ -26,7 +25,7 @@ namespace MoneyFox.iOS
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
         }
 
-        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.NLog;
+        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.Serilog;
 
         protected override IMvxLogProvider CreateLogProvider()
         {
