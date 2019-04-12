@@ -16,7 +16,8 @@ using MvvmCross.Plugin.Messenger;
 using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.UI;
 using NLog;
-using NLog.Fluent;
+using Serilog;
+using Serilog.Events;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Uwp
@@ -56,15 +57,13 @@ namespace MoneyFox.Uwp
 
         protected override IMvxLogProvider CreateLogProvider()
         {
-            var config = new NLog.Config.LoggingConfiguration();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console(LogEventLevel.Verbose)
+                .WriteTo.Debug(LogEventLevel.Verbose)
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Month)
+                .CreateLogger();
 
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "MoneyFoxLogs.txt" };
-            var logConsole = new NLog.Targets.ConsoleTarget("logConsole");
-
-            config.AddRule(LogLevel.Info, LogLevel.Fatal, logConsole);
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
-
-            NLog.LogManager.Configuration = config;
             return base.CreateLogProvider();
         }
     }

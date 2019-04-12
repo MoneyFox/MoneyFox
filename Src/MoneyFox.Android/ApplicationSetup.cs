@@ -12,6 +12,8 @@ using MvvmCross.IoC;
 using MvvmCross.Logging;
 using NLog;
 using Plugin.SecureStorage;
+using Serilog;
+using Serilog.Events;
 
 namespace MoneyFox.Droid
 {
@@ -43,19 +45,18 @@ namespace MoneyFox.Droid
             return formsPresenter;
         }
 
-        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.NLog;
+        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.Serilog;
 
         protected override IMvxLogProvider CreateLogProvider()
         {
-            var config = new NLog.Config.LoggingConfiguration();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console(LogEventLevel.Verbose)
+                .WriteTo.Debug(LogEventLevel.Verbose)
+                .WriteTo.AndroidLog(LogEventLevel.Information)
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Month)
+                .CreateLogger();
 
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "MoneyFoxLogs.txt" };
-            var logConsole = new NLog.Targets.ConsoleTarget("logConsole");
-
-            config.AddRule(LogLevel.Info, LogLevel.Fatal, logConsole);
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
-
-            NLog.LogManager.Configuration = config;
             return base.CreateLogProvider();
         }
     }
