@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Exceptions;
 using Should;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
+            Assert.Throws<AccountNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
         }
 
         [Theory]
@@ -69,7 +70,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
+            Assert.Throws<AccountNullException>(() => testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
         }
 
         [Theory]
