@@ -60,7 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
                                             .ConfigureAwait(true);
-            return balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
+            return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }
 }

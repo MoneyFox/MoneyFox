@@ -248,10 +248,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .CreateGroups(dailyItems,
                         s =>
                         {
-                            var date = Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture);
+                            var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
                             return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
                         },
-                        s => Convert.ToDateTime(s.Key, CultureInfo.InvariantCulture)));
+                        s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
         }
 
         private async Task EditPayment(PaymentViewModel payment)

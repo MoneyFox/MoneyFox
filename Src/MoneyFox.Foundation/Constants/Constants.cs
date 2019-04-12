@@ -4,7 +4,7 @@ namespace MoneyFox.Foundation.Constants
     /// <summary>
     ///     String Constants for usage in the app
     /// </summary>
-    public sealed class AppConstants
+    public static class AppConstants
     {
         /// <summary>
         ///     URL to the Apply Solutions website
@@ -29,7 +29,7 @@ namespace MoneyFox.Foundation.Constants
         /// <summary>
         ///     URL to the Twitter AccountViewModel of the icon.
         /// </summary>
-        public const string ICONDESIGNER_TWITTER_URL = "https://twitter.com/vandert9";
+        public const string ICON_DESIGNER_TWITTER_URL = "https://twitter.com/vandert9";
 
         /// <summary>
         ///     URL to the Twitter AccountViewModel of the icon.

@@ -143,7 +143,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public void GetEndOfMonthBalanceForAccount_CorrectSum()
+        public async Task GetEndOfMonthBalanceForAccount_CorrectSum()
         {
             // Arrange
             var account1 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
@@ -196,7 +196,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
                 .Returns(mock.Object);
 
             // Act
-            var result = new BalanceCalculationService(crudServiceSetup.Object)
+            var result = await new BalanceCalculationService(crudServiceSetup.Object)
                 .GetEndOfMonthBalanceForAccount(account1);
 
             // Assert
@@ -204,7 +204,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         }
 
         [Fact]
-        public async void GetTotalBalance_TwoAccounts_SumOfAccounts()
+        public async Task GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             // Arrange
             var accounts = new List<AccountViewModel>
