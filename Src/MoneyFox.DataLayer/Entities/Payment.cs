@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.DataLayer.Entities
 {
@@ -78,7 +79,7 @@ namespace MoneyFox.DataLayer.Entities
             Amount = amount;
             Type = type;
             Note = note;
-            ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
+            ChargedAccount = chargedAccount ?? throw new AccountNullException();
             TargetAccount = targetAccount;
             Category = category;
         }
