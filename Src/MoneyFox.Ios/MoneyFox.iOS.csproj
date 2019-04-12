@@ -192,6 +192,9 @@
     <PackageReference Include="MvvmCross.Plugin.Messenger">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.6.2</Version>
+    </PackageReference>
     <PackageReference Include="PCLAppConfig">
       <Version>1.0.1</Version>
     </PackageReference>
