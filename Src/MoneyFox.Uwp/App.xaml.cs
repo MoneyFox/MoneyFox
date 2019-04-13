@@ -63,10 +63,6 @@ namespace MoneyFox.Uwp
 			Suspending += OnSuspending;
 
 			EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
-
-#if !DEBUG
-			AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
-#endif
         }
 
         private void SetTheme()
@@ -99,6 +95,9 @@ namespace MoneyFox.Uwp
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+#if !DEBUG
+                AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+#endif
 
                 Xamarin.Forms.Forms.Init(activationArgs);
 				var app = new Presentation.App();
