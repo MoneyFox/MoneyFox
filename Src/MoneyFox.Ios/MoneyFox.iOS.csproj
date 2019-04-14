@@ -147,6 +147,9 @@
     <Content Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
     </Content>
+    <BundleResource Include="Resources\ic_settings_black.png" />
+    <BundleResource Include="Resources\ic_settings_black%402x.png" />
+    <BundleResource Include="Resources\ic_settings_black%403x.png" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -255,15 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_accounts_black%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_settings%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ic_settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_statistics_black.png" />
