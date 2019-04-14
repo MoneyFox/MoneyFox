@@ -3,7 +3,7 @@
 namespace MoneyFox.Presentation.Effects
 {    
     /// <summary>
-    ///     Routing for the the button effect.
+    ///     Routing for the button effect.
     /// </summary>
     public class PrimaryButtonEffect : RoutingEffect
     {

@@ -56,5 +56,16 @@
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>2018304.001</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Document Type 1</string>
+		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>materialdesignicons.ttf</string>
+	</array>
 </dict>
 </plist>

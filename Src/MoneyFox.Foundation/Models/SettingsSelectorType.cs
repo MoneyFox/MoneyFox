@@ -11,6 +11,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        ///     Code for the Icon.
+        /// </summary>
+        public string Icon { get; set; }
+
+        /// <summary>
         ///     Short description for the statistic
         /// </summary>
         public string Description { get; set; }

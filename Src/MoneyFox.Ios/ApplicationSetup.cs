@@ -31,9 +31,7 @@ namespace MoneyFox.iOS
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.Console(LogEventLevel.Verbose)
-                .WriteTo.Debug(LogEventLevel.Verbose)
-                .WriteTo.NSLog(LogEventLevel.Information)
+                .WriteTo.NSLog()
                 .WriteTo.File("log.txt", rollingInterval: RollingInterval.Month)
                 .CreateLogger();
 

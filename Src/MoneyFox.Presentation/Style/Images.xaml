@@ -5,14 +5,20 @@
 
     <OnPlatform x:Key="ImageSave"
                 x:TypeArguments="ImageSource">
-        <On Platform="Android" Value="ic_save" />
-        <On Platform="iOS" Value="ic_save" />
+        <On Platform="Android" Value="ic_save_white" />
+        <On Platform="iOS" Value="ic_save_white" />
     </OnPlatform>
 
     <OnPlatform x:Key="ImageResetField"
                 x:TypeArguments="ImageSource">
         <On Platform="Android" Value="ic_cancel_black" />
-        <On Platform="iOS" Value="ic_cancel" />
+        <On Platform="iOS" Value="ic_cancel_black" />
         <On Platform="UWP" Value="IconCancel" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+        <On Platform="iOS" Value="Material Design Icons" />
+        <On Platform="Android" Value="materialdesignicons.ttf#Material Design Icons" />
+        <On Platform="UWP" Value="Assets/Fonts/materialdesignicons.ttf#Material Design Icons" />
     </OnPlatform>
 </ResourceDictionary>
