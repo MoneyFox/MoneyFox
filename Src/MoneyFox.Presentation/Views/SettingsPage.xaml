@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
                   ItemsSource="{Binding SettingsList}" 
-                  RowHeight="60" 
+                  RowHeight="65" 
                   Margin="{DynamicResource NegativeMediumLeftRightMargin}" >
 
             <ListView.SeparatorVisibility>
@@ -30,7 +30,13 @@
                                          Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
-                                <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                <StackLayout Style="{DynamicResource ListItemStyle}"
+                                             Orientation="Horizontal"
+                                             Padding="3"
+                                             Spacing="{DynamicResource DefaultSpacing}">
+                                    <Label Text="{Binding Icon}" FontFamily="{DynamicResource MaterialFontFamily}" Style="{DynamicResource ListItemHeaderStyle}" VerticalOptions="Center" />
+                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
                         </controls:CardView>

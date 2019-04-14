@@ -67,24 +67,28 @@ namespace MoneyFox.ServiceLayer.ViewModels
             new SettingsSelectorType
             {
                 Name = Strings.CategoriesLabel,
+                Icon = "\uf316",
                 Description = Strings.CategoriesSettingsDescription,
                 Type = SettingsType.Categories
             },
             new SettingsSelectorType
             {
                 Name = Strings.BackgroundJobLabel,
+                Icon = "\uf4e6",
                 Description = Strings.BackgroundJobSettingDescription,
                 Type = SettingsType.BackgroundJob
             },
             new SettingsSelectorType
             {
                 Name = Strings.BackupLabel,
+                Icon = "\uf167",
                 Description = Strings.BackupSettingsDescription,
                 Type = SettingsType.Backup
             },
             new SettingsSelectorType
             {
                 Name = Strings.AboutLabel,
+                Icon = "\uf2fd",
                 Description = Strings.AboutSettingsDescription,
                 Type = SettingsType.About
             }
