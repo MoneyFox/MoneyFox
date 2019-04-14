@@ -198,6 +198,9 @@
     <AndroidAsset Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
     </AndroidAsset>
+    <AndroidAsset Include="Assets\materialdesignicons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\SplashScreen.axml">
