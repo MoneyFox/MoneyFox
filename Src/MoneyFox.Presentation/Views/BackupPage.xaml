@@ -27,6 +27,7 @@
                 <Button Text="{Binding Resources[LoginLabel]}"
                     IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                     Command="{Binding LoginCommand}" >
+
                     <Button.Effects>
                         <effects:PrimaryButtonEffect />
                     </Button.Effects>
