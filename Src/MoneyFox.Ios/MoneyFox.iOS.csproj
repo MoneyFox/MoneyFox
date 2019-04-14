@@ -269,13 +269,13 @@
     <BundleResource Include="Resources\ic_statistics_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cancel.png" />
+    <BundleResource Include="Resources\ic_cancel_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cancel%402x.png" />
+    <BundleResource Include="Resources\ic_cancel_black%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_cancel%403x.png" />
+    <BundleResource Include="Resources\ic_cancel_black%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_done.png" />
@@ -293,13 +293,13 @@
     <BundleResource Include="Resources\ic_add%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconSave.png" />
+    <BundleResource Include="Resources\ic_save_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconSave%402x.png" />
+    <BundleResource Include="Resources\ic_save_white%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IconSave%403x.png" />
+    <BundleResource Include="Resources\ic_save_white%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_add_black%402x.png" />
