@@ -10,7 +10,6 @@ using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
-using NLog;
 using Plugin.SecureStorage;
 using Serilog;
 using Serilog.Events;
@@ -51,9 +50,7 @@ namespace MoneyFox.Droid
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.Console(LogEventLevel.Verbose)
-                .WriteTo.Debug(LogEventLevel.Verbose)
-                .WriteTo.AndroidLog(LogEventLevel.Information)
+                .WriteTo.AndroidLog(LogEventLevel.Verbose)
                 .WriteTo.File("log.txt", rollingInterval: RollingInterval.Month)
                 .CreateLogger();
 
