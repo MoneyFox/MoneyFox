@@ -9,7 +9,6 @@ using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI;
-using Windows.UI.Core;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -31,7 +30,6 @@ using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
-using Rg.Plugins.Popup;
 
 #if !DEBUG
 using Microsoft.AppCenter;

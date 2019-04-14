@@ -5,6 +5,9 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.IoC;
+using MvvmCross.Logging;
+using Serilog;
+using Serilog.Events;
 
 namespace MoneyFox.iOS
 {
@@ -20,6 +23,21 @@ namespace MoneyFox.iOS
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, AppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, StoreOperations>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IBackgroundTaskManager, BackgroundTaskManager>();
+        }
+
+        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.Serilog;
+
+        protected override IMvxLogProvider CreateLogProvider()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console(LogEventLevel.Verbose)
+                .WriteTo.Debug(LogEventLevel.Verbose)
+                .WriteTo.NSLog(LogEventLevel.Information)
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Month)
+                .CreateLogger();
+
+            return base.CreateLogProvider();
         }
     }
 }
