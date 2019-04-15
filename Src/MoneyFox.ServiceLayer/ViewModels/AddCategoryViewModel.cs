@@ -38,10 +38,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
+            if (string.IsNullOrEmpty(SelectedCategory.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
+                                   .ConfigureAwait(true);
+                return;
+            }
+
             if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithNameAsync(SelectedCategory.Name)
                                   .ConfigureAwait(true))
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
+                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage)
                                    .ConfigureAwait(true);
                 return;
             }
