@@ -13,9 +13,9 @@ namespace MoneyFox.Presentation.Converter
     public class RecurrenceTypeConverter : IMvxValueConverter, IValueConverter
     {
         /// <summary>
-        ///     Converts the passed recurrencetype to a string.
+        ///     Converts the passed recurrence type to a string.
         /// </summary>
-        /// <param name="value">Recurrencetype to convert.</param>
+        /// <param name="value">Recurrence type to convert.</param>
         /// <param name="targetType">Is not used.</param>
         /// <param name="parameter">Is not used.</param>
         /// <param name="culture">Is not used.</param>

@@ -14,9 +14,7 @@ namespace MoneyFox.Droid.Manager
         private const int SYNC_BACK_JOB_ID = 30;
 
         private readonly Activity currentActivity;
-
-        private Handler handler;
-
+        
         /// <summary>
         ///     Constructor
         /// </summary>
@@ -35,7 +33,7 @@ namespace MoneyFox.Droid.Manager
         /// <inheritdoc />
         public void StartBackupSyncTask(int interval)
         {
-            handler = new Handler(msg =>
+            var handler = new Handler(msg =>
             {
                 var syncBackupJob = (SyncBackupJob) msg.Obj;
                 syncBackupJob.ScheduleTask(interval);

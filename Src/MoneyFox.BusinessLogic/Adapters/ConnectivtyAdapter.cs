@@ -27,7 +27,7 @@ namespace MoneyFox.BusinessLogic.Adapters
                 {
                     return Connectivity.NetworkAccess == NetworkAccess.Internet;
                 }
-                catch (Exception ex)
+                catch (PermissionException ex)
                 {
                     Crashes.TrackError(ex);
                     return false;
