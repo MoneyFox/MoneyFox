@@ -6,9 +6,9 @@ namespace MoneyFox.DataLayer.Configurations
 {
     internal class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<Account> accountBuilder)
+        public void Configure(EntityTypeBuilder<Account> builder)
         {
-            accountBuilder.HasIndex(b => b.Name);
+            builder.HasIndex(b => b.Name);
         }
     }
 }
