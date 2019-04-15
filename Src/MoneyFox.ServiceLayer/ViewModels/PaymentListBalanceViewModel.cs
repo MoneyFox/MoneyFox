@@ -40,7 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             try
             {
-                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId).ConfigureAwait(true);
+                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
                 return account.CurrentBalance;
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected override async Task<double> GetEndOfMonthValue()
         {
             var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
-                                            .ConfigureAwait(true);
+                                            ;
             return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

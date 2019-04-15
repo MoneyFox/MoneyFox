@@ -43,7 +43,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task<OperationResult> AddPayment(Payment payment)
         {
             await savePaymentDbAccess.AddPayment(payment)
-                                     .ConfigureAwait(true);
+                                     ;
 
             return OperationResult.Succeeded();
         }
@@ -51,7 +51,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task<OperationResult> DeletePayment(int id)
         {
             var payment = await savePaymentDbAccess.GetPaymentById(id)
-                                                   .ConfigureAwait(true);
+                                                   ;
             
             payment.ChargedAccount.RemovePaymentAmount(payment);
             payment.TargetAccount?.RemovePaymentAmount(payment);
@@ -63,12 +63,12 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task DeleteRecurringPayment(int id)
         {
-            var payments = await savePaymentDbAccess.GetPaymentsForRecurring(id).ConfigureAwait(true);
+            var payments = await savePaymentDbAccess.GetPaymentsForRecurring(id);
 
             payments.ForEach(x => x.RemoveRecurringPayment());
 
             await savePaymentDbAccess.DeleteRecurringPayment(id)
-                .ConfigureAwait(true);
+                ;
         }
     }
 }

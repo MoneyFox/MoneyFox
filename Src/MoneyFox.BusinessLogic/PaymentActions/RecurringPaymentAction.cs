@@ -25,7 +25,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         public async Task CreatePaymentsUpToRecur()
         {
             var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments()
-                                                                  .ConfigureAwait(true);
+                                                                  ;
 
             var recPaymentsToCreate = recurringPayments
                 .Where(x => x.RelatedPayments.Any())
@@ -45,7 +45,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                 .ToList();
 
             await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate)
-                .ConfigureAwait(true);
+                ;
         }
     }
 }

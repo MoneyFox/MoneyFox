@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp
             string positiveButtonText = null,
             string negativeButtonText = null, Action negativAction = null)
         {
-            var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText).ConfigureAwait(true);
+            var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer)
             {

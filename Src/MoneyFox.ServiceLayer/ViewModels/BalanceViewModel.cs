@@ -62,8 +62,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         private async Task UpdateBalance()
         {
-            TotalBalance = await CalculateTotalBalance().ConfigureAwait(true);
-            EndOfMonthBalance = await GetEndOfMonthValue().ConfigureAwait(true);
+            TotalBalance = await CalculateTotalBalance();
+            EndOfMonthBalance = await GetEndOfMonthValue();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <returns>Sum of the balance of all accounts.</returns>
         protected virtual async Task<double> CalculateTotalBalance() => await balanceCalculationService
             .GetTotalBalance()
-            .ConfigureAwait(true);
+            ;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -80,7 +80,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
         protected virtual async Task<double> GetEndOfMonthValue()
         {
-            return await balanceCalculationService.GetTotalEndOfMonthBalance().ConfigureAwait(true);
+            return await balanceCalculationService.GetTotalEndOfMonthBalance();
         }
     }
 }

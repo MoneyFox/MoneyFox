@@ -77,21 +77,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override async void ViewAppeared()
         {
-            await Load().ConfigureAwait(true);
-            await RaisePropertyChanged(nameof(Accounts)).ConfigureAwait(true);
+            await Load();
+            await RaisePropertyChanged(nameof(Accounts));
         }
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
             await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id))
-                                   .ConfigureAwait(true);
+                                   ;
         }
 
         private async Task Load()
         {
             try
             {
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync().ConfigureAwait(true);
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
                 IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
                                                                                    .OrderBy(x => x.Name);
@@ -114,13 +114,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                await RaisePropertyChanged(nameof(HasNoAccounts)).ConfigureAwait(true);
+                await RaisePropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {
                 Crashes.TrackError(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString())
-                    .ConfigureAwait(true);
+                    ;
             }
         }
 
@@ -129,7 +129,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (accountViewModel == null) return;
 
             await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
@@ -137,13 +137,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (accountToDelete == null) return;
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
-                .ConfigureAwait(true))
+                )
             {
                 await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id)
-                    .ConfigureAwait(true);
+                    ;
 
                 Accounts.Clear();
-                await Load().ConfigureAwait(true);
+                await Load();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
@@ -152,7 +152,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task GoToAddAccount()
         {
             await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter())
-                .ConfigureAwait(true);
+                ;
         }
     }
 }

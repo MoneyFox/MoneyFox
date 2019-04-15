@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.QueryObject
         public static async Task<bool> AnyWithNameAsync(this IQueryable<AccountViewModel> query, string name)
         {
             return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
-                              .ConfigureAwait(true);
+                              ;
         }
     }
 }

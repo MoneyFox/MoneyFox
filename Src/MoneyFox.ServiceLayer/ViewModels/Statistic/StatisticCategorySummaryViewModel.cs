@@ -45,7 +45,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         protected override async Task Load()
         {
             var summaryItems = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)
-                .ConfigureAwait(true);
+                ;
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(summaryItems.Select(x => new CategoryOverviewViewModel
             {

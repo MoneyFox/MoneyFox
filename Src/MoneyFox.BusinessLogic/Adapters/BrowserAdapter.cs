@@ -13,7 +13,7 @@ namespace MoneyFox.BusinessLogic.Adapters
     {
         public async Task OpenWebsite(Uri uri)
         {
-            await Browser.OpenAsync(uri, BrowserLaunchMode.External).ConfigureAwait(true);
+            await Browser.OpenAsync(uri, BrowserLaunchMode.External);
         }
     }
 }

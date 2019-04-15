@@ -43,7 +43,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         {
             await context.Payments
                          .AddRangeAsync(payments)
-                         .ConfigureAwait(true);
+                         ;
         }
     }
 }

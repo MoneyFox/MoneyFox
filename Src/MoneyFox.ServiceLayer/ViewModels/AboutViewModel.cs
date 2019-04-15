@@ -150,14 +150,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task GoToWebsite()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
                     new List<string> {AppConstants.SUPPORT_MAIL})
-                .ConfigureAwait(true);
+                ;
         }
 
         private void RateApp()
@@ -168,25 +168,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task GoToRepository()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task GoToTranslationProject()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task GoToDesignerTwitterAccount()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task GoToContributionPage()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL))
-                .ConfigureAwait(true);
+                ;
         }
     }
 }

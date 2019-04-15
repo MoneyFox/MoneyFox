@@ -56,10 +56,10 @@ namespace MoneyFox.ServiceLayer.Services
         /// <inheritdoc />
         public async Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel)
         {
-            var payment = await CreatePaymentFromViewModel(paymentViewModel).ConfigureAwait(true);
+            var payment = await CreatePaymentFromViewModel(paymentViewModel);
 
             var result = await modifyPaymentAction.AddPayment(payment)
-                .ConfigureAwait(true);
+                ;
 
             if (!result.Success)
             {
@@ -67,7 +67,7 @@ namespace MoneyFox.ServiceLayer.Services
             }
 
             await context.SaveChangesAsync()
-                .ConfigureAwait(true);
+                ;
 
             return OperationResult.Succeeded();
         }
@@ -75,10 +75,10 @@ namespace MoneyFox.ServiceLayer.Services
         /// <inheritdoc />
         public async Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel)
         {
-            await UpdatePaymentFromViewModel(newPaymentViewModel).ConfigureAwait(true);
+            await UpdatePaymentFromViewModel(newPaymentViewModel);
 
             await context.SaveChangesAsync()
-                .ConfigureAwait(true);
+                ;
 
             return OperationResult.Succeeded();
         }
@@ -87,22 +87,22 @@ namespace MoneyFox.ServiceLayer.Services
         public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
         {
             if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
-                .ConfigureAwait(true)) return OperationResult.Succeeded();
+                ) return OperationResult.Succeeded();
 
             if (paymentViewModel.IsRecurring
                 && await dialogService
                     .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
-                    .ConfigureAwait(true))
+                    )
             {
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id)
-                    .ConfigureAwait(true);
+                    ;
             }
             
             var result = await modifyPaymentAction.DeletePayment(paymentViewModel.Id)
-                .ConfigureAwait(true);
+                ;
 
             await context.SaveChangesAsync()
-                .ConfigureAwait(true);
+                ;
 
             return !result.Success
                 ? OperationResult.Failed(result.Message)
@@ -137,7 +137,7 @@ namespace MoneyFox.ServiceLayer.Services
             var payment = await context.Payments
                 .Include(x => x.RecurringPayment)
                 .FirstAsync(x => x.Id == paymentViewModel.Id)
-                .ConfigureAwait(true);
+                ;
 
             var chargedAccount = await GetChargedAccount(paymentViewModel);
             var targetAccount = await GetTargetAccount(paymentViewModel);
@@ -155,7 +155,7 @@ namespace MoneyFox.ServiceLayer.Services
                 && payment.IsRecurring
                 && await dialogService
                     .ShowConfirmMessage(Strings.ModifyRecurrenceTitle, Strings.ModifyRecurrenceMessage)
-                    .ConfigureAwait(true))
+                    )
             {
                 payment.RecurringPayment.UpdateRecurringPayment(payment.Amount,
                     paymentViewModel.RecurringPayment.Recurrence, 
@@ -174,7 +174,7 @@ namespace MoneyFox.ServiceLayer.Services
             if (paymentViewModel.Category != null)
                 category = await context.Categories
                     .FindAsync(paymentViewModel.Category.Id)
-                    .ConfigureAwait(true);
+                    ;
             return category;
         }
 
@@ -182,7 +182,7 @@ namespace MoneyFox.ServiceLayer.Services
         {
             var chargedAccount = await context.Accounts
                 .FindAsync(paymentViewModel.ChargedAccount.Id)
-                .ConfigureAwait(true);
+                ;
             return chargedAccount;
         }
 
@@ -192,7 +192,7 @@ namespace MoneyFox.ServiceLayer.Services
             if (paymentViewModel.TargetAccount != null)
                 targetAccount = await context.Accounts
                     .FindAsync(paymentViewModel.TargetAccount.Id)
-                    .ConfigureAwait(true);
+                    ;
             return targetAccount;
         }
 

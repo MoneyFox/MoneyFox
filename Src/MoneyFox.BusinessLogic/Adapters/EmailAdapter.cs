@@ -23,7 +23,7 @@ namespace MoneyFox.BusinessLogic.Adapters
                     Body = body,
                     To = recipients
                 };
-                await Email.ComposeAsync(message).ConfigureAwait(true);
+                await Email.ComposeAsync(message);
             } 
             catch (FeatureNotSupportedException ex)
             {

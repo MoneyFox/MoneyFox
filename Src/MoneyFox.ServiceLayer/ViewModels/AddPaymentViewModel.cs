@@ -45,7 +45,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override async Task Initialize()
         {
-            await base.Initialize().ConfigureAwait(true);
+            await base.Initialize();
             SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
 
             if (SelectedPayment.IsTransfer)
@@ -59,21 +59,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             try
             {
-                var result = await paymentService.SavePayment(SelectedPayment).ConfigureAwait(true);
+                var result = await paymentService.SavePayment(SelectedPayment);
 
                 if (!result.Success)
                 {
                     await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
-                        .ConfigureAwait(true);
+                        ;
                     return;
                 }
 
-                await NavigationService.Close(this).ConfigureAwait(true);
+                await NavigationService.Close(this);
             }
             catch (MoneyFoxInvalidEndDateException)
             {
                 await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage)
-                    .ConfigureAwait(true);
+                    ;
             }
         }
     }

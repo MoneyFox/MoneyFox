@@ -61,26 +61,26 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected override async Task SavePayment()
         {
             var result = await paymentService.UpdatePayment(SelectedPayment)
-                                .ConfigureAwait(true);
+                                ;
 
             if (!result.Success)
             {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                    .ConfigureAwait(true);
+                    ;
                 return;
             }
 
-            await NavigationService.Close(this).ConfigureAwait(true);
+            await NavigationService.Close(this);
         }
 
 
         private async Task DeletePayment()
         {
-            await paymentService.DeletePayment(SelectedPayment).ConfigureAwait(true);
+            await paymentService.DeletePayment(SelectedPayment);
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask().ConfigureAwait(true);
+            backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
+            await CancelCommand.ExecuteAsync();
         }
     }
 }
