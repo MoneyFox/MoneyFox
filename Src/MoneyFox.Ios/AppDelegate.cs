@@ -86,9 +86,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                await SyncBackup().ConfigureAwait(true);
-                await ClearPayments().ConfigureAwait(true);
-                await CreateRecurringPayments().ConfigureAwait(true);
+                await SyncBackup();
+                await ClearPayments();
+                await CreateRecurringPayments();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -106,9 +106,9 @@ namespace MoneyFox.iOS
         {
             base.WillEnterForeground(uiApplication);
 
-            await SyncBackup().ConfigureAwait(true);
-            await ClearPayments().ConfigureAwait(true);
-            await CreateRecurringPayments().ConfigureAwait(true);
+            await SyncBackup();
+            await ClearPayments();
+            await CreateRecurringPayments();
         }
 
         private async Task SyncBackup()
@@ -128,7 +128,7 @@ namespace MoneyFox.iOS
 
                 var backupService = new BackupService(backupManager, settingsFacade);
                 await backupService.RestoreBackup()
-                                   .ConfigureAwait(true);
+                                   ;
 
             } catch (Exception ex)
             {
@@ -150,7 +150,7 @@ namespace MoneyFox.iOS
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments()
-                                                                               .ConfigureAwait(true);
+                                                                               ;
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
@@ -177,7 +177,7 @@ namespace MoneyFox.iOS
                 var context = new EfCoreContext();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
                     .CreatePaymentsUpToRecur()
-                    .ConfigureAwait(true);
+                    ;
                 context.SaveChanges();
 
                 Debug.WriteLine("RecurringPayment Job finished.");

@@ -81,7 +81,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <inheritdoc />
         public override async Task Initialize()
         {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId).ConfigureAwait(true)).Name;
+            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
             BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId,
                 logProvider, navigationService);
@@ -216,7 +216,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             LoadPayments(new PaymentListFilterChangedMessage(this));
             //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync().ConfigureAwait(true);
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
         private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -258,17 +258,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
                 new ModifyPaymentParameter(payment.Id))
-                .ConfigureAwait(true);
+                ;
         }
 
         private async Task DeletePayment(PaymentViewModel payment)
         {
-            await paymentService.DeletePayment(payment).ConfigureAwait(true);
+            await paymentService.DeletePayment(payment);
 
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await Load().ConfigureAwait(true);
+            await Load();
         }
     }
 }

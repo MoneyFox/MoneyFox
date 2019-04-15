@@ -36,18 +36,18 @@ namespace MoneyFox.ServiceLayer.ViewModels {
         {
             if (await crudService.ReadManyNoTracked<AccountViewModel>()
                                  .AnyWithNameAsync(SelectedAccount.Name)
-                                 .ConfigureAwait(true)) {
+                                 ) {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
-                                   .ConfigureAwait(true);
+                                   ;
                 return;
             }
 
-            await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)").ConfigureAwait(true);
+            await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
             if (!crudService.IsValid) {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors()).ConfigureAwait(true);
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
             }
 
-            await NavigationService.Close(this).ConfigureAwait(true);
+            await NavigationService.Close(this);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace MoneyFox.Presentation.Views
                 await Navigation.PushPopupAsync(new FilterPopup
                 {
                     BindingContext = Mvx.IoCProvider.Resolve<SelectFilterDialogViewModel>()
-                }).ConfigureAwait(true);
+                });
             }
         }
 
@@ -58,7 +58,7 @@ namespace MoneyFox.Presentation.Views
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel })
-                            .ConfigureAwait(true);
+                            ;
         }
 
         private void EditPayment(object sender, EventArgs e)

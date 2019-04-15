@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.Views
             {
                 await ((MainViewModel) ViewModel).ShowSettingsCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             }
             else
             {
@@ -33,37 +33,37 @@ namespace MoneyFox.Uwp.Views
             {
                 await ((MainViewModel) ViewModel).ShowAccountListCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             } 
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {
                 await ((MainViewModel) ViewModel).ShowCategoryListCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             }
             else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
             {
                 await ((MainViewModel) ViewModel).ShowStatisticSelectorCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             } 
             else if (args.InvokedItem.Equals(Strings.BackupTitle))
             {
                 await ((MainViewModel) ViewModel).ShowBackupViewCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             } 
             else if (args.InvokedItem.Equals(Strings.SettingsTitle))
             {
                 await ((MainViewModel) ViewModel).ShowSettingsCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             } 
             else if (args.InvokedItem.Equals(Strings.AboutTitle))
             {
                 await ((MainViewModel) ViewModel).ShowAboutCommand
                                                  .ExecuteAsync()
-                                                 .ConfigureAwait(true);
+                                                 ;
             }
         }
 

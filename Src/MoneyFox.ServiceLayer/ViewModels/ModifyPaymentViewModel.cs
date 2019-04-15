@@ -256,7 +256,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
                                              .OrderByName()
                                              .ToListAsync()
-                                             .ConfigureAwait(true);
+                                             ;
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
@@ -276,15 +276,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (SelectedPayment.ChargedAccount == null)
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage)
-                                   .ConfigureAwait(true);
+                                   ;
                 return;
             }
 
-            await SavePayment().ConfigureAwait(true);
+            await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask().ConfigureAwait(true);
+            backupService.EnqueueBackupTask();
 #pragma warning restore 4014
         }
 
@@ -301,7 +301,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task OpenSelectCategoryList()
         {
             await navigationService.Navigate<SelectCategoryListViewModel>()
-                                   .ConfigureAwait(true);
+                                   ;
         }
 
         private void ResetSelection()
@@ -311,7 +311,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Cancel()
         {
-            await navigationService.Close(this).ConfigureAwait(true);
+            await navigationService.Close(this);
         }
 
         private void UpdateOtherComboBox()

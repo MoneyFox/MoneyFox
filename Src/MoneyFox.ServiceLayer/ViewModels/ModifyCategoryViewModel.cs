@@ -59,11 +59,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveCategoryBase()
         {
-            await SaveCategory().ConfigureAwait(true);
+            await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask().ConfigureAwait(true);
+            backupService.EnqueueBackupTask();
 #pragma warning restore 4014
         }
 

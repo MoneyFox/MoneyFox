@@ -87,8 +87,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override async void ViewAppearing()
         {
             DialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load().ConfigureAwait(true))
-                      .ConfigureAwait(true);
+            await Task.Run(async () => await Load())
+                      ;
             DialogService.HideLoadingDialog();
         }
 
@@ -109,33 +109,33 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     await categoryQuery
                         .WhereNameContains(searchText)
                         .ToListAsync()
-                        .ConfigureAwait(true));
+                        );
             } 
             else
             {
                 categories = new List<CategoryViewModel>(
                     await categoryQuery
                         .ToListAsync()
-                        .ConfigureAwait(true));
+                        );
             }
             CategoryList = CreateGroup(categories);
         }
 
         private async Task Load()
         {
-            await Search().ConfigureAwait(true);
+            await Search();
         }
 
         private async Task EditCategory(CategoryViewModel category)
         {
             await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id))
-                                   .ConfigureAwait(true);
+                                   ;
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
             await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter())
-                                   .ConfigureAwait(true);
+                                   ;
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
@@ -149,11 +149,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)
-                                   .ConfigureAwait(true))
+                                   )
             {
                 await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id)
-                                  .ConfigureAwait(true);
-                await Search().ConfigureAwait(true);
+                                  ;
+                await Search();
             }
         }
     }

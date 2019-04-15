@@ -116,7 +116,7 @@ namespace MoneyFox.Uwp
                     await Mvx.IoCProvider
                              .Resolve<IMvxNavigationService>()
                              .Navigate<LoginViewModel>()
-                             .ConfigureAwait(true);
+                             ;
                 }
 
                 ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
@@ -126,10 +126,10 @@ namespace MoneyFox.Uwp
 				//If Jump Lists are supported, add them
 				if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
 				{
-					await SetJumplist().ConfigureAwait(true);
+					await SetJumplist();
 				}
 
-				await CallRateReminder().ConfigureAwait(true);
+				await CallRateReminder();
 			}
 		}
 
@@ -191,7 +191,7 @@ namespace MoneyFox.Uwp
 			RatePopup.Title = Strings.RateReminderTitle;
 			RatePopup.Content = Strings.RateReminderText;
 
-			await RatePopup.CheckRateReminderAsync().ConfigureAwait(true);
+			await RatePopup.CheckRateReminderAsync();
 		}
 
 		/// <summary>

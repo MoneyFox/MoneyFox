@@ -63,7 +63,7 @@ namespace MoneyFox.Droid.Renderer {
 
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
-            var fab = (FAB) Control;
+            var fab = Control;
 
             if (e.PropertyName == nameof(Element.ButtonColor)) {
                 Android.Support.V4.View.ViewCompat.SetBackgroundTintList(fab,

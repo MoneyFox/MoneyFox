@@ -4,7 +4,7 @@ namespace MoneyFox.Presentation.Controls
 {
     public partial class FloatingActionButton : Button
     {
-        public static BindableProperty ButtonColorProperty = BindableProperty.Create(nameof(ButtonColor), typeof(Color),
+        public static readonly BindableProperty ButtonColorProperty = BindableProperty.Create(nameof(ButtonColor), typeof(Color),
             typeof(FloatingActionButton), Color.Accent);
 
         public FloatingActionButton()

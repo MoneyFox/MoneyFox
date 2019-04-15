@@ -43,33 +43,33 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             base.Prepare(parameter);
             SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)
-                                                .ConfigureAwait(true);
+                                                ;
         }
 
         protected override async Task SaveAccount()
         {
             await crudServices.UpdateAndSaveAsync(SelectedAccount)
-                              .ConfigureAwait(true);
+                              ;
 
             if (!crudServices.IsValid)
             {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                    .ConfigureAwait(true);
+                    ;
             }
 
-            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
+            await CancelCommand.ExecuteAsync();
         }
 
         protected async Task DeleteAccount()
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id)
-                              .ConfigureAwait(true);
+                              ;
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask().ConfigureAwait(true);
+            backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await CancelCommand.ExecuteAsync().ConfigureAwait(true);
+            await CancelCommand.ExecuteAsync();
         }
     }
 }

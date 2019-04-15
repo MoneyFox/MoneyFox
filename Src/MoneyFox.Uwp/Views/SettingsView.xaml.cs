@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.Views
         /// </summary>
         public async void DisablePassportSwitch(object sender, RoutedEventArgs e)
         {
-            await UpdatePassport().ConfigureAwait(true);
+            await UpdatePassport();
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.Views
         /// </summary>
         private async Task UpdatePassport()
         {
-            if (await MicrosoftPassportHelper.TestPassportAvailable().ConfigureAwait(true))
+            if (await MicrosoftPassportHelper.TestPassportAvailable())
             {
                 PassportSwitch.IsEnabled = true;
                 PassportStatus.Text = string.Empty;

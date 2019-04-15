@@ -31,7 +31,7 @@ namespace MoneyFox.Uwp.Business.Tiles
 
         public async Task UpdatePrimaryLiveTile()
         {
-            if (await LiveTileHelper.IsPinned().ConfigureAwait(true))
+            if (await LiveTileHelper.IsPinned())
             {
                 var b = localsettings.Values["lastrun"];
                 var lastRun = (string) b;
@@ -44,18 +44,18 @@ namespace MoneyFox.Uwp.Business.Tiles
                     localsettings.Values["lastrun"] = "next";
                     headerText = Strings.LiveTileUpcommingPayments;
                     displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Next)
-                        .ConfigureAwait(true);
+                        ;
                     displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Next)
-                        .ConfigureAwait(true);
+                        ;
                 }
                 else
                 {
                     localsettings.Values["lastrun"] = "last";
                     headerText = Strings.LiveTilePastPayments;
                     displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Previous)
-                        .ConfigureAwait(true);
+                        ;
                     displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
-                        .ConfigureAwait(true);
+                        ;
                 }
 
                 var content = new TileContent
@@ -78,14 +78,14 @@ namespace MoneyFox.Uwp.Business.Tiles
             var tiles = await SecondaryTile.FindAllForPackageAsync();
 
             List<string> displayContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
-                .ConfigureAwait(true);
+                ;
 
             if (tiles == null) return;
 
             foreach (var item in tiles)
             {
                 var acct = await crudService.ReadSingleAsync<AccountViewModel>(item.TileId)
-                    .ConfigureAwait(true);
+                    ;
                 var content = new TileContent
                 {
                     Visual = new TileVisual
@@ -451,7 +451,7 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             var acct = await crudService.ReadManyNoTracked<AccountViewModel>()
                 .ToListAsync()
-                .ConfigureAwait(true);
+                ;
             var allPayments = new List<PaymentViewModel>();
             var allPayment = new List<LiveTilesPaymentInfo>();
 

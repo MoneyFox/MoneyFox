@@ -34,7 +34,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         public async Task<IEnumerable<StatisticEntry>> GetValues(DateTime startDate, DateTime endDate)
         {
             return AggregateData(SelectRelevantDataFromList(await statisticDbAccess.GetPaymentsWithoutTransfer(startDate, endDate)
-                                                                                   .ConfigureAwait(true)));
+                                                                                   ));
         }
 
         private List<(float Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
@@ -65,7 +65,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             return statisticList;
         }
 
-        private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
+        private static void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if (statisticList.Count < 6)
             {

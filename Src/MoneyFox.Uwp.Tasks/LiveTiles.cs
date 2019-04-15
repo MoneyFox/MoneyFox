@@ -31,8 +31,8 @@ namespace MoneyFox.Uwp.Tasks
                 var crudService = new CrudServicesAsync(context, utData.ConfigAndMapper);
 
                 var liveTileManager = new LiveTileManager(crudService);
-                await liveTileManager.UpdatePrimaryLiveTile().ConfigureAwait(true);
-                await liveTileManager.UpdateSecondaryLiveTiles().ConfigureAwait(true);
+                await liveTileManager.UpdatePrimaryLiveTile();
+                await liveTileManager.UpdateSecondaryLiveTiles();
             }
             catch (Exception ex)
             {
