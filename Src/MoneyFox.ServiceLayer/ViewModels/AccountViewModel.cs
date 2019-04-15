@@ -102,12 +102,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override bool Equals(object obj)
         {
-            if(!(obj is AccountViewModel))
-            {
-                return false;
-            }
-
-            return ((AccountViewModel) obj).Id == Id;
+            return (obj as AccountViewModel)?.Id == Id;
         }
 
         public override int GetHashCode()
