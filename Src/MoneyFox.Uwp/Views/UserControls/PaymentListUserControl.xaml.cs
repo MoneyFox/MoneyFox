@@ -18,8 +18,7 @@ namespace MoneyFox.Uwp.Views.UserControls
         private void EditPaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as PaymentViewModel;
-            if (payment == null)
+            if (!(element.DataContext is PaymentViewModel payment))
             {
                 return;
             }
@@ -31,8 +30,7 @@ namespace MoneyFox.Uwp.Views.UserControls
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as PaymentViewModel;
-            if (payment == null)
+            if (!(element.DataContext is PaymentViewModel payment))
             {
                 return;
             }
@@ -44,7 +42,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-            flyoutBase.ShowAt(senderElement, e.GetPosition(senderElement));
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void PaymentListView_OnLoaded(object sender, RoutedEventArgs e)
