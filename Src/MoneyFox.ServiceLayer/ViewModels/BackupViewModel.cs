@@ -166,12 +166,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                         Strings.ErrorMessageAuthenticationFailed);
                 }
             }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Unknown Issue"}});
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle,
-                    ex.ToString());
-            }
 
             IsLoadingBackupAvailability = false;
         }

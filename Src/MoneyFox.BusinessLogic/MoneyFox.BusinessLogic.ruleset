@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="SonarQube - MoneyFox Sonar way" ToolsVersion="15.0">
   <Include Path="..\.sonarlint\moneyfox_moneyfoxcsharp.ruleset" Action="Default" />
+  <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
+    <Rule Id="CA2007" Action="Hidden" />
+  </Rules>
 </RuleSet>

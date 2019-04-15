@@ -65,7 +65,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             return statisticList;
         }
 
-        private void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
+        private static void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if (statisticList.Count < 6)
             {

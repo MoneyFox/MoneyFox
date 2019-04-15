@@ -37,18 +37,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<double> CalculateTotalBalance()
-        {
-            try
-            {
-                var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
-                return account.CurrentBalance;
-            }
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
-
-            return 0;
+        { 
+            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+            return account.CurrentBalance;
         }
 
         /// <summary>

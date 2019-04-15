@@ -174,11 +174,6 @@ namespace MoneyFox.BusinessLogic.Backup
                 await Logout();
                 OperationResult.Failed(ex);
                 Crashes.TrackError(ex);
-            } 
-            catch (Exception ex)
-            {
-                Crashes.TrackError(ex);
-                OperationResult.Failed(ex);
             }
             return OperationResult.Succeeded();
         }
