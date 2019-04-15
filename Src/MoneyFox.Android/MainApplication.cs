@@ -4,6 +4,8 @@ using Android.App;
 using Android.Runtime;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using Xamarin.Forms;
+using Application = Android.App.Application;
 
 namespace MoneyFox.Droid
 {
@@ -17,6 +19,7 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
+            Forms.SetFlags("FastRenderers_Experimental");
             EfCoreContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                              DatabaseConstants.DB_NAME);
