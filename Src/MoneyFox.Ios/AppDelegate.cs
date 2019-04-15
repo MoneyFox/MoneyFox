@@ -63,6 +63,15 @@ namespace MoneyFox.iOS
             return base.FinishedLaunching(app, options);
         }
 
+        protected override async void RunAppStart(object hint = null)
+        {
+            base.RunAppStart(hint);
+
+            await SyncBackup();
+            await ClearPayments();
+            await CreateRecurringPayments();
+        }
+
         private static string GetLocalFilePath()
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -127,8 +136,7 @@ namespace MoneyFox.iOS
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
-                await backupService.RestoreBackup()
-                                   ;
+                await backupService.RestoreBackup();
 
             } catch (Exception ex)
             {

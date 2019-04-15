@@ -119,8 +119,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             catch(Exception ex)
             {
                 Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString())
-                    ;
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
 
