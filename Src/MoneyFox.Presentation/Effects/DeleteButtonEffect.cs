@@ -7,7 +7,7 @@ namespace MoneyFox.Presentation.Effects
     /// </summary>
     public class DeleteButtonEffect : RoutingEffect
     {
-        public DeleteButtonEffect() : base("MoneyFox.Presentation.DeleteButtonEffect")
+        public DeleteButtonEffect() : base($"MoneyFox.{nameof(DeleteButtonEffect)}")
         {
         }
     }

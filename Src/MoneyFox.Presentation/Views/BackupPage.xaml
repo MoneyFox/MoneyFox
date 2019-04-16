@@ -41,7 +41,7 @@
                     </Button.Effects>
                 </Button>
 
-                <StackLayout IsVisible="{Binding IsLoggedIn}">
+                <StackLayout IsVisible="{Binding IsLoggedIn}" Spacing="{StaticResource DefaultSpacing}">
                     <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="StartAndExpand" />
@@ -57,24 +57,21 @@
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="StartAndExpand" />
 
-                    <Grid>
-                        <Grid.HeightRequest>
+                    <Button Text="{Binding Resources[RestoreBackupLabel]}" 
+                        Command="{Binding RestoreCommand}" >
+                        <Button.Effects>
+                            <effects:PrimaryButtonEffect />
+                        </Button.Effects>
+                    </Button>
+                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" IsVisible="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" HeightRequest="20">
+                        <ActivityIndicator.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="iOS" Value="39"/>
-                                <On Platform="UWP" Value="35"/>
-                                <On Platform="Android" Value="48"/>
+                                <On Platform="iOS" Value="20"/>
+                                <On Platform="UWP" Value="80"/>
+                                <On Platform="Android" Value="20"/>
                             </OnPlatform>
-                        </Grid.HeightRequest>
-
-                        <Button Text="{Binding Resources[RestoreBackupLabel]}" 
-                            Command="{Binding RestoreCommand}" >
-                            <Button.Effects>
-                                <effects:PrimaryButtonEffect />
-                            </Button.Effects>
-                        </Button>
-
-                        <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" WidthRequest="40" Margin="0,2,0,2" />
-                    </Grid>
+                        </ActivityIndicator.WidthRequest>
+                    </ActivityIndicator>
 
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                         <Label Text="{Binding Resources[LastBackupDateLabel]}" 
