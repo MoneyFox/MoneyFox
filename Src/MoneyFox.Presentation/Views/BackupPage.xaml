@@ -63,7 +63,15 @@
                             <effects:PrimaryButtonEffect />
                         </Button.Effects>
                     </Button>
-                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" IsVisible="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" HeightRequest="20" />
+                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}" IsVisible="{Binding IsLoadingBackupAvailability}" VerticalOptions="CenterAndExpand" HorizontalOptions="End" HeightRequest="20">
+                        <ActivityIndicator.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="iOS" Value="20"/>
+                                <On Platform="UWP" Value="80"/>
+                                <On Platform="Android" Value="20"/>
+                            </OnPlatform>
+                        </ActivityIndicator.WidthRequest>
+                    </ActivityIndicator>
 
                     <StackLayout Orientation="Horizontal" IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
                         <Label Text="{Binding Resources[LastBackupDateLabel]}" 
