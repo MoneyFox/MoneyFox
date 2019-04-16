@@ -7,7 +7,7 @@ namespace MoneyFox.Presentation.Effects
     /// </summary>
     public class PrimaryButtonEffect : RoutingEffect
     {
-        public PrimaryButtonEffect() : base("MoneyFox.Presentation.PrimaryButtonEffect") {
+        public PrimaryButtonEffect() : base($"MoneyFox.{nameof(PrimaryButtonEffect)}") {
         }
     }
 }

@@ -7,7 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName("MoneyFox")]
-[assembly: ExportEffect(typeof(PrimaryButtonEffect), "PrimaryButtonEffect")]
+[assembly: ExportEffect(typeof(PrimaryButtonEffect), nameof(PrimaryButtonEffect))]
 namespace MoneyFox.iOS.Effects
 {
     /// <summary>
