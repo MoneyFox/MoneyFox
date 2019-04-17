@@ -63,8 +63,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
                 if (!result.Success)
                 {
-                    await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message)
-                        ;
+                    await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message);
                     return;
                 }
 
@@ -72,8 +71,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
             catch (MoneyFoxInvalidEndDateException)
             {
-                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage)
-                    ;
+                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
         }
     }

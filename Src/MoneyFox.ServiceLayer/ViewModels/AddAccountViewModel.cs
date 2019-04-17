@@ -35,15 +35,15 @@ namespace MoneyFox.ServiceLayer.ViewModels {
         protected override async Task SaveAccount()
         {
             if (await crudService.ReadManyNoTracked<AccountViewModel>()
-                                 .AnyWithNameAsync(SelectedAccount.Name)
-                                 ) {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage)
-                                   ;
+                                 .AnyWithNameAsync(SelectedAccount.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
             await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
-            if (!crudService.IsValid) {
+            if (!crudService.IsValid)
+            {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
             }
 
