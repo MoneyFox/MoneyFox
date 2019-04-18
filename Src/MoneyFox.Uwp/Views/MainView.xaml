@@ -7,7 +7,33 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+                      xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
                       mc:Ignorable="d">
+
+    <views:MvxWindowsPage.Resources>
+
+        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
+
+        <winmedia:AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+                      BackgroundSource="Backdrop" 
+                      TintColor="{ThemeResource SystemAccentColor}" 
+                      TintOpacity=".6" 
+                      FallbackColor="{ThemeResource SystemAccentColor}"/>
+
+        <winmedia:AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="{ThemeResource SystemAccentColor}" 
+                      TintOpacity=".6"
+                      FallbackColor="{ThemeResource SystemAccentColor}"/>
+
+        <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
+                         Color="{StaticResource FoxOrange}" />
+    </views:MvxWindowsPage.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
