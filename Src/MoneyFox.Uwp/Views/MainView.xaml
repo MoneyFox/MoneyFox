@@ -6,11 +6,12 @@
                       xmlns:uwp="using:FontAwesome.UWP"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:appmodel="using:Windows.ApplicationModel"
+                      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
                       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <NavigationView x:Name="NavView"
+        <winui:NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
                     IsBackEnabled="False"
@@ -19,33 +20,33 @@
                     AlwaysShowHeader="False"
                     IsSettingsVisible="True"  >
 
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts" Foreground="White">
-                    <NavigationViewItem.Icon>
+            <winui:NavigationView.MenuItems>
+                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts">
+                    <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics" Foreground="White">
-                    <NavigationViewItem.Icon>
+                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics">
+                    <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
-                    <NavigationViewItem.Icon>
+                <winui:NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
+                    <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
 
-                <NavigationViewItem Content="{Binding Resources[BackupTitle]}" Tag="Backup" >
-                    <NavigationViewItem.Icon>
+                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" Tag="Backup" >
+                    <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-            </NavigationView.MenuItems>
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+            </winui:NavigationView.MenuItems>
 
-            <NavigationView.HeaderTemplate>
+            <winui:NavigationView.HeaderTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -59,7 +60,7 @@
                                    Text=""/>
                     </Grid>
                 </DataTemplate>
-            </NavigationView.HeaderTemplate>
+            </winui:NavigationView.HeaderTemplate>
 
             <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
                 <Frame.ContentTransitions>
@@ -69,7 +70,7 @@
                 </Frame.ContentTransitions>
             </Frame>
             
-        </NavigationView>
+        </winui:NavigationView>
         <TextBlock x:Name="AppTitle" 
                    Style="{StaticResource CustomCaptionTextBlockStyle}" 
                    Text="{x:Bind appmodel:Package.Current.DisplayName}" 
@@ -77,6 +78,18 @@
                    Margin="60,8,0,0"/>
     </Grid>
 </views:MvxWindowsPage>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

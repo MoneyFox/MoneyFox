@@ -1,6 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.ViewModels;
+using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
+using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -16,7 +18,7 @@ namespace MoneyFox.Uwp.Views
 
         public Frame MainFrame => ContentFrame;
 
-        private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private async void NavView_ItemInvoked(NavigationView navigationView, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
