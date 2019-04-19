@@ -129,8 +129,13 @@
     <Compile Include="Src\MicrosoftPassportHelper.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
-    <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
+    <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
+      <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -191,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Dialogs\LoadingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,9 +213,38 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Animations">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>5.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.1.190405004</Version>
     </PackageReference>
+    <PackageReference Include="ReactiveUI">
+      <Version>9.13.1</Version>
+    </PackageReference>
+    <PackageReference Include="ReactiveUI.Events">
+      <Version>9.13.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
+      <Project>{60c2aa25-8677-4aa8-88b7-29d52f8bedb9}</Project>
+      <Name>MoneyFox.ServiceLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Uwp.Tasks\MoneyFox.Uwp.Tasks.csproj">
+      <Project>{B742F72D-3ECA-4E9D-959F-1D26FCAD99C1}</Project>
+      <Name>MoneyFox.Uwp.Tasks</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

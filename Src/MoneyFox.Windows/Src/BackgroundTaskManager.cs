@@ -3,7 +3,7 @@ using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.Uwp.Tasks;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Windows
 {
     /// <inheritdoc />
     public class BackgroundTaskManager : IBackgroundTaskManager
