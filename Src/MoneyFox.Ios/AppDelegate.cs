@@ -157,8 +157,7 @@ namespace MoneyFox.iOS
                 EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments()
-                                                                               ;
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
@@ -184,8 +183,7 @@ namespace MoneyFox.iOS
 
                 var context = new EfCoreContext();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
-                    .CreatePaymentsUpToRecur()
-                    ;
+                    .CreatePaymentsUpToRecur();
                 context.SaveChanges();
 
                 Debug.WriteLine("RecurringPayment Job finished.");

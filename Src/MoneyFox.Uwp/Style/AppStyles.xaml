@@ -55,26 +55,4 @@
     <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
 
-    <SolidColorBrush x:Key="NavigationViewItemForeground" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="{StaticResource AppMenuForeground}"/>
-    <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
-
-    <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
-                  BackgroundSource="Backdrop" 
-                  TintColor="{ThemeResource SystemAccentColor}" 
-                  TintOpacity=".6" 
-                  FallbackColor="{ThemeResource SystemAccentColor}"/>
-
-    <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
-                  BackgroundSource="HostBackdrop"
-                  TintColor="{ThemeResource SystemAccentColor}" 
-                  TintOpacity=".6"
-                  FallbackColor="{ThemeResource SystemAccentColor}"/>
-    
-    <!--Navigation View-->
-    <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
-                     Color="{StaticResource FoxOrange}" />
 </ResourceDictionary>
