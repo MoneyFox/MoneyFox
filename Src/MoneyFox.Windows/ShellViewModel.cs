@@ -1,10 +1,10 @@
-﻿using System.Globalization;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Utilities;
+﻿using Autofac;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Windows.Views;
 using ReactiveUI;
+using ReactiveUI.Autofac;
 using Splat;
+using Splat.Autofac;
 
 namespace MoneyFox.Windows
 {
@@ -13,9 +13,7 @@ namespace MoneyFox.Windows
         public ShellViewModel()
         {
             Router = new RoutingState();
-            RegisterParts(Locator.CurrentMutable);
-
-            Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
+            RegisterParts();
 
             Router.Navigate.Execute(new AccountListViewModel(this));
         }
@@ -26,15 +24,13 @@ namespace MoneyFox.Windows
 
         public override IScreen HostScreen => this;
 
-        /// <summary>
-        ///     Provides Access to the LocalizedResources for the current language
-        /// </summary>
-        public LocalizedResources Resources { get; }
+        private void RegisterParts() {
 
-        private void RegisterParts(IMutableDependencyResolver dependencyResolver) {
-            dependencyResolver.RegisterConstant(this, typeof(IScreen));
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<WindowsModule>();
+            builder.UseAutofacDependencyResolver();
 
-            dependencyResolver.RegisterViewsForViewModels(typeof(AccountListView).Assembly);
+            Locator.CurrentMutable.RegisterViewsForViewModels(typeof(AccountListView).Assembly);
         }
     }
 }

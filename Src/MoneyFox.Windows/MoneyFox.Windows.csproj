@@ -148,6 +148,7 @@
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -220,6 +221,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.9.2</Version>
+    </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
     </PackageReference>
@@ -267,6 +271,9 @@
     </PackageReference>
     <PackageReference Include="ReactiveUI.Events">
       <Version>9.13.1</Version>
+    </PackageReference>
+    <PackageReference Include="Splat.Autofac">
+      <Version>7.0.8</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>

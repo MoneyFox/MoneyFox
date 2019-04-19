@@ -5,10 +5,170 @@
     xmlns:local="using:MoneyFox.Windows.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
+    xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button></Button>
+    <Page.Resources>
+        <DataTemplate x:Key="AccountItemTemplate"
+                      x:DataType="viewModels:AccountViewModel">
+            <StackPanel HorizontalAlignment="Stretch"
+                            Margin="{StaticResource SmallListItemMargin}" 
+                            Background="{StaticResource ListItemBrush}">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Icon="Edit" 
+                                        Text="{Binding Resources[EditLabel]}" />
+                        <MenuFlyoutItem Icon="Delete"
+                                        Text="{Binding Resources[DeleteLabel]}" />
+                        <MenuFlyoutItem Text="{Binding Resources[PintAccountLabel]}">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Pin"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+
+                <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                                Padding="{StaticResource SmallListItemPadding}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{x:Bind Name}"
+                                       TextTrimming="CharacterEllipsis" />
+                        <TextBlock HorizontalAlignment="Right"
+                                       Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                       Text="{x:Bind CurrentBalance}"
+                                       TextAlignment="Right" />
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GroupHeaderTemplate">
+            <Border Background="Transparent" Padding="3">
+                <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Margin="{StaticResource MediumLeftRightMargin}"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           FontSize="{StaticResource MediumFontSize}"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           Text="{Binding Key}" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="JumpTemplate">
+            <Border>
+                <Border Margin="5" HorizontalAlignment="Left">
+                    <TextBlock HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontSize="{StaticResource MediumFontSize}"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               Text="{Binding Group.Key}" />
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="Groups"
+                              IsSourceGrouped="True" />
+    </Page.Resources>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitlePage"
+                   x:Uid="AccountTitle"
+                   Text="Accounts"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
+        <!--<userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />-->
+
+        <SemanticZoom Grid.Row="1"
+                      Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
+            <SemanticZoom.ZoomedInView>
+
+                <ListView IsItemClickEnabled="True"
+                          IsSynchronizedWithCurrentItem="False"
+                          ItemTemplate="{StaticResource AccountItemTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Groups}}">
+
+                    <!--<interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource ClickConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>-->
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
+                    </ListView.GroupStyle>
+                </ListView>
+
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView Margin="{StaticResource MediumTopMargin}"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          ItemTemplate="{StaticResource JumpTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Groups},
+                                                Path=CollectionGroups}">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
+
+        <TextBlock Grid.Row="1"
+                   Margin="6"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="Wrap" />
+
+        <CommandBar Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                    DataContext="{Binding ViewActionViewModel}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="AddIncomeLabel"
+                              Command="{Binding GoToAddIncomeCommand}"
+                              Icon="Add"
+                              IsEnabled="{Binding IsAddIncomeAvailable}"
+                              Label="add income" />
+                <AppBarButton x:Uid="AddExpenseLabel"
+                              Command="{Binding GoToAddExpenseCommand}"
+                              Icon="Remove"
+                              IsEnabled="{Binding IsAddExpenseAvailable}"
+                              Label="add spending" />
+                <AppBarButton x:Uid="AddTransferLabel"
+                              Command="{Binding GoToAddTransferCommand}"
+                              Icon="Switch"
+                              IsEnabled="{Binding IsTransferAvailable}"
+                              Label="add transfer" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="AddAccountLabel"
+                              Command="{Binding GoToAddAccountCommand}"
+                              Icon="Add"
+                              Label="Add Account" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
     </Grid>
+
 </Page>
