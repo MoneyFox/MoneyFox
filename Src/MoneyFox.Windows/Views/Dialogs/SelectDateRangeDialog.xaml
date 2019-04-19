@@ -3,7 +3,7 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:converter="using:MoneyFox.Uwp.Converter"
+               xmlns:converter="using:MoneyFox.Windows.Converter"
                mc:Ignorable="d"
                Title="Select Daterange"
                x:Uid="SelectDateRangeDialog"
@@ -11,7 +11,7 @@
                SecondaryButtonText="cancel"
                PrimaryButtonCommand="{Binding DoneCommand}">
 
-    <ContentDialog.Resources>
+    <!--<ContentDialog.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
     </ContentDialog.Resources>
 
@@ -25,5 +25,5 @@
                     HorizontalAlignment="Stretch"
                     Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Header="enddate" x:Uid="EndDateHeader" />
-    </StackPanel>
+    </StackPanel>-->
 </ContentDialog>

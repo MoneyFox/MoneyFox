@@ -93,22 +93,6 @@ namespace MoneyFox.Presentation
                                  .RegisterAsDynamic();
 
             SetupContextAndCrudServices();
-
-            if (!Mvx.IoCProvider.CanResolve<Session>()) return;
-
-            if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
-            {
-                if (CurrentPlatform == AppPlatform.UWP)
-                {
-                    RegisterAppStart<AccountListViewModel>();
-                } else
-                {
-                    RegisterAppStart<MainViewModel>();
-                }
-            } else
-            {
-                RegisterAppStart<LoginViewModel>();
-            }
         }
 
         private void SetupContextAndCrudServices()

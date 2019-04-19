@@ -18,13 +18,14 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
+    public class PaymentListViewModel : MvxViewModel<PaymentListParameter>
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly IPaymentService paymentService;
@@ -39,7 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
         private int accountId;
-        private IBalanceViewModel balanceViewModel;
+        private BalanceViewModel balanceViewModel;
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
 
         private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
@@ -49,7 +50,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(ICrudServicesAsync crudServices, 
+        public PaymentListViewModel(IScreen hostScreen, ICrudServicesAsync crudServices, 
             IPaymentService paymentService,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
@@ -59,6 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IMvxMessenger messenger,
             IMvxLogProvider logProvider)
         {
+            HostScreen = hostScreen;
             this.crudServices = crudServices;
             this.paymentService = paymentService;
             this.dialogService = dialogService;
@@ -78,13 +80,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             AccountId = parameter.AccountId;
         }
 
+        public IScreen HostScreen { get; }
+
         /// <inheritdoc />
         public override async Task Initialize()
         {
             Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
-            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId,
-                logProvider, navigationService);
+            BalanceViewModel = new PaymentListBalanceViewModel(HostScreen, crudServices, balanceCalculationService, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
                 settingsFacade,
                 dialogService,
@@ -126,7 +129,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     View Model for the balance subview.
         /// </summary>
-        public IBalanceViewModel BalanceViewModel
+        public BalanceViewModel BalanceViewModel
         {
             get => balanceViewModel;
             private set

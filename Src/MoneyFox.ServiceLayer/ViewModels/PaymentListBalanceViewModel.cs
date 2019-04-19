@@ -5,6 +5,7 @@ using Microsoft.AppCenter.Crashes;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -20,12 +21,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListBalanceViewModel(ICrudServicesAsync crudServices,
-            IBalanceCalculationService balanceCalculationService,
-            int accountId,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(
-            balanceCalculationService, logProvider, navigationService)
+        public PaymentListBalanceViewModel(IScreen hostScreen, 
+                                           ICrudServicesAsync crudServices,
+                                           IBalanceCalculationService balanceCalculationService,
+                                           int accountId) 
+            : base(hostScreen,balanceCalculationService)
         {
             this.crudServices = crudServices;
             this.balanceCalculationService = balanceCalculationService;
@@ -49,8 +49,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValue()
         {
-            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
-                                            ;
+            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
             return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

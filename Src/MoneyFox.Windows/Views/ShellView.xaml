@@ -2,13 +2,86 @@
     x:Class="MoneyFox.Windows.Views.ShellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MoneyFox.Windows.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:uwp="using:FontAwesome.UWP"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+
+        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
+        <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="{StaticResource FoxOrange}" />
+    </Page.Resources>
+
     <Grid>
+        <winui:NavigationView x:Name="NavView"
+                    ItemInvoked="NavView_ItemInvoked"
+                    OpenPaneLength="280"
+                    IsBackEnabled="False"
+                    IsBackButtonVisible="Collapsed"
+                    CompactModeThresholdWidth="0"
+                    AlwaysShowHeader="False"
+                    IsSettingsVisible="True"  >
+
+            <winui:NavigationView.MenuItems>
+                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE10F;"/>
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+
+                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics">
+                    <winui:NavigationViewItem.Icon>
+                        <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+
+                <winui:NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
+                    <winui:NavigationViewItem.Icon>
+                        <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+
+                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" Tag="Backup" >
+                    <winui:NavigationViewItem.Icon>
+                        <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+            </winui:NavigationView.MenuItems>
+
+            <winui:NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                                   FontSize="28"
+                                   VerticalAlignment="Center"
+                                   Margin="12,0"
+                                   Text=""/>
+                    </Grid>
+                </DataTemplate>
+            </winui:NavigationView.HeaderTemplate>
+
+            <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
+
+        </winui:NavigationView>
 
     </Grid>
 </Page>

@@ -40,7 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             navigationService.Navigate<MainViewModel>();
 
             var mainView = Mvx.IoCProvider.Resolve<MainViewModel>();
-            mainView?.ShowAccountListCommand.ExecuteAsync();
+            //mainView?.ShowAccountListCommand.ExecuteAsync();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿<d:MvxContentPage x:TypeArguments="viewModels:AccountListViewModel"
-                  xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
@@ -9,8 +8,7 @@
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   x:Class="MoneyFox.Presentation.Views.AccountListPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -106,4 +104,4 @@
             </Grid>
         </StackLayout>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

@@ -108,17 +108,17 @@ namespace MoneyFox.Uwp
 
                 if (!Mvx.IoCProvider.CanResolve<Session>()) return;
 
-                if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
-                {
-                    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
-                } 
-                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()) {
-                    await Mvx.IoCProvider
-                             .Resolve<IMvxNavigationService>()
-                             .Navigate<LoginViewModel>()                             ;
-                }
+                //if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+                //{
+                //    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                //} 
+                //else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()) {
+                //    await Mvx.IoCProvider
+                //             .Resolve<IMvxNavigationService>()
+                //             .Navigate<LoginViewModel>()                             ;
+                //}
 
-                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                //((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
 

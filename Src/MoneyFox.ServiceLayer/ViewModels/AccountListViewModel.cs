@@ -16,52 +16,55 @@ using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
+    public class AccountListViewModel : ViewModelBase
     {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IMvxNavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountListViewModel(ICrudServicesAsync crudService,
-                                    IBalanceCalculationService balanceCalculationService,
-                                    IDialogService dialogService,
-                                    ISettingsFacade settingsFacade,
-                                    IMvxLogProvider logProvider,
-                                    IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public AccountListViewModel(IScreen hostScreen,
+                                    ICrudServicesAsync crudService = null,
+                                    IBalanceCalculationService balanceCalculationService = null,
+                                    IDialogService dialogService = null,
+                                    ISettingsFacade settingsFacade = null)
         {
-            this.crudService = crudService;
-            this.dialogService = dialogService;
-            this.navigationService = navigationService;
-            this.settingsFacade = settingsFacade;
+            HostScreen = hostScreen;
 
-            BalanceViewModel = new BalanceViewModel(balanceCalculationService, logProvider, navigationService);
-            ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
+            this.crudService = crudService ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
+            this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
+            
+            BalanceViewModel = new BalanceViewModel(hostScreen, balanceCalculationService ?? Locator.Current.GetService<IBalanceCalculationService>());
+
+            //ViewActionViewModel = new AccountListViewActionViewModel(crudService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }
         
-        public IBalanceViewModel BalanceViewModel { get; }
+        public BalanceViewModel BalanceViewModel { get; }
 
-        public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        //public IAccountListViewActionViewModel ViewActionViewModel { get; }
+
+        public override string UrlPathSegment => "AccountList";
+        public override IScreen HostScreen { get; }
 
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
             private set
             {
-                if (accounts == value) return;
-                accounts = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                this.RaiseAndSetIfChanged(ref accounts, value);
+                //RaisePropertyChanged(nameof(HasNoAccounts));
             }
         }
 
@@ -75,16 +78,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
 
-        public override async void ViewAppeared()
-        {
-            await Load();
-            await RaisePropertyChanged(nameof(Accounts));
-        }
+        //public override async void ViewAppeared()
+        //{
+        //    await Load();
+        //    await RaisePropertyChanged(nameof(Accounts));
+        //}
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
-            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id))
-                                   ;
+            //await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
         private async Task Load()
@@ -114,7 +116,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                await RaisePropertyChanged(nameof(HasNoAccounts));
+                //await RaisePropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {
@@ -127,8 +129,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (accountViewModel == null) return;
 
-            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id))
-                ;
+            //await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
@@ -150,8 +151,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToAddAccount()
         {
-            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter())
-                ;
+            //await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
         }
     }
 }

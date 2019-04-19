@@ -22,7 +22,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
-        private readonly IBalanceViewModel balanceViewModel;
+        private readonly BalanceViewModel balanceViewModel;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
         private readonly int accountId;
@@ -40,7 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public PaymentListViewActionViewModel(ICrudServicesAsync crudServices,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
-                                              IBalanceViewModel balanceViewModel,
+                                              BalanceViewModel balanceViewModel,
                                               IMvxMessenger messenger,
                                               int accountId,
                                               IMvxLogProvider logProvider,
