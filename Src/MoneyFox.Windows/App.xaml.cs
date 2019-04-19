@@ -1,15 +1,14 @@
 ﻿using System;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Background;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.Uwp.Tasks;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Windows.Views;
 using PCLAppConfig;
+using MoneyFox.DataLayer;
 
 namespace MoneyFox.Windows
 {
@@ -25,6 +24,7 @@ namespace MoneyFox.Windows
         public App()
         {
             this.InitializeComponent();
+            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
         }
 
         /// <summary>

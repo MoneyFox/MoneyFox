@@ -30,7 +30,7 @@ namespace MoneyFox.BusinessLogic.Adapters
         int GetValue(string key, int defaultValue);
 
         /// <summary>
-        ///     Adds a setting with a bool value or updates it if the key already exists.
+        ///     Adds a setting with a Boolean value or updates it if the key already exists.
         /// </summary>
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>

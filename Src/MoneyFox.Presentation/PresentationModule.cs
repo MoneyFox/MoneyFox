@@ -1,5 +1,5 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
+using MoneyFox.ServiceLayer;
 
 namespace MoneyFox.Presentation
 {
@@ -7,10 +7,7 @@ namespace MoneyFox.Presentation
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.InvariantCulture))
-                   .AsImplementedInterfaces()
-                   .InstancePerLifetimeScope();
+            builder.RegisterModule<ServiceModule>();
         }
     }
 }

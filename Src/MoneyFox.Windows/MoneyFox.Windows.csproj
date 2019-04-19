@@ -283,6 +283,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
+      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
+      <Name>MoneyFox.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
       <Name>MoneyFox.Foundation</Name>
@@ -294,6 +298,10 @@
     <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
       <Project>{60c2aa25-8677-4aa8-88b7-29d52f8bedb9}</Project>
       <Name>MoneyFox.ServiceLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
+      <Project>{0DD3CC25-2BA5-4D77-B47A-6E3925C0792F}</Project>
+      <Name>MoneyFox.Uwp.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Uwp.Tasks\MoneyFox.Uwp.Tasks.csproj">
       <Project>{B742F72D-3ECA-4E9D-959F-1D26FCAD99C1}</Project>

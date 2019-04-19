@@ -2,7 +2,6 @@
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Windows.Views;
 using ReactiveUI;
-using ReactiveUI.Autofac;
 using Splat;
 using Splat.Autofac;
 
