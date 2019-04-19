@@ -34,8 +34,7 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         public async Task Login()
         {
-            OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                        ;
+            OneDriveClient = await oneDriveAuthenticator.LoginAsync();
         }
 
         /// <summary>
@@ -52,8 +51,7 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (OneDriveClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                            ;
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
 
             await LoadBackupFolder();
@@ -69,8 +67,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                            DatabaseConstants.BACKUP_NAME))
                 .Content
                 .Request()
-                .PutAsync<DriveItem>(dataToUpload)
-                ;
+                .PutAsync<DriveItem>(dataToUpload);
 
             return uploadedItem != null;
         }
@@ -89,14 +86,12 @@ namespace MoneyFox.BusinessLogic.Backup
                                                .Items[BackupFolder?.Id]
                                                .Children
                                                .Request()
-                                               .GetAsync()
-                                               ;
+                                               .GetAsync();
             var existingBackup = children.FirstOrDefault(x => x.Name == backupname);
 
             if (existingBackup == null)
                 throw new NoBackupFoundException($"No backup with the name {backupname} was found.");
-            return await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync()
-                                       ;
+            return await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
         /// <inheritdoc />
@@ -115,8 +110,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                    .Items[BackupFolder?.Id]
                                                    .Children
                                                    .Request()
-                                                   .GetAsync()
-                                                   ;
+                                                   .GetAsync();
                 var existingBackup = children.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if (existingBackup != null)
@@ -137,8 +131,7 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (OneDriveClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                            ;
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
             }
 
             await LoadBackupFolder();
@@ -147,8 +140,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                .Items[BackupFolder?.Id]
                                                .Children
                                                .Request()
-                                               .GetAsync()
-                                               ;
+                                               .GetAsync();
 
             return children.Select(x => x.Name).ToList();
         }
@@ -159,8 +151,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                      .Items[ArchiveFolder?.Id]
                                                      .Children
                                                      .Request()
-                                                     .GetAsync()
-                                                     ;
+                                                     .GetAsync();
 
             if (archiveBackups.Count < 5) return;
             var oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
@@ -177,8 +168,7 @@ namespace MoneyFox.BusinessLogic.Backup
             var backups = await OneDriveClient.Drive
                                               .Items[BackupFolder?.Id]
                                               .Children.Request()
-                                              .GetAsync()
-                                              ;
+                                              .GetAsync();
             var currentBackup = backups.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
             if (currentBackup == null) return;
@@ -195,8 +185,7 @@ namespace MoneyFox.BusinessLogic.Backup
                 .Drive
                 .Items[currentBackup.Id]
                 .Request()
-                .UpdateAsync(updateItem)
-                ;
+                .UpdateAsync(updateItem);
         }
 
         private async Task LoadBackupFolder()
@@ -207,8 +196,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                .Root
                                                .Children
                                                .Request()
-                                               .GetAsync()
-                                               ;
+                                               .GetAsync();
             BackupFolder =
                 children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);
 
@@ -229,13 +217,11 @@ namespace MoneyFox.BusinessLogic.Backup
             var root = await OneDriveClient.Drive
                                            .Root
                                            .Request()
-                                           .GetAsync()
-                                           ;
+                                           .GetAsync();
 
             BackupFolder = await OneDriveClient.Drive.Items[root.Id]
                                                .Children.Request()
-                                               .AddAsync(folderToCreate)
-                                               ;
+                                               .AddAsync(folderToCreate);
         }
 
         private async Task LoadArchiveFolder()
@@ -246,8 +232,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                .Root
                                                .Children
                                                .Request()
-                                               .GetAsync()
-                                               ;
+                                               .GetAsync();
             ArchiveFolder = children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
             if (ArchiveFolder == null)
@@ -268,8 +253,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                 .Items[BackupFolder?.Id]
                                                 .Children
                                                 .Request()
-                                                .AddAsync(folderToCreate)
-                                                ;
+                                                .AddAsync(folderToCreate);
         }
     }
 }

@@ -40,8 +40,7 @@ namespace MoneyFox.Uwp.Business
                         ? OnlineIdAuthenticationProvider.PromptType.DoNotPrompt
                         : OnlineIdAuthenticationProvider.PromptType.PromptIfNeeded);
 
-                await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync()
-                                               ;
+                await msaAuthenticationProvider.RestoreMostRecentFromCacheOrAuthenticateUserAsync();
                 return new GraphServiceClient(ServiceConstants.BASE_URL, msaAuthenticationProvider);
             }
             catch (ServiceException serviceException)

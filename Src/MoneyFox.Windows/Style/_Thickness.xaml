@@ -1,0 +1,26 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
+
+    <!--Custom size margins-->
+    <Thickness x:Key="PageTitleMargin">0,7,12,7</Thickness>
+
+    <!-- Small size Margin -->
+    <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
+    <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
+    <Thickness x:Key="SmallListItemPadding">0,4,0,4</Thickness>
+    
+    <!--Medium size margins-->
+    <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
+    <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
+    <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
+    <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
+    <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
+    <Thickness x:Key="MediumTopMargin">0,12,0,0</Thickness>
+    <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>
+
+    <!--Large size margins-->
+    <Thickness x:Key="NegativeLargeLeftRightMargin">-24,0,-24,0</Thickness>
+    <Thickness x:Key="NegativeLargeLeftRightMarginWithTopMargin">-24,12,-24,0</Thickness>
+    
+</ResourceDictionary>
