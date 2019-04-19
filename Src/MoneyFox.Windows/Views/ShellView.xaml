@@ -7,7 +7,9 @@
     xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:uwp="using:FontAwesome.UWP"
+    xmlns:reactiveUi="using:ReactiveUI"
     mc:Ignorable="d"
+    DataContext="{x:Bind ViewModel}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -73,13 +75,10 @@
                 </DataTemplate>
             </winui:NavigationView.HeaderTemplate>
 
-            <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
+            <reactiveUi:RoutedViewHost 
+                x:Name="RoutedViewHost"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch" />
 
         </winui:NavigationView>
 
