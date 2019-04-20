@@ -19,7 +19,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         /// <inheritdoc />
         //public ReactiveCommand<Unit, Unit> GoToAddAccountCommand 
-        //    => ReactiveCommand.Create<Unit, Unit>(() => HostScreen.Router.Navigate.Execute(new AddAccountRouteableViewModel(this)));
+        //    => ReactiveCommand.Create<Unit, Unit>(() => HostScreen.Router.Navigate.Execute(new AddAccountViewModel(this)));
 
         /// <inheritdoc />
         //public MvxAsyncCommand GoToAddIncomeCommand =>
