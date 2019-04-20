@@ -21,8 +21,6 @@ namespace MoneyFox.Windows.Views
 
             this.WhenActivated(async disposables =>
             {
-                await ViewModel.LoadAccounts();
-
                 this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source)
                     .DisposeWith(disposables);
 

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData.Binding;
@@ -53,12 +54,16 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
 
-            hasNoAccounts = Accounts
-                .ToObservableChangeSet()
-                .Select(x => !x.Any())
-                .ToProperty(this, x => x.HasNoAccounts);
+            this.WhenActivated(async disposables =>
+            {
+                await LoadAccounts();
 
-            //this.WhenActivated(async disposables => { });
+                hasNoAccounts = Accounts
+                    .ToObservableChangeSet()
+                    .Select(x => !x.Any())
+                    .ToProperty(this, x => x.HasNoAccounts)
+                    .DisposeWith(disposables);
+            });
         }
         
         public BalanceViewModel BalanceViewModel { get; }
@@ -78,52 +83,36 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public ReactiveCommand<AccountViewModel, Unit> GoToPaymentViewCommand { get; set; }
 
-        public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
+        private async Task LoadAccounts() 
+        {
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
+            IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
+                .OrderBy(x => x.Name);
 
-        public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
+            var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
+            includedAlphaGroup.AddRange(accountViewModels.AreNotExcluded());
+
+            var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
+            excludedAlphaGroup.AddRange(accountViewModels.AreExcluded());
+
+            Accounts.Clear();
+
+            if (includedAlphaGroup.Any()) {
+                Accounts.Add(includedAlphaGroup);
+            }
+
+            if (excludedAlphaGroup.Any()) {
+                Accounts.Add(excludedAlphaGroup);
+            }
+        }
+
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
             //await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        public async Task LoadAccounts()
-        {
-            try
-            {
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-
-                IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
-                                                                                   .OrderBy(x => x.Name);
-
-                var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(accountViewModels.AreNotExcluded());
-
-                var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(accountViewModels.AreExcluded());
-
-                Accounts.Clear();
-
-                if (includedAlphaGroup.Any())
-                {
-                    Accounts.Add(includedAlphaGroup);
-                }
-
-                if (excludedAlphaGroup.Any())
-                {
-                    Accounts.Add(excludedAlphaGroup);
-                }
-
-                //await RaisePropertyChanged(nameof(HasNoAccounts));
-            }
-            catch(Exception ex)
-            {
-                Crashes.TrackError(ex);
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
-            }
-        }
 
         private Unit GoToPaymentOverView(AccountViewModel accountViewModel)
         {
