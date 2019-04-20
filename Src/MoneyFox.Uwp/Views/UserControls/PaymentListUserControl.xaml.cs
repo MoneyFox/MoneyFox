@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             {
                 return;
             }
-            var viewmodel = DataContext as PaymentListViewModel;
+            var viewmodel = DataContext as PaymentListRouteableViewModel;
 
             //viewmodel?.EditPaymentCommand.Execute(payment);
         }
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             {
                 return;
             }
-            //(DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
+            //(DataContext as PaymentListRouteableViewModel)?.DeletePaymentCommand.Execute(payment);
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)
