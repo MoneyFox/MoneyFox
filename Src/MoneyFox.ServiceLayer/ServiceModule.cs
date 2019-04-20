@@ -4,6 +4,7 @@ using GenericServices;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.BusinessLogic;
 using MoneyFox.DataLayer;
 using MoneyFox.ServiceLayer.ViewModels;
 
@@ -13,6 +14,8 @@ namespace MoneyFox.ServiceLayer
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<BusinessLogicModule>();
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.InvariantCulture))
                    .AsSelf()

@@ -26,6 +26,7 @@ namespace MoneyFox.Windows
         private void RegisterParts() {
 
             var builder = new ContainerBuilder();
+            builder.Register((c) => this).As<IScreen>().SingleInstance();
             builder.RegisterModule<WindowsModule>();
             builder.UseAutofacDependencyResolver();
 
