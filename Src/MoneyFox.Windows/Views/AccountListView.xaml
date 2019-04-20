@@ -72,6 +72,7 @@
         </DataTemplate>
 
         <CollectionViewSource x:Key="Groups"
+                              x:Name="AccountsCollectionViewSource"
                               IsSourceGrouped="True" />
     </Page.Resources>
 
@@ -94,7 +95,8 @@
                       Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
             <SemanticZoom.ZoomedInView>
 
-                <ListView IsItemClickEnabled="True"
+                <ListView x:Name="AccountListView"
+                          IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource AccountItemTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
@@ -135,7 +137,8 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <TextBlock Grid.Row="1"
+        <TextBlock x:Name="NoAccountsTextBlock"
+                   Grid.Row="1"
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

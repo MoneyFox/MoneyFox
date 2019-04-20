@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.AppCenter.Crashes;
@@ -19,6 +21,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class AccountListViewModel : ViewModelBase
     {
+        ObservableAsPropertyHelper<bool> hasNoAccounts;
+
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
@@ -45,6 +49,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             //ViewActionViewModel = new AccountListViewActionViewModel(crudService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+
+            hasNoAccounts = this.WhenAnyValue(x => x.Accounts)
+                .Select(x => !x.Any())
+                .ToProperty(this, x => x.HasNoAccounts);
+
+            //this.WhenActivated(async disposables => { });
         }
         
         public BalanceViewModel BalanceViewModel { get; }
@@ -57,15 +67,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
-            private set
-            {
-                this.RaiseAndSetIfChanged(ref accounts, value);
-                //RaisePropertyChanged(nameof(HasNoAccounts));
-            }
+            private set => this.RaiseAndSetIfChanged(ref accounts, value);
         }
 
-        public bool HasNoAccounts => !Accounts.Any();
-        
+        public bool HasNoAccounts => hasNoAccounts.Value;
+
+        public ReactiveCommand<Unit, Unit> GoToPaymentViewCommand { get; set; }
+
         public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
@@ -74,18 +82,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
 
-        //public override async void ViewAppeared()
-        //{
-        //    await Load();
-        //    await RaisePropertyChanged(nameof(Accounts));
-        //}
-
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
             //await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        private async Task Load()
+        public async Task LoadAccounts()
         {
             try
             {
@@ -139,7 +141,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     ;
 
                 Accounts.Clear();
-                await Load();
+                await LoadAccounts();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
