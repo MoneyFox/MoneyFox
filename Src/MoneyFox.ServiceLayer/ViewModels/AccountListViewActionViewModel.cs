@@ -1,42 +1,37 @@
 ﻿using System.Linq;
 using GenericServices;
-using MoneyFox.Foundation;
-using MoneyFox.ServiceLayer.Parameters;
-using MoneyFox.ServiceLayer.ViewModels.Interfaces;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class AccountListViewActionViewModel : BaseNavigationViewModel, IAccountListViewActionViewModel
+    public class AccountListViewActionViewModel : ViewModelBase
     {
         private readonly ICrudServicesAsync crudServices;
-        private readonly IMvxNavigationService navigationService;
 
-        public AccountListViewActionViewModel(ICrudServicesAsync crudServices,
-                                              IMvxLogProvider logProvider,
-                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public AccountListViewActionViewModel(IScreen hostScreen, ICrudServicesAsync crudServices)
         {
+            HostScreen = hostScreen;
             this.crudServices = crudServices;
-            this.navigationService = navigationService;
         }
-        
-        /// <inheritdoc />
-        public MvxAsyncCommand GoToAddAccountCommand =>
-                new MvxAsyncCommand(async () => await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter()));
+
+        public override string UrlPathSegment => "AccountListActions";
+        public override IScreen HostScreen { get; }
 
         /// <inheritdoc />
-        public MvxAsyncCommand GoToAddIncomeCommand =>
-                new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Income)));
+        //public ReactiveCommand<Unit, Unit> GoToAddAccountCommand 
+        //    => ReactiveCommand.Create<Unit, Unit>(() => HostScreen.Router.Navigate.Execute(new AddAccountViewModel(this)));
 
         /// <inheritdoc />
-        public MvxAsyncCommand GoToAddExpenseCommand =>
-            new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Expense)));
+        //public MvxAsyncCommand GoToAddIncomeCommand =>
+        //        new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Income)));
 
-        /// <inheritdoc />
-        public MvxAsyncCommand GoToAddTransferCommand =>
-            new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Transfer)));
+        ///// <inheritdoc />
+        //public MvxAsyncCommand GoToAddExpenseCommand =>
+        //    new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Expense)));
+
+        ///// <inheritdoc />
+        //public MvxAsyncCommand GoToAddTransferCommand =>
+        //    new MvxAsyncCommand(async () => await navigationService.Navigate<AddPaymentViewModel, ModifyPaymentParameter>(new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.

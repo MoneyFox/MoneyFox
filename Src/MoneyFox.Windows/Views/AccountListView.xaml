@@ -16,8 +16,10 @@
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
             <StackPanel HorizontalAlignment="Stretch"
-                            Margin="{StaticResource SmallListItemMargin}" 
-                            Background="{StaticResource ListItemBrush}">
+                        Margin="{StaticResource SmallListItemMargin}" 
+                        Background="{StaticResource ListItemBrush}"
+                        RightTapped="AccountList_RightTapped" >
+
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit" 
@@ -100,13 +102,6 @@
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource AccountItemTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
-
-                    <!--<interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource ClickConverter}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>-->
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

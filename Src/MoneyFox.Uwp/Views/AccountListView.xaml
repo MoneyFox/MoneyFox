@@ -24,7 +24,7 @@
                             RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Icon="Edit"
+                        <MenuFlyoutItem x:Name="EditFlyout" Icon="Edit"
                                             Click="Edit_OnClick"
                                             Text="{Binding Resources[EditLabel]}" />
                         <MenuFlyoutItem Icon="Delete"

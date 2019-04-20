@@ -19,6 +19,7 @@ using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -45,7 +46,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
         private string title;
-        private IPaymentListViewActionViewModel viewActionViewModel;
+        private PaymentListViewActionViewModel viewActionViewModel;
 
         /// <summary>
         ///     Default constructor
@@ -59,12 +60,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IBackupService backupService=null)
         {
             HostScreen = hostScreen;
-            this.crudServices = crudServices;
-            this.paymentService = paymentService;
-            this.dialogService = dialogService;
-            this.settingsFacade = settingsFacade;
-            this.balanceCalculationService = balanceCalculationService;
-            this.backupService = backupService;
+            this.crudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.paymentService = paymentService ?? Locator.Current.GetService<IPaymentService>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
+            this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
+            this.balanceCalculationService = balanceCalculationService ?? Locator.Current.GetService<IBalanceCalculationService>();
+            this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
 
             //token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
         }

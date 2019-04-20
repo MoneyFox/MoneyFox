@@ -2,6 +2,8 @@
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 using MoneyFox.ServiceLayer.ViewModels;
 using ReactiveUI;
 using Splat;
@@ -19,7 +21,7 @@ namespace MoneyFox.Windows.Views
 
             ViewModel = Locator.Current.GetService<AccountListViewModel>();
 
-            this.WhenActivated(async disposables =>
+            this.WhenActivated(disposables =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source)
                     .DisposeWith(disposables);
@@ -30,7 +32,7 @@ namespace MoneyFox.Windows.Views
                 this.OneWayBind(ViewModel, vm => vm.HasNoAccounts, v => v.NoAccountsTextBlock.Visibility)
                     .DisposeWith(disposables);
 
-                this.AccountList
+                AccountList
                     .Events()
                     .ItemClick.Select(x => x.ClickedItem as AccountViewModel)
                     .InvokeCommand(ViewModel.GoToPaymentViewCommand)
@@ -45,5 +47,13 @@ namespace MoneyFox.Windows.Views
         }
 
         public AccountListViewModel ViewModel { get; set; }
+
+        private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
+
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+        }
     }
 }
