@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using DynamicData.Binding;
 using GenericServices;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.DataLayer.Entities;
@@ -52,7 +53,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
 
-            hasNoAccounts = this.WhenAnyValue(x => x.Accounts)
+            hasNoAccounts = Accounts
+                .ToObservableChangeSet()
                 .Select(x => !x.Any())
                 .ToProperty(this, x => x.HasNoAccounts);
 
