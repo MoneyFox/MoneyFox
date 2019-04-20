@@ -8,6 +8,7 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -54,24 +55,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
         MvxAsyncCommand CancelCommand { get; }
     }
 
-    public abstract class ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>
+    public abstract class ModifyAccountRouteableViewModel : RouteableViewModelBase
     {
         private readonly IBackupService backupService;
-        private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
-
-        protected int AccountId { get; private set; }
 
         private AccountViewModel selectedAccount;
 
-        protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected ModifyAccountRouteableViewModel(ISettingsFacade settingsFacade,
+            IBackupService backupService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
-            this.navigationService = navigationService;
         }
 
         public virtual string Title => Strings.AddAccountTitle;
@@ -83,11 +78,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
-            set
-            {
-                selectedAccount = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref selectedAccount, value);
         }
 
         protected abstract Task SaveAccount();
@@ -102,15 +93,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning restore 4014
         }
 
-        /// <inheritdoc />
-        public override void Prepare(ModifyAccountParameter parameter)
-        {
-            AccountId = parameter.AccountId;
-        }
+        ///// <inheritdoc />
+        //public override void Prepare(ModifyAccountParameter parameter)
+        //{
+        //    AccountId = parameter.AccountId;
+        //}
 
         private async Task Cancel()
         {
-            await navigationService.Close(this);
+            HostScreen.Router.NavigateBack.Execute();
         }
     }
 }

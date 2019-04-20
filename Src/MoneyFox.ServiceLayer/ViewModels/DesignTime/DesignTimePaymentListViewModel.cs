@@ -13,7 +13,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
         public IBalanceViewModel BalanceViewModel { get; }
-        public IPaymentListViewActionViewModel ViewActionViewModel { get; }
+        public PaymentListViewActionViewModel ViewActionViewModel { get; }
         public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
         public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>

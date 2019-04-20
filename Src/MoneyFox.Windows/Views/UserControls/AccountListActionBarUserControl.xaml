@@ -1,0 +1,39 @@
+﻿<local:MyAccountListActionBarUserControl
+    x:Class="MoneyFox.Windows.Views.UserControls.AccountListActionBarUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="200"
+    d:DesignWidth="00">
+
+        <CommandBar 
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                    DataContext="{Binding ViewActionViewModel}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="AddIncomeLabel"
+                              Command="{Binding GoToAddIncomeCommand}"
+                              Icon="Add"
+                              IsEnabled="{Binding IsAddIncomeAvailable}"
+                              Label="add income" />
+                <AppBarButton x:Uid="AddExpenseLabel"
+                              Command="{Binding GoToAddExpenseCommand}"
+                              Icon="Remove"
+                              IsEnabled="{Binding IsAddExpenseAvailable}"
+                              Label="add spending" />
+                <AppBarButton x:Uid="AddTransferLabel"
+                              Command="{Binding GoToAddTransferCommand}"
+                              Icon="Switch"
+                              IsEnabled="{Binding IsTransferAvailable}"
+                              Label="add transfer" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="AddAccountLabel"
+                              Command="{Binding GoToAddAccountCommand}"
+                              Icon="Add"
+                              Label="Add Account" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+</local:MyAccountListActionBarUserControl>

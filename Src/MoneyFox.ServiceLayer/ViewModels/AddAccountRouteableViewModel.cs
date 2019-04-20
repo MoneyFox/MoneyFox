@@ -8,29 +8,34 @@ using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels {
-    public class AddAccountViewModel : ModifyAccountViewModel {
+    public class AddAccountRouteableViewModel : ModifyAccountRouteableViewModel {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
 
-        public AddAccountViewModel(ICrudServicesAsync crudService,
-                                   ISettingsFacade settingsFacade,
-                                   IBackupService backupService,
-                                   IDialogService dialogService,
-                                   IMvxLogProvider logProvider,
-                                   IMvxNavigationService navigationService) 
-            : base(settingsFacade, backupService, logProvider, navigationService)
+        public AddAccountRouteableViewModel(IScreen hostScreen,
+                                   ICrudServicesAsync crudService = null,
+                                   ISettingsFacade settingsFacade = null,
+                                   IBackupService backupService = null,
+                                   IDialogService dialogService = null) 
+            : base(settingsFacade, backupService)
         {
+            HostScreen = hostScreen;
+
             this.crudService = crudService;
             this.dialogService = dialogService;
         }
 
-        public override void Prepare(ModifyAccountParameter parameter)
-        {
-            SelectedAccount = new AccountViewModel();
-            base.Prepare(parameter);
-        }
+        public override string UrlPathSegment => "AddAccount";
+        public override IScreen HostScreen { get; }
+
+        //public override void Prepare(ModifyAccountParameter parameter)
+        //{
+        //    SelectedAccount = new AccountViewModel();
+        //    base.Prepare(parameter);
+        //}
 
         protected override async Task SaveAccount()
         {
@@ -47,7 +52,7 @@ namespace MoneyFox.ServiceLayer.ViewModels {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
             }
 
-            await NavigationService.Close(this);
+            HostScreen.Router.NavigateBack.Execute();
         }
     }
 }

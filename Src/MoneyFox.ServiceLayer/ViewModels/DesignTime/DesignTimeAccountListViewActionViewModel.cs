@@ -6,7 +6,7 @@ using MvvmCross.Commands;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
-    public class DesignTimeAccountListViewActionViewModel : IAccountListViewActionViewModel
+    public class DesignTimeAccountListViewActionViewModel
     {
         public DesignTimeAccountListViewActionViewModel()
         {

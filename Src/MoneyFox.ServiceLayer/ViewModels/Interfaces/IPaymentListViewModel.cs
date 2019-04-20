@@ -8,7 +8,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
     {
         IBalanceViewModel BalanceViewModel { get; }
 
-        IPaymentListViewActionViewModel ViewActionViewModel { get; }
+        PaymentListViewActionViewModel ViewActionViewModel { get; }
         
         MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
 

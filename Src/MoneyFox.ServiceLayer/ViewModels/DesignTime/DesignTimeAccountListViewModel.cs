@@ -9,7 +9,7 @@ using MvvmCross.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
-    public class DesignTimeAccountListViewModel : MvxViewModel, IAccountListViewModel
+    public class DesignTimeAccountListViewModel : MvxViewModel
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
@@ -27,7 +27,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 
         public bool HasNoAccounts { get; } = true;
         public IBalanceViewModel BalanceViewModel { get; }
-        public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        public AccountListRouteableViewActionRouteableViewModel RouteableViewActionRouteableViewModel { get; }
         public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand { get; }
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
         public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand { get; }

@@ -148,6 +148,9 @@
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\AccountListActionBarUserControl.xaml.cs">
+      <DependentUpon>AccountListActionBarUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +219,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\AccountListActionBarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

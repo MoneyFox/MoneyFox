@@ -16,13 +16,12 @@ using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
-    public class PaymentListViewActionViewModel : BaseNavigationViewModel, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : BaseNavigationViewModel
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly BalanceRouteableViewModel balanceRouteableViewModel;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
         private readonly int accountId;
@@ -40,7 +39,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public PaymentListViewActionViewModel(ICrudServicesAsync crudServices,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
-                                              BalanceViewModel balanceViewModel,
+                                              BalanceRouteableViewModel balanceRouteableViewModel,
                                               IMvxMessenger messenger,
                                               int accountId,
                                               IMvxLogProvider logProvider,
@@ -49,7 +48,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
-            this.balanceViewModel = balanceViewModel;
+            this.balanceRouteableViewModel = balanceRouteableViewModel;
             this.navigationService = navigationService;
             this.messenger = messenger;
             this.accountId = accountId;
@@ -185,7 +184,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 await navigationService.Close(this);
             }
-            balanceViewModel.UpdateBalanceCommand.Execute();
+            balanceRouteableViewModel.UpdateBalanceCommand.Execute();
         }
 
         private void UpdateList()

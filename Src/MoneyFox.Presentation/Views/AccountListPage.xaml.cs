@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.Views
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        //await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
+	        //await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel.RouteableViewActionRouteableViewModel });
         }
 
         private void EditAccount(object sender, EventArgs e)

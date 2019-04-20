@@ -15,8 +15,8 @@ namespace MoneyFox.Windows.Views
         public static readonly DependencyProperty ViewModelProperty = DependencyProperty
             .Register(nameof(ViewModel), typeof(AccountListViewModel), typeof(AccountListView), null);
 
-
-        public AccountListView() {
+        public AccountListView()
+        {
             this.InitializeComponent();
 
             ViewModel = Locator.Current.GetService<AccountListViewModel>();
@@ -40,13 +40,13 @@ namespace MoneyFox.Windows.Views
             });
         }
 
+        public AccountListViewModel ViewModel { get; set; }
+
         object IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (AccountListViewModel)value;
+            set => ViewModel = (AccountListViewModel) value;
         }
-
-        public AccountListViewModel ViewModel { get; set; }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
@@ -54,6 +54,28 @@ namespace MoneyFox.Windows.Views
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
             flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+        }
+
+        private void EditFlyoutClicked(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement) sender;
+            if (!(element.DataContext is AccountViewModel account))
+            {
+                return;
+            }
+
+            ViewModel.EditAccountCommand.Execute(account);
+        }
+
+        private void DeleteFlyoutClicked(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement) sender;
+            if (!(element.DataContext is AccountViewModel account))
+            {
+                return;
+            }
+
+            ViewModel.DeleteAccountCommand.Execute(account);
         }
     }
 }

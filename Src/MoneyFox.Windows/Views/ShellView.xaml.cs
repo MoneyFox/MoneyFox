@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Controls;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.ViewModels;
 using ReactiveUI;
-using Splat;
 
 namespace MoneyFox.Windows.Views
 {

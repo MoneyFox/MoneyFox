@@ -1,13 +1,13 @@
-﻿using System;
-using GenericServices;
+﻿using GenericServices;
 using MoneyFox.DataLayer.Entities;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : BaseViewModel, ILinkToEntity<Account>
+    public class AccountViewModel : ViewModelBase, ILinkToEntity<Account>
     {
         private int id;
         private string name;
@@ -22,12 +22,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int Id
         {
             get => id;
-            set
-            {
-                if (id == value) return;
-                id = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref id, value);
         }
 
         /// <summary>
@@ -36,12 +31,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public string Name
         {
             get => name;
-            set
-            {
-                if (name == value) return;
-                name = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref name, value);
         }
 
         /// <summary>
@@ -50,12 +40,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public double CurrentBalance
         {
             get => currentBalance;
-            set
-            {
-                if (Math.Abs(currentBalance - value) < 0.01) return;
-                currentBalance = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref currentBalance, value);
         }
 
         /// <summary>
@@ -64,12 +49,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public string Note
         {
             get => note;
-            set
-            {
-                if (note == value) return;
-                note = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref note, value);
         }
 
         /// <summary>
@@ -78,12 +58,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public bool IsOverdrawn
         {
             get => isOverdrawn;
-            set
-            {
-                if (isOverdrawn == value) return;
-                isOverdrawn = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref isOverdrawn, value);
         }
 
         /// <summary>
@@ -92,12 +67,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public bool IsExcluded
         {
             get => isExcluded;
-            set
-            {
-                if (isExcluded == value) return;
-                isExcluded = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref isExcluded, value);
         }
 
         public override bool Equals(object obj)

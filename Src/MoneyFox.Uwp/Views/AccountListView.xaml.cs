@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.Views
 				return;
 			}
 
-			(DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
+			//(DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
 		}
 
 		private void Delete_OnClick(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace MoneyFox.Uwp.Views
 				return;
 			}
 
-			(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
+			//(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
 		}
 
         private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)

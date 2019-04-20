@@ -14,7 +14,6 @@ namespace MoneyFox.ServiceLayer
         private static IStatisticSelectorViewModel STATISTIC_SELECTOR_VIEW_MODEL;
         private static IStatisticCategorySummaryViewModel STATISTIC_CATEGORY_SUMMARY_VIEW_MODEL;
         private static ICategoryListViewModel CATEGORY_LIST_VIEW_MODEL;
-        private static IAccountListViewModel ACCOUNT_LIST_VIEW_MODEL;
         private static ISettingsViewModel SETTINGS_VIEW_MODEL;
         private static IModifyAccountViewModel MODIFY_ACCOUNT_VIEW_MODEL;
         private static IModifyCategoryViewModel MODIFY_CATEGORY_VIEW_MODEL;
@@ -51,12 +50,6 @@ namespace MoneyFox.ServiceLayer
         /// </summary>
         public static ICategoryListViewModel DesignTimeCategoryListViewModel =>
             CATEGORY_LIST_VIEW_MODEL ?? (CATEGORY_LIST_VIEW_MODEL = new DesignTimeCategoryListViewModel());
-
-        /// <summary>
-        ///     Implementation for IAccountListViewModel for design time.
-        /// </summary>
-        public static IAccountListViewModel DesignTimeAccountListViewModel =>
-            ACCOUNT_LIST_VIEW_MODEL ?? (ACCOUNT_LIST_VIEW_MODEL = new DesignTimeAccountListViewModel());
 
         /// <summary>
         ///     Implementation for ICategoryListViewModel for design time.

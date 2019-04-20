@@ -8,14 +8,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Representation of the BalanceView
     /// </summary>
-    public class BalanceViewModel : ViewModelBase
+    public class BalanceRouteableViewModel : RouteableViewModelBase
     {
         private readonly IBalanceCalculationService balanceCalculationService;
 
         private double totalBalance;
         private double endOfMonthBalance;
 
-        public BalanceViewModel(IScreen hostScreen, IBalanceCalculationService balanceCalculationService)
+        public BalanceRouteableViewModel(IScreen hostScreen, IBalanceCalculationService balanceCalculationService)
         {
             HostScreen = hostScreen;
             this.balanceCalculationService = balanceCalculationService;

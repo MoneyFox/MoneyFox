@@ -12,7 +12,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     This ViewModel is for the usage in the payment list when a concrete account is selected
     /// </summary>
-    public class PaymentListBalanceViewModel : BalanceViewModel
+    public class PaymentListBalanceRouteableViewModel : BalanceRouteableViewModel
     {
         private readonly int accountId;
         private readonly IBalanceCalculationService balanceCalculationService;
@@ -21,7 +21,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListBalanceViewModel(IScreen hostScreen, 
+        public PaymentListBalanceRouteableViewModel(IScreen hostScreen, 
                                            ICrudServicesAsync crudServices,
                                            IBalanceCalculationService balanceCalculationService,
                                            int accountId) 

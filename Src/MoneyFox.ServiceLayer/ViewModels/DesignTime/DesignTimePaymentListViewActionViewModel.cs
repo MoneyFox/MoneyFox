@@ -5,7 +5,7 @@ using MvvmCross.Commands;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
-    public class DesignTimePaymentListViewActionViewModel: IPaymentListViewActionViewModel
+    public class DesignTimePaymentListViewActionViewModel
     {
         public LocalizedResources Resources { get; }
         public MvxAsyncCommand GoToAddIncomeCommand { get; }

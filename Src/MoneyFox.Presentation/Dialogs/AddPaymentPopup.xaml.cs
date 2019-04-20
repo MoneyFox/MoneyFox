@@ -1,4 +1,5 @@
-﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
+﻿using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,19 +21,19 @@ namespace MoneyFox.Presentation.Dialogs
         private async void AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddExpenseCommand.ExecuteAsync();
+            (BindingContext as PaymentListViewActionViewModel)?.GoToAddExpenseCommand.ExecuteAsync();
         }
 
         private async void AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddIncomeCommand.ExecuteAsync();
+            (BindingContext as PaymentListViewActionViewModel)?.GoToAddIncomeCommand.ExecuteAsync();
         }
 
         private async void AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddTransferCommand.ExecuteAsync();
+            (BindingContext as PaymentListViewActionViewModel)?.GoToAddTransferCommand.ExecuteAsync();
         }
     }
 }

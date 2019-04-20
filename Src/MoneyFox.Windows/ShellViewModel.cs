@@ -7,7 +7,7 @@ using Splat.Autofac;
 
 namespace MoneyFox.Windows
 {
-    public class ShellViewModel : ViewModelBase, IScreen
+    public class ShellViewModel : RouteableViewModelBase, IScreen
     {
         public ShellViewModel()
         {
