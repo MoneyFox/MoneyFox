@@ -24,7 +24,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            viewmodel?.EditPaymentCommand.Execute(payment);
+            //viewmodel?.EditPaymentCommand.Execute(payment);
         }
 
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             {
                 return;
             }
-            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
+            //(DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)

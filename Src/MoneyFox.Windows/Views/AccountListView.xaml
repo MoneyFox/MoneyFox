@@ -95,7 +95,7 @@
                       Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">
             <SemanticZoom.ZoomedInView>
 
-                <ListView x:Name="AccountListView"
+                <ListView x:Name="AccountList"
                           IsItemClickEnabled="True"
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource AccountItemTemplate}"

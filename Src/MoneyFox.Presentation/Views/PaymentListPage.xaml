@@ -1,16 +1,15 @@
-﻿<d:MvxContentPage  x:TypeArguments="viewModels:PaymentListViewModel"
-                   xmlns="http://xamarin.com/schemas/2014/forms"
-                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                   xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                   xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                   x:Class="MoneyFox.Presentation.Views.PaymentListPage"
-                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                   DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimePaymentListViewModel}">
+﻿<ContentPage  xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+           xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
+           xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+           xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+           xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+           xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+           xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+           x:Class="MoneyFox.Presentation.Views.PaymentListPage"
+           BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:PaymentAmountConverter  x:Key="PaymentAmountConverter" />
@@ -134,4 +133,4 @@
             </Grid>
         </StackLayout>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -25,12 +26,16 @@ namespace MoneyFox.Windows.Views
                 this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source)
                     .DisposeWith(disposables);
 
-                this.BindCommand(ViewModel, vm => )
-
                 this.OneWayBind(ViewModel, vm => vm.Resources["NoAccountsMessage"], v => v.NoAccountsTextBlock.Text)
                     .DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.HasNoAccounts, v => v.NoAccountsTextBlock.Visibility)
+                    .DisposeWith(disposables);
+
+                this.AccountList
+                    .Events()
+                    .ItemClick.Select(x => x.ClickedItem as AccountViewModel)
+                    .InvokeCommand(ViewModel.GoToPaymentViewCommand)
                     .DisposeWith(disposables);
             });
         }

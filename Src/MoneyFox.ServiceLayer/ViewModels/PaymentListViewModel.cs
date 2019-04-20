@@ -25,7 +25,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : MvxViewModel<PaymentListParameter>
+    public class PaymentListViewModel : ViewModelBase
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly IPaymentService paymentService;
@@ -50,15 +50,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(IScreen hostScreen, ICrudServicesAsync crudServices, 
-            IPaymentService paymentService,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBalanceCalculationService balanceCalculationService,
-            IBackupService backupService,
-            IMvxNavigationService navigationService,
-            IMvxMessenger messenger,
-            IMvxLogProvider logProvider)
+        public PaymentListViewModel(IScreen hostScreen, 
+            ICrudServicesAsync crudServices = null, 
+            IPaymentService paymentService= null,
+            IDialogService dialogService=null,
+            ISettingsFacade settingsFacade=null,
+            IBalanceCalculationService balanceCalculationService=null,
+            IBackupService backupService=null)
         {
             HostScreen = hostScreen;
             this.crudServices = crudServices;
@@ -67,211 +65,210 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.backupService = backupService;
-            this.navigationService = navigationService;
-            this.messenger = messenger;
-            this.logProvider = logProvider;
 
-            token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
+            //token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
         }
+
+        public override string UrlPathSegment => "PaymentList";
+        public override IScreen HostScreen { get; }
+
 
         /// <inheritdoc />
-        public override void Prepare(PaymentListParameter parameter)
-        {
-            AccountId = parameter.AccountId;
-        }
+        //public override void Prepare(PaymentListParameter parameter)
+        //{
+        //    AccountId = parameter.AccountId;
+        //}
 
-        public IScreen HostScreen { get; }
+        ///// <inheritdoc />
+        //public override async Task Initialize()
+        //{
+        //    Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
+        //    BalanceViewModel = new PaymentListBalanceViewModel(HostScreen, crudServices, balanceCalculationService, AccountId);
+        //    ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
+        //        settingsFacade,
+        //        dialogService,
+        //        BalanceViewModel,
+        //        messenger,
+        //        AccountId,
+        //        logProvider,
+        //        navigationService);
+        //}
 
-            BalanceViewModel = new PaymentListBalanceViewModel(HostScreen, crudServices, balanceCalculationService, AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
-                settingsFacade,
-                dialogService,
-                BalanceViewModel,
-                messenger,
-                AccountId,
-                logProvider,
-                navigationService);
-        }
+        ///// <inheritdoc />
+        //public override async void ViewAppearing()
+        //{
+        //    dialogService.ShowLoadingDialog();
+        //    await Task.Run(async () => await Load());
+        //    dialogService.HideLoadingDialog();
+        //}
 
-        /// <inheritdoc />
-        public override async void ViewAppearing()
-        {
-            dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
-            dialogService.HideLoadingDialog();
-        }
+//        #region Properties
 
-        #region Properties
+//        /// <summary>
+//        ///     Indicator if there are payments or not.
+//        /// </summary>
+//        public bool IsPaymentsEmpty => Source != null && !Source.Any();
 
-        /// <summary>
-        ///     Indicator if there are payments or not.
-        /// </summary>
-        public bool IsPaymentsEmpty => Source != null && !Source.Any();
+//        /// <summary>
+//        ///     Id for the current account.
+//        /// </summary>
+//        public int AccountId
+//        {
+//            get => accountId;
+//            private set
+//            {
+//                accountId = value;
+//                RaisePropertyChanged();
+//            }
+//        }
 
-        /// <summary>
-        ///     Id for the current account.
-        /// </summary>
-        public int AccountId
-        {
-            get => accountId;
-            private set
-            {
-                accountId = value;
-                RaisePropertyChanged();
-            }
-        }
+//        /// <summary>
+//        ///     View Model for the balance subview.
+//        /// </summary>
+//        public BalanceViewModel BalanceViewModel
+//        {
+//            get => balanceViewModel;
+//            private set
+//            {
+//                balanceViewModel = value;
+//                RaisePropertyChanged();
+//            }
+//        }
 
-        /// <summary>
-        ///     View Model for the balance subview.
-        /// </summary>
-        public BalanceViewModel BalanceViewModel
-        {
-            get => balanceViewModel;
-            private set
-            {
-                balanceViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
+//        /// <summary>
+//        ///     View Model for the global actions on the view.
+//        /// </summary>
+//        public IPaymentListViewActionViewModel ViewActionViewModel
+//        {
+//            get => viewActionViewModel;
+//            private set
+//            {
+//                if (viewActionViewModel == value) return;
+//                viewActionViewModel = value;
+//                RaisePropertyChanged();
+//            }
+//        }
 
-        /// <summary>
-        ///     View Model for the global actions on the view.
-        /// </summary>
-        public IPaymentListViewActionViewModel ViewActionViewModel
-        {
-            get => viewActionViewModel;
-            private set
-            {
-                if (viewActionViewModel == value) return;
-                viewActionViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
+//        /// <summary>
+//        ///     Returns grouped related payments
+//        /// </summary>
+//        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+//        {
+//            get => source;
+//            private set
+//            {
+//                source = value;
+//                RaisePropertyChanged();
+//                // ReSharper disable once ExplicitCallerInfoArgument
+//                RaisePropertyChanged(nameof(IsPaymentsEmpty));
+//            }
+//        }
 
-        /// <summary>
-        ///     Returns grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
-        {
-            get => source;
-            private set
-            {
-                source = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
-            }
-        }
+//        /// <summary>
+//        ///     Returns daily grouped related payments
+//        /// </summary>
+//        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
+//        {
+//            get => dailyList;
+//            private set
+//            {
+//                dailyList = value;
+//                RaisePropertyChanged();
+//                // ReSharper disable once ExplicitCallerInfoArgument
+//                RaisePropertyChanged(nameof(IsPaymentsEmpty));
+//            }
+//        }
 
-        /// <summary>
-        ///     Returns daily grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
-        {
-            get => dailyList;
-            private set
-            {
-                dailyList = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
-            }
-        }
+//        /// <summary>
+//        ///     Returns the name of the account title for the current page
+//        /// </summary>
+//        public string Title
+//        {
+//            get => title;
+//            private set
+//            {
+//                if (title == value) return;
+//                title = value;
+//                RaisePropertyChanged();
+//            }
+//        }
 
-        /// <summary>
-        ///     Returns the name of the account title for the current page
-        /// </summary>
-        public string Title
-        {
-            get => title;
-            private set
-            {
-                if (title == value) return;
-                title = value;
-                RaisePropertyChanged();
-            }
-        }
+//        #endregion
 
-        #endregion
+//        #region Commands
 
-        #region Commands
+//        /// <summary>
+//        ///     Opens the Edit Dialog for the passed Payment
+//        /// </summary>
+//        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
+//            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
 
-        /// <summary>
-        ///     Opens the Edit Dialog for the passed Payment
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
+//        /// <summary>
+//        ///     Deletes the passed PaymentViewModel.
+//        /// </summary>
+//        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
+//            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
-        /// <summary>
-        ///     Deletes the passed PaymentViewModel.
-        /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
+//        #endregion
 
-        #endregion
+//        private async Task Load()
+//        {
+//            LoadPayments(new PaymentListFilterChangedMessage(this));
+//            //Refresh balance control with the current account
+//            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+//        }
 
-        private async Task Load()
-        {
-            LoadPayments(new PaymentListFilterChangedMessage(this));
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-        }
+//        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
+//        {
+//            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
+//                .HasAccountId(AccountId);
 
-        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
-        {
-            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .HasAccountId(AccountId);
+//            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
+//            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
 
-            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
-            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
+//            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
+//            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
 
-            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
+//            var loadedPayments = new List<PaymentViewModel>(
+//                paymentQuery.OrderDescendingByDate());
 
-            var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderDescendingByDate());
+//            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
 
-            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
+//            var dailyItems = DateListGroupCollection<PaymentViewModel>
+//                .CreateGroups(loadedPayments,
+//                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+//                    s => s.Date,
+//                    itemClickCommand: EditPaymentCommand);
 
-            var dailyItems = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                    s => s.Date,
-                    itemClickCommand: EditPaymentCommand);
+//            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
 
-            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+//            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
+//                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
+//                    .CreateGroups(dailyItems,
+//                        s =>
+//                        {
+//                            var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
+//                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
+//                        },
+//                        s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
+//        }
 
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
-                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
-                    .CreateGroups(dailyItems,
-                        s =>
-                        {
-                            var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
-                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
-                        },
-                        s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
-        }
+//        private async Task EditPayment(PaymentViewModel payment)
+//        {
+//            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
+//                new ModifyPaymentParameter(payment.Id))
+//                ;
+//        }
 
-        private async Task EditPayment(PaymentViewModel payment)
-        {
-            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
-                new ModifyPaymentParameter(payment.Id))
-                ;
-        }
+//        private async Task DeletePayment(PaymentViewModel payment)
+//        {
+//            await paymentService.DeletePayment(payment);
 
-        private async Task DeletePayment(PaymentViewModel payment)
-        {
-            await paymentService.DeletePayment(payment);
-
-#pragma warning disable 4014
-            backupService.EnqueueBackupTask();
-#pragma warning restore 4014
-            await Load();
-        }
+//#pragma warning disable 4014
+//            backupService.EnqueueBackupTask();
+//#pragma warning restore 4014
+//            await Load();
+//        }
     }
 }

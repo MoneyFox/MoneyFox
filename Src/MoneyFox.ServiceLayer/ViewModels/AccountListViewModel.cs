@@ -50,6 +50,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
+            GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
+
             hasNoAccounts = this.WhenAnyValue(x => x.Accounts)
                 .Select(x => !x.Any())
                 .ToProperty(this, x => x.HasNoAccounts);
@@ -72,9 +74,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public bool HasNoAccounts => hasNoAccounts.Value;
 
-        public ReactiveCommand<Unit, Unit> GoToPaymentViewCommand { get; set; }
-
-        public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
+        public ReactiveCommand<AccountViewModel, Unit> GoToPaymentViewCommand { get; set; }
 
         public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
 
@@ -123,11 +123,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
         }
 
-        private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
+        private Unit GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null) return;
-
-            //await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+            if (accountViewModel == null) return new Unit();
+            HostScreen.Router.Navigate.Execute(new PaymentListViewModel(HostScreen));
+            return new Unit();
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
