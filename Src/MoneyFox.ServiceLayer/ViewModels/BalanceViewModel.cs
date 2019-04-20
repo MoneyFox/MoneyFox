@@ -8,21 +8,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Representation of the BalanceView
     /// </summary>
-    public class BalanceRouteableViewModel : RouteableViewModelBase
+    public class BalanceViewModel : ViewModelBase
     {
         private readonly IBalanceCalculationService balanceCalculationService;
 
         private double totalBalance;
         private double endOfMonthBalance;
 
-        public BalanceRouteableViewModel(IScreen hostScreen, IBalanceCalculationService balanceCalculationService)
+        public BalanceViewModel(IBalanceCalculationService balanceCalculationService)
         {
-            HostScreen = hostScreen;
             this.balanceCalculationService = balanceCalculationService;
         }
-
-        public override string UrlPathSegment => "Balance";
-        public override IScreen HostScreen { get; }
 
         /// <summary>
         ///     Balance of all relevant accounts at the end of the month.
@@ -46,13 +42,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        public MvxAsyncCommand UpdateBalanceCommand => new MvxAsyncCommand(UpdateBalance);
-
-        /// <summary>
-        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
-        ///     itself and show different data.
-        /// </summary>
-        private async Task UpdateBalance()
+        public async Task UpdateBalance()
         {
             TotalBalance = await CalculateTotalBalance();
             EndOfMonthBalance = await GetEndOfMonthValue();

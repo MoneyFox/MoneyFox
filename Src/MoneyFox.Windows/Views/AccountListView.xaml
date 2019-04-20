@@ -85,7 +85,7 @@
                    Text="Accounts"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <!--<userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />-->
+        <userControls:BalanceUserControl Grid.Row="1" />
 
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">

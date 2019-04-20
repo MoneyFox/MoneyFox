@@ -44,10 +44,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
             this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
             
-            BalanceRouteableViewModel = new BalanceRouteableViewModel(hostScreen, balanceCalculationService ?? Locator.Current.GetService<IBalanceCalculationService>());
-
-            //RouteableViewActionRouteableViewModel = new AccountListRouteableViewActionRouteableViewModel(crudService);
-
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
             GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
@@ -55,9 +51,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             AddAccountCommand = ReactiveCommand.Create(GoToAddAccount);
             DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount);
 
-            this.WhenActivated(async disposables =>
+            this.WhenActivated(disposables =>
             {
-                await LoadAccounts();
+                LoadAccounts();
 
                 hasNoAccounts = Accounts
                     .ToObservableChangeSet()
@@ -67,10 +63,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             });
         }
         
-        public BalanceRouteableViewModel BalanceRouteableViewModel { get; }
-
-        //public IAccountListViewActionViewModel RouteableViewActionRouteableViewModel { get; }
-
         public override string UrlPathSegment => "AccountList";
         public override IScreen HostScreen { get; }
 
@@ -86,10 +78,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ReactiveCommand<AccountViewModel, Unit> DeleteAccountCommand { get; set; }
         public ReactiveCommand<Unit, Unit> AddAccountCommand { get; set; }
 
-        private async Task LoadAccounts() 
+        private void LoadAccounts()
         {
-            await BalanceRouteableViewModel.UpdateBalanceCommand.ExecuteAsync();
-
             IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
                 .OrderBy(x => x.Name);
 
@@ -113,7 +103,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private Unit GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if (accountViewModel == null) return new Unit();
-            HostScreen.Router.Navigate.Execute(new PaymentListRouteableViewModel(HostScreen));
+            HostScreen.Router.Navigate.Execute(new PaymentListViewModel(HostScreen));
             return new Unit();
         }
 
@@ -126,7 +116,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
 
                 Accounts.Clear();
-                await LoadAccounts();
+                LoadAccounts();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }

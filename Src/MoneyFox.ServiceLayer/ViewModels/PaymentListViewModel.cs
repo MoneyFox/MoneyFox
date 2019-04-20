@@ -26,22 +26,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListRouteableViewModel : RouteableViewModelBase
+    public class PaymentListViewModel : RouteableViewModelBase
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly IPaymentService paymentService;
         private readonly IBackupService backupService;
         private readonly IBalanceCalculationService balanceCalculationService;
         private readonly IDialogService dialogService;
-        private readonly IMvxLogProvider logProvider;
-        private readonly IMvxMessenger messenger;
-        private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
         private int accountId;
-        private BalanceRouteableViewModel balanceRouteableViewModel;
+        private BalanceViewModel balanceViewModel;
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
 
         private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
@@ -51,7 +48,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListRouteableViewModel(IScreen hostScreen, 
+        public PaymentListViewModel(IScreen hostScreen, 
             ICrudServicesAsync crudServices = null, 
             IPaymentService paymentService= null,
             IDialogService dialogService=null,
@@ -85,11 +82,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //{
         //    Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
-        //    BalanceRouteableViewModel = new PaymentListBalanceRouteableViewModel(HostScreen, crudServices, balanceCalculationService, AccountId);
+        //    BalanceViewModel = new PaymentListBalanceViewModel(HostScreen, crudServices, balanceCalculationService, AccountId);
         //    RouteableViewActionRouteableViewModel = new PaymentListViewActionViewModel(crudServices,
         //        settingsFacade,
         //        dialogService,
-        //        BalanceRouteableViewModel,
+        //        BalanceViewModel,
         //        messenger,
         //        AccountId,
         //        logProvider,
@@ -127,12 +124,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 //        /// <summary>
 //        ///     View Model for the balance subview.
 //        /// </summary>
-//        public BalanceRouteableViewModel BalanceRouteableViewModel
+//        public BalanceViewModel BalanceViewModel
 //        {
-//            get => balanceRouteableViewModel;
+//            get => balanceViewModel;
 //            private set
 //            {
-//                balanceRouteableViewModel = value;
+//                balanceViewModel = value;
 //                RaisePropertyChanged();
 //            }
 //        }
@@ -217,7 +214,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 //        {
 //            LoadPayments(new PaymentListFilterChangedMessage(this));
 //            //Refresh balance control with the current account
-//            await BalanceRouteableViewModel.UpdateBalanceCommand.ExecuteAsync();
+//            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 //        }
 
 //        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)

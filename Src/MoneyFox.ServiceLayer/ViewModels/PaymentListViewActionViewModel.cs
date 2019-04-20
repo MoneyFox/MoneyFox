@@ -20,7 +20,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
-        private readonly BalanceRouteableViewModel balanceRouteableViewModel;
+        private readonly BalanceViewModel balanceViewModel;
         private readonly IMvxNavigationService navigationService;
         private readonly IMvxMessenger messenger;
         private readonly int accountId;
@@ -38,7 +38,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public PaymentListViewActionViewModel(ICrudServicesAsync crudServices,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
-                                              BalanceRouteableViewModel balanceRouteableViewModel,
+                                              BalanceViewModel balanceViewModel,
                                               IMvxMessenger messenger,
                                               int accountId,
                                               IMvxLogProvider logProvider,
@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
-            this.balanceRouteableViewModel = balanceRouteableViewModel;
+            this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
             this.messenger = messenger;
             this.accountId = accountId;
@@ -183,7 +183,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 await navigationService.Close(this);
             }
-            balanceRouteableViewModel.UpdateBalanceCommand.Execute();
+            await balanceViewModel.UpdateBalance();
         }
 
         private void UpdateList()

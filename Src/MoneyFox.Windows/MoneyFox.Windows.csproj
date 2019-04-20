@@ -151,6 +151,9 @@
     <Compile Include="Views\UserControls\AccountListActionBarUserControl.xaml.cs">
       <DependentUpon>AccountListActionBarUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
+      <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +228,10 @@
     <Page Include="Views\UserControls\AccountListActionBarUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BalanceUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
