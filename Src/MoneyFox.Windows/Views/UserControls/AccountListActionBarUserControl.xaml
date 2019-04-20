@@ -13,27 +13,18 @@
                     Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddIncomeLabel"
-                              Command="{Binding GoToAddIncomeCommand}"
-                              Icon="Add"
-                              IsEnabled="{Binding IsAddIncomeAvailable}"
-                              Label="add income" />
-                <AppBarButton x:Uid="AddExpenseLabel"
-                              Command="{Binding GoToAddExpenseCommand}"
+                <AppBarButton x:Name="AddIncomeButton"
+                              Icon="Add"/>
+            <AppBarButton x:Name="AddExpenseButton"
                               Icon="Remove"
-                              IsEnabled="{Binding IsAddExpenseAvailable}"
-                              Label="add spending" />
-                <AppBarButton x:Uid="AddTransferLabel"
-                              Command="{Binding GoToAddTransferCommand}"
+                              IsEnabled="{Binding IsAddExpenseAvailable}" />
+            <AppBarButton x:Name="AddTransferButton"
                               Icon="Switch"
-                              IsEnabled="{Binding IsTransferAvailable}"
-                              Label="add transfer" />
+                              IsEnabled="{Binding IsTransferAvailable}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddAccountLabel"
-                              Command="{Binding GoToAddAccountCommand}"
-                              Icon="Add"
-                              Label="Add Account" />
+            <AppBarButton x:Name="AddAccountButton"
+                              Icon="Add" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
 </local:MyAccountListActionBarUserControl>

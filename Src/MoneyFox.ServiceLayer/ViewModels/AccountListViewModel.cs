@@ -135,13 +135,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         private Unit EditAccount(AccountViewModel accountViewModel) {
-            HostScreen.Router.Navigate.Execute(new EditAccountRouteableViewModel(HostScreen, accountViewModel.Id));
+            HostScreen.Router.Navigate.Execute(new EditAccountViewModel(HostScreen, accountViewModel.Id));
             return new Unit();
         }
 
         private Unit GoToAddAccount()
         {
-            HostScreen.Router.Navigate.Execute(new AddAccountRouteableViewModel(HostScreen));
+            HostScreen.Router.Navigate.Execute(new AddAccountViewModel(HostScreen));
             return new Unit();
         }
 

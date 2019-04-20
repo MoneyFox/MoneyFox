@@ -11,11 +11,11 @@ using MvvmCross.Navigation;
 using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels {
-    public class AddAccountRouteableViewModel : ModifyAccountRouteableViewModel {
+    public class AddAccountViewModel : ModifyAccountViewModel {
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
 
-        public AddAccountRouteableViewModel(IScreen hostScreen,
+        public AddAccountViewModel(IScreen hostScreen,
                                    ICrudServicesAsync crudService = null,
                                    ISettingsFacade settingsFacade = null,
                                    IBackupService backupService = null,

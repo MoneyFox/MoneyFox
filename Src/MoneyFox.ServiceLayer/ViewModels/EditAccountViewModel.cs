@@ -12,7 +12,7 @@ using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class EditAccountRouteableViewModel : ModifyAccountRouteableViewModel
+    public class EditAccountViewModel : ModifyAccountViewModel
     {
         private int accountId;
 
@@ -21,7 +21,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
 
-        public EditAccountRouteableViewModel(IScreen hostScreen,
+        public EditAccountViewModel(IScreen hostScreen,
             int accountId,
             ICrudServicesAsync crudServices = null,
             ISettingsFacade settingsFacade = null,

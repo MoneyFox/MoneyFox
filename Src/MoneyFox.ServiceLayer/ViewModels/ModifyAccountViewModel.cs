@@ -55,15 +55,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         MvxAsyncCommand CancelCommand { get; }
     }
 
-    public abstract class ModifyAccountRouteableViewModel : RouteableViewModelBase
+    public abstract class ModifyAccountViewModel : RouteableViewModelBase
     {
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;
 
         private AccountViewModel selectedAccount;
 
-        protected ModifyAccountRouteableViewModel(ISettingsFacade settingsFacade,
-            IBackupService backupService)
+        protected ModifyAccountViewModel(ISettingsFacade settingsFacade, IBackupService backupService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
