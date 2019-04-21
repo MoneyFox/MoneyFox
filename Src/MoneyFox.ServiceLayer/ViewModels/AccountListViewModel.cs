@@ -49,7 +49,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             AddAccountCommand = ReactiveCommand.Create(GoToAddAccount);
             DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount);
 
-            this.WhenActivated(async disposables =>
+            this.WhenActivated(disposables =>
             {
                 LoadAccounts();
 
@@ -60,7 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                               .Subscribe()
                               .DisposeWith(disposables);
 
-                hasNoAccounts = this.WhenAnyValue(x => x.Accounts)
+                hasNoAccounts = this.WhenAnyValue(x => x.accountsSource.Items)
                                     .Select(x => !x.Any())
                                     .ToProperty(this, x => x.HasNoAccounts);
 
@@ -118,7 +118,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
 
-                //Accounts.Clear();
+                accountsSource.Clear();
                 LoadAccounts();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
