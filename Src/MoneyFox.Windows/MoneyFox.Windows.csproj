@@ -309,6 +309,7 @@
     <None Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
     </None>
+    <None Include="MoneyFox.Windows.ruleset" />
     <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -579,6 +580,12 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <CodeAnalysisRuleSet>MoneyFox.Windows.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <CodeAnalysisRuleSet>MoneyFox.Windows.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
