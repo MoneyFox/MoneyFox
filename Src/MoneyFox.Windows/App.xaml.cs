@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.System.UserProfile;
+using Windows.UI;
+using Windows.UI.StartScreen;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -9,6 +14,8 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Windows.Views;
 using PCLAppConfig;
 using MoneyFox.DataLayer;
+using MoneyFox.Foundation.Resources;
+using UniversalRateReminder;
 
 namespace MoneyFox.Windows
 {
@@ -32,8 +39,10 @@ namespace MoneyFox.Windows
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="activationArgs">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs activationArgs)
+        protected override async void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
+            OverrideTitleBarColor();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -44,13 +53,14 @@ namespace MoneyFox.Windows
 #if !DEBUG
                 AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
-
                 Xamarin.Forms.Forms.Init(activationArgs);
                 var app = new Presentation.App();
 
                 //BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 //BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 //BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
+
+                await SetJumplist();
 
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
@@ -68,10 +78,55 @@ namespace MoneyFox.Windows
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     rootFrame.Navigate(typeof(ShellView), activationArgs.Arguments);
+
+                    await CallRateReminder();
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+        }
+        
+        private void OverrideTitleBarColor() {
+            //draw into the title bar
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+
+            //remove the solid-colored backgrounds behind the caption controls and system back button
+            ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+            viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
+            viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            viewTitleBar.ButtonForegroundColor = Colors.LightGray;
+        }
+
+        private async Task SetJumplist() {
+            var jumpList = await JumpList.LoadCurrentAsync();
+            jumpList.Items.Clear();
+            jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
+
+            var listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.ADD_INCOME_TILE_ID,
+                                                                     Strings.AddIncomeLabel);
+            listItemAddIncome.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
+            jumpList.Items.Add(listItemAddIncome);
+
+            var listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.ADD_EXPENSE_TILE_ID,
+                                                                       Strings.AddExpenseLabel);
+            listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
+            jumpList.Items.Add(listItemAddSpending);
+
+            var listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.ADD_TRANSFER_TILE_ID,
+                                                                       Strings.AddTransferLabel);
+            listItemAddTransfer.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
+            jumpList.Items.Add(listItemAddTransfer);
+
+            await jumpList.SaveAsync();
+        }
+
+        private async Task CallRateReminder() {
+            RatePopup.RateButtonText = Strings.YesLabel;
+            RatePopup.CancelButtonText = Strings.NotNowLabel;
+            RatePopup.Title = Strings.RateReminderTitle;
+            RatePopup.Content = Strings.RateReminderText;
+
+            await RatePopup.CheckRateReminderAsync();
         }
 
         /// <summary>

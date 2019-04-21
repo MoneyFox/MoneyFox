@@ -29,7 +29,6 @@ using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
-using MvvmCross.Navigation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
