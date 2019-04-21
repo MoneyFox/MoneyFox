@@ -140,6 +140,9 @@
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddAccountView.xaml.cs">
+      <DependentUpon>AddAccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,9 @@
     </Compile>
     <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
+      <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
@@ -221,6 +227,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dialogs\LoadingDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -248,6 +258,10 @@
     <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

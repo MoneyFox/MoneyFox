@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-    xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 

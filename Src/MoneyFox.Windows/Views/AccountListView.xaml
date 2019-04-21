@@ -138,7 +138,5 @@
                    TextWrapping="Wrap" />
 
         <userControls:AccountListActionBarUserControl Grid.Row="2"/>
-
     </Grid>
-
 </Page>

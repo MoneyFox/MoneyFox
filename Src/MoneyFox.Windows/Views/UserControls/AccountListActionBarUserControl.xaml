@@ -7,24 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="200"
-    d:DesignWidth="00">
+    d:DesignWidth="100">
 
-        <CommandBar 
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
-                    DataContext="{Binding ViewActionViewModel}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="AddIncomeButton"
-                              Icon="Add"/>
+    <CommandBar
+        Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <CommandBar.PrimaryCommands>
+            <AppBarButton x:Name="AddIncomeButton"
+                          Icon="Add" />
             <AppBarButton x:Name="AddExpenseButton"
-                              Icon="Remove"
-                              IsEnabled="{Binding IsAddExpenseAvailable}" />
+                          Icon="Remove" />
             <AppBarButton x:Name="AddTransferButton"
-                              Icon="Switch"
-                              IsEnabled="{Binding IsTransferAvailable}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
+                          Icon="Switch" />
+        </CommandBar.PrimaryCommands>
+        <CommandBar.SecondaryCommands>
             <AppBarButton x:Name="AddAccountButton"
-                              Icon="Add" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
+                          Icon="Add" />
+        </CommandBar.SecondaryCommands>
+    </CommandBar>
 </local:MyAccountListActionBarUserControl>
