@@ -6,10 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
             <StackPanel x:Name="AccountItemStackPanel" HorizontalAlignment="Stretch"
@@ -36,7 +39,7 @@
                                        TextTrimming="CharacterEllipsis" />
                         <TextBlock HorizontalAlignment="Right"
                                        Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                                       Text="{x:Bind CurrentBalance}"
+                                       Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                        TextAlignment="Right" />
                     </Grid>
                 </StackPanel>

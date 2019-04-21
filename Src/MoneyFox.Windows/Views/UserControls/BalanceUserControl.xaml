@@ -16,12 +16,14 @@
                    Text="Total: " />
         <TextBlock x:Name="TotalBalance" 
                    Margin="0,0,5,0"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Text="1235" />
         <TextBlock Margin="0,0,5,0"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Text=" / " />
         <TextBlock x:Name="EndOfMonthBalance" 
                    Margin="0,0,5,0"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Text="4232"/>
     </StackPanel>
 </userControls:MyBalanceUserControl>
