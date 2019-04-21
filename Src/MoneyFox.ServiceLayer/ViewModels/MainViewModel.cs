@@ -33,8 +33,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public MvxAsyncCommand ShowBackupViewCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());
 
-        public MvxAsyncCommand ShowSettingsCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<SettingsViewModel>());
+        //public MvxAsyncCommand ShowSettingsCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<SettingsViewModel>());
 
         public MvxAsyncCommand ShowAboutCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<AboutViewModel>());
@@ -42,8 +42,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task ShowInitialViewModels()
         {
             //await navigationService.Navigate<AccountListViewModel>();
-            await navigationService.Navigate<StatisticSelectorViewModel>();
-            await navigationService.Navigate<SettingsViewModel>();
+            //await navigationService.Navigate<StatisticSelectorViewModel>();
+            //await navigationService.Navigate<SettingsViewModel>();
         }
     }
 }

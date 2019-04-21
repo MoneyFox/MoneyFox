@@ -6,7 +6,6 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
-using DynamicData.Binding;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
@@ -43,14 +42,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.crudService = crudService ?? Locator.Current.GetService<ICrudServicesAsync>();
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
             this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
-
-            GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
-            EditAccountCommand = ReactiveCommand.Create<AccountViewModel, Unit>(EditAccount);
-            AddAccountCommand = ReactiveCommand.Create(GoToAddAccount);
-            DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount);
-
+            
             this.WhenActivated(disposables =>
             {
+                GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView).DisposeWith(disposables);
+                EditAccountCommand = ReactiveCommand.Create<AccountViewModel, Unit>(EditAccount).DisposeWith(disposables);
+                AddAccountCommand = ReactiveCommand.Create(GoToAddAccount).DisposeWith(disposables);
+                DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount).DisposeWith(disposables);
+
+
                 LoadAccounts();
 
                 accountsSource.Connect()

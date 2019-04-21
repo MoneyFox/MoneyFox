@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel.SaveCommand.Execute()),
+                //Command = new Command(() => ViewModel.SaveCommand.Execute()),
                 Text = Strings.SavePaymentLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,

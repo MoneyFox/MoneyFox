@@ -31,7 +31,7 @@ namespace MoneyFox.Windows.Views
         {
             if (args.IsSettingsInvoked)
             {
-                //RoutedViewHost.Router.Navigate.Execute(new SettingsViewModel(HostScreen));
+                RoutedViewHost.Router.Navigate.Execute(new SettingsViewModel(ViewModel));
             }
 
             if (args.InvokedItem.Equals(Strings.AccountsTitle))

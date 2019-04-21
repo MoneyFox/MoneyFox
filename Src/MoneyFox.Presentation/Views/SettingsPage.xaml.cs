@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.Views
 		    SettingsList.ItemTapped += (sender, args) =>
 		    {
 		        SettingsList.SelectedItem = null;
-		        ViewModel.GoToSettingCommand.Execute(args.Item);
+		        //ViewModel.GoToSettingCommand.Execute(args.Item);
 		    };
         }
 	}

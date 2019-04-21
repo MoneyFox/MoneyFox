@@ -3,13 +3,12 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public interface ISettingsViewModel : IBaseViewModel
+    public interface ISettingsViewModel
     {
         /// <summary>
         ///     Contains all available Settings items.
@@ -34,26 +33,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class SettingsViewModel : BaseNavigationViewModel, ISettingsViewModel
+    public class SettingsViewModel : RouteableViewModelBase, ISettingsViewModel
     {
-        private readonly IMvxNavigationService navigationService;
-
-        public SettingsViewModel(IMvxNavigationService navigationService,
-                                 IAboutViewModel aboutViewModel, 
-                                 ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
-                                 ISettingsPersonalizationViewModel settingsPersonalizationViewModel,
-                                 ISettingsSecurityViewModel settingsSecurityViewModel,
-                                 IMvxLogProvider logProvider) : base(logProvider, navigationService)
+        public SettingsViewModel(IScreen hostScreen,
+                                 ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel = null,
+                                 ISettingsPersonalizationViewModel settingsPersonalizationViewModel = null,
+                                 ISettingsSecurityViewModel settingsSecurityViewModel = null)
         {
-            this.navigationService = navigationService;
+            HostScreen = hostScreen;
 
-            AboutViewModel = aboutViewModel;
             BackgroundJobViewModel = settingsBackgroundJobViewModel;
             PersonalizationViewModel = settingsPersonalizationViewModel;
             SettingsSecurityViewModel = settingsSecurityViewModel;
         }
 
-        public IAboutViewModel AboutViewModel { get; }
+        public override string UrlPathSegment => "Settings";
+        public override IScreen HostScreen { get; }
 
         /// <inheritdoc />
         public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
@@ -103,28 +98,28 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToSettings(SettingsSelectorType item)
         {
-            switch (item.Type)
-            {
-                case SettingsType.Personalization:
-                    await navigationService.Navigate<SettingsPersonalizationViewModel>();
-                    break;
+            //switch (item.Type)
+            //{
+            //    case SettingsType.Personalization:
+            //        await navigationService.Navigate<SettingsPersonalizationViewModel>();
+            //        break;
 
-                case SettingsType.Categories:
-                    await navigationService.Navigate<CategoryListViewModel>();
-                    break;
+            //    case SettingsType.Categories:
+            //        await navigationService.Navigate<CategoryListViewModel>();
+            //        break;
 
-                case SettingsType.BackgroundJob:
-                    await navigationService.Navigate<SettingsBackgroundJobViewModel>();
-                    break;
+            //    case SettingsType.BackgroundJob:
+            //        await navigationService.Navigate<SettingsBackgroundJobViewModel>();
+            //        break;
 
-                case SettingsType.Backup:
-                    await navigationService.Navigate<BackupViewModel>();
-                    break;
+            //    case SettingsType.Backup:
+            //        await navigationService.Navigate<BackupViewModel>();
+            //        break;
 
-                case SettingsType.About:
-                    await navigationService.Navigate<AboutViewModel>();
-                    break;
-            }
+            //    case SettingsType.About:
+            //        await navigationService.Navigate<AboutViewModel>();
+            //        break;
+            //}
         }
     }
 }
