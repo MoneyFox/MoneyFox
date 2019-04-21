@@ -5,6 +5,7 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using DynamicData;
 using DynamicData.Binding;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
@@ -13,7 +14,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
-using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
 using Splat;
 
@@ -27,14 +27,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
 
-        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
+        private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
+        private SourceList<AlphaGroupListGroupCollection<AccountViewModel>> accountsSource;
 
         /// <summary>
         ///     Constructor
         /// </summary>
         public AccountListViewModel(IScreen hostScreen,
                                     ICrudServicesAsync crudService = null,
-                                    IBalanceCalculationService balanceCalculationService = null,
                                     IDialogService dialogService = null,
                                     ISettingsFacade settingsFacade = null)
         {
@@ -43,34 +43,35 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.crudService = crudService ?? Locator.Current.GetService<ICrudServicesAsync>();
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
             this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
-            
-            Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
             GoToPaymentViewCommand = ReactiveCommand.Create<AccountViewModel, Unit>(GoToPaymentOverView);
             EditAccountCommand = ReactiveCommand.Create<AccountViewModel, Unit>(EditAccount);
             AddAccountCommand = ReactiveCommand.Create(GoToAddAccount);
             DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount);
 
-            this.WhenActivated(disposables =>
+            this.WhenActivated(async disposables =>
             {
                 LoadAccounts();
 
-                hasNoAccounts = Accounts
-                    .ToObservableChangeSet()
-                    .Select(x => !x.Any())
-                    .ToProperty(this, x => x.HasNoAccounts)
-                    .DisposeWith(disposables);
+                accountsSource.Connect()
+                              .ObserveOn(RxApp.MainThreadScheduler)
+                              .StartWithEmpty()
+                              .Bind(out accounts)
+                              .Subscribe()
+                              .DisposeWith(disposables);
+
+                hasNoAccounts = this.WhenAnyValue(x => x.Accounts)
+                                    .Select(x => !x.Any())
+                                    .ToProperty(this, x => x.HasNoAccounts);
+
+
             });
         }
         
         public override string UrlPathSegment => "AccountList";
         public override IScreen HostScreen { get; }
 
-        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
-        {
-            get => accounts;
-            private set => this.RaiseAndSetIfChanged(ref accounts, value);
-        }
+        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts => accounts;
 
         public bool HasNoAccounts => hasNoAccounts.Value;
         public ReactiveCommand<AccountViewModel, Unit> GoToPaymentViewCommand { get; set; }
@@ -80,6 +81,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private void LoadAccounts()
         {
+            accountsSource = new SourceList<AlphaGroupListGroupCollection<AccountViewModel>>();
+
             IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
                 .OrderBy(x => x.Name);
 
@@ -89,14 +92,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
             excludedAlphaGroup.AddRange(accountViewModels.AreExcluded());
 
-            Accounts.Clear();
+            accountsSource.Clear();
 
             if (includedAlphaGroup.Any()) {
-                Accounts.Add(includedAlphaGroup);
+                accountsSource.Add(includedAlphaGroup);
             }
 
             if (excludedAlphaGroup.Any()) {
-                Accounts.Add(excludedAlphaGroup);
+                accountsSource.Add(excludedAlphaGroup);
             }
         }
         
@@ -115,7 +118,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
 
-                Accounts.Clear();
+                //Accounts.Clear();
                 LoadAccounts();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -134,7 +137,5 @@ namespace MoneyFox.ServiceLayer.ViewModels
             HostScreen.Router.Navigate.Execute(new AddAccountViewModel(HostScreen));
             return new Unit();
         }
-
-
     }
 }
