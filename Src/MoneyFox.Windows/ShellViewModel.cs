@@ -10,10 +10,16 @@ namespace MoneyFox.Windows
 {
     public class ShellViewModel : RouteableViewModelBase, IScreen
     {
+        private readonly ObservableAsPropertyHelper<bool> canGoBack;
+
         public ShellViewModel()
         {
             Router = new RoutingState();
             RegisterParts();
+
+            canGoBack = Router.NavigateBack
+                .CanExecute
+                .ToProperty(this, x => x.CanGoBack);
 
             Router.Navigate.Execute(new AccountListViewModel(this));
         }
@@ -23,6 +29,8 @@ namespace MoneyFox.Windows
         public override string UrlPathSegment => "Shell";
 
         public override IScreen HostScreen => this;
+
+        public bool CanGoBack => canGoBack.Value;
 
         private void RegisterParts() {
 

@@ -20,7 +20,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class AccountListViewModel : RouteableViewModelBase
     {
-        ObservableAsPropertyHelper<bool> hasNoAccounts;
+        private ObservableAsPropertyHelper<bool> hasNoAccounts;
 
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;

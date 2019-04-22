@@ -24,6 +24,9 @@ namespace MoneyFox.Windows.Views
                 // Bind the view model router to RoutedViewHost.Router property.
                 this.OneWayBind(ViewModel, x => x.Router, x => x.RoutedViewHost.Router)
                     .DisposeWith(disposables);
+
+                this.OneWayBind(ViewModel, vm => vm.CanGoBack, v => v.NavView.IsBackEnabled)
+                    .DisposeWith(disposables);
             });
         }
 

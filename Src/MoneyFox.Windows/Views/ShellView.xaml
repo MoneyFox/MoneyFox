@@ -13,7 +13,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-
         <SolidColorBrush x:Key="NavigationViewItemForeground" Color="{StaticResource AppMenuForeground}"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="{StaticResource AppMenuForeground}"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="{StaticResource AppMenuForeground}"/>
@@ -27,11 +26,10 @@
         <winui:NavigationView x:Name="NavView"
                     ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
-                    IsBackEnabled="False"
-                    IsBackButtonVisible="Collapsed"
+                    IsBackButtonVisible="Auto"
                     CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
-                    IsSettingsVisible="True"  >
+                    IsSettingsVisible="True">
 
             <winui:NavigationView.MenuItems>
                 <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts">
