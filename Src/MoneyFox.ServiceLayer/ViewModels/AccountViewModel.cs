@@ -16,6 +16,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private bool isOverdrawn;
         private bool isExcluded;
 
+        public AccountViewModel()
+        {
+            Name = string.Empty;
+            Note = string.Empty;
+            CurrentBalance = 0;
+        }
+
         /// <summary>
         ///     Account Id
         /// </summary>

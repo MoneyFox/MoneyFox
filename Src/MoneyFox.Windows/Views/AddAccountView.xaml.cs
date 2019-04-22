@@ -11,9 +11,10 @@ namespace MoneyFox.Windows.Views
             this.InitializeComponent();
 
             ViewModel = Locator.Current.GetService<AddAccountViewModel>();
+            ModifyAccountControl.ViewModel = ViewModel;
             this.WhenActivated(disposables =>
             {
-                this.OneWayBind(ViewModel, vm => vm, v => v.ModifyAccountUserControl.ViewModel)
+                this.OneWayBind(ViewModel, vm => vm.Title, v => v.TitlePage.Text)
                     .DisposeWith(disposables);
             });
         }

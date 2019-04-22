@@ -3,11 +3,8 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels {
@@ -26,16 +23,12 @@ namespace MoneyFox.ServiceLayer.ViewModels {
 
             this.crudService = crudService;
             this.dialogService = dialogService;
+
+            SelectedAccount = new AccountViewModel();
         }
 
         public override string UrlPathSegment => "AddAccount";
         public override IScreen HostScreen { get; }
-
-        //public override void Prepare(ModifyAccountParameter parameter)
-        //{
-        //    SelectedAccount = new AccountViewModel();
-        //    base.Prepare(parameter);
-        //}
 
         protected override async Task SaveAccount()
         {
