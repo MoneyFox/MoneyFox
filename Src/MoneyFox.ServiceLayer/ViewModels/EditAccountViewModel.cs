@@ -25,7 +25,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             ICrudServicesAsync crudServices = null,
             ISettingsFacade settingsFacade = null,
             IBackupService backupService = null,
-            IDialogService dialogService = null) : base(settingsFacade, backupService)
+            IDialogService dialogService = null) : base(settingsFacade, backupService, dialogService)
         {
             HostScreen = hostScreen;
 

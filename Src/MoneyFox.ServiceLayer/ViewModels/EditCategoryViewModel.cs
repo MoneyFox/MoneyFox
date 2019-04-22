@@ -26,7 +26,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IBackupService backupService,
             IMvxLogProvider logProvider,
             IMvxNavigationService navigationService)
-            : base(crudServices, settingsFacade, backupService, logProvider, navigationService)
+            : base(crudServices, settingsFacade, backupService, dialogService, logProvider, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;

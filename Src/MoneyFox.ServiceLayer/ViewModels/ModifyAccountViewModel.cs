@@ -4,6 +4,7 @@ using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
 using Splat;
@@ -14,13 +15,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;
+        private readonly IDialogService dialogService;
 
         private AccountViewModel selectedAccount;
 
-        protected ModifyAccountViewModel(ISettingsFacade settingsFacade, IBackupService backupService)
+        protected ModifyAccountViewModel(ISettingsFacade settingsFacade, IBackupService backupService, IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
             this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
             this.WhenActivated(disposable =>
             {
@@ -45,6 +48,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveAccountBase()
         {
+            if (string.IsNullOrEmpty(SelectedAccount.Name)) {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;

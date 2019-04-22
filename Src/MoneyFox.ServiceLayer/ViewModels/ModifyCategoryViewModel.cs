@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
@@ -37,6 +39,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
+        private readonly IDialogService dialogService;
 
         private CategoryViewModel selectedCategory;
 
@@ -46,12 +49,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
                                        ISettingsFacade settingsFacade,
                                        IBackupService backupService,
+                                       IDialogService dialogService,
                                        IMvxLogProvider logProvider,
                                        IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.crudServices = crudServices;
+            this.dialogService = dialogService;
         }
 
 
@@ -59,6 +64,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task SaveCategoryBase()
         {
+            if (string.IsNullOrEmpty(SelectedCategory.Name)) {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
             await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
