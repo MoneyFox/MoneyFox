@@ -1,4 +1,5 @@
 ﻿using System.Reactive.Disposables;
+using Windows.UI.Xaml;
 using MoneyFox.ServiceLayer.ViewModels;
 using ReactiveUI;
 using Splat;
@@ -7,18 +8,23 @@ namespace MoneyFox.Windows.Views
 {
     public sealed partial class AddAccountView : IViewFor<AddAccountViewModel>
     {
-        public AddAccountView() {
-            this.InitializeComponent();
+        public static readonly DependencyProperty ViewModelProperty = DependencyProperty
+            .Register(nameof(ViewModel), typeof(AddAccountViewModel), typeof(AddAccountView), null);
 
-            ViewModel = Locator.Current.GetService<AddAccountViewModel>();
-            ModifyAccountControl.ViewModel = ViewModel;
+        public AddAccountView()
+        {
+            InitializeComponent();
+
             this.WhenActivated(disposables =>
             {
+                this.OneWayBind(ViewModel, vm => vm, v => v.ModifyAccountControl.ViewModel).DisposeWith(disposables);
+
                 this.OneWayBind(ViewModel, vm => vm.Title, v => v.TitlePage.Text)
                     .DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.SaveCommand, v => v.SaveButton.Command).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.CancelCommand, v => v.CancelButton.Command).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.CancelCommand, v => v.CancelButton.Command)
+                    .DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.Resources["SaveLabel"], v => v.SaveButton.Label)
                     .DisposeWith(disposables);
@@ -30,9 +36,12 @@ namespace MoneyFox.Windows.Views
         object IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (AddAccountViewModel)value;
+            set => ViewModel = (AddAccountViewModel) value;
         }
 
-        public AddAccountViewModel ViewModel { get; set; }
+        public AddAccountViewModel ViewModel {
+            get => (AddAccountViewModel)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
+        }
     }
 }

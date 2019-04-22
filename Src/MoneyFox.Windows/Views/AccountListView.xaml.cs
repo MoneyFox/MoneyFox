@@ -19,8 +19,6 @@ namespace MoneyFox.Windows.Views
         {
             this.InitializeComponent();
 
-            ViewModel = Locator.Current.GetService<AccountListViewModel>();
-
             this.WhenActivated(disposables =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source)
@@ -40,12 +38,15 @@ namespace MoneyFox.Windows.Views
             });
         }
 
-        public AccountListViewModel ViewModel { get; set; }
-
         object IViewFor.ViewModel
         {
             get => ViewModel;
             set => ViewModel = (AccountListViewModel) value;
+        }
+
+        public AccountListViewModel ViewModel {
+            get => (AccountListViewModel)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)

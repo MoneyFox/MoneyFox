@@ -6,6 +6,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -18,8 +19,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade, IBackupService backupService)
         {
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
+            this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
+            this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
 
             this.WhenActivated(disposable =>
             {

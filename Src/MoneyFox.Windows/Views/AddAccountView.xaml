@@ -25,7 +25,7 @@
 
             <CommandBar x:Name="BottomCommandBar"
                         Grid.Row="2"
-                        Margin="{StaticResource NegativeLargeLeftRightMargin}">
+                        Margin="{StaticResource NegativeMediumLeftRightMargin}">
                 <CommandBar.PrimaryCommands>
                     <AppBarButton x:Name="SaveButton"
                                   Icon="Save" />

@@ -6,6 +6,7 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels {
     public class AddAccountViewModel : ModifyAccountViewModel {
@@ -21,8 +22,8 @@ namespace MoneyFox.ServiceLayer.ViewModels {
         {
             HostScreen = hostScreen;
 
-            this.crudService = crudService;
-            this.dialogService = dialogService;
+            this.crudService = crudService ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
             SelectedAccount = new AccountViewModel();
         }
