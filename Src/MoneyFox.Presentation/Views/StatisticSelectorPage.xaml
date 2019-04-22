@@ -1,12 +1,9 @@
-﻿<d:MvxContentPage x:TypeArguments="statistic:StatisticSelectorViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
-                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                  x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
@@ -23,7 +20,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
+                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}">
                             <StackLayout Style="{StaticResource ListItemStyle}"
                                          Orientation="Vertical"
                                          Padding="3"
@@ -37,4 +34,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

@@ -1,20 +1,16 @@
-﻿<views:MvxContentPage x:TypeArguments="viewModels:SettingsBackgroundJobViewModel"
-                      xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                      xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Views.BackgroundJobSettingsPage">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyFox.Views.BackgroundJobSettingsPage">
 
     <ContentPage.Content>
-        <Grid Padding="7" >
-            <StackLayout Spacing="0" >
+        <Grid Padding="7">
+            <StackLayout Spacing="0">
 
                 <Label Text="{Binding Resources[AutobackupInformationLabel]}"
-                   Style="{StaticResource DeemphasizedLabelStyle}" />
+                       Style="{StaticResource DeemphasizedLabelStyle}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
-                   Margin="0,5,0,0">
+                      Margin="0,5,0,0">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
@@ -22,43 +18,50 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                       Style="{StaticResource DefaultTextStyle}"
-                       Text="{Binding Resources[AutobackupLabel]}" />
+                           Style="{StaticResource DefaultTextStyle}"
+                           Text="{Binding Resources[AutobackupLabel]}" />
 
                     <Switch Grid.Column="1"
-                        IsToggled="{Binding IsAutoBackupEnabled}" />
+                            IsToggled="{Binding IsAutoBackupEnabled}" />
                 </Grid>
 
                 <Label Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
-                   Style="{StaticResource DeemphasizedLabelStyle}"
-                   Margin="0,6,0,0"/>
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       Margin="0,6,0,0" />
 
-            <Entry Text="{Binding BackupSyncRecurrence}"
-                   HorizontalTextAlignment="End"
-                   Keyboard="Numeric" />
+                <Entry Text="{Binding BackupSyncRecurrence}"
+                       HorizontalTextAlignment="End"
+                       Keyboard="Numeric" />
 
             </StackLayout>
 
-            <StackLayout Spacing="{StaticResource ZeroSpacing}" 
-                     VerticalOptions="End" 
-                     IsVisible="{Binding IsLoggedIn}">
-                <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+            <StackLayout Spacing="{StaticResource ZeroSpacing}"
+                         VerticalOptions="End"
+                         IsVisible="{Binding IsLoggedIn}">
+                <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                       Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}"
+                           Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}"
+                           Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
                 </StackLayout>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

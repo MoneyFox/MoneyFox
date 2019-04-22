@@ -15,7 +15,7 @@ namespace MoneyFox.Presentation.Views
 		    StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {
 		        StatisticSelectorList.SelectedItem = null;
-                ViewModel.GoToStatisticCommand.Execute(args.Item);
+                //ViewModel.GoToStatisticCommand.Execute(args.Item);
 		    };
 
 		    Title = Strings.StatisticsTitle;
