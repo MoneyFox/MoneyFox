@@ -27,14 +27,10 @@
                         Grid.Row="2"
                         Margin="{StaticResource NegativeLargeLeftRightMargin}">
                 <CommandBar.PrimaryCommands>
-                    <AppBarButton x:Uid="DoneLabel"
-                                  Command="{Binding SaveCommand}"
-                                  Icon="Save"
-                                  Label="Done" />
-                    <AppBarButton x:Uid="CancelLabel"
-                                  Command="{Binding CancelCommand}"
-                                  Icon="Cancel"
-                                  Label="Cancel" />
+                    <AppBarButton x:Name="SaveButton"
+                                  Icon="Save" />
+                    <AppBarButton x:Name="CancelButton"
+                                  Icon="Cancel"/>
                 </CommandBar.PrimaryCommands>
             </CommandBar>
         </Grid>
