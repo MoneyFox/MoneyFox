@@ -8,8 +8,7 @@
                   xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.BackupPage"
-                  BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeBackupViewModel}">
+                  BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}">
 
     <d:MvxContentPage.Resources>
         <ResourceDictionary>

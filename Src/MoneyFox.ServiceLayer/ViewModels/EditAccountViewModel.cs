@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -14,8 +15,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private int accountId;
-
         private readonly ICrudServicesAsync crudServices;
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
@@ -34,6 +33,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
             this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
+
+            this.WhenActivated(async (CompositeDisposable disposable) =>
+            {
+                SelectedAccount = await this.crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+            });
         }
 
         public override string Title =>
@@ -44,13 +48,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteAccount);
 
-        //public override async void Prepare(ModifyAccountParameter parameter)
-        //{
-        //    base.Prepare(parameter);
-        //    SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)
-        //                                        ;
-        //}
-
         protected override async Task SaveAccount()
         {
             await crudServices.UpdateAndSaveAsync(SelectedAccount);
@@ -60,7 +57,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
             }
 
-            await CancelCommand.ExecuteAsync();
+            HostScreen.Router.NavigateBack.Execute();
         }
 
         protected async Task DeleteAccount()
@@ -71,7 +68,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await CancelCommand.ExecuteAsync();
+            HostScreen.Router.NavigateBack.Execute();
         }
     }
 }
