@@ -1,7 +1,7 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Business;
+using MvvmCross.Plugin.File.Platforms.Uap;
 
 namespace MoneyFox.Windows
 {
@@ -17,6 +17,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
+            builder.RegisterType<MvxWindowsFileStore>().AsImplementedInterfaces();
         }
     }
 }

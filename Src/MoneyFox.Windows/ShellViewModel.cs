@@ -29,17 +29,8 @@ namespace MoneyFox.Windows
             var builder = new ContainerBuilder();
             builder.Register((c) => this).As<IScreen>().SingleInstance();
             builder.RegisterModule<WindowsModule>();
-            //builder.UseAutofacDependencyResolver();
+            builder.UseAutofacDependencyResolver();
 
-            try
-            {
-                var foo = builder.Build().Resolve<AddAccountViewModel>();
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
             Locator.CurrentMutable.RegisterViewsForViewModels(typeof(AccountListView).Assembly);
         }
     }
