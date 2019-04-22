@@ -44,7 +44,7 @@ namespace MoneyFox.Windows.Views
             flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
-        private void EditFlyoutClicked(object sender, RoutedEventArgs e)
+        private async void EditFlyoutClicked(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             if (!(element.DataContext is AccountViewModel account))
@@ -52,10 +52,10 @@ namespace MoneyFox.Windows.Views
                 return;
             }
 
-            ViewModel.EditAccountCommand.Execute(account);
+            await ViewModel.EditAccountCommand.Execute(account);
         }
 
-        private void DeleteFlyoutClicked(object sender, RoutedEventArgs e)
+        private async void DeleteFlyoutClicked(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             if (!(element.DataContext is AccountViewModel account))
@@ -63,7 +63,7 @@ namespace MoneyFox.Windows.Views
                 return;
             }
 
-            ViewModel.DeleteAccountCommand.Execute(account);
+            await ViewModel.DeleteAccountCommand.Execute(account);
         }
     }
 }
