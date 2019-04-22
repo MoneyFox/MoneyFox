@@ -149,6 +149,7 @@
     <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReactiveView.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>

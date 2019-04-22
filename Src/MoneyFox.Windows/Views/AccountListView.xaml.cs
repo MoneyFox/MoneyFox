@@ -6,15 +6,13 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.ServiceLayer.ViewModels;
 using ReactiveUI;
-using Splat;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class AccountListView : IViewFor<AccountListViewModel>
-    {
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty
-            .Register(nameof(ViewModel), typeof(AccountListViewModel), typeof(AccountListView), null);
+    public class MyAccountListView : ReactiveView<AccountListViewModel> { }
 
+    public sealed partial class AccountListView
+    {
         public AccountListView()
         {
             this.InitializeComponent();
@@ -36,17 +34,6 @@ namespace MoneyFox.Windows.Views
                     .InvokeCommand(ViewModel.GoToPaymentViewCommand)
                     .DisposeWith(disposables);
             });
-        }
-
-        object IViewFor.ViewModel
-        {
-            get => ViewModel;
-            set => ViewModel = (AccountListViewModel) value;
-        }
-
-        public AccountListViewModel ViewModel {
-            get => (AccountListViewModel)GetValue(ViewModelProperty);
-            set => SetValue(ViewModelProperty, value);
         }
 
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)

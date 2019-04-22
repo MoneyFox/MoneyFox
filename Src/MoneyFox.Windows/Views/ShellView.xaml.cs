@@ -31,12 +31,12 @@ namespace MoneyFox.Windows.Views
         {
             if (args.IsSettingsInvoked)
             {
-                RoutedViewHost.Router.Navigate.Execute(new SettingsViewModel(ViewModel));
+                RoutedViewHost.Router.Navigate.Execute(new SettingsViewModel(ViewModel.HostScreen));
             }
 
             if (args.InvokedItem.Equals(Strings.AccountsTitle))
             {
-                RoutedViewHost.Router.Navigate.Execute(new AccountListViewModel(ViewModel));
+                RoutedViewHost.Router.Navigate.Execute(new AccountListViewModel(ViewModel.HostScreen));
             }
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {

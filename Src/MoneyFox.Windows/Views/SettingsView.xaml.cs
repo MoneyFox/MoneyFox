@@ -3,19 +3,14 @@ using ReactiveUI;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class SettingsView : IViewFor<ISettingsViewModel>
+    public class MySettingsView : ReactiveView<ISettingsViewModel> { }
+
+    public sealed partial class SettingsView 
     {
         public SettingsView() 
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            this.WhenActivated(disposables => {});
         }
-
-        object IViewFor.ViewModel
-        {
-            get => ViewModel;
-            set => ViewModel = (ISettingsViewModel)value;
-        }
-
-        public ISettingsViewModel ViewModel { get; set; }
     }
 }
