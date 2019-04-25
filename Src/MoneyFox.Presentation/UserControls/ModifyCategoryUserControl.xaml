@@ -1,38 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
-             x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
+﻿<xamForms:ReactiveContentView x:TypeArguments="viewModels:ModifyCategoryViewModel"
+                              xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                              xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
+                              x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
 
     <ContentView.Content>
-      <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-          <Label Text="{Binding Resources[CategoryNameLabel]}"
-                 Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Name}"/>
+            <Label x:Name="CategoryNameLabel"
+                   Text="{Binding Resources[CategoryNameLabel]}"
+                   Style="{StaticResource DefaultTextStyle}" />
+            <Entry Text="{Binding SelectedCategory.Name}" />
 
-          <Label Text="{Binding Resources[NoteLabel]}"
-                 Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Note}"/>
+            <Label x:Name="NoteLabel" Text="{Binding Resources[NoteLabel]}"
+                   Style="{StaticResource DefaultTextStyle}" />
+            <Entry Text="{Binding SelectedCategory.Note}" />
 
-          <!-- This delete button is only for ios, since there can be only one menu item -->
-          <Button x:Name="DeleteCategoryButton"
-                  Text="{Binding Resources[DeleteLabel]}"
-                  Command="{Binding DeleteCommand}"
-                  Margin="0,12,0,0" >
-
-              <Button.IsVisible>
-                  <OnPlatform x:TypeArguments="x:Boolean">
-                      <On Platform="Android" Value="False" />
-                      <On Platform="Ios" Value="True" />
-                  </OnPlatform>
-              </Button.IsVisible>
-
-                <Button.Effects>
-                  <effects:DeleteButtonEffect />
-              </Button.Effects>
-          </Button>
-
-      </StackLayout>
+        </StackLayout>
     </ContentView.Content>
-</ContentView>
+</xamForms:ReactiveContentView>

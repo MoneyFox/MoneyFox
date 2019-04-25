@@ -4,8 +4,7 @@
                               xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
                               xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                               xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                              x:Class="MoneyFox.Presentation.Views.AddCategoryPage"
-                              Title="{Binding Title}">
+                              x:Class="MoneyFox.Presentation.Views.AddCategoryPage" >
 
     <ContentPage.Content>
         <StackLayout>

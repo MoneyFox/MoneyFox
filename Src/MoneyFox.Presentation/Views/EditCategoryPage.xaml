@@ -1,15 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views:MvxContentPage x:TypeArguments="viewModels:EditCategoryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<xamForms:ReactiveContentPage x:TypeArguments="viewModels:EditCategoryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Presentation.Views.EditCategoryPage"
-                      Title="{Binding Title}">
+                      xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                      xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
+                      x:Class="MoneyFox.Presentation.Views.EditCategoryPage">
 
     <ContentPage.Content>
         <StackLayout>
             <userControls:ModifyCategoryUserControl />
+
+            <!-- This delete button is only for ios, since there can be only one menu item -->
+            <Button x:Name="DeleteCategoryButton"
+                    Text="{Binding Resources[DeleteLabel]}"
+                    Command="{Binding DeleteCommand}"
+                    Margin="0,12,0,0" >
+
+                <Button.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="Android" Value="False" />
+                        <On Platform="Ios" Value="True" />
+                    </OnPlatform>
+                </Button.IsVisible>
+
+                <Button.Effects>
+                    <effects:DeleteButtonEffect />
+                </Button.Effects>
+            </Button>
+
         </StackLayout>
     </ContentPage.Content>
-</views:MvxContentPage>
+</xamForms:ReactiveContentPage>

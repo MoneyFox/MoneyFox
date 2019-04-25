@@ -128,14 +128,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id))
-                                   ;
+            //await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(category.Id);
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter())
-                                   ;
+            //await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>();
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>

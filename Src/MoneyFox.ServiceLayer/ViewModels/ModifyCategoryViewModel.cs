@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Reactive;
+using System.Reactive.Disposables;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -18,12 +18,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
         ///     a new CategoryViewModel.
         /// </summary>
-        MvxAsyncCommand SaveCommand { get; }
-    
+        ReactiveCommand<Unit, Unit> SaveCommand { get; }
+
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        MvxAsyncCommand CancelCommand { get; }
+        ReactiveCommand<Unit, Unit> CancelCommand { get; }
 
         /// <summary>
         ///     Selected category.
@@ -34,7 +34,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : BaseNavigationViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : RouteableViewModelBase, IModifyCategoryViewModel
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
@@ -46,19 +46,55 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
-                                       ISettingsFacade settingsFacade,
-                                       IBackupService backupService,
-                                       IDialogService dialogService,
-                                       IMvxLogProvider logProvider,
-                                       IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected ModifyCategoryViewModel(int categoryId,
+                                          IScreen hostScreen,
+                                          ICrudServicesAsync crudServices = null,
+                                          ISettingsFacade settingsFacade = null,
+                                          IBackupService backupService = null,
+                                          IDialogService dialogService = null)
         {
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
-            this.crudServices = crudServices;
-            this.dialogService = dialogService;
+            CategoryId = categoryId;
+            HostScreen = hostScreen;
+            this.crudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
+            this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
+
+            this.WhenActivated(disposable =>
+            {
+                SaveCommand = ReactiveCommand.CreateFromTask(SaveCategoryBase).DisposeWith(disposable);
+                CancelCommand = ReactiveCommand.CreateFromTask(Cancel).DisposeWith(disposable);
+
+            });
         }
 
+        public override IScreen HostScreen { get; }
+
+        /// <summary>
+        ///     The currently selected CategoryViewModel
+        /// </summary>
+        public CategoryViewModel SelectedCategory {
+            get => selectedCategory;
+            set => this.RaiseAndSetIfChanged(ref selectedCategory, value);
+        }
+
+        /// <summary>
+        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
+        /// </summary>
+        public virtual string Title { get; set; }
+
+        protected int CategoryId { get; private set; }
+
+        /// <summary>
+        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
+        ///     a new CategoryViewModel.
+        /// </summary>
+        public ReactiveCommand<Unit, Unit> SaveCommand { get; set; }
+
+        /// <summary>
+        ///     Cancel the current operation
+        /// </summary>
+        public ReactiveCommand<Unit, Unit> CancelCommand { get; set; }
 
         protected abstract Task SaveCategory();
 
@@ -76,48 +112,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
         }
-
-        /// <summary>
-        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
-        ///     a new CategoryViewModel.
-        /// </summary>
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveCategoryBase);
-
-        /// <summary>
-        ///     Cancel the current operation
-        /// </summary>
-        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
-
-        /// <summary>
-        ///     The currently selected CategoryViewModel
-        /// </summary>
-        public CategoryViewModel SelectedCategory
-        {
-            get => selectedCategory;
-            set
-            {
-                selectedCategory = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
-        /// </summary>
-        public virtual string Title { get; set; }
-
-        protected int CategoryId { get; private set; }
-
-        /// <inheritdoc />
-        public override void Prepare(ModifyCategoryParameter parameter)
-        {
-            CategoryId = parameter.CategoryId;
-        }
-
+        
         private async Task Cancel()
         {
             SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
-            await NavigationService.Close(this);
+            HostScreen.Router.NavigateBack.Execute();
         }
     }
 }

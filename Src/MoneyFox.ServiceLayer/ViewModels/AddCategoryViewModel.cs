@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reactive.Disposables;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -16,25 +15,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
 
-        public AddCategoryViewModel(ICrudServicesAsync crudServices,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) 
-                : base(crudServices, settingsFacade, backupService, dialogService, logProvider, navigationService)
+        public AddCategoryViewModel(int categoryId,
+                                    IScreen hostScreen,
+                                    ICrudServicesAsync crudServices,
+                                    IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
+                                    IBackupService backupService)
+            : base(categoryId, hostScreen, crudServices, settingsFacade, backupService, dialogService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
+
+            this.WhenActivated((CompositeDisposable disposable) =>
+            {
+                SelectedCategory = new CategoryViewModel();
+                Title = Strings.AddCategoryTitle;
+            });
         }
 
-        public override void Prepare(ModifyCategoryParameter parameter)
-        {
-            SelectedCategory = new CategoryViewModel();
-            Title = Strings.AddCategoryTitle;
-
-            base.Prepare(parameter);
-        }
+        public override string UrlPathSegment => "AddCategory";
 
         protected override async Task SaveCategory()
         {
@@ -51,7 +50,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
             }
 
-            await NavigationService.Close(this);
+            HostScreen.Router.NavigateBack.Execute();
         }
     }
 }

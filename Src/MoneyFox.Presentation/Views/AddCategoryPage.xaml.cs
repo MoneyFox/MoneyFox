@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Resources;
+using ReactiveUI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,13 +12,17 @@ namespace MoneyFox.Presentation.Views
 		{
 			InitializeComponent ();
 
-            ToolbarItems.Add(new ToolbarItem
+            this.WhenActivated(disposables =>
             {
-                //Command = new Command(() => ViewModel.SaveCommand.Execute()),
-                Text = Strings.SaveCategoryLabel,
-                Priority = 0,
-                Order = ToolbarItemOrder.Primary,
-                Icon = "ic_save.png"
+                Title = ViewModel.Title;
+
+                ToolbarItems.Add(new ToolbarItem {
+                    Command = new Command(() => ViewModel.SaveCommand.Execute()),
+                    Text = Strings.SaveCategoryLabel,
+                    Priority = 0,
+                    Order = ToolbarItemOrder.Primary,
+                    Icon = "ic_save.png"
+                });
             });
         }
 	}

@@ -1,7 +1,9 @@
 ﻿using System.Globalization;
+using System.Reactive;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
@@ -12,9 +14,8 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
 
-        public MvxAsyncCommand SaveCommand { get; }
-        public MvxAsyncCommand CancelCommand { get; }
-        public MvxAsyncCommand DeleteCommand { get; }
+        public ReactiveCommand<Unit, Unit> SaveCommand { get; }
+        public ReactiveCommand<Unit, Unit> CancelCommand { get; }
         public CategoryViewModel SelectedCategory { get; }
 
         public bool IsEdit { get; }

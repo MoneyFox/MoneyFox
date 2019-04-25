@@ -1,9 +1,10 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public class CategoryViewModel : BaseViewModel, ILinkToEntity<Category>
+    public class CategoryViewModel : ViewModelBase, ILinkToEntity<Category>
     {
         private int id;
         private string name;
@@ -12,23 +13,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int Id
         {
             get => id;
-            set
-            {
-                if (id == value) return;
-                id = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref id, value);
         }
 
         public string Name
         {
             get => name;
-            set
-            {
-                if (name == value) return;
-                name = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref name, value);
         }
 
 
@@ -38,12 +29,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public string Note
         {
             get => note;
-            set
-            {
-                if (note == value) return;
-                note = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref note, value);
         }
     }
 }
