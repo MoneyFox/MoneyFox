@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
+using DynamicData;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
@@ -12,25 +17,47 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseNavigationViewModel
+    public abstract class AbstractCategoryListViewModel : RouteableViewModelBase
     {
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
+        private ObservableAsPropertyHelper<bool> hasNoCategories;
+
+        private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories;
+        private SourceList<AlphaGroupListGroupCollection<CategoryViewModel>> categoriesSource;
 
         /// <summary>
         ///     Base class for the category list user control
         /// </summary>
         protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices,
-                                                IDialogService dialogService,
-                                                IMvxLogProvider logProvider,
-                                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                                IDialogService dialogService)
         {
             CrudServices = crudServices;
             DialogService = dialogService;
+
+            this.WhenActivated(async disposables =>
+            {
+                await Search();
+
+                SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
+                ItemClickCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(ItemClick).DisposeWith(disposables);
+                CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory).DisposeWith(disposables);
+                EditCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(EditCategory).DisposeWith(disposables);
+                DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory).DisposeWith(disposables);
+
+                categoriesSource.Connect()
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .StartWithEmpty()
+                    .Bind(out categories)
+                    .Subscribe()
+                    .DisposeWith(disposables);
+
+                hasNoCategories = this.WhenAnyValue(x => x.categoriesSource.Items)
+                    .Select(x => !x.Any())
+                    .ToProperty(this, x => x.HasNoCategories);
+            });
         }
 
         protected ICrudServicesAsync CrudServices { get; }
@@ -39,65 +66,43 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract Task ItemClick(CategoryViewModel category);
+        protected abstract Unit ItemClick(CategoryViewModel category);
 
-        /// <summary>
-        ///     Collection with categories alphanumeric grouped by
-        /// </summary>
-        public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
-        {
-            get => source;
-            private set
-            {
-                if (source == value) return;
-                source = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsCategoriesEmpty));
-            }
-        }
+        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
 
-        public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
+        public bool HasNoCategories => hasNoCategories.Value;
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> DeleteCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(DeleteCategory);
+        public ReactiveCommand<CategoryViewModel, Unit> DeleteCategoryCommand { get; set; }
 
         /// <summary>
         ///     Edit the currently selected CategoryViewModel
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> EditCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(EditCategory);
+        public ReactiveCommand<CategoryViewModel, Unit> EditCategoryCommand { get; set; }
 
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand  => new MvxAsyncCommand<CategoryViewModel>(ItemClick);
+        public ReactiveCommand<CategoryViewModel, Unit> ItemClickCommand { get; set; }
 
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
-        public MvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
+        public ReactiveCommand<string, Unit> SearchCommand { get; set; }
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
-        public MvxAsyncCommand<CategoryViewModel> CreateNewCategoryCommand => new MvxAsyncCommand<CategoryViewModel>(CreateNewCategory);
-
-        /// <inheritdoc />
-        public override async void ViewAppearing()
-        {
-            DialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load())
-                      ;
-            DialogService.HideLoadingDialog();
-        }
+        public ReactiveCommand<CategoryViewModel, Unit> CreateNewCategoryCommand { get; set; }
 
         /// <summary>
         ///     Performs a search with the text in the search text property
         /// </summary>
-        public async Task Search(string searchText = "")
+        public async Task<Unit> Search(string searchText = "")
         {
-            List<CategoryViewModel> categories;
+            List<CategoryViewModel> categoryViewModels;
 
             var categoryQuery = CrudServices
                 .ReadManyNoTracked<CategoryViewModel>()
@@ -105,54 +110,51 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                categories = new List<CategoryViewModel>(
+                categoryViewModels = new List<CategoryViewModel>(
                     await categoryQuery
                         .WhereNameContains(searchText)
-                        .ToListAsync()
-                        );
+                        .ToListAsync());
             } 
             else
             {
-                categories = new List<CategoryViewModel>(
+                categoryViewModels = new List<CategoryViewModel>(
                     await categoryQuery
-                        .ToListAsync()
-                        );
+                        .ToListAsync());
             }
-            CategoryList = CreateGroup(categories);
+
+            categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
+            categoriesSource.AddRange(CreateGroup(categoryViewModels));
+
+            return new Unit();
         }
 
-        private async Task Load()
+        private Unit EditCategory(CategoryViewModel category)
         {
-            await Search();
+            HostScreen.Router.Navigate.Execute(new EditCategoryViewModel(category.Id, HostScreen));
+            return Unit.Default;
         }
 
-        private async Task EditCategory(CategoryViewModel category)
+        private Unit CreateNewCategory(CategoryViewModel category)
         {
-            //await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(category.Id);
+            HostScreen.Router.Navigate.Execute(new AddCategoryViewModel(HostScreen));
+            return Unit.Default;
         }
 
-        private async Task CreateNewCategory(CategoryViewModel category)
-        {
-            //await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>();
-        }
-
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
-            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
-                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
+        private List<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categoryViewModels) =>
+            AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categoryViewModels,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
-                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand));
+                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand);
 
-        private async Task DeleteCategory(CategoryViewModel categoryToDelete)
+        private async Task<Unit> DeleteCategory(CategoryViewModel categoryToDelete)
         {
-            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)
-                                   )
+            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id)
-                                  ;
+                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
                 await Search();
             }
+            return Unit.Default;
         }
     }
 }

@@ -15,13 +15,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
 
-        public AddCategoryViewModel(int categoryId,
-                                    IScreen hostScreen,
+        public AddCategoryViewModel(IScreen hostScreen,
                                     ICrudServicesAsync crudServices,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService)
-            : base(categoryId, hostScreen, crudServices, settingsFacade, backupService, dialogService)
+            : base(0, hostScreen, crudServices, settingsFacade, backupService, dialogService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
