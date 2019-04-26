@@ -16,11 +16,14 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
 using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : RouteableViewModelBase
     {
+        private string searchTerm;
+
         private ObservableAsPropertyHelper<bool> hasNoCategories;
 
         private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories;
@@ -31,8 +34,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices, IDialogService dialogService)
         {
-            CrudServices = crudServices;
-            DialogService = dialogService;
+            CrudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
+            DialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
             this.WhenActivated(async disposables =>
             {
@@ -46,6 +49,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .DisposeWith(disposables);
                 DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory)
                     .DisposeWith(disposables);
+
+                this.WhenAnyValue(x => x.SearchTerm)
+                    .Throttle(TimeSpan.FromMilliseconds(800))
+                    .Select(term => term?.Trim())
+                    .DistinctUntilChanged()
+                    .Where(term => !string.IsNullOrWhiteSpace(term))
+                    .ObserveOn(RxApp.MainThreadScheduler)
+                    .InvokeCommand(SearchCommand);
 
                 categoriesSource.Connect()
                     .ObserveOn(RxApp.MainThreadScheduler)
@@ -71,6 +82,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
 
         public bool HasNoCategories => hasNoCategories.Value;
+
+        public string SearchTerm {
+            get => searchTerm ?? "";
+            set => this.RaiseAndSetIfChanged(ref searchTerm, value);
+        }
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.

@@ -146,6 +146,9 @@
     <Compile Include="Views\AddCategoryView.xaml.cs">
       <DependentUpon>AddCategoryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
@@ -245,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoryListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

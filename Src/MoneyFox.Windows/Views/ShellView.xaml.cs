@@ -43,7 +43,7 @@ namespace MoneyFox.Windows.Views
             }
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {
-                //RoutedViewHost.Router.Navigate.Execute(new AccountListViewModel(HostScreen));
+                RoutedViewHost.Router.Navigate.Execute(new CategoryListViewModel(ViewModel.HostScreen));
             }
             else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
             {

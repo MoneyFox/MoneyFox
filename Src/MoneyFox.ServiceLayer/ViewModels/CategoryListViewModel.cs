@@ -13,8 +13,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
         public CategoryListViewModel(IScreen hostScreen,
-                                     ICrudServicesAsync curdServicesAsync,
-                                     IDialogService dialogService) : base(curdServicesAsync, dialogService)
+                                     ICrudServicesAsync curdServicesAsync = null,
+                                     IDialogService dialogService = null) : base(curdServicesAsync, dialogService)
         {
             HostScreen = hostScreen;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reactive.Disposables;
+﻿using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,10 +22,14 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.CategoryList, v => v.CategoryCollectionViewSource.Source)
                     .DisposeWith(disposables);
 
-                this.OneWayBind(ViewModel, vm => vm.Resources["NoCategoriesMessage"], v => v.NoCategoriesTextBlock.Text)
+                this.OneWayBind(ViewModel, vm => vm.HasNoCategories, v => v.NoCategoriesTextBlock.Visibility)
                     .DisposeWith(disposables);
 
-                this.OneWayBind(ViewModel, vm => vm.HasNoCategories, v => v.NoCategoriesTextBlock.Visibility)
+                this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchTextBox.Text).DisposeWith(disposables);
+
+                this.OneWayBind(ViewModel, vm => vm.Resources["NoCategoriesMessage"], v => v.NoCategoriesTextBlock.Text)
+                    .DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["SearchHeader"], v => v.SearchTextBox.Header)
                     .DisposeWith(disposables);
 
                 CategoryList
@@ -34,14 +37,6 @@ namespace MoneyFox.Windows.Views.UserControls
                     .ItemClick.Select(x => x.ClickedItem as CategoryViewModel)
                     .InvokeCommand(ViewModel.ItemClickCommand)
                     .DisposeWith(disposables);
-
-                this.WhenAnyValue(x => x.SearchTextBox)
-                    .Throttle(TimeSpan.FromMilliseconds(500), RxApp.TaskpoolScheduler)
-                    .Select(searchTerm => searchTerm.Text.Trim())
-                    .DistinctUntilChanged()
-                    .Where(searchTerm => !string.IsNullOrWhiteSpace(searchTerm))
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .InvokeCommand(ViewModel.SearchCommand);
             });
         }
 

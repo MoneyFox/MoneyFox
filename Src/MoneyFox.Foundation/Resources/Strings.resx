@@ -787,4 +787,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
     <value>Modify Recurrence</value>
   </data>
+  <data name="SearchHeader" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

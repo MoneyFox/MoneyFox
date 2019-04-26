@@ -49,8 +49,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 EditAccountCommand = ReactiveCommand.Create<AccountViewModel, Unit>(EditAccount).DisposeWith(disposables);
                 AddAccountCommand = ReactiveCommand.Create(GoToAddAccount).DisposeWith(disposables);
                 DeleteAccountCommand = ReactiveCommand.CreateFromTask<AccountViewModel, Unit>(DeleteAccount).DisposeWith(disposables);
-
-
+                
                 LoadAccounts();
 
                 accountsSource.Connect()
@@ -63,8 +62,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 hasNoAccounts = this.WhenAnyValue(x => x.accountsSource.Items)
                                     .Select(x => !x.Any())
                                     .ToProperty(this, x => x.HasNoAccounts);
-
-
             });
         }
         
