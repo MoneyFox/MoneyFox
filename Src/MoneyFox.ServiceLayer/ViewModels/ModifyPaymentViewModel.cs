@@ -255,8 +255,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
                                              .OrderByName()
-                                             .ToListAsync()
-                                             ;
+                                             .ToListAsync();
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
@@ -275,8 +274,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (SelectedPayment.ChargedAccount == null)
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage)
-                                   ;
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
                 return;
             }
 
@@ -300,8 +298,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            await navigationService.Navigate<SelectCategoryListViewModel>()
-                                   ;
+            //await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 
         private void ResetSelection()

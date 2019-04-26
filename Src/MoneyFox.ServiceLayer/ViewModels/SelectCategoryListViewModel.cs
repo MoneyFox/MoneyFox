@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Reactive;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -17,8 +17,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     }
 
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>
-    public class 
-        SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
+    public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private readonly IMvxMessenger messenger;
         private CategoryViewModel selectedCategory;
@@ -26,14 +25,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
-        public SelectCategoryListViewModel(ICrudServicesAsync crudServicesAsync,
-                                           IDialogService dialogService,
-                                           IMvxMessenger messenger,
-                                           IMvxLogProvider logProvider,
-                                           IMvxNavigationService navigationService) : base(crudServicesAsync, dialogService, logProvider, navigationService)
+        public SelectCategoryListViewModel(IScreen hostScreen,
+            ICrudServicesAsync crudServicesAsync,
+            IDialogService dialogService,
+            IMvxMessenger messenger) : base(crudServicesAsync, dialogService)
         {
             this.messenger = messenger;
+
+            HostScreen = hostScreen;
         }
+        public override string UrlPathSegment => "SelectCategory";
+        public override IScreen HostScreen { get; }
 
         /// <summary>
         ///     CategoryViewModel currently selected in the view.
@@ -41,21 +43,17 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public CategoryViewModel SelectedCategory
         {
             get => selectedCategory;
-            set
-            {
-                if (selectedCategory == value) return;
-                selectedCategory = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref selectedCategory, value);
         }
 
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override async Task ItemClick(CategoryViewModel category)
+        protected override async Task<Unit> ItemClick(CategoryViewModel category)
         {
             messenger.Publish(new CategorySelectedMessage(this, category));
-            await NavigationService.Close(this);
+            HostScreen.Router.NavigateBack.Execute();
+            return Unit.Default;
         }
     }
 }

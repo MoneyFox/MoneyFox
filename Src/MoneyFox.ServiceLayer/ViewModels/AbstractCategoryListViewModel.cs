@@ -14,9 +14,7 @@ using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
-using MvvmCross.Commands;
 using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
@@ -31,8 +29,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Base class for the category list user control
         /// </summary>
-        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices,
-                                                IDialogService dialogService)
+        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices, IDialogService dialogService)
         {
             CrudServices = crudServices;
             DialogService = dialogService;
@@ -42,10 +39,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await Search();
 
                 SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
-                ItemClickCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(ItemClick).DisposeWith(disposables);
-                CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory).DisposeWith(disposables);
-                EditCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(EditCategory).DisposeWith(disposables);
-                DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory).DisposeWith(disposables);
+                ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick).DisposeWith(disposables);
+                CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory)
+                    .DisposeWith(disposables);
+                EditCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(EditCategory)
+                    .DisposeWith(disposables);
+                DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory)
+                    .DisposeWith(disposables);
 
                 categoriesSource.Connect()
                     .ObserveOn(RxApp.MainThreadScheduler)
@@ -66,7 +66,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
-        protected abstract Unit ItemClick(CategoryViewModel category);
+        protected abstract Task<Unit> ItemClick(CategoryViewModel category);
 
         public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
 
@@ -114,7 +114,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     await categoryQuery
                         .WhereNameContains(searchText)
                         .ToListAsync());
-            } 
+            }
             else
             {
                 categoryViewModels = new List<CategoryViewModel>(
@@ -140,12 +140,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             return Unit.Default;
         }
 
-        private List<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categoryViewModels) =>
+        private List<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
+            List<CategoryViewModel> categoryViewModels) =>
             AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categoryViewModels,
-                    CultureInfo.CurrentUICulture,
-                    s => string.IsNullOrEmpty(s.Name)
-                        ? "-"
-                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand);
+                CultureInfo.CurrentUICulture,
+                s => string.IsNullOrEmpty(s.Name)
+                    ? "-"
+                    : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
+                itemClickCommand: ItemClickCommand);
 
         private async Task<Unit> DeleteCategory(CategoryViewModel categoryToDelete)
         {
@@ -154,6 +156,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
                 await Search();
             }
+
             return Unit.Default;
         }
     }

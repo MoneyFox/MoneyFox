@@ -26,7 +26,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.Resources["NoCategoriesMessage"], v => v.NoCategoriesTextBlock.Text)
                     .DisposeWith(disposables);
 
-                this.OneWayBind(ViewModel, vm => vm.IsCategoriesEmpty, v => v.NoCategoriesTextBlock.Visibility)
+                this.OneWayBind(ViewModel, vm => vm.HasNoCategories, v => v.NoCategoriesTextBlock.Visibility)
                     .DisposeWith(disposables);
 
                 CategoryList
@@ -41,7 +41,7 @@ namespace MoneyFox.Windows.Views.UserControls
                     .DistinctUntilChanged()
                     .Where(searchTerm => !string.IsNullOrWhiteSpace(searchTerm))
                     .ObserveOn(RxApp.MainThreadScheduler)
-                    .InvokeCommand(ViewModel.);
+                    .InvokeCommand(ViewModel.SearchCommand);
             });
         }
 

@@ -7,6 +7,7 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -16,14 +17,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IDialogService dialogService;
 
         public AddCategoryViewModel(IScreen hostScreen,
-                                    ICrudServicesAsync crudServices,
-                                    IDialogService dialogService,
-                                    ISettingsFacade settingsFacade,
-                                    IBackupService backupService)
+                                    ICrudServicesAsync crudServices = null,
+                                    IDialogService dialogService = null,
+                                    ISettingsFacade settingsFacade = null,
+                                    IBackupService backupService = null)
             : base(0, hostScreen, crudServices, settingsFacade, backupService, dialogService)
         {
-            this.crudServices = crudServices;
-            this.dialogService = dialogService;
+            this.crudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
             this.WhenActivated((CompositeDisposable disposable) =>
             {

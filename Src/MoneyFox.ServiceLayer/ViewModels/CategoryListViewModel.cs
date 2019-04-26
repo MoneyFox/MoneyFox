@@ -1,58 +1,34 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Foundation.Groups;
 using MoneyFox.ServiceLayer.Interfaces;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using ReactiveUI;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    /// <summary>
-    ///     Defines the interface for a category list.
-    /// </summary>
-    public interface ICategoryListViewModel : IBaseViewModel
-    {
-        /// <summary>
-        ///     List of categories.
-        /// </summary>
-        ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList { get; }
-
-        /// <summary>
-        ///     Command for the item click.
-        /// </summary>
-        MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
-
-        /// <summary>
-        ///     Search command
-        /// </summary>
-        MvxAsyncCommand<string> SearchCommand { get; }
-
-        /// <summary>
-        ///     Indicates if the category list is empty.
-        /// </summary>
-        bool IsCategoriesEmpty { get; }
-    }
-
-    public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
+    public class CategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
-        public CategoryListViewModel(ICrudServicesAsync curdServicesAsync,
-                                     IDialogService dialogService,
-                                     IMvxLogProvider logProvider,
-                                     IMvxNavigationService navigationService) : base(curdServicesAsync, dialogService, logProvider, navigationService)
+        public CategoryListViewModel(IScreen hostScreen,
+                                     ICrudServicesAsync curdServicesAsync,
+                                     IDialogService dialogService) : base(curdServicesAsync, dialogService)
         {
+            HostScreen = hostScreen;
         }
 
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override async Task ItemClick(CategoryViewModel category)
+        protected override async Task<Unit> ItemClick(CategoryViewModel category)
         {
-            await EditCategoryCommand.ExecuteAsync(category);
+            await EditCategoryCommand.Execute(category);
+            return Unit.Default;
         }
+
+        public override string UrlPathSegment => "CategoryList";
+        public override IScreen HostScreen { get; }
     }
 }

@@ -78,8 +78,7 @@
                  x:Name="SearchTextBox"
                  Grid.Row="0"
                  Header="search"
-                 Margin="{StaticResource MediumLeftRightMargin}"
-                 TextChanged="SearchTextBox_OnTextChanged" />
+                 Margin="{StaticResource MediumLeftRightMargin}" />
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>

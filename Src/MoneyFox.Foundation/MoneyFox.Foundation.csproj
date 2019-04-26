@@ -40,6 +40,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Graph" Version="1.14.0" />
     <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.2.3" />
+    <PackageReference Include="ReactiveUI" Version="9.13.1" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
   </ItemGroup>
 

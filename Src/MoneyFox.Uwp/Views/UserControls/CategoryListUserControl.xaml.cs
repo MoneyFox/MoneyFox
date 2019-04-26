@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text);
+            ((AbstractCategoryListViewModel) DataContext).SearchCommand.Execute(SearchTextBox.Text);
 
         }
     }

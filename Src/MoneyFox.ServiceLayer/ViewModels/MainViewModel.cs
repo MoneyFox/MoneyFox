@@ -27,8 +27,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public MvxAsyncCommand ShowStatisticSelectorCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<StatisticSelectorViewModel>());
 
-        public MvxAsyncCommand ShowCategoryListCommand
-            => new MvxAsyncCommand(async () => await navigationService.Navigate<CategoryListViewModel>());
+        //public MvxAsyncCommand ShowCategoryListCommand
+        //    => new MvxAsyncCommand(async () => await navigationService.Navigate<CategoryListViewModel>());
 
         public MvxAsyncCommand ShowBackupViewCommand
             => new MvxAsyncCommand(async () => await navigationService.Navigate<BackupViewModel>());

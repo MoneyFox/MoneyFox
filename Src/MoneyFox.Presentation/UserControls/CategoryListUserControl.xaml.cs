@@ -5,7 +5,7 @@ using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.UserControls
+namespace MoneyFox.Presentation.UserControls
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryListUserControl
@@ -19,7 +19,7 @@ namespace MoneyFox.UserControls
 		    CategoryList.ItemTapped += (sender, args) =>
 		    {
 		        CategoryList.SelectedItem = null;
-		        ViewModel.ItemClickCommand.Execute(args.Item);
+		        ViewModel.ItemClickCommand.Execute(args.Item as CategoryViewModel);
 		    };
 
 		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
@@ -30,7 +30,7 @@ namespace MoneyFox.UserControls
 	        var menuItem = sender as MenuItem;
 	        if (menuItem == null) return;
 
-            ViewModel.EditCategoryCommand.Execute(menuItem.CommandParameter);
+            ViewModel.EditCategoryCommand.Execute(menuItem.CommandParameter as CategoryViewModel);
 	    }
 
 	    private void DeleteCategory(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace MoneyFox.UserControls
 	        var menuItem = sender as MenuItem;
 	        if (menuItem == null) return;
 
-            ViewModel.DeleteCategoryCommand.Execute(menuItem.CommandParameter);
+            ViewModel.DeleteCategoryCommand.Execute(menuItem.CommandParameter as CategoryViewModel);
 	    }
 
 	    private void AddCategoryClick(object sender, EventArgs e)
