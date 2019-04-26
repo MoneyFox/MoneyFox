@@ -27,6 +27,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.HasNoCategories, v => v.NoCategoriesTextBlock.Visibility)
                     .DisposeWith(disposables);
 
+                this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchTextBox.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Resources["NoCategoriesMessage"], v => v.NoCategoriesTextBlock.Text)
                     .DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Resources["SearchHeader"], v => v.SearchTextBox.Header)

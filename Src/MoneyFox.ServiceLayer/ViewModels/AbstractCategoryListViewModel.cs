@@ -22,6 +22,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
     public abstract class AbstractCategoryListViewModel : RouteableViewModelBase
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private string searchTerm;
+
+        private ObservableAsPropertyHelper<bool> hasNoCategories;
 
         private string searchTerm;
 
