@@ -37,8 +37,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             CrudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
             DialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(async disposables =>
-            {
+            this.WhenActivated(async disposables => {
+                categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
+
                 await Search();
 
                 SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
@@ -51,10 +52,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .DisposeWith(disposables);
 
                 this.WhenAnyValue(x => x.SearchTerm)
-                    .Throttle(TimeSpan.FromMilliseconds(800))
+                    .Throttle(TimeSpan.FromMilliseconds(400))
                     .Select(term => term?.Trim())
                     .DistinctUntilChanged()
-                    .Where(term => !string.IsNullOrWhiteSpace(term))
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .InvokeCommand(SearchCommand);
 
@@ -138,7 +138,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                         .ToListAsync());
             }
 
-            categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
+            categoriesSource.Clear();
             categoriesSource.AddRange(CreateGroup(categoryViewModels));
 
             return new Unit();
