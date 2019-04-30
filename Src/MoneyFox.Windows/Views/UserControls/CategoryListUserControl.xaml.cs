@@ -9,7 +9,7 @@ using ReactiveUI;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
-    public class MyCategoryListUserControl : ReactiveUserControl<CategoryListViewModel> {}
+    public class MyCategoryListUserControl : ReactiveUserControl<AbstractCategoryListViewModel> {}
 
     public sealed partial class CategoryListUserControl
     {

@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -32,6 +33,12 @@ namespace MoneyFox.Windows.Views
                     ContentGrid.Children.Add(new AddCategoryPage {BindingContext = ViewModel}.CreateFrameworkElement());
                 });
             });
+        }
+
+        private void AddCategoryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(new AddCategoryPage {BindingContext = ViewModel}.CreateFrameworkElement());
         }
     }
 }

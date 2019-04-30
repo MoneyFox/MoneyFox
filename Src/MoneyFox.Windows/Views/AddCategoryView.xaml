@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MoneyFox.Windows.Views"
     mc:Ignorable="d"
+    SizeChanged="AddCategoryView_OnSizeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"

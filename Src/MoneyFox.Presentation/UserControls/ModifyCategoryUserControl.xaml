@@ -11,11 +11,11 @@
             <Label x:Name="CategoryNameLabel"
                    Text="{Binding Resources[CategoryNameLabel]}"
                    Style="{StaticResource DefaultTextStyle}" />
-            <Entry Text="{Binding SelectedCategory.Name}" />
+            <Entry x:Name="CategoryNameEntry" Text="{Binding SelectedCategory.Name}" />
 
             <Label x:Name="NoteLabel" Text="{Binding Resources[NoteLabel]}"
                    Style="{StaticResource DefaultTextStyle}" />
-            <Entry Text="{Binding SelectedCategory.Note}" />
+            <Entry x:Name="NoteEntry" Text="{Binding SelectedCategory.Note}" />
 
         </StackLayout>
     </ContentView.Content>

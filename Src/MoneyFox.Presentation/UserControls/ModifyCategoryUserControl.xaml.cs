@@ -13,13 +13,15 @@ namespace MoneyFox.Presentation.UserControls
 
             this.WhenActivated(disposables =>
             {
-                this.Bind(ViewModel, vm => vm.SelectedCategory.Name, v => v.CategoryNameLabel).DisposeWith(disposables);
-                this.Bind(ViewModel, vm => vm.SelectedCategory.Note, v => v.NoteLabel).DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.SelectedCategory.Name, v => v.CategoryNameEntry.Text)
+                    .DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.SelectedCategory.Note, v => v.NoteEntry.Text)
+                    .DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.Resources["CategoryNameLabel"],
                                 v => v.CategoryNameLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Resources["NoteLabel"],
-                                v => v.CategoryNameLabel.Text).DisposeWith(disposables);
+                                v => v.NoteLabel.Text).DisposeWith(disposables);
             });
         }
 	}
