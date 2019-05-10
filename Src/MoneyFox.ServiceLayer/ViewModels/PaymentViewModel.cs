@@ -30,11 +30,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             Date = DateTime.Today;
         }
 
-        public int Id
-        {
+        public int Id {
             get => id;
-            set
-            {
+            set {
                 if (id == value) return;
                 id = value;
                 RaisePropertyChanged();
@@ -45,11 +43,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel" /> who will be charged.
         ///     In case it's an income the  foreign key to the <see cref="AccountViewModel" /> who will be credited.
         /// </summary>
-        public int ChargedAccountId
-        {
+        public int ChargedAccountId {
             get => chargedAccountId;
-            set
-            {
+            set {
                 if (chargedAccountId == value) return;
                 chargedAccountId = value;
                 RaisePropertyChanged();
@@ -60,11 +56,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Foreign key to the account who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        public int? TargetAccountId
-        {
+        public int? TargetAccountId {
             get => targetAccountId;
-            set
-            {
+            set {
                 if (targetAccountId == value) return;
                 targetAccountId = value;
                 RaisePropertyChanged();
@@ -74,11 +68,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Date when this payment will be executed.
         /// </summary>
-        public DateTime Date
-        {
+        public DateTime Date {
             get => date;
-            set
-            {
+            set {
                 if (date == value) return;
                 date = value;
                 RaisePropertyChanged();
@@ -88,11 +80,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
-        public double Amount
-        {
+        public double Amount {
             get => amount;
-            set
-            {
+            set {
                 if (Math.Abs(amount - value) < 0.01) return;
                 amount = value;
                 RaisePropertyChanged();
@@ -103,11 +93,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Indicates if this payment was already executed and the amount already credited or charged to the respective
         ///     account.
         /// </summary>
-        public bool IsCleared
-        {
+        public bool IsCleared {
             get => isCleared;
-            set
-            {
+            set {
                 if (isCleared == value) return;
                 isCleared = value;
                 RaisePropertyChanged();
@@ -117,11 +105,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Type of the payment <see cref="PaymentType" />.
         /// </summary>
-        public PaymentType Type
-        {
+        public PaymentType Type {
             get => type;
-            set
-            {
+            set {
                 if (type == value) return;
                 type = value;
                 RaisePropertyChanged();
@@ -131,11 +117,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Additional notes to the payment.
         /// </summary>
-        public string Note
-        {
+        public string Note {
             get => note;
-            set
-            {
+            set {
                 if (note == value) return;
                 note = value;
                 RaisePropertyChanged();
@@ -145,11 +129,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Indicates if the payment will be repeated or if it's a uniquie payment.
         /// </summary>
-        public bool IsRecurring
-        {
+        public bool IsRecurring {
             get => isRecurring;
-            set
-            {
+            set {
                 if (isRecurring == value) return;
                 isRecurring = value;
 
@@ -160,16 +142,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 RaisePropertyChanged();
             }
         }
-        
+
         /// <summary>
         ///     In case it's a expense or transfer the account who will be charged.
         ///     In case it's an income the account who will be credited.
         /// </summary>
-        public AccountViewModel ChargedAccount
-        {
+        public AccountViewModel ChargedAccount {
             get => chargedAccount;
-            set
-            {
+            set {
                 if (chargedAccount == value) return;
                 chargedAccount = value;
                 RaisePropertyChanged();
@@ -180,11 +160,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        public AccountViewModel TargetAccount
-        {
+        public AccountViewModel TargetAccount {
             get => targetAccount;
-            set
-            {
+            set {
                 if (TargetAccount == value) return;
                 targetAccount = value;
                 RaisePropertyChanged();
@@ -194,11 +172,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     The <see cref="Category" /> for this payment
         /// </summary>
-        public CategoryViewModel Category
-        {
+        public CategoryViewModel Category {
             get => categoryViewModel;
-            set
-            {
+            set {
                 if (Category == value) return;
                 categoryViewModel = value;
                 RaisePropertyChanged();
@@ -208,11 +184,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     The <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
-        public RecurringPaymentViewModel RecurringPayment
-        {
+        public RecurringPaymentViewModel RecurringPayment {
             get => recurringPaymentViewModel;
-            set
-            {
+            set {
                 if (RecurringPayment == value) return;
                 recurringPaymentViewModel = value;
                 RaisePropertyChanged();
@@ -229,11 +203,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Id of the account who currently is used for that view.
         /// </summary>
-        public int CurrentAccountId
-        {
+        public int CurrentAccountId {
             get => currentAccountId;
-            set
-            {
+            set {
                 if (currentAccountId == value) return;
                 currentAccountId = value;
                 RaisePropertyChanged();
