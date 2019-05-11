@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation
     /// <summary>
     ///     Entry point to the Application for MvvmCross.
     /// </summary>
-    public class 
+    public class
         CoreApp : MvxApplication
     {
         public static AppPlatform CurrentPlatform { get; set; }

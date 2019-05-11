@@ -8,7 +8,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Grants the GUI access to the password setting.
         /// </summary>
-        bool IsPasswortActive { get; set; }
+        bool IsPasswordActive { get; set; }
 
         bool IsPassportActive { get; set; }
 

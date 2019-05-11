@@ -30,7 +30,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Grants the GUI access to the password setting.
         /// </summary>
-        public bool IsPasswortActive
+        public bool IsPasswordActive
         {
             get => settingsFacade.PasswordRequired;
             set
@@ -121,7 +121,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private void LoadData()
         {
-            if (IsPasswortActive)
+            if (IsPasswordActive)
             {
                 Password = passwordStorage.LoadPassword();
                 PasswordConfirmation = passwordStorage.LoadPassword();
@@ -130,15 +130,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private void RemovePassword()
         {
-            if (!IsPasswortActive)
+            if (!IsPasswordActive)
             {
                 passwordStorage.RemovePassword();
             }
 
             //  Deactivate option again if no password was entered
-            if (IsPasswortActive && string.IsNullOrEmpty(Password))
+            if (IsPasswordActive && string.IsNullOrEmpty(Password))
             {
-                IsPasswortActive = false;
+                IsPasswordActive = false;
             }
         }
     }
