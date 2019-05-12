@@ -12,7 +12,7 @@ using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public interface IModifyCategoryViewModel : IBaseViewModel
+    public interface IModifyCategoryViewModel
     {
         /// <summary>
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates

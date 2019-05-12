@@ -16,88 +16,19 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
+using ReactiveUI;
+using Splat;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
-    public interface IModifyPaymentViewModel : IBaseViewModel
-    {
-        /// <summary>
-        ///     Indicates if the PaymentViewModel is a transfer.
-        /// </summary>
-        bool IsTransfer { get; }
-
-        /// <summary>
-        ///     The selected recurrence
-        /// </summary>
-        PaymentRecurrence Recurrence { get; }
-
-        /// <summary>
-        ///     List with the different recurrence types.
-        ///     This has to have the same order as the enum
-        /// </summary>
-        List<PaymentRecurrence> RecurrenceList { get; }
-
-        /// <summary>
-        ///     The selected PaymentViewModel
-        /// </summary>
-        PaymentViewModel SelectedPayment { get; }
-
-        /// <summary>
-        ///     Gives access to all accounts for Charged Drop down list
-        /// </summary>
-        ObservableCollection<AccountViewModel> ChargedAccounts { get; }
-
-        /// <summary>
-        ///     Gives access to all accounts for Target Drop down list
-        /// </summary>
-        ObservableCollection<AccountViewModel> TargetAccounts { get; }
-
-        /// <summary>
-        ///     Returns the Title for the page
-        /// </summary>
-        string Title { get; }
-
-        /// <summary>
-        ///     Returns the Header for the AccountViewModel field
-        /// </summary>
-        string AccountHeader { get; }
-
-        /// <summary>
-        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
-        /// </summary>
-        IMvxCommand SelectedItemChangedCommand { get; }
-
-        /// <summary>
-        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        IMvxAsyncCommand SaveCommand { get; }
-
-        /// <summary>
-        ///     Opens to the SelectCategoryView
-        /// </summary>
-        IMvxAsyncCommand GoToSelectCategorydialogCommand { get; }
-
-        /// <summary>
-        ///     Cancels the operations.
-        /// </summary>
-        IMvxAsyncCommand CancelCommand { get; }
-
-        /// <summary>
-        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
-        /// </summary>
-        IMvxCommand ResetCategoryCommand { get; }
-    }
-
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>,
-        IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : RouteableViewModelBase
     {
         private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         //this token ensures that we will be notified when a message is sent.
@@ -113,23 +44,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        protected ModifyPaymentViewModel(ICrudServicesAsync crudServices,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IMvxMessenger messenger,
-            IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        protected ModifyPaymentViewModel(IScreen screen, 
+            ICrudServicesAsync crudServices = null,
+            IDialogService dialogService = null,
+            ISettingsFacade settingsFacade = null,
+            IMvxMessenger messenger = null,
+            IBackupService backupService = null)
         {
-            this.crudServices = crudServices;
-            this.dialogService = dialogService;
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
-            this.navigationService = navigationService;
+            HostScreen = screen;
+
+            this.crudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
+            this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
+            this.settingsFacade = settingsFacade ?? Locator.Current.GetService<ISettingsFacade>();
+            this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
 
             token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
 
+        public override IScreen HostScreen { get; }
+        
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
@@ -166,13 +99,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public PaymentRecurrence Recurrence
         {
             get => recurrence;
-            set
-            {
-                if (recurrence == value) return;
-
-                recurrence = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref recurrence, value);
         }
 
         /// <summary>
@@ -200,10 +127,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             get => selectedPayment;
             set
             {
-                if (selectedPayment == value) return;
-                selectedPayment = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(AccountHeader));
+                this.RaiseAndSetIfChanged(ref selectedPayment, value);
+                //RaisePropertyChanged(nameof(AccountHeader));
             }
         }
 
@@ -213,11 +138,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AccountViewModel> ChargedAccounts
         {
             get => chargedAccounts;
-            private set
-            {
-                chargedAccounts = value;
-                RaisePropertyChanged();
-            }
+            private set => this.RaiseAndSetIfChanged(ref chargedAccounts, value);
         }
 
         /// <summary>
@@ -226,11 +147,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public ObservableCollection<AccountViewModel> TargetAccounts
         {
             get => targetAccounts;
-            private set
-            {
-                targetAccounts = value;
-                RaisePropertyChanged();
-            }
+            private set => this.RaiseAndSetIfChanged(ref targetAccounts, value);
         }
 
         public virtual string Title { get; set; }
@@ -244,29 +161,29 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 : Strings.ChargedAccountLabel;
 
         /// <inheritdoc />
-        public override void Prepare(ModifyPaymentParameter parameter)
-        {
-            PassedParameter = parameter;
-            RaisePropertyChanged(nameof(Title));
-        }
+        //public override void Prepare(ModifyPaymentParameter parameter)
+        //{
+        //    PassedParameter = parameter;
+        //    RaisePropertyChanged(nameof(Title));
+        //}
 
         /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                                             .OrderByName()
-                                             .ToListAsync();
+        //public override async Task Initialize()
+        //{
+        //    var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
+        //                                     .OrderByName()
+        //                                     .ToListAsync();
 
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        }
+        //    ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+        //    TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+        //}
 
-        public override void ViewAppearing()
-        {
-            base.ViewAppearing();
-            // We have to raise this here so that the UI knows enables the button again.
-            RaisePropertyChanged(nameof(GoToSelectCategorydialogCommand));
-        }
+        //public override void ViewAppearing()
+        //{
+        //    base.ViewAppearing();
+        //    // We have to raise this here so that the UI knows enables the button again.
+        //    RaisePropertyChanged(nameof(GoToSelectCategorydialogCommand));
+        //}
 
         protected abstract Task SavePayment();
 
@@ -308,7 +225,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task Cancel()
         {
-            await navigationService.Close(this);
+            // await navigationService.Close(this);
         }
 
         private void UpdateOtherComboBox()

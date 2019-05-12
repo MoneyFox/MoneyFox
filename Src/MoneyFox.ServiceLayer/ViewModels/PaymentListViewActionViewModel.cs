@@ -59,23 +59,23 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IsAddExpenseAvailable = accountCount >= 1;
         }
 
-        /// <inheritdoc />
-        public MvxAsyncCommand GoToAddIncomeCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Income)));
+        ///// <inheritdoc />
+        //public MvxAsyncCommand GoToAddIncomeCommand =>
+        //    new MvxAsyncCommand(async () => await navigationService
+        //                            .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
+        //                                new ModifyPaymentParameter(PaymentType.Income)));
 
-        /// <inheritdoc />
-        public MvxAsyncCommand GoToAddExpenseCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Expense)));
+        ///// <inheritdoc />
+        //public MvxAsyncCommand GoToAddExpenseCommand =>
+        //    new MvxAsyncCommand(async () => await navigationService
+        //                            .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
+        //                                new ModifyPaymentParameter(PaymentType.Expense)));
         
-        /// <inheritdoc />
-        public MvxAsyncCommand GoToAddTransferCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Transfer)));
+        ///// <inheritdoc />
+        //public MvxAsyncCommand GoToAddTransferCommand =>
+        //    new MvxAsyncCommand(async () => await navigationService
+        //                            .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
+        //                                new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <inheritdoc />
         public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);

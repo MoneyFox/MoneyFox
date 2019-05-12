@@ -44,7 +44,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private Unit GoToAddPayment(PaymentType type)
         {
-            //hostScreen.Router.Navigate.Execute(new AddPaymentViewModel(hostScreen));
+            hostScreen.Router.Navigate.Execute(new AddPaymentViewModel(hostScreen));
             return new Unit();
         }
         private Unit GoToAddAccount()

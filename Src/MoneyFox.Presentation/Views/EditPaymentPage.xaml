@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views:MvxContentPage x:TypeArguments="viewModels:EditPaymentViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
@@ -12,4 +12,4 @@
             <userControls:ModifyPaymentUserControl />
         </StackLayout>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

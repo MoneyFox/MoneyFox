@@ -1,6 +1,7 @@
 ﻿using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
+using ReactiveUI;
 using System;
 
 namespace MoneyFox.ServiceLayer.ViewModels
@@ -8,7 +9,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>
+    public class PaymentViewModel : ViewModelBase, ILinkToEntity<Payment>
     {
         private int id;
         private int chargedAccountId;
@@ -30,12 +31,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int Id
         {
             get => id;
-            set
-            {
-                if (id == value) return;
-                id = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref id, value);
         }
 
         /// <summary>
@@ -45,12 +41,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int ChargedAccountId
         {
             get => chargedAccountId;
-            set
-            {
-                if (chargedAccountId == value) return;
-                chargedAccountId = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref chargedAccountId, value);
         }
 
         /// <summary>
@@ -60,12 +51,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int? TargetAccountId
         {
             get => targetAccountId;
-            set
-            {
-                if (targetAccountId == value) return;
-                targetAccountId = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref targetAccountId, value);
         }
 
         /// <summary>
@@ -74,12 +60,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public DateTime Date
         {
             get => date;
-            set
-            {
-                if (date == value) return;
-                date = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref date, value);
         }
 
         /// <summary>
@@ -88,12 +69,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public double Amount
         {
             get => amount;
-            set
-            {
-                if (Math.Abs(amount - value) < 0.01) return;
-                amount = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref amount, value);
         }
 
         /// <summary>
@@ -103,12 +79,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public bool IsCleared
         {
             get => isCleared;
-            set
-            {
-                if (isCleared == value) return;
-                isCleared = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref isCleared, value);
         }
 
         /// <summary>
@@ -117,12 +88,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public PaymentType Type
         {
             get => type;
-            set
-            {
-                if (type == value) return;
-                type = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref type, value);
         }
 
         /// <summary>
@@ -131,12 +97,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public string Note
         {
             get => note;
-            set
-            {
-                if (note == value) return;
-                note = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref note, value);
         }
 
         /// <summary>
@@ -147,14 +108,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             get => isRecurring;
             set
             {
-                if (isRecurring == value) return;
-                isRecurring = value;
-
+                this.RaiseAndSetIfChanged(ref isRecurring, value);
                 RecurringPayment = isRecurring
                     ? new RecurringPaymentViewModel()
                     : null;
-
-                RaisePropertyChanged();
             }
         }
 
@@ -165,12 +122,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AccountViewModel ChargedAccount
         {
             get => chargedAccount;
-            set
-            {
-                if (chargedAccount == value) return;
-                chargedAccount = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref chargedAccount, value);
         }
 
         /// <summary>
@@ -180,12 +132,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AccountViewModel TargetAccount
         {
             get => targetAccount;
-            set
-            {
-                if (TargetAccount == value) return;
-                targetAccount = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref targetAccount, value);
         }
 
         /// <summary>
@@ -194,12 +141,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public CategoryViewModel Category
         {
             get => categoryViewModel;
-            set
-            {
-                if (Category == value) return;
-                categoryViewModel = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref categoryViewModel, value);
         }
 
         /// <summary>
@@ -208,12 +150,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public RecurringPaymentViewModel RecurringPayment
         {
             get => recurringPaymentViewModel;
-            set
-            {
-                if (RecurringPayment == value) return;
-                recurringPaymentViewModel = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref recurringPaymentViewModel, value);
         }
 
         /// <summary>
@@ -229,12 +166,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int CurrentAccountId
         {
             get => currentAccountId;
-            set
-            {
-                if (currentAccountId == value) return;
-                currentAccountId = value;
-                RaisePropertyChanged();
-            }
+            set => this.RaiseAndSetIfChanged(ref currentAccountId, value);
         }
     }
 }

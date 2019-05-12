@@ -30,7 +30,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
