@@ -32,24 +32,27 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Base class for the category list user control
         /// </summary>
-        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices, IDialogService dialogService)
+        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices = null,
+                                                IDialogService dialogService = null)
         {
             CrudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
             DialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(async disposables => {
+            this.WhenActivated(async disposables =>
+            {
                 categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
 
                 await Search();
 
                 SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
-                ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick).DisposeWith(disposables);
+                ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick)
+                                                  .DisposeWith(disposables);
                 CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory)
-                    .DisposeWith(disposables);
+                                                          .DisposeWith(disposables);
                 EditCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(EditCategory)
-                    .DisposeWith(disposables);
+                                                     .DisposeWith(disposables);
                 DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory)
-                    .DisposeWith(disposables);
+                                                       .DisposeWith(disposables);
 
                 this.WhenAnyValue(x => x.SearchTerm)
                     .Throttle(TimeSpan.FromMilliseconds(400))
@@ -59,15 +62,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .InvokeCommand(SearchCommand);
 
                 categoriesSource.Connect()
-                    .ObserveOn(RxApp.MainThreadScheduler)
-                    .StartWithEmpty()
-                    .Bind(out categories)
-                    .Subscribe()
-                    .DisposeWith(disposables);
+                                .ObserveOn(RxApp.MainThreadScheduler)
+                                .StartWithEmpty()
+                                .Bind(out categories)
+                                .Subscribe()
+                                .DisposeWith(disposables);
 
                 hasNoCategories = this.WhenAnyValue(x => x.categoriesSource.Items)
-                    .Select(x => !x.Any())
-                    .ToProperty(this, x => x.HasNoCategories);
+                                      .Select(x => !x.Any())
+                                      .ToProperty(this, x => x.HasNoCategories);
             });
         }
 
@@ -79,11 +82,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected abstract Task<Unit> ItemClick(CategoryViewModel category);
 
-        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
+        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList =>
+            categories;
 
         public bool HasNoCategories => hasNoCategories.Value;
 
-        public string SearchTerm {
+        public string SearchTerm
+        {
             get => searchTerm ?? "";
             set => this.RaiseAndSetIfChanged(ref searchTerm, value);
         }
@@ -120,16 +125,16 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             List<CategoryViewModel> categoryViewModels;
 
-            var categoryQuery = CrudServices
-                .ReadManyNoTracked<CategoryViewModel>()
-                .OrderBy(x => x.Name);
+            IOrderedQueryable<CategoryViewModel> categoryQuery = CrudServices
+                                                                 .ReadManyNoTracked<CategoryViewModel>()
+                                                                 .OrderBy(x => x.Name);
 
             if (!string.IsNullOrEmpty(searchText))
             {
                 categoryViewModels = new List<CategoryViewModel>(
                     await categoryQuery
-                        .WhereNameContains(searchText)
-                        .ToListAsync());
+                          .WhereNameContains(searchText)
+                          .ToListAsync());
             }
             else
             {
@@ -157,13 +162,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         private List<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
-            List<CategoryViewModel> categoryViewModels) =>
-            AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categoryViewModels,
-                CultureInfo.CurrentUICulture,
-                s => string.IsNullOrEmpty(s.Name)
-                    ? "-"
-                    : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
-                itemClickCommand: ItemClickCommand);
+            List<CategoryViewModel> categoryViewModels)
+        {
+            return AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categoryViewModels,
+                                                                                 CultureInfo.CurrentUICulture,
+                                                                                 s => string.IsNullOrEmpty(s.Name)
+                                                                                     ? "-"
+                                                                                     : s.Name[0].ToString(
+                                                                                            CultureInfo
+                                                                                                .InvariantCulture)
+                                                                                        .ToUpper(
+                                                                                            CultureInfo
+                                                                                                .InvariantCulture),
+                                                                                 itemClickCommand: ItemClickCommand);
+        }
 
         private async Task<Unit> DeleteCategory(CategoryViewModel categoryToDelete)
         {

@@ -32,7 +32,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackupViewModel.cs" />
