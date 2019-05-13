@@ -5,6 +5,7 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
@@ -64,6 +65,7 @@ namespace MoneyFox.Droid.Jobs
             if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
+            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
             try
             {
@@ -71,8 +73,13 @@ namespace MoneyFox.Droid.Jobs
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                                  DatabaseConstants.DB_NAME);
 
+                var pca = PublicClientApplicationBuilder
+                    .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                    .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                    .Build();
+
                 var backupManager = new BackupManager(
-                    new OneDriveService(new OneDriveAuthenticator()),
+                    new OneDriveService(pca),
                     Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                     new ConnectivityAdapter());
 

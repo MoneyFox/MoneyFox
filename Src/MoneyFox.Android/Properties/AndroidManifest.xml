@@ -6,5 +6,14 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-	<application android:label="Money Fox" android:icon="@drawable/ic_launcher"></application>
+	<application android:label="Money Fox" android:icon="@drawable/ic_launcher">
+    <activity android:name="microsoft.identity.client.BrowserTabActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="msal00a3e4cd-b4b0-4730-be62-5fcf90a94a1d" android:host="auth" />
+      </intent-filter>
+    </activity>
+  </application>
 </manifest>

@@ -22,6 +22,7 @@ using UIKit;
 using Xamarin.Forms.Platform.iOS;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.Identity.Client;
 using PCLAppConfig;
 
 #if !DEBUG
@@ -85,6 +86,13 @@ namespace MoneyFox.iOS
             return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
         }
 
+        // Needed for auth
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+            return true;
+        }
+
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
             if(!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
@@ -125,13 +133,20 @@ namespace MoneyFox.iOS
             if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
+            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
             try
             {
                 EfCoreContext.DbPath = GetLocalFilePath();
 
+                var pca = PublicClientApplicationBuilder
+                    .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                    .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                    .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                    .Build();
+
                 var backupManager = new BackupManager(
-                    new OneDriveService(new OneDriveAuthenticator()),
+                    new OneDriveService(pca),
                     Mvx.IoCProvider.Resolve<IMvxFileStore>(),
                     new ConnectivityAdapter());
 
