@@ -145,11 +145,9 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         {
             // Arrange
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
-            DateTime passedDate = DateTime.MinValue;
 
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.RestoreBackup())
-                             .Callback((DateTime date) => passedDate = date)
                              .ReturnsAsync(OperationResult.Succeeded);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -162,7 +160,6 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             OperationResult result = await backupService.RestoreBackup();
 
             // Assert
-            passedDate.ShouldEqual(expectedPassedDate);
             result.Success.ShouldBeTrue();
             settingsFacade.Object.LastDatabaseUpdate.ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
         }
@@ -172,11 +169,9 @@ namespace MoneyFox.ServiceLayer.Tests.Services
         {
             // Arrange
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
-            DateTime passedDate = DateTime.MinValue;
 
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.RestoreBackup())
-                             .Callback((DateTime date) => passedDate = date)
                              .ReturnsAsync(OperationResult.Failed(""));
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -189,7 +184,6 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             OperationResult result = await backupService.RestoreBackup();
 
             // Assert
-            passedDate.ShouldEqual(expectedPassedDate);
             result.Success.ShouldBeFalse();
             settingsFacade.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
         }
@@ -264,28 +258,6 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             // Assert
             backupManagerMock.Verify(x => x.Login(), Times.Never);
             backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Once);
-            result.Success.ShouldBeTrue();
-        }
-
-        [Fact]
-        public async Task EnqueueBackupTask_AutoUploadDisabled_NothingCalled()
-        {
-            // Arrange
-            var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
-                             .ReturnsAsync(OperationResult.Succeeded);
-
-            var settingsFacade = new Mock<ISettingsFacade>();
-            settingsFacade.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(false);
-
-            var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
-
-            // Act
-            OperationResult result = await backupService.EnqueueBackupTask();
-
-            // Assert
-            backupManagerMock.Verify(x => x.Login(), Times.Never);
-            backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Never);
             result.Success.ShouldBeTrue();
         }
     }
