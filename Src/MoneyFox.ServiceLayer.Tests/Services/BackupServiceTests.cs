@@ -148,7 +148,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             DateTime passedDate = DateTime.MinValue;
 
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.RestoreBackup(It.IsAny<DateTime>()))
+            backupManagerMock.Setup(x => x.RestoreBackup())
                              .Callback((DateTime date) => passedDate = date)
                              .ReturnsAsync(OperationResult.Succeeded);
 
@@ -175,7 +175,7 @@ namespace MoneyFox.ServiceLayer.Tests.Services
             DateTime passedDate = DateTime.MinValue;
 
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.RestoreBackup(It.IsAny<DateTime>()))
+            backupManagerMock.Setup(x => x.RestoreBackup())
                              .Callback((DateTime date) => passedDate = date)
                              .ReturnsAsync(OperationResult.Failed(""));
 
