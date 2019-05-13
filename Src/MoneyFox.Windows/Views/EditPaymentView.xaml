@@ -1,11 +1,11 @@
-﻿<views:MvxWindowsPage
-    x:Class="MoneyFox.Uwp.Views.AddPaymentView"
+﻿<views:MyEditPaymentView
+    x:Class="MoneyFox.Windows.Views.EditPaymentView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    xmlns:views="using:MvvmCross.Platforms.Uap.Views"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:views="using:MoneyFox.Windows.Views"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -26,15 +26,22 @@
         <CommandBar Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="DoneLabel"
+                <AppBarButton x:Name="DoneButton"
                               Command="{Binding SaveCommand}"
                               Icon="Save"
                               Label="Done" />
-                <AppBarButton x:Uid="CancelLabel"
+                <AppBarButton x:Name="CancelButton"
                               Command="{Binding CancelCommand}"
                               Icon="Cancel"
                               Label="Cancel" />
             </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="DeleteButton"
+                              Command="{Binding DeleteCommand}"
+                              Icon="Delete"
+                              Label="Delete" />
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</views:MvxWindowsPage>
+
+</views:MyEditPaymentView>
