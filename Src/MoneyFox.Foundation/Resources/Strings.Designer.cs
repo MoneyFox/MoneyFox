@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -1002,6 +1002,24 @@ namespace MoneyFox.Foundation.Resources {
         public static string FilterLabel {
             get {
                 return ResourceManager.GetString("FilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?.
+        /// </summary>
+        public static string ForceOverrideBackupMessage {
+            get {
+                return ResourceManager.GetString("ForceOverrideBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override Local Data.
+        /// </summary>
+        public static string ForceOverrideBackupTitle {
+            get {
+                return ResourceManager.GetString("ForceOverrideBackupTitle", resourceCulture);
             }
         }
         

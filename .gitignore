@@ -187,3 +187,4 @@ MoneyFox.Droid.nuget.targets
 /Src/MoneyFox.Android/Resources/Resource.designer.cs
 Src/.sonarlint
 Src/.sonarqube
+Src/.cr

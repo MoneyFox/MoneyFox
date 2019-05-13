@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
+using Microsoft.Identity.Client;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.BusinessLogic.Backup
 {
     /// <inheritdoc />
-    public class OneDriveService : ICloudBackupService
+    public class OneDriveService : ICloudBackupService 
     {
-        private readonly IOneDriveAuthenticator oneDriveAuthenticator;
-
+        private readonly string[] scopes = { "Files.ReadWrite"  };
+        
+        private readonly IPublicClientApplication publicClientApplication;
+        
         /// <summary>
         ///     Constructor
         /// </summary>
-        public OneDriveService(IOneDriveAuthenticator oneDriveAuthenticator)
+        public OneDriveService(IPublicClientApplication publicClientApplication)
         {
-            this.oneDriveAuthenticator = oneDriveAuthenticator;
+            this.publicClientApplication = publicClientApplication;
         }
 
-        private IGraphServiceClient OneDriveClient { get; set; }
+        private IGraphServiceClient GraphServiceClient { get; set; }
 
-        private DriveItem BackupFolder { get; set; }
         private DriveItem ArchiveFolder { get; set; }
 
         /// <summary>
@@ -34,8 +37,30 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         public async Task Login()
         {
-            OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                        ;
+            AuthenticationResult authResult = null;
+            IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
+
+            // let's see if we have a user in our belly already
+            try
+            {
+                IAccount firstAccount = accounts.FirstOrDefault();
+                authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+            } 
+            catch (MsalUiRequiredException)
+            {
+                // pop the browser for the interactive experience
+                authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
+                                      .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                                      .ExecuteAsync();
+            }
+
+            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider((requestMessage) => {
+                requestMessage
+                    .Headers
+                    .Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+
+                return Task.FromResult(0);
+            }));
         }
 
         /// <summary>
@@ -43,34 +68,38 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         public async Task Logout()
         {
-            await oneDriveAuthenticator.LogoutAsync()
-                                       ;
+            List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+
+            while (accounts.Any())
+            {
+                await publicClientApplication.RemoveAsync(accounts.FirstOrDefault());
+                accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+            }
         }
 
         /// <inheritdoc />
         public async Task<bool> Upload(Stream dataToUpload)
         {
-            if (OneDriveClient == null)
+            if (GraphServiceClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                            ;
+                await Login();
             }
 
-            await LoadBackupFolder();
+            await MoveToAppFolder();
             await LoadArchiveFolder();
 
             await DeleteCleanupOldBackups();
             await ArchiveCurrentBackup();
 
-            var uploadedItem = await OneDriveClient
+            var uploadedItem = await GraphServiceClient
+                .Me
                 .Drive
-                .Root
-                .ItemWithPath(Path.Combine(DatabaseConstants.BACKUP_FOLDER_NAME,
-                                           DatabaseConstants.BACKUP_NAME))
+                .Special
+                .AppRoot
+                .ItemWithPath(DatabaseConstants.BACKUP_NAME)
                 .Content
                 .Request()
-                .PutAsync<DriveItem>(dataToUpload)
-                ;
+                .PutAsync<DriveItem>(dataToUpload);
 
             return uploadedItem != null;
         }
@@ -78,55 +107,48 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <inheritdoc />
         public async Task<Stream> Restore(string backupname, string dbName)
         {
-            if (OneDriveClient == null)
+            if (GraphServiceClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+                await Login();
             }
 
-            await LoadBackupFolder();
-
-            var children = await OneDriveClient.Drive
-                                               .Items[BackupFolder?.Id]
-                                               .Children
-                                               .Request()
-                                               .GetAsync()
-                                               ;
-            var existingBackup = children.FirstOrDefault(x => x.Name == backupname);
+            await MoveToAppFolder();
+            var existingBackup = (await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .FirstOrDefault(x => x.Name == backupname);
 
             if (existingBackup == null)
                 throw new NoBackupFoundException($"No backup with the name {backupname} was found.");
-            return await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync()
-                                       ;
+            return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
         /// <inheritdoc />
         public async Task<DateTime> GetBackupDate()
         {
-            if (OneDriveClient == null)
+            if (GraphServiceClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+                await Login();
             }
 
-            await LoadBackupFolder();
+            await MoveToAppFolder();
 
-            try
-            {
-                var children = await OneDriveClient.Drive
-                                                   .Items[BackupFolder?.Id]
-                                                   .Children
-                                                   .Request()
-                                                   .GetAsync()
-                                                   ;
-                var existingBackup = children.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+            var existingBackup = (await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
-                if (existingBackup != null)
-                {
-                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
-                }
-            }
-            catch (Exception ex)
+            if (existingBackup != null)
             {
-                Crashes.TrackError(ex);
+                return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
             }
 
             return DateTime.MinValue;
@@ -135,51 +157,49 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <inheritdoc />
         public async Task<List<string>> GetFileNames()
         {
-            if (OneDriveClient == null)
+            if (GraphServiceClient == null)
             {
-                OneDriveClient = await oneDriveAuthenticator.LoginAsync()
-                                                            ;
+                await Login();
             }
 
-            await LoadBackupFolder();
+            await MoveToAppFolder();
 
-            var children = await OneDriveClient.Drive
-                                               .Items[BackupFolder?.Id]
-                                               .Children
-                                               .Request()
-                                               .GetAsync()
-                                               ;
-
-            return children.Select(x => x.Name).ToList();
+            return (await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .Select(x => x.Name).ToList();
         }
 
         private async Task DeleteCleanupOldBackups()
         {
-            var archiveBackups = await OneDriveClient.Drive
+            var archiveBackups = await GraphServiceClient.Drive
                                                      .Items[ArchiveFolder?.Id]
                                                      .Children
                                                      .Request()
-                                                     .GetAsync()
-                                                     ;
+                                                     .GetAsync();
 
             if (archiveBackups.Count < 5) return;
             var oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 
-            await OneDriveClient.Drive
+            await GraphServiceClient.Drive
                                 .Items[oldestBackup?.Id]
                                 .Request()
-                                .DeleteAsync()
-                                ;
+                                .DeleteAsync();
         }
 
-        private async Task ArchiveCurrentBackup()
-        {
-            var backups = await OneDriveClient.Drive
-                                              .Items[BackupFolder?.Id]
-                                              .Children.Request()
-                                              .GetAsync()
-                                              ;
-            var currentBackup = backups.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+        private async Task ArchiveCurrentBackup() {
+            var currentBackup = (await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
             if (currentBackup == null) return;
 
@@ -191,64 +211,83 @@ namespace MoneyFox.BusinessLogic.Backup
                                      DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
             };
 
-            await OneDriveClient
+            await GraphServiceClient
                 .Drive
                 .Items[currentBackup.Id]
                 .Request()
-                .UpdateAsync(updateItem)
-                ;
+                .UpdateAsync(updateItem);
         }
 
-        private async Task LoadBackupFolder()
+        private async Task MoveToAppFolder()
         {
-            if (BackupFolder != null) return;
+            var appFolder = await GraphServiceClient
+                .Me
+                .Drive
+                .Special
+                .AppRoot
+                .Request()
+                .GetAsync();
 
-            var children = await OneDriveClient.Drive
+            var children = await GraphServiceClient.Drive
                                                .Root
                                                .Children
                                                .Request()
-                                               .GetAsync()
-                                               ;
-            BackupFolder =
-                children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);
+                                               .GetAsync();
+            var backupFolderOld = children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);
+            if (backupFolderOld != null) {
 
-            if (BackupFolder == null)
-            {
-                await CreateBackupFolder();
+                var childItems = await GraphServiceClient.Drive
+                                        .Items[backupFolderOld.Id]
+                                        .Children.Request()
+                                        .GetAsync();
+
+                var archive = childItems.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
+
+                var updateItem = new DriveItem
+                {
+                    ParentReference = new ItemReference { Id = appFolder.Id },
+                };
+
+                if (archive != null) {
+                    archive.ParentReference = new ItemReference {Id = appFolder.Id};
+                    
+                    await GraphServiceClient
+                        .Drive
+                        .Items[archive.Id]
+                        .Request()
+                        .UpdateAsync(updateItem);
+                }
+
+                var currentBackup = childItems.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+                if (currentBackup != null) {
+                    currentBackup.ParentReference = new ItemReference {Id = appFolder.Id};
+
+                    await GraphServiceClient
+                        .Drive
+                        .Items[currentBackup.Id]
+                        .Request()
+                        .UpdateAsync(updateItem);
+                }
+
+                await GraphServiceClient.Drive
+                                        .Items[backupFolderOld.Id]
+                                        .Request()
+                                        .DeleteAsync();
             }
-        }
-
-        private async Task CreateBackupFolder()
-        {
-            var folderToCreate = new DriveItem
-            {
-                Name = DatabaseConstants.BACKUP_FOLDER_NAME,
-                Folder = new Folder()
-            };
-
-            var root = await OneDriveClient.Drive
-                                           .Root
-                                           .Request()
-                                           .GetAsync()
-                                           ;
-
-            BackupFolder = await OneDriveClient.Drive.Items[root.Id]
-                                               .Children.Request()
-                                               .AddAsync(folderToCreate)
-                                               ;
         }
 
         private async Task LoadArchiveFolder()
         {
             if (ArchiveFolder != null) return;
 
-            var children = await OneDriveClient.Drive
-                                               .Root
-                                               .Children
-                                               .Request()
-                                               .GetAsync()
-                                               ;
-            ArchiveFolder = children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
+            ArchiveFolder = (await GraphServiceClient
+                .Me
+                .Drive
+                .Special
+                .AppRoot.Children
+                .Request()
+                .GetAsync())
+                .CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
             if (ArchiveFolder == null)
             {
@@ -264,12 +303,13 @@ namespace MoneyFox.BusinessLogic.Backup
                 Folder = new Folder()
             };
 
-            ArchiveFolder = await OneDriveClient.Drive
-                                                .Items[BackupFolder?.Id]
-                                                .Children
-                                                .Request()
-                                                .AddAsync(folderToCreate)
-                                                ;
+            ArchiveFolder = await GraphServiceClient
+                .Me
+                .Drive
+                .Special
+                .AppRoot.Children
+                .Request()
+                .AddAsync(folderToCreate);
         }
     }
 }

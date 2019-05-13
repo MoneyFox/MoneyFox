@@ -20,7 +20,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
     public class BackupViewModelTests : MvxIoCSupportingTest
     {
         [Fact]
-        public async void Loaded_NoConnectivity_NothingCalled()
+        public async Task Loaded_NoConnectivity_NothingCalled()
         {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
@@ -50,7 +50,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         }
 
         [Fact]
-        public async void Loaded_ConnectivityNotLoggedIn_NothingCalled() {
+        public async Task Loaded_ConnectivityNotLoggedIn_NothingCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
@@ -79,7 +79,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         }
 
         [Fact]
-        public async void Loaded_ConnectivityLoggedIn_MethodsCalled() {
+        public async Task Loaded_ConnectivityLoggedIn_MethodsCalled() {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);

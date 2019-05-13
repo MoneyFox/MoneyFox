@@ -25,8 +25,7 @@ namespace MoneyFox.Uwp.Views
             if (args.IsSettingsInvoked)
             {
                 await ((MainViewModel) ViewModel).ShowSettingsCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             }
             else
             {
@@ -36,38 +35,32 @@ namespace MoneyFox.Uwp.Views
             if (args.InvokedItem.Equals(Strings.AccountsTitle))
             {
                 await ((MainViewModel) ViewModel).ShowAccountListCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             } 
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {
                 await ((MainViewModel) ViewModel).ShowCategoryListCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             }
             else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
             {
                 await ((MainViewModel) ViewModel).ShowStatisticSelectorCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             } 
             else if (args.InvokedItem.Equals(Strings.BackupTitle))
             {
                 await ((MainViewModel) ViewModel).ShowBackupViewCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             } 
             else if (args.InvokedItem.Equals(Strings.SettingsTitle))
             {
                 await ((MainViewModel) ViewModel).ShowSettingsCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             } 
             else if (args.InvokedItem.Equals(Strings.AboutTitle))
             {
                 await ((MainViewModel) ViewModel).ShowAboutCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             }
         }
 
