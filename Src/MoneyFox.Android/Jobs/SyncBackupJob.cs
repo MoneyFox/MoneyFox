@@ -84,6 +84,10 @@ namespace MoneyFox.Droid.Jobs
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
+
+                var backupDate = await backupService.GetBackupDate();
+                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+
                 await backupService.RestoreBackup();
 
                 JobFinished(args, false);

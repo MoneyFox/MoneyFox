@@ -96,7 +96,7 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> RestoreBackup()
         {
-            var result = await backupManager.RestoreBackup(settingsFacade.LastDatabaseUpdate);
+            var result = await backupManager.RestoreBackup();
 
             if (result.Success)
             {

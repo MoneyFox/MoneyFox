@@ -229,8 +229,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (!await ShowOverwriteDataInfo()) return;
 
             dialogService.ShowLoadingDialog();
+            var backupDate =  await backupService.GetBackupDate();
+            if ((settingsFacade.LastDatabaseUpdate > backupDate) && (!await ShowForceOverrideConfirmation())) return;
+
             var operationResult = await backupService.RestoreBackup();
-            dialogService.HideLoadingDialog();
 
             if (!operationResult.Success)
             {
@@ -250,6 +252,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task<bool> ShowOverwriteDataInfo()
         {
             return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+        }
+
+        private async Task<bool> ShowForceOverrideConfirmation()
+        {
+            return await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
         }
 
         private async Task ShowCompletionNote()
