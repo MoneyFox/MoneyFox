@@ -25,8 +25,7 @@ namespace MoneyFox.Uwp.Views
             if (args.IsSettingsInvoked)
             {
                 await ((MainViewModel) ViewModel).ShowSettingsCommand
-                                                 .ExecuteAsync()
-                                                 ;
+                                                 .ExecuteAsync();
             }
             else
             {
