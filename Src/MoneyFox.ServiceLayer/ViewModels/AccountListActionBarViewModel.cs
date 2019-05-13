@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using GenericServices;
 using MoneyFox.Foundation;
 using ReactiveUI;
@@ -14,17 +13,16 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private int accountCount;
 
         private readonly IScreen hostScreen;
-        private readonly ICrudServicesAsync crudServicesAsync;
 
         public AccountListActionBarViewModel(IScreen hostScreen, ICrudServicesAsync crudServicesAsync = null)
         {
             this.hostScreen = hostScreen;
-            this.crudServicesAsync = crudServicesAsync ?? Locator.Current.GetService<ICrudServicesAsync>();
+            var localCrudServicesAsync = crudServicesAsync ?? Locator.Current.GetService<ICrudServicesAsync>();
 
             Activator = new ViewModelActivator();
             this.WhenActivated(disposable =>
             {
-                accountCount = this.crudServicesAsync.ReadManyNoTracked<AccountViewModel>().Count();
+                accountCount = localCrudServicesAsync.ReadManyNoTracked<AccountViewModel>().Count();
 
                 var canExecutePayment = this.WhenAnyValue(x => x.accountCount, x => x >= 1);
                 var canExecuteTransfer = this.WhenAnyValue(x => x.accountCount, x => x >= 2);
@@ -44,7 +42,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private Unit GoToAddPayment(PaymentType type)
         {
-            hostScreen.Router.Navigate.Execute(new AddPaymentViewModel(hostScreen));
+            hostScreen.Router.Navigate.Execute(new AddPaymentViewModel(type, hostScreen));
             return new Unit();
         }
         private Unit GoToAddAccount()

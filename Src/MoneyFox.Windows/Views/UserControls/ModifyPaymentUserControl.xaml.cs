@@ -2,6 +2,7 @@
 using ReactiveUI;
 using System.Reactive.Disposables;
 using Windows.UI.Xaml;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -37,6 +38,34 @@ namespace MoneyFox.Windows.Views.UserControls
 
                 CancelImage.Events().Tapped.InvokeCommand(this, x => x.ViewModel.CancelCommand);
             });
+        }
+
+        private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)DataContext;
+            if (viewModel.SelectedPayment == null) return;
+            if (viewModel.SelectedPayment.IsRecurring)
+            {
+                await RecurringStackPanel.Fade(1).StartAsync();
+            } else
+            {
+                await RecurringStackPanel.Fade().StartAsync();
+            }
+        }
+
+        private void SetVisibilityInitially(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)DataContext;
+
+            if (viewModel?.SelectedPayment == null)
+            {
+                return;
+            }
+
+            if (!viewModel.SelectedPayment.IsRecurring)
+            {
+                ToggleRecurringVisibility(this, null);
+            }
         }
     }
 }

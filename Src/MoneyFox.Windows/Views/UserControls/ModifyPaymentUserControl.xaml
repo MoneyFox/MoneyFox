@@ -5,6 +5,7 @@
     xmlns:local="using:MoneyFox.Windows.Views.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -38,11 +39,6 @@
                           SelectedItem="{Binding SelectedPayment.ChargedAccount,
                                                      Mode=TwoWay,
                                                      UpdateSourceTrigger=PropertyChanged}">
-                    <!--<interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>-->
                 </ComboBox>
 
                 <ComboBox x:Name="ComboBoxTargetAccount" Margin="{StaticResource SmallTitleContentMargin}"
@@ -57,13 +53,6 @@
                                                      UpdateSourceTrigger=PropertyChanged}"
                           Visibility="{Binding SelectedPayment.IsTransfer,
                                                    Converter={StaticResource BooleanVisibilityConverter}}">
-                    
-                    <!--<interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>-->
-
                 </ComboBox>
                 <TextBox x:Name="AmountTextBox"  Margin="{StaticResource SmallTitleContentMargin}"
                          Header="{Binding Resources[AmountLabel]}"
@@ -77,12 +66,6 @@
                              IsReadOnly="True"
                              Text="{Binding SelectedPayment.Category.Name,
                                                 UpdateSourceTrigger=PropertyChanged}">
-                        <!--<interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="GotFocus">
-                                <core:InvokeCommandAction
-                                    Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>-->
                     </TextBox>
                     <Image x:Name="CancelImage" 
                            Height="30"
@@ -90,11 +73,6 @@
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Source="/Assets/IconCancel.png">
-                        <!--<interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>-->
                     </Image>
                 </Grid>
                 <DatePicker x:Name="PaymentDatePicker"  Margin="{StaticResource SmallTitleContentMargin}"
@@ -117,7 +95,7 @@
                               IsOn="{Binding SelectedPayment.IsRecurring,
                                                  Mode=TwoWay}"
                               Toggled="ToggleRecurringVisibility" />
-                <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitialy">
+                <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitially">
                     <ComboBox x:Name="RecurrenceComboBox"  HorizontalAlignment="Stretch"
                               Margin="{StaticResource SmallTitleContentMargin}"
                               Header="{Binding Resources[RecurrenceLabel]}"

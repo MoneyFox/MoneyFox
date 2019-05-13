@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Plugin.Messenger;
 using ReactiveUI;
 using Splat;
 using System.Linq;
@@ -34,7 +33,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.paymentService = paymentService ?? Locator.Current.GetService<IPaymentService>();
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(async disposable =>
+            this.WhenActivated((CompositeDisposable disposable) =>
             {
                 SelectedPayment = new PaymentViewModel
                 {
@@ -44,7 +43,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 // //We have to set this here since otherwise the end date is null.This causes a crash on android.
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
                 if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
+                {
                     SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
+                }
 
                 Title = PaymentTypeHelper.GetViewTitleForType(paymentType, false);
 
@@ -55,35 +56,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     SelectedItemChangedCommand.Execute();
                     SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
                 }
-
-                DeleteCommand = ReactiveCommand.CreateFromTask(DeletePayment)
-                                               .DisposeWith(disposable);
             });
         }
 
         public override string UrlPathSegment => "AddPayment";
-
-        //public override void Prepare(ModifyPaymentParameter parameter)
-        //{
-        //    SelectedPayment = new PaymentViewModel
-        //    {
-        //        Type = parameter.PaymentType
-        //    };
-        //    Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, false);
-        //    base.Prepare(parameter);
-        //}
-
-        //public override async Task Initialize()
-        //{
-        //    await base.Initialize();
-        //    SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
-
-        //    if (SelectedPayment.IsTransfer)
-        //    {
-        //        SelectedItemChangedCommand.Execute();
-        //        SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
-        //    }
-        //}
 
         protected override async Task SavePayment()
         {
@@ -97,7 +73,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     return;
                 }
 
-                // await NavigationService.Close(this);
+                HostScreen.Router.NavigateBack.Execute();
             }
             catch (MoneyFoxInvalidEndDateException)
             {
