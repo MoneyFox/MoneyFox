@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
@@ -9,15 +6,17 @@ using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
-using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
 using MvvmCross.Plugin.File;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
-using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Jobs
 {
@@ -37,10 +36,7 @@ namespace MoneyFox.Droid.Jobs
         }
 
         /// <inheritdoc />
-        public override bool OnStopJob(JobParameters args)
-        {
-            return true;
-        }
+        public override bool OnStopJob(JobParameters args) => true;
 
         /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
@@ -52,8 +48,7 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 callback.Send(m);
-            }
-            catch (RemoteException e)
+            } catch (RemoteException e)
             {
                 Debug.WriteLine(e);
             }
@@ -91,12 +86,10 @@ namespace MoneyFox.Droid.Jobs
                 await backupService.RestoreBackup();
 
                 JobFinished(args, false);
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Debug.Write(ex);
-            }
-            finally
+            } finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
@@ -107,7 +100,7 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask(int interval)
         {
-            if(!Mvx.IoCProvider.CanResolve<ISettingsFacade>()) return;
+            if (!Mvx.IoCProvider.CanResolve<ISettingsFacade>()) return;
 
             if (!Mvx.IoCProvider.Resolve<ISettingsFacade>().IsBackupAutouploadEnabled) return;
 

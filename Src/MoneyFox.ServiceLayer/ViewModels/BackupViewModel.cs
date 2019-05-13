@@ -232,6 +232,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             var backupDate =  await backupService.GetBackupDate();
             if ((settingsFacade.LastDatabaseUpdate > backupDate) && (!await ShowForceOverrideConfirmation())) return;
 
+            dialogService.ShowLoadingDialog();
+
             var operationResult = await backupService.RestoreBackup();
 
             if (!operationResult.Success)

@@ -1,6 +1,4 @@
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Droid.Manager;
-using MoneyFox.Droid.OneDriveAuth;
 using MoneyFox.Droid.Services;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation;
@@ -18,10 +16,7 @@ namespace MoneyFox.Droid
 {
     public class ApplicationSetup : MvxFormsAndroidSetup<CoreApp, App>
     {
-        public ApplicationSetup()
-        {
-            Strings.Culture = new Localize().GetCurrentCultureInfo();
-        }
+        public ApplicationSetup() => Strings.Culture = new Localize().GetCurrentCultureInfo();
 
         protected override void InitializeFirstChance()
         {
@@ -30,7 +25,6 @@ namespace MoneyFox.Droid
             SecureStorageImplementation.StorageType = StorageTypes.AndroidKeyStore;
 
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, DroidAppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, PlayStoreOperations>();
