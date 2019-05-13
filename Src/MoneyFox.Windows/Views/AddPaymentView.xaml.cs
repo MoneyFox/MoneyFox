@@ -16,11 +16,11 @@ namespace MoneyFox.Windows.Views
 
             this.WhenActivated(disposable =>
             {
-                this.Bind(ViewModel, vm => vm.SaveCommand, v => v.DoneButton.Command).DisposeWith(disposable);
-                this.Bind(ViewModel, vm => vm.Resources["DoneLabel"], v => v.DoneButton.Label).DisposeWith(disposable);
+                this.OneWayBind(ViewModel, vm => vm.SaveCommand, v => v.DoneButton.Command).DisposeWith(disposable);
+                this.OneWayBind(ViewModel, vm => vm.Resources["DoneLabel"], v => v.DoneButton.Label).DisposeWith(disposable);
 
-                this.Bind(ViewModel, vm => vm.CancelCommand, v => v.CancelButton.Command).DisposeWith(disposable);
-                this.Bind(ViewModel, vm => vm.Resources["CancelLabel"], v => v.CancelButton.Label).DisposeWith(disposable);
+                this.OneWayBind(ViewModel, vm => vm.CancelCommand, v => v.CancelButton.Command).DisposeWith(disposable);
+                this.OneWayBind(ViewModel, vm => vm.Resources["CancelLabel"], v => v.CancelButton.Label).DisposeWith(disposable);
             });
         }
     }
