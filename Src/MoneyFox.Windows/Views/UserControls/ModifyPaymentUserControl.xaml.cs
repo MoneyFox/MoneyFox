@@ -16,7 +16,6 @@ namespace MoneyFox.Windows.Views.UserControls
 
             this.WhenActivated(disposables =>
             {
-                this.OneWayBind(ViewModel, vm => vm.AccountHeader, v => v.ComboBoxTargetAccount.Header).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.ChargedAccounts, v => v.ComboBoxChargedAccount.Items).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedPayment.ChargedAccount, v => v.ComboBoxChargedAccount.SelectedItem).DisposeWith(disposables);
 
@@ -35,6 +34,17 @@ namespace MoneyFox.Windows.Views.UserControls
 
                 this.Bind(ViewModel, vm => vm.SelectedPayment.RecurringPayment.IsEndless, v => v.EndlessCheckBox.IsChecked).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedPayment.RecurringPayment.EndDate, v => v.EndDatePicker.Date).DisposeWith(disposables);
+
+                this.OneWayBind(ViewModel, vm => vm.AccountHeader, v => v.ComboBoxTargetAccount.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["TargetAccountLabel"], v => v.ComboBoxTargetAccount.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["AmountLabel"], v => v.AmountTextBox.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["CategoryLabel"], v => v.CategoryTextBox.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["DateLabel"], v => v.PaymentDatePicker.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["NoteLabel"], v => v.NoteTextBox.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["RecurringLabel"], v => v.RecurringSwitch.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["EndlessLabel"], v => v.EndlessCheckBox.Content).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["RecurrenceLabel"], v => v.RecurrenceComboBox.Header).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["EnddateLabel"], v => v.EndDatePicker.Header).DisposeWith(disposables);
 
                 CancelImage.Events().Tapped.InvokeCommand(this, x => x.ViewModel.CancelCommand);
             });

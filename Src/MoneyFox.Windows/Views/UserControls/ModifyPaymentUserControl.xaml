@@ -6,11 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
     <UserControl.Resources>
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
+        <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -31,42 +35,20 @@
             <StackPanel>
                 <ComboBox x:Name="ComboBoxChargedAccount" Margin="{StaticResource SmallTitleContentMargin}"
                           HorizontalAlignment="Stretch"
-                          Header="{Binding AccountHeader}"
-                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-                          ItemsSource="{Binding ChargedAccounts,
-                                                    Mode=TwoWay,
-                                                    UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedPayment.ChargedAccount,
-                                                     Mode=TwoWay,
-                                                     UpdateSourceTrigger=PropertyChanged}">
+                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}">
                 </ComboBox>
 
                 <ComboBox x:Name="ComboBoxTargetAccount" Margin="{StaticResource SmallTitleContentMargin}"
                           HorizontalAlignment="Stretch"
-                          Header="{Binding Resources[TargetAccountLabel]}"
-                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-                          ItemsSource="{Binding TargetAccounts,
-                                                    Mode=TwoWay,
-                                                    UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedPayment.TargetAccount,
-                                                     Mode=TwoWay,
-                                                     UpdateSourceTrigger=PropertyChanged}"
-                          Visibility="{Binding SelectedPayment.IsTransfer,
-                                                   Converter={StaticResource BooleanVisibilityConverter}}">
+                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}">
                 </ComboBox>
-                <TextBox x:Name="AmountTextBox"  Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{Binding Resources[AmountLabel]}"
+                <TextBox x:Name="AmountTextBox" 
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          InputScope="Number"
-                         Text="{Binding SelectedPayment.Amount,
-                                            Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
                 <Grid Margin="{StaticResource SmallTitleContentMargin}">
-                    <TextBox x:Name="CategoryTextBox"  Header="{Binding Resources[CategoryLabel]}"
-                             IsReadOnly="True"
-                             Text="{Binding SelectedPayment.Category.Name,
-                                                UpdateSourceTrigger=PropertyChanged}">
-                    </TextBox>
+                    <TextBox x:Name="CategoryTextBox"  
+                             IsReadOnly="True" />
                     <Image x:Name="CancelImage" 
                            Height="30"
                            Margin="0,0,0,0"
@@ -75,49 +57,24 @@
                            Source="/Assets/IconCancel.png">
                     </Image>
                 </Grid>
-                <DatePicker x:Name="PaymentDatePicker"  Margin="{StaticResource SmallTitleContentMargin}"
-                            HorizontalAlignment="Left"
-                            Date="{Binding SelectedPayment.Date,
-                                               Converter={StaticResource DateTimeToDateTimeOffsetConverter},
-                                               Mode=TwoWay,
-                                               UpdateSourceTrigger=PropertyChanged}"
-                            Header="{Binding Resources[DateLabel]}" />
-                <TextBox x:Name="NoteTextBox" Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{Binding Resources[NoteLabel]}"
-                         Text="{Binding SelectedPayment.Note,
-                                            Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged}"
+                <DatePicker x:Name="PaymentDatePicker" 
+                            Margin="{StaticResource SmallTitleContentMargin}"
+                            HorizontalAlignment="Left" />
+                <TextBox x:Name="NoteTextBox" 
+                         Margin="{StaticResource SmallTitleContentMargin}"
                          TextWrapping="Wrap" />
                 <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
                 <ToggleSwitch x:Name="RecurringSwitch"  Margin="{StaticResource SmallTitleContentMargin}"
                               VerticalAlignment="Stretch"
-                              Header="{Binding Resources[RecurringLabel]}"
-                              IsOn="{Binding SelectedPayment.IsRecurring,
-                                                 Mode=TwoWay}"
                               Toggled="ToggleRecurringVisibility" />
                 <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitially">
                     <ComboBox x:Name="RecurrenceComboBox"  HorizontalAlignment="Stretch"
                               Margin="{StaticResource SmallTitleContentMargin}"
-                              Header="{Binding Resources[RecurrenceLabel]}"
-                              ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
-                              ItemsSource="{Binding RecurrenceList}"
-                              SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence,
-                                                         Mode=TwoWay,
-                                                         UpdateSourceTrigger=PropertyChanged}" />
-                    <CheckBox x:Name="EndlessCheckBox"  Content="{Binding Resources[EndlessLabel]}"
-                              Margin="{StaticResource SmallTitleContentMargin}"
-                              IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless,
-                                                      Mode=TwoWay,
-                                                      UpdateSourceTrigger=PropertyChanged}" />
-                    <DatePicker x:Name="EndDatePicker"  Margin="{StaticResource SmallTitleContentMargin}"
-                                Date="{Binding SelectedPayment.RecurringPayment.EndDate,
-                                                   Converter={StaticResource DateTimeToDateTimeOffsetConverter},
-                                                   Mode=TwoWay,
-                                                   UpdateSourceTrigger=PropertyChanged}"
-                                Header="{Binding Resources[DateLEnddateLabelabel]}"
-                                Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless,
-                                                         Converter={StaticResource BooleanVisibilityConverter},
-                                                         ConverterParameter=revert}" />
+                              ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}" />
+                    <CheckBox x:Name="EndlessCheckBox"
+                              Margin="{StaticResource SmallTitleContentMargin}"/>
+                    <DatePicker x:Name="EndDatePicker"  
+                                Margin="{StaticResource SmallTitleContentMargin}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
