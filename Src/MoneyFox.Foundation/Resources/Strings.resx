@@ -788,6 +788,12 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Modify Recurrence</value>
   </data>
   <data name="SearchHeader" xml:space="preserve">
-    <value>Search</value>
+    <value>Search</value> 
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Override Local Data</value>
   </data>
 </root>

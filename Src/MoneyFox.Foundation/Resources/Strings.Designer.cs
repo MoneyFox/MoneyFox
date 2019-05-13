@@ -1006,6 +1006,24 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?.
+        /// </summary>
+        public static string ForceOverrideBackupMessage {
+            get {
+                return ResourceManager.GetString("ForceOverrideBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override Local Data.
+        /// </summary>
+        public static string ForceOverrideBackupTitle {
+            get {
+                return ResourceManager.GetString("ForceOverrideBackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured.
         /// </summary>
         public static string GeneralErrorTitle {

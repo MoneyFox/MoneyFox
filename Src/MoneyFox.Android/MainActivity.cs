@@ -2,7 +2,10 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
+using Microsoft.Identity.Client;
 using MoneyFox.Droid.Jobs;
+using MoneyFox.Foundation;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
@@ -49,6 +52,7 @@ namespace MoneyFox.Droid
 
             base.OnCreate(bundle);
 
+            Xamarin.Essentials.Platform.Init(this, bundle);
             Popup.Init(this, bundle);
 
             // Handler to create jobs.
@@ -80,11 +84,27 @@ namespace MoneyFox.Droid
                 Mvx.IoCProvider.Resolve<IBackgroundTaskManager>()
                    .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsFacade>().BackupSyncRecurrence);
             }
+
+            ParentActivityWrapper.ParentActivity = this;
         }
 
         public override void OnBackPressed()
         {
             Popup.SendBackPressed(base.OnBackPressed);
+        }
+
+        // Needed for auth, so that MSAL can intercept the response from the browser
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
+        }
+
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

@@ -6,6 +6,9 @@ namespace MoneyFox.Foundation.Constants
     /// </summary>
     public sealed class ServiceConstants
     {
+        public const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+
+
         /// <summary>
         ///     Return URL for the OneDrive authentication
         /// </summary>

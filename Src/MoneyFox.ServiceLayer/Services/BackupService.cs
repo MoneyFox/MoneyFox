@@ -42,7 +42,7 @@ namespace MoneyFox.ServiceLayer.Services
         Task<OperationResult> RestoreBackup();
 
         /// <summary>
-        ///     Enqueues a new backup task
+        ///     Enqueues a new backup task.
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
         Task<OperationResult> EnqueueBackupTask(int attempts = 0);
@@ -61,8 +61,7 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> Login()
         {
-            var result = await backupManager.Login()
-                                            ;
+            var result = await backupManager.Login();
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = true;
@@ -75,8 +74,7 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> Logout()
         {
-            var result = await backupManager.Logout()
-                                            ;
+            var result = await backupManager.Logout();
             if (result.Success)
             {
                 settingsFacade.IsLoggedInToBackupService = false;
@@ -88,19 +86,17 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<bool> IsBackupExisting()
         {
-            return await backupManager.IsBackupExisting()
-                                      ;
+            return await backupManager.IsBackupExisting();
         }
 
         public async Task<DateTime> GetBackupDate()
         {
-            return await backupManager.GetBackupDate()
-                                      ;
+            return await backupManager.GetBackupDate();
         }
 
         public async Task<OperationResult> RestoreBackup()
         {
-            var result = await backupManager.RestoreBackup(settingsFacade.LastDatabaseUpdate);
+            var result = await backupManager.RestoreBackup();
 
             if (result.Success)
             {
@@ -112,8 +108,6 @@ namespace MoneyFox.ServiceLayer.Services
 
         public async Task<OperationResult> EnqueueBackupTask(int attempts = 0)
         {
-            if (!settingsFacade.IsBackupAutouploadEnabled) return OperationResult.Succeeded();
-
             if (!settingsFacade.IsLoggedInToBackupService)
             {
                 var loginResult = await Login();
@@ -123,8 +117,7 @@ namespace MoneyFox.ServiceLayer.Services
                 }
             }
 
-            var result = await backupManager.EnqueueBackupTask()
-                                            ;
+            var result = await backupManager.EnqueueBackupTask();
 
             if (result.Success)
             {
