@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Reactive;
 using MoneyFox.ServiceLayer.ViewModels;
 using ReactiveUI;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
 
 namespace MoneyFox.Windows.Views.UserControls
@@ -55,8 +57,8 @@ namespace MoneyFox.Windows.Views.UserControls
                 
                 CancelImage
                     .Events()
-                    .Tapped
-                    .InvokeCommand(this, x => x.ViewModel.CancelCommand);
+                    .Tapped.Select(x => Unit.Default)
+                    .InvokeCommand(this, x => x.ViewModel.ResetCategoryCommand);
             });
         }
     }
