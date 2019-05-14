@@ -54,8 +54,13 @@ namespace MoneyFox.Windows.Views.UserControls
                           date => date ?? DateTimeOffset.Now,
                           offset => offset.DateTime)
                     .DisposeWith(disposables);
-                
-                CancelImage
+
+                CategoryTextBox
+                    .Events()
+                    .GotFocus.Select(x => Unit.Default)
+                    .InvokeCommand(this, x => x.ViewModel.GoToSelectCategoryDialogCommand);
+
+                IconResetCategory
                     .Events()
                     .Tapped.Select(x => Unit.Default)
                     .InvokeCommand(this, x => x.ViewModel.ResetCategoryCommand);

@@ -8,6 +8,7 @@
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     xmlns:converter="using:MoneyFox.Windows.Converter"
     xmlns:foundation="using:MoneyFox.Foundation"
+    xmlns:uwp="using:FontAwesome.UWP"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -51,13 +52,12 @@
                 <Grid Margin="{StaticResource SmallTitleContentMargin}">
                     <TextBox x:Name="CategoryTextBox"  
                              IsReadOnly="True" />
-                    <Image x:Name="CancelImage" 
-                           Height="30"
-                           Margin="0,0,0,0"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Source="/Assets/IconCancel.png">
-                    </Image>
+
+                    <uwp:FontAwesome x:Name="IconResetCategory" 
+                                     Icon="WindowCloseOutline"
+                                     Margin="0,0,7,7"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"/>
                 </Grid>
                 <DatePicker x:Name="PaymentDatePicker" 
                             Margin="{StaticResource SmallTitleContentMargin}"
