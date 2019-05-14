@@ -26,6 +26,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Graph" Version="1.15.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="3.0.8" />
     <PackageReference Include="MvvmCross" Version="6.2.3" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.2.3" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.4" />

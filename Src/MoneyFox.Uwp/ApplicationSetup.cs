@@ -1,13 +1,6 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Windows.Storage;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.Uwp.Business;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Uap.Core;
@@ -19,6 +12,11 @@ using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.UI;
 using Serilog;
 using Serilog.Events;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Windows.Storage;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Uwp
@@ -30,7 +28,6 @@ namespace MoneyFox.Uwp
             base.InitializeFirstChance();
 
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, WindowsAppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, MarketplaceOperations>();
@@ -62,7 +59,7 @@ namespace MoneyFox.Uwp
                 .MinimumLevel.Debug()
                 .WriteTo.Console(LogEventLevel.Verbose)
                 .WriteTo.Debug(LogEventLevel.Verbose)
-                .WriteTo.File( Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "log.txt"), rollingInterval: RollingInterval.Month)
+                .WriteTo.File(Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "log.txt"), rollingInterval: RollingInterval.Month)
                 .CreateLogger();
 
             return base.CreateLogProvider();
