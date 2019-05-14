@@ -25,6 +25,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.SelectedPayment.TargetAccount, v => v.ComboBoxTargetAccount.SelectedItem).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.RecurrenceList, v => v.RecurrenceComboBox.ItemsSource).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.SelectedPayment.IsRecurring, v => v.RecurringStackPanel.Visibility).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.SelectedPayment.Category, v => v.CategoryTextBox.Text, vm => vm?.Name ?? "").DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.AccountHeader, v => v.ComboBoxTargetAccount.Header).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Resources["TargetAccountLabel"], v => v.ComboBoxTargetAccount.Header).DisposeWith(disposables);
@@ -38,7 +39,6 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.Resources["EnddateLabel"], v => v.EndDatePicker.Header).DisposeWith(disposables);
                 
                 this.Bind(ViewModel, vm => vm.SelectedPayment.Amount, v => v.AmountTextBox.Text).DisposeWith(disposables);
-                this.Bind(ViewModel, vm => vm.SelectedPayment.Category.Name, v => v.CategoryTextBox.Text).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedPayment.Date, v => v.PaymentDatePicker.Date,
                           date => date, offset => offset.DateTime)
                     .DisposeWith(disposables);
