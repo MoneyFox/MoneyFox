@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
+using DynamicData;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
@@ -14,7 +16,6 @@ using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Plugin.Messenger;
 using ReactiveUI;
 using Splat;
 
@@ -30,11 +31,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
 
-        protected ModifyPaymentParameter PassedParameter { get; private set; }
-
         private PaymentViewModel selectedPayment;
-        private ObservableCollection<AccountViewModel> chargedAccounts;
-        private ObservableCollection<AccountViewModel> targetAccounts;
+        private ReadOnlyObservableCollection<AccountViewModel> chargedAccounts;
+        private ReadOnlyObservableCollection<AccountViewModel> targetAccounts;
 
         /// <summary>
         ///     Default constructor
@@ -56,14 +55,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             this.WhenActivated(async disposable =>
             {
-                var accounts = await this.crudServices.ReadManyNoTracked<AccountViewModel>()
-                                                 .OrderByName()
-                                                 .ToListAsync();
+                var accountsSource = new SourceList<AccountViewModel>();
+                accountsSource.AddRange(await this.crudServices.ReadManyNoTracked<AccountViewModel>()
+                                            .OrderByName()
+                                            .ToListAsync());
 
-                ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-                TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+                accountsSource.Connect()
+                              .ObserveOn(RxApp.MainThreadScheduler)
+                              .StartWithEmpty()
+                              .Bind(out chargedAccounts)
+                              .Bind(out targetAccounts)
+                              .Subscribe()
+                              .DisposeWith(disposable);
 
-                SelectedItemChangedCommand = ReactiveCommand.Create(UpdateOtherComboBox).DisposeWith(disposable);
+                //SelectedItemChangedCommand = ReactiveCommand.Create(UpdateOtherComboBox).DisposeWith(disposable);
                 SaveCommand = ReactiveCommand.CreateFromTask(SavePaymentBase).DisposeWith(disposable);
                 GoToSelectCategoryDialogCommand =ReactiveCommand.Create(OpenSelectCategoryList).DisposeWith(disposable);
                 CancelCommand = ReactiveCommand.Create(Cancel).DisposeWith(disposable);
@@ -132,20 +137,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts
-        {
-            get => chargedAccounts;
-            private set => this.RaiseAndSetIfChanged(ref chargedAccounts, value);
-        }
+        public ReadOnlyObservableCollection<AccountViewModel> ChargedAccounts => chargedAccounts;
 
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts
-        {
-            get => targetAccounts;
-            private set => this.RaiseAndSetIfChanged(ref targetAccounts, value);
-        }
+        public ReadOnlyObservableCollection<AccountViewModel> TargetAccounts => targetAccounts;
 
         public virtual string Title { get; set; }
 
@@ -200,24 +197,24 @@ namespace MoneyFox.ServiceLayer.ViewModels
             HostScreen.Router.NavigateBack.Execute();
         }
 
-        private void UpdateOtherComboBox()
-        {
-            var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (AccountViewModel account in TargetAccounts)
-            {
-                if (!tempCollection.Contains(account)) tempCollection.Add(account);
-            }
+        //private void UpdateOtherComboBox()
+        //{
+        //    var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
+        //    foreach (AccountViewModel account in TargetAccounts)
+        //    {
+        //        if (!tempCollection.Contains(account)) tempCollection.Add(account);
+        //    }
 
-            foreach (AccountViewModel account in tempCollection)
-            {
-                //fills targetaccounts
-                if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
+        //    foreach (AccountViewModel account in tempCollection)
+        //    {
+        //        //fills targetaccounts
+        //        if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
 
-                //fills chargedaccounts
-                if (!ChargedAccounts.Contains(account)) ChargedAccounts.Add(account);
-            }
+        //        //fills chargedaccounts
+        //        if (!ChargedAccounts.Contains(account)) ChargedAccounts.Add(account);
+        //    }
 
-            TargetAccounts.Remove(selectedPayment.ChargedAccount);
-        }
+        //    TargetAccounts.Remove(selectedPayment.ChargedAccount);
+        //}
     }
 }

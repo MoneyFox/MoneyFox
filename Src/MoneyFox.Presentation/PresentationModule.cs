@@ -1,6 +1,6 @@
 ﻿using Autofac;
+using MoneyFox.Presentation.ConverterBindings;
 using MoneyFox.ServiceLayer;
-using MoneyFox.Windows.Converter;
 using ReactiveUI;
 
 namespace MoneyFox.Presentation
@@ -11,8 +11,7 @@ namespace MoneyFox.Presentation
         {
             builder.RegisterModule<ServiceModule>();
 
-            builder.Register((c) => new StringToDoubleBindingTypeConverter()).As<IBindingTypeConverter>()
-                   .SingleInstance();
+            builder.Register((c) => new StringToDoubleBinding()).As<IBindingTypeConverter>().SingleInstance();
         }
     }
 }

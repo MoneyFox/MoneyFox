@@ -19,14 +19,9 @@ namespace MoneyFox.Windows.Views
 
             this.WhenActivated(disposables =>
             {
-                this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source)
-                    .DisposeWith(disposables);
-
-                this.OneWayBind(ViewModel, vm => vm.Resources["NoAccountsMessage"], v => v.NoAccountsTextBlock.Text)
-                    .DisposeWith(disposables);
-
-                this.OneWayBind(ViewModel, vm => vm.HasNoAccounts, v => v.NoAccountsTextBlock.Visibility)
-                    .DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Accounts, v => v.AccountsCollectionViewSource.Source).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["NoAccountsMessage"], v => v.NoAccountsTextBlock.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.HasNoAccounts, v => v.NoAccountsTextBlock.Visibility).DisposeWith(disposables);
 
                 AccountList
                     .Events()

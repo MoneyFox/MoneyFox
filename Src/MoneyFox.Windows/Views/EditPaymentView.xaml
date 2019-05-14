@@ -21,7 +21,7 @@
                    Text="{Binding Title}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <userControls:ModifyPaymentUserControl Grid.Row="1" />
+        <userControls:ModifyPaymentUserControl x:Name="ModifyPaymentUserControl" Grid.Row="1" />
 
         <CommandBar Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">

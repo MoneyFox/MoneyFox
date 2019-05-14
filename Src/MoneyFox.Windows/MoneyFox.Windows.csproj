@@ -127,6 +127,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConverterBindings\ListToItemCollectionBinding.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
