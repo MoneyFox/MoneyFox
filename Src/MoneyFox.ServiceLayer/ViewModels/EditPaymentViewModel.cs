@@ -36,9 +36,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
             this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
 
+            SelectedPayment = this.crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId).Result;
+
             this.WhenActivated(async disposable =>
             {
-                SelectedPayment = await this.crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId);
                 //We have to set this here since otherwise the end date is null.This causes a crash on android.
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
                 if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
