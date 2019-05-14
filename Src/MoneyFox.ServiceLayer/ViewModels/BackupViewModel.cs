@@ -230,7 +230,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             dialogService.ShowLoadingDialog();
             var backupDate =  await backupService.GetBackupDate();
-            if ((settingsFacade.LastDatabaseUpdate > backupDate) && (!await ShowForceOverrideConfirmation())) return;
+            if (settingsFacade.LastDatabaseUpdate > backupDate && (!await ShowForceOverrideConfirmation())) return;
 
             dialogService.ShowLoadingDialog();
 
