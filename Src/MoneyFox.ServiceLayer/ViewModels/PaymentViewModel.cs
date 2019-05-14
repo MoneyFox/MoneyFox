@@ -26,7 +26,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
-        public PaymentViewModel() => Date = DateTime.Today;
+        public PaymentViewModel()
+        {
+            Date = DateTime.Today;
+            Note = string.Empty;
+        }
 
         public int Id
         {

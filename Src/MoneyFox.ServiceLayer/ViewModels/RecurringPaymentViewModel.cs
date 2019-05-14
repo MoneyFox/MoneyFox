@@ -23,6 +23,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             Recurrence = PaymentRecurrence.Daily;
             EndDate = DateTime.Today;
+            IsEndless = true;
         }
 
         public int Id

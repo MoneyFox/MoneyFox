@@ -16,6 +16,8 @@ namespace MoneyFox.Windows.Views
             {
                 ModifyPaymentUserControl.ViewModel = ViewModel;
 
+                this.OneWayBind(ViewModel, vm => vm.Title, v => v.TitlePage.Text).DisposeWith(disposable);
+
                 this.OneWayBind(ViewModel, vm => vm.SaveCommand, v => v.DoneButton.Command).DisposeWith(disposable);
                 this.OneWayBind(ViewModel, vm => vm.Resources["DoneLabel"], v => v.DoneButton.Label).DisposeWith(disposable);
 

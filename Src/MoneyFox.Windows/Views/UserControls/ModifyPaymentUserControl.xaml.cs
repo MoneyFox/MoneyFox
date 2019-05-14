@@ -31,13 +31,13 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.Bind(ViewModel, vm => vm.SelectedPayment.Date, v => v.PaymentDatePicker.Date,
                           date => date, offset => offset.DateTime)
                     .DisposeWith(disposables);
-
-                //this.Bind(ViewModel, vm => vm.SelectedPayment.Note, v => v.NoteTextBox.Text).DisposeWith(disposables);
+                    
+                this.Bind(ViewModel, vm => vm.SelectedPayment.Note, v => v.NoteTextBox.Text).DisposeWith(disposables);
 
                 this.Bind(ViewModel, vm => vm.SelectedPayment.IsRecurring, v => v.RecurringSwitch.IsOn).DisposeWith(disposables);
 
                 this.Bind(ViewModel, vm => vm.SelectedPayment.IsRecurring, v => v.RecurringStackPanel.Visibility).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.RecurrenceList, v => v.RecurrenceComboBox.Items).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.RecurrenceList, v => v.RecurrenceComboBox.ItemsSource).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedPayment.RecurringPayment.Recurrence, v => v.RecurrenceComboBox.SelectedItem).DisposeWith(disposables);
 
                 this.Bind(ViewModel, vm => vm.SelectedPayment.RecurringPayment.IsEndless, v => v.EndlessCheckBox.IsChecked).DisposeWith(disposables);
