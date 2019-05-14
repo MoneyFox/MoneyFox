@@ -1,15 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using Foundation;
+﻿using Foundation;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.Identity.Client;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.iOS.Authentication;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
@@ -17,13 +15,16 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
+using PCLAppConfig;
+using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
+using SQLitePCL;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
-using Microsoft.AppCenter.Crashes;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.Identity.Client;
-using PCLAppConfig;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -34,7 +35,7 @@ namespace MoneyFox.iOS
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
-    [Register("AppDelegate")]
+    [Register(nameof(AppDelegate))]
     public class AppDelegate : MvxFormsApplicationDelegate<ApplicationSetup, CoreApp, App>
     {
         // Minimum number of seconds between a background refresh
@@ -44,7 +45,7 @@ namespace MoneyFox.iOS
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+            ConfigurationManager.Initialise(PortableStream.Current);
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
@@ -58,7 +59,7 @@ namespace MoneyFox.iOS
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             EfCoreContext.DbPath = GetLocalFilePath();
-            SQLitePCL.Batteries.Init();
+            Batteries.Init();
             Popup.Init();
 
             return base.FinishedLaunching(app, options);
@@ -95,7 +96,7 @@ namespace MoneyFox.iOS
 
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
-            if(!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
+            if (!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
 
             Debug.Write("Enter Background Task");
             var successful = false;
@@ -109,8 +110,7 @@ namespace MoneyFox.iOS
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Debug.Write(ex);
                 Crashes.TrackError(ex);
@@ -151,13 +151,16 @@ namespace MoneyFox.iOS
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
+
+                var backupDate = await backupService.GetBackupDate();
+                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+
                 await backupService.RestoreBackup();
 
             } catch (Exception ex)
             {
                 Debug.Write(ex);
-            } 
-            finally
+            } finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
@@ -176,12 +179,10 @@ namespace MoneyFox.iOS
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");
-            } 
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Crashes.TrackError(ex);
-            } 
-            finally
+            } finally
             {
                 settingsFacade.LastExecutionTimeStampClearPayments = DateTime.Now;
             }
@@ -202,12 +203,10 @@ namespace MoneyFox.iOS
                 context.SaveChanges();
 
                 Debug.WriteLine("RecurringPayment Job finished.");
-            } 
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Crashes.TrackError(ex);
-            } 
-            finally
+            } finally
             {
                 settingsFacade.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }

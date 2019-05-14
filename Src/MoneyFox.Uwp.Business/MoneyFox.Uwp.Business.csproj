@@ -130,7 +130,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OneDriveAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tiles\LiveTileHelper.cs" />
     <Compile Include="Tiles\LiveTileManager.cs" />
@@ -144,9 +143,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.OneDriveSDK.Authentication">
-      <Version>1.0.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>5.1.1</Version>

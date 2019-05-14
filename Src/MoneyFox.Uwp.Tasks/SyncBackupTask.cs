@@ -41,6 +41,9 @@ namespace MoneyFox.Uwp.Tasks
 
                 var backupService = new BackupService(backupManager,settingsFacade);
 
+                var backupDate = await backupService.GetBackupDate();
+                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+
                 await backupService.RestoreBackup();
             }
             catch (Exception ex)

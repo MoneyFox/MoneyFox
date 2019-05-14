@@ -141,7 +141,6 @@
     <Compile Include="ApplicationSetup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Authentication\IosAuthenticationProvider.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Content Include="..\MoneyFox.Presentation\App.config">
@@ -155,7 +154,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer\FloatingActionButton.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
-    <Compile Include="Authentication\OneDriveAuthenticator.cs" />
     <None Include="MoneyFox.iOS.ruleset" />
     <BundleResource Include="Resources\materialdesignicons.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
