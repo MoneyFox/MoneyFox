@@ -780,4 +780,16 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Bewertung abgeben!</value>
   </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>Du hast eine wiederkehrende Zahlung bearbeitet. Möchtest du die Wiederholungen ebenfalls anpassen?</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Serie bearbeiten</value>
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Ihre lokale Datenbank hat ein neueres Änderungsdatum als das auf OneDrive. Möchten Sie Ihre lokalen Daten überschreiben?</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Lokale Daten überschreiben</value>
+  </data>
 </root>
