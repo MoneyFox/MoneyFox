@@ -410,7 +410,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>To jest projekt Open-Source - i bardzo chcielibyśmy pracować z tobą! Zapraszamy do kontrybuowania. Naciśnij, aby odwiedzić repozytorium:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Oceń nas!</value>
+    <value>Oceń aplikację!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Jest coś niepoprawnie przetłumaczone lub nieprzetłumaczone w ogóle? Pomóż nam! Udaj się do Crowdin aby pomóc poprawić Money Fox:</value>
@@ -694,5 +694,89 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Zadanie w tle</value>
+  </data>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalizacja</value>
+  </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Skróty klawiszowe</value>
+  </data>
+  <data name="LiveTileAccountBalance" xml:space="preserve">
+    <value>Saldo: {0}</value>
+  </data>
+  <data name="LiveTileAccountName" xml:space="preserve">
+    <value>Konto: {0}</value>
+  </data>
+  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTilePastPayments" xml:space="preserve">
+    <value>Past Payments</value>
+  </data>
+  <data name="LiveTileUpcommingPayments" xml:space="preserve">
+    <value>Upcoming Payments</value>
+  </data>
+  <data name="BalanceLabel" xml:space="preserve">
+    <value>Saldo</value>
+  </data>
+  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
+    <value>Last Executions:</value>
+  </data>
+  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
+    <value>Paymentclearing:</value>
+  </data>
+  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
+    <value>Utwórz płatności cykliczne:</value>
+  </data>
+  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
+    <value>Synchronizacja kopii zapasowej:</value>
+  </data>
+  <data name="PersonalizationInfoLabel" xml:space="preserve">
+    <value>Wybierz między jasnym a ciemnym motywem. Zrestartuj aplikację przez Menedżer zadań w celu zastosowania zmian.</value>
+  </data>
+  <data name="ThemeDarkLabel" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="ThemeLightLabel" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
+  <data name="SettingsPersonalizationDescription" xml:space="preserve">
+    <value>Wybierz preferowany motyw.</value>
+  </data>
+  <data name="SettingsPersonalizationLabel" xml:space="preserve">
+    <value>Personalizacja</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
+    <value>{0} otrzyma {1}</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
+    <value>{0} to be taken from {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
+    <value>{0} taken from {1}</value>
+  </data>
+  <data name="PintAccountLabel" xml:space="preserve">
+    <value>Przypnij konto do obszaru startowego</value>
+  </data>
+  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
+    <value>No statistic items to display. Try to adjust the time range.</value>
+  </data>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Last year monthly average: </value>
+  </data>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Wkład</value>
+  </data>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>Informacje</value>
+  </data>
+  <data name="LeaveFeedbackLabel" xml:space="preserve">
+    <value>Pozostaw opinię!</value>
   </data>
 </root>
