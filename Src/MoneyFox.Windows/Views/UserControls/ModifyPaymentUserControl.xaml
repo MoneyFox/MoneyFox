@@ -66,10 +66,11 @@
                          Margin="{StaticResource SmallTitleContentMargin}"
                          TextWrapping="Wrap" />
                 <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
-                <ToggleSwitch x:Name="RecurringSwitch"  Margin="{StaticResource SmallTitleContentMargin}"
-                              VerticalAlignment="Stretch"
-                              Toggled="ToggleRecurringVisibility" />
-                <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitially">
+                <ToggleSwitch x:Name="RecurringSwitch"
+                              Margin="{StaticResource SmallTitleContentMargin}"
+                              VerticalAlignment="Stretch" />
+
+                <StackPanel x:Name="RecurringStackPanel">
                     <ComboBox x:Name="RecurrenceComboBox"  HorizontalAlignment="Stretch"
                               Margin="{StaticResource SmallTitleContentMargin}"
                               ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}" />

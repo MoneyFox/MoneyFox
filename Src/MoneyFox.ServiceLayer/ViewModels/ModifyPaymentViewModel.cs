@@ -13,7 +13,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using ReactiveUI;
@@ -173,9 +172,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
-        ///     Moved to own method for debugg reasons
+        ///     Moved to own method for debug reasons
         /// </summary>
-        /// <param name="message">Message stent.</param>
+        /// <param name="message">Message sent.</param>
         private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
