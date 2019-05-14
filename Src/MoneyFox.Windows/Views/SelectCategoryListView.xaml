@@ -1,0 +1,57 @@
+﻿<views:MySelectCategoryListView
+    x:Class="MoneyFox.Windows.Views.SelectCategoryListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:views="using:MoneyFox.Windows.Views"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitlePage"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
+        <userControls:CategoryListUserControl x:Name="CategoryListControl"
+                                              Grid.Row="1" 
+                                              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"/>
+
+        <CommandBar Grid.Row="2"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="AddCategoryButton"
+                              Command="{Binding CreateNewCategoryCommand}"
+                              Icon="Add" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Grid>
+
+</views:MySelectCategoryListView>

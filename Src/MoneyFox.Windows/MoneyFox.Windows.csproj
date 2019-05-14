@@ -169,6 +169,9 @@
       <DependentUpon>EditPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReactiveView.cs" />
+    <Compile Include="Views\SelectCategoryListView.xaml.cs">
+      <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -355,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditPaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectCategoryListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,9 +11,7 @@
     xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400"
-    d:DataContext="{d:DesignInstance designTime:DesignTimeModifyPaymentViewModel,
-                                                       IsDesignTimeCreatable=True}">
+    d:DesignWidth="400" >
 
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />

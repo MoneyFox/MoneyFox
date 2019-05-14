@@ -67,7 +67,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                               .Subscribe()
                               .DisposeWith(disposable);
 
-                //SelectedItemChangedCommand = ReactiveCommand.Create(UpdateOtherComboBox).DisposeWith(disposable);
                 SaveCommand = ReactiveCommand.CreateFromTask(SavePaymentBase).DisposeWith(disposable);
                 GoToSelectCategoryDialogCommand =ReactiveCommand.Create(OpenSelectCategoryList).DisposeWith(disposable);
                 CancelCommand = ReactiveCommand.Create(Cancel).DisposeWith(disposable);
@@ -181,39 +180,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             SelectedPayment.Category = message.SelectedCategory;
         }
 
-        private void OpenSelectCategoryList()
-        {
-            HostScreen.Router.Navigate.Execute(new SelectCategoryListViewModel(HostScreen));
-        }
+        private void OpenSelectCategoryList() => HostScreen.Router.Navigate.Execute(new SelectCategoryListViewModel(HostScreen));
 
-        private void ResetSelection()
-        {
-            SelectedPayment.Category = null;
-        }
+        private void ResetSelection() => SelectedPayment.Category = null;
 
-        private void Cancel()
-        {
-            HostScreen.Router.NavigateBack.Execute();
-        }
-
-        //private void UpdateOtherComboBox()
-        //{
-        //    var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-        //    foreach (AccountViewModel account in TargetAccounts)
-        //    {
-        //        if (!tempCollection.Contains(account)) tempCollection.Add(account);
-        //    }
-
-        //    foreach (AccountViewModel account in tempCollection)
-        //    {
-        //        //fills targetaccounts
-        //        if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
-
-        //        //fills chargedaccounts
-        //        if (!ChargedAccounts.Contains(account)) ChargedAccounts.Add(account);
-        //    }
-
-        //    TargetAccounts.Remove(selectedPayment.ChargedAccount);
-        //}
+        private void Cancel() => HostScreen.Router.NavigateBack.Execute();
     }
 }
