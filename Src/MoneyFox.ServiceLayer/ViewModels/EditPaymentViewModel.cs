@@ -22,8 +22,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
 
-        public EditPaymentViewModel(ModifyPaymentParameter parameter,
-                                    IScreen screen = null,
+        public EditPaymentViewModel(int paymentId,
+                                    IScreen screen,
                                     IPaymentService paymentService = null,
                                     ICrudServicesAsync crudServices = null,
                                     IDialogService dialogService = null,
@@ -36,9 +36,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
             this.backupService = backupService ?? Locator.Current.GetService<IBackupService>();
 
-            SelectedPayment = this.crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId).Result;
+            SelectedPayment = this.crudServices.ReadSingleAsync<PaymentViewModel>(paymentId).Result;
 
-            this.WhenActivated(async disposable =>
+            this.WhenActivated(disposable =>
             {
                 //We have to set this here since otherwise the end date is null.This causes a crash on android.
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
@@ -47,7 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
                 }
 
-                Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, true);
+                Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
 
                 DeleteCommand = ReactiveCommand.CreateFromTask(DeletePayment)
                                                .DisposeWith(disposable);

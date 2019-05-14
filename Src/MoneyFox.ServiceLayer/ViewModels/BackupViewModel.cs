@@ -246,24 +246,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
         }
 
-        private async Task<bool> ShowOverwriteBackupInfo()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
-        }
+        private async Task<bool> ShowOverwriteBackupInfo() => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
 
-        private async Task<bool> ShowOverwriteDataInfo()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
-        }
+        private async Task<bool> ShowOverwriteDataInfo() => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
 
-        private async Task<bool> ShowForceOverrideConfirmation()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
-        }
+        private async Task<bool> ShowForceOverrideConfirmation() => await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
 
-        private async Task ShowCompletionNote()
-        {
-            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
-        }
+        private async Task ShowCompletionNote() => await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
     }
 }

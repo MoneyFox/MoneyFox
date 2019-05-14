@@ -103,7 +103,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private Unit GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if (accountViewModel == null) return new Unit();
-            HostScreen.Router.Navigate.Execute(new PaymentListViewModel(HostScreen));
+            HostScreen.Router.Navigate.Execute(new PaymentListViewModel(accountViewModel.Id, HostScreen));
             return new Unit();
         }
 
