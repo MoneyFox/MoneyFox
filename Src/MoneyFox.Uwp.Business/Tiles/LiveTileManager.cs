@@ -77,16 +77,17 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             var tiles = await SecondaryTile.FindAllForPackageAsync();
 
-            List<string> displayContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
+           
                 ;
 
             if (tiles == null) return;
 
             foreach (var item in tiles)
             {
-                var acct = await crudService.ReadSingleAsync<AccountViewModel>(item.TileId)
+                var acct = await crudService.ReadSingleAsync<AccountViewModel>(int.Parse(item.TileId))
                     ;
-                var content = new TileContent
+                List<string> displayContent = GetSecondarypayments(int.Parse(item.TileId));
+               var content = new TileContent
                 {
                     Visual = new TileVisual
                     {
@@ -444,6 +445,56 @@ namespace MoneyFox.Uwp.Business.Tiles
                     }
                 }
             };
+        }
+
+
+        private List<string> GetSecondarypayments(int accountid)
+        {
+            var allPayments = new List<PaymentViewModel>();
+            var allPayment = new List<LiveTilesPaymentInfo>();
+            List<LiveTilesPaymentInfo> payments;
+            allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
+                   .Where(x => x.ChargedAccountId == accountid)
+                   .ToList());
+            try
+            {
+                allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
+                    .Where(x => x.TargetAccountId == accountid)
+                    .ToList());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+            }
+            foreach (var item in allPayments)
+            {
+                if (item.IsRecurring)
+                {
+                    allPayment.AddRange(GetRecurrence(item));
+                }
+                else
+                {
+                    var tileInfo = new LiveTilesPaymentInfo
+                    {
+                        Chargeaccountname = item.ChargedAccount.Name,
+                        Amount = item.Amount,
+                        Date = item.Date.Date,
+                        Type = item.Type
+                    };
+                    allPayment.Add(tileInfo);
+                }
+            }
+                payments = allPayment.OrderByDescending(x => x.Date.Date)
+                    .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
+                    .Take(NUMBER_OF_PAYMENTS)
+                    .ToList();
+
+            var returnList = payments.Select(x => LiveTileHelper.GetTileText(TileSizeOption.Large, x)).ToList();
+
+            for (var i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++) returnList.Add(string.Empty);
+
+            return returnList;
         }
 
         private async Task<List<string>> GetPaymentsAsync(TileSizeOption tileSize,
