@@ -2,7 +2,6 @@ using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Plugin;
 using MvvmCross.Plugin.File;
@@ -10,13 +9,9 @@ using MvvmCross.Plugin.File.Platforms.Uap;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.UI;
-using Serilog;
-using Serilog.Events;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using Windows.Storage;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Uwp
