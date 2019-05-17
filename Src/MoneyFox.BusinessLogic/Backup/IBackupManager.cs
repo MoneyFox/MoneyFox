@@ -39,7 +39,7 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task<OperationResult> RestoreBackup(DateTime lastDatabaseUpdateTimestamp);
+        Task<OperationResult> RestoreBackup();
 
         /// <summary>
         ///     Enqueues a new backup task

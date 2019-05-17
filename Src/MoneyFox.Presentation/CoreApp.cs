@@ -4,6 +4,7 @@ using GenericServices;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
@@ -11,6 +12,7 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
@@ -37,6 +39,11 @@ namespace MoneyFox.Presentation
         {
             Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ICrudServices, CrudServices>();
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton(() => PublicClientApplicationBuilder
+                                                                  .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                                                  .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                                                  .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                                                                  .Build());
 
             typeof(OneDriveService).Assembly.CreatableTypes()
                                   .EndingWith("Service")

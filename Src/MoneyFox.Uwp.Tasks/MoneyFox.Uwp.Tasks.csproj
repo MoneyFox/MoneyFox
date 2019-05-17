@@ -141,6 +141,9 @@
     <PackageReference Include="EfCore.GenericServices">
       <Version>2.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Identity.Client">
+      <Version>3.0.8</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>

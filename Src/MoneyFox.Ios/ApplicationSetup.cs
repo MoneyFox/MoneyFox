@@ -1,5 +1,3 @@
-using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.iOS.Authentication;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross;
@@ -7,7 +5,6 @@ using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.IoC;
 using MvvmCross.Logging;
 using Serilog;
-using Serilog.Events;
 
 namespace MoneyFox.iOS
 {
@@ -18,7 +15,6 @@ namespace MoneyFox.iOS
             base.InitializeFirstChance();
 
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IDialogService, DialogService>();
-            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IProtectedData, ProtectedData>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IAppInformation, AppInformation>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<IStoreOperations, StoreOperations>();
