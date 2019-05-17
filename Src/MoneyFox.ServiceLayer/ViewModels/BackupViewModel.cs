@@ -233,6 +233,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             dialogService.ShowLoadingDialog();
             var backupDate =  await backupService.GetBackupDate();
+
             if (settingsFacade.LastDatabaseUpdate > backupDate && (!await ShowForceOverrideConfirmation())) return;
 
             dialogService.ShowLoadingDialog();
@@ -247,7 +248,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await ShowCompletionNote();
             }
-            dialogService.HideLoadingDialog();
         }
 
         private async Task<bool> ShowOverwriteBackupInfo() => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);

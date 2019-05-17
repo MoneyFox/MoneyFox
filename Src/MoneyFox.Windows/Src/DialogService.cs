@@ -25,6 +25,8 @@ namespace MoneyFox.Windows
             string positiveButtonText = null,
             string negativeButtonText = null, Action negativAction = null)
         {
+            HideLoadingDialog();
+
             var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer)
@@ -47,6 +49,7 @@ namespace MoneyFox.Windows
         public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
             string negativeButtonText = null)
         {
+            HideLoadingDialog();
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
             dialog.Commands.Add(new UICommand(negativeButtonText ?? Strings.NoLabel));
@@ -63,6 +66,7 @@ namespace MoneyFox.Windows
         /// <param name="message">Text to display.</param>
         public async Task ShowMessage(string title, string message)
         {
+            HideLoadingDialog();
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
 
