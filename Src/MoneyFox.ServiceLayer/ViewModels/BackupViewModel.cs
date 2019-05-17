@@ -247,6 +247,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await ShowCompletionNote();
             }
+            dialogService.HideLoadingDialog();
         }
 
         private async Task<bool> ShowOverwriteBackupInfo() => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
