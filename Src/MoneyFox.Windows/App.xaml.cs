@@ -103,7 +103,7 @@ namespace MoneyFox.Windows
 
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "logeFile.txt"),
+                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "logFile.txt"),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };
