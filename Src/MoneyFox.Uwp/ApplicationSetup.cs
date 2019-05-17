@@ -50,19 +50,5 @@ namespace MoneyFox.Uwp
             assemblyList.Add(typeof(MainViewModel).Assembly);
             return assemblyList;
         }
-
-        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.Serilog;
-
-        protected override IMvxLogProvider CreateLogProvider()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console(LogEventLevel.Verbose)
-                .WriteTo.Debug(LogEventLevel.Verbose)
-                .WriteTo.File(Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "log.txt"), rollingInterval: RollingInterval.Month)
-                .CreateLogger();
-
-            return base.CreateLogProvider();
-        }
     }
 }

@@ -12,6 +12,7 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using NLog;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
@@ -50,6 +51,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// </summary>
     public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
@@ -158,6 +161,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
             catch (ServiceException ex)
             {
+                logger.Log(LogLevel.Error, ex);
+
                 if (ex.Error.Code == "4f37.717b")
                 {
                     Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
@@ -181,8 +186,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             if (!result.Success)
             {
-                await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle,result.Message);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle,result.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -196,8 +200,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             if (!result.Success)
             {
-                await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle, result.Message);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, result.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument

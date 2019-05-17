@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
+using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.StartScreen;
@@ -15,6 +18,8 @@ using MoneyFox.Windows.Views;
 using PCLAppConfig;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Resources;
+using NLog;
+using NLog.Targets;
 using UniversalRateReminder;
 
 namespace MoneyFox.Windows
@@ -32,6 +37,9 @@ namespace MoneyFox.Windows
         {
             this.InitializeComponent();
             EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+
+            Suspending += OnSuspending;
+            UnhandledException += OnUnhandledException;
         }
 
         /// <summary>
@@ -41,13 +49,16 @@ namespace MoneyFox.Windows
         /// <param name="activationArgs">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
+            InitLogger();
+
             OverrideTitleBarColor();
 
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null) {
+
                 ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 #if !DEBUG
@@ -60,7 +71,7 @@ namespace MoneyFox.Windows
                 //BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 //BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
-                await SetJumplist();
+                await SetJumpList();
 
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
@@ -70,7 +81,7 @@ namespace MoneyFox.Windows
                 Window.Current.Content = rootFrame;
             }
 
-            if (activationArgs.PrelaunchActivated == false)
+            if (!activationArgs.PrelaunchActivated)
             {
                 if (rootFrame.Content == null)
                 {
@@ -85,7 +96,25 @@ namespace MoneyFox.Windows
                 Window.Current.Activate();
             }
         }
-        
+
+        private static void InitLogger()
+        {
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var logfile = new FileTarget("logfile")
+            {
+                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "logeFile.txt"),
+                AutoFlush = true,
+                ArchiveEvery = FileArchivePeriod.Month
+            };
+            var debugTarget = new DebugTarget("console");
+
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
+            LogManager.Configuration = config;
+        }
+
         private void OverrideTitleBarColor() {
             //draw into the title bar
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -97,7 +126,7 @@ namespace MoneyFox.Windows
             viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
-        private async Task SetJumplist() {
+        private async Task SetJumpList() {
             var jumpList = await JumpList.LoadCurrentAsync();
             jumpList.Items.Clear();
             jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
@@ -137,6 +166,16 @@ namespace MoneyFox.Windows
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+        }
+
+        private void OnUnhandledException(object sender, global::Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            LogManager.GetCurrentClassLogger().Fatal(e.Exception);
+        }
+
+        private void OnSuspending(object sender, SuspendingEventArgs e)
+        {
+            LogManager.Shutdown();
         }
     }
 }

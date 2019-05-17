@@ -441,6 +441,9 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.1.190405004.1</Version>
     </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.6.3</Version>
+    </PackageReference>
     <PackageReference Include="PCLAppConfig">
       <Version>1.0.1</Version>
     </PackageReference>
