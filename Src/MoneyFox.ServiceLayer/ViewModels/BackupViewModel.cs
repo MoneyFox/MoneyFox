@@ -51,7 +51,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// </summary>
     public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
@@ -161,7 +161,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
             catch (ServiceException ex)
             {
-                logger.Log(LogLevel.Error, ex);
+                Logger.Log(LogLevel.Error, ex);
 
                 if (ex.Error.Code == "4f37.717b")
                 {

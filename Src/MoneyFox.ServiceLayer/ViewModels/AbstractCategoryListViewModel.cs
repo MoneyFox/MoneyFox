@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using DynamicData;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
@@ -15,6 +13,7 @@ using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
+using NLog;
 using ReactiveUI;
 using Splat;
 
@@ -22,12 +21,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : RouteableViewModelBase
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private string searchTerm;
-
-        private ObservableAsPropertyHelper<bool> hasNoCategories;
-
-        private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories;
-        private SourceList<AlphaGroupListGroupCollection<CategoryViewModel>> categoriesSource;
 
         /// <summary>
         ///     Base class for the category list user control
@@ -38,12 +34,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             CrudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
             DialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(async disposables =>
+            this.WhenActivated(disposables =>
             {
-                categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
-
-                await Search();
-
                 SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
                 ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick)
                                                   .DisposeWith(disposables);
@@ -54,22 +46,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory)
                                                        .DisposeWith(disposables);
 
-                this.WhenAnyValue(x => x.SearchTerm)
+                categories = this.WhenAnyValue(x => x.SearchTerm)
                     .Throttle(TimeSpan.FromMilliseconds(400))
                     .Select(term => term?.Trim())
                     .DistinctUntilChanged()
+                    .SelectMany(SearchCategories)
                     .ObserveOn(RxApp.MainThreadScheduler)
-                    .InvokeCommand(SearchCommand);
+                    .ToProperty(this, vm => vm.CategoryList);
 
-                categoriesSource.Connect()
-                                .ObserveOn(RxApp.MainThreadScheduler)
-                                .StartWithEmpty()
-                                .Bind(out categories)
-                                .Subscribe()
-                                .DisposeWith(disposables);
+                categories.ThrownExceptions.Subscribe(ex =>
+                {
+                    Logger.Error(ex);
+                    DialogService.ShowMessage(Strings.GeneralErrorTitle, Strings.GeneralErrorMessage);
+                });
 
-                hasNoCategories = this.WhenAnyValue(x => x.categoriesSource.Items)
-                                      .Select(x => !x.Any())
+                hasNoCategories = this.WhenAnyValue(x => x.CategoryList)
+                                      .Select(x => x != null && !x.Any())
                                       .ToProperty(this, x => x.HasNoCategories);
             });
         }
@@ -82,9 +74,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected abstract Task<Unit> ItemClick(CategoryViewModel category);
 
-        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList =>
-            categories;
+        private ObservableAsPropertyHelper<List<AlphaGroupListGroupCollection<CategoryViewModel>>> categories;
+        public List<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories.Value;
 
+        private ObservableAsPropertyHelper<bool> hasNoCategories;
         public bool HasNoCategories => hasNoCategories.Value;
 
         public string SearchTerm
@@ -118,10 +111,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public ReactiveCommand<CategoryViewModel, Unit> CreateNewCategoryCommand { get; set; }
 
-        /// <summary>
-        ///     Performs a search with the text in the search text property
-        /// </summary>
-        public async Task<Unit> Search(string searchText = "")
+        public async Task<List<AlphaGroupListGroupCollection<CategoryViewModel>>> SearchCategories(string searchText = "")
         {
             List<CategoryViewModel> categoryViewModels;
 
@@ -143,10 +133,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
                         .ToListAsync());
             }
 
-            categoriesSource.Clear();
-            categoriesSource.AddRange(CreateGroup(categoryViewModels));
-
-            return new Unit();
+            return CreateGroup(categoryViewModels);
         }
 
         private Unit EditCategory(CategoryViewModel category)
