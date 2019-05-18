@@ -33,12 +33,12 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <summary>
         ///     Restores the file with the passed name
         /// </summary
-        /// <param name="backupname">Name of the backup to restore</param>
+        /// <param name="backupName">Name of the backup to restore</param>
         /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<Stream> Restore(string backupname, string dbName);
+        Task<Stream> Restore(string backupName, string dbName);
 
         /// <summary>
         ///     Gets a list with all the filenames who are available in the backup folder.

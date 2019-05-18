@@ -10,12 +10,16 @@ using Microsoft.Identity.Client;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
+using NLog;
+using Logger = NLog.Logger;
 
 namespace MoneyFox.BusinessLogic.Backup
 {
     /// <inheritdoc />
     public class OneDriveService : ICloudBackupService
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly string[] scopes = {"Files.ReadWrite"};
 
         private readonly IPublicClientApplication publicClientApplication;
@@ -43,11 +47,15 @@ namespace MoneyFox.BusinessLogic.Backup
             // let's see if we have a user in our belly already
             try
             {
+                logger.Info("Check if we have authenticated user for OneDrive.");
+
                 IAccount firstAccount = accounts.FirstOrDefault();
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
             }
             catch (MsalUiRequiredException)
             {
+                logger.Info("No user found; Show Browser Window.");
+
                 // pop the browser for the interactive experience
                 authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
                                                           .WithParentActivityOrWindow(
@@ -75,7 +83,10 @@ namespace MoneyFox.BusinessLogic.Backup
 
             while (accounts.Any())
             {
-                await publicClientApplication.RemoveAsync(accounts.FirstOrDefault());
+                var account = accounts.FirstOrDefault();
+                logger.Info(CultureInfo.CurrentCulture, "Logging out Account {0}", account?.Username);
+
+                await publicClientApplication.RemoveAsync(account);
                 accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
             }
         }
@@ -105,7 +116,7 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<Stream> Restore(string backupname, string dbName)
+        public async Task<Stream> Restore(string backupName, string dbName)
         {
             if (GraphServiceClient == null) await Login();
 
@@ -117,10 +128,10 @@ namespace MoneyFox.BusinessLogic.Backup
                                               .AppRoot.Children
                                               .Request()
                                               .GetAsync())
-                .FirstOrDefault(x => x.Name == backupname);
+                .FirstOrDefault(x => x.Name == backupName);
 
             if (existingBackup == null)
-                throw new NoBackupFoundException($"No backup with the name {backupname} was found.");
+                throw new NoBackupFoundException($"No backup with the name {backupName} was found.");
             return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
@@ -171,6 +182,9 @@ namespace MoneyFox.BusinessLogic.Backup
                                                                                       .GetAsync();
 
             if (archiveBackups.Count < 5) return;
+
+            logger.Info("More than 5 Backups found. Archive oldest");
+
             DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 
             await GraphServiceClient.Drive
@@ -217,6 +231,9 @@ namespace MoneyFox.BusinessLogic.Backup
                        .Children
                        .Request()
                        .GetAsync()).Any()) return;
+
+            logger.Info("App folder empty. Start moving MoneyFoxBackup folder.");
+
 
             DriveItem appFolder = await GraphServiceClient
                                         .Me
@@ -270,6 +287,7 @@ namespace MoneyFox.BusinessLogic.Backup
                           .Request()
                           .UpdateAsync(updateItem);
                 }
+                logger.Info("Move to AppFolder finished.");
             }
         }
 
