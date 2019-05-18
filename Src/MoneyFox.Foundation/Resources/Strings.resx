@@ -802,4 +802,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SearchHeader" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="GeneralErrorMessage" xml:space="preserve">
+    <value>There was an error we could not handle. If this error persist please get in touch!</value>
+  </data>
 </root>
