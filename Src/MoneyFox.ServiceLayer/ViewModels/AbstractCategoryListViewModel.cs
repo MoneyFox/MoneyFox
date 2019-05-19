@@ -36,7 +36,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             this.WhenActivated(disposables =>
             {
-                SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(Search).DisposeWith(disposables);
                 ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick)
                                                   .DisposeWith(disposables);
                 CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory)
