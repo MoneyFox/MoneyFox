@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reactive;
@@ -9,15 +8,11 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using DynamicData;
 using GenericServices;
-using Microsoft.Identity.Client;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Plugin.Messenger;
 using ReactiveUI;
 using Splat;
 

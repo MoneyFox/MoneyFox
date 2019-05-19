@@ -19,13 +19,13 @@ namespace MoneyFox.Windows.Views.UserControls
 
             this.WhenActivated(disposables =>
             {
+                this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchTextBox.Text).DisposeWith(disposables);
+
                 this.OneWayBind(ViewModel, vm => vm.CategoryList, v => v.CategoryCollectionViewSource.Source)
                     .DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.HasNoCategories, v => v.NoCategoriesTextBlock.Visibility)
                     .DisposeWith(disposables);
-
-                this.Bind(ViewModel, vm => vm.SearchTerm, v => v.SearchTextBox.Text).DisposeWith(disposables);
 
                 this.OneWayBind(ViewModel, vm => vm.Resources["NoCategoriesMessage"], v => v.NoCategoriesTextBlock.Text)
                     .DisposeWith(disposables);
