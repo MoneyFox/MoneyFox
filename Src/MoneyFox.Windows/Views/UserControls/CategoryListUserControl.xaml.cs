@@ -56,7 +56,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 return;
             }
 
-            ((AbstractCategoryListViewModel)DataContext).EditCategoryCommand.Execute(category);
+            ViewModel.EditCategoryCommand.Execute(category);
         }
 
         private void DeleteCategory(object sender, RoutedEventArgs e) {
@@ -66,7 +66,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 return;
             }
 
-            ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.Execute(category);
+            ViewModel.DeleteCategoryCommand.Execute(category);
         }
     }
 }
