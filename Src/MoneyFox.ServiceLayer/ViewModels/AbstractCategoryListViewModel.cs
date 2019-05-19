@@ -168,7 +168,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
-                await Search();
             }
 
             return Unit.Default;
