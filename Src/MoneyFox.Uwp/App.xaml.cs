@@ -30,6 +30,8 @@ using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
+using GenericServices;
+using MoneyFox.ServiceLayer.Parameters;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -88,8 +90,23 @@ namespace MoneyFox.Uwp
 		{
 			CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
-
-            if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
+            if (activationArgs.TileActivatedInfo!=null)
+            {
+                IMvxNavigationService navigationService;
+                ICrudServicesAsync crudServices;
+                if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
+                {
+                   navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+                    if (Mvx.IoCProvider.CanResolve<ICrudServicesAsync>())
+                    {
+                        crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
+                        AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(int.Parse(activationArgs.TileId));
+                        await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
+                    }
+                    
+                }
+            }
+            else if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
@@ -130,6 +147,7 @@ namespace MoneyFox.Uwp
 
 				await CallRateReminder();
 			}
+
 		}
 
 		protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
