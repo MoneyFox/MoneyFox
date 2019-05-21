@@ -14,7 +14,7 @@ namespace MoneyFox.ServiceLayer.Tests.Utilities
         [Fact]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            ServiceLayer.Utilities.HelperFunctions.GetEndOfMonth().ShouldBeType(typeof(DateTime));
+            HelperFunctions.GetEndOfMonth().ShouldBeType(typeof(DateTime));
         }
 
         [Theory]
