@@ -1,22 +1,12 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using MoneyFox.ServiceLayer.Utilities;
-using Should;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.Utilities
 {
-    [ExcludeFromCodeCoverage]
-    public class HelperFunctionsTests
+    public class UtilitiesTests
     {
-        [Fact]
-        public void GetEndOfMonth_NoneInput_LastDayOfMonth()
-        {
-            ServiceLayer.Utilities.HelperFunctions.GetEndOfMonth().ShouldBeType(typeof(DateTime));
-        }
-
         [Theory]
         [InlineData("10'000", "10'000", "de-CH")]
         [InlineData("10000", "10000", "de-CH")]
@@ -36,7 +26,7 @@ namespace MoneyFox.ServiceLayer.Tests.Utilities
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
 
             // Act / Assert
-            HelperFunctions.RemoveGroupingSeparators(amount).ShouldEqual(expectedResult);
+            Assert.Equal(expectedResult, HelperFunctions.RemoveGroupingSeparators(amount));
         }
     }
 }
