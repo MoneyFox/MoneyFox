@@ -425,9 +425,6 @@ Tap to visit the Repository:</value>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
-  <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
-  </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
   </data>
@@ -792,5 +789,8 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
     <value>Override Local Data</value>
+  </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
 </root>
