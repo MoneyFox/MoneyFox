@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -327,6 +327,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string BackupFailedTitle {
             get {
                 return ResourceManager.GetString("BackupFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called &quot;MoneyFox&quot;..
+        /// </summary>
+        public static string BackupInformationLabel {
+            get {
+                return ResourceManager.GetString("BackupInformationLabel", resourceCulture);
             }
         }
         
@@ -660,15 +669,6 @@ namespace MoneyFox.Foundation.Resources {
         public static string ContributionsLabel {
             get {
                 return ResourceManager.GetString("ContributionsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”..
-        /// </summary>
-        public static string CreateBackupInformationLabel {
-            get {
-                return ResourceManager.GetString("CreateBackupInformationLabel", resourceCulture);
             }
         }
         
