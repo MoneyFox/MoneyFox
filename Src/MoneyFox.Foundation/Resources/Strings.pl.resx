@@ -424,9 +424,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>Nie ma żadnych Kont. Dodaj jedno naciskając przycisk plusa poniżej.</value>
   </data>
-  <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>Twoje dane będą zapisywane na twoim koncie OneDrive. Znajdziesz je w nowym folderze o nazwie "MoneyFoxBackupManager".</value>
-  </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Utwórz kopię zapasową</value>
   </data>
@@ -476,7 +473,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Szukaj</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Jeśli aktywujesz to ustawienie, będziemy zapisywali twoje dane automatycznie do One Drive. Ponadto okresowo będziemy sprawdzać czy coś się zmieniło na innych urządzeniach.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Automatycznie przesyłaj i pobieraj kopie zapasowe</value>
@@ -582,7 +579,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Błąd logowania!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
-    <value>Cleared</value>
+    <value>Wyczyszczono</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
     <value>Cykliczny</value>
@@ -690,7 +687,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Zadanie w tle</value>
   </data>
   <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configure execution interval for background task.</value>
+    <value>Skonfiguruj interwał wykonania zadania w tle.</value>
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Zadanie w tle</value>
@@ -714,19 +711,19 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>{0}: {1}</value>
   </data>
   <data name="LiveTilePastPayments" xml:space="preserve">
-    <value>Past Payments</value>
+    <value>Przeszłe wydatki</value>
   </data>
   <data name="LiveTileUpcommingPayments" xml:space="preserve">
-    <value>Upcoming Payments</value>
+    <value>Nachodzące wydatki</value>
   </data>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Saldo</value>
   </data>
   <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Last Executions:</value>
+    <value>Ostatnie operacje:</value>
   </data>
   <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Paymentclearing:</value>
+    <value>Wyczyść płatność:</value>
   </data>
   <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
     <value>Utwórz płatności cykliczne:</value>
@@ -753,22 +750,22 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>{0} otrzyma {1}</value>
   </data>
   <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
-    <value>{0} to {1}</value>
+    <value>{0} do {1}</value>
   </data>
   <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
-    <value>{0} to be taken from {1}</value>
+    <value>{0} zostanie zabrane z {1}</value>
   </data>
   <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
-    <value>{0} taken from {1}</value>
+    <value>{0} zabrane z {1}</value>
   </data>
   <data name="PintAccountLabel" xml:space="preserve">
     <value>Przypnij konto do obszaru startowego</value>
   </data>
   <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
-    <value>No statistic items to display. Try to adjust the time range.</value>
+    <value>Brak danych statystycznych do wyświetlenia. Postaraj się ustalić inny okres czasu.</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Last year monthly average: </value>
+    <value>Zeszłoroczna średnia miesięczna: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
     <value>Wkład</value>
@@ -778,5 +775,20 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Pozostaw opinię!</value>
+  </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>Zmodyfikowałeś powtarzającą się płatność. Czy chcesz zmienić je wszystkie?</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Zmień tytuł powtarzającej się płatności</value>
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Twoja lokalna baza danych posiada nowszą datę modyfikacji niż dane na One Drive. Czy chcesz je podmienić?</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Nadpisz dane lokalne</value>
+  </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
 </root>
