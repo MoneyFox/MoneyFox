@@ -18,6 +18,15 @@ namespace MoneyFox.ServiceLayer.Tests.Utilities
         }
 
         [Theory]
+        [InlineData(6000000.45)]
+        [InlineData(6000000)]
+        [InlineData(6000000.4567)]
+        public void FormatLargeNumbers_ValidString(double amount)
+        {
+            HelperFunctions.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N"));
+        }
+
+        [Theory]
         [InlineData("10'000", "10'000", "de-CH")]
         [InlineData("10000", "10000", "de-CH")]
         [InlineData("10'000.50", "10000.50", "de-CH")]

@@ -40,7 +40,7 @@
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
-                   Text="{Binding SelectedPayment.Amount}"
+                   Text="{Binding AmountString}"
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
                    Focused="AmountFieldGotFocus" />

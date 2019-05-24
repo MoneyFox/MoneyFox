@@ -16,7 +16,7 @@
                        Style="{StaticResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
-                       Text="{Binding SelectedAccount.CurrentBalance}" 
+                       Text="{Binding AmountString}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocused"/>
@@ -28,7 +28,6 @@
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
-
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
