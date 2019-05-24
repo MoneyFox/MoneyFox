@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -41,6 +43,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     The selected PaymentViewModel
         /// </summary>
         PaymentViewModel SelectedPayment { get; }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        string AmountString { get; }
 
         /// <summary>
         ///     Gives access to all accounts for Charged Drop down list
@@ -91,8 +100,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>,
-        IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
     {
         private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
@@ -208,6 +216,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
+            set
+            {
+                // we remove all separator chars to ensure that it works in all regions
+                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
+                if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
+                {
+                    SelectedPayment.Amount = convertedValue;
+                }
+            }
+        }
+
+        /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> ChargedAccounts
@@ -283,9 +310,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            if (settingsFacade.IsBackupAutouploadEnabled)
+            {
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask();
+                backupService.EnqueueBackupTask();
 #pragma warning restore 4014
+            }
         }
 
         /// <summary>
@@ -300,8 +330,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            await navigationService.Navigate<SelectCategoryListViewModel>()
-                                   ;
+            await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 
         private void ResetSelection()

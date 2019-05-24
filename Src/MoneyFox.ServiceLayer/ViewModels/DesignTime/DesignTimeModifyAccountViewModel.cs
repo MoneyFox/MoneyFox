@@ -5,7 +5,7 @@ using MvvmCross.Commands;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
-    public class DesignTimeModifyAccountViewModel : IModifyAccountViewModel
+    public class DesignTimeModifyAccountViewModel
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
