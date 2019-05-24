@@ -184,9 +184,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            if (settingsFacade.IsBackupAutouploadEnabled)
+            {
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask();
+                backupService.EnqueueBackupTask();
 #pragma warning restore 4014
+            }
         }
 
         /// <summary>
