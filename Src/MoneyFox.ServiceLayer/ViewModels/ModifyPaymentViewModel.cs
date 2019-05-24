@@ -133,6 +133,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
+            set
+            {
+                // we remove all separator chars to ensure that it works in all regions
+                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
+                if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
+                {
+                    SelectedPayment.Amount = convertedValue;
+                }
+            }
+        }
+
+        /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
         public ReadOnlyObservableCollection<AccountViewModel> ChargedAccounts => chargedAccounts;

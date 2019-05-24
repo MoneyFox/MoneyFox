@@ -43,6 +43,25 @@ namespace MoneyFox.ServiceLayer.ViewModels
             get => selectedAccount;
             set => this.RaiseAndSetIfChanged(ref selectedAccount, value);
         }
+        
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get => HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
+            set
+            {
+                // we remove all separator chars to ensure that it works in all regions
+                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
+                if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
+                {
+                    SelectedAccount.CurrentBalance = convertedValue;
+                }
+            }
+        }
 
         protected abstract Task SaveAccount();
 
