@@ -310,9 +310,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            if (settingsFacade.IsBackupAutouploadEnabled)
+            {
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask();
+                backupService.EnqueueBackupTask();
 #pragma warning restore 4014
+            }
         }
 
         /// <summary>
@@ -327,8 +330,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task OpenSelectCategoryList()
         {
-            await navigationService.Navigate<SelectCategoryListViewModel>()
-                                   ;
+            await navigationService.Navigate<SelectCategoryListViewModel>();
         }
 
         private void ResetSelection()
