@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             {
                 return;
             }
-            var viewmodel = DataContext as PaymentListRouteableViewModel;
+            //var viewmodel = DataContext as PaymentListRouteableViewModel;
 
             //viewmodel?.EditPaymentCommand.Execute(payment);
         }

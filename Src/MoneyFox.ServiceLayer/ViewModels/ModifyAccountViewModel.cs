@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.Utilities;
 using ReactiveUI;
 using Splat;
 
