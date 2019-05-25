@@ -33,7 +33,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.paymentService = paymentService ?? Locator.Current.GetService<IPaymentService>();
             this.dialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(async disposable =>
+            this.WhenActivated((CompositeDisposable disposable) =>
             {
                 SelectedPayment = new PaymentViewModel
                 {
@@ -44,35 +44,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
                 if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
                     SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
-
-                Title = PaymentTypeHelper.GetViewTitleForType(paymentType, false);
-
-                SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
-
-                if (SelectedPayment.IsTransfer)
-                {
-                    SelectedItemChangedCommand.Execute();
-                    SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
-                }
-
-                DeleteCommand = ReactiveCommand.CreateFromTask(DeletePayment)
-                                               .DisposeWith(disposable);
-            });
-        }
-
-            SelectedPayment = new PaymentViewModel
-            {
-                Type = paymentType
-            };
-
-            this.WhenActivated((CompositeDisposable disposable) =>
-            {
-                // //We have to set this here since otherwise the end date is null.This causes a crash on android.
-                // Also it's user unfriendly if you the default end date is the 1.1.0001.
-                if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
-                {
-                    SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
-                }
 
                 Title = PaymentTypeHelper.GetViewTitleForType(paymentType, false);
 
