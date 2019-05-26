@@ -38,7 +38,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 this.OneWayBind(ViewModel, vm => vm.Resources["RecurrenceLabel"], v => v.RecurrenceComboBox.Header).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Resources["EnddateLabel"], v => v.EndDatePicker.Header).DisposeWith(disposables);
                 
-                this.Bind(ViewModel, vm => vm.SelectedPayment.Amount, v => v.AmountTextBox.Text).DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.AmountString, v => v.AmountTextBox.Text).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedPayment.Date, v => v.PaymentDatePicker.Date,
                           date => date, offset => offset.DateTime)
                     .DisposeWith(disposables);
