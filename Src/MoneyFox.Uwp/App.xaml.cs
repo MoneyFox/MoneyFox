@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -7,6 +8,7 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
+using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.StartScreen;
@@ -32,7 +34,9 @@ using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
 using GenericServices;
 using MoneyFox.ServiceLayer.Parameters;
-
+using NLog;
+using NLog.Targets;
+using LogLevel = NLog.LogLevel;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -63,6 +67,7 @@ namespace MoneyFox.Uwp
 			Suspending += OnSuspending;
 
 			EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            UnhandledException += OnUnhandledException;
         }
 
         private void SetTheme()
@@ -87,8 +92,10 @@ namespace MoneyFox.Uwp
 		/// </summary>
 		/// <param name="activationArgs">Details about the launch request and process.</param>
 		protected override async void OnLaunched(LaunchActivatedEventArgs activationArgs)
-		{
-			CoreApp.CurrentPlatform = AppPlatform.UWP;
+        {
+            InitLogger();
+
+            CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
             if (activationArgs.TileActivatedInfo!=null)
             {
@@ -150,7 +157,25 @@ namespace MoneyFox.Uwp
 
 		}
 
-		protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
+        private static void InitLogger()
+        {
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var logfile = new FileTarget("logfile")
+            {
+                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "logFile.txt"),
+                AutoFlush = true,
+                ArchiveEvery = FileArchivePeriod.Month
+            };
+            var debugTarget = new DebugTarget("console");
+
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
+            LogManager.Configuration = config;
+        }
+
+        protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
 		{
 			mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
 			Window.Current.Content = mainView;
@@ -209,16 +234,21 @@ namespace MoneyFox.Uwp
 			RatePopup.Content = Strings.RateReminderText;
 
 			await RatePopup.CheckRateReminderAsync();
-		}
+        }
 
-		/// <summary>
-		///     Invoked when application execution is being suspended.  Application state is saved
-		///     without knowing whether the application will be terminated or resumed with the contents
-		///     of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
-		private void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnUnhandledException(object sender, global::Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            LogManager.GetCurrentClassLogger().Fatal(e.Exception);
+        }
+
+        /// <summary>
+        ///     Invoked when application execution is being suspended.  Application state is saved
+        ///     without knowing whether the application will be terminated or resumed with the contents
+        ///     of memory still intact.
+        /// </summary>
+        /// <param name="sender">The source of the suspend request.</param>
+        /// <param name="e">Details about the suspend request.</param>
+        private void OnSuspending(object sender, SuspendingEventArgs e)
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
 
