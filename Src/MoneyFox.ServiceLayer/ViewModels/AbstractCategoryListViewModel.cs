@@ -34,8 +34,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
             CrudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
             DialogService = dialogService ?? Locator.Current.GetService<IDialogService>();
 
-            this.WhenActivated(disposables =>
+            this.WhenActivated(async disposables =>
             {
+                categoriesSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
+
                 SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(SearchCategories).DisposeWith(disposables);
                 ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick)
                                                   .DisposeWith(disposables);
@@ -52,19 +54,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     .DistinctUntilChanged()
                     .ObserveOn(RxApp.MainThreadScheduler)
                     .InvokeCommand(SearchCommand);
-                
-                categorieSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
-                
-                categorieSource.Connect()
-                              .ObserveOn(RxApp.MainThreadScheduler)
-                              .StartWithEmpty()
-                              .Bind(out categories)
-                              .Subscribe()
-                              .DisposeWith(disposables);
 
-                hasNoCategories = this.WhenAnyValue(x => x.CategoryList)
-                                      .Select(x => x != null && !x.Any())
-                                      .ToProperty(this, x => x.HasNoCategories);
+                categoriesSource.Connect()
+                                .ObserveOn(RxApp.MainThreadScheduler)
+                                .StartWithEmpty()
+                                .Bind(out categories)
+                                .Subscribe()
+                                .DisposeWith(disposables);
+
+                hasNoCategories = categoriesSource.Connect()
+                                .QueryWhenChanged()
+                                .Select(x => !x.Any())
+                                .ToProperty(this, x => x.HasNoCategories);
             });
         }
 
@@ -76,7 +77,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected abstract Task<Unit> ItemClick(CategoryViewModel category);
 
-        private SourceList<AlphaGroupListGroupCollection<CategoryViewModel>> categorieSource;
+        private SourceList<AlphaGroupListGroupCollection<CategoryViewModel>> categoriesSource;
 
         private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories;
         public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
@@ -119,6 +120,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task<Unit> SearchCategories(string searchText = "")
         {
+
             List<CategoryViewModel> categoryViewModels;
 
             IOrderedQueryable<CategoryViewModel> categoryQuery = CrudServices
@@ -138,7 +140,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
                     await categoryQuery.ToListAsync());
             }
 
-            categorieSource.AddRange(CreateGroup(categoryViewModels));
+            categoriesSource.Clear();
+            categoriesSource.AddRange(CreateGroup(categoryViewModels));
             return Unit.Default;
         }
 
