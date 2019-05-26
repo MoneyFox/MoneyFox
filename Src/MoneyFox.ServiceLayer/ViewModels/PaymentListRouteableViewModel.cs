@@ -62,10 +62,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 EditPaymentCommand = ReactiveCommand.Create<PaymentViewModel>(EditPayment).DisposeWith(disposables);
                 DeletePaymentCommand = ReactiveCommand.CreateFromTask<PaymentViewModel>(DeletePayment).DisposeWith(disposables);
 
-                hasNoPayments = this.WhenAnyValue(x => x.paymentsSource.Items)
-                    .Select(x => !x.Any())
-                    .ToProperty(this, x => x.HasNoPayments);
-
+                hasNoPayments = paymentsSource.Connect()
+                                              .QueryWhenChanged()
+                                              .Select(x => !x.Any())
+                                              .ToProperty(this, x => x.HasNoPayments);
             });
         }
         public override string UrlPathSegment => "PaymentList";

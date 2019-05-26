@@ -59,9 +59,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
                               .Subscribe()
                               .DisposeWith(disposables);
 
-                hasNoAccounts = this.WhenAnyValue(x => x.accountsSource.Items)
-                                    .Select(x => !x.Any())
-                                    .ToProperty(this, x => x.HasNoAccounts);
+                hasNoAccounts = accountsSource.Connect()
+                                              .QueryWhenChanged()
+                                              .Select(x => !x.Any())
+                                              .ToProperty(this, x => x.HasNoAccounts);
             });
         }
         
