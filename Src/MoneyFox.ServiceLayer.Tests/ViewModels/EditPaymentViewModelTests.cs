@@ -172,7 +172,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
 
         [Fact]
@@ -183,6 +183,96 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 
             paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Failed(""));
+
+            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new PaymentViewModel
+                {
+                    IsRecurring = true,
+                    RecurringPayment = new RecurringPaymentViewModel
+                    {
+                        IsEndless = true,
+                        EndDate = null
+                    }
+                });
+
+            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
+                crudServiceMock.Object,
+                dialogServiceMock.Object,
+                settingsFacadeMock.Object,
+                new Mock<IMvxMessenger>().Object,
+                backupServiceMock.Object,
+                new Mock<IMvxLogProvider>().Object,
+                navigationServiceMock.Object);
+
+            editPaymentVm.Prepare(new ModifyPaymentParameter(paymentId));
+            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
+
+            // Act
+            editPaymentVm.SaveCommand.Execute();
+
+            // Assert
+            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
+            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+        }
+
+        [Fact]
+        public void SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
+        {
+            // Arrange
+            const int paymentId = 99;
+
+            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
+                .ReturnsAsync(OperationResult.Succeeded());
+
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
+
+            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
+                .ReturnsAsync(new PaymentViewModel
+                {
+                    IsRecurring = true,
+                    RecurringPayment = new RecurringPaymentViewModel
+                    {
+                        IsEndless = true,
+                        EndDate = null
+                    }
+                });
+
+            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
+                crudServiceMock.Object,
+                dialogServiceMock.Object,
+                settingsFacadeMock.Object,
+                new Mock<IMvxMessenger>().Object,
+                backupServiceMock.Object,
+                new Mock<IMvxLogProvider>().Object,
+                navigationServiceMock.Object);
+
+            editPaymentVm.Prepare(new ModifyPaymentParameter(paymentId));
+            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
+
+            // Act
+            editPaymentVm.SaveCommand.Execute();
+
+            // Assert
+            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
+            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
+        }
+
+        [Fact]
+        public void SavePayment_ResultFailedWithBackup_CorrectMethodCalls()
+        {
+            // Arrange
+            const int paymentId = 99;
+
+            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
+                .ReturnsAsync(OperationResult.Failed(""));
+
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
             crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
                 .ReturnsAsync(new PaymentViewModel

@@ -30,6 +30,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         };
 
         public PaymentViewModel SelectedPayment { get; } = null;
+        public string AmountString { get; }
 
         public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
 

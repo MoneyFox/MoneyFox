@@ -42,7 +42,7 @@
                 </Button>
 
                 <StackLayout IsVisible="{Binding IsLoggedIn}" Spacing="{StaticResource DefaultSpacing}">
-                    <Label Text="{Binding Resources[CreateBackupInformationLabel]}"
+                    <Label Text="{Binding Resources[BackupInformationLabel]}"
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        HorizontalOptions="StartAndExpand" />
                     <Button x:Name="ButtonRestoreBackup"
