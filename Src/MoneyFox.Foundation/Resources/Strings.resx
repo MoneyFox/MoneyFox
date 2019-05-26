@@ -805,4 +805,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="GeneralErrorMessage" xml:space="preserve">
     <value>There was an error we could not handle. If this error persist please get in touch!</value>
   </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+  </data>
 </root>
