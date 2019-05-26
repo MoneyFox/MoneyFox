@@ -19,7 +19,7 @@ namespace MoneyFox.Windows.Views.UserControls
             this.WhenActivated(disposables =>
             {
                 this.Bind(ViewModel, vm => vm.SelectedAccount.Name, v => v.NameTextBox.Text).DisposeWith(disposables);
-                this.Bind(ViewModel, vm => vm.SelectedAccount.CurrentBalance, v => v.CurrentBalanceTextBox.Text).DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.AmountString, v => v.CurrentBalanceTextBox.Text).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedAccount.Note, v => v.NoteTextBox.Text).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.SelectedAccount.IsExcluded, v => v.IsExcludedCheckBox.IsChecked).DisposeWith(disposables);
 
