@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using DynamicData;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
@@ -34,6 +36,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
             this.WhenActivated(disposables =>
             {
+                SearchCommand = ReactiveCommand.CreateFromTask<string, Unit>(SearchCategories).DisposeWith(disposables);
                 ItemClickCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(ItemClick)
                                                   .DisposeWith(disposables);
                 CreateNewCategoryCommand = ReactiveCommand.Create<CategoryViewModel, Unit>(CreateNewCategory)
@@ -43,19 +46,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 DeleteCategoryCommand = ReactiveCommand.CreateFromTask<CategoryViewModel, Unit>(DeleteCategory)
                                                        .DisposeWith(disposables);
 
-                categories = this.WhenAnyValue(x => x.SearchTerm)
+                this.WhenAnyValue(x => x.SearchTerm)
                     .Throttle(TimeSpan.FromMilliseconds(400))
                     .Select(term => term?.Trim())
                     .DistinctUntilChanged()
-                    .SelectMany(SearchCategories)
                     .ObserveOn(RxApp.MainThreadScheduler)
-                    .ToProperty(this, vm => vm.CategoryList);
-
-                categories.ThrownExceptions.Subscribe(ex =>
-                {
-                    Logger.Error(ex);
-                    DialogService.ShowMessage(Strings.GeneralErrorTitle, Strings.GeneralErrorMessage);
-                });
+                    .InvokeCommand(SearchCommand);
+                
+                categorieSource = new SourceList<AlphaGroupListGroupCollection<CategoryViewModel>>();
+                
+                categorieSource.Connect()
+                              .ObserveOn(RxApp.MainThreadScheduler)
+                              .StartWithEmpty()
+                              .Bind(out categories)
+                              .Subscribe()
+                              .DisposeWith(disposables);
 
                 hasNoCategories = this.WhenAnyValue(x => x.CategoryList)
                                       .Select(x => x != null && !x.Any())
@@ -71,8 +76,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         protected abstract Task<Unit> ItemClick(CategoryViewModel category);
 
-        private ObservableAsPropertyHelper<List<AlphaGroupListGroupCollection<CategoryViewModel>>> categories;
-        public List<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories.Value;
+        private SourceList<AlphaGroupListGroupCollection<CategoryViewModel>> categorieSource;
+
+        private ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories;
+        public ReadOnlyObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList => categories;
 
         private ObservableAsPropertyHelper<bool> hasNoCategories;
         public bool HasNoCategories => hasNoCategories.Value;
@@ -110,7 +117,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public ReactiveCommand<CategoryViewModel, Unit> CreateNewCategoryCommand { get; set; }
 
-        public async Task<List<AlphaGroupListGroupCollection<CategoryViewModel>>> SearchCategories(string searchText = "")
+        private async Task<Unit> SearchCategories(string searchText = "")
         {
             List<CategoryViewModel> categoryViewModels;
 
@@ -128,11 +135,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
             else
             {
                 categoryViewModels = new List<CategoryViewModel>(
-                    await categoryQuery
-                        .ToListAsync());
+                    await categoryQuery.ToListAsync());
             }
 
-            return CreateGroup(categoryViewModels);
+            categorieSource.AddRange(CreateGroup(categoryViewModels));
+            return Unit.Default;
         }
 
         private Unit EditCategory(CategoryViewModel category)
