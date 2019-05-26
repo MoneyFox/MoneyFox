@@ -92,19 +92,19 @@ namespace MoneyFox.Uwp
 			base.OnLaunched(activationArgs);
             if (activationArgs.TileActivatedInfo!=null)
             {
-                IMvxNavigationService navigationService;
-                ICrudServicesAsync crudServices;
-                if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
-                {
-                   navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-                    if (Mvx.IoCProvider.CanResolve<ICrudServicesAsync>())
-                    {
-                        crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
-                        AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(int.Parse(activationArgs.TileId));
-                        await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
-                    }
+                //IMvxNavigationService navigationService;
+                //ICrudServicesAsync crudServices;
+                //if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
+                //{
+                //   navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+                //    if (Mvx.IoCProvider.CanResolve<ICrudServicesAsync>())
+                //    {
+                //        crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
+                //        AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(int.Parse(activationArgs.TileId));
+                //        await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
+                //    }
                     
-                }
+                //}
             }
             else if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
