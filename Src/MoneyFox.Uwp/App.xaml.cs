@@ -36,7 +36,7 @@ using GenericServices;
 using MoneyFox.ServiceLayer.Parameters;
 using NLog;
 using NLog.Targets;
-
+using LogLevel = NLog.LogLevel;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
