@@ -2,7 +2,6 @@ using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.IoC;
-using MvvmCross.Logging;
 using MvvmCross.Platforms.Uap.Core;
 using MvvmCross.Plugin;
 using MvvmCross.Plugin.File;
@@ -10,13 +9,9 @@ using MvvmCross.Plugin.File.Platforms.Uap;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.Plugin.Visibility.Platforms.Uap;
 using MvvmCross.UI;
-using Serilog;
-using Serilog.Events;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using Windows.Storage;
 using Mvx = MvvmCross.Mvx;
 
 namespace MoneyFox.Uwp
@@ -49,20 +44,6 @@ namespace MoneyFox.Uwp
             var assemblyList = result.ToList();
             assemblyList.Add(typeof(MainViewModel).Assembly);
             return assemblyList;
-        }
-
-        public override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.Serilog;
-
-        protected override IMvxLogProvider CreateLogProvider()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console(LogEventLevel.Verbose)
-                .WriteTo.Debug(LogEventLevel.Verbose)
-                .WriteTo.File(Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "log.txt"), rollingInterval: RollingInterval.Month)
-                .CreateLogger();
-
-            return base.CreateLogProvider();
         }
     }
 }
