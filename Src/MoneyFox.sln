@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Foundation", "MoneyFox.Foundation\MoneyFox.Foundation.csproj", "{3040FFCD-98E4-4C02-867C-725C93AD38E8}"
 EndProject
@@ -799,6 +799,8 @@ Global
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.AppStore|x86.Build.0 = Release|x86
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.AppStore|x86.Deploy.0 = Release|x86
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|Any CPU.Build.0 = Debug|x86
+		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|ARM.ActiveCfg = Debug|ARM
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|ARM.Build.0 = Debug|ARM
 		{7609020C-0D2A-49D6-8EC2-731971159B62}.Debug|ARM.Deploy.0 = Debug|ARM
