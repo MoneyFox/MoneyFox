@@ -27,6 +27,7 @@
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
     <NetNativeReproPath>__NetNativePath__</NetNativeReproPath>
+    <Use64BitCompiler>true</Use64BitCompiler> 
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
