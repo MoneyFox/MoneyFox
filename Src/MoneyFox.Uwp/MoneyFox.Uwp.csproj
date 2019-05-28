@@ -25,7 +25,8 @@
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
-    <SingleThreadNUTC>true</SingleThreadNUTC>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <NetNativeReproPath>__NetNativePath__</NetNativeReproPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
