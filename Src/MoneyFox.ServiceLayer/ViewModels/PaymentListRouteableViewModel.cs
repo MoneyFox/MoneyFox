@@ -34,7 +34,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
 
-        private int accountId;
+        private readonly int accountId;
         private string title;
 
         /// <summary>
@@ -47,6 +47,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             IDialogService dialogService=null,
             IBackupService backupService=null)
         {
+            this.accountId = accountId;
             HostScreen = hostScreen;
             this.crudServices = crudServices ?? Locator.Current.GetService<ICrudServicesAsync>();
             this.paymentService = paymentService ?? Locator.Current.GetService<IPaymentService>();

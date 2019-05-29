@@ -1,0 +1,90 @@
+﻿<views:MyPaymentListView
+    x:Class="MoneyFox.Windows.Views.PaymentListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:MoneyFox.Windows.Views"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <Flyout x:Key="FilterFlyout"
+                Placement="Top">
+            <ListBox SelectionMode="Multiple">
+                <ListBoxItem>
+                    <CheckBox Content="Cleared" x:Uid="ClearedLabel"
+                              IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <CheckBox Content="Recurring" x:Uid="RecurringLabel"
+                              IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <DatePicker Header="Time Range Start" x:Uid="TimeRangeStart" 
+                                Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <DatePicker Header="Time Range End" x:Uid="TimeRangeEnd"
+                                Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
+                </ListBoxItem>
+            </ListBox>
+        </Flyout>
+    </Page.Resources>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitlePage"
+                   Text="{Binding Title}"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
+        <Grid Grid.Row="1"
+              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
+            <!--<userControls:PaymentListUserControl />-->
+        </Grid>
+
+        <CommandBar Grid.Row="2"
+                    DataContext="{Binding ViewActionViewModel}"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="FilterButton"
+                              Icon="Filter"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="AppBarToggleButton_Click" />
+
+                <AppBarButton x:Name="AddIncomeButton"
+                              Command="{Binding GoToAddIncomeCommand}"
+                              IsEnabled="{Binding IsAddIncomeAvailable}"
+                              Icon="Add"/>
+
+                <AppBarButton x:Name="AddExpenseButton"
+                              Command="{Binding GoToAddExpenseCommand}"
+                              IsEnabled="{Binding IsAddExpenseAvailable}"
+                              Icon="Remove"
+                              Label="add spending" />
+
+                <AppBarButton x:Name="AddTransferButton"
+                              Command="{Binding GoToAddTransferCommand}"
+                              IsEnabled="{Binding IsTransferAvailable}"
+                              Icon="Switch"
+                              Label="add transfer" />
+
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="DeleteAccountButton"
+                              Command="{Binding DeleteAccountCommand}"
+                              Icon="Add"
+                              Label="Delete Account" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+
+</views:MyPaymentListView>
