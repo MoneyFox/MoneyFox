@@ -55,12 +55,14 @@ namespace MoneyFox.Uwp
 	/// Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
 	public sealed partial class App : IDisposable
-	{
-		/// <summary>
-		/// Initializes the singleton application object.  This is the first line of authored code
-		/// executed, and as such is the logical equivalent of main() or WinMain().
-		/// </summary>
-		public App()
+    {
+        private Logger logManager;
+
+        /// <summary>
+        /// Initializes the singleton application object.  This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// </summary>
+        public App()
 		{
 			InitializeComponent();
 			SetTheme();
@@ -94,6 +96,8 @@ namespace MoneyFox.Uwp
 		protected override async void OnLaunched(LaunchActivatedEventArgs activationArgs)
         {
             InitLogger();
+
+            logManager.Info("Application Start.");
 
             CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
@@ -146,9 +150,8 @@ namespace MoneyFox.Uwp
             }
         }
 
-        private static async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)
+        private async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)
         {
-            Logger logManager = LogManager.GetCurrentClassLogger();
             logManager.Debug("Passed TileID: {tileId}", activationArgs.TileId);
             if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()
                 && Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()
@@ -163,13 +166,13 @@ namespace MoneyFox.Uwp
             }
         }
 
-        private static void InitLogger()
+        private void InitLogger()
         {
             var config = new NLog.Config.LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "logFile.txt"),
+                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "moneyfox.log"),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };
@@ -179,6 +182,7 @@ namespace MoneyFox.Uwp
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
             LogManager.Configuration = config;
+            logManager = LogManager.GetCurrentClassLogger();
         }
 
         protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
@@ -244,7 +248,7 @@ namespace MoneyFox.Uwp
 
         private void OnUnhandledException(object sender, global::Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            LogManager.GetCurrentClassLogger().Fatal(e.Exception);
+            logManager.Fatal(e.Exception);
         }
 
         /// <summary>
