@@ -97,23 +97,8 @@ namespace MoneyFox.Uwp
 
             CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
-            if (activationArgs.TileActivatedInfo!=null)
-            {
-                IMvxNavigationService navigationService;
-                ICrudServicesAsync crudServices;
-                if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>())
-                {
-                   navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-                    if (Mvx.IoCProvider.CanResolve<ICrudServicesAsync>())
-                    {
-                        crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
-                        AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(int.Parse(activationArgs.TileId));
-                        await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
-                    }
-                    
-                }
-            }
-            else if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
+
+            if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
@@ -155,7 +140,28 @@ namespace MoneyFox.Uwp
 				await CallRateReminder();
 			}
 
-		}
+            if (activationArgs.TileActivatedInfo != null)
+            {
+                await HandleTileActivationInfo(activationArgs);
+            }
+        }
+
+        private static async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)
+        {
+            Logger logManager = LogManager.GetCurrentClassLogger();
+            logManager.Debug("Passed TileID: {tileId}", activationArgs.TileId);
+            if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()
+                && Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()
+                && int.TryParse(activationArgs.TileId, out int accountId))
+            {
+                logManager.Info("Open Payment List of Account with ID {accountId}", accountId);
+                
+                var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
+                var crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
+                AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+                await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
+            }
+        }
 
         private static void InitLogger()
         {
