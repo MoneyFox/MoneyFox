@@ -201,6 +201,9 @@
     <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
+      <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\PaymentListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

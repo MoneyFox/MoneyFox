@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:MoneyFox.Windows.Views"
     xmlns:converter="using:MoneyFox.Windows.Converter"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -43,12 +44,11 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
-                   Text="{Binding Title}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1"
               Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
-            <!--<userControls:PaymentListUserControl />-->
+            <userControls:PaymentListUserControl x:Name="PaymentListUserControl" /> 
         </Grid>
 
         <CommandBar Grid.Row="2"

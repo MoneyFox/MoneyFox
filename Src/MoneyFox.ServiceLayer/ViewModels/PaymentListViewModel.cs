@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Reactive;
@@ -25,8 +26,11 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private ObservableAsPropertyHelper<bool> hasNoPayments;
 
-        private readonly SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> paymentsSource = new SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
-        private readonly SourceList<DateListGroupCollection<PaymentViewModel>> dailySourceList = new SourceList<DateListGroupCollection<PaymentViewModel>>();
+        private readonly SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> paymentsSource =
+            new SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
+
+        private readonly SourceList<DateListGroupCollection<PaymentViewModel>> dailySourceList = 
+            new SourceList<DateListGroupCollection<PaymentViewModel>>();
 
 
         private readonly ICrudServicesAsync crudServices;
@@ -62,6 +66,20 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
                 EditPaymentCommand = ReactiveCommand.Create<PaymentViewModel>(EditPayment).DisposeWith(disposables);
                 DeletePaymentCommand = ReactiveCommand.CreateFromTask<PaymentViewModel>(DeletePayment).DisposeWith(disposables);
+                
+                paymentsSource.Connect()
+                              .ObserveOn(RxApp.MainThreadScheduler)
+                              .StartWithEmpty()
+                              .Bind(out payments)
+                              .Subscribe()
+                              .DisposeWith(disposables);
+
+                dailySourceList.Connect()
+                              .ObserveOn(RxApp.MainThreadScheduler)
+                              .StartWithEmpty()
+                              .Bind(out dailyPayments)
+                              .Subscribe()
+                              .DisposeWith(disposables);
 
                 hasNoPayments = paymentsSource.Connect()
                                               .QueryWhenChanged()
@@ -77,6 +95,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             get => title;
             private set => this.RaiseAndSetIfChanged(ref title, value);
         }
+
+        private ReadOnlyObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> payments;
+
+        public ReadOnlyObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Payments => payments;
+        
+        private ReadOnlyObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyPayments;
+
+        public ReadOnlyObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyPayments => dailyPayments;
 
         public bool HasNoPayments => hasNoPayments.Value;
 
