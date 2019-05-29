@@ -17,11 +17,11 @@ namespace MoneyFox.Windows.Views
 
             this.WhenActivated(disposables =>
             {
-                this.OneWayBind(ViewModel, vm => vm.Resources["FilterLabel"], v => v.FilterButton).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Resources["AddIncomeLabel"], v => v.AddIncomeButton).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Resources["AddExpenseLabel"], v => v.AddExpenseButton).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Resources["AddTransferLabel"], v => v.AddTransferButton).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Resources["DeleteAccountLabel"], v => v.DeleteAccountButton).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["FilterLabel"], v => v.FilterButton.Label).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["AddIncomeLabel"], v => v.AddIncomeButton.Label).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["AddExpenseLabel"], v => v.AddExpenseButton.Label).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["AddTransferLabel"], v => v.AddTransferButton.Label).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Resources["DeleteAccountLabel"], v => v.DeleteAccountButton.Label).DisposeWith(disposables);
             });
         }
         

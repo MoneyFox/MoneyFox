@@ -25,8 +25,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
     {
         private ObservableAsPropertyHelper<bool> hasNoPayments;
 
-        private SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> paymentsSource;
-        private SourceList<DateListGroupCollection<PaymentViewModel>> dailySourceList;
+        private readonly SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> paymentsSource = new SourceList<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
+        private readonly SourceList<DateListGroupCollection<PaymentViewModel>> dailySourceList = new SourceList<DateListGroupCollection<PaymentViewModel>>();
 
 
         private readonly ICrudServicesAsync crudServices;

@@ -103,9 +103,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         
         private Unit GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null) return new Unit();
+            if (accountViewModel == null) return Unit.Default;
             HostScreen.Router.Navigate.Execute(new PaymentListViewModel(accountViewModel.Id, HostScreen));
-            return new Unit();
+            return Unit.Default;
         }
 
         private async Task<Unit> DeleteAccount(AccountViewModel accountToDelete)
