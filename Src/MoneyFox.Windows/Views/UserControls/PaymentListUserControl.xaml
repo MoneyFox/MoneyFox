@@ -7,9 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     xmlns:uwp="using:FontAwesome.UWP"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
     mc:Ignorable="d">
 
     <UserControl.Resources>
+        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
         <DataTemplate x:Key="GroupHeaderTemplate">
             <Border Background="Transparent" Padding="3">
                 <TextBlock HorizontalAlignment="Left"

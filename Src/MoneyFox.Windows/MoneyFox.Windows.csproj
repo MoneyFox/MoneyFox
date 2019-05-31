@@ -129,7 +129,9 @@
     </Compile>
     <Compile Include="ConverterBindings\ListToItemCollectionBinding.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellViewModel.cs" />

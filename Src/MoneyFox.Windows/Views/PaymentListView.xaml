@@ -44,6 +44,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="TitlePage"
+                   Text="foo"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1"
