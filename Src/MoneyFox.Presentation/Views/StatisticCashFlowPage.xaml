@@ -8,6 +8,7 @@
                    BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
                    x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage">
 
+  <ContentPage.Content>
     <microcharts:ChartView Chart="{Binding Chart}" />
-
+  </ContentPage.Content>
 </d:MvxContentPage>

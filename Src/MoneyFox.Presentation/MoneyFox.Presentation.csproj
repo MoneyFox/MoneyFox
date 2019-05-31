@@ -56,7 +56,7 @@
     <PackageReference Include="MvvmCross.Forms" Version="6.2.3" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1039999" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.471375" />
   </ItemGroup>
 
   <ItemGroup>
