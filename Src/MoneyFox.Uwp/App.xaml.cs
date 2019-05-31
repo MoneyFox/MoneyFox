@@ -162,7 +162,7 @@ namespace MoneyFox.Uwp
                 var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
                 var crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
                 AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
-                await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
+                //await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
             }
         }
 
