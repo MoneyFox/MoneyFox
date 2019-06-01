@@ -128,7 +128,7 @@ namespace MoneyFox.Uwp
                 else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()) {
                     await Mvx.IoCProvider
                              .Resolve<IMvxNavigationService>()
-                             .Navigate<LoginViewModel>()                             ;
+                             .Navigate<LoginViewModel>();
                 }
 
                 ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
