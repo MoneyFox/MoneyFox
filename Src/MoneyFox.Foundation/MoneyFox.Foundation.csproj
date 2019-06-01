@@ -39,7 +39,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph" Version="1.15.0" />
-    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.2.3" />
+    <PackageReference Include="MvvmCross.Plugin.Messenger" Version="6.3.0" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
   </ItemGroup>
 
