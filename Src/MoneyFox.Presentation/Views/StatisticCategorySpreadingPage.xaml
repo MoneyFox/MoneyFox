@@ -9,6 +9,7 @@
                    BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
                    x:Class="MoneyFox.Presentation.Views.StatisticCategorySpreadingPage">
 
+  <d:MvxContentPage.Content>
     <forms:ChartView Chart="{Binding Chart}" />
-
+  </d:MvxContentPage.Content>
 </d:MvxContentPage>
