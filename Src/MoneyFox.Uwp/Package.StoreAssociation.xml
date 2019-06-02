@@ -371,123 +371,128 @@
     <BundleInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>X86</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageArchitecture>X64</PackageArchitecture>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>X64</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageArchitecture>X86</PackageArchitecture>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>5.1.1673.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>5.2.1971.0</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>

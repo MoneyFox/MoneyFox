@@ -38,8 +38,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public override async void Prepare(ModifyCategoryParameter parameter)
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(parameter.CategoryId)
-                                                 ;
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(parameter.CategoryId);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
 
             base.Prepare(parameter);
@@ -52,22 +51,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         protected override async Task SaveCategory()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedCategory)
-                              ;
+            await crudServices.UpdateAndSaveAsync(SelectedCategory);
             if (!crudServices.IsValid)
             {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                                   ;
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
             }
 
             await CancelCommand.ExecuteAsync();
-
         }
 
         private async Task DeleteCategory()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedCategory.Id)
-                              ;
+            await crudServices.DeleteAndSaveAsync<CategoryViewModel>(SelectedCategory.Id);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
