@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="EfCore.TestSupport" Version="1.9.0" />
-    <PackageReference Include="Microsoft.CodeCoverage" Version="16.1.0" />
+    <PackageReference Include="Microsoft.CodeCoverage" Version="16.1.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="MockQueryable.Moq" Version="1.1.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
