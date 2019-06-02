@@ -22,6 +22,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
     <PackageReference Include="MockQueryable.Moq" Version="1.1.0" />
     <PackageReference Include="Moq" Version="4.11.0" />
     <PackageReference Include="MvvmCross.Tests" Version="6.3.0" />
