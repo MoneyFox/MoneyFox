@@ -261,8 +261,8 @@ namespace MoneyFox.Uwp
         private void OnSuspending(object sender, SuspendingEventArgs e)
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
-
-			new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            LogManager.Shutdown();
+            new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
 			deferral.Complete();
 		}
