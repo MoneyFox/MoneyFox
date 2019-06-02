@@ -11,6 +11,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
+using NLog;
+using Logger = NLog.Logger;
 
 namespace MoneyFox.BusinessLogic.Backup
 {
@@ -23,6 +25,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         public BackupManager(ICloudBackupService cloudBackupService,
             IMvxFileStore fileStore,
@@ -45,10 +48,12 @@ namespace MoneyFox.BusinessLogic.Backup
             }
             catch (BackupAuthenticationFailedException ex)
             {
+                logManager.Error(ex, "Login Failed.");
                 return OperationResult.Failed(ex);
             }
             catch (MsalClientException ex)
             {
+                logManager.Error(ex, "Login Failed.");
                 return OperationResult.Failed(ex);
             }
 
@@ -66,6 +71,7 @@ namespace MoneyFox.BusinessLogic.Backup
                 await cloudBackupService.Logout();
             } catch (BackupAuthenticationFailedException ex)
             {
+                logManager.Error(ex, "Logout Failed.");
                 return OperationResult.Failed(ex);
             }
 
@@ -108,28 +114,33 @@ namespace MoneyFox.BusinessLogic.Backup
                     {
                         cancellationTokenSource.Cancel();
                     }
-                } catch (OperationCanceledException ex)
+                }
+                catch (OperationCanceledException ex)
                 {
+                    logManager.Error(ex, "Enqueue Backup failed.");
                     await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                     await EnqueueBackupTask(attempts + 1);
-                    Crashes.TrackError(ex);
-                } catch (BackupAuthenticationFailedException ex)
+                } 
+                catch (BackupAuthenticationFailedException ex)
                 {
+                    logManager.Error(ex, "Enqueue Backup failed.");
                     await Logout();
                     OperationResult.Failed(ex);
-                    Crashes.TrackError(ex);
-                } catch (ServiceException ex)
+                } 
+                catch (ServiceException ex)
                 {
+                    logManager.Error(ex, "Enqueue Backup failed.");
                     await Logout();
                     OperationResult.Failed(ex);
-                    Crashes.TrackError(ex);
-                } catch (Exception ex)
+                } 
+                catch (Exception ex)
                 {
-                    OperationResult.Failed(ex);
-                    Crashes.TrackError(ex);
+                    logManager.Error(ex, "Enqueue Backup failed.");
+                    return OperationResult.Failed(ex);
                 }
             }
-            return OperationResult.Failed("Too many attempts.");
+            logManager.Warn("Enqueue Backup failed.");
+            return OperationResult.Failed("Enqueue Backup failed.");
         }
 
         /// <inheritdoc />
@@ -141,16 +152,18 @@ namespace MoneyFox.BusinessLogic.Backup
             try
             {
                 await DownloadBackup();
-            } catch (BackupAuthenticationFailedException ex)
+            } 
+            catch (BackupAuthenticationFailedException ex)
             {
                 await Logout();
                 OperationResult.Failed(ex);
-                Crashes.TrackError(ex);
-            } catch (ServiceException ex)
+                logManager.Error(ex, "Download Backup failed.");
+            }
+            catch (ServiceException ex)
             {
                 await Logout();
                 OperationResult.Failed(ex);
-                Crashes.TrackError(ex);
+                logManager.Error(ex, "Download Backup failed.");
             }
             return OperationResult.Succeeded();
         }
