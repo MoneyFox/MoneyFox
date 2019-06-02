@@ -10,6 +10,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Identity.Client;
 
 namespace MoneyFox.BusinessLogic.Backup
 {
@@ -41,7 +42,12 @@ namespace MoneyFox.BusinessLogic.Backup
             try
             {
                 await cloudBackupService.Login();
-            } catch (BackupAuthenticationFailedException ex)
+            }
+            catch (BackupAuthenticationFailedException ex)
+            {
+                return OperationResult.Failed(ex);
+            }
+            catch (MsalClientException ex)
             {
                 return OperationResult.Failed(ex);
             }
