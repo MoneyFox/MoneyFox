@@ -97,8 +97,9 @@ namespace MoneyFox.Uwp
         {
             InitLogger();
 
-            logManager.Info("Application Start.");
-
+            logManager.Info("Application Started.");
+            logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
+            
             CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
 
