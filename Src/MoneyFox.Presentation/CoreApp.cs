@@ -13,9 +13,7 @@ using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
@@ -37,7 +35,6 @@ namespace MoneyFox.Presentation
         /// </summary>
         public override void Initialize()
         {
-            Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ICrudServices, CrudServices>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton(() => PublicClientApplicationBuilder
                                                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
@@ -75,8 +72,6 @@ namespace MoneyFox.Presentation
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 
-            Mvx.IoCProvider.RegisterType(() => new Session(Mvx.IoCProvider.Resolve<ISettingsFacade>()));
-
             typeof(StatisticDbAccess).Assembly.CreatableTypes()
                                  .EndingWith("DbAccess")
                                  .AsInterfaces()
@@ -101,20 +96,13 @@ namespace MoneyFox.Presentation
 
             SetupContextAndCrudServices();
 
-            if (!Mvx.IoCProvider.CanResolve<Session>()) return;
-
-            if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+            if (CurrentPlatform == AppPlatform.UWP)
             {
-                if (CurrentPlatform == AppPlatform.UWP)
-                {
-                    RegisterAppStart<AccountListViewModel>();
-                } else
-                {
-                    RegisterAppStart<MainViewModel>();
-                }
-            } else
+                RegisterAppStart<AccountListViewModel>();
+            } 
+            else
             {
-                RegisterAppStart<LoginViewModel>();
+                RegisterAppStart<MainViewModel>();
             }
         }
 

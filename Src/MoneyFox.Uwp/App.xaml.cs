@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -22,7 +21,6 @@ using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation;
-using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views;
@@ -119,19 +117,6 @@ namespace MoneyFox.Uwp
                 BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-
-                if (!Mvx.IoCProvider.CanResolve<Session>()) return;
-
-                if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
-                {
-                    (mainView.ViewModel as MainViewModel)?.ShowAccountListCommand.ExecuteAsync();
-                } 
-                else if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()) {
-                    await Mvx.IoCProvider
-                             .Resolve<IMvxNavigationService>()
-                             .Navigate<LoginViewModel>();
-                }
-
                 ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
 
                 OverrideTitleBarColor();
@@ -259,19 +244,13 @@ namespace MoneyFox.Uwp
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-		{
-			var deferral = e.SuspendingOperation.GetDeferral();
-
+        protected override void OnSuspending(object sender, SuspendingEventArgs e)
+        {
             logManager.Info("Application Suspending.");
             LogManager.Shutdown();
+        }
 
-            new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
-
-			deferral.Complete();
-		}
-
-	    public void Dispose()
+        public void Dispose()
 	    {
 	        mainView?.Dispose();
 	    }

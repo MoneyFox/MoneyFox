@@ -101,52 +101,6 @@
                                 <ComboBoxItem x:Uid="Light" Content="Light" />
                             </ComboBox>
                         </StackPanel>
-
-                        <!-- Security -->
-                        <StackPanel DataContext="{Binding SettingsSecurityViewModel}" Margin="0,24,0,0">
-                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                                       Text="{Binding Resources[SecurityTitle]}"
-                                       TextWrapping="WrapWholeWords" />
-
-                            <ToggleSwitch x:Name="toggleSwitch"
-                                          IsOn="{Binding IsPasswortActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          x:Uid="PasswordSettingSwitch"
-                                          OnContent="Password protection active"
-                                          OffContent="Password protection inactive" />
-
-                            <StackPanel
-                                Visibility="{Binding IsOn, ElementName=toggleSwitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanVisibilityConverter}}">
-                                <PasswordBox Header="Password"
-                                             x:Uid="Password"
-                                             Margin="0,5,0,0"
-                                             Password="{Binding Password, Mode=TwoWay}"
-                                             PasswordRevealMode="Peek" />
-                                <PasswordBox Header="Password Confirmation"
-                                             x:Uid="PasswordConfirmation"
-                                             Margin="0,5,0,0"
-                                             Password="{Binding PasswordConfirmation, Mode=TwoWay}"
-                                             PasswordRevealMode="Peek" />
-
-                                <Button x:Uid="SavePassword"
-                                        Margin="0,12,0,0"
-                                        HorizontalAlignment="Stretch"
-                                        Content="Save Password"
-                                        Command="{Binding SavePasswordCommand}" />
-                            </StackPanel>
-                            <ToggleSwitch x:Name="PassportSwitch"
-                                          IsOn="{Binding IsPassportActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                          x:Uid="PassportSettingSwitch"
-                                          OnContent="Passport Login Enabled"
-                                          OffContent="Enable Passport Login" />
-                            <TextBlock x:Name="PassportStatus"
-                                       Margin="0,0,0,15"
-                                       HorizontalAlignment="Center"
-                                       TextWrapping="WrapWholeWords"
-                                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                       TextAlignment="center"
-                                       Text="Text" />
-                        </StackPanel>
-
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

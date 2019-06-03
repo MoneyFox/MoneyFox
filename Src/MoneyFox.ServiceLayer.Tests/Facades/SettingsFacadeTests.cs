@@ -11,7 +11,7 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
 {
     [ExcludeFromCodeCoverage]
     public class SettingsFacadeTests {
-        private ISettingsAdapter settingsAdapter;
+        private readonly ISettingsAdapter settingsAdapter;
 
         public SettingsFacadeTests() {
             var settingsAdapterMock = new Mock<ISettingsAdapter>();
@@ -35,30 +35,6 @@ namespace MoneyFox.ServiceLayer.Tests.Facades
 
             // Assert
             settingsfacade.IsBackupAutouploadEnabled.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Ctor_DefaultValues_SessionTimestampEmpty()
-        {
-            // Arrange
-            
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.SessionTimestamp.ShouldBeEmpty();
-        }
-
-        [Fact]
-        public void Ctor_DefaultValues_PasswordRequiredFalse()
-        {
-            // Arrange
-            
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.PasswordRequired.ShouldBeFalse();
         }
 
         [Fact]
