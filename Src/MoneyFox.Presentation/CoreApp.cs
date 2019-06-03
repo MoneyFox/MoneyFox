@@ -13,9 +13,7 @@ using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Authentication;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
@@ -37,7 +35,6 @@ namespace MoneyFox.Presentation
         /// </summary>
         public override void Initialize()
         {
-            Mvx.IoCProvider.ConstructAndRegisterSingleton<IPasswordStorage, PasswordStorage>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ICrudServices, CrudServices>();
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton(() => PublicClientApplicationBuilder
                                                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)

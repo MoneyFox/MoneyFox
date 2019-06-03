@@ -142,7 +142,6 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\StoreOperations.cs" />
-    <Compile Include="Src\ProtectedData.cs" />
     <Content Include="..\MoneyFox.Presentation\App.config">
       <Link>App.config</Link>
     </Content>

@@ -150,11 +150,9 @@
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Src\MicrosoftPassportHelper.cs" />
     <Compile Include="ApplicationSetup.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
-    <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />

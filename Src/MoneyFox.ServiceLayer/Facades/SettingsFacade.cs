@@ -16,22 +16,6 @@ namespace MoneyFox.ServiceLayer.Facades
         bool IsBackupAutouploadEnabled { get; set; }
 
         /// <summary>
-        ///     Timestamp of the session
-        /// </summary>
-        /// <value>The session timestamp.</value>
-        string SessionTimestamp { get; set; }
-
-        /// <summary>
-        ///     Indicates if a password is required to login.
-        /// </summary>
-        bool PasswordRequired { get; set; }
-
-        /// <summary>
-        ///     Indicates if the passport login is activated.
-        /// </summary>
-        bool PassportEnabled { get; set; }
-
-        /// <summary>
         ///     Timestamp when the database was updated the last time.
         /// </summary>
         /// <value>The last database update.</value>
@@ -74,15 +58,6 @@ namespace MoneyFox.ServiceLayer.Facades
         private const string AUTOUPLOAD_BACKUP_KEYNAME = "AutoUploadBackup";
         private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
 
-        private const string SESSION_TIMESTAMP_KEY = "session_timestamp";
-        private const string SESSION_TIMESTAMP_DEFAULT = "";
-
-        private const string PASSWORD_REQUIRED_KEYNAME = "PasswordRequired";
-        private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
-
-        private const string PASSPORT_REQUIRED_KEYNAME = "PassportRequired";
-        private const bool PASSPORT_REQUIRED_KEYDEFAULT = false;
-
         private const string BACKUP_LOGGEDIN_KEYNAME = "BackupLoggedIn";
         private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
 
@@ -116,27 +91,6 @@ namespace MoneyFox.ServiceLayer.Facades
         {
             get => settingsAdapter.GetValue(AUTOUPLOAD_BACKUP_KEYNAME, AUTOUPLOAD_BACKUP_KEYDEFAULT);
             set => settingsAdapter.AddOrUpdate(AUTOUPLOAD_BACKUP_KEYNAME, value);
-        }
-
-        /// <inheritdoc />
-        public string SessionTimestamp
-        {
-            get => settingsAdapter.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(SESSION_TIMESTAMP_KEY, value);
-        }
-
-        /// <inheritdoc />
-        public bool PasswordRequired
-        {
-            get => settingsAdapter.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT);
-            set => settingsAdapter.AddOrUpdate(PASSWORD_REQUIRED_KEYNAME, value);
-        }
-
-        /// <inheritdoc />
-        public bool PassportEnabled
-        {
-            get => settingsAdapter.GetValue(PASSPORT_REQUIRED_KEYNAME, PASSPORT_REQUIRED_KEYDEFAULT);
-            set => settingsAdapter.AddOrUpdate(PASSPORT_REQUIRED_KEYNAME, value);
         }
 
         /// <inheritdoc />
@@ -181,12 +135,11 @@ namespace MoneyFox.ServiceLayer.Facades
         {
             get
             {
-                DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
                                                                LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT),
                                                                CultureInfo.InvariantCulture,
                                                                DateTimeStyles.None,
-                                                               out outValue))
+                                                               out DateTime outValue))
                 {
                     return outValue;
                 }
@@ -200,12 +153,11 @@ namespace MoneyFox.ServiceLayer.Facades
         {
             get
             {
-                DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
                                                                LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT),
                                                                CultureInfo.InvariantCulture,
                                                                DateTimeStyles.None,
-                                                               out outValue))
+                                                               out DateTime outValue))
                 {
                     return outValue;
                 }
@@ -219,12 +171,11 @@ namespace MoneyFox.ServiceLayer.Facades
         {
             get
             {
-                DateTime outValue;
                 if (DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
                                                                LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT),
                                                                CultureInfo.InvariantCulture,
                                                                DateTimeStyles.None,
-                                                               out outValue))
+                                                               out DateTime outValue))
                 {
                     return outValue;
                 }

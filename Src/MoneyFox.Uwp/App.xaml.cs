@@ -249,9 +249,7 @@ namespace MoneyFox.Uwp
             var deferral = e.SuspendingOperation.GetDeferral();
 
             base.OnSuspending(sender, e);
-
             LogManager.Shutdown();
-            new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }
