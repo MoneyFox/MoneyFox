@@ -11,11 +11,14 @@ using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using NLog;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
@@ -64,6 +67,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private async Task DeleteCategory()
         {
             await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
+
+            logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
+
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();

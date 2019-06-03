@@ -107,15 +107,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 categories = new List<CategoryViewModel>(
                     await categoryQuery
                         .WhereNameContains(searchText)
-                        .ToListAsync()
-                        );
+                        .ToListAsync());
             } 
             else
             {
                 categories = new List<CategoryViewModel>(
                     await categoryQuery
-                        .ToListAsync()
-                        );
+                        .ToListAsync());
             }
             CategoryList = CreateGroup(categories);
         }
