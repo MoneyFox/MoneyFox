@@ -87,8 +87,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override async void ViewAppearing()
         {
             DialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load())
-                      ;
+            await Task.Run(async () => await Load());
             DialogService.HideLoadingDialog();
         }
 
@@ -128,14 +127,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id))
-                                   ;
+            await NavigationService.Navigate<EditCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter(category.Id));
         }
 
         private async Task CreateNewCategory(CategoryViewModel category)
         {
-            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter())
-                                   ;
+            await NavigationService.Navigate<AddCategoryViewModel, ModifyCategoryParameter>(new ModifyCategoryParameter());
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
@@ -148,11 +145,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
-            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage)
-                                   )
+            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id)
-                                  ;
+                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
                 await Search();
             }
         }

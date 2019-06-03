@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using GenericServices;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
@@ -62,7 +63,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task DeleteCategory()
         {
-            await crudServices.DeleteAndSaveAsync<CategoryViewModel>(SelectedCategory.Id);
+            await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
