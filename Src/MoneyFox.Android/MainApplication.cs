@@ -22,6 +22,8 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
+            AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
+
             InitLogger();
 
             logManager.Info("Application Started.");
@@ -57,6 +59,11 @@ namespace MoneyFox.Droid
 
             LogManager.Configuration = config;
             logManager = LogManager.GetCurrentClassLogger();
+        }
+
+        void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
+        {
+            logManager.Fatal(e.Exception);
         }
     }
 }
