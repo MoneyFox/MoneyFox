@@ -97,8 +97,9 @@ namespace MoneyFox.Uwp
         {
             InitLogger();
 
-            logManager.Info("Application Start.");
-
+            logManager.Info("Application Started.");
+            logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
+            
             CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
 
@@ -261,7 +262,10 @@ namespace MoneyFox.Uwp
         private void OnSuspending(object sender, SuspendingEventArgs e)
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
+
+            logManager.Info("Application Suspending.");
             LogManager.Shutdown();
+
             new SettingsFacade(new SettingsAdapter()).SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
 			deferral.Complete();

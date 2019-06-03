@@ -16,11 +16,14 @@ using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
+using NLog;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
@@ -83,8 +86,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
-            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id))
-                                   ;
+            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
         }
 
         private async Task Load()
@@ -118,7 +120,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             }
             catch(Exception ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Error(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
@@ -127,8 +129,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             if (accountViewModel == null) return;
 
-            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id))
-                ;
+            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
@@ -138,8 +139,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
                 )
             {
-                await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id)
-                    ;
+                await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
+                logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();
                 await Load();
@@ -150,8 +151,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToAddAccount()
         {
-            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter())
-                ;
+            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
         }
     }
 }

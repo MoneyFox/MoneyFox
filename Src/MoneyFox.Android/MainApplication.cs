@@ -27,6 +27,8 @@ namespace MoneyFox.Droid
             InitLogger();
 
             logManager.Info("Application Started.");
+            logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
+            
             EfCoreContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                              DatabaseConstants.DB_NAME);
@@ -38,6 +40,7 @@ namespace MoneyFox.Droid
 
         public override void OnTerminate()
         {
+            logManager.Info("Application Terminating.");
             LogManager.Shutdown();
             base.OnTerminate();
         }
