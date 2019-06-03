@@ -75,8 +75,6 @@ namespace MoneyFox.Presentation
                                  .AsInterfaces()
                                  .RegisterAsDynamic();
 
-            Mvx.IoCProvider.RegisterType(() => new Session(Mvx.IoCProvider.Resolve<ISettingsFacade>()));
-
             typeof(StatisticDbAccess).Assembly.CreatableTypes()
                                  .EndingWith("DbAccess")
                                  .AsInterfaces()
@@ -101,20 +99,13 @@ namespace MoneyFox.Presentation
 
             SetupContextAndCrudServices();
 
-            if (!Mvx.IoCProvider.CanResolve<Session>()) return;
-
-            if (Mvx.IoCProvider.Resolve<Session>().ValidateSession())
+            if (CurrentPlatform == AppPlatform.UWP)
             {
-                if (CurrentPlatform == AppPlatform.UWP)
-                {
-                    RegisterAppStart<AccountListViewModel>();
-                } else
-                {
-                    RegisterAppStart<MainViewModel>();
-                }
-            } else
+                RegisterAppStart<AccountListViewModel>();
+            } 
+            else
             {
-                RegisterAppStart<LoginViewModel>();
+                RegisterAppStart<MainViewModel>();
             }
         }
 

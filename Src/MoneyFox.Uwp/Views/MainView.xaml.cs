@@ -63,21 +63,5 @@ namespace MoneyFox.Uwp.Views
                                                  .ExecuteAsync();
             }
         }
-
-        /// <summary>
-        ///     Adjusts the view for login.
-        /// </summary>
-        public void SetLoginView()
-        {
-            NavView.OpenPaneLength = 0;
-        }
-
-        /// <summary>
-        ///     Adjusts the view for the general usage.
-        /// </summary>
-        public void SetLoggedInView()
-        {
-            NavView.OpenPaneLength = 200;
-        }
     }
 }
