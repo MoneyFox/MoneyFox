@@ -246,14 +246,8 @@ namespace MoneyFox.Uwp
         /// <param name="e">Details about the suspend request.</param>
         protected override void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
-
             logManager.Info("Application Suspending.");
             LogManager.Shutdown();
-            LogManager.Shutdown();
-            base.OnSuspending(sender, e);
-
-            deferral.Complete();
         }
 
         public void Dispose()
