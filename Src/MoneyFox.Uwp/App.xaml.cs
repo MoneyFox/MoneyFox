@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -96,8 +95,9 @@ namespace MoneyFox.Uwp
         {
             InitLogger();
 
-            logManager.Info("Application Start.");
-
+            logManager.Info("Application Started.");
+            logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
+            
             CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
 
@@ -248,8 +248,10 @@ namespace MoneyFox.Uwp
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            base.OnSuspending(sender, e);
+            logManager.Info("Application Suspending.");
             LogManager.Shutdown();
+            LogManager.Shutdown();
+            base.OnSuspending(sender, e);
 
             deferral.Complete();
         }
