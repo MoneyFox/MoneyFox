@@ -40,6 +40,7 @@ namespace MoneyFox.Droid
 
         public override void OnTerminate()
         {
+            logManager.Info("Application Terminating.");
             LogManager.Shutdown();
             base.OnTerminate();
         }
