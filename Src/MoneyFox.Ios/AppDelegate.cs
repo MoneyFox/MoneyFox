@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using NLog;
 using NLog.Targets;
 using UIKit;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
@@ -57,6 +58,8 @@ namespace MoneyFox.iOS
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
+
+            FormsMaterial.Init();
 
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;

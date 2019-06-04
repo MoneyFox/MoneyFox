@@ -162,6 +162,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material">
+      <Version>4.0.0.482894</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Jobs\ClearPaymentsJob.cs" />
