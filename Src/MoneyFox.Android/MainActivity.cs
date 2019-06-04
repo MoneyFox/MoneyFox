@@ -12,6 +12,7 @@ using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
 using PCLAppConfig;
 using Rg.Plugins.Popup;
+using Xamarin.Forms;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -47,6 +48,8 @@ namespace MoneyFox.Droid
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
                    typeof(Analytics), typeof(Crashes));
 #endif
+            FormsMaterial.Init(this, bundle);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
