@@ -23,8 +23,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using NLog;
+using NLog.Targets;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;
+using Logger = NLog.Logger;
+using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -42,9 +46,12 @@ namespace MoneyFox.iOS
         // 15 minutes = 60 * 60 = 3600 seconds
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
 
+        private Logger logManager;
+
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
 
 #if !DEBUG
@@ -74,6 +81,37 @@ namespace MoneyFox.iOS
             await CreateRecurringPayments();
         }
 
+        private void InitLogger()
+        {
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var logfile = new FileTarget("logfile")
+            {
+                FileName = GetLogPath(),
+                AutoFlush = true,
+                ArchiveEvery = FileArchivePeriod.Month
+            };
+            var debugTarget = new DebugTarget("console");
+
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
+            LogManager.Configuration = config;
+            logManager = LogManager.GetCurrentClassLogger();
+        }
+
+        private static string GetLogPath()
+        {
+            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
+
+            if (!Directory.Exists(libFolder))
+            {
+                Directory.CreateDirectory(libFolder);
+            }
+
+            return Path.Combine(libFolder, "moneyfox.log");
+        }
         private static string GetLocalFilePath()
         {
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
