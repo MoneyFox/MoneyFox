@@ -50,9 +50,7 @@ namespace MoneyFox.BusinessLogic.Backup
             {
                 // pop the browser for the interactive experience
                 authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                          .WithParentActivityOrWindow(
-                                                              ParentActivityWrapper
-                                                                  .ParentActivity) // this is required for Android
+                                                          .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
             }
 
