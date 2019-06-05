@@ -1,4 +1,5 @@
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +16,7 @@ namespace MoneyFox.Presentation.Views
 		    StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {
 		        StatisticSelectorList.SelectedItem = null;
-                ViewModel.GoToStatisticCommand.Execute(args.Item);
+                (BindingContext as StatisticSelectorViewModel)?.GoToStatisticCommand.Execute(args.Item);
 		    };
 
 		    Title = Strings.StatisticsTitle;

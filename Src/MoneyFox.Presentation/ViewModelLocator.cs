@@ -59,6 +59,7 @@ namespace MoneyFox.Presentation
         public MainViewModel MainVm => SimpleIoc.Default.GetInstance<MainViewModel>();
         public AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
         public CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         public SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
         public AddAccountViewModel AddAccountVm => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
         public AddCategoryViewModel AddCategoryVm => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
@@ -67,6 +68,7 @@ namespace MoneyFox.Presentation
         public EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
         public EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
         public BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
         public SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
         public StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();

@@ -1,13 +1,10 @@
-﻿<d:MvxContentPage x:TypeArguments="viewModels:SettingsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
-                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSettingsViewModel}">
+                  BindingContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
@@ -45,4 +42,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

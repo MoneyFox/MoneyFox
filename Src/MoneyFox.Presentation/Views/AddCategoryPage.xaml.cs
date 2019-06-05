@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +14,7 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel.SaveCommand.Execute()),
+                Command = new Command(() => (BindingContext as AddCategoryViewModel)?.SaveCommand.Execute()),
                 Text = Strings.SaveCategoryLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,

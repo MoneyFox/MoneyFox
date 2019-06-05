@@ -22,13 +22,7 @@ namespace MoneyFox.Presentation.Views
 		    On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
 		    On<Android>().SetBarItemColor(StyleHelper.BarItemColor);
 		    On<Android>().SetBarSelectedItemColor(StyleHelper.BarSelectedItemColor);
-
-            // We have to resolve the VM here, since the automagic doesn't yet work the BottomTabbedPage.
-		    if (Mvx.IoCProvider.CanResolve<MainViewModel>())
-		    {
-		        ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-		    }
-		}
+        }
 
 	    private bool firstTime = true;
 
@@ -37,7 +31,7 @@ namespace MoneyFox.Presentation.Views
             base.OnAppearing();
             if (firstTime)
             {
-                await ViewModel.ShowInitialViewModelsCommand.ExecuteAsync();
+                await (BindingContext as MainViewModel)?.ShowInitialViewModelsCommand.ExecuteAsync();
                 firstTime = false;
             }
         }

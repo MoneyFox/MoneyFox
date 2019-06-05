@@ -1,14 +1,12 @@
-﻿<d:MvxContentPage  x:TypeArguments="viewModels:StatisticCashFlowViewModel"
-                   xmlns="http://xamarin.com/schemas/2014/forms" 
-                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
-                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                   xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-                   xmlns:presentation="clr-namespace:MoneyFox.Presentation"
-                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
-                   BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
-                   x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:presentation="clr-namespace:MoneyFox.Presentation"
+             BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
+             x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage"
+             BindingContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
 
-  <ContentPage.Content>
-    <microcharts:ChartView Chart="{Binding Chart}" />
-  </ContentPage.Content>
-</d:MvxContentPage>
+    <ContentPage.Content>
+        <microcharts:ChartView Chart="{Binding Chart}" />
+    </ContentPage.Content>
+</ContentPage>

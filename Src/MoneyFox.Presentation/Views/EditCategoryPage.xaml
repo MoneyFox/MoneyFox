@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views:MvxContentPage x:TypeArguments="viewModels:EditCategoryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
                       x:Class="MoneyFox.Presentation.Views.EditCategoryPage"
+                      BindingContext="{Binding EditCategoryVm, Source={StaticResource Locator}}"
                       Title="{Binding Title}">
 
     <ContentPage.Content>
@@ -12,4 +11,4 @@
             <userControls:ModifyCategoryUserControl />
         </StackLayout>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

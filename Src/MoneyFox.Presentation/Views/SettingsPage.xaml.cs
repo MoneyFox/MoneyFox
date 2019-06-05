@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Presenters.Attributes;
+﻿using MoneyFox.ServiceLayer.ViewModels;
+using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Views
@@ -14,7 +15,7 @@ namespace MoneyFox.Presentation.Views
 		    SettingsList.ItemTapped += (sender, args) =>
 		    {
 		        SettingsList.SelectedItem = null;
-		        ViewModel.GoToSettingCommand.Execute(args.Item);
+                (BindingContext as SettingsViewModel)?.GoToSettingCommand.Execute(args.Item);
 		    };
         }
 	}

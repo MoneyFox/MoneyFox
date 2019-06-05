@@ -21,7 +21,7 @@ namespace MoneyFox.Presentation.Views
             PaymentList.ItemTapped += (sender, args) =>
             {
                 PaymentList.SelectedItem = null;
-                ViewModel.EditPaymentCommand.Execute(args.Item);
+                (BindingContext as PaymentListViewModel)?.EditPaymentCommand.Execute(args.Item);
             };
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
@@ -50,27 +50,26 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            Title = ViewModel.Title;
+            Title = (BindingContext as PaymentListViewModel)?.Title;
 
             base.OnAppearing();
         }
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel })
-                            ;
+            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = (BindingContext as AccountListViewModel)?.ViewActionViewModel });
         }
 
         private void EditPayment(object sender, EventArgs e)
         {
-            if (!(sender is MenuItem menuItem)) return;            
-            ViewModel.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            if (!(sender is MenuItem menuItem)) return;
+            (BindingContext as PaymentListViewModel)?.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
 
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            (BindingContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
         }
     }
 }

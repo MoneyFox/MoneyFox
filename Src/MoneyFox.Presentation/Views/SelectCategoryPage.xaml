@@ -1,17 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<d:MvxContentPage x:TypeArguments="viewModels:SelectCategoryListViewModel" 
-                  xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                  xmlns:userControls="clr-namespace:MoneyFox.UserControls"
-                  x:Class="MoneyFox.Presentation.Views.SelectCategoryPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
+             xmlns:userControls="clr-namespace:MoneyFox.UserControls"
+             x:Class="MoneyFox.Presentation.Views.SelectCategoryPage"
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+             BindingContext="{Binding SelectCategoryListVm, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" >
-            <userControls:CategoryListUserControl VerticalOptions="FillAndExpand"/>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <userControls:CategoryListUserControl VerticalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

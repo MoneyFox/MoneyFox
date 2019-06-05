@@ -19,28 +19,28 @@ namespace MoneyFox.Presentation.Views
 		    AccountsList.ItemTapped += (sender, args) =>
 		    {
 		        AccountsList.SelectedItem = null;
-		        ViewModel.OpenOverviewCommand.Execute(args.Item);
+		        (BindingContext as AccountListViewModel)?.OpenOverviewCommand.Execute(args.Item);
 		    };
 		    Title = Strings.AccountsTitle;
 		}
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
+	        await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = (BindingContext as AccountListViewModel)?.ViewActionViewModel });
         }
 
         private void EditAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            ViewModel.EditAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
+            (BindingContext as AccountListViewModel)?.EditAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
 	    }
 
 	    private void DeleteAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            ViewModel.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
+            (BindingContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
 	    }
     }
 }
