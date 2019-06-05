@@ -14,6 +14,7 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Autofac;
 using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.DataLayer;
@@ -105,12 +106,14 @@ namespace MoneyFox.Uwp
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
+
+                RegisterServices();
 #if !DEBUG
                 AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
                 Xamarin.Forms.Forms.Init(activationArgs);
-				var app = new Presentation.App();
+				//var app = new Presentation.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
@@ -134,6 +137,13 @@ namespace MoneyFox.Uwp
             {
                 await HandleTileActivationInfo(activationArgs);
             }
+        }
+
+        private void RegisterServices()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<WindowsModule>();
+            ViewModelLocator.RegisterServices(builder);
         }
 
         private async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)

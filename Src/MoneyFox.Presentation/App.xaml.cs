@@ -32,22 +32,22 @@ namespace MoneyFox.Presentation
         {
             var nav = new NavigationService();
 
-            nav.Configure(Locator.AccountList, typeof(AccountListPage));
-            nav.Configure(Locator.CategoryList, typeof(CategoryListPage));
-            nav.Configure(Locator.SelectCategoryList, typeof(SelectCategoryPage));
-            nav.Configure(Locator.AddAccount, typeof(AddAccountPage));
-            nav.Configure(Locator.AddCategory, typeof(AddCategoryPage));
-            nav.Configure(Locator.AddPayment, typeof(AddPaymentPage));
-            nav.Configure(Locator.EditAccount, typeof(EditAccountPage));
-            nav.Configure(Locator.EditCategory, typeof(EditCategoryPage));
-            nav.Configure(Locator.EditPayment, typeof(EditPaymentPage));
-            nav.Configure(Locator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
-            nav.Configure(Locator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
-            nav.Configure(Locator.StatisticSelector, typeof(StatisticSelectorPage));
-            nav.Configure(Locator.StatisticCashFlow, typeof(StatisticCashFlowPage));
-            nav.Configure(Locator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
-            nav.Configure(Locator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
-            nav.Configure(Locator.About, typeof(AboutPage));
+            nav.Configure(ViewModelLocator.AccountList, typeof(AccountListPage));
+            nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListPage));
+            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryPage));
+            nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountPage));
+            nav.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryPage));
+            nav.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentPage));
+            nav.Configure(ViewModelLocator.EditAccount, typeof(EditAccountPage));
+            nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryPage));
+            nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentPage));
+            nav.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
+            nav.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
+            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorPage));
+            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowPage));
+            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
+            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
+            nav.Configure(ViewModelLocator.About, typeof(AboutPage));
 
             return nav;
         }

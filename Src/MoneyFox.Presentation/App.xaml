@@ -2,11 +2,15 @@
 <core:MvxFormsApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:core="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+             xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.App">
     
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+
+                <presentation:ViewModelLocator x:Name="Locator" />
+
                 <ResourceDictionary Source="Style/Images.xaml" />
                 <ResourceDictionary Source="Style/TextStyles.xaml" />
                 <ResourceDictionary Source="Style/ControlStyles.xaml" />

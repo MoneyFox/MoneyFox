@@ -23,6 +23,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Autofac;
 using NLog;
 using NLog.Targets;
 using UIKit;
@@ -55,6 +56,8 @@ namespace MoneyFox.iOS
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
 
+            RegisterServices();
+
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
@@ -73,6 +76,13 @@ namespace MoneyFox.iOS
             Popup.Init();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        private void RegisterServices()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<IosModule>();
+            ViewModelLocator.RegisterServices(builder);
         }
 
         protected override async void RunAppStart(object hint = null)

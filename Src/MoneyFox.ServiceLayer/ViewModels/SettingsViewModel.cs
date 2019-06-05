@@ -28,7 +28,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
 
         ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
-        ISettingsSecurityViewModel SettingsSecurityViewModel { get; }
     }
 
     /// <summary>
@@ -97,7 +96,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; set; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; set; }
-        public ISettingsSecurityViewModel SettingsSecurityViewModel { get; set; }
 
         private async Task GoToSettings(SettingsSelectorType item)
         {
