@@ -57,22 +57,22 @@ namespace MoneyFox.Presentation
         public static string About => nameof(AboutPage);
 
         public MainViewModel MainVm => SimpleIoc.Default.GetInstance<MainViewModel>();
-        public AccountListViewModel AccountListVm => SimpleIoc.Default.GetInstance<AccountListViewModel>();
-        public CategoryListViewModel CategoryListVm => SimpleIoc.Default.GetInstance<CategoryListViewModel>();
-        public SelectCategoryListViewModel SelectCategoryListVm => SimpleIoc.Default.GetInstance<SelectCategoryListViewModel>();
-        public AddAccountViewModel AddAccountVm => SimpleIoc.Default.GetInstance<AddAccountViewModel>();
-        public AddCategoryViewModel AddCategoryVm => SimpleIoc.Default.GetInstance<AddCategoryViewModel>();
-        public AddPaymentViewModel AddPaymentVm => SimpleIoc.Default.GetInstance<AddPaymentViewModel>();
-        public EditAccountViewModel EditAccountVm => SimpleIoc.Default.GetInstance<EditAccountViewModel>();
-        public EditCategoryViewModel EditCategoryVm => SimpleIoc.Default.GetInstance<EditCategoryViewModel>();
-        public EditPaymentViewModel EditPaymentVm => SimpleIoc.Default.GetInstance<EditPaymentViewModel>();
-        public BackupViewModel BackupVm => SimpleIoc.Default.GetInstance<BackupViewModel>();
-        public SettingsBackgroundJobViewModel SettingsBackgroundVm => SimpleIoc.Default.GetInstance<SettingsBackgroundJobViewModel>();
-        public SettingsPersonalizationViewModel SettingsPersonalizationVm => SimpleIoc.Default.GetInstance<SettingsPersonalizationViewModel>();
-        public StatisticSelectorViewModel StatisticSelectorVm => SimpleIoc.Default.GetInstance<StatisticSelectorViewModel>();
-        public StatisticCashFlowViewModel StatisticCashFlowVm => SimpleIoc.Default.GetInstance<StatisticCashFlowViewModel>();
-        public StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => SimpleIoc.Default.GetInstance<StatisticCategorySpreadingViewModel>();
-        public StatisticCategorySummaryViewModel StatisticCategorySummaryVm => SimpleIoc.Default.GetInstance<StatisticCategorySummaryViewModel>();
-        public AboutViewModel AboutVm => SimpleIoc.Default.GetInstance<AboutViewModel>();
+        public AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
+        public CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+        public AddAccountViewModel AddAccountVm => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+        public AddCategoryViewModel AddCategoryVm => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
+        public AddPaymentViewModel AddPaymentVm => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
+        public EditAccountViewModel EditAccountVm => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
+        public EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+        public EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
+        public BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
+        public SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
+        public StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
     }
 }
