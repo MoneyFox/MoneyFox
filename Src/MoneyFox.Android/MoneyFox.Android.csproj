@@ -348,9 +348,6 @@
     <AndroidResource Include="Resources\drawable-v21\ic_cancel_black.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-v21\ic_add_black.xml" />
   </ItemGroup>
   <ItemGroup>
