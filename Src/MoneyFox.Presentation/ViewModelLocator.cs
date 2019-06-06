@@ -10,7 +10,7 @@ using MoneyFox.Views;
 
 namespace MoneyFox.Presentation
 {
-    public class ViewModelLocator
+    public static class ViewModelLocator
     {
         static ViewModelLocator()
         {
@@ -33,7 +33,7 @@ namespace MoneyFox.Presentation
             {
                 container = registrations?.Build();
             }
-            
+
             ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
         }
 
@@ -56,25 +56,25 @@ namespace MoneyFox.Presentation
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryPage);
         public static string About => nameof(AboutPage);
 
-        public MainViewModel MainVm => SimpleIoc.Default.GetInstance<MainViewModel>();
-        public AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
-        public CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
-        public PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
-        public SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
-        public AddAccountViewModel AddAccountVm => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
-        public AddCategoryViewModel AddCategoryVm => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
-        public AddPaymentViewModel AddPaymentVm => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
-        public EditAccountViewModel EditAccountVm => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
-        public EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
-        public EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
-        public BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
-        public SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
-        public SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
-        public StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
-        public StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-        public StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
-        public StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
-        public AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
+        public static MainViewModel MainVm => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public static AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
+        public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
+        public static SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+        public static AddAccountViewModel AddAccountVm => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+        public static AddCategoryViewModel AddCategoryVm => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
+        public static AddPaymentViewModel AddPaymentVm => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
+        public static EditAccountViewModel EditAccountVm => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
+        public static EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+        public static EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
+        public static BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
+        public static SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
+        public static SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
+        public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
     }
 }
