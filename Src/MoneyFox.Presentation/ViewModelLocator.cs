@@ -37,8 +37,6 @@ namespace MoneyFox.Presentation
             if (container != null)
             {
                 ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-                var foo2 = container.Resolve<IBackgroundTaskManager>();
-                var foo = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
             }
         }
 
