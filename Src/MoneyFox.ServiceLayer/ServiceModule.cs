@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using MoneyFox.BusinessLogic;
 
 namespace MoneyFox.ServiceLayer
 {
@@ -7,6 +8,8 @@ namespace MoneyFox.ServiceLayer
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<BusinessLogicModule>();
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();

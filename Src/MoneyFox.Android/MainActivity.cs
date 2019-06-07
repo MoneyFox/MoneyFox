@@ -60,9 +60,9 @@ namespace MoneyFox.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Popup.Init(this, savedInstanceState);
 
-            StartBackgroundServices();
-
             ParentActivityWrapper.ParentActivity = this;
+
+            StartBackgroundServices();
         }
 
         private void StartBackgroundServices()

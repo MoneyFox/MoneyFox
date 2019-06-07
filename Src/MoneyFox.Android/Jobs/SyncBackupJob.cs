@@ -9,11 +9,11 @@ using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross;
 using MvvmCross.Plugin.File;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using CommonServiceLocator;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
@@ -57,8 +57,6 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task SyncBackups(JobParameters args)
         {
-            if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
@@ -75,7 +73,7 @@ namespace MoneyFox.Droid.Jobs
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    ServiceLocator.Current.GetInstance<IMvxFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
@@ -100,9 +98,7 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask(int interval)
         {
-            if (!Mvx.IoCProvider.CanResolve<ISettingsFacade>()) return;
-
-            if (!Mvx.IoCProvider.Resolve<ISettingsFacade>().IsBackupAutouploadEnabled) return;
+            if (!ServiceLocator.Current.GetInstance<ISettingsFacade>().IsBackupAutouploadEnabled) return;
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(
