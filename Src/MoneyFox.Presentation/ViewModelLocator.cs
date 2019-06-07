@@ -3,6 +3,7 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.Views;
+using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MoneyFox.Views;
@@ -33,7 +34,12 @@ namespace MoneyFox.Presentation
                 container = registrations?.Build();
             }
 
-            ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+            if (container != null)
+            {
+                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+                var foo2 = container.Resolve<IBackgroundTaskManager>();
+                var foo = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
+            }
         }
 
         public static string MainPage => nameof(MainPage);
