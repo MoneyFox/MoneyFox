@@ -2,7 +2,6 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
@@ -10,7 +9,7 @@ using MoneyFox.Views;
 
 namespace MoneyFox.Presentation
 {
-    public static class ViewModelLocator
+    public class ViewModelLocator
     {
         static ViewModelLocator()
         {
