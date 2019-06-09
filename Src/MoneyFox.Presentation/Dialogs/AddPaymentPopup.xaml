@@ -2,12 +2,12 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:designTime="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.ServiceLayer"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             xmlns:designTime1="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Dialogs.AddPaymentPopup">
 
     <pages:PopupPage.BindingContext>
-        <designTime:DesignTimePaymentListViewActionViewModel />
+        <designTime1:DesignTimePaymentListViewActionViewModel />
     </pages:PopupPage.BindingContext>
 
     <ContentPage.Content>
