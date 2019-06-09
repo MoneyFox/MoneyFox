@@ -71,25 +71,28 @@
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Column="0"
-                                                   Text="{Binding Note}"
-                                                   Style="{StaticResource DeemphasizedLabelStyle}" />
+                                               Text="{Binding Note}" 
+                                               Style="{StaticResource DeemphasizedLabelStyle}" />
 
-                                            <StackLayout Grid.Column="1" Orientation="Horizontal"
-                                                         HorizontalOptions="EndAndExpand">
+                                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
-                                                <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}"
-                                                       IsVisible="{Binding IsTransfer}"
+                                                <Label Text="{StaticResource Transfer}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsTransfer}" 
                                                        HeightRequest="20"
-                                                       WidthRequest="20" />
-                                                <Image Source="{x:Static moneyFox:StyleHelper.IsRecurringImageSource}"
-                                                       IsVisible="{Binding IsRecurring}"
-                                                       HeightRequest="20"
-                                                       WidthRequest="20" />
-                                                <Image Source="{x:Static moneyFox:StyleHelper.IsClearedImageSource}"
-                                                       IsVisible="{Binding IsCleared}"
-                                                       HeightRequest="20"
-                                                       WidthRequest="20" />
+                                                       WidthRequest="20"  />
 
+                                                <Label Text="{StaticResource Recurring}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsRecurring}" 
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"  />
+
+                                                <Label Text="{StaticResource Cleared}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsRecurring}" 
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"  />
                                             </StackLayout>
                                         </Grid>
                                     </StackLayout>
