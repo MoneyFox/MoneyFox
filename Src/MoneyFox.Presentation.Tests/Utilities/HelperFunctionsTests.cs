@@ -2,11 +2,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.Presentation.Utilities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.Utilities
+namespace MoneyFox.Presentation.Tests.Utilities
 {
     [ExcludeFromCodeCoverage]
     public class HelperFunctionsTests
