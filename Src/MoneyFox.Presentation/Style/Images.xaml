@@ -21,4 +21,8 @@
         <On Platform="Android" Value="materialdesignicons.ttf#Material Design Icons" />
         <On Platform="UWP" Value="Assets/Fonts/materialdesignicons.ttf#Material Design Icons" />
     </OnPlatform>
+
+    <x:String x:Key="Recurring">&#xf456;</x:String>
+    <x:String x:Key="Transfer">&#xf4e1;</x:String>
+    <x:String x:Key="Cleared">&#xf12c;</x:String>
 </ResourceDictionary>
