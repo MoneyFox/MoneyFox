@@ -150,7 +150,6 @@
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\DialogService.cs" />
-    <Compile Include="ApplicationSetup.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
@@ -561,10 +560,6 @@
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
-      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
-      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
       <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>

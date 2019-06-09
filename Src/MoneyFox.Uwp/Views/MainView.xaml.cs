@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
 using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
 using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
 
@@ -20,12 +20,11 @@ namespace MoneyFox.Uwp.Views
 
         public Frame MainFrame => ContentFrame;
 
-        private async void NavView_ItemInvoked(NavigationView navigationView, NavigationViewItemInvokedEventArgs args)
+        private void NavView_ItemInvoked(NavigationView navigationView, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                await ((MainViewModel) ViewModel).ShowSettingsCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowSettingsCommand.Execute(null);
             }
             else
             {
@@ -34,33 +33,27 @@ namespace MoneyFox.Uwp.Views
 
             if (args.InvokedItem.Equals(Strings.AccountsTitle))
             {
-                await ((MainViewModel) ViewModel).ShowAccountListCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowAccountListCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {
-                await ((MainViewModel) ViewModel).ShowCategoryListCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowCategoryListCommand.Execute(null);
             }
             else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
             {
-                await ((MainViewModel) ViewModel).ShowStatisticSelectorCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowStatisticSelectorCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.BackupTitle))
             {
-                await ((MainViewModel) ViewModel).ShowBackupViewCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowBackupViewCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.SettingsTitle))
             {
-                await ((MainViewModel) ViewModel).ShowSettingsCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowSettingsCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.AboutTitle))
             {
-                await ((MainViewModel) ViewModel).ShowAboutCommand
-                                                 .ExecuteAsync();
+                ((MainViewModel) ViewModel).ShowAboutCommand.Execute(null);
             }
         }
     }

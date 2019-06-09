@@ -192,7 +192,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
-    <Compile Include="ApplicationSetup.cs" />
     <Compile Include="SplashScreen.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -242,10 +241,6 @@
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
-      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
-      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

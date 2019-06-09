@@ -26,12 +26,12 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views;
 using MvvmCross;
-using MvvmCross.Platforms.Uap.Views;
 using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
 using GenericServices;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Parameters;
 using NLog;
 using NLog.Targets;
@@ -45,12 +45,7 @@ using Microsoft.AppCenter.Crashes;
 
 namespace MoneyFox.Uwp
 {
-
-	public abstract class MoneyFoxApp : MvxApplication<ApplicationSetup, CoreApp>
-	{
-	}
-
-	/// <summary>
+    /// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
 	public sealed partial class App : IDisposable
@@ -65,9 +60,9 @@ namespace MoneyFox.Uwp
 		{
 			InitializeComponent();
 			SetTheme();
-			Suspending += OnSuspending;
 
-			EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            Suspending += OnSuspending;
             UnhandledException += OnUnhandledException;
         }
 
@@ -99,7 +94,6 @@ namespace MoneyFox.Uwp
             logManager.Info("Application Started.");
             logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
             
-            CoreApp.CurrentPlatform = AppPlatform.UWP;
 			base.OnLaunched(activationArgs);
 
             if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
@@ -120,7 +114,7 @@ namespace MoneyFox.Uwp
                 BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
                 mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.ExecuteAsync();
+                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.Execute(null);
 
                 OverrideTitleBarColor();
 
@@ -181,20 +175,15 @@ namespace MoneyFox.Uwp
             logManager = LogManager.GetCurrentClassLogger();
         }
 
-        protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
-		{
-			mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-			Window.Current.Content = mainView;
-			mainView.MainFrame.NavigationFailed += OnNavigationFailed;
+  //      protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
+		//{
+		//	mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
+		//	Window.Current.Content = mainView;
+		//	mainView.MainFrame.NavigationFailed += OnNavigationFailed;
 
-			RootFrame = mainView.MainFrame;
-			return RootFrame;
-		}
-
-		protected override Frame CreateFrame()
-		{
-			return mainView.MainFrame;
-		}
+		//	RootFrame = mainView.MainFrame;
+		//	return RootFrame;
+		//}
 
 		private void OverrideTitleBarColor()
 		{
@@ -254,7 +243,7 @@ namespace MoneyFox.Uwp
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        protected override void OnSuspending(object sender, SuspendingEventArgs e)
+        public void OnSuspending(object sender, SuspendingEventArgs e)
         {
             logManager.Info("Application Suspending.");
             LogManager.Shutdown();

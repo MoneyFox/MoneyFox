@@ -139,7 +139,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ApplicationSetup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\StoreOperations.cs" />
@@ -248,10 +247,6 @@
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
-      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
-      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

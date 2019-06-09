@@ -12,20 +12,23 @@
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <TabBar>
-        <Tab Title="Home" >
+        <Tab Title="Home" Icon="ic_accounts_black">
             <ShellContent>
                 <pages:AccountListPage />
             </ShellContent>
         </Tab>
-        <Tab Title="Library" >
+
+        <Tab Title="Library" Icon="ic_statistics_black">
             <ShellContent>
                 <pages:StatisticSelectorPage />
             </ShellContent>      
         </Tab>
-        <Tab Title="Contact">
+
+        <Tab Title="Contact" Icon="ic_settings_black">
             <ShellContent>
                 <pages:SettingsPage />
             </ShellContent>
         </Tab>
     </TabBar>
+
 </Shell>

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.Services;
-using MoneyFox.ServiceLayer;
+using MoneyFox.Presentation;
 using MvvmCross.Plugin.File;
 
 namespace MoneyFox.Droid
@@ -10,7 +10,7 @@ namespace MoneyFox.Droid
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<PresentationModule>();
 
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();

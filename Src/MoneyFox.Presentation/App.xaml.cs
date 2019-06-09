@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Views;
 using MoneyFox.Presentation.Views;
 using MoneyFox.Views;
 using NLog;
-using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
 {
@@ -21,7 +20,11 @@ namespace MoneyFox.Presentation
             };
 
             var navigationService = ConfigureNavigation();
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
+            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
+            {
+                SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+            }
 
             var appShell = new AppShell();
             navigationService.Initialize(appShell.Navigation);

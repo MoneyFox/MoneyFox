@@ -6,6 +6,7 @@ using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MoneyFox.Views;
+using MainViewModel = MoneyFox.Presentation.ViewModels.MainViewModel;
 
 namespace MoneyFox.Presentation
 {
@@ -26,7 +27,9 @@ namespace MoneyFox.Presentation
             // you only need this if-clause if you'd like to use design-time data which is only supported on XAML-based platforms
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                //builder.RegisterModule<FakeServiceModule>();
+                var builder = new ContainerBuilder();
+                builder.RegisterModule<FakeServiceModule>();
+                container = builder.Build();
             } 
             else
             {
@@ -50,6 +53,7 @@ namespace MoneyFox.Presentation
         public static string EditCategory => nameof(EditCategoryPage);
         public static string EditPayment => nameof(EditPaymentPage);
         public static string Backup => nameof(BackupPage);
+        public static string Settings => nameof(SettingsPage);
         public static string SettingsBackgroundJob => nameof(BackgroundJobSettingsPage);
         public static string SettingsPersonalization => nameof(SettingsPersonalizationPage);
         public static string StatisticSelector => nameof(StatisticSelectorPage);

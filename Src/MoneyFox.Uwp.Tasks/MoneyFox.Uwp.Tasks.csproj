@@ -171,9 +171,9 @@
       <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
       <Name>MoneyFox.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
-      <Project>{60c2aa25-8677-4aa8-88b7-29d52f8bedb9}</Project>
-      <Name>MoneyFox.ServiceLayer</Name>
+    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
+      <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
+      <Name>MoneyFox.Presentation</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
       <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>

@@ -6,7 +6,6 @@ using Autofac;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
-using MoneyFox.ServiceLayer.ViewModels;
 using NLog;
 using NLog.Targets;
 using Application = Android.App.Application;

@@ -7,10 +7,11 @@
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
+        <designTime1:DesignTimeStatisticCategorySpreadingViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"

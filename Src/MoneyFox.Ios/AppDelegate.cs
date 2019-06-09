@@ -13,7 +13,6 @@ using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross;
-using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Plugin.File;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
@@ -42,7 +41,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register(nameof(AppDelegate))]
-    public class AppDelegate : MvxFormsApplicationDelegate<ApplicationSetup, CoreApp, App>
+    public class AppDelegate : FormsApplicationDelegate
     {
         // Minimum number of seconds between a background refresh
         // 15 minutes = 60 * 60 = 3600 seconds
@@ -61,9 +60,10 @@ namespace MoneyFox.iOS
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
-
+            Forms.Init();
             FormsMaterial.Init();
-
+            LoadApplication(new App());
+            
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;
 
@@ -75,6 +75,8 @@ namespace MoneyFox.iOS
             Batteries.Init();
             Popup.Init();
 
+            RunAppStart();
+
             return base.FinishedLaunching(app, options);
         }
 
@@ -85,10 +87,8 @@ namespace MoneyFox.iOS
             ViewModelLocator.RegisterServices(builder);
         }
 
-        protected override async void RunAppStart(object hint = null)
+        protected async void RunAppStart()
         {
-            base.RunAppStart(hint);
-
             await SyncBackup();
             await ClearPayments();
             await CreateRecurringPayments();
