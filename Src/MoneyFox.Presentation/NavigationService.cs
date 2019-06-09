@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation
     public class NavigationService : INavigationService
     {
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
-        private NavigationPage _navigation;
+        private INavigation _navigation;
 
         public string CurrentPageKey
         {
@@ -18,12 +18,12 @@ namespace MoneyFox.Presentation
             {
                 lock (_pagesByKey)
                 {
-                    if (_navigation.CurrentPage == null)
+                    if (!_navigation.NavigationStack.Any())
                     {
                         return null;
                     }
 
-                    var pageType = _navigation.CurrentPage.GetType();
+                    var pageType = _navigation.NavigationStack.First().GetType();
 
                     return _pagesByKey.ContainsValue(pageType)
                         ? _pagesByKey.First(p => p.Value == pageType).Key
@@ -112,7 +112,7 @@ namespace MoneyFox.Presentation
             }
         }
 
-        public void Initialize(NavigationPage navigation)
+        public void Initialize(INavigation navigation)
         {
             _navigation = navigation;
         }

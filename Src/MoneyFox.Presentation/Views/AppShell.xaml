@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
+    x:Class="MoneyFox.Presentation.Views.AppShell">
+
+    <TabBar>
+        <Tab Title="Home" >
+            <ShellContent>
+                <pages:AccountListPage />
+            </ShellContent>
+        </Tab>
+        <Tab Title="Library" >
+            <ShellContent>
+                <pages:StatisticSelectorPage />
+            </ShellContent>      
+        </Tab>
+        <Tab Title="Contact">
+            <ShellContent>
+                <pages:SettingsPage />
+            </ShellContent>
+        </Tab>
+    </TabBar>
+</Shell>

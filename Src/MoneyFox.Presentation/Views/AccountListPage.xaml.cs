@@ -1,5 +1,4 @@
 ﻿using System;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
@@ -21,7 +20,6 @@ namespace MoneyFox.Presentation.Views
 		        AccountsList.SelectedItem = null;
 		        (BindingContext as AccountListViewModel)?.OpenOverviewCommand.Execute(args.Item);
 		    };
-		    Title = Strings.AccountsTitle;
 		}
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
