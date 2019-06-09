@@ -79,6 +79,24 @@
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
+                                                <Label Text="{StaticResource Transfer}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsTransfer}" 
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"  />
+
+                                                <Label Text="{StaticResource Recurring}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsRecurring}" 
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"  />
+
+                                                <Label Text="{StaticResource Cleared}" 
+                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       IsVisible="{Binding IsRecurring}" 
+                                                       HeightRequest="20"
+                                                       WidthRequest="20"  />
+
                                                 <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}" 
                                                    IsVisible="{Binding IsTransfer}" 
                                                    HeightRequest="20"
