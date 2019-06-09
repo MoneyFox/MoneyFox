@@ -3,6 +3,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
+    Title="Money Fox"
+    BackgroundColor="Accent"
+    TabBarBackgroundColor="WhiteSmoke"
+    TabBarUnselectedColor="DarkGray"
+    TabBarTitleColor="Accent"
+    BindingContext="{Binding MainVm, Source={StaticResource Locator}}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <TabBar>
