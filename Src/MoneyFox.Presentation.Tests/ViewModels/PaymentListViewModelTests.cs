@@ -13,14 +13,13 @@ using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
-using MvvmCross.Tests;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class PaymentListViewModelTests : MvxIoCSupportingTest
+    public class PaymentListViewModelTests
     {
         public PaymentListViewModelTests()
         {

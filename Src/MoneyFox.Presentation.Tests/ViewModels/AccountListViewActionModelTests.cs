@@ -1,9 +1,7 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using GenericServices;
 using MoneyFox.Foundation;
-using MoneyFox.Presentation.Tests.Fixtures;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
@@ -16,7 +14,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class AccountListViewActionModelTests : MvxIocFixture
+    public class AccountListViewActionModelTests
     {
         [Fact]
         public void GoToAddPayment_IncomeNoEdit_CorrectParameterPassed()

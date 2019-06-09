@@ -9,7 +9,6 @@ using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.Tests;
 using Should;
 using Xunit;
 
@@ -17,7 +16,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class BackupViewModelTests : MvxIoCSupportingTest
+    public class BackupViewModelTests
     {
         [Fact]
         public async Task Loaded_NoConnectivity_NothingCalled()

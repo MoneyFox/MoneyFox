@@ -10,7 +10,6 @@ using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.Tests;
 using Should;
 using Xunit;
 
@@ -18,7 +17,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class AboutViewModelTests : MvxIoCSupportingTest
+    public class AboutViewModelTests 
     {
         [Fact]
         public async Task SendMail_NoParams_CommandCalled()

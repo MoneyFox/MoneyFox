@@ -9,14 +9,13 @@ using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.Tests;
 using Xunit;
 
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class AccountListViewModelTests : MvxIoCSupportingTest
+    public class AccountListViewModelTests
     {
         public AccountListViewModelTests()
         {

@@ -7,7 +7,7 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]

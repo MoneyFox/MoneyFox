@@ -5,7 +5,6 @@ using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
-using MvvmCross.Tests;
 using Should;
 using Xunit;
 
@@ -13,12 +12,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class BalanceViewModelTests : MvxIoCSupportingTest
+    public class BalanceViewModelTests
     {
-        public BalanceViewModelTests()
-        {
-            Setup();
-        }
         [Fact]
         public async Task GetTotalBalance_Zero()
         {

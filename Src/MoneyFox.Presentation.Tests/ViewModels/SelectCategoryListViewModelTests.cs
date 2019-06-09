@@ -9,7 +9,6 @@ using Moq;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
-using MvvmCross.Tests;
 using MvvmCross.ViewModels;
 using Xunit;
 
@@ -17,13 +16,12 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class SelectCategoryListViewModelTests : MvxIoCSupportingTest
+    public class SelectCategoryListViewModelTests
     {
         [Fact]
         public async void ItemClick()
         {
             // Arrange
-            base.Setup();
             CategorySelectedMessage passedMessage = null;
             bool closeWasCalled = false;
 
