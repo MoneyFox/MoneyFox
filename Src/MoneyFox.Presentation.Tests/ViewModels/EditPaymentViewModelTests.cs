@@ -20,7 +20,6 @@ using Xunit;
 namespace MoneyFox.ServiceLayer.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
-    [Collection("MvxIocCollection")]
     public class EditPaymentViewModelTests
     {
         private readonly Mock<IPaymentService> paymentServiceMock;

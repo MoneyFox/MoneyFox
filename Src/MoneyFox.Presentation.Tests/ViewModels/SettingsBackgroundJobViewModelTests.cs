@@ -10,7 +10,6 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
-    [Collection("MvxIocCollection")]
     public class SettingsBackgroundJobViewModelTests
     {
         [Theory]
