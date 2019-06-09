@@ -93,22 +93,9 @@
 
                                                 <Label Text="{StaticResource Cleared}" 
                                                        FontFamily="{DynamicResource MaterialFontFamily}"
-                                                       IsVisible="{Binding IsRecurring}" 
+                                                       IsVisible="{Binding IsCleared}" 
                                                        HeightRequest="20"
                                                        WidthRequest="20"  />
-
-                                                <Image Source="{x:Static moneyFox:StyleHelper.TransferImageSource}" 
-                                                   IsVisible="{Binding IsTransfer}" 
-                                                   HeightRequest="20"
-                                                   WidthRequest="20" />
-                                                <Image Source="{x:Static moneyFox:StyleHelper.IsRecurringImageSource}" 
-                                                   IsVisible="{Binding IsRecurring}" 
-                                                   HeightRequest="20"
-                                                   WidthRequest="20" />
-                                                <Image Source="{x:Static moneyFox:StyleHelper.IsClearedImageSource}"
-                                                   IsVisible="{Binding IsCleared}"
-                                                   HeightRequest="20"
-                                                   WidthRequest="20" />
 
                                             </StackLayout>
                                         </Grid>
