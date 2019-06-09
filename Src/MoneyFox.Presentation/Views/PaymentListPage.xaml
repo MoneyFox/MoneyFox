@@ -90,7 +90,7 @@
 
                                                 <Label Text="{StaticResource Cleared}" 
                                                        FontFamily="{DynamicResource MaterialFontFamily}"
-                                                       IsVisible="{Binding IsRecurring}" 
+                                                       IsVisible="{Binding IsCleared}" 
                                                        HeightRequest="20"
                                                        WidthRequest="20"  />
                                             </StackLayout>
