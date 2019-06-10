@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
+using GalaSoft.MvvmLight;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public abstract class BaseViewModel : MvxViewModel, IBaseViewModel
+    public abstract class BaseViewModel : ViewModelBase, IBaseViewModel
     {
         /// <summary>
         ///      Constructor
@@ -20,10 +20,5 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Provides Access to the LocalizedResources for the current language
         /// </summary>
         public LocalizedResources Resources { get; }
-    }
-
-    public abstract class BaseViewModel<TParameter> : BaseViewModel, IMvxViewModel<TParameter>
-    {
-        public abstract void Prepare(TParameter parameter);
     }
 }
