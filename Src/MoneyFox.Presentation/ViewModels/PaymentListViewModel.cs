@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;

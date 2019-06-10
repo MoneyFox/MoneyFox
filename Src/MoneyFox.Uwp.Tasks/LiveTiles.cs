@@ -5,6 +5,7 @@ using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
 

@@ -9,6 +9,7 @@
              xmlns:converter="using:MoneyFox.Uwp.Converter"
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
+             xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              x:Name="PaymentControl"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
@@ -111,7 +112,7 @@
                                     </ListView.ItemContainerStyle>
 
                                     <ListView.ItemTemplate>
-                                        <DataTemplate x:DataType="viewModels:PaymentViewModel">
+                                        <DataTemplate x:DataType="viewModels1:PaymentViewModel">
                                             <Grid MinWidth="100"
                                                   Margin="{StaticResource SmallListItemMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"

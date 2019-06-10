@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.ViewModels;
 using Xunit;

@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyFox.Presentation.Dialogs;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
 using Rg.Plugins.Popup.Extensions;

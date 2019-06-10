@@ -2,6 +2,7 @@
 using System.Globalization;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {

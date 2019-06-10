@@ -7,6 +7,7 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;

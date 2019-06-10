@@ -2,8 +2,9 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     Handles the view representation of a payment.

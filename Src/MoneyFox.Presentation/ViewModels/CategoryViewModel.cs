@@ -1,5 +1,6 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {

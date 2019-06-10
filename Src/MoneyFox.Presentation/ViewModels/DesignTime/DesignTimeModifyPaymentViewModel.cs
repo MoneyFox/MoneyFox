@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
 

@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using GenericServices;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;

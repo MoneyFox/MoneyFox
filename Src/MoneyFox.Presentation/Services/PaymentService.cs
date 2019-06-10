@@ -6,6 +6,7 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels;
 

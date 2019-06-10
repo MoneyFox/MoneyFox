@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.ViewModels;
 

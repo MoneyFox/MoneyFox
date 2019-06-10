@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GenericServices;
 using MockQueryable.Moq;
 using MoneyFox.Foundation;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;

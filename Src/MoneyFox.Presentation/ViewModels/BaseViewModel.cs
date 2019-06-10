@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel, IBaseViewModel
     {

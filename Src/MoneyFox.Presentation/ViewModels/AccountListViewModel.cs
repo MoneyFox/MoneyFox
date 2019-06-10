@@ -11,13 +11,14 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using NLog;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
     {
