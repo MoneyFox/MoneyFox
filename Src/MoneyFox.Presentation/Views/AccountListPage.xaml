@@ -4,9 +4,13 @@
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+             xmlns:viewmodel="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"             
+             xmlns:design="clr-namespace:MoneyFox.Presentation"
+             mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             BindingContext="{Binding AccountListVm, Source={StaticResource Locator}}">
+             BindingContext="{Binding AccountListVm, Source={StaticResource Locator}}"
+             d:BindingContext="{x:Static design:DesignTimeViewModelLocator.AccountListVm}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

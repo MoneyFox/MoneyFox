@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
+             xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             BindingContext="{Binding AboutVm, Source={StaticResource Locator}}">
+             BindingContext="{Binding AboutVm, Source={StaticResource Locator}}"
+             d:BindingContext="{x:Static design:DesignTimeViewModelLocator.AboutVm}">
 
     <ContentPage.Content>
         <ScrollView>
