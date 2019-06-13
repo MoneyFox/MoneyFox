@@ -22,13 +22,13 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_statistics_black">
+        <Tab Title="{Binding Resources[StatisticTitle]}" Icon="ic_statistics_black">
             <ShellContent>
                 <pages:StatisticSelectorPage />
             </ShellContent>      
         </Tab>
 
-        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_settings_black">
+        <Tab Title="{Binding Resources[SettingsTitle]}" Icon="ic_settings_black">
             <ShellContent>
                 <pages:SettingsPage />
             </ShellContent>

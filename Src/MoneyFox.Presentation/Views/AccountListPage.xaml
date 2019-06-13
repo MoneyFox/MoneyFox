@@ -11,7 +11,6 @@
              mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             BindingContext="{Binding AccountListVm, Source={StaticResource Locator}}"
              d:BindingContext="{x:Static design:DesignTimeViewModelLocator.AccountListVm}">
 
     <ContentPage.Resources>

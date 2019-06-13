@@ -15,7 +15,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 
         /// <inheritdoc />
         public LocalizedResources Resources { get; }
-
         public MvxAsyncCommand GoToAddIncomeCommand { get; }
         public MvxAsyncCommand GoToAddExpenseCommand { get; }
         public MvxAsyncCommand GoToAddTransferCommand { get; }
