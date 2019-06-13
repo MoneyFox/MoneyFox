@@ -1,10 +1,10 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
 {
@@ -16,7 +16,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         }
 
         /// <inheritdoc />
-        public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
+        public ObservableCollection<SettingsSelectorType> SettingsList => new ObservableCollection<SettingsSelectorType>
         {
             new SettingsSelectorType
             {
@@ -33,7 +33,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         };
 
         /// <inheritdoc />
-        public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
+        public RelayCommand<SettingsSelectorType> GoToSettingCommand { get; }
 
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; }

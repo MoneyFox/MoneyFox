@@ -2,29 +2,33 @@
 <Shell
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
+    xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"             
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
     BackgroundColor="Accent"
     TabBarBackgroundColor="WhiteSmoke"
     TabBarUnselectedColor="DarkGray"
     TabBarTitleColor="Accent"
     BindingContext="{Binding MainVm, Source={StaticResource Locator}}"
+    d:BindingContext="{x:Static design:DesignTimeViewModelLocator.MainVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <TabBar>
-        <Tab Title="Home" Icon="ic_accounts_black">
+        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_accounts_black">
             <ShellContent>
                 <pages:AccountListPage />
             </ShellContent>
         </Tab>
 
-        <Tab Title="Library" Icon="ic_statistics_black">
+        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_statistics_black">
             <ShellContent>
                 <pages:StatisticSelectorPage />
             </ShellContent>      
         </Tab>
 
-        <Tab Title="Contact" Icon="ic_settings_black">
+        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_settings_black">
             <ShellContent>
                 <pages:SettingsPage />
             </ShellContent>
