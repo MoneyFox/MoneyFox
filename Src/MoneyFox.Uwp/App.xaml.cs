@@ -113,8 +113,8 @@ namespace MoneyFox.Uwp
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
 
-                mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-                ((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.Execute(null);
+                //mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
+                //((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.Execute(null);
 
                 OverrideTitleBarColor();
 

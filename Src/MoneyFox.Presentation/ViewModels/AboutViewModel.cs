@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -69,7 +70,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         string SupportMail { get; }
     }
 
-    public class AboutViewModel : BaseNavigationViewModel, IAboutViewModel
+    public class AboutViewModel : BaseViewModel, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IBrowserAdapter browserAdapter;
@@ -82,9 +83,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public AboutViewModel(IAppInformation appInformation,
             IEmailAdapter emailAdapter,
             IBrowserAdapter browserAdapter,
-            IStoreOperations storeOperations,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            IStoreOperations storeOperations)
         {
             this.appInformation = appInformation;
             this.emailAdapter = emailAdapter;
@@ -149,15 +148,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToWebsite()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL))
-                ;
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL));
         }
 
         private async Task SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
-                    new List<string> {AppConstants.SUPPORT_MAIL})
-                ;
+                    new List<string> { AppConstants.SUPPORT_MAIL });
         }
 
         private void RateApp()
@@ -167,26 +164,22 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task GoToRepository()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))
-                ;
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL));
         }
 
         private async Task GoToTranslationProject()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL))
-                ;
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL));
         }
 
         private async Task GoToDesignerTwitterAccount()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL))
-                ;
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL));
         }
 
         private async Task GoToContributionPage()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL))
-                ;
+            await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL));
         }
     }
 }
