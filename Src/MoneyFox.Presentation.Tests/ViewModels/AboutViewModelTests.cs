@@ -30,9 +30,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             await new AboutViewModel(new Mock<IAppInformation>().Object,
                                composeMailSetup.Object,
                                new Mock<IBrowserAdapter>().Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .SendMailCommand.ExecuteAsync();
 
             composeMailSetup.Verify(x => x.SendEmail(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()), Times.Once);
@@ -44,9 +42,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .SupportMail.ShouldEqual(AppConstants.SUPPORT_MAIL);
         }
 
@@ -56,9 +52,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .Website.ShouldEqual(AppConstants.WEBSITE_URL);
         }
 
@@ -71,9 +65,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             new AboutViewModel(appinfos.Object,
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .Version.ShouldEqual("42");
         }
 
@@ -87,9 +79,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             await new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,
                                webbrowserTaskSetup.Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .GoToWebsiteCommand.ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once);
@@ -106,9 +96,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             await new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,
                                webbrowserTaskSetup.Object,
-                               new Mock<IStoreOperations>().Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               new Mock<IStoreOperations>().Object)
                 .GoToRepositoryCommand.ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once());
@@ -123,9 +111,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             new AboutViewModel(new Mock<IAppInformation>().Object,
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
-                               storeFeaturesSetup.Object,
-                               new Mock<IMvxLogProvider>().Object,
-                               new Mock<IMvxNavigationService>().Object)
+                               storeFeaturesSetup.Object)
                 .RateAppCommand.Execute();
 
             storeFeaturesSetup.Verify(x => x.RateApp(), Times.Once());

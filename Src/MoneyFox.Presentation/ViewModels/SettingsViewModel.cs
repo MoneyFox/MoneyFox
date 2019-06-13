@@ -1,7 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation;
+using MoneyFox.Presentation.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -14,13 +19,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Contains all available Settings items.
         /// </summary>
-        MvxObservableCollection<SettingsSelectorType> SettingsList { get; }
+        ObservableCollection<SettingsSelectorType> SettingsList { get; }
 
         /// <summary>
         ///     Navigate to a concrete settings page.
         ///     Used in Xamarin Forms.
         /// </summary>
-        MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand { get; }
+        RelayCommand<SettingsSelectorType> GoToSettingCommand { get; }
 
         /// <summary>
         ///     View Model for the Background job part.
@@ -33,15 +38,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class SettingsViewModel : BaseNavigationViewModel, ISettingsViewModel
+    public class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
 
-        public SettingsViewModel(IMvxNavigationService navigationService,
+        public SettingsViewModel(INavigationService navigationService,
                                  IAboutViewModel aboutViewModel, 
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
-                                 ISettingsPersonalizationViewModel settingsPersonalizationViewModel,
-                                 IMvxLogProvider logProvider) : base(logProvider, navigationService)
+                                 ISettingsPersonalizationViewModel settingsPersonalizationViewModel)
         {
             this.navigationService = navigationService;
 
@@ -53,7 +57,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public IAboutViewModel AboutViewModel { get; }
 
         /// <inheritdoc />
-        public MvxObservableCollection<SettingsSelectorType> SettingsList => new MvxObservableCollection<SettingsSelectorType>
+        public ObservableCollection<SettingsSelectorType> SettingsList => new ObservableCollection<SettingsSelectorType>
         {
             //new SettingsSelectorType
             //{
@@ -92,33 +96,33 @@ namespace MoneyFox.ServiceLayer.ViewModels
         };
 
         /// <inheritdoc />
-        public MvxAsyncCommand<SettingsSelectorType> GoToSettingCommand => new MvxAsyncCommand<SettingsSelectorType>(GoToSettings);
+        public RelayCommand<SettingsSelectorType> GoToSettingCommand => new RelayCommand<SettingsSelectorType>(GoToSettings);
 
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; set; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; set; }
 
-        private async Task GoToSettings(SettingsSelectorType item)
+        private void GoToSettings(SettingsSelectorType item)
         {
             switch (item.Type)
             {
                 case SettingsType.Personalization:
-                    await navigationService.Navigate<SettingsPersonalizationViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.SettingsPersonalization);
                     break;
 
                 case SettingsType.Categories:
-                    await navigationService.Navigate<CategoryListViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.CategoryList);
                     break;
 
                 case SettingsType.BackgroundJob:
-                    await navigationService.Navigate<SettingsBackgroundJobViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.SettingsBackgroundJob);
                     break;
 
                 case SettingsType.Backup:
-                    await navigationService.Navigate<BackupViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.Backup);
                     break;
 
                 case SettingsType.About:
-                    await navigationService.Navigate<AboutViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.About); ;
                     break;
             }
         }
