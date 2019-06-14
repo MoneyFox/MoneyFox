@@ -113,7 +113,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        protected ModifyPaymentParameter PassedParameter { get; private set; }
+        public ModifyPaymentParameter PassedParameter { get; set; }
 
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment;

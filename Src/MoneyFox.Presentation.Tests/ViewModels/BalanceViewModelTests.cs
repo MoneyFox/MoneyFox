@@ -1,30 +1,26 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class BalanceViewModelTests
     {
         [Fact]
-        public async Task GetTotalBalance_Zero()
+        public void GetTotalBalance_Zero()
         {
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
             balanceCalculationService.Setup(x => x.GetEndOfMonthBalanceForAccount(It.IsAny<AccountViewModel>())).ReturnsAsync(() => 0);
             balanceCalculationService.Setup(x => x.GetTotalEndOfMonthBalance()).ReturnsAsync(() => 0);
 
-            var vm = new BalanceViewModel(balanceCalculationService.Object,
-                                          new Mock<IMvxLogProvider>().Object,
-                                          new Mock<IMvxNavigationService>().Object);
+            var vm = new BalanceViewModel(balanceCalculationService.Object);
 
-            await vm.UpdateBalanceCommand.ExecuteAsync();
+            vm.UpdateBalanceCommand.Execute(null);
 
             vm.TotalBalance.ShouldEqual(0);
             vm.EndOfMonthBalance.ShouldEqual(0);
@@ -33,10 +29,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
         [Fact]
         public void GetTotalBalance_TwoPayments_SumOfPayments()
         {
-            var vm = new BalanceViewModel(new Mock<IBalanceCalculationService>().Object,
-                                          new Mock<IMvxLogProvider>().Object,
-                                          new Mock<IMvxNavigationService>().Object);
-            vm.UpdateBalanceCommand.Execute();
+            var vm = new BalanceViewModel(new Mock<IBalanceCalculationService>().Object);
+            vm.UpdateBalanceCommand.Execute(null);
 
             vm.TotalBalance.ShouldEqual(0);
         }
@@ -48,10 +42,8 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
             balanceCalculationService.Setup(x => x.GetTotalBalance())
                 .ReturnsAsync(() => 700);
 
-            var vm = new BalanceViewModel(balanceCalculationService.Object,
-                                          new Mock<IMvxLogProvider>().Object,
-                                          new Mock<IMvxNavigationService>().Object);
-            vm.UpdateBalanceCommand.Execute();
+            var vm = new BalanceViewModel(balanceCalculationService.Object);
+            vm.UpdateBalanceCommand.Execute(null);
 
             vm.TotalBalance.ShouldEqual(700);
         }

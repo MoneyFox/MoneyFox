@@ -1,21 +1,21 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.DesignTime;
-using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
-using MvvmCross.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
-    public class DesignTimeAccountListViewModel : MvxViewModel, IAccountListViewModel
+    public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts => new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
+        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; } = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
         {
             new AlphaGroupListGroupCollection<AccountViewModel>("Included")
             {
@@ -30,9 +30,9 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public bool HasNoAccounts { get; } = false;
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
-        public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand { get; }
-        public MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
-        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
-        public MvxAsyncCommand GoToAddAccountCommand { get; }
+        public RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
+        public RelayCommand<AccountViewModel> EditAccountCommand { get; }
+        public RelayCommand<AccountViewModel> DeleteAccountCommand { get; }
+        public RelayCommand GoToAddAccountCommand { get; }
     }
 }

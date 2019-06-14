@@ -1,4 +1,4 @@
-﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
+﻿using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

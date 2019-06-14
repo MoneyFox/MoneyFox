@@ -2,32 +2,31 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.Interfaces;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using NLog;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class AccountListViewModel : BaseNavigationViewModel, IAccountListViewModel
+    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly ICrudServicesAsync crudService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
@@ -38,16 +37,15 @@ namespace MoneyFox.Presentation.ViewModels
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
-                                    IMvxLogProvider logProvider,
-                                    IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                    INavigationService navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.settingsFacade = settingsFacade;
 
-            BalanceViewModel = new BalanceViewModel(balanceCalculationService, logProvider, navigationService);
-            ViewActionViewModel = new AccountListViewActionViewModel(crudService, logProvider, navigationService);
+            BalanceViewModel = new BalanceViewModel(balanceCalculationService);
+            ViewActionViewModel = new AccountListViewActionViewModel(crudService, this.navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }
@@ -69,20 +67,17 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
-        
-        public MvxAsyncCommand<AccountViewModel> OpenOverviewCommand => new MvxAsyncCommand<AccountViewModel>(GoToPaymentOverView);
 
-        public MvxAsyncCommand<AccountViewModel> EditAccountCommand => new MvxAsyncCommand<AccountViewModel>(EditAccount);
+        public RelayCommand LoadDataCommand => new RelayCommand(Load);
 
-        public MvxAsyncCommand<AccountViewModel> DeleteAccountCommand => new MvxAsyncCommand<AccountViewModel>(Delete);
+        public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
-        public MvxAsyncCommand GoToAddAccountCommand => new MvxAsyncCommand(GoToAddAccount);
+        public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public override async void ViewAppeared()
-        {
-            await Load();
-            await RaisePropertyChanged(nameof(Accounts));
-        }
+        public RelayCommand<AccountViewModel> DeleteAccountCommand => new RelayCommand<AccountViewModel>(Delete);
+
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
+
 
         private async Task EditAccount(AccountViewModel accountViewModel)
         {
@@ -93,7 +88,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                BalanceViewModel.UpdateBalanceCommand.Execute(null);
 
                 IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
                                                                                    .OrderBy(x => x.Name);
@@ -116,7 +111,7 @@ namespace MoneyFox.Presentation.ViewModels
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                await RaisePropertyChanged(nameof(HasNoAccounts));
+                RaisePropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {

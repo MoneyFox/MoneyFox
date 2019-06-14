@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GenericServices;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     This ViewModel is for the usage in the payment list when a concrete account is selected
@@ -21,11 +18,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         ///     Constructor
         /// </summary>
         public PaymentListBalanceViewModel(ICrudServicesAsync crudServices,
-            IBalanceCalculationService balanceCalculationService,
-            int accountId,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(
-            balanceCalculationService, logProvider, navigationService)
+                                           IBalanceCalculationService balanceCalculationService,
+                                           int accountId) : base(balanceCalculationService)
         {
             this.crudServices = crudServices;
             this.balanceCalculationService = balanceCalculationService;
@@ -37,8 +31,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<double> CalculateTotalBalance()
-        { 
-            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+        {
+            AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
             return account.CurrentBalance;
         }
 
@@ -49,8 +43,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValue()
         {
-            var account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
-                                            ;
+            AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
+                ;
             return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

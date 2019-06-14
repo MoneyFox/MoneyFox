@@ -2,9 +2,10 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MoneyFox.Views;
 using MainViewModel = MoneyFox.Presentation.ViewModels.MainViewModel;

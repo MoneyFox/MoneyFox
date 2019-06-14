@@ -1,6 +1,7 @@
-﻿using MvvmCross.Commands;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
+namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
     /// <summary>
     ///     Represents the Actions for a view.
@@ -9,9 +10,9 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
     /// </summary>
     public interface IViewActionViewModel : IBaseViewModel
     {
-        MvxAsyncCommand GoToAddIncomeCommand { get; }
-        MvxAsyncCommand GoToAddExpenseCommand { get; }
-        MvxAsyncCommand GoToAddTransferCommand { get; }
+        RelayCommand GoToAddIncomeCommand { get; }
+        RelayCommand GoToAddExpenseCommand { get; }
+        RelayCommand GoToAddTransferCommand { get; }
 
         /// <summary>
         ///     Indicates if the button to add a new income should be enabled.

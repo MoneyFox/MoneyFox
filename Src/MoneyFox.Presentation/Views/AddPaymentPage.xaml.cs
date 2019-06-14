@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
+using MoneyFox.ServiceLayer.Parameters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,7 +9,7 @@ namespace MoneyFox.Presentation.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddPaymentPage
 	{
-		public AddPaymentPage ()
+		public AddPaymentPage (ModifyPaymentParameter parameter)
 		{
 			InitializeComponent ();
 
@@ -21,6 +22,7 @@ namespace MoneyFox.Presentation.Views
                 Icon = "ic_save.png"
             });
 
+            ((AddPaymentViewModel) BindingContext).PassedParameter = parameter;
         }
     }
 }

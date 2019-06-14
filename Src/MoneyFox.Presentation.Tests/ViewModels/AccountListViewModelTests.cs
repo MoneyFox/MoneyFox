@@ -1,18 +1,17 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using Xunit;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AccountListViewModelTests
@@ -42,8 +41,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 balanceCalculationService.Object,
                 dialogServiceSetup.Object,
                 new Mock<ISettingsFacade>().Object,
-                new Mock<IMvxLogProvider>().Object,
-                new Mock<IMvxNavigationService>().Object);
+                new Mock<INavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(null);
@@ -69,8 +67,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 balanceCalculationService.Object,
                 dialogServiceSetup.Object,
                 new Mock<ISettingsFacade>().Object,
-                new Mock<IMvxLogProvider>().Object,
-                new Mock<IMvxNavigationService>().Object);
+                new Mock<INavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel());
@@ -96,8 +93,7 @@ namespace MoneyFox.ServiceLayer.Tests.ViewModels
                 balanceCalculationService.Object,
                 dialogServiceSetup.Object,
                 new Mock<ISettingsFacade>().Object,
-                new Mock<IMvxLogProvider>().Object,
-                new Mock<IMvxNavigationService>().Object);
+                new Mock<INavigationService>().Object);
 
             // Act
             viewModel.DeleteAccountCommand.Execute(new AccountViewModel());

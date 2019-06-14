@@ -1,8 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
-using MvvmCross.Commands;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
+namespace MoneyFox.Presentation.ViewModels.Interfaces
 {    
     /// <summary>
     ///     Representation of the AccountListView.
@@ -28,25 +29,30 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
         ///     View Mdoel for the actions associated with the account list.
         /// </summary>
         IAccountListViewActionViewModel ViewActionViewModel { get; }
+        
+        /// <summary>
+        ///     Loads the data
+        /// </summary>
+        RelayCommand LoadDataCommand { get; }
 
         /// <summary>
         ///     Open the payment overview for this Account.
         /// </summary>
-        MvxAsyncCommand<AccountViewModel> OpenOverviewCommand { get; }
+        RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
 
         /// <summary>
         ///     Edit the selected Account
         /// </summary>
-        MvxAsyncCommand<AccountViewModel> EditAccountCommand { get; }
+        RelayCommand<AccountViewModel> EditAccountCommand { get; }
 
         /// <summary>
         ///     Deletes the selected Account
         /// </summary>
-        MvxAsyncCommand<AccountViewModel> DeleteAccountCommand { get; }       
-        
+        RelayCommand<AccountViewModel> DeleteAccountCommand { get; }
+
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
-        MvxAsyncCommand GoToAddAccountCommand { get; }
+        RelayCommand GoToAddAccountCommand { get; }
     }
 }

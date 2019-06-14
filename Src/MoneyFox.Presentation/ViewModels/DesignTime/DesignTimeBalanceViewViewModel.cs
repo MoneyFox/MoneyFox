@@ -1,7 +1,7 @@
-﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
-using MvvmCross.Commands;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeBalanceViewViewModel : IBalanceViewModel
     {
@@ -12,6 +12,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         public double EndOfMonthBalance => 9784;
 
         /// <inheritdoc />
-        public MvxAsyncCommand UpdateBalanceCommand { get; } = null;
+        public RelayCommand UpdateBalanceCommand { get; } = null;
     }
 }

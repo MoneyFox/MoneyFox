@@ -1,5 +1,5 @@
 ﻿using Windows.ApplicationModel;
-using MoneyFox.ServiceLayer.ViewModels.DesignTime;
+using MoneyFox.Presentation.ViewModels.DesignTime;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {

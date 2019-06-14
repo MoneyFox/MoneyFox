@@ -1,6 +1,6 @@
 ﻿using System;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels.Interfaces;
 using MvvmCross.Commands;
 
 namespace MoneyFox.ServiceLayer.ViewModels.DesignTime

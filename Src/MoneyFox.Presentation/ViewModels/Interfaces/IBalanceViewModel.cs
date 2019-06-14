@@ -1,6 +1,6 @@
-﻿using MvvmCross.Commands;
+﻿using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
+namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
     public interface IBalanceViewModel
     {
@@ -18,6 +18,6 @@ namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        MvxAsyncCommand UpdateBalanceCommand { get; }
+        RelayCommand UpdateBalanceCommand { get; }
     }
 }

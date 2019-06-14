@@ -1,10 +1,10 @@
-﻿using MvvmCross.Commands;
+﻿using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Interfaces
+namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
     /// <inheritdoc />
     public interface IAccountListViewActionViewModel : IViewActionViewModel
     {
-        MvxAsyncCommand GoToAddAccountCommand { get; }
+        RelayCommand GoToAddAccountCommand { get; }
     }
 }
