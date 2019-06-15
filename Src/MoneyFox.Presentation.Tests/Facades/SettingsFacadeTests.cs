@@ -7,7 +7,7 @@ using Moq;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.Facades
+namespace MoneyFox.Presentation.Tests.Facades
 {
     [ExcludeFromCodeCoverage]
     public class SettingsFacadeTests {

@@ -10,7 +10,6 @@ using GenericServices;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
 using MvvmCross;
 

@@ -9,7 +9,7 @@ using Moq;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.Services
+namespace MoneyFox.Presentation.Tests.Services
 {
     [ExcludeFromCodeCoverage]
     public class BackupServiceTests

@@ -12,7 +12,7 @@ using MvvmCross.Navigation;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class BackupViewModelTests

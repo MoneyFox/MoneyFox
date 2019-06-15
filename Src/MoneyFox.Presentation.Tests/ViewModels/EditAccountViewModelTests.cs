@@ -5,7 +5,7 @@ using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class EditAccountViewModelTests
