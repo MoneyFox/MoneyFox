@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Views
 
 			if (DesignMode.DesignModeEnabled)
 			{
-				ViewModel = new DesignTimeAccountListViewModel();
+				DataContext = new DesignTimeAccountListViewModel();
 			}
 		}
 

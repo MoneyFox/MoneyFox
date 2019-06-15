@@ -79,9 +79,9 @@ namespace MoneyFox.Presentation.ViewModels
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
 
-        private async Task EditAccount(AccountViewModel accountViewModel)
+        private void EditAccount(AccountViewModel accountViewModel)
         {
-            await navigationService.Navigate<EditAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter(accountViewModel.Id));
+            navigationService.NavigateTo(ViewModelLocator.EditAccount, new ModifyAccountParameter(accountViewModel.Id));
         }
 
         private async Task Load()

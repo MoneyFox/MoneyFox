@@ -6,8 +6,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.DesignTime;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -30,6 +28,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public bool HasNoAccounts { get; } = false;
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        public RelayCommand LoadDataCommand { get; }
         public RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
         public RelayCommand<AccountViewModel> EditAccountCommand { get; }
         public RelayCommand<AccountViewModel> DeleteAccountCommand { get; }
