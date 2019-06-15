@@ -4,10 +4,11 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:designTime1="clr-namespace:MoneyFox.ServiceLayer.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Dialogs.AddPaymentPopup">
 
     <pages:PopupPage.BindingContext>
-        <designTime1:DesignTimePaymentListViewActionViewModel />
+        <designTime:DesignTimePaymentListViewActionViewModel />
     </pages:PopupPage.BindingContext>
 
     <ContentPage.Content>

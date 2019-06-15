@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
+using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.ServiceLayer.ViewModels.Interfaces;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
-    public class PaymentListViewActionViewModel : BaseNavigationViewModel, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
-        private readonly IMvxNavigationService navigationService;
-        private readonly IMvxMessenger messenger;
+        private readonly INavigationService navigationService;
+        private readonly IMessenger messenger;
         private readonly int accountId;
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
@@ -42,10 +42,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
-                                              IMvxMessenger messenger,
+                                              IMessenger messenger,
                                               int accountId,
-                                              IMvxLogProvider logProvider,
-                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                              INavigationService navigationService)
         {
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
@@ -63,25 +62,19 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
         /// <inheritdoc />
-        public MvxAsyncCommand GoToAddIncomeCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Income)));
+        public RelayCommand GoToAddIncomeCommand =>
+            new RelayCommand( () => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Income)));
 
         /// <inheritdoc />
-        public MvxAsyncCommand GoToAddExpenseCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Expense)));
+        public RelayCommand GoToAddExpenseCommand =>
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Expense)));
         
         /// <inheritdoc />
-        public MvxAsyncCommand GoToAddTransferCommand =>
-            new MvxAsyncCommand(async () => await navigationService
-                                    .Navigate<AddPaymentViewModel, ModifyPaymentParameter>(
-                                        new ModifyPaymentParameter(PaymentType.Transfer)));
+        public RelayCommand GoToAddTransferCommand =>
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <inheritdoc />
-        public MvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(DeleteAccount);
+        public RelayCommand DeleteAccountCommand => new RelayCommand(DeleteAccount);
 
 
         /// <summary>
@@ -184,14 +177,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
             {
                 await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId);
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await navigationService.Close(this);
+                navigationService.GoBack();
             }
             balanceViewModel.UpdateBalanceCommand.Execute();
         }
 
         private void UpdateList()
         {
-            messenger.Publish(new PaymentListFilterChangedMessage(this)
+            messenger.Send(new PaymentListFilterChangedMessage(this)
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
