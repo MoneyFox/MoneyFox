@@ -8,6 +8,7 @@ using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Parameters;
@@ -68,13 +69,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool HasNoAccounts => !Accounts.Any();
 
-        public RelayCommand LoadDataCommand => new RelayCommand(Load);
+        public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public RelayCommand<AccountViewModel> DeleteAccountCommand => new RelayCommand<AccountViewModel>(Delete);
+        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(Delete);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
@@ -120,11 +121,11 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task GoToPaymentOverView(AccountViewModel accountViewModel)
+        private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if (accountViewModel == null) return;
 
-            await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+            navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
         }
 
         private async Task Delete(AccountViewModel accountToDelete)
@@ -144,9 +145,9 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task GoToAddAccount()
+        private void GoToAddAccount()
         {
-            await navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
+            navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
         }
     }
 }
