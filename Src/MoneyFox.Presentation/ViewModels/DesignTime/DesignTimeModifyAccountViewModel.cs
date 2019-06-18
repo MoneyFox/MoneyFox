@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeModifyAccountViewModel
     {

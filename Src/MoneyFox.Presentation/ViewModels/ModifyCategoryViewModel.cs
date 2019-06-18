@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GenericServices;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public interface IModifyCategoryViewModel : IBaseViewModel
     {

@@ -3,11 +3,12 @@ using System.Globalization;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MvvmCross.Commands;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
     {

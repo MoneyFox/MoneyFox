@@ -6,10 +6,11 @@
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:designTime1="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime1:DesignTimeStatisticCashFlowViewModel />
+        <designTime:DesignTimeStatisticCashFlowViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"

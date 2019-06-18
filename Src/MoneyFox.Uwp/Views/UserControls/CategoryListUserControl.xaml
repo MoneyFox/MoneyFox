@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
              xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
+             xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
@@ -15,7 +16,7 @@
         <converter:ClickConverter x:Key="ClickConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
+        <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels1:CategoryViewModel">
             <StackPanel MinWidth="300"
                         Margin="{StaticResource SmallListItemMargin}"
                         Background="{StaticResource ListItemBrush}"

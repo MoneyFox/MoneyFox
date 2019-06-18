@@ -4,7 +4,7 @@ using MoneyFox.ServiceLayer.Interfaces;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public interface ISettingsBackgroundJobViewModel : IBaseViewModel
     {        

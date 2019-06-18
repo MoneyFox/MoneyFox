@@ -3,11 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Statistic
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel

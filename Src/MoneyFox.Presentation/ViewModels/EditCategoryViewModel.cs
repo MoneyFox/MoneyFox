@@ -4,16 +4,17 @@ using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using NLog;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {

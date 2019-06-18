@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels
 {

@@ -6,7 +6,8 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
+                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
                       mc:Ignorable="d">

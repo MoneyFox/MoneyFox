@@ -6,7 +6,7 @@ using MoneyFox.ServiceLayer.Facades;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public interface ISettingsPersonalizationViewModel : IBaseViewModel
     {

@@ -2,8 +2,9 @@
 using System.Globalization;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeSettingsBackgroundJobViewModel : ISettingsBackgroundJobViewModel
     {

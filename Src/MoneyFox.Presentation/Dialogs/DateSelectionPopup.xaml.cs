@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms.Xaml;

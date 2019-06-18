@@ -9,16 +9,11 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 

@@ -2,12 +2,12 @@
 using System.Globalization;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {

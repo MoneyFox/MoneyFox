@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels;
 using Xamarin.Forms;
 

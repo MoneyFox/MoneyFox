@@ -5,11 +5,10 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
+using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
     {

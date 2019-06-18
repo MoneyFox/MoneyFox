@@ -9,8 +9,6 @@ using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Parameters;
-using MoneyFox.ServiceLayer.ViewModels;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

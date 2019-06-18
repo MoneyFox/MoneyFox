@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     Defines the interface for a category list.

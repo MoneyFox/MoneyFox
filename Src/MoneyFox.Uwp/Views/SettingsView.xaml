@@ -10,10 +10,11 @@
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:converter1="using:MoneyFox.Uwp.Converter"
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeSettingsViewModel />
+        <designTime1:DesignTimeSettingsViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <views:MvxWindowsPage.Resources>

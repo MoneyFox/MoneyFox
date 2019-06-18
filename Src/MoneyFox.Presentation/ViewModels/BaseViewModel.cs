@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels
 {

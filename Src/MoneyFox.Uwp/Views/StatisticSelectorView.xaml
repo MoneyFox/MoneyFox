@@ -9,10 +9,11 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:designTime1="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime1:DesignTimeStatisticSelectorViewModel />
+        <designTime:DesignTimeStatisticSelectorViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>

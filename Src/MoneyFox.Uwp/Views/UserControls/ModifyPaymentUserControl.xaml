@@ -9,10 +9,12 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
     xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+    xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+    xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    d:DataContext="{d:DesignInstance designTime:DesignTimeModifyPaymentViewModel,
+    d:DataContext="{d:DesignInstance designTime1:DesignTimeModifyPaymentViewModel,
                                                        IsDesignTimeCreatable=True}">
 
     <UserControl.Resources>
@@ -21,7 +23,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
+        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels1:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />

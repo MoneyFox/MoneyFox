@@ -5,7 +5,6 @@ using GenericServices;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;

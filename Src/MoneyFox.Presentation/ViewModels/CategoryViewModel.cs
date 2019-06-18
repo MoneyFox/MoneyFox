@@ -1,8 +1,7 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
-using MoneyFox.Presentation.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class CategoryViewModel : BaseViewModel, ILinkToEntity<Category>
     {

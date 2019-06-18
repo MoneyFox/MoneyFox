@@ -4,13 +4,11 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public interface IAboutViewModel : IBaseViewModel
     {

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using GenericServices;
+using MoneyFox.Presentation.Messages;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.ViewModels;

@@ -2,9 +2,8 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.Presentation.ViewModels;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class RecurringPaymentViewModel : BaseViewModel, ILinkToEntity<RecurringPayment>
     {

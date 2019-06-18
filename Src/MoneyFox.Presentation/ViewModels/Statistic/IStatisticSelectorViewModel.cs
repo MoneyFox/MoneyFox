@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Foundation.Models;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Statistic
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     public interface IStatisticSelectorViewModel : IBaseViewModel
     {

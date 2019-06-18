@@ -7,7 +7,8 @@
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                                        IsDesignTimeCreatable=True}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Disabled"

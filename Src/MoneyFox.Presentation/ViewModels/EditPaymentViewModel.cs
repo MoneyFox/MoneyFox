@@ -4,14 +4,12 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {

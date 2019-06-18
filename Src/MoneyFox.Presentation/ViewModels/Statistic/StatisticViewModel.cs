@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;

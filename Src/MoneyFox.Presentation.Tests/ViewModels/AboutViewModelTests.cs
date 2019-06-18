@@ -5,15 +5,13 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.ViewModels
+namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AboutViewModelTests 

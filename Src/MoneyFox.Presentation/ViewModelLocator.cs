@@ -3,6 +3,7 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;

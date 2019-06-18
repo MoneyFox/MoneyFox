@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Statistic
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : BaseNavigationViewModel, IStatisticSelectorViewModel
     {

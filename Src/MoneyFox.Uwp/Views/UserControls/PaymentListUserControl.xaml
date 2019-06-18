@@ -10,8 +10,9 @@
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
+             xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"

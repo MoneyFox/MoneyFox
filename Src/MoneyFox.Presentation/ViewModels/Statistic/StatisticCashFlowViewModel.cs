@@ -3,15 +3,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
-using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.ServiceLayer.ViewModels.Statistic;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using SkiaSharp;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Statistic
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the cash flow view.

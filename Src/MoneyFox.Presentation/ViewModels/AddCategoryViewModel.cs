@@ -1,15 +1,16 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {

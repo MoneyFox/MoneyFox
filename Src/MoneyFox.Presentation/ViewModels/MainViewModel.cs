@@ -1,7 +1,6 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels
 {

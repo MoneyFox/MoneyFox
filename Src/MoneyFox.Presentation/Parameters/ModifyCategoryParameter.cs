@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ServiceLayer.Parameters
+﻿namespace MoneyFox.Presentation.Parameters
 {
     /// <summary>
     ///     Parameter object for the ModifyCategoryView.

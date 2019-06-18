@@ -1,5 +1,5 @@
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MvvmCross.Forms.Presenters.Attributes;
 using Xamarin.Forms.Xaml;
 

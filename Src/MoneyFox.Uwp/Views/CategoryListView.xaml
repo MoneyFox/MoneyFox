@@ -6,10 +6,11 @@
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
+                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeCategoryListViewModel />
+        <designTime1:DesignTimeCategoryListViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"

@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;

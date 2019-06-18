@@ -1,7 +1,7 @@
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.ServiceLayer.Messages
+namespace MoneyFox.Presentation.Messages
 {
     /// <summary>
     ///     Used to notify other view models about a selected category.

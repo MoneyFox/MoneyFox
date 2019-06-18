@@ -9,14 +9,12 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Messages;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.ViewModels;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 

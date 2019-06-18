@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using MockQueryable.Moq;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.ViewModels;
 using Should;
