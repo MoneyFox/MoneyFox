@@ -42,10 +42,11 @@ namespace MoneyFox.Presentation
 
         private void SetupContextAndCrudServices(ContainerBuilder builder)
         {
-            var context = SetupEfContext();
+            builder.Register(c => SetupEfContext())
+                   .As<DbContext>()
+                   .AsSelf();
 
-            builder.RegisterType<EfCoreContext>().AsSelf();
-            builder.Register(c => SetUpCrudServices(context));
+            SetUpCrudServices(builder);
         }
 
         private static EfCoreContext SetupEfContext()
@@ -56,14 +57,19 @@ namespace MoneyFox.Presentation
             return context;
         }
 
-        private static ICrudServicesAsync SetUpCrudServices(EfCoreContext context)
+        private static void SetUpCrudServices(ContainerBuilder builder)
         {
+            var context = SetupEfContext();
+
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
             utData.AddSingleDto<CategoryViewModel>();
             utData.AddSingleDto<PaymentViewModel>();
             utData.AddSingleDto<RecurringPaymentViewModel>();
 
-            return new CrudServicesAsync(context, utData.ConfigAndMapper);
+            var crudService = new CrudServicesAsync(context, utData.ConfigAndMapper);
+
+            builder.Register(c => crudService);
+            builder.Register(c => utData.ConfigAndMapper);
         }
     }
 }
