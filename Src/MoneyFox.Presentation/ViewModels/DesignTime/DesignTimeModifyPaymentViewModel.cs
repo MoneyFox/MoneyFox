@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
@@ -41,11 +42,11 @@ namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
         public string AccountHeader { get; }
         public DateTime Date { get; }
 
-        public IMvxCommand SelectedItemChangedCommand { get; } = null;
-        public IMvxAsyncCommand SaveCommand { get; } = null;
-        public IMvxAsyncCommand GoToSelectCategorydialogCommand { get; } = null;
-        public IMvxAsyncCommand DeleteCommand { get; } = null;
-        public IMvxAsyncCommand CancelCommand { get; } = null;
-        public IMvxCommand ResetCategoryCommand { get; } = null;
+        public RelayCommand SelectedItemChangedCommand { get; } = null;
+        public RelayCommand SaveCommand { get; } = null;
+        public RelayCommand GoToSelectCategorydialogCommand { get; } = null;
+        public RelayCommand DeleteCommand { get; } = null;
+        public RelayCommand CancelCommand { get; } = null;
+        public RelayCommand ResetCategoryCommand { get; } = null;
     }
 }

@@ -1,5 +1,5 @@
-﻿using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
+﻿using MoneyFox.Foundation;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,20 +9,23 @@ namespace MoneyFox.Presentation.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddPaymentPage
 	{
-		public AddPaymentPage (ModifyPaymentParameter parameter)
+        private AddPaymentViewModel ViewModel => BindingContext as AddPaymentViewModel;
+
+        public AddPaymentPage(PaymentType paymentType)
 		{
 			InitializeComponent ();
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => (BindingContext as AddPaymentViewModel)?.SaveCommand.Execute()),
+                Command = new Command(() => ViewModel?.SaveCommand.Execute()),
                 Text = Strings.SavePaymentLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
                 Icon = "ic_save.png"
             });
 
-            ((AddPaymentViewModel) BindingContext).PassedParameter = parameter;
+            ViewModel.PaymentType = paymentType;
+            ViewModel.InitializeCommand.Execute(null);
         }
     }
 }

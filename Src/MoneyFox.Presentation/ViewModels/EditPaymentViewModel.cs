@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -36,9 +37,18 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.paymentService = paymentService;
         }
 
-        public async Task Initialize(int paymentId)
+        public int PaymentId { get; set; }
+
+        /// <summary>
+        ///     Delete the selected CategoryViewModel from the database
+        /// </summary>
+        public RelayCommand DeleteCommand => new RelayCommand(DeletePayment);
+
+        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+
+        private async void Initialize()
         {
-            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(paymentId).Result;
+            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(PaymentId).Result;
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.
@@ -52,11 +62,6 @@ namespace MoneyFox.ServiceLayer.ViewModels
             await base.Initialize();
         }
 
-        /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
-        /// </summary>
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeletePayment);
-        
         protected override async Task SavePayment()
         {
             var result = await paymentService.UpdatePayment(SelectedPayment);
@@ -71,7 +76,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         }
 
 
-        private async Task DeletePayment()
+        private async void DeletePayment()
         {
             await paymentService.DeletePayment(SelectedPayment);
 #pragma warning disable 4014

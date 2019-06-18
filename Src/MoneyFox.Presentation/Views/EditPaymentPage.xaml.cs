@@ -14,8 +14,6 @@ namespace MoneyFox.Presentation.Views
 		{
 			InitializeComponent ();
 
-            ViewModel.PassedParameter
-
             ToolbarItems.Add(new ToolbarItem
             {
                 Command = new Command(() => ViewModel?.SaveCommand.Execute()),
@@ -32,6 +30,9 @@ namespace MoneyFox.Presentation.Views
                 Priority = 1,
                 Order = ToolbarItemOrder.Secondary
             });
+
+            ViewModel.PaymentId = paymentId;
+            ViewModel.InitializeCommand.Execute(null);
         }
     }
 }

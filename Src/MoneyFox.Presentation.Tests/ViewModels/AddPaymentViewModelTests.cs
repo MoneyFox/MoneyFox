@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
-using MvvmCross.ViewModels;
-using Should;
 using Xunit;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
@@ -29,7 +22,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
-        private readonly Mock<IMvxNavigationService> navigationServiceMock;
+        private readonly Mock<INavigationService> navigationServiceMock;
 
         public AddPaymentViewModelTests()
         {
@@ -38,40 +31,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
-            navigationServiceMock = new Mock<IMvxNavigationService>();
-        }
-
-        [Fact]
-        public void Prepare_PaymentCreated()
-        {
-            // Arrange
-            var addPaymentVm = new AddPaymentViewModel(null,
-                                                       crudServiceMock.Object,
-                                                       null, null,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       null, null, null);
-
-            // Act
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
-
-            // Assert
-            addPaymentVm.SelectedPayment.ShouldNotBeNull();
-        }
-
-        [Fact]
-        public void Prepare_Title_Set()
-        {
-            // Arrange
-            var addPaymentVm = new AddPaymentViewModel(null,
-                                                       crudServiceMock.Object,
-                                                       null, null,
-                                                       new Mock<IMvxMessenger>().Object,
-                                                       null, null, null);
-            // Act
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
-
-            // Assert
-            addPaymentVm.Title.Contains(Strings.AddTitle);
+            navigationServiceMock = new Mock<INavigationService>();
         }
 
         [Fact]
@@ -85,12 +45,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        crudServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
-                                                       new Mock<IMvxMessenger>().Object,
                                                        backupServiceMock.Object, 
-                                                       new Mock<IMvxLogProvider>().Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
+            addPaymentVm.InitializeCommand.Execute(null);
 
             // Act
             addPaymentVm.SaveCommand.Execute();
@@ -98,7 +56,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Never);
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
-            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
@@ -114,12 +72,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 crudServiceMock.Object,
                 dialogServiceMock.Object,
                 settingsFacadeMock.Object,
-                new Mock<IMvxMessenger>().Object,
                 backupServiceMock.Object,
-                new Mock<IMvxLogProvider>().Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
+            addPaymentVm.InitializeCommand.Execute(null);
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
@@ -128,7 +84,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Once);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
@@ -146,12 +102,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 crudServiceMock.Object,
                 dialogServiceMock.Object,
                 settingsFacadeMock.Object,
-                new Mock<IMvxMessenger>().Object,
                 backupServiceMock.Object,
-                new Mock<IMvxLogProvider>().Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
+            addPaymentVm.InitializeCommand.Execute(null);
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
@@ -160,7 +114,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Once);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
         }
@@ -176,12 +130,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 crudServiceMock.Object,
                 dialogServiceMock.Object,
                 settingsFacadeMock.Object,
-                new Mock<IMvxMessenger>().Object,
                 backupServiceMock.Object,
-                new Mock<IMvxLogProvider>().Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
+            addPaymentVm.InitializeCommand.Execute(null);
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
@@ -190,7 +142,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
@@ -207,12 +159,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 crudServiceMock.Object,
                 dialogServiceMock.Object,
                 settingsFacadeMock.Object,
-                new Mock<IMvxMessenger>().Object,
                 backupServiceMock.Object,
-                new Mock<IMvxLogProvider>().Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.Prepare(new ModifyPaymentParameter());
+            addPaymentVm.InitializeCommand.Execute(null);
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
@@ -221,7 +171,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
-            navigationServiceMock.Verify(x => x.Close(It.IsAny<MvxViewModel>(), CancellationToken.None), Times.Never);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
         }

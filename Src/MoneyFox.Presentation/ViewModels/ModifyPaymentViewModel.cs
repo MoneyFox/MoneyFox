@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
@@ -76,27 +77,27 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
-        IMvxCommand SelectedItemChangedCommand { get; }
+        RelayCommand SelectedItemChangedCommand { get; }
 
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        IMvxAsyncCommand SaveCommand { get; }
+        RelayCommand SaveCommand { get; }
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        IMvxAsyncCommand GoToSelectCategorydialogCommand { get; }
+        RelayCommand GoToSelectCategorydialogCommand { get; }
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        IMvxAsyncCommand CancelCommand { get; }
+        RelayCommand CancelCommand { get; }
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
-        IMvxCommand ResetCategoryCommand { get; }
+        RelayCommand ResetCategoryCommand { get; }
     }
 
     /// <summary>
@@ -138,27 +139,27 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
-        public IMvxCommand SelectedItemChangedCommand => new MvxCommand(UpdateOtherComboBox);
+        public RelayCommand SelectedItemChangedCommand => new RelayCommand(UpdateOtherComboBox);
 
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxAsyncCommand SaveCommand => new MvxAsyncCommand(SavePaymentBase);
+        public RelayCommand SaveCommand => new RelayCommand(SavePaymentBase);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public IMvxAsyncCommand GoToSelectCategorydialogCommand => new MvxAsyncCommand(OpenSelectCategoryList);
+        public RelayCommand GoToSelectCategorydialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public IMvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
-        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+        public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
 
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.
@@ -279,7 +280,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task SavePayment();
 
-        private async Task SavePaymentBase()
+        private async void SavePaymentBase()
         {
             if (SelectedPayment.ChargedAccount == null)
             {
@@ -309,9 +310,9 @@ namespace MoneyFox.Presentation.ViewModels
             SelectedPayment.Category = message.SelectedCategory;
         }
 
-        private async Task OpenSelectCategoryList()
+        private void OpenSelectCategoryList()
         {
-            await navigationService.Navigate<SelectCategoryListViewModel>();
+            navigationService.NavigateTo(ViewModelLocator.SelectCategoryList);
         }
 
         private void ResetSelection()
@@ -319,9 +320,9 @@ namespace MoneyFox.Presentation.ViewModels
             SelectedPayment.Category = null;
         }
 
-        private async Task Cancel()
+        private void Cancel()
         {
-            await navigationService.Close(this);
+            navigationService.GoBack();
         }
 
         private void UpdateOtherComboBox()

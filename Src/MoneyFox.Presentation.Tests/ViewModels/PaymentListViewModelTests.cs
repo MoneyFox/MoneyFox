@@ -114,7 +114,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 settingsFacade.Object,
                 balanceCalculatorService.Object,
                 backupService.Object,
-                navigationService.Object;
+                navigationService.Object);
 
             await vm.Initialize();
 
