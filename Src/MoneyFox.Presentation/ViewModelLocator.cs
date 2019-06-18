@@ -3,7 +3,6 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.ServiceLayer.ViewModels.Statistic;
@@ -60,7 +59,7 @@ namespace MoneyFox.Presentation
         public static string About => nameof(AboutPage);
 
         public static MainViewModel MainVm => ServiceLocator.Current.GetInstance<MainViewModel>();
-        public static IAccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<IAccountListViewModel>();
+        public static AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
         public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         public static SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();

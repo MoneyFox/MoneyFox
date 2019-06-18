@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
-using MoneyFox.ServiceLayer.ViewModels.DesignTime;
 
 namespace MoneyFox.Presentation
 {

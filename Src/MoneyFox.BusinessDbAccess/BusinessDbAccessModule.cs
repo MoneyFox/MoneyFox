@@ -1,5 +1,5 @@
-﻿using Autofac;
-using MoneyFox.DataLayer;
+﻿using System;
+using Autofac;
 
 namespace MoneyFox.BusinessDbAccess
 {
@@ -7,7 +7,9 @@ namespace MoneyFox.BusinessDbAccess
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<DataLayerModule>();
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("DbAccess", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
         }
     }
 }

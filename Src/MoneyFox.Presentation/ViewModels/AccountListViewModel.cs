@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Parameters;

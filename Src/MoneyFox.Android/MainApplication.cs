@@ -29,10 +29,10 @@ namespace MoneyFox.Droid
             logManager.Info("Application Started.");
             logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
 
-            RegisterServices();
             EfCoreContext.DbPath =
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                              DatabaseConstants.DB_NAME);
+            RegisterServices();
 
             logManager.Debug("Database Path: {dbPath}", EfCoreContext.DbPath);
 
