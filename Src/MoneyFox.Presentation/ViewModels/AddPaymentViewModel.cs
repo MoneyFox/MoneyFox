@@ -50,7 +50,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             if (SelectedPayment.IsTransfer)
             {
-                SelectedItemChangedCommand.Execute();
+                SelectedItemChangedCommand.Execute(null);
                 SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
             }
         }

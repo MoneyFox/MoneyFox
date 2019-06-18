@@ -82,7 +82,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await CancelCommand.ExecuteAsync();
+            CancelCommand.Execute(null);
         }
     }
 }
