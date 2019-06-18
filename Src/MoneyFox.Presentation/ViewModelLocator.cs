@@ -2,8 +2,6 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using GenericServices;
-using Microsoft.EntityFrameworkCore;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.Views;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -35,8 +33,6 @@ namespace MoneyFox.Presentation
 
             if (container != null)
             {
-                var foo1 = container.Resolve<DbContext>();
-                var foo2 = container.Resolve<ICrudServicesAsync>();
                 ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
             }
         }
