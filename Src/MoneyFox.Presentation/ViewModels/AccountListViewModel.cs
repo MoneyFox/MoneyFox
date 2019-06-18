@@ -69,13 +69,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool HasNoAccounts => !Accounts.Any();
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
+        public RelayCommand LoadDataCommand => new RelayCommand(Load);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(Delete);
+        public RelayCommand<AccountViewModel> DeleteAccountCommand => new RelayCommand<AccountViewModel>(Delete);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
@@ -85,7 +85,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.EditAccount, new ModifyAccountParameter(accountViewModel.Id));
         }
 
-        private async Task Load()
+        private async void Load()
         {
             try
             {
@@ -125,21 +125,20 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (accountViewModel == null) return;
 
-            navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(accountViewModel.Id));
+            navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
-        private async Task Delete(AccountViewModel accountToDelete)
+        private async void Delete(AccountViewModel accountToDelete)
         {
             if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)
-                )
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();
-                await Load();
+                Load();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
@@ -147,7 +146,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void GoToAddAccount()
         {
-            navigationService.Navigate<AddAccountViewModel, ModifyAccountParameter>(new ModifyAccountParameter());
+            navigationService.NavigateTo(ViewModelLocator.AddAccount);
         }
     }
 }

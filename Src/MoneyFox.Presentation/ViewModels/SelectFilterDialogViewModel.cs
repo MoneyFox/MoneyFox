@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Presentation.Messages;
 using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

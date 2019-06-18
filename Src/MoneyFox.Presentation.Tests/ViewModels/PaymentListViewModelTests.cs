@@ -2,18 +2,17 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using Xunit;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
@@ -28,9 +27,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             settingsFacade = new Mock<ISettingsFacade>();
             balanceCalculatorService = new Mock<IBalanceCalculationService>();
             backupService = new Mock<IBackupService>();
-            navigationService = new Mock<IMvxNavigationService>();
-            messenger = new Mock<IMvxMessenger>();
-            logProvider = new Mock<IMvxLogProvider>();
+            navigationService = new Mock<INavigationService>();
 
             crudService.SetupAllProperties();
             paymentService.SetupAllProperties();
@@ -42,9 +39,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<ISettingsFacade> settingsFacade;
         private readonly Mock<IBalanceCalculationService> balanceCalculatorService;
         private readonly Mock<IBackupService> backupService;
-        private readonly Mock<IMvxNavigationService> navigationService;
-        private readonly Mock<IMvxMessenger> messenger;
-        private readonly Mock<IMvxLogProvider> logProvider;
+        private readonly Mock<INavigationService> navigationService;
 
         [Fact]
         public async Task Init_NullPassAccountId_AccountIdSet()
@@ -62,9 +57,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 settingsFacade.Object,
                 balanceCalculatorService.Object,
                 backupService.Object,
-                navigationService.Object,
-                messenger.Object,
-                logProvider.Object);
+                navigationService.Object);
 
             // Act
             vm.Prepare(new PaymentListParameter());
@@ -90,9 +83,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 settingsFacade.Object,
                 balanceCalculatorService.Object,
                 backupService.Object,
-                navigationService.Object,
-                messenger.Object,
-                logProvider.Object);
+                navigationService.Object);
 
             // Act
             vm.Prepare(new PaymentListParameter(42));
@@ -123,9 +114,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 settingsFacade.Object,
                 balanceCalculatorService.Object,
                 backupService.Object,
-                navigationService.Object,
-                messenger.Object,
-                logProvider.Object);
+                navigationService.Object;
 
             await vm.Initialize();
 

@@ -30,6 +30,7 @@ using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
 using GenericServices;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Parameters;
 using NLog;
 using NLog.Targets;

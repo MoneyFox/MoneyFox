@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Parameters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

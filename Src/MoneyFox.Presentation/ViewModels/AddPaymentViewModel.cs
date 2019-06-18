@@ -1,52 +1,47 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IPaymentService paymentService;
+        private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IPaymentService paymentService,
             ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            IMvxMessenger messenger,
             IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, messenger, backupService, logProvider, navigationService)
+            INavigationService navigationService) 
+            : base(crudServices, dialogService, settingsFacade, backupService, navigationService)
         {
             this.paymentService = paymentService;
+            this.navigationService = navigationService;
             this.dialogService = dialogService;
         }
 
-        public override void Prepare(ModifyPaymentParameter parameter)
+        public async Task Initialize(PaymentType type)
         {
             SelectedPayment = new PaymentViewModel
             {
-                Type = parameter.PaymentType
+                Type = type
             };
-            Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, false);
-            base.Prepare(parameter);
-        }
+            Title = PaymentTypeHelper.GetViewTitleForType(type, false);
 
-        public override async Task Initialize()
-        {
             await base.Initialize();
+
             SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
 
             if (SelectedPayment.IsTransfer)
@@ -68,7 +63,7 @@ namespace MoneyFox.Presentation.ViewModels
                     return;
                 }
 
-                await NavigationService.Close(this);
+                navigationService.GoBack();
             }
             catch (MoneyFoxInvalidEndDateException)
             {

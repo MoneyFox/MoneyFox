@@ -32,14 +32,14 @@ namespace MoneyFox.Presentation.Views
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            (BindingContext as AccountListViewModel)?.EditAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
+            (BindingContext as AccountListViewModel)?.EditAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
 	    }
 
 	    private void DeleteAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            (BindingContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel);
+            (BindingContext as AccountListViewModel)?.DeleteAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
 	    }
     }
 }

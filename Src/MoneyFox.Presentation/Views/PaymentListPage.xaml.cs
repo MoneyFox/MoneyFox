@@ -15,14 +15,18 @@ namespace MoneyFox.Presentation.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaymentListPage
     {
-        public PaymentListPage()
+        private PaymentListViewModel ViewModel => BindingContext as PaymentListViewModel;
+
+        public PaymentListPage(int accountId)
         {
             InitializeComponent();
+
+            ViewModel.AccountId = accountId;
 
             PaymentList.ItemTapped += (sender, args) =>
             {
                 PaymentList.SelectedItem = null;
-                (BindingContext as PaymentListViewModel)?.EditPaymentCommand.Execute(args.Item);
+                ViewModel.EditPaymentCommand.Execute(args.Item);
             };
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);

@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
@@ -34,7 +33,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         /// <summary>
         ///     Loads the data
         /// </summary>
-        AsyncCommand LoadDataCommand { get; }
+        RelayCommand LoadDataCommand { get; }
 
         /// <summary>
         ///     Open the payment overview for this Account.
@@ -49,7 +48,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         /// <summary>
         ///     Deletes the selected Account
         /// </summary>
-        AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
+        RelayCommand<AccountViewModel> DeleteAccountCommand { get; }
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view

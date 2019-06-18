@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Messages;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.ViewModels;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
@@ -24,7 +23,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly INavigationService navigationService;
-        private readonly IMessenger messenger;
+
         private readonly int accountId;
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
@@ -41,7 +40,6 @@ namespace MoneyFox.Presentation.ViewModels
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
-                                              IMessenger messenger,
                                               int accountId,
                                               INavigationService navigationService)
         {
@@ -50,7 +48,6 @@ namespace MoneyFox.Presentation.ViewModels
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
-            this.messenger = messenger;
             this.accountId = accountId;
 
             var accountCount = crudServices.ReadManyNoTracked<AccountViewModel>().Count();
@@ -170,7 +167,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task DeleteAccount()
+        private async void DeleteAccount()
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
@@ -178,12 +175,12 @@ namespace MoneyFox.Presentation.ViewModels
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }
-            balanceViewModel.UpdateBalanceCommand.Execute();
+            balanceViewModel.UpdateBalanceCommand.Execute(null);
         }
 
         private void UpdateList()
         {
-            messenger.Send(new PaymentListFilterChangedMessage(this)
+            MessengerInstance.Send(new PaymentListFilterChangedMessage(this)
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

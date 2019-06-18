@@ -36,6 +36,7 @@ namespace MoneyFox.Presentation
             var nav = new NavigationService();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListPage));
+            nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListPage));
             nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListPage));
             nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryPage));
             nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountPage));

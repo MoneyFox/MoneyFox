@@ -4,23 +4,23 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Messages;
 using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     Representation of the payment list view.
@@ -32,13 +32,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
         private readonly IBackupService backupService;
         private readonly IBalanceCalculationService balanceCalculationService;
         private readonly IDialogService dialogService;
-        private readonly IMvxLogProvider logProvider;
-        private readonly IMvxMessenger messenger;
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
-        //this token ensures that we will be notified when a message is sent.
-        private readonly MvxSubscriptionToken token;
         private int accountId;
         private IBalanceViewModel balanceViewModel;
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
@@ -56,9 +52,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             ISettingsFacade settingsFacade,
             IBalanceCalculationService balanceCalculationService,
             IBackupService backupService,
-            IMvxNavigationService navigationService,
-            IMvxMessenger messenger,
-            IMvxLogProvider logProvider)
+            INavigationService navigationService)
         {
             this.crudServices = crudServices;
             this.paymentService = paymentService;
@@ -67,10 +61,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.balanceCalculationService = balanceCalculationService;
             this.backupService = backupService;
             this.navigationService = navigationService;
-            this.messenger = messenger;
-            this.logProvider = logProvider;
 
-            token = messenger.Subscribe<PaymentListFilterChangedMessage>(LoadPayments);
+            Messenger.Default.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
         }
 
         /// <inheritdoc />
@@ -84,15 +76,12 @@ namespace MoneyFox.ServiceLayer.ViewModels
         {
             Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
-            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId,
-                logProvider, navigationService);
+            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
                 settingsFacade,
                 dialogService,
                 BalanceViewModel,
-                messenger,
                 AccountId,
-                logProvider,
                 navigationService);
         }
 
@@ -100,7 +89,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public override async void ViewAppearing()
         {
             dialogService.ShowLoadingDialog();
-            await Task.Run(async () => await Load());
+            await Task.Run(Load);
             dialogService.HideLoadingDialog();
         }
 
@@ -117,7 +106,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
         public int AccountId
         {
             get => accountId;
-            private set
+            set
             {
                 accountId = value;
                 RaisePropertyChanged();
@@ -197,27 +186,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         #endregion
 
-        #region Commands
-
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(EditPayment);
+        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand =>
-            new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
+        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
 
-        #endregion
-
-        private async Task Load()
+        private void Load()
         {
             LoadPayments(new PaymentListFilterChangedMessage(this));
             //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+            BalanceViewModel.UpdateBalanceCommand.Execute(null);
         }
 
         private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -257,9 +240,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
 
         private async Task EditPayment(PaymentViewModel payment)
         {
-            await navigationService.Navigate<EditPaymentViewModel, ModifyPaymentParameter>(
-                new ModifyPaymentParameter(payment.Id))
-                ;
+            navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
         }
 
         private async Task DeletePayment(PaymentViewModel payment)

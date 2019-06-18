@@ -1,7 +1,7 @@
 ﻿using System;
 using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.ServiceLayer.Messages
+namespace MoneyFox.Presentation.Messages
 {
     /// <summary>
     ///     Used to notify the payment list that a filter changed.

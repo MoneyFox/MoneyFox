@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Utilities
         private readonly Func<bool> canExecute;
 
         public AsyncCommand(
-            Func<Task> execute,
+            Func<object, Task> execute,
             Func<bool> canExecute = null)
         {
             this.execute = execute;

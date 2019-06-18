@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Messages;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     public interface IModifyPaymentViewModel : IBaseViewModel
     {
@@ -102,16 +102,13 @@ namespace MoneyFox.ServiceLayer.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseNavigationViewModel<ModifyPaymentParameter>, IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
     {
         private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
-
-        //this token ensures that we will be notified when a message is sent.
-        private readonly MvxSubscriptionToken token;
 
         public ModifyPaymentParameter PassedParameter { get; set; }
 
@@ -126,10 +123,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         protected ModifyPaymentViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            IMvxMessenger messenger,
             IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            INavigationService navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
@@ -137,7 +132,7 @@ namespace MoneyFox.ServiceLayer.ViewModels
             this.backupService = backupService;
             this.navigationService = navigationService;
 
-            token = messenger.Subscribe<CategorySelectedMessage>(ReceiveMessage);
+            MessengerInstance.Register<CategorySelectedMessage>(this, ReceiveMessage);
         }
 
         /// <summary>
@@ -272,30 +267,14 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
-        /// <inheritdoc />
-        public override void Prepare(ModifyPaymentParameter parameter)
-        {
-            PassedParameter = parameter;
-            RaisePropertyChanged(nameof(Title));
-        }
-
-        /// <inheritdoc />
-        public override async Task Initialize()
+        protected virtual async Task Initialize()
         {
             var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
                                              .OrderByName()
-                                             .ToListAsync()
-                                             ;
+                                             .ToListAsync();
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        }
-
-        public override void ViewAppearing()
-        {
-            base.ViewAppearing();
-            // We have to raise this here so that the UI knows enables the button again.
-            RaisePropertyChanged(nameof(GoToSelectCategorydialogCommand));
         }
 
         protected abstract Task SavePayment();

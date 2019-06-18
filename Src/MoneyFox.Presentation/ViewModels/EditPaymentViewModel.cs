@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Parameters;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.Utilities;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.ServiceLayer.ViewModels
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IPaymentService paymentService;
+        private readonly INavigationService navigationService;
         private readonly IBackupService backupService;
         private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
@@ -26,22 +24,21 @@ namespace MoneyFox.ServiceLayer.ViewModels
             ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade, 
-            IMvxMessenger messenger,
             IBackupService backupService,
-            IMvxLogProvider logProvider, 
-            IMvxNavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, messenger, backupService, logProvider, navigationService)
+            INavigationService navigationService) 
+            : base(crudServices, dialogService, settingsFacade, backupService, navigationService)
         {
             this.paymentService = paymentService;
+            this.navigationService = navigationService;
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.backupService = backupService;
             this.paymentService = paymentService;
         }
 
-        public override void Prepare(ModifyPaymentParameter parameter)
+        public async Task Initialize(int paymentId)
         {
-            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(parameter.PaymentId).Result;
+            SelectedPayment = crudServices.ReadSingleAsync<PaymentViewModel>(paymentId).Result;
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.
@@ -50,8 +47,9 @@ namespace MoneyFox.ServiceLayer.ViewModels
                 SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
             }
 
-            Title = PaymentTypeHelper.GetViewTitleForType(parameter.PaymentType, true);
-            base.Prepare(parameter);
+            Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
+
+            await base.Initialize();
         }
 
         /// <summary>
@@ -61,17 +59,15 @@ namespace MoneyFox.ServiceLayer.ViewModels
         
         protected override async Task SavePayment()
         {
-            var result = await paymentService.UpdatePayment(SelectedPayment)
-                                ;
+            var result = await paymentService.UpdatePayment(SelectedPayment);
 
             if (!result.Success)
             {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors())
-                    ;
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
                 return;
             }
 
-            await NavigationService.Close(this);
+            navigationService.GoBack();
         }
 
 
