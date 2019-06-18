@@ -12,34 +12,36 @@ namespace MoneyFox.Presentation.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts_black")]
     public partial class AccountListPage
-	{
-		public AccountListPage ()
+    {
+        private AccountListViewModel ViewModel => BindingContext as AccountListViewModel;
+
+        public AccountListPage ()
 		{
 			InitializeComponent ();
 		    AccountsList.ItemTapped += (sender, args) =>
 		    {
 		        AccountsList.SelectedItem = null;
-		        (BindingContext as AccountListViewModel)?.OpenOverviewCommand.Execute(args.Item);
+                ViewModel?.OpenOverviewCommand.Execute(args.Item);
 		    };
 		}
 
 	    private async void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = (BindingContext as AccountListViewModel)?.ViewActionViewModel });
+	        await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel?.ViewActionViewModel });
         }
 
         private void EditAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            (BindingContext as AccountListViewModel)?.EditAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
+            ViewModel?.EditAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
 	    }
 
 	    private void DeleteAccount(object sender, EventArgs e)
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            (BindingContext as AccountListViewModel)?.DeleteAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
+            ViewModel?.DeleteAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
 	    }
     }
 }

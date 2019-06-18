@@ -22,7 +22,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{Binding Resources[StatisticTitle]}" Icon="ic_statistics_black">
+        <Tab Title="{Binding Resources[StatisticsTitle]}" Icon="ic_statistics_black">
             <ShellContent>
                 <pages:StatisticSelectorPage />
             </ShellContent>      
