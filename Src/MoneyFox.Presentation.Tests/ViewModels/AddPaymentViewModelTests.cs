@@ -51,7 +51,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             addPaymentVm.InitializeCommand.Execute(null);
 
             // Act
-            addPaymentVm.SaveCommand.Execute();
+            addPaymentVm.SaveCommand.Execute(null);
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Never);
@@ -79,7 +79,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute();
+            addPaymentVm.SaveCommand.Execute(null);
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -109,7 +109,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute();
+            addPaymentVm.SaveCommand.Execute(null);
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -137,7 +137,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute();
+            addPaymentVm.SaveCommand.Execute(null);
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -166,7 +166,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute();
+            addPaymentVm.SaveCommand.Execute(null);
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);

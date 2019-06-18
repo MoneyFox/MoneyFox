@@ -7,14 +7,16 @@ namespace MoneyFox.Presentation.UserControls
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ModifyPaymentUserControl
-	{
-		public ModifyPaymentUserControl ()
+    {
+        private ModifyPaymentViewModel ViewModel => BindingContext as ModifyPaymentViewModel;
+
+        public ModifyPaymentUserControl ()
 		{
 			InitializeComponent ();
             
             ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
             {
-                Command = new Command(() => (BindingContext as ModifyPaymentViewModel)?.ResetCategoryCommand.Execute())
+                Command = new Command(() => ViewModel?.ResetCategoryCommand.Execute(null))
             });
         }
 
@@ -25,12 +27,12 @@ namespace MoneyFox.Presentation.UserControls
 
         private void ChargedAccount_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            (BindingContext as ModifyPaymentViewModel)?.SelectedItemChangedCommand.Execute();
+            ViewModel?.SelectedItemChangedCommand.Execute(null);
         }
 
         private void TargetAccount_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            (BindingContext as ModifyPaymentViewModel)?.SelectedItemChangedCommand.Execute();
+            ViewModel?.SelectedItemChangedCommand.Execute(null);
         }
     }
 }
