@@ -3,7 +3,6 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
 using MoneyFox.ServiceLayer.ViewModels;
@@ -29,10 +28,10 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public bool HasNoAccounts { get; } = false;
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
-        public AsyncCommand LoadDataCommand { get; }
+        public RelayCommand LoadDataCommand { get; }
         public RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
         public RelayCommand<AccountViewModel> EditAccountCommand { get; }
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
+        public RelayCommand<AccountViewModel> DeleteAccountCommand { get; }
         public RelayCommand GoToAddAccountCommand { get; }
     }
 }
