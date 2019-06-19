@@ -2,7 +2,6 @@
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels
 {

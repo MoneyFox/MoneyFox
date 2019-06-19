@@ -2,9 +2,6 @@
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.ServiceLayer.Messages;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -16,24 +13,19 @@ namespace MoneyFox.Presentation.ViewModels
         MvxCommand DoneCommand { get; set; }
     }
 
-    public class SelectDateRangeDialogViewModel : BaseNavigationViewModel
+    public class SelectDateRangeDialogViewModel : BaseViewModel
     {
-        private readonly IMvxMessenger messenger;
-
         private DateTime startDate;
         private DateTime endDate;
 
-        public SelectDateRangeDialogViewModel(IMvxMessenger messenger,
-                                              IMvxLogProvider logProvider,
-                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SelectDateRangeDialogViewModel()
         {
-            this.messenger = messenger;
             StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             EndDate = DateTime.Today.GetLastDayOfMonth();
         }
 
         /// <summary>
-        ///     Startdate for the custom date range
+        ///     Start Date for the custom date range
         /// </summary>
         public DateTime StartDate
         {
@@ -46,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Enddate for the custom date range
+        ///     End Date for the custom date range
         /// </summary>
         public DateTime EndDate
         {
@@ -65,7 +57,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void Done()
         {
-            messenger.Publish(new DateSelectedMessage(this, StartDate, EndDate));
+            MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
         }
     }
 }
