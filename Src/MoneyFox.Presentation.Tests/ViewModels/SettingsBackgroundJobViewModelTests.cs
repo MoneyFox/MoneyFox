@@ -2,10 +2,7 @@
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -30,9 +27,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StartBackupSyncTask(It.IsAny<int>())).Callback(() => taskStarted = true);
 
             // Act
-            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
-                                                        new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object);
             vm.BackupSyncRecurrence = passedValue;
 
             // Assert
@@ -52,9 +47,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StartBackupSyncTask(It.IsAny<int>())).Callback(() => taskStarted = true);
 
             // Act
-            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
-                                                        new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object);
             vm.IsAutoBackupEnabled = true;
 
             // Assert
@@ -73,9 +66,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             backgroundTaskManager.Setup(x => x.StopBackupSyncTask()).Callback(() => taskStopped = true);
 
             // Act
-            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object,
-                                                        new Mock<IMvxLogProvider>().Object,
-                                                        new Mock<IMvxNavigationService>().Object);
+            var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object, backgroundTaskManager.Object);
             vm.IsAutoBackupEnabled = false;
 
             // Assert
