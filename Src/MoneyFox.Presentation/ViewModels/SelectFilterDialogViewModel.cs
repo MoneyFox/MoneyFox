@@ -1,8 +1,5 @@
 ﻿using System;
 using MoneyFox.Presentation.Messages;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -14,21 +11,12 @@ namespace MoneyFox.Presentation.ViewModels
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : BaseNavigationViewModel, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
     {
-        private readonly IMvxMessenger messenger;
-
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
-
-        public SelectFilterDialogViewModel(IMvxMessenger messenger,
-                                           IMvxLogProvider logProvider,
-                                           IMvxNavigationService navigationService) : base(logProvider, navigationService)
-        {
-            this.messenger = messenger;
-        }
 
         /// <summary>
         ///      Indicates wether the filter for only cleared Payments is active or not.
@@ -92,7 +80,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void UpdateList()
         {
-            messenger.Publish(new PaymentListFilterChangedMessage(this)
+            MessengerInstance.Send(new PaymentListFilterChangedMessage(this)
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
