@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -15,8 +14,9 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         public IBalanceViewModel BalanceViewModel { get; }
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand { get; }
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
+        public RelayCommand InitializeCommand { get; }
+        public RelayCommand<PaymentViewModel> EditPaymentCommand { get; }
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; }
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>
         {
             new DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>("Januar 1992")

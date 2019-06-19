@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels
 {

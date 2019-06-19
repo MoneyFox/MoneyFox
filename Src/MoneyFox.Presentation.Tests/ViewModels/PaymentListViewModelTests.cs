@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MockQueryable.Moq;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using Xunit;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
@@ -60,8 +55,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 navigationService.Object);
 
             // Act
-            vm.Prepare(new PaymentListParameter());
-            await vm.Initialize();
+            vm.Initialize();
 
             // Assert
             Assert.Equal(0, vm.AccountId);
@@ -86,43 +80,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 navigationService.Object);
 
             // Act
-            vm.Prepare(new PaymentListParameter(42));
-            await vm.Initialize();
+            vm.Initialize();
 
             // Assert
             Assert.Equal(42, vm.AccountId);
-        }
-
-        [Fact]
-        public async Task ViewAppearing_DialogShown()
-        {
-            // Arrange
-            dialogService.Setup(x => x.ShowLoadingDialog(It.IsAny<string>()));
-            dialogService.Setup(x => x.HideLoadingDialog());
-
-            crudService.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
-                .Returns(new List<AccountViewModel>()
-                    .AsQueryable()
-                    .BuildMock()
-                    .Object);
-            crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new AccountViewModel());
-
-            var vm = new PaymentListViewModel(crudService.Object,
-                paymentService.Object,
-                dialogService.Object,
-                settingsFacade.Object,
-                balanceCalculatorService.Object,
-                backupService.Object,
-                navigationService.Object);
-
-            await vm.Initialize();
-
-            // Act
-            vm.ViewAppearing();
-
-            // Assert
-            dialogService.Verify(x => x.ShowLoadingDialog(It.IsAny<string>()), Times.Once);
         }
     }
 }

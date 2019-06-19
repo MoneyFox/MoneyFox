@@ -5,12 +5,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

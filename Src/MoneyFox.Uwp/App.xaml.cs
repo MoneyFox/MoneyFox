@@ -14,6 +14,8 @@ using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Autofac;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.DataLayer;
@@ -29,7 +31,6 @@ using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using MvvmCross.Navigation;
 using GenericServices;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
 using NLog;
 using NLog.Targets;
@@ -147,10 +148,11 @@ namespace MoneyFox.Uwp
             {
                 logManager.Info("Open Payment List of Account with ID {accountId}", accountId);
                 
-                var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-                var crudServices = Mvx.IoCProvider.Resolve<ICrudServicesAsync>();
+                var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+                var crudServices = ServiceLocator.Current.GetInstance<ICrudServicesAsync>();
                 AccountViewModel acct = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
-                await navigationService.Navigate<PaymentListViewModel, PaymentListParameter>(new PaymentListParameter(acct.Id));
+
+                navigationService.NavigateTo(ViewModelLocator.PaymentList, acct.Id);
             }
         }
 

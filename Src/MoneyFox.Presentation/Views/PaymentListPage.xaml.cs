@@ -2,7 +2,6 @@
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
@@ -68,13 +67,13 @@ namespace MoneyFox.Presentation.Views
         private void EditPayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            (BindingContext as PaymentListViewModel)?.EditPaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            (BindingContext as PaymentListViewModel)?.EditPaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
         }
 
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            (BindingContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel);
+            (BindingContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
         }
     }
 }

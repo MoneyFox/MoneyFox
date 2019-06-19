@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Messages;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -23,7 +19,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : MvxViewModel<PaymentListParameter>, IPaymentListViewModel
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly IPaymentService paymentService;
@@ -60,17 +56,11 @@ namespace MoneyFox.Presentation.ViewModels
             this.backupService = backupService;
             this.navigationService = navigationService;
 
-            Messenger.Default.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
         }
 
-        /// <inheritdoc />
-        public override void Prepare(PaymentListParameter parameter)
-        {
-            AccountId = parameter.AccountId;
-        }
 
-        /// <inheritdoc />
-        public override async Task Initialize()
+        public async void Initialize()
         {
             Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
 
@@ -83,13 +73,7 @@ namespace MoneyFox.Presentation.ViewModels
                 navigationService);
         }
 
-        /// <inheritdoc />
-        public override async void ViewAppearing()
-        {
-            dialogService.ShowLoadingDialog();
-            await Task.Run(Load);
-            dialogService.HideLoadingDialog();
-        }
+        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
 
         #region Properties
 
@@ -187,18 +171,22 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> EditPaymentCommand => new MvxAsyncCommand<PaymentViewModel>(EditPayment);
+        public RelayCommand<PaymentViewModel> EditPaymentCommand => new RelayCommand<PaymentViewModel>(EditPayment);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public MvxAsyncCommand<PaymentViewModel> DeletePaymentCommand => new MvxAsyncCommand<PaymentViewModel>(DeletePayment);
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(DeletePayment);
 
         private void Load()
         {
+            dialogService.ShowLoadingDialog();
+
             LoadPayments(new PaymentListFilterChangedMessage(this));
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute(null);
+
+            dialogService.HideLoadingDialog();
         }
 
         private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -236,12 +224,12 @@ namespace MoneyFox.Presentation.ViewModels
                         s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
         }
 
-        private async Task EditPayment(PaymentViewModel payment)
+        private async void EditPayment(PaymentViewModel payment)
         {
             navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
         }
 
-        private async Task DeletePayment(PaymentViewModel payment)
+        private async void DeletePayment(PaymentViewModel payment)
         {
             await paymentService.DeletePayment(payment);
 
