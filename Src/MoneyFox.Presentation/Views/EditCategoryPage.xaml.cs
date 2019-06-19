@@ -6,15 +6,17 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EditCategoryPage 
-	{
-		public EditCategoryPage ()
+	public partial class EditCategoryPage
+    {
+        private EditCategoryViewModel ViewModel => BindingContext as EditCategoryViewModel;
+
+        public EditCategoryPage ()
 		{
 			InitializeComponent ();
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => (BindingContext as EditCategoryViewModel)?.SaveCommand.Execute()),
+                Command = new Command(() => ViewModel?.SaveCommand.Execute()),
                 Text = Strings.SaveCategoryLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
@@ -23,7 +25,7 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => (BindingContext as EditCategoryViewModel)?.DeleteCommand.Execute()),
+                Command = new Command(() => ViewModel?.DeleteCommand.Execute()),
                 Text = Strings.DeleteLabel,
                 Priority = 1,
                 Order = ToolbarItemOrder.Secondary

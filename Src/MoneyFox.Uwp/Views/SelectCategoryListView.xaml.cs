@@ -1,11 +1,13 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class SelectCategoryListView
     {
+        private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel) DataContext;
+
         public SelectCategoryListView()
         {
             InitializeComponent();
@@ -15,7 +17,7 @@ namespace MoneyFox.Uwp.Views
         {
             if (e.Key == VirtualKey.Enter)
             {
-                var viewModel = (SelectCategoryListViewModel) DataContext;
+                var viewModel = ViewModel;
                 viewModel.ItemClickCommand.Execute(viewModel.SelectedCategory);
             }
 

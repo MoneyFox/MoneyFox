@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -25,8 +24,8 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 }
             };
 
-        public MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
-        public MvxAsyncCommand<string> SearchCommand { get; }
+        public RelayCommand<CategoryViewModel> ItemClickCommand { get; }
+        public RelayCommand<string> SearchCommand { get; }
 
         public CategoryViewModel SelectedCategory { get; set; }
         public string SearchText { get; set; }

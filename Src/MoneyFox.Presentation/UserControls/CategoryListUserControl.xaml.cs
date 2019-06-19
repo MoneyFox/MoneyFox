@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.UserControls
 
 	    private void AddCategoryClick(object sender, EventArgs e)
 	    {
-	        ViewModel.CreateNewCategoryCommand.Execute();
+	        ViewModel.CreateNewCategoryCommand.Execute(null);
 	    }
 
 	    private void SearchTermChanged(object sender, TextChangedEventArgs e)

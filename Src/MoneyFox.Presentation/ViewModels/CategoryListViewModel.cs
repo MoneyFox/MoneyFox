@@ -1,12 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -23,12 +20,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Command for the item click.
         /// </summary>
-        MvxAsyncCommand<CategoryViewModel> ItemClickCommand { get; }
+        RelayCommand<CategoryViewModel> ItemClickCommand { get; }
 
         /// <summary>
         ///     Search command
         /// </summary>
-        MvxAsyncCommand<string> SearchCommand { get; }
+        RelayCommand<string> SearchCommand { get; }
 
         /// <summary>
         ///     Indicates if the category list is empty.
@@ -43,17 +40,16 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public CategoryListViewModel(ICrudServicesAsync curdServicesAsync,
                                      IDialogService dialogService,
-                                     IMvxLogProvider logProvider,
-                                     IMvxNavigationService navigationService) : base(curdServicesAsync, dialogService, logProvider, navigationService)
+                                     INavigationService navigationService) : base(curdServicesAsync, dialogService, navigationService)
         {
         }
 
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override async Task ItemClick(CategoryViewModel category)
+        protected override void ItemClick(CategoryViewModel category)
         {
-            await EditCategoryCommand.ExecuteAsync(category);
+            EditCategoryCommand.Execute(category);
         }
     }
 }

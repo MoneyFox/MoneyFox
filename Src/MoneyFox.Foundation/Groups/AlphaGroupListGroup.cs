@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using MvvmCross.Commands;
+using GalaSoft.MvvmLight.Command;
 
 namespace MoneyFox.Foundation.Groups
 {
@@ -24,7 +24,7 @@ namespace MoneyFox.Foundation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
-        public AlphaGroupListGroupCollection(string key, MvxAsyncCommand<T> itemClickCommand = null)
+        public AlphaGroupListGroupCollection(string key, RelayCommand<T> itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -38,7 +38,7 @@ namespace MoneyFox.Foundation.Groups
         /// <summary>
         ///     The command to execute on a click.
         /// </summary>
-        public MvxAsyncCommand<T> ItemClickCommand { get; }
+        public RelayCommand<T> ItemClickCommand { get; }
 
         /// <summary>
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
@@ -50,7 +50,7 @@ namespace MoneyFox.Foundation.Groups
         /// <param name="itemClickCommand">The command to execute on a click</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<AlphaGroupListGroupCollection<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
-            GetKeyDelegate getKey, bool sort = true, MvxAsyncCommand<T> itemClickCommand = null)
+            GetKeyDelegate getKey, bool sort = true, RelayCommand<T> itemClickCommand = null)
         {
             var list = new List<AlphaGroupListGroupCollection<T>>();
 

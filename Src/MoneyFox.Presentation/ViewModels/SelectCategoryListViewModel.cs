@@ -1,14 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Presentation.Messages;
-using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Messages;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
-namespace MoneyFox.ServiceLayer.ViewModels
+namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     Represents the SelectCategoryListView
@@ -19,10 +14,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
     }
 
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>
-    public class 
-        SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
+    public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
-        private readonly IMvxMessenger messenger;
         private CategoryViewModel selectedCategory;
 
         /// <summary>
@@ -30,11 +23,8 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// </summary>
         public SelectCategoryListViewModel(ICrudServicesAsync crudServicesAsync,
                                            IDialogService dialogService,
-                                           IMvxMessenger messenger,
-                                           IMvxLogProvider logProvider,
-                                           IMvxNavigationService navigationService) : base(crudServicesAsync, dialogService, logProvider, navigationService)
+                                           INavigationService navigationService) : base(crudServicesAsync, dialogService, navigationService)
         {
-            this.messenger = messenger;
         }
 
         /// <summary>
@@ -54,10 +44,10 @@ namespace MoneyFox.ServiceLayer.ViewModels
         /// <summary>
         ///     Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override async Task ItemClick(CategoryViewModel category)
+        protected override void ItemClick(CategoryViewModel category)
         {
-            messenger.Publish(new CategorySelectedMessage(this, category));
-            await NavigationService.Close(this);
+            MessengerInstance.Send(new CategorySelectedMessage(this, category));
+            NavigationService.GoBack();
         }
     }
 }

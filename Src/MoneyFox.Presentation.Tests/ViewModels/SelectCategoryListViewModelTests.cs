@@ -1,18 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Messages;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.Plugin.Messenger;
-using MvvmCross.ViewModels;
 using Xunit;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
@@ -20,7 +14,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class SelectCategoryListViewModelTests
     {
         [Fact]
-        public async void ItemClick()
+        public void ItemClick()
         {
             // Arrange
             CategorySelectedMessage passedMessage = null;
@@ -30,22 +24,19 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             messengerMock.Setup(x => x.Publish(It.IsAny<CategorySelectedMessage>()))
                 .Callback((CategorySelectedMessage message) => passedMessage = message);
 
-            var navigationMock = new Mock<IMvxNavigationService>();
+            var navigationMock = new Mock<INavigationService>();
             navigationMock
-                .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
-                .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
-                .Returns(Task.FromResult(true));
+                .Setup(x => x.GoBack())
+                .Callback(() => closeWasCalled = true);
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                                                             new Mock<IDialogService>().Object,
-                                                            messengerMock.Object,
-                                                            new Mock<IMvxLogProvider>().Object,
                                                             navigationMock.Object);
 
             var testCategory = new CategoryViewModel();
 
             // Act
-            await viewModel.ItemClickCommand.ExecuteAsync(testCategory);
+            viewModel.ItemClickCommand.Execute(testCategory);
 
             // Assert
             Assert.NotNull(passedMessage);
@@ -54,24 +45,21 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public async void Close()
+        public void Close()
         {
             // Arrange
             bool closeWasCalled = false;
-            var navigationMock = new Mock<IMvxNavigationService>();
+            var navigationMock = new Mock<INavigationService>();
             navigationMock
-                .Setup(x => x.Close(It.IsAny<IMvxViewModel>(), CancellationToken.None))
-                .Callback((IMvxViewModel vm, CancellationToken t) => closeWasCalled = true)
-                .Returns(Task.FromResult(true));
+                .Setup(x => x.GoBack())
+                .Callback(() => closeWasCalled = true);
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                 new Mock<IDialogService>().Object,
-                new Mock<IMvxMessenger>().Object,
-                new Mock<IMvxLogProvider>().Object,
                 navigationMock.Object );
 
             // Act
-            await viewModel.ItemClickCommand.ExecuteAsync(new CategoryViewModel());
+            viewModel.ItemClickCommand.Execute(new CategoryViewModel());
 
             // Assert
             Assert.True(closeWasCalled);
