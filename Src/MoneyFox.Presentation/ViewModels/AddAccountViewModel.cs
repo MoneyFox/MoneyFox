@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -20,20 +18,15 @@ namespace MoneyFox.Presentation.ViewModels
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
                                    IDialogService dialogService,
-                                   IMvxLogProvider logProvider,
-                                   IMvxNavigationService navigationService)
-            : base(settingsFacade, backupService, logProvider, navigationService)
+                                   INavigationService navigationService)
+            : base(settingsFacade, backupService, navigationService)
         {
             this.crudService = crudService;
             this.dialogService = dialogService;
-        }
 
-        public override void Prepare(ModifyAccountParameter parameter)
-        {
             SelectedAccount = new AccountViewModel();
-            base.Prepare(parameter);
         }
-
+        
         protected override async Task SaveAccount()
         {
             if (await crudService.ReadManyNoTracked<AccountViewModel>()
@@ -46,7 +39,7 @@ namespace MoneyFox.Presentation.ViewModels
             await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
             if (!crudService.IsValid) await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
 
-            await NavigationService.Close(this);
+            NavigationService.GoBack();
         }
     }
 }

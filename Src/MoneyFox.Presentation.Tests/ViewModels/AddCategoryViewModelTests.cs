@@ -2,12 +2,10 @@
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using Should;
 using Xunit;
@@ -34,10 +32,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public void Prepare_CategoryCreated()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
-
             // Act
-            addCategoryVm.Prepare(new ModifyCategoryParameter());
+            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
 
             // Assert
             addCategoryVm.SelectedCategory.ShouldNotBeNull();
@@ -47,17 +43,15 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public void Prepare_Title_Set()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
-
-            // Act
-            addCategoryVm.Prepare(new ModifyCategoryParameter());
+            // // Act
+            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
 
             // Assert
             addCategoryVm.Title.ShouldEqual(Strings.AddCategoryTitle);
         }
 
         [Fact]
-        public async Task SaveCategory_EmptyName_ReturnMessage()
+        public void SaveCategory_EmptyName_ReturnMessage()
         {
             // Arrange
             dialogServiceMock.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
@@ -66,11 +60,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object,
                 dialogServiceMock.Object, 
                 settingsFacadeMock.Object,
-                backupServiceMock.Object, null, null);
-            addCategoryVm.Prepare(new ModifyCategoryParameter());
+                backupServiceMock.Object, null);
 
             // Act
-            await addCategoryVm.SaveCommand.ExecuteAsync();
+            addCategoryVm.SaveCommand.Execute(null);
 
             // Assert
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage));

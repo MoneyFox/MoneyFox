@@ -1,42 +1,40 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public abstract class ModifyAccountViewModel : BaseNavigationViewModel<ModifyAccountParameter>
+    public abstract class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IBackupService backupService;
-        private readonly IMvxNavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
-        protected int AccountId { get; private set; }
+        public int AccountId { get; set; }
 
         private AccountViewModel selectedAccount;
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
             IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
-            this.navigationService = navigationService;
+            NavigationService = navigationService;
         }
 
         public virtual string Title => Strings.AddAccountTitle;
 
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveAccountBase);
+        protected INavigationService NavigationService { get; private set; }
 
-        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+        public RelayCommand SaveCommand => new RelayCommand(SaveAccountBase);
+
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         public AccountViewModel SelectedAccount
         {
@@ -69,7 +67,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task SaveAccount();
 
-        private async Task SaveAccountBase()
+        private async void SaveAccountBase()
         {
             await SaveAccount();
 
@@ -81,16 +79,10 @@ namespace MoneyFox.Presentation.ViewModels
 #pragma warning restore 4014
             }
         }
-
-        /// <inheritdoc />
-        public override void Prepare(ModifyAccountParameter parameter)
+        
+        private void Cancel()
         {
-            AccountId = parameter.AccountId;
-        }
-
-        private async Task Cancel()
-        {
-            await navigationService.Close(this);
+            NavigationService.GoBack();
         }
     }
 }

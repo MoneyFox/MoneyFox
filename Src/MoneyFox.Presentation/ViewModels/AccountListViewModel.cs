@@ -79,7 +79,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            navigationService.NavigateTo(ViewModelLocator.EditAccount, new ModifyAccountParameter(accountViewModel.Id));
+            navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
         private async void Load()
