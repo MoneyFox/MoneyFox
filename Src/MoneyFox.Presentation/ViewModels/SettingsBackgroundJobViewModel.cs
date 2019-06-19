@@ -1,8 +1,6 @@
 ﻿using System;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -24,7 +22,7 @@ namespace MoneyFox.Presentation.ViewModels
     }
     
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
-    public class SettingsBackgroundJobViewModel : BaseNavigationViewModel, ISettingsBackgroundJobViewModel
+    public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackgroundTaskManager backgroundTaskManager;
@@ -33,9 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         public SettingsBackgroundJobViewModel(ISettingsFacade settingsFacade,
-                                              IBackgroundTaskManager backgroundTaskManager,
-                                              IMvxLogProvider logProvider,
-                                              IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                              IBackgroundTaskManager backgroundTaskManager)
         {
             this.settingsFacade = settingsFacade;
             this.backgroundTaskManager = backgroundTaskManager;

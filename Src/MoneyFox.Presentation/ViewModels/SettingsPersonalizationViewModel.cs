@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -21,13 +19,11 @@ namespace MoneyFox.Presentation.ViewModels
         List<string> ThemeItems { get; }
     }
 
-    public class SettingsPersonalizationViewModel : BaseNavigationViewModel, ISettingsPersonalizationViewModel
+    public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
     {
         private readonly ISettingsFacade settingsFacade;
 
-        public SettingsPersonalizationViewModel(ISettingsFacade settingsFacade,
-                                                IMvxLogProvider logProvider,
-                                                IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SettingsPersonalizationViewModel(ISettingsFacade settingsFacade)
         {
             this.settingsFacade = settingsFacade;
         }
