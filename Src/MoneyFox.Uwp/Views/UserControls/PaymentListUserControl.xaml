@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"

@@ -8,7 +8,6 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
-    xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
     xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
     xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
     mc:Ignorable="d"

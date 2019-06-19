@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 
-namespace MoneyFox.ServiceLayer.ViewModels.DesignTime
+namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeBackupViewModel : IBackupViewModel
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public MvxAsyncCommand LoginCommand { get; }
-        public MvxAsyncCommand LogoutCommand { get; }
-        public MvxAsyncCommand BackupCommand { get; }
-        public MvxAsyncCommand RestoreCommand { get; }
+        public RelayCommand InitializeCommand { get; }
+        public RelayCommand LoginCommand { get; }
+        public RelayCommand LogoutCommand { get; }
+        public RelayCommand BackupCommand { get; }
+        public RelayCommand RestoreCommand { get; }
         public DateTime BackupLastModified { get; }
 
         public bool IsLoadingBackupAvailability { get; }

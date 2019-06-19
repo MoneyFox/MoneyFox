@@ -7,7 +7,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:models="using:MoneyFox.Foundation.Models"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime1="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">

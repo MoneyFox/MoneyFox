@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
@@ -9,36 +10,37 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface IBackupViewModel : IBaseViewModel
     {
         /// <summary>
+        ///     Initialize View Model.
+        /// </summary>
+        RelayCommand InitializeCommand { get; }
+
+        /// <summary>
         ///     Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
-        MvxAsyncCommand LoginCommand { get; }
+        RelayCommand LoginCommand { get; }
 
         /// <summary>
         ///     Logs the user out from the backup service.
         /// </summary>
-        MvxAsyncCommand LogoutCommand { get; }
+        RelayCommand LogoutCommand { get; }
 
         /// <summary>
         ///     Will create a backup of the database and upload it to OneDrive
         /// </summary>
-        MvxAsyncCommand BackupCommand { get; }
+        RelayCommand BackupCommand { get; }
 
         /// <summary>
         ///     Will download the database backup from OneDrive and overwrite the
         ///     local database with the downloaded.
         ///     All data models are then reloaded.
         /// </summary>
-        MvxAsyncCommand RestoreCommand { get; }
+        RelayCommand RestoreCommand { get; }
 
         DateTime BackupLastModified { get; }
         bool IsLoadingBackupAvailability { get; }
@@ -49,7 +51,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : BaseNavigationViewModel, IBackupViewModel
+    public class BackupViewModel : BaseViewModel, IBackupViewModel
     {
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
@@ -63,9 +65,7 @@ namespace MoneyFox.Presentation.ViewModels
         public BackupViewModel(IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
-            ISettingsFacade settingsFacade,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService) : base(logProvider, navigationService)
+            ISettingsFacade settingsFacade)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
@@ -74,16 +74,19 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <inheritdoc />
-        public MvxAsyncCommand LoginCommand => new MvxAsyncCommand(Login);
+        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
 
         /// <inheritdoc />
-        public MvxAsyncCommand LogoutCommand => new MvxAsyncCommand(Logout);
+        public RelayCommand LoginCommand => new RelayCommand(Login);
 
         /// <inheritdoc />
-        public MvxAsyncCommand BackupCommand => new MvxAsyncCommand(CreateBackup);
+        public RelayCommand LogoutCommand => new RelayCommand(Logout);
 
         /// <inheritdoc />
-        public MvxAsyncCommand RestoreCommand => new MvxAsyncCommand(RestoreBackup);
+        public RelayCommand BackupCommand => new RelayCommand(CreateBackup);
+
+        /// <inheritdoc />
+        public RelayCommand RestoreCommand => new RelayCommand(RestoreBackup);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.
@@ -132,12 +135,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        public override async Task Initialize()
+        public void Initialize()
         {
-            await Loaded();
+            Loaded();
         }
 
-        private async Task Loaded()
+        private async void Loaded()
         {
             if (!IsLoggedIn) return;
 
@@ -171,7 +174,7 @@ namespace MoneyFox.Presentation.ViewModels
             IsLoadingBackupAvailability = false;
         }
 
-        private async Task Login()
+        private async void Login()
         {
             if (!connectivity.IsConnected)
             {
@@ -182,16 +185,15 @@ namespace MoneyFox.Presentation.ViewModels
 
             if (!result.Success)
             {
-                await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle,result.Message);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle,result.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            await RaisePropertyChanged(nameof(IsLoggedIn));
-            await Loaded();
+            RaisePropertyChanged(nameof(IsLoggedIn));
+            Loaded();
         }
 
-        private async Task Logout()
+        private async void Logout()
         {
             var result = await backupService.Logout();
 
@@ -202,10 +204,10 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            await RaisePropertyChanged(nameof(IsLoggedIn));
+            RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
-        private async Task CreateBackup()
+        private async void CreateBackup()
         {
             if (!await ShowOverwriteBackupInfo()) return;
 
@@ -225,7 +227,7 @@ namespace MoneyFox.Presentation.ViewModels
             await ShowCompletionNote();
         }
 
-        private async Task RestoreBackup()
+        private async void RestoreBackup()
         {
             if (!await ShowOverwriteDataInfo()) return;
 

@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 

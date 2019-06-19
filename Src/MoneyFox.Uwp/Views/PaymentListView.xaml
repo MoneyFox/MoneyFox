@@ -4,7 +4,6 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"

@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:views1="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime1="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       mc:Ignorable="d">
 

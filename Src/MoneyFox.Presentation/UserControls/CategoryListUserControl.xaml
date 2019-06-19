@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.UserControls.CategoryListUserControl">
+             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
 
   <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand">

@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
              xmlns:userControls="clr-namespace:MoneyFox.UserControls"
+             xmlns:userControls1="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.CategoryListPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-            <userControls:CategoryListUserControl VerticalOptions="FillAndExpand" />
+            <userControls1:CategoryListUserControl VerticalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
