@@ -1,17 +1,15 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.AccountListView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:viewModels1="using:MoneyFox.ServiceLayer.ViewModels"
-                      xmlns:converter="using:MoneyFox.Uwp.Converter"
-                      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
-                      mc:Ignorable="d">
+﻿<Page x:Class="MoneyFox.Uwp.Views.AccountListView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converter="using:MoneyFox.Uwp.Converter"
+      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeAccountListViewModel />
@@ -25,35 +23,35 @@
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
             <StackPanel HorizontalAlignment="Stretch"
-                            Margin="{StaticResource SmallListItemMargin}" 
-                            Background="{StaticResource ListItemBrush}"
-                            RightTapped="AccountList_RightTapped">
+                        Margin="{StaticResource SmallListItemMargin}"
+                        Background="{StaticResource ListItemBrush}"
+                        RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit"
-                                            Click="Edit_OnClick"
-                                            Text="{Binding Resources[EditLabel]}" />
+                                        Click="Edit_OnClick"
+                                        Text="{Binding Resources[EditLabel]}" />
                         <MenuFlyoutItem Icon="Delete"
-                                            Click="Delete_OnClick"
-                                            Text="{Binding Resources[DeleteLabel]}" />
+                                        Click="Delete_OnClick"
+                                        Text="{Binding Resources[DeleteLabel]}" />
                         <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="{Binding Resources[PintAccountLabel]}">
                             <MenuFlyoutItem.Icon>
-                                <SymbolIcon Symbol="Pin"/>
+                                <SymbolIcon Symbol="Pin" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                                Padding="{StaticResource SmallListItemPadding}">
+                            Padding="{StaticResource SmallListItemPadding}">
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                                       Text="{x:Bind Name}"
-                                       TextTrimming="CharacterEllipsis" />
+                                   Text="{x:Bind Name}"
+                                   TextTrimming="CharacterEllipsis" />
                         <TextBlock HorizontalAlignment="Right"
-                                       Style="{StaticResource CustomSubtitleTextBlockStyle}"
-                                       Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                       TextAlignment="Right" />
+                                   Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                   Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                   TextAlignment="Right" />
                     </Grid>
                 </StackPanel>
             </StackPanel>
@@ -127,7 +125,7 @@
                     </ListView.ItemContainerStyle>
 
                     <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
                     </ListView.GroupStyle>
                 </ListView>
 
@@ -186,4 +184,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</views:MvxWindowsPage>   
+</Page>
