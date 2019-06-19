@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -13,8 +13,8 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
 
-        public MvxAsyncCommand SaveCommand { get; }
-        public MvxAsyncCommand CancelCommand { get; }
+        public RelayCommand SaveCommand { get; }
+        public RelayCommand CancelCommand { get; }
         public MvxAsyncCommand DeleteCommand { get; }
         public CategoryViewModel SelectedCategory { get; }
 

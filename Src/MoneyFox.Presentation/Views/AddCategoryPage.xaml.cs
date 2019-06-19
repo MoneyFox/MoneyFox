@@ -6,15 +6,17 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddCategoryPage 
-	{
-		public AddCategoryPage ()
+	public partial class AddCategoryPage
+    {
+        private AddCategoryViewModel ViewModel => BindingContext as AddCategoryViewModel;
+
+        public AddCategoryPage ()
 		{
 			InitializeComponent ();
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => (BindingContext as AddCategoryViewModel)?.SaveCommand.Execute()),
+                Command = new Command(() => ViewModel?.SaveCommand.Execute(null)),
                 Text = Strings.SaveCategoryLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,

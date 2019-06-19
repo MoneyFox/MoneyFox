@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using NLog;
+using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -29,30 +26,28 @@ namespace MoneyFox.Presentation.ViewModels
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
-            IMvxLogProvider logProvider,
-            IMvxNavigationService navigationService)
-            : base(crudServices, settingsFacade, backupService, logProvider, navigationService)
+            INavigationService navigationService)
+            : base(crudServices, settingsFacade, backupService, navigationService)
         {
             this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
+
         }
 
-        public override string Title { get; set; }
-
-        public override async void Prepare(ModifyCategoryParameter parameter)
-        {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(parameter.CategoryId);
-            Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
-
-            base.Prepare(parameter);
-        }
+        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
 
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public MvxAsyncCommand DeleteCommand => new MvxAsyncCommand(DeleteCategory);
+        public RelayCommand DeleteCommand => new RelayCommand(DeleteCategory);
+
+        private async void Initialize()
+        {
+            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId);
+            Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
+        }
 
         protected override async Task SaveCategory()
         {
@@ -62,10 +57,10 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
             }
 
-            await CancelCommand.ExecuteAsync();
+            CancelCommand.Execute(null);
         }
 
-        private async Task DeleteCategory()
+        private async void DeleteCategory()
         {
             await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
 
@@ -75,7 +70,7 @@ namespace MoneyFox.Presentation.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            await CancelCommand.ExecuteAsync();
+            CancelCommand.Execute(null);
         }
     }
 }

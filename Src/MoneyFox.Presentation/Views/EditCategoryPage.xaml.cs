@@ -10,13 +10,13 @@ namespace MoneyFox.Presentation.Views
     {
         private EditCategoryViewModel ViewModel => BindingContext as EditCategoryViewModel;
 
-        public EditCategoryPage ()
+        public EditCategoryPage(int categoryId)
 		{
 			InitializeComponent ();
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel?.SaveCommand.Execute()),
+                Command = new Command(() => ViewModel?.SaveCommand.Execute(null)),
                 Text = Strings.SaveCategoryLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
@@ -25,11 +25,14 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel?.DeleteCommand.Execute()),
+                Command = new Command(() => ViewModel?.DeleteCommand.Execute(null)),
                 Text = Strings.DeleteLabel,
                 Priority = 1,
                 Order = ToolbarItemOrder.Secondary
             });
+
+            ViewModel.CategoryId = categoryId;
+            ViewModel.InitializeCommand.Execute(null);
         }
 	}
 }

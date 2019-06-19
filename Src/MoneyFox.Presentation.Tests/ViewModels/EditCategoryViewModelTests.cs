@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using Should;
 using Xunit;
@@ -21,10 +19,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var crudServiceMock = new Mock<ICrudServicesAsync>();
             crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
 
-            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
+            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null);
 
             // Act
-            editAccountVm.Prepare(new ModifyCategoryParameter(categoryId));
+            editAccountVm.CategoryId = categoryId;
+            editAccountVm.InitializeCommand.Execute(null);
 
             // Assert
             crudServiceMock.Verify(x => x.ReadSingleAsync<CategoryViewModel>(categoryId), Times.Once);
@@ -38,10 +37,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var crudServiceMock = new Mock<ICrudServicesAsync>();
             crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
 
-            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null, null);
+            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null);
 
             // Act
-            editAccountVm.Prepare(new ModifyCategoryParameter(categoryId));
+            editAccountVm.CategoryId = categoryId;
+            editAccountVm.InitializeCommand.Execute(null);
 
             // Assert
             editAccountVm.Title.ShouldContain(Strings.EditCategoryTitle);

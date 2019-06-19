@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -16,12 +15,12 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
         ///     a new CategoryViewModel.
         /// </summary>
-        MvxAsyncCommand SaveCommand { get; }
+        RelayCommand SaveCommand { get; }
     
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        MvxAsyncCommand CancelCommand { get; }
+        RelayCommand CancelCommand { get; }
 
         /// <summary>
         ///     Selected category.
@@ -32,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : BaseNavigationViewModel<ModifyCategoryParameter>, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
     {
         private readonly ICrudServicesAsync crudServices;
         private readonly ISettingsFacade settingsFacade;
@@ -46,18 +45,19 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
                                        ISettingsFacade settingsFacade,
                                        IBackupService backupService,
-                                       IMvxLogProvider logProvider,
-                                       IMvxNavigationService navigationService) : base(logProvider, navigationService)
+                                       INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.crudServices = crudServices;
+
+            NavigationService = navigationService;
         }
-
-
+        
+        protected INavigationService NavigationService { get; }
         protected abstract Task SaveCategory();
 
-        private async Task SaveCategoryBase()
+        private async void SaveCategoryBase()
         {
             await SaveCategory();
 
@@ -70,16 +70,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
-        ///     a new CategoryViewModel.
-        /// </summary>
-        public MvxAsyncCommand SaveCommand => new MvxAsyncCommand(SaveCategoryBase);
+        public RelayCommand SaveCommand => new RelayCommand(SaveCategoryBase);
 
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        public MvxAsyncCommand CancelCommand => new MvxAsyncCommand(Cancel);
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -97,20 +93,14 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
-        public virtual string Title { get; set; }
+        public string Title { get; set; }
 
-        protected int CategoryId { get; private set; }
+        public int CategoryId { get; set; }
 
-        /// <inheritdoc />
-        public override void Prepare(ModifyCategoryParameter parameter)
-        {
-            CategoryId = parameter.CategoryId;
-        }
-
-        private async Task Cancel()
+        private async void Cancel()
         {
             SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
-            await NavigationService.Close(this);
+            NavigationService.GoBack();
         }
     }
 }

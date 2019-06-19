@@ -6,15 +6,18 @@ namespace MoneyFox.Uwp.Views
 {
     public sealed partial class EditCategoryView
     {
-        public EditCategoryView()
+        private readonly int categoryId;
+
+        public EditCategoryView(int categoryId)
         {
             InitializeComponent();
+            this.categoryId = categoryId;
         }
 
         private void EditCategoryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new EditCategoryPage { BindingContext = ViewModel }.CreateFrameworkElement());
+            ContentGrid.Children.Add(new EditCategoryPage(categoryId) { BindingContext = ViewModel }.CreateFrameworkElement());
         }
     }
 }
