@@ -5,12 +5,13 @@ using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
-using MvvmCross.Plugin.File;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
+using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Foundation;
 using NLog;
 using Logger = NLog.Logger;
 
@@ -20,7 +21,7 @@ namespace MoneyFox.BusinessLogic.Backup
     {
         private readonly ICloudBackupService cloudBackupService;
 
-        private readonly IMvxFileStore fileStore;
+        private readonly IFileStore fileStore;
         private readonly IConnectivityAdapter connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -28,7 +29,7 @@ namespace MoneyFox.BusinessLogic.Backup
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         public BackupManager(ICloudBackupService cloudBackupService,
-            IMvxFileStore fileStore,
+            IFileStore fileStore,
             IConnectivityAdapter connectivity)
         {
             this.cloudBackupService = cloudBackupService;

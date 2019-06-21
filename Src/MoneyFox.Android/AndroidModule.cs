@@ -1,8 +1,8 @@
 ﻿using Autofac;
+using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.Services;
 using MoneyFox.Presentation;
-using MvvmCross.Plugin.File;
 
 namespace MoneyFox.Droid
 {
@@ -16,7 +16,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
-            builder.RegisterType<MvxIoFileStoreBase>().AsImplementedInterfaces();
+            builder.RegisterType<FileStoreIoBase>().AsImplementedInterfaces();
         }
     }
 }

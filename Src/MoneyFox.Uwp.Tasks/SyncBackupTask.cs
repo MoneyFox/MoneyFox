@@ -8,6 +8,7 @@ using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
+using MoneyFox.Uwp.Business;
 using MvvmCross.Plugin.File.Platforms.Uap;
 
 namespace MoneyFox.Uwp.Tasks
@@ -36,7 +37,7 @@ namespace MoneyFox.Uwp.Tasks
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    new MvxWindowsFileStore(), 
+                    new WindowsFileStore(), 
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager,settingsFacade);

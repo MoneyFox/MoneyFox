@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Autofac;
+using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Presentation.Interfaces;
 using NLog;
 using NLog.Targets;
@@ -198,7 +199,7 @@ namespace MoneyFox.iOS
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    Mvx.IoCProvider.Resolve<IFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);

@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using CommonServiceLocator;
+using MoneyFox.BusinessLogic.FileStore;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
@@ -73,7 +74,7 @@ namespace MoneyFox.Droid.Jobs
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    ServiceLocator.Current.GetInstance<IMvxFileStore>(),
+                    ServiceLocator.Current.GetInstance<IFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
