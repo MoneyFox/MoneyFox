@@ -10,7 +10,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 using Moq;
 using Xunit;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;

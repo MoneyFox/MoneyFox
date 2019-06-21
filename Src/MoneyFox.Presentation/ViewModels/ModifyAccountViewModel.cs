@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 
 namespace MoneyFox.Presentation.ViewModels

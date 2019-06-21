@@ -6,8 +6,8 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 

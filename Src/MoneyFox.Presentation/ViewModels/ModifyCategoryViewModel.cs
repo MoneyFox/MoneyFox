@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

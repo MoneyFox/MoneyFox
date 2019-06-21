@@ -8,8 +8,8 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
+using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

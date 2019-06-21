@@ -11,7 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.FileStore;
-using MoneyFox.Foundation;
 using NLog;
 using Logger = NLog.Logger;
 

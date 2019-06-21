@@ -3,8 +3,10 @@ using Autofac;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic;
 using MoneyFox.DataLayer;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation
@@ -18,6 +20,12 @@ namespace MoneyFox.Presentation
             SetupContextAndCrudServices(builder);
 
             builder.RegisterType<CrudServicesAsync>().AsImplementedInterfaces();
+
+            builder.Register(c => PublicClientApplicationBuilder
+                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                   .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                   .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                                   .Build());
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))

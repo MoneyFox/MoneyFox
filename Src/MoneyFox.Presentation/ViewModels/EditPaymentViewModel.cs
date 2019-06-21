@@ -6,7 +6,6 @@ using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
 using MoneyFox.ServiceLayer.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
