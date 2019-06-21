@@ -12,7 +12,8 @@ namespace MoneyFox.Presentation.Views
 
         public EditAccountPage(int accountId)
 		{
-			InitializeComponent ();
+			InitializeComponent();
+            BindingContext = ViewModelLocator.EditAccountVm;
 
             ToolbarItems.Add(new ToolbarItem
             {

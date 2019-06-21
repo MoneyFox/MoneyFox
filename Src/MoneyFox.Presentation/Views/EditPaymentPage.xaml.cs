@@ -12,7 +12,8 @@ namespace MoneyFox.Presentation.Views
 
         public EditPaymentPage(int paymentId)
 		{
-			InitializeComponent ();
+			InitializeComponent();
+            BindingContext = ViewModelLocator.EditPaymentVm;
 
             ToolbarItems.Add(new ToolbarItem
             {

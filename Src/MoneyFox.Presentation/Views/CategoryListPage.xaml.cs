@@ -12,7 +12,9 @@ namespace MoneyFox.Presentation.Views
 		public CategoryListPage()
 		{
 	        InitializeComponent();
-		    Title = Strings.CategoriesTitle;
+            BindingContext = ViewModelLocator.CategoryListVm;
+
+            Title = Strings.CategoriesTitle;
 		}
 
         protected override void OnAppearing()

@@ -2,14 +2,13 @@
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Presentation.Views;
-using MoneyFox.Views;
 using NLog;
 
 namespace MoneyFox.Presentation
 {
     public partial class App 
     {
-        public App ()
+        public App()
         {
             StyleHelper.Init();
             InitializeComponent();

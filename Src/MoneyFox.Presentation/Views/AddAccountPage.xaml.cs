@@ -11,6 +11,7 @@ namespace MoneyFox.Presentation.Views
 		public AddAccountPage ()
 		{
 			InitializeComponent ();
+            BindingContext = ViewModelLocator.AddAccountVm;
 
             var saveAccountItem = new ToolbarItem
             {

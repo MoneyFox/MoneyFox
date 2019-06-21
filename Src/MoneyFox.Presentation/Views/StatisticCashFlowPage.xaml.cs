@@ -14,7 +14,9 @@ namespace MoneyFox.Presentation.Views
 		public StatisticCashFlowPage ()
 		{
             InitializeComponent();
-		    Title = Strings.CashFlowStatisticTitle;
+            BindingContext = ViewModelLocator.StatisticCashFlowVm;
+
+            Title = Strings.CashFlowStatisticTitle;
 
 		    var filterItem = new ToolbarItem
 		    {

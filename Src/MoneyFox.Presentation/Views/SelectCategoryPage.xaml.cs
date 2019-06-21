@@ -11,8 +11,10 @@ namespace MoneyFox.Presentation.Views
 
 		public SelectCategoryPage ()
 		{
-			InitializeComponent ();
-		    Title = Strings.SelectCategoryTitle;
+			InitializeComponent();
+            BindingContext = ViewModelLocator.SelectCategoryListVm;
+
+            Title = Strings.SelectCategoryTitle;
         }
 
         protected override void OnAppearing()

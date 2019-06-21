@@ -19,6 +19,7 @@ namespace MoneyFox.Presentation.Views
         public PaymentListPage(int accountId)
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
 

@@ -9,7 +9,9 @@ namespace MoneyFox.Presentation.Views
 		public AboutPage ()
 		{
 			InitializeComponent ();
-		    Title = Strings.AboutTitle;
+            BindingContext = ViewModelLocator.AboutVm;
+
+            Title = Strings.AboutTitle;
 		}
 	}
 }

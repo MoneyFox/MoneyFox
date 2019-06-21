@@ -13,8 +13,10 @@ namespace MoneyFox.Presentation.Views
 	{
 		public StatisticCategorySummaryPage ()
 		{
-            InitializeComponent ();
-		    Title = Strings.CategorySummaryTitle;
+            InitializeComponent();
+            BindingContext = ViewModelLocator.StatisticCategorySummaryVm;
+
+            Title = Strings.CategorySummaryTitle;
 
 		    var filterItem = new ToolbarItem
 		    {

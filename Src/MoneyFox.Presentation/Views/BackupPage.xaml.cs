@@ -12,7 +12,9 @@ namespace MoneyFox.Presentation.Views
 		public BackupPage ()
 		{
 			InitializeComponent();
-		    Title = Strings.BackupTitle;
+            BindingContext = ViewModelLocator.BackupVm;
+
+            Title = Strings.BackupTitle;
 
             ViewModel.InitializeCommand.Execute(null);
 		}

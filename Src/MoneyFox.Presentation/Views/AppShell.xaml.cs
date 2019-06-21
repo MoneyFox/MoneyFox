@@ -8,6 +8,7 @@ namespace MoneyFox.Presentation.Views
 		public AppShell()
 		{
             InitializeComponent();
+            BindingContext = ViewModelLocator.MainVm;
         }
     }
 }

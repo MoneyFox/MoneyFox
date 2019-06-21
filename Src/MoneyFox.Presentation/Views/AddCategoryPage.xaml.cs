@@ -13,6 +13,7 @@ namespace MoneyFox.Presentation.Views
         public AddCategoryPage ()
 		{
 			InitializeComponent ();
+            BindingContext = ViewModelLocator.AddCategoryVm;
 
             ToolbarItems.Add(new ToolbarItem
             {

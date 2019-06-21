@@ -14,6 +14,7 @@ namespace MoneyFox.Presentation.Views
         public AddPaymentPage(PaymentType paymentType)
 		{
 			InitializeComponent ();
+            BindingContext = ViewModelLocator.AddPaymentVm;
 
             ToolbarItems.Add(new ToolbarItem
             {

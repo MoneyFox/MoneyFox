@@ -7,7 +7,8 @@ namespace MoneyFox.Presentation.Views
 	{
 		public SettingsPersonalizationPage ()
 		{
-			InitializeComponent ();
-		}
+			InitializeComponent();
+            BindingContext = ViewModelLocator.SettingsPersonalizationVm;
+        }
 	}
 }

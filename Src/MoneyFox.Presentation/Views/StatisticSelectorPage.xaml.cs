@@ -10,8 +10,9 @@ namespace MoneyFox.Presentation.Views
 		public StatisticSelectorPage ()
 		{
 			InitializeComponent();
+            BindingContext = ViewModelLocator.StatisticSelectorVm;
 
-		    StatisticSelectorList.ItemTapped += (sender, args) =>
+            StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {
 		        StatisticSelectorList.SelectedItem = null;
                 (BindingContext as StatisticSelectorViewModel)?.GoToStatisticCommand.Execute(args.Item);
