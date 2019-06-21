@@ -11,7 +11,7 @@ using MoneyFox.ServiceLayer.Services;
 using Moq;
 using Should;
 using Xunit;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {

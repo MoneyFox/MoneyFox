@@ -4,7 +4,7 @@ using Android.App;
 using AndroidHUD;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Droid.Services
 {

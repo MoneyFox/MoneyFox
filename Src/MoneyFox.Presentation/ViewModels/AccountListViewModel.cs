@@ -14,7 +14,7 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using NLog;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {

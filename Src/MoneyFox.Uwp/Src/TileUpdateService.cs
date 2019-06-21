@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Notifications;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.Presentation.Interfaces;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 

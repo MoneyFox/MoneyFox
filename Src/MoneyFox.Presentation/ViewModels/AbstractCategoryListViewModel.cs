@@ -11,7 +11,7 @@ using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.QueryObject;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ServiceLayer.Interfaces
+﻿namespace MoneyFox.Presentation.Interfaces
 {
     /// <summary>
     ///     Handles the Starting and stopping of background tasks who

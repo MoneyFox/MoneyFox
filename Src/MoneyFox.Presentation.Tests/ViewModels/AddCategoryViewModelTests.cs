@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using MoneyFox.ServiceLayer.Services;
 using Moq;
 using Should;

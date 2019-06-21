@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 using Moq;
 using Xunit;
 

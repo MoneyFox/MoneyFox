@@ -8,7 +8,7 @@ using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Xunit;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Presentation.Messages;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {

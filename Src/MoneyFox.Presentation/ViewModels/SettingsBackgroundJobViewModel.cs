@@ -1,6 +1,6 @@
 ﻿using System;
+using MoneyFox.Presentation.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {

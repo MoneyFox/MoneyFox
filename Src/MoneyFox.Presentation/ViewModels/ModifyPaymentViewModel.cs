@@ -15,7 +15,7 @@ using MoneyFox.Presentation.QueryObject;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
-using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {

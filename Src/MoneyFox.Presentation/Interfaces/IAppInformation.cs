@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ServiceLayer.Interfaces
+﻿namespace MoneyFox.Presentation.Interfaces
 {
     /// <summary>
     ///     Interface to access information of the app package.

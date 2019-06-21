@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ServiceLayer.Interfaces
+﻿namespace MoneyFox.Presentation.Interfaces
 {
     public interface ITileUpdateService
     {
