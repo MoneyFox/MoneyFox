@@ -63,9 +63,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public async Task Init_PassAccountId_AccountIdSet()
+        public void Init_PassAccountId_AccountIdSet()
         {
             // Arrange
+            int accountId = 42;
             crudService.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
                 .ReturnsAsync(new AccountViewModel());
 
@@ -80,11 +81,13 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupService.Object,
                 navigationService.Object);
 
+            vm.AccountId = accountId;
+
             // Act
             vm.Initialize();
 
             // Assert
-            Assert.Equal(42, vm.AccountId);
+            Assert.Equal(accountId, vm.AccountId);
         }
     }
 }
