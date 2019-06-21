@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.QueryObject;
-using MoneyFox.ServiceLayer.ViewModels;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.QueryObject
+namespace MoneyFox.Presentation.Tests.QueryObject
 {
     [ExcludeFromCodeCoverage]
     public class PaymentQueriesTests

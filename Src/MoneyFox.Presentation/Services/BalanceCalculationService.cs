@@ -3,12 +3,11 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.QueryObject;
-using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.Services
+namespace MoneyFox.Presentation.Services
 {
     /// <summary>
     ///     Provides different calculations for the balance at the end of month.

@@ -3,8 +3,6 @@ using System.Globalization;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

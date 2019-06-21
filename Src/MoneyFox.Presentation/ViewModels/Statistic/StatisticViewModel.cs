@@ -4,24 +4,17 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.Messages;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Messages;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
-namespace MoneyFox.ServiceLayer.ViewModels.Statistic
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     /// <summary>
     ///     Represents the statistic view.
     /// </summary>
-    public abstract class StatisticViewModel : BaseNavigationViewModel
+    public abstract class StatisticViewModel : BaseViewModel
     {
-        //this token ensures that we will be notified when a message is sent.
-        private readonly MvxSubscriptionToken token;
-
         private DateTime startDate;
         private DateTime endDate;
 
@@ -31,8 +24,8 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
         /// </summary>
-        protected StatisticViewModel(IMvxMessenger messenger, ISettingsFacade settingsManager, IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), messenger, settingsManager, logProvider, navigationService)
+        protected StatisticViewModel(ISettingsFacade settingsManager)
+            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), settingsManager)
         {
         }
 
@@ -41,10 +34,7 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
         /// </summary>
         protected StatisticViewModel(DateTime startDate, 
                                      DateTime endDate,
-                                     IMvxMessenger messenger,
-                                     ISettingsFacade settingsFacade,
-                                     IMvxLogProvider logProvider, 
-                                     IMvxNavigationService navigationService) : base (logProvider, navigationService)
+                                     ISettingsFacade settingsFacade)
         {
             StartDate = startDate;
             EndDate = endDate;
@@ -53,18 +43,14 @@ namespace MoneyFox.ServiceLayer.ViewModels.Statistic
                 ? new SKColor(0, 0, 0)
                 : SKColor.Parse("#EFF2F5");
 
-            token = messenger.SubscribeOnMainThread<DateSelectedMessage>(message =>
+            MessengerInstance.Register<DateSelectedMessage>(this, message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
                 Load();
             });
-        }
 
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            await Load();
+            Load();
         }
 
         /// <summary>

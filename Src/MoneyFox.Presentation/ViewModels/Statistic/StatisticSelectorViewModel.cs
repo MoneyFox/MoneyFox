@@ -1,23 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
-    public class StatisticSelectorViewModel : BaseNavigationViewModel, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
     {
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public StatisticSelectorViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base (logProvider, navigationService)
+        public StatisticSelectorViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
         }
@@ -50,23 +47,22 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// <summary>
         ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public MvxAsyncCommand<StatisticSelectorType> GoToStatisticCommand
-            => new MvxAsyncCommand<StatisticSelectorType>(GoToStatistic);
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new RelayCommand<StatisticSelectorType>(GoToStatistic);
 
-        private async Task GoToStatistic(StatisticSelectorType item)
+        private void GoToStatistic(StatisticSelectorType item)
         {
             switch (item.Type)
             {
                 case StatisticType.Cashflow:
-                    await navigationService.Navigate<StatisticCashFlowViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
                     break;
 
                 case StatisticType.CategorySpreading:
-                    await navigationService.Navigate<StatisticCategorySpreadingViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
                     break;
 
                 case StatisticType.CategorySummary:
-                    await navigationService.Navigate<StatisticCategorySummaryViewModel>();
+                    navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
                     break;
             }
         }

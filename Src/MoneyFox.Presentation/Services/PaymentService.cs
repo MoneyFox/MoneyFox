@@ -8,9 +8,8 @@ using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.Services
+namespace MoneyFox.Presentation.Services
 {
     /// <summary>
     ///     Service to coordinate with several operations for payments

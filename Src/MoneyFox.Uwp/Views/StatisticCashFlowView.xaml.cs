@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Views.Dialogs;
 using MvvmCross;
 

@@ -1,13 +1,11 @@
 ﻿using System;
 using Autofac;
-using GenericServices;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessLogic;
 using MoneyFox.DataLayer;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation
 {

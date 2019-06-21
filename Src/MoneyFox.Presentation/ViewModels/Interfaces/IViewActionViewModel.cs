@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {

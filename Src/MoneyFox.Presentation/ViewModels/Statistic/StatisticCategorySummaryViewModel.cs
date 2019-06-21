@@ -3,11 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -18,10 +13,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
         public StatisticCategorySummaryViewModel(ICategorySummaryDataProvider categorySummaryDataDataProvider,
-                                                 IMvxMessenger messenger,
-                                                 ISettingsFacade settingsFacade,
-                                                 IMvxLogProvider logProvider,
-                                                 IMvxNavigationService navigationService) : base(messenger, settingsFacade, logProvider, navigationService)
+                                                 ISettingsFacade settingsFacade)
+            : base(settingsFacade)
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
@@ -46,16 +39,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            var summaryItems = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)
-                ;
+            var summaryItems = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate);
 
-            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(summaryItems.Select(x => new CategoryOverviewViewModel
-            {
-                Value = x.Value,
-                Average = x.Average,
-                Label = x.Label,
-                Percentage = x.Percentage
-            }));
+            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
+                summaryItems.Select(x => new CategoryOverviewViewModel
+                {
+                    Value = x.Value,
+                    Average = x.Average,
+                    Label = x.Label,
+                    Percentage = x.Percentage
+                }));
         }
     }
 }

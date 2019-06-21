@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

@@ -2,8 +2,6 @@
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Forms.Presenters.Attributes;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +9,6 @@ using Xamarin.Forms.Xaml;
 namespace MoneyFox.Presentation.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Accounts", Icon = "ic_accounts_black")]
     public partial class AccountListPage
     {
         private IAccountListViewModel ViewModel => BindingContext as AccountListViewModel;

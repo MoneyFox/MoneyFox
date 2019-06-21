@@ -178,7 +178,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void UpdateList()
         {
-            MessengerInstance.Send(new PaymentListFilterChangedMessage(this)
+            MessengerInstance.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

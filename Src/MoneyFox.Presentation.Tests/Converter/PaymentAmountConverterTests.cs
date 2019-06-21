@@ -2,7 +2,6 @@
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Converter;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using Should;
 using Xunit;
 

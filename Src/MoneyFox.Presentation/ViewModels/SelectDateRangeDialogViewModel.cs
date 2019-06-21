@@ -1,6 +1,6 @@
 ﻿using System;
 using MoneyFox.BusinessLogic.Extensions;
-using MoneyFox.ServiceLayer.Messages;
+using MoneyFox.Presentation.Messages;
 using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels

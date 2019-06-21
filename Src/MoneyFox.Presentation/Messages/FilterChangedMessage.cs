@@ -1,18 +1,17 @@
 ﻿using System;
-using MvvmCross.Plugin.Messenger;
 
 namespace MoneyFox.Presentation.Messages
 {
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
     /// </summary>
-    public class PaymentListFilterChangedMessage : MvxMessage
+    public class PaymentListFilterChangedMessage
     {
         /// <summary>
         ///     Constructor
         /// </summary>
         /// <param name="sender">sender object</param>
-        public PaymentListFilterChangedMessage(object sender) : base(sender)
+        public PaymentListFilterChangedMessage()
         {
         }
 

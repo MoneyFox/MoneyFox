@@ -4,10 +4,6 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
@@ -36,13 +32,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         ///     Contstructor
         /// </summary>
         public StatisticCategorySpreadingViewModel(ICategorySpreadingDataProvider spreadingDataProvider,
-                                                   IMvxMessenger messenger,
-                                                   ISettingsFacade settingsFacade,
-                                                   IMvxLogProvider logProvider,
-                                                   IMvxNavigationService navigationService)
-            : base(messenger, settingsFacade, logProvider, navigationService)
+                                                   ISettingsFacade settingsFacade) : base(settingsFacade)
         {
             this.spreadingDataProvider = spreadingDataProvider;
+
+            Load();
         }
 
         /// <summary>
@@ -71,12 +65,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                 statisticItems = value;
                 RaisePropertyChanged();
             }
-        }
-
-        /// <inheritdoc />
-        public override async Task Initialize()
-        {
-            await Load();
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Models;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -9,6 +8,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     {
         List<StatisticSelectorType> StatisticItems { get; }
 
-        MvxAsyncCommand<StatisticSelectorType> GoToStatisticCommand { get; }
+        RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; }
     }
 }

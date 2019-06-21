@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.ServiceLayer.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

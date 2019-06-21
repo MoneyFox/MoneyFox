@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

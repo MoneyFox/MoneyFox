@@ -1,6 +1,4 @@
-﻿using MoneyFox.ServiceLayer.ViewModels;
-
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+﻿namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeSelectCategoryListViewModel : ISelectCategoryListViewModel
     {

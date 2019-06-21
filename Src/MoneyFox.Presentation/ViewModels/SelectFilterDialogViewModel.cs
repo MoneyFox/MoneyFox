@@ -3,7 +3,7 @@ using MoneyFox.Presentation.Messages;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface ISelectFilterDialogViewModel : IBaseViewModel
+    public interface ISelectFilterDialogViewModel
     {
         bool IsClearedFilterActive { get; set; }
         bool IsRecurringFilterActive { get; set; }
@@ -80,7 +80,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void UpdateList()
         {
-            MessengerInstance.Send(new PaymentListFilterChangedMessage(this)
+            MessengerInstance.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 
-namespace MoneyFox.ServiceLayer.QueryObject
+namespace MoneyFox.Presentation.QueryObject
 {
     public static class PaymentQueries
     {

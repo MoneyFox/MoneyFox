@@ -4,10 +4,6 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
-using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using SkiaSharp;
 
@@ -23,18 +19,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
-        public StatisticCashFlowViewModel(IMvxMessenger messenger, 
-                                          ICashFlowDataProvider cashFlowDataProvider,
-                                          ISettingsFacade settingsFacade,
-                                          IMvxNavigationService navigationService, 
-                                          IMvxLogProvider logProvider) 
-            : base(messenger, settingsFacade, logProvider, navigationService)
+        public StatisticCashFlowViewModel(ICashFlowDataProvider cashFlowDataProvider,
+                                          ISettingsFacade settingsFacade) 
+            : base(settingsFacade)
         {
             this.cashFlowDataProvider = cashFlowDataProvider;
 
             Chart = new BarChart();
+            Load();
         }
-        
+
         /// <summary>
         ///     Chart to render.
         /// </summary>
@@ -61,11 +55,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                 statisticItems = value;
                 RaisePropertyChanged();
             }
-        }
-
-        public override async Task Initialize()
-        {
-            await Load();
         }
 
         protected override async Task Load()

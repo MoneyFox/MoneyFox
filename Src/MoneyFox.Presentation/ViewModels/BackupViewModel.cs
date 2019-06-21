@@ -13,7 +13,7 @@ using MoneyFox.ServiceLayer.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IBackupViewModel : IBaseViewModel
+    public interface IBackupViewModel
     {
         /// <summary>
         ///     Initialize View Model.

@@ -3,13 +3,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using MockQueryable.Moq;
+using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.QueryObject;
-using MoneyFox.ServiceLayer.ViewModels;
 using Should;
 using Xunit;
 
-namespace MoneyFox.ServiceLayer.Tests.QueryObject
+namespace MoneyFox.Presentation.Tests.QueryObject
 {
     [ExcludeFromCodeCoverage]
     public class AccountQueriesTests

@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Input;
 using GenericServices;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
-using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
 using MvvmCross;
 

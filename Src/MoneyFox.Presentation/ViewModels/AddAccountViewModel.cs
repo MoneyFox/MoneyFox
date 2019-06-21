@@ -2,8 +2,8 @@
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.QueryObject;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 

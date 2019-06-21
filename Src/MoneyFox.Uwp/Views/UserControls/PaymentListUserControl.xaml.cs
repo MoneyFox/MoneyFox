@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {

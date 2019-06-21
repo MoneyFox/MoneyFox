@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;

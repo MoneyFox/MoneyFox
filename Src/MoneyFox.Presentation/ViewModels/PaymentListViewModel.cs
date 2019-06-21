@@ -8,9 +8,10 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Messages;
+using MoneyFox.Presentation.QueryObject;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.QueryObject;
 using MoneyFox.ServiceLayer.Services;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
@@ -182,7 +183,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             dialogService.ShowLoadingDialog();
 
-            LoadPayments(new PaymentListFilterChangedMessage(this));
+            LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute(null);
 

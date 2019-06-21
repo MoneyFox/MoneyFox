@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Services;
-using MoneyFox.ServiceLayer.ViewModels;
 using Moq;
 using Should;
 using Xunit;

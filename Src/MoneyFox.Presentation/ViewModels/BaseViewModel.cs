@@ -5,6 +5,11 @@ using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
+    public interface IBaseViewModel
+    {
+        LocalizedResources Resources { get; }
+    }
+
     public abstract class BaseViewModel : ViewModelBase, IBaseViewModel
     {
         /// <summary>

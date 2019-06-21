@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.QueryObject;
+using MoneyFox.Presentation.QueryObject;
 using IDialogService = MoneyFox.ServiceLayer.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

@@ -1,12 +1,10 @@
 ﻿using System;
-using MvvmCross.Plugin.Messenger;
 
-namespace MoneyFox.ServiceLayer.Messages
+namespace MoneyFox.Presentation.Messages
 {
-    public class DateSelectedMessage : MvxMessage
+    public class DateSelectedMessage
     {
         public DateSelectedMessage(object sender, DateTime startDate, DateTime endDate)
-            : base(sender)
         {
             StartDate = startDate;
             EndDate = endDate;

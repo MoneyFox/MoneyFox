@@ -6,7 +6,6 @@ using Windows.UI.StartScreen;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels;
 using MoneyFox.Windows.Business;
 using MoneyFox.Windows.Business.Tiles;
 

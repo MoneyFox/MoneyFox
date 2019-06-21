@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;
-using MoneyFox.ServiceLayer.ViewModels.Statistic;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -36,6 +35,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             }
         };
 
-        public MvxAsyncCommand<StatisticSelectorType> GoToStatisticCommand { get; }
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; }
     }
 }
